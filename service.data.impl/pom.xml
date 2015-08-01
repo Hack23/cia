@@ -22,7 +22,7 @@
   <scm>
     <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/service.data.impl</connection>
     <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/service.data.impl</developerConnection>
-    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/service.data.impl</url>
+    <url>https://github.com/Hack23/cia/tree/master/service.data.impl</url>
   </scm>
   <distributionManagement>
     <site>

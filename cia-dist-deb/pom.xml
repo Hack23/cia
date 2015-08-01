@@ -38,7 +38,7 @@
             <section>devel</section>
             <!-- <depends>zip</depends> -->
             <preDepends>openjdk-8-jdk</preDepends>
-            <!-- <priority></priority> <provides></provides> <recommends></recommends> 
+            <!-- <priority></priority> <provides></provides> <recommends></recommends>
 							<replaces></replaces> <suggests></suggests> -->
           </deb>
           <packages>
@@ -84,9 +84,9 @@
   </build>
   <name>cia-dist-deb</name>
   <scm>
-    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/cia-dist-deb</connection>
-    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/cia-dist-deb</developerConnection>
-    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/cia-dist-deb</url>
+    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:git://github.com/Hack23/cia.git</developerConnection>
+    <url>https://github.com/Hack23/cia/tree/master/cia-dist-deb</url>
   </scm>
 </project>
 

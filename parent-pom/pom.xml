@@ -59,9 +59,9 @@
     <module>../parent-web-pom</module>
   </modules>
   <scm>
-    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-pom</connection>
-    <developerConnection>scm:svn+ssh://svn.code.sf.net/p/cia/code/trunk/parent-pom</developerConnection>
-    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/parent-pom</url>
+    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:git://github.com/Hack23/cia.git</developerConnection>
+    <url>https://github.com/Hack23/cia/tree/master/parent-pom</url>
   </scm>
   <issueManagement>
     <system>trac</system>

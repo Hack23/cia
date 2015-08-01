@@ -30,7 +30,7 @@
   <scm>
     <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-model-pom</connection>
     <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-model-pom</developerConnection>
-    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/parent-model-pom</url>
+    <url>https://github.com/Hack23/cia/tree/master/parent-model-pom</url>
   </scm>
   <distributionManagement>
     <site>

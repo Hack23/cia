@@ -22,7 +22,7 @@
   <scm>
     <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/testfoundation</connection>
     <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/testfoundation</developerConnection>
-    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/testfoundation</url>
+    <url>https://github.com/Hack23/cia/tree/master/testfoundation</url>
   </scm>
   <distributionManagement>
     <site>

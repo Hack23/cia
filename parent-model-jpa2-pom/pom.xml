@@ -31,7 +31,7 @@
   <scm>
     <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-model-jpa2-pom</connection>
     <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-model-jpa2-pom</developerConnection>
-    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/parent-model-jpa2-pom</url>
+    <url>https://github.com/Hack23/cia/tree/master/parent-model-jpa2-pom</url>
   </scm>
   <distributionManagement>
     <site>

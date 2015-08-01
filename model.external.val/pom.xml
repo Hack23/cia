@@ -22,7 +22,7 @@
   <scm>
     <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/model.external.val</connection>
     <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/model.external.val</developerConnection>
-    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/model.external.val</url>
+    <url>https://github.com/Hack23/cia/tree/master/model.external.val</url>
   </scm>
   <distributionManagement>
     <site>

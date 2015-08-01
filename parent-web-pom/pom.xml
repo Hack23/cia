@@ -31,7 +31,7 @@
   <scm>
     <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-web-pom</connection>
     <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-web-pom</developerConnection>
-    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/parent-web-pom</url>
+    <url>https://github.com/Hack23/cia/tree/master/parent-web-pom</url>
   </scm>
   <distributionManagement>
     <site>

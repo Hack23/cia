@@ -20,9 +20,9 @@
     </license>
   </licenses>
   <scm>
-    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/model.common.api</connection>
-    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/model.common.api</developerConnection>
-    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/model.common.api</url>
+    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:git://github.com/Hack23/cia.git</developerConnection>
+    <url>https://github.com/Hack23/cia/tree/master/model.common.api</url>
   </scm>
   <distributionManagement>
     <site>

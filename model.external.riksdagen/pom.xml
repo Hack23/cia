@@ -24,9 +24,9 @@
     <module>../model.external.riksdagen.utskottsforslag.impl</module>
   </modules>
   <scm>
-    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/model.external.riksdagen</connection>
-    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/model.external.riksdagen</developerConnection>
-    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/model.external.riksdagen</url>
+    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:git://github.com/Hack23/cia.git</developerConnection>
+    <url>https://github.com/Hack23/cia/tree/master/model.external.riksdagen</url>
   </scm>
   <distributionManagement>
     <site>

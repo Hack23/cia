@@ -22,7 +22,7 @@
   <scm>
     <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/service.component.agent.impl</connection>
     <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/service.component.agent.impl</developerConnection>
-    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/service.component.agent.impl</url>
+    <url>https://github.com/Hack23/cia/tree/master/service.component.agent.impl</url>
   </scm>
   <distributionManagement>
     <site>

@@ -14,9 +14,9 @@
   <url>http://cia.sourceforge.net</url>
   <inceptionYear>2008</inceptionYear>
   <scm>
-    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/citizen-intelligence-agency</connection>
-    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/citizen-intelligence-agency</developerConnection>
-    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/citizen-intelligence-agency</url>
+    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:git://github.com/Hack23/cia.git</developerConnection>
+    <url>https://github.com/Hack23/cia/tree/master/citizen-intelligence-agency</url>
   </scm>
   <distributionManagement>
     <!-- http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->

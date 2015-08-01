@@ -40,7 +40,7 @@
   <scm>
     <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-service-pom</connection>
     <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-service-pom</developerConnection>
-    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/parent-service-pom</url>
+    <url>https://github.com/Hack23/cia/tree/master/parent-service-pom</url>
   </scm>
   <distributionManagement>
     <site>

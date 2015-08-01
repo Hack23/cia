@@ -13,7 +13,7 @@
   <scm>
     <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/web-widgets</connection>
     <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/web-widgets</developerConnection>
-    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/web-widgets</url>
+    <url>https://github.com/Hack23/cia/tree/master/web-widgets</url>
   </scm>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

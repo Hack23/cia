@@ -19,7 +19,7 @@
   <scm>
     <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/model.internal.application</connection>
     <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/model.internal.application</developerConnection>
-    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/model.internal.application</url>
+    <url>https://github.com/Hack23/cia/tree/master/model.internal.application</url>
   </scm>
   <distributionManagement>
     <site>

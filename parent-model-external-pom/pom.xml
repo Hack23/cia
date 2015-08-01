@@ -31,7 +31,7 @@
   <scm>
     <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-model-external-pom</connection>
     <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-model-external-pom</developerConnection>
-    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/parent-model-external-pom</url>
+    <url>https://github.com/Hack23/cia/tree/master/parent-model-external-pom</url>
   </scm>
   <distributionManagement>
     <site>
