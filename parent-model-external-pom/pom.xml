@@ -29,8 +29,8 @@
     <module>../model.external.val</module>
   </modules>
   <scm>
-    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-model-external-pom</connection>
-    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-model-external-pom</developerConnection>
+    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:git://github.com/Hack23/cia.git</developerConnection>
     <url>https://github.com/Hack23/cia/tree/master/parent-model-external-pom</url>
   </scm>
   <distributionManagement>
@@ -208,7 +208,7 @@
               <artifactId>hyperjaxb3-ejb-runtime</artifactId>
               <version>${cia.project.versions.hyperjaxb3}</version>
             </dependency>-->
-            <!-- 
+            <!--
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-utils</artifactId>

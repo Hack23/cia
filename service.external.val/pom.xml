@@ -14,9 +14,9 @@
   <url>http://cia.sourceforge.net/service.external.val/</url>
   <inceptionYear>2010</inceptionYear>
   <scm>
-    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/service.external.val</connection>
-    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/service.external.val</developerConnection>
-    <url>http://cia.svn.sourceforge.net/viewvc/cia/</url>
+    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:git://github.com/Hack23/cia.git</developerConnection>
+    <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
   <distributionManagement>
     <site>

@@ -38,8 +38,8 @@
     <module>../service.data.impl</module>
   </modules>
   <scm>
-    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-service-pom</connection>
-    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-service-pom</developerConnection>
+    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:git://github.com/Hack23/cia.git</developerConnection>
     <url>https://github.com/Hack23/cia/tree/master/parent-service-pom</url>
   </scm>
   <distributionManagement>
@@ -173,7 +173,7 @@
           </exclusion>
         </exclusions>
       </dependency>
-      <!-- 
+      <!--
       <dependency>
         <groupId>org.quartz-scheduler</groupId>
         <artifactId>quartz</artifactId>

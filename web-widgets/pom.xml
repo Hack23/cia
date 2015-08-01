@@ -11,8 +11,8 @@
   <packaging>jar</packaging>
   <name>Web-Widgets</name>
   <scm>
-    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/web-widgets</connection>
-    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/web-widgets</developerConnection>
+    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
+    <developerConnection>sscm:git:git://github.com/Hack23/cia.git</developerConnection>
     <url>https://github.com/Hack23/cia/tree/master/web-widgets</url>
   </scm>
   <properties>
@@ -73,11 +73,11 @@
       <artifactId>vaadin-client-compiled</artifactId>
       <version>${vaadin.version}</version>
     </dependency>
-    <!-- Needed when using the widgetset optimizer (custom ConnectorBundleLoaderFactory). 
-			For widgetset compilation, vaadin-client-compiler is automatically added 
-			on the compilation classpath by vaadin-maven-plugin so normally there is 
+    <!-- Needed when using the widgetset optimizer (custom ConnectorBundleLoaderFactory).
+			For widgetset compilation, vaadin-client-compiler is automatically added
+			on the compilation classpath by vaadin-maven-plugin so normally there is
 			no need for an explicit dependency. -->
-    <!-- <dependency> <groupId>com.vaadin</groupId> <artifactId>vaadin-client-compiler</artifactId> 
+    <!-- <dependency> <groupId>com.vaadin</groupId> <artifactId>vaadin-client-compiler</artifactId>
 			<version>${vaadin.version}</version> <scope>provided</scope> </dependency> -->
     <dependency>
       <groupId>com.vaadin</groupId>
@@ -129,7 +129,7 @@
   <build>
     <pluginManagement>
       <plugins>
-        <!--This plugin's configuration is used to store Eclipse m2e settings 
+        <!--This plugin's configuration is used to store Eclipse m2e settings
 					only. It has no influence on the Maven build itself. -->
         <plugin>
           <groupId>org.eclipse.m2e</groupId>
@@ -203,7 +203,7 @@
             <index>true</index>
             <manifest>
               <addClasspath>true</addClasspath>
-              <!-- Implementation-Title and Implementation-Version come from the 
+              <!-- Implementation-Title and Implementation-Version come from the
 								POM by default -->
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
             </manifest>
@@ -242,9 +242,9 @@
         <configuration>
           <extraJvmArgs>-Xmx512M -Xss1024k</extraJvmArgs>
           <!-- <runTarget>mobilemail</runTarget> -->
-          <!-- We are doing "inplace" but into subdir VAADIN/widgetsets. This 
+          <!-- We are doing "inplace" but into subdir VAADIN/widgetsets. This
 						way compatible with Vaadin eclipse plugin. -->
-          <!-- 
+          <!--
           <webappDirectory>${basedir}/src/main/webapp/VAADIN/widgetsets</webappDirectory>
           <hostedWebapp>${basedir}/src/main/webapp/VAADIN/widgetsets</hostedWebapp>
           -->
@@ -253,7 +253,7 @@
           <!-- Most Vaadin apps don't need this stuff, guide that to target -->
           <persistentunitcachedir>${project.build.directory}/classes/</persistentunitcachedir>
           <deploy>${project.build.directory}/classes/gwt-deploy</deploy>
-          <!-- Compile report is not typically needed either, saves hunreds of 
+          <!-- Compile report is not typically needed either, saves hunreds of
 						mb disk -->
           <compileReport>false</compileReport>
           <noServer>true</noServer>

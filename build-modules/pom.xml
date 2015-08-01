@@ -11,7 +11,7 @@
   <packaging>pom</packaging>
   <name>build-modules</name>
   <scm>
-    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/build-modules</connection>
+    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:git://github.com/Hack23/cia.git</developerConnection>
     <url>https://github.com/Hack23/cia/tree/master/build-modules</url>
   </scm>

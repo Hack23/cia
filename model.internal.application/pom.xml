@@ -17,8 +17,8 @@
     <module>../model.internal.application.user.impl</module>
   </modules>
   <scm>
-    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/model.internal.application</connection>
-    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/model.internal.application</developerConnection>
+    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:git://github.com/Hack23/cia.git</developerConnection>
     <url>https://github.com/Hack23/cia/tree/master/model.internal.application</url>
   </scm>
   <distributionManagement>

@@ -14,9 +14,9 @@
   <url>http://cia.sourceforge.net/service.external.common/</url>
   <inceptionYear>2010</inceptionYear>
   <scm>
-    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/service.external.common</connection>
-    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/service.external.common</developerConnection>
-    <url>http://cia.svn.sourceforge.net/viewvc/cia/</url>
+    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:git://github.com/Hack23/cia.git</developerConnection>
+    <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
   <distributionManagement>
     <site>
@@ -87,7 +87,7 @@
       <artifactId>jdom2</artifactId>
       <version>2.0.6</version>
     </dependency>
-    <!-- 
+    <!--
     <dependency>
       <groupId>jaxen</groupId>
       <artifactId>jaxen</artifactId>

@@ -29,8 +29,8 @@
     <module>../model.common.impl</module>
   </modules>
   <scm>
-    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-model-jpa2-pom</connection>
-    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-model-jpa2-pom</developerConnection>
+    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:git://github.com/Hack23/cia.git</developerConnection>
     <url>https://github.com/Hack23/cia/tree/master/parent-model-jpa2-pom</url>
   </scm>
   <distributionManagement>

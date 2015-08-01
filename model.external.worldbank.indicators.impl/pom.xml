@@ -14,9 +14,9 @@
   <url>http://cia.sourceforge.net/model.external.worldbank.indicators.impl</url>
   <inceptionYear>2010</inceptionYear>
   <scm>
-    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/model.external.worldbank.indicators.impl</connection>
-    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/model.external.worldbank.indicators.impl</developerConnection>
-    <url>http://cia.svn.sourceforge.net/viewvc/cia/</url>
+    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:git://github.com/Hack23/cia.git</developerConnection>
+    <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
   <distributionManagement>
     <!-- http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->

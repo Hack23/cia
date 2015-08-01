@@ -20,8 +20,8 @@
     </license>
   </licenses>
   <scm>
-    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/service.component.agent.api</connection>
-    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/service.component.agent.api</developerConnection>
+    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:git://github.com/Hack23/cia.git</developerConnection>
     <url>https://github.com/Hack23/cia/tree/master/service.component.agent.api</url>
   </scm>
   <distributionManagement>
