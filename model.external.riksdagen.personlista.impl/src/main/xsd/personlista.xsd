@@ -1,0 +1,422 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:person="http://personlista.riksdagen.external.model.cia.hack23.com/impl"
+	jaxb:extensionBindingPrefixes="xjc hj orm" jaxb:version="2.0"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified"
+	targetNamespace="http://personlista.riksdagen.external.model.cia.hack23.com/impl">
+
+	<xsd:element name="personlista" type="person:PersonContainerElement" />
+
+	<xsd:complexType name="PersonContainerElement">
+		<xsd:sequence>
+			<xsd:element name="person" type="person:PersonElement"
+				maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="PersonElement">
+		<xsd:sequence>
+			<xsd:element name="hangar_guid" type="xsd:string" />
+			<xsd:element name="intressent_id" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="id" />
+						<hj:id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="fodd_ar" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="bornYear" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="kon" type="person:SexType">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="gender" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="efternamn" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="lastName" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="tilltalsnamn" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="firstName" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="iort" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="place" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="parti" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="party" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="valkrets" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="electionRegion" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="status" type="person:RoleStatus" />
+
+			<xsd:element name="bild_url_192" type="xsd:anyURI">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="imageUrl192" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="bild_url_max" type="xsd:anyURI">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="imageUrlMax" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="bild_url_80" type="xsd:anyURI">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="imageUrl80" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="person_url_xml" type="xsd:anyURI">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="personUrlXml" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="personuppdrag" type="person:PersonAssignmentElement">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="personAssignmentElement" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="personuppgift" type="person:PersonDetailElement">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="personDetailElement" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="PersonAssignmentElement">
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" name="uppdrag"
+				type="person:AssignmentElement">
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AssignmentElement">
+		<xsd:sequence>
+			<xsd:element name="organ_kod" type="person:OrgCode">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="orgCode" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="roll_kod" type="person:RoleStatus">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="roleCode" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ordningsnummer" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="orderNumber" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="status" type="person:RoleStatus" />
+			<xsd:element name="typ" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="assignmentType" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="from" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="fromDate" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="tom" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="toDate" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="uppgift" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="detail" />
+						<hj:basic>
+							<orm:column length="65536" />
+						</hj:basic>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="intressent_id" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="PersonDetailElement">
+		<xsd:sequence>
+			<xsd:element name="uppgift" type="person:DetailElement">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jaxb:property name="detailList" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+
+	<xsd:complexType name="DetailElement">
+		<xsd:sequence>
+			<xsd:element name="intressent_id" type="xsd:string" />
+			<xsd:element name="typ" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="detailType" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="uppgift" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="detail" />
+						<hj:basic>
+							<orm:column length="65536" />
+						</hj:basic>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="kod" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="code" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:simpleType name="SexType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="man" />
+			<xsd:enumeration value="kvinna" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+
+	<xsd:simpleType name="RoleStatus">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Andre vice talman (tjänstgörande riksdagsledamot)" />
+			<xsd:enumeration value="Avgången riksdagsledamot" />
+			<xsd:enumeration value="Avliden  2000-04-28" />
+			<xsd:enumeration value="Avliden  2003-09-11" />
+			<xsd:enumeration value="Avliden  2006-12-06" />
+			<xsd:enumeration value="Avliden  2007-05-17" />
+			<xsd:enumeration value="Avliden  2007-05-31" />
+			<xsd:enumeration value="Avliden  2007-06-30" />
+			<xsd:enumeration value="Ersättare" />
+			<xsd:enumeration value="Finansminister" />
+			<xsd:enumeration value="Förste vice talman (tjänstgörande riksdagsledamot)" />
+			<xsd:enumeration value="Försvarsminister" />
+			<xsd:enumeration value="Integrations- och jämställdhetsminister" />
+			<xsd:enumeration value="Jordbruksminister" />
+			<xsd:enumeration value="Justitieminister" />
+			<xsd:enumeration value="Kulturminister" />
+			<xsd:enumeration value="Ledig" />
+			<xsd:enumeration value="Miljöminister" />
+			<xsd:enumeration value="Näringsminister" />
+			<xsd:enumeration value="Socialminister" />
+			<xsd:enumeration value="Statsminister" />
+			<xsd:enumeration value="Statsråd" />
+			<xsd:enumeration value="Talman" />
+			<xsd:enumeration value="Tidigare ersättare" />
+			<xsd:enumeration value="Tidigare riksdagsledamot" />
+			<xsd:enumeration value="Tillgänglig ersättare" />
+			<xsd:enumeration value="Tjänstgörande ersättare" />
+			<xsd:enumeration value="Tjänstgörande riksdagsledamot" />
+			<xsd:enumeration value="Tjänstgörande statsrådsersättare" />
+			<xsd:enumeration value="Tjänstgörande" />
+			<xsd:enumeration value="Tjänstgörande talmansersättare" />
+			<xsd:enumeration value="Tjänstledig riksdagsledamot" />
+			<xsd:enumeration value="Tredje vice talman (tjänstgörande riksdagsledamot)" />
+			<xsd:enumeration value="Utbildningsminister" />
+			<xsd:enumeration value="Utrikesminister" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="RoleDataType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="eadress" />
+			<xsd:enumeration value="kammaruppdrag" />
+			<xsd:enumeration value="partiuppdrag" />
+			<xsd:enumeration value="talmansuppdrag" />
+			<xsd:enumeration value="telefonnummer" />
+			<xsd:enumeration value="titlar" />
+			<xsd:enumeration value="uppdrag" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="OrgCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="AU" />
+			<xsd:enumeration value="CU" />
+			<xsd:enumeration value="FiU" />
+			<xsd:enumeration value="FöU" />
+			<xsd:enumeration value="JuU" />
+			<xsd:enumeration value="KU" />
+			<xsd:enumeration value="KrU" />
+			<xsd:enumeration value="MJU" />
+			<xsd:enumeration value="NU" />
+			<xsd:enumeration value="SkU" />
+			<xsd:enumeration value="SfU" />
+			<xsd:enumeration value="SoU" />
+			<xsd:enumeration value="TU" />
+			<xsd:enumeration value="UbU" />
+			<xsd:enumeration value="UU" />
+			<xsd:enumeration value="JuSoU" />
+			<xsd:enumeration value="KUU" />
+			<xsd:enumeration value="UFöU" />
+			<xsd:enumeration value="UMJU" />
+			<xsd:enumeration value="USoU" />
+			<xsd:enumeration value="JoU" />
+			<xsd:enumeration value="BoU" />
+			<xsd:enumeration value="LU" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>
+

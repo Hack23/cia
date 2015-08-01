@@ -1,0 +1,13 @@
+Project Documentation
+
+ * Entity model {{{./hbm2doc/entities/index.html}Hbm2Doc}}.
+
+ * Javadoc & UML {{{./apidocs/index.html}Generated javadoc with UML diagrams}}.
+
+ * Changelog {{{./changelog.html}Changelog}}.
+
+ * Source Code {{{./xref/index.html}Cross-reference Java source code}}.
+
+ * Project Dependency Graph {{{./images/Project-Dependencies.png}Graph Image}}.
+
+ * Test Result {{{./surefire-report.html}Surefire test report}}.

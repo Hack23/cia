@@ -1,0 +1,187 @@
+/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id: CitizenIntelligenceAgencyServer.java 6118 2015-07-31 17:41:55Z pether $
+ *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/citizen-intelligence-agency/src/test/java/com/hack23/cia/systemintegrationtest/CitizenIntelligenceAgencyServer.java $
+*/
+
+package com.hack23.cia.systemintegrationtest;
+
+import java.lang.management.ManagementFactory;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+
+import org.eclipse.jetty.jmx.MBeanContainer;
+import org.eclipse.jetty.server.Handler;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.server.handler.DefaultHandler;
+import org.eclipse.jetty.server.handler.HandlerList;
+import org.eclipse.jetty.webapp.WebAppContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.bridge.SLF4JBridgeHandler;
+
+/**
+ * The Class CitizenIntelligenceAgencyServer.
+ */
+public class CitizenIntelligenceAgencyServer {
+
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(CitizenIntelligenceAgencyServer.class);
+
+	/** The Constant PORT. */
+	public static final int PORT = 8080;
+
+	/** The access url. */
+	public static String ACCESS_URL = "http://localhost:" + PORT + "/";
+
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 */
+	public static void main(final String[] args) {
+		System.setProperty("logback.configurationFile",
+				"src/main/resources/logback.xml");
+		System.setProperty("slf4j", "true");
+		System.setProperty("org.eclipse.jetty.util.log.class",
+				"org.eclipse.jetty.util.log.Slf4jLog");
+		LogManager.getLogManager().reset();
+		SLF4JBridgeHandler.install();
+		java.util.logging.Logger.getLogger("global").setLevel(Level.FINEST);
+
+		final CitizenIntelligenceAgencyServer testServer = new CitizenIntelligenceAgencyServer();
+		try {
+			testServer.init();
+			testServer.start();
+		} catch (final Exception e) {
+			LOGGER.error("Application Exception", e);
+		}
+	}
+
+	/**
+	 * Start server.
+	 */
+	public void startServer() {
+		try {
+			System.setProperty("logback.configurationFile",
+					"src/main/resources/logback.xml");
+			System.setProperty("slf4j", "true");
+			System.setProperty("org.eclipse.jetty.util.log.class",
+					"org.eclipse.jetty.util.log.Slf4jLog");
+			LogManager.getLogManager().reset();
+			SLF4JBridgeHandler.install();
+			java.util.logging.Logger.getLogger("global").setLevel(Level.FINEST);
+
+			init();
+			start();
+		} catch (final Exception e) {
+			LOGGER.error("Application Exception", e);
+		}
+	}
+
+	/**
+	 * Instantiates a new citizen intelligence agency server.
+	 */
+	public CitizenIntelligenceAgencyServer() {
+		super();
+		System.setProperty("logback.configurationFile",
+				"src/main/resources/logback.xml");
+		System.setProperty("slf4j", "true");
+		System.setProperty("org.eclipse.jetty.util.log.class",
+				"org.eclipse.jetty.util.log.Slf4jLog");
+		LogManager.getLogManager().reset();
+		SLF4JBridgeHandler.install();
+		java.util.logging.Logger.getLogger("global").setLevel(Level.FINEST);
+	}
+
+	/** The initialised. */
+	private boolean initialised = false;
+
+	/** The server. */
+	private Server server;
+
+	/**
+	 * Inits the.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	public final void init() throws Exception {
+		initialised = true;
+		server = new Server();
+		// Setup JMX
+		final MBeanContainer mbContainer = new MBeanContainer(
+				ManagementFactory.getPlatformMBeanServer());
+		server.addBean(mbContainer);
+
+		// Enable parsing of jndi-related parts of web.xml and jetty-env.xml
+		final org.eclipse.jetty.webapp.Configuration.ClassList classlist = org.eclipse.jetty.webapp.Configuration.ClassList
+				.setServerDefault(server);
+		classlist.addAfter("org.eclipse.jetty.webapp.FragmentConfiguration",
+				"org.eclipse.jetty.plus.webapp.EnvConfiguration",
+				"org.eclipse.jetty.plus.webapp.PlusConfiguration");
+		classlist.addBefore(
+				"org.eclipse.jetty.webapp.JettyWebXmlConfiguration",
+				"org.eclipse.jetty.annotations.AnnotationConfiguration");
+
+		final ServerConnector connector = new ServerConnector(server);
+		connector.setPort(PORT);
+		server.setConnectors(new ServerConnector[] { connector });
+		final WebAppContext handler = new WebAppContext("src/main/webapp", "/");
+		handler.setExtraClasspath("target/classes");
+		handler.setParentLoaderPriority(true);
+		handler.setConfigurationDiscovered(true);
+		handler.setClassLoader(Thread.currentThread().getContextClassLoader());
+		final HandlerList handlers = new HandlerList();
+
+		handlers.setHandlers(new Handler[] { handler, new DefaultHandler() });
+		server.setHandler(handlers);
+
+	}
+
+	/**
+	 * Start.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	public final void start() throws Exception {
+		if (!initialised) {
+			LOGGER.info("Exiting init not called before start"); //$NON-NLS-1$
+			System.exit(-1);
+		}
+
+		try {
+			server.start();
+			// server.join();
+		} catch (final Exception e) {
+			LOGGER.error("Problem starting server", e);
+		}
+	}
+
+	/**
+	 * Stop.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	public final void stop() throws Exception {
+		server.stop();
+	}
+}

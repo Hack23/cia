@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener
+		</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:net/bull/javamelody/monitoring-spring.xml
+			classpath:META-INF/cia-application-context.xml
+			<!-- classpath:META-INF/sec.xml-->
+			classpath:META-INF/application-context-service-data.xml
+			classpath:META-INF/cia-service-external-riksdagen.xml
+			classpath:META-INF/cia-service-external-worldbank.xml
+			classpath:META-INF/cia-service-external-val.xml
+			classpath:META-INF/cia-service-component-agent.xml
+			classpath:META-INF/application-context-service.xml
+		</param-value>
+	</context-param>
+	
+	<listener>
+    	<listener-class>org.atmosphere.cpr.SessionSupport</listener-class>
+	</listener>
+	<context-param>
+	    <param-name>org.atmosphere.cpr.sessionSupport</param-name>
+	    <param-value>true</param-value>
+	</context-param>
+	
+<!--  
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+-->
+	<listener>
+		<listener-class>net.bull.javamelody.SessionListener</listener-class>
+	</listener>
+
+	<filter>
+		<filter-name>monitoring</filter-name>
+		<filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
+		<init-param>
+			<param-name>displayed-counters</param-name>
+			<param-value>http,spring,sql,error,log</param-value>
+		</init-param>
+		<init-param>
+			<param-name>quartz-default-listener-disabled</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>system-actions-enabled</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>log</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>disabled</param-name>
+			<param-value>false</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>monitoring</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- temp disable web cache
+	<filter>
+		<filter-name>SimplePageCachingFilter</filter-name>
+		<filter-class>net.sf.ehcache.constructs.web.filter.SimplePageCachingFilter
+		</filter-class>
+		<init-param>
+			<param-name>cacheName</param-name>
+			<param-value>SimplePageCachingFilter</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>SimplePageCachingFilter</filter-name>
+		<url-pattern>/services/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SimplePageCachingFilter</filter-name>
+		<url-pattern>/VAADIN/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SimplePageCachingFilter</filter-name>
+		<url-pattern>/css/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+		<filter-mapping>
+		<filter-name>SimplePageCachingFilter</filter-name>
+		<url-pattern>/images/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+		<filter-mapping>
+		<filter-name>SimplePageCachingFilter</filter-name>
+		<url-pattern>/js/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>SimpleCachingHeadersPageCachingFilter</filter-name>
+		<filter-class>net.sf.ehcache.constructs.web.filter.SimpleCachingHeadersPageCachingFilter
+		</filter-class>
+		<init-param>
+			<param-name>suppressStackTraces</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cacheName</param-name>
+			<param-value>SimpleCachingHeadersPageCachingFilter</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>SimpleCachingHeadersPageCachingFilter</filter-name>
+		<url-pattern>/</url-pattern>
+	</filter-mapping>
+ -->
+ 
+	<filter>
+        <filter-name>hibernateFilter</filter-name>
+        <filter-class>
+            org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
+        </filter-class>
+    </filter>
+	<filter-mapping>
+		<filter-name>hibernateFilter</filter-name>
+		<url-pattern>/</url-pattern>
+	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>cia-webservices</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>cia-webservices</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+
+</web-app>

@@ -1,0 +1,13 @@
+<ehcache xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<diskStore path="java.io.tmpdir/cia-web-ehcache/" />
+
+
+	<cache name="SimplePageCachingFilter" maxElementsInMemory="100000"
+		eternal="false" overflowToDisk="true"
+		memoryStoreEvictionPolicy="FIFO" />
+
+	<cache name="SimpleCachingHeadersPageCachingFilter" maxElementsInMemory="100000"
+		eternal="false" overflowToDisk="true"
+		memoryStoreEvictionPolicy="FIFO" />
+				
+</ehcache>

@@ -1,0 +1,4 @@
+#! /bin/bash
+
+echo prerm
+exit 0

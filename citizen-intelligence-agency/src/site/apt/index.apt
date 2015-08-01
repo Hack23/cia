@@ -1,0 +1,58 @@
+~~
+~~  Citizen Intelligence Agency version 1.0-SNAPSHOT Copyright (c) 2008 Pether Sorling
+~~
+Citizen Intelligence Agency
+
+ Tracking politicians like bugs. Citizen Intelligence Agency is independent and non-partisan voluntary project.
+
+
+Resources
+
+ * Project homepage {{{http://sourceforge.net/projects/cia/}Sourceforge}}.
+
+ * Ohloh Project Summary {{{http://www.ohloh.net/p/citizenIntelligenceagency}Ohloh}}.
+
+ * Principia Discordia {{{http://www.principiadiscordia.com/book/1.php} Read the book!}}
+
+ * Download latest development version {{{http://cia.svn.sourceforge.net/viewvc/cia/trunk.tar.gz?view=tar}GNU tarball(trunk.tar.gz)}}.
+
+ * Download released versions {{{http://sourceforge.net/projects/cia/files/}Download page}}.
+
+
+Project Documentation
+
+ * Source Code {{{http://cia.sourceforge.net/jxr.html}Cross-reference Java source code}}.
+
+ * Source Code Monitor {{{http://fisheye3.atlassian.com/browse/cia}FishEye Provided by Atlassian}}
+
+ * Javadoc & UML {{{http://cia.sourceforge.net/apidocs/index.html}Generated javadoc with UML diagrams}}.
+
+ * Project Dependency Graph {{{./images/Project-Dependencies.png}Graph Image}}.
+
+ * Entity Model {{{.//service.data.impl/hbm2doc/entities/index.html}Hibernate Mapping Documentation}}.
+
+ * Test Result {{{http://cia.sourceforge.net/surefire-report.html}Surefire test report}}.
+
+ * Jar Usage Validation {{{http://cia.sourceforge.net/tattleTaleReport/index.html}Tattletale report}}.
+
+
+Guide to helping with Citizen Intelligence Agency
+
+ As with any open source project, there are several ways you can help:
+
+ * Build the application using the {{{http://cia.sourceforge.net/developer.html} Developer guide}} for yourself, in order to learn or make improvements and submit patches.
+
+ Requirement for above is an account at Sourceforge.net , {{{https://sourceforge.net/account/registration/} Create account}}
+
+ Plenty of more code examples of for example importers at {{{http://edemocrazy.sourceforge.net/} Direct Democracy Portal}}
+
+ Recommended runtime environment is {{{http://alestic.com/}Ubuntu and Debian AMIs for Amazon EC2}} , public ami on the way.
+
+ Your participation in the community is much appreciated!
+
+How do I Join the Project?
+
+ This project operate under a meritocracy, meaning those that the developers notice participating to a
+ high extent will be invited to join the project as a committer.
+
+

@@ -1,0 +1,541 @@
+<utskottsforslag xmlns="http://utskottsforslag.riksdagen.external.model.cia.hack23.com/impl">
+	<dokument>
+		<hangar_id>2312640</hangar_id>
+		<dok_id>GX01FiU35</dok_id>
+		<rm>2009/10</rm>
+		<beteckning>FiU35</beteckning>
+		<typ>bet</typ>
+		<subtyp>bet</subtyp>
+		<tempbeteckning />
+		<organ>FiU</organ>
+		<nummer>35</nummer>
+		<slutnummer>0</slutnummer>
+		<datum>2010-03-19 00:00:00</datum>
+		<publicerad>2010-03-19 13:01:01</publicerad>
+		<titel>Nyemission i SAS AB (publ)</titel>
+		<subtitel />
+		<status />
+		<dokument_url_text>http://data.riksdagen.se/dokument/GX01FiU35/text
+		</dokument_url_text>
+		<dokument_url_html>http://data.riksdagen.se/dokument/GX01FiU35
+		</dokument_url_html>
+		<dokumentstatus_url_xml>http://data.riksdagen.se/dokumentstatus/GX01FiU35
+		</dokumentstatus_url_xml>
+		<dokumentstatus_url_www>http://www.riksdagen.se/webbnav/?nid=3120&amp;dokid=GX01FiU35
+		</dokumentstatus_url_www>
+		<utskottsforslag_url_xml>http://data.riksdagen.se/utskottsforslag/GX01FiU35
+		</utskottsforslag_url_xml>
+	</dokument>
+	<dokutskottsforslag>
+		<utskottsforslag>
+			<punkt>1</punkt>
+			<rubrik>Statens deltagande i nyemission i SAS AB (publ)</rubrik>
+			<forslag>Riksdagen bemyndigar regeringen
+				dels att för statens räkning,
+				på vissa villkor, delta i en nyemission i
+				SAS AB (publ) genom att
+				teckna sin pro rata-andel av den föreslagna
+				nyemissionen upp till ett
+				belopp om högst
+				1 100 000 000 kr,
+				dels att vidta nödvändiga åtgärder
+				för att genomföra statens villkorade
+				deltagande i nyemissionen.
+				Därmed bifaller riksdagen proposition 2009/10:121 punkterna 1 och 2
+				samt
+				avslår motion
+				2009/10:Fi7 av Mats Pertoft m.fl. (mp) yrkande 1.
+			</forslag>
+			<beslutstyp>röstning</beslutstyp>
+			<motforslag_nummer>1</motforslag_nummer>
+			<motforslag_partier>"mp"</motforslag_partier>
+			<votering_id>{E0B34EE1-3FD3-474A-81D7-781B04BB241E}</votering_id>
+			<votering_sammanfattning_html>
+				<table class="vottabell" summary="Voteringsresultat">
+					<tr class="sakfragan">
+						<td colspan="5">
+							<h4>Omröstning i sakfrågan</h4>
+							<p>Utskottets förslag mot reservation 1 (mp)
+</p>
+						</td>
+					</tr>
+					<tr class="vottabellrubik">
+						<th>Parti</th>
+						<th>Ja</th>
+						<th>Nej</th>
+						<th>Avstående</th>
+						<th>Frånvarande</th>
+					</tr>
+					<tr>
+						<td class="parti">s</td>
+						<td class="rost_ja">97</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">33</td>
+					</tr>
+					<tr>
+						<td class="parti">m</td>
+						<td class="rost_ja">76</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">20</td>
+					</tr>
+					<tr>
+						<td class="parti">c</td>
+						<td class="rost_ja">18</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">11</td>
+					</tr>
+					<tr>
+						<td class="parti">fp</td>
+						<td class="rost_ja">18</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">10</td>
+					</tr>
+					<tr>
+						<td class="parti">kd</td>
+						<td class="rost_ja">20</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">4</td>
+					</tr>
+					<tr>
+						<td class="parti">v</td>
+						<td class="rost_ja">18</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">4</td>
+					</tr>
+					<tr>
+						<td class="parti">mp</td>
+						<td class="rost_ja">0</td>
+						<td class="rost_nej">12</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">7</td>
+					</tr>
+					<tr>
+						<td class="parti">-</td>
+						<td class="rost_ja">1</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">0</td>
+					</tr>
+					<tr>
+						<td class="totalt">Totalt</td>
+						<td class="summa_ja">248</td>
+						<td class="summa_nej">12</td>
+						<td class="summa_avstar">0</td>
+						<td class="summa_franvarande">89</td>
+					</tr>
+					<tr>
+						<td colspan="5">
+							<h4 class="beslut">Beslut: Kammaren biföll utskottets förslag</h4>
+						</td>
+					</tr>
+				</table>
+			</votering_sammanfattning_html>
+			<votering_url_xml>http://data.riksdagen.se/votering/E0B34EE1-3FD3-474A-81D7-781B04BB241E
+			</votering_url_xml>
+			<rm>2009/10</rm>
+			<bet>FiU35</bet>
+			<vinnare>utskottet</vinnare>
+		</utskottsforslag>
+		<utskottsforslag>
+			<punkt>2</punkt>
+			<rubrik>En genomgripande analys och kartläggning av SAS</rubrik>
+			<forslag>Riksdagen avslår motionerna 2009/10:Fi5 yrkande 2 och
+				2009/10:Fi6 yrkande 2.
+</forslag>
+			<beslutstyp>röstning</beslutstyp>
+			<motforslag_nummer>2</motforslag_nummer>
+			<motforslag_partier>"s","v"</motforslag_partier>
+			<votering_id>{117DC4F2-A6C4-459B-AA7A-5D4145B796DC}</votering_id>
+			<votering_sammanfattning_html>
+				<table class="vottabell" summary="Voteringsresultat">
+					<tr class="sakfragan">
+						<td colspan="5">
+							<h4>Omröstning i sakfrågan</h4>
+							<p>Utskottets förslag mot reservation 2 (s, v)
+</p>
+						</td>
+					</tr>
+					<tr class="vottabellrubik">
+						<th>Parti</th>
+						<th>Ja</th>
+						<th>Nej</th>
+						<th>Avstående</th>
+						<th>Frånvarande</th>
+					</tr>
+					<tr>
+						<td class="parti">s</td>
+						<td class="rost_ja">0</td>
+						<td class="rost_nej">97</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">33</td>
+					</tr>
+					<tr>
+						<td class="parti">m</td>
+						<td class="rost_ja">76</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">20</td>
+					</tr>
+					<tr>
+						<td class="parti">c</td>
+						<td class="rost_ja">19</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">10</td>
+					</tr>
+					<tr>
+						<td class="parti">fp</td>
+						<td class="rost_ja">18</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">10</td>
+					</tr>
+					<tr>
+						<td class="parti">kd</td>
+						<td class="rost_ja">20</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">4</td>
+					</tr>
+					<tr>
+						<td class="parti">v</td>
+						<td class="rost_ja">0</td>
+						<td class="rost_nej">18</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">4</td>
+					</tr>
+					<tr>
+						<td class="parti">mp</td>
+						<td class="rost_ja">3</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">7</td>
+						<td class="rost_franvarande">9</td>
+					</tr>
+					<tr>
+						<td class="parti">-</td>
+						<td class="rost_ja">1</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">0</td>
+					</tr>
+					<tr>
+						<td class="totalt">Totalt</td>
+						<td class="summa_ja">137</td>
+						<td class="summa_nej">115</td>
+						<td class="summa_avstar">7</td>
+						<td class="summa_franvarande">90</td>
+					</tr>
+					<tr>
+						<td colspan="5">
+							<h4 class="beslut">Beslut: Kammaren biföll utskottets förslag</h4>
+						</td>
+					</tr>
+				</table>
+			</votering_sammanfattning_html>
+			<votering_url_xml>http://data.riksdagen.se/votering/117DC4F2-A6C4-459B-AA7A-5D4145B796DC
+			</votering_url_xml>
+			<rm>2009/10</rm>
+			<bet>FiU35</bet>
+			<vinnare>utskottet</vinnare>
+		</utskottsforslag>
+		<utskottsforslag>
+			<punkt>3</punkt>
+			<rubrik>Svenska statens fortsatta ägande i SAS</rubrik>
+			<forslag>Riksdagen bemyndigar regeringen att vid lämplig tidpunkt
+				vidta följande åtgärder, var för sig eller i kombination,
+				(a) minska
+				ägandet i SAS genom att avyttra hela eller delar av
+				aktieinnehavet
+				eller genom utspädning av befintlig ägarandel,
+				(b) förvärva eller
+				byta aktier, rättigheter att förvärva aktier eller
+				andra former av
+				andelar i det företag eller den företagsgrupp som
+				förvärvar aktier i
+				SAS,
+				(c) avyttra de tillgångar och rättigheter som staten enligt (a)
+				och (b)
+				får som likvid om andra tillgångar än kontanter erhålls.
+				Därmed bifaller riksdagen proposition 2009/10:121 punkt 3 och avslår
+				motion
+				2009/10:Fi6 av Ulla Andersson m.fl. (v) yrkande 3.
+</forslag>
+			<beslutstyp>röstning</beslutstyp>
+			<motforslag_nummer>3</motforslag_nummer>
+			<motforslag_partier>"v"</motforslag_partier>
+			<votering_id>{4DA3FC52-7584-4736-B9AC-94507665800C}</votering_id>
+			<votering_sammanfattning_html>
+				<table class="vottabell" summary="Voteringsresultat">
+					<tr class="sakfragan">
+						<td colspan="5">
+							<h4>Omröstning i sakfrågan</h4>
+							<p>Utskottets förslag mot reservation 3 (v)
+</p>
+						</td>
+					</tr>
+					<tr class="vottabellrubik">
+						<th>Parti</th>
+						<th>Ja</th>
+						<th>Nej</th>
+						<th>Avstående</th>
+						<th>Frånvarande</th>
+					</tr>
+					<tr>
+						<td class="parti">s</td>
+						<td class="rost_ja">96</td>
+						<td class="rost_nej">1</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">33</td>
+					</tr>
+					<tr>
+						<td class="parti">m</td>
+						<td class="rost_ja">76</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">20</td>
+					</tr>
+					<tr>
+						<td class="parti">c</td>
+						<td class="rost_ja">19</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">10</td>
+					</tr>
+					<tr>
+						<td class="parti">fp</td>
+						<td class="rost_ja">18</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">10</td>
+					</tr>
+					<tr>
+						<td class="parti">kd</td>
+						<td class="rost_ja">20</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">4</td>
+					</tr>
+					<tr>
+						<td class="parti">v</td>
+						<td class="rost_ja">0</td>
+						<td class="rost_nej">18</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">4</td>
+					</tr>
+					<tr>
+						<td class="parti">mp</td>
+						<td class="rost_ja">0</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">12</td>
+						<td class="rost_franvarande">7</td>
+					</tr>
+					<tr>
+						<td class="parti">-</td>
+						<td class="rost_ja">1</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">0</td>
+					</tr>
+					<tr>
+						<td class="totalt">Totalt</td>
+						<td class="summa_ja">230</td>
+						<td class="summa_nej">19</td>
+						<td class="summa_avstar">12</td>
+						<td class="summa_franvarande">88</td>
+					</tr>
+					<tr>
+						<td colspan="5">
+							<h4 class="beslut">Beslut: Kammaren biföll utskottets förslag</h4>
+						</td>
+					</tr>
+				</table>
+			</votering_sammanfattning_html>
+			<votering_url_xml>http://data.riksdagen.se/votering/4DA3FC52-7584-4736-B9AC-94507665800C
+			</votering_url_xml>
+			<rm>2009/10</rm>
+			<bet>FiU35</bet>
+			<vinnare>utskottet</vinnare>
+		</utskottsforslag>
+		<utskottsforslag>
+			<punkt>4</punkt>
+			<rubrik>Fortlöpande information från regeringen om tillståndet i SAS
+			</rubrik>
+			<forslag>Riksdagen avslår motionerna
+				2009/10:Fi5 av Thomas Östros
+				m.fl. (s) yrkande 1 och
+				2009/10:Fi6 av Ulla Andersson m.fl. (v)
+				yrkande 1.
+</forslag>
+			<beslutstyp>röstning</beslutstyp>
+			<motforslag_nummer>4</motforslag_nummer>
+			<motforslag_partier>"s","v"</motforslag_partier>
+			<votering_id>{2C31452E-EF1A-49DA-BDBB-92C3E0C6C0BC}</votering_id>
+			<votering_sammanfattning_html>
+				<table class="vottabell" summary="Voteringsresultat">
+					<tr class="sakfragan">
+						<td colspan="5">
+							<h4>Omröstning i sakfrågan</h4>
+							<p>Utskottets förslag mot reservation 4 (s, v)
+</p>
+						</td>
+					</tr>
+					<tr class="vottabellrubik">
+						<th>Parti</th>
+						<th>Ja</th>
+						<th>Nej</th>
+						<th>Avstående</th>
+						<th>Frånvarande</th>
+					</tr>
+					<tr>
+						<td class="parti">s</td>
+						<td class="rost_ja">0</td>
+						<td class="rost_nej">97</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">33</td>
+					</tr>
+					<tr>
+						<td class="parti">m</td>
+						<td class="rost_ja">76</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">20</td>
+					</tr>
+					<tr>
+						<td class="parti">c</td>
+						<td class="rost_ja">19</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">10</td>
+					</tr>
+					<tr>
+						<td class="parti">fp</td>
+						<td class="rost_ja">18</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">10</td>
+					</tr>
+					<tr>
+						<td class="parti">kd</td>
+						<td class="rost_ja">20</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">4</td>
+					</tr>
+					<tr>
+						<td class="parti">v</td>
+						<td class="rost_ja">0</td>
+						<td class="rost_nej">18</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">4</td>
+					</tr>
+					<tr>
+						<td class="parti">mp</td>
+						<td class="rost_ja">0</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">12</td>
+						<td class="rost_franvarande">7</td>
+					</tr>
+					<tr>
+						<td class="parti">-</td>
+						<td class="rost_ja">1</td>
+						<td class="rost_nej">0</td>
+						<td class="rost_avstar">0</td>
+						<td class="rost_franvarande">0</td>
+					</tr>
+					<tr>
+						<td class="totalt">Totalt</td>
+						<td class="summa_ja">134</td>
+						<td class="summa_nej">115</td>
+						<td class="summa_avstar">12</td>
+						<td class="summa_franvarande">88</td>
+					</tr>
+					<tr>
+						<td colspan="5">
+							<h4 class="beslut">Beslut: Kammaren biföll utskottets förslag</h4>
+						</td>
+					</tr>
+				</table>
+			</votering_sammanfattning_html>
+			<votering_url_xml>http://data.riksdagen.se/votering/2C31452E-EF1A-49DA-BDBB-92C3E0C6C0BC
+			</votering_url_xml>
+			<rm>2009/10</rm>
+			<bet>FiU35</bet>
+			<vinnare>utskottet</vinnare>
+		</utskottsforslag>
+		<utskottsforslag>
+			<punkt>5</punkt>
+			<rubrik>Höjd ram för utgiftsområde 24 Näringsliv samt höjt anslag
+			</rubrik>
+			<forslag>Riksdagen
+				dels godkänner regeringens förslag att för
+				budgetåret 2010 höja ramen
+				för utgiftsområde 24 Näringsliv med 1 100
+				000 000 kr till 6 599 165
+				000 kr,
+				dels, utöver beslutade medel,
+				anvisar 1 100 000 000 kr för 2010 på
+				ramanslaget 1:21 Kapitalinsatser
+				i statliga bolag, som därmed uppgår
+				till 1 101 000 000 kr.
+				Därmed
+				bifaller riksdagen proposition 2009/10:121 punkt 4 och avslår
+				motion
+				2009/10:Fi7 av Mats Pertoft m.fl. (mp) yrkande 2.
+</forslag>
+			<beslutstyp>acklamation</beslutstyp>
+			<motforslag_nummer>0</motforslag_nummer>
+			<motforslag_partier />
+			<votering_id />
+			<votering_sammanfattning_html />
+			<votering_url_xml />
+			<rm>2009/10</rm>
+			<bet>FiU35</bet>
+			<vinnare>utskottet</vinnare>
+		</utskottsforslag>
+	</dokutskottsforslag>
+	<dokmotforslag>
+		<motforslag>
+			<nummer>1</nummer>
+			<rubrik>Statens deltagande i nyemission i SAS AB (publ)</rubrik>
+			<partier>"mp"</partier>
+			<typ>reservation</typ>
+			<utskottsforslag_punkt>1</utskottsforslag_punkt>
+		</motforslag>
+		<motforslag>
+			<nummer>2</nummer>
+			<rubrik>En genomgripande analys och kartläggning av SAS</rubrik>
+			<partier>"s","v"</partier>
+			<typ>reservation</typ>
+			<utskottsforslag_punkt>2</utskottsforslag_punkt>
+		</motforslag>
+		<motforslag>
+			<nummer>3</nummer>
+			<rubrik>Svenska statens fortsatta ägande i SAS</rubrik>
+			<partier>"v"</partier>
+			<typ>reservation</typ>
+			<utskottsforslag_punkt>3</utskottsforslag_punkt>
+		</motforslag>
+		<motforslag>
+			<nummer>4</nummer>
+			<rubrik>Fortlöpande information från regeringen om tillståndet i SAS
+			</rubrik>
+			<partier>"s","v"</partier>
+			<typ>reservation</typ>
+			<utskottsforslag_punkt>4</utskottsforslag_punkt>
+		</motforslag>
+		<motforslag>
+			<nummer>5</nummer>
+			<rubrik>Höjd ram för utgiftsområde 24 Näringsliv samt höjt anslag
+			</rubrik>
+			<partier>"mp"</partier>
+			<typ>reservation</typ>
+			<utskottsforslag_punkt>5</utskottsforslag_punkt>
+		</motforslag>
+	</dokmotforslag>
+</utskottsforslag>

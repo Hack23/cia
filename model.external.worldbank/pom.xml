@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>parent-model-external-pom</artifactId>
+    <groupId>com.hack23.cia</groupId>
+    <version>2011.07.23-SNAPSHOT</version>
+    <relativePath>../parent-model-external-pom/pom.xml</relativePath>
+  </parent>
+  <artifactId>model.external.worldbank</artifactId>
+  <packaging>pom</packaging>
+  <name>model.external.worldbank</name>
+  <description>model.external.worldbank</description>
+  <url>http://cia.sourceforge.net/model.external.worldbank/</url>
+  <inceptionYear>2008</inceptionYear>
+  <modules>
+    <module>../model.external.worldbank.countries.impl</module>
+    <module>../model.external.worldbank.data.impl</module>
+    <module>../model.external.worldbank.indicators.impl</module>
+    <module>../model.external.worldbank.topic.impl</module>
+  </modules>
+  <scm>
+    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/model.external.worldbank</connection>
+    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/model.external.worldbank</developerConnection>
+    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/model.external.worldbank</url>
+  </scm>
+  <distributionManagement>
+    <site>
+      <id>cia.sf.net</id>
+      <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/model.external.worldbank</url>
+    </site>
+  </distributionManagement>
+</project>

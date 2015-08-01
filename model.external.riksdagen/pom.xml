@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>parent-model-external-pom</artifactId>
+    <groupId>com.hack23.cia</groupId>
+    <version>2011.07.23-SNAPSHOT</version>
+    <relativePath>../parent-model-external-pom/pom.xml</relativePath>
+  </parent>
+  <artifactId>model.external.riksdagen</artifactId>
+  <packaging>pom</packaging>
+  <name>model.external.riksdagen</name>
+  <description>model.external.riksdagen</description>
+  <url>http://cia.sourceforge.net/model.external.riksdagen/</url>
+  <inceptionYear>2008</inceptionYear>
+  <modules>
+    <module>../model.external.riksdagen.person.impl</module>
+    <module>../model.external.riksdagen.personlista.impl</module>
+    <module>../model.external.riksdagen.dokumentlista.impl</module>
+    <module>../model.external.riksdagen.dokumentstatus.impl</module>
+    <module>../model.external.riksdagen.documentcontent.impl</module>
+    <module>../model.external.riksdagen.voteringlista.impl</module>
+    <module>../model.external.riksdagen.votering.impl</module>
+    <module>../model.external.riksdagen.utskottsforslag.impl</module>
+  </modules>
+  <scm>
+    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/model.external.riksdagen</connection>
+    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/model.external.riksdagen</developerConnection>
+    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/model.external.riksdagen</url>
+  </scm>
+  <distributionManagement>
+    <site>
+      <id>cia.sf.net</id>
+      <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/model.external.riksdagen</url>
+    </site>
+  </distributionManagement>
+</project>

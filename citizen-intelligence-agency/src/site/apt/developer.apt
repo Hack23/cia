@@ -1,0 +1,87 @@
+ ------
+ Citizen Intelligence Agency
+ ------
+ Pether Sorling
+ ------
+ 2 May 2010
+ ------
+
+Developer Guide
+
+ This developer's guide provides documentation on how to build,deploy & test the application.
+ But also to encourage {{{http://en.wikipedia.org/wiki/Hacktivism}Hacktivism}} and give people enough knowledge
+ on how to develop their own web applications using Maven, Hibernate, Spring & Vaadin.
+
+Requirements
+
+ To build and run the Citizen Intelligence Agency you need to install the following software.
+
+ * Compiler & Runtime : JDK 8 (1.8)  {{{http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html}download}}.
+
+ * Database : PostgreSQL 9.4.x {{{http://www.postgresql.org/}download}}
+
+ * Build System : Maven 3.3.1 {{{http://maven.apache.org/download.html}download}}
+
+ * Build tool : Ant 1.9.4 {{{http://ant.apache.org/bindownload.cgi}download}}
+
+ * Documentation generation : Graphviz {{{http://www.graphviz.org/}homepage}}
+
+
+Getting the Source Code
+
+ The source can be checked out anonymously from SVN with this command:
+
+ $ svn checkout https://svn.code.sf.net/p/cia/code/trunk/ cia-trunk
+
+
+Setting up the postgresql database user
+
+ The command below describes how you setup an database user that will be used by the application.
+
+ Use the commandline to access postgresql or through pgAdmin3.
+ > sudo su - postgres
+ > psql
+
+ postgres=# CREATE USER eris WITH password  'discord';
+
+ postgres=# CREATE DATABASE cia_dev;
+
+ postgres=# GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;
+
+Build the application & run test
+
+ Now everything should be ready for you to build the application,
+ execute the following commands to build & run
+
+ $ mvn clean package -Pdev,skip-db -Dmaven.skip.test=true
+
+ $ mvn jetty:run -Pdev,skip-db -Dtest=none -Dmaven.skip.test=true
+
+ or using convenient ant task
+
+ $ ant run
+
+ This will build build a .war file and start en embedded jetty instance
+
+ NOTE: Set the variable MAVEN_OPTS="-Xmx1024m -Xms512m -XX:MaxPermSize=512m" if you get java memory exception.
+
+Test Citizen Intelligence Agency
+
+ Now if everything has started successfully you should be able to view Citizen Intelligence Agency
+ at http://localhost:8080/
+
+
+Eclipse development
+
+ If you want to do any serious development I would recommend that you install
+ the latest version of Eclipse http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/lunasr2 .
+
+ * Install SVN client subversive , https://eclipse.org/subversive/latest-releases.php
+
+ * OPTIONAL plugins below..
+
+ * Spring IDE, update site: http://dist.springsource.com/release/TOOLS/update/e4.4/
+
+ * Install Jautodoc , update site http://jautodoc.sourceforge.net/update/
+
+ * Install EclEmma, update site http://update.eclemma.org/

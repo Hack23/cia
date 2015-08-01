@@ -1,0 +1,413 @@
+<dokumentstatus
+	xmlns="http://dokumentstatus.riksdagen.external.model.cia.hack23.com/impl">
+	<dokument>
+		<hangar_id>2336486</hangar_id>
+		<dok_id>GX01FiU40</dok_id>
+		<rm>2009/10</rm>
+		<beteckning>FiU40</beteckning>
+		<typ>bet</typ>
+		<subtyp>utl</subtyp>
+		<tempbeteckning />
+		<organ>FiU</organ>
+		<nummer>40</nummer>
+		<slutnummer>0</slutnummer>
+		<datum>2010-06-18 00:00:00</datum>
+		<publicerad>2010-06-18 09:52:02</publicerad>
+		<titel>Utlåtande om förstärkt samordning av den ekonomiska politiken
+		</titel>
+		<subtitel />
+		<status />
+		<dokument_url_text>http://data.riksdagen.se/dokument/GX01FiU40/text
+		</dokument_url_text>
+		<dokument_url_html>http://data.riksdagen.se/dokument/GX01FiU40
+		</dokument_url_html>
+		<dokumentstatus_url_xml>http://data.riksdagen.se/dokumentstatus/GX01FiU40
+		</dokumentstatus_url_xml>
+		<dokumentstatus_url_www>http://www.riksdagen.se/webbnav/?nid=3120&amp;dokid=GX01FiU40
+		</dokumentstatus_url_www>
+		<utskottsforslag_url_xml>http://data.riksdagen.se/utskottsforslag/GX01FiU40
+		</utskottsforslag_url_xml>
+	</dokument>
+	<dokaktivitet>
+		<aktivitet>
+			<kod>DEL</kod>
+			<namn>Dela i huset</namn>
+			<datum>2010-06-21 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>90</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>UPP</kod>
+			<namn>Upplaga tas emot</namn>
+			<datum>2010-06-21 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>80</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>TROWE</kod>
+			<namn>Trycklov till Gotab och webb</namn>
+			<datum>2010-06-18 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>70</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>TRY</kod>
+			<namn>Trycklov</namn>
+			<datum>2010-06-18 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>60</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>RES</kod>
+			<namn>Godkännande av reservationer</namn>
+			<datum>2010-06-18 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>50</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>JUS</kod>
+			<namn>Justering</namn>
+			<datum>2010-06-17 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>40</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>TRY</kod>
+			<namn>Trycklov</namn>
+			<datum>2010-06-17 00:00:00</datum>
+			<status>planerat</status>
+			<ordning>60</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>JUS</kod>
+			<namn>Justering</namn>
+			<datum>2010-06-17 00:00:00</datum>
+			<status>planerat</status>
+			<ordning>40</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>UBE</kod>
+			<namn>Under beredning</namn>
+			<datum>2010-06-15 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>30</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>UBE</kod>
+			<namn>Under beredning</namn>
+			<datum>2010-06-15 00:00:00</datum>
+			<status>planerat</status>
+			<ordning>30</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>UBE</kod>
+			<namn>Under beredning</namn>
+			<datum>2010-06-08 00:00:00</datum>
+			<status>planerat</status>
+			<ordning>30</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>AVG</kod>
+			<namn>Avgörande</namn>
+			<datum>2010-06-23 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>5</ordning>
+			<process>avgorande</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>BES</kod>
+			<namn>Beslut</namn>
+			<datum>2010-06-23 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>4</ordning>
+			<process>avgorande</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>BEH</kod>
+			<namn>Behandling</namn>
+			<datum>2010-06-23 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>3</ordning>
+			<process>avgorande</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>BEH</kod>
+			<namn>Behandling</namn>
+			<datum>2010-06-23 00:00:00</datum>
+			<status>planerat</status>
+			<ordning>3</ordning>
+			<process>avgorande</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>B2</kod>
+			<namn>Bordläggning 2</namn>
+			<datum>2010-06-22 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>2</ordning>
+			<process>avgorande</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>B2</kod>
+			<namn>Bordläggning 2</namn>
+			<datum>2010-06-22 00:00:00</datum>
+			<status>planerat</status>
+			<ordning>2</ordning>
+			<process>avgorande</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>B1</kod>
+			<namn>Bordläggning 1</namn>
+			<datum>2010-06-21 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>1</ordning>
+			<process>avgorande</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>B1</kod>
+			<namn>Bordläggning 1</namn>
+			<datum>2010-06-21 00:00:00</datum>
+			<status>planerat</status>
+			<ordning>1</ordning>
+			<process>avgorande</process>
+		</aktivitet>
+	</dokaktivitet>
+	<dokintressent>
+	</dokintressent>
+	<dokforslag>
+	</dokforslag>
+	<dokuppgift>
+		<uppgift>
+			<kod>bik</kod>
+			<namn>Beslut i korthet</namn>
+			<text>Finansutskottet har granskat EU-kommissionens meddelande om
+				förstärkt samordning av den ekonomiska politiken. EU-kommissionen
+				menar att den globala ekonomiska krisen har inneburit att
+				samordningen av den ekonomiska politiken i EU har visat på svagheter
+				och att dessa bör rättas till. Den dåliga efterlevnaden av regler
+				och principer har inneburit ett särskilt tryck på den monetära
+				unionens funktion. I meddelandet tar kommissionen därför upp ett
+				antal förslag.
+
+				Finansutskottet delar uppfattningen att den ekonomiska krisen har visat hur viktigt
+				det är att ha stabila finanspolitiska ramverk på både nationell nivå
+				och på EU-nivå. Utskottets betonar dock sin uppfattning att det inte
+				är aktuellt att EU ska granska en budgetproposition innan den läggs
+				fram till riksdagen. Utskottet betonar att det är riksdagen som
+				fattar beslutet om både utgifter och inkomster. Utskottet anser
+				också att det inte är helt tydligt i meddelandet vilka åtgärder som
+				är avsedda för länder inom den monetära unionen i förhållande till
+				övriga länder inom EU. Finansutskottet anser också att det är
+				viktigt att kvaliteten i statistiken kring de offentliga finanserna
+				ökar. Riksdagen avslutade ärendet. Därefter skickades utlåtandet
+				till Regeringskansliet och för kännedom till EU-kommissionen.
+   </text>
+		</uppgift>
+		<uppgift>
+			<kod>beslutssammanfattningusk</kod>
+			<namn>Utskottets förslag till beslut</namn>
+			<text>Utlåtandet läggs till handlingarna.</text>
+		</uppgift>
+		<uppgift>
+			<kod>rdbeslut</kod>
+			<namn>Riksdagens beslut</namn>
+			<text>Kammaren biföll utskottets förslag</text>
+		</uppgift>
+	</dokuppgift>
+	<dokbilaga>
+		<bilaga>
+			<filnamn>2009_10_FiU40.pdf</filnamn>
+			<filstorlek>76955</filstorlek>
+			<filtyp>pdf</filtyp>
+			<fil_url>http://data.riksdagen.se/fil/A7EC6036-00BD-437A-85D2-E7F019369341
+			</fil_url>
+		</bilaga>
+		<bilaga>
+			<filnamn>Content.html</filnamn>
+			<filstorlek>38011</filstorlek>
+			<filtyp>html</filtyp>
+			<fil_url>http://data.riksdagen.se/fil/A0763FEC-884C-44E2-A907-C22C295624EC
+			</fil_url>
+		</bilaga>
+		<bilaga>
+			<filnamn>Frame.html</filnamn>
+			<filstorlek>582</filstorlek>
+			<filtyp>html</filtyp>
+			<fil_url>http://data.riksdagen.se/fil/0869086A-BE05-4589-B2E5-74D458241C23
+			</fil_url>
+		</bilaga>
+		<bilaga>
+			<filnamn>Style.html</filnamn>
+			<filstorlek>7658</filstorlek>
+			<filtyp>html</filtyp>
+			<fil_url>http://data.riksdagen.se/fil/9DD9C8F3-3E32-4E42-8D3D-F145E4BBD3A2
+			</fil_url>
+		</bilaga>
+		<bilaga>
+			<filnamn>Toc.html</filnamn>
+			<filstorlek>1790</filstorlek>
+			<filtyp>html</filtyp>
+			<fil_url>http://data.riksdagen.se/fil/31B9A42E-B5F9-4A94-AFF0-56EFD9D1BBEC
+			</fil_url>
+		</bilaga>
+	</dokbilaga>
+	<dokreferens>
+		<referens>
+			<referenstyp>protkollbeslut</referenstyp>
+			<uppgift>2010-06-23</uppgift>
+			<ref_dok_id>GX09143</ref_dok_id>
+			<ref_dok_typ>prot</ref_dok_typ>
+		</referens>
+		<referens>
+			<referenstyp>protokolldebatt</referenstyp>
+			<uppgift>2010-06-23</uppgift>
+			<ref_dok_id>GX09143</ref_dok_id>
+			<ref_dok_typ>prot</ref_dok_typ>
+		</referens>
+	</dokreferens>
+	<dokkategori>
+		<kategori>
+			<status>test</status>
+			<skapat>automatiskt genererat</skapat>
+			<namn>energipolitik</namn>
+			<id>2498</id>
+			<relevans>81</relevans>
+			<domain_id>66</domain_id>
+			<domain_name>ENERGI</domain_name>
+			<thesaurus_id>6606</thesaurus_id>
+			<thesaurus_name>energipolitik</thesaurus_name>
+		</kategori>
+		<kategori>
+			<status>test</status>
+			<skapat>automatiskt genererat</skapat>
+			<namn>Europeiska unionen</namn>
+			<id>4060</id>
+			<relevans>80</relevans>
+			<domain_id>10</domain_id>
+			<domain_name>EUROPEISKA GEMENSKAPERNA</domain_name>
+			<thesaurus_id>1016</thesaurus_id>
+			<thesaurus_name>europeisk integration</thesaurus_name>
+		</kategori>
+		<kategori>
+			<status>test</status>
+			<skapat>automatiskt genererat</skapat>
+			<namn>förvaltningsrevision</namn>
+			<id>174</id>
+			<relevans>79</relevans>
+			<domain_id>40</domain_id>
+			<domain_name>FÖRETAG OCH KONKURRENS</domain_name>
+			<thesaurus_id>4021</thesaurus_id>
+			<thesaurus_name>förvaltning</thesaurus_name>
+		</kategori>
+		<kategori>
+			<status>test</status>
+			<skapat>automatiskt genererat</skapat>
+			<namn>medlemskap i Europeiska unionen</namn>
+			<id>4063</id>
+			<relevans>79</relevans>
+			<domain_id>10</domain_id>
+			<domain_name>EUROPEISKA GEMENSKAPERNA</domain_name>
+			<thesaurus_id>1016</thesaurus_id>
+			<thesaurus_name>europeisk integration</thesaurus_name>
+		</kategori>
+		<kategori>
+			<status>test</status>
+			<skapat>automatiskt genererat</skapat>
+			<namn>offentliga finanser</namn>
+			<id>1018</id>
+			<relevans>79</relevans>
+			<domain_id>24</domain_id>
+			<domain_name>FINANSER</domain_name>
+			<thesaurus_id>2436</thesaurus_id>
+			<thesaurus_name>budgetpolitik och offentliga finanser
+			</thesaurus_name>
+		</kategori>
+		<kategori>
+			<status>test</status>
+			<skapat>automatiskt genererat</skapat>
+			<namn>Europeiska unionens internationella roll</namn>
+			<id>5873</id>
+			<relevans>79</relevans>
+			<domain_id>10</domain_id>
+			<domain_name>EUROPEISKA GEMENSKAPERNA</domain_name>
+			<thesaurus_id>1016</thesaurus_id>
+			<thesaurus_name>europeisk integration</thesaurus_name>
+		</kategori>
+		<kategori>
+			<status>test</status>
+			<skapat>automatiskt genererat</skapat>
+			<namn>gemenskapens miljöpolitik</namn>
+			<id>5794</id>
+			<relevans>79</relevans>
+			<domain_id>52</domain_id>
+			<domain_name>MILJÖ</domain_name>
+			<thesaurus_id>5206</thesaurus_id>
+			<thesaurus_name>miljöpolitik</thesaurus_name>
+		</kategori>
+		<kategori>
+			<status>test</status>
+			<skapat>automatiskt genererat</skapat>
+			<namn>europeisk socialpolitik</namn>
+			<id>3346</id>
+			<relevans>79</relevans>
+			<domain_id>28</domain_id>
+			<domain_name>SOCIALA FRÅGOR</domain_name>
+			<thesaurus_id>2826</thesaurus_id>
+			<thesaurus_name>samhällsfrågor</thesaurus_name>
+		</kategori>
+		<kategori>
+			<status>test</status>
+			<skapat>automatiskt genererat</skapat>
+			<namn>gemenskapsfinansiering</namn>
+			<id>1005</id>
+			<relevans>78</relevans>
+			<domain_id>10</domain_id>
+			<domain_name>EUROPEISKA GEMENSKAPERNA</domain_name>
+			<thesaurus_id>1021</thesaurus_id>
+			<thesaurus_name>gemenskapsfinanser</thesaurus_name>
+		</kategori>
+		<kategori>
+			<status>test</status>
+			<skapat>automatiskt genererat</skapat>
+			<namn>Europeiska unionens förbindelser</namn>
+			<id>4040</id>
+			<relevans>78</relevans>
+			<domain_id>10</domain_id>
+			<domain_name>EUROPEISKA GEMENSKAPERNA</domain_name>
+			<thesaurus_id>1016</thesaurus_id>
+			<thesaurus_name>europeisk integration</thesaurus_name>
+		</kategori>
+		<kategori>
+			<status>test</status>
+			<skapat>automatiskt genererat</skapat>
+			<namn>gemensam jordbrukspolitik</namn>
+			<id>2443</id>
+			<relevans>78</relevans>
+			<domain_id>56</domain_id>
+			<domain_name>JORDBRUK, SKOGSBRUK OCH FISKE</domain_name>
+			<thesaurus_id>5606</thesaurus_id>
+			<thesaurus_name>jordbrukspolitik</thesaurus_name>
+		</kategori>
+		<kategori>
+			<status>test</status>
+			<skapat>automatiskt genererat</skapat>
+			<namn>hållbar utveckling</namn>
+			<id>5585</id>
+			<relevans>78</relevans>
+			<domain_id>16</domain_id>
+			<domain_name>EKONOMI</domain_name>
+			<thesaurus_id>1606</thesaurus_id>
+			<thesaurus_name>ekonomisk politik</thesaurus_name>
+		</kategori>
+	</dokkategori>
+</dokumentstatus>

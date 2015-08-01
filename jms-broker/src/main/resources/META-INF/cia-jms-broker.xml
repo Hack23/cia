@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:amq="http://activemq.apache.org/schema/core" xmlns:jms="http://www.springframework.org/schema/jms"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+		http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.4.1.xsd
+		http://www.springframework.org/schema/jms  http://www.springframework.org/schema/jms/spring-jms-4.1.xsd">
+
+	<!-- lets create an embedded ActiveMQ Broker -->
+	<amq:broker id="broker" useJmx="true" persistent="false" >
+		<amq:destinationPolicy>
+			<amq:policyMap>
+				<amq:policyEntries>
+					<amq:policyEntry queue=">" optimizedDispatch="true"
+						lazyDispatch="false" producerFlowControl="false" memoryLimit="512mb"
+						strictOrderDispatch="true">
+						<amq:dispatchPolicy>
+							<amq:strictOrderDispatchPolicy />
+						</amq:dispatchPolicy>
+						<amq:messageGroupMapFactory>
+							<amq:simpleMessageGroupMapFactory />
+						</amq:messageGroupMapFactory>
+						<amq:subscriptionRecoveryPolicy>
+							<amq:timedSubscriptionRecoveryPolicy
+								recoverDuration="360000" />
+						</amq:subscriptionRecoveryPolicy>
+					</amq:policyEntry>
+				</amq:policyEntries>
+			</amq:policyMap>
+		</amq:destinationPolicy>
+		
+		<amq:transportConnectors >
+			<amq:transportConnector  uri="vm://localhost:0" />
+		</amq:transportConnectors>
+ 	</amq:broker>
+
+	<!-- JMS ConnectionFactory to use, configuring the embedded broker using
+		XML
+
+	<bean id="jmsFactory"  depends-on="broker"
+              class="org.apache.activemq.ActiveMQXAConnectionFactory">
+      <property name="brokerURL" value="vm://localhost" />
+   </bean>
+-->
+	<amq:xaConnectionFactory  id="jmsFactory" brokerURL="vm://localhost"  checkForDuplicates="false">
+		<amq:redeliveryPolicy>
+    		<amq:redeliveryPolicy maximumRedeliveries="1" initialRedeliveryDelay="30000" />
+  		</amq:redeliveryPolicy>
+  	</amq:xaConnectionFactory>
+
+<!--
+	<bean id="connectionFactory"
+		class="org.springframework.jms.connection.CachingConnectionFactory">
+		<constructor-arg ref="jmsFactory" />
+		<property name="sessionCacheSize" value="100" />
+	</bean>
+ -->
+   <bean name="connectionFactory" id="connectionFactory" depends-on="broker"
+              class="com.atomikos.jms.AtomikosConnectionFactoryBean"
+              init-method="init" destroy-method="close">
+      <property name="uniqueResourceName" value="ciaJmsConnectionFactory" />
+      <property name="xaConnectionFactory" ref="jmsFactory" />
+      <property name="minPoolSize" value="5"/>
+      <property name="maxPoolSize" value="50"/>
+      <property name="maxIdleTime" value="50"/>
+      <property name="localTransactionMode" value="false" />
+   </bean>
+
+   <bean name="senderConnectionFactory" id="senderConnectionFactory" depends-on="broker"
+              class="com.atomikos.jms.AtomikosConnectionFactoryBean"
+              init-method="init" destroy-method="close">
+      <property name="uniqueResourceName" value="ciaSenderJmsConnectionFactory" />
+      <property name="xaConnectionFactory" ref="jmsFactory" />
+      
+      <property name="minPoolSize" value="5"/>
+      <property name="maxPoolSize" value="50"/>
+      <property name="maxIdleTime" value="50"/>
+      
+       <property name="localTransactionMode" value="false" />
+   </bean>
+
+
+<!--
+	<bean id="connectionFactory"
+	    class="org.springframework.jms.connection.SingleConnectionFactory">
+	    <property name="targetConnectionFactory" ref="atomikosConnectionFactory" />
+	</bean>
+-->
+
+<!--
+	<bean id="MessageListenerContainer"
+	    class="org.springframework.jms.listener.DefaultMessageListenerContainer"
+	    destroy-method="close">
+	    <property name="concurrentConsumers" value="1" />
+	    <property name="connectionFactory" ref="connectionFactory" />
+	    <property name="transactionManager" ref="transactionManager" />
+	    <property name="sessionTransacted" value="true" />
+	    <property name="receiveTimeout" value="5000" />
+	    <property name="recoveryInterval" value="6000" />
+	    <property name="autoStartup" value="false" />
+	</bean>
+ -->
+
+</beans>

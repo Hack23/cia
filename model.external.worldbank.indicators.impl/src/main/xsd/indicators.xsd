@@ -1,0 +1,134 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	jaxb:extensionBindingPrefixes="xjc hj orm" jaxb:version="2.0"
+	targetNamespace="http://indicators.worldbank.external.model.cia.hack23.com/impl" xmlns:wb="http://indicators.worldbank.external.model.cia.hack23.com/impl">
+
+	<xsd:element name="indicators" >
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="unbounded" ref="wb:indicator" />
+			</xsd:sequence>
+			<xsd:attribute name="page" use="optional" type="xsd:integer" />
+			<xsd:attribute name="pages" use="optional" type="xsd:integer" />
+			<xsd:attribute name="per_page" use="optional" type="xsd:integer" />
+			<xsd:attribute name="total" use="optional" type="xsd:integer" />
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="indicator" type="wb:IndicatorElement">
+	</xsd:element>
+
+	<xsd:complexType name="IndicatorElement">
+		<xsd:sequence>
+			<xsd:element form="qualified" name="name" type="xsd:string">
+					<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="indicatorName" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		
+
+			<xsd:element form="qualified" name="source">
+					<xsd:complexType>
+									<xsd:annotation>
+										<xsd:appinfo>
+											<hj:embeddable />
+										</xsd:appinfo>
+									</xsd:annotation>
+									<xsd:simpleContent>
+										<xsd:extension base="wb:SourceNameValue">
+											<xsd:attribute name="id" use="required" type="xsd:string" />
+										</xsd:extension>
+									</xsd:simpleContent>
+								</xsd:complexType>
+			</xsd:element>
+			<xsd:element form="qualified" name="sourceNote" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<hj:basic>
+							<orm:column length="65536" />
+						</hj:basic>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element form="qualified" name="sourceOrganization" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<hj:basic>
+							<orm:column length="65536" />
+						</hj:basic>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element form="qualified" name="topics">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="0" maxOccurs="unbounded" form="qualified" name="topic">
+							<xsd:complexType>
+									<xsd:simpleContent>
+										<xsd:extension base="xsd:NCName">
+											<xsd:attribute name="id" use="required" type="xsd:string" />
+										</xsd:extension>
+									</xsd:simpleContent>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" use="required" type="xsd:string"/>
+	</xsd:complexType>
+
+
+	<xsd:simpleType name="SourceNameValue">
+		<xsd:restriction base="xsd:string">
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+
+	<xsd:simpleType name="SourceName">
+		<xsd:restriction base="xsd:string">
+
+			<xsd:enumeration value="Doing Business" />
+			<xsd:enumeration value="World Development Indicators" />
+			<xsd:enumeration value="Global Development Finance" />
+			<xsd:enumeration value="Enterprise Surveys"/>
+			
+			<xsd:enumeration value="Global Economic Monitor"/>
+			<xsd:enumeration value="Global Economic Monitor (GEM) Commodities"/>
+			<xsd:enumeration value="Public Sector Debt"/>
+			<xsd:enumeration value="Worldwide Governance Indicators"/>			
+			<xsd:enumeration value="Africa Development Indicators" />
+			
+			<xsd:enumeration value="Education Statistics" />
+			<xsd:enumeration value="Gender Statistics" />
+			<xsd:enumeration value="Health Nutrition and Population Statistics" />
+			<xsd:enumeration value="International Development Association - Results Measurement System" />
+			<xsd:enumeration value="Millennium Development Goals" />
+			
+			<xsd:enumeration value="Quarterly External Debt Statistics (QEDS) - Special Data Dissemination Standard (SDDS)" />
+			<xsd:enumeration value="Quarterly External Debt Statistics (QEDS) - General Data Dissemination System (GDDS)" />
+			<xsd:enumeration value="Jobs for Knowledge Platform" />
+			<xsd:enumeration value="Corporate Scorecard" />
+			<xsd:enumeration value="GEP Economic Prospects" />
+			<xsd:enumeration value="Global Development Finance" />			
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	
+
+</xsd:schema>

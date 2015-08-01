@@ -1,0 +1,12 @@
+/* This file is automatically managed and will be overwritten from time to time. */
+/* Do not manually edit this file. */
+
+/* Provided by gantt-addon-0.4.0.jar */
+@import "../../../VAADIN/addons/gantt/gantt.scss";
+
+
+/* Import and include this mixin into your project theme to include the addon themes */
+@mixin addons {
+	@include gantt;
+}
+

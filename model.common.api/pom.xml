@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>parent-model-pom</artifactId>
+    <groupId>com.hack23.cia</groupId>
+    <version>2011.07.23-SNAPSHOT</version>
+    <relativePath>../parent-model-pom/pom.xml</relativePath>
+  </parent>
+  <artifactId>model.common.api</artifactId>
+  <packaging>bundle</packaging>
+  <name>model.common.api</name>
+  <description>model.common.api</description>
+  <url>http://cia.sourceforge.net/model.common.api</url>
+  <inceptionYear>2010</inceptionYear>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <scm>
+    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/model.common.api</connection>
+    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/model.common.api</developerConnection>
+    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/model.common.api</url>
+  </scm>
+  <distributionManagement>
+    <site>
+      <id>cia.sf.net</id>
+      <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/model.common.api</url>
+    </site>
+  </distributionManagement>
+</project>

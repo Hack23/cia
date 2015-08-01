@@ -1,0 +1,64 @@
+<utskottsforslag xmlns="http://utskottsforslag.riksdagen.external.model.cia.hack23.com/impl"><dokument>
+ <hangar_id>2336486</hangar_id>
+ <dok_id>GX01FiU40</dok_id>
+ <rm>2009/10</rm>
+ <beteckning>FiU40</beteckning>
+ <typ>bet</typ>
+ <subtyp>utl</subtyp>
+ <tempbeteckning/>
+ <organ>FiU</organ>
+ <nummer>40</nummer>
+ <slutnummer>0</slutnummer>
+ <datum>2010-06-18 00:00:00</datum>
+ <publicerad>2010-06-18 09:52:02</publicerad>
+ <titel>Utlåtande om förstärkt samordning av den ekonomiska politiken</titel>
+ <subtitel/>
+ <status/>
+ <dokument_url_text>http://data.riksdagen.se/dokument/GX01FiU40/text</dokument_url_text>
+ <dokument_url_html>http://data.riksdagen.se/dokument/GX01FiU40</dokument_url_html>
+ <dokumentstatus_url_xml>http://data.riksdagen.se/dokumentstatus/GX01FiU40</dokumentstatus_url_xml>
+ <dokumentstatus_url_www>http://www.riksdagen.se/webbnav/?nid=3120&amp;dokid=GX01FiU40</dokumentstatus_url_www>
+ <utskottsforslag_url_xml>http://data.riksdagen.se/utskottsforslag/GX01FiU40</utskottsforslag_url_xml>
+</dokument>
+<dokutskottsforslag>
+<utskottsforslag>
+<punkt>1</punkt>
+<rubrik>Förstärkt samordning av den ekonomiska politiken</rubrik>
+<forslag>Riksdagen lägger utlåtandet till handlingarna.
+</forslag>
+<beslutstyp>röstning</beslutstyp>
+<motforslag_nummer>1</motforslag_nummer>
+<motforslag_partier>"v"</motforslag_partier>
+<votering_id>F2C5C0CB-594D-48AE-9D9F-EB4AA6A9B2B2</votering_id>
+<votering_sammanfattning_html><table class="vottabell" summary="Voteringsresultat">
+<tr class="motivfragan"><td colspan="5"><h4>Omröstning i motivfrågan</h4>
+<p>Utskottets förslag mot reservation 1 (v)
+</p></td></tr><tr class="vottabellrubik"><th>Parti</th><th>Ja</th><th>Nej</th><th>Avstående</th><th>Frånvarande</th></tr>
+<tr><td class="parti">s</td><td class="rost_ja">115</td><td class="rost_nej">0</td><td class="rost_avstar">0</td><td class="rost_franvarande">15</td></tr>
+<tr><td class="parti">m</td><td class="rost_ja">88</td><td class="rost_nej">0</td><td class="rost_avstar">0</td><td class="rost_franvarande">8</td></tr>
+<tr><td class="parti">c</td><td class="rost_ja">26</td><td class="rost_nej">0</td><td class="rost_avstar">0</td><td class="rost_franvarande">3</td></tr>
+<tr><td class="parti">fp</td><td class="rost_ja">24</td><td class="rost_nej">0</td><td class="rost_avstar">0</td><td class="rost_franvarande">4</td></tr>
+<tr><td class="parti">kd</td><td class="rost_ja">20</td><td class="rost_nej">0</td><td class="rost_avstar">0</td><td class="rost_franvarande">4</td></tr>
+<tr><td class="parti">v</td><td class="rost_ja">0</td><td class="rost_nej">20</td><td class="rost_avstar">0</td><td class="rost_franvarande">2</td></tr>
+<tr><td class="parti">mp</td><td class="rost_ja">17</td><td class="rost_nej">0</td><td class="rost_avstar">0</td><td class="rost_franvarande">2</td></tr>
+<tr><td class="parti">-</td><td class="rost_ja">1</td><td class="rost_nej">0</td><td class="rost_avstar">0</td><td class="rost_franvarande">0</td></tr>
+<tr><td class="totalt">Totalt</td><td class="summa_ja">291</td><td class="summa_nej">20</td><td class="summa_avstar">0</td><td class="summa_franvarande">38</td></tr>
+<tr><td colspan="5"><h4 class="beslut">Beslut: Kammaren biföll utskottets förslag</h4></td></tr>
+</table>
+</votering_sammanfattning_html>
+<votering_url_xml>http://data.riksdagen.se/votering/F2C5C0CB-594D-48AE-9D9F-EB4AA6A9B2B2</votering_url_xml>
+<rm>2009/10</rm>
+<bet>FiU40</bet>
+<vinnare>utskottet</vinnare>
+</utskottsforslag>
+</dokutskottsforslag>
+<dokmotforslag>
+<motforslag>
+<nummer>1</nummer>
+<rubrik>Förstärkt samordning av den ekonomiska politiken</rubrik>
+<partier>"v"</partier>
+<typ>reservation</typ>
+<utskottsforslag_punkt>1</utskottsforslag_punkt>
+</motforslag>
+</dokmotforslag>
+</utskottsforslag>

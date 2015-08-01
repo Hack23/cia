@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:proposal="http://utskottsforslag.riksdagen.external.model.cia.hack23.com/impl"
+	jaxb:extensionBindingPrefixes="xjc hj orm" jaxb:version="2.0"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified"
+	targetNamespace="http://utskottsforslag.riksdagen.external.model.cia.hack23.com/impl">
+
+	<xsd:element name="utskottsforslag" type="proposal:CommitteeProposalComponentData" />
+
+	<xsd:complexType name="CommitteeProposalComponentData">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="dokmotforslag"
+				type="proposal:AgainstProposalContainer">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="againstProposalContainer" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:sequence minOccurs="0">
+				<xsd:element name="dokument" type="proposal:CommitteeDocumentData">
+					<xsd:annotation>
+						<xsd:documentation>
+							We have customized the generated property name
+							here.
+						</xsd:documentation>
+						<xsd:appinfo>
+							<jaxb:property name="document" />
+						</xsd:appinfo>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="dokutskottsforslag" type="proposal:CommitteeProposalContainer">
+					<xsd:annotation>
+						<xsd:documentation>
+							We have customized the generated property name
+							here.
+						</xsd:documentation>
+						<xsd:appinfo>
+							<jaxb:property name="committeeProposalContainer" />
+						</xsd:appinfo>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="CommitteeDocumentData">
+		<xsd:sequence>
+			<xsd:element name="rm" type="xsd:string" />
+			<xsd:element name="hangar_id" type="xsd:integer" />
+			<xsd:element name="dok_id" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="id" />
+						<hj:id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="beteckning" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="label" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="subtyp" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="subType" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="tempbeteckning" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="tempLabel" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="organ" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="org" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="slutnummer" type="xsd:integer">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="endNumber" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="datum" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="createdDate" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="publicerad" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="publicDate" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="titel" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="title" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="subtitel" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="subTitle" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="status" type="xsd:string" />
+			<xsd:element name="dokument_url_text" type="xsd:anyURI">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="documentUrlText" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dokument_url_html" type="xsd:anyURI">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="documentUrlHtml" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dokumentstatus_url_xml" type="xsd:anyURI">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="documentStatusUrlXml" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dokumentstatus_url_www" type="xsd:anyURI">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="documentStatusUrlWww" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="utskottsforslag_url_xml" type="xsd:anyURI">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="committeeProposalUrlXml" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="AgainstProposalContainer">
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" name="motforslag"
+				type="proposal:AgainstProposalData">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="againstProposalList" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AgainstProposalData">
+		<xsd:sequence>
+			<xsd:element name="nummer" type="xsd:integer">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="numberValue" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="rubrik" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="header" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="typ" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="proposalType" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="partier" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="parties" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="utskottsforslag_punkt" type="xsd:integer">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="proposalIssueNumber" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="CommitteeProposalContainer">
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" name="utskottsforslag"
+				type="proposal:CommitteeProposalData">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="committeeProposalList" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="CommitteeProposalData">
+		<xsd:sequence>
+			<xsd:element name="rubrik" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="header" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="punkt" type="xsd:integer">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="issueNumber" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="forslag" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="proposal" />
+						<hj:basic>
+							<orm:column length="10485760" />
+						</hj:basic>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="beslutstyp" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="decisionType" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="motforslag_nummer" type="xsd:integer">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="againstProposalNumber" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="motforslag_partier" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="againstProposalParties" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="votering_id" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="ballotId" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="votering_sammanfattning_html"
+				minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<xjc:dom />
+						<jaxb:property name="ballotSummary" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="votering_url_xml" type="xsd:anyURI">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="ballotUrlXml" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="bet" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="committeeReport" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="vinnare" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="winner" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="rm" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>

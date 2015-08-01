@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project xmlns="http://maven.apache.org/DECORATION/1.4.0" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.4.0 http://maven.apache.org/xsd/decoration-1.4.0.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  name="${project.name}" >
+
+	<skin>
+		<groupId>com.hack23.cia</groupId>
+		<artifactId>maven-cia-skin</artifactId>
+		<version>1.0.0-beta-1</version>
+	</skin>
+
+	<bannerLeft>
+		<name>Citizen Intelligence Agency</name>
+		<src>
+			./cia-logo.png
+        </src>
+		<href>http://cia.sourceforge.net/</href>
+	</bannerLeft>
+	<bannerRight>
+		<name>SourceForge</name>
+		<src>
+			http://sourceforge.net/sflogo.php?group_id=115046&amp;type=2
+        </src>
+		<href>http://sourceforge.net</href>
+	</bannerRight>
+	<body>
+		<links>
+			<item name="Ubuntu Linux" href="http://www.ubuntu.com/download" />
+			<item name="PostgreSQL" href="http://www.postgresql.org/" />
+			<item name="Eclipse" href="http://www.eclipse.org/" />
+			<item name="Maven" href="http://maven.apache.org/" />
+			<item name="Hibernate" href="http://hibernate.org/orm/" />
+			<item name="Spring Framework" href="http://projects.spring.io/spring-framework/" />
+			<item name="Vaadin RIA Ajax" href="https://vaadin.com/download" />
+			<item name="Jetty Web Server" href="http://eclipse.org/jetty/" />
+		</links>
+
+		<menu ref="reports" />
+
+		<menu name="Project Modules">
+			<item name="Parent Pom" href="http://cia.sourceforge.net/parent-pom/" />
+			<item name="Parent Model Pom" href="http://cia.sourceforge.net/parent-model-pom/" />
+			<item name="Parent Model JPA2 Pom" href="http://cia.sourceforge.net/parent-model-jpa2-pom/" />
+			<item name="Parent Model Internal Pom"
+				href="http://cia.sourceforge.net/parent-model-internal-pom/" />
+			<item name="Parent Model External Pom"
+				href="http://cia.sourceforge.net/parent-model-external-pom/" />
+			<item name="Parent Service Pom" href="http://cia.sourceforge.net/parent-service-pom/" />
+			<item name="template-component-service"
+				href="http://cia.sourceforge.net/template-component-service/" />
+			<item name="Parent Web Pom" href="http://cia.sourceforge.net/parent-web-pom/" />
+
+			<item name="Build Modules" href="http://cia.sourceforge.net/build-modules/" />
+
+			<item name="Web Widgets" href="http://cia.sourceforge.net/web-widgets/" />
+
+			<item name="Service.Api" href="http://cia.sourceforge.net/service.api/" />
+
+			<item name="Service.Impl" href="http://cia.sourceforge.net/service.impl/" />
+			<item name="jms-broker" href="http://cia.sourceforge.net/jms-broker/" />
+
+			<item name="Service.Component.Agent.Api"
+				href="http://cia.sourceforge.net/service.component.agent.api/" />
+			<item name="Service.Component.Agent.Impl"
+				href="http://cia.sourceforge.net/service.component.agent.impl/" />
+
+			<item name="service.external.common" href="http://cia.sourceforge.net/service.external.common/" />
+			<item name="service.external.worldbank"
+				href="http://cia.sourceforge.net/service.external.worldbank/" />
+			<item name="service.external.riksdagen"
+				href="http://cia.sourceforge.net/service.external.riksdagen/" />
+			<item name="service.external.val" href="http://cia.sourceforge.net/service.external.val/" />
+
+			<item name="Service.Data.Api" href="http://cia.sourceforge.net/service.data.api/" />
+			<item name="Service.Data.Impl" href="http://cia.sourceforge.net/service.data.impl/" />
+
+			<item name="model.common.api" href="http://cia.sourceforge.net/model.common.api/" />
+			<item name="model.common.impl" href="http://cia.sourceforge.net/model.common.impl/" />
+
+			<item name="model.internal.application.user.impl" href="http://cia.sourceforge.net/model.internal.application.user.impl/" />
+			<item name="model.internal.application" href="http://cia.sourceforge.net/model.internal.application" />
+
+			<item name="model.external.worldbank"
+				href="http://cia.sourceforge.net/model.external.worldbank/" />
+			<item name="worldbank.countries.impl"
+				href="http://cia.sourceforge.net/model.external.worldbank.countries.impl/" />
+			<item name="worldbank.indicators.impl"
+				href="http://cia.sourceforge.net/model.external.worldbank.indicators.impl/" />
+			<item name="worldbank.data.impl"
+				href="http://cia.sourceforge.net/model.external.worldbank.data.impl/" />
+
+			<item name="model.external.val" href="http://cia.sourceforge.net/model.external.val/" />
+			<item name="val.partier.impl"
+				href="http://cia.sourceforge.net/model.external.val.partier.impl/" />
+			<item name="val.riksdagsvalkrets.impl"
+				href="http://cia.sourceforge.net/model.external.val.riksdagsvalkrets.impl/" />
+			<item name="val.landstingvalkrets.impl"
+				href="http://cia.sourceforge.net/model.external.val.landstingvalkrets.impl/" />
+			<item name="val.kommunvalkrets.impl"
+				href="http://cia.sourceforge.net/model.external.val.kommunvalkrets.impl/" />
+
+			<item name="model.external.riksdagen"
+				href="http://cia.sourceforge.net/model.external.riksdagen/" />
+			<item name="riksdagen.dokumentstatus.impl"
+				href="http://cia.sourceforge.net/model.external.riksdagen.dokumentstatus.impl/" />
+			<item name="riksdagen.dokumentlista.impl"
+				href="http://cia.sourceforge.net/model.external.riksdagen.dokumentlista.impl/" />
+			<item name="riksdagen.documentcontent.impl"
+				href="http://cia.sourceforge.net/model.external.riksdagen.documentcontent.impl/" />
+
+			<item name="riksdagen.personlista.impl"
+				href="http://cia.sourceforge.net/model.external.riksdagen.personlista.impl/" />
+			<item name="riksdagen.person.impl"
+				href="http://cia.sourceforge.net/model.external.riksdagen.person.impl/" />
+			<item name="riksdagen.utskottsforslag.impl"
+				href="http://cia.sourceforge.net/model.external.riksdagen.utskottsforslag.impl/" />
+			<item name="riksdagen.voteringlista.impl"
+				href="http://cia.sourceforge.net/model.external.riksdagen.voteringlista.impl/" />
+			<item name="riksdagen.votering.impl"
+				href="http://cia.sourceforge.net/model.external.riksdagen.votering.impl/" />
+
+
+			<item name="testfoundation" href="http://cia.sourceforge.net/testfoundation/" />
+		</menu>
+		<menu name="Legacy Demo Documentation">
+			<item name="Legacy-1.0-demo branch" href="http://cia.sourceforge.net/legacy/" />
+		</menu>
+
+		<menu name="Documentation [Development]">
+			<item name="Developer Guide" href="developer.html" />
+			<item name="Designer Guide" href="designer.html" />
+			<item name="Translator Guide" href="translator.html" />
+			<item name="Admin Guide" href="admin.html" />
+			<item name="Fork Guide" href="fork.html" />
+			<item name="User Guide" href="user.html" />
+			<item name="Press Guide" href="press.html" />
+			<item name="FAQ" href="faq.html" />
+		</menu>
+	</body>
+
+</project>

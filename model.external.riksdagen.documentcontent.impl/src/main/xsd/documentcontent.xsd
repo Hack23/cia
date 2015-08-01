@@ -1,0 +1,29 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:dokument="http://documentcontent.riksdagen.external.model.cia.hack23.com/impl"
+	jaxb:extensionBindingPrefixes="xjc hj orm" jaxb:version="2.0"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified"
+	targetNamespace="http://documentcontent.riksdagen.external.model.cia.hack23.com/impl">
+
+	<xsd:element name="documentcontentdata" type="dokument:DocumentContentData" />
+
+	<xsd:complexType name="DocumentContentData">
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:string" />
+			<xsd:element name="content" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<hj:basic>
+							<orm:column length="10485760" />
+						</hj:basic>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

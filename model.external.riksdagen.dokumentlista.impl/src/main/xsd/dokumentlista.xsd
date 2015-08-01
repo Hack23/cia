@@ -1,0 +1,404 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:dokument="http://dokumentlista.riksdagen.external.model.cia.hack23.com/impl"
+	jaxb:extensionBindingPrefixes="xjc hj orm" jaxb:version="2.0"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified"
+	targetNamespace="http://dokumentlista.riksdagen.external.model.cia.hack23.com/impl">
+
+	<xsd:element name="dokumentlista" type="dokument:DocumentContainerElement" />
+
+	<xsd:complexType name="DocumentContainerElement">
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" name="dokument"
+				type="dokument:DocumentElement">
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="datum" use="required" type="xsd:string" />
+		<xsd:attribute name="debug" use="required" type="xsd:string" />
+		<xsd:attribute name="nasta_sida" use="required" type="xsd:anyURI">
+			<xsd:annotation>
+				<xsd:documentation>
+					We have customized the generated property name
+					here.
+						</xsd:documentation>
+				<xsd:appinfo>
+					<jaxb:property name="nextPage" />
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="sida" use="required" type="xsd:integer">
+			<xsd:annotation>
+				<xsd:documentation>
+					We have customized the generated property name
+					here.
+						</xsd:documentation>
+				<xsd:appinfo>
+					<jaxb:property name="page" />
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="sidor" use="required" type="xsd:integer">
+			<xsd:annotation>
+				<xsd:documentation>
+					We have customized the generated property name
+					here.
+						</xsd:documentation>
+				<xsd:appinfo>
+					<jaxb:property name="totalPages" />
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="skapad" use="required" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>
+					We have customized the generated property name
+					here.
+						</xsd:documentation>
+				<xsd:appinfo>
+					<jaxb:property name="created" />
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="traff_fran" use="required" type="xsd:integer">
+			<xsd:annotation>
+				<xsd:documentation>
+					We have customized the generated property name
+					here.
+						</xsd:documentation>
+				<xsd:appinfo>
+					<jaxb:property name="hitsFrom" />
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="traff_till" use="required" type="xsd:integer">
+			<xsd:annotation>
+				<xsd:documentation>
+					We have customized the generated property name
+					here.
+						</xsd:documentation>
+				<xsd:appinfo>
+					<jaxb:property name="hitsTo" />
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="traffar" use="required" type="xsd:integer">
+			<xsd:annotation>
+				<xsd:documentation>
+					We have customized the generated property name
+					here.
+						</xsd:documentation>
+				<xsd:appinfo>
+					<jaxb:property name="hits" />
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="version" use="required" type="xsd:string" >
+			<xsd:annotation>
+				<xsd:documentation>
+					We have customized the generated property name
+					here.
+						</xsd:documentation>
+				<xsd:appinfo>
+					<jaxb:property name="documentVersion" />
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		
+		
+		<xsd:attribute name="warning" use="required" type="xsd:string" />
+	</xsd:complexType>
+
+
+	<xsd:complexType name="DocumentElement">
+		<xsd:sequence>
+			<xsd:element name="traff" type="xsd:integer">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="hit" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="id" type="xsd:string" >
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="rm" type="xsd:string" />
+			<xsd:element name="relaterat_id" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="relatedId" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="typ" type="dokument:DocumentType">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="documentType" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="subtyp" type="dokument:DocumentSubType">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="subType" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="status" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="status" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="beteckning" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="label" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="tempbeteckning" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="tempLabel" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="organ" type="xsd:NCName">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="org" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="nummer" type="xsd:integer">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="numberValue" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="titel" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="title" />
+						<hj:basic>
+							<orm:column length="65536" />
+						</hj:basic>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="undertitel" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="subTitle" />
+						<hj:basic>
+							<orm:column length="65536" />
+						</hj:basic>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="datum" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="createdDate" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="publicerad" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="madePublicDate" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="systemdatum" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="systemDate" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="kall_id" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="kallId" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dokumentformat" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="documentFormat" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dokument_url_text" type="xsd:anyURI">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="documentUrlText" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dokument_url_html" type="xsd:anyURI">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="documentUrlHtml" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dokumentstatus_url_xml" type="xsd:anyURI">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="documentStatusUrlXml" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="utskottsforslag_url_xml" type="xsd:anyURI">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="committeeReportUrlXml" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:simpleType name="DocumentType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="bet" />
+			<xsd:enumeration value="bilaga" />
+			<xsd:enumeration value="eunbil" />
+			<xsd:enumeration value="ds" />
+			<xsd:enumeration value="dir" />
+			<xsd:enumeration value="kf-lista" />
+			<xsd:enumeration value="eunprot" />
+			<xsd:enumeration value="eundok" />
+			<xsd:enumeration value="fpm" />
+			<xsd:enumeration value="frsrdg" />
+			<xsd:enumeration value="f-lista" />
+			<xsd:enumeration value="rir" />
+			<xsd:enumeration value="ip" />
+			<xsd:enumeration value="komm" />
+			<xsd:enumeration value="minråd" />
+			<xsd:enumeration value="mot" />
+			<xsd:enumeration value="prop" />
+			<xsd:enumeration value="prot" />
+			<xsd:enumeration value="rfr" />
+			<xsd:enumeration value="rskr" />
+			<xsd:enumeration value="fr" />
+			<xsd:enumeration value="skr" />
+			<xsd:enumeration value="sou" />
+			<xsd:enumeration value="frs" />
+			<xsd:enumeration value="sfs" />
+			<xsd:enumeration value="t-lista" />
+			<xsd:enumeration value="utskottsdokument" />
+			<xsd:enumeration value="yttr" />
+			<xsd:enumeration value="plan" />
+			<xsd:enumeration value="uttag" />
+			<xsd:enumeration value="xxutskottsdokument" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="DocumentSubType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Kommittemotion" />
+			<xsd:enumeration value="bet" />
+			<xsd:enumeration value="utl" />
+			<xsd:enumeration value="Flerpartimotion" />
+			<xsd:enumeration value="Enskild motion" />
+			<xsd:enumeration value="prop" />
+			<xsd:enumeration value="skr" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>

@@ -1,0 +1,56 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:user="http://user.application.internal.model.cia.hack23.com/impl"
+	xmlns:system="http://system.application.internal.model.cia.hack23.com/impl"
+	jaxb:extensionBindingPrefixes="xjc hj orm" jaxb:version="2.0"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified"
+	targetNamespace="http://user.application.internal.model.cia.hack23.com/impl">
+
+	<xsd:import
+		namespace="http://system.application.internal.model.cia.hack23.com/impl"
+		schemaLocation="system.xsd" />
+
+
+	<xsd:element name="userAccount" type="user:UserAccount" />
+
+	<xsd:complexType name="UserAccount">
+		<xsd:sequence>
+			<xsd:element name="modelObjectId" type="xsd:int"
+				minOccurs="0" />
+			<xsd:element name="modelObjectVersion" type="xsd:int"
+				minOccurs="0" />
+			<xsd:element name="country" type="xsd:string"
+				minOccurs="0" />
+			<xsd:element minOccurs="0" name="username" type="xsd:string" />
+			<xsd:element minOccurs="0" name="email" type="xsd:string" />
+			<xsd:element minOccurs="0" name="userId" type="xsd:string" />
+			<xsd:element minOccurs="0" name="userpassword" type="xsd:string" />
+			<xsd:element minOccurs="0" name="numberOfVisits" type="xsd:int" />
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="address"
+				nillable="true" type="xsd:string" />
+			<xsd:element minOccurs="0" name="userType" type="user:UserType" />
+			<xsd:element minOccurs="0" name="userRole" type="user:UserRole" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:simpleType name="UserType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ANONYMOUS" />
+			<xsd:enumeration value="PRIVATE" />
+			<xsd:enumeration value="BUSINESS" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="UserRole">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ADMIN" />
+			<xsd:enumeration value="USER" />
+			<xsd:enumeration value="EDITOR" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+
+
+</xsd:schema>
+

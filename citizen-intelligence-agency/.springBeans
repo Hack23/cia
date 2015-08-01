@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.7.0.201506251244-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>src/main/resources/META-INF/cia-application-context.xml</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.CitizenIntelligenceAgencyUI</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.common.MainView</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.user.politician.PoliticianView</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.admin.agentoperations.AgentOperationView</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.admin.datasummary.AdminDataSummaryView</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.user.party.PartyRankingView</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactoryImpl</config>
+	</configs>
+	<autoconfigs>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactoryImpl</config>
+	</autoconfigs>
+	<configSets>
+		<configSet>
+			<name><![CDATA[Global]]></name>
+			<allowBeanDefinitionOverriding>true</allowBeanDefinitionOverriding>
+			<incomplete>false</incomplete>
+			<configs>
+				<config>src/main/resources/META-INF/cia-application-context.xml</config>
+			</configs>
+			<profiles>
+			</profiles>
+		</configSet>
+	</configSets>
+</beansProjectDescription>

@@ -1,0 +1,888 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>parent-web-pom</artifactId>
+    <groupId>com.hack23.cia</groupId>
+    <version>2011.07.23-SNAPSHOT</version>
+    <relativePath>../parent-web-pom/pom.xml</relativePath>
+  </parent>
+  <artifactId>citizen-intelligence-agency</artifactId>
+  <packaging>war</packaging>
+  <name>Citizen Intelligence Agency</name>
+  <description>Tracking Politicians Like Bugs!</description>
+  <url>http://cia.sourceforge.net</url>
+  <inceptionYear>2008</inceptionYear>
+  <scm>
+    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/citizen-intelligence-agency</connection>
+    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/citizen-intelligence-agency</developerConnection>
+    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/citizen-intelligence-agency</url>
+  </scm>
+  <distributionManagement>
+    <!-- http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->
+    <site>
+      <id>cia.sf.net</id>
+      <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs</url>
+    </site>
+  </distributionManagement>
+  <dependencies>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.vaadin</groupId>
+      <artifactId>vaadin-sass-compiler</artifactId>
+      <version>0.9.12</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.vaadin</groupId>
+      <artifactId>vaadin-themes</artifactId>
+      <version>7.5.2</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jul-to-slf4j</artifactId>
+      <version>1.7.12</version>
+    </dependency>
+    <dependency>
+      <groupId>org.antlr</groupId>
+      <artifactId>antlr</artifactId>
+      <version>3.5.2</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>ST4</artifactId>
+          <groupId>org.antlr</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>stringtemplate</artifactId>
+          <groupId>org.antlr</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>antlr</groupId>
+      <artifactId>antlr</artifactId>
+      <version>2.7.7</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ow2.asm</groupId>
+      <artifactId>asm-tree</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.antlr</groupId>
+      <artifactId>stringtemplate</artifactId>
+      <version>4.0.2</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>antlr-runtime</artifactId>
+          <groupId>org.antlr</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${cia.project.versions.spring}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>commons-logging</artifactId>
+          <groupId>commons-logging</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!-- Test -->
+    <dependency>
+      <groupId>cglib</groupId>
+      <artifactId>cglib</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>asm</artifactId>
+          <groupId>org.ow2.asm</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.hack23.cia</groupId>
+      <artifactId>testfoundation</artifactId>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>com.springsource.javax.persistence</artifactId>
+          <groupId>javax.persistence</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-expression</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>xml-apis</artifactId>
+          <groupId>xml-apis</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>2.47.1</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>jetty-websocket</artifactId>
+          <groupId>org.eclipse.jetty</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>htmlunit</artifactId>
+          <groupId>net.sourceforge.htmlunit</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>httpclient</artifactId>
+          <groupId>org.apache.httpcomponents</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>xml-apis</artifactId>
+          <groupId>xml-apis</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>gson</artifactId>
+          <groupId>com.google.code.gson</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>webbit</artifactId>
+          <groupId>org.webbitserver</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>cglib-nodep</artifactId>
+          <groupId>cglib</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.webbitserver</groupId>
+      <artifactId>webbit</artifactId>
+      <version>0.4.15</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>netty</artifactId>
+          <groupId>io.netty</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty</artifactId>
+      <version>3.10.4.Final</version>
+      <scope>test</scope>
+    </dependency>
+    <!--
+    <dependency>
+      <groupId>io.apigee</groupId>
+      <artifactId>rhino</artifactId>
+      <version>1.7R5pre4</version>
+      <scope>test</scope>
+    </dependency>-->
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-webapp</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-jmx</artifactId>
+      <version>9.3.2.v20150730</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-plus</artifactId>
+      <version>9.3.2.v20150730</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-annotations</artifactId>
+      <version>9.3.2.v20150730</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>asm</artifactId>
+          <groupId>org.ow2.asm</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-continuation</artifactId>
+      <version>9.3.2.v20150730</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty.websocket</groupId>
+      <artifactId>websocket-server</artifactId>
+      <version>9.3.2.v20150730</version>
+      <scope>test</scope>
+    </dependency>
+    <!--
+    <dependency>
+      <groupId>com.sun</groupId>
+      <artifactId>tools</artifactId>
+      <version>1.8.0</version>
+      <scope>system</scope>
+      <systemPath>${env.JAVA_HOME}/lib/tools.jar</systemPath>
+    </dependency>-->
+    <!-- <dependency> <groupId>org.eclipse.jetty</groupId> <artifactId>jetty-servlets</artifactId>
+			<version>${cia.project.versions.jetty}</version> <scope>test</scope> </dependency>
+			<dependency> <groupId>org.glassfish.web</groupId> <artifactId>jsp-impl</artifactId>
+			<version>2.2.1</version> <scope>test</scope> </dependency> -->
+    <dependency>
+      <groupId>xerces</groupId>
+      <artifactId>xercesImpl</artifactId>
+      <version>2.11.0.SP3</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>xml-apis</artifactId>
+          <groupId>xml-apis</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>xml-apis</groupId>
+      <artifactId>xml-apis</artifactId>
+      <version>1.4.01</version>
+    </dependency>
+    <!-- Monitoring -->
+    <dependency>
+      <groupId>net.bull.javamelody</groupId>
+      <artifactId>javamelody-core</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>jrobin</artifactId>
+          <groupId>org.jrobin</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.jrobin</groupId>
+      <artifactId>jrobin</artifactId>
+      <version>1.5.15</version>
+    </dependency>
+    <!-- For pdf support in javamelody -->
+    <dependency>
+      <groupId>com.lowagie</groupId>
+      <artifactId>itext</artifactId>
+      <version>4.2.1</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>bcmail-jdk14</artifactId>
+          <groupId>bouncycastle</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>bcprov-jdk14</artifactId>
+          <groupId>bouncycastle</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>bctsp-jdk14</artifactId>
+          <groupId>org.bouncycastle</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>dom4j</artifactId>
+          <groupId>dom4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
+      <version>1.4.8</version>
+    </dependency>
+    <!-- Web Cache -->
+    <dependency>
+      <groupId>net.sf.ehcache</groupId>
+      <artifactId>ehcache-web</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>ehcache-core</artifactId>
+          <groupId>net.sf.ehcache</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!-- Vaadin GUI Frameworks -->
+    <dependency>
+      <groupId>com.hack23.cia</groupId>
+      <artifactId>web-widgets</artifactId>
+      <version>${project.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>gwt-user</artifactId>
+          <groupId>com.google.gwt</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-web</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>validation-api</artifactId>
+          <groupId>javax.validation</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-sass-compiler</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <!--
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-user</artifactId>
+      <version>${cia.project.versions.vaadin.gwt.user}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>json</artifactId>
+          <groupId>org.json</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>validation-api</artifactId>
+          <groupId>javax.validation</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>-->
+    <!-- Service Layer -->
+    <dependency>
+      <groupId>com.hack23.cia</groupId>
+      <artifactId>service.impl</artifactId>
+      <version>${project.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>activemq-protobuf</artifactId>
+          <groupId>org.apache.activemq.protobuf</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>geronimo-j2ee-management_1.0_spec</artifactId>
+          <groupId>org.apache.geronimo.specs</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>aopalliance</artifactId>
+          <groupId>aopalliance</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-beans</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>xml-apis</artifactId>
+          <groupId>xml-apis</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>com.springsource.javax.persistence</artifactId>
+          <groupId>javax.persistence</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jdom</artifactId>
+          <groupId>jdom</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>gt-shapefile</artifactId>
+          <groupId>org.geotools</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>commons-logging</artifactId>
+          <groupId>commons-logging</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>stax-api</artifactId>
+          <groupId>stax</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>lucene-analyzers</artifactId>
+          <groupId>org.apache.lucene</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>lucene-core</artifactId>
+          <groupId>org.apache.lucene</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>solr-analysis-extras</artifactId>
+          <groupId>org.apache.solr</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>org.springframework.context</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>org.springframework.beans</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>org.springframework.core</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>com.springsource.org.aopalliance</artifactId>
+          <groupId>org.aopalliance</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>geronimo-jta_1.0.1B_spec</artifactId>
+          <groupId>org.apache.geronimo.specs</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>geronimo-jta_1.1_spec</artifactId>
+          <groupId>org.apache.geronimo.specs</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>${cia.project.versions.postgresql}</version>
+    </dependency>
+    <!-- Spring web support classes -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>spring-expression</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>commons-logging</artifactId>
+          <groupId>commons-logging</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!-- Authentication and authorisation -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>aopalliance</artifactId>
+          <groupId>aopalliance</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-beans</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-jdbc</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>net.sourceforge.nekohtml</groupId>
+      <artifactId>nekohtml</artifactId>
+      <version>1.9.22</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>xercesImpl</artifactId>
+          <groupId>xerces</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-taglibs</artifactId>
+      <version>${cia.project.versions.spring.security}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>spring-web</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-context</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-core</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-aop</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-beans</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-expression</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-jdbc</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-tx</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>aopalliance</artifactId>
+          <groupId>aopalliance</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!-- <dependency> <groupId>org.openid4java</groupId> <artifactId>openid4java</artifactId>
+			<version>0.9.6</version> <exclusions> <exclusion> <artifactId>spring-jdbc</artifactId>
+			<groupId>org.springframework</groupId> </exclusion> </exclusions> </dependency> -->
+    <!-- xbean jmx helpers -->
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+    </dependency>
+  </dependencies>
+  <repositories>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>sonatype</id>
+      <name>Sonatype Open Source Repository</name>
+      <url>http://oss.sonatype.org/content/groups/public</url>
+    </repository>
+  </repositories>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <version>1.8</version>
+        <configuration>
+          <excludedScopes>test</excludedScopes>
+          <useMissingFile>true</useMissingFile>
+          <includedLicenses>
+            <includedLicense>Public Domain</includedLicense>
+            <includedLicense>GNU Lesser General Public Licence (LGPL)</includedLicense>
+            <includedLicense>GNU General Lesser Public License (LGPL) version 2.0</includedLicense>
+            <includedLicense>GNU General Lesser Public License (LGPL) version 2.1</includedLicense>
+            <includedLicense>GNU General Lesser Public License (LGPL) version 3.0</includedLicense>
+            <includedLicense>The Apache Software License, Version 2.0</includedLicense>
+            <includedLicense>The Apache Software License</includedLicense>
+            <includedLicense>Eclipse Public License - Version 1.0</includedLicense>
+            <includedLicense>CDDL+GPL License</includedLicense>
+            <includedLicense>Common Development and Distribution License (CDDL) version 1.0</includedLicense>
+            <includedLicense>Common Development and Distribution License (CDDL) version 1.1</includedLicense>
+            <includedLicense>GNU General Public License, version 2,with the Classpath Exception</includedLicense>
+            <includedLicense>CDDL + GPLv2 with classpath exception</includedLicense>
+            <includedLicense>Bouncy Castle Licence</includedLicense>
+            <includedLicense>New BSD License</includedLicense>
+            <includedLicense>The BSD License</includedLicense>
+            <includedLicense>BSD-like</includedLicense>
+            <includedLicense>Common Public License</includedLicense>
+            <includedLicense>Do What the Fuck You Want to Public License</includedLicense>
+            <includedLicense>The JSON License</includedLicense>
+            <includedLicense>The MIT License</includedLicense>
+            <includedLicense>Mozilla Public License Version 1.1</includedLicense>
+            <includedLicense>Mozilla Public License Version 2.0</includedLicense>
+            <includedLicense>Indiana University Extreme! Lab Software License, vesion 1.1.1</includedLicense>
+            <includedLicense>BSD style</includedLicense>
+            <includedLicense>Eclipse Distribution License (EDL), Version 1.0</includedLicense>
+            <includedLicense>Similar to Apache License but with the acknowledgment clause removed</includedLicense>
+            <includedLicense>The W3C Software License</includedLicense>
+            <includedLicense>W3C Software Copyright Notice and License</includedLicense>
+          </includedLicenses>
+          <licenseMerges>
+            <licenseMerge>GNU General Public License, version 2,with the Classpath Exception|GPLv2+CE|GPL2 w/ CPE|GNU General Public License, Version 2 with the Classpath Exception</licenseMerge>
+            <licenseMerge>Common Public License|CPL</licenseMerge>
+            <licenseMerge>Do What the Fuck You Want to Public License|WTFPL</licenseMerge>
+            <licenseMerge>GNU Lesser General Public Licence (LGPL)|GNU Lesser General Public Licence|Lesser General Public License (LGPL)|GNU LESSER GENERAL PUBLIC LICENSE|GNU Lesser General Public License|LGPL</licenseMerge>
+            <licenseMerge>GNU General Lesser Public License (LGPL) version 2.1|LGPL 2.1|GNU Lesser General Public License, Version 2.1</licenseMerge>
+            <licenseMerge>The Apache Software License, Version 2.0|Apache License 2.0|Apache 2|Apache License, Version 2.0|Apache 2.0|Apache Software License - Version 2.0|Apache License, version 2.0|Apache License Version 2.0|ASF 2.0|AL 2.0|Atomikos Multiple Licensing Scheme</licenseMerge>
+            <licenseMerge>The Apache Software License|Apache Software Licenses|ASL</licenseMerge>
+            <licenseMerge>Eclipse Public License - Version 1.0|Eclipse Public License - v 1.0|Eclipse Public License (EPL), Version 1.0|Eclipse Public License 1.0</licenseMerge>
+            <licenseMerge>Common Development and Distribution License (CDDL) version 1.0|Common Development and Distribution License (CDDL) v1.0|COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0|CDDL|Common Development and Distribution License</licenseMerge>
+            <licenseMerge>Common Development and Distribution License (CDDL) version 1.1|CDDL 1.1</licenseMerge>
+            <licenseMerge>The BSD License|BSD|BSD licence|BSD License</licenseMerge>
+            <licenseMerge>Mozilla Public License Version 1.1|MPL 1.1</licenseMerge>
+            <licenseMerge>The MIT License|MIT License|MIT license</licenseMerge>
+            <licenseMerge>BSD style|dom4j|BSD-Style|BSD-Style License</licenseMerge>
+          </licenseMerges>
+          <failIfWarning>true</failIfWarning>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.4.0</version>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <classpathScope>compile</classpathScope>
+              <mainClass>com.vaadin.sass.SassCompiler</mainClass>
+              <arguments>
+                <argument>src/main/webapp/VAADIN/themes/cia/styles.scss</argument>
+                <argument>src/main/webapp/VAADIN/themes/cia/styles.css</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack</id>
+            <phase>test</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.hack23.cia</groupId>
+                  <artifactId>web-widgets</artifactId>
+                  <version>${project.version}</version>
+                  <type>jar</type>
+                  <overWrite>false</overWrite>
+                  <outputDirectory>${basedir}/src/main/webapp/</outputDirectory>
+                  <includes>**/*</includes>
+                  <excludes>**/*.class,com/**,META-INF/**</excludes>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>com.vaadin</groupId>
+                  <artifactId>vaadin-themes</artifactId>
+                  <version>7.5.2</version>
+                  <type>jar</type>
+                  <overWrite>false</overWrite>
+                  <outputDirectory>${basedir}/src/main/webapp/</outputDirectory>
+                  <includes>**/*</includes>
+                  <excludes>**/*.class,com/**,META-INF/**,css/**,img/**,release-notes.html,license.html</excludes>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>${basedir}/src/main/webapp/</outputDirectory>
+              <overWriteReleases>false</overWriteReleases>
+              <overWriteSnapshots>true</overWriteSnapshots>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <archiveClasses>true</archiveClasses>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlets</artifactId>
+            <version>${cia.project.versions.jetty}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm-tree</artifactId>
+            <version>5.0.4</version>
+          </dependency>
+          <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>5.0.4</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <systemProperties>
+            <systemProperty>
+              <name>logback.configurationFile</name>
+              <value>src/main/resources/logback.xml</value>
+            </systemProperty>
+            <systemProperty>
+              <name>slf4j</name>
+              <value>true</value>
+            </systemProperty>
+          </systemProperties>
+          <stopPort>9966</stopPort>
+          <stopKey>stop</stopKey>
+          <scanIntervalSeconds>0</scanIntervalSeconds>
+          <webAppConfig>
+            <!--<defaultsDescriptor>src/main/config/jetty/webdefault.xml</defaultsDescriptor>
+							<overrideDescriptor></overrideDescriptor> -->
+            <contextPath>/</contextPath>
+            <!-- <baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
+							<resourcesAsCSV>src/main/webapp,${project.build.directory}/classes,${project.build.directory}/${project.build.finalName}/</resourcesAsCSV>
+							</baseResource> -->
+          </webAppConfig>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>l10n-maven-plugin</artifactId>
+        <version>1.0-alpha-2</version>
+        <configuration>
+          <locales>
+            <locale>en</locale>
+            <locale>sv</locale>
+            <!-- <locale>da</locale> <locale>de</locale> <locale>es</locale> <locale>fi</locale>
+							<locale>fr</locale> <locale>it</locale> <locale>is</locale> <locale>nl</locale>
+							<locale>no</locale> -->
+          </locales>
+          <includes>
+            <include>IAResources*.properties</include>
+          </includes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <version>1.8</version>
+        <configuration>
+          <excludedScopes>test</excludedScopes>
+          <useMissingFile>true</useMissingFile>
+          <includedLicenses>
+            <includedLicense>Public Domain</includedLicense>
+            <includedLicense>GNU Lesser General Public Licence (LGPL)</includedLicense>
+            <includedLicense>GNU General Lesser Public License (LGPL) version 2.0</includedLicense>
+            <includedLicense>GNU General Lesser Public License (LGPL) version 2.1</includedLicense>
+            <includedLicense>GNU General Lesser Public License (LGPL) version 3.0</includedLicense>
+            <includedLicense>The Apache Software License, Version 2.0</includedLicense>
+            <includedLicense>The Apache Software License</includedLicense>
+            <includedLicense>Eclipse Public License - Version 1.0</includedLicense>
+            <includedLicense>CDDL+GPL License</includedLicense>
+            <includedLicense>Common Development and Distribution License (CDDL) version 1.0</includedLicense>
+            <includedLicense>Common Development and Distribution License (CDDL) version 1.1</includedLicense>
+            <includedLicense>GNU General Public License, version 2,with the Classpath Exception</includedLicense>
+            <includedLicense>CDDL + GPLv2 with classpath exception</includedLicense>
+            <includedLicense>Bouncy Castle Licence</includedLicense>
+            <includedLicense>New BSD License</includedLicense>
+            <includedLicense>The BSD License</includedLicense>
+            <includedLicense>BSD-like</includedLicense>
+            <includedLicense>Common Public License</includedLicense>
+            <includedLicense>Do What the Fuck You Want to Public License</includedLicense>
+            <includedLicense>The JSON License</includedLicense>
+            <includedLicense>The MIT License</includedLicense>
+            <includedLicense>Mozilla Public License Version 1.1</includedLicense>
+            <includedLicense>Mozilla Public License Version 2.0</includedLicense>
+            <includedLicense>Indiana University Extreme! Lab Software License, vesion 1.1.1</includedLicense>
+            <includedLicense>BSD style</includedLicense>
+            <includedLicense>Eclipse Distribution License (EDL), Version 1.0</includedLicense>
+            <includedLicense>Similar to Apache License but with the acknowledgment clause removed</includedLicense>
+            <includedLicense>The W3C Software License</includedLicense>
+            <includedLicense>W3C Software Copyright Notice and License</includedLicense>
+          </includedLicenses>
+          <licenseMerges>
+            <licenseMerge>GNU General Public License, version 2,with the Classpath Exception|GPLv2+CE|GPL2 w/ CPE|GNU General Public License, Version 2 with the Classpath Exception</licenseMerge>
+            <licenseMerge>Common Public License|CPL</licenseMerge>
+            <licenseMerge>Do What the Fuck You Want to Public License|WTFPL</licenseMerge>
+            <licenseMerge>GNU Lesser General Public Licence (LGPL)|GNU Lesser General Public Licence|Lesser General Public License (LGPL)|GNU LESSER GENERAL PUBLIC LICENSE|GNU Lesser General Public License|LGPL</licenseMerge>
+            <licenseMerge>GNU General Lesser Public License (LGPL) version 2.1|LGPL 2.1|GNU Lesser General Public License, Version 2.1</licenseMerge>
+            <licenseMerge>The Apache Software License, Version 2.0|Apache License 2.0|Apache 2|Apache License, Version 2.0|Apache 2.0|Apache Software License - Version 2.0|Apache License, version 2.0|Apache License Version 2.0|ASF 2.0|AL 2.0|Atomikos Multiple Licensing Scheme</licenseMerge>
+            <licenseMerge>The Apache Software License|Apache Software Licenses|ASL</licenseMerge>
+            <licenseMerge>Eclipse Public License - Version 1.0|Eclipse Public License - v 1.0|Eclipse Public License (EPL), Version 1.0|Eclipse Public License 1.0</licenseMerge>
+            <licenseMerge>Common Development and Distribution License (CDDL) version 1.0|Common Development and Distribution License (CDDL) v1.0|COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0|CDDL|Common Development and Distribution License</licenseMerge>
+            <licenseMerge>Common Development and Distribution License (CDDL) version 1.1|CDDL 1.1</licenseMerge>
+            <licenseMerge>The BSD License|BSD|BSD licence|BSD License</licenseMerge>
+            <licenseMerge>Mozilla Public License Version 1.1|MPL 1.1</licenseMerge>
+            <licenseMerge>The MIT License|MIT License|MIT license</licenseMerge>
+            <licenseMerge>BSD style|dom4j|BSD-Style|BSD-Style License</licenseMerge>
+          </licenseMerges>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <properties>
+        <wizard.mode>true</wizard.mode>
+        <itsyourparliament.eu.access.key>${itsyourparliament.key}</itsyourparliament.eu.access.key>
+        <jetty.port>9090</jetty.port>
+        <skip.database.recreate>false</skip.database.recreate>
+        <database.build.driver_class>com.mysql.jdbc.Driver</database.build.driver_class>
+        <database.build.base.url>jdbc:mysql://localhost:3306</database.build.base.url>
+        <database.driver_class>net.bull.javamelody.JdbcDriver</database.driver_class>
+        <database.base.url>jdbc:mysql://localhost:3306/cia_dev</database.base.url>
+        <database.name>cia_dev</database.name>
+        <database.username>eris</database.username>
+        <database.password>discord</database.password>
+        <database.ddl>update</database.ddl>
+        <server.automatic.deploy>false</server.automatic.deploy>
+        <cia.disable.import>true</cia.disable.import>
+      </properties>
+    </profile>
+    <profile>
+      <id>release</id>
+      <properties>
+        <maven.test.skip>true</maven.test.skip>
+      </properties>
+    </profile>
+    <profile>
+      <id>database-validate</id>
+      <properties>
+        <database.ddl>validate</database.ddl>
+      </properties>
+    </profile>
+    <profile>
+      <id>database-update</id>
+      <properties>
+        <database.ddl>update</database.ddl>
+      </properties>
+    </profile>
+    <profile>
+      <id>database-create</id>
+      <properties>
+        <database.ddl>create</database.ddl>
+      </properties>
+    </profile>
+    <profile>
+      <id>database-create-drop</id>
+      <properties>
+        <database.ddl>create-drop</database.ddl>
+      </properties>
+    </profile>
+    <profile>
+      <id>google-translate-resources</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.systemsplanet.plugin</groupId>
+            <artifactId>google-api-translate-java-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>generate-projects</id>
+                <phase>process-classes</phase>
+                <goals>
+                  <goal>localize</goal>
+                </goals>
+              </execution>
+            </executions>
+            <inherited>false</inherited>
+            <configuration>
+              <debug>true</debug>
+              <sourceTranslationPath>${basedir}/src/main/resources/</sourceTranslationPath>
+              <languageFilePattern>IAResources_{0}.properties</languageFilePattern>
+              <sourceLanguage>en</sourceLanguage>
+              <destinationPath>${project.build.directory}/</destinationPath>
+              <targetLanguages>nl,fr,de,it,es,da,fi,no</targetLanguages>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

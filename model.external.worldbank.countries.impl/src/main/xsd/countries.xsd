@@ -1,0 +1,153 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	jaxb:extensionBindingPrefixes="xjc hj orm" jaxb:version="2.0"
+	targetNamespace="http://countries.worldbank.external.model.cia.hack23.com/impl" xmlns:wb="http://countries.worldbank.external.model.cia.hack23.com/impl">
+
+	<xsd:element name="countries">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="unbounded" ref="wb:country" />
+			</xsd:sequence>
+			<xsd:attribute name="page" use="required" type="xsd:integer" />
+			<xsd:attribute name="pages" use="required" type="xsd:integer" />
+			<xsd:attribute name="per_page" use="required" type="xsd:integer" />
+			<xsd:attribute name="total" use="required" type="xsd:integer" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="country">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element form="qualified" name="iso2Code" type="xsd:string" />
+				<xsd:element form="qualified" name="name" type="xsd:string" >
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="countryName" />
+					</xsd:appinfo>
+				</xsd:annotation>
+				</xsd:element>
+				
+				<xsd:element form="qualified" name="region">
+					<xsd:complexType>
+						<xsd:annotation>
+							<xsd:appinfo>
+								<hj:embeddable />
+							</xsd:appinfo>
+						</xsd:annotation>
+						<xsd:simpleContent>
+							<xsd:extension base="wb:RegionCategory">
+								<xsd:attribute name="id" use="required" type="xsd:token" />
+							</xsd:extension>
+						</xsd:simpleContent>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element form="qualified" name="adminregion">
+					<xsd:complexType>
+						<xsd:annotation>
+							<xsd:appinfo>
+								<hj:embeddable />
+							</xsd:appinfo>
+						</xsd:annotation>
+						<xsd:simpleContent>
+							<xsd:extension base="wb:AdminRegionCategory">
+								<xsd:attribute name="id" use="required" type="xsd:token" />
+							</xsd:extension>
+						</xsd:simpleContent>
+					</xsd:complexType>
+				</xsd:element>				
+				<xsd:element form="qualified" name="incomeLevel">
+					<xsd:complexType>
+						<xsd:annotation>
+							<xsd:appinfo>
+								<hj:embeddable />
+							</xsd:appinfo>
+						</xsd:annotation>
+						<xsd:simpleContent>
+							<xsd:extension base="wb:IncomeLevelCategory">
+								<xsd:attribute name="id" use="required" type="xsd:token" />
+							</xsd:extension>
+						</xsd:simpleContent>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element form="qualified" name="lendingType">
+					<xsd:complexType>
+						<xsd:annotation>
+							<xsd:appinfo>
+								<hj:embeddable />
+							</xsd:appinfo>
+						</xsd:annotation>
+						<xsd:simpleContent>
+							<xsd:extension base="wb:LendingTypeCategory">
+								<xsd:attribute name="id" use="required" type="xsd:token" />
+							</xsd:extension>
+						</xsd:simpleContent>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element form="qualified" name="capitalCity" type="xsd:string" />
+				<xsd:element form="qualified" name="longitude" type="xsd:string" />
+				<xsd:element form="qualified" name="latitude" type="xsd:string" />
+			</xsd:sequence>
+			<xsd:attribute name="id" use="optional" type="xsd:string" />
+		</xsd:complexType>
+	</xsd:element>
+
+
+	<xsd:simpleType name="AdminRegionCategory">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="East Asia &amp; Pacific (developing only)" />
+			<xsd:enumeration value="Europe &amp; Central Asia (developing only)" />
+			<xsd:enumeration value="Latin America &amp; Caribbean (developing only)" />
+
+			<xsd:enumeration value="Middle East &amp; North Africa (developing only)" />
+			<xsd:enumeration value="South Asia" />
+			<xsd:enumeration value="Sub-Saharan Africa (developing only)" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="RegionCategory">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="East Asia &amp; Pacific (all income levels)" />
+			<xsd:enumeration value="Europe &amp; Central Asia (all income levels)" />
+			<xsd:enumeration value="Latin America &amp; Caribbean (all income levels)" />
+
+			<xsd:enumeration value="Middle East &amp; North Africa (all income levels)" />
+			<xsd:enumeration value="Aggregates" />
+
+			<xsd:enumeration value="North America" />
+			<xsd:enumeration value="Sub-Saharan Africa (all income levels)" />
+			<xsd:enumeration value="South Asia" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	    
+    
+	<xsd:simpleType name="IncomeLevelCategory">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Low income" />
+			<xsd:enumeration value="Lower middle income" />
+			<xsd:enumeration value="Aggregates" />
+
+			<xsd:enumeration value="High income: nonOECD" />
+			<xsd:enumeration value="NA" />
+			<xsd:enumeration value="High income: OECD" />
+
+			<xsd:enumeration value="Upper middle income" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="LendingTypeCategory">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Aggregates" />
+			<xsd:enumeration value="IBRD only" />
+			<xsd:enumeration value="IDA blend" />
+			<xsd:enumeration value="IDA only" />
+			<xsd:enumeration value="NA" />
+			<xsd:enumeration value="Not classified" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>

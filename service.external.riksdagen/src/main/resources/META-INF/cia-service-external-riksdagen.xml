@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:oxm="http://www.springframework.org/schema/oxm"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/oxm
+    http://www.springframework.org/schema/oxm/spring-oxm-4.1.xsd">
+
+    <oxm:jaxb2-marshaller id="riksdagenDocumentListMarshaller"  context-path="com.hack23.cia.model.external.riksdagen.dokumentlista.impl"/>
+	<oxm:jaxb2-marshaller id="riksdagenDocumentStatusMarshaller" context-path="com.hack23.cia.model.external.riksdagen.dokumentstatus.impl"/>
+
+	<oxm:jaxb2-marshaller id="riksdagenPersonMarshaller" context-path="com.hack23.cia.model.external.riksdagen.person.impl"/>
+	<oxm:jaxb2-marshaller id="riksdagenPersonListMarshaller" context-path="com.hack23.cia.model.external.riksdagen.personlista.impl"/>
+
+	<oxm:jaxb2-marshaller id="riksdagenCommitteeProposalMarshaller" context-path="com.hack23.cia.model.external.riksdagen.utskottsforslag.impl"/>
+	<oxm:jaxb2-marshaller id="riksdagenBallotMarshaller" context-path="com.hack23.cia.model.external.riksdagen.votering.impl"/>
+	<oxm:jaxb2-marshaller id="riksdagenBallotListMarshaller"    context-path="com.hack23.cia.model.external.riksdagen.voteringlista.impl"/>
+
+
+</beans>

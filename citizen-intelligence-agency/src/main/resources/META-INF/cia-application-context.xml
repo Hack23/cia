@@ -1,0 +1,72 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+
+
+	<bean id="propertyOverRideConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:application.properties</value>
+				<value>classpath:database.properties</value>
+				<value>classpath:transactions.properties</value>
+				<value>classpath:agent-jms-settings.properties</value>
+				<value>classpath:cia-service.properties</value>
+				<value>classpath:admin.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Declare the Resolver -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver"/>
+
+  	<aop:aspectj-autoproxy proxy-target-class="false"/>
+
+	<context:annotation-config />
+	<context:spring-configured />
+ 	<context:mbean-export />
+ 	
+	<context:component-scan base-package="com.hack23.cia" />
+
+  	<bean id="monitoringAdvice" class="net.bull.javamelody.MonitoringSpringInterceptor" />
+
+   <bean id="jmsMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor">
+                <property name="pointcut">
+                        <bean class="net.bull.javamelody.MonitoredWithInterfacePointcut">
+                                <property name="interfaceName" value="javax.jms.MessageListener" />
+                        </bean>
+                </property>
+    </bean>
+
+  	<bean id="applicationMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor">
+                <property name="pointcut">
+                        <bean class="net.bull.javamelody.MonitoredWithInterfacePointcut">
+                                <property name="interfaceName" value="com.hack23.cia.service.api.ApplicationManager" />
+                        </bean>
+                </property>
+    </bean>
+
+
+
+	<bean id="webCacheManager" depends-on="serviceCacheManager"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:web-ehcache.xml" />
+		<property name="shared" value="false" />
+		<property name="cacheManagerName" value="webCacheManager" />
+	</bean>
+
+	<bean id="webEhCacheMBeanRegistration" class="net.sf.ehcache.management.ManagementService"
+		init-method="init">
+		<constructor-arg index="0" ref="webCacheManager" />
+		<constructor-arg index="1" ref="mbeanServer" />
+		<constructor-arg index="2" value="true" />
+		<constructor-arg index="3" value="true" />
+		<constructor-arg index="4" value="true" />
+		<constructor-arg index="5" value="true" />
+		<constructor-arg index="6" value="true" />
+	</bean>
+
+</beans>

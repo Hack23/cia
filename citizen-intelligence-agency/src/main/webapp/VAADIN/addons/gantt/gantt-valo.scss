@@ -1,0 +1,99 @@
+@mixin gantt-valo {
+
+	.gantt {
+		background: $v-background-color;
+	
+		.timeline {
+		}
+		
+		.year,
+		.month,
+		.day {
+		    border-right: none;
+		    background-color: darken($v-background-color, 10%);
+		    font-size: $v-caption-font-size;
+		    font.weight: $v-caption-font-weight;
+		}
+		
+		.year:nth-of-type(even) {
+			background-color: darken($v-background-color, 13%);
+		}
+		.month:nth-of-type(even) {
+			background-color: darken($v-background-color, 15%);
+		}
+		.day:nth-of-type(even) {
+		    background-color: darken($v-background-color, 15%);
+		}
+		.col.even {
+		    background-color: darken($v-background-color, 15%);
+		}
+		
+		.col {
+			border-right: none;
+			background-color: darken($v-background-color, 10%);
+			font-size: $v-caption-font-size;
+		}
+		
+		.col.w {
+			
+		}
+		
+		.col.weekend {
+			background-color: darken($v-background-color, 15%);
+		}
+		
+		.row {
+			height: round(1.5 * $v-font-size);
+		}
+		
+		.resolution {
+			
+		}
+		
+		.gantt-container {
+			/* Background grid. IE 8 not supported.*/
+			
+			@include ganttBgGrid(darken($v-background-color, 10%));
+		}
+		
+		.gantt-content {
+			background: transparent;
+		}
+		
+		.bar {
+			height: $v-unit-size;
+		  	border-radius: $v-border-radius;
+		  	box-shadow: $v-shadow;
+		  	color: $v-font-color;
+		}
+		
+		.bar-label {
+		}
+		
+		.bar.moving {
+			background: $v-focus-color;
+		}
+		
+		.bar.resizing {
+			background: $v-focus-color;
+		}
+		
+		.bar.invalid {
+		}
+		
+		.mv-el {
+			background: transparent;
+			border-left: 1px dashed darken($v-background-color, 30%);
+			border-right: 1px dashed darken($v-background-color, 30%);
+		}
+	}
+}
+
+/* IE8 hacks */
+.v-ie8 .gantt {
+	
+	.month.even,
+	.day.even {
+		background-color: darken($v-background-color, 30%);
+	}
+}

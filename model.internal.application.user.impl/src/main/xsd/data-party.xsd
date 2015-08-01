@@ -1,0 +1,169 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:data="http://party.data.application.internal.model.cia.hack23.com/impl"
+	jaxb:extensionBindingPrefixes="xjc hj orm" jaxb:version="2.0"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified"
+	targetNamespace="http://party.data.application.internal.model.cia.hack23.com/impl">
+
+
+	<xsd:complexType name="ViewRiksdagenParty">
+		<xsd:sequence>
+			<xsd:element name="partyId" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+					</xsd:documentation>
+					<xsd:appinfo>
+						<hj:id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="partyNumber" type="xsd:string" />
+			<xsd:element name="partyName" type="xsd:string" />
+			<xsd:element name="headCount" type="xsd:long" />
+			<xsd:element name="website" type="xsd:string" />
+			<xsd:element name="registeredDate" type="xsd:date" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="ViewRiksdagenPartySummary">
+		<xsd:sequence>
+			<xsd:element name="party" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+					</xsd:documentation>
+					<xsd:appinfo>
+						<hj:id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="totalAssignments" type="xsd:long" />
+			<xsd:element name="currentAssignments" type="xsd:long" />
+
+			<xsd:element name="firstAssignmentDate" type="xsd:date" />
+			<xsd:element name="lastAssignmentDate" type="xsd:date" />
+			<xsd:element name="totalDaysServed" type="xsd:long" />
+			<xsd:element name="totalDaysServedParliament" type="xsd:long" />
+			<xsd:element name="totalDaysServedCommittee" type="xsd:long" />
+			<xsd:element name="totalDaysServedGovernment" type="xsd:long" />
+			<xsd:element name="totalDaysServedEu" type="xsd:long" />
+			<xsd:element name="active" type="xsd:boolean" />
+
+			<xsd:element name="activeEu" type="xsd:boolean" />
+			<xsd:element name="activeGovernment" type="xsd:boolean" />
+			<xsd:element name="activeCommittee" type="xsd:boolean" />
+			<xsd:element name="activeParliament" type="xsd:boolean" />
+
+			<xsd:element name="totalActiveEu" type="xsd:long" />
+			<xsd:element name="totalActiveGovernment" type="xsd:long" />
+			<xsd:element name="totalActiveCommittee" type="xsd:long" />
+			<xsd:element name="totalActiveParliament" type="xsd:long" />
+
+			<xsd:element name="activeParty" type="xsd:boolean" />
+			<xsd:element name="activeSpeaker" type="xsd:boolean" />
+			<xsd:element name="totalDaysServedSpeaker" type="xsd:long" />
+			<xsd:element name="totalDaysServedParty" type="xsd:long" />
+
+			<xsd:element name="totalPartyAssignments" type="xsd:long" />
+			<xsd:element name="totalMinistryAssignments" type="xsd:long" />
+			<xsd:element name="totalCommitteeAssignments" type="xsd:long" />
+			<xsd:element name="totalSpeakerAssignments" type="xsd:long" />
+
+			<xsd:element name="currentPartyAssignments" type="xsd:long" />
+			<xsd:element name="currentMinistryAssignments" type="xsd:long" />
+			<xsd:element name="currentCommitteeAssignments" type="xsd:long" />
+			<xsd:element name="currentSpeakerAssignments" type="xsd:long" />
+
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="ViewRiksdagenPartyMember">
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+					</xsd:documentation>
+					<xsd:appinfo>
+						<hj:id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="hjid" type="xsd:long" />
+			<xsd:element name="address" type="xsd:string" />
+			<xsd:element name="city" type="xsd:string" />
+			<xsd:element name="coAddress" type="xsd:string" />
+			<xsd:element name="email" type="xsd:string" />
+			<xsd:element name="faxNumber" type="xsd:string" />
+			<xsd:element name="partyId" type="xsd:string" />
+			<xsd:element name="partyName" type="xsd:string" />
+			<xsd:element name="phoneNumber" type="xsd:string" />
+			<xsd:element name="postCode" type="xsd:string" />
+			<xsd:element name="registeredDate" type="xsd:date" />
+			<xsd:element name="shortCode" type="xsd:string" />
+			<xsd:element name="website" type="xsd:string" />
+			<xsd:element name="bornYear" type="xsd:int" />
+			<xsd:element name="electionRegion" type="xsd:string" />
+			<xsd:element name="firstName" type="xsd:string" />
+			<xsd:element name="gender" type="xsd:string" />
+			<xsd:element name="hangarGuid" type="xsd:string" />
+			<xsd:element name="image_url_192" type="xsd:string" />
+			<xsd:element name="image_url_80" type="xsd:string" />
+			<xsd:element name="image_url_max" type="xsd:string" />
+			<xsd:element name="last_name" type="xsd:string" />
+			<xsd:element name="party" type="xsd:string" />
+			<xsd:element name="person_url_xml" type="xsd:string" />
+			<xsd:element name="place" type="xsd:string" />
+			<xsd:element name="status" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="ViewRiksdagenPartyRoleMember">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="VIEW_RIKSDAGEN_PARTY_ROLE_MEMBER" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+
+		<xsd:sequence>
+			<xsd:element name="roleId" type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+					</xsd:documentation>
+					<xsd:appinfo>
+						<hj:id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="detail" type="xsd:string" />
+			<xsd:element name="role_code" type="xsd:string" />
+			<xsd:element name="first_name" type="xsd:string" />
+			<xsd:element name="last_name" type="xsd:string" />
+			<xsd:element name="from_date" type="xsd:date" />
+			<xsd:element name="to_date" type="xsd:date" />
+			<xsd:element name="person_id" type="xsd:string" />
+			<xsd:element name="party" type="xsd:string" />
+			<xsd:element name="total_days_served" type="xsd:int" />
+			<xsd:element name="active" type="xsd:boolean" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>
+

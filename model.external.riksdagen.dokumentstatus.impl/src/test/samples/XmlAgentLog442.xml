@@ -1,0 +1,171 @@
+<dokumentstatus
+	xmlns="http://dokumentstatus.riksdagen.external.model.cia.hack23.com/impl">
+	<dokument>
+		<hangar_id>2317219</hangar_id>
+		<dok_id>GW11518</dok_id>
+		<rm>2008/09</rm>
+		<beteckning>518</beteckning>
+		<typ>fr</typ>
+		<subtyp></subtyp>
+		<tempbeteckning>s</tempbeteckning>
+		<organ>s</organ>
+		<nummer>518</nummer>
+		<slutnummer>0</slutnummer>
+		<datum>2009-01-23 00:00:00</datum>
+		<publicerad>2009-01-23 00:00:00</publicerad>
+		<titel>Lärarnas kompetens i sexualundervisning</titel>
+		<subtitel>Malmström, Louise (s)</subtitel>
+		<status>korrekturläst</status>
+		<dokument_url_text>http://data.riksdagen.se/dokument/GW11518/text
+		</dokument_url_text>
+		<dokument_url_html>http://data.riksdagen.se/dokument/GW11518
+		</dokument_url_html>
+		<dokumentstatus_url_xml>http://data.riksdagen.se/dokumentstatus/GW11518
+		</dokumentstatus_url_xml>
+		<dokumentstatus_url_www>http://www.riksdagen.se/webbnav/?nid=3120&amp;dokid=GW11518
+		</dokumentstatus_url_www>
+	</dokument>
+	<dokaktivitet>
+		<aktivitet>
+			<kod>INL</kod>
+			<namn>Inlämnad</namn>
+			<datum>2009-01-23 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>0</ordning>
+			<process>behandling</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>ANM</kod>
+			<namn>Anmäld</namn>
+			<datum>2009-01-23 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>0</ordning>
+			<process>behandling</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>ANM</kod>
+			<namn>Anmäld</namn>
+			<datum>2009-01-23 00:00:00</datum>
+			<status>planerad</status>
+			<ordning>0</ordning>
+			<process>behandling</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>BESV</kod>
+			<namn>Besvarad</namn>
+			<datum>2009-01-28 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>0</ordning>
+			<process>behandling</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>SA</kod>
+			<namn>Svar anmält</namn>
+			<datum>2009-01-28 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>0</ordning>
+			<process>behandling</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>BESV</kod>
+			<namn>Besvarad</namn>
+			<datum>2009-01-28 00:00:00</datum>
+			<status>planerad</status>
+			<ordning>0</ordning>
+			<process>behandling</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>SA</kod>
+			<namn>Svar anmält</namn>
+			<datum>2009-01-28 00:00:00</datum>
+			<status>planerad</status>
+			<ordning>0</ordning>
+			<process>behandling</process>
+		</aktivitet>
+	</dokaktivitet>
+	<dokintressent>
+		<intressent>
+			<intressent_id>0203334943718</intressent_id>
+			<namn>Louise Malmström</namn>
+			<partibet>s</partibet>
+			<ordning>1</ordning>
+			<roll>undertecknare</roll>
+		</intressent>
+		<intressent>
+			<intressent_id>0980725315516</intressent_id>
+			<namn>Lars Leijonborg</namn>
+			<partibet>fp</partibet>
+			<ordning>1</ordning>
+			<roll>stalldtill</roll>
+		</intressent>
+		<intressent>
+			<intressent_id>0980725315516</intressent_id>
+			<namn>Lars Leijonborg</namn>
+			<partibet>fp</partibet>
+			<ordning>1</ordning>
+			<roll>besvaradav</roll>
+		</intressent>
+	</dokintressent>
+	<dokforslag></dokforslag>
+	<dokuppgift></dokuppgift>
+	<dokbilaga></dokbilaga>
+	<dokreferens></dokreferens>
+	<dokkategori>
+		<kategori>
+			<status>test</status>
+			<skapat>automatiskt genererat</skapat>
+			<namn>arbetstidsförkortning</namn>
+			<id>2953</id>
+			<relevans>53</relevans>
+			<domain_id>44</domain_id>
+			<domain_name>SYSSELSÄTTNING OCH ARBETE</domain_name>
+			<thesaurus_id>4416</thesaurus_id>
+			<thesaurus_name>arbetsorganisation och arbetsförhållanden
+			</thesaurus_name>
+		</kategori>
+		<kategori>
+			<status>test</status>
+			<skapat>automatiskt genererat</skapat>
+			<namn>luftförorening</namn>
+			<id>2527</id>
+			<relevans>51</relevans>
+			<domain_id>52</domain_id>
+			<domain_name>MILJÖ</domain_name>
+			<thesaurus_id>5216</thesaurus_id>
+			<thesaurus_name>miljöförsämring</thesaurus_name>
+		</kategori>
+		<kategori>
+			<status>test</status>
+			<skapat>automatiskt genererat</skapat>
+			<namn>jämställdhet mellan kvinnor och män</namn>
+			<id>3913</id>
+			<relevans>51</relevans>
+			<domain_id>12</domain_id>
+			<domain_name>LAG OCH RÄTT</domain_name>
+			<thesaurus_id>1236</thesaurus_id>
+			<thesaurus_name>rättigheter och friheter</thesaurus_name>
+		</kategori>
+		<kategori>
+			<status>test</status>
+			<skapat>automatiskt genererat</skapat>
+			<namn>gymnasieutbildning</namn>
+			<id>799</id>
+			<relevans>49</relevans>
+			<domain_id>32</domain_id>
+			<domain_name>UTBILDNING OCH KOMMUNIKATION</domain_name>
+			<thesaurus_id>3211</thesaurus_id>
+			<thesaurus_name>utbildningsväsen</thesaurus_name>
+		</kategori>
+		<kategori>
+			<status>test</status>
+			<skapat>automatiskt genererat</skapat>
+			<namn>påföljd</namn>
+			<id>3878</id>
+			<relevans>49</relevans>
+			<domain_id>12</domain_id>
+			<domain_name>LAG OCH RÄTT</domain_name>
+			<thesaurus_id>1216</thesaurus_id>
+			<thesaurus_name>straffrätt</thesaurus_name>
+		</kategori>
+	</dokkategori>
+</dokumentstatus>

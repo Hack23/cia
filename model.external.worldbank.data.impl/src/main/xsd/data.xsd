@@ -1,0 +1,77 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	jaxb:extensionBindingPrefixes="xjc hj orm" jaxb:version="2.0"
+	targetNamespace="http://data.worldbank.external.model.cia.hack23.com/impl" xmlns:wb="http://data.worldbank.external.model.cia.hack23.com/impl">
+
+	<xsd:element name="data">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element form="qualified" name="data" maxOccurs="unbounded" type="wb:WorldBankData">
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:attribute name="page" type="xsd:integer" />
+			<xsd:attribute name="pages" type="xsd:integer" />
+			<xsd:attribute name="per_page" type="xsd:integer" />
+			<xsd:attribute name="total" type="xsd:integer" />
+		</xsd:complexType>
+		</xsd:element>
+
+
+				<xsd:complexType name="WorldBankData">
+						<xsd:sequence minOccurs="0">
+							<xsd:element form="qualified" name="indicator">
+								<xsd:complexType>
+									<xsd:annotation>
+										<xsd:appinfo>
+											<hj:embeddable />
+										</xsd:appinfo>
+									</xsd:annotation>
+									<xsd:simpleContent>
+										<xsd:extension base="xsd:NCName">
+											<xsd:attribute name="id" use="required" type="xsd:string" />
+										</xsd:extension>
+									</xsd:simpleContent>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element form="qualified" name="country">
+								<xsd:complexType>
+									<xsd:annotation>
+										<xsd:appinfo>
+											<hj:embeddable />
+										</xsd:appinfo>
+									</xsd:annotation>
+									<xsd:simpleContent>
+										<xsd:extension base="xsd:NCName">
+											<xsd:attribute name="id" use="required" type="xsd:string" />
+										</xsd:extension>
+									</xsd:simpleContent>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element form="qualified" name="value" type="xsd:string" >
+							<xsd:annotation>
+								<xsd:documentation>
+									We have customized the generated property name
+									here.
+									</xsd:documentation>
+								<xsd:appinfo>
+									<jaxb:property name="dataValue" />
+								</xsd:appinfo>
+							</xsd:annotation>
+							</xsd:element>
+							
+							<xsd:element form="qualified" name="date" type="xsd:int">
+							<xsd:annotation>
+								<xsd:documentation>
+									We have customized the generated property name
+									here.
+									</xsd:documentation>
+								<xsd:appinfo>
+									<jaxb:property name="yearDate" />
+								</xsd:appinfo>
+							</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+
+</xsd:schema>

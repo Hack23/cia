@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root xmlns="http://riksdagsvalkrets.val.external.model.cia.hack23.com/impl">
+  <riksdagsvalkrets>
+    <valkretsnamn>Stockholms kommun</valkretsnamn>
+    <röstberättigade>628091</röstberättigade>
+    <omgång1>27</omgång1>
+    <rest>0,50068</rest>
+    <omgång2>1</omgång2>
+    <mandat>28</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Stockholms län</valkretsnamn>
+    <röstberättigade>842876</röstberättigade>
+    <omgång1>36</omgång1>
+    <rest>0,90495</rest>
+    <omgång2>1</omgång2>
+    <mandat>37</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Uppsala län</valkretsnamn>
+    <röstberättigade>252501</röstberättigade>
+    <omgång1>11</omgång1>
+    <rest>0,05564</rest>
+    <omgång2>0</omgång2>
+    <mandat>11</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Södermanlands län</valkretsnamn>
+    <röstberättigade>203359</röstberättigade>
+    <omgång1>8</omgång1>
+    <rest>0,90398</rest>
+    <omgång2>1</omgång2>
+    <mandat>9</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Östergötlands län</valkretsnamn>
+    <röstberättigade>328076</röstberättigade>
+    <omgång1>14</omgång1>
+    <rest>0,36466</rest>
+    <omgång2>0</omgång2>
+    <mandat>14</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Jönköpings län</valkretsnamn>
+    <röstberättigade>255273</röstberättigade>
+    <omgång1>11</omgång1>
+    <rest>0,17701</rest>
+    <omgång2>0</omgång2>
+    <mandat>11</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Kronobergs län</valkretsnamn>
+    <röstberättigade>138511</röstberättigade>
+    <omgång1>6</omgång1>
+    <rest>0,06464</rest>
+    <omgång2>0</omgång2>
+    <mandat>6</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Kalmar län</valkretsnamn>
+    <röstberättigade>183989</röstberättigade>
+    <omgång1>8</omgång1>
+    <rest>0,05588</rest>
+    <omgång2>0</omgång2>
+    <mandat>8</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Gotlands län</valkretsnamn>
+    <röstberättigade>45974</röstberättigade>
+    <omgång1>2</omgång1>
+    <rest>0,01295</rest>
+    <omgång2>0</omgång2>
+    <mandat>2</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Blekinge län</valkretsnamn>
+    <röstberättigade>117619</röstberättigade>
+    <omgång1>5</omgång1>
+    <rest>0,14989</rest>
+    <omgång2>0</omgång2>
+    <mandat>5</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Malmö kommun</valkretsnamn>
+    <röstberättigade>213136</röstberättigade>
+    <omgång1>9</omgång1>
+    <rest>0,33206</rest>
+    <omgång2>0</omgång2>
+    <mandat>9</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Skåne läns västra</valkretsnamn>
+    <röstberättigade>212255</röstberättigade>
+    <omgång1>9</omgång1>
+    <rest>0,29349</rest>
+    <omgång2>0</omgång2>
+    <mandat>9</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Skåne läns södra</valkretsnamn>
+    <röstberättigade>266097</röstberättigade>
+    <omgång1>11</omgång1>
+    <rest>0,65094</rest>
+    <omgång2>1</omgång2>
+    <mandat>12</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Skåne läns norra och östra</valkretsnamn>
+    <röstberättigade>230770</röstberättigade>
+    <omgång1>10</omgång1>
+    <rest>0,10416</rest>
+    <omgång2>0</omgång2>
+    <mandat>10</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Hallands län</valkretsnamn>
+    <röstberättigade>227938</röstberättigade>
+    <omgång1>9</omgång1>
+    <rest>0,98016</rest>
+    <omgång2>1</omgång2>
+    <mandat>10</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Göteborgs kommun</valkretsnamn>
+    <röstberättigade>387830</röstberättigade>
+    <omgång1>16</omgång1>
+    <rest>0,98096</rest>
+    <omgång2>1</omgång2>
+    <mandat>17</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Västra Götalands läns västra</valkretsnamn>
+    <röstberättigade>262100</röstberättigade>
+    <omgång1>11</omgång1>
+    <rest>0,47593</rest>
+    <omgång2>1</omgång2>
+    <mandat>12</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Västra Götalands läns norra</valkretsnamn>
+    <röstberättigade>204084</röstberättigade>
+    <omgång1>8</omgång1>
+    <rest>0,93573</rest>
+    <omgång2>1</omgång2>
+    <mandat>9</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Västra Götalands läns södra</valkretsnamn>
+    <röstberättigade>143346</röstberättigade>
+    <omgång1>6</omgång1>
+    <rest>0,27634</rest>
+    <omgång2>0</omgång2>
+    <mandat>6</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Västra Götalands läns östra</valkretsnamn>
+    <röstberättigade>199329</röstberättigade>
+    <omgång1>8</omgång1>
+    <rest>0,72753</rest>
+    <omgång2>1</omgång2>
+    <mandat>9</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Värmlands län</valkretsnamn>
+    <röstberättigade>212473</röstberättigade>
+    <omgång1>9</omgång1>
+    <rest>0,30303</rest>
+    <omgång2>0</omgång2>
+    <mandat>9</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Örebro län</valkretsnamn>
+    <röstberättigade>214985</röstberättigade>
+    <omgång1>9</omgång1>
+    <rest>0,41302</rest>
+    <omgång2>0</omgång2>
+    <mandat>9</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Västmanlands län</valkretsnamn>
+    <röstberättigade>190976</röstberättigade>
+    <omgång1>8</omgång1>
+    <rest>0,3618</rest>
+    <omgång2>0</omgång2>
+    <mandat>8</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Dalarnas län</valkretsnamn>
+    <röstberättigade>215878</röstberättigade>
+    <omgång1>9</omgång1>
+    <rest>0,45212</rest>
+    <omgång2>1</omgång2>
+    <mandat>10</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Gävleborgs län</valkretsnamn>
+    <röstberättigade>216130</röstberättigade>
+    <omgång1>9</omgång1>
+    <rest>0,46315</rest>
+    <omgång2>1</omgång2>
+    <mandat>10</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Västernorrlands län</valkretsnamn>
+    <röstberättigade>190505</röstberättigade>
+    <omgång1>8</omgång1>
+    <rest>0,34118</rest>
+    <omgång2>0</omgång2>
+    <mandat>8</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Jämtlands län</valkretsnamn>
+    <röstberättigade>100112</röstberättigade>
+    <omgång1>4</omgång1>
+    <rest>0,38336</rest>
+    <omgång2>0</omgång2>
+    <mandat>4</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Västerbottens län</valkretsnamn>
+    <röstberättigade>201750</röstberättigade>
+    <omgång1>8</omgång1>
+    <rest>0,83353</rest>
+    <omgång2>1</omgång2>
+    <mandat>9</mandat>
+  </riksdagsvalkrets>
+  <riksdagsvalkrets>
+    <valkretsnamn>Norrbottens län</valkretsnamn>
+    <röstberättigade>194160</röstberättigade>
+    <omgång1>8</omgång1>
+    <rest>0,50121</rest>
+    <omgång2>1</omgång2>
+    <mandat>9</mandat>
+  </riksdagsvalkrets>
+</root>

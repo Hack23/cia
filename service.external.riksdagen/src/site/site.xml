@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    @author Pether Sorling
+-->
+<project xmlns="http://maven.apache.org/DECORATION/1.4.0" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.4.0 http://maven.apache.org/xsd/decoration-1.4.0.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  name="${project.name}" >
+
+  
+  <skin>
+    <groupId>com.hack23.cia</groupId>
+  <artifactId>maven-cia-skin</artifactId>
+<version>1.0.0-beta-1</version>
+  </skin>
+  
+    <bannerLeft>
+        <name>Citizen Intelligence Agency</name>
+        <src>
+            http://cia.sourceforge.net/cia-logo.png
+        </src>
+        <href>http://cia.sourceforge.net/</href>
+    </bannerLeft>
+    <bannerRight>
+        <name>SourceForge</name>
+        <src>
+            http://sourceforge.net/sflogo.php?group_id=115046&amp;type=2
+        </src>
+        <href>http://sourceforge.net</href>
+    </bannerRight>
+    <body>
+        <links>
+        </links>
+
+        <menu ref="reports" /> <menu ref="parent" /><menu ref="modules" />        
+
+        <menu name="Data provided by">
+            <item name="http://data.riksdagen.se/"
+                href="http://data.riksdagen.se/" />        
+        </menu>                
+    </body>
+        
+</project>

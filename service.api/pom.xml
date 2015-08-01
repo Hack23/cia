@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>parent-service-pom</artifactId>
+    <groupId>com.hack23.cia</groupId>
+    <version>2011.07.23-SNAPSHOT</version>
+    <relativePath>../parent-service-pom/pom.xml</relativePath>
+  </parent>
+  <artifactId>service.api</artifactId>
+  <packaging>bundle</packaging>
+  <name>service.api</name>
+  <description>service.api</description>
+  <url>http://cia.sourceforge.net/service.api/</url>
+  <inceptionYear>2010</inceptionYear>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <scm>
+    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/service.api</connection>
+    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/service.api</developerConnection>
+    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/service.api</url>
+  </scm>
+  <distributionManagement>
+    <site>
+      <id>cia.sf.net</id>
+      <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/service.api</url>
+    </site>
+  </distributionManagement>
+  <dependencies>
+    <dependency>
+      <groupId>com.hack23.cia</groupId>
+      <artifactId>service.data.api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+</project>

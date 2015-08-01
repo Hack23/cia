@@ -1,0 +1,114 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:votering="http://voteringlista.riksdagen.external.model.cia.hack23.com/impl"
+	jaxb:extensionBindingPrefixes="xjc hj orm" jaxb:version="2.0"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified"
+	targetNamespace="http://voteringlista.riksdagen.external.model.cia.hack23.com/impl">
+
+	<xsd:element name="voteringlista" type="votering:VoteListContainerElement" />
+
+	<xsd:complexType name="VoteListContainerElement">
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" name="votering"
+				type="votering:BallotDocumentElement">
+			</xsd:element>
+		</xsd:sequence>
+
+		<xsd:attribute name="gruppering" use="required" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>
+					We have customized the generated property name
+					here.
+						</xsd:documentation>
+				<xsd:appinfo>
+					<jaxb:property name="grouping" />
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="villkor" use="required" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>
+					We have customized the generated property name
+					here.
+						</xsd:documentation>
+				<xsd:appinfo>
+					<jaxb:property name="condition" />
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="antal" use="required" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>
+					We have customized the generated property name
+					here.
+						</xsd:documentation>
+				<xsd:appinfo>
+					<jaxb:property name="numberValue" />
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="BallotDocumentElement">
+		<xsd:sequence>
+			<xsd:element name="votering_id" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="ballotId" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Ja" type="xsd:int">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="yesVotes" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Nej" type="xsd:int">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="noVotes" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Frånvarande" type="xsd:int">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="absentVotes" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Avstår" type="xsd:int">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<jaxb:property name="abstainedVotes" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>

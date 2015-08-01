@@ -1,0 +1,1430 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building service.data.impl 2011.07.23-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- liquibase-maven-plugin:3.2.3:generateChangeLog (default-cli) @ service.data.impl ---
+[INFO] ------------------------------------------------------------------------
+[INFO] Executing on Database: jdbc:postgresql://localhost:5432/cia_dev
+[INFO] Generating Change Log from database eris @ jdbc:postgresql://localhost:5432/cia_dev (Default Schema: public)
+<?xml version="1.0" encoding="UTF-8"?><databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
+<changeSet author="pether (generated)" id="1416258476613-1">
+<createSequence sequenceName="hibernate_sequence"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-2">
+<createTable tableName="against_proposal_container">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-3">
+<createTable tableName="against_proposal_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="header" type="VARCHAR(255)"/>
+<column name="number_value" type="numeric"/>
+<column name="parties" type="VARCHAR(255)"/>
+<column name="proposal_issue_number" type="numeric"/>
+<column name="proposal_type" type="VARCHAR(255)"/>
+<column name="against_proposal_list_agains_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-4">
+<createTable tableName="agency">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="agency_name" type="VARCHAR(255)"/>
+<column name="description" type="VARCHAR(255)"/>
+<column name="model_object_id" type="INT4"/>
+<column name="model_object_version" type="INT4"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-5">
+<createTable tableName="aggregated_bug_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="country" type="VARCHAR(255)"/>
+<column name="id" type="VARCHAR(255)"/>
+<column name="party" type="VARCHAR(255)"/>
+<column name="politican_name" type="VARCHAR(255)"/>
+<column name="politician_type" type="VARCHAR(255)"/>
+<column name="ref_key" type="VARCHAR(255)"/>
+<column name="sweden_aggregated_bug_data_id" type="VARCHAR(255)"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-6">
+<createTable tableName="aggregated_country_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="country_type" type="VARCHAR(255)"/>
+<column name="country_aggregated_country_d_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-7">
+<createTable tableName="application_action_event">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="application_operation" type="VARCHAR(255)"/>
+<column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+<column name="event_group" type="VARCHAR(255)"/>
+<column name="model_object_id" type="INT4"/>
+<column name="model_object_version" type="INT4"/>
+<column name="events_application_session_h_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-8">
+<createTable tableName="application_session">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+<column name="ip_information" type="VARCHAR(255)"/>
+<column name="model_object_id" type="INT4"/>
+<column name="model_object_version" type="INT4"/>
+<column name="session_type" type="VARCHAR(255)"/>
+<column name="user_agent_information" type="VARCHAR(255)"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-9">
+<createTable tableName="application_view">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="perspective" type="VARCHAR(255)"/>
+<column name="data_source_information_appl_0" type="INT8"/>
+<column name="operational_information_appl_0" type="INT8"/>
+<column name="performance_indicators_appli_0" type="INT8"/>
+<column name="quality_assurance_applicatio_0" type="INT8"/>
+<column name="target_profile_application_v_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-10">
+<createTable tableName="assignment_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="assignment_type" type="VARCHAR(255)"/>
+<column name="detail" type="VARCHAR(65536)"/>
+<column name="from_date" type="date"/>
+<column name="intressent_id" type="VARCHAR(255)"/>
+<column name="order_number" type="VARCHAR(255)"/>
+<column name="org_code" type="VARCHAR(255)"/>
+<column name="role_code" type="VARCHAR(255)"/>
+<column name="status" type="VARCHAR(255)"/>
+<column name="to_date" type="date"/>
+<column name="assignment_list_person_assig_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-11">
+<createTable tableName="assignment_element">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="assignment_type" type="VARCHAR(255)"/>
+<column name="detail" type="VARCHAR(65536)"/>
+<column name="from_date" type="date"/>
+<column name="intressent_id" type="VARCHAR(255)"/>
+<column name="order_number" type="VARCHAR(255)"/>
+<column name="org_code" type="VARCHAR(255)"/>
+<column name="role_code" type="VARCHAR(255)"/>
+<column name="status" type="VARCHAR(255)"/>
+<column name="to_date" type="date"/>
+<column name="uppdrag_person_assignment_el_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-12">
+<createTable tableName="committee_document_data">
+<column name="id" type="VARCHAR(255)">
+<constraints nullable="false"/>
+</column>
+<column name="committee_proposal_url_xml" type="VARCHAR(255)"/>
+<column name="created_date" type="date"/>
+<column name="document_status_url_www" type="VARCHAR(255)"/>
+<column name="document_status_url_xml" type="VARCHAR(255)"/>
+<column name="document_url_html" type="VARCHAR(255)"/>
+<column name="document_url_text" type="VARCHAR(255)"/>
+<column name="end_number" type="numeric"/>
+<column name="hangar_id" type="numeric"/>
+<column name="label" type="VARCHAR(255)"/>
+<column name="org" type="VARCHAR(255)"/>
+<column name="public_date" type="date"/>
+<column name="rm" type="VARCHAR(255)"/>
+<column name="status" type="VARCHAR(255)"/>
+<column name="sub_title" type="VARCHAR(255)"/>
+<column name="sub_type" type="VARCHAR(255)"/>
+<column name="temp_label" type="VARCHAR(255)"/>
+<column name="title" type="VARCHAR(255)"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-13">
+<createTable tableName="committee_proposal_component_0">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="against_proposal_container_c_0" type="INT8"/>
+<column name="committee_proposal_container_0" type="INT8"/>
+<column name="document_committee_proposal__0" type="VARCHAR(255)"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-14">
+<createTable tableName="committee_proposal_container">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-15">
+<createTable tableName="committee_proposal_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="against_proposal_number" type="numeric"/>
+<column name="against_proposal_parties" type="VARCHAR(255)"/>
+<column name="ballot_id" type="VARCHAR(255)"/>
+<column name="ballot_summary_item" type="TEXT"/>
+<column name="ballot_url_xml" type="VARCHAR(255)"/>
+<column name="committee_report" type="VARCHAR(255)"/>
+<column name="decision_type" type="VARCHAR(255)"/>
+<column name="header" type="VARCHAR(255)"/>
+<column name="issue_number" type="numeric"/>
+<column name="proposal" type="TEXT"/>
+<column name="rm" type="VARCHAR(255)"/>
+<column name="winner" type="VARCHAR(255)"/>
+<column name="committee_proposal_list_comm_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-16">
+<createTable tableName="countries_element">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="page" type="numeric"/>
+<column name="pages" type="numeric"/>
+<column name="per_page" type="numeric"/>
+<column name="total" type="numeric"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-17">
+<createTable tableName="country_element">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="adminregion_id" type="VARCHAR(255)"/>
+<column name="adminregion_value" type="VARCHAR(255)"/>
+<column name="capital_city" type="VARCHAR(255)"/>
+<column name="country_name" type="VARCHAR(255)"/>
+<column name="id" type="VARCHAR(255)"/>
+<column name="income_level_id" type="VARCHAR(255)"/>
+<column name="income_level_value" type="VARCHAR(255)"/>
+<column name="iso_2code" type="VARCHAR(255)"/>
+<column name="latitude" type="VARCHAR(255)"/>
+<column name="lending_type_id" type="VARCHAR(255)"/>
+<column name="lending_type_value" type="VARCHAR(255)"/>
+<column name="longitude" type="VARCHAR(255)"/>
+<column name="region_id" type="VARCHAR(255)"/>
+<column name="region_value" type="VARCHAR(255)"/>
+<column name="country_countries_element_hj_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-18">
+<createTable tableName="data_element">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="page" type="numeric"/>
+<column name="pages" type="numeric"/>
+<column name="per_page" type="numeric"/>
+<column name="total" type="numeric"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-19">
+<createTable tableName="data_source_content">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="model_object_id" type="INT4"/>
+<column name="model_object_version" type="INT4"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-20">
+<createTable tableName="detail_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="code" type="VARCHAR(255)"/>
+<column name="detail" type="VARCHAR(65536)"/>
+<column name="detail_type" type="VARCHAR(255)"/>
+<column name="intressent_id" type="VARCHAR(255)"/>
+<column name="detail_list_person_detail_da_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-21">
+<createTable tableName="detail_element">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="code" type="VARCHAR(255)"/>
+<column name="detail" type="VARCHAR(65536)"/>
+<column name="detail_type" type="VARCHAR(255)"/>
+<column name="intressent_id" type="VARCHAR(255)"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-22">
+<createTable tableName="document_activity_container">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-23">
+<createTable tableName="document_activity_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="activity_name" type="VARCHAR(255)"/>
+<column name="code" type="VARCHAR(255)"/>
+<column name="created_date" type="date"/>
+<column name="order_number" type="numeric"/>
+<column name="process" type="VARCHAR(255)"/>
+<column name="status" type="VARCHAR(255)"/>
+<column name="document_activities_document_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-24">
+<createTable tableName="document_attachment">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="file_name" type="VARCHAR(255)"/>
+<column name="file_size" type="numeric"/>
+<column name="file_type" type="VARCHAR(255)"/>
+<column name="file_url" type="VARCHAR(255)"/>
+<column name="document_attachment_list_doc_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-25">
+<createTable tableName="document_attachment_container">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-26">
+<createTable tableName="document_container_element">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="created" type="VARCHAR(255)"/>
+<column name="datum" type="VARCHAR(255)"/>
+<column name="debug" type="VARCHAR(255)"/>
+<column name="document_version" type="VARCHAR(255)"/>
+<column name="hits" type="numeric"/>
+<column name="hits_from" type="numeric"/>
+<column name="hits_to" type="numeric"/>
+<column name="next_page" type="VARCHAR(255)"/>
+<column name="page" type="numeric"/>
+<column name="total_pages" type="numeric"/>
+<column name="warning" type="VARCHAR(255)"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-27">
+<createTable tableName="document_content_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="content" type="TEXT"/>
+<column name="id" type="VARCHAR(255)"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-28">
+<createTable tableName="document_data">
+<column name="id" type="VARCHAR(255)">
+<constraints nullable="false"/>
+</column>
+<column name="committee_report_url_xml" type="VARCHAR(255)"/>
+<column name="document_status_url_www" type="VARCHAR(255)"/>
+<column name="document_status_url_xml" type="VARCHAR(255)"/>
+<column name="document_type" type="VARCHAR(255)"/>
+<column name="document_url_html" type="VARCHAR(255)"/>
+<column name="document_url_text" type="VARCHAR(255)"/>
+<column name="final_number" type="numeric"/>
+<column name="hangar_id" type="VARCHAR(255)"/>
+<column name="label" type="VARCHAR(255)"/>
+<column name="made_public_date" type="date"/>
+<column name="number_value" type="numeric"/>
+<column name="org" type="VARCHAR(255)"/>
+<column name="rm" type="VARCHAR(255)"/>
+<column name="status" type="VARCHAR(255)"/>
+<column name="sub_title" type="VARCHAR(255)"/>
+<column name="sub_type" type="VARCHAR(255)"/>
+<column name="temp_label" type="VARCHAR(255)"/>
+<column name="title" type="VARCHAR(65536)"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-29">
+<createTable tableName="document_detail_container">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-30">
+<createTable tableName="document_detail_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="code" type="VARCHAR(255)"/>
+<column name="detail_name" type="VARCHAR(255)"/>
+<column name="text" type="VARCHAR(10485760)"/>
+<column name="document_detail_list_documen_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-31">
+<createTable tableName="document_element">
+<column name="id" type="VARCHAR(255)">
+<constraints nullable="false"/>
+</column>
+<column name="committee_report_url_xml" type="VARCHAR(255)"/>
+<column name="created_date" type="VARCHAR(255)"/>
+<column name="document_format" type="VARCHAR(255)"/>
+<column name="document_status_url_xml" type="VARCHAR(255)"/>
+<column name="document_type" type="VARCHAR(255)"/>
+<column name="document_url_html" type="VARCHAR(255)"/>
+<column name="document_url_text" type="VARCHAR(255)"/>
+<column name="hit" type="numeric"/>
+<column name="kall_id" type="VARCHAR(255)"/>
+<column name="label" type="VARCHAR(255)"/>
+<column name="made_public_date" type="VARCHAR(255)"/>
+<column name="number_value" type="numeric"/>
+<column name="org" type="VARCHAR(255)"/>
+<column name="related_id" type="VARCHAR(255)"/>
+<column name="rm" type="VARCHAR(255)"/>
+<column name="status" type="VARCHAR(255)"/>
+<column name="sub_title" type="VARCHAR(65536)"/>
+<column name="sub_type" type="VARCHAR(255)"/>
+<column name="system_date" type="VARCHAR(255)"/>
+<column name="temp_label" type="VARCHAR(255)"/>
+<column name="title" type="VARCHAR(65536)"/>
+<column name="dokument_document_container__0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-32">
+<createTable tableName="document_person_reference_co_0">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-33">
+<createTable tableName="document_person_reference_da_0">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="order_number" type="INT4"/>
+<column name="party_short_code" type="VARCHAR(255)"/>
+<column name="person_reference_id" type="VARCHAR(255)"/>
+<column name="reference_name" type="VARCHAR(255)"/>
+<column name="role_description" type="VARCHAR(255)"/>
+<column name="document_person_reference_li_1" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-34">
+<createTable tableName="document_proposal_container">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="proposal_document_proposal_c_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-35">
+<createTable tableName="document_proposal_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="chamber" type="INT4"/>
+<column name="committee" type="INT4"/>
+<column name="decision_type" type="INT4"/>
+<column name="designation" type="INT4"/>
+<column name="processed_in" type="INT4"/>
+<column name="proposal_number" type="INT4"/>
+<column name="wording" type="INT4"/>
+<column name="wording_2" type="INT4"/>
+<column name="wording_3" type="INT4"/>
+<column name="wording_4" type="INT4"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-36">
+<createTable tableName="document_reference_container">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-37">
+<createTable tableName="document_reference_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="detail" type="VARCHAR(65536)"/>
+<column name="reference_document_id" type="VARCHAR(255)"/>
+<column name="reference_type" type="VARCHAR(255)"/>
+<column name="document_reference_list_docu_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-38">
+<createTable tableName="document_status_container">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="document_category" type="VARCHAR(255)"/>
+<column name="document_proposal" type="VARCHAR(255)"/>
+<column name="document_document_status_con_0" type="VARCHAR(255)"/>
+<column name="document_activity_container__0" type="INT8"/>
+<column name="document_attachment_containe_0" type="INT8"/>
+<column name="document_detail_container_do_0" type="INT8"/>
+<column name="document_person_reference_co_1" type="INT8"/>
+<column name="document_reference_container_0" type="INT8"/>
+<column name="document_proposal_document_s_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-39">
+<createTable tableName="domain_portal">
+<column name="domain_name" type="VARCHAR(255)"/>
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-40">
+<createTable tableName="indicator_element">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="id" type="VARCHAR(255)"/>
+<column name="indicator_name" type="VARCHAR(255)"/>
+<column name="source_id" type="VARCHAR(255)"/>
+<column name="source_value" type="VARCHAR(255)"/>
+<column name="source_note" type="VARCHAR(65536)"/>
+<column name="source_organization" type="VARCHAR(65536)"/>
+<column name="topics_indicator_element_hjid" type="INT8"/>
+<column name="indicator__indicators_elemen_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-41">
+<createTable tableName="indicators_element">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="page" type="numeric"/>
+<column name="pages" type="numeric"/>
+<column name="per_page" type="numeric"/>
+<column name="total" type="numeric"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-42">
+<createTable tableName="language_content_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+<column name="from_language" type="VARCHAR(255)"/>
+<column name="language_content_type" type="VARCHAR(255)"/>
+<column name="language_value" type="VARCHAR(10485760)"/>
+<column name="model_object_id" type="INT4"/>
+<column name="model_object_version" type="INT4"/>
+<column name="ref_key" type="VARCHAR(10485760)"/>
+<column name="to_language" type="VARCHAR(255)"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-43">
+<createTable tableName="language_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="language_name" type="VARCHAR(255)"/>
+<column name="model_object_id" type="INT4"/>
+<column name="model_object_version" type="INT4"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-44">
+<createTable tableName="operational_information_cont_0">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="model_object_id" type="INT4"/>
+<column name="model_object_version" type="INT4"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-45">
+<createTable tableName="performance_indicator_content">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="model_object_id" type="INT4"/>
+<column name="model_object_version" type="INT4"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-46">
+<createTable tableName="person_assignment_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-47">
+<createTable tableName="person_assignment_element">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-48">
+<createTable tableName="person_container_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="person_person_container_data_0" type="VARCHAR(255)"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-49">
+<createTable tableName="person_container_element">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-50">
+<createTable tableName="person_data">
+<column name="id" type="VARCHAR(255)">
+<constraints nullable="false"/>
+</column>
+<column name="born_year" type="INT4"/>
+<column name="election_region" type="VARCHAR(255)"/>
+<column name="first_name" type="VARCHAR(255)"/>
+<column name="gender" type="VARCHAR(255)"/>
+<column name="hangar_guid" type="VARCHAR(255)"/>
+<column name="image_url_192" type="VARCHAR(255)"/>
+<column name="image_url_80" type="VARCHAR(255)"/>
+<column name="image_url_max" type="VARCHAR(255)"/>
+<column name="last_name" type="VARCHAR(255)"/>
+<column name="party" type="VARCHAR(255)"/>
+<column name="person_url_xml" type="VARCHAR(255)"/>
+<column name="place" type="VARCHAR(255)"/>
+<column name="status" type="VARCHAR(255)"/>
+<column name="person_assignment_data_perso_0" type="INT8"/>
+<column name="person_detail_data_person_da_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-51">
+<createTable tableName="person_detail_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-52">
+<createTable tableName="person_detail_element">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="detail_list_person_detail_el_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-53">
+<createTable tableName="person_element">
+<column name="id" type="VARCHAR(255)">
+<constraints nullable="false"/>
+</column>
+<column name="born_year" type="VARCHAR(255)"/>
+<column name="election_region" type="VARCHAR(255)"/>
+<column name="first_name" type="VARCHAR(255)"/>
+<column name="gender" type="VARCHAR(255)"/>
+<column name="hangar_guid" type="VARCHAR(255)"/>
+<column name="image_url_192" type="VARCHAR(255)"/>
+<column name="image_url_80" type="VARCHAR(255)"/>
+<column name="image_url_max" type="VARCHAR(255)"/>
+<column name="last_name" type="VARCHAR(255)"/>
+<column name="party" type="VARCHAR(255)"/>
+<column name="person_url_xml" type="VARCHAR(255)"/>
+<column name="place" type="VARCHAR(255)"/>
+<column name="status" type="VARCHAR(255)"/>
+<column name="person_assignment_element_pe_0" type="INT8"/>
+<column name="person_detail_element_person_0" type="INT8"/>
+<column name="person_person_container_elem_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-54">
+<createTable tableName="portal">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="description" type="VARCHAR(255)"/>
+<column name="google_map_api_key" type="VARCHAR(255)"/>
+<column name="model_object_id" type="INT4"/>
+<column name="model_object_version" type="INT4"/>
+<column name="portal_name" type="VARCHAR(255)"/>
+<column name="portal_type" type="VARCHAR(255)"/>
+<column name="portals_agency_hjid" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-55">
+<createTable tableName="quality_assurance_content">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="model_object_id" type="INT4"/>
+<column name="model_object_version" type="INT4"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-56">
+<createTable tableName="sweden_county_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="code" type="numeric"/>
+<column name="county_name" type="VARCHAR(255)"/>
+<column name="county_regions_sweden_county_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-57">
+<createTable tableName="sweden_county_data_container">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-58">
+<createTable tableName="sweden_county_electoral_area">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="code" type="numeric"/>
+<column name="electoral_area_name" type="VARCHAR(255)"/>
+<column name="first_round" type="numeric"/>
+<column name="number_of_seats" type="numeric"/>
+<column name="number_of_voters" type="numeric"/>
+<column name="rest" type="VARCHAR(255)"/>
+<column name="second_round" type="numeric"/>
+<column name="landstingsvalkrets_sweden_co_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-59">
+<createTable tableName="sweden_county_electoral_regi_0">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-60">
+<createTable tableName="sweden_county_electoral_regi_1">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="code" type="numeric"/>
+<column name="county_name" type="VARCHAR(255)"/>
+<column name="seats" type="numeric"/>
+<column name="county_electoral_regions_swe_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-61">
+<createTable tableName="sweden_election_region">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="county_id" type="VARCHAR(255)"/>
+<column name="municipal_id" type="VARCHAR(255)"/>
+<column name="region_name" type="VARCHAR(255)"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-62">
+<createTable tableName="sweden_election_type">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="election_code" type="VARCHAR(255)"/>
+<column name="election_type" type="VARCHAR(255)"/>
+<column name="region_sweden_election_type__0" type="INT8"/>
+<column name="election_types_sweden_electi_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-63">
+<createTable tableName="sweden_election_type_contain_0">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-64">
+<createTable tableName="sweden_municipality_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="code" type="numeric"/>
+<column name="municipal_name" type="VARCHAR(255)"/>
+<column name="kommun_sweden_county_data_hj_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-65">
+<createTable tableName="sweden_municipality_election_0">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="code" type="numeric"/>
+<column name="election_region_name" type="VARCHAR(255)"/>
+<column name="first_round" type="numeric"/>
+<column name="number_of_seats" type="numeric"/>
+<column name="number_of_voters" type="numeric"/>
+<column name="rest" type="VARCHAR(255)"/>
+<column name="second_round" type="numeric"/>
+<column name="kommunvalkrets_sweden_munici_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-66">
+<createTable tableName="sweden_parliament_electoral__0">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-67">
+<createTable tableName="sweden_parliament_electoral__1">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="election_region_name" type="VARCHAR(255)"/>
+<column name="first_round" type="numeric"/>
+<column name="number_of_seats" type="numeric"/>
+<column name="number_of_voters" type="numeric"/>
+<column name="rest" type="VARCHAR(255)"/>
+<column name="second_round" type="numeric"/>
+<column name="parliament_electoral_regions_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-68">
+<createTable tableName="sweden_political_party">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="address" type="VARCHAR(255)"/>
+<column name="city" type="VARCHAR(255)"/>
+<column name="co_address" type="VARCHAR(255)"/>
+<column name="email" type="VARCHAR(255)"/>
+<column name="fax_number" type="VARCHAR(255)"/>
+<column name="party_id" type="VARCHAR(255)"/>
+<column name="party_name" type="VARCHAR(255)"/>
+<column name="phone_number" type="VARCHAR(255)"/>
+<column name="post_code" type="VARCHAR(255)"/>
+<column name="registered_date" type="date"/>
+<column name="short_code" type="VARCHAR(255)"/>
+<column name="website" type="VARCHAR(255)"/>
+<column name="parties_sweden_election_regi_0" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-69">
+<createTable tableName="target_profile_content">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="model_object_id" type="INT4"/>
+<column name="model_object_version" type="INT4"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-70">
+<createTable tableName="topic">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="id" type="VARCHAR(255)"/>
+<column name="value_" type="VARCHAR(255)"/>
+<column name="topic_topics_hjid" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-71">
+<createTable tableName="topics">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-72">
+<createTable tableName="user_account">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="email" type="VARCHAR(255)"/>
+<column name="model_object_id" type="INT4"/>
+<column name="model_object_version" type="INT4"/>
+<column name="number_of_visits" type="INT4"/>
+<column name="user_id" type="VARCHAR(255)"/>
+<column name="user_role" type="VARCHAR(255)"/>
+<column name="user_type" type="VARCHAR(255)"/>
+<column name="username" type="VARCHAR(255)"/>
+<column name="userpassword" type="VARCHAR(255)"/>
+<column name="country_user_account_hjid" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-73">
+<createTable tableName="user_account_address">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="hjvalue" type="VARCHAR(255)"/>
+<column name="hjindex" type="INT4">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-74">
+<createTable tableName="vote_data">
+<column name="embedded_id_ballot_id" type="VARCHAR(255)">
+<constraints nullable="false"/>
+</column>
+<column name="embedded_id_concern" type="VARCHAR(255)">
+<constraints nullable="false"/>
+</column>
+<column name="embedded_id_intressent_id" type="VARCHAR(255)">
+<constraints nullable="false"/>
+</column>
+<column name="embedded_id_issue" type="VARCHAR(255)">
+<constraints nullable="false"/>
+</column>
+<column name="ballot_type" type="VARCHAR(255)"/>
+<column name="bank_number" type="VARCHAR(255)"/>
+<column name="born_year" type="INT4"/>
+<column name="electoral_region" type="VARCHAR(255)"/>
+<column name="electoral_region_number" type="numeric"/>
+<column name="first_name" type="VARCHAR(255)"/>
+<column name="full_name" type="VARCHAR(255)"/>
+<column name="gender" type="VARCHAR(255)"/>
+<column name="label" type="VARCHAR(255)"/>
+<column name="last_name" type="VARCHAR(255)"/>
+<column name="party" type="VARCHAR(255)"/>
+<column name="place" type="VARCHAR(255)"/>
+<column name="rm" type="VARCHAR(255)"/>
+<column name="vote" type="VARCHAR(255)"/>
+<column name="vote_date" type="date"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-75">
+<createTable tableName="vote_meta_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="ballot_type" type="VARCHAR(255)"/>
+<column name="group_behavior" type="VARCHAR(255)"/>
+<column name="outcome" type="VARCHAR(255)"/>
+<column name="proffessional_behavior" type="VARCHAR(255)"/>
+<column name="target" type="VARCHAR(255)"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-76">
+<createTable tableName="world_bank_data">
+<column name="hjid" type="INT8">
+<constraints nullable="false"/>
+</column>
+<column name="country_id" type="VARCHAR(255)"/>
+<column name="country_value" type="VARCHAR(255)"/>
+<column name="data_value" type="VARCHAR(255)"/>
+<column name="indicator_id" type="VARCHAR(255)"/>
+<column name="indicator_value" type="VARCHAR(255)"/>
+<column name="year_date" type="INT4"/>
+<column name="data__data_element_hjid" type="INT8"/>
+</createTable>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-77">
+<addPrimaryKey columnNames="hjid" constraintName="against_proposal_container_pkey" tableName="against_proposal_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-78">
+<addPrimaryKey columnNames="hjid" constraintName="against_proposal_data_pkey" tableName="against_proposal_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-79">
+<addPrimaryKey columnNames="hjid" constraintName="agency_pkey" tableName="agency"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-80">
+<addPrimaryKey columnNames="hjid" constraintName="aggregated_bug_data_pkey" tableName="aggregated_bug_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-81">
+<addPrimaryKey columnNames="hjid" constraintName="aggregated_country_data_pkey" tableName="aggregated_country_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-82">
+<addPrimaryKey columnNames="hjid" constraintName="application_action_event_pkey" tableName="application_action_event"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-83">
+<addPrimaryKey columnNames="hjid" constraintName="application_session_pkey" tableName="application_session"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-84">
+<addPrimaryKey columnNames="hjid" constraintName="application_view_pkey" tableName="application_view"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-85">
+<addPrimaryKey columnNames="hjid" constraintName="assignment_data_pkey" tableName="assignment_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-86">
+<addPrimaryKey columnNames="hjid" constraintName="assignment_element_pkey" tableName="assignment_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-87">
+<addPrimaryKey columnNames="id" constraintName="committee_document_data_pkey" tableName="committee_document_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-88">
+<addPrimaryKey columnNames="hjid" constraintName="committee_proposal_component_0_pkey" tableName="committee_proposal_component_0"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-89">
+<addPrimaryKey columnNames="hjid" constraintName="committee_proposal_container_pkey" tableName="committee_proposal_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-90">
+<addPrimaryKey columnNames="hjid" constraintName="committee_proposal_data_pkey" tableName="committee_proposal_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-91">
+<addPrimaryKey columnNames="hjid" constraintName="countries_element_pkey" tableName="countries_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-92">
+<addPrimaryKey columnNames="hjid" constraintName="country_element_pkey" tableName="country_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-93">
+<addPrimaryKey columnNames="hjid" constraintName="data_element_pkey" tableName="data_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-94">
+<addPrimaryKey columnNames="hjid" constraintName="data_source_content_pkey" tableName="data_source_content"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-95">
+<addPrimaryKey columnNames="hjid" constraintName="detail_data_pkey" tableName="detail_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-96">
+<addPrimaryKey columnNames="hjid" constraintName="detail_element_pkey" tableName="detail_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-97">
+<addPrimaryKey columnNames="hjid" constraintName="document_activity_container_pkey" tableName="document_activity_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-98">
+<addPrimaryKey columnNames="hjid" constraintName="document_activity_data_pkey" tableName="document_activity_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-99">
+<addPrimaryKey columnNames="hjid" constraintName="document_attachment_container_pkey" tableName="document_attachment_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-100">
+<addPrimaryKey columnNames="hjid" constraintName="document_attachment_pkey" tableName="document_attachment"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-101">
+<addPrimaryKey columnNames="hjid" constraintName="document_container_element_pkey" tableName="document_container_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-102">
+<addPrimaryKey columnNames="hjid" constraintName="document_content_data_pkey" tableName="document_content_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-103">
+<addPrimaryKey columnNames="id" constraintName="document_data_pkey" tableName="document_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-104">
+<addPrimaryKey columnNames="hjid" constraintName="document_detail_container_pkey" tableName="document_detail_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-105">
+<addPrimaryKey columnNames="hjid" constraintName="document_detail_data_pkey" tableName="document_detail_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-106">
+<addPrimaryKey columnNames="id" constraintName="document_element_pkey" tableName="document_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-107">
+<addPrimaryKey columnNames="hjid" constraintName="document_person_reference_co_0_pkey" tableName="document_person_reference_co_0"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-108">
+<addPrimaryKey columnNames="hjid" constraintName="document_person_reference_da_0_pkey" tableName="document_person_reference_da_0"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-109">
+<addPrimaryKey columnNames="hjid" constraintName="document_proposal_container_pkey" tableName="document_proposal_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-110">
+<addPrimaryKey columnNames="hjid" constraintName="document_proposal_data_pkey" tableName="document_proposal_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-111">
+<addPrimaryKey columnNames="hjid" constraintName="document_reference_container_pkey" tableName="document_reference_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-112">
+<addPrimaryKey columnNames="hjid" constraintName="document_reference_data_pkey" tableName="document_reference_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-113">
+<addPrimaryKey columnNames="hjid" constraintName="document_status_container_pkey" tableName="document_status_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-114">
+<addPrimaryKey columnNames="hjid" constraintName="domain_portal_pkey" tableName="domain_portal"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-115">
+<addPrimaryKey columnNames="hjid" constraintName="indicator_element_pkey" tableName="indicator_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-116">
+<addPrimaryKey columnNames="hjid" constraintName="indicators_element_pkey" tableName="indicators_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-117">
+<addPrimaryKey columnNames="hjid" constraintName="language_content_data_pkey" tableName="language_content_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-118">
+<addPrimaryKey columnNames="hjid" constraintName="language_data_pkey" tableName="language_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-119">
+<addPrimaryKey columnNames="hjid" constraintName="operational_information_cont_0_pkey" tableName="operational_information_cont_0"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-120">
+<addPrimaryKey columnNames="hjid" constraintName="performance_indicator_content_pkey" tableName="performance_indicator_content"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-121">
+<addPrimaryKey columnNames="hjid" constraintName="person_assignment_data_pkey" tableName="person_assignment_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-122">
+<addPrimaryKey columnNames="hjid" constraintName="person_assignment_element_pkey" tableName="person_assignment_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-123">
+<addPrimaryKey columnNames="hjid" constraintName="person_container_data_pkey" tableName="person_container_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-124">
+<addPrimaryKey columnNames="hjid" constraintName="person_container_element_pkey" tableName="person_container_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-125">
+<addPrimaryKey columnNames="id" constraintName="person_data_pkey" tableName="person_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-126">
+<addPrimaryKey columnNames="hjid" constraintName="person_detail_data_pkey" tableName="person_detail_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-127">
+<addPrimaryKey columnNames="hjid" constraintName="person_detail_element_pkey" tableName="person_detail_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-128">
+<addPrimaryKey columnNames="id" constraintName="person_element_pkey" tableName="person_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-129">
+<addPrimaryKey columnNames="hjid" constraintName="portal_pkey" tableName="portal"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-130">
+<addPrimaryKey columnNames="hjid" constraintName="quality_assurance_content_pkey" tableName="quality_assurance_content"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-131">
+<addPrimaryKey columnNames="hjid" constraintName="sweden_county_data_container_pkey" tableName="sweden_county_data_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-132">
+<addPrimaryKey columnNames="hjid" constraintName="sweden_county_data_pkey" tableName="sweden_county_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-133">
+<addPrimaryKey columnNames="hjid" constraintName="sweden_county_electoral_area_pkey" tableName="sweden_county_electoral_area"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-134">
+<addPrimaryKey columnNames="hjid" constraintName="sweden_county_electoral_regi_0_pkey" tableName="sweden_county_electoral_regi_0"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-135">
+<addPrimaryKey columnNames="hjid" constraintName="sweden_county_electoral_regi_1_pkey" tableName="sweden_county_electoral_regi_1"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-136">
+<addPrimaryKey columnNames="hjid" constraintName="sweden_election_region_pkey" tableName="sweden_election_region"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-137">
+<addPrimaryKey columnNames="hjid" constraintName="sweden_election_type_contain_0_pkey" tableName="sweden_election_type_contain_0"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-138">
+<addPrimaryKey columnNames="hjid" constraintName="sweden_election_type_pkey" tableName="sweden_election_type"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-139">
+<addPrimaryKey columnNames="hjid" constraintName="sweden_municipality_data_pkey" tableName="sweden_municipality_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-140">
+<addPrimaryKey columnNames="hjid" constraintName="sweden_municipality_election_0_pkey" tableName="sweden_municipality_election_0"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-141">
+<addPrimaryKey columnNames="hjid" constraintName="sweden_parliament_electoral__0_pkey" tableName="sweden_parliament_electoral__0"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-142">
+<addPrimaryKey columnNames="hjid" constraintName="sweden_parliament_electoral__1_pkey" tableName="sweden_parliament_electoral__1"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-143">
+<addPrimaryKey columnNames="hjid" constraintName="sweden_political_party_pkey" tableName="sweden_political_party"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-144">
+<addPrimaryKey columnNames="hjid" constraintName="target_profile_content_pkey" tableName="target_profile_content"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-145">
+<addPrimaryKey columnNames="hjid" constraintName="topic_pkey" tableName="topic"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-146">
+<addPrimaryKey columnNames="hjid" constraintName="topics_pkey" tableName="topics"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-147">
+<addPrimaryKey columnNames="hjid, hjindex" constraintName="user_account_address_pkey" tableName="user_account_address"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-148">
+<addPrimaryKey columnNames="hjid" constraintName="user_account_pkey" tableName="user_account"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-149">
+<addPrimaryKey columnNames="embedded_id_ballot_id, embedded_id_concern, embedded_id_intressent_id, embedded_id_issue" constraintName="vote_data_pkey" tableName="vote_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-150">
+<addPrimaryKey columnNames="hjid" constraintName="vote_meta_data_pkey" tableName="vote_meta_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-151">
+<addPrimaryKey columnNames="hjid" constraintName="world_bank_data_pkey" tableName="world_bank_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-152">
+<addForeignKeyConstraint baseColumnNames="person_detail_element_person_0" baseTableName="person_element" constraintName="fk_13jay3yk8opnt33758httu9kb" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="person_detail_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-153">
+<addForeignKeyConstraint baseColumnNames="target_profile_application_v_0" baseTableName="application_view" constraintName="fk_2ivjcdwosa63ant7jc5c6cojj" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="target_profile_content"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-154">
+<addForeignKeyConstraint baseColumnNames="country_countries_element_hj_0" baseTableName="country_element" constraintName="fk_3k0s1gih1msbej3bp2iotg52y" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="countries_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-155">
+<addForeignKeyConstraint baseColumnNames="person_person_container_elem_0" baseTableName="person_element" constraintName="fk_3o85sqp9yss0nler1yl1umfl1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="person_container_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-156">
+<addForeignKeyConstraint baseColumnNames="county_electoral_regions_swe_0" baseTableName="sweden_county_electoral_regi_1" constraintName="fk_4y4vi3cafmbdhvckntfn7qdps" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="sweden_county_electoral_regi_0"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-157">
+<addForeignKeyConstraint baseColumnNames="against_proposal_list_agains_0" baseTableName="against_proposal_data" constraintName="fk_5u5u77qsrpa2qy6umqrph4tyf" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="against_proposal_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-158">
+<addForeignKeyConstraint baseColumnNames="person_person_container_data_0" baseTableName="person_container_data" constraintName="fk_5w4uvrhl3l7c441b7ra7p8txr" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="person_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-159">
+<addForeignKeyConstraint baseColumnNames="document_reference_container_0" baseTableName="document_status_container" constraintName="fk_6crp887w8xy3e4i143yyydjqv" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="document_reference_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-160">
+<addForeignKeyConstraint baseColumnNames="portals_agency_hjid" baseTableName="portal" constraintName="fk_7c8jfw8bnxrm2aj26w9qlx340" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="agency"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-161">
+<addForeignKeyConstraint baseColumnNames="landstingsvalkrets_sweden_co_0" baseTableName="sweden_county_electoral_area" constraintName="fk_7h4feuc5bwu12tyaka1nx1ln" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="sweden_county_electoral_regi_1"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-162">
+<addForeignKeyConstraint baseColumnNames="assignment_list_person_assig_0" baseTableName="assignment_data" constraintName="fk_84o1dcsfeyp1o25nfdpppa7oe" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="person_assignment_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-163">
+<addForeignKeyConstraint baseColumnNames="document_attachment_containe_0" baseTableName="document_status_container" constraintName="fk_86c52yf22uk0bpcs1qoc3aeyv" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="document_attachment_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-164">
+<addForeignKeyConstraint baseColumnNames="hjid" baseTableName="user_account_address" constraintName="fk_8931ymg13vy6vfkrichtst7bj" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="user_account"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-165">
+<addForeignKeyConstraint baseColumnNames="indicator__indicators_elemen_0" baseTableName="indicator_element" constraintName="fk_8l1m1pum4e3catw4443rup4q5" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="indicators_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-166">
+<addForeignKeyConstraint baseColumnNames="country_user_account_hjid" baseTableName="user_account" constraintName="fk_8mmnmcgjut9nc7dfhrgxi598f" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="aggregated_country_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-167">
+<addForeignKeyConstraint baseColumnNames="committee_proposal_container_0" baseTableName="committee_proposal_component_0" constraintName="fk_90arga58ce9bnjkc6lws04uhw" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="committee_proposal_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-168">
+<addForeignKeyConstraint baseColumnNames="topics_indicator_element_hjid" baseTableName="indicator_element" constraintName="fk_92h99v4i1pmr69x0y43pocv2a" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="topics"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-169">
+<addForeignKeyConstraint baseColumnNames="hjid" baseTableName="domain_portal" constraintName="fk_9ln0n5axxjuxtbpepyad69rel" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="portal"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-170">
+<addForeignKeyConstraint baseColumnNames="document_detail_container_do_0" baseTableName="document_status_container" constraintName="fk_9q1ktfb77gieq0xugoqe2fidd" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="document_detail_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-171">
+<addForeignKeyConstraint baseColumnNames="quality_assurance_applicatio_0" baseTableName="application_view" constraintName="fk_9x5havflf3rdfkaw1hangbemd" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="quality_assurance_content"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-172">
+<addForeignKeyConstraint baseColumnNames="detail_list_person_detail_el_0" baseTableName="person_detail_element" constraintName="fk_a6syxeadcisfnnfjqemog93qd" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="detail_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-173">
+<addForeignKeyConstraint baseColumnNames="parties_sweden_election_regi_0" baseTableName="sweden_political_party" constraintName="fk_c2f4dhdce9p61sg50rnww73c1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="sweden_election_region"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-174">
+<addForeignKeyConstraint baseColumnNames="document_reference_list_docu_0" baseTableName="document_reference_data" constraintName="fk_c4uqb4d6xqa5d7afwen8sny67" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="document_reference_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-175">
+<addForeignKeyConstraint baseColumnNames="detail_list_person_detail_da_0" baseTableName="detail_data" constraintName="fk_diexjlb9hdrfv7g5y06cj6nu5" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="person_detail_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-176">
+<addForeignKeyConstraint baseColumnNames="data__data_element_hjid" baseTableName="world_bank_data" constraintName="fk_e0yghurnnhmkahpt7ydf008fo" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="data_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-177">
+<addForeignKeyConstraint baseColumnNames="against_proposal_container_c_0" baseTableName="committee_proposal_component_0" constraintName="fk_eofapva6jn5k3h5gnj4whyilb" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="against_proposal_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-178">
+<addForeignKeyConstraint baseColumnNames="performance_indicators_appli_0" baseTableName="application_view" constraintName="fk_f4bptktby95bygv359chn7lbn" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="performance_indicator_content"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-179">
+<addForeignKeyConstraint baseColumnNames="document_activities_document_0" baseTableName="document_activity_data" constraintName="fk_gruc53dqu0smf6s1a0gkelvdm" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="document_activity_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-180">
+<addForeignKeyConstraint baseColumnNames="kommun_sweden_county_data_hj_0" baseTableName="sweden_municipality_data" constraintName="fk_gykahsnks6y9v8y5novlxagnf" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="sweden_county_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-181">
+<addForeignKeyConstraint baseColumnNames="committee_proposal_list_comm_0" baseTableName="committee_proposal_data" constraintName="fk_hs04ji7kqvwd7313ryp20vo0x" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="committee_proposal_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-182">
+<addForeignKeyConstraint baseColumnNames="document_proposal_document_s_0" baseTableName="document_status_container" constraintName="fk_iirofquegnrpnuonvnydf6wfb" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="document_proposal_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-183">
+<addForeignKeyConstraint baseColumnNames="country_aggregated_country_d_0" baseTableName="aggregated_country_data" constraintName="fk_j7l4eldeihr8g7ax7rv2irgk1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="country_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-184">
+<addForeignKeyConstraint baseColumnNames="document_document_status_con_0" baseTableName="document_status_container" constraintName="fk_jjcxsqmdnjw0nbwducjyecdg4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="document_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-185">
+<addForeignKeyConstraint baseColumnNames="person_detail_data_person_da_0" baseTableName="person_data" constraintName="fk_jrgy7nw6n071uok8p1hkp03rh" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="person_detail_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-186">
+<addForeignKeyConstraint baseColumnNames="document_committee_proposal__0" baseTableName="committee_proposal_component_0" constraintName="fk_k78eqmx2m3ja0267xhthfeio4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="committee_document_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-187">
+<addForeignKeyConstraint baseColumnNames="uppdrag_person_assignment_el_0" baseTableName="assignment_element" constraintName="fk_ks1811fwuno6vqof0lskerpib" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="person_assignment_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-188">
+<addForeignKeyConstraint baseColumnNames="document_attachment_list_doc_0" baseTableName="document_attachment" constraintName="fk_lean1i0p0e5rv28my9297lq22" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="document_attachment_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-189">
+<addForeignKeyConstraint baseColumnNames="document_person_reference_li_1" baseTableName="document_person_reference_da_0" constraintName="fk_lsfup3rosph7239t1idorm1cd" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="document_person_reference_co_0"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-190">
+<addForeignKeyConstraint baseColumnNames="proposal_document_proposal_c_0" baseTableName="document_proposal_container" constraintName="fk_m55tt4vaimgb5qk7xj9mgxmry" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="document_proposal_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-191">
+<addForeignKeyConstraint baseColumnNames="person_assignment_element_pe_0" baseTableName="person_element" constraintName="fk_m6dcdojsb6iv9lrego5kurr7p" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="person_assignment_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-192">
+<addForeignKeyConstraint baseColumnNames="document_person_reference_co_1" baseTableName="document_status_container" constraintName="fk_ng4kjnv3cm4e6ud3fikwi6p7i" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="document_person_reference_co_0"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-193">
+<addForeignKeyConstraint baseColumnNames="events_application_session_h_0" baseTableName="application_action_event" constraintName="fk_nlqlshlogsx2g8u5d3y28my28" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="application_session"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-194">
+<addForeignKeyConstraint baseColumnNames="dokument_document_container__0" baseTableName="document_element" constraintName="fk_o24n54auwa2xyflis6nkrajpd" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="document_container_element"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-195">
+<addForeignKeyConstraint baseColumnNames="topic_topics_hjid" baseTableName="topic" constraintName="fk_o7ol28sotu1r12n8txv2gigok" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="topics"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-196">
+<addForeignKeyConstraint baseColumnNames="region_sweden_election_type__0" baseTableName="sweden_election_type" constraintName="fk_ob50ibby6jamvitbxknoucifg" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="sweden_election_region"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-197">
+<addForeignKeyConstraint baseColumnNames="sweden_aggregated_bug_data_id" baseTableName="aggregated_bug_data" constraintName="fk_osdlir1nv0m8ckb1pbipgswj" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="person_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-198">
+<addForeignKeyConstraint baseColumnNames="data_source_information_appl_0" baseTableName="application_view" constraintName="fk_p8b7gnxeglk71etbbql3j184s" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="data_source_content"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-199">
+<addForeignKeyConstraint baseColumnNames="county_regions_sweden_county_0" baseTableName="sweden_county_data" constraintName="fk_pndlg3q6ly10qbs8e3s9wikyu" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="sweden_county_data_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-200">
+<addForeignKeyConstraint baseColumnNames="document_detail_list_documen_0" baseTableName="document_detail_data" constraintName="fk_quor6wesrmk9ierjyr7ni8wch" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="document_detail_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-201">
+<addForeignKeyConstraint baseColumnNames="parliament_electoral_regions_0" baseTableName="sweden_parliament_electoral__1" constraintName="fk_qvgtilwwyipbrv6b2cv6fcp27" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="sweden_parliament_electoral__0"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-202">
+<addForeignKeyConstraint baseColumnNames="document_activity_container__0" baseTableName="document_status_container" constraintName="fk_r2dkprhp4xfhrcck9sf31b9xl" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="document_activity_container"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-203">
+<addForeignKeyConstraint baseColumnNames="kommunvalkrets_sweden_munici_0" baseTableName="sweden_municipality_election_0" constraintName="fk_r3jht5oci01uxhwaa39uxsg2t" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="sweden_municipality_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-204">
+<addForeignKeyConstraint baseColumnNames="person_assignment_data_perso_0" baseTableName="person_data" constraintName="fk_rd2pmyb4gmu2vbxklh6er8ayc" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="person_assignment_data"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-205">
+<addForeignKeyConstraint baseColumnNames="election_types_sweden_electi_0" baseTableName="sweden_election_type" constraintName="fk_rp3tjh4jmpmoxh05oo9fq9qh6" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="sweden_election_type_contain_0"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-206">
+<addForeignKeyConstraint baseColumnNames="operational_information_appl_0" baseTableName="application_view" constraintName="fk_x8sbg6y7h0vavmun6i7h8oae" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="hjid" referencedTableName="operational_information_cont_0"/>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-207">
+<createView viewName="view_document_data_committee_report_url"> SELECT document_data.id,
+    document_data.committee_report_url_xml
+   FROM document_data
+  WHERE (document_data.committee_report_url_xml IS NOT NULL);</createView>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-208">
+<createView viewName="view_riksdagen_committee"> SELECT DISTINCT assignment_data.detail AS embedded_id_detail,
+    assignment_data.org_code AS embedded_id_org_code,
+    count(assignment_data.org_code) AS total_assignments
+   FROM assignment_data
+  WHERE ((assignment_data.org_code IS NOT NULL) AND ((assignment_data.assignment_type)::text = 'uppdrag'::text))
+  GROUP BY assignment_data.detail, assignment_data.org_code;</createView>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-209">
+<createView viewName="view_riksdagen_committee_decisions"> SELECT committee_document_data.id,
+    committee_document_data.title,
+    committee_proposal_data.header,
+    committee_document_data.hangar_id,
+    committee_document_data.label AS committee_report,
+    committee_document_data.rm,
+    committee_document_data.end_number,
+    committee_proposal_data.issue_number,
+    committee_document_data.org,
+    committee_document_data.created_date,
+    committee_document_data.public_date,
+    committee_document_data.committee_proposal_url_xml,
+    committee_proposal_data.decision_type,
+    committee_proposal_data.ballot_id,
+    committee_proposal_data.against_proposal_parties,
+    committee_proposal_data.against_proposal_number,
+    committee_proposal_data.winner
+   FROM (committee_proposal_data
+     LEFT JOIN committee_document_data ON ((((committee_document_data.label)::text = (committee_proposal_data.committee_report)::text) AND ((committee_proposal_data.rm)::text = (committee_document_data.rm)::text))));</createView>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-210">
+<createView viewName="view_riksdagen_goverment"> SELECT DISTINCT assignment_data.detail AS embedded_id_detail
+   FROM assignment_data
+  WHERE ((((assignment_data.role_code)::text ~~ '%MINISTER'::text) OR ((assignment_data.detail)::text ~~ '%departementet'::text)) OR ((assignment_data.detail)::text = 'Statsrådsberedningen'::text));</createView>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-211">
+<createView viewName="view_riksdagen_goverment_proposals"> SELECT document_data.id,
+    document_data.title,
+    document_data.sub_title,
+    document_data.status,
+    document_data.org,
+    document_data.hangar_id,
+    document_data.label,
+    document_data.made_public_date,
+    document_data.number_value,
+    document_data.document_status_url_xml
+   FROM document_data
+  WHERE ((document_data.document_type)::text = 'PROP'::text);</createView>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-212">
+<createView viewName="view_riksdagen_goverment_roles"> SELECT DISTINCT assignment_data.detail AS embedded_id_detail,
+    assignment_data.role_code,
+    count(assignment_data.detail) AS total_assignments
+   FROM assignment_data
+  WHERE ((((assignment_data.role_code)::text ~~ '%MINISTER'::text) OR ((assignment_data.detail)::text ~~ '%departementet'::text)) OR ((assignment_data.detail)::text = 'Statsrådsberedningen'::text))
+  GROUP BY assignment_data.detail, assignment_data.role_code;</createView>
+</changeSet>
+<changeSet author="pether (generated)" id="1416258476613-213">
+<createView viewName="view_riksdagen_member_proposals"> SELECT document_element.id,
+    document_element.committee_report_url_xml,
+    document_element.created_date,
+    document_element.document_format,
+    document_element.document_status_url_xml,
+    document_element.document_type,
+    document_element.document_url_html,
+    document_element.document_url_text,
+    document_element.hit,
+    document_element.kall_id,
+    document_element.label,
+    document_element.made_public_date,
+    document_element.number_value,
+    document_element.org,
+    document_element.related_id,
+    document_element.rm,
+    document_element.status,
+    document_element.sub_title,
+    document_element.sub_type,
+    document_element.system_date,
+    document_element.temp_label,
+    document_element.title,
+    document_element.dokument_document_container__0
+   FROM document_element
+  WHERE ((document_element.document_type)::text = 'MOT'::text);</createView>
+</changeSet>
+</databaseChangeLog>
+[INFO] Output written to Change Log file, null
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 4.278 s
+[INFO] Finished at: 2014-11-17T22:07:57+01:00
+[INFO] Final Memory: 22M/403M
+[INFO] ------------------------------------------------------------------------

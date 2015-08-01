@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="model.internal.application.user.impl">
+        <wb-resource deploy-path="/" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/" source-path="/target/generated-sources/hyperjaxb3"/>
+        <wb-resource deploy-path="/" source-path="/target/metamodel"/>
+        <wb-resource deploy-path="/" source-path="/src/main/xsd"/>
+        <wb-resource deploy-path="/" source-path="/src/main/xjb"/>
+    </wb-module>
+</project-modules>

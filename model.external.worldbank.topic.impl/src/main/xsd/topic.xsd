@@ -1,0 +1,56 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	jaxb:extensionBindingPrefixes="xjc hj orm" jaxb:version="2.0"
+	targetNamespace="http://topic.worldbank.external.model.cia.hack23.com/impl"
+	xmlns:wb="http://topic.worldbank.external.model.cia.hack23.com/impl">
+
+	<xsd:element name="topics">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="unbounded" ref="wb:topic" />
+			</xsd:sequence>
+			<xsd:attribute name="page" use="optional" type="xsd:integer" />
+			<xsd:attribute name="pages" use="optional" type="xsd:integer" />
+			<xsd:attribute name="per_page" use="optional" type="xsd:integer" />
+			<xsd:attribute name="total" use="optional" type="xsd:integer" />
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="topic" type="wb:TopicElement">
+	</xsd:element>
+
+	<xsd:complexType name="TopicElement">
+		<xsd:sequence>
+			<xsd:element form="qualified" name="sourceNote" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<hj:basic>
+							<orm:column length="65536" />
+						</hj:basic>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element form="qualified" name="value" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<hj:basic>
+							<orm:column length="65536" />
+						</hj:basic>
+						<jaxb:property name="topicValue" />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" use="required" type="xsd:string" />
+	</xsd:complexType>
+
+
+</xsd:schema>

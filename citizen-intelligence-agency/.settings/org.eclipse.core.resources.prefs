@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/main/resources=UTF-8
+encoding//src/main/resources/IAResources.properties=UTF-8
+encoding//src/main/resources/IAResources_en.properties=UTF-8
+encoding//src/main/resources/IAResources_sv.properties=UTF-8
+encoding//src/test/java=UTF-8
+encoding//src/test/resources=UTF-8
+encoding/<project>=UTF-8
+instance/org.eclipse.core.net/org.eclipse.core.net.hasMigrated=true

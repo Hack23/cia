@@ -1,0 +1,115 @@
+/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id: DataAgentApiImpl.java 6048 2015-05-07 21:22:44Z pether $
+ *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/service.component.agent.impl/src/main/java/com/hack23/cia/service/component/agent/impl/command/DataAgentApiImpl.java $
+ */
+package com.hack23.cia.service.component.agent.impl.command;
+
+import javax.jms.Destination;
+import javax.jms.JMSException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder;
+import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
+import com.hack23.cia.model.internal.application.data.impl.ValDataSources;
+import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
+import com.hack23.cia.service.component.agent.api.DataAgentApi;
+import com.hack23.cia.service.component.agent.impl.common.ProducerMessageFactory;
+
+/**
+ * The Class DataAgentApiImpl.
+ */
+@Service
+@Transactional(propagation=Propagation.REQUIRED)
+public final class DataAgentApiImpl implements DataAgentApi {
+
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(DataAgentApiImpl.class);
+
+	/** The jms template. */
+	@Autowired
+	private JmsTemplate jmsTemplate;
+
+	/** The riksdagen api destination. */
+	@Autowired
+	@Qualifier("riksdagenApiAgentWorkQueue")
+	private Destination riksdagenApiDestination;
+
+	/** The world bank api destination. */
+	@Autowired
+	@Qualifier("worldbankApiAgentWorkQueue")
+	private Destination worldBankApiDestination;
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see
+	 * com.hack23.cia.service.component.agent.api.DataAgentApi#executeImportData
+	 * (com.hack23.cia.service.component.agent.api.DataAgentApi.ImportControl)
+	 */
+	@Override
+	public void execute(final DataAgentWorkOrder workOrder) {
+		try {
+			sendMessage(workOrder);
+		} catch (final JMSException e) {
+			LOGGER.error("Jms exception:", e);
+		}
+	}
+
+	/**
+	 * Send message.
+	 *
+	 * @param workOrder
+	 *            the work order
+	 * @throws JMSException
+	 *             the jMS exception
+	 */
+	public void sendMessage(final DataAgentWorkOrder workOrder)
+			throws JMSException {
+
+		switch (workOrder.getTarget()) {
+		case MODEL_EXTERNAL_RIKSDAGEN:
+			for (final RiksdagenDataSources datasource :RiksdagenDataSources.values()) {
+				jmsTemplate.send(riksdagenApiDestination,
+						new ProducerMessageFactory(datasource));
+			}
+			break;
+		case MODEL_EXTERNAL_WORLDBANK:
+			for (final WorldBankDataSources datasource :WorldBankDataSources.values()) {
+				jmsTemplate.send(worldBankApiDestination,
+						new ProducerMessageFactory(datasource));
+			}
+			break;
+		case MODEL_EXTERNAL_VAL:
+			for (final ValDataSources datasource :ValDataSources.values()) {
+				jmsTemplate.send(new ProducerMessageFactory(datasource));
+			}
+			break;
+		default:
+			break;
+		}
+	}
+
+}

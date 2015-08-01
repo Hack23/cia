@@ -1,0 +1,168 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:system="http://system.application.internal.model.cia.hack23.com/impl"
+	jaxb:extensionBindingPrefixes="xjc hj orm" jaxb:version="2.0"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified"
+	targetNamespace="http://system.application.internal.model.cia.hack23.com/impl">
+
+	<xsd:complexType name="Agency">
+		<xsd:sequence>
+			<xsd:element name="modelObjectId" type="xsd:int"
+				minOccurs="0" />
+			<xsd:element name="modelObjectVersion" type="xsd:int"
+				minOccurs="0" />
+			<xsd:element minOccurs="0" name="agencyName" type="xsd:string" />
+			<xsd:element minOccurs="0" name="description" type="xsd:string" />
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="portals"
+				nillable="true" type="system:Portal" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="Portal">
+		<xsd:sequence>
+			<xsd:element name="modelObjectId" type="xsd:int"
+				minOccurs="0" />
+			<xsd:element name="modelObjectVersion" type="xsd:int"
+				minOccurs="0" />
+			<xsd:element minOccurs="0" name="portalName" type="xsd:string" />
+			<xsd:element minOccurs="0" name="portalType" type="system:PortalType" />
+			<xsd:element minOccurs="0" name="description" type="xsd:string" />
+			<xsd:element minOccurs="0" name="googleMapApiKey" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="DomainPortal">
+		<xsd:complexContent>
+			<xsd:extension base="system:Portal">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" name="domainName" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+
+	<xsd:simpleType name="PortalType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Default" />
+			<xsd:enumeration value="Domain" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="LanguageData">
+		<xsd:sequence>
+			<xsd:element name="modelObjectId" type="xsd:int"
+				minOccurs="0" />
+			<xsd:element name="modelObjectVersion" type="xsd:int"
+				minOccurs="0" />
+			<xsd:element minOccurs="0" name="languageName" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="LanguageContentData">
+		<xsd:sequence>
+			<xsd:element name="modelObjectId" type="xsd:int"
+				minOccurs="0" />
+			<xsd:element name="modelObjectVersion" type="xsd:int"
+				minOccurs="0" />
+			<xsd:element minOccurs="0" name="fromLanguage" type="xsd:string" />
+			<xsd:element minOccurs="0" name="toLanguage" type="xsd:string" />
+			<xsd:element minOccurs="0" name="createdDate" type="xsd:dateTime" />
+			<xsd:element minOccurs="0" name="refKey" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<hj:basic>
+							<orm:column length="10485760" />
+						</hj:basic>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="languageValue" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<hj:basic>
+							<orm:column length="10485760" />
+						</hj:basic>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="languageContentType"
+				type="system:LanguageContentType" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:simpleType name="LanguageContentType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Google Translation" />
+			<xsd:enumeration value="Human Translation" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="ApplicationActionEvent">
+		<xsd:sequence>
+			<xsd:element name="modelObjectId" type="xsd:int"
+				minOccurs="0" />
+			<xsd:element name="modelObjectVersion" type="xsd:int"
+				minOccurs="0" />
+			<xsd:element name="applicationOperation" type="system:ApplicationOperationType"
+				minOccurs="0" />
+			<xsd:element name="eventGroup" type="system:ApplicationEventGroup"
+				minOccurs="0" />
+			<xsd:element minOccurs="0" name="createdDate" type="xsd:dateTime" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:simpleType name="ApplicationOperationType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="CREATE" />
+			<xsd:enumeration value="READ" />
+			<xsd:enumeration value="UPDATE" />
+			<xsd:enumeration value="DELETE" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ApplicationEventGroup">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Admin" />
+			<xsd:enumeration value="User" />
+			<xsd:enumeration value="Application" />
+			<xsd:enumeration value="Error" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="ApplicationSession">
+		<xsd:sequence>
+			<xsd:element name="modelObjectId" type="xsd:int"
+				minOccurs="0" />
+			<xsd:element name="modelObjectVersion" type="xsd:int"
+				minOccurs="0" />
+			<xsd:element minOccurs="0" name="createdDate" type="xsd:dateTime" />
+			<xsd:element minOccurs="0" name="ipInformation" type="xsd:string" />
+			<xsd:element minOccurs="0" name="userAgentInformation"
+				type="xsd:string" />
+			<xsd:element minOccurs="0" name="sessionType"
+				type="system:ApplicationSessionType" />
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="events"
+				nillable="true" type="system:ApplicationActionEvent" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:simpleType name="ApplicationSessionType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ANONYMOUS" />
+			<xsd:enumeration value="REGISTERED_USER" />
+			<xsd:enumeration value="SYSTEM" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>
+

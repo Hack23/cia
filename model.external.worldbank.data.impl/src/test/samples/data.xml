@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wb:data xmlns:wb="http://data.worldbank.external.model.cia.hack23.com/impl" page="1" pages="1" per_page="50" total="50">
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value/>
+    <wb:date>2009</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>191971506.0000000</wb:value>
+    <wb:date>2008</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>190119995.0000000</wb:value>
+    <wb:date>2007</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>188158438.0000000</wb:value>
+    <wb:date>2006</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>186074634.0000000</wb:value>
+    <wb:date>2005</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>183863524.0000000</wb:value>
+    <wb:date>2004</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>181537359.0000000</wb:value>
+    <wb:date>2003</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>179123364.0000000</wb:value>
+    <wb:date>2002</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>176659138.0000000</wb:value>
+    <wb:date>2001</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>174174447.0000000</wb:value>
+    <wb:date>2000</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>171675320.0000000</wb:value>
+    <wb:date>1999</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>169161808.0000000</wb:value>
+    <wb:date>1998</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>166649884.0000000</wb:value>
+    <wb:date>1997</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>164156558.0000000</wb:value>
+    <wb:date>1996</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>161691994.0000000</wb:value>
+    <wb:date>1995</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>159266485.0000000</wb:value>
+    <wb:date>1994</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>156873491.0000000</wb:value>
+    <wb:date>1993</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>154484742.0000000</wb:value>
+    <wb:date>1992</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>152060232.0000000</wb:value>
+    <wb:date>1991</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>149570485.0000000</wb:value>
+    <wb:date>1990</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>147011107.0000000</wb:value>
+    <wb:date>1989</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>144389785.0000000</wb:value>
+    <wb:date>1988</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>141704603.0000000</wb:value>
+    <wb:date>1987</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>138956419.0000000</wb:value>
+    <wb:date>1986</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>136149409.0000000</wb:value>
+    <wb:date>1985</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>133281186.0000000</wb:value>
+    <wb:date>1984</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>130360696.0000000</wb:value>
+    <wb:date>1983</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>127418317.0000000</wb:value>
+    <wb:date>1982</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>124494015.0000000</wb:value>
+    <wb:date>1981</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>121618369.0000000</wb:value>
+    <wb:date>1980</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>118802158.0000000</wb:value>
+    <wb:date>1979</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>116043911.0000000</wb:value>
+    <wb:date>1978</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>113346344.0000000</wb:value>
+    <wb:date>1977</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>110708146.0000000</wb:value>
+    <wb:date>1976</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>108127180.0000000</wb:value>
+    <wb:date>1975</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>105607048.0000000</wb:value>
+    <wb:date>1974</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>103147263.0000000</wb:value>
+    <wb:date>1973</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>100735506.0000000</wb:value>
+    <wb:date>1972</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>98354695.0000000</wb:value>
+    <wb:date>1971</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>95991361.0000000</wb:value>
+    <wb:date>1970</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>93645268.0000000</wb:value>
+    <wb:date>1969</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>91317135.0000000</wb:value>
+    <wb:date>1968</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>88996182.0000000</wb:value>
+    <wb:date>1967</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>86669703.0000000</wb:value>
+    <wb:date>1966</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>84330978.0000000</wb:value>
+    <wb:date>1965</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>81972171.0000000</wb:value>
+    <wb:date>1964</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>79601518.0000000</wb:value>
+    <wb:date>1963</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>77248339.0000000</wb:value>
+    <wb:date>1962</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>74952901.0000000</wb:value>
+    <wb:date>1961</wb:date>
+</wb:data>
+  <wb:data>
+    <wb:indicator id="SP.POP.TOTL">Population, total</wb:indicator>
+    <wb:country id="BR">Brazil</wb:country>
+    <wb:value>72743915.0000000</wb:value>
+    <wb:date>1960</wb:date>
+</wb:data>
+</wb:data>

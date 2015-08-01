@@ -1,0 +1,96 @@
+<dokumentstatus xmlns="http://dokumentstatus.riksdagen.external.model.cia.hack23.com/impl">
+<dokument>
+ <hangar_id>2244760</hangar_id>
+ <dok_id>GQ02So321</dok_id>
+ <rm>2002/03</rm>
+ <beteckning>So321</beteckning>
+ <typ>mot</typ>
+ <subtyp>Enskild motion</subtyp>
+ <doktyp>mot</doktyp>
+ <tempbeteckning>s9504</tempbeteckning>
+ <organ>SoU</organ>
+ <mottagare/>
+ <nummer>321</nummer>
+ <slutnummer>0</slutnummer>
+ <datum>2002-10-23 00:00:00</datum>
+ <systemdatum>2005-11-03 15:51:02</systemdatum>
+ <publicerad>2002-10-23 00:00:00</publicerad>
+ <titel>Begränsningar av förskrivningsrätt</titel>
+ <subtitel>av Hans Hoff (s)</subtitel>
+ <status/>
+ <htmlformat/>
+ <relaterat_id/>
+ <source>webbnav</source>
+ <sourceid>{D6C67D74-E720-11D6-AE88-000103094310}</sourceid>
+ <dokument_url_text>http://data.riksdagen.se/dokument/GQ02So321/text</dokument_url_text>
+ <dokument_url_html>http://data.riksdagen.se/dokument/GQ02So321</dokument_url_html>
+ <dokumentstatus_url_xml>http://data.riksdagen.se/dokumentstatus/GQ02So321</dokumentstatus_url_xml>
+</dokument>
+<dokaktivitet>
+<aktivitet>
+<kod>HÄN</kod>
+<namn>Hänvisning</namn>
+<datum>2002-10-30 00:00:00</datum>
+<status>inträffat</status>
+<ordning>2</ordning>
+<process>hanvisning</process>
+</aktivitet>
+<aktivitet>
+<kod>B</kod>
+<namn>Bordläggning</namn>
+<datum>2002-10-30 00:00:00</datum>
+<status>inträffat</status>
+<ordning>1</ordning>
+<process>hanvisning</process>
+</aktivitet>
+<aktivitet>
+<kod>INL</kod>
+<namn>Inlämning</namn>
+<datum>2002-10-23 00:00:00</datum>
+<status>inträffat</status>
+<ordning>13</ordning>
+<process>hantering</process>
+</aktivitet>
+</dokaktivitet>
+<dokintressent>
+<intressent>
+<intressent_id>0540190357911</intressent_id>
+<namn>Hans Hoff</namn>
+<partibet>S</partibet>
+<ordning>1</ordning>
+<roll>undertecknare</roll>
+</intressent>
+</dokintressent>
+<dokforslag>
+<forslag>
+<nummer>0</nummer>
+<beteckning>0</beteckning>
+<lydelse>Riksdagen tillkännager för regeringen som sin mening vad i motionen anförs om att missbruk av förskrivning är så allvarligt att en översyn av nuvarande regelverk bör göras.</lydelse>
+<lydelse2/>
+<utskottet> Avslag</utskottet>
+<kammaren>Avslag</kammaren>
+<behandlas_i>2003/04:SoU7</behandlas_i>
+<kammarbeslutstyp>Röstning</kammarbeslutstyp>
+</forslag>
+</dokforslag>
+<dokuppgift>
+<uppgift>
+<kod>motkat</kod>
+<namn>Motionskategori</namn>
+<text>Fristående motion</text>
+<dok_id/>
+<systemdatum>2014-11-17 21:12:22</systemdatum>
+</uppgift>
+<uppgift>
+<kod>tilldelat</kod>
+<namn>Tilldelat</namn>
+<text>Socialutskottet</text>
+<dok_id/>
+<systemdatum>2014-11-17 21:12:22</systemdatum>
+</uppgift>
+</dokuppgift>
+<dokbilaga>
+</dokbilaga>
+<dokreferens>
+</dokreferens>
+</dokumentstatus>

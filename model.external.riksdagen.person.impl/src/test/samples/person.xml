@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<personlista xmlns="http://person.riksdagen.external.model.cia.hack23.com/impl">
+<person>
+<hangar_guid>4701bf6d-281d-48e9-afb0-85f295c76e35</hangar_guid>
+<intressent_id>0683260207407</intressent_id>
+<fodd_ar>1937</fodd_ar>
+<kon>man</kon>
+<efternamn>Ericson</efternamn>
+<tilltalsnamn>Björn</tilltalsnamn>
+<iort/>
+<parti>S</parti>
+<valkrets/>
+<status>Tidigare riksdagsledamot</status>
+<person_url_xml>http://data.riksdagen.se/person/0683260207407</person_url_xml>
+<bild_url_80>http://data.riksdagen.se/filarkiv/bilder/ledamot/0683260207407_80.jpg</bild_url_80>
+<bild_url_192>http://data.riksdagen.se/filarkiv/bilder/ledamot/0683260207407_192.jpg</bild_url_192>
+<bild_url_max>http://data.riksdagen.se/filarkiv/bilder/ledamot/0683260207407_max.jpg</bild_url_max>
+<personuppdrag>
+<uppdrag>
+<organ_kod>kam</organ_kod>
+<roll_kod>Riksdagsledamot</roll_kod>
+<ordningsnummer>43</ordningsnummer>
+<status>Ersättare</status>
+<typ>kammaruppdrag</typ>
+<from>1996-10-01 00:00:00</from>
+<tom>1998-10-05 00:00:00</tom>
+<uppgift>Ines Uusmann   </uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>SkU</organ_kod>
+<roll_kod>Ledamot</roll_kod>
+<ordningsnummer>0</ordningsnummer>
+<status/>
+<typ>uppdrag</typ>
+<from>1994-10-11 00:00:00</from>
+<tom>1998-10-04 00:00:00</tom>
+<uppgift>Skatteutskottet</uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>SfU</organ_kod>
+<roll_kod>Suppleant</roll_kod>
+<ordningsnummer>0</ordningsnummer>
+<status/>
+<typ>uppdrag</typ>
+<from>1995-01-26 00:00:00</from>
+<tom>1998-10-04 00:00:00</tom>
+<uppgift>Socialförsäkringsutskottet</uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>kam</organ_kod>
+<roll_kod>Riksdagsledamot</roll_kod>
+<ordningsnummer>45</ordningsnummer>
+<status>Ersättare</status>
+<typ>kammaruppdrag</typ>
+<from>1996-03-23 00:00:00</from>
+<tom>1996-09-30 00:00:00</tom>
+<uppgift>Pierre Schori   </uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>kam</organ_kod>
+<roll_kod>Riksdagsledamot</roll_kod>
+<ordningsnummer>43</ordningsnummer>
+<status>Ersättare</status>
+<typ>kammaruppdrag</typ>
+<from>1995-10-10 00:00:00</from>
+<tom>1996-03-22 00:00:00</tom>
+<uppgift>Ines Uusmann   </uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>kam</organ_kod>
+<roll_kod>Riksdagsledamot</roll_kod>
+<ordningsnummer>45</ordningsnummer>
+<status>Ersättare</status>
+<typ>kammaruppdrag</typ>
+<from>1994-10-08 00:00:00</from>
+<tom>1995-10-09 00:00:00</tom>
+<uppgift>Pierre Schori   </uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>kam</organ_kod>
+<roll_kod>Riksdagsledamot</roll_kod>
+<ordningsnummer>39</ordningsnummer>
+<status>Tjänstgörande</status>
+<typ>kammaruppdrag</typ>
+<from>1991-10-05 00:00:00</from>
+<tom>1994-10-03 00:00:00</tom>
+<uppgift>   </uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>BoU</organ_kod>
+<roll_kod>Suppleant</roll_kod>
+<ordningsnummer>0</ordningsnummer>
+<status/>
+<typ>uppdrag</typ>
+<from>1992-10-13 00:00:00</from>
+<tom>1994-10-02 00:00:00</tom>
+<uppgift>Bostadsutskottet</uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>MJU</organ_kod>
+<roll_kod>Suppleant</roll_kod>
+<ordningsnummer>0</ordningsnummer>
+<status/>
+<typ>uppdrag</typ>
+<from>1992-11-10 00:00:00</from>
+<tom>1994-10-02 00:00:00</tom>
+<uppgift>Miljö- och jordbruksutskottet</uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>kam</organ_kod>
+<roll_kod>Riksdagsledamot</roll_kod>
+<ordningsnummer>28</ordningsnummer>
+<status>Ersättare</status>
+<typ>kammaruppdrag</typ>
+<from>1991-09-30 00:00:00</from>
+<tom>1991-10-04 00:00:00</tom>
+<uppgift>Ingvar Carlsson   </uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>JuU</organ_kod>
+<roll_kod>Ledamot</roll_kod>
+<ordningsnummer>0</ordningsnummer>
+<status/>
+<typ>uppdrag</typ>
+<from>1991-09-30 00:00:00</from>
+<tom>1991-10-04 00:00:00</tom>
+<uppgift>Justitieutskottet</uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>MJU</organ_kod>
+<roll_kod>Suppleant</roll_kod>
+<ordningsnummer>0</ordningsnummer>
+<status/>
+<typ>uppdrag</typ>
+<from>1991-09-30 00:00:00</from>
+<tom>1991-10-04 00:00:00</tom>
+<uppgift>Miljö- och jordbruksutskottet</uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>MJU</organ_kod>
+<roll_kod>Suppleant</roll_kod>
+<ordningsnummer>0</ordningsnummer>
+<status/>
+<typ>uppdrag</typ>
+<from>1988-10-03 00:00:00</from>
+<tom>1991-09-29 00:00:00</tom>
+<uppgift>Miljö- och jordbruksutskottet</uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>JuU</organ_kod>
+<roll_kod>Ledamot</roll_kod>
+<ordningsnummer>0</ordningsnummer>
+<status/>
+<typ>uppdrag</typ>
+<from>1988-10-11 00:00:00</from>
+<tom>1991-09-29 00:00:00</tom>
+<uppgift>Justitieutskottet</uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>kam</organ_kod>
+<roll_kod>Riksdagsledamot</roll_kod>
+<ordningsnummer>34</ordningsnummer>
+<status>Ersättare</status>
+<typ>kammaruppdrag</typ>
+<from>1988-10-05 00:00:00</from>
+<tom>1990-01-11 00:00:00</tom>
+<uppgift>Ivar Nordberg   </uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>KrU</organ_kod>
+<roll_kod>Suppleant</roll_kod>
+<ordningsnummer>0</ordningsnummer>
+<status/>
+<typ>uppdrag</typ>
+<from>1986-10-07 00:00:00</from>
+<tom>1988-10-02 00:00:00</tom>
+<uppgift>Kulturutskottet</uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>MJU</organ_kod>
+<roll_kod>Suppleant</roll_kod>
+<ordningsnummer>0</ordningsnummer>
+<status/>
+<typ>uppdrag</typ>
+<from>1986-10-07 00:00:00</from>
+<tom>1988-10-02 00:00:00</tom>
+<uppgift>Miljö- och jordbruksutskottet</uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>kam</organ_kod>
+<roll_kod>Riksdagsledamot</roll_kod>
+<ordningsnummer>0</ordningsnummer>
+<status>Ersättare</status>
+<typ>kammaruppdrag</typ>
+<from>1988-06-08 00:00:00</from>
+<tom>1988-07-07 00:00:00</tom>
+<uppgift>Anna-Greta Leijon   </uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>kam</organ_kod>
+<roll_kod>Riksdagsledamot</roll_kod>
+<ordningsnummer>0</ordningsnummer>
+<status>Ersättare</status>
+<typ>kammaruppdrag</typ>
+<from>1986-10-10 00:00:00</from>
+<tom>1988-06-08 00:00:00</tom>
+<uppgift>Ulf Lönnqvist   </uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>kam</organ_kod>
+<roll_kod>Riksdagsledamot</roll_kod>
+<ordningsnummer>0</ordningsnummer>
+<status>Ersättare</status>
+<typ>kammaruppdrag</typ>
+<from>1986-10-07 00:00:00</from>
+<tom>1986-10-09 00:00:00</tom>
+<uppgift>Mona Sahlin   </uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>kam</organ_kod>
+<roll_kod>Riksdagsledamot</roll_kod>
+<ordningsnummer>0</ordningsnummer>
+<status>Ersättare</status>
+<typ>kammaruppdrag</typ>
+<from>1985-04-22 00:00:00</from>
+<tom>1985-05-31 00:00:00</tom>
+<uppgift>Mona Sahlin   </uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+<uppdrag>
+<organ_kod>kam</organ_kod>
+<roll_kod>Riksdagsledamot</roll_kod>
+<ordningsnummer>0</ordningsnummer>
+<status>Ersättare</status>
+<typ>kammaruppdrag</typ>
+<from>1983-04-06 00:00:00</from>
+<tom>1983-06-03 00:00:00</tom>
+<uppgift>Mona Sahlin   </uppgift>
+<intressent_id>0683260207407</intressent_id>
+</uppdrag>
+</personuppdrag>
+<personuppgift>
+<uppgift>
+<kod>sv</kod>
+<uppgift>ombudsman</uppgift>
+<typ>titlar</typ>
+<intressent_id>0683260207407</intressent_id>
+</uppgift>
+<uppgift>
+<kod>en</kod>
+<uppgift/>
+<typ>titlar</typ>
+<intressent_id>0683260207407</intressent_id>
+</uppgift>
+</personuppgift>
+</person>
+</personlista>

@@ -1,0 +1,5 @@
+#! /bin/bash
+
+echo preinst
+adduser --system --shell /bin/sh --gecos 'CIA' --group --disabled-password --home /home/cia cia
+exit 0

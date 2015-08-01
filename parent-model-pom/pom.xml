@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>parent-pom</artifactId>
+    <groupId>com.hack23.cia</groupId>
+    <version>2011.07.23-SNAPSHOT</version>
+    <relativePath>../parent-pom/pom.xml</relativePath>
+  </parent>
+  <artifactId>parent-model-pom</artifactId>
+  <packaging>pom</packaging>
+  <name>parent-model-pom</name>
+  <description>parent-model-pom</description>
+  <url>http://cia.sourceforge.net/</url>
+  <inceptionYear>2008</inceptionYear>
+  <organization>
+    <name>www.hack23.com</name>
+    <url>http://www.hack23.com</url>
+  </organization>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <modules>
+    <module>../model.common.api</module>
+    <module>../parent-model-jpa2-pom</module>
+  </modules>
+  <scm>
+    <connection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-model-pom</connection>
+    <developerConnection>scm:svn:https://svn.code.sf.net/p/cia/code/trunk/parent-model-pom</developerConnection>
+    <url>http://sourceforge.net/p/cia/code/HEAD/tree/trunk/parent-model-pom</url>
+  </scm>
+  <distributionManagement>
+    <site>
+      <id>cia.sf.net</id>
+      <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/parent-model-pom</url>
+    </site>
+  </distributionManagement>
+  <properties></properties>
+  <dependencyManagement></dependencyManagement>
+  <build>
+    <extensions></extensions>
+    <pluginManagement>
+      <plugins></plugins>
+    </pluginManagement>
+    <plugins></plugins>
+  </build>
+</project>

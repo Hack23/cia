@@ -1,0 +1,1373 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:data="http://committee.data.application.internal.model.cia.hack23.com/impl"
+	jaxb:extensionBindingPrefixes="xjc hj orm" jaxb:version="2.0"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified"
+	targetNamespace="http://committee.data.application.internal.model.cia.hack23.com/impl">
+
+
+	<xsd:complexType name="ViewRiksdagenCommittee">
+		<xsd:sequence>
+			<xsd:element name="embeddedId" type="data:RiksdagenCommitteeEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="totalAssignments" type="xsd:long" />
+			<xsd:element name="firstAssignmentDate" type="xsd:date" />
+			<xsd:element name="lastAssignmentDate" type="xsd:date" />
+			<xsd:element name="totalDaysServed" type="xsd:long" />
+			<xsd:element name="currentMemberSize" type="xsd:long" />
+			<xsd:element name="active" type="xsd:boolean" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ViewRiksdagenCommitteeRoleMember">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="VIEW_RIKSDAGEN_COMMITTEE_ROLE_MEMBER" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+
+		<xsd:sequence>
+			<xsd:element name="roleId" type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+					</xsd:documentation>
+					<xsd:appinfo>
+						<hj:id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="detail" type="xsd:string" />
+			<xsd:element name="role_code" type="xsd:string" />
+			<xsd:element name="first_name" type="xsd:string" />
+			<xsd:element name="last_name" type="xsd:string" />
+			<xsd:element name="from_date" type="xsd:date" />
+			<xsd:element name="to_date" type="xsd:date" />
+			<xsd:element name="person_id" type="xsd:string" />
+			<xsd:element name="party" type="xsd:string" />
+			<xsd:element name="total_days_served" type="xsd:int" />
+			<xsd:element name="active" type="xsd:boolean" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="ViewRiksdagenVoteDataBallotSummary">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Vote_Data_Ballot_Summary" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:RiksdagenVoteDataBallotEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="vote_date" type="xsd:date" />
+			<xsd:element name="rm" type="xsd:string" />
+			<xsd:element name="ballot_type" type="xsd:string" />
+			<xsd:element name="label" type="xsd:string" />
+			<xsd:element name="avg_born_year" type="xsd:decimal" />
+			<xsd:element name="total_votes" type="xsd:long" />
+			<xsd:element name="yes_votes" type="xsd:long" />
+			<xsd:element name="no_votes" type="xsd:long" />
+			<xsd:element name="abstain_votes" type="xsd:long" />
+			<xsd:element name="absent_votes" type="xsd:long" />
+			<xsd:element name="approved" type="xsd:boolean" />
+			<xsd:element name="no_winner" type="xsd:boolean" />
+			<xsd:element name="percentage_yes" type="xsd:decimal" />
+			<xsd:element name="percentage_no" type="xsd:decimal" />
+			<xsd:element name="percentage_absent" type="xsd:decimal" />
+			<xsd:element name="percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="percentage_male" type="xsd:decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="RiksdagenVoteDataBallotEmbeddedId">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:embeddable />
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ballotId" type="xsd:string" />
+			<xsd:element name="concern" type="xsd:string" />
+			<xsd:element name="issue" type="xsd:string" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="ViewRiksdagenVoteDataBallotPartySummary">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Vote_Data_Ballot_Party_Summary" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:RiksdagenVoteDataBallotPartyEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="vote_date" type="xsd:date" />
+			<xsd:element name="rm" type="xsd:string" />
+			<xsd:element name="ballot_type" type="xsd:string" />
+			<xsd:element name="label" type="xsd:string" />
+			<xsd:element name="avg_born_year" type="xsd:decimal" />
+			<xsd:element name="total_votes" type="xsd:long" />
+			<xsd:element name="yes_votes" type="xsd:long" />
+			<xsd:element name="no_votes" type="xsd:long" />
+			<xsd:element name="abstain_votes" type="xsd:long" />
+			<xsd:element name="absent_votes" type="xsd:long" />
+			<xsd:element name="approved" type="xsd:boolean" />
+			<xsd:element name="no_winner" type="xsd:boolean" />
+			<xsd:element name="percentage_yes" type="xsd:decimal" />
+			<xsd:element name="percentage_no" type="xsd:decimal" />
+			<xsd:element name="percentage_absent" type="xsd:decimal" />
+			<xsd:element name="percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="percentage_male" type="xsd:decimal" />
+
+			<xsd:element name="party_avg_born_year" type="xsd:decimal" />
+			<xsd:element name="party_total_votes" type="xsd:long" />
+			<xsd:element name="party_yes_votes" type="xsd:long" />
+			<xsd:element name="party_no_votes" type="xsd:long" />
+			<xsd:element name="party_abstain_votes" type="xsd:long" />
+			<xsd:element name="party_absent_votes" type="xsd:long" />
+			<xsd:element name="party_approved" type="xsd:boolean" />
+			<xsd:element name="party_no_winner" type="xsd:boolean" />
+			<xsd:element name="party_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="party_percentage_no" type="xsd:decimal" />
+			<xsd:element name="party_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="party_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_percentage_male" type="xsd:decimal" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="RiksdagenVoteDataBallotPartyEmbeddedId">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:embeddable />
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ballotId" type="xsd:string" />
+			<xsd:element name="concern" type="xsd:string" />
+			<xsd:element name="issue" type="xsd:string" />
+			<xsd:element name="party" type="xsd:string" />
+
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+
+
+	<xsd:complexType name="ViewRiksdagenVoteDataBallotPoliticianSummary">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Vote_Data_Ballot_Politician_Summary" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:RiksdagenVoteDataBallotPoliticianEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="vote_date" type="xsd:date" />
+			<xsd:element name="party" type="xsd:string" />
+
+			<xsd:element name="rm" type="xsd:string" />
+			<xsd:element name="ballot_type" type="xsd:string" />
+			<xsd:element name="label" type="xsd:string" />
+			<xsd:element name="avg_born_year" type="xsd:decimal" />
+			<xsd:element name="total_votes" type="xsd:long" />
+			<xsd:element name="yes_votes" type="xsd:long" />
+			<xsd:element name="no_votes" type="xsd:long" />
+			<xsd:element name="abstain_votes" type="xsd:long" />
+			<xsd:element name="absent_votes" type="xsd:long" />
+			<xsd:element name="approved" type="xsd:boolean" />
+			<xsd:element name="no_winner" type="xsd:boolean" />
+			<xsd:element name="percentage_yes" type="xsd:decimal" />
+			<xsd:element name="percentage_no" type="xsd:decimal" />
+			<xsd:element name="percentage_absent" type="xsd:decimal" />
+			<xsd:element name="percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="percentage_male" type="xsd:decimal" />
+
+			<xsd:element name="party_avg_born_year" type="xsd:decimal" />
+			<xsd:element name="party_total_votes" type="xsd:long" />
+			<xsd:element name="party_yes_votes" type="xsd:long" />
+			<xsd:element name="party_no_votes" type="xsd:long" />
+			<xsd:element name="party_abstain_votes" type="xsd:long" />
+			<xsd:element name="party_absent_votes" type="xsd:long" />
+			<xsd:element name="party_approved" type="xsd:boolean" />
+			<xsd:element name="party_no_winner" type="xsd:boolean" />
+			<xsd:element name="party_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="party_percentage_no" type="xsd:decimal" />
+			<xsd:element name="party_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="party_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_percentage_male" type="xsd:decimal" />
+
+
+			<xsd:element name="first_name" type="xsd:string" />
+			<xsd:element name="last_name" type="xsd:string" />
+			<xsd:element name="gender" type="xsd:string" />
+			<xsd:element name="vote" type="xsd:string" />
+
+			<xsd:element name="born_year" type="xsd:int" />
+
+			<xsd:element name="won" type="xsd:boolean" />
+			<xsd:element name="rebel" type="xsd:boolean" />
+			<xsd:element name="party_won" type="xsd:boolean" />
+
+
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="RiksdagenVoteDataBallotPoliticianEmbeddedId">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:embeddable />
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ballotId" type="xsd:string" />
+			<xsd:element name="concern" type="xsd:string" />
+			<xsd:element name="issue" type="xsd:string" />
+			<xsd:element name="intressentId" type="xsd:string" />
+
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="ViewRiksdagenVoteDataBallotSummaryDaily">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Vote_Data_Ballot_Summary_Daily" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+		<xsd:sequence>
+			<xsd:element name="vote_date" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+					</xsd:documentation>
+					<xsd:appinfo>
+						<hj:id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="avg_born_year" type="xsd:decimal" />
+			<xsd:element name="total_votes" type="xsd:decimal" />
+			<xsd:element name="yes_votes" type="xsd:decimal" />
+			<xsd:element name="no_votes" type="xsd:decimal" />
+			<xsd:element name="abstain_votes" type="xsd:decimal" />
+			<xsd:element name="absent_votes" type="xsd:decimal" />
+			<xsd:element name="percentage_yes" type="xsd:decimal" />
+			<xsd:element name="percentage_no" type="xsd:decimal" />
+			<xsd:element name="percentage_absent" type="xsd:decimal" />
+			<xsd:element name="percentage_abstain" type="xsd:decimal" />
+
+			<xsd:element name="number_ballots" type="xsd:long" />
+			<xsd:element name="avg_total_votes" type="xsd:long" />
+			<xsd:element name="approved_ballots" type="xsd:long" />
+
+			<xsd:element name="avg_yes_votes" type="xsd:decimal" />
+			<xsd:element name="avg_no_votes" type="xsd:decimal" />
+			<xsd:element name="avg_abstain_votes" type="xsd:decimal" />
+			<xsd:element name="avg_absent_votes" type="xsd:decimal" />
+			<xsd:element name="percentage_approved" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_no" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_male" type="xsd:decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="ViewRiksdagenVoteDataBallotSummaryWeekly">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Vote_Data_Ballot_Summary_Weekly" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+		<xsd:sequence>
+			<xsd:element name="vote_date" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+					</xsd:documentation>
+					<xsd:appinfo>
+						<hj:id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="avg_born_year" type="xsd:decimal" />
+			<xsd:element name="total_votes" type="xsd:decimal" />
+			<xsd:element name="yes_votes" type="xsd:decimal" />
+			<xsd:element name="no_votes" type="xsd:decimal" />
+			<xsd:element name="abstain_votes" type="xsd:decimal" />
+			<xsd:element name="absent_votes" type="xsd:decimal" />
+			<xsd:element name="percentage_yes" type="xsd:decimal" />
+			<xsd:element name="percentage_no" type="xsd:decimal" />
+			<xsd:element name="percentage_absent" type="xsd:decimal" />
+			<xsd:element name="percentage_abstain" type="xsd:decimal" />
+
+			<xsd:element name="number_ballots" type="xsd:decimal" />
+			<xsd:element name="approved_ballots" type="xsd:decimal" />
+
+			<xsd:element name="percentage_approved" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_no" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_male" type="xsd:decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ViewRiksdagenVoteDataBallotSummaryMonthly">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Vote_Data_Ballot_Summary_Monthly" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+		<xsd:sequence>
+			<xsd:element name="vote_date" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+					</xsd:documentation>
+					<xsd:appinfo>
+						<hj:id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="avg_born_year" type="xsd:decimal" />
+			<xsd:element name="total_votes" type="xsd:decimal" />
+			<xsd:element name="yes_votes" type="xsd:decimal" />
+			<xsd:element name="no_votes" type="xsd:decimal" />
+			<xsd:element name="abstain_votes" type="xsd:decimal" />
+			<xsd:element name="absent_votes" type="xsd:decimal" />
+			<xsd:element name="percentage_yes" type="xsd:decimal" />
+			<xsd:element name="percentage_no" type="xsd:decimal" />
+			<xsd:element name="percentage_absent" type="xsd:decimal" />
+			<xsd:element name="percentage_abstain" type="xsd:decimal" />
+
+			<xsd:element name="number_ballots" type="xsd:decimal" />
+			<xsd:element name="approved_ballots" type="xsd:decimal" />
+
+			<xsd:element name="percentage_approved" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_no" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_male" type="xsd:decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ViewRiksdagenVoteDataBallotSummaryAnnual">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Vote_Data_Ballot_Summary_Annual" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+		<xsd:sequence>
+			<xsd:element name="vote_date" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+					</xsd:documentation>
+					<xsd:appinfo>
+						<hj:id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="avg_born_year" type="xsd:decimal" />
+			<xsd:element name="total_votes" type="xsd:decimal" />
+			<xsd:element name="yes_votes" type="xsd:decimal" />
+			<xsd:element name="no_votes" type="xsd:decimal" />
+			<xsd:element name="abstain_votes" type="xsd:decimal" />
+			<xsd:element name="absent_votes" type="xsd:decimal" />
+			<xsd:element name="percentage_yes" type="xsd:decimal" />
+			<xsd:element name="percentage_no" type="xsd:decimal" />
+			<xsd:element name="percentage_absent" type="xsd:decimal" />
+			<xsd:element name="percentage_abstain" type="xsd:decimal" />
+
+			<xsd:element name="number_ballots" type="xsd:decimal" />
+			<xsd:element name="approved_ballots" type="xsd:decimal" />
+
+			<xsd:element name="percentage_approved" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_no" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_male" type="xsd:decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType
+		name="RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:embeddable />
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="vote_date" type="xsd:date" />
+			<xsd:element name="intressentId" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:embeddable />
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="vote_date" type="xsd:date" />
+			<xsd:element name="party" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="ViewRiksdagenVoteDataBallotPartySummaryDaily">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Vote_Data_Ballot_Party_Summary_Daily" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="total_votes" type="xsd:decimal" />
+			<xsd:element name="yes_votes" type="xsd:decimal" />
+			<xsd:element name="no_votes" type="xsd:decimal" />
+			<xsd:element name="number_ballots" type="xsd:long" />
+			<xsd:element name="abstain_votes" type="xsd:decimal" />
+			<xsd:element name="absent_votes" type="xsd:decimal" />
+			<xsd:element name="approved_total" type="xsd:long" />
+			<xsd:element name="approved_percentage" type="xsd:decimal" />
+			<xsd:element name="percentage_yes" type="xsd:decimal" />
+			<xsd:element name="percentage_no" type="xsd:decimal" />
+			<xsd:element name="percentage_absent" type="xsd:decimal" />
+			<xsd:element name="percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="percentage_approved" type="xsd:decimal" />
+			<xsd:element name="party_avg_born_year" type="xsd:decimal" />
+			<xsd:element name="party_total_votes" type="xsd:decimal" />
+			<xsd:element name="party_yes_votes" type="xsd:decimal" />
+			<xsd:element name="party_no_votes" type="xsd:decimal" />
+			<xsd:element name="party_abstain_votes" type="xsd:decimal" />
+			<xsd:element name="party_absent_votes" type="xsd:decimal" />
+			<xsd:element name="party_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="party_percentage_no" type="xsd:decimal" />
+			<xsd:element name="party_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="party_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_avg_percentage_male" type="xsd:decimal" />
+			<xsd:element name="party_won_total" type="xsd:long" />
+			<xsd:element name="party_won_percentage" type="xsd:decimal" />
+			<xsd:element name="avg_total_votes" type="xsd:long" />
+			<xsd:element name="avg_yes_votes" type="xsd:decimal" />
+			<xsd:element name="avg_no_votes" type="xsd:decimal" />
+			<xsd:element name="avg_abstain_votes" type="xsd:decimal" />
+			<xsd:element name="avg_absent_votes" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_no" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_male" type="xsd:decimal" />
+			<xsd:element name="avg_born_year" type="xsd:decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ViewRiksdagenVoteDataBallotPartySummaryWeekly">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Vote_Data_Ballot_Party_Summary_Weekly" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="total_votes" type="xsd:decimal" />
+			<xsd:element name="yes_votes" type="xsd:decimal" />
+			<xsd:element name="no_votes" type="xsd:decimal" />
+			<xsd:element name="number_ballots" type="xsd:decimal" />
+			<xsd:element name="abstain_votes" type="xsd:decimal" />
+			<xsd:element name="absent_votes" type="xsd:decimal" />
+			<xsd:element name="approved_total" type="xsd:decimal" />
+			<xsd:element name="approved_percentage" type="xsd:decimal" />
+			<xsd:element name="percentage_yes" type="xsd:decimal" />
+			<xsd:element name="percentage_no" type="xsd:decimal" />
+			<xsd:element name="percentage_absent" type="xsd:decimal" />
+			<xsd:element name="percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_avg_born_year" type="xsd:decimal" />
+			<xsd:element name="party_total_votes" type="xsd:decimal" />
+			<xsd:element name="party_yes_votes" type="xsd:decimal" />
+			<xsd:element name="party_no_votes" type="xsd:decimal" />
+			<xsd:element name="party_abstain_votes" type="xsd:decimal" />
+			<xsd:element name="party_absent_votes" type="xsd:decimal" />
+			<xsd:element name="party_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="party_percentage_no" type="xsd:decimal" />
+			<xsd:element name="party_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="party_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_avg_percentage_male" type="xsd:decimal" />
+			<xsd:element name="party_won_total" type="xsd:decimal" />
+			<xsd:element name="party_won_percentage" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_no" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_male" type="xsd:decimal" />
+			<xsd:element name="avg_born_year" type="xsd:decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ViewRiksdagenVoteDataBallotPartySummaryMonthly">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Vote_Data_Ballot_Party_Summary_Monthly" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="total_votes" type="xsd:decimal" />
+			<xsd:element name="yes_votes" type="xsd:decimal" />
+			<xsd:element name="no_votes" type="xsd:decimal" />
+			<xsd:element name="number_ballots" type="xsd:decimal" />
+			<xsd:element name="abstain_votes" type="xsd:decimal" />
+			<xsd:element name="absent_votes" type="xsd:decimal" />
+			<xsd:element name="approved_total" type="xsd:decimal" />
+			<xsd:element name="approved_percentage" type="xsd:decimal" />
+			<xsd:element name="percentage_yes" type="xsd:decimal" />
+			<xsd:element name="percentage_no" type="xsd:decimal" />
+			<xsd:element name="percentage_absent" type="xsd:decimal" />
+			<xsd:element name="percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_avg_born_year" type="xsd:decimal" />
+			<xsd:element name="party_total_votes" type="xsd:decimal" />
+			<xsd:element name="party_yes_votes" type="xsd:decimal" />
+			<xsd:element name="party_no_votes" type="xsd:decimal" />
+			<xsd:element name="party_abstain_votes" type="xsd:decimal" />
+			<xsd:element name="party_absent_votes" type="xsd:decimal" />
+			<xsd:element name="party_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="party_percentage_no" type="xsd:decimal" />
+			<xsd:element name="party_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="party_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_avg_percentage_male" type="xsd:decimal" />
+			<xsd:element name="party_won_total" type="xsd:decimal" />
+			<xsd:element name="party_won_percentage" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_no" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_male" type="xsd:decimal" />
+			<xsd:element name="avg_born_year" type="xsd:decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ViewRiksdagenVoteDataBallotPartySummaryAnnual">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Vote_Data_Ballot_Party_Summary_Annual" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="total_votes" type="xsd:decimal" />
+			<xsd:element name="yes_votes" type="xsd:decimal" />
+			<xsd:element name="no_votes" type="xsd:decimal" />
+			<xsd:element name="number_ballots" type="xsd:decimal" />
+			<xsd:element name="abstain_votes" type="xsd:decimal" />
+			<xsd:element name="absent_votes" type="xsd:decimal" />
+			<xsd:element name="approved_total" type="xsd:decimal" />
+			<xsd:element name="approved_percentage" type="xsd:decimal" />
+			<xsd:element name="percentage_yes" type="xsd:decimal" />
+			<xsd:element name="percentage_no" type="xsd:decimal" />
+			<xsd:element name="percentage_absent" type="xsd:decimal" />
+			<xsd:element name="percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_avg_born_year" type="xsd:decimal" />
+			<xsd:element name="party_total_votes" type="xsd:decimal" />
+			<xsd:element name="party_yes_votes" type="xsd:decimal" />
+			<xsd:element name="party_no_votes" type="xsd:decimal" />
+			<xsd:element name="party_abstain_votes" type="xsd:decimal" />
+			<xsd:element name="party_absent_votes" type="xsd:decimal" />
+			<xsd:element name="party_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="party_percentage_no" type="xsd:decimal" />
+			<xsd:element name="party_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="party_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_avg_percentage_male" type="xsd:decimal" />
+			<xsd:element name="party_won_total" type="xsd:decimal" />
+			<xsd:element name="party_won_percentage" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_no" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_male" type="xsd:decimal" />
+			<xsd:element name="avg_born_year" type="xsd:decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="ViewRiksdagenVoteDataBallotPoliticianSummaryDaily">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table
+						name="View_Riksdagen_Vote_Data_Ballot_Politician_Summary_Daily" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="first_name" type="xsd:string" />
+			<xsd:element name="last_name" type="xsd:string" />
+			<xsd:element name="gender" type="xsd:string" />
+			<xsd:element name="party" type="xsd:string" />
+
+			<xsd:element name="born_year" type="xsd:int" />
+			<xsd:element name="number_ballots" type="xsd:long" />
+			<xsd:element name="avg_born_year" type="xsd:decimal" />
+			<xsd:element name="avg_total_votes" type="xsd:long" />
+			<xsd:element name="avg_yes_votes" type="xsd:decimal" />
+			<xsd:element name="avg_no_votes" type="xsd:decimal" />
+			<xsd:element name="avg_abstain_votes" type="xsd:decimal" />
+			<xsd:element name="avg_absent_votes" type="xsd:decimal" />
+			<xsd:element name="percentage_approved" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_no" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="avg_percentage_male" type="xsd:decimal" />
+			<xsd:element name="total_votes" type="xsd:decimal" />
+			<xsd:element name="yes_votes" type="xsd:decimal" />
+			<xsd:element name="no_votes" type="xsd:decimal" />
+			<xsd:element name="abstain_votes" type="xsd:decimal" />
+			<xsd:element name="absent_votes" type="xsd:decimal" />
+			<xsd:element name="party_total_votes" type="xsd:decimal" />
+			<xsd:element name="party_yes_votes" type="xsd:decimal" />
+			<xsd:element name="party_no_votes" type="xsd:decimal" />
+			<xsd:element name="party_abstain_votes" type="xsd:decimal" />
+			<xsd:element name="party_absent_votes" type="xsd:decimal" />
+			<xsd:element name="politician_yes_votes" type="xsd:long" />
+			<xsd:element name="politician_no_votes" type="xsd:long" />
+			<xsd:element name="politician_abstain_votes" type="xsd:long" />
+			<xsd:element name="politician_absent_votes" type="xsd:long" />
+			<xsd:element name="politician_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="politician_percentage_no" type="xsd:decimal" />
+			<xsd:element name="politician_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="politician_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_avg_born_year" type="xsd:decimal" />
+			<xsd:element name="party_avg_percentage_male" type="xsd:decimal" />
+			<xsd:element name="party_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="party_percentage_no" type="xsd:decimal" />
+			<xsd:element name="party_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="percentage_yes" type="xsd:decimal" />
+			<xsd:element name="percentage_no" type="xsd:decimal" />
+			<xsd:element name="percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="percentage_absent" type="xsd:decimal" />
+			<xsd:element name="party_won_total" type="xsd:long" />
+			<xsd:element name="party_won_percentage" type="xsd:decimal" />
+			<xsd:element name="approved_total" type="xsd:long" />
+			<xsd:element name="approved_percentage" type="xsd:decimal" />
+			<xsd:element name="won_percentage" type="xsd:decimal" />
+			<xsd:element name="won_total" type="xsd:long" />
+			<xsd:element name="rebel_percentage" type="xsd:decimal" />
+			<xsd:element name="rebel_total" type="xsd:long" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ViewRiksdagenVoteDataBallotPoliticianSummaryWeekly">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table
+						name="View_Riksdagen_Vote_Data_Ballot_Politician_Summary_Weekly" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="first_name" type="xsd:string" />
+			<xsd:element name="last_name" type="xsd:string" />
+			<xsd:element name="gender" type="xsd:string" />
+			<xsd:element name="party" type="xsd:string" />
+
+			<xsd:element name="born_year" type="xsd:int" />
+			<xsd:element name="number_ballots" type="xsd:decimal" />
+			<xsd:element name="avg_born_year" type="xsd:decimal" />
+			<xsd:element name="total_votes" type="xsd:decimal" />
+			<xsd:element name="yes_votes" type="xsd:decimal" />
+			<xsd:element name="no_votes" type="xsd:decimal" />
+			<xsd:element name="abstain_votes" type="xsd:decimal" />
+			<xsd:element name="absent_votes" type="xsd:decimal" />
+			<xsd:element name="party_total_votes" type="xsd:decimal" />
+			<xsd:element name="party_yes_votes" type="xsd:decimal" />
+			<xsd:element name="party_no_votes" type="xsd:decimal" />
+			<xsd:element name="party_abstain_votes" type="xsd:decimal" />
+			<xsd:element name="party_absent_votes" type="xsd:decimal" />
+			<xsd:element name="politician_yes_votes" type="xsd:decimal" />
+			<xsd:element name="politician_no_votes" type="xsd:decimal" />
+			<xsd:element name="politician_abstain_votes" type="xsd:decimal" />
+			<xsd:element name="politician_absent_votes" type="xsd:decimal" />
+			<xsd:element name="politician_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="politician_percentage_no" type="xsd:decimal" />
+			<xsd:element name="politician_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="politician_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_avg_born_year" type="xsd:decimal" />
+			<xsd:element name="party_avg_percentage_male" type="xsd:decimal" />
+			<xsd:element name="party_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="party_percentage_no" type="xsd:decimal" />
+			<xsd:element name="party_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="percentage_yes" type="xsd:decimal" />
+			<xsd:element name="percentage_no" type="xsd:decimal" />
+			<xsd:element name="percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="percentage_absent" type="xsd:decimal" />
+			<xsd:element name="party_won_total" type="xsd:decimal" />
+			<xsd:element name="party_won_percentage" type="xsd:decimal" />
+			<xsd:element name="approved_total" type="xsd:decimal" />
+			<xsd:element name="approved_percentage" type="xsd:decimal" />
+			<xsd:element name="won_percentage" type="xsd:decimal" />
+			<xsd:element name="won_total" type="xsd:decimal" />
+			<xsd:element name="rebel_percentage" type="xsd:decimal" />
+			<xsd:element name="rebel_total" type="xsd:decimal" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table
+						name="View_Riksdagen_Vote_Data_Ballot_Politician_Summary_Monthly" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="first_name" type="xsd:string" />
+			<xsd:element name="last_name" type="xsd:string" />
+			<xsd:element name="gender" type="xsd:string" />
+			<xsd:element name="party" type="xsd:string" />
+
+			<xsd:element name="born_year" type="xsd:int" />
+			<xsd:element name="number_ballots" type="xsd:decimal" />
+			<xsd:element name="avg_born_year" type="xsd:decimal" />
+			<xsd:element name="total_votes" type="xsd:decimal" />
+			<xsd:element name="yes_votes" type="xsd:decimal" />
+			<xsd:element name="no_votes" type="xsd:decimal" />
+			<xsd:element name="abstain_votes" type="xsd:decimal" />
+			<xsd:element name="absent_votes" type="xsd:decimal" />
+			<xsd:element name="party_total_votes" type="xsd:decimal" />
+			<xsd:element name="party_yes_votes" type="xsd:decimal" />
+			<xsd:element name="party_no_votes" type="xsd:decimal" />
+			<xsd:element name="party_abstain_votes" type="xsd:decimal" />
+			<xsd:element name="party_absent_votes" type="xsd:decimal" />
+			<xsd:element name="politician_yes_votes" type="xsd:decimal" />
+			<xsd:element name="politician_no_votes" type="xsd:decimal" />
+			<xsd:element name="politician_abstain_votes" type="xsd:decimal" />
+			<xsd:element name="politician_absent_votes" type="xsd:decimal" />
+			<xsd:element name="politician_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="politician_percentage_no" type="xsd:decimal" />
+			<xsd:element name="politician_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="politician_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_avg_born_year" type="xsd:decimal" />
+			<xsd:element name="party_avg_percentage_male" type="xsd:decimal" />
+			<xsd:element name="party_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="party_percentage_no" type="xsd:decimal" />
+			<xsd:element name="party_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="percentage_yes" type="xsd:decimal" />
+			<xsd:element name="percentage_no" type="xsd:decimal" />
+			<xsd:element name="percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="percentage_absent" type="xsd:decimal" />
+			<xsd:element name="party_won_total" type="xsd:decimal" />
+			<xsd:element name="party_won_percentage" type="xsd:decimal" />
+			<xsd:element name="approved_total" type="xsd:decimal" />
+			<xsd:element name="approved_percentage" type="xsd:decimal" />
+			<xsd:element name="won_percentage" type="xsd:decimal" />
+			<xsd:element name="won_total" type="xsd:decimal" />
+			<xsd:element name="rebel_percentage" type="xsd:decimal" />
+			<xsd:element name="rebel_total" type="xsd:decimal" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table
+						name="View_Riksdagen_Vote_Data_Ballot_Politician_Summary_Annual" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="first_name" type="xsd:string" />
+			<xsd:element name="last_name" type="xsd:string" />
+			<xsd:element name="gender" type="xsd:string" />
+			<xsd:element name="party" type="xsd:string" />
+
+			<xsd:element name="born_year" type="xsd:int" />
+			<xsd:element name="number_ballots" type="xsd:decimal" />
+			<xsd:element name="avg_born_year" type="xsd:decimal" />
+			<xsd:element name="total_votes" type="xsd:decimal" />
+			<xsd:element name="yes_votes" type="xsd:decimal" />
+			<xsd:element name="no_votes" type="xsd:decimal" />
+			<xsd:element name="abstain_votes" type="xsd:decimal" />
+			<xsd:element name="absent_votes" type="xsd:decimal" />
+			<xsd:element name="party_total_votes" type="xsd:decimal" />
+			<xsd:element name="party_yes_votes" type="xsd:decimal" />
+			<xsd:element name="party_no_votes" type="xsd:decimal" />
+			<xsd:element name="party_abstain_votes" type="xsd:decimal" />
+			<xsd:element name="party_absent_votes" type="xsd:decimal" />
+			<xsd:element name="politician_yes_votes" type="xsd:decimal" />
+			<xsd:element name="politician_no_votes" type="xsd:decimal" />
+			<xsd:element name="politician_abstain_votes" type="xsd:decimal" />
+			<xsd:element name="politician_absent_votes" type="xsd:decimal" />
+			<xsd:element name="politician_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="politician_percentage_no" type="xsd:decimal" />
+			<xsd:element name="politician_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="politician_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_avg_born_year" type="xsd:decimal" />
+			<xsd:element name="party_avg_percentage_male" type="xsd:decimal" />
+			<xsd:element name="party_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="party_percentage_no" type="xsd:decimal" />
+			<xsd:element name="party_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="percentage_yes" type="xsd:decimal" />
+			<xsd:element name="percentage_no" type="xsd:decimal" />
+			<xsd:element name="percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="percentage_absent" type="xsd:decimal" />
+			<xsd:element name="party_won_total" type="xsd:decimal" />
+			<xsd:element name="party_won_percentage" type="xsd:decimal" />
+			<xsd:element name="approved_total" type="xsd:decimal" />
+			<xsd:element name="approved_percentage" type="xsd:decimal" />
+			<xsd:element name="won_percentage" type="xsd:decimal" />
+			<xsd:element name="won_total" type="xsd:decimal" />
+			<xsd:element name="rebel_percentage" type="xsd:decimal" />
+			<xsd:element name="rebel_total" type="xsd:decimal" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="RiksdagenCommitteeDecisionTypeSummaryEmbeddedId">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:embeddable />
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="decision_date" type="xsd:date" />
+			<xsd:element name="decision_type" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="ViewRiksdagenCommitteeDecisionTypeDailySummary">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Committee_Decision_Type_Summary" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:RiksdagenCommitteeDecisionTypeSummaryEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="total" type="xsd:long" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:embeddable />
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="decision_date" type="xsd:date" />
+			<xsd:element name="decision_type" type="xsd:string" />
+			<xsd:element name="org" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="ViewRiksdagenCommitteeDecisionTypeOrgDailySummary">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Committee_Decision_Type_Org_Summary" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="total" type="xsd:long" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+
+	<xsd:complexType name="ViewRiksdagenCommitteeDecisionsEmbeddedId">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:embeddable />
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:string" />
+			<xsd:element name="hangar_id" type="xsd:decimal" />
+			<xsd:element name="issue_nummer" type="xsd:decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ViewRiksdagenCommitteeDecisions">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Committee_Decisions" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:ViewRiksdagenCommitteeDecisionsEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="title" type="xsd:string" />
+			<xsd:element name="header" type="xsd:string" />
+			<xsd:element name="committee_report" type="xsd:string" />
+			<xsd:element name="rm" type="xsd:string" />
+			<xsd:element name="end_number" type="xsd:decimal" />
+			<xsd:element name="org" type="xsd:string" />
+			<xsd:element name="created_date" type="xsd:date" />
+			<xsd:element name="public_date" type="xsd:date" />
+			<xsd:element name="committee_proposal_url_xml" type="xsd:string" />
+			<xsd:element name="decision_type" type="xsd:string" />
+			<xsd:element name="ballot_id" type="xsd:string" />
+			<xsd:element name="against_proposal_parties" type="xsd:string" />
+			<xsd:element name="against_proposal_number" type="xsd:decimal" />
+			<xsd:element name="winner" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="ViewRiksdagenCommitteeBallotDecisionEmbeddedId">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:embeddable />
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:string" />
+			<xsd:element name="hangar_id" type="xsd:decimal" />
+			<xsd:element name="issue" type="xsd:string" />
+			<xsd:element name="concern" type="xsd:string" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:embeddable />
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:string" />
+			<xsd:element name="party" type="xsd:string" />
+
+			<xsd:element name="hangar_id" type="xsd:decimal" />
+			<xsd:element name="issue" type="xsd:string" />
+			<xsd:element name="concern" type="xsd:string" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType
+		name="ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:embeddable />
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:string" />
+			<xsd:element name="intressent_id" type="xsd:string" />
+
+			<xsd:element name="hangar_id" type="xsd:decimal" />
+			<xsd:element name="issue" type="xsd:string" />
+			<xsd:element name="concern" type="xsd:string" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="ViewRiksdagenCommitteeBallotDecisionSummary">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Committee_Ballot_Decision_Summary" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:ViewRiksdagenCommitteeBallotDecisionEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="committee_report" type="xsd:string" />
+			<xsd:element name="rm" type="xsd:string" />
+			<xsd:element name="title" type="xsd:string" />
+			<xsd:element name="sub_title" type="xsd:string" />
+			<xsd:element name="end_number" type="xsd:decimal" />
+			<xsd:element name="org" type="xsd:string" />
+			<xsd:element name="created_date" type="xsd:date" />
+			<xsd:element name="public_date" type="xsd:date" />
+			<xsd:element name="ballot_id" type="xsd:string" />
+			<xsd:element name="decision_type" type="xsd:string" />
+			<xsd:element name="against_proposal_parties" type="xsd:string" />
+			<xsd:element name="against_proposal_number" type="xsd:decimal" />
+			<xsd:element name="winner" type="xsd:string" />
+			<xsd:element name="ballot_type" type="xsd:string" />
+			<xsd:element name="label" type="xsd:string" />
+			<xsd:element name="vote_date" type="xsd:date" />
+			<xsd:element name="avg_born_year" type="xsd:decimal" />
+			<xsd:element name="total_votes" type="xsd:long" />
+			<xsd:element name="yes_votes" type="xsd:long" />
+			<xsd:element name="no_votes" type="xsd:long" />
+			<xsd:element name="abstain_votes" type="xsd:long" />
+			<xsd:element name="absent_votes" type="xsd:long" />
+			<xsd:element name="approved" type="xsd:boolean" />
+			<xsd:element name="no_winner" type="xsd:boolean" />
+			<xsd:element name="percentage_yes" type="xsd:decimal" />
+			<xsd:element name="percentage_no" type="xsd:decimal" />
+			<xsd:element name="percentage_absent" type="xsd:decimal" />
+			<xsd:element name="percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="percentage_male" type="xsd:decimal" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ViewRiksdagenCommitteeBallotDecisionPartySummary">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Committee_Ballot_Decision_Party_Summary" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="committee_report" type="xsd:string" />
+			<xsd:element name="rm" type="xsd:string" />
+			<xsd:element name="title" type="xsd:string" />
+			<xsd:element name="sub_title" type="xsd:string" />
+			<xsd:element name="end_number" type="xsd:decimal" />
+			<xsd:element name="org" type="xsd:string" />
+			<xsd:element name="created_date" type="xsd:date" />
+			<xsd:element name="public_date" type="xsd:date" />
+			<xsd:element name="ballot_id" type="xsd:string" />
+			<xsd:element name="decision_type" type="xsd:string" />
+			<xsd:element name="against_proposal_parties" type="xsd:string" />
+			<xsd:element name="against_proposal_number" type="xsd:decimal" />
+			<xsd:element name="winner" type="xsd:string" />
+			<xsd:element name="ballot_type" type="xsd:string" />
+			<xsd:element name="label" type="xsd:string" />
+			<xsd:element name="vote_date" type="xsd:date" />
+			<xsd:element name="avg_born_year" type="xsd:decimal" />
+			<xsd:element name="total_votes" type="xsd:long" />
+			<xsd:element name="yes_votes" type="xsd:long" />
+			<xsd:element name="no_votes" type="xsd:long" />
+			<xsd:element name="abstain_votes" type="xsd:long" />
+			<xsd:element name="absent_votes" type="xsd:long" />
+			<xsd:element name="approved" type="xsd:boolean" />
+			<xsd:element name="no_winner" type="xsd:boolean" />
+			<xsd:element name="percentage_yes" type="xsd:decimal" />
+			<xsd:element name="percentage_no" type="xsd:decimal" />
+			<xsd:element name="percentage_absent" type="xsd:decimal" />
+			<xsd:element name="percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="percentage_male" type="xsd:decimal" />
+
+			<xsd:element name="party_avg_born_year" type="xsd:decimal" />
+			<xsd:element name="party_total_votes" type="xsd:long" />
+			<xsd:element name="party_yes_votes" type="xsd:long" />
+			<xsd:element name="party_no_votes" type="xsd:long" />
+			<xsd:element name="party_abstain_votes" type="xsd:long" />
+			<xsd:element name="party_absent_votes" type="xsd:long" />
+			<xsd:element name="party_approved" type="xsd:boolean" />
+			<xsd:element name="party_no_winner" type="xsd:boolean" />
+			<xsd:element name="party_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="party_percentage_no" type="xsd:decimal" />
+			<xsd:element name="party_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="party_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_percentage_male" type="xsd:decimal" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType
+		name="ViewRiksdagenCommitteeBallotDecisionPoliticianSummary">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table
+						name="View_Riksdagen_Committee_Ballot_Decision_Politician_Summary" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="committee_report" type="xsd:string" />
+			<xsd:element name="rm" type="xsd:string" />
+			<xsd:element name="title" type="xsd:string" />
+			<xsd:element name="sub_title" type="xsd:string" />
+			<xsd:element name="end_number" type="xsd:decimal" />
+			<xsd:element name="org" type="xsd:string" />
+			<xsd:element name="created_date" type="xsd:date" />
+			<xsd:element name="public_date" type="xsd:date" />
+			<xsd:element name="ballot_id" type="xsd:string" />
+			<xsd:element name="decision_type" type="xsd:string" />
+			<xsd:element name="against_proposal_parties" type="xsd:string" />
+			<xsd:element name="against_proposal_number" type="xsd:decimal" />
+			<xsd:element name="winner" type="xsd:string" />
+			<xsd:element name="ballot_type" type="xsd:string" />
+			<xsd:element name="label" type="xsd:string" />
+			<xsd:element name="vote_date" type="xsd:date" />
+			<xsd:element name="avg_born_year" type="xsd:decimal" />
+			<xsd:element name="total_votes" type="xsd:long" />
+			<xsd:element name="yes_votes" type="xsd:long" />
+			<xsd:element name="no_votes" type="xsd:long" />
+			<xsd:element name="abstain_votes" type="xsd:long" />
+			<xsd:element name="absent_votes" type="xsd:long" />
+			<xsd:element name="approved" type="xsd:boolean" />
+			<xsd:element name="no_winner" type="xsd:boolean" />
+			<xsd:element name="percentage_yes" type="xsd:decimal" />
+			<xsd:element name="percentage_no" type="xsd:decimal" />
+			<xsd:element name="percentage_absent" type="xsd:decimal" />
+			<xsd:element name="percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="percentage_male" type="xsd:decimal" />
+
+			<xsd:element name="party_avg_born_year" type="xsd:decimal" />
+			<xsd:element name="party_total_votes" type="xsd:long" />
+			<xsd:element name="party_yes_votes" type="xsd:long" />
+			<xsd:element name="party_no_votes" type="xsd:long" />
+			<xsd:element name="party_abstain_votes" type="xsd:long" />
+			<xsd:element name="party_absent_votes" type="xsd:long" />
+			<xsd:element name="party_approved" type="xsd:boolean" />
+			<xsd:element name="party_no_winner" type="xsd:boolean" />
+			<xsd:element name="party_percentage_yes" type="xsd:decimal" />
+			<xsd:element name="party_percentage_no" type="xsd:decimal" />
+			<xsd:element name="party_percentage_absent" type="xsd:decimal" />
+			<xsd:element name="party_percentage_abstain" type="xsd:decimal" />
+			<xsd:element name="party_percentage_male" type="xsd:decimal" />
+
+			<xsd:element name="party" type="xsd:string" />
+			<xsd:element name="first_name" type="xsd:string" />
+			<xsd:element name="last_name" type="xsd:string" />
+			<xsd:element name="born_year" type="xsd:int" />
+			<xsd:element name="vote" type="xsd:string" />
+			<xsd:element name="won" type="xsd:boolean" />
+			<xsd:element name="rebel" type="xsd:boolean" />
+
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="RiksdagenCommitteeEmbeddedId">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:embeddable />
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="detail" type="xsd:string" />
+			<xsd:element name="orgCode" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>
+

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:amq="http://activemq.apache.org/schema/core" xmlns:jms="http://www.springframework.org/schema/jms"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+		http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.3.2.xsd
+		http://www.springframework.org/schema/jms  http://www.springframework.org/schema/jms/spring-jms-4.1.xsd">
+
+	<context:component-scan base-package="com.hack23.cia.service.component.agent.impl" />
+
+	<bean id="agentJmsSettingsPropertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:agent-jms-settings.properties</value>
+		</property>
+		<property name="ignoreUnresolvablePlaceholders" value="true"/>
+	</bean>
+
+	<bean id="RiksdagenMessageListenerContainer"
+	    class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+	    <property name="concurrency" value="${com.hack23.cia.service.component.agent.impl.jms.speed.category.riksdagen}" />
+	    <property name="connectionFactory" ref="connectionFactory" />
+	    <property name="transactionManager" ref="transactionManager" />
+	    <property name="destination" ref="riksdagenApiAgentWorkQueue" />
+    	<property name="messageListener" ref="RiksdagenApiAgentWorkConsumer" />
+        <property name="sessionTransacted" value="true"/>
+	    <property name="receiveTimeout" value="5000" />
+	    <property name="recoveryInterval" value="6000" />
+	    <property name="acceptMessagesWhileStopping" value="false" />
+	</bean>
+
+	<jms:listener-container   transaction-manager="transactionManager" connection-factory="connectionFactory"
+		concurrency="${com.hack23.cia.service.component.agent.impl.jms.speed.category.minimal}">
+		<jms:listener id="WorldbankApiWorkQueueListener" destination="WorldbankApiAgentWorkQueue"
+			ref="WorldBankApiAgentWorkConsumer" />
+	</jms:listener-container>
+
+	<bean id="RiksdagenDocumentElementMessageListenerContainer"
+	    class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+	    <property name="concurrency" value="${com.hack23.cia.service.component.agent.impl.jms.speed.category.riksdagen}" />
+	    <property name="connectionFactory" ref="connectionFactory" />
+	    <property name="transactionManager" ref="transactionManager" />
+	    <property name="destination" ref="com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement" />
+    	<property name="messageListener" ref="riksdagenDocumentElementWorkConsumerImpl" />
+        <property name="sessionTransacted" value="true"/>
+	    <property name="receiveTimeout" value="5000" />
+	    <property name="recoveryInterval" value="6000" />
+	    <property name="acceptMessagesWhileStopping" value="false" />
+	</bean>
+
+	<bean id="RiksdagenDocumentStatusMessageListenerContainer"
+	    class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+	    <property name="concurrency" value="${com.hack23.cia.service.component.agent.impl.jms.speed.category.riksdagen}" />
+	    <property name="connectionFactory" ref="connectionFactory" />
+	    <property name="transactionManager" ref="transactionManager" />
+	    <property name="destination" ref="com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer" />
+    	<property name="messageListener" ref="riksdagenDocumentStatusContainerWorkConsumerImpl" />
+        <property name="sessionTransacted" value="true"/>
+	    <property name="receiveTimeout" value="5000" />
+	    <property name="recoveryInterval" value="6000" />
+	    <property name="acceptMessagesWhileStopping" value="false" />
+	</bean>
+
+	<bean id="RiksdagenPersonElementMessageListenerContainer"
+	    class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+	    <property name="concurrency" value="${com.hack23.cia.service.component.agent.impl.jms.speed.category.riksdagen}" />
+	    <property name="connectionFactory" ref="connectionFactory" />
+	    <property name="transactionManager" ref="transactionManager" />
+	    <property name="destination" ref="com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement" />
+    	<property name="messageListener" ref="riksdagenPersonElementWorkConsumerImpl" />
+        <property name="sessionTransacted" value="true"/>
+	    <property name="receiveTimeout" value="5000" />
+	    <property name="recoveryInterval" value="6000" />
+	    <property name="acceptMessagesWhileStopping" value="false" />
+	</bean>
+
+	<bean id="RiksdagenCommitteeProposalComponentDataMessageListenerContainer"
+	    class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+	    <property name="concurrency" value="${com.hack23.cia.service.component.agent.impl.jms.speed.category.riksdagen}" />
+	    <property name="connectionFactory" ref="connectionFactory" />
+	    <property name="transactionManager" ref="transactionManager" />
+	    <property name="destination" ref="com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData" />
+    	<property name="messageListener" ref="riksdagenCommitteeProposalComponentDataWorkConsumerImpl" />
+        <property name="sessionTransacted" value="true"/>
+	    <property name="receiveTimeout" value="5000" />
+	    <property name="recoveryInterval" value="6000" />
+	    <property name="acceptMessagesWhileStopping" value="false" />
+	</bean>
+
+	<bean id="RiksdagenDocumentContentDataMessageListenerContainer"
+	    class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+	    <property name="concurrency" value="${com.hack23.cia.service.component.agent.impl.jms.speed.category.riksdagen}" />
+	    <property name="connectionFactory" ref="connectionFactory" />
+	    <property name="transactionManager" ref="transactionManager" />
+	    <property name="destination" ref="com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData" />
+    	<property name="messageListener" ref="riksdagenDocumentContentWorkConsumerImpl" />
+        <property name="sessionTransacted" value="true"/>
+	    <property name="receiveTimeout" value="5000" />
+	    <property name="recoveryInterval" value="6000" />
+	    <property name="acceptMessagesWhileStopping" value="false" />
+	</bean>
+
+	<bean id="RiksdagenVoteDataMessageListenerContainer"
+	    class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+	    <property name="concurrency" value="${com.hack23.cia.service.component.agent.impl.jms.speed.category.riksdagen}" />
+	    <property name="connectionFactory" ref="connectionFactory" />
+	    <property name="transactionManager" ref="transactionManager" />
+	    <property name="destination" ref="com.hack23.cia.model.external.riksdagen.votering.impl.VoteData" />
+    	<property name="messageListener" ref="riksdagenVoteDataWorkConsumerImpl" />
+        <property name="sessionTransacted" value="true"/>
+	    <property name="receiveTimeout" value="5000" />
+	    <property name="recoveryInterval" value="6000" />
+	    <property name="acceptMessagesWhileStopping" value="false" />
+	</bean>
+
+	<jms:listener-container  transaction-manager="transactionManager" connection-factory="connectionFactory"
+		concurrency="${com.hack23.cia.service.component.agent.impl.jms.speed.category.minimal}">
+		<jms:listener id="WorldBankCountryElementQueueListener"
+			destination="com.hack23.cia.model.external.worldbank.countries.impl.CountryElement"
+			ref="worldbankCountryElementWorkConsumerImpl" />
+	</jms:listener-container>
+
+	<jms:listener-container  transaction-manager="transactionManager" connection-factory="connectionFactory"
+		concurrency="${com.hack23.cia.service.component.agent.impl.jms.speed.category.worldbank}">
+		<jms:listener id="WorldBankDataQueueListener"
+			destination="com.hack23.cia.model.external.worldbank.data.impl.Data"
+			ref="worldbankDataWorkConsumerImpl" />
+	</jms:listener-container>
+
+	<jms:listener-container  transaction-manager="transactionManager" connection-factory="connectionFactory"
+		concurrency="${com.hack23.cia.service.component.agent.impl.jms.speed.category.minimal}">
+		<jms:listener id="WorldBankIndicatorElementQueueListener"
+			destination="com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement"
+			ref="worldbankIndicatorElementWorkConsumerImpl" />
+	</jms:listener-container>
+
+ 	<bean
+		id="com.hack23.cia.model.external.worldbank.countries.impl.CountryElement"
+		class="org.apache.activemq.command.ActiveMQQueue" autowire="constructor">
+		<constructor-arg>
+			<value>com.hack23.cia.model.external.worldbank.countries.impl.CountryElement</value>
+		</constructor-arg>
+	</bean>
+	<bean
+		id="com.hack23.cia.model.external.worldbank.data.impl.Data"
+		class="org.apache.activemq.command.ActiveMQQueue" autowire="constructor">
+		<constructor-arg>
+			<value>com.hack23.cia.model.external.worldbank.data.impl.Data</value>
+		</constructor-arg>
+	</bean>
+
+	<bean
+		id="com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement"
+		class="org.apache.activemq.command.ActiveMQQueue" autowire="constructor">
+		<constructor-arg>
+			<value>com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement</value>
+		</constructor-arg>
+	</bean>
+
+	<bean
+		id="com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement"
+		class="org.apache.activemq.command.ActiveMQQueue" autowire="constructor">
+		<constructor-arg>
+			<value>com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement</value>
+		</constructor-arg>
+	</bean>
+
+	<bean
+		id="com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement"
+		class="org.apache.activemq.command.ActiveMQQueue" autowire="constructor">
+		<constructor-arg>
+			<value>com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement</value>
+		</constructor-arg>
+	</bean>
+
+	<bean
+		id="com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData"
+		class="org.apache.activemq.command.ActiveMQQueue" autowire="constructor">
+		<constructor-arg>
+			<value>com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData</value>
+		</constructor-arg>
+	</bean>
+
+	<bean
+		id="com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"
+		class="org.apache.activemq.command.ActiveMQQueue" autowire="constructor">
+		<constructor-arg>
+			<value>com.hack23.cia.model.external.riksdagen.votering.impl.VoteData</value>
+		</constructor-arg>
+	</bean>
+
+	<bean
+		id="com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer"
+		class="org.apache.activemq.command.ActiveMQQueue" autowire="constructor">
+		<constructor-arg>
+			<value>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer</value>
+		</constructor-arg>
+	</bean>
+
+	<bean
+		id="com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData"
+		class="org.apache.activemq.command.ActiveMQQueue" autowire="constructor">
+		<constructor-arg>
+			<value>com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="senderConnectionFactory" />
+		<property name="receiveTimeout" value="500" />
+		<property name="sessionTransacted" value="true" />
+	</bean>
+
+	<bean
+		id="riksdagenApiAgentWorkQueue"
+		class="org.apache.activemq.command.ActiveMQQueue" autowire="constructor">
+		<constructor-arg>
+			<value>RiksdagenApiAgentWorkQueue</value>
+		</constructor-arg>
+	</bean>
+
+	<bean
+		id="worldbankApiAgentWorkQueue"
+		class="org.apache.activemq.command.ActiveMQQueue" autowire="constructor">
+		<constructor-arg>
+			<value>WorldbankApiAgentWorkQueue</value>
+		</constructor-arg>
+	</bean>
+
+	<bean
+		id="agentEventQueue"
+		class="org.apache.activemq.command.ActiveMQQueue" autowire="constructor">
+		<constructor-arg>
+			<value>AgentEventQueue</value>
+		</constructor-arg>
+	</bean>
+
+</beans>
+
+

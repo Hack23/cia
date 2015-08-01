@@ -1,0 +1,10 @@
+<Proxy *>
+Order deny,allow
+Allow from all
+</Proxy>
+
+ProxyRequests Off
+ProxyPreserveHost On
+ProxyPass / http://localhost:8080
+ProxyPassReverse / http://localhost:8080
+

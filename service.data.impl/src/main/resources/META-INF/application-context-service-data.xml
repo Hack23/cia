@@ -1,0 +1,244 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+
+	<bean id="databasePropertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:database.properties</value>
+		</property>
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+	</bean>
+
+	<!-- Mysql
+	<bean id="dataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean"
+		init-method="init" destroy-method="close">
+		<property name="uniqueResourceName">
+			<value>cia</value>
+		</property>
+		<property name="xaDataSourceClassName">
+			<value>${datasource.xaDataSourceClassName}</value>
+		</property>
+		<property name="xaProperties">
+			<props>
+				<prop key="user">${database.username}</prop>
+				<prop key="password">${database.password}</prop>
+				<prop key="Url">${database.url}</prop>
+			</props>
+		</property>
+		<property name="minPoolSize" value="40" />
+		<property name="maxPoolSize" value="200" />
+	</bean>
+ 	-->
+ 	
+ 	<bean id="liquibase" class="com.hack23.cia.service.data.impl.liquidbase.SpringLiquidBaseFailSafe">
+      <property name="dataSource" ref="dataSource" />
+      <property name="changeLog" value="classpath:db-changelog.xml" />
+      <!--
+      contexts specifies the runtime contexts to use.
+      <property name="contexts" value="test, production" />
+      -->
+ </bean>
+ 	
+
+ 	<!-- Postgres -->
+	<bean id="dataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean" depends-on="transactionManager"
+		init-method="init" destroy-method="close">
+		<property name="uniqueResourceName">
+			<value>cia</value>
+		</property>
+		<property name="xaDataSourceClassName">
+			<value>${datasource.xaDataSourceClassName}</value>
+		</property>
+		<property name="xaProperties">
+			<props>
+				<prop key="user">${database.username}</prop>
+				<prop key="password">${database.password}</prop>
+				<prop key="serverName">${database.hostname}</prop>
+				<prop key="portNumber">5432</prop>
+				<prop key="databaseName">${database.name}</prop>
+				<!--
+				<prop key="ssl">true</prop>
+				<prop key="sslfactory">org.postgresql.ssl.NonValidatingFactory</prop> -->
+			</props>
+		</property>
+		<property name="minPoolSize" value="20" />
+		<property name="maxPoolSize" value="80" />
+		 <property name="testQuery" value="select 1"/>
+	</bean>
+
+	<bean id="dataCacheManager" 
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:data-ehcache.xml" />
+		<property name="shared" value="true" />
+		<property name="CacheManagerName" value="dataCacheManager" />
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		depends-on="dataCacheManager,liquibase,transactionManager">
+		<property name="dataSource" ref="dataSource" />
+		<property name="persistenceUnitName" value="ciaPersistenceUnit" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="generateDdl" value="true" />
+				<property name="showSql" value="true" />
+			</bean>
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${database.ddl}</prop>
+			    <prop key="hibernate.generate_statistics">true</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.use_sql_comments">false</prop>
+                <prop key="hibernate.format_sql">false</prop>
+                <prop key="hibernate.max_fetch_depth">4</prop>
+                <prop key="hibernate.id.new_generator_mappings">true</prop>
+                <prop key="hibernate.order_inserts">true</prop>
+                <prop key="hibernate.order_updates">true</prop>
+                <prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
+                <prop key="hibernate.bytecode.provider">javassist</prop>
+                <!--<prop key="hibernate.bytecode.provider">cglib</prop> -->
+                <prop key="hibernate.jdbc.use_streams_for_binary">true</prop>
+                <prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
+                <prop key="hibernate.connection.isolation">3</prop>
+                <!-- <prop key="hibernate.connection.release_mode">on_close</prop> -->
+                <prop key="hibernate.connection.release_mode">auto</prop>
+                <prop key="hibernate.connection.useUnicode">true</prop>
+                <prop key="hibernate.connection.characterEncoding">UTF-8</prop>
+                <prop key="hibernate.connection.charSet">UTF-8</prop>
+
+                <prop key="hibernate.default_batch_fetch_size">1024</prop>
+                <prop key="hibernate.jdbc.batch_size">1024</prop>
+                <prop key="hibernate.jdbc.fetch_size">1024</prop>
+                <prop key="hibernate.jdbc.batch_versioned_data">true</prop>
+                <prop key="hibernate.jdbc.use_getGeneratedKeys">true</prop>
+                <prop key="hibernate.jdbc.use_get_generated_keys">true</prop>
+                <prop key="hibernate.jdbc.use_scrollable_resultset">true</prop>
+
+                <prop key="hibernate.current_session_context_class">jta</prop>
+                <!-- <prop key="hibernate.transaction.factory_class">com.atomikos.icatch.jta.hibernate3.AtomikosJTATransactionFactory</prop> -->
+                
+                <prop key="hibernate.transaction.manager_lookup_class">com.atomikos.icatch.jta.hibernate3.TransactionManagerLookup
+                </prop>
+                
+                <prop key="hibernate.transaction.jta.platform">com.hack23.cia.service.data.impl.AtomikosJtaPlatform</prop>
+                
+                <prop key="hibernate.transaction.auto_close_session">false</prop>
+
+                <prop key="hibernate.cache.use_minimal_puts">true</prop>
+                <prop key="hibernate.cache.use_query_cache">true</prop>
+                <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                <prop key="hibernate.cache.use_structured_entries">true</prop>
+                <prop key="hibernate.cache.default_cache_concurrency_strategy">TRANSACTIONAL</prop>
+                <prop key="hibernate.cache.use_minimal_puts">true</prop>
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+                </prop>
+			</props>
+		</property>
+	</bean>
+
+<bean id="jmxLogAdministrator"
+ class="com.atomikos.icatch.admin.jmx.JmxLogAdministrator "/>
+
+
+	<bean id="userTransactionService" class="com.atomikos.icatch.config.UserTransactionServiceImp"
+		init-method="init" destroy-method="shutdownForce">
+		<constructor-arg>
+			<!-- IMPORTANT: specify all Atomikos properties here -->
+			<props>
+				<prop key="com.atomikos.icatch.service">
+					com.atomikos.icatch.standalone.UserTransactionServiceFactory
+	            </prop>
+			</props>
+		</constructor-arg>
+		<property name="initialLogAdministrators">
+        <list>
+            <ref bean="jmxLogAdministrator"/>
+        </list>
+    	</property>
+	</bean>
+
+	<bean id="AtomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager"
+		init-method="init" destroy-method="close" depends-on="userTransactionService">
+		<property name="forceShutdown" value="false" />
+	</bean>
+
+	<bean id="AtomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp"
+		depends-on="userTransactionService">
+		<property name="transactionTimeout" value="30000" />
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.transaction.jta.JtaTransactionManager"
+		depends-on="userTransactionService">
+		<property name="transactionManager" ref="AtomikosTransactionManager" />
+		<property name="userTransaction" ref="AtomikosUserTransaction" />
+	</bean>
+
+	<bean id="jmxTransactionService"
+      class="com.atomikos.icatch.admin.jmx.JmxTransactionService">
+	</bean>
+
+	<bean class="org.springframework.jmx.export.MBeanExporter">
+		<property name="autodetect" value="false" />
+		<property name="assembler">
+			<bean id="jmxAssembler"
+				class="org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler">
+				<property name="attributeSource">
+					<bean
+						class="org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource" />
+				</property>
+			</bean>
+		</property>
+		<property name="beans">
+			<map>
+				<!-- temp disabled hibernate 4.3.1  
+				<entry key="org.hibernate:name=cia-statistics">
+					<bean class="org.hibernate.jmx.StatisticsService">
+						<property name="statisticsEnabled" value="true" />
+						<property name="sessionFactory">
+							<bean id="entityManagerFactory.sessionFactory"
+								class="org.springframework.beans.factory.config.PropertyPathFactoryBean" />
+						</property>
+					</bean>
+				</entry>
+				-->
+				  <entry key="atomikos:name=tx-service">
+                    <ref bean="jmxTransactionService"/>
+                </entry>
+			</map>
+		</property>
+		 <property name="server">
+            <ref bean="mbeanServer"/>
+        </property>
+	</bean>
+
+
+	<bean id="ehCacheMBeanRegistration" class="net.sf.ehcache.management.ManagementService"
+		init-method="init">
+		<constructor-arg index="0" ref="dataCacheManager" />
+		<constructor-arg index="1" ref="mbeanServer" />
+		<constructor-arg index="2" value="true" />
+		<constructor-arg index="3" value="true" />
+		<constructor-arg index="4" value="true" />
+		<constructor-arg index="5" value="true" />
+		<constructor-arg index="6" value="true" />
+	</bean>
+
+	<bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean">
+		<property name="locateExistingServerIfPossible" value="true" />
+	</bean>
+
+	<tx:annotation-driven mode="proxy" transaction-manager="transactionManager" />
+
+	<context:annotation-config />
+	<context:spring-configured />
+	<context:component-scan base-package="com.hack23.cia" />
+
+</beans>

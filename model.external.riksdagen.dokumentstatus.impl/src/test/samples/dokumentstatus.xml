@@ -1,0 +1,303 @@
+<dokumentstatus xmlns="http://dokumentstatus.riksdagen.external.model.cia.hack23.com/impl">
+	<dokument>
+		<hangar_id>2312640</hangar_id>
+		<dok_id>GX01FiU35</dok_id>
+		<rm>2009/10</rm>
+		<beteckning>FiU35</beteckning>
+		<typ>bet</typ>
+		<subtyp>bet</subtyp>
+		<tempbeteckning />
+		<organ>FiU</organ>
+		<nummer>35</nummer>
+		<slutnummer>0</slutnummer>
+		<datum>2010-03-19 00:00:00</datum>
+		<publicerad>2010-03-19 13:01:01</publicerad>
+		<titel>Nyemission i SAS AB (publ)</titel>
+		<subtitel />
+		<status />
+		<dokument_url_text>http://data.riksdagen.se/dokument/GX01FiU35/text
+		</dokument_url_text>
+		<dokument_url_html>http://data.riksdagen.se/dokument/GX01FiU35
+		</dokument_url_html>
+		<dokumentstatus_url_xml>http://data.riksdagen.se/dokumentstatus/GX01FiU35
+		</dokumentstatus_url_xml>
+		<dokumentstatus_url_www>http://www.riksdagen.se/webbnav/?nid=3120&amp;dokid=GX01FiU35
+		</dokumentstatus_url_www>
+		<utskottsforslag_url_xml>http://data.riksdagen.se/utskottsforslag/GX01FiU35
+		</utskottsforslag_url_xml>
+	</dokument>
+	<dokaktivitet>
+		<aktivitet>
+			<kod>DEL</kod>
+			<namn>Dela i huset</namn>
+			<datum>2010-03-22 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>90</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>UPP</kod>
+			<namn>Upplaga tas emot</namn>
+			<datum>2010-03-22 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>80</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>TROWE</kod>
+			<namn>Trycklov till Gotab och webb</namn>
+			<datum>2010-03-19 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>70</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>TRY</kod>
+			<namn>Trycklov</namn>
+			<datum>2010-03-19 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>60</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>TRY</kod>
+			<namn>Trycklov</namn>
+			<datum>2010-03-19 00:00:00</datum>
+			<status>planerat</status>
+			<ordning>60</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>RES</kod>
+			<namn>Godkännande av reservationer</namn>
+			<datum>2010-03-19 00:00:00</datum>
+			<status>planerat</status>
+			<ordning>50</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>RES</kod>
+			<namn>Godkännande av reservationer</namn>
+			<datum>2010-03-18 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>50</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>JUS</kod>
+			<namn>Justering</namn>
+			<datum>2010-03-18 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>40</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>JUS</kod>
+			<namn>Justering</namn>
+			<datum>2010-03-18 00:00:00</datum>
+			<status>planerat</status>
+			<ordning>40</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>UBE</kod>
+			<namn>Under beredning</namn>
+			<datum>2010-03-16 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>30</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>UBE</kod>
+			<namn>Under beredning</namn>
+			<datum>2010-03-16 00:00:00</datum>
+			<status>planerat</status>
+			<ordning>30</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>YTT</kod>
+			<namn>Yttranden inkomna</namn>
+			<datum>2010-03-11 00:00:00</datum>
+			<status>planerat</status>
+			<ordning>2</ordning>
+			<process>beredning</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>RSKR</kod>
+			<namn>Utfärdande av riksdagsskrivelse</namn>
+			<datum>2010-03-25 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>6</ordning>
+			<process>avgorande</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>AVG</kod>
+			<namn>Avgörande</namn>
+			<datum>2010-03-25 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>5</ordning>
+			<process>avgorande</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>BES</kod>
+			<namn>Beslut</namn>
+			<datum>2010-03-25 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>4</ordning>
+			<process>avgorande</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>BEH</kod>
+			<namn>Behandling</namn>
+			<datum>2010-03-25 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>3</ordning>
+			<process>avgorande</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>BEH</kod>
+			<namn>Behandling</namn>
+			<datum>2010-03-25 00:00:00</datum>
+			<status>planerat</status>
+			<ordning>3</ordning>
+			<process>avgorande</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>B2</kod>
+			<namn>Bordläggning 2</namn>
+			<datum>2010-03-24 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>2</ordning>
+			<process>avgorande</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>B2</kod>
+			<namn>Bordläggning 2</namn>
+			<datum>2010-03-24 00:00:00</datum>
+			<status>planerat</status>
+			<ordning>2</ordning>
+			<process>avgorande</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>B1</kod>
+			<namn>Bordläggning 1</namn>
+			<datum>2010-03-23 00:00:00</datum>
+			<status>inträffat</status>
+			<ordning>1</ordning>
+			<process>avgorande</process>
+		</aktivitet>
+		<aktivitet>
+			<kod>B1</kod>
+			<namn>Bordläggning 1</namn>
+			<datum>2010-03-23 00:00:00</datum>
+			<status>planerat</status>
+			<ordning>1</ordning>
+			<process>avgorande</process>
+		</aktivitet>
+	</dokaktivitet>
+	<dokintressent>
+	</dokintressent>
+	<dokforslag>
+	</dokforslag>
+	<dokuppgift>
+		<uppgift>
+			<kod>bik</kod>
+			<namn>Beslut i korthet</namn>
+			<text>Regeringen vill att svenska staten deltar i flygbolaget SAS
+				nyemission med 1,1 miljarder kronor.
+				Det betyder att staten behåller sin ägarandel på 21,4 procent.
+
+				Samtidigt vill regeringen ha riksdagens mandat att i framtiden
+				minska ägandet i SAS. Det ska ske vid lämplig affärsmässig tidpunkt
+				och motiveras med att staten inte ska vara storägare på
+				konkurrensutsatta marknader.
+				Riksdagen sa ja till regeringens förslag.
+ </text>
+		</uppgift>
+		<uppgift>
+			<kod>rdbeslut</kod>
+			<namn>Riksdagens beslut</namn>
+			<text>Kammaren biföll utskottets förslag</text>
+		</uppgift>
+	</dokuppgift>
+	<dokbilaga>
+		<bilaga>
+			<filnamn>2009_10_FiU35.pdf</filnamn>
+			<filstorlek>186453</filstorlek>
+			<filtyp>pdf</filtyp>
+			<fil_url>http://data.riksdagen.se/fil/FDD60AE5-D0DD-44CC-93D9-D41C190CA309
+			</fil_url>
+		</bilaga>
+		<bilaga>
+			<filnamn>Content.html</filnamn>
+			<filstorlek>108590</filstorlek>
+			<filtyp>html</filtyp>
+			<fil_url>http://data.riksdagen.se/fil/70A3991E-9B03-4470-8740-9ADD5C460504
+			</fil_url>
+		</bilaga>
+		<bilaga>
+			<filnamn>Frame.html</filnamn>
+			<filstorlek>545</filstorlek>
+			<filtyp>html</filtyp>
+			<fil_url>http://data.riksdagen.se/fil/BD7355CE-2D51-4E80-B069-480B77B63099
+			</fil_url>
+		</bilaga>
+		<bilaga>
+			<filnamn>Style.html</filnamn>
+			<filstorlek>7658</filstorlek>
+			<filtyp>html</filtyp>
+			<fil_url>http://data.riksdagen.se/fil/CDBD399F-9906-456B-BAC6-17B0A74C0014
+			</fil_url>
+		</bilaga>
+		<bilaga>
+			<filnamn>Toc.html</filnamn>
+			<filstorlek>6932</filstorlek>
+			<filtyp>html</filtyp>
+			<fil_url>http://data.riksdagen.se/fil/405F0058-EABD-44DF-8831-7705352ACE2C
+			</fil_url>
+		</bilaga>
+	</dokbilaga>
+	<dokreferens>
+		<referens>
+			<referenstyp>protkollbeslut</referenstyp>
+			<uppgift />
+			<ref_dokid>GX0995</ref_dokid>
+		</referens>
+		<referens>
+			<referenstyp>protokolldebatt</referenstyp>
+			<uppgift />
+			<ref_dokid>GX0995</ref_dokid>
+		</referens>
+		<referens>
+			<referenstyp>riksdagsskrivelse</referenstyp>
+			<uppgift />
+			<ref_dokid>GX0K220</ref_dokid>
+		</referens>
+		<referens>
+			<referenstyp>behandlar</referenstyp>
+			<uppgift>proposition 2009/10:121 Nyemission i SAS AB (publ)</uppgift>
+			<ref_dokid>GX03121</ref_dokid>
+		</referens>
+		<referens>
+			<referenstyp>behandlar</referenstyp>
+			<uppgift>motion 2009/10:Fi5 av Thomas Östros m.fl.
+				(s)&lt;br/&gt;Nyemission i SAS AB (publ)</uppgift>
+			<ref_dokid>GX02Fi5</ref_dokid>
+		</referens>
+		<referens>
+			<referenstyp>behandlar</referenstyp>
+			<uppgift>motion 2009/10:Fi6 av Ulla Andersson m.fl.
+				(v)&lt;br/&gt;Nyemission i SAS AB (publ)</uppgift>
+			<ref_dokid>GX02Fi6</ref_dokid>
+		</referens>
+		<referens>
+			<referenstyp>behandlar</referenstyp>
+			<uppgift>motion 2009/10:Fi7 av Mats Pertoft m.fl.
+				(mp)&lt;br/&gt;Nyemission i SAS AB (publ)</uppgift>
+			<ref_dokid>GX02Fi7</ref_dokid>
+		</referens>
+	</dokreferens>
+	<dokkategori>
+	</dokkategori>
+</dokumentstatus>

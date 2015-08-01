@@ -1,0 +1,206 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:data="http://document.data.application.internal.model.cia.hack23.com/impl"
+	jaxb:extensionBindingPrefixes="xjc hj orm" jaxb:version="2.0"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified"
+	targetNamespace="http://document.data.application.internal.model.cia.hack23.com/impl">
+
+	<xsd:complexType name="ViewRiksdagenPoliticianDocument">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="VIEW_RIKSDAGEN_POLITICIAN_DOCUMENT" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+					</xsd:documentation>
+					<xsd:appinfo>
+						<hj:id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="docId" type="xsd:string" />
+			<xsd:element name="documentType" type="xsd:string" />
+			<xsd:element name="label" type="xsd:string" />
+			<xsd:element name="madePublicDate" type="xsd:date" />
+			<xsd:element name="org" type="xsd:string" />
+			<xsd:element name="numberValue" type="xsd:integer"
+				nillable="true" />
+			<xsd:element name="rm" type="xsd:string" />
+			<xsd:element name="status" type="xsd:string" />
+			<xsd:element name="subTitle" type="xsd:string" />
+			<xsd:element name="subType" type="xsd:string" />
+			<xsd:element name="tempLabel" type="xsd:string" />
+			<xsd:element name="title" type="xsd:string" />
+			<xsd:element name="roleDescription" type="xsd:string" />
+			<xsd:element name="personReferenceId" type="xsd:string" />
+			<xsd:element name="referenceName" type="xsd:string" />
+			<xsd:element name="partyShortCode" type="xsd:string" />
+			<xsd:element name="orderNumber" type="xsd:int" nillable="true" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+
+	<xsd:complexType name="RiksdagenDocumentTypeSummaryEmbeddedId">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:embeddable />
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="public_date" type="xsd:string" />
+			<xsd:element name="document_type" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ViewRiksdagenDocumentTypeDailySummary">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Document_Type_Daily_Summary" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:RiksdagenDocumentTypeSummaryEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="total" type="xsd:long" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="RiksdagenDocumentPersonSummaryEmbeddedId">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:embeddable />
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="public_date" type="xsd:date" />
+			<xsd:element name="person_id" type="xsd:string" />
+			<xsd:element name="document_type" type="xsd:string" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ViewRiksdagenPoliticianDocumentDailySummary">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Politician_Document_Daily_Summary" />
+
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:RiksdagenDocumentPersonSummaryEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="total" type="xsd:long" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="RiksdagenDocumentPartySummaryEmbeddedId">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:embeddable />
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="public_date" type="xsd:date" />
+			<xsd:element name="party_short_code" type="xsd:string" />
+			<xsd:element name="document_type" type="xsd:string" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ViewRiksdagenPartyDocumentDailySummary">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Party_Document_Daily_Summary" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:RiksdagenDocumentPartySummaryEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="total" type="xsd:long" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="RiksdagenDocumentOrgSummaryEmbeddedId">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:embeddable />
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="public_date" type="xsd:string" />
+			<xsd:element name="org" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ViewRiksdagenOrgDocumentDailySummary">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="View_Riksdagen_Org_Document_Daily_Summary" />
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+
+		<xsd:sequence>
+			<xsd:element name="embeddedId"
+				type="data:RiksdagenDocumentOrgSummaryEmbeddedId">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<hj:embedded-id />
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="document_type" type="xsd:string" />
+			<xsd:element name="total" type="xsd:long" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>
+

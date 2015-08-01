@@ -1,0 +1,14 @@
+#! /bin/bash
+
+
+echo postinst
+a2enmod proxy_http
+a2enmod ssl
+a2enmod rewrite
+a2enmod headers
+chkrootkit
+tiger
+psad -S
+logwatch
+
+exit 0
