@@ -1,7 +1,7 @@
 analyseLocally=true
 eclipse.preferences.version=1
 extraProperties=sonar.java.coveragePlugin\=jacoco\r\nsonar.jdbc.username\=sonar\r\nsonar.jacoco.reportPath\=/home/pether/git/cia/service.impl/../parent-pom/target/jacoco-ut.exe\r\nsonar.jdbc.driver\=org.postgresql.Driver\r\nsonar.host.url\=http\://localhost\:9000\r\nsonar.jdbc.password\=sonar\r\nsonar.jdbc.url\=jdbc\:postgresql\://localhost/sonar\r\nsonar.sources\=src/main\r\nsonar.dynamicAnalysis\=reuseReports
-lastAnalysisDate=1430929874621
+lastAnalysisDate=1438538628000
 projectArtifactId=service.impl
 projectBranch=
 projectGroupId=com.hack23.cia

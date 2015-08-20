@@ -34,6 +34,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import org.hibernate.CacheMode;
 
 import com.hack23.cia.service.data.api.AbstractGenericDAO;
+import com.hack23.cia.service.data.impl.util.LoadHelper;
 
 /**
  * The Class AbstractGenericDAOImpl.
@@ -78,7 +79,7 @@ implements AbstractGenericDAO<T, ID> {
 	 */
 	protected final void addCacheHints(final TypedQuery<?> typedQuery, final String comment) {
 		typedQuery.setHint("org.hibernate.cacheMode", CacheMode.NORMAL);
-		typedQuery.setHint("org.hibernate.cacheable", true);
+		typedQuery.setHint("org.hibernate.cacheable",Boolean.TRUE);
 		typedQuery.setHint("org.hibernate.comment", comment);
 	}
 
@@ -120,7 +121,7 @@ implements AbstractGenericDAO<T, ID> {
 		if (resultList.isEmpty()) {
 			return null;
 		} else {
-			return resultList.get(0);
+			return LoadHelper.recursiveInitliaze(resultList.get(0));
 		}
 	}
 
@@ -254,7 +255,7 @@ implements AbstractGenericDAO<T, ID> {
 	 */
 	@Override
 	public T load(final ID id) {
-		return getEntityManager().find(getPersistentClass(), id);
+		return LoadHelper.recursiveInitliaze(getEntityManager().find(getPersistentClass(), id));
 	}
 
 	/*

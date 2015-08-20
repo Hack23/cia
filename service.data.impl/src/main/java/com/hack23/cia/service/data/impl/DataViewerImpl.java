@@ -18,14 +18,7 @@
  */
 package com.hack23.cia.service.data.impl;
 
-import java.beans.PropertyDescriptor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.UndeclaredThrowableException;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.IdentityHashMap;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
@@ -40,12 +33,11 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.SingularAttribute;
 
-import org.apache.commons.beanutils.PropertyUtils;
 import org.hibernate.CacheMode;
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
 
 import com.hack23.cia.service.data.api.DataViewer;
+import com.hack23.cia.service.data.impl.util.LoadHelper;
 
 /**
  * The Class DataViewerImpl.
@@ -71,7 +63,7 @@ public final class DataViewerImpl implements DataViewer {
 	 */
 	private static void addCacheHints(final TypedQuery<?> typedQuery, final String comment) {
 		typedQuery.setHint("org.hibernate.cacheMode", CacheMode.NORMAL);
-		typedQuery.setHint("org.hibernate.cacheable", Boolean.valueOf(true));
+		typedQuery.setHint("org.hibernate.cacheable", Boolean.TRUE);
 		typedQuery.setHint("org.hibernate.comment", comment);
 	}
 
@@ -103,7 +95,7 @@ public final class DataViewerImpl implements DataViewer {
 		if (resultList.isEmpty()) {
 			return null;
 		} else {
-			return recursiveInitliaze(resultList.get(0));
+			return LoadHelper.recursiveInitliaze(resultList.get(0));
 		}
 	}
 
@@ -147,7 +139,7 @@ public final class DataViewerImpl implements DataViewer {
 	 */
 	@Override
 	public <T> T load(final Class<T> clazz,final Object id) {
-		return recursiveInitliaze(entityManager.find(clazz, id));
+		return LoadHelper.recursiveInitliaze(entityManager.find(clazz, id));
 	}
 
 	/* (non-Javadoc)
@@ -184,7 +176,7 @@ public final class DataViewerImpl implements DataViewer {
 		if (resultList.size() >0) {
 			final List<T> findListByProperty = findListByProperty(clazz,property,resultList.get(0));
 			if (findListByProperty.size() > 0) {
-				return recursiveInitliaze(findListByProperty.get(0));
+				return LoadHelper.recursiveInitliaze(findListByProperty.get(0));
 			}
 		}
 
@@ -258,85 +250,6 @@ public final class DataViewerImpl implements DataViewer {
 		return typedQuery.getResultList();
 	}
 
-
-	/**
-	 * Recursive initliaze.
-	 *
-	 * @param <T>
-	 *            the generic type
-	 * @param obj
-	 *            the obj
-	 * @return the t
-	 */
-	public <T> T recursiveInitliaze(final T obj) {
-		if (obj != null) {
-
-			final Set<Object> dejaVu = Collections.newSetFromMap(new IdentityHashMap<Object, Boolean>());
-			try {
-				recursiveInitliaze(obj, dejaVu);
-			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-				handleReflectionException(e);
-			}
-		}
-		return obj;
-	}
-
-	/**
-	 * Recursive initliaze.
-	 *
-	 * @param obj
-	 *            the obj
-	 * @param dejaVu
-	 *            the deja vu
-	 * @throws IllegalAccessException
-	 *             the illegal access exception
-	 * @throws InvocationTargetException
-	 *             the invocation target exception
-	 * @throws NoSuchMethodException
-	 *             the no such method exception
-	 */
-	private void recursiveInitliaze(final Object obj, final Set<Object> dejaVu) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-		if (dejaVu.contains(this)) {
-			return;
-		} else {
-			dejaVu.add(this);
-
-			if (!Hibernate.isInitialized(obj)) {
-				Hibernate.initialize(obj);
-			}
-			final PropertyDescriptor[] properties = PropertyUtils.getPropertyDescriptors(obj);
-			for (final PropertyDescriptor propertyDescriptor : properties) {
-				final Object origProp = PropertyUtils.getProperty(obj, propertyDescriptor.getName());
-				if (origProp != null) {
-					this.recursiveInitliaze(origProp, dejaVu);
-				}
-				if (origProp instanceof Collection && origProp != null) {
-					for (final Object item : (Collection<?>) origProp) {
-						this.recursiveInitliaze(item, dejaVu);
-					}
-				}
-			}
-		}
-	}
-
-	/**
-	 * Handle reflection exception.
-	 *
-	 * @param ex
-	 *            the ex
-	 */
-	private static void handleReflectionException(final Exception ex) {
-		if (ex instanceof NoSuchMethodException) {
-			throw new IllegalStateException("Method not found: " + ex.getMessage());
-		}
-		if (ex instanceof IllegalAccessException) {
-			throw new IllegalStateException("Could not access method: " + ex.getMessage());
-		}
-		if (ex instanceof RuntimeException) {
-			throw (RuntimeException) ex;
-		}
-		throw new UndeclaredThrowableException(ex);
-	}
 
 	/* (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.DataViewer#findListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)

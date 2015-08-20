@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: CitizenIntelligenceAgencyServer.java 6118 2015-07-31 17:41:55Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/citizen-intelligence-agency/src/test/java/com/hack23/cia/systemintegrationtest/CitizenIntelligenceAgencyServer.java $
+ *	$Id$
+ *  $HeadURL$
 */
 
 package com.hack23.cia.systemintegrationtest;
@@ -56,22 +56,9 @@ public class CitizenIntelligenceAgencyServer {
 	 *            the arguments
 	 */
 	public static void main(final String[] args) {
-		System.setProperty("logback.configurationFile",
-				"src/main/resources/logback.xml");
-		System.setProperty("slf4j", "true");
-		System.setProperty("org.eclipse.jetty.util.log.class",
-				"org.eclipse.jetty.util.log.Slf4jLog");
-		LogManager.getLogManager().reset();
-		SLF4JBridgeHandler.install();
-		java.util.logging.Logger.getLogger("global").setLevel(Level.FINEST);
 
 		final CitizenIntelligenceAgencyServer testServer = new CitizenIntelligenceAgencyServer();
-		try {
-			testServer.init();
-			testServer.start();
-		} catch (final Exception e) {
-			LOGGER.error("Application Exception", e);
-		}
+		testServer.startServer();
 	}
 
 	/**
@@ -79,27 +66,21 @@ public class CitizenIntelligenceAgencyServer {
 	 */
 	public void startServer() {
 		try {
-			System.setProperty("logback.configurationFile",
-					"src/main/resources/logback.xml");
-			System.setProperty("slf4j", "true");
-			System.setProperty("org.eclipse.jetty.util.log.class",
-					"org.eclipse.jetty.util.log.Slf4jLog");
-			LogManager.getLogManager().reset();
-			SLF4JBridgeHandler.install();
-			java.util.logging.Logger.getLogger("global").setLevel(Level.FINEST);
-
+			initLogger();
 			init();
 			start();
+			while (!server.isStarted()) {
+				Thread.sleep(50);
+			}
 		} catch (final Exception e) {
 			LOGGER.error("Application Exception", e);
 		}
 	}
 
 	/**
-	 * Instantiates a new citizen intelligence agency server.
+	 * Inits the logger.
 	 */
-	public CitizenIntelligenceAgencyServer() {
-		super();
+	private static void initLogger() {
 		System.setProperty("logback.configurationFile",
 				"src/main/resources/logback.xml");
 		System.setProperty("slf4j", "true");
@@ -108,6 +89,14 @@ public class CitizenIntelligenceAgencyServer {
 		LogManager.getLogManager().reset();
 		SLF4JBridgeHandler.install();
 		java.util.logging.Logger.getLogger("global").setLevel(Level.FINEST);
+	}
+
+	/**
+	 * Instantiates a new citizen intelligence agency server.
+	 */
+	public CitizenIntelligenceAgencyServer() {
+		super();
+		initLogger();
 	}
 
 	/** The initialised. */
@@ -183,5 +172,9 @@ public class CitizenIntelligenceAgencyServer {
 	 */
 	public final void stop() throws Exception {
 		server.stop();
+		while (!server.isStopped()) {
+			Thread.sleep(50);
+		}
+
 	}
 }

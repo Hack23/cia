@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -38,16 +38,13 @@ public final class RegisterUserService extends
 
 	/**
 	 * Instantiates a new register user service.
-	 *
-	 * @param clazz
-	 *            the clazz
 	 */
 	public RegisterUserService() {
 		super(RegisterUserRequest.class);
 	}
 
 	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.impl.common.BusinessService#processService(com.hack23.cia.service.api.ServiceRequest)
+	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
 	 */
 	@Override
 	public RegisterUserResponse processService(

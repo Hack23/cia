@@ -4,6 +4,5 @@
         <wb-resource deploy-path="/" source-path="/target/metamodel"/>
         <wb-resource deploy-path="/" source-path="/src/main/xsd"/>
         <wb-resource deploy-path="/" source-path="/src/main/xjb"/>
-        <wb-resource deploy-path="/" source-path="/target/generated-sources/hyperjaxb3"/>
     </wb-module>
 </project-modules>

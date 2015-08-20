@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: ArchitectureRuleTest.java 6118 2015-07-31 17:41:55Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/citizen-intelligence-agency/src/test/java/com/hack23/cia/architecturerules/ArchitectureRuleTest.java $
+ *	$Id$
+ *  $HeadURL$
 */
 
 package com.hack23.cia.architecturerules;

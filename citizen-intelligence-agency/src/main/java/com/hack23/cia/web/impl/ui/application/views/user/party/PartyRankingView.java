@@ -13,12 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: PartyRankingView.java 6118 2015-07-31 17:41:55Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/citizen-intelligence-agency/src/main/java/com/hack23/cia/web/impl/ui/application/views/user/party/PartyRankingView.java $
+ *	$Id$
+ *  $HeadURL$
 */
 package com.hack23.cia.web.impl.ui.application.views.user.party;
-
-import java.util.Date;
 
 import javax.annotation.PostConstruct;
 
@@ -32,17 +30,14 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.TableColumnResizeListener;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.tablefactory.TableFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView;
-import com.vaadin.data.Item;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
-import com.vaadin.ui.Link;
-import com.vaadin.ui.Table;
 import com.vaadin.ui.TextArea;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -74,6 +69,11 @@ public final class PartyRankingView extends AbstractRankingView {
 	@Autowired
 	private transient MenuItemFactory menuItemFactory;
 
+	/** The table factory. */
+	@Autowired
+	private transient TableFactory tableFactory;
+
+
 
 	/**
 	 * Post construct.
@@ -94,57 +94,6 @@ public final class PartyRankingView extends AbstractRankingView {
 
 
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createTable()
-	 */
-	@Override
-	protected Component createTable() {
-		final DataContainer<ViewRiksdagenParty, String> dataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenParty.class);
-
-
-		final Table table = new Table("Parties");
-		// Define two columns for the built-in container
-		table.addContainerProperty("Rank", Integer.class, null);
-		table.addContainerProperty("Name", String.class, null);
-		table.addContainerProperty("Party Code", String.class, null);
-		table.addContainerProperty("Total Members", Long.class, null);
-		table.addContainerProperty("Current Name Registered Date",
-				Date.class, null);
-		table.addContainerProperty("View details", Link.class, null);
-
-		int rank = 1;
-		for (final ViewRiksdagenParty data : dataContainer.getAll()) {
-
-
-			// Add a row the hard way
-			final Object newItemId = table.addItem();
-			final Item row1 = table.getItem(newItemId);
-			row1.getItemProperty("Rank").setValue(rank++);
-			row1.getItemProperty("Name").setValue(data.getPartyName());
-			row1.getItemProperty("Party Code").setValue(data.getPartyId());
-			row1.getItemProperty("Total Members").setValue(data.getHeadCount());
-			row1.getItemProperty("Current Name Registered Date").setValue(
-					data.getRegisteredDate());
-
-			row1.getItemProperty("View details").setValue(
-					pageLinkFactory.addPartyPageLink(data));
-
-		}
-
-		// Allow selecting items from the table.
-		table.setSelectable(true);
-		table.setSizeFull();
-
-		// Send changes in selection immediately to server.
-		table.setImmediate(true);
-
-		table.addColumnResizeListener(new TableColumnResizeListener(table));
-		table.setColumnCollapsingAllowed(true);
-
-		table.setPageLength(table.size());
-		return table;
-	}
 
 	/* (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createDescription()
@@ -285,6 +234,14 @@ public final class PartyRankingView extends AbstractRankingView {
 		}
 
 		return chartLayout;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createTable()
+	 */
+	@Override
+	protected Component createTable() {
+		return tableFactory.createPartiesTable();
 	}
 
 

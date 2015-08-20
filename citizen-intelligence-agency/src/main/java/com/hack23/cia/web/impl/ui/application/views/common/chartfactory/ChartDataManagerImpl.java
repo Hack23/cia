@@ -35,6 +35,7 @@ import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYaxis;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
 import org.dussan.vaadin.dcharts.data.DataSeries;
+import org.dussan.vaadin.dcharts.helpers.JsonHelper;
 import org.dussan.vaadin.dcharts.metadata.LegendPlacements;
 import org.dussan.vaadin.dcharts.metadata.SeriesToggles;
 import org.dussan.vaadin.dcharts.metadata.TooltipAxes;
@@ -59,7 +60,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
 import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId;
@@ -93,7 +93,6 @@ import com.hack23.cia.service.api.DataContainer;
  * The Class ChartDataManagerImpl.
  */
 @Service
-@Transactional
 public final class ChartDataManagerImpl implements ChartDataManager {
 
 	/** The Constant LOGGER. */
@@ -771,8 +770,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	@Override
 	public DCharts createDecisionTypeChart(final String org) {
 
-
-
 		final String dateFormatPatter = "dd-MMM-yyyy";
 
 		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
@@ -780,14 +777,12 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 
 		final DataSeries dataSeries = new DataSeries();
-
 		final Series series = new Series();
-
-
 
 		final Map<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> allMap = getCommitteeDecisionTypeOrgMap();
 
 		final List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary> itemList = allMap.get(org.toUpperCase(Locale.ENGLISH).replace("_", "").trim());
+
 
 		if (itemList != null) {
 
@@ -800,20 +795,24 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 
 			for(final String key: map.keySet()) {
+				if (!"".equals(key)) {
 
-				series.addSeries(new XYseries().setLabel(key));
 
-				dataSeries.newSeries();
-				final List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary> list = map.get(key.toUpperCase(Locale.ENGLISH));
-				for (final ViewRiksdagenCommitteeDecisionTypeOrgDailySummary item : list) {
-					if (item !=null) {
-						dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getDecisionDate()),item.getTotal());
+					final XYseries label = new XYseries();
+					label.setLabel(key);
+
+					series.addSeries(label);
+
+					dataSeries.newSeries();
+					final List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary> list = map.get(key.toUpperCase(Locale.ENGLISH));
+					for (final ViewRiksdagenCommitteeDecisionTypeOrgDailySummary item : list) {
+						if (item !=null) {
+							dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getDecisionDate()),item.getTotal());
+						}
 					}
 				}
-
 			}
 		}
-
 
 
 		return new DCharts()

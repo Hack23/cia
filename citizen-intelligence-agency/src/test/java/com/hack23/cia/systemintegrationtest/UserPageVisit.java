@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: UserPageVisit.java 6118 2015-07-31 17:41:55Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/citizen-intelligence-agency/src/test/java/com/hack23/cia/systemintegrationtest/UserPageVisit.java $
+ *	$Id$
+ *  $HeadURL$
 */
 package com.hack23.cia.systemintegrationtest;
 
@@ -118,8 +118,8 @@ public class UserPageVisit extends Assert {
 
 		String text = driver.findElement(By.tagName("body")).getText();
 		assertNotNull(text);
-		assertFalse("Page contains exception",text.contains("Exception"));
-		assertFalse("Page contains widget exception",text.contains("Widget"));
+		assertFalse("Page contains exception, url:" + url ,text.contains("Exception"));
+		assertFalse("Page contains widget exception, url:" + url,text.contains("Widget"));
 
 		assertEquals(browser, url,
 				driver.getCurrentUrl());

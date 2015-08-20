@@ -15,8 +15,12 @@
 		<config>java:com.hack23.cia.web.impl.ui.application.views.admin.datasummary.AdminDataSummaryView</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.party.PartyRankingView</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactoryImpl</config>
+		<config>external://home/pether/.m2/repository/com/hack23/cia/service.data.impl/2011.07.23-SNAPSHOT/service.data.impl-2011.07.23-SNAPSHOT.jar!/META-INF/application-context-service-data.xml</config>
+		<config>external://home/pether/.m2/repository/com/hack23/cia/service.component.agent.impl/2011.07.23-SNAPSHOT/service.component.agent.impl-2011.07.23-SNAPSHOT.jar!/META-INF/cia-service-component-agent.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactoryImpl</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.common.tablefactory.TableFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactoryImpl</config>
 	</autoconfigs>
 	<configSets>

@@ -31,6 +31,7 @@ import org.springframework.stereotype.Repository;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData_;
 import com.hack23.cia.service.data.api.PersonDataDAO;
+import com.hack23.cia.service.data.impl.util.LoadHelper;
 
 /**
  * The Class PersonDataDAOImpl.
@@ -78,16 +79,7 @@ public final class PersonDataDAOImpl extends AbstractGenericDAOImpl<PersonData, 
 
 	@Override
 	public PersonData load(final String id) {
-		final PersonData personData = super.load(id);
-		if (personData !=null) {
-			Hibernate.initialize(personData.getPersonAssignmentData());
-			Hibernate.initialize(personData.getPersonAssignmentData().getAssignmentList());
-
-			Hibernate.initialize(personData.getPersonDetailData());
-			Hibernate.initialize(personData.getPersonDetailData().getDetailList());
-		}
-
-		return personData;
+		return LoadHelper.recursiveInitliaze(super.load(id));
 	}
 
 }

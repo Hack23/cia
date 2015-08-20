@@ -13,12 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: MinistryRankingView.java 6118 2015-07-31 17:41:55Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/citizen-intelligence-agency/src/main/java/com/hack23/cia/web/impl/ui/application/views/user/goverment/MinistryRankingView.java $
+ *	$Id$
+ *  $HeadURL$
 */
 package com.hack23.cia.web.impl.ui.application.views.user.goverment;
-
-import java.util.Date;
 
 import javax.annotation.PostConstruct;
 
@@ -33,17 +31,14 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.TableColumnResizeListener;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.tablefactory.TableFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView;
-import com.vaadin.data.Item;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
-import com.vaadin.ui.Link;
-import com.vaadin.ui.Table;
 import com.vaadin.ui.TextArea;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -75,6 +70,9 @@ public final class MinistryRankingView extends AbstractRankingView {
 	@Autowired
 	private transient MenuItemFactory menuItemFactory;
 
+	/** The table factory. */
+	@Autowired
+	private transient TableFactory tableFactory;
 
 	/**
 	 * Post construct.
@@ -108,70 +106,6 @@ public final class MinistryRankingView extends AbstractRankingView {
 		return totalCommitteeRankinglistLabel;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createTable()
-	 */
-	@Override
-	protected Component createTable() {
-		final DataContainer<ViewRiksdagenMinistry, String> dataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenMinistry.class);
-
-		final Table table = new Table("Committees");
-		// Define two columns for the built-in container
-		table.addContainerProperty("Rank", Integer.class, null);
-		table.addContainerProperty("Name", String.class, null);
-		table.addContainerProperty("Current Members", Long.class, null);
-
-		table.addContainerProperty("Average Member duration", String.class, null);
-		table.addContainerProperty("Total Politician Days", Long.class, null);
-
-		table.addContainerProperty("Total Members", Long.class, null);
-		table.addContainerProperty("First Assignment Date", Date.class,
-				null);
-		table.addContainerProperty("Last Assignment Date", Date.class, null);
-		table.addContainerProperty("Active", Boolean.class, null);
-		table.addContainerProperty("View details", Link.class, null);
-
-		int rank = 1;
-		for (final ViewRiksdagenMinistry data : dataContainer.getAll()) {
-
-
-			// Add a row the hard way
-			final Object newItemId = table.addItem();
-			final Item row1 = table.getItem(newItemId);
-			row1.getItemProperty("Rank").setValue(rank++);
-			row1.getItemProperty("Name").setValue(data.getNameId());
-
-			row1.getItemProperty("Current Members").setValue(data.getCurrentMemberSize());
-
-			row1.getItemProperty("Average Member duration").setValue(convertToYearsString(data.getTotalDaysServed() / data.getTotalAssignments()));
-
-			row1.getItemProperty("Total Politician Days").setValue(data.getTotalDaysServed());
-			row1.getItemProperty("Total Members").setValue(
-					data.getTotalAssignments());
-			row1.getItemProperty("First Assignment Date").setValue(
-					data.getFirstAssignmentDate());
-			row1.getItemProperty("Last Assignment Date").setValue(
-					data.getLastAssignmentDate());
-			row1.getItemProperty("Active").setValue(data.isActive());
-			row1.getItemProperty("View details").setValue(
-					pageLinkFactory.addMinistryPageLink(data));
-
-		}
-
-		// Allow selecting items from the table.
-		table.setSelectable(true);
-		table.setSizeFull();
-
-		// Send changes in selection immediately to server.
-		table.setImmediate(true);
-
-		table.addColumnResizeListener(new TableColumnResizeListener(table));
-		table.setColumnCollapsingAllowed(true);
-
-		table.setPageLength(table.size());
-		return table;
-	}
 
 
 
@@ -292,6 +226,16 @@ public final class MinistryRankingView extends AbstractRankingView {
 	@Override
 	protected void createMenuBar() {
 		menuItemFactory.createMinistryRankingMenuBar(getBarmenu());
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createTable()
+	 */
+	@Override
+	protected Component createTable() {
+		return tableFactory.createMinistryTable();
 	}
 
 

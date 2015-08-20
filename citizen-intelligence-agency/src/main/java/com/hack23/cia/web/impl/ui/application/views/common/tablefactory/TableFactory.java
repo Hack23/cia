@@ -29,4 +29,25 @@ public interface TableFactory {
 	 */
 	Table createDataSummaryTable();
 
+	/**
+	 * Creates a new Table object.
+	 *
+	 * @return the table
+	 */
+	Table createPartiesTable();
+
+	/**
+	 * Creates a new Table object.
+	 *
+	 * @return the table
+	 */
+	Table createMinistryTable();
+
+	/**
+	 * Creates a new Table object.
+	 *
+	 * @return the table
+	 */
+	Table createCommitteesTable();
+
 }

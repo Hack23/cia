@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: PoliticianView.java 6118 2015-07-31 17:41:55Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/citizen-intelligence-agency/src/main/java/com/hack23/cia/web/impl/ui/application/views/user/politician/PoliticianView.java $
+ *	$Id$
+ *  $HeadURL$
 */
 package com.hack23.cia.web.impl.ui.application.views.user.politician;
 
@@ -38,6 +38,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.tltv.gantt.Gantt;
 import org.tltv.gantt.client.shared.Resolution;
 import org.tltv.gantt.client.shared.Step;
@@ -79,6 +81,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope("prototype")
 @VaadinView(value = PoliticianView.NAME, cached = true)
+@Transactional(propagation=Propagation.NESTED)
 public final class PoliticianView extends AbstractPersonView {
 
 
