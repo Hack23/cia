@@ -171,6 +171,7 @@ public class CitizenIntelligenceAgencyServer {
 	 *             the exception
 	 */
 	public final void stop() throws Exception {
+		Thread.sleep(1000);
 		server.stop();
 		while (!server.isStopped()) {
 			Thread.sleep(50);
