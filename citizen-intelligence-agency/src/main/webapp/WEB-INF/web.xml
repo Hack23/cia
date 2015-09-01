@@ -25,7 +25,7 @@
 			classpath:META-INF/application-context-service.xml
 		</param-value>
 	</context-param>
-	
+
 	<listener>
     	<listener-class>org.atmosphere.cpr.SessionSupport</listener-class>
 	</listener>
@@ -33,8 +33,8 @@
 	    <param-name>org.atmosphere.cpr.sessionSupport</param-name>
 	    <param-value>true</param-value>
 	</context-param>
-	
-<!--  
+
+<!--
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy
@@ -45,6 +45,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 -->
+
 	<listener>
 		<listener-class>net.bull.javamelody.SessionListener</listener-class>
 	</listener>
@@ -77,11 +78,11 @@
 		<filter-name>monitoring</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
-	<!-- temp disable web cache
+
+	<!-- temp disable web cache-->
 	<filter>
 		<filter-name>SimplePageCachingFilter</filter-name>
-		<filter-class>net.sf.ehcache.constructs.web.filter.SimplePageCachingFilter
+		<filter-class>com.hack23.cia.web.impl.ui.application.web.filter.CustomSimplePageCachingFilter
 		</filter-class>
 		<init-param>
 			<param-name>cacheName</param-name>
@@ -90,43 +91,24 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>/services/*</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>/VAADIN/*</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>/css/*</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-		<filter-mapping>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>/images/*</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-		<filter-mapping>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>/js/*</url-pattern>
+		<url-pattern>VAADIN/widgetsets/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
 
+	<filter-mapping>
+		<filter-name>SimplePageCachingFilter</filter-name>
+		<url-pattern>VAADIN/themes/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+<!--
 	<filter>
 		<filter-name>SimpleCachingHeadersPageCachingFilter</filter-name>
-		<filter-class>net.sf.ehcache.constructs.web.filter.SimpleCachingHeadersPageCachingFilter
+		<filter-class>com.hack23.cia.web.impl.ui.application.web.filter.CustomSimpleCachingHeadersPageCachingFilter
 		</filter-class>
 		<init-param>
 			<param-name>suppressStackTraces</param-name>
@@ -140,10 +122,21 @@
 
 	<filter-mapping>
 		<filter-name>SimpleCachingHeadersPageCachingFilter</filter-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>VAADIN/themes/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>SimpleCachingHeadersPageCachingFilter</filter-name>
+		<url-pattern>VAADIN/widgetsets/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
  -->
- 
+
 	<filter>
         <filter-name>hibernateFilter</filter-name>
         <filter-class>
@@ -154,7 +147,7 @@
 		<filter-name>hibernateFilter</filter-name>
 		<url-pattern>/</url-pattern>
 	</filter-mapping>
-	
+
 	<servlet>
 		<servlet-name>cia-webservices</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet

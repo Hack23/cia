@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -556,7 +556,7 @@ public final class PoliticianView extends AbstractPersonView {
 	 *            the map
 	 * @return the sorted set
 	 */
-	static SortedSet<Map.Entry<String, List<AssignmentData>>> entriesSortedByValues(
+	private static SortedSet<Map.Entry<String, List<AssignmentData>>> entriesSortedByValues(
 			final Map<String, List<AssignmentData>> map) {
 		final Comparator<? super Entry<String, List<AssignmentData>>> compare = new Comparator<Map.Entry<String, List<AssignmentData>>>() {
 
@@ -667,9 +667,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 				Collections.sort(assignments, compare);
 
-				final String subOrgType = "uppdrag";
 				final String parliamentType = "kammaruppdrag";
-				final boolean createFirstStep = true;
 				for (final AssignmentData assignmentData : assignments) {
 
 					String subStepName = "";

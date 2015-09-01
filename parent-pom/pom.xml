@@ -113,7 +113,7 @@
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.poi>3.13-beta1</cia.project.versions.poi>
-    <cia.project.versions.postgresql>9.4-1201-jdbc41</cia.project.versions.postgresql>
+    <cia.project.versions.postgresql>9.4-1202-jdbc42</cia.project.versions.postgresql>
     <!-- <cia.project.versions.easymock>3.1-SNAPSHOT</cia.project.versions.easymock> -->
     <cia.project.versions.easymock>3.3.1</cia.project.versions.easymock>
     <cia.project.versions.plexus.utils>3.0.22</cia.project.versions.plexus.utils>
@@ -131,7 +131,7 @@
     <!--<cia.project.versions.spring>3.0.4.RELEASE</cia.project.versions.spring> -->
     <!--<cia.project.versions.spring>3.1.1.RELEASE</cia.project.versions.spring>-->
     <!-- <cia.project.versions.spring>3.2.5.RELEASE</cia.project.versions.spring>-->
-    <cia.project.versions.spring>4.2.0.RELEASE</cia.project.versions.spring>
+    <cia.project.versions.spring>4.2.1.RELEASE</cia.project.versions.spring>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <!-- <cia.project.versions.hibernate>3.6.10.Final</cia.project.versions.hibernate> -->
     <cia.project.versions.hibernate>4.3.11.Final</cia.project.versions.hibernate>
@@ -748,7 +748,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
-          <version>1.4</version>
+          <version>1.4.1</version>
         </plugin>
         <plugin>
           <groupId>org.liquibase</groupId>
@@ -1476,7 +1476,7 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>findbugs-maven-plugin</artifactId>
-            <version>3.0.1</version>
+            <version>3.0.2</version>
             <inherited>true</inherited>
             <configuration>
               <onlyAnalyze>com.hack23.*</onlyAnalyze>

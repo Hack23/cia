@@ -52,7 +52,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemF
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ViewRiksdagenPoliticianDocumentPageItemClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.DocumentPersonReferenceDataPageItemClickListener;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
@@ -204,7 +204,6 @@ public final class DocumentView extends AbstractUserView {
 						if (documentStatusContainer != null && documentStatusContainer.getDocumentProposal() != null
 								&& documentStatusContainer.getDocumentProposal()
 								.getProposal() != null) {
-							final DocumentProposalData s;
 
 							addTextFields(panelContent,
 									new BeanItem<DocumentProposalData>(
@@ -356,7 +355,7 @@ public final class DocumentView extends AbstractUserView {
 											"orderNumber", "roleDescription" },
 											new String[] { "hjid" },
 											"personReferenceId",
-											new ViewRiksdagenPoliticianDocumentPageItemClickListener());
+											new DocumentPersonReferenceDataPageItemClickListener());
 							panelContent
 							.addComponent(documentPersonReferenceDataItemGrid);
 						}

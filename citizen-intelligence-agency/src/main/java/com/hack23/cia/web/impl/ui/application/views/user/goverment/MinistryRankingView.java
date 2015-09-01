@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -148,7 +148,7 @@ public final class MinistryRankingView extends AbstractRankingView {
 	 *
 	 * @return the data series
 	 */
-	DataSeries createChartTimeSeriesCurrentGovernment() {
+	private DataSeries createChartTimeSeriesCurrentGovernment() {
 		DataSeries dataSeries = new DataSeries();
 
 		final DataContainer<ViewRiksdagenParty, String> dataContainer = applicationManager
@@ -175,7 +175,7 @@ public final class MinistryRankingView extends AbstractRankingView {
 	 *
 	 * @return the data series
 	 */
-	DataSeries createChartTimeSeriesTotalDaysServedGovernment() {
+	private DataSeries createChartTimeSeriesTotalDaysServedGovernment() {
 		DataSeries dataSeries = new DataSeries();
 
 		final DataContainer<ViewRiksdagenParty, String> dataContainer = applicationManager

@@ -47,7 +47,7 @@ public class CitizenIntelligenceAgencyServer {
 	public static final int PORT = 8080;
 
 	/** The access url. */
-	public static String ACCESS_URL = "http://localhost:" + PORT + "/";
+	public static final String ACCESS_URL = "http://localhost:" + PORT + "/";
 
 	/**
 	 * The main method.
@@ -171,7 +171,7 @@ public class CitizenIntelligenceAgencyServer {
 	 *             the exception
 	 */
 	public final void stop() throws Exception {
-		Thread.sleep(1000);
+		Thread.sleep(8000);
 		server.stop();
 		while (!server.isStopped()) {
 			Thread.sleep(50);

@@ -4,10 +4,7 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="web-widgets-2011.07.23-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/web-widgets/web-widgets">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="dcharts-1.7.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dchart-master/dchart-master">
+        <dependent-module archiveName="service.external.riksdagen-2011.07.23-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/service.external.riksdagen/service.external.riksdagen">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="citizen-intelligence-agency"/>

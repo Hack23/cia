@@ -59,7 +59,7 @@ public class Parallelized extends Parameterized
 			executor.shutdown();
 			try
 			{
-				executor.awaitTermination(4, TimeUnit.MINUTES);
+				executor.awaitTermination(12, TimeUnit.MINUTES);
 			}
 			catch (final InterruptedException exc)
 			{

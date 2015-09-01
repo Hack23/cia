@@ -140,6 +140,12 @@ RiksdagenApi {
 
 	private static final String HTTP_VOTERINGLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL = "http://voteringlista.riksdagen.external.model.cia.hack23.com/impl";
 
+
+	// http://data.riksdagen.se/personlista/?iid=&fnamn=&enamn=&f_ar=&kn=&parti=&valkrets=&rdlstatus=alla&org=&utformat=xml&termlista=
+
+	// 1671 persons in data.riksdagen.
+
+
 	/** The Constant ID_KEY. */
 	private static final String ID_KEY = "${ID_KEY}";
 

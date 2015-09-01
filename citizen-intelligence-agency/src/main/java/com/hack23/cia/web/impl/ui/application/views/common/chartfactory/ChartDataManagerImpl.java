@@ -35,7 +35,6 @@ import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYaxis;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
 import org.dussan.vaadin.dcharts.data.DataSeries;
-import org.dussan.vaadin.dcharts.helpers.JsonHelper;
 import org.dussan.vaadin.dcharts.metadata.LegendPlacements;
 import org.dussan.vaadin.dcharts.metadata.SeriesToggles;
 import org.dussan.vaadin.dcharts.metadata.TooltipAxes;
@@ -60,6 +59,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
 import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId;
@@ -93,6 +94,7 @@ import com.hack23.cia.service.api.DataContainer;
  * The Class ChartDataManagerImpl.
  */
 @Service
+@Transactional(propagation=Propagation.REQUIRED)
 public final class ChartDataManagerImpl implements ChartDataManager {
 
 	/** The Constant LOGGER. */
@@ -1210,13 +1212,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	 */
 	@Override
 	public DCharts createIndicatorChart(final List<WorldBankData> list,final ViewWorldbankIndicatorDataCountrySummary summary) {
-
-		final String dateFormatPatter = "dd-MMM-yyyy";
-
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				dateFormatPatter,Locale.ENGLISH);
-
-
 		final DataSeries dataSeries = new DataSeries();
 
 		final Series series = new Series();
