@@ -4,6 +4,9 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="service.component.agent.impl-2011.07.23-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/service.component.agent.impl/service.component.agent.impl">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="service.external.riksdagen-2011.07.23-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/service.external.riksdagen/service.external.riksdagen">
             <dependency-type>uses</dependency-type>
         </dependent-module>

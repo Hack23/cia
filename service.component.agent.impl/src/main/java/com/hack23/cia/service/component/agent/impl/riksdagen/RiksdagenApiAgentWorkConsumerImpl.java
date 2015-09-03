@@ -18,11 +18,13 @@
  */
 package com.hack23.cia.service.component.agent.impl.riksdagen;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 
 import javax.jms.Destination;
@@ -295,9 +297,27 @@ public final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 							personElement);
 				}
 			}
+			for (final String personId : readMissingPersonList()) {
+				if (!currentSaved.containsKey(personId)) {
+					LOGGER.info("Send Load Order:{}{}" ,"http://data.riksdagen.se/person/", personId);
+					sendMessage(personElementWorkdestination,
+							new PersonElement().withId(personId));
+				}
+			}
 		} catch (final Exception e1) {
 			LOGGER.warn("jms", e1);
 		}
+	}
+
+	private static String[] readMissingPersonList() {
+
+		Scanner sc = new Scanner(RiksdagenApiAgentWorkConsumerImpl.class.getResourceAsStream("/personlist.txt"));
+		List<String> lines = new ArrayList<String>();
+		while (sc.hasNextLine()) {
+		  lines.add(sc.nextLine());
+		}
+
+		return lines.toArray(new String[0]);
 	}
 
 	/**
