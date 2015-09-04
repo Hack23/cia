@@ -29,7 +29,7 @@
 	}
 
 .v-vaadin-version:after {
-	content: "7.5.4";
+	content: "7.5.5";
 }
 
 .v-generated-body {
@@ -304,10 +304,6 @@
 
 .v-ie .cia .v-nativebutton-link {
 	padding: 0;
-}
-
-.cia .v-checkbox {
-	display: block;
 }
 
 .cia .v-checkbox, .cia .v-checkbox label, .cia .v-checkbox input, .cia .v-checkbox .v-icon {
