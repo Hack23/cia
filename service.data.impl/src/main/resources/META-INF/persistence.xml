@@ -105,9 +105,9 @@
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMember</class>
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember</class>
-		
-		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician</class>		
-	
+
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician</class>
+
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument</class>
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenDocumentTypeDailySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary</class>
@@ -119,28 +119,28 @@
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryWeekly</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryMonthly</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryAnnual</class>
-		
+
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryWeekly</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual</class>
-		
+
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummary</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryWeekly</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual</class>
-				
+
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeDailySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeOrgDailySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionSummary</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary</class>
-		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary</class>				
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisions</class>
-		
+
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary</class>
-		
+
 		<class>com.hack23.cia.model.internal.application.system.impl.Agency</class>
 		<class>com.hack23.cia.model.internal.application.system.impl.Portal</class>
 		<class>com.hack23.cia.model.internal.application.system.impl.DomainPortal</class>
@@ -154,6 +154,8 @@
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="${database.ddl}" />
 			<property name="hibernate.dialect" value="${hibernate.dialect}" />
+			<property name="hibernate.implicit_naming_strategy" value="legacy-hbm"/>
+
 			<property name="hibernate.archive.autodetection" value="class" />
 			<property name="hibernate.connection.characterEncoding"
 				value="UTF-8" />

@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,10 +21,9 @@ package com.hack23.cia.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.internal.application.system.impl.Agency;
 import com.hack23.cia.model.internal.application.system.impl.Portal;
@@ -51,7 +50,7 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.hack23.cia.service.api.ConfigurationManager#getConfiguration()
 	 */
 	@Override
@@ -61,7 +60,7 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * com.hack23.cia.service.api.ConfigurationManager#getUserConfiguration(
 	 * java.lang.String)

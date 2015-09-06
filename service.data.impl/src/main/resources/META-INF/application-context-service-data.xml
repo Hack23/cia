@@ -34,7 +34,7 @@
 		<property name="maxPoolSize" value="200" />
 	</bean>
  	-->
- 	
+
  	<bean id="liquibase" class="com.hack23.cia.service.data.impl.liquidbase.SpringLiquidBaseFailSafe">
       <property name="dataSource" ref="dataSource" />
       <property name="changeLog" value="classpath:db-changelog.xml" />
@@ -43,7 +43,7 @@
       <property name="contexts" value="test, production" />
       -->
  </bean>
- 	
+
 
  	<!-- Postgres -->
 	<bean id="dataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean" depends-on="transactionManager"
@@ -71,7 +71,7 @@
 		 <property name="testQuery" value="select 1"/>
 	</bean>
 
-	<bean id="dataCacheManager" 
+	<bean id="dataCacheManager"
 		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
 		<property name="configLocation" value="classpath:data-ehcache.xml" />
 		<property name="shared" value="true" />
@@ -123,12 +123,17 @@
 
                 <prop key="hibernate.current_session_context_class">jta</prop>
                 <!-- <prop key="hibernate.transaction.factory_class">com.atomikos.icatch.jta.hibernate3.AtomikosJTATransactionFactory</prop> -->
-                
+
                 <prop key="hibernate.transaction.manager_lookup_class">com.atomikos.icatch.jta.hibernate3.TransactionManagerLookup
                 </prop>
-                
+
                 <prop key="hibernate.transaction.jta.platform">com.hack23.cia.service.data.impl.AtomikosJtaPlatform</prop>
-                
+<!--
+                <prop key="hibernate.implicit_naming_strategy">legacy-hbm</prop>
+-->
+                <prop key="hibernate.physical_naming_strategy">com.hack23.cia.service.data.impl.LegacyNamingStrategy</prop>
+
+
                 <prop key="hibernate.transaction.auto_close_session">false</prop>
 
                 <prop key="hibernate.cache.use_minimal_puts">true</prop>
@@ -198,7 +203,7 @@
 		</property>
 		<property name="beans">
 			<map>
-				<!-- temp disabled hibernate 4.3.1  
+				<!-- temp disabled hibernate 4.3.1
 				<entry key="org.hibernate:name=cia-statistics">
 					<bean class="org.hibernate.jmx.StatisticsService">
 						<property name="statisticsEnabled" value="true" />

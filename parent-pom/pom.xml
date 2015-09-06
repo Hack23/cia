@@ -115,7 +115,7 @@
     <cia.project.versions.poi>3.13-beta1</cia.project.versions.poi>
     <cia.project.versions.postgresql>9.4-1202-jdbc42</cia.project.versions.postgresql>
     <!-- <cia.project.versions.easymock>3.1-SNAPSHOT</cia.project.versions.easymock> -->
-    <cia.project.versions.easymock>3.3.1</cia.project.versions.easymock>
+    <cia.project.versions.easymock>3.4</cia.project.versions.easymock>
     <cia.project.versions.plexus.utils>3.0.22</cia.project.versions.plexus.utils>
     <cia.project.versions.hyperjaxb3>0.6.1-SNAPSHOT</cia.project.versions.hyperjaxb3>
     <cia.project.versions.jaxb2.commons>0.9.4</cia.project.versions.jaxb2.commons>
@@ -134,7 +134,7 @@
     <cia.project.versions.spring>4.2.1.RELEASE</cia.project.versions.spring>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <!-- <cia.project.versions.hibernate>3.6.10.Final</cia.project.versions.hibernate> -->
-    <cia.project.versions.hibernate>4.3.11.Final</cia.project.versions.hibernate>
+    <cia.project.versions.hibernate>5.0.1.Final</cia.project.versions.hibernate>
     <cia.project.versions.hibernate.build>4.3.11.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>4.3.1.Final</cia.project.versions.hibernate.tools>
     <!--<cia.project.versions.hibernate>3.6.0-SNAPSHOT</cia.project.versions.hibernate> -->

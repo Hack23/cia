@@ -40,7 +40,7 @@
     </site>
   </distributionManagement>
   <properties>
-    <cia.project.versions.hibernate.jpamodelgen>4.3.11.Final</cia.project.versions.hibernate.jpamodelgen>
+    <cia.project.versions.hibernate.jpamodelgen>5.0.1.Final</cia.project.versions.hibernate.jpamodelgen>
     <cia.project.versions.hibernate.jpa2>1.0.0.Final</cia.project.versions.hibernate.jpa2>
   </properties>
   <dependencyManagement>

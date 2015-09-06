@@ -107,6 +107,10 @@
           <artifactId>commons-net</artifactId>
           <groupId>commons-net</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>geronimo-jta_1.0.1B_spec</artifactId>
+          <groupId>org.apache.geronimo.specs</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
