@@ -40,12 +40,12 @@
     <dependency>
       <groupId>nz.ac.waikato.cms.weka</groupId>
       <artifactId>weka-dev</artifactId>
-      <version>3.7.12</version>
+      <version>3.7.13</version>
     </dependency>
     <dependency>
       <groupId>net.sf.meka</groupId>
       <artifactId>meka</artifactId>
-      <version>1.7.6</version>
+      <version>1.7.7</version>
       <exclusions>
         <exclusion>
           <artifactId>weka-dev</artifactId>

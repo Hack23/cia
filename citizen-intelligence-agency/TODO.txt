@@ -2,10 +2,10 @@ replace tabsheet with mode urls: enable links.
 
 add generated links in grid:s https://vaadin.com/book/-/page/components.grid.html
 
-review and include all current view classes. 
+review and include all current view classes.
 
 party view: summary,roles.members,
-politician view summary , documents,proposals, votes.  
+politician view summary , documents,proposals, votes.
 ministry view summary,roles,members,propoals
 committee view summary,roles, members , committee decisions
 BallotView
@@ -22,7 +22,9 @@ select * from world_bank_data where indicator_id='MS.MIL.MPRT.KD' order by year_
 
 DELETE FROM world_bank_data a USING (
       SELECT country_value, data_value, year_date
-        FROM world_bank_data 
+        FROM world_bank_data
       ) b
-      WHERE a.data_value = b.data_value 
+      WHERE a.data_value = b.data_value
       AND a.year_date = b.year_date AND a.country_value = b.country_value;
+
+      http://data.riksdagen.se/sv/vardeforrad.html
