@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -195,7 +195,7 @@ public final class MinistryView extends AbstractGroupView {
 					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Document Activity"));
 
-					final DCharts createDocumentHistoryChart = chartDataManager.createDocumentMinistryHistoryChart(viewRiksdagenMinistry.getNameId());
+					final DCharts createDocumentHistoryChart = chartDataManager.createDocumentHistoryChartByOrg(viewRiksdagenMinistry.getNameId());
 
 					panelContent.addComponent(createDocumentHistoryChart);
 

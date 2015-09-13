@@ -189,22 +189,13 @@ public interface ChartDataManager {
 	DCharts createDecisionTypeChart(String org);
 
 	/**
-	 * Creates the document ministry history chart.
+	 * Creates the document history chart by org.
 	 *
 	 * @param org
 	 *            the org
 	 * @return the d charts
 	 */
-	DCharts createDocumentMinistryHistoryChart(String org);
-
-	/**
-	 * Creates the document history chart.
-	 *
-	 * @param org
-	 *            the org
-	 * @return the d charts
-	 */
-	DCharts createDocumentHistoryChart(String org);
+	DCharts createDocumentHistoryChartByOrg(String org);
 
 	/**
 	 * Creates the party line chart.

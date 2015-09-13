@@ -828,7 +828,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager#createDocumentHistoryChart(java.lang.String)
 	 */
 	@Override
-	public DCharts createDocumentHistoryChart(final String org) {
+	public DCharts createDocumentHistoryChartByOrg(final String org) {
 
 
 
@@ -876,62 +876,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		.setOptions(createOptionsXYDateFloatLegendOutside(series))
 		.show();
 	}
-
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager#createDocumentMinistryHistoryChart(java.lang.String)
-	 */
-	@Override
-	public DCharts createDocumentMinistryHistoryChart(final String org) {
-
-
-
-		final DataSeries dataSeries = new DataSeries();
-
-		final Series series = new Series();
-
-		final Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> allMap = getViewRiksdagenOrgDocumentDailySummaryMap();
-
-		final List<ViewRiksdagenOrgDocumentDailySummary> itemList = allMap.get(org.toUpperCase(Locale.ENGLISH).replace("_", "").trim());
-
-		if (itemList != null) {
-
-			final Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> map = itemList.parallelStream()
-					.filter(t -> t != null && t.getEmbeddedId().getPublicDate()!=null)
-					.collect(
-							Collectors.groupingBy(t -> StringUtils.defaultIfBlank(t.getDocumentType(), "NoInfo")));
-
-
-			for(final String key: map.keySet()) {
-
-				series.addSeries(new XYseries().setLabel(key));
-
-				dataSeries.newSeries();
-				final List<ViewRiksdagenOrgDocumentDailySummary> list = map.get(key.toUpperCase(Locale.ENGLISH));
-				if (list !=null) {
-					for (final ViewRiksdagenOrgDocumentDailySummary item : list) {
-						if (item !=null) {
-							dataSeries.add(item.getEmbeddedId().getPublicDate(),item.getTotal());
-						}
-					}
-				} else {
-					LOGGER.info("missing data for key:{}",key);
-				}
-
-			}
-		}
-
-
-
-		return new DCharts()
-		.setDataSeries(dataSeries)
-		.setOptions(createOptionsXYDateFloatLegendOutside(series))
-		.show();
-	}
-
-
-
-
-
 
 
 	/* (non-Javadoc)

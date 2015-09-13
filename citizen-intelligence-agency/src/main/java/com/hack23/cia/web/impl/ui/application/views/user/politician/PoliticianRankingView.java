@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -26,11 +26,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -71,6 +70,10 @@ public final class PoliticianRankingView extends AbstractRankingView {
 	/** The grid factory. */
 	@Autowired
 	private transient GridFactory gridFactory;
+
+	@Autowired
+	private transient DataSeriesFactory dataSeriesFactory;
+
 
 	/**
 	 * Post construct.
@@ -161,42 +164,16 @@ public final class PoliticianRankingView extends AbstractRankingView {
 		new PoliticianPageItemClickListener());
 	}
 
-
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
-	 */
 	@Override
 	protected DataSeries createChartTimeSeriesAll() {
-		DataSeries dataSeries = new DataSeries();
-
-		final DataContainer<ViewRiksdagenParty, String> dataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenParty.class);
-
-		for (final ViewRiksdagenParty data : dataContainer.getAll()) {
-			dataSeries = dataSeries.newSeries().add(data.getPartyName(),
-					data.getHeadCount());
-		}
-		return dataSeries;
+		return dataSeriesFactory.createPartyChartTimeSeriesAll();
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
-	 */
 	@Override
 	protected DataSeries createChartTimeSeriesCurrent() {
-		DataSeries dataSeries = new DataSeries();
-
-		final DataContainer<ViewRiksdagenPartySummary, String> dataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenPartySummary.class);
-
-		for (final ViewRiksdagenPartySummary data : dataContainer.getAll()) {
-			if (data != null && data.isActiveParliament()) {
-
-				dataSeries = dataSeries.newSeries().add(data.getParty(),
-						data.getTotalActiveParliament());
-			}
-		}
-		return dataSeries;
+		return dataSeriesFactory.createPartyChartTimeSeriesCurrent();
 	}
+
+
 
 }

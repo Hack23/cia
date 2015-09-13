@@ -26,11 +26,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
 import com.hack23.cia.service.api.ApplicationManager;
-import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.tablefactory.TableFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -73,6 +71,8 @@ public final class PartyRankingView extends AbstractRankingView {
 	@Autowired
 	private transient TableFactory tableFactory;
 
+	@Autowired
+	private transient DataSeriesFactory dataSeriesFactory;
 
 
 	/**
@@ -118,101 +118,6 @@ public final class PartyRankingView extends AbstractRankingView {
 	}
 
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
-	 */
-	@Override
-	protected DataSeries createChartTimeSeriesAll() {
-		DataSeries dataSeries = new DataSeries();
-
-		final DataContainer<ViewRiksdagenParty, String> dataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenParty.class);
-
-
-		for (final ViewRiksdagenParty data : dataContainer.getAll()) {
-			dataSeries =dataSeries.newSeries().add(data.getPartyName(),data.getHeadCount());
-		}
-		return dataSeries;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
-	 */
-	@Override
-	protected DataSeries createChartTimeSeriesCurrent() {
-		DataSeries dataSeries = new DataSeries();
-
-		final DataContainer<ViewRiksdagenParty, String> dataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenParty.class);
-
-		final DataContainer<ViewRiksdagenPartySummary, String> partySummarydataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenPartySummary.class);
-
-		partySummarydataContainer.getAll();
-
-		for (final ViewRiksdagenParty data : dataContainer.getAll()) {
-			final ViewRiksdagenPartySummary summary = partySummarydataContainer.load(data.getPartyId());
-			if (summary != null && summary.isActive()) {
-
-				dataSeries =dataSeries.newSeries().add(data.getPartyName(),summary.getTotalActiveParliament());
-			}
-		}
-		return dataSeries;
-	}
-
-
-	/**
-	 * Creates the chart time series current government.
-	 *
-	 * @return the data series
-	 */
-	private DataSeries createChartTimeSeriesCurrentGovernment() {
-		DataSeries dataSeries = new DataSeries();
-
-		final DataContainer<ViewRiksdagenParty, String> dataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenParty.class);
-
-		final DataContainer<ViewRiksdagenPartySummary, String> partySummarydataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenPartySummary.class);
-
-		partySummarydataContainer.getAll();
-
-		for (final ViewRiksdagenParty data : dataContainer.getAll()) {
-			final ViewRiksdagenPartySummary summary = partySummarydataContainer.load(data.getPartyId());
-			if (summary != null && summary.isActive()) {
-
-				dataSeries =dataSeries.newSeries().add(data.getPartyName(),summary.getTotalActiveGovernment());
-			}
-		}
-		return dataSeries;
-	}
-
-
-	/**
-	 * Creates the chart time series current committee.
-	 *
-	 * @return the data series
-	 */
-	private DataSeries createChartTimeSeriesCurrentCommittee() {
-		DataSeries dataSeries = new DataSeries();
-
-		final DataContainer<ViewRiksdagenParty, String> dataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenParty.class);
-
-		final DataContainer<ViewRiksdagenPartySummary, String> partySummarydataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenPartySummary.class);
-
-		partySummarydataContainer.getAll();
-
-		for (final ViewRiksdagenParty data : dataContainer.getAll()) {
-			final ViewRiksdagenPartySummary summary = partySummarydataContainer.load(data.getPartyId());
-			if (summary != null && summary.isActive()) {
-
-				dataSeries =dataSeries.newSeries().add(data.getPartyName(),summary.getTotalActiveCommittee());
-			}
-		}
-		return dataSeries;
-	}
 
 	/* (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createExtraChartLayout()
@@ -223,12 +128,12 @@ public final class PartyRankingView extends AbstractRankingView {
 		chartLayout.setSizeFull();
 
 
-		final com.vaadin.ui.Component chartPanelAll = chartDataManager.createChartPanel(createChartTimeSeriesCurrentGovernment(),"Current Government");
+		final com.vaadin.ui.Component chartPanelAll = chartDataManager.createChartPanel(dataSeriesFactory.createChartTimeSeriesCurrentGovernmentByParty(),"Current Government");
 		if (chartPanelAll!=null) {
 			chartLayout.addComponent(chartPanelAll);
 		}
 
-		final com.vaadin.ui.Component chartPanelCurrent = chartDataManager.createChartPanel(createChartTimeSeriesCurrentCommittee(),"Current Committee");
+		final com.vaadin.ui.Component chartPanelCurrent = chartDataManager.createChartPanel(dataSeriesFactory.createChartTimeSeriesCurrentCommitteeByParty(),"Current Committee");
 		if (chartPanelCurrent!=null) {
 			chartLayout.addComponent(chartPanelCurrent);
 		}
@@ -242,6 +147,16 @@ public final class PartyRankingView extends AbstractRankingView {
 	@Override
 	protected Component createTable() {
 		return tableFactory.createPartiesTable();
+	}
+
+	@Override
+	protected DataSeries createChartTimeSeriesAll() {
+		return dataSeriesFactory.createPartyChartTimeSeriesAll();
+	}
+
+	@Override
+	protected DataSeries createChartTimeSeriesCurrent() {
+		return dataSeriesFactory.createPartyChartTimeSeriesCurrent();
 	}
 
 

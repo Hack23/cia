@@ -212,7 +212,7 @@ public final class CommitteeView extends AbstractGroupView {
 					panelContent.addComponent(new Label("Document Activity"));
 
 
-					final DCharts createDocumentHistoryChart = chartDataManager.createDocumentHistoryChart(viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
+					final DCharts createDocumentHistoryChart = chartDataManager.createDocumentHistoryChartByOrg(viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
 
 					panelContent.addComponent(createDocumentHistoryChart);
 
