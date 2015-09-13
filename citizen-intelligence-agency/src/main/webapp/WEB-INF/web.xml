@@ -53,6 +53,7 @@
 	<filter>
 		<filter-name>monitoring</filter-name>
 		<filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
+		<async-supported>true</async-supported>
 		<init-param>
 			<param-name>displayed-counters</param-name>
 			<param-value>http,spring,sql,error,log</param-value>
@@ -60,6 +61,14 @@
 		<init-param>
 			<param-name>quartz-default-listener-disabled</param-name>
 			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>sampling-seconds</param-name>
+			<param-value>10</param-value>
+		</init-param>
+		<init-param>
+			<param-name>sampling-included-packages</param-name>
+			<param-value>com.hack23</param-value>
 		</init-param>
 		<init-param>
 			<param-name>system-actions-enabled</param-name>
@@ -84,6 +93,7 @@
 		<filter-name>SimplePageCachingFilter</filter-name>
 		<filter-class>com.hack23.cia.web.impl.ui.application.web.filter.CustomSimplePageCachingFilter
 		</filter-class>
+		<async-supported>true</async-supported>
 		<init-param>
 			<param-name>cacheName</param-name>
 			<param-value>SimplePageCachingFilter</param-value>
@@ -142,6 +152,7 @@
         <filter-class>
             org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
         </filter-class>
+    <async-supported>true</async-supported>
     </filter>
 	<filter-mapping>
 		<filter-name>hibernateFilter</filter-name>
@@ -153,6 +164,7 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet
 		</servlet-class>
 		<load-on-startup>1</load-on-startup>
+		<async-supported>true</async-supported>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>cia-webservices</servlet-name>

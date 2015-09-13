@@ -1,5 +1,5 @@
 <ehcache xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="serviceCacheManager">
-	<diskStore path="java.io.tmpdir/cia-service-ehcache/" />
+	<diskStore path="user.dir/target/cia-service-ehcache/" />
 
 
 	<cache name="Translations" maxElementsInMemory="100000"

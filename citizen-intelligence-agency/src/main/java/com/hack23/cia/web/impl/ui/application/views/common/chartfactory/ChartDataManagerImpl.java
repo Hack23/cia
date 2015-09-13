@@ -938,35 +938,28 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	 */
 	@Override
 	public DCharts createDocumentHistoryPartyChart(final String org) {
-
-
-
 		final DataSeries dataSeries = new DataSeries();
-
 		final Series series = new Series();
 
+		final Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> allMap = getViewRiksdagenPartyDocumentDailySummaryMap();
 
-
-		final Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> allMap = getViewRiksdagenOrgDocumentDailySummaryMap();
-
-		final List<ViewRiksdagenOrgDocumentDailySummary> itemList = allMap.get(org.toUpperCase(Locale.ENGLISH).replace("_", "").trim());
+		final List<ViewRiksdagenPartyDocumentDailySummary> itemList = allMap.get(org.toUpperCase(Locale.ENGLISH).replace("_", "").trim());
 
 		if (itemList != null) {
 
-			final Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> map = itemList.parallelStream()
+			final Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> map = itemList.parallelStream()
 					.filter(t -> t != null)
 					.collect(
-							Collectors.groupingBy(t -> StringUtils.defaultIfBlank(t.getDocumentType(), "NoInfo")));
-
+							Collectors.groupingBy(t -> StringUtils.defaultIfBlank(t.getEmbeddedId().getDocumentType(), "NoInfo")));
 
 			for(final String key: map.keySet()) {
 
 				series.addSeries(new XYseries().setLabel(key));
 
 				dataSeries.newSeries();
-				final List<ViewRiksdagenOrgDocumentDailySummary> list = map.get(key.toUpperCase(Locale.ENGLISH));
+				final List<ViewRiksdagenPartyDocumentDailySummary> list = map.get(key.toUpperCase(Locale.ENGLISH));
 				if (list !=null) {
-					for (final ViewRiksdagenOrgDocumentDailySummary item : list) {
+					for (final ViewRiksdagenPartyDocumentDailySummary item : list) {
 						if (item !=null) {
 							dataSeries.add(item.getEmbeddedId().getPublicDate(),item.getTotal());
 						}
@@ -977,8 +970,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 			}
 		}
-
-
 
 		return new DCharts()
 		.setDataSeries(dataSeries)
