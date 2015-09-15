@@ -3660,7 +3660,6 @@ from view_riksdagen_politician group by party</createView>
 		<createView replaceIfExists="true"
 			viewName="view_riksdagen_org_document_daily_summary">select left(made_public_date,10) as embedded_id_public_date,org as embedded_id_org,document_type,count(*) as total from document_element group by left(made_public_date,10),document_type,org</createView>
 
-
 	</changeSet>
 
 	<changeSet author="pether" id="1414872417007-255">
@@ -4258,29 +4257,29 @@ from view_riksdagen_politician group by party</createView>
 
 		<sql>create materialized view view_riksdagen_committee_decision_type_org_summary as select upper(decision_type) as embedded_id_decision_type,upper(org) as embedded_id_org,created_date as embedded_id_decision_date,count(*) as total,sum( case when winner='utskottet' then 1 else 0 end) as committee_winner,sum( case when winner like'reservation%' then 1 else 0 end) as reservation_winner from view_riksdagen_committee_decisions group by upper(decision_type),created_date,upper(org)</sql>
 
-
-
 	</changeSet>
 
 
-	<!-- TODO select id as document_id,title, header,hangar_id,committee_report,end_number,issue_number,org,ballot_id,against_proposal_parties,against_proposal_number,winner,embedded_id_concern,label,vote_date
-		from view_riksdagen_committee_decisions left join view_riksdagen_vote_data_ballot_summary
-		on ballot_id = embedded_id_ballot_id and view_riksdagen_committee_decisions.rm=view_riksdagen_vote_data_ballot_summary.rm
-		and view_riksdagen_committee_decisions.issue_number::text=view_riksdagen_vote_data_ballot_summary.embedded_id_issue
-		where decision_type='röstning' and ballot_id is not null and embedded_id_ballot_id
-		is not null; select * from view_riksdagen_committee_decisions left join view_riksdagen_vote_data_ballot_summary
-		on ballot_id = embedded_id_ballot_id and view_riksdagen_committee_decisions.rm=view_riksdagen_vote_data_ballot_summary.rm
-		and view_riksdagen_committee_decisions.issue_number::text=view_riksdagen_vote_data_ballot_summary.embedded_id_issue
-		where decision_type='röstning' and ballot_id is not null and embedded_id_ballot_id
-		is not null; <class>com.hack23.cia.model.internal.application.data.impl.ViewRiksdagenPartyRoles</class>
-		<class>com.hack23.cia.model.internal.application.data.impl.ViewRiksdagenPartyRoleMember</class>
-		<class>com.hack23.cia.model.internal.application.data.impl.ViewRiksdagenCommitteeRoleMember</class>
-		<class>com.hack23.cia.model.internal.application.data.impl.ViewRiksdagenCommitteeDecisions</class>
-		<class>com.hack23.cia.model.internal.application.data.impl.ViewRiksdagenCommitteeRoles</class>
-		<class>com.hack23.cia.model.internal.application.data.impl.ViewRiksdagenGovernmentRoles</class>
-		<class>com.hack23.cia.model.internal.application.data.impl.ViewRiksdagenGovernmentRoleMember</class>
-		<class>com.hack23.cia.model.internal.application.data.impl.ViewRiksdagenGovernmentProposals</class>
-		<class>com.hack23.cia.model.internal.application.data.impl.ViewRiksdagenParliamentMemberProposal</class> -->
+	<changeSet author="pether" id="1414872417007-265">
+
+		<dropView viewName="view_riksdagen_document_type_daily_summary" />
+		<dropView viewName="view_riksdagen_politician_document_daily_summary" />
+		<dropView viewName="view_riksdagen_party_document_daily_summary" />
+		<dropView viewName="view_riksdagen_org_document_daily_summary" />
+		<dropView viewName="view_riksdagen_politician_document" />
+
+		<sql>create materialized view view_riksdagen_politician_document as select hjid as id,document_document_status_con_0 as doc_id,document_type,label,made_public_date,org,number_value,rm,status,sub_title,sub_type,temp_label,title,role_description,person_reference_id,reference_name,party_short_code,order_number from (select * from document_status_container left join document_data on document_status_container.document_document_status_con_0 = document_data.id) as e3 left join (select document_person_reference_da_0.hjid as id,role_description,person_reference_id,reference_name,party_short_code,order_number,document_person_reference_li_1 from document_person_reference_da_0 left join (select document_person_reference_co_0.hjid as person_id_ref from document_status_container left join document_person_reference_co_0 on document_status_container.hjid = document_person_reference_co_0.hjid) e2 on  document_person_reference_da_0.document_person_reference_li_1 = e2.person_id_ref) e4 on e3.document_person_reference_co_1 = e4.document_person_reference_li_1</sql>
+
+		<sql>create materialized view view_riksdagen_document_type_daily_summary as select left(made_public_date,10) as embedded_id_public_date,document_type as embedded_id_document_type,count(*) as total from document_element group by left(made_public_date,10),document_type</sql>
+
+		<sql>create materialized view view_riksdagen_politician_document_daily_summary as select made_public_date as embedded_id_public_date,person_reference_id as embedded_id_person_id,document_type as embedded_id_document_type,count(*) as total from view_riksdagen_politician_document group by made_public_date,document_type,person_reference_id</sql>
+
+		<sql>create materialized view view_riksdagen_party_document_daily_summary as select made_public_date as embedded_id_public_date,party_short_code as embedded_id_party_short_code,document_type as embedded_id_document_type,count(distinct id) distinct_documents,count(distinct person_reference_id) as distinct_people,count(*) total from view_riksdagen_politician_document group by made_public_date,document_type,party_short_code;</sql>
+
+		<sql>create materialized view view_riksdagen_org_document_daily_summary as select left(made_public_date,10) as embedded_id_public_date,org as embedded_id_org,document_type,count(*) as total from document_element group by left(made_public_date,10),document_type,org</sql>
+
+	</changeSet>
+
 
 
 </databaseChangeLog>
