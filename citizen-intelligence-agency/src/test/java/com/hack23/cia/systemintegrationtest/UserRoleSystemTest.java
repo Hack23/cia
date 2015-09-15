@@ -705,7 +705,7 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site test chart view party winner test.
 	 */
 	@Test
-	@Ignore
+
 	public void siteTestChartViewPartyWinnerTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -889,7 +889,7 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site document over view test.
 	 */
 	@Test
-	@Ignore
+
 	public void siteDocumentOverViewTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -983,7 +983,7 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site document doc refb test.
 	 */
 	@Test
-	@Ignore
+
 	public void siteDocumentDocRefbTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -1006,7 +1006,7 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site document doc decision test.
 	 */
 	@Test
-	@Ignore
+
 	public void siteDocumentDocDecisionTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -1029,7 +1029,7 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site document doc attachment test.
 	 */
 	@Test
-	@Ignore
+
 	public void siteDocumentDocAttachmentTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -1242,7 +1242,7 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site party party won daily summary chart test.
 	 */
 	@Test
-	@Ignore
+
 	public void sitePartyPartyWonDailySummaryChartTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -1388,7 +1388,7 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site politican over view test.
 	 */
 	@Test
-	@Ignore
+
 	public void sitePoliticanOverViewTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -1410,7 +1410,7 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site politican role summary test.
 	 */
 	@Test
-	@Ignore
+
 	public void sitePoliticanRoleSummaryTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -1431,7 +1431,7 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site politican role list test.
 	 */
 	@Test
-	@Ignore
+
 	public void sitePoliticanRoleListTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -1520,7 +1520,7 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site politican ballot decision summary test.
 	 */
 	@Test
-	@Ignore
+
 	public void sitePoliticanBallotDecisionSummaryTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
