@@ -45,16 +45,6 @@ public interface ChartDataManager {
 
 
 	/**
-	 * Gets the view riksdagen vote data ballot party summary daily.
-	 *
-	 * @param party
-	 *            the party
-	 * @return the view riksdagen vote data ballot party summary daily
-	 */
-	List<ViewRiksdagenVoteDataBallotPartySummaryDaily> getViewRiksdagenVoteDataBallotPartySummaryDaily(
-			String party);
-
-	/**
 	 * Gets the view riksdagen vote data ballot party summary.
 	 *
 	 * @param party

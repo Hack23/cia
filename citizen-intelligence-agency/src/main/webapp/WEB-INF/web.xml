@@ -101,15 +101,56 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>VAADIN/widgetsets/*</url-pattern>
+		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/dchart/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
-
 	<filter-mapping>
 		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>VAADIN/themes/*</url-pattern>
+		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/gantt/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SimplePageCachingFilter</filter-name>
+		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/deferredjs/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SimplePageCachingFilter</filter-name>
+		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/*cache.js</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SimplePageCachingFilter</filter-name>
+		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/*cache.js.gz</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SimplePageCachingFilter</filter-name>
+		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/*cache.woff</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SimplePageCachingFilter</filter-name>
+		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/*cache.eot</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SimplePageCachingFilter</filter-name>
+		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/*cache.svg</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 		<dispatcher>FORWARD</dispatcher>

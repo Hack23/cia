@@ -27,7 +27,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId;
+import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId_;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily_;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 
@@ -44,34 +46,15 @@ public final class ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataMan
 	@Qualifier("ApplicationManager")
 	private ApplicationManager applicationManager;
 
-	/** The data map. */
-	private Map<String, List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily>> dataMap;
-
-	/**
-	 * Inits the data map.
-	 */
-	private void initDataMap() {
-		if (dataMap == null) {
-			final DataContainer<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily, RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
-					.getDataContainer(ViewRiksdagenVoteDataBallotPoliticianSummaryDaily.class);
-
-			dataMap = politicianBallotSummaryDailyDataContainer
-					.getAll()
-					.parallelStream()
-					.filter(t -> t != null)
-					.collect(
-							Collectors.groupingBy(t -> t.getEmbeddedId()
-									.getIntressentId()));
-		}
-	}
-
 	/* (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.GenericChartDataManager#findByValue(java.lang.String)
 	 */
 	@Override
 	public List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> findByValue(final String value) {
-		initDataMap();
-		return dataMap.get(value);
+		final DataContainer<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily, RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
+				.getDataContainer(ViewRiksdagenVoteDataBallotPoliticianSummaryDaily.class);
+
+		return politicianBallotSummaryDailyDataContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotPoliticianSummaryDaily.class, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily_.embeddedId, RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId.class, RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId_.intressentId, value);
 	}
 
 	/* (non-Javadoc)
@@ -79,8 +62,17 @@ public final class ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataMan
 	 */
 	@Override
 	public Map<String, List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily>> getDataMap() {
-		initDataMap();
-		return dataMap;
+		final DataContainer<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily, RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
+				.getDataContainer(ViewRiksdagenVoteDataBallotPoliticianSummaryDaily.class);
+
+		return politicianBallotSummaryDailyDataContainer
+				.getAll()
+				.parallelStream()
+				.filter(t -> t != null)
+				.collect(
+						Collectors.groupingBy(t -> t.getEmbeddedId()
+								.getIntressentId()));
+
 	}
 
 }

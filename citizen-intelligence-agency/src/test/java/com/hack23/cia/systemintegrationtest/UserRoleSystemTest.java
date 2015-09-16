@@ -95,7 +95,7 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 */
 	@Parameters(name = "SiteTest{index}: browser({0})")
 	public static Collection<String[]> browsersStrings() {
-		return Arrays.asList(new String[][] {  { "firefox" }});
+		return Arrays.asList(new String[][] {  { "firefox" },{ "chrome" }});
 		// return Arrays.asList(new Object[][] { { "firefox" },{ "chrome" }, {
 		// "htmlunit-firefox" },{ "htmlunit-ie11" },{ "htmlunit-chrome" } });
 	}
@@ -705,7 +705,6 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site test chart view party winner test.
 	 */
 	@Test
-
 	public void siteTestChartViewPartyWinnerTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -865,7 +864,6 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site document details test.
 	 */
 	@Test
-	@Ignore
 	public void siteDocumentDetailsTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -889,7 +887,6 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site document over view test.
 	 */
 	@Test
-
 	public void siteDocumentOverViewTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -913,7 +910,6 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site document person ref test.
 	 */
 	@Test
-	@Ignore
 	public void siteDocumentPersonRefTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -937,7 +933,6 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site document doc activity test.
 	 */
 	@Test
-	@Ignore
 	public void siteDocumentDocActivityTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -961,7 +956,6 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site document doc data test.
 	 */
 	@Test
-	@Ignore
 	public void siteDocumentDocDataTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -983,7 +977,6 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site document doc refb test.
 	 */
 	@Test
-
 	public void siteDocumentDocRefbTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -1006,7 +999,6 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site document doc decision test.
 	 */
 	@Test
-
 	public void siteDocumentDocDecisionTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -1029,7 +1021,6 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site document doc attachment test.
 	 */
 	@Test
-
 	public void siteDocumentDocAttachmentTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -1242,7 +1233,6 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site party party won daily summary chart test.
 	 */
 	@Test
-
 	public void sitePartyPartyWonDailySummaryChartTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -1312,7 +1302,6 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site party vote history test.
 	 */
 	@Test
-	@Ignore
 	public void sitePartyVoteHistoryTest() {
 		//TO SLOW
 
@@ -1453,7 +1442,6 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site politican role ghant test.
 	 */
 	@Test
-	@Ignore
 	public void sitePoliticanRoleGhantTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -1475,7 +1463,7 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site politican document history test.
 	 */
 	@Test
-	@Ignore
+
 	public void sitePoliticanDocumentHistoryTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -1498,7 +1486,7 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site politican vote history test.
 	 */
 	@Test
-	@Ignore
+
 	public void sitePoliticanVoteHistoryTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -1542,7 +1530,7 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site politican document activity test.
 	 */
 	@Test
-	@Ignore
+
 	public void sitePoliticanDocumentActivityTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {

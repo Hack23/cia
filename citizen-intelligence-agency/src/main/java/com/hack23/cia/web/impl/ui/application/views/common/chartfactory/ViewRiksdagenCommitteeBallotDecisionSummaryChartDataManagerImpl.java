@@ -28,6 +28,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionEmbeddedId;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionSummary;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionSummary_;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 
@@ -42,9 +43,6 @@ public final class ViewRiksdagenCommitteeBallotDecisionSummaryChartDataManagerIm
 	@Qualifier("ApplicationManager")
 	private ApplicationManager applicationManager;
 
-	/** The data map. */
-	private Map<String, List<ViewRiksdagenCommitteeBallotDecisionSummary>> dataMap;
-
 	/*
 	 * (non-Javadoc)
 	 *
@@ -54,8 +52,12 @@ public final class ViewRiksdagenCommitteeBallotDecisionSummaryChartDataManagerIm
 	 */
 	@Override
 	public Map<String, List<ViewRiksdagenCommitteeBallotDecisionSummary>> getDataMap() {
-		initDataMap();
-		return dataMap;
+		final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
+				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
+
+		return committeeBallotDecisionPartyDataContainer.getAll()
+				.parallelStream().filter(t -> t != null)
+				.collect(Collectors.groupingBy(t -> t.getOrg()));
 	}
 
 	/*
@@ -68,22 +70,11 @@ public final class ViewRiksdagenCommitteeBallotDecisionSummaryChartDataManagerIm
 	@Override
 	public List<ViewRiksdagenCommitteeBallotDecisionSummary> findByValue(
 			final String value) {
-		initDataMap();
-		return dataMap.get(value);
+		final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
+				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
+
+		return committeeBallotDecisionPartyDataContainer.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.org, value);
 	}
 
-	/**
-	 * Inits the data map.
-	 */
-	private void initDataMap() {
-		if (dataMap == null) {
-			final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
-					.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
-
-			dataMap = committeeBallotDecisionPartyDataContainer.getAll()
-					.parallelStream().filter(t -> t != null)
-					.collect(Collectors.groupingBy(t -> t.getOrg()));
-		}
-	}
 
 }

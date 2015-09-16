@@ -17,7 +17,7 @@
   <logger name="org.quartz" level="warn"/>
   <logger name="atomikos" level="warn"/>
   <logger name="com.atomikos" level="warn"/>
-  
+
   <logger name="org.eclipse" level="warn"/>
   <logger name="org.openid4java" level="warn"/>
 
@@ -26,13 +26,13 @@
   <logger name="org.springframework.oxm.jaxb" level="error"/>
 
   <logger name="org.springframework.security" level="warn"/>
-  
-  
+
+
 
 
   <logger name="com.hack23.cia" level="info"/>
 
-  <root level="warn">
+  <root level="info">
     <appender-ref ref="console" />
   </root>
 
