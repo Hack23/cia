@@ -4281,5 +4281,25 @@ from view_riksdagen_politician group by party</createView>
 	</changeSet>
 
 
+	<changeSet author="pether" id="1414872417007-266">
+		<sql>CREATE INDEX view_riksdagen_vote_data_ballot_politician_summary_index ON view_riksdagen_vote_data_ballot_politician_summary (embedded_id_intressent_id)</sql>
+		<sql>CREATE INDEX view_riksdagen_vote_data_ballot_politician_summary_daily_index ON view_riksdagen_vote_data_ballot_politician_summary_daily (embedded_id_intressent_id)</sql>
+		<sql>CREATE INDEX view_riksdagen_vote_data_ballot_politician_summary_weekly_index ON view_riksdagen_vote_data_ballot_politician_summary_weekly (embedded_id_intressent_id)</sql>
+		<sql>CREATE INDEX view_riksdagen_vote_data_ballot_politician_summary_monthly_index ON view_riksdagen_vote_data_ballot_politician_summary_monthly (embedded_id_intressent_id)</sql>
+		<sql>CREATE INDEX view_riksdagen_vote_data_ballot_politician_summary_annual_index ON view_riksdagen_vote_data_ballot_politician_summary_annual (embedded_id_intressent_id)</sql>
+
+		<sql>CREATE INDEX view_riksdagen_vote_data_ballot_party_summary_index ON view_riksdagen_vote_data_ballot_party_summary (embedded_id_party)</sql>
+		<sql>CREATE INDEX view_riksdagen_vote_data_ballot_party_summary_daily_index ON view_riksdagen_vote_data_ballot_party_summary_daily (embedded_id_party)</sql>
+		<sql>CREATE INDEX view_riksdagen_vote_data_ballot_party_summary_weekly_index ON view_riksdagen_vote_data_ballot_party_summary_weekly (embedded_id_party)</sql>
+		<sql>CREATE INDEX view_riksdagen_vote_data_ballot_party_summary_monthly_index ON view_riksdagen_vote_data_ballot_party_summary_monthly (embedded_id_party)</sql>
+		<sql>CREATE INDEX view_riksdagen_vote_data_ballot_party_summary_annual_index ON view_riksdagen_vote_data_ballot_party_summary_annual (embedded_id_party)</sql>
+
+
+		<sql>CREATE INDEX view_riksdagen_politician_document_index ON view_riksdagen_politician_document (person_reference_id)</sql>
+		<sql>CREATE INDEX view_riksdagen_document_type_daily_summary_index ON view_riksdagen_document_type_daily_summary (embedded_id_document_type)</sql>
+		<sql>CREATE INDEX view_riksdagen_politician_document_daily_summary_index ON view_riksdagen_politician_document_daily_summary (embedded_id_person_id)</sql>
+		<sql>CREATE INDEX view_riksdagen_party_document_daily_summary_index ON view_riksdagen_party_document_daily_summary (embedded_id_party_short_code)</sql>
+		<sql>CREATE INDEX view_riksdagen_org_document_daily_summary_index ON view_riksdagen_org_document_daily_summary (embedded_id_org)</sql>
+	</changeSet>
 
 </databaseChangeLog>
