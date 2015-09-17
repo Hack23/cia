@@ -3,11 +3,11 @@
 
 
 	<cache name="SimplePageCachingFilter" maxElementsInMemory="100000"
-		eternal="false" overflowToDisk="true"
+		eternal="false" overflowToDisk="false"
 		memoryStoreEvictionPolicy="FIFO" />
 
 	<cache name="SimpleCachingHeadersPageCachingFilter" maxElementsInMemory="100000"
-		eternal="false" overflowToDisk="true"
+		eternal="false" overflowToDisk="false"
 		memoryStoreEvictionPolicy="FIFO" />
 				
 </ehcache>

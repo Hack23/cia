@@ -3,23 +3,23 @@
 
 
 	<cache name="Translations" maxElementsInMemory="100000"
-		eternal="false" overflowToDisk="true"
+		eternal="false" overflowToDisk="false"
 		memoryStoreEvictionPolicy="FIFO" />
 
 	<cache name="AggregatedBugData" maxElementsInMemory="100000"
-		eternal="false" overflowToDisk="true"
+		eternal="false" overflowToDisk="false"
 		memoryStoreEvictionPolicy="FIFO" />
 
 	<cache name="AggregatedCountryData" maxElementsInMemory="100000"
-		eternal="false" overflowToDisk="true"
+		eternal="false" overflowToDisk="false"
 		memoryStoreEvictionPolicy="FIFO" />
 
 
 	<cache name="TranslationsToEnglish" maxElementsInMemory="100000"
-		eternal="false" overflowToDisk="true"
+		eternal="false" overflowToDisk="false"
 		memoryStoreEvictionPolicy="FIFO" />
 
 	<cache name="TranslationsFromSwedish" maxElementsInMemory="100000"
-		eternal="false" overflowToDisk="true"
+		eternal="false" overflowToDisk="false"
 		memoryStoreEvictionPolicy="FIFO" />
 </ehcache>
