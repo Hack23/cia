@@ -162,6 +162,7 @@
 			<property name="hibernate.connection.characterEncoding"
 				value="UTF-8" />
 			<property name="hibernate.connection.charSet" value="UTF-8" />
+			<property name="hibernate.enable_lazy_load_no_trans" value="true"/>
 
 		</properties>
 	</persistence-unit>

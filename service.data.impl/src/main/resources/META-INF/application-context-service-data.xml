@@ -116,6 +116,7 @@
                 <prop key="hibernate.connection.useUnicode">true</prop>
                 <prop key="hibernate.connection.characterEncoding">UTF-8</prop>
                 <prop key="hibernate.connection.charSet">UTF-8</prop>
+                <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
 
                 <prop key="hibernate.default_batch_fetch_size">1024</prop>
                 <prop key="hibernate.jdbc.batch_size">1024</prop>
