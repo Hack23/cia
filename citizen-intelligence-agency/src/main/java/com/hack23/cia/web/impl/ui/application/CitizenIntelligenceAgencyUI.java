@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,11 +29,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.MainView;
+import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.WebBrowser;
+import com.vaadin.shared.ui.ui.Transport;
 import com.vaadin.ui.UI;
 
 import ru.xpoft.vaadin.DiscoveryNavigator;
@@ -45,6 +47,7 @@ import ru.xpoft.vaadin.SpringVaadinServlet;
 @Service(value = "ui")
 @Scope("prototype")
 @Theme("cia")
+@Push(transport = Transport.STREAMING)
 public final class CitizenIntelligenceAgencyUI extends UI {
 
 	/** The Constant serialVersionUID. */
