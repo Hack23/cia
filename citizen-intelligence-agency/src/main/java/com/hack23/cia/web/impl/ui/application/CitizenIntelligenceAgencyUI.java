@@ -37,8 +37,6 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.WebBrowser;
 import com.vaadin.shared.ui.ui.Transport;
 import com.vaadin.ui.UI;
-import com.vaadin.shared.communication.PushMode;
-
 
 import ru.xpoft.vaadin.DiscoveryNavigator;
 import ru.xpoft.vaadin.SpringVaadinServlet;
@@ -82,7 +80,7 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 		currentPage.setTitle("Citizen Intelligence Agency");
 
 		final WebBrowser webBrowser = currentPage.getWebBrowser();
-		LOGGER.info("Browser addreess: {} , application:{}",webBrowser.getAddress(),webBrowser.getBrowserApplication());
+		LOGGER.info("Browser address: {} , application:{}",webBrowser.getAddress(),webBrowser.getBrowserApplication());
 
 	}
 
