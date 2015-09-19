@@ -29,7 +29,7 @@
 	}
 
 .v-vaadin-version:after {
-	content: "7.5.6";
+	content: "7.6.0.SNAPSHOT-28-e71f6cfd817ffddb7c9cc4a7855d248a859d837f";
 }
 
 .v-generated-body {
@@ -1119,6 +1119,37 @@ body .cia.v-app .v-app-loading {
 .cia.v-overlay-container {
 	width: 0;
 	height: 0;
+}
+
+.cia .v-reconnect-dialog {
+	color: white;
+	top: 12px;
+	right: 12px;
+	max-width: 100%;
+	border-radius: 0;
+	-webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
+	padding: 10px;
+	background-color: #444;
+	text-align: center;
+}
+
+.cia .v-reconnect-dialog .text {
+	display: inline-block;
+	padding-left: 10px;
+}
+
+.cia .v-reconnect-dialog .spinner {
+	background-image: url(../base/common/img/reconnect-spinner.gif);
+	width: 31px;
+	height: 31px;
+	display: none;
+	vertical-align: middle;
+}
+
+.cia .v-reconnect-dialog.active .spinner {
+	display: inline-block;
 }
 
 .cia .v-vertical.v-margin-top, .cia .v-horizontal.v-margin-top {
@@ -2349,6 +2380,10 @@ body .cia.v-app .v-app-loading {
 	box-shadow: 0 0 9px rgba(0, 0, 0, 0.2);
 }
 
+.cia .v-grid-editor.unbuffered .v-grid-editor-footer {
+	width: 100%;
+}
+
 .cia .v-grid-editor-cells {
 	position: relative;
 	white-space: nowrap;
@@ -2394,6 +2429,10 @@ body .cia.v-app .v-app-loading {
 .cia .v-grid-editor-cells  > div .v-select, .cia .v-grid-editor-cells  > div .v-select-select {
 	min-width: 100%;
 	max-width: 100%;
+}
+
+.cia .v-grid-editor-cells  > div.not-editable.v-grid-cell {
+	float: none;
 }
 
 .cia .v-grid-editor-cells .error::before {
