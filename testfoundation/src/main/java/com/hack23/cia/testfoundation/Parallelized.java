@@ -45,7 +45,7 @@ public class Parallelized extends Parameterized
 		 */
 		public ThreadPoolScheduler()
 		{
-			final String threads = System.getProperty("junit.parallel.threads", "2");
+			final String threads = System.getProperty("junit.parallel.threads", "4");
 			final int numThreads = Integer.parseInt(threads);
 			executor = Executors.newFixedThreadPool(numThreads);
 		}
@@ -59,7 +59,7 @@ public class Parallelized extends Parameterized
 			executor.shutdown();
 			try
 			{
-				executor.awaitTermination(20, TimeUnit.MINUTES);
+				executor.awaitTermination(30, TimeUnit.MINUTES);
 			}
 			catch (final InterruptedException exc)
 			{
