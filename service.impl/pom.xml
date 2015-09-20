@@ -54,6 +54,18 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>javax.el</groupId>
+      <artifactId>javax.el-api</artifactId>
+      <version>2.2.4</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+    <groupId>org.glassfish.web</groupId>
+      <artifactId>javax.el</artifactId>
+      <version>2.2.4</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>javax.interceptor</groupId>
       <artifactId>javax.interceptor-api</artifactId>
       <version>1.2</version>
