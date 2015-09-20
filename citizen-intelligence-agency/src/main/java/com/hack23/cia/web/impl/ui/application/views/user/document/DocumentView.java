@@ -70,7 +70,6 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope("prototype")
 @VaadinView(value = DocumentView.NAME, cached = true)
-@Transactional(propagation=Propagation.REQUIRED)
 public final class DocumentView extends AbstractUserView {
 
 	/** The Constant serialVersionUID. */

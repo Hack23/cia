@@ -81,7 +81,6 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope("prototype")
 @VaadinView(value = PoliticianView.NAME, cached = true)
-@Transactional(propagation=Propagation.NESTED)
 public final class PoliticianView extends AbstractPersonView {
 
 
