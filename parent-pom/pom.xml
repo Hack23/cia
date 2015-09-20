@@ -771,9 +771,6 @@
               <destFile>${sonar.jacoco.reportPath}</destFile>
               <append>true</append>
               <propertyName>surefireArgLine</propertyName>
-              <includes>
-                <include>com/hack23/cia/**/*.class</include>
-              </includes>
             </configuration>
           </execution>
           <execution>
@@ -785,9 +782,6 @@
             <configuration>
               <dataFile>${sonar.jacoco.reportPath}</dataFile>
               <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
-              <includes>
-                <include>com/hack23/cia/**/*.class</include>
-              </includes>
             </configuration>
           </execution>
         </executions>
