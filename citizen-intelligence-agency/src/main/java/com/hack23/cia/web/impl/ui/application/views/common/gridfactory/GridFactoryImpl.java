@@ -18,7 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.gridfactory;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.vaadin.gridutil.cell.GridCellFilter;
 
 import com.hack23.cia.web.impl.ui.application.views.common.AbstractPageItemRendererClickListener;
@@ -28,7 +28,7 @@ import com.vaadin.ui.Grid.Column;
 import com.vaadin.ui.Grid.SelectionMode;
 import com.vaadin.ui.renderers.ButtonRenderer;
 
-@Component
+@Service
 public final class GridFactoryImpl implements GridFactory {
 
 

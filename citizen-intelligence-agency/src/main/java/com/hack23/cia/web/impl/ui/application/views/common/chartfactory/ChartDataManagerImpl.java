@@ -59,8 +59,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
 import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId;
@@ -98,7 +96,6 @@ import com.hack23.cia.service.api.DataContainer;
  * The Class ChartDataManagerImpl.
  */
 @Service
-@Transactional(propagation = Propagation.REQUIRED)
 public final class ChartDataManagerImpl implements ChartDataManager {
 
 	/** The Constant LOGGER. */

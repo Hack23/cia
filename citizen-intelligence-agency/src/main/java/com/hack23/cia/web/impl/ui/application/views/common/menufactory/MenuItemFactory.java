@@ -18,8 +18,11 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory;
 
+import org.springframework.stereotype.Service;
+
 import com.vaadin.ui.MenuBar;
 
+@Service
 public interface MenuItemFactory {
 
 	/**

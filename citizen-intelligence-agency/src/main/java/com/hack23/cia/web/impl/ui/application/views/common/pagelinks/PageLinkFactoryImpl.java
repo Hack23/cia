@@ -18,7 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.pagelinks;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
@@ -32,7 +32,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.Link;
 
-@Component
+@Service
 public final class PageLinkFactoryImpl implements PageLinkFactory {
 
 	/** The Constant ADMIN_AGENT_OPERATIONS_LINK_TEXT. */

@@ -1529,7 +1529,6 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 * Site politican document activity test.
 	 */
 	@Test
-
 	public void sitePoliticanDocumentActivityTest() {
 		final WebDriver driver = getWebDriver();
 		if (driver == null) {
@@ -1540,6 +1539,42 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 		try {
 			userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME, PoliticianPageMode.DocumentActivity.toString(), "0980681611418"));
+
+		} catch (final Exception e) {
+			e.printStackTrace();
+			fail("Test Exception:" + e.getMessage());
+		}
+	}
+
+	@Test
+	public void sitePoliticanIndicatorTest() {
+		final WebDriver driver = getWebDriver();
+		if (driver == null) {
+			fail("No valid browser driver");
+		}
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		try {
+			userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME, PageMode.Indicators.toString(), "0980681611418"));
+
+		} catch (final Exception e) {
+			e.printStackTrace();
+			fail("Test Exception:" + e.getMessage());
+		}
+	}
+
+	@Test
+	public void sitePoliticanChartTest() {
+		final WebDriver driver = getWebDriver();
+		if (driver == null) {
+			fail("No valid browser driver");
+		}
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		try {
+			userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME, PageMode.Charts.toString(), "0980681611418"));
 
 		} catch (final Exception e) {
 			e.printStackTrace();

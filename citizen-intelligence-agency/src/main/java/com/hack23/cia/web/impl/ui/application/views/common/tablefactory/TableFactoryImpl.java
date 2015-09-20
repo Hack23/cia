@@ -24,7 +24,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
@@ -38,7 +38,7 @@ import com.vaadin.data.Item;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.Table;
 
-@Component
+@Service
 public final class TableFactoryImpl implements TableFactory {
 
 	/** The Constant DAYS_PER_STANDARD_YEAR. */

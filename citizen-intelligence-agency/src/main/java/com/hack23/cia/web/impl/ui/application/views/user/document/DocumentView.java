@@ -28,8 +28,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData_;
