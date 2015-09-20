@@ -41,10 +41,10 @@ import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 public class UserPageVisit extends Assert {
 
 	/** The Constant WAIT_FOR_PAGE_DELAY. */
-	private static final int WAIT_FOR_PAGE_DELAY = 3500;
+	private static final int WAIT_FOR_PAGE_DELAY = 1500;
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
-	private static final int WAIT_FOR_PAGE_ELEMENT = 3500;
+	private static final int WAIT_FOR_PAGE_ELEMENT = 20000;
 
 	/** The driver. */
 	private final WebDriver driver;
@@ -116,6 +116,21 @@ public class UserPageVisit extends Assert {
 
 		Thread.sleep(WAIT_FOR_PAGE_DELAY);
 
+		int waitTimeForPageLoad=0;
+		while (!getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW)) {
+			Thread.sleep(10);
+			waitTimeForPageLoad=waitTimeForPageLoad + 10;
+			if (waitTimeForPageLoad > WAIT_FOR_PAGE_ELEMENT) {
+				fail("Exceeded timeout for pageload:" + WAIT_FOR_PAGE_ELEMENT);
+			}
+		}
+
+		final long end = System.currentTimeMillis() + WAIT_FOR_PAGE_ELEMENT;
+		while (System.currentTimeMillis() < end && !getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW));
+
+		assertTrue("Each page should contain a MainMenu link",getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW));
+
+
 		String text = driver.findElement(By.tagName("body")).getText();
 		assertNotNull(text);
 		assertFalse("Page contains exception, url:" + url ,text.contains("Exception"));
@@ -125,7 +140,6 @@ public class UserPageVisit extends Assert {
 				driver.getCurrentUrl());
 		assertNotNull(browser, driver.getWindowHandle());
 
-		assertTrue(getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW));
 	}
 
 	/**
@@ -137,7 +151,7 @@ public class UserPageVisit extends Assert {
 	public void VisitTestChartView() throws Exception {
 		final WebElement politicianViewLink = driver.findElement(By
 				.id(ViewAction.VISIT_TEST_CHART_VIEW.name()));
-		performClickAction(politicianViewLink, WAIT_FOR_PAGE_DELAY * 4);
+		performClickAction(politicianViewLink, WAIT_FOR_PAGE_DELAY);
 
 		assertEquals("http://localhost:8080/#!testchartview",
 				driver.getCurrentUrl());
@@ -154,7 +168,7 @@ public class UserPageVisit extends Assert {
 	public void VisitPoliticianRankingView() throws Exception {
 		final WebElement politiciansViewLink = driver.findElement(By
 				.id(ViewAction.VISIT_POLITICIAN_RANKING_VIEW.name()));
-		performClickAction(politiciansViewLink, WAIT_FOR_PAGE_DELAY * 5);
+		performClickAction(politiciansViewLink, WAIT_FOR_PAGE_DELAY);
 
 		assertEquals("http://localhost:8080/#!politicianranking",
 				driver.getCurrentUrl());
