@@ -18,64 +18,13 @@
  */
 package com.hack23.cia.testfoundation;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-
+import org.databene.contiperf.junit.ParallelScheduler;
 import org.junit.runners.Parameterized;
-import org.junit.runners.model.RunnerScheduler;
 
 /**
  * The Class Parallelized.
  */
-public class Parallelized extends Parameterized
-{
-
-	/**
-	 * The Class ThreadPoolScheduler.
-	 */
-	private static class ThreadPoolScheduler implements RunnerScheduler
-	{
-
-		/** The executor. */
-		private final ExecutorService executor;
-
-		/**
-		 * Instantiates a new thread pool scheduler.
-		 */
-		public ThreadPoolScheduler()
-		{
-			final String threads = System.getProperty("junit.parallel.threads", "4");
-			final int numThreads = Integer.parseInt(threads);
-			executor = Executors.newFixedThreadPool(numThreads);
-		}
-
-		/* (non-Javadoc)
-		 * @see org.junit.runners.model.RunnerScheduler#finished()
-		 */
-		@Override
-		public void finished()
-		{
-			executor.shutdown();
-			try
-			{
-				executor.awaitTermination(30, TimeUnit.MINUTES);
-			}
-			catch (final InterruptedException exc)
-			{
-				throw new RuntimeException(exc);
-			}
-		}
-
-		/* (non-Javadoc)
-		 * @see org.junit.runners.model.RunnerScheduler#schedule(java.lang.Runnable)
-		 */
-		@Override
-		public void schedule(final Runnable childStatement)
-		{
-			executor.submit(childStatement);
-		}
-	}
+public class Parallelized extends Parameterized {
 
 	/**
 	 * Instantiates a new parallelized.
@@ -85,9 +34,8 @@ public class Parallelized extends Parameterized
 	 * @throws Throwable
 	 *             the throwable
 	 */
-	public Parallelized(final Class<?> klass) throws Throwable
-	{
+	public Parallelized(final Class<?> klass) throws Throwable {
 		super(klass);
-		setScheduler(new ThreadPoolScheduler());
+		setScheduler(new ParallelScheduler());
 	}
 }
