@@ -3,7 +3,9 @@
 
 echo postinst
 
-chmod -R cia:cia /opt/cia
-chmod a+x /opt/cia/*.sh
+chown -R cia:cia /opt/cia
+mv /opt/cia/bin/jetty.sh /opt/cia/bin/cia.sh
+chmod a+x /opt/cia/bin/*.sh
+ln -s /opt/cia/bin/cia.sh /etc/init.d/cia
 
 exit 0

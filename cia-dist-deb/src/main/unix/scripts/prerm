@@ -1,4 +1,7 @@
 #! /bin/bash
 
+mv /opt/cia/bin/cia.sh /opt/cia/bin/jetty.sh
+rm /etc/init.d/cia
+
 echo prerm
 exit 0

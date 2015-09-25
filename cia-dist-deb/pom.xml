@@ -85,8 +85,12 @@
             </extract-artifact>
             <extract-artifact>
               <artifact>com.hack23.cia:citizen-intelligence-agency:war</artifact>
-              <to>/opt/cia/webapps/cia.war</to>
+              <to>/opt/cia/webapps/cia</to>
             </extract-artifact>
+            <copyFile>
+              <path>src/main/config/etc/default/cia</path>
+              <toFile>/etc/default/cia</toFile>
+            </copyFile>
           </assembly>
         </configuration>
       </plugin>
