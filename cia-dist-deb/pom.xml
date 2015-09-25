@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>parent-web-pom</artifactId>
+    <groupId>com.hack23.cia</groupId>
+    <version>2011.07.23-SNAPSHOT</version>
+    <relativePath>../parent-web-pom/pom.xml</relativePath>
+  </parent>
   <artifactId>cia-dist-deb</artifactId>
   <packaging>deb</packaging>
+  <name>cia-dist-deb</name>
+  <scm>
+    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:git://github.com/Hack23/cia.git</developerConnection>
+    <url>https://github.com/Hack23/cia/tree/master/cia-dist-deb</url>
+  </scm>
+  <properties>
+    <cia.project.versions.jetty>9.3.3.v20150827</cia.project.versions.jetty>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-distribution</artifactId>
-      <version>${cia.project.versions.jetty}</version>
+      <version>9.3.3.v20150827</version>
       <type>zip</type>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.hack23.cia</groupId>
@@ -17,18 +38,12 @@
       <type>war</type>
     </dependency>
   </dependencies>
-  <parent>
-    <groupId>com.hack23.cia</groupId>
-    <artifactId>parent-web-pom</artifactId>
-    <version>2011.07.23-SNAPSHOT</version>
-    <relativePath>../parent-web-pom/pom.xml</relativePath>
-  </parent>
   <build>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
+        <groupId>com.stratio.mojo.unix</groupId>
         <artifactId>unix-maven-plugin</artifactId>
-        <version>1.0-alpha-5</version>
+        <version>1.1.2</version>
         <extensions>true</extensions>
         <configuration>
           <contact>cia</contact>
@@ -37,7 +52,7 @@
           <deb>
             <section>devel</section>
             <!-- <depends>zip</depends> -->
-            <preDepends>openjdk-8-jdk</preDepends>
+            <preDepends>openjdk-8-jdk, postgresql</preDepends>
             <!-- <priority></priority> <provides></provides> <recommends></recommends>
 							<replaces></replaces> <suggests></suggests> -->
           </deb>
@@ -64,29 +79,39 @@
               <to>/opt/cia</to>
               <pattern>jetty-distribution-${cia.project.versions.jetty}</pattern>
               <replacement>.</replacement>
+              <excludes>
+                <exclude>**/demo-base/**</exclude>
+              </excludes>
             </extract-artifact>
             <extract-artifact>
               <artifact>com.hack23.cia:citizen-intelligence-agency:war</artifact>
-              <to>/opt/cia/webapps/citizen-intelligence-agency.war</to>
+              <to>/opt/cia/webapps/cia.war</to>
             </extract-artifact>
-            <setAttributes>
-              <basedir>/opt/cia</basedir>
-              <fileAttributes>
-                <user>cia</user>
-                <group>cia</group>
-                <mode>0755</mode>
-              </fileAttributes>
-            </setAttributes>
           </assembly>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-versions</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration combine.self="override">
+              <rules>
+                <requireMavenVersion>
+                  <version>3.3.3</version>
+                </requireMavenVersion>
+                <requireJavaVersion>
+                  <version>1.8</version>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
-  <name>cia-dist-deb</name>
-  <scm>
-    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:git://github.com/Hack23/cia.git</developerConnection>
-    <url>https://github.com/Hack23/cia/tree/master/cia-dist-deb</url>
-  </scm>
 </project>
-

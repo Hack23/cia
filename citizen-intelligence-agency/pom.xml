@@ -127,7 +127,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>2.47.1</version>
+      <version>2.47.2</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -737,7 +737,7 @@
           <webAppConfig>
             <!--<defaultsDescriptor>src/main/config/jetty/webdefault.xml</defaultsDescriptor>
 							<overrideDescriptor></overrideDescriptor> -->
-            <contextPath>/</contextPath>
+            <contextPath>/cia</contextPath>
             <!-- <baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
 							<resourcesAsCSV>src/main/webapp,${project.build.directory}/classes,${project.build.directory}/${project.build.finalName}/</resourcesAsCSV>
 							</baseResource> -->

@@ -2,13 +2,8 @@
 
 
 echo postinst
-a2enmod proxy_http
-a2enmod ssl
-a2enmod rewrite
-a2enmod headers
-chkrootkit
-tiger
-psad -S
-logwatch
+
+chmod -R cia:cia /opt/cia
+chmod a+x /opt/cia/*.sh
 
 exit 0

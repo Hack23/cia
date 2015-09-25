@@ -1,4 +1,7 @@
 #! /bin/bash
 
+rm -rf /opt/cia/logs
+sudo userdel cia
+
 echo postrm
 exit 0
