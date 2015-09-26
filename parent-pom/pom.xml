@@ -112,7 +112,7 @@
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
-    <cia.project.versions.poi>3.13-beta1</cia.project.versions.poi>
+    <cia.project.versions.poi>3.13</cia.project.versions.poi>
     <cia.project.versions.postgresql>9.4-1203-jdbc42</cia.project.versions.postgresql>
     <!-- <cia.project.versions.easymock>3.1-SNAPSHOT</cia.project.versions.easymock> -->
     <cia.project.versions.easymock>3.4</cia.project.versions.easymock>
@@ -544,7 +544,7 @@
         <plugin>
           <groupId>org.apache.felix</groupId>
           <artifactId>maven-bundle-plugin</artifactId>
-          <version>2.5.4</version>
+          <version>3.0.0</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
