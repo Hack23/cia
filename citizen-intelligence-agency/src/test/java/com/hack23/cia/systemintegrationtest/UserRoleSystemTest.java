@@ -129,7 +129,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site committee ranking view overview test.
+	 *
 	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteCommitteeRankingViewOverviewTest() throws Exception {
@@ -144,6 +146,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site committee ranking view data grid test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteCommitteeRankingViewDataGridTest()  throws Exception {
@@ -159,6 +164,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site committee ranking view charts test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteCommitteeRankingViewChartsTest()  throws Exception {
@@ -172,6 +180,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site committee ranking view grid navigation test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteCommitteeRankingViewGridNavigationTest()  throws Exception {
@@ -188,6 +199,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site party ranking view overview test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePartyRankingViewOverviewTest()  throws Exception {
@@ -200,6 +214,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site party ranking view data grid test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePartyRankingViewDataGridTest() throws Exception {
@@ -213,6 +230,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site party ranking view charts test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePartyRankingViewChartsTest() throws Exception {
@@ -226,6 +246,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site politician ranking view overview test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePoliticianRankingViewOverviewTest() throws Exception {
@@ -238,6 +261,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site politician ranking view data grid test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePoliticianRankingViewDataGridTest() throws Exception {
@@ -251,6 +277,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site politician ranking view charts test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePoliticianRankingViewChartsTest() throws Exception {
@@ -264,6 +293,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site ministry overview test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteMinistryOverviewTest() throws Exception {
@@ -278,6 +310,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site ministry document history test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteMinistryDocumentHistoryTest() throws Exception {
@@ -292,6 +327,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site ministry document activity test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteMinistryDocumentActivityTest() throws Exception {
@@ -305,7 +343,28 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	}
 
 	/**
+	 * Site ministry role ghant test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteMinistryRoleGhantTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryView.NAME,
+				MinistryPageMode.RoleGhant.toString(), "N%C3%A4ringsdepartementet"));
+
+	}
+
+
+	/**
 	 * Site ministry current members test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteMinistryCurrentMembersTest() throws Exception {
@@ -320,6 +379,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site ministry member history test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteMinistryMemberHistoryTest() throws Exception {
@@ -333,6 +395,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site committee overview test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteCommitteeOverviewTest() throws Exception {
@@ -345,7 +410,27 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	}
 
 	/**
+	 * Site committe role ghant test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteCommitteRoleGhantTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommitteeView.NAME, CommitteePageMode.RoleGhant.toString(), "UU"));
+
+	}
+
+
+	/**
 	 * Site committee document history test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteCommitteeDocumentHistoryTest() throws Exception {
@@ -360,6 +445,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site committee current members test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteCommitteeCurrentMembersTest() throws Exception {
@@ -374,6 +462,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site committee member history test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteCommitteeMemberHistoryTest() throws Exception {
@@ -388,6 +479,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site committee document activity test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteCommitteeDocumentActivityTest() throws Exception {
@@ -402,6 +496,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site committee decision summary test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteCommitteeDecisionSummaryTest() throws Exception {
@@ -414,6 +511,12 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	}
 
+	/**
+	 * Site committee ballot decision summary test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public void siteCommitteeBallotDecisionSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
@@ -427,6 +530,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site committee decision type daily summary test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteCommitteeDecisionTypeDailySummaryTest() throws Exception {
@@ -441,6 +547,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site test chart view overview test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteTestChartViewOverviewTest() throws Exception {
@@ -454,6 +563,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site test chart view indicators test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteTestChartViewIndicatorsTest() throws Exception {
@@ -467,6 +579,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site test chart view party winner test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteTestChartViewPartyWinnerTest() throws Exception{
@@ -481,6 +596,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site test chart view decsion activity by type test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteTestChartViewDecsionActivityByTypeTest() throws Exception {
@@ -495,6 +613,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site test chart view document activity by type test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteTestChartViewDocumentActivityByTypeTest() throws Exception {
@@ -509,6 +630,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site ministry ranking overview test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteMinistryRankingOverviewTest() throws Exception {
@@ -522,6 +646,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site ministry ranking data grid test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteMinistryRankingDataGridTest() throws Exception {
@@ -535,6 +662,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site ministry ranking charts test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteMinistryRankingChartsTest() throws Exception {
@@ -548,6 +678,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site ministry ranking navigation test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteMinistryRankingNavigationTest() throws Exception {
@@ -562,6 +695,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site document details test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteDocumentDetailsTest() throws Exception {
@@ -576,6 +712,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site document over view test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteDocumentOverViewTest() throws Exception {
@@ -589,6 +728,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site document person ref test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteDocumentPersonRefTest() throws Exception {
@@ -603,6 +745,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site document doc activity test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteDocumentDocActivityTest() throws Exception {
@@ -617,6 +762,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site document doc data test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteDocumentDocDataTest() throws Exception {
@@ -630,6 +778,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site document doc refb test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteDocumentDocRefbTest() throws Exception {
@@ -644,6 +795,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site document doc decision test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteDocumentDocDecisionTest() throws Exception {
@@ -658,6 +812,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site document doc attachment test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteDocumentDocAttachmentTest()  throws Exception {
@@ -672,6 +829,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site party overview test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePartyOverviewTest() throws Exception {
@@ -685,6 +845,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site party document history test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePartyDocumentHistoryTest() throws Exception {
@@ -699,6 +862,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site party current members test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePartyCurrentMembersTest() throws Exception {
@@ -713,6 +879,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site party member history test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePartyMemberHistoryTest() throws Exception {
@@ -727,6 +896,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site party current leaders test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePartyCurrentLeadersTest() throws Exception {
@@ -741,6 +913,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site party leader history test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePartyLeaderHistoryTest() throws Exception {
@@ -755,6 +930,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site party committee roles test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePartyCommitteeRolesTest() throws Exception {
@@ -769,6 +947,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site party government roles test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePartyGovernmentRolesTest() throws Exception {
@@ -783,6 +964,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site party party won daily summary chart test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePartyPartyWonDailySummaryChartTest() throws Exception {
@@ -797,6 +981,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site party document activity test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePartyDocumentActivityTest() throws Exception {
@@ -810,7 +997,28 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	}
 
 	/**
+	 * Site party role ghant test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void sitePartyRoleGhantTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(PartyView.NAME, PartyPageMode.RoleGhant.toString(), "S"));
+
+	}
+
+
+	/**
 	 * Site party committee ballot decision summary test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePartyCommitteeBallotDecisionSummaryTest() throws Exception {
@@ -825,6 +1033,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site party vote history test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePartyVoteHistoryTest() throws Exception {
@@ -839,6 +1050,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site admin test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteAdminTest() throws Exception {
@@ -854,7 +1068,10 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	}
 
 	/**
-	 * Site admin2 test.
+	 * Site admin data summary.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void siteAdminDataSummary() throws Exception {
@@ -869,6 +1086,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site politican over view test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePoliticanOverViewTest() throws Exception {
@@ -881,6 +1101,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site politican role summary test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePoliticanRoleSummaryTest() throws Exception {
@@ -894,6 +1117,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site politican role list test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePoliticanRoleListTest() throws Exception {
@@ -908,6 +1134,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site politican role ghant test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePoliticanRoleGhantTest() throws Exception {
@@ -922,6 +1151,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site politican document history test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePoliticanDocumentHistoryTest() throws Exception {
@@ -936,6 +1168,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site politican vote history test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePoliticanVoteHistoryTest() throws Exception {
@@ -950,6 +1185,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site politican ballot decision summary test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePoliticanBallotDecisionSummaryTest() throws Exception {
@@ -964,6 +1202,9 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site politican document activity test.
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void sitePoliticanDocumentActivityTest() throws Exception {
@@ -976,6 +1217,12 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	}
 
+	/**
+	 * Site politican indicator test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public void sitePoliticanIndicatorTest() throws Exception {
 		final WebDriver driver = getWebDriver();
@@ -987,6 +1234,12 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	}
 
+	/**
+	 * Site politican chart test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public void sitePoliticanChartTest() throws Exception {
 		final WebDriver driver = getWebDriver();
