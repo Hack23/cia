@@ -38,7 +38,7 @@ import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 /**
  * The Class UserPageVisit.
  */
-public class UserPageVisit extends Assert {
+public final class UserPageVisit extends Assert {
 
 	/** The Constant WAIT_FOR_PAGE_DELAY. */
 	private static final int WAIT_FOR_PAGE_DELAY = 1500;
@@ -131,7 +131,7 @@ public class UserPageVisit extends Assert {
 		assertTrue("Each page should contain a MainMenu link",getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW));
 
 
-		String text = driver.findElement(By.tagName("body")).getText();
+		String text = getHtmlBodyAsText();
 		assertNotNull(text);
 		assertFalse("Page contains exception, url:" + url ,text.contains("Exception"));
 		assertFalse("Page contains widget exception, url:" + url,text.contains("Widget"));
@@ -140,6 +140,10 @@ public class UserPageVisit extends Assert {
 				driver.getCurrentUrl());
 		assertNotNull(browser, driver.getWindowHandle());
 
+	}
+
+	public String getHtmlBodyAsText() {
+		return driver.findElement(By.tagName("body")).getText();
 	}
 
 	/**

@@ -153,6 +153,7 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DataGrid));
+		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Datagrid"));
 
 	}
 
