@@ -81,7 +81,6 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(value = PoliticianView.NAME, cached = true)
 public final class PoliticianView extends AbstractPersonView {
 
-
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -105,8 +104,6 @@ public final class PoliticianView extends AbstractPersonView {
 	@Autowired
 	private transient GridFactory gridFactory;
 
-
-
 	/**
 	 * Post construct.
 	 */
@@ -127,248 +124,139 @@ public final class PoliticianView extends AbstractPersonView {
 	public void enter(final ViewChangeEvent event) {
 		final String parameters = event.getParameters();
 
-		if (parameters !=null) {
+		if (parameters != null) {
 
-		final String pageId = parameters
-				.substring(parameters.lastIndexOf('/') + "/".length(),
-						parameters.length());
+			final String pageId = parameters.substring(parameters.lastIndexOf('/') + "/".length(), parameters.length());
 
-		final DataContainer<PersonData, String> dataContainer = applicationManager
-				.getDataContainer(PersonData.class);
+			final DataContainer<PersonData, String> dataContainer = applicationManager
+					.getDataContainer(PersonData.class);
 
+			final PersonData personData = dataContainer.load(pageId);
+			if (personData != null) {
 
-		final PersonData personData = dataContainer.load(pageId);
-		if (personData != null) {
-
-			menuItemFactory.createPoliticianMenuBar(getBarmenu(), pageId);
-
-			if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-					|| parameters.contains(PageMode.Overview.toString())) {
-
-				createOverviewContent(pageId, personData);
-
-			} else if (parameters.contains(PageMode.Charts.toString())) {
-
+				menuItemFactory.createPoliticianMenuBar(getBarmenu(), pageId);
 				final VerticalLayout panelContent = new VerticalLayout();
 				panelContent.setSizeFull();
 				panelContent.setMargin(true);
-				panelContent.addComponent(new Label("Charts"));
 
+				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
+						|| parameters.contains(PageMode.Overview.toString())) {
 
-				getPanel().setContent(panelContent);
-				getPanel().setCaption("polititican:" + pageId);
+					createOverviewContent(panelContent,pageId, personData);
 
+				} else if (parameters.contains(PageMode.Charts.toString())) {
 
-			} else if (parameters.contains(PageMode.Indicators.toString())) {
+					panelContent.addComponent(new Label("Charts"));
 
-				final VerticalLayout panelContent = new VerticalLayout();
-				panelContent.setSizeFull();
-				panelContent.setMargin(true);
-				panelContent.addComponent(new Label("Indicators"));
+				} else if (parameters.contains(PageMode.Indicators.toString())) {
 
-				panelContent.addComponent(chartDataManager.createPersonLineChart(personData.getId()));
+					panelContent.addComponent(new Label("Indicators"));
 
+					panelContent.addComponent(chartDataManager.createPersonLineChart(personData.getId()));
 
-				getPanel().setContent(panelContent);
-				getPanel().setCaption("polititican:" + pageId);
+				} else if (parameters.contains(PoliticianPageMode.RoleSummary.toString())) {
 
+					panelContent.addComponent(new Label(PoliticianPageMode.RoleSummary.toString()));
 
-			} else if (parameters.contains(PoliticianPageMode.RoleSummary.toString())) {
+					final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
+							.getDataContainer(ViewRiksdagenPolitician.class);
 
-				final VerticalLayout panelContent = new VerticalLayout();
-				panelContent.setSizeFull();
-				panelContent.setMargin(true);
-				panelContent.addComponent(new Label(PoliticianPageMode.RoleSummary.toString()));
+					final ViewRiksdagenPolitician viewRiksdagenPolitician = politicianDataContainer
+							.load(personData.getId());
 
+					final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()
+							.getAssignmentList();
 
-				 final DataContainer<ViewRiksdagenPolitician, String>
-				 politicianDataContainer = applicationManager
-				 .getDataContainer(ViewRiksdagenPolitician.class);
+					createRoleSummary(panelContent, assignmentList, viewRiksdagenPolitician);
 
-				 final ViewRiksdagenPolitician viewRiksdagenPolitician =
-				 politicianDataContainer
-				 .load(personData.getId());
+				} else if (parameters.contains(PoliticianPageMode.RoleList.toString())) {
 
-				 final List<AssignmentData> assignmentList = personData
-				 .getPersonAssignmentData().getAssignmentList();
+					panelContent.addComponent(new Label(PoliticianPageMode.RoleList.toString()));
 
-				 createRoleSummary(panelContent, assignmentList,
-				 viewRiksdagenPolitician);
+					final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()
+							.getAssignmentList();
 
+					createRoleList(panelContent, assignmentList);
 
-				getPanel().setContent(panelContent);
-				getPanel().setCaption("polititican:" + pageId);
+				} else if (parameters.contains(PoliticianPageMode.VoteHistory.toString())) {
 
+					panelContent.addComponent(new Label(PoliticianPageMode.VoteHistory.toString()));
 
-			} else if (parameters.contains(PoliticianPageMode.RoleList.toString())) {
+					final BeanItemContainer<ViewRiksdagenVoteDataBallotPoliticianSummary> politicianBallotDataSource = new BeanItemContainer<ViewRiksdagenVoteDataBallotPoliticianSummary>(
+							ViewRiksdagenVoteDataBallotPoliticianSummary.class,
+							chartDataManager.getViewRiksdagenVoteDataBallotPoliticianSummary(personData.getId()));
 
-				final VerticalLayout panelContent = new VerticalLayout();
-				panelContent.setSizeFull();
-				panelContent.setMargin(true);
-				panelContent.addComponent(new Label(PoliticianPageMode.RoleList.toString()));
+					final Grid politicianBallotsBeanItemGrid = gridFactory
+							.createBasicBeanItemGrid(politicianBallotDataSource, "Ballots", null, null, null, null);
 
-				final List<AssignmentData> assignmentList = personData
-				 .getPersonAssignmentData().getAssignmentList();
+					panelContent.addComponent(politicianBallotsBeanItemGrid);
 
-				createRoleList(panelContent, assignmentList);
+				} else if (parameters.contains(PoliticianPageMode.BallotDecisionSummary.toString())) {
 
+					panelContent.addComponent(new Label(PoliticianPageMode.BallotDecisionSummary.toString()));
 
-				getPanel().setContent(panelContent);
-				getPanel().setCaption("polititican:" + pageId);
+				} else if (parameters.contains(PoliticianPageMode.DocumentHistory.toString())) {
 
+					panelContent.addComponent(new Label(PoliticianPageMode.DocumentHistory.toString()));
 
-			} else if (parameters.contains(PoliticianPageMode.VoteHistory.toString())) {
+					final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = applicationManager
+							.getDataContainer(ViewRiksdagenPoliticianDocument.class);
 
-				final VerticalLayout panelContent = new VerticalLayout();
-				panelContent.setSizeFull();
-				panelContent.setMargin(true);
-				panelContent.addComponent(new Label(PoliticianPageMode.VoteHistory.toString()));
+					final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<ViewRiksdagenPoliticianDocument>(
+							ViewRiksdagenPoliticianDocument.class, politicianDocumentDataContainer
+									.getAllBy(ViewRiksdagenPoliticianDocument_.personReferenceId, personData.getId()));
 
+					final Grid politicianDocumentBeanItemGrid = gridFactory.createBasicBeanItemGrid(
+							politicianDocumentDataSource, "Documents",
+							new String[] { "id", "docId", "referenceName", "partyShortCode", "personReferenceId",
+									"roleDescription", "documentType", "subType", "org", "label", "rm",
+									"madePublicDate", "numberValue", "status", "title", "subTitle", "tempLabel",
+									"orderNumber" },
+							new String[] { "id", "partyShortCode", "personReferenceId", "numberValue", "orderNumber",
+									"tempLabel", "referenceName" },
+							"docId", new ViewRiksdagenPoliticianDocumentPageItemClickListener());
 
-				 final BeanItemContainer<ViewRiksdagenVoteDataBallotPoliticianSummary>
-				 politicianBallotDataSource = new
-				 BeanItemContainer<ViewRiksdagenVoteDataBallotPoliticianSummary>(
-				 ViewRiksdagenVoteDataBallotPoliticianSummary.class,
-				 chartDataManager
-				 .getViewRiksdagenVoteDataBallotPoliticianSummary(personData
-				 .getId()));
+					panelContent.addComponent(politicianDocumentBeanItemGrid);
 
-				 final Grid politicianBallotsBeanItemGrid = gridFactory.createBasicBeanItemGrid(
-				 politicianBallotDataSource, "Ballots", null, null,
-				 null, null);
+				} else if (parameters.contains(PoliticianPageMode.DocumentActivity.toString())) {
 
+					panelContent.addComponent(new Label(PoliticianPageMode.DocumentActivity.toString()));
 
-				 panelContent.addComponent(politicianBallotsBeanItemGrid);
+					final DCharts documentHistoryChart = chartDataManager
+							.createPersonDocumentHistoryChart(personData.getId());
 
+					panelContent.addComponent(documentHistoryChart);
 
-				getPanel().setContent(panelContent);
-				getPanel().setCaption("polititican:" + pageId);
+				} else if (parameters.contains(PoliticianPageMode.RoleGhant.toString())) {
 
+					panelContent.addComponent(new Label(PoliticianPageMode.RoleGhant.toString()));
 
-			} else if (parameters.contains(PoliticianPageMode.BallotDecisionSummary.toString())) {
+					final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()
+							.getAssignmentList();
 
-				final VerticalLayout panelContent = new VerticalLayout();
-				panelContent.setSizeFull();
-				panelContent.setMargin(true);
-				panelContent.addComponent(new Label(PoliticianPageMode.BallotDecisionSummary.toString()));
+					createRoleGhant(panelContent, assignmentList);
 
-
+				}
 
 				getPanel().setContent(panelContent);
-				getPanel().setCaption("polititican:" + pageId);
 
+				final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
+						.getDataContainer(ViewRiksdagenPolitician.class);
 
-			} else if (parameters.contains(PoliticianPageMode.DocumentHistory.toString())) {
+				final ViewRiksdagenPolitician viewRiksdagenPolitician = politicianDataContainer
+						.load(personData.getId());
 
-				final VerticalLayout panelContent = new VerticalLayout();
-				panelContent.setSizeFull();
-				panelContent.setMargin(true);
-				panelContent.addComponent(new Label(PoliticianPageMode.DocumentHistory.toString()));
+				if (viewRiksdagenPolitician != null) {
 
-
-				 final DataContainer<ViewRiksdagenPoliticianDocument, String>
-				 politicianDocumentDataContainer = applicationManager
-				 .getDataContainer(ViewRiksdagenPoliticianDocument.class);
-
-				 final BeanItemContainer<ViewRiksdagenPoliticianDocument>
-				 politicianDocumentDataSource = new
-				 BeanItemContainer<ViewRiksdagenPoliticianDocument>(
-				 ViewRiksdagenPoliticianDocument.class,
-				 politicianDocumentDataContainer
-				 .getAllBy(
-				 ViewRiksdagenPoliticianDocument_.personReferenceId,
-				 personData.getId()));
-
-				 final Grid politicianDocumentBeanItemGrid = gridFactory.createBasicBeanItemGrid(
-				 politicianDocumentDataSource,
-				 "Documents",
-				 new String[] { "id", "docId", "referenceName",
-				 "partyShortCode", "personReferenceId",
-				 "roleDescription", "documentType", "subType",
-				 "org", "label", "rm", "madePublicDate",
-				 "numberValue", "status", "title", "subTitle",
-				 "tempLabel", "orderNumber" },
-				 new String[] { "id", "partyShortCode",
-				 "personReferenceId", "numberValue",
-				 "orderNumber", "tempLabel", "referenceName" },
-				 "docId",
-				 new ViewRiksdagenPoliticianDocumentPageItemClickListener());
-
-				 panelContent
-				 .addComponent(politicianDocumentBeanItemGrid);
-
-
-
-
-
-				getPanel().setContent(panelContent);
-				getPanel().setCaption("polititican:" + pageId);
-
-
-			} else if (parameters.contains(PoliticianPageMode.DocumentActivity.toString())) {
-
-				final VerticalLayout panelContent = new VerticalLayout();
-				panelContent.setSizeFull();
-				panelContent.setMargin(true);
-				panelContent.addComponent(new Label(PoliticianPageMode.DocumentActivity.toString()));
-
-				 final DCharts documentHistoryChart =
-						 chartDataManager.createPersonDocumentHistoryChart(personData
-						 .getId());
-
-				 panelContent
-						 .addComponent(documentHistoryChart);
-
-
-
-				getPanel().setContent(panelContent);
-				getPanel().setCaption("polititican:" + pageId);
-
-
-			} else if (parameters.contains(PoliticianPageMode.RoleGhant.toString())) {
-
-				final VerticalLayout panelContent = new VerticalLayout();
-				panelContent.setSizeFull();
-				panelContent.setMargin(true);
-				panelContent.addComponent(new Label(PoliticianPageMode.RoleGhant.toString()));
-
-				final List<AssignmentData> assignmentList = personData
-				 .getPersonAssignmentData().getAssignmentList();
-
-				 createRoleGhant(panelContent, assignmentList);
-
-				getPanel().setContent(panelContent);
-				getPanel().setCaption("polititican:" + pageId);
-
+					getPanel().setCaption("Politician:" + viewRiksdagenPolitician.getFirstName() + " "
+							+ viewRiksdagenPolitician.getLastName() + "(" + viewRiksdagenPolitician.getParty() + ")");
+				}
 
 			}
-
-
-			final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
-					.getDataContainer(ViewRiksdagenPolitician.class);
-
-			final ViewRiksdagenPolitician viewRiksdagenPolitician = politicianDataContainer
-					.load(personData.getId());
-
-			if (viewRiksdagenPolitician != null) {
-
-
-			 getPanel().setCaption(
-			 "Politician:"
-			 + viewRiksdagenPolitician.getFirstName()
-			 + " "
-			 + viewRiksdagenPolitician.getLastName()
-			 + "(" + viewRiksdagenPolitician.getParty()
-			 + ")");
-			}
-
-
-		}
 
 		}
 
 	}
-
 
 	/**
 	 * Creates the overview content.
@@ -378,62 +266,34 @@ public final class PoliticianView extends AbstractPersonView {
 	 * @param personData
 	 *            the person data
 	 */
-	private void createOverviewContent(final String pageId,
-			final PersonData personData) {
-		final VerticalLayout panelContent = new VerticalLayout();
-		panelContent.setSizeFull();
-		panelContent.setMargin(true);
+	private void createOverviewContent(VerticalLayout panelContent, final String pageId, final PersonData personData) {
 		panelContent.addComponent(new Label("overview"));
 
 		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenPolitician.class);
 
-		final ViewRiksdagenPolitician viewRiksdagenPolitician = politicianDataContainer
-				.load(personData.getId());
+		final ViewRiksdagenPolitician viewRiksdagenPolitician = politicianDataContainer.load(personData.getId());
 
-		panelContent.addComponent(pageLinkFactory
-				.createPoliticianPageLink(personData));
+		panelContent.addComponent(pageLinkFactory.createPoliticianPageLink(personData));
 
-		panelContent.addComponent(new Image("", new ExternalResource(
-				personData.getImageUrl192())));
+		panelContent.addComponent(new Image("", new ExternalResource(personData.getImageUrl192())));
 
-		addTextFields(panelContent,
-				new BeanItem<ViewRiksdagenPolitician>(
-						viewRiksdagenPolitician),
+		addTextFields(panelContent, new BeanItem<ViewRiksdagenPolitician>(viewRiksdagenPolitician),
 				ViewRiksdagenPolitician.class,
-				Arrays.asList(new String[] { "firstName", "lastName",
-						"gender", "bornYear", "party", "active",
-						"firstAssignmentDate", "lastAssignmentDate",
-						"currentAssignments",
-						"currentMinistryAssignments",
-						"currentSpeakerAssignments",
-						"currentCommitteeAssignments",
-						"currentPartyAssignments",
-						"totalMinistryAssignments",
-						"totalCommitteeAssignments",
-						"totalSpeakerAssignments",
-						"totalPartyAssignments", "totalAssignments",
-						"totalDaysServed", "activeEu",
-						"totalDaysServedEu", "activeGovernment",
-						"totalDaysServedGovernment", "activeSpeaker",
-						"totalDaysServedSpeaker", "activeCommittee",
-						"totalDaysServedCommittee", "activeParliament",
-						"totalDaysServedParliament", "activeParty",
-						"totalDaysServedParty" }));
-
-
-
+				Arrays.asList(new String[] { "firstName", "lastName", "gender", "bornYear", "party", "active",
+						"firstAssignmentDate", "lastAssignmentDate", "currentAssignments", "currentMinistryAssignments",
+						"currentSpeakerAssignments", "currentCommitteeAssignments", "currentPartyAssignments",
+						"totalMinistryAssignments", "totalCommitteeAssignments", "totalSpeakerAssignments",
+						"totalPartyAssignments", "totalAssignments", "totalDaysServed", "activeEu", "totalDaysServedEu",
+						"activeGovernment", "totalDaysServedGovernment", "activeSpeaker", "totalDaysServedSpeaker",
+						"activeCommittee", "totalDaysServedCommittee", "activeParliament", "totalDaysServedParliament",
+						"activeParty", "totalDaysServedParty" }));
 
 		panelContent.addComponent(gridFactory.createBasicBeanItemGrid(
-		 new BeanItemContainer<DetailData>(DetailData.class,
-		 personData.getPersonDetailData()
-		 .getDetailList()), "Detail",
-		 new String[] { "detailType", "detail", "code" },
-		 new String[] { "hjid", "intressentId" }, null, null));
+				new BeanItemContainer<DetailData>(DetailData.class, personData.getPersonDetailData().getDetailList()),
+				"Detail", new String[] { "detailType", "detail", "code" }, new String[] { "hjid", "intressentId" },
+				null, null));
 
-
-		getPanel().setContent(panelContent);
-		getPanel().setCaption("polititican:" + pageId);
 	}
 
 	/**
@@ -446,44 +306,28 @@ public final class PoliticianView extends AbstractPersonView {
 	 * @param viewRiksdagenPolitician
 	 *            the view riksdagen politician
 	 */
-	private void createRoleSummary(
-			final Layout roleSummaryLayoutTabsheet,
-			final List<AssignmentData> assignmentList,
+	private void createRoleSummary(final Layout roleSummaryLayoutTabsheet, final List<AssignmentData> assignmentList,
 			final ViewRiksdagenPolitician viewRiksdagenPolitician) {
 
-		roleSummaryLayoutTabsheet.addComponent(new Label("Assignments:"
-				+ assignmentList.size()));
+		roleSummaryLayoutTabsheet.addComponent(new Label("Assignments:" + assignmentList.size()));
 
 		if (viewRiksdagenPolitician != null) {
 
+			roleSummaryLayoutTabsheet.addComponent(new Label("Government experience:"
+					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedGovernment())));
 			roleSummaryLayoutTabsheet.addComponent(new Label(
-					"Government experience:"
-							+ convertToYearsString(viewRiksdagenPolitician
-									.getTotalDaysServedGovernment())));
+					"Speaker experience:" + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedSpeaker())));
+			roleSummaryLayoutTabsheet.addComponent(new Label("Committee experience:"
+					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedCommittee())));
+			roleSummaryLayoutTabsheet.addComponent(
+					new Label("EU experience:" + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedEu())));
+			roleSummaryLayoutTabsheet.addComponent(new Label("Parliament experience:"
+					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParliament())));
 			roleSummaryLayoutTabsheet.addComponent(new Label(
-					"Speaker experience:"
-							+ convertToYearsString(viewRiksdagenPolitician
-									.getTotalDaysServedSpeaker())));
-			roleSummaryLayoutTabsheet.addComponent(new Label(
-					"Committee experience:"
-							+ convertToYearsString(viewRiksdagenPolitician
-									.getTotalDaysServedCommittee())));
-			roleSummaryLayoutTabsheet.addComponent(new Label("EU experience:"
-					+ convertToYearsString(viewRiksdagenPolitician
-							.getTotalDaysServedEu())));
-			roleSummaryLayoutTabsheet.addComponent(new Label(
-					"Parliament experience:"
-							+ convertToYearsString(viewRiksdagenPolitician
-									.getTotalDaysServedParliament())));
-			roleSummaryLayoutTabsheet.addComponent(new Label(
-					"Party experience:"
-							+ convertToYearsString(viewRiksdagenPolitician
-									.getTotalDaysServedParty())));
+					"Party experience:" + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParty())));
 		}
 
 	}
-
-
 
 	/**
 	 * Creates the role list.
@@ -493,10 +337,7 @@ public final class PoliticianView extends AbstractPersonView {
 	 * @param assignmentList
 	 *            the assignment list
 	 */
-	private void createRoleList(
-			final Layout roleSummaryLayoutTabsheet,
-			final List<AssignmentData> assignmentList) {
-
+	private void createRoleList(final Layout roleSummaryLayoutTabsheet, final List<AssignmentData> assignmentList) {
 
 		final Comparator<AssignmentData> compare = new Comparator<AssignmentData>() {
 
@@ -508,16 +349,14 @@ public final class PoliticianView extends AbstractPersonView {
 
 		Collections.sort(assignmentList, compare);
 
-		roleSummaryLayoutTabsheet.addComponent(gridFactory.createBasicBeanItemGrid(
-				new BeanItemContainer<AssignmentData>(AssignmentData.class,
-						assignmentList), "Assignments", new String[] {
-						"roleCode", "assignmentType", "status", "detail",
-						"orgCode", "fromDate", "toDate" }, new String[] {
-						"hjid", "intressentId", "orderNumber", "orgCode" },
-				null, null));
+		roleSummaryLayoutTabsheet
+				.addComponent(gridFactory.createBasicBeanItemGrid(
+						new BeanItemContainer<AssignmentData>(AssignmentData.class, assignmentList), "Assignments",
+						new String[] { "roleCode", "assignmentType", "status", "detail", "orgCode", "fromDate",
+								"toDate" },
+						new String[] { "hjid", "intressentId", "orderNumber", "orgCode" }, null, null));
 
 	}
-
 
 	/**
 	 * Creates the role ghant.
@@ -527,10 +366,7 @@ public final class PoliticianView extends AbstractPersonView {
 	 * @param assignmentList
 	 *            the assignment list
 	 */
-	private void createRoleGhant(
-			final Layout roleSummaryLayoutTabsheet,
-			final List<AssignmentData> assignmentList) {
-
+	private void createRoleGhant(final Layout roleSummaryLayoutTabsheet, final List<AssignmentData> assignmentList) {
 
 		final Comparator<AssignmentData> compare = new Comparator<AssignmentData>() {
 
@@ -544,7 +380,6 @@ public final class PoliticianView extends AbstractPersonView {
 
 		roleSummaryLayoutTabsheet.addComponent(createGantt(assignmentList));
 	}
-
 
 	/**
 	 * Entries sorted by values.
@@ -564,13 +399,10 @@ public final class PoliticianView extends AbstractPersonView {
 				final Comparator<AssignmentData> compare = new Comparator<AssignmentData>() {
 
 					@Override
-					public int compare(final AssignmentData o1,
-							final AssignmentData o2) {
-						final int compareDate = o1.getFromDate().compareTo(
-								o2.getFromDate());
+					public int compare(final AssignmentData o1, final AssignmentData o2) {
+						final int compareDate = o1.getFromDate().compareTo(o2.getFromDate());
 						if (compareDate == 0) {
-							final int compareType = o1.getAssignmentType().compareTo(
-									o2.getAssignmentType());
+							final int compareType = o1.getAssignmentType().compareTo(o2.getAssignmentType());
 							if (compareType == 0) {
 								return o1.getDetail().compareTo(o2.getDetail());
 							} else {
@@ -586,8 +418,7 @@ public final class PoliticianView extends AbstractPersonView {
 				Collections.sort(o1.getValue(), compare);
 				Collections.sort(o2.getValue(), compare);
 
-				return compare.compare(o1.getValue().get(0),
-						o2.getValue().get(0));
+				return compare.compare(o1.getValue().get(0), o2.getValue().get(0));
 			}
 		};
 
@@ -612,8 +443,7 @@ public final class PoliticianView extends AbstractPersonView {
 			public String apply(final AssignmentData t) {
 				if ("kammaruppdrag".equalsIgnoreCase(t.getAssignmentType())) {
 					return "Riksdagsledamot";
-				} else if ("Riksdagsorgan".equalsIgnoreCase(t.getAssignmentType()
-						)) {
+				} else if ("Riksdagsorgan".equalsIgnoreCase(t.getAssignmentType())) {
 					return t.getAssignmentType() + "." + t.getDetail();
 				} else if ("uppdrag".equalsIgnoreCase(t.getAssignmentType())) {
 					return t.getAssignmentType() + "." + t.getDetail();
@@ -625,10 +455,8 @@ public final class PoliticianView extends AbstractPersonView {
 
 		};
 
-		final Map<String, List<AssignmentData>> assignmentListMap = assignmentList
-				.stream().collect(
-						Collectors.groupingBy(role, TreeMap::new,
-								Collectors.toList()));
+		final Map<String, List<AssignmentData>> assignmentListMap = assignmentList.stream()
+				.collect(Collectors.groupingBy(role, TreeMap::new, Collectors.toList()));
 
 		final Gantt gantt = new Gantt();
 		gantt.setSizeFull();
@@ -641,8 +469,7 @@ public final class PoliticianView extends AbstractPersonView {
 		if (!assignmentList.isEmpty()) {
 
 			gantt.setStartDate(assignmentList.get(0).getFromDate());
-			gantt.setEndDate(assignmentList.get(assignmentList.size() - 1)
-					.getToDate());
+			gantt.setEndDate(assignmentList.get(assignmentList.size() - 1).getToDate());
 
 			for (final Entry<String, List<AssignmentData>> entry : entriesSortedByValues(assignmentListMap)) {
 
@@ -656,8 +483,7 @@ public final class PoliticianView extends AbstractPersonView {
 				final Comparator<AssignmentData> compare = new Comparator<AssignmentData>() {
 
 					@Override
-					public int compare(final AssignmentData o1,
-							final AssignmentData o2) {
+					public int compare(final AssignmentData o1, final AssignmentData o2) {
 						return o1.getFromDate().compareTo(o2.getFromDate());
 					}
 				};
@@ -676,16 +502,14 @@ public final class PoliticianView extends AbstractPersonView {
 						subStepName = assignmentData.getRoleCode().toString();
 					}
 
-					final SubStep sameRoleSubStep = new SubStep(stepName + "."
-							+ subStepName);
+					final SubStep sameRoleSubStep = new SubStep(stepName + "." + subStepName);
 
 					sameRoleSubStep.setBackgroundColor("A8D999");
 
 					if (RoleStatus.LEDIG == assignmentData.getStatus()) {
 						sameRoleSubStep.setBackgroundColor("AA0000");
 					} else {
-						if (parliamentType.equalsIgnoreCase(assignmentData
-								.getAssignmentType())) {
+						if (parliamentType.equalsIgnoreCase(assignmentData.getAssignmentType())) {
 							sameRoleSubStep.setBackgroundColor("00AA00");
 						} else {
 							sameRoleSubStep.setBackgroundColor("0000AA");
@@ -693,10 +517,8 @@ public final class PoliticianView extends AbstractPersonView {
 
 					}
 
-					sameRoleSubStep.setStartDate(assignmentData.getFromDate()
-							.getTime());
-					sameRoleSubStep.setEndDate(assignmentData.getToDate()
-							.getTime());
+					sameRoleSubStep.setStartDate(assignmentData.getFromDate().getTime());
+					sameRoleSubStep.setEndDate(assignmentData.getToDate().getTime());
 
 					step.addSubStep(sameRoleSubStep);
 				}

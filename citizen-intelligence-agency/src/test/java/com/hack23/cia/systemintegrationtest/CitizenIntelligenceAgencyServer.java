@@ -86,6 +86,7 @@ public class CitizenIntelligenceAgencyServer {
 		System.setProperty("slf4j", "true");
 		System.setProperty("org.eclipse.jetty.util.log.class",
 				"org.eclipse.jetty.util.log.Slf4jLog");
+
 		LogManager.getLogManager().reset();
 		SLF4JBridgeHandler.install();
 		java.util.logging.Logger.getLogger("global").setLevel(Level.FINEST);

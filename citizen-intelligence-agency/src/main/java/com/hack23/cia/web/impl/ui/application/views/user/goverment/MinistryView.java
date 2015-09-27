@@ -85,7 +85,6 @@ public final class MinistryView extends AbstractGroupView {
 	@Autowired
 	private transient GridFactory gridFactory;
 
-
 	/**
 	 * Post construct.
 	 */
@@ -94,7 +93,6 @@ public final class MinistryView extends AbstractGroupView {
 		setSizeFull();
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
-
 
 	/*
 	 * (non-Javadoc)
@@ -110,107 +108,66 @@ public final class MinistryView extends AbstractGroupView {
 
 		if (parameters != null) {
 
-
-			final String pageId =parameters
-					.substring(parameters.lastIndexOf('/') + "/".length(),
-							parameters.length());
+			final String pageId = parameters.substring(parameters.lastIndexOf('/') + "/".length(), parameters.length());
 
 			final DataContainer<ViewRiksdagenMinistry, String> dataContainer = applicationManager
 					.getDataContainer(ViewRiksdagenMinistry.class);
 
-			final ViewRiksdagenMinistry viewRiksdagenMinistry = dataContainer
-					.load(pageId);
+			final ViewRiksdagenMinistry viewRiksdagenMinistry = dataContainer.load(pageId);
 
 			if (viewRiksdagenMinistry != null) {
 
 				menuItemFactory.createMinistryMenuBar(getBarmenu(), pageId);
+				final VerticalLayout panelContent = new VerticalLayout();
+				panelContent.setSizeFull();
+				panelContent.setMargin(true);
 
 				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 						|| parameters.contains(PageMode.Overview.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Overview"));
 
-
-					addTextFields(panelContent,
-							new BeanItem<ViewRiksdagenMinistry>(
-									viewRiksdagenMinistry),
-									ViewRiksdagenMinistry.class,
-									Arrays.asList(new String[] { "nameId", "active",
-											"firstAssignmentDate", "lastAssignmentDate",
-											"totalAssignments", "totalDaysServed",
-									"currentMemberSize" }));
-
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Ministry:" + viewRiksdagenMinistry.getNameId());
-
+					addTextFields(panelContent, new BeanItem<ViewRiksdagenMinistry>(viewRiksdagenMinistry),
+							ViewRiksdagenMinistry.class,
+							Arrays.asList(
+									new String[] { "nameId", "active", "firstAssignmentDate", "lastAssignmentDate",
+											"totalAssignments", "totalDaysServed", "currentMemberSize" }));
 
 				} else if (parameters.contains(MinistryPageMode.DocumentHistory.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Document History"));
 
 					final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPoliticianDocument.class);
 
 					final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<ViewRiksdagenPoliticianDocument>(
-							ViewRiksdagenPoliticianDocument.class,
-							politicianDocumentDataContainer.getAllBy(
-									ViewRiksdagenPoliticianDocument_.org,
-									viewRiksdagenMinistry.getNameId()));
+							ViewRiksdagenPoliticianDocument.class, politicianDocumentDataContainer
+									.getAllBy(ViewRiksdagenPoliticianDocument_.org, viewRiksdagenMinistry.getNameId()));
 
 					final Grid politicianDocumentBeanItemGrid = gridFactory.createBasicBeanItemGrid(
 							politicianDocumentDataSource, "Documents",
-							new String[] { "id", "docId", "referenceName",
-									"partyShortCode", "personReferenceId",
-									"roleDescription", "documentType", "subType",
-									"org", "label", "rm", "madePublicDate",
-									"numberValue", "status", "title", "subTitle",
-									"tempLabel", "orderNumber" }, new String[] {
-									"id", "numberValue", "orderNumber",
-									"tempLabel", "personReferenceId", "org" },
-									"docId",
-									new ViewRiksdagenPoliticianDocumentPageItemClickListener());
+							new String[] { "id", "docId", "referenceName", "partyShortCode", "personReferenceId",
+									"roleDescription", "documentType", "subType", "org", "label", "rm",
+									"madePublicDate", "numberValue", "status", "title", "subTitle", "tempLabel",
+									"orderNumber" },
+							new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId",
+									"org" },
+							"docId", new ViewRiksdagenPoliticianDocumentPageItemClickListener());
 
-					panelContent
-					.addComponent(politicianDocumentBeanItemGrid);
-
-
-
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Ministry:" + viewRiksdagenMinistry.getNameId());
+					panelContent.addComponent(politicianDocumentBeanItemGrid);
 
 				} else if (parameters.contains(MinistryPageMode.DocumentActivity.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Document Activity"));
 
-					final DCharts createDocumentHistoryChart = chartDataManager.createDocumentHistoryChartByOrg(viewRiksdagenMinistry.getNameId());
+					final DCharts createDocumentHistoryChart = chartDataManager
+							.createDocumentHistoryChartByOrg(viewRiksdagenMinistry.getNameId());
 
 					panelContent.addComponent(createDocumentHistoryChart);
 
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Ministry:" + viewRiksdagenMinistry.getNameId());
-
 				} else if (parameters.contains(MinistryPageMode.CurrentMembers.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Current Members"));
-
 
 					final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
@@ -218,85 +175,45 @@ public final class MinistryView extends AbstractGroupView {
 					final BeanItemContainer<ViewRiksdagenGovermentRoleMember> currentMembersMemberDataSource = new BeanItemContainer<ViewRiksdagenGovermentRoleMember>(
 							ViewRiksdagenGovermentRoleMember.class,
 							govermentRoleMemberDataContainer.findListByProperty(
-									new Object[] {
-											viewRiksdagenMinistry.getNameId(), true },
-											ViewRiksdagenGovermentRoleMember_.detail,
-											ViewRiksdagenGovermentRoleMember_.active));
+									new Object[] { viewRiksdagenMinistry.getNameId(), true },
+									ViewRiksdagenGovermentRoleMember_.detail,
+									ViewRiksdagenGovermentRoleMember_.active));
 
 					final Grid currentMemberBeanItemGrid = gridFactory.createBasicBeanItemGrid(
 							currentMembersMemberDataSource, "Current Members",
-							new String[] { "roleId", "personId", "firstName",
-									"lastName", "party", "active", "detail",
-									"roleCode", "fromDate", "toDate",
-							"totalDaysServed" }, new String[] { "roleId",
-									"personId", "detail" }, null,
-									new GovermentRoleMemberPageItemClickListener());
+							new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
+									"roleCode", "fromDate", "toDate", "totalDaysServed" },
+							new String[] { "roleId", "personId", "detail" }, null,
+							new GovermentRoleMemberPageItemClickListener());
 
 					panelContent.addComponent(currentMemberBeanItemGrid);
 
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Ministry:" + viewRiksdagenMinistry.getNameId());
-
 				} else if (parameters.contains(MinistryPageMode.MemberHistory.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Member History"));
 
 					final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
 
-
 					final BeanItemContainer<ViewRiksdagenGovermentRoleMember> govermentRoleMemberDataSource = new BeanItemContainer<ViewRiksdagenGovermentRoleMember>(
-							ViewRiksdagenGovermentRoleMember.class,
-							govermentRoleMemberDataContainer.getAllBy(
-									ViewRiksdagenGovermentRoleMember_.detail,
-									viewRiksdagenMinistry.getNameId()));
+							ViewRiksdagenGovermentRoleMember.class, govermentRoleMemberDataContainer.getAllBy(
+									ViewRiksdagenGovermentRoleMember_.detail, viewRiksdagenMinistry.getNameId()));
 
 					final Grid ministryRoleMemberBeanItemGrid = gridFactory.createBasicBeanItemGrid(
 							govermentRoleMemberDataSource, "Member History",
-							new String[] { "roleId", "personId", "firstName",
-									"lastName", "party", "active", "detail",
-									"roleCode", "fromDate", "toDate",
-							"totalDaysServed" }, new String[] { "roleId",
-									"personId", "detail" }, null,
-									new GovermentRoleMemberPageItemClickListener());
+							new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
+									"roleCode", "fromDate", "toDate", "totalDaysServed" },
+							new String[] { "roleId", "personId", "detail" }, null,
+							new GovermentRoleMemberPageItemClickListener());
 
-					panelContent
-					.addComponent(ministryRoleMemberBeanItemGrid);
-
-
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Ministry:" + viewRiksdagenMinistry.getNameId());
+					panelContent.addComponent(ministryRoleMemberBeanItemGrid);
 
 				} else if (parameters.contains(MinistryPageMode.RoleGhant.toString())) {
-
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Role Ghant"));
-
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Ministry:" + viewRiksdagenMinistry.getNameId());
-
-				} else {
-
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
-					panelContent.addComponent(new Label("NotImpl"));
-
-					getPanel().setContent(panelContent);
-
 				}
 
+				getPanel().setContent(panelContent);
+				getPanel().setCaption("Ministry:" + viewRiksdagenMinistry.getNameId());
 
 			}
 
@@ -305,8 +222,5 @@ public final class MinistryView extends AbstractGroupView {
 		}
 
 	}
-
-
-
 
 }

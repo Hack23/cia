@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -86,7 +86,6 @@ public final class CommitteeView extends AbstractGroupView {
 	@Autowired
 	private transient GridFactory gridFactory;
 
-
 	/**
 	 * Post construct.
 	 */
@@ -95,8 +94,6 @@ public final class CommitteeView extends AbstractGroupView {
 		setSizeFull();
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
-
-
 
 	/*
 	 * (non-Javadoc)
@@ -112,264 +109,129 @@ public final class CommitteeView extends AbstractGroupView {
 
 		if (parameters != null) {
 
-
-			final String pageId = parameters
-					.substring(parameters.lastIndexOf('/') + "/".length(),
-							parameters.length());
+			final String pageId = parameters.substring(parameters.lastIndexOf('/') + "/".length(), parameters.length());
 
 			final DataContainer<ViewRiksdagenCommittee, String> dataContainer = applicationManager
 					.getDataContainer(ViewRiksdagenCommittee.class);
 
-			final ViewRiksdagenCommittee viewRiksdagenCommittee = dataContainer
-					.load(pageId);
+			final ViewRiksdagenCommittee viewRiksdagenCommittee = dataContainer.load(pageId);
 
 			if (viewRiksdagenCommittee != null) {
 
 				menuItemFactory.createCommitteeeMenuBar(getBarmenu(), pageId);
+				final VerticalLayout panelContent = new VerticalLayout();
+				panelContent.setSizeFull();
+				panelContent.setMargin(true);
 
 				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 						|| parameters.contains(PageMode.Overview.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Overview"));
 
+					addTextFields(panelContent, new BeanItem<ViewRiksdagenCommittee>(viewRiksdagenCommittee),
+							ViewRiksdagenCommittee.class,
+							Arrays.asList(new String[] { "embeddedId.detail", "active", "firstAssignmentDate",
+									"lastAssignmentDate", "totalAssignments", "totalDaysServed",
+									"currentMemberSize" }));
 
-					addTextFields(panelContent,
-							new BeanItem<ViewRiksdagenCommittee>(
-									viewRiksdagenCommittee),
-									ViewRiksdagenCommittee.class,
-									Arrays.asList(new String[] { "embeddedId.detail",
-											"active", "firstAssignmentDate",
-											"lastAssignmentDate", "totalAssignments",
-											"totalDaysServed", "currentMemberSize" }));
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Committee:"
-									+ viewRiksdagenCommittee.getEmbeddedId()
-									.getDetail());
 				} else if (parameters.contains(CommitteePageMode.DOCUMENT_HISTORY.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Document History"));
-
 
 					final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPoliticianDocument.class);
 
-
 					final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<ViewRiksdagenPoliticianDocument>(
 							ViewRiksdagenPoliticianDocument.class,
-							politicianDocumentDataContainer.getAllBy(
-									ViewRiksdagenPoliticianDocument_.org,
-									viewRiksdagenCommittee.getEmbeddedId().getOrgCode().replace(" ", "").replace("_", "").trim()));
-
-
+							politicianDocumentDataContainer.getAllBy(ViewRiksdagenPoliticianDocument_.org,
+									viewRiksdagenCommittee.getEmbeddedId().getOrgCode().replace(" ", "")
+											.replace("_", "").trim()));
 
 					final Grid politicianDocumentBeanItemGrid = gridFactory.createBasicBeanItemGrid(
-							politicianDocumentDataSource, "Documents", 		new String[] {
-									"id",
-									"docId",
-									"referenceName",
-									"partyShortCode",
-									"personReferenceId",
-									"roleDescription",
-									"documentType",
-									"subType",
-									"org",
-									"label",
-									"rm",
-									"madePublicDate",
-									"numberValue",
-									"status",
-									"title",
-									"subTitle",
-									"tempLabel",
-							"orderNumber"},			new String[] {
-									"id",
-									"numberValue",
-									"orderNumber",
-									"tempLabel","personReferenceId","org"},"docId",
-									new ViewRiksdagenPoliticianDocumentPageItemClickListener());
-
+							politicianDocumentDataSource, "Documents",
+							new String[] { "id", "docId", "referenceName", "partyShortCode", "personReferenceId",
+									"roleDescription", "documentType", "subType", "org", "label", "rm",
+									"madePublicDate", "numberValue", "status", "title", "subTitle", "tempLabel",
+									"orderNumber" },
+							new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId",
+									"org" },
+							"docId", new ViewRiksdagenPoliticianDocumentPageItemClickListener());
 
 					panelContent.addComponent(politicianDocumentBeanItemGrid);
 
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Committee:"
-									+ viewRiksdagenCommittee.getEmbeddedId()
-									.getDetail());
 				} else if (parameters.contains(CommitteePageMode.DocumentActivity.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Document Activity"));
 
-
-					final DCharts createDocumentHistoryChart = chartDataManager.createDocumentHistoryChartByOrg(viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
+					final DCharts createDocumentHistoryChart = chartDataManager
+							.createDocumentHistoryChartByOrg(viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
 
 					panelContent.addComponent(createDocumentHistoryChart);
 
-
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Committee:"
-									+ viewRiksdagenCommittee.getEmbeddedId()
-									.getDetail());
-				} else if (parameters.contains(CommitteePageMode.DecisionSummary.toString())) {
-
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
-					panelContent.addComponent(new Label("Decision Summary"));
-
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Committee:"
-									+ viewRiksdagenCommittee.getEmbeddedId()
-									.getDetail());
 				} else if (parameters.contains(CommitteePageMode.DecisionTypeDailySummary.toString())) {
-
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Decision Type Daily Summary"));
 
-					final DCharts createDecisionTypeChart = chartDataManager.createDecisionTypeChart(viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
+					final DCharts createDecisionTypeChart = chartDataManager
+							.createDecisionTypeChart(viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
 					panelContent.addComponent(createDecisionTypeChart);
-
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Committee:"
-									+ viewRiksdagenCommittee.getEmbeddedId()
-									.getDetail());
 				} else if (parameters.contains(CommitteePageMode.BallotDecisionSummary.toString())) {
-
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Ballot Decision Summary"));
 
-
 					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Committee:"
-									+ viewRiksdagenCommittee.getEmbeddedId()
-									.getDetail());
-				} else if (parameters.contains(CommitteePageMode.CURRENT_MEMBERS.toString())) {
+					getPanel().setCaption("Committee:" + viewRiksdagenCommittee.getEmbeddedId().getDetail());
+				} else if (parameters.contains(CommitteePageMode.DecisionSummary.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
+					panelContent.addComponent(new Label("Decision Summary"));
+
+				} else if (parameters.contains(CommitteePageMode.CURRENT_MEMBERS.toString())) {
 					panelContent.addComponent(new Label("Current Members"));
 
 					final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
 
-
-
 					final BeanItemContainer<ViewRiksdagenCommitteeRoleMember> currentMembersMemberDataSource = new BeanItemContainer<ViewRiksdagenCommitteeRoleMember>(
 							ViewRiksdagenCommitteeRoleMember.class,
 							committeeRoleMemberDataContainer.findListByProperty(
-									new Object[] {
-											viewRiksdagenCommittee.getEmbeddedId().getDetail(), true },
-											ViewRiksdagenCommitteeRoleMember_.detail,
-											ViewRiksdagenCommitteeRoleMember_.active));
+									new Object[] { viewRiksdagenCommittee.getEmbeddedId().getDetail(), true },
+									ViewRiksdagenCommitteeRoleMember_.detail,
+									ViewRiksdagenCommitteeRoleMember_.active));
 
 					final Grid currentMemberBeanItemGrid = gridFactory.createBasicBeanItemGrid(
 							currentMembersMemberDataSource, "Current Members",
-							new String[] { "roleId", "personId", "firstName",
-									"lastName", "party", "active", "detail",
-									"roleCode", "fromDate", "toDate",
-							"totalDaysServed" }, new String[] { "roleId",
-									"personId", "detail" }, null,
-									new GovermentRoleMemberPageItemClickListener());
+							new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
+									"roleCode", "fromDate", "toDate", "totalDaysServed" },
+							new String[] { "roleId", "personId", "detail" }, null,
+							new GovermentRoleMemberPageItemClickListener());
 
 					panelContent.addComponent(currentMemberBeanItemGrid);
 
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Committee:"
-									+ viewRiksdagenCommittee.getEmbeddedId()
-									.getDetail());
 				} else if (parameters.contains(CommitteePageMode.MemberHistory.toString())) {
-
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Member History"));
-
 
 					final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
 
-
 					final BeanItemContainer<ViewRiksdagenCommitteeRoleMember> committeeRoleMemberDataSource = new BeanItemContainer<ViewRiksdagenCommitteeRoleMember>(
 							ViewRiksdagenCommitteeRoleMember.class,
-							committeeRoleMemberDataContainer.getAllBy(
-									ViewRiksdagenCommitteeRoleMember_.detail,
+							committeeRoleMemberDataContainer.getAllBy(ViewRiksdagenCommitteeRoleMember_.detail,
 									viewRiksdagenCommittee.getEmbeddedId().getDetail()));
 
 					final Grid commmitteeRoleMemberBeanItemGrid = gridFactory.createBasicBeanItemGrid(
-							committeeRoleMemberDataSource, "Member History", new String[] {
-									"roleId",
-									"personId",
-									"firstName",
-									"lastName",
-									"party",
-									"active",
-									"detail",
-									"roleCode",
-									"fromDate",
-									"toDate",
-									"totalDaysServed"
-							}, new String[] {
-									"roleId",
-									"personId","detail"}, null,
-									new CommitteeRoleMemberPageItemClickListener());
+							committeeRoleMemberDataSource, "Member History",
+							new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
+									"roleCode", "fromDate", "toDate", "totalDaysServed" },
+							new String[] { "roleId", "personId", "detail" }, null,
+							new CommitteeRoleMemberPageItemClickListener());
 
 					panelContent.addComponent(commmitteeRoleMemberBeanItemGrid);
 
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Committee:"
-									+ viewRiksdagenCommittee.getEmbeddedId()
-									.getDetail());
 				} else if (parameters.contains(CommitteePageMode.RoleGhant.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("RoleGhant"));
-
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Committee:"
-									+ viewRiksdagenCommittee.getEmbeddedId()
-									.getDetail());
-				} else {
-
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
-					panelContent.addComponent(new Label("NotImpl"));
-
-					getPanel().setContent(panelContent);
-
 				}
 
+				getPanel().setContent(panelContent);
+				getPanel().setCaption("Committee:" + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 
 			}
 
@@ -378,7 +240,5 @@ public final class CommitteeView extends AbstractGroupView {
 		}
 
 	}
-
-
 
 }

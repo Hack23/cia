@@ -64,7 +64,7 @@ import com.hack23.cia.web.impl.ui.application.views.user.test.TestChartView;
  * The Class UserRoleSystemTest.
  */
 @RunWith(Parallelized.class)
-@FixMethodOrder(value=MethodSorters.NAME_ASCENDING)
+@FixMethodOrder(value = MethodSorters.NAME_ASCENDING)
 public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/** The test server. */
@@ -74,7 +74,7 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	private final String browser;
 
 	/** The web driver map. */
-	private final Map<String,WebDriver>  webDriverMap= new ConcurrentHashMap<String, WebDriver>();
+	private final Map<String, WebDriver> webDriverMap = new ConcurrentHashMap<String, WebDriver>();
 
 	/**
 	 * Instantiates a new user role system test.
@@ -94,7 +94,7 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 */
 	@Parameters(name = "SiteTest{index}: browser({0})")
 	public static Collection<String[]> browsersStrings() {
-		return Arrays.asList(new String[][] {  { "firefox" },{ "chrome" }});
+		return Arrays.asList(new String[][] { { "firefox" }, { "chrome" } });
 		// return Arrays.asList(new Object[][] { { "firefox" },{ "chrome" }, {
 		// "htmlunit-firefox" },{ "htmlunit-ie11" },{ "htmlunit-chrome" } });
 	}
@@ -129,1459 +129,873 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 	/**
 	 * Site committee ranking view overview test.
+	 * @throws Exception
 	 */
 	@Test
-	public void siteCommitteeRankingViewOverviewTest() {
+	public void siteCommitteeRankingViewOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.Overview));
 
-
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.Overview));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
 
 	/**
 	 * Site committee ranking view data grid test.
 	 */
 	@Test
-	public void siteCommitteeRankingViewDataGridTest() {
+	public void siteCommitteeRankingViewDataGridTest()  throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DataGrid));
 
-
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DataGrid));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site committee ranking view charts test.
 	 */
 	@Test
-	public void siteCommitteeRankingViewChartsTest() {
+	public void siteCommitteeRankingViewChartsTest()  throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.Charts));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.Charts));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
 
 	/**
 	 * Site committee ranking view grid navigation test.
 	 */
 	@Test
-	public void siteCommitteeRankingViewGridNavigationTest() {
+	public void siteCommitteeRankingViewGridNavigationTest()  throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DataGrid));
+		userPageVisit
+				.VisitCommitteeView(userPageVisit.getActionIdsBy(ViewAction.VISIT_COMMITTEE_VIEW).iterator().next());
 
-
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DataGrid));
-			userPageVisit.VisitCommitteeView(userPageVisit.getActionIdsBy(ViewAction.VISIT_COMMITTEE_VIEW).iterator().next());
-
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
 
 	/**
 	 * Site party ranking view overview test.
 	 */
 	@Test
-	public void sitePartyRankingViewOverviewTest() {
+	public void sitePartyRankingViewOverviewTest()  throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyRankingView.NAME, PageMode.Overview));
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyRankingView.NAME, PageMode.Overview));
 	}
-
 
 	/**
 	 * Site party ranking view data grid test.
 	 */
 	@Test
-	public void sitePartyRankingViewDataGridTest() {
+	public void sitePartyRankingViewDataGridTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyRankingView.NAME, PageMode.DataGrid));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyRankingView.NAME, PageMode.DataGrid));
 
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site party ranking view charts test.
 	 */
 	@Test
-	public void sitePartyRankingViewChartsTest() {
+	public void sitePartyRankingViewChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyRankingView.NAME, PageMode.Charts));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyRankingView.NAME, PageMode.Charts));
 
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
 
 	/**
 	 * Site politician ranking view overview test.
 	 */
 	@Test
-	public void sitePoliticianRankingViewOverviewTest() {
+	public void sitePoliticianRankingViewOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianRankingView.NAME, PageMode.Overview));
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianRankingView.NAME, PageMode.Overview));
 	}
 
 	/**
 	 * Site politician ranking view data grid test.
 	 */
 	@Test
-	public void sitePoliticianRankingViewDataGridTest() {
+	public void sitePoliticianRankingViewDataGridTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianRankingView.NAME, PageMode.DataGrid));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianRankingView.NAME, PageMode.DataGrid));
 
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
 
 	/**
 	 * Site politician ranking view charts test.
 	 */
 	@Test
-	public void sitePoliticianRankingViewChartsTest() {
+	public void sitePoliticianRankingViewChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianRankingView.NAME, PageMode.Charts));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianRankingView.NAME, PageMode.Charts));
 
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
-
-
 
 	/**
 	 * Site ministry overview test.
 	 */
 	@Test
-	public void siteMinistryOverviewTest() {
+	public void siteMinistryOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(MinistryView.NAME, PageMode.Overview, "N%C3%A4ringsdepartementet"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryView.NAME, PageMode.Overview, "N%C3%A4ringsdepartementet"));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
-
 
 	/**
 	 * Site ministry document history test.
 	 */
 	@Test
-	public void siteMinistryDocumentHistoryTest() {
+	public void siteMinistryDocumentHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryView.NAME,
+				MinistryPageMode.DocumentHistory.toString(), "N%C3%A4ringsdepartementet"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryView.NAME, MinistryPageMode.DocumentHistory.toString(), "N%C3%A4ringsdepartementet"));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site ministry document activity test.
 	 */
 	@Test
-	public void siteMinistryDocumentActivityTest() {
+	public void siteMinistryDocumentActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryView.NAME,
+				MinistryPageMode.DocumentActivity.toString(), "N%C3%A4ringsdepartementet"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryView.NAME, MinistryPageMode.DocumentActivity.toString(), "N%C3%A4ringsdepartementet"));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site ministry current members test.
 	 */
 	@Test
-	public void siteMinistryCurrentMembersTest() {
+	public void siteMinistryCurrentMembersTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryView.NAME,
+				MinistryPageMode.CurrentMembers.toString(), "N%C3%A4ringsdepartementet"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryView.NAME, MinistryPageMode.CurrentMembers.toString(), "N%C3%A4ringsdepartementet"));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site ministry member history test.
 	 */
 	@Test
-	public void siteMinistryMemberHistoryTest() {
+	public void siteMinistryMemberHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryView.NAME, MinistryPageMode.MemberHistory.toString(), "N%C3%A4ringsdepartementet"));
-			// userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryView.NAME, MinistryPageMode.RoleGhant.toString(), "N%C3%A4ringsdepartementet"));
-
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryView.NAME,
+				MinistryPageMode.MemberHistory.toString(), "N%C3%A4ringsdepartementet"));
 	}
-
-
-
 
 	/**
 	 * Site committee overview test.
 	 */
 	@Test
-	public void siteCommitteeOverviewTest() {
+	public void siteCommitteeOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommitteeView.NAME, PageMode.Overview, "UU"));
 
-
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(CommitteeView.NAME, PageMode.Overview, "UU"));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
-
 
 	/**
 	 * Site committee document history test.
 	 */
 	@Test
-	public void siteCommitteeDocumentHistoryTest() {
+	public void siteCommitteeDocumentHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommitteeView.NAME, CommitteePageMode.DOCUMENT_HISTORY.toString(), "UU"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(CommitteeView.NAME, CommitteePageMode.DOCUMENT_HISTORY.toString(), "UU"));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site committee current members test.
 	 */
 	@Test
-	public void siteCommitteeCurrentMembersTest() {
+	public void siteCommitteeCurrentMembersTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommitteeView.NAME, CommitteePageMode.CURRENT_MEMBERS.toString(), "UU"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(CommitteeView.NAME, CommitteePageMode.CURRENT_MEMBERS.toString(), "UU"));
-
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
-
 
 	/**
 	 * Site committee member history test.
 	 */
 	@Test
-	public void siteCommitteeMemberHistoryTest() {
+	public void siteCommitteeMemberHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommitteeView.NAME, CommitteePageMode.MemberHistory.toString(), "UU"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(CommitteeView.NAME, CommitteePageMode.MemberHistory.toString(), "UU"));
-
-
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site committee document activity test.
 	 */
 	@Test
-	public void siteCommitteeDocumentActivityTest() {
+	public void siteCommitteeDocumentActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommitteeView.NAME, CommitteePageMode.DocumentActivity.toString(), "UU"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(CommitteeView.NAME, CommitteePageMode.DocumentActivity.toString(), "UU"));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
-	}
-
-	/**
-	 * Site committee ballot decision summary test.
-	 */
-	@Test
-	public void siteCommitteeBallotDecisionSummaryTest() {
-		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
-
-		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-
-		try {
-
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(CommitteeView.NAME, CommitteePageMode.BallotDecisionSummary.toString(), "UU"));
-
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site committee decision summary test.
 	 */
 	@Test
-	public void siteCommitteeDecisionSummaryTest() {
+	public void siteCommitteeDecisionSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommitteeView.NAME, CommitteePageMode.DecisionSummary.toString(), "UU"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(CommitteeView.NAME, CommitteePageMode.DecisionSummary.toString(), "UU"));
+	}
 
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
+	@Test
+	public void siteCommitteeBallotDecisionSummaryTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommitteeView.NAME, CommitteePageMode.BallotDecisionSummary.toString(), "UU"));
+
 	}
 
 	/**
 	 * Site committee decision type daily summary test.
 	 */
 	@Test
-	public void siteCommitteeDecisionTypeDailySummaryTest() {
+	public void siteCommitteeDecisionTypeDailySummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommitteeView.NAME,
+				CommitteePageMode.DecisionTypeDailySummary.toString(), "UU"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(CommitteeView.NAME, CommitteePageMode.DecisionTypeDailySummary.toString(), "UU"));
-		//	userPageVisit.visitDirectPage(new PageModeMenuCommand(CommitteeView.NAME, CommitteePageMode.RoleGhant.toString(), "UU"));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
 
 	/**
 	 * Site test chart view overview test.
 	 */
 	@Test
-	public void siteTestChartViewOverviewTest() {
+	public void siteTestChartViewOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(TestChartView.NAME, PageMode.Overview));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(TestChartView.NAME, PageMode.Overview));
 
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site test chart view indicators test.
 	 */
 	@Test
-	public void siteTestChartViewIndicatorsTest() {
+	public void siteTestChartViewIndicatorsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(TestChartView.NAME, PageMode.Indicators, "UIS.TEP.5.A"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(TestChartView.NAME, PageMode.Indicators, "UIS.TEP.5.A"));
 
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site test chart view party winner test.
 	 */
 	@Test
-	public void siteTestChartViewPartyWinnerTest() {
+	public void siteTestChartViewPartyWinnerTest() throws Exception{
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(TestChartView.NAME, PageMode.Charts, ChartIndicators.PartyWinner.toString()));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(TestChartView.NAME, PageMode.Charts, ChartIndicators.PartyWinner.toString()));
 
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site test chart view decsion activity by type test.
 	 */
 	@Test
-	public void siteTestChartViewDecsionActivityByTypeTest() {
+	public void siteTestChartViewDecsionActivityByTypeTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(TestChartView.NAME, PageMode.Charts, ChartIndicators.DecsionActivityByType.toString()));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(TestChartView.NAME, PageMode.Charts,
+				ChartIndicators.DecsionActivityByType.toString()));
 
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site test chart view document activity by type test.
 	 */
 	@Test
-	public void siteTestChartViewDocumentActivityByTypeTest() {
+	public void siteTestChartViewDocumentActivityByTypeTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(TestChartView.NAME, PageMode.Charts, ChartIndicators.DocumentActivityByType.toString()));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(TestChartView.NAME, PageMode.Charts,
+				ChartIndicators.DocumentActivityByType.toString()));
 
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
 
 	/**
 	 * Site ministry ranking overview test.
 	 */
 	@Test
-	public void siteMinistryRankingOverviewTest() {
+	public void siteMinistryRankingOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryRankingView.NAME, PageMode.Overview));
 
-
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryRankingView.NAME, PageMode.Overview));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
 
 	/**
 	 * Site ministry ranking data grid test.
 	 */
 	@Test
-	public void siteMinistryRankingDataGridTest() {
+	public void siteMinistryRankingDataGridTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryRankingView.NAME, PageMode.DataGrid));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryRankingView.NAME, PageMode.DataGrid));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site ministry ranking charts test.
 	 */
 	@Test
-	public void siteMinistryRankingChartsTest() {
+	public void siteMinistryRankingChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryRankingView.NAME, PageMode.Charts));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryRankingView.NAME, PageMode.Charts));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
-
 
 	/**
 	 * Site ministry ranking navigation test.
 	 */
 	@Test
-	public void siteMinistryRankingNavigationTest() {
+	public void siteMinistryRankingNavigationTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryRankingView.NAME, PageMode.DataGrid));
+		userPageVisit.VisitMinistryView(userPageVisit.getActionIdsBy(ViewAction.VISIT_MINISTRY_VIEW).iterator().next());
 
-
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(MinistryRankingView.NAME, PageMode.DataGrid));
-			userPageVisit.VisitMinistryView(userPageVisit.getActionIdsBy(ViewAction.VISIT_MINISTRY_VIEW).iterator().next());
-
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site document details test.
 	 */
 	@Test
-	public void siteDocumentDetailsTest() {
+	public void siteDocumentDetailsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(DocumentView.NAME, DocumentPageMode.DocumentDetails.toString(), "GZ02C343"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(DocumentView.NAME, DocumentPageMode.DocumentDetails.toString(), "GZ02C343"));
-
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site document over view test.
 	 */
 	@Test
-	public void siteDocumentOverViewTest() {
+	public void siteDocumentOverViewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(DocumentView.NAME, PageMode.Overview, "GZ02C343"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(DocumentView.NAME, PageMode.Overview, "GZ02C343"));
-
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site document person ref test.
 	 */
 	@Test
-	public void siteDocumentPersonRefTest() {
+	public void siteDocumentPersonRefTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(DocumentView.NAME, DocumentPageMode.PersonReferences.toString(), "GZ02C343"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(DocumentView.NAME, DocumentPageMode.PersonReferences.toString(), "GZ02C343"));
-
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site document doc activity test.
 	 */
 	@Test
-	public void siteDocumentDocActivityTest() {
+	public void siteDocumentDocActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(DocumentView.NAME, DocumentPageMode.DocumentActivity.toString(), "GZ02C343"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(DocumentView.NAME, DocumentPageMode.DocumentActivity.toString(), "GZ02C343"));
-
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site document doc data test.
 	 */
 	@Test
-	public void siteDocumentDocDataTest() {
+	public void siteDocumentDocDataTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(DocumentView.NAME, DocumentPageMode.DocumentData.toString(), "GZ02C343"));
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(DocumentView.NAME, DocumentPageMode.DocumentData.toString(), "GZ02C343"));
 	}
 
 	/**
 	 * Site document doc refb test.
 	 */
 	@Test
-	public void siteDocumentDocRefbTest() {
+	public void siteDocumentDocRefbTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(DocumentView.NAME, DocumentPageMode.DocumentReferences.toString(), "GZ02C343"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(DocumentView.NAME, DocumentPageMode.DocumentReferences.toString(), "GZ02C343"));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site document doc decision test.
 	 */
 	@Test
-	public void siteDocumentDocDecisionTest() {
+	public void siteDocumentDocDecisionTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(DocumentView.NAME, DocumentPageMode.DocumenDecision.toString(), "GZ02C343"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(DocumentView.NAME, DocumentPageMode.DocumenDecision.toString(), "GZ02C343"));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site document doc attachment test.
 	 */
 	@Test
-	public void siteDocumentDocAttachmentTest() {
+	public void siteDocumentDocAttachmentTest()  throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(DocumentView.NAME,
+				DocumentPageMode.DocumentAttachments.toString(), "GZ02C343"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(DocumentView.NAME, DocumentPageMode.DocumentAttachments.toString(), "GZ02C343"));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
-
 
 	/**
 	 * Site party overview test.
 	 */
 	@Test
-	public void sitePartyOverviewTest() {
+	public void sitePartyOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PageMode.Overview, "S"));
 
-
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PageMode.Overview, "S"));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
 
 	/**
 	 * Site party document history test.
 	 */
 	@Test
-	public void sitePartyDocumentHistoryTest() {
+	public void sitePartyDocumentHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(PartyView.NAME, PartyPageMode.DocumentHistory.toString(), "S"));
 
-
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PartyPageMode.DocumentHistory.toString(), "S"));
-
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site party current members test.
 	 */
 	@Test
-	public void sitePartyCurrentMembersTest() {
+	public void sitePartyCurrentMembersTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PartyPageMode.CurrentMembers.toString(), "S"));
 
-
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PartyPageMode.CurrentMembers.toString(), "S"));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site party member history test.
 	 */
 	@Test
-	public void sitePartyMemberHistoryTest() {
+	public void sitePartyMemberHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PartyPageMode.MemberHistory.toString(), "S"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PartyPageMode.MemberHistory.toString(), "S"));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site party current leaders test.
 	 */
 	@Test
-	public void sitePartyCurrentLeadersTest() {
+	public void sitePartyCurrentLeadersTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PartyPageMode.CurrentLeaders.toString(), "S"));
 
-
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PartyPageMode.CurrentLeaders.toString(), "S"));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site party leader history test.
 	 */
 	@Test
-	public void sitePartyLeaderHistoryTest() {
+	public void sitePartyLeaderHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PartyPageMode.LeaderHistory.toString(), "S"));
 
-
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PartyPageMode.LeaderHistory.toString(), "S"));
-
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site party committee roles test.
 	 */
 	@Test
-	public void sitePartyCommitteeRolesTest() {
+	public void sitePartyCommitteeRolesTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PartyPageMode.CommitteeRoles.toString(), "S"));
 
-
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PartyPageMode.CommitteeRoles.toString(), "S"));
-
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site party government roles test.
 	 */
 	@Test
-	public void sitePartyGovernmentRolesTest() {
+	public void sitePartyGovernmentRolesTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(PartyView.NAME, PartyPageMode.GovernmentRoles.toString(), "S"));
 
-
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PartyPageMode.GovernmentRoles.toString(), "S"));
-
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site party party won daily summary chart test.
 	 */
 	@Test
-	public void sitePartyPartyWonDailySummaryChartTest() {
+	public void sitePartyPartyWonDailySummaryChartTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(PartyView.NAME, PartyPageMode.PartyWonDailySummaryChart.toString(), "S"));
 
-
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PartyPageMode.PartyWonDailySummaryChart.toString(), "S"));
-
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
-
 
 	/**
 	 * Site party document activity test.
 	 */
 	@Test
-	public void sitePartyDocumentActivityTest() {
+	public void sitePartyDocumentActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PartyPageMode.DocumentActivity.toString(), "S"));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(PartyView.NAME, PartyPageMode.DocumentActivity.toString(), "S"));
 
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site party committee ballot decision summary test.
 	 */
 	@Test
-	public void sitePartyCommitteeBallotDecisionSummaryTest() {
+	public void sitePartyCommitteeBallotDecisionSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(PartyView.NAME, PartyPageMode.CommitteeBallotDecisionSummary.toString(), "S"));
 
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PartyPageMode.CommitteeBallotDecisionSummary.toString(), "S"));
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site party vote history test.
 	 */
 	@Test
-	public void sitePartyVoteHistoryTest() {
-		//TO SLOW
-
+	public void sitePartyVoteHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PartyPageMode.VoteHistory.toString(), "S"));
 
-
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PartyView.NAME, PartyPageMode.VoteHistory.toString(), "S"));
-
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
 
 	/**
 	 * Site admin test.
 	 */
 	@Test
-	public void siteAdminTest() {
+	public void siteAdminTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitStartPage();
 
-			userPageVisit.visitStartPage();
+		userPageVisit.visitAdminAgentOperationView();
+		userPageVisit.performAdminAgentOperation(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN, DataAgentOperation.IMPORT);
 
-			userPageVisit.visitAdminAgentOperationView();
-			userPageVisit.performAdminAgentOperation(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN, DataAgentOperation.IMPORT);
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site admin2 test.
 	 */
 	@Test
-	public void siteAdminDataSummary() {
+	public void siteAdminDataSummary() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
+		userPageVisit.visitStartPage();
+		userPageVisit.visitAdminDataSummaryView();
 
-			userPageVisit.visitStartPage();
-			userPageVisit.visitAdminDataSummaryView();
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site politican over view test.
 	 */
 	@Test
-
-	public void sitePoliticanOverViewTest() {
+	public void sitePoliticanOverViewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME, PageMode.Overview, "0980681611418"));
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME, PageMode.Overview, "0980681611418"));
 	}
-
 
 	/**
 	 * Site politican role summary test.
 	 */
 	@Test
-
-	public void sitePoliticanRoleSummaryTest() {
+	public void sitePoliticanRoleSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME, PoliticianPageMode.RoleSummary.toString(), "0980681611418"));
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME,
+				PoliticianPageMode.RoleSummary.toString(), "0980681611418"));
 	}
 
 	/**
 	 * Site politican role list test.
 	 */
 	@Test
-
-	public void sitePoliticanRoleListTest() {
+	public void sitePoliticanRoleListTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME, PoliticianPageMode.RoleList.toString(), "0980681611418"));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(PoliticianView.NAME, PoliticianPageMode.RoleList.toString(), "0980681611418"));
 
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site politican role ghant test.
 	 */
 	@Test
-	public void sitePoliticanRoleGhantTest() {
+	public void sitePoliticanRoleGhantTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME, PoliticianPageMode.RoleGhant.toString(), "0980681611418"));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(PoliticianView.NAME, PoliticianPageMode.RoleGhant.toString(), "0980681611418"));
 
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site politican document history test.
 	 */
 	@Test
-
-	public void sitePoliticanDocumentHistoryTest() {
+	public void sitePoliticanDocumentHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME, PoliticianPageMode.DocumentHistory.toString(), "0980681611418"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME,
+				PoliticianPageMode.DocumentHistory.toString(), "0980681611418"));
 
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
 
 	/**
 	 * Site politican vote history test.
 	 */
 	@Test
-
-	public void sitePoliticanVoteHistoryTest() {
+	public void sitePoliticanVoteHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME, PoliticianPageMode.VoteHistory.toString(), "0980681611418"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME,
+				PoliticianPageMode.VoteHistory.toString(), "0980681611418"));
 
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site politican ballot decision summary test.
 	 */
 	@Test
-
-	public void sitePoliticanBallotDecisionSummaryTest() {
+	public void sitePoliticanBallotDecisionSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME, PoliticianPageMode.BallotDecisionSummary.toString(), "0980681611418"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME,
+				PoliticianPageMode.BallotDecisionSummary.toString(), "0980681611418"));
 
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	/**
 	 * Site politican document activity test.
 	 */
 	@Test
-	public void sitePoliticanDocumentActivityTest() {
+	public void sitePoliticanDocumentActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME, PoliticianPageMode.DocumentActivity.toString(), "0980681611418"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME,
+				PoliticianPageMode.DocumentActivity.toString(), "0980681611418"));
 
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	@Test
-	public void sitePoliticanIndicatorTest() {
+	public void sitePoliticanIndicatorTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME, PageMode.Indicators.toString(), "0980681611418"));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(PoliticianView.NAME, PageMode.Indicators.toString(), "0980681611418"));
 
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
 
 	@Test
-	public void sitePoliticanChartTest() {
+	public void sitePoliticanChartTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		if (driver == null) {
-			fail("No valid browser driver");
-		}
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		try {
-			userPageVisit.visitDirectPage(new PageModeMenuCommand(PoliticianView.NAME, PageMode.Charts.toString(), "0980681611418"));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(PoliticianView.NAME, PageMode.Charts.toString(), "0980681611418"));
 
-		} catch (final Exception e) {
-			e.printStackTrace();
-			fail("Test Exception:" + e.getMessage());
-		}
 	}
-
 
 	/**
 	 * Close web driver.
@@ -1604,18 +1018,15 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 		} else if (browser.equals("chrome")) {
 			driver = new ChromeDriver();
 		} else if (browser.equals("htmlunit-firefox")) {
-			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(
-					BrowserVersion.FIREFOX_38);
+			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.FIREFOX_38);
 			htmlUnitDriver.setJavascriptEnabled(true);
 			driver = htmlUnitDriver;
 		} else if (browser.equals("htmlunit-ie11")) {
-			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(
-					BrowserVersion.INTERNET_EXPLORER_11);
+			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.INTERNET_EXPLORER_11);
 			htmlUnitDriver.setJavascriptEnabled(true);
 			driver = htmlUnitDriver;
 		} else if (browser.equals("htmlunit-chrome")) {
-			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(
-					BrowserVersion.CHROME);
+			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.CHROME);
 			htmlUnitDriver.setJavascriptEnabled(true);
 			driver = htmlUnitDriver;
 		} else {

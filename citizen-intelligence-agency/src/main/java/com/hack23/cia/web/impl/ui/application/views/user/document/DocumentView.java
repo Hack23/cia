@@ -89,8 +89,6 @@ public final class DocumentView extends AbstractUserView {
 	@Autowired
 	private transient GridFactory gridFactory;
 
-
-
 	/**
 	 * Post construct.
 	 */
@@ -99,10 +97,6 @@ public final class DocumentView extends AbstractUserView {
 		setSizeFull();
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
-
-
-
-
 
 	/*
 	 * (non-Javadoc)
@@ -118,10 +112,8 @@ public final class DocumentView extends AbstractUserView {
 
 		if (parameters != null) {
 
-
-			final String pageId = event.getParameters()
-					.substring(parameters.lastIndexOf('/') + "/".length(),
-							parameters.length());
+			final String pageId = event.getParameters().substring(parameters.lastIndexOf('/') + "/".length(),
+					parameters.length());
 
 			final DataContainer<DocumentElement, String> documentElementDataContainer = applicationManager
 					.getDataContainer(DocumentElement.class);
@@ -135,124 +127,78 @@ public final class DocumentView extends AbstractUserView {
 			final DataContainer<CommitteeProposalComponentData, String> committeeProposalComponentDataContainer = applicationManager
 					.getDataContainer(CommitteeProposalComponentData.class);
 
-			final DocumentElement documentElement = documentElementDataContainer
-					.load(pageId);
+			final DocumentElement documentElement = documentElementDataContainer.load(pageId);
 
 			if (documentElement != null) {
 
 				menuItemFactory.createDocumentMenuBar(getBarmenu(), pageId);
+				final VerticalLayout panelContent = new VerticalLayout();
+				panelContent.setSizeFull();
+				panelContent.setMargin(true);
 
 				final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
-						.findByQueryProperty(DocumentStatusContainer.class,
-								DocumentStatusContainer_.document,
-								DocumentData.class, DocumentData_.id,
-								pageId);
-
+						.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
+								DocumentData.class, DocumentData_.id, pageId);
 
 				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 						|| parameters.contains(PageMode.Overview.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Overview"));
 
-					addTextFields(
-							panelContent,
-							new BeanItem<DocumentElement>(documentElement),
-							DocumentElement.class,
-							Arrays.asList(new String[] { "id", "org",
-									"documentType", "subType", "rm", "status",
-									"title", "subTitle", "madePublicDate",
-									"createdDate", "systemDate", "relatedId",
-									"label", "tempLabel", "numberValue", "kallId",
-							"documentFormat" }));
+					addTextFields(panelContent, new BeanItem<DocumentElement>(documentElement), DocumentElement.class,
+							Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status",
+									"title", "subTitle", "madePublicDate", "createdDate", "systemDate", "relatedId",
+									"label", "tempLabel", "numberValue", "kallId", "documentFormat" }));
 
 					if (documentStatusContainer != null) {
-						addTextFields(panelContent,
-								new BeanItem<DocumentStatusContainer>(
-										documentStatusContainer),
-										DocumentStatusContainer.class,
-										Arrays.asList(new String[] { "documentCategory" }));
+						addTextFields(panelContent, new BeanItem<DocumentStatusContainer>(documentStatusContainer),
+								DocumentStatusContainer.class, Arrays.asList(new String[] { "documentCategory" }));
 
-						addTextFields(
-								panelContent,
-								new BeanItem<DocumentData>(documentStatusContainer
-										.getDocument()), DocumentData.class,
-										Arrays.asList(new String[] { "id", "org",
-												"documentType", "subType", "rm", "status",
-												"title", "subTitle", "madePublicDate",
-												"label", "tempLabel", "numberValue",
-												"hangarId", }));
+						addTextFields(panelContent, new BeanItem<DocumentData>(documentStatusContainer.getDocument()),
+								DocumentData.class,
+								Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status",
+										"title", "subTitle", "madePublicDate", "label", "tempLabel", "numberValue",
+										"hangarId", }));
 
 					}
 
-
-
-					getPanel().setContent(panelContent);
 				} else if (parameters.contains(DocumentPageMode.DocumenDecision.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Document Decision"));
 
+					if (documentStatusContainer != null && documentStatusContainer.getDocumentProposal() != null
+							&& documentStatusContainer.getDocumentProposal().getProposal() != null) {
 
-						if (documentStatusContainer != null && documentStatusContainer.getDocumentProposal() != null
-								&& documentStatusContainer.getDocumentProposal()
-								.getProposal() != null) {
+						addTextFields(panelContent,
+								new BeanItem<DocumentProposalData>(
+										documentStatusContainer.getDocumentProposal().getProposal()),
+								DocumentProposalData.class,
+								Arrays.asList(new String[] { "committee", "chamber", "processedIn", "decisionType",
+										"proposalNumber", "designation", "wording", "wording2", "wording3",
+										"wording4" }));
 
-							addTextFields(panelContent,
-									new BeanItem<DocumentProposalData>(
-											documentStatusContainer
-											.getDocumentProposal()
-											.getProposal()),
-											DocumentProposalData.class,
-											Arrays.asList(new String[] { "committee",
-													"chamber", "processedIn",
-													"decisionType", "proposalNumber",
-													"designation", "wording", "wording2",
-													"wording3", "wording4" }));
+					}
 
-						}
-
-
-					getPanel().setContent(panelContent);
 				} else if (parameters.contains(DocumentPageMode.DocumentActivity.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Document Activity"));
 
+					if (documentStatusContainer != null
+							&& documentStatusContainer.getDocumentActivityContainer() != null
+							&& documentStatusContainer.getDocumentActivityContainer().getDocumentActivities() != null) {
+						final BeanItemContainer<DocumentActivityData> documentActivityDataDataDataSource = new BeanItemContainer<DocumentActivityData>(
+								DocumentActivityData.class,
+								documentStatusContainer.getDocumentActivityContainer().getDocumentActivities());
 
+						final Grid documentActivityDataItemGrid = gridFactory.createBasicBeanItemGrid(
+								documentActivityDataDataDataSource, "Document activities", new String[] { "createdDate",
+										"code", "activityName", "orderNumber", "process", "status" },
+								new String[] { "hjid" }, null, null);
+						panelContent.addComponent(documentActivityDataItemGrid);
+					}
 
-						if (documentStatusContainer != null && documentStatusContainer
-								.getDocumentActivityContainer() !=null && documentStatusContainer
-								.getDocumentActivityContainer().getDocumentActivities() !=null)
-						{
-							final BeanItemContainer<DocumentActivityData> documentActivityDataDataDataSource = new BeanItemContainer<DocumentActivityData>(
-									DocumentActivityData.class, documentStatusContainer
-									.getDocumentActivityContainer()
-									.getDocumentActivities());
-
-							final Grid documentActivityDataItemGrid = gridFactory.createBasicBeanItemGrid(
-									documentActivityDataDataDataSource,
-									"Document activities", new String[] {
-											"createdDate", "code", "activityName",
-											"orderNumber", "process", "status" },
-											new String[] { "hjid" }, null, null);
-							panelContent
-							.addComponent(documentActivityDataItemGrid);
-						}
-
-
-					getPanel().setContent(panelContent);
 				} else if (parameters.contains(DocumentPageMode.DocumentData.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Document Data"));
 
 					final List<DocumentContentData> documentContentlist = documentContentDataDataContainer
@@ -260,142 +206,91 @@ public final class DocumentView extends AbstractUserView {
 
 					if (!documentContentlist.isEmpty()) {
 
-						final Label htmlContent = new Label(documentContentlist.get(0)
-								.getContent(), ContentMode.HTML);
+						final Label htmlContent = new Label(documentContentlist.get(0).getContent(), ContentMode.HTML);
 
 						panelContent.addComponent(htmlContent);
 
 					}
 
-
-
-					getPanel().setContent(panelContent);
 				} else if (parameters.contains(DocumentPageMode.DocumentDetails.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Document Details"));
 
+					if (documentStatusContainer != null && documentStatusContainer.getDocumentDetailContainer() != null
+							&& documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList() != null) {
+						final BeanItemContainer<DocumentDetailData> documentDetailDataDataDataSource = new BeanItemContainer<DocumentDetailData>(
+								DocumentDetailData.class,
+								documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList());
 
-						if (documentStatusContainer != null && documentStatusContainer
-								.getDocumentDetailContainer() !=null && documentStatusContainer
-								.getDocumentDetailContainer().getDocumentDetailList()!=null) {
-							final BeanItemContainer<DocumentDetailData> documentDetailDataDataDataSource = new BeanItemContainer<DocumentDetailData>(
-									DocumentDetailData.class, documentStatusContainer
-									.getDocumentDetailContainer()
-									.getDocumentDetailList());
+						final Grid documentDetailDataItemGrid = gridFactory.createBasicBeanItemGrid(
+								documentDetailDataDataDataSource, "Document details",
+								new String[] { "code", "detailName", "text" }, new String[] { "hjid" }, null, null);
+						panelContent.addComponent(documentDetailDataItemGrid);
+					}
 
-							final Grid documentDetailDataItemGrid = gridFactory.createBasicBeanItemGrid(
-									documentDetailDataDataDataSource,
-									"Document details", new String[] { "code",
-											"detailName", "text" },
-											new String[] { "hjid" }, null, null);
-							panelContent
-							.addComponent(documentDetailDataItemGrid);
-						}
-
-
-					getPanel().setContent(panelContent);
 				} else if (parameters.contains(DocumentPageMode.DocumentReferences.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Document References"));
 
+					if (documentStatusContainer != null
+							&& documentStatusContainer.getDocumentReferenceContainer() != null
+							&& documentStatusContainer.getDocumentReferenceContainer()
+									.getDocumentReferenceList() != null) {
+						final BeanItemContainer<DocumentReferenceData> documentReferenceDataDataSource = new BeanItemContainer<DocumentReferenceData>(
+								DocumentReferenceData.class,
+								documentStatusContainer.getDocumentReferenceContainer().getDocumentReferenceList());
 
-						if (documentStatusContainer != null && documentStatusContainer
-								.getDocumentReferenceContainer() != null && documentStatusContainer
-								.getDocumentReferenceContainer().getDocumentReferenceList()!=null) {
-							final BeanItemContainer<DocumentReferenceData> documentReferenceDataDataSource = new BeanItemContainer<DocumentReferenceData>(
-									DocumentReferenceData.class,
-									documentStatusContainer
-									.getDocumentReferenceContainer()
-									.getDocumentReferenceList());
+						final Grid documentReferenceDataItemGrid = gridFactory.createBasicBeanItemGrid(
+								documentReferenceDataDataSource, "Document references",
+								new String[] { "referenceType", "referenceDocumentId", "detail" },
+								new String[] { "hjid" }, null, null);
+						panelContent.addComponent(documentReferenceDataItemGrid);
 
-							final Grid documentReferenceDataItemGrid = gridFactory.createBasicBeanItemGrid(
-									documentReferenceDataDataSource,
-									"Document references", new String[] {
-											"referenceType", "referenceDocumentId",
-									"detail" }, new String[] { "hjid" }, null,
-									null);
-							panelContent
-							.addComponent(documentReferenceDataItemGrid);
+					}
 
-						}
-
-
-					getPanel().setContent(panelContent);
 				} else if (parameters.contains(DocumentPageMode.PersonReferences.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Person References"));
 
+					if (documentStatusContainer != null
+							&& documentStatusContainer.getDocumentPersonReferenceContainer() != null
+							&& documentStatusContainer.getDocumentPersonReferenceContainer()
+									.getDocumentPersonReferenceList() != null) {
+						final BeanItemContainer<DocumentPersonReferenceData> documentPersonReferenceDataDataSource = new BeanItemContainer<DocumentPersonReferenceData>(
+								DocumentPersonReferenceData.class, documentStatusContainer
+										.getDocumentPersonReferenceContainer().getDocumentPersonReferenceList());
 
-						if (documentStatusContainer != null && documentStatusContainer
-								.getDocumentPersonReferenceContainer() !=null && documentStatusContainer
-								.getDocumentPersonReferenceContainer().getDocumentPersonReferenceList() !=null) {
-							final BeanItemContainer<DocumentPersonReferenceData> documentPersonReferenceDataDataSource = new BeanItemContainer<DocumentPersonReferenceData>(
-									DocumentPersonReferenceData.class,
-									documentStatusContainer
-									.getDocumentPersonReferenceContainer()
-									.getDocumentPersonReferenceList());
+						final Grid documentPersonReferenceDataItemGrid = gridFactory.createBasicBeanItemGrid(
+								documentPersonReferenceDataDataSource, "Document person references",
+								new String[] { "personReferenceId", "referenceName", "partyShortCode", "orderNumber",
+										"roleDescription" },
+								new String[] { "hjid" }, "personReferenceId",
+								new DocumentPersonReferenceDataPageItemClickListener());
+						panelContent.addComponent(documentPersonReferenceDataItemGrid);
+					}
 
-							final Grid documentPersonReferenceDataItemGrid = gridFactory.createBasicBeanItemGrid(
-									documentPersonReferenceDataDataSource,
-									"Document person references",
-									new String[] { "personReferenceId",
-											"referenceName", "partyShortCode",
-											"orderNumber", "roleDescription" },
-											new String[] { "hjid" },
-											"personReferenceId",
-											new DocumentPersonReferenceDataPageItemClickListener());
-							panelContent
-							.addComponent(documentPersonReferenceDataItemGrid);
-						}
-
-
-
-					getPanel().setContent(panelContent);
 				} else if (parameters.contains(DocumentPageMode.DocumentAttachments.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Document Attachments"));
 
-						if (documentStatusContainer != null && documentStatusContainer
-								.getDocumentAttachmentContainer() != null && documentStatusContainer
-								.getDocumentAttachmentContainer().getDocumentAttachmentList()!=null) {
-							final BeanItemContainer<DocumentAttachment> documentAttachmentDataSource = new BeanItemContainer<DocumentAttachment>(
-									DocumentAttachment.class, documentStatusContainer
-									.getDocumentAttachmentContainer()
-									.getDocumentAttachmentList());
+					if (documentStatusContainer != null
+							&& documentStatusContainer.getDocumentAttachmentContainer() != null
+							&& documentStatusContainer.getDocumentAttachmentContainer()
+									.getDocumentAttachmentList() != null) {
+						final BeanItemContainer<DocumentAttachment> documentAttachmentDataSource = new BeanItemContainer<DocumentAttachment>(
+								DocumentAttachment.class,
+								documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList());
 
-							final Grid documentAttachmentDataItemGrid = gridFactory.createBasicBeanItemGrid(
-									documentAttachmentDataSource,
-									"Document attachements", new String[] {
-											"fileName", "fileSize", "fileType",
-									"fileUrl" }, new String[] { "hjid" }, null,
-									null);
-							panelContent
-							.addComponent(documentAttachmentDataItemGrid);
-						}
-
-					getPanel().setContent(panelContent);
-				} else {
-
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
-					panelContent.addComponent(new Label("NotImpl"));
-
-					getPanel().setContent(panelContent);
+						final Grid documentAttachmentDataItemGrid = gridFactory.createBasicBeanItemGrid(
+								documentAttachmentDataSource, "Document attachements",
+								new String[] { "fileName", "fileSize", "fileType", "fileUrl" }, new String[] { "hjid" },
+								null, null);
+						panelContent.addComponent(documentAttachmentDataItemGrid);
+					}
 
 				}
+
+				getPanel().setContent(panelContent);
 
 			}
 

@@ -73,36 +73,24 @@ public abstract class AbstractRankingView extends AbstractUserView {
 
 		final String parameters = event.getParameters();
 
+		final VerticalLayout panelContent = new VerticalLayout();
+		panelContent.setSizeFull();
+		panelContent.setMargin(true);
 
 		if (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.Overview.toString())) {
 
-			final VerticalLayout panelContent = new VerticalLayout();
-			panelContent.setSizeFull();
-			panelContent.setMargin(true);
 
 			panelContent.addComponent(createDescription());
 
-			getPanel().setContent(panelContent);
 			getPanel().setCaption("Overview:" + event.getParameters());
-
 
 		} else 	if (parameters.contains(PageMode.DataGrid.toString())) {
 
-			final VerticalLayout panelContent = new VerticalLayout();
-			panelContent.setSizeFull();
-			panelContent.setMargin(true);
-
 			panelContent.addComponent(createTable());
 
-			getPanel().setContent(panelContent);
 			getPanel().setCaption("Datagrid:" + event.getParameters());
 
 		} else 	if (parameters.contains(PageMode.Charts.toString())) {
-
-			final VerticalLayout panelContent = new VerticalLayout();
-			panelContent.setSizeFull();
-			panelContent.setMargin(true);
-
 
 			final Layout chartLayout = new HorizontalLayout();
 			chartLayout.setSizeFull();
@@ -124,11 +112,12 @@ public abstract class AbstractRankingView extends AbstractUserView {
 				panelContent.addComponent(extraChartLayout);
 			}
 
-
-			getPanel().setContent(panelContent);
 			getPanel().setCaption("Charts:" + event.getParameters());
 
 		}
+
+		getPanel().setContent(panelContent);
+
 
 	}
 

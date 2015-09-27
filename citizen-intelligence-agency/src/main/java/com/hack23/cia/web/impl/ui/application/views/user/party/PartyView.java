@@ -144,13 +144,14 @@ public final class PartyView extends AbstractGroupView {
 
 				menuItemFactory.createPartyMenuBar(getBarmenu(), pageId);
 
+				final VerticalLayout panelContent = new VerticalLayout();
+				panelContent.setSizeFull();
+				panelContent.setMargin(true);
+
 
 				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 						|| parameters.contains(PageMode.Overview.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Overview"));
 
 
@@ -184,30 +185,13 @@ public final class PartyView extends AbstractGroupView {
 										"totalDaysServedParliament" }));
 					}
 
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Party:" + viewRiksdagenParty.getPartyName());
-
-
 				} else if (parameters.contains(PageMode.Charts.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Charts"));
-
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Party:" + viewRiksdagenParty.getPartyName());
 
 				} else if (parameters.contains(PartyPageMode.DocumentHistory.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
-					panelContent.addComponent(new Label("Documen History"));
+					panelContent.addComponent(new Label("Document History"));
 
 					final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPoliticianDocument.class);
@@ -234,41 +218,19 @@ public final class PartyView extends AbstractGroupView {
 					panelContent
 					.addComponent(politicianDocumentBeanItemGrid);
 
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Party:" + viewRiksdagenParty.getPartyName());
-
 				} else if (parameters.contains(PartyPageMode.DocumentActivity.toString())) {
-
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Document Activity"));
 
 					final DCharts createDocumentHistoryChart = chartDataManager.createDocumentHistoryChartByOrg(pageId);
 					panelContent.addComponent(createDocumentHistoryChart);
 
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Party:" + viewRiksdagenParty.getPartyName());
-
 				} else if (parameters.contains(PartyPageMode.CurrentMembers.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Current Members"));
 
 
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Party:" + viewRiksdagenParty.getPartyName());
-
 				} else if (parameters.contains(PartyPageMode.MemberHistory.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("MemberHistory"));
 
 					final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
@@ -309,17 +271,8 @@ public final class PartyView extends AbstractGroupView {
 
 					panelContent.addComponent(partyMemberBeanItemGrid);
 
-
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Party:" + viewRiksdagenParty.getPartyName());
-
 				} else if (parameters.contains(PartyPageMode.CurrentLeaders.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Current Leaders"));
 
 					final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = applicationManager
@@ -344,16 +297,8 @@ public final class PartyView extends AbstractGroupView {
 
 						panelContent.addComponent(currentPartyBeanItemGrid);
 
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Party:" + viewRiksdagenParty.getPartyName());
-
 				} else if (parameters.contains(PartyPageMode.LeaderHistory.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("LeaderHistory"));
 
 					final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = applicationManager
@@ -376,16 +321,8 @@ public final class PartyView extends AbstractGroupView {
 
 					panelContent.addComponent(partyRoleMemberBeanItemGrid);
 
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Party:" + viewRiksdagenParty.getPartyName());
-
 				} else if (parameters.contains(PartyPageMode.GovernmentRoles.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("Government Roles"));
 
 
@@ -412,16 +349,8 @@ public final class PartyView extends AbstractGroupView {
 					panelContent
 					.addComponent(currentGovermentMemberBeanItemGrid);
 
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Party:" + viewRiksdagenParty.getPartyName());
-
 				} else if (parameters.contains(PartyPageMode.CommitteeRoles.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("CommitteeRoles"));
 
 					final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = applicationManager
@@ -446,29 +375,12 @@ public final class PartyView extends AbstractGroupView {
 					panelContent
 					.addComponent(committeeMemberBeanItemGrid);
 
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Party:" + viewRiksdagenParty.getPartyName());
-
-
 				} else if (parameters.contains(PartyPageMode.CommitteeBallotDecisionSummary.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("CommitteeBallotDecisionSummary"));
-
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Party:" + viewRiksdagenParty.getPartyName());
 
 				} else if (parameters.contains(PartyPageMode.VoteHistory.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("VoteHistory"));
 
 					final BeanItemContainer<ViewRiksdagenVoteDataBallotPartySummary> partyBallotDataSource = new BeanItemContainer<ViewRiksdagenVoteDataBallotPartySummary>(
@@ -487,39 +399,15 @@ public final class PartyView extends AbstractGroupView {
 					panelContent
 					.addComponent(partynBallotsBeanItemGrid);
 
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Party:" + viewRiksdagenParty.getPartyName());
-
 				} else if (parameters.contains(PartyPageMode.PartyWonDailySummaryChart.toString())) {
 
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
 					panelContent.addComponent(new Label("PartyWonDailySummaryChart"));
-
 					panelContent.addComponent(chartDataManager.createPartyLineChart(pageId));
 
-
-
-					getPanel().setContent(panelContent);
-					getPanel().setCaption(
-							"Party:" + viewRiksdagenParty.getPartyName());
-
-				} else {
-
-					final VerticalLayout panelContent = new VerticalLayout();
-					panelContent.setSizeFull();
-					panelContent.setMargin(true);
-					panelContent.addComponent(new Label("NotImpl"));
-
-					getPanel().setContent(panelContent);
-
 				}
-
-
-
+				getPanel().setContent(panelContent);
+				getPanel().setCaption(
+						"Party:" + viewRiksdagenParty.getPartyName());
 
 		}
 		} else {
