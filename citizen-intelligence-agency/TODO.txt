@@ -1,4 +1,7 @@
-replace tabsheet with mode urls: enable links.
+Fix broken pages:
+*
+
+
 
 add generated links in grid:s https://vaadin.com/book/-/page/components.grid.html
 
@@ -9,9 +12,6 @@ politician view summary , documents,proposals, votes.
 ministry view summary,roles,members,propoals
 committee view summary,roles, members , committee decisions
 BallotView
-
-
-worldbank indicators for sweden.
 
 layouts, logo & styling
 
