@@ -233,7 +233,7 @@ public final class PartyView extends AbstractGroupView {
 
 					final BeanItemContainer<ViewRiksdagenPolitician> politicianDataSource = new BeanItemContainer<ViewRiksdagenPolitician>(
 							ViewRiksdagenPolitician.class,
-							politicianDataContainer.findListByProperty(new Object[] { ViewRiksdagenPolitician_.party,
+							politicianDataContainer.findListByProperty(new Object[] { viewRiksdagenParty.getPartyId(),
 									true },
 									ViewRiksdagenPolitician_.party,ViewRiksdagenPolitician_.active));
 
