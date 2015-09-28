@@ -19,8 +19,6 @@
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -38,41 +36,29 @@ import com.hack23.cia.service.api.DataContainer;
  */
 @Service
 public final class ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataManagerImpl
-		implements
-		GenericChartDataManager<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> {
+		implements GenericChartDataManager<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> {
 
 	/** The application manager. */
 	@Autowired
 	@Qualifier("ApplicationManager")
 	private ApplicationManager applicationManager;
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.GenericChartDataManager#findByValue(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.hack23.cia.web.impl.ui.application.views.common.
+	 * GenericChartDataManager#findByValue(java.lang.String)
 	 */
 	@Override
 	public List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> findByValue(final String value) {
 		final DataContainer<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily, RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenVoteDataBallotPoliticianSummaryDaily.class);
 
-		return politicianBallotSummaryDailyDataContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotPoliticianSummaryDaily.class, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily_.embeddedId, RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId.class, RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId_.intressentId, value);
-	}
-
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.GenericChartDataManager#getDataMap()
-	 */
-	@Override
-	public Map<String, List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily>> getDataMap() {
-		final DataContainer<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily, RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenVoteDataBallotPoliticianSummaryDaily.class);
-
-		return politicianBallotSummaryDailyDataContainer
-				.getAll()
-				.parallelStream()
-				.filter(t -> t != null)
-				.collect(
-						Collectors.groupingBy(t -> t.getEmbeddedId()
-								.getIntressentId()));
-
+		return politicianBallotSummaryDailyDataContainer.findListByEmbeddedProperty(
+				ViewRiksdagenVoteDataBallotPoliticianSummaryDaily.class,
+				ViewRiksdagenVoteDataBallotPoliticianSummaryDaily_.embeddedId,
+				RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId.class,
+				RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId_.intressentId, value);
 	}
 
 }

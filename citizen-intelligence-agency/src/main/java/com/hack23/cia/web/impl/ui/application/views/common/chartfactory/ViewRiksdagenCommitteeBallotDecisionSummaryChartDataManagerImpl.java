@@ -19,8 +19,6 @@
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -36,7 +34,8 @@ import com.hack23.cia.service.api.DataContainer;
  * The Class ChartDataManagerImpl.
  */
 @Service
-public final class ViewRiksdagenCommitteeBallotDecisionSummaryChartDataManagerImpl implements GenericChartDataManager<ViewRiksdagenCommitteeBallotDecisionSummary> {
+public final class ViewRiksdagenCommitteeBallotDecisionSummaryChartDataManagerImpl
+		implements GenericChartDataManager<ViewRiksdagenCommitteeBallotDecisionSummary> {
 
 	/** The application manager. */
 	@Autowired
@@ -48,33 +47,15 @@ public final class ViewRiksdagenCommitteeBallotDecisionSummaryChartDataManagerIm
 	 *
 	 * @see
 	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * getDataMap()
-	 */
-	@Override
-	public Map<String, List<ViewRiksdagenCommitteeBallotDecisionSummary>> getDataMap() {
-		final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
-
-		return committeeBallotDecisionPartyDataContainer.getAll()
-				.parallelStream().filter(t -> t != null)
-				.collect(Collectors.groupingBy(t -> t.getOrg()));
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
 	 * findByValue(java.lang.String)
 	 */
 	@Override
-	public List<ViewRiksdagenCommitteeBallotDecisionSummary> findByValue(
-			final String value) {
+	public List<ViewRiksdagenCommitteeBallotDecisionSummary> findByValue(final String value) {
 		final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
 
-		return committeeBallotDecisionPartyDataContainer.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.org, value);
+		return committeeBallotDecisionPartyDataContainer.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.org,
+				value);
 	}
-
 
 }

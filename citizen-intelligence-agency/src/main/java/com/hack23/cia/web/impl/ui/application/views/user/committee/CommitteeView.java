@@ -177,8 +177,6 @@ public final class CommitteeView extends AbstractGroupView {
 				} else if (parameters.contains(CommitteePageMode.BallotDecisionSummary.toString())) {
 					panelContent.addComponent(new Label("Ballot Decision Summary"));
 
-					getPanel().setContent(panelContent);
-					getPanel().setCaption("Committee:" + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 				} else if (parameters.contains(CommitteePageMode.DecisionSummary.toString())) {
 
 					panelContent.addComponent(new Label("Decision Summary"));

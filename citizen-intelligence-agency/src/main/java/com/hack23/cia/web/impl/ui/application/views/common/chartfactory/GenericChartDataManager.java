@@ -19,7 +19,6 @@
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory;
 
 import java.util.List;
-import java.util.Map;
 
 public interface GenericChartDataManager<T> {
 
@@ -31,13 +30,5 @@ public interface GenericChartDataManager<T> {
 	 * @return the list
 	 */
 	List<T> findByValue(String value);
-
-	/**
-	 * Gets the data map.
-	 *
-	 * @return the data map
-	 */
-	Map<String, List<T>> getDataMap();
-
 
 }

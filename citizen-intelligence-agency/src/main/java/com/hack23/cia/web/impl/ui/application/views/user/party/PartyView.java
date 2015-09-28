@@ -221,13 +221,50 @@ public final class PartyView extends AbstractGroupView {
 				} else if (parameters.contains(PartyPageMode.DocumentActivity.toString())) {
 					panelContent.addComponent(new Label("Document Activity"));
 
-					final DCharts createDocumentHistoryChart = chartDataManager.createDocumentHistoryChartByOrg(pageId);
+					final DCharts createDocumentHistoryChart = chartDataManager.createDocumentHistoryPartyChart(pageId);
 					panelContent.addComponent(createDocumentHistoryChart);
 
 				} else if (parameters.contains(PartyPageMode.CurrentMembers.toString())) {
 
 					panelContent.addComponent(new Label("Current Members"));
 
+					final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
+							.getDataContainer(ViewRiksdagenPolitician.class);
+
+					final BeanItemContainer<ViewRiksdagenPolitician> politicianDataSource = new BeanItemContainer<ViewRiksdagenPolitician>(
+							ViewRiksdagenPolitician.class,
+							politicianDataContainer.findListByProperty(new Object[] { ViewRiksdagenPolitician_.party,
+									true },
+									ViewRiksdagenPolitician_.party,ViewRiksdagenPolitician_.active));
+
+					final Grid partyMemberBeanItemGrid = gridFactory.createBasicBeanItemGrid(
+							politicianDataSource, "Politicians", new String[] {
+									"personId", "firstName", "lastName", "party",
+									"gender", "bornYear", "totalAssignments",
+									"currentAssignments", "firstAssignmentDate",
+									"lastAssignmentDate", "totalDaysServed",
+									"totalDaysServedParliament",
+									"totalDaysServedCommittee",
+									"totalDaysServedGovernment", "totalDaysServedEu",
+
+									"active", "activeEu", "activeGovernment",
+									"activeCommittee", "activeParliament",
+
+									"activeParty", "activeSpeaker",
+									"totalDaysServedSpeaker", "totalDaysServedParty",
+
+									"totalPartyAssignments",
+									"totalMinistryAssignments",
+									"totalCommitteeAssignments",
+									"totalSpeakerAssignments",
+
+									"currentPartyAssignments",
+									"currentMinistryAssignments",
+									"currentCommitteeAssignments",
+							"currentSpeakerAssignments" }, null, "personId",
+							new PoliticianPageItemClickListener());
+
+					panelContent.addComponent(partyMemberBeanItemGrid);
 
 				} else if (parameters.contains(PartyPageMode.MemberHistory.toString())) {
 
