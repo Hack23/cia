@@ -217,10 +217,7 @@ public final class MinistryView extends AbstractGroupView {
 
 			}
 
-		} else {
-			getPanel().setCaption("Ministry:" + event.getParameters());
 		}
-
 	}
 
 }

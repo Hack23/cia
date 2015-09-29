@@ -447,10 +447,7 @@ public final class PartyView extends AbstractGroupView {
 						"Party:" + viewRiksdagenParty.getPartyName());
 
 		}
-		} else {
-			getPanel().setCaption("Party:" + event.getParameters());
 		}
-
 
 	}
 

@@ -233,10 +233,7 @@ public final class CommitteeView extends AbstractGroupView {
 
 			}
 
-		} else {
-			getPanel().setCaption("Committee:" + event.getParameters());
 		}
-
 	}
 
 }

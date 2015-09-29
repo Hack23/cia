@@ -425,9 +425,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	 */
 	@Override
 	public void createPoliticianMenuBar(final MenuBar menuBar, final String pageId) {
-		if (!menuBar.getItems().isEmpty()) {
 			menuBar.removeItems();
-		}
 
 			menuBar.addItem(OVERVIEW_TEXT, null,
 					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.Overview, pageId));
@@ -469,9 +467,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	 */
 	@Override
 	public void createPoliticianRankingMenuBar(final MenuBar menuBar) {
-		if (!menuBar.getItems().isEmpty()) {
-			menuBar.removeItems();
-		}
+		menuBar.removeItems();
 
 		createPoliticianRankingTopics(menuBar.addItem("Politician Ranking", null,null));
 	}
@@ -481,9 +477,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	 */
 	@Override
 	public void createPartyMenuBar(final MenuBar menuBar, final String pageId) {
-		if (!menuBar.getItems().isEmpty()) {
 			menuBar.removeItems();
-		}
 
 			menuBar.addItem(OVERVIEW_TEXT, null,
 					new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.Overview, pageId));
@@ -539,9 +533,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	 */
 	@Override
 	public void createPartyRankingMenuBar(final MenuBar menuBar) {
-		if (!menuBar.getItems().isEmpty()) {
-			menuBar.removeItems();
-		}
+		menuBar.removeItems();
 
 		createPartyRankingTopics(menuBar.addItem("Party Ranking", null,null));
 	}
@@ -551,9 +543,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	 */
 	@Override
 	public void createDocumentMenuBar(final MenuBar menuBar, final String pageId) {
-		if (!menuBar.getItems().isEmpty()) {
 			menuBar.removeItems();
-		}
 
 			menuBar.addItem(OVERVIEW_TEXT, null,
 					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.Overview, pageId));
@@ -588,9 +578,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	 */
 	@Override
 	public void createCommitteeeMenuBar(final MenuBar menuBar, final String pageId) {
-		if (!menuBar.getItems().isEmpty()) {
-			menuBar.removeItems();
-		}
+		menuBar.removeItems();
 
 			menuBar.addItem(OVERVIEW_TEXT, null,
 					new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.Overview, pageId));
@@ -635,9 +623,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	 */
 	@Override
 	public void createCommitteeeRankingMenuBar(final MenuBar menuBar) {
-			if (!menuBar.getItems().isEmpty()) {
-				menuBar.removeItems();
-			}
+			menuBar.removeItems();
 
 			createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, null,null));
 	}
@@ -647,9 +633,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	 */
 	@Override
 	public void createMinistryMenuBar(final MenuBar menuBar, final String pageId) {
-		if (!menuBar.getItems().isEmpty()) {
 			menuBar.removeItems();
-		}
 
 			menuBar.addItem(OVERVIEW_TEXT, null,
 					new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.Overview, pageId));
@@ -684,9 +668,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	 */
 	@Override
 	public void createMinistryRankingMenuBar(final MenuBar menuBar) {
-		if (!menuBar.getItems().isEmpty()) {
-			menuBar.removeItems();
-		}
+		menuBar.removeItems();
 
 		createMinistryRankingTopics(menuBar.addItem("Ministry Ranking", null,null));
 

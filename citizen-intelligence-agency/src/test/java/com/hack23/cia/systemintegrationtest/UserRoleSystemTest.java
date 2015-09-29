@@ -777,6 +777,23 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	}
 
 	/**
+	 * Site document doc refb empty test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteDocumentDocRefbEmptyTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(DocumentView.NAME, DocumentPageMode.DocumentReferences.toString(), "GZ02C343"));
+
+	}
+
+	/**
 	 * Site document doc refb test.
 	 *
 	 * @throws Exception
@@ -789,9 +806,11 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(DocumentView.NAME, DocumentPageMode.DocumentReferences.toString(), "GZ02C343"));
+				new PageModeMenuCommand(DocumentView.NAME, DocumentPageMode.DocumentReferences.toString(), "H101UU1"));
 
 	}
+
+
 
 	/**
 	 * Site document doc decision test.
