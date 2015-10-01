@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,7 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
 /**
  * The Class CommonsViews.
  */
-public class CommonsViews {
+public interface CommonsViews {
 
 	/** The Constant MAIN_VIEW_NAME. */
 	public static final String MAIN_VIEW_NAME = "main";

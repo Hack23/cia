@@ -33,6 +33,7 @@ import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 
 /**
@@ -145,6 +146,35 @@ public final class UserPageVisit extends Assert {
 	public String getHtmlBodyAsText() {
 		return driver.findElement(By.tagName("body")).getText();
 	}
+
+	public WebElement getMenuBar() {
+		return driver.findElement(By.className("v-menubar"));
+	}
+
+	public WebElement getMenuItem(String... caption) {
+		return getMenuItem(getMenuBar(), 1,caption);
+	}
+
+	private WebElement getMenuItem(WebElement element,int level,String... caption) {
+		if (caption.length == level) {
+			List<WebElement> findElements = element.findElements(By.className("v-menubar-menuitem-caption"));
+			for (WebElement webElement : findElements) {
+				if (caption[level -1].equals(webElement.getText())) {
+					return webElement;
+				}
+			}
+		} else {
+			List<WebElement> findElements = element.findElements(By.className("v-menubar-menuitem-caption"));
+
+			for (WebElement webElement : findElements) {
+				if (caption[level -1].equals(webElement.getText())) {
+					return getMenuItem(webElement, level +1 ,caption);
+				}
+			}
+		}
+		return null;
+	}
+
 
 	/**
 	 * Visit test chart view.
@@ -312,7 +342,7 @@ public final class UserPageVisit extends Assert {
 
 		performClickAction(adminViewLink, WAIT_FOR_PAGE_DELAY);
 
-		assertEquals("http://localhost:8080/#!adminagentoperation",
+		assertEquals("http://localhost:8080/#!" + AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME,
 				driver.getCurrentUrl());
 
 		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW,ViewAction.START_AGENT_BUTTON });
@@ -357,7 +387,7 @@ public final class UserPageVisit extends Assert {
 				.id(ViewAction.VISIT_ADMIN_DATA_SUMMARY_VIEW.name()));
 		performClickAction(adminDataummaryViewLink, WAIT_FOR_PAGE_DELAY);
 
-		assertEquals("http://localhost:8080/#!admindatasummary",
+		assertEquals("http://localhost:8080/#!" + AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME,
 				driver.getCurrentUrl());
 
 		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW });
@@ -481,6 +511,12 @@ public final class UserPageVisit extends Assert {
 		}
 		Thread.sleep(waitDelay);
 	}
+
+	public void performClickAction(final WebElement clickElement)
+			throws InterruptedException {
+		performClickAction(clickElement, WAIT_FOR_PAGE_DELAY);
+	}
+
 
 	/**
 	 * Visit party ranking view.

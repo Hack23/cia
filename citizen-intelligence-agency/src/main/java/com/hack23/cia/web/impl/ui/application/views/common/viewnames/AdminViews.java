@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,7 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
 /**
  * The Class AdminViews.
  */
-public class AdminViews {
+public interface AdminViews {
 
 	/** The Constant ADMIN_DATA_SUMMARY_VIEW_NAME. */
 	public static final String ADMIN_DATA_SUMMARY_VIEW_NAME = "admindatasummary";

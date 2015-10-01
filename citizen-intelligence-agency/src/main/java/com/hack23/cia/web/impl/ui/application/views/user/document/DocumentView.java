@@ -294,10 +294,7 @@ public final class DocumentView extends AbstractUserView {
 
 			}
 
-		} else {
-			getPanel().setCaption("Document:" + event.getParameters());
 		}
-
 	}
 
 }
