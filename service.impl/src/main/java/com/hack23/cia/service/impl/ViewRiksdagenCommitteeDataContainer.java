@@ -23,6 +23,7 @@ import java.util.List;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +37,7 @@ import com.hack23.cia.service.data.api.ViewRiksdagenCommitteeDAO;
  */
 @Component(value="ViewRiksdagenCommitteeDataContainer")
 @Transactional(propagation=Propagation.REQUIRED)
+@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<ViewRiksdagenCommittee,String>{
 
 	/** The view riksdagen committee dao. */

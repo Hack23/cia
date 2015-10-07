@@ -16,7 +16,7 @@
 		<param-value>
 			classpath:net/bull/javamelody/monitoring-spring.xml
 			classpath:META-INF/cia-application-context.xml
-			<!-- classpath:META-INF/sec.xml-->
+			classpath:META-INF/sec.xml
 			classpath:META-INF/application-context-service-data.xml
 			classpath:META-INF/cia-service-external-riksdagen.xml
 			classpath:META-INF/cia-service-external-worldbank.xml
@@ -34,17 +34,16 @@
 	    <param-value>true</param-value>
 	</context-param>
 
-<!--
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy
 		</filter-class>
+		<async-supported>true</async-supported>
 	</filter>
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
--->
 
 	<listener>
 		<listener-class>net.bull.javamelody.SessionListener</listener-class>

@@ -19,6 +19,7 @@
 package com.hack23.cia.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder;
@@ -39,6 +40,7 @@ public final class DataAgentContainerImpl implements AgentContainer {
 	 * @see com.hack23.cia.service.api.AgentContainer#execute()
 	 */
 	@Override
+	@Secured({"ROLE_ADMIN" })
 	public void execute(final DataAgentWorkOrder workOrder) {
 		dataAgentApi.execute(workOrder);
 	}

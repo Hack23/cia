@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,6 +55,7 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 	 * @see com.hack23.cia.service.api.ConfigurationManager#getConfiguration()
 	 */
 	@Override
+	@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 	public SystemConfiguration getSystemConfiguration() {
 		return configuration;
 	}
@@ -66,6 +68,7 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 	 * java.lang.String)
 	 */
 	@Override
+	@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 	public UserConfiguration getUserConfiguration(final String url) {
 		final Agency agency = agencyDAO.getAll().get(0);
 		Portal usePortal = null;
@@ -84,6 +87,7 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 	/* (non-Javadoc)
 	 * @see com.hack23.cia.service.api.ConfigurationManager#createDefaultConfigIfEmpty()
 	 */
+	@Secured({"ROLE_ADMIN" })
 	public void createDefaultConfigIfEmpty() {
 		if (agencyDAO.getAll().isEmpty()) {
 			final List<Portal> portals = new ArrayList<>();

@@ -25,8 +25,7 @@
 		<property name="geoipDataFileLocationCity" value="${cia.service.geoipDataFileLocation.city}" />
 	</bean>
 
-	<security:global-method-security
-		secured-annotations="enabled" />
+	<security:global-method-security secured-annotations="enabled"/>
 
 	<security:authentication-manager alias="authenticationManager">
 		<!-- <security:authentication-provider>
@@ -41,12 +40,13 @@
 
 	<import resource="classpath:META-INF/cia-jms-broker.xml" />
 
+
 	<cache:annotation-driven cache-manager="serviceCacheManagerSpring" />
-	
+
 	<bean id="serviceCacheManagerSpring" class="org.springframework.cache.ehcache.EhCacheCacheManager">
-		
+
 				<property name="cacheManager" ref="serviceCacheManager" />
-			
+
 	</bean>
 
 	<bean id="serviceCacheManager"
@@ -55,10 +55,10 @@
 		<property name="shared" value="false" />
 		<property name="CacheManagerName" value="serviceCacheManager" />
 	</bean>
-	
-		
-	
-	
+
+
+
+
 	<bean id="serviceEhCacheMBeanRegistration" class="net.sf.ehcache.management.ManagementService"
 		init-method="init">
 		<constructor-arg index="0" ref="serviceCacheManager" />
@@ -67,7 +67,7 @@
 		<constructor-arg index="3" value="true" />
 		<constructor-arg index="4" value="true" />
 		<constructor-arg index="5" value="true" />
-		<constructor-arg index="6" value="true" />		
+		<constructor-arg index="6" value="true" />
 	</bean>
 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">

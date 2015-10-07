@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,6 +24,7 @@ import java.util.List;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,6 +44,7 @@ import com.hack23.cia.service.data.api.VoteDataDAO;
  */
 @Component(value="DataSummaryDataContainer")
 @Transactional(propagation=Propagation.REQUIRED)
+@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 public final class DataSummaryDataContainer implements DataContainer<DataSummary,String>{
 
 	/** The committee proposal component data dao. */

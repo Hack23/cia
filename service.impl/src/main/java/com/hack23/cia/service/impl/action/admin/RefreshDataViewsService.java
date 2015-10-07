@@ -16,42 +16,49 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.impl.action.application;
+package com.hack23.cia.service.impl.action.admin;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hack23.cia.service.api.action.application.RegisterUserRequest;
-import com.hack23.cia.service.api.action.application.RegisterUserResponse;
+import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
+import com.hack23.cia.service.api.action.admin.RefreshDataViewsResponse;
+import com.hack23.cia.service.data.api.ViewDataManager;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
- * The Class RegisterUserService.
+ * The Class RefreshDataViewsService.
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public final class RegisterUserService extends
-		AbstractBusinessServiceImpl<RegisterUserRequest, RegisterUserResponse>
-		implements BusinessService<RegisterUserRequest, RegisterUserResponse> {
+@Secured({ "ROLE_USER", "ROLE_ADMIN" })
+public final class RefreshDataViewsService extends
+		AbstractBusinessServiceImpl<RefreshDataViewsRequest, RefreshDataViewsResponse>
+		implements BusinessService<RefreshDataViewsRequest, RefreshDataViewsResponse> {
 
 	/**
-	 * Instantiates a new register user service.
+	 * Instantiates a new refresh data views service.
 	 */
-	public RegisterUserService() {
-		super(RegisterUserRequest.class);
+	public RefreshDataViewsService() {
+		super(RefreshDataViewsRequest.class);
 	}
+
+	/** The View data manager. */
+	@Autowired
+	private ViewDataManager ViewDataManager;
 
 	/* (non-Javadoc)
 	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
 	 */
 	@Override
-	@Secured({"ROLE_ANONYMOUS"})
-	public RegisterUserResponse processService(
-			RegisterUserRequest serviceRequest) {
-		return new RegisterUserResponse();
+	public RefreshDataViewsResponse processService(
+			RefreshDataViewsRequest serviceRequest) {
+		ViewDataManager.refreshViews();
+		return new RefreshDataViewsResponse();
 	}
 
 }

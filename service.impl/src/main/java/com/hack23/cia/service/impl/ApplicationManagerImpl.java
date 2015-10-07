@@ -60,7 +60,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	/** The data agent container. */
 	@Autowired
 	@Qualifier("DataAgentContainer")
-	private DataAgentContainerImpl dataAgentContainer;
+	private AgentContainer dataAgentContainer;
 
 	/** The data summary data container. */
 	@Autowired
@@ -102,6 +102,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	 * String, java.lang.String)
 	 */
 	@Override
+	@Secured({"ROLE_ANONYMOUS"})
 	public Object authenticate(final String username, final String password) {
 		final Authentication auth = new UsernamePasswordAuthenticationToken(
 				username, password);
@@ -121,6 +122,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	 * io.Serializable)
 	 */
 	@Override
+	@Secured({"ROLE_ADMIN"})
 	public AgentContainer getAgentContainer() {
 		return dataAgentContainer;
 	}
@@ -133,11 +135,12 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	 * .Serializable)
 	 */
 	@Override
+	@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 	public <T extends Serializable, V extends Serializable> DataContainer<T, V> getDataContainer(
 			final Class<T> dataObject) {
-		
+
 		DataContainer<T, V> result;
-		
+
 		if (dataObject.equals(DataSummary.class)) {
 			result= (DataContainer<T, V>) dataSummaryDataContainer;
 		} else if (dataObject.equals(PersonData.class)) {
@@ -157,6 +160,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	 * @see com.hack23.cia.service.api.ApplicationManager#logout()
 	 */
 	@Override
+	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	public void logout() {
 		SecurityContextHolder.getContext().setAuthentication(null);
 	}
@@ -169,13 +173,13 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	 * .api.ServiceRequest)
 	 */
 	@Override
-	@Secured({ "ROLE_ANONYMOUS" })
+	@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 	public ServiceResponse service(final ServiceRequest serviceRequest) {
-		
-		initBusinessServiceMap(serviceRequest); 
+
+		initBusinessServiceMap(serviceRequest);
 
 		final BusinessService businessService= serviceRequestBusinessServiceMap.get(serviceRequest.getClass());
-		
+
 		ServiceResponse serviceResponse = null;
 
 		if (businessService != null) {
@@ -189,7 +193,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	private void initBusinessServiceMap(final ServiceRequest serviceRequest) {
 		if (serviceRequestBusinessServiceMap.get(serviceRequest.getClass()) == null) {
 			final Map<String, BusinessService> beansOfType = applicationContext.getBeansOfType(BusinessService.class);
-			
+
 			for (final Entry<String, BusinessService> entry : beansOfType.entrySet()) {
 				if (serviceRequest.getClass().equals(entry.getValue().getSupportedService())) {
 					serviceRequestBusinessServiceMap.put(serviceRequest.getClass(), entry.getValue());

@@ -25,6 +25,7 @@ import javax.persistence.metamodel.SingularAttribute;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +38,7 @@ import com.hack23.cia.service.data.api.DataViewer;
  */
 @Component
 @Transactional(propagation=Propagation.REQUIRED)
+@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDataDataContainerFactory {
 
 	/** The data viewer. */

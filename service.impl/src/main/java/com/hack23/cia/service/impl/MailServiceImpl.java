@@ -21,6 +21,7 @@ package com.hack23.cia.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.service.api.MailService;
@@ -29,6 +30,7 @@ import com.hack23.cia.service.api.MailService;
  * The Class MailServiceImpl.
  */
 @Component(value = "MailService")
+@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 public final class MailServiceImpl implements MailService {
 
 	/** The mail sender. */
