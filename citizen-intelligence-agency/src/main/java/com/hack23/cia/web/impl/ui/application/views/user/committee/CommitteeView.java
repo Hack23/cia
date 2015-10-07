@@ -42,8 +42,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemF
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.CommitteeRoleMemberPageItemClickListener;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.GovermentRoleMemberPageItemClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ViewRiksdagenPoliticianDocumentPageItemClickListener;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractGroupView;
 import com.vaadin.data.util.BeanItem;
@@ -155,7 +154,7 @@ public final class CommitteeView extends AbstractGroupView {
 									"orderNumber" },
 							new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId",
 									"org" },
-							"docId", new ViewRiksdagenPoliticianDocumentPageItemClickListener());
+							"docId", new ViewRiksdagenPoliticianDocumentPageItemClickListener(), null);
 
 					panelContent.addComponent(politicianDocumentBeanItemGrid);
 
@@ -199,7 +198,7 @@ public final class CommitteeView extends AbstractGroupView {
 							new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
 									"roleCode", "fromDate", "toDate", "totalDaysServed" },
 							new String[] { "roleId", "personId", "detail" }, null,
-							new GovermentRoleMemberPageItemClickListener());
+							new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 
 					panelContent.addComponent(currentMemberBeanItemGrid);
 
@@ -219,7 +218,7 @@ public final class CommitteeView extends AbstractGroupView {
 							new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
 									"roleCode", "fromDate", "toDate", "totalDaysServed" },
 							new String[] { "roleId", "personId", "detail" }, null,
-							new CommitteeRoleMemberPageItemClickListener());
+							new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 
 					panelContent.addComponent(commmitteeRoleMemberBeanItemGrid);
 

@@ -15,34 +15,33 @@
  *
  *	$Id$
  *  $HeadURL$
- */
+*/
 package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
-import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember;
-import com.hack23.cia.web.impl.ui.application.views.common.AbstractPageItemRendererClickListener;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import org.apache.commons.beanutils.BeanUtils;
 
-/**
- * The listener interface for receiving govermentRoleMemberPageItemClick events.
- * The class that is interested in processing a govermentRoleMemberPageItemClick
- * event implements this interface, and the object created with that class is
- * registered with a component using the component's
- * <code>addGovermentRoleMemberPageItemClickListener</code> method. When
- * the govermentRoleMemberPageItemClick event occurs, that object's appropriate
- * method is invoked.
- *
- */
-public final class GovermentRoleMemberPageItemClickListener extends
-AbstractPageItemRendererClickListener<ViewRiksdagenGovermentRoleMember> {
+import com.hack23.cia.model.common.api.ModelObject;
+import com.hack23.cia.web.impl.ui.application.views.common.AbstractPageItemRendererClickListener;
+
+public final class PageItemPropertyClickListener extends AbstractPageItemRendererClickListener<ModelObject> {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The property. */
+	private final String property;
 
 	/**
-	 * Instantiates a new goverment role member page item click listener.
+	 * Instantiates a new page item property click listener.
+	 *
+	 * @param page
+	 *            the page
+	 * @param property
+	 *            the property
 	 */
-	public GovermentRoleMemberPageItemClickListener() {
-		super(UserViews.POLITICIAN_VIEW_NAME);
+	public PageItemPropertyClickListener(final String page, final String property) {
+		super(page);
+		this.property = property;
 	}
 
 	/*
@@ -52,8 +51,14 @@ AbstractPageItemRendererClickListener<ViewRiksdagenGovermentRoleMember> {
 	 * AbstractPageItemRendererClickListener#getPageId(java.lang.Object)
 	 */
 	@Override
-	protected String getPageId(final ViewRiksdagenGovermentRoleMember t) {
-		return t.getPersonId();
+	protected String getPageId(final ModelObject t) {
+		try {
+			return BeanUtils.getProperty(t, property);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

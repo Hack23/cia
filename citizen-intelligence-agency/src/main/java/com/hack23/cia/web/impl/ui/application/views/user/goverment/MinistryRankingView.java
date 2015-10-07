@@ -26,13 +26,17 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.tablefactory.TableFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView;
+import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
@@ -67,9 +71,9 @@ public final class MinistryRankingView extends AbstractRankingView {
 	@Autowired
 	private transient MenuItemFactory menuItemFactory;
 
-	/** The table factory. */
+	/** The grid factory. */
 	@Autowired
-	private transient TableFactory tableFactory;
+	private transient GridFactory gridFactory;
 
 	@Autowired
 	private transient DataSeriesFactory dataSeriesFactory;
@@ -83,17 +87,16 @@ public final class MinistryRankingView extends AbstractRankingView {
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
-
-
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createDescription()
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
+	 * AbstractRankingView#createDescription()
 	 */
 	@Override
 	protected TextArea createDescription() {
-		final TextArea totalCommitteeRankinglistLabel = new TextArea(
-				"Ministry Ranking by topic",
-				"Time served in Ministry:ALL:CURRENT:"
-						+ "\nPoliticans served in Committee:ALL:CURRENT:"
+		final TextArea totalCommitteeRankinglistLabel = new TextArea("Ministry Ranking by topic",
+				"Time served in Ministry:ALL:CURRENT:" + "\nPoliticans served in Committee:ALL:CURRENT:"
 						+ "\nTop document author NR:ALL:YEAR:CURRENT:*FILTER:DocumnetType"
 						+ "\nTop document author SIZE:YEAR:ALL:CURRENT:*FILTER:DocumnetType"
 
@@ -106,67 +109,73 @@ public final class MinistryRankingView extends AbstractRankingView {
 		return totalCommitteeRankinglistLabel;
 	}
 
-
-
-
-
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createExtraChartLayout()
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
+	 * AbstractRankingView#createExtraChartLayout()
 	 */
 	@Override
 	protected Layout createExtraChartLayout() {
 		final Layout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-
-		final com.vaadin.ui.Component chartPanelAll = chartDataManager.createChartPanel(dataSeriesFactory.createChartTimeSeriesTotalDaysServedGovernmentByParty(),"All Parties, total days served");
-		if (chartPanelAll!=null) {
+		final com.vaadin.ui.Component chartPanelAll = chartDataManager.createChartPanel(
+				dataSeriesFactory.createChartTimeSeriesTotalDaysServedGovernmentByParty(),
+				"All Parties, total days served");
+		if (chartPanelAll != null) {
 			chartLayout.addComponent(chartPanelAll);
 		}
 
-		final com.vaadin.ui.Component chartPanelCurrent = chartDataManager.createChartPanel(dataSeriesFactory.createChartTimeSeriesCurrentGovernmentByParty(),"Current Parties, headcount");
-		if (chartPanelCurrent!=null) {
+		final com.vaadin.ui.Component chartPanelCurrent = chartDataManager.createChartPanel(
+				dataSeriesFactory.createChartTimeSeriesCurrentGovernmentByParty(), "Current Parties, headcount");
+		if (chartPanelCurrent != null) {
 			chartLayout.addComponent(chartPanelCurrent);
 		}
 
 		return chartLayout;
 	}
 
-
-
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createMenuBar()
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
+	 * AbstractRankingView#createMenuBar()
 	 */
 	@Override
 	protected void createMenuBar() {
 		menuItemFactory.createMinistryRankingMenuBar(getBarmenu());
 	}
 
-
-
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createTable()
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
+	 * AbstractRankingView#createTable()
 	 */
 	@Override
 	protected Component createTable() {
-		return tableFactory.createMinistryTable();
+		final DataContainer<ViewRiksdagenMinistry, String> dataContainer = applicationManager
+				.getDataContainer(ViewRiksdagenMinistry.class);
+
+		final BeanItemContainer<ViewRiksdagenMinistry> dataSource = new BeanItemContainer<ViewRiksdagenMinistry>(
+				ViewRiksdagenMinistry.class, dataContainer.getAll());
+
+		return gridFactory.createBasicBeanItemGrid(dataSource, "Ministries",
+				new String[] { "nameId", "totalDaysServed", "currentMemberSize", "totalAssignments",
+						"firstAssignmentDate", "lastAssignmentDate", "active" },
+				null, "nameId", new PageItemPropertyClickListener(UserViews.MINISTRY_VIEW_NAME, "nameId"), null);
+
 	}
-
-
 
 	@Override
 	protected DataSeries createChartTimeSeriesAll() {
 		return dataSeriesFactory.createMinistryChartTimeSeriesAll();
 	}
 
-
-
 	@Override
 	protected DataSeries createChartTimeSeriesCurrent() {
 		return dataSeriesFactory.createMinistryChartTimeSeriesCurrent();
 	}
-
-
-
 
 }

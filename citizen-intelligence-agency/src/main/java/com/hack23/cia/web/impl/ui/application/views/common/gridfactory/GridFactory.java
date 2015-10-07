@@ -39,9 +39,10 @@ public interface GridFactory {
 	 *            the id proprty
 	 * @param listener
 	 *            the listener
+	 * @param actionId TODO
 	 * @return the grid
 	 */
 	Grid createBasicBeanItemGrid(Indexed datasource, String caption, Object[] columnOrder, Object[] hideColumns,
-			String idProprty, AbstractPageItemRendererClickListener<?> listener);
+			String idProprty, AbstractPageItemRendererClickListener<?> listener, String actionId);
 
 }

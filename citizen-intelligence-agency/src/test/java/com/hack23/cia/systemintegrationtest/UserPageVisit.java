@@ -176,6 +176,10 @@ public final class UserPageVisit extends Assert {
 	}
 
 
+	public List<WebElement> getButtons() {
+		return driver.findElements(By.className("v-nativebutton"));
+	}
+
 	/**
 	 * Visit test chart view.
 	 *
@@ -449,6 +453,8 @@ public final class UserPageVisit extends Assert {
 
 		return idList;
 	}
+
+
 
 	/**
 	 * Wait until displayed.

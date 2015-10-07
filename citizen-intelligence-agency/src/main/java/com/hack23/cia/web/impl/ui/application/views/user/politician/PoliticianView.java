@@ -187,7 +187,7 @@ public final class PoliticianView extends AbstractPersonView {
 							chartDataManager.getViewRiksdagenVoteDataBallotPoliticianSummary(personData.getId()));
 
 					final Grid politicianBallotsBeanItemGrid = gridFactory
-							.createBasicBeanItemGrid(politicianBallotDataSource, "Ballots", null, null, null, null);
+							.createBasicBeanItemGrid(politicianBallotDataSource, "Ballots", null, null, null, null, null);
 
 					panelContent.addComponent(politicianBallotsBeanItemGrid);
 
@@ -214,7 +214,7 @@ public final class PoliticianView extends AbstractPersonView {
 									"orderNumber" },
 							new String[] { "id", "partyShortCode", "personReferenceId", "numberValue", "orderNumber",
 									"tempLabel", "referenceName" },
-							"docId", new ViewRiksdagenPoliticianDocumentPageItemClickListener());
+							"docId", new ViewRiksdagenPoliticianDocumentPageItemClickListener(), null);
 
 					panelContent.addComponent(politicianDocumentBeanItemGrid);
 
@@ -292,7 +292,7 @@ public final class PoliticianView extends AbstractPersonView {
 		panelContent.addComponent(gridFactory.createBasicBeanItemGrid(
 				new BeanItemContainer<DetailData>(DetailData.class, personData.getPersonDetailData().getDetailList()),
 				"Detail", new String[] { "detailType", "detail", "code" }, new String[] { "hjid", "intressentId" },
-				null, null));
+				null, null, null));
 
 	}
 
@@ -354,7 +354,7 @@ public final class PoliticianView extends AbstractPersonView {
 						new BeanItemContainer<AssignmentData>(AssignmentData.class, assignmentList), "Assignments",
 						new String[] { "roleCode", "assignmentType", "status", "detail", "orgCode", "fromDate",
 								"toDate" },
-						new String[] { "hjid", "intressentId", "orderNumber", "orgCode" }, null, null));
+						new String[] { "hjid", "intressentId", "orderNumber", "orgCode" }, null, null, null));
 
 	}
 

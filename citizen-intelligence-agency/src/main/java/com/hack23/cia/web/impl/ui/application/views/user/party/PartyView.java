@@ -50,8 +50,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemF
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.GovermentRoleMemberPageItemClickListener;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PartyRoleMemberPageItemClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PoliticianPageItemClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ViewRiksdagenPoliticianDocumentPageItemClickListener;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractGroupView;
@@ -213,7 +212,7 @@ public final class PartyView extends AbstractGroupView {
 									"partyShortCode", "personReferenceId",
 									"numberValue", "orderNumber", "tempLabel" },
 									"docId",
-									new ViewRiksdagenPoliticianDocumentPageItemClickListener());
+									new ViewRiksdagenPoliticianDocumentPageItemClickListener(), null);
 
 					panelContent
 					.addComponent(politicianDocumentBeanItemGrid);
@@ -262,7 +261,7 @@ public final class PartyView extends AbstractGroupView {
 									"currentMinistryAssignments",
 									"currentCommitteeAssignments",
 							"currentSpeakerAssignments" }, null, "personId",
-							new PoliticianPageItemClickListener());
+							new PoliticianPageItemClickListener(), null);
 
 					panelContent.addComponent(partyMemberBeanItemGrid);
 
@@ -304,7 +303,7 @@ public final class PartyView extends AbstractGroupView {
 									"currentMinistryAssignments",
 									"currentCommitteeAssignments",
 							"currentSpeakerAssignments" }, null, "personId",
-							new PoliticianPageItemClickListener());
+							new PoliticianPageItemClickListener(), null);
 
 					panelContent.addComponent(partyMemberBeanItemGrid);
 
@@ -330,7 +329,7 @@ public final class PartyView extends AbstractGroupView {
 										"roleCode", "fromDate", "toDate",
 								"totalDaysServed" }, new String[] { "roleId",
 										"personId", "detail", "roleCode" }, null,
-										new PartyRoleMemberPageItemClickListener());
+								new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 
 						panelContent.addComponent(currentPartyBeanItemGrid);
 
@@ -354,7 +353,7 @@ public final class PartyView extends AbstractGroupView {
 									"fromDate", "toDate", "totalDaysServed" },
 									new String[] { "roleId", "personId", "party", "detail",
 							"roleCode" }, null,
-							new PartyRoleMemberPageItemClickListener());
+							new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 
 					panelContent.addComponent(partyRoleMemberBeanItemGrid);
 
@@ -381,7 +380,7 @@ public final class PartyView extends AbstractGroupView {
 									"lastName", "detail", "active", "detail",
 									"roleCode", "fromDate", "toDate", "totalDaysServed" },
 									new String[] { "roleId", "personId", "party" }, null,
-									new GovermentRoleMemberPageItemClickListener());
+									new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 
 					panelContent
 					.addComponent(currentGovermentMemberBeanItemGrid);
@@ -407,7 +406,7 @@ public final class PartyView extends AbstractGroupView {
 									"detail", "active", "detail", "roleCode",
 									"fromDate", "toDate", "totalDaysServed" },
 									new String[] { "roleId", "personId", "party" }, null,
-									new GovermentRoleMemberPageItemClickListener());
+									new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 
 					panelContent
 					.addComponent(committeeMemberBeanItemGrid);
@@ -431,7 +430,7 @@ public final class PartyView extends AbstractGroupView {
 							null,
 							null,
 							null,
-							null);
+							null, null);
 
 					panelContent
 					.addComponent(partynBallotsBeanItemGrid);

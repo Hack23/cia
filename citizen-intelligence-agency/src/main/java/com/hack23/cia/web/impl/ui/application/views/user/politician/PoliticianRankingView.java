@@ -161,7 +161,7 @@ public final class PoliticianRankingView extends AbstractRankingView {
 				"currentMinistryAssignments",
 				"currentCommitteeAssignments",
 		"currentSpeakerAssignments" },null, "personId",
-		new PoliticianPageItemClickListener());
+		new PoliticianPageItemClickListener(), null);
 	}
 
 	@Override

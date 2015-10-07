@@ -186,8 +186,11 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DataGrid));
-		userPageVisit
-				.VisitCommitteeView(userPageVisit.getActionIdsBy(ViewAction.VISIT_COMMITTEE_VIEW).iterator().next());
+
+		WebElement button = userPageVisit.getButtons().iterator().next();
+		assertNotNull(button);
+
+		userPageVisit.performClickAction(button);
 
 	}
 
@@ -699,7 +702,12 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.DataGrid));
-		userPageVisit.VisitMinistryView(userPageVisit.getActionIdsBy(ViewAction.VISIT_MINISTRY_VIEW).iterator().next());
+
+
+		WebElement button = userPageVisit.getButtons().iterator().next();
+		assertNotNull(button);
+
+		userPageVisit.performClickAction(button);
 
 	}
 

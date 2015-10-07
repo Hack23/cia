@@ -26,13 +26,17 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
 import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.tablefactory.TableFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView;
+import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
@@ -67,9 +71,9 @@ public final class PartyRankingView extends AbstractRankingView {
 	@Autowired
 	private transient MenuItemFactory menuItemFactory;
 
-	/** The table factory. */
+	/** The grid factory. */
 	@Autowired
-	private transient TableFactory tableFactory;
+	private transient GridFactory gridFactory;
 
 	@Autowired
 	private transient DataSeriesFactory dataSeriesFactory;
@@ -146,7 +150,19 @@ public final class PartyRankingView extends AbstractRankingView {
 	 */
 	@Override
 	protected Component createTable() {
-		return tableFactory.createPartiesTable();
+			final DataContainer<ViewRiksdagenPartySummary, String> dataContainer = applicationManager
+					.getDataContainer(ViewRiksdagenPartySummary.class);
+
+			final BeanItemContainer<ViewRiksdagenPartySummary> politicianDocumentDataSource = new BeanItemContainer<ViewRiksdagenPartySummary>(
+					ViewRiksdagenPartySummary.class, dataContainer.getAll());
+
+			return gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Parties",
+					new String[] { "party", "active", "firstAssignmentDate", "lastAssignmentDate", "currentAssignments",
+							"totalAssignments", "totalDaysServed", "activeEu", "totalActiveEu", "totalDaysServedEu",
+							"activeGovernment", "totalActiveGovernment", "totalDaysServedGovernment", "activeCommittee",
+							"totalActiveCommittee", "totalDaysServedCommittee", "activeParliament", "totalActiveParliament",
+							"totalDaysServedParliament" },
+					null, "party", new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "party"), null);
 	}
 
 	@Override

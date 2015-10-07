@@ -50,7 +50,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemF
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.DocumentPersonReferenceDataPageItemClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
@@ -193,7 +193,7 @@ public final class DocumentView extends AbstractUserView {
 						final Grid documentActivityDataItemGrid = gridFactory.createBasicBeanItemGrid(
 								documentActivityDataDataDataSource, "Document activities", new String[] { "createdDate",
 										"code", "activityName", "orderNumber", "process", "status" },
-								new String[] { "hjid" }, null, null);
+								new String[] { "hjid" }, null, null, null);
 						panelContent.addComponent(documentActivityDataItemGrid);
 					}
 
@@ -224,7 +224,7 @@ public final class DocumentView extends AbstractUserView {
 
 						final Grid documentDetailDataItemGrid = gridFactory.createBasicBeanItemGrid(
 								documentDetailDataDataDataSource, "Document details",
-								new String[] { "code", "detailName", "text" }, new String[] { "hjid" }, null, null);
+								new String[] { "code", "detailName", "text" }, new String[] { "hjid" }, null, null, null);
 						panelContent.addComponent(documentDetailDataItemGrid);
 					}
 
@@ -243,7 +243,7 @@ public final class DocumentView extends AbstractUserView {
 						final Grid documentReferenceDataItemGrid = gridFactory.createBasicBeanItemGrid(
 								documentReferenceDataDataSource, "Document references",
 								new String[] { "referenceType", "referenceDocumentId", "detail" },
-								new String[] { "hjid" }, null, null);
+								new String[] { "hjid" }, null, null, null);
 						panelContent.addComponent(documentReferenceDataItemGrid);
 
 					}
@@ -265,7 +265,7 @@ public final class DocumentView extends AbstractUserView {
 								new String[] { "personReferenceId", "referenceName", "partyShortCode", "orderNumber",
 										"roleDescription" },
 								new String[] { "hjid" }, "personReferenceId",
-								new DocumentPersonReferenceDataPageItemClickListener());
+								new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personReferenceId"), null);
 						panelContent.addComponent(documentPersonReferenceDataItemGrid);
 					}
 
@@ -284,7 +284,7 @@ public final class DocumentView extends AbstractUserView {
 						final Grid documentAttachmentDataItemGrid = gridFactory.createBasicBeanItemGrid(
 								documentAttachmentDataSource, "Document attachements",
 								new String[] { "fileName", "fileSize", "fileType", "fileUrl" }, new String[] { "hjid" },
-								null, null);
+								null, null, null);
 						panelContent.addComponent(documentAttachmentDataItemGrid);
 					}
 

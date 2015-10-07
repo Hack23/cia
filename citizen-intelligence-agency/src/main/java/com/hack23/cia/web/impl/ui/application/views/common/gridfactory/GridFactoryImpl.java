@@ -18,8 +18,11 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.gridfactory;
 
+import java.util.Locale;
+
 import org.springframework.stereotype.Service;
 import org.vaadin.gridutil.cell.GridCellFilter;
+import org.vaadin.gridutil.converter.SimpleStringConverter;
 
 import com.hack23.cia.web.impl.ui.application.views.common.AbstractPageItemRendererClickListener;
 import com.vaadin.data.Container;
@@ -27,18 +30,24 @@ import com.vaadin.ui.Grid;
 import com.vaadin.ui.Grid.Column;
 import com.vaadin.ui.Grid.SelectionMode;
 import com.vaadin.ui.renderers.ButtonRenderer;
+import com.vaadin.ui.renderers.HtmlRenderer;
 
 @Service
 public final class GridFactoryImpl implements GridFactory {
 
-
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory#createBasicBeanItemGrid(com.vaadin.data.Container.Indexed, java.lang.String, java.lang.Object[], java.lang.Object[], java.lang.String, com.hack23.cia.web.impl.ui.application.views.common.AbstractPageItemRendererClickListener)
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.hack23.cia.web.impl.ui.application.views.common.gridfactory.
+	 * GridFactory#createBasicBeanItemGrid(com.vaadin.data.Container.Indexed,
+	 * java.lang.String, java.lang.Object[], java.lang.Object[],
+	 * java.lang.String, com.hack23.cia.web.impl.ui.application.views.common.
+	 * AbstractPageItemRendererClickListener)
 	 */
 	@Override
 	public Grid createBasicBeanItemGrid(final Container.Indexed datasource, final String caption,
 			final Object[] columnOrder, final Object[] hideColumns, final String idProprty,
-			final AbstractPageItemRendererClickListener<?> listener) {
+			final AbstractPageItemRendererClickListener<?> listener, String actionId) {
 		final Grid grid = new Grid(datasource);
 
 		grid.setCaption(caption);
@@ -55,7 +64,18 @@ public final class GridFactoryImpl implements GridFactory {
 
 		if (idProprty != null && listener != null) {
 			final Column column = grid.getColumn(idProprty);
+
 			column.setRenderer(new ButtonRenderer(listener));
+
+//			column.setRenderer(new ButtonRenderer(listener), new SimpleStringConverter<String>(String.class) {
+//	            @Override
+//	            public String convertToPresentation(final String value, final Class<? extends String> targetType, final Locale locale)
+//	                    throws com.vaadin.data.util.converter.Converter.ConversionException {
+//	                return "<span id=\""  +actionId +"/" +value +"\" >" + value + "</span>";
+//	            }
+//	        });
+
+
 		}
 
 		if (listener != null) {
@@ -83,6 +103,5 @@ public final class GridFactoryImpl implements GridFactory {
 		return grid;
 
 	}
-
 
 }
