@@ -87,10 +87,9 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<!-- temp disable web cache-->
 	<filter>
 		<filter-name>SimplePageCachingFilter</filter-name>
-		<filter-class>com.hack23.cia.web.impl.ui.application.web.filter.CustomSimplePageCachingFilter
+		<filter-class>com.hack23.cia.web.impl.ui.application.web.filter.CustomSimpleCachingHeadersPageCachingFilter
 		</filter-class>
 		<async-supported>true</async-supported>
 		<init-param>
@@ -155,37 +154,21 @@
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
 
-<!--
-	<filter>
-		<filter-name>SimpleCachingHeadersPageCachingFilter</filter-name>
-		<filter-class>com.hack23.cia.web.impl.ui.application.web.filter.CustomSimpleCachingHeadersPageCachingFilter
-		</filter-class>
-		<init-param>
-			<param-name>suppressStackTraces</param-name>
-			<param-value>true</param-value>
-		</init-param>
-		<init-param>
-			<param-name>cacheName</param-name>
-			<param-value>SimpleCachingHeadersPageCachingFilter</param-value>
-		</init-param>
-	</filter>
-
 	<filter-mapping>
-		<filter-name>SimpleCachingHeadersPageCachingFilter</filter-name>
+		<filter-name>SimplePageCachingFilter</filter-name>
+		<url-pattern>VAADIN/addons/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SimplePageCachingFilter</filter-name>
 		<url-pattern>VAADIN/themes/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
 
-	<filter-mapping>
-		<filter-name>SimpleCachingHeadersPageCachingFilter</filter-name>
-		<url-pattern>VAADIN/widgetsets/*</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
- -->
 
 	<filter>
         <filter-name>hibernateFilter</filter-name>

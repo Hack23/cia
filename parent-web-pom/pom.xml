@@ -126,8 +126,8 @@
         <version>${cia.project.versions.jetty}</version>
       </dependency>
       <dependency>
-        <groupId>org.glassfish</groupId>
-        <artifactId>javax.servlet</artifactId>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
         <version>${cia.project.versions.servlet.api}</version>
       </dependency>
     </dependencies>
