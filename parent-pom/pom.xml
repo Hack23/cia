@@ -113,7 +113,7 @@
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.poi>3.13</cia.project.versions.poi>
-    <cia.project.versions.postgresql>9.4-1203-jdbc42</cia.project.versions.postgresql>
+    <cia.project.versions.postgresql>9.4-1204-jdbc42</cia.project.versions.postgresql>
     <!-- <cia.project.versions.easymock>3.1-SNAPSHOT</cia.project.versions.easymock> -->
     <cia.project.versions.easymock>3.4</cia.project.versions.easymock>
     <cia.project.versions.plexus.utils>3.0.22</cia.project.versions.plexus.utils>
@@ -569,7 +569,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
-          <version>2.5.5</version>
+          <version>2.6</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
