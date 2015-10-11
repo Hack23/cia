@@ -88,7 +88,7 @@ public class UserRoleSystemTest extends AbstractSystemTest {
 	 */
 	@Parameters(name = "SiteTest{index}: browser({0})")
 	public static Collection<String[]> browsersStrings() {
-		return Arrays.asList(new String[][] { { "firefox" }, { "chrome" } });
+		return Arrays.asList(new String[][] { { "firefox" } });
 		// return Arrays.asList(new Object[][] { { "firefox" },{ "chrome" }, {
 		// "htmlunit-firefox" },{ "htmlunit-ie11" },{ "htmlunit-chrome" } });
 	}
