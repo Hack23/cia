@@ -61,6 +61,10 @@ public class ApplicationManagerITest extends AbstractServiceFunctionalIntegratio
 	 */
 	@Test
 	public void getDataContainerSuccessTest() throws Exception {
+		Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
+		SecurityContextHolder.getContext().setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
+
 		final DataContainer<ViewRiksdagenCommittee, Serializable> dataContainer = applicationManager.getDataContainer(ViewRiksdagenCommittee.class);
 		assertNotNull("Expect a result",dataContainer);
 
