@@ -29,7 +29,7 @@
 	}
 
 .v-vaadin-version:after {
-	content: "7.6.0.alpha6";
+	content: "7.6.0.alpha7";
 }
 
 .v-generated-body {
@@ -54,6 +54,23 @@
 
 .FontAwesome {
 	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	display: inline-block;
+}
+
+@font-face {
+	font-family: ThemeIcons;
+	src: url(../base/fonts/themeicons-webfont.eot);
+	src: url(../base/fonts/themeicons-webfont.eot?#iefix) format("embedded-opentype"), url(../base/fonts/themeicons-webfont.woff) format("woff"), url(../base/fonts/themeicons-webfont.ttf) format("truetype"), url(../base/fonts/themeicons-webfont.svg) format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+
+.ThemeIcons {
+	font-family: ThemeIcons;
 	font-style: normal;
 	font-weight: normal;
 	-webkit-font-smoothing: antialiased;
@@ -2182,7 +2199,7 @@ body .cia.v-app .v-app-loading {
 .cia .v-grid-sidebar.v-contextmenu .v-grid-sidebar-button:after {
 	content: "\f0c9";
 	display: block;
-	font-family: FontAwesome, sans-serif;
+	font-family: ThemeIcons, sans-serif;
 	font-size: 10px;
 }
 
@@ -2294,7 +2311,7 @@ body .cia.v-app .v-app-loading {
 }
 
 .cia .v-grid-header .sort-asc:after, .cia .v-grid-header .sort-desc:after {
-	font-family: FontAwesome, sans-serif;
+	font-family: ThemeIcons, sans-serif;
 	content: "\f0de" " " attr(sort-order);
 	position: absolute;
 	right: 6px;
@@ -2303,6 +2320,16 @@ body .cia.v-app .v-app-loading {
 
 .cia .v-grid-header .sort-desc:after {
 	content: "\f0dd" " " attr(sort-order);
+}
+
+.cia .v-grid-column-resize-handle {
+	position: absolute;
+	width: 20px;
+	top: 0px;
+	bottom: 0px;
+	right: -10px;
+	cursor: col-resize;
+	z-index: 10;
 }
 
 .cia .v-grid-footer td {
@@ -2317,6 +2344,14 @@ body .cia.v-app .v-app-loading {
 
 .cia .v-grid-footer td:first-child {
 	border-left: none;
+}
+
+.cia .v-grid-column-header-content, .cia .v-grid-column-footer-content {
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 20px;
+	vertical-align: baseline;
 }
 
 .cia .v-grid-header-deco {

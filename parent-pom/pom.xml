@@ -141,7 +141,7 @@
     <cia.project.versions.hibernate.validator>5.2.2.Final</cia.project.versions.hibernate.validator>
     <!--<cia.project.versions.hibernate.validator>4.2.0-SNAPSHOT</cia.project.versions.hibernate.validator> -->
     <cia.project.versions.atomikos>4.0.0M4</cia.project.versions.atomikos>
-    <cia.project.versions.ehcache>2.10.0.0.26</cia.project.versions.ehcache>
+    <cia.project.versions.ehcache>2.10.1-55</cia.project.versions.ehcache>
     <!--<cia.project.versions.ehcache>2.3.1-SNAPSHOT</cia.project.versions.ehcache> -->
     <cia.project.versions.aspectj>1.9.0.BETA-2</cia.project.versions.aspectj>
     <!--<cia.project.versions.aspectj>1.7.1.M1.M1.BUILD-SNAPSHOT</cia.project.versions.aspectj> -->

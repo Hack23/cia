@@ -17,7 +17,7 @@
   </scm>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <vaadin.version>7.6.0.alpha6</vaadin.version>
+    <vaadin.version>7.6.0.alpha7</vaadin.version>
     <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
   </properties>
   <dependencies>
