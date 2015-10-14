@@ -5,11 +5,14 @@
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
-	 <http>
+	 <http use-expressions="false">
+	    <!--
+	    <intercept-url pattern="/monitoring" access="ROLE_ADMIN" />
+	 	<intercept-url pattern="/monitoring/**" access="ROLE_ADMIN" />-->
+
 	 	<csrf disabled="true"/>
 	    <http-basic />
         <anonymous />
-        <form-login/>
 	 	<logout/>
     </http>
 
@@ -19,12 +22,12 @@
 
 <authentication-manager>
 	<authentication-provider>
-	   <user-service id="userDetailsService">
+	   <user-service id="userDetailsService" >
 	      <user password="password" name="user" authorities="ROLE_USER" />
-	      <user password="admin" name="admin" authorities="ROLE_ADMIN" />
+	      <user password="admin" name="admin" authorities="ROLE_ADMIN,ROLE_USER" />
+	      <user password="test" name="cia" authorities="ROLE_ADMIN,ROLE_USER" />
 	   </user-service>
 	</authentication-provider>
 </authentication-manager>
-
 
 </beans:beans>

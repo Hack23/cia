@@ -16,13 +16,13 @@
     <url>https://github.com/Hack23/cia/tree/master/cia-dist-deb</url>
   </scm>
   <properties>
-    <cia.project.versions.jetty>9.3.3.v20150827</cia.project.versions.jetty>
+    <cia.project.versions.jetty>9.3.5.v20151012</cia.project.versions.jetty>
   </properties>
   <dependencies>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-distribution</artifactId>
-      <version>9.3.3.v20150827</version>
+      <version>9.3.5.v20151012</version>
       <type>zip</type>
       <exclusions>
         <exclusion>
@@ -43,7 +43,7 @@
       <plugin>
         <groupId>com.stratio.mojo.unix</groupId>
         <artifactId>unix-maven-plugin</artifactId>
-        <version>1.1.2</version>
+        <version>1.1.6</version>
         <extensions>true</extensions>
         <configuration>
           <contact>cia</contact>
@@ -52,7 +52,7 @@
           <deb>
             <section>devel</section>
             <!-- <depends>zip</depends> -->
-            <preDepends>openjdk-8-jdk, postgresql</preDepends>
+            <preDepends>openjdk-9-jdk, postgresql</preDepends>
             <!-- <priority></priority> <provides></provides> <recommends></recommends>
 							<replaces></replaces> <suggests></suggests> -->
           </deb>

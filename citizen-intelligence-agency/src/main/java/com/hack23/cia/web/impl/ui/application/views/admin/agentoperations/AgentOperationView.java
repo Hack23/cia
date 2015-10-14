@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -26,6 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
@@ -135,7 +136,8 @@ public final class AgentOperationView extends AbstractAdminView implements
 				agentContainer.execute(dataAgentWorkOrder);
 			}
 
-		} catch (final Exception e) {
+		}
+		catch (AccessDeniedException | Exception e) {
 			LOGGER.warn("Problem executing agent",e);
 		}
 	}

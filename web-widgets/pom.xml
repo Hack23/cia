@@ -281,7 +281,7 @@
       <plugin>
         <groupId>org.eclipse.jettys</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
-        <version>9.3.4.v20151007</version>
+        <version>9.3.5.v20151012</version>
       </plugin>
     </plugins>
   </build>
