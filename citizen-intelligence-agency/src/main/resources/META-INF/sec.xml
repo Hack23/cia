@@ -11,7 +11,8 @@
 	 	<intercept-url pattern="/monitoring/**" access="ROLE_ADMIN" />-->
 
 	 	<csrf disabled="true"/>
-	    <http-basic />
+	   <!--   <http-basic />-->
+	   <form-login/>
         <anonymous />
 	 	<logout/>
     </http>
