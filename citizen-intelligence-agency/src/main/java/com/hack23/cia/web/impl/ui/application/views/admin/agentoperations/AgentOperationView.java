@@ -26,7 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
@@ -137,7 +136,7 @@ public final class AgentOperationView extends AbstractAdminView implements
 			}
 
 		}
-		catch (AccessDeniedException | Exception e) {
+		catch (Exception e) {
 			LOGGER.warn("Problem executing agent",e);
 		}
 	}
