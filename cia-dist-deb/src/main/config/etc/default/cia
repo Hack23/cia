@@ -1,6 +1,10 @@
 # /etc/default/cia
 #
+JAVA_HOME=/usr/lib/jvm/java-9-openjdk-amd64
+#JAVA_HOME=/usr/lib/jvm/java-9-oracle
+#/usr/lib/jvm/java-8-oracle
+JAVA=$JAVA_HOME/bin/java
 JETTY_HOME=/opt/cia
 JETTY_USER=cia
-JETTY_PORT=
 JETTY_ARGS="-Djetty.http.port=2323 -Djetty.http.host=0.0.0.0 -Djavamelody.system-actions-enabled=true -Djava.awt.headless=true -Djavamelody.storage-directory=/opt/cia/javamelody/"
+JAVA_OPTIONS="-server -XX:+UseTLAB -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+AggressiveOpts -XX:+DoEscapeAnalysis -XX:+UseBiasedLocking -XX:+EliminateLocks"
