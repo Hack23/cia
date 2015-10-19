@@ -23,35 +23,35 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public interface UserViews {
 
-	/** The Constant POLITICIAN_VIEW_NAME. */
-	public static final String POLITICIAN_VIEW_NAME = "politician";
+	/** The politician view name. */
+	String POLITICIAN_VIEW_NAME = "politician";
 
-	/** The Constant POLITICIAN_RANKING_VIEW_NAME. */
-	public static final String POLITICIAN_RANKING_VIEW_NAME = "politicianranking";
+	/** The politician ranking view name. */
+	String POLITICIAN_RANKING_VIEW_NAME = "politicianranking";
 
-	/** The Constant PARTY_VIEW_NAME. */
-	public static final String PARTY_VIEW_NAME = "party";
+	/** The party view name. */
+	String PARTY_VIEW_NAME = "party";
 
-	/** The Constant PARTY_RANKING_VIEW_NAME. */
-	public static final String PARTY_RANKING_VIEW_NAME = "partyranking";
+	/** The party ranking view name. */
+	String PARTY_RANKING_VIEW_NAME = "partyranking";
 
-	/** The Constant COMMITTEE_VIEW_NAME. */
-	public static final String COMMITTEE_VIEW_NAME = "committee";
+	/** The committee view name. */
+	String COMMITTEE_VIEW_NAME = "committee";
 
-	/** The Constant COMMITTEE_RANKING_VIEW_NAME. */
-	public static final String COMMITTEE_RANKING_VIEW_NAME = "committeeranking";
+	/** The committee ranking view name. */
+	String COMMITTEE_RANKING_VIEW_NAME = "committeeranking";
 
-	/** The Constant MINISTRY_VIEW_NAME. */
-	public static final String MINISTRY_VIEW_NAME = "ministry";
+	/** The ministry view name. */
+	String MINISTRY_VIEW_NAME = "ministry";
 
-	/** The Constant MINISTRY_RANKING_VIEW_NAME. */
-	public static final String MINISTRY_RANKING_VIEW_NAME = "ministryranking";
+	/** The ministry ranking view name. */
+	String MINISTRY_RANKING_VIEW_NAME = "ministryranking";
 
 
-	/** The Constant TEST_CHART_VIEW_NAME. */
-	public static final String TEST_CHART_VIEW_NAME = "testchartview";
+	/** The test chart view name. */
+	String TEST_CHART_VIEW_NAME = "testchartview";
 
-	/** The Constant DOCUMENT_VIEW_NAME. */
-	public static final String DOCUMENT_VIEW_NAME = "document";
+	/** The document view name. */
+	String DOCUMENT_VIEW_NAME = "document";
 
 }

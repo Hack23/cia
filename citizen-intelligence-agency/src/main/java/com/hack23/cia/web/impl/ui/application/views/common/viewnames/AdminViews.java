@@ -23,10 +23,10 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public interface AdminViews {
 
-	/** The Constant ADMIN_DATA_SUMMARY_VIEW_NAME. */
-	public static final String ADMIN_DATA_SUMMARY_VIEW_NAME = "admindatasummary";
+	/** The admin data summary view name. */
+	String ADMIN_DATA_SUMMARY_VIEW_NAME = "admindatasummary";
 
-	/** The Constant ADMIN_AGENT_OPERATIONVIEW_NAME. */
-	public static final String ADMIN_AGENT_OPERATIONVIEW_NAME = "adminagentoperation";
+	/** The admin agent operationview name. */
+	String ADMIN_AGENT_OPERATIONVIEW_NAME = "adminagentoperation";
 
 }

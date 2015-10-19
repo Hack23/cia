@@ -13,23 +13,48 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: AbstractUnitMockedTest.java 6046 2015-05-06 20:42:53Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/testfoundation/src/main/java/com/hack23/cia/testfoundation/AbstractUnitMockedTest.java $
- */
-
+ *	$Id$
+ *  $HeadURL$
+*/
 package com.hack23.cia.testfoundation;
 
+import org.junit.Test;
 
 /**
- * The Class AbstractUnitMockedTest.
+ * The Class TestInstanceTtest.
  */
-public abstract class AbstractUnitMockedTest extends AbstractUnitTest {
+public class TestInstanceTest extends AbstractUnitTest {
 
+	/** The order. */
+	int order =0;
 
 	/**
-	 * Instantiates a new abstract unit mocked test.
+	 * Test instance example test.
 	 */
-	protected AbstractUnitMockedTest() {
-		super();
+	@Test
+	public void testInstanceExampleTest() {
+		new TestInstance() {
+
+			@Override
+			protected void setupExpectations() {
+				order++;
+				assertEquals(1,order);
+			}
+
+			@Override
+			protected void run() {
+				order++;
+				assertEquals(2,order);
+			}
+
+			@Override
+			protected void assertPostcondition() {
+				order++;
+				assertEquals(3,order);
+			}
+		}.executeTestPhases();
+		assertEquals(3,order);
 	}
+
+
 }

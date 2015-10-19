@@ -40,8 +40,8 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
+import com.hack23.cia.testfoundation.AbstractSystemIntegrationTest;
 import com.hack23.cia.testfoundation.Parallelized;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
@@ -58,7 +58,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
  */
 @RunWith(Parallelized.class)
 @FixMethodOrder(value = MethodSorters.NAME_ASCENDING)
-public class UserRoleSystemTest extends AbstractSystemTest {
+public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 	/** The test server. */
 	private static CitizenIntelligenceAgencyServer testServer;

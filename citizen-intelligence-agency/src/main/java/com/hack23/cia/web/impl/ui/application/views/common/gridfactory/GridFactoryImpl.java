@@ -18,11 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.gridfactory;
 
-import java.util.Locale;
-
 import org.springframework.stereotype.Service;
 import org.vaadin.gridutil.cell.GridCellFilter;
-import org.vaadin.gridutil.converter.SimpleStringConverter;
 
 import com.hack23.cia.web.impl.ui.application.views.common.AbstractPageItemRendererClickListener;
 import com.vaadin.data.Container;
@@ -30,7 +27,6 @@ import com.vaadin.ui.Grid;
 import com.vaadin.ui.Grid.Column;
 import com.vaadin.ui.Grid.SelectionMode;
 import com.vaadin.ui.renderers.ButtonRenderer;
-import com.vaadin.ui.renderers.HtmlRenderer;
 
 @Service
 public final class GridFactoryImpl implements GridFactory {

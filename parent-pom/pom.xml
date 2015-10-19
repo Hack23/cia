@@ -638,7 +638,7 @@
           <artifactId>maven-pdf-plugin</artifactId>
           <version>1.3</version>
         </plugin>
-	        <plugin>
+        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>aspectj-maven-plugin</artifactId>
           <version>1.8</version>
