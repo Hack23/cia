@@ -26,6 +26,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import java.util.zip.GZIPInputStream;
 
 import javax.xml.transform.Source;
@@ -95,7 +96,7 @@ public final class XmlAgentImpl implements XmlAgent {
 		final URL url = new URL(accessUrl.replace(" ",""));
 
 		final BufferedReader inputStream = new BufferedReader(new InputStreamReader(
-				url.openStream(),"UTF-8"));
+				url.openStream(),StandardCharsets.UTF_8));
 
 		return readWithStringBuffer(inputStream);
 	}
@@ -178,7 +179,7 @@ public final class XmlAgentImpl implements XmlAgent {
 		}
 
 		final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(
-				xmlContent.getBytes("UTF-8"));
+				xmlContent.getBytes(StandardCharsets.UTF_8));
 
 		Source source;
 		if (nameSpace != null) {
