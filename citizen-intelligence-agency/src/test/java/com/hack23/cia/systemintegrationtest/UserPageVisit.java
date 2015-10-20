@@ -232,7 +232,7 @@ public final class UserPageVisit extends Assert {
 		//		assertEquals(
 		//				"http://localhost:8080/#!politicia/"
 		//						+ URLEncoder.encode(id.replace(ViewAction.VisitPoliticianView.name() + "/", "")
-		//								.trim(),"UTF-8"), driver.getCurrentUrl());
+		//								.trim(),StandardCharsets.UTF_8), driver.getCurrentUrl());
 
 		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW });
 	}
@@ -273,7 +273,7 @@ public final class UserPageVisit extends Assert {
 		//		assertEquals(
 		//				"http://localhost:8080/#!committee/"
 		//						+ URLEncoder.encode(id.replace(ViewAction.VisitCommitteeView.name() + "/", "")
-		//								.trim(),"UTF-8"), driver.getCurrentUrl());
+		//								.trim(),StandardCharsets.UTF_8), driver.getCurrentUrl());
 
 		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW });
 	}
@@ -328,7 +328,7 @@ public final class UserPageVisit extends Assert {
 		//		assertEquals(
 		//				"http://localhost:8080/#!ministry/"
 		//						+ URLEncoder.encode(id.replace(ViewAction.VisitMinistryView.name() + "/", "")
-		//								.trim(),"UTF-8"), driver.getCurrentUrl());
+		//								.trim(),StandardCharsets.UTF_8), driver.getCurrentUrl());
 
 		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW });
 	}
@@ -489,7 +489,7 @@ public final class UserPageVisit extends Assert {
 		//		assertEquals(
 		//				"http://localhost:8080/#!party/"
 		//						+ URLEncoder.encode(id.replace(ViewAction.VisitPartyView.name() + "/", "")
-		//								.trim(),"UTF-8"), driver.getCurrentUrl());
+		//								.trim(),StandardCharsets.UTF_8), driver.getCurrentUrl());
 
 		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW });
 	}

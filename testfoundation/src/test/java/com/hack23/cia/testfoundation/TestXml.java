@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,43 +18,11 @@
 */
 package com.hack23.cia.testfoundation;
 
-import org.junit.Test;
-
 /**
- * The Class TestInstanceTest.
+ * The Class TestXml.
  */
-public class TestInstanceTest extends AbstractUnitTest {
+public class TestXml {
 
-	/** The order. */
-	int order =0;
-
-	/**
-	 * Test instance example test.
-	 */
-	@Test
-	public void testInstanceExampleTest() {
-		new TestInstance() {
-
-			@Override
-			protected void setupExpectations() {
-				order++;
-				assertEquals(1,order);
-			}
-
-			@Override
-			protected void run() {
-				order++;
-				assertEquals(2,order);
-			}
-
-			@Override
-			protected void assertPostcondition() {
-				order++;
-				assertEquals(3,order);
-			}
-		}.executeTestPhases();
-		assertEquals(3,order);
-	}
-
-
+	/** The content. */
+	private String content;
 }

@@ -67,6 +67,18 @@
       </exclusions>
     </dependency>
     <dependency>
+	    <groupId>com.h2database</groupId>
+	    <artifactId>h2</artifactId>
+	    <version>1.4.190</version>
+	    <scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>com.thoughtworks.xstream</groupId>
+		<artifactId>xstream</artifactId>
+		<version>1.4.8</version>
+		<scope>test</scope>
+	</dependency>
+    <dependency>
       <groupId>jdepend</groupId>
       <artifactId>jdepend</artifactId>
       <version>1.2.4-eclipsejdepend</version>
