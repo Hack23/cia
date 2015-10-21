@@ -30,12 +30,14 @@ public final class CustomSimpleCachingHeadersPageCachingFilter extends SimpleCac
    	 */
    	protected CacheManager getCacheManager() {
 	    	final List<CacheManager> allCacheManagers = CacheManager.ALL_CACHE_MANAGERS;
-	        for (CacheManager cacheManager : allCacheManagers) {
+	    	CacheManager foundCacheManager=null;
+	    	for (CacheManager cacheManager : allCacheManagers) {
 	        	if (cacheManager.getActiveConfigurationText().contains("webCacheManager")) {
-	        		return cacheManager;
+	        		foundCacheManager=cacheManager;
+	        		continue;
 	        	}
 			}
-	        return null;
+	        return foundCacheManager;
 	    }
 
 }
