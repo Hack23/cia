@@ -17,7 +17,7 @@
 			<amq:policyMap>
 				<amq:policyEntries>
 					<amq:policyEntry queue=">" optimizedDispatch="true"
-						lazyDispatch="false" producerFlowControl="false" memoryLimit="512mb"
+						lazyDispatch="false" producerFlowControl="false" memoryLimit="1024mb"
 						strictOrderDispatch="true">
 						<amq:dispatchPolicy>
 							<amq:strictOrderDispatchPolicy />
@@ -33,7 +33,7 @@
 				</amq:policyEntries>
 			</amq:policyMap>
 		</amq:destinationPolicy>
-		
+
 		<amq:transportConnectors >
 			<amq:transportConnector  uri="vm://localhost:0" />
 		</amq:transportConnectors>
@@ -76,11 +76,11 @@
               init-method="init" destroy-method="close">
       <property name="uniqueResourceName" value="ciaSenderJmsConnectionFactory" />
       <property name="xaConnectionFactory" ref="jmsFactory" />
-      
+
       <property name="minPoolSize" value="5"/>
       <property name="maxPoolSize" value="50"/>
       <property name="maxIdleTime" value="50"/>
-      
+
        <property name="localTransactionMode" value="false" />
    </bean>
 

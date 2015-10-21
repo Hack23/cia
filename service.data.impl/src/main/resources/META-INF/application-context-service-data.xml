@@ -181,7 +181,7 @@
 
 	<bean id="AtomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp"
 		depends-on="userTransactionService">
-		<property name="transactionTimeout" value="30000" />
+		<property name="transactionTimeout" value="3000000000" />
 	</bean>
 
 	<bean id="transactionManager"

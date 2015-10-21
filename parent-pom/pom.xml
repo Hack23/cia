@@ -784,8 +784,10 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
+        <inherited>true</inherited>
         <configuration>
           <argLine>${surefireArgLine}</argLine>
+          <skipAfterFailureCount>1</skipAfterFailureCount>
         </configuration>
       </plugin>
       <plugin>

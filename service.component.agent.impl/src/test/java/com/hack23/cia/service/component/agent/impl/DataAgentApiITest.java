@@ -16,7 +16,7 @@ public class DataAgentApiITest extends AbstractServiceComponentAgentFunctionalIn
 	@Test
 	public void importRiksdagenDataSuccessTest() throws Exception {
 		dataAgentApi.execute(new DataAgentWorkOrder().withOperation(DataAgentOperation.IMPORT).withTarget(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN));
-		Thread.sleep(8000);
+		Thread.sleep(2000);
 	}
 
 
