@@ -29,8 +29,8 @@
 	    <property name="destination" ref="riksdagenApiAgentWorkQueue" />
     	<property name="messageListener" ref="RiksdagenApiAgentWorkConsumer" />
         <property name="sessionTransacted" value="true"/>
-	    <property name="receiveTimeout" value="50000" />
-	    <property name="recoveryInterval" value="600000" />
+	    <property name="receiveTimeout" value="5000" />
+	    <property name="recoveryInterval" value="6000" />
 	    <property name="acceptMessagesWhileStopping" value="false" />
 	</bean>
 
@@ -48,8 +48,8 @@
 	    <property name="destination" ref="com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement" />
     	<property name="messageListener" ref="riksdagenDocumentElementWorkConsumerImpl" />
         <property name="sessionTransacted" value="true"/>
-	    <property name="receiveTimeout" value="50000" />
-	    <property name="recoveryInterval" value="600000" />
+	    <property name="receiveTimeout" value="5000" />
+	    <property name="recoveryInterval" value="6000" />
 	    <property name="acceptMessagesWhileStopping" value="false" />
 	</bean>
 
@@ -61,8 +61,8 @@
 	    <property name="destination" ref="com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer" />
     	<property name="messageListener" ref="riksdagenDocumentStatusContainerWorkConsumerImpl" />
         <property name="sessionTransacted" value="true"/>
-	    <property name="receiveTimeout" value="50000" />
-	    <property name="recoveryInterval" value="600000" />
+	    <property name="receiveTimeout" value="5000" />
+	    <property name="recoveryInterval" value="6000" />
 	    <property name="acceptMessagesWhileStopping" value="false" />
 	</bean>
 
@@ -74,8 +74,8 @@
 	    <property name="destination" ref="com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement" />
     	<property name="messageListener" ref="riksdagenPersonElementWorkConsumerImpl" />
         <property name="sessionTransacted" value="true"/>
-	    <property name="receiveTimeout" value="50000" />
-	    <property name="recoveryInterval" value="600000" />
+	    <property name="receiveTimeout" value="5000" />
+	    <property name="recoveryInterval" value="6000" />
 	    <property name="acceptMessagesWhileStopping" value="false" />
 	</bean>
 
@@ -87,8 +87,8 @@
 	    <property name="destination" ref="com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData" />
     	<property name="messageListener" ref="riksdagenCommitteeProposalComponentDataWorkConsumerImpl" />
         <property name="sessionTransacted" value="true"/>
-	    <property name="receiveTimeout" value="50000" />
-	    <property name="recoveryInterval" value="600000" />
+	    <property name="receiveTimeout" value="5000" />
+	    <property name="recoveryInterval" value="6000" />
 	    <property name="acceptMessagesWhileStopping" value="false" />
 	</bean>
 
@@ -100,8 +100,8 @@
 	    <property name="destination" ref="com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData" />
     	<property name="messageListener" ref="riksdagenDocumentContentWorkConsumerImpl" />
         <property name="sessionTransacted" value="true"/>
-	    <property name="receiveTimeout" value="50000" />
-	    <property name="recoveryInterval" value="600000" />
+	    <property name="receiveTimeout" value="5000" />
+	    <property name="recoveryInterval" value="6000" />
 	    <property name="acceptMessagesWhileStopping" value="false" />
 	</bean>
 
@@ -113,8 +113,8 @@
 	    <property name="destination" ref="com.hack23.cia.model.external.riksdagen.votering.impl.VoteData" />
     	<property name="messageListener" ref="riksdagenVoteDataWorkConsumerImpl" />
         <property name="sessionTransacted" value="true"/>
-	    <property name="receiveTimeout" value="50000" />
-	    <property name="recoveryInterval" value="600000" />
+	    <property name="receiveTimeout" value="5000" />
+	    <property name="recoveryInterval" value="6000" />
 	    <property name="acceptMessagesWhileStopping" value="false" />
 	</bean>
 

@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Locale;
 
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +28,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.MainView;
@@ -78,6 +84,14 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 		final Page currentPage = Page.getCurrent();
 
 		currentPage.setTitle("Citizen Intelligence Agency");
+
+		Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
+		authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+		SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken("key", "principal", authorities));
+
 
 		final WebBrowser webBrowser = currentPage.getWebBrowser();
 		LOGGER.info("Browser address: {} , application:{}",webBrowser.getAddress(),webBrowser.getBrowserApplication());
