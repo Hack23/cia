@@ -788,6 +788,8 @@
         <configuration>
           <argLine>${surefireArgLine}</argLine>
           <skipAfterFailureCount>1</skipAfterFailureCount>
+          <testFailureIgnore>true</testFailureIgnore>
+          <forkCount>0</forkCount>
         </configuration>
       </plugin>
       <plugin>
