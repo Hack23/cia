@@ -1,5 +1,7 @@
 #! /bin/bash
 
+/etc/init.d/cia stop
+
 mv /opt/cia/bin/cia.sh /opt/cia/bin/jetty.sh
 rm /etc/init.d/cia
 

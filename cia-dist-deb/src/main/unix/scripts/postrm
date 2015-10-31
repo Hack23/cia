@@ -1,6 +1,8 @@
 #! /bin/bash
 
 rm -rf /opt/cia/logs
+rm -rf /opt/cia/javamelody
+
 #userdel cia
 
 echo postrm
