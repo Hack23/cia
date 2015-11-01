@@ -51,8 +51,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PoliticianPageItemClickListener;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ViewRiksdagenPoliticianDocumentPageItemClickListener;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractGroupView;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
@@ -153,6 +151,8 @@ public final class PartyView extends AbstractGroupView {
 
 					panelContent.addComponent(new Label("Overview"));
 
+					panelContent.addComponent(pageLinkFactory.addPartyPageLink(viewRiksdagenParty));
+
 
 					addTextFields(
 							panelContent,
@@ -212,7 +212,7 @@ public final class PartyView extends AbstractGroupView {
 									"partyShortCode", "personReferenceId",
 									"numberValue", "orderNumber", "tempLabel" },
 									"docId",
-									new ViewRiksdagenPoliticianDocumentPageItemClickListener(), null);
+									new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME,"docId"), null);
 
 					panelContent
 					.addComponent(politicianDocumentBeanItemGrid);
@@ -261,7 +261,7 @@ public final class PartyView extends AbstractGroupView {
 									"currentMinistryAssignments",
 									"currentCommitteeAssignments",
 							"currentSpeakerAssignments" }, null, "personId",
-							new PoliticianPageItemClickListener(), null);
+							new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 
 					panelContent.addComponent(partyMemberBeanItemGrid);
 
@@ -303,7 +303,7 @@ public final class PartyView extends AbstractGroupView {
 									"currentMinistryAssignments",
 									"currentCommitteeAssignments",
 							"currentSpeakerAssignments" }, null, "personId",
-							new PoliticianPageItemClickListener(), null);
+							new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 
 					panelContent.addComponent(partyMemberBeanItemGrid);
 

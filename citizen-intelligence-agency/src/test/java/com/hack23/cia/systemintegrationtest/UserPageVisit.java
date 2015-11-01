@@ -28,6 +28,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
@@ -143,18 +145,74 @@ public final class UserPageVisit extends Assert {
 
 	}
 
+	/**
+	 * Validate page.
+	 *
+	 * @param page
+	 *            the page
+	 */
+	public void validatePage(PageModeMenuCommand page) {
+		String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + page.getPagePath();
+
+
+		final long end = System.currentTimeMillis() + WAIT_FOR_PAGE_ELEMENT;
+		while (System.currentTimeMillis() < end && !getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW));
+
+		assertTrue("Each page should contain a MainMenu link",getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW));
+
+
+		String text = getHtmlBodyAsText();
+		assertNotNull(text);
+		assertFalse("Page contains exception, url:" + url ,text.contains("Exception"));
+		assertFalse("Page contains widget exception, url:" + url,text.contains("Widget"));
+
+		assertEquals(browser, url,
+				driver.getCurrentUrl());
+		assertNotNull(browser, driver.getWindowHandle());
+
+	}
+
+
+	/**
+	 * Gets the html body as text.
+	 *
+	 * @return the html body as text
+	 */
 	public String getHtmlBodyAsText() {
 		return driver.findElement(By.tagName("body")).getText();
 	}
 
+	/**
+	 * Gets the menu bar.
+	 *
+	 * @return the menu bar
+	 */
 	public WebElement getMenuBar() {
 		return driver.findElement(By.className("v-menubar"));
 	}
 
+	/**
+	 * Gets the menu item.
+	 *
+	 * @param caption
+	 *            the caption
+	 * @return the menu item
+	 */
 	public WebElement getMenuItem(String... caption) {
 		return getMenuItem(getMenuBar(), 1,caption);
 	}
 
+	/**
+	 * Gets the menu item.
+	 *
+	 * @param element
+	 *            the element
+	 * @param level
+	 *            the level
+	 * @param caption
+	 *            the caption
+	 * @return the menu item
+	 */
 	private WebElement getMenuItem(WebElement element,int level,String... caption) {
 		if (caption.length == level) {
 			List<WebElement> findElements = element.findElements(By.className("v-menubar-menuitem-caption"));
@@ -176,9 +234,38 @@ public final class UserPageVisit extends Assert {
 	}
 
 
+	/**
+	 * Gets the buttons.
+	 *
+	 * @return the buttons
+	 */
 	public List<WebElement> getButtons() {
 		return driver.findElements(By.className("v-nativebutton"));
 	}
+
+	/**
+	 * Gets the grid rows.
+	 *
+	 * @return the grid rows
+	 */
+	public List<WebElement> getGridRows() {
+		WebElement gridBody = driver.findElement(By.className("v-grid-body"));
+		return gridBody.findElements(By.className("v-grid-row"));
+
+	}
+
+	/**
+	 * Gets the grid headers.
+	 *
+	 * @return the grid headers
+	 */
+	public List<WebElement> getGridHeaders() {
+		WebElement gridBody = driver.findElement(By.className("v-grid-header"));
+
+		return gridBody.findElements(By.className("v-grid-row"));
+
+	}
+
 
 	/**
 	 * Visit test chart view.
@@ -513,11 +600,32 @@ public final class UserPageVisit extends Assert {
 		if (browser.contains("htmlunit")) {
 			clickElement.click();
 		} else {
+
+			WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+			wait.until(ExpectedConditions.visibilityOf(clickElement));
+
 			action.clickAndHold(clickElement).release().perform();
+
+//			action.moveToElement(clickElement);
+//			//action.doubleClick(clickElement);
+
+//			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", clickElement);
+//
+//			JavascriptExecutor js = (JavascriptExecutor) driver;
+//			js.executeScript("arguments[0].click();", clickElement);
+
 		}
 		Thread.sleep(waitDelay);
 	}
 
+	/**
+	 * Perform click action.
+	 *
+	 * @param clickElement
+	 *            the click element
+	 * @throws InterruptedException
+	 *             the interrupted exception
+	 */
 	public void performClickAction(final WebElement clickElement)
 			throws InterruptedException {
 		performClickAction(clickElement, WAIT_FOR_PAGE_DELAY);

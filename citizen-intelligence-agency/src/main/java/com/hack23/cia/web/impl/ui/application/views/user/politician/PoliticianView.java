@@ -59,7 +59,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemF
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ViewRiksdagenPoliticianDocumentPageItemClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractPersonView;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
@@ -214,7 +214,7 @@ public final class PoliticianView extends AbstractPersonView {
 									"orderNumber" },
 							new String[] { "id", "partyShortCode", "personReferenceId", "numberValue", "orderNumber",
 									"tempLabel", "referenceName" },
-							"docId", new ViewRiksdagenPoliticianDocumentPageItemClickListener(), null);
+							"docId", new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME,"docId"), null);
 
 					panelContent.addComponent(politicianDocumentBeanItemGrid);
 

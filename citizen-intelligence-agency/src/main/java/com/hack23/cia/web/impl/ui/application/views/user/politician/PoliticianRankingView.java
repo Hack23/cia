@@ -33,7 +33,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.Dat
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PoliticianPageItemClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Component;
@@ -161,7 +161,7 @@ public final class PoliticianRankingView extends AbstractRankingView {
 				"currentMinistryAssignments",
 				"currentCommitteeAssignments",
 		"currentSpeakerAssignments" },null, "personId",
-		new PoliticianPageItemClickListener(), null);
+		new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 	}
 
 	@Override

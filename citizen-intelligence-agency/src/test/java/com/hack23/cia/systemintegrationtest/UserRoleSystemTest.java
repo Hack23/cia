@@ -20,6 +20,7 @@ package com.hack23.cia.systemintegrationtest;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -31,6 +32,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.junit.runners.Parameterized.Parameters;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -68,6 +70,9 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 	/** The web driver map. */
 	private final Map<String, WebDriver> webDriverMap = new ConcurrentHashMap<String, WebDriver>();
+
+	/** The grid rows. */
+	private List<WebElement> gridRows;
 
 	/**
 	 * Instantiates a new user role system test.
@@ -273,6 +278,38 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	}
 
 	/**
+	 * Site politician ranking view data grid navigation test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void sitePoliticianRankingViewDataGridNavigationTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DataGrid));
+		gridRows = userPageVisit.getGridRows();
+		assertFalse(gridRows.isEmpty());
+
+		WebElement choosenRow = gridRows.iterator().next();
+
+		List<WebElement> cells = choosenRow.findElements(By.className("v-grid-cell"));
+
+		WebElement choosenCell = cells.iterator().next();
+
+		String pageId = choosenCell.getText();
+
+		userPageVisit.performClickAction(choosenCell);
+
+		userPageVisit.validatePage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, pageId));
+
+	}
+
+
+
+	/**
 	 * Site politician ranking view charts test.
 	 *
 	 * @throws Exception
@@ -422,6 +459,12 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 	}
 
+	/**
+	 * Site main view test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public void siteMainViewTest() throws Exception {
 		final WebDriver driver = getWebDriver();

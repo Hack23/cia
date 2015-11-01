@@ -18,7 +18,11 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.apache.commons.beanutils.BeanUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hack23.cia.model.common.api.ModelObject;
 import com.hack23.cia.web.impl.ui.application.views.common.AbstractPageItemRendererClickListener;
@@ -27,7 +31,11 @@ public final class PageItemPropertyClickListener extends AbstractPageItemRendere
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	
+
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(PageItemPropertyClickListener.class);
+
+
 	/** The property. */
 	private final String property;
 
@@ -54,10 +62,10 @@ public final class PageItemPropertyClickListener extends AbstractPageItemRendere
 	protected String getPageId(final ModelObject t) {
 		try {
 			return BeanUtils.getProperty(t, property);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
+		} catch (IllegalAccessException | InvocationTargetException |
+	            NoSuchMethodException e) {
+			LOGGER.warn("Problem getting property {} from object {}",property,t,e);
+			return "ErrorGettingPageId";
 		}
 	}
 

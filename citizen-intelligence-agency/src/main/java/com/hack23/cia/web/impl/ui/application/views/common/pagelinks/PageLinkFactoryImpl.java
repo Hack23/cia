@@ -24,7 +24,6 @@ import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
-import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
@@ -190,21 +189,6 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#addPoliticianPageLink(com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician)
-	 */
-	@Override
-	public Link addPoliticianPageLink(
-			final ViewRiksdagenPolitician politicanData) {
-		final Link pageLink = new Link("Politician "
-				+ politicanData.getFirstName() + " "
-				+ politicanData.getLastName(), new ExternalResource("#!"
-						+ UserViews.POLITICIAN_VIEW_NAME + "/" + politicanData.getPersonId()));
-		pageLink.setId(ViewAction.VISIT_POLITICIAN_VIEW.name() + "/"
-				+ politicanData.getPersonId());
-		return pageLink;
-	}
 
 	/* (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createPoliticianPageLink(com.hack23.cia.model.external.riksdagen.person.impl.PersonData)

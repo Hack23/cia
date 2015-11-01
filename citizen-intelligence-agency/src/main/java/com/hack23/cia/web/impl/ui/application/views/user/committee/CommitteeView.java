@@ -43,7 +43,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePa
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ViewRiksdagenPoliticianDocumentPageItemClickListener;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractGroupView;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
@@ -127,6 +126,9 @@ public final class CommitteeView extends AbstractGroupView {
 
 					panelContent.addComponent(new Label("Overview"));
 
+					panelContent.addComponent(pageLinkFactory.addCommitteePageLink(viewRiksdagenCommittee));
+
+
 					addTextFields(panelContent, new BeanItem<ViewRiksdagenCommittee>(viewRiksdagenCommittee),
 							ViewRiksdagenCommittee.class,
 							Arrays.asList(new String[] { "embeddedId.detail", "active", "firstAssignmentDate",
@@ -154,7 +156,7 @@ public final class CommitteeView extends AbstractGroupView {
 									"orderNumber" },
 							new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId",
 									"org" },
-							"docId", new ViewRiksdagenPoliticianDocumentPageItemClickListener(), null);
+							"docId", new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME,"docId"), null);
 
 					panelContent.addComponent(politicianDocumentBeanItemGrid);
 

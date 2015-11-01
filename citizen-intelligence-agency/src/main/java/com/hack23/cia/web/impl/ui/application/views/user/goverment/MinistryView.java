@@ -126,6 +126,8 @@ public final class MinistryView extends AbstractGroupView {
 
 					panelContent.addComponent(new Label("Overview"));
 
+					panelContent.addComponent(pageLinkFactory.addMinistryPageLink(viewRiksdagenMinistry));
+
 					addTextFields(panelContent, new BeanItem<ViewRiksdagenMinistry>(viewRiksdagenMinistry),
 							ViewRiksdagenMinistry.class,
 							Arrays.asList(
