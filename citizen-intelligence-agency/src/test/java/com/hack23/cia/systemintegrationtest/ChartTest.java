@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -39,8 +39,7 @@ public class ChartTest extends Assert {
 		final XYseries label = new XYseriesFix();
 		label.setLabel("sune");
 		toJsonString(label);
-		System.out.println(label);
-		assertNotNull("Fucked",label);
+		assertNotNull("Problem with toJsonString, no label",label);
 	}
 
 	static class XYseriesFix extends XYseries {
@@ -63,7 +62,7 @@ public class ChartTest extends Assert {
 		public XYaxisFix() {
 			super();
 		}
-		
+
 		/**
 		 * Instantiates a new x yaxis fix.
 		 *
@@ -108,8 +107,6 @@ public class ChartTest extends Assert {
 								.toArrayString((Object[][]) fieldValue);
 					} else if (fieldValue instanceof boolean[]) {
 
-						System.out.println(fieldName);
-						System.out.println(fieldValue.getClass().getName());
 					} else
 
 					{

@@ -132,11 +132,9 @@ public class DataViewerITest extends
 		final List<ViewRiksdagenPolitician> politicians = dataViewer
 				.getAll(ViewRiksdagenPolitician.class);
 		assertNotNull(politicians);
-		System.out.println(politicians);
 		if (politicians.size() > 0) {
 			final ViewRiksdagenPolitician viewRiksdagenPolitician = politicians
 					.get(4);
-			System.out.println(viewRiksdagenPolitician);
 
 			final ViewRiksdagenPolitician viewRiksdagenPoliticianLoaded = dataViewer
 					.load(ViewRiksdagenPolitician.class,
