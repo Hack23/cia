@@ -29,7 +29,7 @@
     <dependency>
       <groupId>org.vaadin.addons</groupId>
       <artifactId>vaadin-grid-util</artifactId>
-      <version>1.0.7</version>
+      <version>1.0.8</version>
       <exclusions>
         <exclusion>
           <artifactId>vaadin-server</artifactId>
@@ -281,7 +281,7 @@
       <plugin>
         <groupId>org.eclipse.jettys</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
-        <version>9.3.5.v20151012</version>
+        <version>9.3.6.v20151106</version>
       </plugin>
     </plugins>
   </build>
