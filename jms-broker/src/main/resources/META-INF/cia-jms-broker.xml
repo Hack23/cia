@@ -12,7 +12,7 @@
 		http://www.springframework.org/schema/jms  http://www.springframework.org/schema/jms/spring-jms-4.1.xsd">
 
 	<!-- lets create an embedded ActiveMQ Broker -->
-	<amq:broker id="broker" useJmx="true" persistent="false" >
+	<amq:broker id="broker" useJmx="true" persistent="false" useShutdownHook="false" >
 		<amq:destinationPolicy>
 			<amq:policyMap>
 				<amq:policyEntries>
@@ -47,7 +47,7 @@
       <property name="brokerURL" value="vm://localhost" />
    </bean>
 -->
-	<amq:xaConnectionFactory  id="jmsFactory" brokerURL="vm://localhost"  checkForDuplicates="false">
+	<amq:xaConnectionFactory  id="jmsFactory" brokerURL="vm://localhost"  checkForDuplicates="false" >
 		<amq:redeliveryPolicy>
     		<amq:redeliveryPolicy maximumRedeliveries="1" initialRedeliveryDelay="30000" />
   		</amq:redeliveryPolicy>
@@ -66,8 +66,8 @@
       <property name="uniqueResourceName" value="ciaJmsConnectionFactory" />
       <property name="xaConnectionFactory" ref="jmsFactory" />
       <property name="minPoolSize" value="5"/>
-      <property name="maxPoolSize" value="50"/>
-      <property name="maxIdleTime" value="50"/>
+      <property name="maxPoolSize" value="250"/>
+      <property name="maxIdleTime" value="5000"/>
       <property name="localTransactionMode" value="false" />
    </bean>
 
@@ -78,12 +78,13 @@
       <property name="xaConnectionFactory" ref="jmsFactory" />
 
       <property name="minPoolSize" value="5"/>
-      <property name="maxPoolSize" value="50"/>
-      <property name="maxIdleTime" value="50"/>
+      <property name="maxPoolSize" value="250"/>
+      <property name="maxIdleTime" value="5000"/>
 
        <property name="localTransactionMode" value="false" />
    </bean>
 
+	<bean id="brokerQuery" class="org.apache.activemq.web.SingletonBrokerFacade" autowire="constructor" scope="prototype"/>
 
 <!--
 	<bean id="connectionFactory"
