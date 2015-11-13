@@ -37,6 +37,7 @@ import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdage
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
@@ -84,6 +85,9 @@ public final class CommitteeView extends AbstractGroupView {
 	@Autowired
 	private transient GridFactory gridFactory;
 
+	@Autowired
+	private transient FormFactory formFactory;
+
 	/**
 	 * Post construct.
 	 */
@@ -129,7 +133,7 @@ public final class CommitteeView extends AbstractGroupView {
 					panelContent.addComponent(pageLinkFactory.addCommitteePageLink(viewRiksdagenCommittee));
 
 
-					addTextFields(panelContent, new BeanItem<ViewRiksdagenCommittee>(viewRiksdagenCommittee),
+					formFactory.addTextFields(panelContent, new BeanItem<ViewRiksdagenCommittee>(viewRiksdagenCommittee),
 							ViewRiksdagenCommittee.class,
 							Arrays.asList(new String[] { "embeddedId.detail", "active", "firstAssignmentDate",
 									"lastAssignmentDate", "totalAssignments", "totalDaysServed",

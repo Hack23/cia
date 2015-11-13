@@ -18,19 +18,11 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.common;
 
-import java.util.Collection;
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
-import com.vaadin.data.fieldgroup.BeanFieldGroup;
-import com.vaadin.data.util.BeanItem;
 import com.vaadin.navigator.View;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
@@ -39,9 +31,6 @@ import com.vaadin.ui.VerticalLayout;
  * The Class AbstractUserView.
  */
 public abstract class AbstractUserView extends VerticalLayout implements View {
-
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractUserView.class);
 
 	/** The Constant DAYS_PER_STANDARD_YEAR. */
 	private static final long DAYS_PER_STANDARD_YEAR = 365L;
@@ -116,36 +105,6 @@ public abstract class AbstractUserView extends VerticalLayout implements View {
 	 */
 	protected final Panel getPanel() {
 		return panel;
-	}
-
-	/**
-	 * Adds the text fields.
-	 *
-	 * @param <T>
-	 *            the generic type
-	 * @param panelContent
-	 *            the panel content
-	 * @param item
-	 *            the item
-	 * @param beanType
-	 *            the bean type
-	 * @param displayProperties
-	 *            the display properties
-	 */
-	protected final <T> void addTextFields(final Layout panelContent, final BeanItem<T> item,
-			final Class<T> beanType, final List<String> displayProperties) {
-
-		final BeanFieldGroup<T> fieldGroup = new BeanFieldGroup<>(beanType);
-		fieldGroup.setItemDataSource(item);
-		fieldGroup.setReadOnly(true);
-
-		for (final String property : displayProperties) {
-			panelContent.addComponent(fieldGroup.buildAndBind(property));
-		}
-		final Collection<Object> unboundPropertyIds = fieldGroup.getUnboundPropertyIds();
-		for (final Object property : unboundPropertyIds) {
-			LOGGER.info("property:{}",property);
-		}
 	}
 
 

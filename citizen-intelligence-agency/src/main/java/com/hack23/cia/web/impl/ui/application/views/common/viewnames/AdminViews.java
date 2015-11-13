@@ -29,4 +29,20 @@ public interface AdminViews {
 	/** The admin agent operationview name. */
 	String ADMIN_AGENT_OPERATIONVIEW_NAME = "adminagentoperation";
 
+	String ADMIN_AGENCY_VIEW_NAME = "adminagency";
+
+	String ADMIN_PORTAL_VIEW_NAME = "adminportal";
+
+	String ADMIN_APPLICATIONS_SESSION_VIEW_NAME = "adminapplicationsession";
+
+	String ADMIN_APPLICATIONS_EVENTS_VIEW_NAME = "adminapplicationevents";
+
+	String ADMIN_USERACCOUNT_VIEW_NAME = "adminuseraccount";
+
+	String ADMIN_COUNTRY_VIEW_NAME = "admincountry";
+
+	String ADMIN_LANGUAGE_VIEW_NAME = "adminlanguage";
+
+	String ADMIN_LANGUAGE_CONTENT_VIEW_NAME = "adminlanguagecontent";
+
 }

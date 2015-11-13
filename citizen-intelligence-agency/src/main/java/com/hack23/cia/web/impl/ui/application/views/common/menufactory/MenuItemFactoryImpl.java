@@ -170,9 +170,27 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 		final MenuItem adminMenuItem = barmenu.addItem(ADMIN_TEXT, null, null);
 
 		adminMenuItem.addItem(AGENT_OPERATIONS_TEXT,
-				new PageModeMenuCommand(AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, PageMode.Overview));
+				new PageModeMenuCommand(AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, ""));
 		adminMenuItem.addItem(DATA_SUMMARY_TEXT,
-				new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, PageMode.Overview));
+				new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
+
+		adminMenuItem.addItem("Agency",
+				new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, ""));
+		adminMenuItem.addItem("Portal",
+				new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
+		adminMenuItem.addItem("Application Session",
+				new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
+		adminMenuItem.addItem("Application Event",
+				new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
+		adminMenuItem.addItem("Useraccount",
+				new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
+		adminMenuItem.addItem("Country",
+				new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, ""));
+		adminMenuItem.addItem("Language",
+				new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
+		adminMenuItem.addItem("Language Content",
+				new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, ""));
+
 
 		final MenuItem rankingsMenuItem = barmenu.addItem(RANKING_TEXT, null, null);
 

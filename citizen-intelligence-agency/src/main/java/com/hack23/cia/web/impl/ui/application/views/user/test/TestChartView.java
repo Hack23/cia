@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -41,6 +41,7 @@ import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.AbstractView;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -83,6 +84,11 @@ public final class TestChartView extends AbstractView {
 	/** The menu item factory. */
 	@Autowired
 	private transient MenuItemFactory menuItemFactory;
+
+	/** The form factory. */
+	@Autowired
+	private transient FormFactory formFactory;
+
 
 	/** The page mode content. */
 	private VerticalLayout pageModeContent;
@@ -182,7 +188,7 @@ public final class TestChartView extends AbstractView {
 
 
 		if (indicatorSummary.isPresent()) {
-			addTextFields(verticalLayout,
+			formFactory.addTextFields(verticalLayout,
 					new BeanItem<ViewWorldbankIndicatorDataCountrySummary>(
 							indicatorSummary.get()),
 							ViewWorldbankIndicatorDataCountrySummary.class,

@@ -45,6 +45,7 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatu
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
@@ -88,6 +89,10 @@ public final class DocumentView extends AbstractUserView {
 	/** The grid factory. */
 	@Autowired
 	private transient GridFactory gridFactory;
+
+	@Autowired
+	private transient FormFactory formFactory;
+
 
 	/**
 	 * Post construct.
@@ -145,16 +150,16 @@ public final class DocumentView extends AbstractUserView {
 
 					panelContent.addComponent(new Label("Overview"));
 
-					addTextFields(panelContent, new BeanItem<DocumentElement>(documentElement), DocumentElement.class,
+					formFactory.addTextFields(panelContent, new BeanItem<DocumentElement>(documentElement), DocumentElement.class,
 							Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status",
 									"title", "subTitle", "madePublicDate", "createdDate", "systemDate", "relatedId",
 									"label", "tempLabel", "numberValue", "kallId", "documentFormat" }));
 
 					if (documentStatusContainer != null) {
-						addTextFields(panelContent, new BeanItem<DocumentStatusContainer>(documentStatusContainer),
+						formFactory.addTextFields(panelContent, new BeanItem<DocumentStatusContainer>(documentStatusContainer),
 								DocumentStatusContainer.class, Arrays.asList(new String[] { "documentCategory" }));
 
-						addTextFields(panelContent, new BeanItem<DocumentData>(documentStatusContainer.getDocument()),
+						formFactory.addTextFields(panelContent, new BeanItem<DocumentData>(documentStatusContainer.getDocument()),
 								DocumentData.class,
 								Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status",
 										"title", "subTitle", "madePublicDate", "label", "tempLabel", "numberValue",
@@ -169,7 +174,7 @@ public final class DocumentView extends AbstractUserView {
 					if (documentStatusContainer != null && documentStatusContainer.getDocumentProposal() != null
 							&& documentStatusContainer.getDocumentProposal().getProposal() != null) {
 
-						addTextFields(panelContent,
+						formFactory.addTextFields(panelContent,
 								new BeanItem<DocumentProposalData>(
 										documentStatusContainer.getDocumentProposal().getProposal()),
 								DocumentProposalData.class,

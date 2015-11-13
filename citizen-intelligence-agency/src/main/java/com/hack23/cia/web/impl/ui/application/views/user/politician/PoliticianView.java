@@ -54,6 +54,7 @@ import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksda
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -103,6 +104,10 @@ public final class PoliticianView extends AbstractPersonView {
 	/** The grid factory. */
 	@Autowired
 	private transient GridFactory gridFactory;
+
+	@Autowired
+	private transient FormFactory formFactory;
+
 
 	/**
 	 * Post construct.
@@ -278,7 +283,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 		panelContent.addComponent(new Image("", new ExternalResource(personData.getImageUrl192())));
 
-		addTextFields(panelContent, new BeanItem<ViewRiksdagenPolitician>(viewRiksdagenPolitician),
+		formFactory.addTextFields(panelContent, new BeanItem<ViewRiksdagenPolitician>(viewRiksdagenPolitician),
 				ViewRiksdagenPolitician.class,
 				Arrays.asList(new String[] { "firstName", "lastName", "gender", "bornYear", "party", "active",
 						"firstAssignmentDate", "lastAssignmentDate", "currentAssignments", "currentMinistryAssignments",

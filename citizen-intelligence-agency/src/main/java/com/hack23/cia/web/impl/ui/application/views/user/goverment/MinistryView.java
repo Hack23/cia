@@ -37,6 +37,7 @@ import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdage
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
@@ -84,6 +85,10 @@ public final class MinistryView extends AbstractGroupView {
 	@Autowired
 	private transient GridFactory gridFactory;
 
+	@Autowired
+	private transient FormFactory formFactory;
+
+
 	/**
 	 * Post construct.
 	 */
@@ -128,7 +133,7 @@ public final class MinistryView extends AbstractGroupView {
 
 					panelContent.addComponent(pageLinkFactory.addMinistryPageLink(viewRiksdagenMinistry));
 
-					addTextFields(panelContent, new BeanItem<ViewRiksdagenMinistry>(viewRiksdagenMinistry),
+					formFactory.addTextFields(panelContent, new BeanItem<ViewRiksdagenMinistry>(viewRiksdagenMinistry),
 							ViewRiksdagenMinistry.class,
 							Arrays.asList(
 									new String[] { "nameId", "active", "firstAssignmentDate", "lastAssignmentDate",

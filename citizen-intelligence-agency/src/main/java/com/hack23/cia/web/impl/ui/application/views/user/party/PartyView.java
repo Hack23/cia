@@ -45,6 +45,7 @@ import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksda
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -91,6 +92,10 @@ public final class PartyView extends AbstractGroupView {
 	/** The grid factory. */
 	@Autowired
 	private transient GridFactory gridFactory;
+
+	@Autowired
+	private transient FormFactory formFactory;
+
 
 
 	/**
@@ -154,7 +159,7 @@ public final class PartyView extends AbstractGroupView {
 					panelContent.addComponent(pageLinkFactory.addPartyPageLink(viewRiksdagenParty));
 
 
-					addTextFields(
+					formFactory.addTextFields(
 							panelContent,
 							new BeanItem<ViewRiksdagenParty>(viewRiksdagenParty),
 							ViewRiksdagenParty.class,
@@ -167,7 +172,7 @@ public final class PartyView extends AbstractGroupView {
 
 					if (viewRiksdagenPartySummary != null) {
 
-						addTextFields(panelContent,
+						formFactory.addTextFields(panelContent,
 								new BeanItem<ViewRiksdagenPartySummary>(
 										viewRiksdagenPartySummary),
 										ViewRiksdagenPartySummary.class,
