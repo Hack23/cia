@@ -3,9 +3,9 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:oxm="http://www.springframework.org/schema/oxm"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
     http://www.springframework.org/schema/oxm
-    http://www.springframework.org/schema/oxm/spring-oxm-4.1.xsd">
+    http://www.springframework.org/schema/oxm/spring-oxm-4.2.xsd">
 
     <oxm:jaxb2-marshaller id="riksdagenDocumentListMarshaller"  context-path="com.hack23.cia.model.external.riksdagen.dokumentlista.impl"/>
 	<oxm:jaxb2-marshaller id="riksdagenDocumentStatusMarshaller" context-path="com.hack23.cia.model.external.riksdagen.dokumentstatus.impl"/>
