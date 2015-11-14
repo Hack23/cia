@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -26,8 +26,9 @@ import com.hack23.cia.service.api.action.common.ServiceResponse;
  */
 public final class RegisterUserResponse implements ServiceResponse {
 
+	private final ServiceResult result;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -36,7 +37,12 @@ public final class RegisterUserResponse implements ServiceResponse {
 	 */
 	@Override
 	public ServiceResult getResult() {
-		return ServiceResult.SUCCESS;
+		return result;
+	}
+
+	public RegisterUserResponse(final ServiceResult result) {
+		super();
+		this.result = result;
 	}
 
 }

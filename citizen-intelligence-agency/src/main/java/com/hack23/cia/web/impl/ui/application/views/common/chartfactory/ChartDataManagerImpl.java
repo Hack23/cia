@@ -337,6 +337,13 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.party, party);
 	}
 
+	/**
+	 * Gets the view riksdagen vote data ballot party summary daily.
+	 *
+	 * @param party
+	 *            the party
+	 * @return the view riksdagen vote data ballot party summary daily
+	 */
 	/*
 	 * (non-Javadoc)
 	 *

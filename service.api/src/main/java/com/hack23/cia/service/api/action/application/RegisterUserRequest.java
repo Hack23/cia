@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.api.action.application;
 
+import com.hack23.cia.model.internal.application.user.impl.UserType;
 import com.hack23.cia.service.api.action.common.ServiceRequest;
 
 
@@ -26,9 +27,118 @@ import com.hack23.cia.service.api.action.common.ServiceRequest;
  */
 public final class RegisterUserRequest implements ServiceRequest {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+
+    /** The country. */
+    private String country;
+
+    /** The username. */
+    private String username;
+
+    /** The email. */
+    private String email;
+
+    /** The userpassword. */
+    private String userpassword;
+
+    /** The user type. */
+    private UserType userType;
+
+	/**
+	 * Gets the country.
+	 *
+	 * @return the country
+	 */
+	public String getCountry() {
+		return country;
+	}
+
+	/**
+	 * Sets the country.
+	 *
+	 * @param country
+	 *            the new country
+	 */
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	/**
+	 * Gets the username.
+	 *
+	 * @return the username
+	 */
+	public String getUsername() {
+		return username;
+	}
+
+	/**
+	 * Sets the username.
+	 *
+	 * @param username
+	 *            the new username
+	 */
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	/**
+	 * Gets the email.
+	 *
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * Sets the email.
+	 *
+	 * @param email
+	 *            the new email
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * Gets the userpassword.
+	 *
+	 * @return the userpassword
+	 */
+	public String getUserpassword() {
+		return userpassword;
+	}
+
+	/**
+	 * Sets the userpassword.
+	 *
+	 * @param userpassword
+	 *            the new userpassword
+	 */
+	public void setUserpassword(String userpassword) {
+		this.userpassword = userpassword;
+	}
+
+	/**
+	 * Gets the user type.
+	 *
+	 * @return the user type
+	 */
+	public UserType getUserType() {
+		return userType;
+	}
+
+	/**
+	 * Sets the user type.
+	 *
+	 * @param userType
+	 *            the new user type
+	 */
+	public void setUserType(UserType userType) {
+		this.userType = userType;
+	}
+
 
 }

@@ -21,6 +21,8 @@ package com.hack23.cia.service.impl;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.UUID;
 
 import org.databene.contiperf.PerfTest;
 import org.databene.contiperf.Required;
@@ -33,10 +35,14 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
+import com.hack23.cia.model.internal.application.user.impl.UserAccount;
+import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
+import com.hack23.cia.model.internal.application.user.impl.UserType;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.application.RegisterUserRequest;
 import com.hack23.cia.service.api.action.application.RegisterUserResponse;
+import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 
 /**
  * The Class ApplicationManagerITest.
@@ -71,15 +77,28 @@ public class ApplicationManagerITest extends AbstractServiceFunctionalIntegratio
 	}
 
 	@Test
-	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
-	@Required(max = 400,average = 10,percentile95=15,throughput=5000)
+	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
+	@Required(max = 1000,average = 300,percentile95=350,throughput=20)
 	public void serviceRegisterUserRequestSuccessTest() throws Exception {
 		Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
 		SecurityContextHolder.getContext().setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
 
-		RegisterUserResponse  response = (RegisterUserResponse) applicationManager.service(new RegisterUserRequest());
+		RegisterUserRequest serviceRequest = new RegisterUserRequest();
+		serviceRequest.setCountry("Sweden");
+		serviceRequest.setUsername(UUID.randomUUID().toString());
+		serviceRequest.setEmail(serviceRequest.getUsername()+"@email.com");
+		serviceRequest.setUserpassword("userpassword");
+		serviceRequest.setUserType(UserType.PRIVATE);
+
+		RegisterUserResponse  response = (RegisterUserResponse) applicationManager.service(serviceRequest);
 		assertNotNull("Expect a result",response);
+		assertEquals(ServiceResult.SUCCESS,response.getResult());
+
+		final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
+		List<UserAccount> allBy = dataContainer.getAllBy(UserAccount_.username, serviceRequest.getUsername());
+		assertEquals(1, allBy.size());
+
 	}
 
 

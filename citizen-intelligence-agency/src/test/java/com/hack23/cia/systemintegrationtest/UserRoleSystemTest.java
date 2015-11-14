@@ -45,6 +45,7 @@ import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
 import com.hack23.cia.testfoundation.AbstractSystemIntegrationTest;
 import com.hack23.cia.testfoundation.Parallelized;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
@@ -160,6 +161,157 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Datagrid"));
 
 	}
+
+
+	/**
+	 * Site admin agency test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteAdminAgencyTest()  throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, ""));
+		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Agency"));
+
+	}
+
+	/**
+	 * Site admin portal test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteAdminPortalTest()  throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
+		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Portal"));
+
+	}
+
+	/**
+	 * Site admin country test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteAdminCountryTest()  throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, ""));
+		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Country"));
+
+	}
+
+	/**
+	 * Site admin useraccount test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteAdminUseraccountTest()  throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
+		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Useraccount"));
+
+	}
+
+	/**
+	 * Site admin language test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteAdminLanguageTest()  throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
+		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Language"));
+
+	}
+
+	/**
+	 * Site admin language content test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteAdminLanguageContentTest()  throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, ""));
+		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Language Content"));
+
+	}
+
+	/**
+	 * Site admin application session test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteAdminApplicationSessionTest()  throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
+		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Application Session"));
+
+	}
+	
+	/**
+	 * Site admin application event test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteAdminApplicationEventTest()  throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
+		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Application Events"));
+
+	}
+
+
+
+
+
+
 
 	/**
 	 * Site committee ranking view charts test.

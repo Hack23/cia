@@ -46,7 +46,7 @@ public class CitizenIntelligenceAgencyServer {
 	/** The Constant PORT. */
 	public static final int PORT = 8080;
 
-	/** The access url. */
+	/** The Constant ACCESS_URL. */
 	public static final String ACCESS_URL = "http://localhost:" + PORT + "/";
 
 	/**

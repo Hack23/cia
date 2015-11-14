@@ -105,6 +105,7 @@ public final class PoliticianView extends AbstractPersonView {
 	@Autowired
 	private transient GridFactory gridFactory;
 
+	/** The form factory. */
 	@Autowired
 	private transient FormFactory formFactory;
 
@@ -266,6 +267,8 @@ public final class PoliticianView extends AbstractPersonView {
 	/**
 	 * Creates the overview content.
 	 *
+	 * @param panelContent
+	 *            the panel content
 	 * @param pageId
 	 *            the page id
 	 * @param personData

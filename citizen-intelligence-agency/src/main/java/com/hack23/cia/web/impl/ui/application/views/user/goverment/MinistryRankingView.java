@@ -75,6 +75,7 @@ public final class MinistryRankingView extends AbstractRankingView {
 	@Autowired
 	private transient GridFactory gridFactory;
 
+	/** The data series factory. */
 	@Autowired
 	private transient DataSeriesFactory dataSeriesFactory;
 
@@ -168,11 +169,17 @@ public final class MinistryRankingView extends AbstractRankingView {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
+	 */
 	@Override
 	protected DataSeries createChartTimeSeriesAll() {
 		return dataSeriesFactory.createMinistryChartTimeSeriesAll();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
+	 */
 	@Override
 	protected DataSeries createChartTimeSeriesCurrent() {
 		return dataSeriesFactory.createMinistryChartTimeSeriesCurrent();

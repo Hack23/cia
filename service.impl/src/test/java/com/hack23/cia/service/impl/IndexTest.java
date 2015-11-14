@@ -1,5 +1,11 @@
 package com.hack23.cia.service.impl;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 /**
  * A Java class to test tokenization and indexing of text with WEKA.
  * WEKA is available at: http://www.cs.waikato.ac.nz/ml/weka/
@@ -18,7 +24,6 @@ import weka.core.converters.ArffLoader.ArffReader;
 import weka.core.tokenizers.NGramTokenizer;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.StringToWordVector;
-import java.io.*;
 
 public class IndexTest {
 

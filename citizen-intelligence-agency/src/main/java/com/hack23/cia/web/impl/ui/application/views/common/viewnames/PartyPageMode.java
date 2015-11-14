@@ -52,6 +52,7 @@ public enum PartyPageMode {
 
 /** The Party won daily summary chart. */
 PartyWonDailySummaryChart,
+ 
  /** The Role ghant. */
  RoleGhant
 

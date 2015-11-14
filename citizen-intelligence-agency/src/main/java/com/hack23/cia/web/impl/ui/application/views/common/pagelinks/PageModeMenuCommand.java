@@ -50,6 +50,14 @@ public final class PageModeMenuCommand implements Command {
 		pageReference = pageMode.toString();
 	}
 
+	/**
+	 * Instantiates a new page mode menu command.
+	 *
+	 * @param page
+	 *            the page
+	 * @param part
+	 *            the part
+	 */
 	public PageModeMenuCommand(final String page, final String part) {
 		super();
 		this.page = page;

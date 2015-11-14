@@ -32,6 +32,7 @@ public final class PageItemPropertyClickListener extends AbstractPageItemRendere
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(PageItemPropertyClickListener.class);
 

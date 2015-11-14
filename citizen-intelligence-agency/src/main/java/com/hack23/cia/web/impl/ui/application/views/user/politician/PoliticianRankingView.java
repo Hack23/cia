@@ -71,6 +71,7 @@ public final class PoliticianRankingView extends AbstractRankingView {
 	@Autowired
 	private transient GridFactory gridFactory;
 
+	/** The data series factory. */
 	@Autowired
 	private transient DataSeriesFactory dataSeriesFactory;
 
@@ -164,11 +165,17 @@ public final class PoliticianRankingView extends AbstractRankingView {
 		new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
+	 */
 	@Override
 	protected DataSeries createChartTimeSeriesAll() {
 		return dataSeriesFactory.createPartyChartTimeSeriesAll();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
+	 */
 	@Override
 	protected DataSeries createChartTimeSeriesCurrent() {
 		return dataSeriesFactory.createPartyChartTimeSeriesCurrent();

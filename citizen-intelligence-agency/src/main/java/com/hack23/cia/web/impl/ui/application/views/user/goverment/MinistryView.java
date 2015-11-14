@@ -85,6 +85,7 @@ public final class MinistryView extends AbstractGroupView {
 	@Autowired
 	private transient GridFactory gridFactory;
 
+	/** The form factory. */
 	@Autowired
 	private transient FormFactory formFactory;
 

@@ -71,6 +71,7 @@ public final class CommitteeRankingView extends AbstractRankingView {
 	@Autowired
 	private transient MenuItemFactory menuItemFactory;
 
+	/** The data series factory. */
 	@Autowired
 	private transient DataSeriesFactory dataSeriesFactory;
 
@@ -171,11 +172,17 @@ public final class CommitteeRankingView extends AbstractRankingView {
 				new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, "embeddedId.orgCode"), null);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
+	 */
 	@Override
 	protected DataSeries createChartTimeSeriesAll() {
 		return dataSeriesFactory.createCommitteeChartTimeSeriesAll();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
+	 */
 	@Override
 	protected DataSeries createChartTimeSeriesCurrent() {
 		return dataSeriesFactory.createCommitteeChartTimeSeriesCurrent();

@@ -19,15 +19,21 @@
 package com.hack23.cia.web.impl.ui.application.views.admin.system;
 
 import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import com.hack23.cia.model.internal.application.system.impl.Agency;
+import com.hack23.cia.model.internal.application.user.impl.UserAccount;
+import com.hack23.cia.model.internal.application.user.impl.UserRole;
+import com.hack23.cia.model.internal.application.user.impl.UserType;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
@@ -103,27 +109,31 @@ public final class AdminUseraccountView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		VerticalLayout content = new VerticalLayout();
 
-		final Label label = new Label("Admin Agency");
+		final Label label = new Label("Admin UserAccount");
 		content.addComponent(label);
 
-		final DataContainer<Agency, Long> dataContainer = applicationManager.getDataContainer(Agency.class);
+		final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
 
-		final BeanItemContainer<Agency> politicianDocumentDataSource = new BeanItemContainer<Agency>(Agency.class,
+		final BeanItemContainer<UserAccount> politicianDocumentDataSource = new BeanItemContainer<UserAccount>(UserAccount.class,
 				dataContainer.getAll());
 
-		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Agency",
-				new String[] { "hjid", "agencyName", "description", "portals", "modelObjectVersion" },
+		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "UserAccount",
+				new String[] { "hjid","modelObjectId","modelObjectVersion","userId","username","userType","userRole","userpassword","email","address","country","numberOfVisits" },
 				new String[] { "modelObjectId" }, "hjid",
-				new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid"), null));
+				new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, "hjid"), null));
 
 		if (pageId != null && !pageId.isEmpty()) {
 
-			Agency agency = dataContainer.load(Long.valueOf(pageId));
+			UserAccount userAccount = dataContainer.load(Long.valueOf(pageId));
 
-			formFactory.addTextFields(content, new BeanItem<Agency>(agency), Agency.class,
-					Arrays.asList(new String[] { "hjid", "agencyName", "description", "modelObjectVersion" }));
+			formFactory.addTextFields(content, new BeanItem<UserAccount>(userAccount), UserAccount.class,
+					Arrays.asList(new String[] { "hjid","modelObjectId","modelObjectVersion","userId","username","userpassword","email","country","numberOfVisits" }));
 
 		}
+
+
+
+
 
 		content.addComponent(pageLinkFactory.createMainViewPageLink());
 
