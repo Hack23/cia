@@ -288,7 +288,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Application Session"));
 
 	}
-	
+
 	/**
 	 * Site admin application event test.
 	 *
@@ -303,7 +303,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
-		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Application Events"));
+		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Application Event"));
 
 	}
 

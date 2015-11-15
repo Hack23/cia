@@ -103,7 +103,7 @@ public final class AdminLanguageView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		VerticalLayout content = new VerticalLayout();
 
-		final Label label = new Label("Admin Agency");
+		final Label label = new Label("Admin Language");
 		content.addComponent(label);
 
 		final DataContainer<Agency, Long> dataContainer = applicationManager.getDataContainer(Agency.class);

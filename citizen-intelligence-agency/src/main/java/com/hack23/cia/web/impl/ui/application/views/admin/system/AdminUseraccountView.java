@@ -19,12 +19,8 @@
 package com.hack23.cia.web.impl.ui.application.views.admin.system;
 
 import java.util.Arrays;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,8 +28,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
-import com.hack23.cia.model.internal.application.user.impl.UserRole;
-import com.hack23.cia.model.internal.application.user.impl.UserType;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
@@ -109,7 +103,7 @@ public final class AdminUseraccountView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		VerticalLayout content = new VerticalLayout();
 
-		final Label label = new Label("Admin UserAccount");
+		final Label label = new Label("Admin Useraccount");
 		content.addComponent(label);
 
 		final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);

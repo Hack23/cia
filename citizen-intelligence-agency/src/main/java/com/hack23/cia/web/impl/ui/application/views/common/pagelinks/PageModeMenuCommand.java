@@ -104,7 +104,11 @@ public final class PageModeMenuCommand implements Command {
 	 * @return the page path
 	 */
 	public String getPagePath() {
-		return page + "/" + pageReference;
+		if (pageReference != null && !pageReference.isEmpty()) {
+			return page + "/" + pageReference;
+		} else {
+			return page;
+		}
 	}
 
 	/* (non-Javadoc)
