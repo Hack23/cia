@@ -150,7 +150,7 @@
     <cia.project.versions.javassist>3.20.0-GA</cia.project.versions.javassist>
     <cia.project.versions.asm>5.0.4</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.0</cia.project.versions.cglib>
-    <cia.project.versions.commons.collections>3.2.1</cia.project.versions.commons.collections>
+    <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
   </properties>
   <dependencyManagement>
@@ -544,7 +544,7 @@
         <plugin>
           <groupId>org.apache.felix</groupId>
           <artifactId>maven-bundle-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.0.1</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
