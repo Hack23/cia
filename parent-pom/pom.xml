@@ -131,7 +131,7 @@
     <!--<cia.project.versions.spring>3.0.4.RELEASE</cia.project.versions.spring> -->
     <!--<cia.project.versions.spring>3.1.1.RELEASE</cia.project.versions.spring>-->
     <!-- <cia.project.versions.spring>3.2.5.RELEASE</cia.project.versions.spring>-->
-    <cia.project.versions.spring>4.2.2.RELEASE</cia.project.versions.spring>
+    <cia.project.versions.spring>4.2.3.RELEASE</cia.project.versions.spring>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <!-- <cia.project.versions.hibernate>3.6.10.Final</cia.project.versions.hibernate> -->
     <cia.project.versions.hibernate>5.0.3.Final</cia.project.versions.hibernate>
