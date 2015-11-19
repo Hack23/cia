@@ -134,7 +134,7 @@
     <cia.project.versions.spring>4.2.3.RELEASE</cia.project.versions.spring>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <!-- <cia.project.versions.hibernate>3.6.10.Final</cia.project.versions.hibernate> -->
-    <cia.project.versions.hibernate>5.0.3.Final</cia.project.versions.hibernate>
+    <cia.project.versions.hibernate>5.0.4.Final</cia.project.versions.hibernate>
     <cia.project.versions.hibernate.build>4.3.11.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>4.3.1.Final</cia.project.versions.hibernate.tools>
     <!--<cia.project.versions.hibernate>3.6.0-SNAPSHOT</cia.project.versions.hibernate> -->
@@ -1475,7 +1475,7 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>findbugs-maven-plugin</artifactId>
-            <version>3.0.2</version>
+            <version>3.0.3</version>
             <inherited>true</inherited>
             <configuration>
               <onlyAnalyze>com.hack23.*</onlyAnalyze>
