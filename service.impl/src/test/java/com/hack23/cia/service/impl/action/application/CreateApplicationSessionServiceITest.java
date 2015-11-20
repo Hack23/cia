@@ -89,8 +89,19 @@ public class CreateApplicationSessionServiceITest extends AbstractServiceFunctio
 		assertNotNull("Expect a result", response);
 		assertEquals(ServiceResult.SUCCESS, response.getResult());
 
-		List<ApplicationSession> findListByProperty = applicationSessionDAO.findListByProperty(ApplicationSession_.ipInformation, serviceRequest.getIpInformation());
+		List<ApplicationSession> findListByProperty = applicationSessionDAO.findListByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
 		assertEquals(1, findListByProperty.size());
+		ApplicationSession applicationSession = findListByProperty.get(0);
+
+		assertNotNull(applicationSession);
+		assertNotNull(applicationSession.getCreatedDate());
+
+		assertEquals(serviceRequest.getIpInformation(), applicationSession.getIpInformation());
+		assertEquals(serviceRequest.getOperatingSystem(), applicationSession.getOperatingSystem());
+		assertEquals(serviceRequest.getLocale(), applicationSession.getLocale());
+		assertEquals(serviceRequest.getUserAgentInformation(), applicationSession.getUserAgentInformation());
+		assertEquals(serviceRequest.getSessionType(), applicationSession.getSessionType());
+
 
 
 	}

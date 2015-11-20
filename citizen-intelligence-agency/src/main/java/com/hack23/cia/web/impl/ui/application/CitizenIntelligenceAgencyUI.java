@@ -34,6 +34,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
+import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
+import com.hack23.cia.service.api.action.common.ServiceResponse;
 import com.hack23.cia.web.impl.ui.application.views.common.MainView;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
@@ -67,6 +71,9 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 	@Autowired
 	private MainView mainView;
 
+	@Autowired
+	private ApplicationManager applicationManager;
+
 	/*
 	 * (non-Javadoc)
 	 *
@@ -92,13 +99,45 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 
 		SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken("key", "principal", authorities));
 
-		RequestContextHolder.currentRequestAttributes().getSessionId();
 
 
 		final WebBrowser webBrowser = currentPage.getWebBrowser();
-		LOGGER.info("Browser address: {} , application:{}",webBrowser.getAddress(),webBrowser.getBrowserApplication());
+
+		CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
+		serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+		serviceRequest.setIpInformation(webBrowser.getAddress());
+		serviceRequest.setUserAgentInformation(webBrowser.getBrowserApplication());
+		serviceRequest.setLocale(webBrowser.getLocale().toString());
+		serviceRequest.setOperatingSystem(getOperatingSystem(webBrowser));
+		serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
+
+		ServiceResponse serviceResponse = applicationManager.service(serviceRequest);
+
+		LOGGER.info("Browser address: {} , application:{}, sessionId:{}, result:{}",webBrowser.getAddress(),webBrowser.getBrowserApplication(),serviceRequest.getSessionId(),serviceResponse.getResult().toString());
 
 	}
+
+
+
+	private String getOperatingSystem(final WebBrowser webBrowser) {
+		String osName = "unknown";
+	       if (webBrowser.isLinux())
+	           osName = "Linux";
+	       else if (webBrowser.isWindows())
+	           osName = "Windows";
+	       else if (webBrowser.isMacOSX())
+	           osName = "Mac OS X";
+	       else if (webBrowser.isAndroid())
+	    	   osName = "Android";
+	       else if (webBrowser.isIOS())
+	    	   osName = "IOS";
+	       else if (webBrowser.isIPad())
+	    	   osName = "IPad";
+	       else if (webBrowser.isIPhone())
+	    	   osName = "IPhone";
+		return osName;
+	}
+
 
 
 	/**

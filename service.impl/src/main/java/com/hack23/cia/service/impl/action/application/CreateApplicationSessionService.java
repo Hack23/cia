@@ -18,16 +18,20 @@
 */
 package com.hack23.cia.service.impl.action.application;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
-import com.hack23.cia.service.data.api.UserDAO;
+import com.hack23.cia.service.data.api.ApplicationSessionDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
 
@@ -42,7 +46,7 @@ public final class CreateApplicationSessionService
 
 	/** The user dao. */
 	@Autowired
-	private UserDAO userDAO;
+	private ApplicationSessionDAO applicationSessionDAO;
 
 	/**
 	 * Instantiates a new creates the application session service.
@@ -51,12 +55,28 @@ public final class CreateApplicationSessionService
 		super(CreateApplicationSessionRequest.class);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see
+	 * com.hack23.cia.service.impl.action.common.BusinessService#processService(
+	 * com.hack23.cia.service.api.action.common.ServiceRequest)
 	 */
 	@Override
 	@Secured({ "ROLE_ANONYMOUS" })
 	public CreateApplicationSessionResponse processService(CreateApplicationSessionRequest serviceRequest) {
+		ApplicationSession applicationSession = new ApplicationSession();
+		applicationSession.setCreatedDate(new Date());
+
+		applicationSession.setSessionId(serviceRequest.getSessionId());
+		applicationSession.setIpInformation(serviceRequest.getIpInformation());
+		applicationSession.setLocale(serviceRequest.getLocale());
+		applicationSession.setOperatingSystem(serviceRequest.getOperatingSystem());
+		applicationSession.setUserAgentInformation(serviceRequest.getUserAgentInformation());
+		applicationSession.setSessionType(serviceRequest.getSessionType());
+		applicationSession.setEvents(new ArrayList<>());
+		applicationSessionDAO.persist(applicationSession);
+
 		return new CreateApplicationSessionResponse(ServiceResult.SUCCESS);
 	}
 
