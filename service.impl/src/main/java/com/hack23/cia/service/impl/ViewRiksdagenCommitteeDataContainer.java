@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: ViewRiksdagenCommitteeDataContainer.java 5937 2014-12-22 15:38:53Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/service.impl/src/main/java/com/hack23/cia/service/impl/ViewRiksdagenCommitteeDataContainer.java $
- */
+ *	$Id$
+ *  $HeadURL$
+*/
 package com.hack23.cia.service.impl;
 
 import java.util.List;
@@ -67,6 +67,9 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.api.DataContainer#getAllBy(javax.persistence.metamodel.SingularAttribute, java.lang.Object)
+	 */
 	@Override
 	public List<ViewRiksdagenCommittee> getAllBy(
 			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> property,
@@ -74,6 +77,9 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return viewRiksdagenCommitteeDAO.findListByProperty(property, value);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.api.DataContainer#findListByProperty(java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
+	 */
 	@Override
 	public List<ViewRiksdagenCommittee> findListByProperty(
 			final Object[] values,
@@ -81,6 +87,9 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return viewRiksdagenCommitteeDAO.findListByProperty(values, properties);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.api.DataContainer#findByQueryProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
+	 */
 	@Override
 	public <T, V> T findByQueryProperty(final Class<T> clazz,
 			final SingularAttribute<T, ? extends Object> property, final Class<V> clazz2,
@@ -88,6 +97,9 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.api.DataContainer#findListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
+	 */
 	@Override
 	public <T, V> List<T> findListByEmbeddedProperty(final Class<T> clazz,
 			final SingularAttribute<T, V> property, final Class<V> clazz2,

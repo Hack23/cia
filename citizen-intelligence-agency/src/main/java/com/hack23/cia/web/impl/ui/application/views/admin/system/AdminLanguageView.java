@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import com.hack23.cia.model.internal.application.system.impl.Agency;
+import com.hack23.cia.model.internal.application.system.impl.LanguageData;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
@@ -106,23 +106,22 @@ public final class AdminLanguageView extends AbstractAdminView {
 		final Label label = new Label("Admin Language");
 		content.addComponent(label);
 
-		final DataContainer<Agency, Long> dataContainer = applicationManager.getDataContainer(Agency.class);
+		final DataContainer<LanguageData, Long> dataContainer = applicationManager.getDataContainer(LanguageData.class);
 
-		final BeanItemContainer<Agency> politicianDocumentDataSource = new BeanItemContainer<Agency>(Agency.class,
+		final BeanItemContainer<LanguageData> politicianDocumentDataSource = new BeanItemContainer<LanguageData>(LanguageData.class,
 				dataContainer.getAll());
 
-		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Agency",
-				new String[] { "hjid", "agencyName", "description", "portals", "modelObjectVersion" },
+		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "LanguageData",
+				new String[] { "hjid", "languageName","modelObjectVersion" },
 				new String[] { "modelObjectId" }, "hjid",
-				new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid"), null));
+				new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, "hjid"), null));
 
 		if (pageId != null && !pageId.isEmpty()) {
 
-			Agency agency = dataContainer.load(Long.valueOf(pageId));
+			LanguageData languageData = dataContainer.load(Long.valueOf(pageId));
 
-			formFactory.addTextFields(content, new BeanItem<Agency>(agency), Agency.class,
-					Arrays.asList(new String[] { "hjid", "agencyName", "description", "modelObjectVersion" }));
-
+			formFactory.addTextFields(content, new BeanItem<LanguageData>(languageData), LanguageData.class,
+					Arrays.asList(new String[] { "hjid", "languageName","modelObjectVersion" }));
 		}
 
 		content.addComponent(pageLinkFactory.createMainViewPageLink());

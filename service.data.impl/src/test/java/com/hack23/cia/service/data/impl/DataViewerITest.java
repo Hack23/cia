@@ -78,6 +78,12 @@ public class DataViewerITest extends
 		}
 	}
 
+	/**
+	 * View riksdagen ministry.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public void viewRiksdagenMinistry() throws Exception {
 
@@ -102,6 +108,12 @@ public class DataViewerITest extends
 		}
 	}
 
+	/**
+	 * View riksdagen committee.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public void viewRiksdagenCommittee() throws Exception {
 
@@ -126,6 +138,12 @@ public class DataViewerITest extends
 		}
 	}
 
+	/**
+	 * View riksdagen politician.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public void viewRiksdagenPolitician() throws Exception {
 
@@ -151,6 +169,12 @@ public class DataViewerITest extends
 		}
 	}
 
+	/**
+	 * View riksdagen party summary.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public void viewRiksdagenPartySummary() throws Exception {
 

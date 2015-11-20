@@ -32,6 +32,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.web.impl.ui.application.views.common.MainView;
 import com.vaadin.annotations.Push;
@@ -90,6 +91,8 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
 		SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken("key", "principal", authorities));
+
+		RequestContextHolder.currentRequestAttributes().getSessionId();
 
 
 		final WebBrowser webBrowser = currentPage.getWebBrowser();

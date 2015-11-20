@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: ServiceRequest.java 6069 2015-05-13 20:45:10Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/service.api/src/main/java/com/hack23/cia/service/api/action/common/ServiceRequest.java $
- */
+ *	$Id$
+ *  $HeadURL$
+*/
 
 package com.hack23.cia.service.api.action.common;
 

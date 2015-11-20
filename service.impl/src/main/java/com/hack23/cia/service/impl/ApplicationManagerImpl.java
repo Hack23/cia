@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: ApplicationManagerImpl.java 6078 2015-05-22 16:33:34Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/service.impl/src/main/java/com/hack23/cia/service/impl/ApplicationManagerImpl.java $
- */
+ *	$Id$
+ *  $HeadURL$
+*/
 
 package com.hack23.cia.service.impl;
 
@@ -67,6 +67,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	@Qualifier("DataSummaryDataContainer")
 	private DataContainer<DataSummary, String> dataSummaryDataContainer;
 
+	/** The person data container. */
 	@Autowired
 	@Qualifier("PersonDataContainer")
 	private DataContainer<PersonData, String> personDataContainer;
@@ -77,12 +78,14 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	private DataContainer<ViewRiksdagenCommittee,String> viewRiksdagenCommitteeDataContainer;
 
 
+	/** The view data data container factory. */
 	@Autowired
 	private ViewDataDataContainerFactory viewDataDataContainerFactory;
 
 	/** The service request business service map. */
 	private final Map<Class<? extends ServiceRequest>, BusinessService> serviceRequestBusinessServiceMap = new HashMap<>();
 
+	/** The application context. */
 	private ApplicationContext applicationContext;
 
 
@@ -190,6 +193,12 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	}
 
 
+	/**
+	 * Inits the business service map.
+	 *
+	 * @param serviceRequest
+	 *            the service request
+	 */
 	private void initBusinessServiceMap(final ServiceRequest serviceRequest) {
 		if (serviceRequestBusinessServiceMap.get(serviceRequest.getClass()) == null) {
 			final Map<String, BusinessService> beansOfType = applicationContext.getBeansOfType(BusinessService.class);
@@ -202,6 +211,9 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.springframework.context.ApplicationContextAware#setApplicationContext(org.springframework.context.ApplicationContext)
+	 */
 	@Override
 	public void setApplicationContext(final ApplicationContext applicationContext)
 			throws BeansException {

@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import com.hack23.cia.model.internal.application.system.impl.Agency;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
@@ -106,23 +106,22 @@ public final class AdminApplicationSessionView extends AbstractAdminView {
 		final Label label = new Label("Admin Application Session");
 		content.addComponent(label);
 
-		final DataContainer<Agency, Long> dataContainer = applicationManager.getDataContainer(Agency.class);
+		final DataContainer<ApplicationSession, Long> dataContainer = applicationManager.getDataContainer(ApplicationSession.class);
 
-		final BeanItemContainer<Agency> politicianDocumentDataSource = new BeanItemContainer<Agency>(Agency.class,
+		final BeanItemContainer<ApplicationSession> politicianDocumentDataSource = new BeanItemContainer<ApplicationSession>(ApplicationSession.class,
 				dataContainer.getAll());
 
-		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Agency",
-				new String[] { "hjid", "agencyName", "description", "portals", "modelObjectVersion" },
-				new String[] { "modelObjectId" }, "hjid",
-				new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid"), null));
+		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationSession",
+				new String[] { "hjid", "createdDate","sessionType","sessionId", "operatingSystem","locale", "ipInformation","userAgentInformation","events" },
+				new String[] { "modelObjectId","modelObjectVersion" }, "hjid",
+				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid"), null));
 
 		if (pageId != null && !pageId.isEmpty()) {
 
-			Agency agency = dataContainer.load(Long.valueOf(pageId));
+			ApplicationSession applicationSession = dataContainer.load(Long.valueOf(pageId));
 
-			formFactory.addTextFields(content, new BeanItem<Agency>(agency), Agency.class,
-					Arrays.asList(new String[] { "hjid", "agencyName", "description", "modelObjectVersion" }));
-
+			formFactory.addTextFields(content, new BeanItem<ApplicationSession>(applicationSession), ApplicationSession.class,
+					Arrays.asList(new String[] { "hjid", "createdDate","sessionId", "operatingSystem","locale","ipInformation","userAgentInformation", "modelObjectVersion" }));
 		}
 
 		content.addComponent(pageLinkFactory.createMainViewPageLink());

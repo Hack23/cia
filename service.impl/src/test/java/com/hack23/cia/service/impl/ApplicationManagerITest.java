@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: ApplicationManagerITest.java 6119 2015-07-31 17:44:12Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/service.impl/src/test/java/com/hack23/cia/service/impl/ApplicationManagerITest.java $
- */
+ *	$Id$
+ *  $HeadURL$
+*/
 package com.hack23.cia.service.impl;
 
 import java.io.Serializable;
@@ -51,6 +51,7 @@ import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 @Required(max = 200,average = 10,percentile95=15,throughput=50000)
 public class ApplicationManagerITest extends AbstractServiceFunctionalIntegrationTest {
 
+	/** The i. */
 	@Rule
 	public ContiPerfRule i = new ContiPerfRule();
 
@@ -76,6 +77,12 @@ public class ApplicationManagerITest extends AbstractServiceFunctionalIntegratio
 
 	}
 
+	/**
+	 * Service register user request success test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
 	@Required(max = 1000,average = 300,percentile95=350,throughput=20)

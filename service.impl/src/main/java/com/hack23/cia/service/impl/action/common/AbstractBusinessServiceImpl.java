@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: AbstractBusinessServiceImpl.java 6075 2015-05-20 22:43:45Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/service.impl/src/main/java/com/hack23/cia/service/impl/action/common/AbstractBusinessServiceImpl.java $
+ *	$Id$
+ *  $HeadURL$
 */
 package com.hack23.cia.service.impl.action.common;
 

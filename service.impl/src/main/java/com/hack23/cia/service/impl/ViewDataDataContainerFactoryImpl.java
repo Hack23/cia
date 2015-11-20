@@ -100,6 +100,9 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.data.api.DataViewer#findListByProperty(java.lang.Class, java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
+	 */
 	@Override
 	public <T> List<T> findListByProperty(final Class<T> clazz, final Object[] values,
 			final SingularAttribute<T, ? extends Object>... properties) {
@@ -108,6 +111,9 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.data.api.DataViewer#findByQueryProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
+	 */
 	@Override
 	public <T, V> T findByQueryProperty(final Class<T> clazz,
 			final SingularAttribute<T, ? extends Object> property, final Class<V> clazz2,
@@ -117,6 +123,9 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.data.api.DataViewer#findListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
+	 */
 	@Override
 	public <T, V> List<T> findListByEmbeddedProperty(final Class<T> clazz,
 			final SingularAttribute<T, V> property, final Class<V> clazz2,

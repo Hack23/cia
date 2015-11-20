@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,23 +18,27 @@
 */
 package com.hack23.cia.service.api.action.admin;
 
-import com.hack23.cia.service.api.action.common.ServiceResponse;
+import com.hack23.cia.service.api.action.common.AbstractResponse;
 
 
 /**
  * The Class RefreshDataViewsResponse.
  */
-public final class RefreshDataViewsResponse implements ServiceResponse {
+public final class RefreshDataViewsResponse extends AbstractResponse {
+
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.api.ServiceResponse#getResult()
+	/**
+	 * Instantiates a new refresh data views response.
+	 *
+	 * @param result
+	 *            the result
 	 */
-	@Override
-	public ServiceResult getResult() {
-		return ServiceResult.SUCCESS;
+	public RefreshDataViewsResponse(ServiceResult result) {
+		super(result);
 	}
+
 
 }

@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: MailService.java 6063 2015-05-09 06:08:20Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/service.api/src/main/java/com/hack23/cia/service/api/MailService.java $
+ *	$Id$
+ *  $HeadURL$
 */
 package com.hack23.cia.service.api;
 

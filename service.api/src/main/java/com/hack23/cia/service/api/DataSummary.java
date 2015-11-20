@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: DataSummary.java 6046 2015-05-06 20:42:53Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/service.api/src/main/java/com/hack23/cia/service/api/DataSummary.java $
+ *	$Id$
+ *  $HeadURL$
 */
 package com.hack23.cia.service.api;
 

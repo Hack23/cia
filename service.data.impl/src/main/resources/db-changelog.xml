@@ -4311,6 +4311,13 @@ from view_riksdagen_politician group by party</createView>
 
 	</changeSet>
 
+	<changeSet author="pether (generated)" id="1414872417007-268">
+		 <addColumn tableName="application_session">
+        	<column name="session_id" type="varchar(255)"/>
+        	<column name="locale" type="varchar(255)"/>
+        	<column name="operating_system" type="varchar(255)"/>
+    	</addColumn>
+	</changeSet>
 
 	<!-- Materialized views todo
 

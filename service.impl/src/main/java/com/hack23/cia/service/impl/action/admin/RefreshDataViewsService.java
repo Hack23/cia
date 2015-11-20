@@ -26,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
 import com.hack23.cia.service.api.action.admin.RefreshDataViewsResponse;
+import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ViewDataManager;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
@@ -58,7 +59,7 @@ public final class RefreshDataViewsService extends
 	public RefreshDataViewsResponse processService(
 			RefreshDataViewsRequest serviceRequest) {
 		ViewDataManager.refreshViews();
-		return new RefreshDataViewsResponse();
+		return new RefreshDataViewsResponse(ServiceResult.SUCCESS);
 	}
 
 }

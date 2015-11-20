@@ -52,10 +52,19 @@ public final class BootstrapDefaultConfig {
 		clearAuthentication();
 	}
 
+	/**
+	 * Clear authentication.
+	 */
 	private static void clearAuthentication() {
 		SecurityContextHolder.getContext().setAuthentication(null);
 	}
 
+	/**
+	 * Configure authentication.
+	 *
+	 * @param role
+	 *            the role
+	 */
 	private static void configureAuthentication(String role) {
 		Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(role);
 		Authentication authentication = new UsernamePasswordAuthenticationToken("user", role, authorities);

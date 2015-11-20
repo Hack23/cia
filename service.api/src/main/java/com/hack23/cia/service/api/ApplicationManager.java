@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: ApplicationManager.java 6075 2015-05-20 22:43:45Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/service.api/src/main/java/com/hack23/cia/service/api/ApplicationManager.java $
+ *	$Id$
+ *  $HeadURL$
 */
 
 package com.hack23.cia.service.api;
@@ -56,7 +56,7 @@ public interface ApplicationManager {
 	 * @param <T>
 	 *            the generic type
 	 * @param <V>
-	 *            the generic type
+	 *            the value type
 	 * @param dataObject
 	 *            the data object
 	 * @return the data container

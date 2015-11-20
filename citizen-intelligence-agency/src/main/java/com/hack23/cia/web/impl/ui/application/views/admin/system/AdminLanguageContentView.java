@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import com.hack23.cia.model.internal.application.system.impl.Agency;
+import com.hack23.cia.model.internal.application.system.impl.LanguageContentData;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
@@ -106,22 +106,22 @@ public final class AdminLanguageContentView extends AbstractAdminView {
 		final Label label = new Label("Admin Language Content");
 		content.addComponent(label);
 
-		final DataContainer<Agency, Long> dataContainer = applicationManager.getDataContainer(Agency.class);
+		final DataContainer<LanguageContentData, Long> dataContainer = applicationManager.getDataContainer(LanguageContentData.class);
 
-		final BeanItemContainer<Agency> politicianDocumentDataSource = new BeanItemContainer<Agency>(Agency.class,
+		final BeanItemContainer<LanguageContentData> politicianDocumentDataSource = new BeanItemContainer<LanguageContentData>(LanguageContentData.class,
 				dataContainer.getAll());
 
-		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Agency",
-				new String[] { "hjid", "agencyName", "description", "portals", "modelObjectVersion" },
+		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "LanguageContentData",
+				new String[] { "hjid", "languageContentType","refKey","fromLanguage", "toLanguage", "createdDate", "languageValue","modelObjectVersion" },
 				new String[] { "modelObjectId" }, "hjid",
-				new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid"), null));
+				new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, "hjid"), null));
 
 		if (pageId != null && !pageId.isEmpty()) {
 
-			Agency agency = dataContainer.load(Long.valueOf(pageId));
+			LanguageContentData languageContentData = dataContainer.load(Long.valueOf(pageId));
 
-			formFactory.addTextFields(content, new BeanItem<Agency>(agency), Agency.class,
-					Arrays.asList(new String[] { "hjid", "agencyName", "description", "modelObjectVersion" }));
+			formFactory.addTextFields(content, new BeanItem<LanguageContentData>(languageContentData), LanguageContentData.class,
+					Arrays.asList(new String[] { "hjid","refKey","fromLanguage", "toLanguage", "createdDate", "languageValue","modelObjectVersion" }));
 
 		}
 
@@ -129,5 +129,4 @@ public final class AdminLanguageContentView extends AbstractAdminView {
 
 		setContent(content);
 	}
-
 }

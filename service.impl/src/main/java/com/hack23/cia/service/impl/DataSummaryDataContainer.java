@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: DataSummaryDataContainer.java 6075 2015-05-20 22:43:45Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/service.impl/src/main/java/com/hack23/cia/service/impl/DataSummaryDataContainer.java $
+ *	$Id$
+ *  $HeadURL$
 */
 package com.hack23.cia.service.impl;
 
@@ -51,7 +51,7 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 	@Autowired
 	private CommitteeProposalComponentDataDAO committeeProposalComponentDataDAO;
 
-	/** The Document content data dao. */
+	/** The document content data dao. */
 	@Autowired
 	private DocumentContentDataDAO documentContentDataDAO;
 
@@ -67,7 +67,7 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 	@Autowired
 	private PersonDataDAO personDataDAO;
 
-	/** The Vote data dao. */
+	/** The vote data dao. */
 	@Autowired
 	private VoteDataDAO voteDataDAO;
 
@@ -111,6 +111,9 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 		return new ArrayList<DataSummary>();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.api.DataContainer#findByQueryProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
+	 */
 	@Override
 	public <T, V> T findByQueryProperty(Class<T> clazz,
 			SingularAttribute<T, ? extends Object> property, Class<V> clazz2,
@@ -118,6 +121,9 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.api.DataContainer#findListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
+	 */
 	@Override
 	public <T, V> List<T> findListByEmbeddedProperty(Class<T> clazz,
 			SingularAttribute<T, V> property, Class<V> clazz2,

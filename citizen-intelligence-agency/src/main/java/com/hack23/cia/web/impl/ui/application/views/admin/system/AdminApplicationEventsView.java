@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import com.hack23.cia.model.internal.application.system.impl.Agency;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
@@ -106,22 +106,22 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 		final Label label = new Label("Admin Application Event");
 		content.addComponent(label);
 
-		final DataContainer<Agency, Long> dataContainer = applicationManager.getDataContainer(Agency.class);
+		final DataContainer<ApplicationActionEvent, Long> dataContainer = applicationManager.getDataContainer(ApplicationActionEvent.class);
 
-		final BeanItemContainer<Agency> politicianDocumentDataSource = new BeanItemContainer<Agency>(Agency.class,
+		final BeanItemContainer<ApplicationActionEvent> politicianDocumentDataSource = new BeanItemContainer<ApplicationActionEvent>(ApplicationActionEvent.class,
 				dataContainer.getAll());
 
-		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Agency",
-				new String[] { "hjid", "agencyName", "description", "portals", "modelObjectVersion" },
+		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationActionEvent",
+				new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation", "modelObjectVersion" },
 				new String[] { "modelObjectId" }, "hjid",
-				new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid"), null));
+				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null));
 
 		if (pageId != null && !pageId.isEmpty()) {
 
-			Agency agency = dataContainer.load(Long.valueOf(pageId));
+			ApplicationActionEvent applicationActionEvent = dataContainer.load(Long.valueOf(pageId));
 
-			formFactory.addTextFields(content, new BeanItem<Agency>(agency), Agency.class,
-					Arrays.asList(new String[] { "hjid", "agencyName", "description", "modelObjectVersion" }));
+			formFactory.addTextFields(content, new BeanItem<ApplicationActionEvent>(applicationActionEvent), ApplicationActionEvent.class,
+					Arrays.asList(new String[] { "hjid","createdDate", "eventGroup", "applicationOperation", "modelObjectVersion"  }));
 
 		}
 

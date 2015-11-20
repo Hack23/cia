@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: ServiceResponse.java 6069 2015-05-13 20:45:10Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/service.api/src/main/java/com/hack23/cia/service/api/action/common/ServiceResponse.java $
+ *	$Id$
+ *  $HeadURL$
 */
 
 package com.hack23.cia.service.api.action.common;

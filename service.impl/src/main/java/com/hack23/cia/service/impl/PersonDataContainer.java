@@ -97,6 +97,9 @@ public final class PersonDataContainer implements DataContainer<PersonData,Strin
 		return personDataDAO.findListByProperty(values, properties);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.api.DataContainer#findByQueryProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
+	 */
 	@Override
 	public <T, V> T findByQueryProperty(final Class<T> clazz,
 			final SingularAttribute<T, ? extends Object> property, final Class<V> clazz2,
@@ -104,6 +107,9 @@ public final class PersonDataContainer implements DataContainer<PersonData,Strin
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.api.DataContainer#findListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
+	 */
 	@Override
 	public <T, V> List<T> findListByEmbeddedProperty(final Class<T> clazz,
 			final SingularAttribute<T, V> property, final Class<V> clazz2,

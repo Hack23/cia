@@ -18,12 +18,12 @@
 */
 package com.hack23.cia.service.data.impl.liquidbase;
 
-import liquibase.exception.LiquibaseException;
-import liquibase.integration.spring.SpringLiquibase;
-
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import liquibase.exception.LiquibaseException;
+import liquibase.integration.spring.SpringLiquibase;
 
 /**
  * The Class SpringLiquidBaseFailSafe.

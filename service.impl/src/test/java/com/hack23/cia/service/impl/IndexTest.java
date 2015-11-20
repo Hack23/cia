@@ -1,3 +1,21 @@
+/*
+ * Copyright 2010 James Pether Sörling
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
 package com.hack23.cia.service.impl;
 
 import java.io.BufferedReader;
@@ -25,21 +43,22 @@ import weka.core.tokenizers.NGramTokenizer;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 
+/**
+ * The Class IndexTest.
+ */
 public class IndexTest {
 
-	/**
-	 * Instances to be indexed.
-	 */
+	/** The input instances. */
 	Instances inputInstances;
 	
-	/**
-	 * Instances after indexing.
-	 */
+	/** The output instances. */
 	Instances outputInstances;
 		
 	/**
-	 * Loads an ARFF file into an instances object.
-	 * @param fileName The name of the file to be loaded.
+	 * Load arff.
+	 *
+	 * @param fileName
+	 *            the file name
 	 */
 	public void loadARFF(String fileName) {
 	
@@ -56,7 +75,7 @@ public class IndexTest {
 	}
 	
 	/**
-	 * Index the inputInstances string features using the StringToWordVector filter.
+	 * Index.
 	 */
 	public void index() {
 		// outputInstances = inputInstances;
@@ -87,8 +106,10 @@ public class IndexTest {
 	}
 	
 	/**
-	 * Save an instances object into an ARFF file.
-	 * @param fileName The name of the file to be saved.
+	 * Save arff.
+	 *
+	 * @param fileName
+	 *            the file name
 	 */	
 	public void saveARFF(String fileName) {
 	
@@ -105,8 +126,10 @@ public class IndexTest {
 	
 
 	/**
-	 * Main method. It is an example of the usage of this class.
-	 * @param args Command-line arguments: fileData and fileModel.
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
 	 */
 	public static void main(String[] args) {
 	

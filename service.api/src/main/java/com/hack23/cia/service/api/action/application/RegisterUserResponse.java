@@ -18,31 +18,25 @@
 */
 package com.hack23.cia.service.api.action.application;
 
-import com.hack23.cia.service.api.action.common.ServiceResponse;
+import com.hack23.cia.service.api.action.common.AbstractResponse;
 
 
 /**
  * The Class RegisterUserResponse.
  */
-public final class RegisterUserResponse implements ServiceResponse {
+public final class RegisterUserResponse extends AbstractResponse {
 
-	private final ServiceResult result;
-	/**
-	 *
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.api.ServiceResponse#getResult()
+	/**
+	 * Instantiates a new register user response.
+	 *
+	 * @param result
+	 *            the result
 	 */
-	@Override
-	public ServiceResult getResult() {
-		return result;
-	}
-
 	public RegisterUserResponse(final ServiceResult result) {
-		super();
-		this.result = result;
+		super(result);
 	}
 
 }
