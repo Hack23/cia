@@ -59,7 +59,7 @@
     <dependency>
       <groupId>org.tltv.gantt</groupId>
       <artifactId>gantt-addon</artifactId>
-      <version>0.9.0</version>
+      <version>0.9.1</version>
       <exclusions>
         <exclusion>
           <artifactId>vaadin-server</artifactId>
