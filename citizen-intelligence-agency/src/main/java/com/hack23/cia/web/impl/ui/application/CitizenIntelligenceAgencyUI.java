@@ -23,6 +23,7 @@ import java.util.Collection;
 import java.util.Locale;
 
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +34,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
 import com.hack23.cia.service.api.ApplicationManager;
@@ -99,13 +101,13 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 
 		SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken("key", "principal", authorities));
 
-
-
 		final WebBrowser webBrowser = currentPage.getWebBrowser();
 
 		CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
 		serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-		serviceRequest.setIpInformation(webBrowser.getAddress());
+
+		String ipInformation = getIpInformation(webBrowser);
+		serviceRequest.setIpInformation(ipInformation);
 		serviceRequest.setUserAgentInformation(webBrowser.getBrowserApplication());
 		serviceRequest.setLocale(webBrowser.getLocale().toString());
 		serviceRequest.setOperatingSystem(getOperatingSystem(webBrowser));
@@ -113,8 +115,22 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 
 		ServiceResponse serviceResponse = applicationManager.service(serviceRequest);
 
-		LOGGER.info("Browser address: {} , application:{}, sessionId:{}, result:{}",webBrowser.getAddress(),webBrowser.getBrowserApplication(),serviceRequest.getSessionId(),serviceResponse.getResult().toString());
+		LOGGER.info("Browser address: {} , application:{}, sessionId:{}, result:{}",ipInformation,webBrowser.getBrowserApplication(),serviceRequest.getSessionId(),serviceResponse.getResult().toString());
+	}
 
+	private String getIpInformation(final WebBrowser webBrowser) {
+		String ipInformation=webBrowser.getAddress();
+
+		HttpServletRequest httpRequest=((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+		String xForwardedForHeader = httpRequest.getHeader("X-Forwarded-For");
+		if (xForwardedForHeader != null) {
+			System.out.println(xForwardedForHeader);
+			String[] split = xForwardedForHeader.split(",");
+			if (split.length != 0) {
+				ipInformation = split[0];
+			}
+		}
+		return ipInformation;
 	}
 
 
@@ -125,8 +141,10 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 	           osName = "Linux";
 	       else if (webBrowser.isWindows())
 	           osName = "Windows";
+	       else if (webBrowser.isWindowsPhone())
+	           osName = "WindowsPhone";
 	       else if (webBrowser.isMacOSX())
-	           osName = "Mac OS X";
+	           osName = "MacOSX";
 	       else if (webBrowser.isAndroid())
 	    	   osName = "Android";
 	       else if (webBrowser.isIOS())

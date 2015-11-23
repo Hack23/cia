@@ -117,6 +117,26 @@
 				minOccurs="0" />
 			<xsd:element name="eventGroup" type="system:ApplicationEventGroup"
 				minOccurs="0" />
+			<xsd:element minOccurs="0" name="page" type="xsd:string" />
+			<xsd:element minOccurs="0" name="pageMode" type="xsd:string" />
+			<xsd:element minOccurs="0" name="elementId" type="xsd:string" />
+			<xsd:element minOccurs="0" name="actionName" type="xsd:string" />
+			<xsd:element minOccurs="0" name="sessionId" type="xsd:string" />
+			<xsd:element minOccurs="0" name="userId" type="xsd:string" />
+			<xsd:element minOccurs="0" name="errorMessage" type="xsd:string" >
+			<xsd:annotation>
+					<xsd:documentation>
+						We have customized the generated property name
+						here.
+						</xsd:documentation>
+					<xsd:appinfo>
+						<hj:basic>
+							<orm:column length="8192" />
+						</hj:basic>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="applicationMessage" type="xsd:string" />
 			<xsd:element minOccurs="0" name="createdDate" type="xsd:dateTime" />
 		</xsd:sequence>
 	</xsd:complexType>

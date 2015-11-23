@@ -4319,7 +4319,37 @@ from view_riksdagen_politician group by party</createView>
     	</addColumn>
 	</changeSet>
 
+	<changeSet author="pether (generated)" id="1414872417007-269">
+		 <addColumn tableName="application_action_event">
+        	<column name="session_id" type="varchar(255)"/>
+        	<column name="page" type="varchar(255)"/>
+			<column name="page_mode" type="varchar(255)"/>
+			<column name="element_id" type="varchar(255)"/>
+			<column name="action_name" type="varchar(255)"/>
+			<column name="user_id" type="varchar(255)"/>
+        	<column name="error_message" type="varchar(8192)"/>
+			<column name="application_message" type="varchar(255)"/>
+    	</addColumn>
+	</changeSet>
+
+
 	<!-- Materialized views todo
+
+
+	<changeSet author="pether (generated)" id="1414872417007-269">
+		 <addColumn tableName="application_action_event">
+        	<column name="session_id" type="varchar(255)"/>
+			<column name="page" type="varchar(255)"/>
+			<column name="page_mode" type="varchar(255)"/>
+			<column name="element_id" type="varchar(255)"/>
+			<column name="action_name" type="varchar(255)"/>
+			<column name="user_id" type="varchar(255)"/>
+        	<column name="error_message" type="varchar(255)"/>
+			<column name="application_message" type="varchar(255)"/>
+    	</addColumn>
+	</changeSet>
+
+
 
 		<dropView viewName="view_riksdagen_committee" />
 		<dropView viewName="view_document_data_committee_report_url" />
