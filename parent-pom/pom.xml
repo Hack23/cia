@@ -118,7 +118,7 @@
     <cia.project.versions.easymock>3.4</cia.project.versions.easymock>
     <cia.project.versions.plexus.utils>3.0.22</cia.project.versions.plexus.utils>
     <cia.project.versions.hyperjaxb3>0.6.1-SNAPSHOT</cia.project.versions.hyperjaxb3>
-    <cia.project.versions.jaxb2.commons>0.10.0</cia.project.versions.jaxb2.commons>
+    <cia.project.versions.jaxb2.commons>0.9.5</cia.project.versions.jaxb2.commons>
     <!-- <cia.project.versions.jaxb>2.2.2-SNAPSHOT</cia.project.versions.jaxb> -->
     <cia.project.versions.jaxb>2.2.11</cia.project.versions.jaxb>
     <cia.project.versions.jaxb.impl>2.2.11</cia.project.versions.jaxb.impl>
