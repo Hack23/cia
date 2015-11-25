@@ -44,7 +44,7 @@ public final class CreateApplicationSessionService
 		extends AbstractBusinessServiceImpl<CreateApplicationSessionRequest, CreateApplicationSessionResponse>
 		implements BusinessService<CreateApplicationSessionRequest, CreateApplicationSessionResponse> {
 
-	/** The user dao. */
+	/** The application session dao. */
 	@Autowired
 	private ApplicationSessionDAO applicationSessionDAO;
 

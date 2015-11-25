@@ -32,8 +32,10 @@ public final class CreateApplicationSessionRequest implements ServiceRequest {
 	/** The session id. */
 	private String sessionId;
 
+	/** The locale. */
 	private String locale;
 
+	/** The operating system. */
 	private String operatingSystem;
 
 	/** The ip information. */
@@ -121,18 +123,40 @@ public final class CreateApplicationSessionRequest implements ServiceRequest {
 		this.sessionId = sessionId;
 	}
 
+	/**
+	 * Gets the locale.
+	 *
+	 * @return the locale
+	 */
 	public String getLocale() {
 		return locale;
 	}
 
+	/**
+	 * Sets the locale.
+	 *
+	 * @param locale
+	 *            the new locale
+	 */
 	public void setLocale(String locale) {
 		this.locale = locale;
 	}
 
+	/**
+	 * Gets the operating system.
+	 *
+	 * @return the operating system
+	 */
 	public String getOperatingSystem() {
 		return operatingSystem;
 	}
 
+	/**
+	 * Sets the operating system.
+	 *
+	 * @param operatingSystem
+	 *            the new operating system
+	 */
 	public void setOperatingSystem(String operatingSystem) {
 		this.operatingSystem = operatingSystem;
 	}

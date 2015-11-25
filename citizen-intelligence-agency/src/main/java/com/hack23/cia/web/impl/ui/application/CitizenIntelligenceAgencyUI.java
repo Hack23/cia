@@ -73,6 +73,7 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 	@Autowired
 	private MainView mainView;
 
+	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
 
@@ -118,6 +119,13 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 		LOGGER.info("Browser address: {} , application:{}, sessionId:{}, result:{}",ipInformation,webBrowser.getBrowserApplication(),serviceRequest.getSessionId(),serviceResponse.getResult().toString());
 	}
 
+	/**
+	 * Gets the ip information.
+	 *
+	 * @param webBrowser
+	 *            the web browser
+	 * @return the ip information
+	 */
 	private String getIpInformation(final WebBrowser webBrowser) {
 		String ipInformation=webBrowser.getAddress();
 
@@ -135,6 +143,13 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 
 
 
+	/**
+	 * Gets the operating system.
+	 *
+	 * @param webBrowser
+	 *            the web browser
+	 * @return the operating system
+	 */
 	private String getOperatingSystem(final WebBrowser webBrowser) {
 		String osName = "unknown";
 	       if (webBrowser.isLinux())

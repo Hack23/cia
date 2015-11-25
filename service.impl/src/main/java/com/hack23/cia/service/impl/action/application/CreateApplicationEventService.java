@@ -18,16 +18,21 @@
 */
 package com.hack23.cia.service.impl.action.application;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
-import com.hack23.cia.service.data.api.UserDAO;
+import com.hack23.cia.service.data.api.ApplicationSessionDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
 
@@ -40,9 +45,9 @@ public final class CreateApplicationEventService
 		extends AbstractBusinessServiceImpl<CreateApplicationEventRequest, CreateApplicationEventResponse>
 		implements BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> {
 
-	/** The user dao. */
+	/** The application session dao. */
 	@Autowired
-	private UserDAO userDAO;
+	private ApplicationSessionDAO applicationSessionDAO;
 
 	/**
 	 * Instantiates a new creates the application event service.
@@ -57,7 +62,32 @@ public final class CreateApplicationEventService
 	@Override
 	@Secured({ "ROLE_ANONYMOUS" })
 	public CreateApplicationEventResponse processService(CreateApplicationEventRequest serviceRequest) {
-		return new CreateApplicationEventResponse(ServiceResult.SUCCESS);
+		ApplicationSession applicationSession = applicationSessionDAO.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
+
+		if (applicationSession != null) {
+			ApplicationActionEvent applicationActionEvent = new ApplicationActionEvent();
+
+			applicationActionEvent.setEventGroup(serviceRequest.getEventGroup());
+			applicationActionEvent.setCreatedDate(new Date());
+			applicationActionEvent.setSessionId(serviceRequest.getSessionId());
+
+			applicationActionEvent.setPage(serviceRequest.getPage());
+			applicationActionEvent.setPageMode(serviceRequest.getPageMode());
+			applicationActionEvent.setElementId(serviceRequest.getElementId());
+
+			applicationActionEvent.setApplicationOperation(serviceRequest.getApplicationOperation());
+			applicationActionEvent.setActionName(serviceRequest.getActionName());
+
+			applicationActionEvent.setApplicationMessage(serviceRequest.getApplicationMessage());
+			applicationActionEvent.setErrorMessage(serviceRequest.getErrorMessage());
+
+			applicationSession.getEvents().add(applicationActionEvent);
+
+			applicationSessionDAO.persist(applicationSession);
+			return new CreateApplicationEventResponse(ServiceResult.SUCCESS);
+		} else {
+			return new CreateApplicationEventResponse(ServiceResult.FAILURE);
+		}
 	}
 
 }

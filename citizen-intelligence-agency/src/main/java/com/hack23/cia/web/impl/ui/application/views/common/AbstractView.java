@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.common;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
 import com.vaadin.navigator.View;
 import com.vaadin.ui.Panel;
@@ -35,6 +36,10 @@ public abstract class AbstractView extends Panel implements View {
 	/** The page link factory. */
 	@Autowired
 	protected transient PageLinkFactory pageLinkFactory;
+
+	/** The page action event helper. */
+	@Autowired
+	protected transient PageActionEventHelper pageActionEventHelper;
 
 	/**
 	 * Instantiates a new abstract view.

@@ -34,8 +34,10 @@ import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember_;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
@@ -221,6 +223,7 @@ public final class MinistryView extends AbstractGroupView {
 
 				getPanel().setContent(panelContent);
 				getPanel().setCaption("Ministry:" + viewRiksdagenMinistry.getNameId());
+				pageActionEventHelper.createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
 
 			}
 

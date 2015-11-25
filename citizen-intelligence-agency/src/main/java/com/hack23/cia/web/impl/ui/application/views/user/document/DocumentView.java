@@ -43,8 +43,10 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentRefer
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer_;
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
@@ -297,7 +299,7 @@ public final class DocumentView extends AbstractUserView {
 				}
 
 				getPanel().setContent(panelContent);
-
+				pageActionEventHelper.createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.ADMIN, NAME, parameters, pageId);
 			}
 
 		}

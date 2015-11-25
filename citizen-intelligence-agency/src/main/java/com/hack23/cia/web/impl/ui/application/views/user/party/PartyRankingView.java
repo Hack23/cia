@@ -29,6 +29,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
@@ -183,6 +184,21 @@ public final class PartyRankingView extends AbstractRankingView {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getName()
+	 */
+	@Override
+	protected String getName() {
+		return NAME;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getViewAction()
+	 */
+	@Override
+	protected ViewAction getViewAction() {
+		return ViewAction.VISIT_PARTY_RANKING_VIEW;
+	}
 
 
 }

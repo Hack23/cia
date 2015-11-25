@@ -29,6 +29,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
@@ -183,6 +184,22 @@ public final class MinistryRankingView extends AbstractRankingView {
 	@Override
 	protected DataSeries createChartTimeSeriesCurrent() {
 		return dataSeriesFactory.createMinistryChartTimeSeriesCurrent();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getName()
+	 */
+	@Override
+	protected String getName() {
+		return NAME;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getViewAction()
+	 */
+	@Override
+	protected ViewAction getViewAction() {
+		return ViewAction.VISIT_MINISTRY_RANKING_VIEW;
 	}
 
 }

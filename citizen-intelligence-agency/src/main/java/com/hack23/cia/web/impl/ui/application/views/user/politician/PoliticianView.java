@@ -51,8 +51,10 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument_;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
@@ -245,6 +247,9 @@ public final class PoliticianView extends AbstractPersonView {
 				}
 
 				getPanel().setContent(panelContent);
+
+				pageActionEventHelper.createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
+
 
 				final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
 						.getDataContainer(ViewRiksdagenPolitician.class);

@@ -20,6 +20,8 @@ package com.hack23.cia.service.impl.action.application;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.UUID;
 
 import org.databene.contiperf.PerfTest;
 import org.databene.contiperf.Required;
@@ -31,10 +33,18 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
+import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
+import com.hack23.cia.service.api.action.application.CreateApplicationSessionResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
+import com.hack23.cia.service.data.api.ApplicationSessionDAO;
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 
 /**
@@ -53,6 +63,10 @@ public class CreateApplicationEventServiceITest extends AbstractServiceFunctiona
 	@Autowired
 	private ApplicationManager applicationManager;
 
+	/** The application session dao. */
+	@Autowired
+	private ApplicationSessionDAO applicationSessionDAO;
+
 
 	/**
 	 * Service create application event request success test.
@@ -68,11 +82,58 @@ public class CreateApplicationEventServiceITest extends AbstractServiceFunctiona
 		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
 		SecurityContextHolder.getContext().setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
 
+
+		CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
+
 		CreateApplicationEventRequest serviceRequest = new CreateApplicationEventRequest();
+		serviceRequest.setSessionId(createSessionRequest.getSessionId());
+		serviceRequest.setApplicationMessage("applicationMessage");
+
+		serviceRequest.setEventGroup(ApplicationEventGroup.USER);
+		serviceRequest.setApplicationOperation(ApplicationOperationType.CREATE);
+
+		serviceRequest.setPage("Test");
+		serviceRequest.setPageMode("PageMode");
+		serviceRequest.setElementId("ElementId");
+
+		serviceRequest.setActionName("Content");
+
+		serviceRequest.setApplicationMessage("applicationMessage");
+		serviceRequest.setErrorMessage("errorMessage");
+
 
 		CreateApplicationEventResponse  response = (CreateApplicationEventResponse) applicationManager.service(serviceRequest);
 		assertNotNull("Expect a result",response);
 		assertEquals(ServiceResult.SUCCESS,response.getResult());
+
+		List<ApplicationSession> findListByProperty = applicationSessionDAO.findListByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
+		assertEquals(1, findListByProperty.size());
+		ApplicationSession applicationSession = findListByProperty.get(0);
+		assertNotNull(applicationSession);
+
+		assertEquals(1, applicationSession.getEvents().size());
+
+
+	}
+
+
+	/**
+	 * Creates the test application session.
+	 *
+	 * @return the creates the application session request
+	 */
+	private CreateApplicationSessionRequest createTestApplicationSession() {
+		CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
+		serviceRequest.setIpInformation("8.8.8.8");
+		serviceRequest.setLocale("en_US.UTF-8");
+		serviceRequest.setOperatingSystem("LINUX");
+		serviceRequest.setSessionId(UUID.randomUUID().toString());
+		serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
+		serviceRequest.setUserAgentInformation("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0");
+
+		CreateApplicationSessionResponse sessionResponse = (CreateApplicationSessionResponse) applicationManager
+				.service(serviceRequest);
+		return serviceRequest;
 	}
 
 }

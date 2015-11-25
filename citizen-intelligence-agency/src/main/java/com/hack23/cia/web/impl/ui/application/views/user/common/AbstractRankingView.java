@@ -22,6 +22,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -56,6 +58,20 @@ public abstract class AbstractRankingView extends AbstractUserView {
 	 * Creates the menu bar.
 	 */
 	protected abstract void createMenuBar();
+
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
+	protected abstract String getName();
+
+	/**
+	 * Gets the view action.
+	 *
+	 * @return the view action
+	 */
+	protected abstract ViewAction getViewAction();
 
 
 	/*
@@ -117,6 +133,9 @@ public abstract class AbstractRankingView extends AbstractUserView {
 		}
 
 		getPanel().setContent(panelContent);
+
+		pageActionEventHelper.createPageEvent(getViewAction(), ApplicationEventGroup.USER, getName(), parameters, null);
+
 
 
 	}

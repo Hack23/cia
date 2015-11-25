@@ -37,8 +37,10 @@ import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
 import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData_;
 import com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary;
 import com.hack23.cia.model.internal.application.data.impl.WorldbankIndicatorDataCountrySummaryEmbeddedId;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.AbstractView;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
@@ -163,6 +165,9 @@ public final class TestChartView extends AbstractView {
 
 				pageModeContent.addComponent(createDataIndicatorSummaryChartPanel(indicator));
 		}
+
+		pageActionEventHelper.createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME, parameters, null);
+
 
 	}
 

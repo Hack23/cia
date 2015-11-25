@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.user.common;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
 import com.vaadin.navigator.View;
 import com.vaadin.ui.Label;
@@ -47,6 +48,11 @@ public abstract class AbstractUserView extends VerticalLayout implements View {
 	/** The page link factory. */
 	@Autowired
 	protected transient PageLinkFactory pageLinkFactory;
+
+	/** The page action event helper. */
+	@Autowired
+	protected transient PageActionEventHelper pageActionEventHelper;
+
 
 	/**
 	 * Instantiates a new abstract user view.

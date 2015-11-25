@@ -58,6 +58,7 @@ public class CreateApplicationSessionServiceITest extends AbstractServiceFunctio
 	@Autowired
 	private ApplicationManager applicationManager;
 
+	/** The application session dao. */
 	@Autowired
 	private ApplicationSessionDAO applicationSessionDAO;
 
