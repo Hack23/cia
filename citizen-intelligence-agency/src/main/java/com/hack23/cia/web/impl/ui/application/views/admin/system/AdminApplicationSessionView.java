@@ -27,6 +27,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
 import com.hack23.cia.service.api.ApplicationManager;
@@ -40,6 +41,7 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
@@ -122,8 +124,27 @@ public final class AdminApplicationSessionView extends AbstractAdminView {
 
 			ApplicationSession applicationSession = dataContainer.load(Long.valueOf(pageId));
 
-			formFactory.addTextFields(content, new BeanItem<ApplicationSession>(applicationSession), ApplicationSession.class,
+			VerticalLayout leftLayout = new VerticalLayout();
+			leftLayout.setSizeFull();
+			VerticalLayout rightLayout = new VerticalLayout();
+			rightLayout.setSizeFull();
+			HorizontalLayout horizontalLayout = new HorizontalLayout();
+			horizontalLayout.setWidth("100%");
+			content.addComponent(horizontalLayout);
+			horizontalLayout.addComponent(leftLayout);
+			horizontalLayout.addComponent(rightLayout);
+
+			formFactory.addTextFields(leftLayout, new BeanItem<ApplicationSession>(applicationSession), ApplicationSession.class,
 					Arrays.asList(new String[] { "hjid", "createdDate","sessionId", "operatingSystem","locale","ipInformation","userAgentInformation", "modelObjectVersion" }));
+
+			final BeanItemContainer<ApplicationActionEvent> eventsItemContainer = new BeanItemContainer<ApplicationActionEvent>(ApplicationActionEvent.class,
+					applicationSession.getEvents());
+
+			rightLayout.addComponent(gridFactory.createBasicBeanItemGrid(eventsItemContainer, "ApplicationActionEvent",
+					new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" },
+					new String[] { "modelObjectId" }, "hjid",
+					new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null));
+
 		}
 
 		content.addComponent(pageLinkFactory.createMainViewPageLink());

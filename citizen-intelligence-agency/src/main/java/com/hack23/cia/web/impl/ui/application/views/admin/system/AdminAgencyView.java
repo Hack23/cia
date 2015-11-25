@@ -29,6 +29,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.system.impl.Agency;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.model.internal.application.system.impl.Portal;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
@@ -40,6 +41,7 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
@@ -120,10 +122,29 @@ public final class AdminAgencyView extends AbstractAdminView {
 
 		if (pageId != null && !pageId.isEmpty()) {
 
+			VerticalLayout leftLayout = new VerticalLayout();
+			leftLayout.setSizeFull();
+			VerticalLayout rightLayout = new VerticalLayout();
+			rightLayout.setSizeFull();
+			HorizontalLayout horizontalLayout = new HorizontalLayout();
+			horizontalLayout.setWidth("100%");
+			content.addComponent(horizontalLayout);
+			horizontalLayout.addComponent(leftLayout);
+			horizontalLayout.addComponent(rightLayout);
+
 			Agency agency = dataContainer.load(Long.valueOf(pageId));
 
-			formFactory.addTextFields(content, new BeanItem<Agency>(agency), Agency.class,
+			formFactory.addTextFields(leftLayout, new BeanItem<Agency>(agency), Agency.class,
 					Arrays.asList(new String[] { "hjid", "agencyName", "description", "modelObjectVersion" }));
+
+			final BeanItemContainer<Portal> portalItemContainer = new BeanItemContainer<Portal>(Portal.class,
+					agency.getPortals());
+
+			rightLayout.addComponent(gridFactory.createBasicBeanItemGrid(portalItemContainer, "Portal",
+					new String[] { "hjid", "portalName", "description","portalType","googleMapApiKey", "modelObjectVersion" },
+					new String[] { "modelObjectId" }, "hjid",
+					new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid"), null));
+
 
 		}
 
