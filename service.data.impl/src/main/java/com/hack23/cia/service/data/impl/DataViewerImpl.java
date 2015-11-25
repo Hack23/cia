@@ -28,6 +28,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -115,16 +116,29 @@ public final class DataViewerImpl implements DataViewer {
 	 */
 	@Override
 	public <T> List<T> getAll(final Class<T> clazz) {
+		return getAllOrderBy(clazz,null);
+	}
+
+
+	@Override
+	public <T> List<T> getAllOrderBy(Class<T> clazz, SingularAttribute<T, ? extends Object> property) {
 		final CriteriaQuery<T> criteriaQuery = criteriaBuilder
 				.createQuery(clazz);
 		final Root<T> root = criteriaQuery.from(clazz);
+
 		criteriaQuery.select(root);
+
+		if (property != null) {
+			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(property)));
+		}
+
 		final TypedQuery<T> typedQuery = entityManager
 				.createQuery(criteriaQuery);
 		addCacheHints(typedQuery, "getAll." + clazz.getSimpleName());
 
 		return typedQuery.getResultList();
 	}
+
 
 	/**
 	 * Inits the.

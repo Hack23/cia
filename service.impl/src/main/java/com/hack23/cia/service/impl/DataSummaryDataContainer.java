@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -129,5 +129,11 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 			SingularAttribute<T, V> property, Class<V> clazz2,
 			SingularAttribute<V, ? extends Object> property2, Object value) {
 		return new ArrayList<T>();
+	}
+
+	@Override
+	public List<DataSummary> getAllOrderBy(SingularAttribute<DataSummary, ? extends Object> property) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

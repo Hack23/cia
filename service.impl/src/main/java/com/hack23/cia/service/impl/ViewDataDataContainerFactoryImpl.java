@@ -134,4 +134,11 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 	}
 
 
+
+	@Override
+	public <T> List<T> getAllOrderBy(Class<T> clazz, SingularAttribute<T, ? extends Object> property) {
+		return dataViewer.getAllOrderBy(clazz, property);
+	}
+
+
 }

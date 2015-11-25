@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -104,6 +104,13 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 	public <T, V> List<T> findListByEmbeddedProperty(final Class<T> clazz,
 			final SingularAttribute<T, V> property, final Class<V> clazz2,
 			final SingularAttribute<V, ? extends Object> property2, final Object value) {
+		return null;
+	}
+
+	@Override
+	public List<ViewRiksdagenCommittee> getAllOrderBy(
+			SingularAttribute<ViewRiksdagenCommittee, ? extends Object> property) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

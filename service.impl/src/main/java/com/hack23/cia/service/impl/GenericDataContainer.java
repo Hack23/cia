@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -66,6 +66,13 @@ DataContainer<T, ID> {
 		return dataProxy.getAll(clazz);
 	}
 
+	@Override
+	public List<T> getAllOrderBy(SingularAttribute<T, ? extends Object> property) {
+		return dataProxy.getAllOrderBy(clazz,property);
+	}
+
+
+
 	/* (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#getAllBy(javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
@@ -115,4 +122,5 @@ DataContainer<T, ID> {
 			final SingularAttribute<V, ? extends Object> property2, final Object value) {
 		return dataProxy.findListByEmbeddedProperty(clazz, property, clazz2, property2, value);
 	}
+
 }

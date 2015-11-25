@@ -30,6 +30,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
@@ -113,7 +114,7 @@ public final class AdminApplicationSessionView extends AbstractAdminView {
 		final DataContainer<ApplicationSession, Long> dataContainer = applicationManager.getDataContainer(ApplicationSession.class);
 
 		final BeanItemContainer<ApplicationSession> politicianDocumentDataSource = new BeanItemContainer<ApplicationSession>(ApplicationSession.class,
-				dataContainer.getAll());
+				dataContainer.getAllOrderBy(ApplicationSession_.createdDate));
 
 		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationSession",
 				new String[] { "hjid", "createdDate","sessionType","sessionId", "operatingSystem","locale", "ipInformation","userAgentInformation","events" },

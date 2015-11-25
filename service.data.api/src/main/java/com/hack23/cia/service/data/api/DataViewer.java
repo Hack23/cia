@@ -145,4 +145,7 @@ public interface DataViewer {
 	 * @return the t
 	 */
 	<T> T load(Class<T> clazz,Object id);
+
+
+	<T> List<T> getAllOrderBy(Class<T> clazz, SingularAttribute<T, ? extends Object> property);
 }

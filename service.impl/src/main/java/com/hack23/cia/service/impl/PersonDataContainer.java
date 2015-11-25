@@ -117,4 +117,10 @@ public final class PersonDataContainer implements DataContainer<PersonData,Strin
 		return new ArrayList<T>();
 	}
 
+	@Override
+	public List<PersonData> getAllOrderBy(SingularAttribute<PersonData, ? extends Object> property) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

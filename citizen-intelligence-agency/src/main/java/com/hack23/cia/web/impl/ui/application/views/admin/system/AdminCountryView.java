@@ -28,6 +28,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
+import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
@@ -111,7 +112,7 @@ public final class AdminCountryView extends AbstractAdminView {
 		final DataContainer<CountryElement, Long> dataContainer = applicationManager.getDataContainer(CountryElement.class);
 
 		final BeanItemContainer<CountryElement> politicianDocumentDataSource = new BeanItemContainer<CountryElement>(CountryElement.class,
-				dataContainer.getAll());
+				dataContainer.getAllOrderBy(CountryElement_.countryName));
 
 		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Country",
 				new String[] { "hjid", "id", "countryName","iso2Code","capitalCity","longitude","latitude" },
