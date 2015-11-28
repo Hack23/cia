@@ -14,8 +14,8 @@
   <url>http://cia.sourceforge.net/service.external.worldbank/</url>
   <inceptionYear>2010</inceptionYear>
   <scm>
-    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:git://github.com/Hack23/cia.git</developerConnection>
+    <connection>scm:git:ssh://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:ssh://github.com/Hack23/cia.git</developerConnection>
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
   <distributionManagement>

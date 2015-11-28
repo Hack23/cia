@@ -11,8 +11,8 @@
   <packaging>jar</packaging>
   <name>Web-Widgets</name>
   <scm>
-    <connection>scm:git:git://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:git://github.com/Hack23/cia.git</developerConnection>
+    <connection>scm:git:ssh://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:ssh://github.com/Hack23/cia.git</developerConnection>
     <url>https://github.com/Hack23/cia/tree/master/web-widgets</url>
   </scm>
   <properties>
