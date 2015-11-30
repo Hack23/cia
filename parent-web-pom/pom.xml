@@ -29,8 +29,8 @@
     <!--  <module>../cia-dist-deb</module>-->
   </modules>
   <scm>
-    <connection>scm:git:ssh://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:ssh://github.com/Hack23/cia.git</developerConnection>
+    <connection>scm:git:https://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
     <url>https://github.com/Hack23/cia/tree/master/parent-web-pom</url>
   </scm>
   <distributionManagement>

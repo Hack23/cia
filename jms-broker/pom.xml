@@ -20,8 +20,8 @@
     </license>
   </licenses>
   <scm>
-    <connection>scm:git:ssh://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:ssh://github.com/Hack23/cia.git</developerConnection>
+    <connection>scm:git:https://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
     <url>https://github.com/Hack23/cia/tree/master/jms-broker</url>
   </scm>
   <distributionManagement>
@@ -333,7 +333,7 @@
     <dependency>
       <groupId>org.apache.xbean</groupId>
       <artifactId>xbean-spring</artifactId>
-      <version>4.4</version>
+      <version>4.5</version>
       <exclusions>
         <exclusion>
           <artifactId>commons-logging</artifactId>

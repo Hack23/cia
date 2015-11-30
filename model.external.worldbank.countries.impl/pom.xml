@@ -14,8 +14,8 @@
   <url>http://cia.sourceforge.net/model.external.worldbank.countries.impl</url>
   <inceptionYear>2010</inceptionYear>
   <scm>
-    <connection>scm:git:ssh://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:ssh://github.com/Hack23/cia.git</developerConnection>
+    <connection>scm:git:https://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
   <distributionManagement>
