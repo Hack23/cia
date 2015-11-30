@@ -60,7 +60,7 @@
   </modules>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com:Hack23/cia.git</developerConnection>
+    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
     <tag>parent-pom-2015.12.02</tag>
     <url>https://github.com/Hack23/cia/tree/master/parent-pom</url>
   </scm>
