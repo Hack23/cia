@@ -28,7 +28,7 @@
   </modules>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:https://git@github.com/Hack23/cia.git</developerConnection>
+    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
     <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/parent-model-internal-pom</url>
   </scm>
