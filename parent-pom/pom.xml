@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.hack23.cia</groupId>
   <artifactId>parent-pom</artifactId>
-  <version>2015.12.01</version>
+  <version>2015.12.01-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>CIA Project</name>
   <description>CIA Parent pom</description>
@@ -60,8 +60,8 @@
   </modules>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
-    <tag>parent-pom-2015.12.01</tag>
+    <developerConnection>scm:git:https://git@github.com/Hack23/cia.git</developerConnection>
+    <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/parent-pom</url>
   </scm>
   <issueManagement>

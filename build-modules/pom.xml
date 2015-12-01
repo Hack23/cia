@@ -12,7 +12,7 @@
   <name>build-modules</name>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
+    <developerConnection>scm:git:https://git@github.com/Hack23/cia.git</developerConnection>
     <url>https://github.com/Hack23/cia/tree/master/build-modules</url>
   </scm>
   <distributionManagement>
