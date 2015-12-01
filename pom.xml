@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                              http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>parent-pom</artifactId>
     <groupId>com.hack23.cia</groupId>
-    <version>2015.12.01-SNAPSHOT</version>
+    <version>2015.12.01</version>
     <relativePath>parent-pom/pom.xml</relativePath>
   </parent>
   <artifactId>cia-all</artifactId>
   <packaging>pom</packaging>
   <name>cia-all</name>
   <url>http://cia.sourceforge.net/</url>
+  <modules>
+    <module>parent-pom</module>
+  </modules>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>cia-all-2015.12.01</tag>
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
-  <modules>
-  	<module>parent-pom</module>
-  </modules>
 </project>
