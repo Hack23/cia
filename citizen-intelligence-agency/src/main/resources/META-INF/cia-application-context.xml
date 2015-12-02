@@ -8,6 +8,7 @@
 
 
 	<bean id="propertyOverRideConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreResourceNotFound" value="true" />
 		<property name="locations">
 			<list>
 				<value>classpath:application.properties</value>
@@ -16,6 +17,11 @@
 				<value>classpath:agent-jms-settings.properties</value>
 				<value>classpath:cia-service.properties</value>
 				<value>classpath:admin.properties</value>
+				<value>WEB-INF/database.properties</value>
+				<value>WEB-INF/transactions.properties</value>
+				<value>WEB-INF/agent-jms-settings.properties</value>
+				<value>WEB-INF/cia-service.properties</value>
+				<value>WEB-INF/admin.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -28,7 +34,7 @@
 	<context:annotation-config />
 	<context:spring-configured />
  	<context:mbean-export />
- 	
+
 	<context:component-scan base-package="com.hack23.cia" />
 
   	<bean id="monitoringAdvice" class="net.bull.javamelody.MonitoringSpringInterceptor" />
