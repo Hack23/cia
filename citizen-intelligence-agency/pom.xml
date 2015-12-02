@@ -40,7 +40,7 @@
     <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-sass-compiler</artifactId>
-      <version>0.9.12</version>
+      <version>0.9.13</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -665,8 +665,8 @@
               <classpathScope>compile</classpathScope>
               <mainClass>com.vaadin.sass.SassCompiler</mainClass>
               <arguments>
-                <argument>src/main/webapp/VAADIN/themes/cia/styles.scss</argument>
-                <argument>src/main/webapp/VAADIN/themes/cia/styles.css</argument>
+                <argument>${project.basedir}/src/main/webapp/VAADIN/themes/cia/styles.scss</argument>
+                <argument>${project.basedir}/src/main/webapp/VAADIN/themes/cia/styles.css</argument>
               </arguments>
             </configuration>
           </execution>
