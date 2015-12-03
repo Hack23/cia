@@ -88,7 +88,7 @@ public class CitizenIntelligenceAgencyServer {
 				"org.eclipse.jetty.util.log.Slf4jLog");
 
 
-		System.setProperty("org.apache.activemq.SERIALIZABLE_PACKAGES","com.hack23.cia,java.util,java.lang");
+		System.setProperty("org.apache.activemq.SERIALIZABLE_PACKAGES","com.hack23.cia,java.util,java.lang,java.math,org.apache");
 
 		LogManager.getLogManager().reset();
 		SLF4JBridgeHandler.install();
