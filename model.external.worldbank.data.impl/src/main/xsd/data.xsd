@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
 	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
@@ -59,7 +60,7 @@
 								</xsd:appinfo>
 							</xsd:annotation>
 							</xsd:element>
-							
+
 							<xsd:element form="qualified" name="date" type="xsd:int">
 							<xsd:annotation>
 								<xsd:documentation>
