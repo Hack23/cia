@@ -52,7 +52,7 @@
           <deb>
             <section>devel</section>
             <!-- <depends>zip</depends> -->
-            <preDepends>openjdk-9-jdk, postgresql</preDepends>
+            <preDepends>openjdk-8-jdk, postgresql</preDepends>
             <!-- <priority></priority> <provides></provides> <recommends></recommends>
 							<replaces></replaces> <suggests></suggests> -->
           </deb>
