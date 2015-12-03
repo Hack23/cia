@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: XmlAgentImpl.java 6119 2015-07-31 17:44:12Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/service.external.common/src/main/java/com/hack23/cia/service/external/common/impl/XmlAgentImpl.java $
- */
+ *	$Id$
+ *  $HeadURL$
+*/
 package com.hack23.cia.service.external.common.impl;
 
 import java.io.BufferedReader;
@@ -24,10 +24,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.util.zip.GZIPInputStream;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -46,7 +46,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.service.external.common.api.XmlAgent;
 
 /**
- * The Class AbstractXmlAgentImpl.
+ * The Class XmlAgentImpl.
  */
 @Service
 public final class XmlAgentImpl implements XmlAgent {
@@ -56,7 +56,7 @@ public final class XmlAgentImpl implements XmlAgent {
 			.getLogger(XmlAgentImpl.class);
 
 	/**
-	 * Instantiates a new abstract xml agent impl.
+	 * Instantiates a new xml agent impl.
 	 */
 	public XmlAgentImpl() {
 		super();
@@ -83,14 +83,8 @@ public final class XmlAgentImpl implements XmlAgent {
 		return result.toString();
 	}
 
-	/**
-	 * Retrive content.
-	 *
-	 * @param accessUrl
-	 *            the access url
-	 * @return the string
-	 * @throws Exception
-	 *             the exception
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.common.api.XmlAgent#retriveContent(java.lang.String)
 	 */
 	@Override
 	public String retriveContent(final String accessUrl) throws Exception {
@@ -122,38 +116,16 @@ public final class XmlAgentImpl implements XmlAgent {
 	}
 
 
-	/**
-	 * Unmarshall xml.
-	 *
-	 * @param unmarshaller
-	 *            the unmarshaller
-	 * @param accessUrl
-	 *            the access url
-	 * @return the object
-	 * @throws Exception
-	 *             the exception
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.common.api.XmlAgent#unmarshallXml(org.springframework.oxm.Unmarshaller, java.lang.String)
 	 */
 	@Override
 	public Object unmarshallXml(final Unmarshaller unmarshaller, final String accessUrl) throws Exception {
 		return unmarshallXml(unmarshaller, accessUrl,null,null,null);
 	}
 
-	/**
-	 * Unmarshall xml.
-	 *
-	 * @param unmarshaller
-	 *            the unmarshaller
-	 * @param accessUrl
-	 *            the access url
-	 * @param nameSpace
-	 *            the name space
-	 * @param replace
-	 *            the replace
-	 * @param with
-	 *            the with
-	 * @return the object
-	 * @throws Exception
-	 *             the exception
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.common.api.XmlAgent#unmarshallXml(org.springframework.oxm.Unmarshaller, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public Object unmarshallXml(final Unmarshaller unmarshaller, final String accessUrl,
@@ -161,7 +133,14 @@ public final class XmlAgentImpl implements XmlAgent {
 
 		LOGGER.info("Calls {}", accessUrl);
 
-		String xmlContent = Request.Get(accessUrl.replace(" ","")).execute().returnContent().asString(StandardCharsets.UTF_8);
+		boolean isWeb = accessUrl.toLowerCase().startsWith("http://") || accessUrl.toLowerCase().startsWith("https://");
+
+		String xmlContent;
+		if (isWeb) {
+			xmlContent = Request.Get(accessUrl.replace(" ","")).execute().returnContent().asString(StandardCharsets.UTF_8);
+		} else {
+			xmlContent = readInputStream(accessUrl.replace(" ",""));
+		}
 
 		if (replace != null) {
 			xmlContent = xmlContent.replace(replace, with);
@@ -178,5 +157,28 @@ public final class XmlAgentImpl implements XmlAgent {
 		}
 
 		return unmarshaller.unmarshal(source);
+	}
+
+	/**
+	 * Read input stream.
+	 *
+	 * @param accessUrl
+	 *            the access url
+	 * @return the string
+	 * @throws Exception
+	 *             the exception
+	 */
+	private static String readInputStream(final String accessUrl) throws Exception{
+		final URL url = new URL(accessUrl.replace(" ",""));
+
+		final URLConnection connection = url.openConnection();
+
+		InputStream stream = connection.getInputStream();
+
+
+		final BufferedReader inputStream = new BufferedReader(new InputStreamReader(
+				stream));
+
+		return readWithStringBuffer(inputStream);
 	}
 }
