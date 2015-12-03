@@ -32,6 +32,7 @@ import java.util.zip.GZIPInputStream;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
+import org.apache.http.client.fluent.Request;
 import org.jdom2.Document;
 import org.jdom2.Namespace;
 import org.jdom2.input.SAXBuilder;
@@ -159,20 +160,8 @@ public final class XmlAgentImpl implements XmlAgent {
 			final String nameSpace,final String replace, final String with) throws Exception {
 
 		LOGGER.info("Calls {}", accessUrl);
-		final URL url = new URL(accessUrl.replace(" ",""));
 
-		final URLConnection connection = url.openConnection();
-
-		InputStream stream = connection.getInputStream();
-
-		if ("gzip".equals(connection.getContentEncoding())) {
-			stream = new GZIPInputStream(stream);
-		}
-
-		final BufferedReader inputStream = new BufferedReader(new InputStreamReader(
-				stream));
-
-		String xmlContent = readWithStringBuffer(inputStream);
+		String xmlContent = Request.Get(accessUrl.replace(" ","")).execute().returnContent().asString(StandardCharsets.UTF_8);
 
 		if (replace != null) {
 			xmlContent = xmlContent.replace(replace, with);
