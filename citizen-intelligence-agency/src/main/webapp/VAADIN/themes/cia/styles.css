@@ -29,7 +29,7 @@
 	}
 
 .v-vaadin-version:after {
-	content: "7.6.0.beta1";
+	content: "7.6.0.beta2";
 }
 
 .v-generated-body {
@@ -1943,6 +1943,7 @@ body .cia.v-app .v-app-loading {
 
 .cia .v-formlayout-errorcell, .cia .v-formlayout-captioncell {
 	width: 1px;
+	min-width: 1px;
 }
 
 .cia .v-formlayout-captioncell .v-caption {
@@ -2177,6 +2178,10 @@ body .cia.v-app .v-app-loading {
 	z-index: 5;
 }
 
+.cia .v-grid-sidebar.v-contextmenu.v-grid-sidebar-popup {
+	right: auto;
+}
+
 .cia .v-grid-sidebar.v-contextmenu .v-grid-sidebar-button {
 	background: transparent;
 	border: none;
@@ -2324,12 +2329,17 @@ body .cia.v-app .v-app-loading {
 
 .cia .v-grid-column-resize-handle {
 	position: absolute;
-	width: 20px;
+	width: 12px;
 	top: 0px;
 	bottom: 0px;
-	right: -10px;
+	right: -6px;
 	cursor: col-resize;
 	z-index: 10;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .cia .v-grid-footer td {
@@ -2344,6 +2354,10 @@ body .cia.v-app .v-app-loading {
 
 .cia .v-grid-footer td:first-child {
 	border-left: none;
+}
+
+.cia .v-grid-header .v-grid-cell, .cia .v-grid-footer .v-grid-cell {
+	overflow: visible;
 }
 
 .cia .v-grid-column-header-content, .cia .v-grid-column-footer-content {
@@ -5544,6 +5558,7 @@ body .cia.v-app .v-app-loading {
 
 .cia .v-formlayout-errorcell {
 	width: 13px;
+	min-width: 13px;
 }
 
 .cia .v-formlayout-cell .v-errorindicator {
