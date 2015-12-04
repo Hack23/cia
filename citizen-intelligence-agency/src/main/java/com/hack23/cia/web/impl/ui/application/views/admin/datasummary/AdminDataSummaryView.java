@@ -18,17 +18,27 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.datasummary;
 
+import java.util.concurrent.Future;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
+import com.hack23.cia.service.api.action.admin.RefreshDataViewsResponse;
+import com.hack23.cia.service.api.action.common.ServiceResponse;
+import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
 import com.hack23.cia.web.impl.ui.application.views.common.tablefactory.TableFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -54,6 +64,12 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 	/** The content. */
 	private final VerticalLayout content = new VerticalLayout();
 
+	/** The application manager. */
+	@Autowired
+	@Qualifier("ApplicationManager")
+	private transient ApplicationManager applicationManager;
+
+
 	/**
 	 * Post construct.
 	 */
@@ -67,6 +83,15 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 		content.setSizeFull();
 		content.setMargin(false);
 		content.setSpacing(true);
+
+		Button refreshViewsButton = new Button("Refresh Views");
+
+		refreshViewsButton.addClickListener(event -> {
+			applicationManager.asyncService(new RefreshDataViewsRequest());
+			Notification.show("Refresh Views Started");
+		});
+
+		content.addComponent(refreshViewsButton);
 
 		content.addComponent(pageLinkFactory.createMainViewPageLink());
 

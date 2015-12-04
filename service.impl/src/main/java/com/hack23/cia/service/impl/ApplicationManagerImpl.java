@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,12 +23,15 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.Future;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -190,6 +193,24 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 		}
 
 		return serviceResponse;
+	}
+
+	@Override
+	@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
+    @Async
+	public Future<ServiceResponse> asyncService(final ServiceRequest serviceRequest) {
+
+		initBusinessServiceMap(serviceRequest);
+
+		final BusinessService businessService= serviceRequestBusinessServiceMap.get(serviceRequest.getClass());
+
+		ServiceResponse serviceResponse = null;
+
+		if (businessService != null) {
+			serviceResponse = businessService.processService(serviceRequest);
+		}
+
+		return new AsyncResult<ServiceResponse>(serviceResponse);
 	}
 
 
