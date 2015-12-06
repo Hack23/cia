@@ -32,6 +32,7 @@ import com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 		"classpath:/META-INF/cia-service-external-riksdagen.xml",
+		"classpath:META-INF/cia-service-external-common.xml",
 "classpath:/META-INF/cia-test-context.xml" })
 public abstract class AbstractRiksdagenFunctionalIntegrationTest extends AbstractFunctionalIntegrationTest {
 

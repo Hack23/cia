@@ -18,6 +18,7 @@
 			classpath:META-INF/cia-application-context.xml
 			classpath:META-INF/sec.xml
 			classpath:META-INF/application-context-service-data.xml
+			classpath:META-INF/cia-service-external-common.xml
 			classpath:META-INF/cia-service-external-riksdagen.xml
 			classpath:META-INF/cia-service-external-worldbank.xml
 			classpath:META-INF/cia-service-external-val.xml

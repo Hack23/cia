@@ -35,7 +35,7 @@
 	<context:spring-configured />
  	<context:mbean-export />
 
-	<context:component-scan base-package="com.hack23.cia" />
+	<context:component-scan base-package="com.hack23.cia.web" />
 
   	<bean id="monitoringAdvice" class="net.bull.javamelody.MonitoringSpringInterceptor" />
 

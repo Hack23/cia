@@ -35,6 +35,7 @@ import com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest;
 		"classpath:/META-INF/cia-service-component-agent.xml",
 		"classpath:META-INF/cia-jms-broker.xml",
 		"classpath:/META-INF/application-context-service-data.xml",
+		"classpath:META-INF/cia-service-external-common.xml",
 		"classpath:META-INF/cia-service-external-riksdagen.xml",
 		"classpath:META-INF/cia-service-external-worldbank.xml",
 		"classpath:META-INF/cia-service-external-val.xml",

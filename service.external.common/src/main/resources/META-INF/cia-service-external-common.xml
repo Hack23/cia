@@ -11,14 +11,6 @@
 
 	<context:annotation-config />
 	<context:spring-configured />
-	<context:component-scan base-package="com.hack23.cia.service.external.val" />
-
-
-    <oxm:jaxb2-marshaller id="valPartierMarshaller" context-path="com.hack23.cia.model.external.val.partier.impl"/>
-
-    <oxm:jaxb2-marshaller id="valRiksdagMarshaller" context-path="com.hack23.cia.model.external.val.riksdagsvalkrets.impl"/>
-    <oxm:jaxb2-marshaller id="valLandstingMarshaller" context-path="com.hack23.cia.model.external.val.landstingvalkrets.impl"/>
-    <oxm:jaxb2-marshaller id="valKommunMarshaller" context-path="com.hack23.cia.model.external.val.kommunvalkrets.impl"/>
-
+	<context:component-scan base-package="com.hack23.cia.service.external.common" />
 
 </beans>

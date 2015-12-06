@@ -2,12 +2,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="
      http://www.springframework.org/schema/beans
      http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+     http://www.springframework.org/schema/task
+     https://www.springframework.org/schema/task/spring-task-4.2.xsd
      http://www.springframework.org/schema/cache
      http://www.springframework.org/schema/cache/spring-cache-4.2.xsd
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
      http://www.springframework.org/schema/security
      http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
@@ -18,6 +23,15 @@
 		</property>
 		<property name="ignoreUnresolvablePlaceholders" value="true"/>
 	</bean>
+
+	<context:annotation-config />
+	<context:spring-configured />
+	<context:component-scan base-package="com.hack23.cia.service.impl" />
+
+
+	<task:annotation-driven executor="myExecutor" scheduler="myScheduler"/>
+	<task:executor id="myExecutor" pool-size="5"/>
+	<task:scheduler id="myScheduler" pool-size="10"/>
 
 	<bean id="serviceConfiguration"
 		class="com.hack23.cia.service.impl.SystemConfigurationImpl">
