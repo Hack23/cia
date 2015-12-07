@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -30,7 +30,8 @@ import com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest;
  * The Class AbstractServiceExternalCommonFunctionalIntegrationTest.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:/META-INF/cia-test-context.xml" })
+@ContextConfiguration(locations = { "classpath:/META-INF/cia-service-external-common.xml",
+									"classpath:/META-INF/cia-test-context.xml" })
 public abstract class AbstractServiceExternalCommonFunctionalIntegrationTest extends
 		AbstractFunctionalIntegrationTest {
 
@@ -44,7 +45,7 @@ public abstract class AbstractServiceExternalCommonFunctionalIntegrationTest ext
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest#
 	 * getDatabaseConnection()
 	 */
