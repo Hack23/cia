@@ -52,7 +52,7 @@ public final class ValApiImpl implements ValApi {
 	/** The logger. */
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(ValApiImpl.class);
-	
+
 	@Autowired
 	private XmlAgent xmlAgent;
 
@@ -85,7 +85,7 @@ public final class ValApiImpl implements ValApi {
 	 */
 	@Override
 	public List<SwedenElectionType> getElectionTypes() throws Exception {
-		final URL resource = ValApiImpl.class.getResource("/partier2014.xml");
+		final URL resource = ValApiImpl.class.getResource("/partier20151217.xml");
 
 		return ((JAXBElement<SwedenElectionTypeContainerElement>) xmlAgent
 				.unmarshallXml(
