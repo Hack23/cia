@@ -41,7 +41,7 @@
     </site>
   </distributionManagement>
   <properties>
-    <cia.project.versions.hibernate.jpamodelgen>5.0.5.Final</cia.project.versions.hibernate.jpamodelgen>
+    <cia.project.versions.hibernate.jpamodelgen>5.0.6.Final</cia.project.versions.hibernate.jpamodelgen>
     <cia.project.versions.hibernate.jpa2>1.0.0.Final</cia.project.versions.hibernate.jpa2>
   </properties>
   <dependencyManagement>

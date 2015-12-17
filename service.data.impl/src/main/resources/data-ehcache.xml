@@ -14,7 +14,7 @@
 	<cache name="org.hibernate.cache.spi.UpdateTimestampsCache" maxElementsInMemory="100000"
 		eternal="true" overflowToDisk="false" memoryStoreEvictionPolicy="FIFO" />
 
-    <cache name="org.hibernate.cache.internal.StandardQueryCache" maxElementsInMemory="10000000"
+    <cache name="org.hibernate.cache.internal.StandardQueryCache" maxElementsInMemory="100000"
 		eternal="false" overflowToDisk="false" memoryStoreEvictionPolicy="FIFO" />
 
 </ehcache>

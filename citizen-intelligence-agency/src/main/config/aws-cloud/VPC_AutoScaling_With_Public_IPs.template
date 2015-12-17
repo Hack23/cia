@@ -399,6 +399,7 @@
           "sudo apt-get update\n",
           "echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections\n",
           "sudo apt-get -y install oracle-java8-installer\n",
+          "sudo apt-get -y install oracle-java8-unlimited-jce-policy\n",
           "sudo apt-get -y install oracle-java8-set-default\n",
 
           "wget https://oss.sonatype.org/service/local/repositories/releases/content/com/hack23/cia/cia-dist-deb/2015.12.01/cia-dist-deb-2015.12.01.deb \n",
