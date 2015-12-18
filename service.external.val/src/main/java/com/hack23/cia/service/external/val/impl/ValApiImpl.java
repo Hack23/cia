@@ -162,7 +162,7 @@ public final class ValApiImpl implements ValApi {
 	 */
 	@Override
 	public SwedenElectionRegion getSwedenElectionRegion() {
-		final URL resource = ValApiImpl.class.getResource("/partier2014.xml");
+		final URL resource = ValApiImpl.class.getResource("/partier20151217.xml");
 
 		try {
 			return ((JAXBElement<SwedenElectionTypeContainerElement>) xmlAgent

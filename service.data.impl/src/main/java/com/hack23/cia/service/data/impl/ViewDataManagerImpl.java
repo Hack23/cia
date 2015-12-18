@@ -45,9 +45,17 @@ public class ViewDataManagerImpl implements ViewDataManager {
 	public void refreshViews() {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
+
+		//Handle FP changed to L for folkpartiet name changed to liberalerna.
+
+		jdbcTemplate.execute("update vote_data set party='L' where party='FP'");
+		jdbcTemplate.execute("update person_data set party='L' where party='FP'");
+		jdbcTemplate.execute("update document_element set org='L' where org='FP' or org='fp'");
+		jdbcTemplate.execute("update document_data set org='L' where org='FP' or org='fp'");
+		jdbcTemplate.execute("update committee_document_data set org='L' where org='FP' or org='fp'");
+		jdbcTemplate.execute("update document_person_reference_da_0 set party_short_code='L' where party_short_code='FP' or party_short_code='fp'");
+
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_worldbank_indicator_data_country_summary");
-
-
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary");
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary");
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary");
