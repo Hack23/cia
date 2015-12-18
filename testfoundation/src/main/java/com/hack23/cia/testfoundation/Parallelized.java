@@ -18,6 +18,8 @@
  */
 package com.hack23.cia.testfoundation;
 
+import java.util.concurrent.Executors;
+
 import org.databene.contiperf.junit.ParallelScheduler;
 import org.junit.runners.Parameterized;
 
@@ -36,6 +38,6 @@ public class Parallelized extends Parameterized {
 	 */
 	public Parallelized(final Class<?> klass) throws Throwable {
 		super(klass);
-		setScheduler(new ParallelScheduler());
+		setScheduler(new ParallelScheduler(Executors.newCachedThreadPool()));
 	}
 }
