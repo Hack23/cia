@@ -28,7 +28,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Join;
-import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -120,6 +119,9 @@ public final class DataViewerImpl implements DataViewer {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.data.api.DataViewer#getAllOrderBy(java.lang.Class, javax.persistence.metamodel.SingularAttribute)
+	 */
 	@Override
 	public <T> List<T> getAllOrderBy(Class<T> clazz, SingularAttribute<T, ? extends Object> property) {
 		final CriteriaQuery<T> criteriaQuery = criteriaBuilder
@@ -204,10 +206,46 @@ public final class DataViewerImpl implements DataViewer {
 	@Override
 	public <T> List<T> findListByProperty(final Class<T> clazz,
 			final SingularAttribute<T, ? extends Object> property, final Object value) {
+
+		return findOrderedListByProperty(clazz,property,value,null);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.data.api.DataViewer#findListByProperty(java.lang.Class, java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
+	 */
+	@Override
+	public <T> List<T> findListByProperty(final Class<T> clazz, final Object[] values,
+			final SingularAttribute<T, ? extends Object>... properties) {
+
+		return findOrderedListByProperty(clazz,null,values,properties);
+	}
+
+
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.data.api.DataViewer#findListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
+	 */
+	@Override
+	public <T, V> List<T> findListByEmbeddedProperty(final Class<T> clazz,
+			final SingularAttribute<T, V> property, final Class<V> clazz2,
+			final SingularAttribute<V, ? extends Object> property2, final Object value) {
+		return findOrderedListByEmbeddedProperty(clazz,property,clazz2,property2,value,null);
+
+	}
+
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedListByProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
+	 */
+	@Override
+	public <T> List<T> findOrderedListByProperty(Class<T> clazz, SingularAttribute<T, ? extends Object> property,
+			Object value, SingularAttribute<T, ? extends Object> orderByProperty) {
 		final CriteriaQuery<T> criteriaQuery = criteriaBuilder
 				.createQuery(clazz);
 		final Root<T> root = criteriaQuery.from(clazz);
 		criteriaQuery.select(root);
+
+		if (orderByProperty != null) {
+			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderByProperty)));
+		}
 
 		if (value instanceof String) {
 			final Expression<String> propertyObject = (Expression<String>) root.get(property);
@@ -224,19 +262,23 @@ public final class DataViewerImpl implements DataViewer {
 		addCacheHints(typedQuery, "findListByProperty." + clazz.getSimpleName());
 
 		return typedQuery.getResultList();
-
 	}
 
 	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.data.api.DataViewer#findListByProperty(java.lang.Class, java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
+	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedListByProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
 	 */
 	@Override
-	public <T> List<T> findListByProperty(final Class<T> clazz, final Object[] values,
-			final SingularAttribute<T, ? extends Object>... properties) {
+	public <T> List<T> findOrderedListByProperty(Class<T> clazz, SingularAttribute<T, ? extends Object> orderByProperty,
+			Object[] values, SingularAttribute<T, ? extends Object>... properties) {
 		final CriteriaQuery<T> criteriaQuery = criteriaBuilder
 				.createQuery(clazz);
 		final Root<T> root = criteriaQuery.from(clazz);
 		criteriaQuery.select(root);
+
+		if (orderByProperty != null) {
+			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderByProperty)));
+		}
+
 
 		final Object value=values[0];
 		final SingularAttribute<T, ? extends Object> property = properties[0];
@@ -264,19 +306,55 @@ public final class DataViewerImpl implements DataViewer {
 		return typedQuery.getResultList();
 	}
 
-
 	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.data.api.DataViewer#findListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
+	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override
-	public <T, V> List<T> findListByEmbeddedProperty(final Class<T> clazz,
-			final SingularAttribute<T, V> property, final Class<V> clazz2,
-			final SingularAttribute<V, ? extends Object> property2, final Object value) {
-
+	public <T, V> List<T> findOrderedListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property,
+			Class<V> clazz2, SingularAttribute<V, ? extends Object> property2, Object value,
+			SingularAttribute<V, ? extends Object> orderByProperty) {
 		final CriteriaQuery<T> criteriaQuery = criteriaBuilder
 				.createQuery(clazz);
 		final Root<T> root = criteriaQuery.from(clazz);
 		criteriaQuery.select(root);
+
+		final Join<T, V> join = root.join(property);
+
+		final Path<? extends Object> path = join.get(property2);
+
+		if (orderByProperty != null) {
+			criteriaQuery.orderBy(criteriaBuilder.desc(join.get(orderByProperty)));
+		}
+
+		final Predicate condition = criteriaBuilder.equal(path, value);
+
+		criteriaQuery.where(condition);
+
+		final TypedQuery<T> typedQuery = entityManager
+				.createQuery(criteriaQuery);
+
+		addCacheHints(typedQuery, "findListByEmbeddedProperty." + clazz.getSimpleName());
+
+
+		return typedQuery.getResultList();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedByPropertyListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
+	 */
+	@Override
+	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property,
+			Class<V> clazz2, SingularAttribute<V, ? extends Object> property2, Object value,
+			SingularAttribute<T, ? extends Object> orderByProperty) {
+		final CriteriaQuery<T> criteriaQuery = criteriaBuilder
+				.createQuery(clazz);
+		final Root<T> root = criteriaQuery.from(clazz);
+		criteriaQuery.select(root);
+
+		if (orderByProperty != null) {
+			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderByProperty)));
+		}
+
 
 		final Join<T, V> join = root.join(property);
 

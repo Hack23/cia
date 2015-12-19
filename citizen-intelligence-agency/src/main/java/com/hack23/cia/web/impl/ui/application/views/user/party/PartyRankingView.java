@@ -27,6 +27,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary_;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
@@ -156,7 +157,7 @@ public final class PartyRankingView extends AbstractRankingView {
 					.getDataContainer(ViewRiksdagenPartySummary.class);
 
 			final BeanItemContainer<ViewRiksdagenPartySummary> politicianDocumentDataSource = new BeanItemContainer<ViewRiksdagenPartySummary>(
-					ViewRiksdagenPartySummary.class, dataContainer.getAll());
+					ViewRiksdagenPartySummary.class, dataContainer.getAllOrderBy(ViewRiksdagenPartySummary_.currentAssignments));
 
 			return gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Parties",
 					new String[] { "party", "active", "firstAssignmentDate", "lastAssignmentDate", "currentAssignments",

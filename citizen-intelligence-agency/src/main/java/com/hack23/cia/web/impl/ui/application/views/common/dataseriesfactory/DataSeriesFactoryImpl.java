@@ -29,6 +29,7 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary_;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 
@@ -243,7 +244,7 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 		final DataContainer<ViewRiksdagenPartySummary, String> dataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenPartySummary.class);
 
-		for (final ViewRiksdagenPartySummary data : dataContainer.getAll()) {
+		for (final ViewRiksdagenPartySummary data : dataContainer.getAllOrderBy(ViewRiksdagenPartySummary_.currentAssignments)) {
 			if (data != null && data.isActiveParliament()) {
 
 				dataSeries = dataSeries.newSeries().add(data.getParty(),

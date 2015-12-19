@@ -27,6 +27,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
+import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry_;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
@@ -161,7 +162,7 @@ public final class MinistryRankingView extends AbstractRankingView {
 				.getDataContainer(ViewRiksdagenMinistry.class);
 
 		final BeanItemContainer<ViewRiksdagenMinistry> dataSource = new BeanItemContainer<ViewRiksdagenMinistry>(
-				ViewRiksdagenMinistry.class, dataContainer.getAll());
+				ViewRiksdagenMinistry.class, dataContainer.getAllOrderBy(ViewRiksdagenMinistry_.currentMemberSize));
 
 		return gridFactory.createBasicBeanItemGrid(dataSource, "Ministries",
 				new String[] { "nameId", "totalDaysServed", "currentMemberSize", "totalAssignments",

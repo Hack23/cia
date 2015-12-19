@@ -205,9 +205,9 @@ public final class PartyView extends AbstractGroupView {
 
 					final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<ViewRiksdagenPoliticianDocument>(
 							ViewRiksdagenPoliticianDocument.class,
-							politicianDocumentDataContainer.getAllBy(
+							politicianDocumentDataContainer.findOrderedListByProperty(
 									ViewRiksdagenPoliticianDocument_.partyShortCode,
-									pageId));
+									pageId,ViewRiksdagenPoliticianDocument_.madePublicDate));
 
 					final Grid politicianDocumentBeanItemGrid = gridFactory.createBasicBeanItemGrid(
 							politicianDocumentDataSource, "Member Document history",

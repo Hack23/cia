@@ -332,9 +332,9 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		final DataContainer<ViewRiksdagenVoteDataBallotPartySummary, RiksdagenVoteDataBallotPartyEmbeddedId> partyBallotSummaryDailyDataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenVoteDataBallotPartySummary.class);
 
-		return partyBallotSummaryDailyDataContainer.findListByEmbeddedProperty(
+		return partyBallotSummaryDailyDataContainer.findOrderedByPropertyListByEmbeddedProperty(
 				ViewRiksdagenVoteDataBallotPartySummary.class, ViewRiksdagenVoteDataBallotPartySummary_.embeddedId,
-				RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.party, party);
+				RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.party, party,ViewRiksdagenVoteDataBallotPartySummary_.voteDate);
 	}
 
 	/**
@@ -371,11 +371,11 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		final DataContainer<ViewRiksdagenVoteDataBallotPoliticianSummary, RiksdagenVoteDataBallotPoliticianEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenVoteDataBallotPoliticianSummary.class);
 
-		return politicianBallotSummaryDailyDataContainer.findListByEmbeddedProperty(
+		return politicianBallotSummaryDailyDataContainer.findOrderedByPropertyListByEmbeddedProperty(
 				ViewRiksdagenVoteDataBallotPoliticianSummary.class,
 				ViewRiksdagenVoteDataBallotPoliticianSummary_.embeddedId,
 				RiksdagenVoteDataBallotPoliticianEmbeddedId.class,
-				RiksdagenVoteDataBallotPoliticianEmbeddedId_.intressentId, id);
+				RiksdagenVoteDataBallotPoliticianEmbeddedId_.intressentId, id,ViewRiksdagenVoteDataBallotPoliticianSummary_.voteDate);
 
 	}
 

@@ -61,6 +61,24 @@ public interface DataViewer {
 			final SingularAttribute<T, ? extends Object> property, final Object value);
 
 	/**
+	 * Find ordered list by property.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param clazz
+	 *            the clazz
+	 * @param property
+	 *            the property
+	 * @param value
+	 *            the value
+	 * @param orderByProperty
+	 *            the order by property
+	 * @return the list
+	 */
+	<T> List<T> findOrderedListByProperty(Class<T> clazz,
+			final SingularAttribute<T, ? extends Object> property, final Object value,SingularAttribute<T, ? extends Object> orderByProperty);
+
+	/**
 	 * Find list by property.
 	 *
 	 * @param <T>
@@ -74,6 +92,26 @@ public interface DataViewer {
 	 * @return the list
 	 */
 	<T> List<T> findListByProperty(Class<T> clazz, final Object[] values,final SingularAttribute<T, ? extends Object>... properties);
+
+
+	/**
+	 * Find ordered list by property.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param clazz
+	 *            the clazz
+	 * @param orderByProperty
+	 *            the order by property
+	 * @param values
+	 *            the values
+	 * @param properties
+	 *            the properties
+	 * @return the list
+	 */
+	<T> List<T> findOrderedListByProperty(Class<T> clazz, SingularAttribute<T, ? extends Object> orderByProperty,final Object[] values,final SingularAttribute<T, ? extends Object>... properties);
+
+
 
 	/**
 	 * Find by query property.
@@ -122,6 +160,59 @@ public interface DataViewer {
 			SingularAttribute<V, ? extends Object> property2, Object value);
 
 
+
+	/**
+	 * Find ordered list by embedded property.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param <V>
+	 *            the value type
+	 * @param clazz
+	 *            the clazz
+	 * @param property
+	 *            the property
+	 * @param clazz2
+	 *            the clazz2
+	 * @param property2
+	 *            the property2
+	 * @param value
+	 *            the value
+	 * @param orderByProperty
+	 *            the order by property
+	 * @return the list
+	 */
+	<T,V> List<T> findOrderedListByEmbeddedProperty(Class<T> clazz,
+			SingularAttribute<T, V> property,Class<V> clazz2,
+			SingularAttribute<V, ? extends Object> property2, Object value,SingularAttribute<V, ? extends Object> orderByProperty);
+
+
+	/**
+	 * Find ordered by property list by embedded property.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param <V>
+	 *            the value type
+	 * @param clazz
+	 *            the clazz
+	 * @param property
+	 *            the property
+	 * @param clazz2
+	 *            the clazz2
+	 * @param property2
+	 *            the property2
+	 * @param value
+	 *            the value
+	 * @param orderByProperty
+	 *            the order by property
+	 * @return the list
+	 */
+	<T,V> List<T> findOrderedByPropertyListByEmbeddedProperty(Class<T> clazz,
+			SingularAttribute<T, V> property,Class<V> clazz2,
+			SingularAttribute<V, ? extends Object> property2, Object value,SingularAttribute<T, ? extends Object> orderByProperty);
+
+
 	/**
 	 * Gets the all.
 	 *
@@ -147,5 +238,16 @@ public interface DataViewer {
 	<T> T load(Class<T> clazz,Object id);
 
 
+	/**
+	 * Gets the all order by.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param clazz
+	 *            the clazz
+	 * @param property
+	 *            the property
+	 * @return the all order by
+	 */
 	<T> List<T> getAllOrderBy(Class<T> clazz, SingularAttribute<T, ? extends Object> property);
 }

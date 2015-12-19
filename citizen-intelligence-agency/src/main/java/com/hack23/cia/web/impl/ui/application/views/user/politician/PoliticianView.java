@@ -212,7 +212,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 					final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<ViewRiksdagenPoliticianDocument>(
 							ViewRiksdagenPoliticianDocument.class, politicianDocumentDataContainer
-									.getAllBy(ViewRiksdagenPoliticianDocument_.personReferenceId, personData.getId()));
+									.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.personReferenceId, personData.getId(),ViewRiksdagenPoliticianDocument_.madePublicDate));
 
 					final Grid politicianDocumentBeanItemGrid = gridFactory.createBasicBeanItemGrid(
 							politicianDocumentDataSource, "Documents",

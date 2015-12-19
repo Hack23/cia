@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.datasummary;
 
-import java.util.concurrent.Future;
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +27,6 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
-import com.hack23.cia.service.api.action.admin.RefreshDataViewsResponse;
-import com.hack23.cia.service.api.action.common.ServiceResponse;
-import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
 import com.hack23.cia.web.impl.ui.application.views.common.tablefactory.TableFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;

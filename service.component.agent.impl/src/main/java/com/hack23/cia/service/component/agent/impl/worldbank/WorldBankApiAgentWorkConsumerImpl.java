@@ -85,24 +85,23 @@ public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 		final ObjectMessage msg = (ObjectMessage) message;
 
 		try {
-			
 			WorldBankDataSources source =  (WorldBankDataSources) msg.getObject();
 			LOGGER.info("Consumed message:{}", source);
-			
+
 			switch (source) {
 			case COUNTRIES:
-				startWorldbankCountryLoading();				
+				startWorldbankCountryLoading();
 				break;
 			case INDICATORS:
 				startWorldBankIndicatorLoading();
 				break;
-			case DATA:	
+			case DATA:
 				startWorldBankDataLoading();
 				break;
 			default:
 				break;
-			}			
-			
+			}
+
 		} catch (final JMSException e1) {
 			LOGGER.warn("jms", e1);
 		}
@@ -141,7 +140,7 @@ public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 
 			final Map<String, String> currentSaved = importService
 					.getWorldBankDataMap();
-			
+
 			System.out.println(currentSaved);
 
 			for (final IndicatorElement indicator : indicatorlist) {

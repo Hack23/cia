@@ -135,9 +135,55 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.data.api.DataViewer#getAllOrderBy(java.lang.Class, javax.persistence.metamodel.SingularAttribute)
+	 */
 	@Override
 	public <T> List<T> getAllOrderBy(Class<T> clazz, SingularAttribute<T, ? extends Object> property) {
 		return dataViewer.getAllOrderBy(clazz, property);
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedListByProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
+	 */
+	@Override
+	public <T> List<T> findOrderedListByProperty(Class<T> clazz, SingularAttribute<T, ? extends Object> property,
+			Object value, SingularAttribute<T, ? extends Object> orderByProperty) {
+		return dataViewer.findOrderedListByProperty(clazz,property,value,orderByProperty);
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedListByProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
+	 */
+	@Override
+	public <T> List<T> findOrderedListByProperty(Class<T> clazz, SingularAttribute<T, ? extends Object> orderByProperty,
+			Object[] values, SingularAttribute<T, ? extends Object>... properties) {
+		return dataViewer.findOrderedListByProperty(clazz,orderByProperty,values,properties);
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
+	 */
+	@Override
+	public <T, V> List<T> findOrderedListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property,
+			Class<V> clazz2, SingularAttribute<V, ? extends Object> property2, Object value,
+			SingularAttribute<V, ? extends Object> orderByProperty) {
+		return dataViewer.findOrderedListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);
+	}
+
+
+
+	@Override
+	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property,
+			Class<V> clazz2, SingularAttribute<V, ? extends Object> property2, Object value,
+			SingularAttribute<T, ? extends Object> orderByProperty) {
+		return dataViewer.findOrderedByPropertyListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);
 	}
 
 

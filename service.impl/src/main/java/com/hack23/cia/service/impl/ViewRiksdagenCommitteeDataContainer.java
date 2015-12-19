@@ -113,4 +113,36 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<ViewRiksdagenCommittee> findOrderedListByProperty(
+			SingularAttribute<ViewRiksdagenCommittee, ? extends Object> orderByProperty, Object[] values,
+			SingularAttribute<ViewRiksdagenCommittee, ? extends Object>... properties) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T, V> List<T> findOrderedListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property,
+			Class<V> clazz2, SingularAttribute<V, ? extends Object> property2, Object value,
+			SingularAttribute<V, ? extends Object> orderByProperty) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property,
+			Class<V> clazz2, SingularAttribute<V, ? extends Object> property2, Object value,
+			SingularAttribute<T, ? extends Object> orderByProperty) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ViewRiksdagenCommittee> findOrderedListByProperty(
+			SingularAttribute<ViewRiksdagenCommittee, ? extends Object> property, Object value,
+			SingularAttribute<ViewRiksdagenCommittee, ? extends Object> orderByProperty) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

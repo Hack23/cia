@@ -27,6 +27,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician_;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
@@ -137,7 +138,7 @@ public final class PoliticianRankingView extends AbstractRankingView {
 
 			politicianDataSource = new BeanItemContainer<ViewRiksdagenPolitician>(
 					ViewRiksdagenPolitician.class,
-					politicianDataContainer.getAll());
+					politicianDataContainer.getAllOrderBy(ViewRiksdagenPolitician_.currentAssignments));
 
 		}
 

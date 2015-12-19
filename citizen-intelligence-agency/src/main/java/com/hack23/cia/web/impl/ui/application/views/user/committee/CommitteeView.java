@@ -151,9 +151,9 @@ public final class CommitteeView extends AbstractGroupView {
 
 					final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<ViewRiksdagenPoliticianDocument>(
 							ViewRiksdagenPoliticianDocument.class,
-							politicianDocumentDataContainer.getAllBy(ViewRiksdagenPoliticianDocument_.org,
+							politicianDocumentDataContainer.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.org,
 									viewRiksdagenCommittee.getEmbeddedId().getOrgCode().replace(" ", "")
-											.replace("_", "").trim()));
+											.replace("_", "").trim(),ViewRiksdagenPoliticianDocument_.madePublicDate));
 
 					final Grid politicianDocumentBeanItemGrid = gridFactory.createBasicBeanItemGrid(
 							politicianDocumentDataSource, "Documents",

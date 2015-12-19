@@ -714,7 +714,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-pmd-plugin</artifactId>
-          <version>3.5</version>
+          <version>3.6</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1292,7 +1292,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-pmd-plugin</artifactId>
-            <version>3.5</version>
+            <version>3.6</version>
             <inherited>true</inherited>
             <configuration>
               <linkXref>true</linkXref>
@@ -1487,7 +1487,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-pmd-plugin</artifactId>
-            <version>3.5</version>
+            <version>3.6</version>
             <inherited>true</inherited>
             <configuration>
               <linkXref>true</linkXref>

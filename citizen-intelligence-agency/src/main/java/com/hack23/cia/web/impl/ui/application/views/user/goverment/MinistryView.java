@@ -151,7 +151,7 @@ public final class MinistryView extends AbstractGroupView {
 
 					final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<ViewRiksdagenPoliticianDocument>(
 							ViewRiksdagenPoliticianDocument.class, politicianDocumentDataContainer
-									.getAllBy(ViewRiksdagenPoliticianDocument_.org, viewRiksdagenMinistry.getNameId()));
+									.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.org, viewRiksdagenMinistry.getNameId(),ViewRiksdagenPoliticianDocument_.madePublicDate));
 
 					final Grid politicianDocumentBeanItemGrid = gridFactory.createBasicBeanItemGrid(
 							politicianDocumentDataSource, "Documents",

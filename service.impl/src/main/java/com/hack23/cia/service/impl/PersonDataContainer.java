@@ -123,4 +123,34 @@ public final class PersonDataContainer implements DataContainer<PersonData,Strin
 		return null;
 	}
 
+	@Override
+	public List<PersonData> findOrderedListByProperty(SingularAttribute<PersonData, ? extends Object> orderByProperty,
+			Object[] values, SingularAttribute<PersonData, ? extends Object>... properties) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T, V> List<T> findOrderedListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property,
+			Class<V> clazz2, SingularAttribute<V, ? extends Object> property2, Object value,
+			SingularAttribute<V, ? extends Object> orderByProperty) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property,
+			Class<V> clazz2, SingularAttribute<V, ? extends Object> property2, Object value,
+			SingularAttribute<T, ? extends Object> orderByProperty) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PersonData> findOrderedListByProperty(SingularAttribute<PersonData, ? extends Object> property,
+			Object value, SingularAttribute<PersonData, ? extends Object> orderByProperty) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
