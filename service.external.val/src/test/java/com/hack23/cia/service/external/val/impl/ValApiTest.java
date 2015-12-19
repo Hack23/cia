@@ -64,7 +64,7 @@ public class ValApiTest extends AbstractValFunctionalIntegrationTest {
 	public void testGetSwedenPoliticalParties() throws Exception {
 		final List<SwedenPoliticalParty> list = valApi.getSwedenPoliticalParties();
 		assertNotNull(list);
-		assertEquals(40, list.size());
+		assertEquals(38, list.size());
 
 	}
 
