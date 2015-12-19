@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -30,11 +30,14 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement_;
 import com.hack23.cia.service.data.api.DocumentElementDAO;
+import com.hack23.cia.service.data.impl.liquidbase.SpringLiquidBaseFailSafe;
 
 /**
  * The Class DocumentElementDAOImpl.
@@ -43,6 +46,10 @@ import com.hack23.cia.service.data.api.DocumentElementDAO;
 public final class DocumentElementDAOImpl extends
 AbstractGenericDAOImpl<DocumentElement, String> implements
 DocumentElementDAO {
+
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(DocumentElementDAOImpl.class);
+
 
 	/** The Constant expectedDocumentElements. */
 	private static final Map<String, Long> expectedDocumentElements = new HashMap<String, Long>();
@@ -55,11 +62,11 @@ DocumentElementDAO {
 		expectedDocumentElements.put("1999/00", 87L);
 		expectedDocumentElements.put("1999/2000", 2822L);
 		expectedDocumentElements.put("2000", 630L);
-		expectedDocumentElements.put("2000/01", 8340L);
+		expectedDocumentElements.put("2000/01", 8333L);
 		expectedDocumentElements.put("2001", 631L);
 		expectedDocumentElements.put("2001/02", 9304L);
 		expectedDocumentElements.put("2002", 719L);
-		expectedDocumentElements.put("2002/03", 8654L);
+		expectedDocumentElements.put("2002/03", 8652L);
 		expectedDocumentElements.put("2003", 774L);
 		expectedDocumentElements.put("2003/04", 10458L);
 		expectedDocumentElements.put("2004", 800L);
@@ -69,13 +76,13 @@ DocumentElementDAO {
 		expectedDocumentElements.put("2006", 1205L);
 		expectedDocumentElements.put("2006/07", 10547L);
 		expectedDocumentElements.put("2007", 1681L);
-		expectedDocumentElements.put("2007/08", 12398L);
+		expectedDocumentElements.put("2007/08", 12394L);
 		expectedDocumentElements.put("2008", 1427L);
 		expectedDocumentElements.put("2008/09", 11903L);
 		expectedDocumentElements.put("2009", 1255L);
-		expectedDocumentElements.put("2009/10", 12308L);
+		expectedDocumentElements.put("2009/10", 12307L);
 		expectedDocumentElements.put("2010", 1164L);
-		expectedDocumentElements.put("2010/11", 11108L);
+		expectedDocumentElements.put("2010/11", 11093L);
 		expectedDocumentElements.put("2011", 1383L);
 		expectedDocumentElements.put("2011/12", 11752L);
 		expectedDocumentElements.put("2012", 1168L);
@@ -85,9 +92,13 @@ DocumentElementDAO {
 		expectedDocumentElements.put("2013/13", 1L);
 		expectedDocumentElements.put("2013/14", 11858L);
 		expectedDocumentElements.put("2013/2014", 2L);
-		expectedDocumentElements.put("2014", 1453L);
-		expectedDocumentElements.put("2014/", 1L);		
+		expectedDocumentElements.put("2014", 1446L);
+		expectedDocumentElements.put("2014/", 1L);
 		expectedDocumentElements.put("2014/15", 11340L);
+		expectedDocumentElements.put("2014/16", 1L);
+		expectedDocumentElements.put("2015", 936L);
+
+
 	}
 
 	/** The entity manager. */
@@ -220,6 +231,9 @@ DocumentElementDAO {
 			if (rm != null && !"".equals(rm)) {
 
 				final Long expectedSum= expectedDocumentElements.get(rm.trim());
+
+				LOGGER.info("getMissingDocumentStartFromYear Rm {} expectedSum {} actualSum {}",rm,expectedSum,sum);
+
 				if (expectedSum !=null) {
 
 					if (sum < expectedSum) {
