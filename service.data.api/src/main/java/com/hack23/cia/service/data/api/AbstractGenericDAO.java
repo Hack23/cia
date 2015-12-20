@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -82,6 +82,15 @@ public interface AbstractGenericDAO<T extends Serializable, I extends Serializab
 	 * @return the all
 	 */
 	List<T> getAll();
+
+	/**
+	 * Gets the all order by.
+	 *
+	 * @param orderBy
+	 *            the order by
+	 * @return the all order by
+	 */
+	List<T> getAllOrderBy(final SingularAttribute<T, ? extends Object> orderBy);
 
 	/**
 	 * Gets the size.

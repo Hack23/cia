@@ -119,8 +119,7 @@ public final class PersonDataContainer implements DataContainer<PersonData,Strin
 
 	@Override
 	public List<PersonData> getAllOrderBy(SingularAttribute<PersonData, ? extends Object> property) {
-		// TODO Auto-generated method stub
-		return null;
+		return personDataDAO.getAllOrderBy(property);
 	}
 
 	@Override

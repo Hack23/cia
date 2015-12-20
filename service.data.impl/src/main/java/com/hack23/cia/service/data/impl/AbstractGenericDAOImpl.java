@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -192,16 +192,30 @@ implements AbstractGenericDAO<T, ID> {
 	 */
 	@Override
 	public final List<T> getAll() {
+		return getAllOrderBy(null);
+	}
+
+
+	@Override
+	public final List<T> getAllOrderBy(final SingularAttribute<T, ? extends Object> orderBy) {
 		final CriteriaQuery<T> criteriaQuery = criteriaBuilder
 				.createQuery(getPersistentClass());
 		final Root<T> root = criteriaQuery.from(getPersistentClass());
+
 		criteriaQuery.select(root);
+
+		if (orderBy != null) {
+			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderBy)));
+		}
+
+
 		final TypedQuery<T> typedQuery = getEntityManager()
 				.createQuery(criteriaQuery);
 		addCacheHints(typedQuery, "getAll");
 
 		return typedQuery.getResultList();
 	}
+
 
 	/**
 	 * Gets the criteria builder.

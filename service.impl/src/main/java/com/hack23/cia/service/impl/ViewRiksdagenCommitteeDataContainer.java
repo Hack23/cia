@@ -110,8 +110,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 	@Override
 	public List<ViewRiksdagenCommittee> getAllOrderBy(
 			SingularAttribute<ViewRiksdagenCommittee, ? extends Object> property) {
-		// TODO Auto-generated method stub
-		return null;
+		return viewRiksdagenCommitteeDAO.getAllOrderBy(property);
 	}
 
 	@Override
