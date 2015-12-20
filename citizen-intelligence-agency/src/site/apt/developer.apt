@@ -3,7 +3,7 @@
  ------
  Pether Sorling
  ------
- 2 May 2010
+ 20 December 2015
  ------
 
 Developer Guide
@@ -20,9 +20,9 @@ Requirements
 
  * Database : PostgreSQL 9.4.x {{{http://www.postgresql.org/}download}}
 
- * Build System : Maven 3.3.1 {{{http://maven.apache.org/download.html}download}}
+ * Build System : Maven 3.3.9 {{{http://maven.apache.org/download.html}download}}
 
- * Build tool : Ant 1.9.4 {{{http://ant.apache.org/bindownload.cgi}download}}
+ * Build tool : Ant 1.9.6 {{{http://ant.apache.org/bindownload.cgi}download}}
 
  * Documentation generation : Graphviz {{{http://www.graphviz.org/}homepage}}
 
@@ -31,7 +31,7 @@ Getting the Source Code
 
  The source can be checked out anonymously from SVN with this command:
 
- $ svn checkout https://svn.code.sf.net/p/cia/code/trunk/ cia-trunk
+ $ git clone https://github.com/Hack23/cia.git
 
 
 Setting up the postgresql database user
@@ -53,35 +53,22 @@ Build the application & run test
  Now everything should be ready for you to build the application,
  execute the following commands to build & run
 
- $ mvn clean package -Pdev,skip-db -Dmaven.skip.test=true
+ $ cd cia/citizen-intelligence-agency
 
- $ mvn jetty:run -Pdev,skip-db -Dtest=none -Dmaven.skip.test=true
-
- or using convenient ant task
+ $ ant clean-install-notest
 
  $ ant run
 
- This will build build a .war file and start en embedded jetty instance
 
  NOTE: Set the variable MAVEN_OPTS="-Xmx1024m -Xms512m -XX:MaxPermSize=512m" if you get java memory exception.
 
 Test Citizen Intelligence Agency
 
  Now if everything has started successfully you should be able to view Citizen Intelligence Agency
- at http://localhost:8080/
+ at http://localhost:8080/cia/
 
 
 Eclipse development
 
- If you want to do any serious development I would recommend that you install
- the latest version of Eclipse http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/lunasr2 .
+ Install the latest version of Eclipse http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/mars1 .
 
- * Install SVN client subversive , https://eclipse.org/subversive/latest-releases.php
-
- * OPTIONAL plugins below..
-
- * Spring IDE, update site: http://dist.springsource.com/release/TOOLS/update/e4.4/
-
- * Install Jautodoc , update site http://jautodoc.sourceforge.net/update/
-
- * Install EclEmma, update site http://update.eclemma.org/
