@@ -46,7 +46,6 @@ import org.tltv.gantt.client.shared.SubStep;
 import com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData;
 import com.hack23.cia.model.external.riksdagen.person.impl.DetailData;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
-import com.hack23.cia.model.external.riksdagen.person.impl.RoleStatus;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummary;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument_;
@@ -519,7 +518,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 					sameRoleSubStep.setBackgroundColor("A8D999");
 
-					if (RoleStatus.LEDIG == assignmentData.getStatus()) {
+					if ("LEDIG".equalsIgnoreCase(assignmentData.getStatus())) {
 						sameRoleSubStep.setBackgroundColor("AA0000");
 					} else {
 						if (parliamentType.equalsIgnoreCase(assignmentData.getAssignmentType())) {

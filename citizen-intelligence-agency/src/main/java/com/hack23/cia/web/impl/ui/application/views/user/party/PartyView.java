@@ -336,7 +336,7 @@ public final class PartyView extends AbstractGroupView {
 										"lastName", "party", "active", "detail",
 										"roleCode", "fromDate", "toDate",
 								"totalDaysServed" }, new String[] { "roleId",
-										"personId", "detail", "roleCode" }, null,
+										"personId", "detail"}, null,
 								new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 
 						panelContent.addComponent(currentPartyBeanItemGrid);
@@ -359,8 +359,7 @@ public final class PartyView extends AbstractGroupView {
 									"roleId", "personId", "firstName", "lastName",
 									"party", "active", "detail", "roleCode",
 									"fromDate", "toDate", "totalDaysServed" },
-									new String[] { "roleId", "personId", "party", "detail",
-							"roleCode" }, null,
+									new String[] { "roleId", "personId", "party", "detail"}, null,
 							new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 
 					panelContent.addComponent(partyRoleMemberBeanItemGrid);

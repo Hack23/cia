@@ -295,6 +295,7 @@ public final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 					LOGGER.info("Send Load Order:{}" , personElement.getPersonUrlXml());
 					sendMessage(personElementWorkdestination,
 							personElement);
+					currentSaved.put(personElement.getId(), personElement.getId());
 				}
 			}
 			for (final String personId : readMissingPersonList()) {
