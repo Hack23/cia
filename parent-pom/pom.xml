@@ -57,6 +57,7 @@
     <module>../parent-model-pom</module>
     <module>../parent-service-pom</module>
     <module>../parent-web-pom</module>
+    <module>../cia-dist-deb</module>
   </modules>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
