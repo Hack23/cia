@@ -456,11 +456,11 @@ public final class PoliticianView extends AbstractPersonView {
 				if ("kammaruppdrag".equalsIgnoreCase(t.getAssignmentType())) {
 					return "Riksdagsledamot";
 				} else if ("Riksdagsorgan".equalsIgnoreCase(t.getAssignmentType())) {
-					return t.getAssignmentType() + "." + t.getDetail();
+					return t.getAssignmentType() + "." + t.getDetail() +" " +t.getRoleCode();
 				} else if ("uppdrag".equalsIgnoreCase(t.getAssignmentType())) {
-					return t.getAssignmentType() + "." + t.getDetail();
+					return t.getAssignmentType() + "." + t.getDetail() +" "+ t.getRoleCode();
 				} else {
-					return t.getAssignmentType() + "." + t.getDetail();
+					return t.getAssignmentType() + "." + t.getDetail() +" " + t.getRoleCode();
 				}
 
 			}
@@ -519,12 +519,18 @@ public final class PoliticianView extends AbstractPersonView {
 					sameRoleSubStep.setBackgroundColor("A8D999");
 
 					if ("LEDIG".equalsIgnoreCase(assignmentData.getStatus())) {
-						sameRoleSubStep.setBackgroundColor("AA0000");
+						sameRoleSubStep.setBackgroundColor("e3e3e3");
 					} else {
 						if (parliamentType.equalsIgnoreCase(assignmentData.getAssignmentType())) {
-							sameRoleSubStep.setBackgroundColor("00AA00");
+							sameRoleSubStep.setBackgroundColor("0eab76");
 						} else {
-							sameRoleSubStep.setBackgroundColor("0000AA");
+							if (assignmentData.getAssignmentType().equalsIgnoreCase("Departement")) {
+
+								sameRoleSubStep.setBackgroundColor("ded858");
+							} else {
+								sameRoleSubStep.setBackgroundColor("3271c8");
+							}
+
 						}
 
 					}
