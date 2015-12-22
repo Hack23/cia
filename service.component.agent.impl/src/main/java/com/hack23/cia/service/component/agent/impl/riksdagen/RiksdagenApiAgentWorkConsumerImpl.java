@@ -317,7 +317,7 @@ public final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 		while (sc.hasNextLine()) {
 		  lines.add(sc.nextLine());
 		}
-
+		sc.close();
 		return lines.toArray(new String[0]);
 	}
 
