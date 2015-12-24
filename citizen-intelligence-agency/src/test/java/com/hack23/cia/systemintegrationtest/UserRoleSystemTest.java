@@ -185,6 +185,15 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	}
 
 
+	/**
+	 * Click first row in grid.
+	 *
+	 * @param userPageVisit
+	 *            the user page visit
+	 * @return the string
+	 * @throws InterruptedException
+	 *             the interrupted exception
+	 */
 	private String clickFirstRowInGrid(final UserPageVisit userPageVisit) throws InterruptedException {
 		List<WebElement> gridRows = userPageVisit.getGridRows();
 		assertFalse(gridRows.isEmpty());
@@ -364,10 +373,22 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 	}
 
+	/**
+	 * Site admin monitoring test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteAdminMonitoringTest()  throws Exception {
+		final WebDriver driver = getWebDriver();
 
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-
-
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
+		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Admin Monitoring"));
+	}
 
 
 	/**
