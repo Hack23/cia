@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.api.action.application;
 
+import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.action.common.AbstractResponse;
 
 
@@ -29,6 +30,9 @@ public final class RegisterUserResponse extends AbstractResponse {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The user account. */
+	private UserAccount userAccount;
+
 	/**
 	 * Instantiates a new register user response.
 	 *
@@ -37,6 +41,25 @@ public final class RegisterUserResponse extends AbstractResponse {
 	 */
 	public RegisterUserResponse(final ServiceResult result) {
 		super(result);
+	}
+
+	/**
+	 * Gets the user account.
+	 *
+	 * @return the user account
+	 */
+	public UserAccount getUserAccount() {
+		return userAccount;
+	}
+
+	/**
+	 * Sets the user account.
+	 *
+	 * @param userAccount
+	 *            the new user account
+	 */
+	public void setUserAccount(UserAccount userAccount) {
+		this.userAccount = userAccount;
 	}
 
 }

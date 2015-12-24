@@ -35,6 +35,10 @@ public interface AdminViews {
 	/** The admin portal view name. */
 	String ADMIN_PORTAL_VIEW_NAME = "adminportal";
 
+	/** The admin monitoring view name. */
+	String ADMIN_MONITORING_VIEW_NAME = "adminmonitoring";
+
+
 	/** The admin applications session view name. */
 	String ADMIN_APPLICATIONS_SESSION_VIEW_NAME = "adminapplicationsession";
 

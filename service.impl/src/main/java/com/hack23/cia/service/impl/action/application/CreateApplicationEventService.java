@@ -49,6 +49,7 @@ public final class CreateApplicationEventService
 	@Autowired
 	private ApplicationSessionDAO applicationSessionDAO;
 
+
 	/**
 	 * Instantiates a new creates the application event service.
 	 */
@@ -60,7 +61,7 @@ public final class CreateApplicationEventService
 	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
 	 */
 	@Override
-	@Secured({ "ROLE_ANONYMOUS" })
+	@Secured({ "ROLE_ANONYMOUS","ROLE_USER","ROLE_ADMIN" })
 	public CreateApplicationEventResponse processService(CreateApplicationEventRequest serviceRequest) {
 		ApplicationSession applicationSession = applicationSessionDAO.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
 

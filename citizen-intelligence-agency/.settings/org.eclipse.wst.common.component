@@ -4,13 +4,10 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="service.impl-2015.12.02-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/service.impl/service.impl">
+        <dependent-module archiveName="service.impl-2015.12.21-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/service.impl/service.impl">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="service.api-2015.12.02-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/service.api/service.api">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="model.internal.application.user.impl-2015.12.02-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/model.internal.application.user.impl/model.internal.application.user.impl">
+        <dependent-module archiveName="service.api-2015.12.21-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/service.api/service.api">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="citizen-intelligence-agency"/>

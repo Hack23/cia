@@ -147,6 +147,7 @@
 			<xsd:enumeration value="READ" />
 			<xsd:enumeration value="UPDATE" />
 			<xsd:enumeration value="DELETE" />
+			<xsd:enumeration value="AUTHENTICATION" />
 		</xsd:restriction>
 	</xsd:simpleType>
 

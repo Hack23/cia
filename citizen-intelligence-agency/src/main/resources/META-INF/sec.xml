@@ -6,15 +6,19 @@
            http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
 	 <http use-expressions="false">
-	    <!--
+
 	    <intercept-url pattern="/monitoring" access="ROLE_ADMIN" />
-	 	<intercept-url pattern="/monitoring/**" access="ROLE_ADMIN" />-->
+	 	<intercept-url pattern="/monitoring/**" access="ROLE_ADMIN" />
 
 	 	<csrf disabled="true"/>
 	   <!--   <http-basic />-->
 	   <form-login/>
         <anonymous />
 	 	<logout/>
+	 	<headers>
+
+		<frame-options policy="SAMEORIGIN" />
+	</headers>
     </http>
 
 	<beans:bean id="localeResolver"

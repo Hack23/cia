@@ -28,9 +28,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
 import com.hack23.cia.model.internal.application.user.impl.UserRole;
+import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
+import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.application.RegisterUserRequest;
 import com.hack23.cia.service.api.action.application.RegisterUserResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
@@ -47,12 +51,15 @@ public final class RegisterUserService extends
 		AbstractBusinessServiceImpl<RegisterUserRequest, RegisterUserResponse>
 		implements BusinessService<RegisterUserRequest, RegisterUserResponse> {
 
+	@Autowired
+	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
+
 	/** The user dao. */
 	@Autowired
 	private UserDAO userDAO;
 
 	/** The password encoder. */
-	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	/**
 	 * Instantiates a new register user service.
@@ -69,8 +76,16 @@ public final class RegisterUserService extends
 	public RegisterUserResponse processService(
 			RegisterUserRequest serviceRequest) {
 
+		CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		eventRequest.setEventGroup(ApplicationEventGroup.USER);
+		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);
+		eventRequest.setActionName(RegisterUserRequest.class.getSimpleName());
+		eventRequest.setSessionId(serviceRequest.getSessionId());
+		eventRequest.setElementId(serviceRequest.getEmail());
+
+
 		UserAccount userNameExist = userDAO.findFirstByProperty(UserAccount_.username, serviceRequest.getUsername());
-		UserAccount userEmailExist = userDAO.findFirstByProperty(UserAccount_.username, serviceRequest.getEmail());
+		UserAccount userEmailExist = userDAO.findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
 
 		RegisterUserResponse response;
 		if (userEmailExist == null && userNameExist == null) {
@@ -84,10 +99,16 @@ public final class RegisterUserService extends
 			userAccount.setUserRole(UserRole.USER);
 			userAccount.setUserType(serviceRequest.getUserType());
 			userDAO.persist(userAccount);
+
+			eventRequest.setUserId(userAccount.getUserId());
 			response = new RegisterUserResponse(ServiceResult.SUCCESS);
 		} else {
 			response = new RegisterUserResponse(ServiceResult.FAILURE);
 		}
+
+		eventRequest.setApplicationMessage(response.getResult().toString());
+		createApplicationEventService.processService(eventRequest);
+
 		return response;
 	}
 

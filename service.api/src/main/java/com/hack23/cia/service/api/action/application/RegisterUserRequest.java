@@ -30,6 +30,9 @@ public final class RegisterUserRequest implements ServiceRequest {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+    /** The session id. */
+    private String sessionId;
+
     /** The country. */
     private String country;
 
@@ -138,6 +141,25 @@ public final class RegisterUserRequest implements ServiceRequest {
 	 */
 	public void setUserType(UserType userType) {
 		this.userType = userType;
+	}
+
+	/**
+	 * Gets the session id.
+	 *
+	 * @return the session id
+	 */
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	/**
+	 * Sets the session id.
+	 *
+	 * @param sessionId
+	 *            the new session id
+	 */
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	}
 
 

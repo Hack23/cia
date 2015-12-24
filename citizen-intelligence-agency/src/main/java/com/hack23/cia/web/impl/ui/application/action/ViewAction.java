@@ -64,27 +64,30 @@ public enum ViewAction {
 
 	/** The visit ministry view. */
 	VISIT_MINISTRY_VIEW,
-	
+
 	/** The visit admin application events view. */
 	VISIT_ADMIN_APPLICATION_EVENTS_VIEW,
-	
+
 	/** The visit admin application session view. */
 	VISIT_ADMIN_APPLICATION_SESSION_VIEW,
-	
+
 	/** The visit admin country view. */
 	VISIT_ADMIN_COUNTRY_VIEW,
-	
+
 	/** The visit admin language content view. */
 	VISIT_ADMIN_LANGUAGE_CONTENT_VIEW,
-	
+
 	/** The visit admin language view. */
 	VISIT_ADMIN_LANGUAGE_VIEW,
-	
+
 	/** The visit admin portal view. */
 	VISIT_ADMIN_PORTAL_VIEW,
-	
+
 	/** The visit admin useraccount view. */
-	VISIT_ADMIN_USERACCOUNT_VIEW, 
+	VISIT_ADMIN_USERACCOUNT_VIEW,
+ 
  /** The visit document view. */
- VISIT_DOCUMENT_VIEW;
+ VISIT_DOCUMENT_VIEW, 
+ /** The visit admin monitoring view. */
+ VISIT_ADMIN_MONITORING_VIEW;
 }

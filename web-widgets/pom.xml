@@ -39,6 +39,11 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>org.vaadin.addons</groupId>
+      <artifactId>loginform</artifactId>
+      <version>0.6.1</version>
+    </dependency>
+    <dependency>
       <groupId>org.dussan.vaadin</groupId>
       <artifactId>dcharts</artifactId>
       <version>1.7.1-hack23</version>

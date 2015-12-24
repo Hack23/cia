@@ -36,4 +36,6 @@
     <inherits name="org.tltv.gantt.WidgetSet" />
 
     <inherits name="org.vaadin.gridutil.WidgetSet" />
+
+    <inherits name="com.ejt.vaadin.loginform.WidgetSet" />
 </module>
