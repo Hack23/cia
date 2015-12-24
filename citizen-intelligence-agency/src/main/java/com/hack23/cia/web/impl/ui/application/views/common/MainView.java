@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,12 +21,16 @@ package com.hack23.cia.web.impl.ui.application.views.common;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import com.ejt.vaadin.loginform.DefaultVerticalLoginForm;
+import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ApplicationLoginListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Panel;
@@ -48,6 +52,11 @@ public final class MainView extends Panel implements View {
 
 	/** The Constant NAME. */
 	public static final String NAME = CommonsViews.MAIN_VIEW_NAME;
+
+	/** The application manager. */
+	@Autowired
+	@Qualifier("ApplicationManager")
+	transient ApplicationManager applicationManager;
 
 	/** The page link factory. */
 	@Autowired
@@ -117,6 +126,11 @@ public final class MainView extends Panel implements View {
 		layout.addComponent(pageLinkFactory.createTestChartViewPageLink());
 
 		layout.addComponent(pageLinkFactory.createMainViewPageLink());
+
+		DefaultVerticalLoginForm loginForm = new DefaultVerticalLoginForm();
+		loginForm.addLoginListener(new ApplicationLoginListener(applicationManager));
+		layout.addComponent(loginForm);
+
 
 		setContent(layout);
 

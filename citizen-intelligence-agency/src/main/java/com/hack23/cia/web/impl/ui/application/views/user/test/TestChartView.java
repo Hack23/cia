@@ -30,11 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.RequestContextHolder;
 
-import com.ejt.vaadin.loginform.DefaultVerticalLoginForm;
-import com.ejt.vaadin.loginform.LoginForm.LoginEvent;
-import com.ejt.vaadin.loginform.LoginForm.LoginListener;
 import com.hack23.cia.model.external.worldbank.data.impl.Indicator;
 import com.hack23.cia.model.external.worldbank.data.impl.Indicator_;
 import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
@@ -44,8 +40,6 @@ import com.hack23.cia.model.internal.application.data.impl.WorldbankIndicatorDat
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.service.api.action.application.LoginRequest;
-import com.hack23.cia.service.api.action.application.LoginResponse;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.AbstractView;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
@@ -73,31 +67,6 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(value = TestChartView.NAME, cached = true)
 public final class TestChartView extends AbstractView {
 
-	private final class ApplicationLoginListener implements LoginListener {
-
-		/**
-		 *
-		 */
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public void onLogin(LoginEvent event) {
-
-			LoginRequest loginRequest = new LoginRequest();
-			loginRequest.setEmail(event.getUserName());
-			loginRequest.setUserpassword(event.getPassword());
-			loginRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-
-			LoginResponse response = (LoginResponse) applicationManager.service(loginRequest);
-
-			System.err.println(
-		            "Logged in with user name " + event.getUserName() +
-		                    " and password of length " + event.getPassword().length() + ":" + response.getResult().toString());
-
-
-		}
-	}
-
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -108,7 +77,7 @@ public final class TestChartView extends AbstractView {
 	/** The application manager. */
 	@Autowired
 	@Qualifier("ApplicationManager")
-	private transient ApplicationManager applicationManager;
+	transient ApplicationManager applicationManager;
 
 	/** The chart data manager. */
 	@Autowired
@@ -153,11 +122,6 @@ public final class TestChartView extends AbstractView {
 
 		pageModeContent.addComponent(new Label("overview"));
 
-		DefaultVerticalLoginForm loginForm = new DefaultVerticalLoginForm();
-		loginForm.addLoginListener(new ApplicationLoginListener());
-
-		layout.addComponent(loginForm);
-
 
 		layout.addComponent(pageLinkFactory.createMainViewPageLink());
 
@@ -185,7 +149,6 @@ public final class TestChartView extends AbstractView {
 
 		if (StringUtils.isEmpty(parameters) ||parameters.contains(PageMode.Overview.toString())) {
 				pageModeContent.addComponent(new Label("overview"));
-
 		} else if (parameters.contains(PageMode.Charts.toString())) {
 
 			if (parameters.contains(ChartIndicators.PartyWinner.toString())) {
