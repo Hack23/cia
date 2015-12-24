@@ -25,7 +25,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.hack23.cia.model.common.api.ModelObject;
-import com.hack23.cia.web.impl.ui.application.views.common.AbstractPageItemRendererClickListener;
 
 public final class PageItemPropertyClickListener extends AbstractPageItemRendererClickListener<ModelObject> {
 

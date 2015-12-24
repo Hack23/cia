@@ -18,7 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.gridfactory;
 
-import com.hack23.cia.web.impl.ui.application.views.common.AbstractPageItemRendererClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener;
 import com.vaadin.data.Container.Indexed;
 import com.vaadin.ui.Grid;
 

@@ -21,7 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.gridfactory;
 import org.springframework.stereotype.Service;
 import org.vaadin.gridutil.cell.GridCellFilter;
 
-import com.hack23.cia.web.impl.ui.application.views.common.AbstractPageItemRendererClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener;
 import com.vaadin.data.Container;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Grid.Column;
