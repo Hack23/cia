@@ -33,6 +33,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.BrowserFrame;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -88,6 +89,9 @@ public final class AdminMonitoringView extends AbstractAdminView {
 			browser.setSizeFull();
 
 		content.addComponent(browser);
+
+		content.addComponent(pageLinkFactory.createMainViewPageLink());
+
 		content.setSizeFull();
 		setContent(content);
 		setSizeFull();
