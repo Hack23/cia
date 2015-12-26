@@ -114,7 +114,7 @@ public final class AdminUseraccountView extends AbstractAdminView {
 				dataContainer.getAll());
 
 		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "UserAccount",
-				new String[] { "hjid","modelObjectId","modelObjectVersion","userId","username","userType","userRole","userpassword","email","address","country","numberOfVisits" },
+				new String[] { "hjid","modelObjectId","modelObjectVersion","createdDate","userId","username","userType","userRole","userpassword","email","address","country","numberOfVisits" },
 				new String[] { "modelObjectId" }, "hjid",
 				new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, "hjid"), null));
 
@@ -123,7 +123,7 @@ public final class AdminUseraccountView extends AbstractAdminView {
 			UserAccount userAccount = dataContainer.load(Long.valueOf(pageId));
 
 			formFactory.addTextFields(content, new BeanItem<UserAccount>(userAccount), UserAccount.class,
-					Arrays.asList(new String[] { "hjid","modelObjectId","modelObjectVersion","userId","username","userpassword","email","country","numberOfVisits" }));
+					Arrays.asList(new String[] { "hjid","modelObjectId","modelObjectVersion","userId","username","createdDate","userpassword","email","country","numberOfVisits" }));
 
 		}
 

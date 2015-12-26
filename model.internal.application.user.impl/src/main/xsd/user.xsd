@@ -31,6 +31,8 @@
 				nillable="true" type="xsd:string" />
 			<xsd:element minOccurs="0" name="userType" type="user:UserType" />
 			<xsd:element minOccurs="0" name="userRole" type="user:UserRole" />
+			<xsd:element minOccurs="0" name="createdDate" type="xsd:dateTime" />
+
 		</xsd:sequence>
 	</xsd:complexType>
 

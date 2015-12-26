@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.impl.action.application;
 
+import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,6 +99,7 @@ public final class RegisterUserService extends
 			userAccount.setNumberOfVisits(1);
 			userAccount.setUserRole(UserRole.USER);
 			userAccount.setUserType(serviceRequest.getUserType());
+			userAccount.setCreatedDate(new Date());
 			userDAO.persist(userAccount);
 
 			eventRequest.setUserId(userAccount.getUserId());

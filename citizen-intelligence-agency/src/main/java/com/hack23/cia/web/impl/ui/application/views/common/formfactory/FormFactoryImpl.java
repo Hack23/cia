@@ -26,10 +26,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.CommitFormWrapperClickListener;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.util.BeanItem;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Field;
 import com.vaadin.ui.Layout;
+import com.vaadin.ui.PasswordField;
 
 @Service
 public final class FormFactoryImpl implements FormFactory {
@@ -59,5 +63,41 @@ public final class FormFactoryImpl implements FormFactory {
 		}
 
 	}
+
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory#addRequestInputFormFields(com.vaadin.ui.Layout, com.vaadin.data.util.BeanItem, java.lang.Class, java.util.List, java.lang.String, com.vaadin.ui.Button.ClickListener)
+	 */
+	@Override
+	public <T extends Serializable> void addRequestInputFormFields(Layout panelContent, BeanItem<T> item,
+			Class<T> beanType, List<String> displayProperties,String buttonLabel,ClickListener buttonListener) {
+		final BeanFieldGroup<T> fieldGroup = new BeanFieldGroup<>(beanType);
+		fieldGroup.setItemDataSource(item);
+		fieldGroup.setReadOnly(true);
+
+		for (final String property : displayProperties) {
+
+			final Field<?> buildAndBind;
+			if (property.contains("password")) {
+				buildAndBind = fieldGroup.buildAndBind(property,property, PasswordField.class);
+			} else {
+				buildAndBind = fieldGroup.buildAndBind(property);
+			}
+
+			buildAndBind.setReadOnly(false);
+			buildAndBind.setWidth("50%");
+
+			panelContent.addComponent(buildAndBind);
+		}
+		final Collection<Object> unboundPropertyIds = fieldGroup.getUnboundPropertyIds();
+		for (final Object property : unboundPropertyIds) {
+			LOGGER.info("property:{}", property);
+		}
+
+
+		panelContent.addComponent(new Button(buttonLabel,new CommitFormWrapperClickListener(fieldGroup,buttonListener)));
+
+	}
+
+
 
 }
