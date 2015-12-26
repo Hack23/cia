@@ -32,6 +32,19 @@
     </site>
   </distributionManagement>
   <dependencies>
+    <!--
+	<dependency>
+	   <groupId>org.hibernate</groupId>
+	   <artifactId>hibernate-search-orm</artifactId>
+	   <version>5.5.2.Final</version>
+	   <exclusions>
+	   		<exclusion>
+	   			<groupId>org.hibernate</groupId>
+	   			<artifactId>hibernate-core</artifactId>
+	   		</exclusion>
+	   </exclusions>
+	</dependency>
+-->
     <dependency>
       <groupId>javax.transaction</groupId>
       <artifactId>jta</artifactId>
@@ -365,7 +378,7 @@
           <dependency>
             <groupId>org.apache.ant</groupId>
             <artifactId>ant</artifactId>
-            <version>1.9.5</version>
+            <version>1.9.6</version>
           </dependency>
           <dependency>
             <groupId>org.hibernate</groupId>

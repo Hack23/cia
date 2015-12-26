@@ -19,11 +19,15 @@
 package com.hack23.cia.web.impl.ui.application.action;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
+import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
@@ -52,10 +56,35 @@ public class PageActionEventHelperImpl implements PageActionEventHelper {
 
 		serviceRequest.setActionName(viewAction.toString());
 
+
+		serviceRequest.setUserId(getUserIdFromSecurityContext());
+
+
 		serviceRequest.setApplicationMessage(viewAction.toString());
-		serviceRequest.setErrorMessage("errorMessage");
 
 		CreateApplicationEventResponse response = (CreateApplicationEventResponse) applicationManager
 				.service(serviceRequest);
+	}
+
+	private static String getUserIdFromSecurityContext() {
+
+		String result=null;
+
+		SecurityContext context = SecurityContextHolder.getContext();
+		if (context != null) {
+			Authentication authentication = context.getAuthentication();
+			if (authentication != null) {
+				Object principal = authentication.getPrincipal();
+
+				if (principal instanceof UserAccount) {
+					UserAccount userAccount = (UserAccount) principal;
+					result = userAccount.getUserId();
+				} else {
+					System.out.println(principal);
+				}
+			}
+		}
+
+		return result;
 	}
 }

@@ -28,6 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
@@ -75,6 +76,12 @@ public final class CreateApplicationEventService
 			applicationActionEvent.setPage(serviceRequest.getPage());
 			applicationActionEvent.setPageMode(serviceRequest.getPageMode());
 			applicationActionEvent.setElementId(serviceRequest.getElementId());
+
+			applicationActionEvent.setUserId(serviceRequest.getUserId());
+			if (serviceRequest.getUserId() != null && applicationSession.getSessionType().equals(ApplicationSessionType.ANONYMOUS)) {
+				applicationSession.setSessionType(ApplicationSessionType.REGISTERED_USER);
+				applicationSession.setUserId(serviceRequest.getUserId());
+			}
 
 			applicationActionEvent.setApplicationOperation(serviceRequest.getApplicationOperation());
 			applicationActionEvent.setActionName(serviceRequest.getActionName());

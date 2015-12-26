@@ -696,4 +696,13 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 	}
 
+	@Override
+	public void createUserHomeMenuBar(MenuBar menuBar, String pageId) {
+		menuBar.removeItems();
+
+		menuBar.addItem(OVERVIEW_TEXT, null,
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.Overview, pageId));
+
+	}
+
 }

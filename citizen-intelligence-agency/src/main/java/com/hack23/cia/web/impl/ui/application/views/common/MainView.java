@@ -153,7 +153,7 @@ public final class MainView extends Panel implements View {
 		reqisterRequest.setUserpassword("");
 		ClickListener reqisterListener = new RegisterUserClickListener(reqisterRequest,applicationManager);
 		formFactory.addRequestInputFormFields(registerLayout,  new BeanItem<RegisterUserRequest>(reqisterRequest), RegisterUserRequest.class,
-				Arrays.asList(new String[] {"username","email", "country", "userpassword" }),"Reqister",reqisterListener);
+				Arrays.asList(new String[] {"username","email", "country", "userpassword" }),"Register",reqisterListener);
 
 		layout.addComponent(registerLayout);
 

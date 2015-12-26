@@ -4338,6 +4338,11 @@ from view_riksdagen_politician group by party</createView>
     	</addColumn>
 	</changeSet>
 
+	<changeSet author="pether (generated)" id="1414872417007-271">
+		 <addColumn tableName="application_session">
+			<column name="user_id" type="varchar(255)"/>
+    	</addColumn>
+	</changeSet>
 
 
 

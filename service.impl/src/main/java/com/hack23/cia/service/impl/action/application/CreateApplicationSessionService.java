@@ -28,6 +28,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
@@ -75,6 +76,7 @@ public final class CreateApplicationSessionService
 		applicationSession.setUserAgentInformation(serviceRequest.getUserAgentInformation());
 		applicationSession.setSessionType(serviceRequest.getSessionType());
 		applicationSession.setEvents(new ArrayList<>());
+		applicationSession.setSessionType(ApplicationSessionType.ANONYMOUS);
 		applicationSessionDAO.persist(applicationSession);
 
 		return new CreateApplicationSessionResponse(ServiceResult.SUCCESS);

@@ -170,6 +170,7 @@
 			<xsd:element minOccurs="0" name="ipInformation" type="xsd:string" />
 			<xsd:element minOccurs="0" name="userAgentInformation" type="xsd:string" />
 			<xsd:element minOccurs="0" name="sessionId" type="xsd:string" />
+			<xsd:element minOccurs="0" name="userId" type="xsd:string" />
 			<xsd:element minOccurs="0" name="locale" type="xsd:string" />
 			<xsd:element minOccurs="0" name="operatingSystem" type="xsd:string" />
 			<xsd:element minOccurs="0" name="sessionType"

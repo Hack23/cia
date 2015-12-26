@@ -122,5 +122,7 @@ public interface MenuItemFactory {
 	 */
 	void createMinistryRankingMenuBar(MenuBar menuBar);
 
+	void createUserHomeMenuBar(MenuBar barmenu, String pageId);
+
 
 }

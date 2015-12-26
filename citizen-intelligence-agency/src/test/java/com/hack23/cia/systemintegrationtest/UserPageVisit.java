@@ -36,6 +36,7 @@ import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 
 /**
@@ -650,6 +651,30 @@ public final class UserPageVisit extends Assert {
 		final List<String> actionIdsBy = getActionIdsBy(ViewAction.VISIT_PARTY_VIEW);
 		assertTrue(actionIdsBy.size() > 0);
 
+	}
+
+	public void registerNewUser(String username,String password) throws Exception {
+
+		setFieldValue("Register.username",username);
+		setFieldValue("Register.email",username+"@test.com");
+		setFieldValue("Register.country","Sweden");
+		setFieldValue("Register.userpassword",password);
+
+		WebElement registerButton = driver.findElement(By.id("Register"));
+		performClickAction(registerButton);
+
+		String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + UserViews.USERHOME_VIEW_NAME;
+
+		assertEquals(browser, url,
+				driver.getCurrentUrl());
+
+
+	}
+
+	private void setFieldValue(String id,String value) {
+		WebElement findElement = driver.findElement(By.id(id));
+		findElement.clear();
+		findElement.sendKeys(value);
 	}
 
 }

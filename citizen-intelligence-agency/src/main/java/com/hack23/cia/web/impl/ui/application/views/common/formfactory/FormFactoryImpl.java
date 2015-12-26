@@ -55,6 +55,7 @@ public final class FormFactoryImpl implements FormFactory {
 		for (final String property : displayProperties) {
 			final Field<?> buildAndBind = fieldGroup.buildAndBind(property);
 			buildAndBind.setWidth("100%");
+
 			panelContent.addComponent(buildAndBind);
 		}
 		final Collection<Object> unboundPropertyIds = fieldGroup.getUnboundPropertyIds();
@@ -83,6 +84,7 @@ public final class FormFactoryImpl implements FormFactory {
 				buildAndBind = fieldGroup.buildAndBind(property);
 			}
 
+			buildAndBind.setId(buttonLabel + "." + property);
 			buildAndBind.setReadOnly(false);
 			buildAndBind.setWidth("50%");
 
@@ -94,7 +96,9 @@ public final class FormFactoryImpl implements FormFactory {
 		}
 
 
-		panelContent.addComponent(new Button(buttonLabel,new CommitFormWrapperClickListener(fieldGroup,buttonListener)));
+		Button button = new Button(buttonLabel,new CommitFormWrapperClickListener(fieldGroup,buttonListener));
+		button.setId(buttonLabel);
+		panelContent.addComponent(button);
 
 	}
 

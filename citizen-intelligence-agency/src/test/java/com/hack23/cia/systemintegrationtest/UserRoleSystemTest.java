@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.junit.After;
@@ -698,6 +699,26 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		userPageVisit.performClickAction(overviewItem);
 
 	}
+
+
+	@Test
+	public void siteRegisterUserTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.Overview));
+
+		String username = UUID.randomUUID().toString();
+		String password = UUID.randomUUID().toString();
+
+		userPageVisit.registerNewUser(username,password);
+
+
+
+
+	}
+
 
 
 	/**
