@@ -21,6 +21,8 @@ package com.hack23.cia.service.impl.action.application;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -54,6 +56,11 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 public final class LoginService extends
 		AbstractBusinessServiceImpl<LoginRequest, LoginResponse>
 		implements BusinessService<LoginRequest, LoginResponse> {
+
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(LoginService.class);
+
 
 	/** The user dao. */
 	@Autowired

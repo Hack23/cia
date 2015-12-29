@@ -22,39 +22,40 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.hack23.cia.service.api.ApplicationManager;
-import com.hack23.cia.service.api.action.application.RegisterUserRequest;
+import com.hack23.cia.service.api.action.application.LogoutRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
+import com.vaadin.server.VaadinService;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 
-public final class RegisterUserClickListener implements ClickListener {
+public final class LogoutClickListener implements ClickListener {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(RegisterUserClickListener.class);
-
-	/** The reqister request. */
-	private RegisterUserRequest reqisterRequest;
+	private static final Logger LOGGER = LoggerFactory.getLogger(LogoutClickListener.class);
 
 	/** The application manager. */
-	private ApplicationManager applicationManager;
+	private final ApplicationManager applicationManager;
+
+	/** The logout request. */
+	private final LogoutRequest logoutRequest;
 
 	/**
-	 * Instantiates a new register user click listener.
+	 * Instantiates a new logout click listener.
 	 *
-	 * @param reqisterRequest
-	 *            the reqister request
+	 * @param logoutRequest
+	 *            the logout request
 	 * @param applicationManager
 	 *            the application manager
 	 */
-	public RegisterUserClickListener(RegisterUserRequest reqisterRequest, ApplicationManager applicationManager) {
-		this.reqisterRequest = reqisterRequest;
+	public LogoutClickListener(LogoutRequest logoutRequest, ApplicationManager applicationManager) {
+		this.logoutRequest = logoutRequest;
 		this.applicationManager = applicationManager;
 	}
 
@@ -63,15 +64,18 @@ public final class RegisterUserClickListener implements ClickListener {
 	 */
 	@Override
 	public void buttonClick(ClickEvent event) {
-		ServiceResponse response = applicationManager.service(reqisterRequest);
+		ServiceResponse response = applicationManager.service(logoutRequest);
+
+
 		if (response.getResult().equals(ServiceResult.SUCCESS)) {
-			LOGGER.info("RegisterUser {}",reqisterRequest.getUsername() );
-			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);
+			UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
+			UI.getCurrent().getSession().close();
+			VaadinService.getCurrentRequest().getWrappedSession().invalidate();
 		} else {
-			Notification.show("Register failed",
+			Notification.show("Logout failed",
 	                  "Error message",
 	                  Notification.Type.WARNING_MESSAGE);
-			LOGGER.info("RegisterUser {} failure",reqisterRequest.getUsername() );
+			LOGGER.info("Logout {} failure",logoutRequest.getSessionId());
 		}
 	}
 }

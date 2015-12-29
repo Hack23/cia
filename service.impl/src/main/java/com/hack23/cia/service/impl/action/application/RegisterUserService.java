@@ -21,6 +21,8 @@ package com.hack23.cia.service.impl.action.application;
 import java.util.Date;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -51,6 +53,11 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 public final class RegisterUserService extends
 		AbstractBusinessServiceImpl<RegisterUserRequest, RegisterUserResponse>
 		implements BusinessService<RegisterUserRequest, RegisterUserResponse> {
+
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(RegisterUserService.class);
+
 
 	@Autowired
 	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;

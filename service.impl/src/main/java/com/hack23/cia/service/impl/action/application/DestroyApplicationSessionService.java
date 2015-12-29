@@ -18,7 +18,6 @@
 */
 package com.hack23.cia.service.impl.action.application;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import org.slf4j.Logger;
@@ -30,26 +29,26 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
-import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
-import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
-import com.hack23.cia.service.api.action.application.CreateApplicationSessionResponse;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_;
+import com.hack23.cia.service.api.action.application.DestroyApplicationSessionRequest;
+import com.hack23.cia.service.api.action.application.DestroyApplicationSessionResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ApplicationSessionDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
- * The Class CreateApplicationSessionService.
+ * The Class DestroyApplicationSessionService.
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public final class CreateApplicationSessionService
-		extends AbstractBusinessServiceImpl<CreateApplicationSessionRequest, CreateApplicationSessionResponse>
-		implements BusinessService<CreateApplicationSessionRequest, CreateApplicationSessionResponse> {
+public final class DestroyApplicationSessionService
+		extends AbstractBusinessServiceImpl<DestroyApplicationSessionRequest, DestroyApplicationSessionResponse>
+		implements BusinessService<DestroyApplicationSessionRequest, DestroyApplicationSessionResponse> {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(CreateApplicationSessionService.class);
+			.getLogger(DestroyApplicationSessionService.class);
 
 
 	/** The application session dao. */
@@ -57,10 +56,10 @@ public final class CreateApplicationSessionService
 	private ApplicationSessionDAO applicationSessionDAO;
 
 	/**
-	 * Instantiates a new creates the application session service.
+	 * Instantiates a new destroy application session service.
 	 */
-	public CreateApplicationSessionService() {
-		super(CreateApplicationSessionRequest.class);
+	public DestroyApplicationSessionService() {
+		super(DestroyApplicationSessionRequest.class);
 	}
 
 	/*
@@ -72,21 +71,15 @@ public final class CreateApplicationSessionService
 	 */
 	@Override
 	@Secured({ "ROLE_ANONYMOUS" })
-	public CreateApplicationSessionResponse processService(CreateApplicationSessionRequest serviceRequest) {
-		ApplicationSession applicationSession = new ApplicationSession();
-		applicationSession.setCreatedDate(new Date());
-
-		applicationSession.setSessionId(serviceRequest.getSessionId());
-		applicationSession.setIpInformation(serviceRequest.getIpInformation());
-		applicationSession.setLocale(serviceRequest.getLocale());
-		applicationSession.setOperatingSystem(serviceRequest.getOperatingSystem());
-		applicationSession.setUserAgentInformation(serviceRequest.getUserAgentInformation());
-		applicationSession.setSessionType(serviceRequest.getSessionType());
-		applicationSession.setEvents(new ArrayList<>());
-		applicationSession.setSessionType(ApplicationSessionType.ANONYMOUS);
-		applicationSessionDAO.persist(applicationSession);
-
-		return new CreateApplicationSessionResponse(ServiceResult.SUCCESS);
+	public DestroyApplicationSessionResponse processService(DestroyApplicationSessionRequest serviceRequest) {
+		ApplicationSession applicationSession = applicationSessionDAO.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
+		if (applicationSession != null)  {
+			applicationSession.setDestroyedDate(new Date());
+			applicationSessionDAO.persist(applicationSession);
+			return new DestroyApplicationSessionResponse(ServiceResult.SUCCESS);
+		} else {
+			return new DestroyApplicationSessionResponse(ServiceResult.FAILURE);
+		}
 	}
 
 }

@@ -30,6 +30,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent_;
@@ -37,6 +38,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.service.api.action.application.LogoutRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
@@ -45,11 +47,13 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemF
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.LogoutClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
@@ -126,6 +130,14 @@ public final class UserHomeView extends AbstractUserView {
 
 				panelContent.addComponent(new Label("Overview"));
 
+				Button logoutButton = new Button("Logout");
+
+				LogoutRequest logoutRequest = new LogoutRequest();
+				logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+				logoutButton.addClickListener(new LogoutClickListener(logoutRequest,applicationManager));
+
+				panelContent.addComponent(logoutButton);
+
 
 				final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
 
@@ -148,12 +160,8 @@ public final class UserHomeView extends AbstractUserView {
 							new String[] { "modelObjectId" }, "hjid",
 							new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null));
 
+
 			}
-
-
-
-
-
 
 
 			getPanel().setContent(panelContent);

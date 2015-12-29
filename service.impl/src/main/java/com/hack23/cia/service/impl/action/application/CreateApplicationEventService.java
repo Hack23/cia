@@ -20,6 +20,8 @@ package com.hack23.cia.service.impl.action.application;
 
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
@@ -45,6 +47,11 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 public final class CreateApplicationEventService
 		extends AbstractBusinessServiceImpl<CreateApplicationEventRequest, CreateApplicationEventResponse>
 		implements BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> {
+
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(CreateApplicationEventService.class);
+
 
 	/** The application session dao. */
 	@Autowired

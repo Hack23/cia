@@ -4344,6 +4344,11 @@ from view_riksdagen_politician group by party</createView>
     	</addColumn>
 	</changeSet>
 
+	<changeSet author="pether (generated)" id="1414872417007-272">
+		 <addColumn tableName="application_session">
+			<column name="destroyed_date" type="TIMESTAMP WITHOUT TIME ZONE" />
+    	</addColumn>
+	</changeSet>
 
 
 
