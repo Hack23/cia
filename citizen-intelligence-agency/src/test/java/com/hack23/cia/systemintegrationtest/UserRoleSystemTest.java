@@ -701,6 +701,12 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	}
 
 
+	/**
+	 * Site register user test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public void siteRegisterUserTest() throws Exception {
 		final WebDriver driver = getWebDriver();
@@ -714,8 +720,36 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		userPageVisit.registerNewUser(username,password);
 
+	}
 
+	/**
+	 * Site login user test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteLoginUserTest() throws Exception {
+		final WebDriver driver = getWebDriver();
 
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.Overview));
+
+		String username = UUID.randomUUID().toString();
+		String password = UUID.randomUUID().toString();
+
+		userPageVisit.registerNewUser(username,password);
+
+		driver.quit();
+
+		WebDriver loginDriver = getWebDriver();
+
+		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
+
+		userLoginPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.Overview));
+
+		userLoginPageVisit.loginUser(username+ "@test.com", password);
 
 	}
 

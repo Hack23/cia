@@ -46,10 +46,10 @@ public final class ApplicationLoginListener implements LoginListener {
 
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);
 		} else {
-			Notification.show("Register failed",
+			Notification.show("Login failed",
 	                  "Error message",
 	                  Notification.Type.WARNING_MESSAGE);
-			LOGGER.info("RegisterUser {} failure",event.getUserName() );
+			LOGGER.info("LoginRequest {} failure",event.getUserName() );
 		}
 
 	}

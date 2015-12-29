@@ -20,6 +20,7 @@ package com.hack23.cia.systemintegrationtest;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -241,7 +242,12 @@ public final class UserPageVisit extends Assert {
 	 * @return the buttons
 	 */
 	public List<WebElement> getButtons() {
-		return driver.findElements(By.className("v-nativebutton"));
+		List<WebElement> result = new ArrayList<>();
+		List<WebElement> nativeButtons = driver.findElements(By.className("v-nativebutton"));
+		List<WebElement> buttons = driver.findElements(By.className("v-button"));
+		result.addAll(nativeButtons);
+		result.addAll(buttons);
+		return result;
 	}
 
 	/**
@@ -653,6 +659,16 @@ public final class UserPageVisit extends Assert {
 
 	}
 
+	/**
+	 * Register new user.
+	 *
+	 * @param username
+	 *            the username
+	 * @param password
+	 *            the password
+	 * @throws Exception
+	 *             the exception
+	 */
 	public void registerNewUser(String username,String password) throws Exception {
 
 		setFieldValue("Register.username",username);
@@ -671,6 +687,59 @@ public final class UserPageVisit extends Assert {
 
 	}
 
+	/**
+	 * Login user.
+	 *
+	 * @param username
+	 *            the username
+	 * @param password
+	 *            the password
+	 * @throws Exception
+	 *             the exception
+	 */
+	public void loginUser(String username,String password) throws Exception {
+
+		setFieldValue("username",username);
+		setFieldValue("password",password);
+
+		WebElement loginButton =findButton("Login");
+		assertNotNull("Expect to find a Login Button",loginButton);
+
+		performClickAction(loginButton);
+
+		String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + UserViews.USERHOME_VIEW_NAME;
+
+		assertEquals(browser, url,
+				driver.getCurrentUrl());
+
+
+	}
+
+	/**
+	 * Find button.
+	 *
+	 * @param buttonLabel
+	 *            the button label
+	 * @return the web element
+	 */
+	private WebElement findButton(String buttonLabel) {
+		List<WebElement> buttons = getButtons();
+		for (WebElement webElement : buttons) {
+			if (buttonLabel.equalsIgnoreCase(webElement.getText().trim())) {
+				return webElement;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Sets the field value.
+	 *
+	 * @param id
+	 *            the id
+	 * @param value
+	 *            the value
+	 */
 	private void setFieldValue(String id,String value) {
 		WebElement findElement = driver.findElement(By.id(id));
 		findElement.clear();
