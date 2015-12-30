@@ -28,6 +28,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.SessionId;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -36,6 +38,7 @@ import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 
@@ -713,6 +716,29 @@ public final class UserPageVisit extends Assert {
 
 
 	}
+
+	public void logoutUser() throws Exception {
+
+		WebElement logoutButton =findButton("Logout	");
+		assertNotNull("Expect to find a Logout Button",logoutButton);
+
+		SessionId sessionId = ((RemoteWebDriver) driver).getSessionId();
+
+		performClickAction(logoutButton);
+
+		SessionId newSessionId = ((RemoteWebDriver) driver).getSessionId();
+
+		assertNotEquals(sessionId.toString(),newSessionId.toString());
+
+		String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + CommonsViews.MAIN_VIEW_NAME;
+
+		assertEquals(browser, url,
+				driver.getCurrentUrl());
+
+
+
+	}
+
 
 	/**
 	 * Find button.

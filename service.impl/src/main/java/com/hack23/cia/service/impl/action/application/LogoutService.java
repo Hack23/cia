@@ -23,6 +23,7 @@ import java.util.Collection;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -33,7 +34,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
+import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
+import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.application.LogoutRequest;
 import com.hack23.cia.service.api.action.application.LogoutResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
@@ -51,6 +56,11 @@ public final class LogoutService extends AbstractBusinessServiceImpl<LogoutReque
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(LogoutService.class);
+
+	/** The create application event service. */
+	@Autowired
+	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
+
 
 
 	/**
@@ -71,9 +81,23 @@ public final class LogoutService extends AbstractBusinessServiceImpl<LogoutReque
 	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	public LogoutResponse processService(LogoutRequest serviceRequest) {
 
+		CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		eventRequest.setEventGroup(ApplicationEventGroup.USER);
+		eventRequest.setApplicationOperation(ApplicationOperationType.AUTHENTICATION);
+		eventRequest.setActionName(LogoutRequest.class.getSimpleName());
+		eventRequest.setSessionId(serviceRequest.getSessionId());
+
+
 		UserAccount userAccount = getUserAccountFromSecurityContext();
 
+
+		eventRequest.setElementId(userAccount.getEmail());
+
+		LogoutResponse response;
 		if (userAccount != null) {
+
+			eventRequest.setUserId(userAccount.getUserId());
+
 
 			Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 			authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
@@ -81,10 +105,15 @@ public final class LogoutService extends AbstractBusinessServiceImpl<LogoutReque
 					serviceRequest.getSessionId(), "ROLE_ANONYMOUS", authorities);
 			SecurityContextHolder.getContext().setAuthentication(anonymousAuthenticationToken);
 
-			return new LogoutResponse(ServiceResult.SUCCESS);
+			response=new LogoutResponse(ServiceResult.SUCCESS);
 		} else {
-			return new LogoutResponse(ServiceResult.FAILURE);
+			response= new LogoutResponse(ServiceResult.FAILURE);
 		}
+
+		eventRequest.setApplicationMessage(response.getResult().toString());
+
+		createApplicationEventService.processService(eventRequest);
+		return response;
 	}
 
 	private static UserAccount getUserAccountFromSecurityContext() {

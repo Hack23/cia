@@ -741,6 +741,8 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		userPageVisit.registerNewUser(username,password);
 
+		userPageVisit.logoutUser();
+
 		driver.quit();
 
 		WebDriver loginDriver = getWebDriver();
@@ -750,6 +752,8 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		userLoginPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.Overview));
 
 		userLoginPageVisit.loginUser(username+ "@test.com", password);
+
+		userLoginPageVisit.logoutUser();
 
 	}
 

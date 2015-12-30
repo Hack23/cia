@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.service.impl.action.application;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.UUID;
 
@@ -25,6 +27,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -108,6 +113,17 @@ public final class RegisterUserService extends
 			userAccount.setUserType(serviceRequest.getUserType());
 			userAccount.setCreatedDate(new Date());
 			userDAO.persist(userAccount);
+
+
+			Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+			if (userAccount.getUserRole().equals(UserRole.ADMIN)) {
+				authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+			} else if (userAccount.getUserRole().equals(UserRole.USER)) {
+				authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+			}
+
+			SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(userAccount, userAccount.getUserpassword(), authorities));
 
 			eventRequest.setUserId(userAccount.getUserId());
 			response = new RegisterUserResponse(ServiceResult.SUCCESS);
