@@ -18,6 +18,9 @@
 */
 package com.hack23.cia.web.impl.ui.application;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -25,12 +28,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.session.HttpSessionCreatedEvent;
 import org.springframework.security.web.session.HttpSessionDestroyedEvent;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.service.api.ApplicationManager;
-import com.hack23.cia.service.api.action.application.LogoutRequest;
+import com.hack23.cia.service.api.action.application.DestroyApplicationSessionRequest;
 
 @Service
 public class ApplicationEventListener implements ApplicationListener<ApplicationEvent> {
@@ -52,9 +58,15 @@ public class ApplicationEventListener implements ApplicationListener<Application
 			LOGGER.info("Session created SESSION_ID :{}", httpSession.getId());
 		} else if (applicationEvent instanceof HttpSessionDestroyedEvent) {
 			HttpSession httpSession = ((HttpSessionDestroyedEvent) applicationEvent).getSession();
-			LogoutRequest logoutRequest = new LogoutRequest();
-			logoutRequest.setSessionId(httpSession.getId());
-			//applicationManager.service(logoutRequest);
+			Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+			authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
+			DestroyApplicationSessionRequest destroyApplicationSessionRequest = new DestroyApplicationSessionRequest();
+			destroyApplicationSessionRequest.setSessionId(httpSession.getId());
+
+			SecurityContextHolder.getContext().setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
+			applicationManager.service(destroyApplicationSessionRequest);
+			SecurityContextHolder.getContext().setAuthentication(null);
+
 			LOGGER.info("Session destroyed SESSION_ID :{}", httpSession.getId());
 		} else {
 			LOGGER.debug("ApplicationEvent :{}", applicationEvent.toString());
