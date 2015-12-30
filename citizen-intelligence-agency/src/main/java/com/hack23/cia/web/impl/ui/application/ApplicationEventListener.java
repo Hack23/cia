@@ -54,7 +54,7 @@ public class ApplicationEventListener implements ApplicationListener<Application
 			HttpSession httpSession = ((HttpSessionDestroyedEvent) applicationEvent).getSession();
 			LogoutRequest logoutRequest = new LogoutRequest();
 			logoutRequest.setSessionId(httpSession.getId());
-			applicationManager.service(logoutRequest);
+			//applicationManager.service(logoutRequest);
 			LOGGER.info("Session destroyed SESSION_ID :{}", httpSession.getId());
 		} else {
 			LOGGER.debug("ApplicationEvent :{}", applicationEvent.toString());

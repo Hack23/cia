@@ -25,6 +25,8 @@ import java.util.Set;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -719,16 +721,30 @@ public final class UserPageVisit extends Assert {
 
 	public void logoutUser() throws Exception {
 
-		WebElement logoutButton =findButton("Logout	");
+		WebElement logoutButton =findButton("Logout");
 		assertNotNull("Expect to find a Logout Button",logoutButton);
 
-		SessionId sessionId = ((RemoteWebDriver) driver).getSessionId();
+		Cookie cookie= driver.manage().getCookieNamed("JSESSIONID");
+		String sessionId = cookie.getValue();
+
 
 		performClickAction(logoutButton);
 
-		SessionId newSessionId = ((RemoteWebDriver) driver).getSessionId();
+		WebElement body = driver.findElement(By.tagName("body"));
+		body.sendKeys(Keys.ESCAPE);
 
-		assertNotEquals(sessionId.toString(),newSessionId.toString());
+
+		Thread.sleep(1000);
+		driver.navigate().refresh();
+		Thread.sleep(2000);
+
+		System.out.println();
+
+		Cookie newCookie= driver.manage().getCookieNamed("JSESSIONID");
+
+		String newSessionId = newCookie.getValue();
+
+		assertNotEquals(sessionId,newSessionId);
 
 		String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + CommonsViews.MAIN_VIEW_NAME;
 
