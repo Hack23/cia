@@ -138,20 +138,20 @@ public final class MainView extends Panel implements View {
 
 		layout.addComponent(pageLinkFactory.createMainViewPageLink());
 
-		DefaultVerticalLoginForm loginForm = new DefaultVerticalLoginForm();
+		final DefaultVerticalLoginForm loginForm = new DefaultVerticalLoginForm();
 		loginForm.addLoginListener(new ApplicationLoginListener(applicationManager));
 		layout.addComponent(loginForm);
 
-		VerticalLayout registerLayout = new VerticalLayout();
+		final VerticalLayout registerLayout = new VerticalLayout();
 		registerLayout.setSizeFull();
 
-		RegisterUserRequest reqisterRequest = new RegisterUserRequest();
+		final RegisterUserRequest reqisterRequest = new RegisterUserRequest();
 		reqisterRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 		reqisterRequest.setUsername("");
 		reqisterRequest.setEmail("");
 		reqisterRequest.setCountry("");
 		reqisterRequest.setUserpassword("");
-		ClickListener reqisterListener = new RegisterUserClickListener(reqisterRequest,applicationManager);
+		final ClickListener reqisterListener = new RegisterUserClickListener(reqisterRequest,applicationManager);
 		formFactory.addRequestInputFormFields(registerLayout,  new BeanItem<RegisterUserRequest>(reqisterRequest), RegisterUserRequest.class,
 				Arrays.asList(new String[] {"username","email", "country", "userpassword" }),"Register",reqisterListener);
 

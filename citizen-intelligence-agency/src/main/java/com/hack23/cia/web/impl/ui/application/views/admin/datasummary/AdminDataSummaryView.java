@@ -28,11 +28,11 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.tablefactory.TableFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
@@ -70,8 +70,7 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 	 */
 	@PostConstruct
 	public void postConstruct() {
-		final Label label = new Label("Admin");
-		content.addComponent(label);
+		content.addComponent(LabelFactory.createHeader2Label("Admin"));
 
 		content.addComponent(tableFactory.createDataSummaryTable());
 
@@ -79,7 +78,7 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 		content.setMargin(false);
 		content.setSpacing(true);
 
-		Button refreshViewsButton = new Button("Refresh Views");
+		final Button refreshViewsButton = new Button("Refresh Views");
 
 		refreshViewsButton.addClickListener(event -> {
 			applicationManager.asyncService(new RefreshDataViewsRequest());

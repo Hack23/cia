@@ -45,8 +45,8 @@ public final class FormFactoryImpl implements FormFactory {
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory#addTextFields(com.vaadin.ui.Layout, com.vaadin.data.util.BeanItem, java.lang.Class, java.util.List)
 	 */
 	@Override
-	public <T extends Serializable> void addTextFields(Layout panelContent, BeanItem<T> item, Class<T> beanType,
-			List<String> displayProperties) {
+	public <T extends Serializable> void addTextFields(final Layout panelContent, final BeanItem<T> item, final Class<T> beanType,
+			final List<String> displayProperties) {
 
 		final BeanFieldGroup<T> fieldGroup = new BeanFieldGroup<>(beanType);
 		fieldGroup.setItemDataSource(item);
@@ -69,8 +69,8 @@ public final class FormFactoryImpl implements FormFactory {
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory#addRequestInputFormFields(com.vaadin.ui.Layout, com.vaadin.data.util.BeanItem, java.lang.Class, java.util.List, java.lang.String, com.vaadin.ui.Button.ClickListener)
 	 */
 	@Override
-	public <T extends Serializable> void addRequestInputFormFields(Layout panelContent, BeanItem<T> item,
-			Class<T> beanType, List<String> displayProperties,String buttonLabel,ClickListener buttonListener) {
+	public <T extends Serializable> void addRequestInputFormFields(final Layout panelContent, final BeanItem<T> item,
+			final Class<T> beanType, final List<String> displayProperties,final String buttonLabel,final ClickListener buttonListener) {
 		final BeanFieldGroup<T> fieldGroup = new BeanFieldGroup<>(beanType);
 		fieldGroup.setItemDataSource(item);
 		fieldGroup.setReadOnly(true);
@@ -96,7 +96,7 @@ public final class FormFactoryImpl implements FormFactory {
 		}
 
 
-		Button button = new Button(buttonLabel,new CommitFormWrapperClickListener(fieldGroup,buttonListener));
+		final Button button = new Button(buttonLabel,new CommitFormWrapperClickListener(fieldGroup,buttonListener));
 		button.setId(buttonLabel);
 		panelContent.addComponent(button);
 

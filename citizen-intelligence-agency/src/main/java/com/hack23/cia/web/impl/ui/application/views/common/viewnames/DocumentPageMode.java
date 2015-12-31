@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,22 +19,22 @@
 package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
 
 public enum DocumentPageMode {
-	
+
 	/** The Document activity. */
 	DocumentActivity,
-	
+
 	/** The Person references. */
 	PersonReferences,
-	
+
 	/** The Document details. */
 	DocumentDetails,
-	
+
 	/** The Document data. */
 	DocumentData,
-	
+
 	/** The Document references. */
 	DocumentReferences,
-	
+
 	/** The Documen decision. */
 	DocumenDecision,
 

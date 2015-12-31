@@ -43,7 +43,7 @@ public final class GridFactoryImpl implements GridFactory {
 	@Override
 	public Grid createBasicBeanItemGrid(final Container.Indexed datasource, final String caption,
 			final Object[] columnOrder, final Object[] hideColumns, final String idProprty,
-			final AbstractPageItemRendererClickListener<?> listener, String actionId) {
+			final AbstractPageItemRendererClickListener<?> listener, final String actionId) {
 		final Grid grid = new Grid(datasource);
 
 		grid.setCaption(caption);

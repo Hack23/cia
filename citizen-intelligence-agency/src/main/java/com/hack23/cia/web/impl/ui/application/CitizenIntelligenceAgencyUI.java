@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Locale;
 
 import javax.servlet.annotation.WebServlet;
@@ -30,9 +28,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -105,17 +100,17 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 
 		final WebBrowser webBrowser = currentPage.getWebBrowser();
 
-		CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
+		final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
 		serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 
-		String ipInformation = getIpInformation(webBrowser);
+		final String ipInformation = getIpInformation(webBrowser);
 		serviceRequest.setIpInformation(ipInformation);
 		serviceRequest.setUserAgentInformation(webBrowser.getBrowserApplication());
 		serviceRequest.setLocale(webBrowser.getLocale().toString());
 		serviceRequest.setOperatingSystem(getOperatingSystem(webBrowser));
 		serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
 
-		ServiceResponse serviceResponse = applicationManager.service(serviceRequest);
+		final ServiceResponse serviceResponse = applicationManager.service(serviceRequest);
 		LOGGER.info("Browser address: {} , application:{}, sessionId:{}, result:{}",ipInformation,webBrowser.getBrowserApplication(),serviceRequest.getSessionId(),serviceResponse.getResult().toString());
 		}
 	}
@@ -130,11 +125,10 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 	private String getIpInformation(final WebBrowser webBrowser) {
 		String ipInformation=webBrowser.getAddress();
 
-		HttpServletRequest httpRequest=((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
-		String xForwardedForHeader = httpRequest.getHeader("X-Forwarded-For");
+		final HttpServletRequest httpRequest=((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+		final String xForwardedForHeader = httpRequest.getHeader("X-Forwarded-For");
 		if (xForwardedForHeader != null) {
-			System.out.println(xForwardedForHeader);
-			String[] split = xForwardedForHeader.split(",");
+			final String[] split = xForwardedForHeader.split(",");
 			if (split.length != 0) {
 				ipInformation = split[0];
 			}
@@ -188,14 +182,14 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 
 
 	@Override
-	public void error(com.vaadin.server.ErrorEvent event) {
+	public void error(final com.vaadin.server.ErrorEvent event) {
 	     if (event.getThrowable() instanceof AccessDeniedException) {
-	            AccessDeniedException accessDeniedException = (AccessDeniedException) event.getThrowable();
+	            final AccessDeniedException accessDeniedException = (AccessDeniedException) event.getThrowable();
 	            Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);
 	            getUI().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
 	            return;
 	        } else if (event.getThrowable().getCause() !=null && event.getThrowable().getCause().getCause() != null && event.getThrowable().getCause().getCause().getCause() instanceof AccessDeniedException) {
-	            AccessDeniedException accessDeniedException = (AccessDeniedException) event.getThrowable().getCause().getCause().getCause();
+	            final AccessDeniedException accessDeniedException = (AccessDeniedException) event.getThrowable().getCause().getCause().getCause();
 	            Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);
 	            getUI().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
 	            return;

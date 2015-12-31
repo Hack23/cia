@@ -40,10 +40,10 @@ public final class RegisterUserClickListener implements ClickListener {
 	private static final Logger LOGGER = LoggerFactory.getLogger(RegisterUserClickListener.class);
 
 	/** The reqister request. */
-	private RegisterUserRequest reqisterRequest;
+	private final RegisterUserRequest reqisterRequest;
 
 	/** The application manager. */
-	private ApplicationManager applicationManager;
+	private final ApplicationManager applicationManager;
 
 	/**
 	 * Instantiates a new register user click listener.
@@ -53,7 +53,7 @@ public final class RegisterUserClickListener implements ClickListener {
 	 * @param applicationManager
 	 *            the application manager
 	 */
-	public RegisterUserClickListener(RegisterUserRequest reqisterRequest, ApplicationManager applicationManager) {
+	public RegisterUserClickListener(final RegisterUserRequest reqisterRequest, final ApplicationManager applicationManager) {
 		this.reqisterRequest = reqisterRequest;
 		this.applicationManager = applicationManager;
 	}
@@ -62,8 +62,8 @@ public final class RegisterUserClickListener implements ClickListener {
 	 * @see com.vaadin.ui.Button.ClickListener#buttonClick(com.vaadin.ui.Button.ClickEvent)
 	 */
 	@Override
-	public void buttonClick(ClickEvent event) {
-		ServiceResponse response = applicationManager.service(reqisterRequest);
+	public void buttonClick(final ClickEvent event) {
+		final ServiceResponse response = applicationManager.service(reqisterRequest);
 		if (response.getResult().equals(ServiceResult.SUCCESS)) {
 			LOGGER.info("RegisterUser {}",reqisterRequest.getUsername() );
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);

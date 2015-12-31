@@ -41,6 +41,7 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -51,7 +52,6 @@ import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Grid;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -132,7 +132,7 @@ public final class MinistryView extends AbstractGroupView {
 				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 						|| parameters.contains(PageMode.Overview.toString())) {
 
-					panelContent.addComponent(new Label("Overview"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Overview"));
 
 					panelContent.addComponent(pageLinkFactory.addMinistryPageLink(viewRiksdagenMinistry));
 
@@ -144,7 +144,7 @@ public final class MinistryView extends AbstractGroupView {
 
 				} else if (parameters.contains(MinistryPageMode.DocumentHistory.toString())) {
 
-					panelContent.addComponent(new Label("Document History"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Document History"));
 
 					final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPoliticianDocument.class);
@@ -167,7 +167,7 @@ public final class MinistryView extends AbstractGroupView {
 
 				} else if (parameters.contains(MinistryPageMode.DocumentActivity.toString())) {
 
-					panelContent.addComponent(new Label("Document Activity"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Document Activity"));
 
 					final DCharts createDocumentHistoryChart = chartDataManager
 							.createDocumentHistoryChartByOrg(viewRiksdagenMinistry.getNameId());
@@ -176,7 +176,7 @@ public final class MinistryView extends AbstractGroupView {
 
 				} else if (parameters.contains(MinistryPageMode.CurrentMembers.toString())) {
 
-					panelContent.addComponent(new Label("Current Members"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Current Members"));
 
 					final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
@@ -199,7 +199,7 @@ public final class MinistryView extends AbstractGroupView {
 
 				} else if (parameters.contains(MinistryPageMode.MemberHistory.toString())) {
 
-					panelContent.addComponent(new Label("Member History"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Member History"));
 
 					final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
@@ -218,7 +218,7 @@ public final class MinistryView extends AbstractGroupView {
 					panelContent.addComponent(ministryRoleMemberBeanItemGrid);
 
 				} else if (parameters.contains(MinistryPageMode.RoleGhant.toString())) {
-					panelContent.addComponent(new Label("Role Ghant"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Role Ghant"));
 				}
 
 				getPanel().setContent(panelContent);

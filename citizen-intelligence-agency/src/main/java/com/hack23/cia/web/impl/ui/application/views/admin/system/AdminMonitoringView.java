@@ -81,9 +81,9 @@ public final class AdminMonitoringView extends AbstractAdminView {
 	 * Creates the content.
 	 */
 	private void createContent() {
-		VerticalLayout content = new VerticalLayout();
+		final VerticalLayout content = new VerticalLayout();
 
-		BrowserFrame browser = new BrowserFrame("Admin Monitoring",
+		final BrowserFrame browser = new BrowserFrame("Admin Monitoring",
 			    new ExternalResource("./monitoring"));
 			browser.setSizeFull();
 

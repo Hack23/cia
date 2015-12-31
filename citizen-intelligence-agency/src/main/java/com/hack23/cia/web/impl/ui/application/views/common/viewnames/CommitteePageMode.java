@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,28 +19,28 @@
 package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
 
 public enum CommitteePageMode {
-	
+
 	/** The document history. */
 	DOCUMENT_HISTORY,
-	
+
 	/** The current members. */
 	CURRENT_MEMBERS,
-	
+
 	/** The Member history. */
 	MemberHistory,
-	
+
 	/** The Document activity. */
 	DocumentActivity,
-	
+
 	/** The Ballot decision summary. */
 	BallotDecisionSummary,
-	
+
 	/** The Decision summary. */
 	DecisionSummary,
-	
+
 	/** The Decision type daily summary. */
-	DecisionTypeDailySummary, 
- 
+	DecisionTypeDailySummary,
+
  /** The Role ghant. */
  RoleGhant
 }

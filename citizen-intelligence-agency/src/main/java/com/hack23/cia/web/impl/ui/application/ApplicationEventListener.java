@@ -52,15 +52,15 @@ public class ApplicationEventListener implements ApplicationListener<Application
 	 * @see org.springframework.context.ApplicationListener#onApplicationEvent(org.springframework.context.ApplicationEvent)
 	 */
 	@Override
-	public void onApplicationEvent(ApplicationEvent applicationEvent) {
+	public void onApplicationEvent(final ApplicationEvent applicationEvent) {
 		if (applicationEvent instanceof HttpSessionCreatedEvent) {
-			HttpSession httpSession = ((HttpSessionCreatedEvent) applicationEvent).getSession();
+			final HttpSession httpSession = ((HttpSessionCreatedEvent) applicationEvent).getSession();
 			LOGGER.info("Session created SESSION_ID :{}", httpSession.getId());
 		} else if (applicationEvent instanceof HttpSessionDestroyedEvent) {
-			HttpSession httpSession = ((HttpSessionDestroyedEvent) applicationEvent).getSession();
-			Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+			final HttpSession httpSession = ((HttpSessionDestroyedEvent) applicationEvent).getSession();
+			final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 			authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
-			DestroyApplicationSessionRequest destroyApplicationSessionRequest = new DestroyApplicationSessionRequest();
+			final DestroyApplicationSessionRequest destroyApplicationSessionRequest = new DestroyApplicationSessionRequest();
 			destroyApplicationSessionRequest.setSessionId(httpSession.getId());
 
 			SecurityContextHolder.getContext().setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));

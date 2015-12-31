@@ -30,8 +30,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.remote.SessionId;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -120,7 +118,7 @@ public final class UserPageVisit extends Assert {
 	 */
 	public void visitDirectPage(final PageModeMenuCommand page) throws Exception {
 		//webDriverBackedSelenium = new WebDriverBackedSelenium(driver,CitizenIntelligenceAgencyServer.ACCESS_URL);
-		String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + page.getPagePath();
+		final String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + page.getPagePath();
 		driver.get(url);
 
 		Thread.sleep(WAIT_FOR_PAGE_DELAY);
@@ -140,7 +138,7 @@ public final class UserPageVisit extends Assert {
 		assertTrue("Each page should contain a MainMenu link",getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW));
 
 
-		String text = getHtmlBodyAsText();
+		final String text = getHtmlBodyAsText();
 		assertNotNull(text);
 		assertFalse("Page contains exception, url:" + url ,text.contains("Exception"));
 		assertFalse("Page contains widget exception, url:" + url,text.contains("Widget"));
@@ -157,8 +155,8 @@ public final class UserPageVisit extends Assert {
 	 * @param page
 	 *            the page
 	 */
-	public void validatePage(PageModeMenuCommand page) {
-		String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + page.getPagePath();
+	public void validatePage(final PageModeMenuCommand page) {
+		final String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + page.getPagePath();
 
 
 		final long end = System.currentTimeMillis() + WAIT_FOR_PAGE_ELEMENT;
@@ -167,7 +165,7 @@ public final class UserPageVisit extends Assert {
 		assertTrue("Each page should contain a MainMenu link",getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW));
 
 
-		String text = getHtmlBodyAsText();
+		final String text = getHtmlBodyAsText();
 		assertNotNull(text);
 		assertFalse("Page contains exception, url:" + url ,text.contains("Exception"));
 		assertFalse("Page contains widget exception, url:" + url,text.contains("Widget"));
@@ -204,7 +202,7 @@ public final class UserPageVisit extends Assert {
 	 *            the caption
 	 * @return the menu item
 	 */
-	public WebElement getMenuItem(String... caption) {
+	public WebElement getMenuItem(final String... caption) {
 		return getMenuItem(getMenuBar(), 1,caption);
 	}
 
@@ -219,18 +217,18 @@ public final class UserPageVisit extends Assert {
 	 *            the caption
 	 * @return the menu item
 	 */
-	private WebElement getMenuItem(WebElement element,int level,String... caption) {
+	private WebElement getMenuItem(final WebElement element,final int level,final String... caption) {
 		if (caption.length == level) {
-			List<WebElement> findElements = element.findElements(By.className("v-menubar-menuitem-caption"));
-			for (WebElement webElement : findElements) {
+			final List<WebElement> findElements = element.findElements(By.className("v-menubar-menuitem-caption"));
+			for (final WebElement webElement : findElements) {
 				if (caption[level -1].equals(webElement.getText())) {
 					return webElement;
 				}
 			}
 		} else {
-			List<WebElement> findElements = element.findElements(By.className("v-menubar-menuitem-caption"));
+			final List<WebElement> findElements = element.findElements(By.className("v-menubar-menuitem-caption"));
 
-			for (WebElement webElement : findElements) {
+			for (final WebElement webElement : findElements) {
 				if (caption[level -1].equals(webElement.getText())) {
 					return getMenuItem(webElement, level +1 ,caption);
 				}
@@ -246,9 +244,9 @@ public final class UserPageVisit extends Assert {
 	 * @return the buttons
 	 */
 	public List<WebElement> getButtons() {
-		List<WebElement> result = new ArrayList<>();
-		List<WebElement> nativeButtons = driver.findElements(By.className("v-nativebutton"));
-		List<WebElement> buttons = driver.findElements(By.className("v-button"));
+		final List<WebElement> result = new ArrayList<>();
+		final List<WebElement> nativeButtons = driver.findElements(By.className("v-nativebutton"));
+		final List<WebElement> buttons = driver.findElements(By.className("v-button"));
 		result.addAll(nativeButtons);
 		result.addAll(buttons);
 		return result;
@@ -260,7 +258,7 @@ public final class UserPageVisit extends Assert {
 	 * @return the grid rows
 	 */
 	public List<WebElement> getGridRows() {
-		WebElement gridBody = driver.findElement(By.className("v-grid-body"));
+		final WebElement gridBody = driver.findElement(By.className("v-grid-body"));
 		return gridBody.findElements(By.className("v-grid-row"));
 
 	}
@@ -271,7 +269,7 @@ public final class UserPageVisit extends Assert {
 	 * @return the grid headers
 	 */
 	public List<WebElement> getGridHeaders() {
-		WebElement gridBody = driver.findElement(By.className("v-grid-header"));
+		final WebElement gridBody = driver.findElement(By.className("v-grid-header"));
 
 		return gridBody.findElements(By.className("v-grid-row"));
 
@@ -612,7 +610,7 @@ public final class UserPageVisit extends Assert {
 			clickElement.click();
 		} else {
 
-			WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+			final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
 			wait.until(ExpectedConditions.visibilityOf(clickElement));
 
 			action.clickAndHold(clickElement).release().perform();
@@ -673,17 +671,17 @@ public final class UserPageVisit extends Assert {
 	 * @throws Exception
 	 *             the exception
 	 */
-	public void registerNewUser(String username,String password) throws Exception {
+	public void registerNewUser(final String username,final String password) throws Exception {
 
 		setFieldValue("Register.username",username);
 		setFieldValue("Register.email",username+"@test.com");
 		setFieldValue("Register.country","Sweden");
 		setFieldValue("Register.userpassword",password);
 
-		WebElement registerButton = driver.findElement(By.id("Register"));
+		final WebElement registerButton = driver.findElement(By.id("Register"));
 		performClickAction(registerButton);
 
-		String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + UserViews.USERHOME_VIEW_NAME;
+		final String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + UserViews.USERHOME_VIEW_NAME;
 
 		assertEquals(browser, url,
 				driver.getCurrentUrl());
@@ -701,17 +699,17 @@ public final class UserPageVisit extends Assert {
 	 * @throws Exception
 	 *             the exception
 	 */
-	public void loginUser(String username,String password) throws Exception {
+	public void loginUser(final String username,final String password) throws Exception {
 
 		setFieldValue("username",username);
 		setFieldValue("password",password);
 
-		WebElement loginButton =findButton("Login");
+		final WebElement loginButton =findButton("Login");
 		assertNotNull("Expect to find a Login Button",loginButton);
 
 		performClickAction(loginButton);
 
-		String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + UserViews.USERHOME_VIEW_NAME;
+		final String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + UserViews.USERHOME_VIEW_NAME;
 
 		assertEquals(browser, url,
 				driver.getCurrentUrl());
@@ -721,16 +719,16 @@ public final class UserPageVisit extends Assert {
 
 	public void logoutUser() throws Exception {
 
-		WebElement logoutButton =findButton("Logout");
+		final WebElement logoutButton =findButton("Logout");
 		assertNotNull("Expect to find a Logout Button",logoutButton);
 
-		Cookie cookie= driver.manage().getCookieNamed("JSESSIONID");
-		String sessionId = cookie.getValue();
+		final Cookie cookie= driver.manage().getCookieNamed("JSESSIONID");
+		final String sessionId = cookie.getValue();
 
 
 		performClickAction(logoutButton);
 
-		WebElement body = driver.findElement(By.tagName("body"));
+		final WebElement body = driver.findElement(By.tagName("body"));
 		body.sendKeys(Keys.ESCAPE);
 
 
@@ -738,15 +736,13 @@ public final class UserPageVisit extends Assert {
 		driver.navigate().refresh();
 		Thread.sleep(2000);
 
-		System.out.println();
+		final Cookie newCookie= driver.manage().getCookieNamed("JSESSIONID");
 
-		Cookie newCookie= driver.manage().getCookieNamed("JSESSIONID");
-
-		String newSessionId = newCookie.getValue();
+		final String newSessionId = newCookie.getValue();
 
 		assertNotEquals(sessionId,newSessionId);
 
-		String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + CommonsViews.MAIN_VIEW_NAME;
+		final String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + CommonsViews.MAIN_VIEW_NAME;
 
 		assertEquals(browser, url,
 				driver.getCurrentUrl());
@@ -763,9 +759,9 @@ public final class UserPageVisit extends Assert {
 	 *            the button label
 	 * @return the web element
 	 */
-	private WebElement findButton(String buttonLabel) {
-		List<WebElement> buttons = getButtons();
-		for (WebElement webElement : buttons) {
+	private WebElement findButton(final String buttonLabel) {
+		final List<WebElement> buttons = getButtons();
+		for (final WebElement webElement : buttons) {
 			if (buttonLabel.equalsIgnoreCase(webElement.getText().trim())) {
 				return webElement;
 			}
@@ -781,8 +777,8 @@ public final class UserPageVisit extends Assert {
 	 * @param value
 	 *            the value
 	 */
-	private void setFieldValue(String id,String value) {
-		WebElement findElement = driver.findElement(By.id(id));
+	private void setFieldValue(final String id,final String value) {
+		final WebElement findElement = driver.findElement(By.id(id));
 		findElement.clear();
 		findElement.sendKeys(value);
 	}

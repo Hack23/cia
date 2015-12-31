@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,7 +28,7 @@ import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
 
 public final class CommitFormWrapperClickListener implements ClickListener {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -36,10 +36,10 @@ public final class CommitFormWrapperClickListener implements ClickListener {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CommitFormWrapperClickListener.class);
 
 	/** The field group. */
-	private BeanFieldGroup<?> fieldGroup;
+	private final BeanFieldGroup<?> fieldGroup;
 
 	/** The button listener. */
-	private ClickListener buttonListener;
+	private final ClickListener buttonListener;
 
 	/**
 	 * Instantiates a new commit form wrapper click listener.
@@ -49,7 +49,7 @@ public final class CommitFormWrapperClickListener implements ClickListener {
 	 * @param buttonListener
 	 *            the button listener
 	 */
-	public CommitFormWrapperClickListener(BeanFieldGroup<?> fieldGroup, ClickListener buttonListener) {
+	public CommitFormWrapperClickListener(final BeanFieldGroup<?> fieldGroup, final ClickListener buttonListener) {
 		this.fieldGroup = fieldGroup;
 		this.buttonListener = buttonListener;
 	}
@@ -58,10 +58,10 @@ public final class CommitFormWrapperClickListener implements ClickListener {
 	 * @see com.vaadin.ui.Button.ClickListener#buttonClick(com.vaadin.ui.Button.ClickEvent)
 	 */
 	@Override
-	public void buttonClick(ClickEvent event) {
+	public void buttonClick(final ClickEvent event) {
 		try {
 			fieldGroup.commit();
-		} catch (CommitException e) {
+		} catch (final CommitException e) {
 			Notification.show("Form Error",
 	                  e.getMessage(),
 	                  Notification.Type.WARNING_MESSAGE);

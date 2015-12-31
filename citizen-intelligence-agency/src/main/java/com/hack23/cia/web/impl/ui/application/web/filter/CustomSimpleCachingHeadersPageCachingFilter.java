@@ -28,10 +28,11 @@ public final class CustomSimpleCachingHeadersPageCachingFilter extends SimpleCac
 	   /* (non-Javadoc)
    	 * @see net.sf.ehcache.constructs.web.filter.SimplePageCachingFilter#getCacheManager()
    	 */
-   	protected CacheManager getCacheManager() {
+   	@Override
+	protected CacheManager getCacheManager() {
 	    	final List<CacheManager> allCacheManagers = CacheManager.ALL_CACHE_MANAGERS;
 	    	CacheManager foundCacheManager=null;
-	    	for (CacheManager cacheManager : allCacheManagers) {
+	    	for (final CacheManager cacheManager : allCacheManagers) {
 	        	if (cacheManager.getActiveConfigurationText().contains("webCacheManager")) {
 	        		foundCacheManager=cacheManager;
 	        		continue;

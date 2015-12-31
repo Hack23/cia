@@ -33,9 +33,9 @@ public class PageItemPropertyClickListenerTest extends AbstractUnitTest {
 	@Test
 	public void checkCorrectPageIdSuccessTest() {
 
-		PageItemPropertyClickListener pageItemPropertyClickListener = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"wrongProperty");
+		final PageItemPropertyClickListener pageItemPropertyClickListener = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"wrongProperty");
 
-		String pageId = pageItemPropertyClickListener.getPageId(new ViewRiksdagenPolitician());
+		final String pageId = pageItemPropertyClickListener.getPageId(new ViewRiksdagenPolitician());
 
 		assertEquals("ErrorGettingPageId", pageId);
 	}
@@ -46,10 +46,10 @@ public class PageItemPropertyClickListenerTest extends AbstractUnitTest {
 	@Test
 	public void checkCorrectPageIdFailureTest() {
 
-		PageItemPropertyClickListener pageItemPropertyClickListener = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId");
+		final PageItemPropertyClickListener pageItemPropertyClickListener = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId");
 
-		String personIdValue = "personId";
-		String pageId = pageItemPropertyClickListener.getPageId(new ViewRiksdagenPolitician().withPersonId(personIdValue));
+		final String personIdValue = "personId";
+		final String pageId = pageItemPropertyClickListener.getPageId(new ViewRiksdagenPolitician().withPersonId(personIdValue));
 
 		assertEquals(personIdValue, pageId);
 	}

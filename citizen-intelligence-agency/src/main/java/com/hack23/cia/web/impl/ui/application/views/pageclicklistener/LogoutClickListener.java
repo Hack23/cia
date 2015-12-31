@@ -54,7 +54,7 @@ public final class LogoutClickListener implements ClickListener {
 	 * @param applicationManager
 	 *            the application manager
 	 */
-	public LogoutClickListener(LogoutRequest logoutRequest, ApplicationManager applicationManager) {
+	public LogoutClickListener(final LogoutRequest logoutRequest, final ApplicationManager applicationManager) {
 		this.logoutRequest = logoutRequest;
 		this.applicationManager = applicationManager;
 	}
@@ -63,8 +63,8 @@ public final class LogoutClickListener implements ClickListener {
 	 * @see com.vaadin.ui.Button.ClickListener#buttonClick(com.vaadin.ui.Button.ClickEvent)
 	 */
 	@Override
-	public void buttonClick(ClickEvent event) {
-		ServiceResponse response = applicationManager.service(logoutRequest);
+	public void buttonClick(final ClickEvent event) {
+		final ServiceResponse response = applicationManager.service(logoutRequest);
 
 
 		if (response.getResult().equals(ServiceResult.SUCCESS)) {

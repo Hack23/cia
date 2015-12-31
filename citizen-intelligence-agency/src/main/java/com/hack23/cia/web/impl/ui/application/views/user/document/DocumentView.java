@@ -49,6 +49,7 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -151,7 +152,7 @@ public final class DocumentView extends AbstractUserView {
 				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 						|| parameters.contains(PageMode.Overview.toString())) {
 
-					panelContent.addComponent(new Label("Overview"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Overview"));
 
 					formFactory.addTextFields(panelContent, new BeanItem<DocumentElement>(documentElement), DocumentElement.class,
 							Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status",
@@ -172,7 +173,7 @@ public final class DocumentView extends AbstractUserView {
 
 				} else if (parameters.contains(DocumentPageMode.DocumenDecision.toString())) {
 
-					panelContent.addComponent(new Label("Document Decision"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Document Decision"));
 
 					if (documentStatusContainer != null && documentStatusContainer.getDocumentProposal() != null
 							&& documentStatusContainer.getDocumentProposal().getProposal() != null) {
@@ -189,7 +190,7 @@ public final class DocumentView extends AbstractUserView {
 
 				} else if (parameters.contains(DocumentPageMode.DocumentActivity.toString())) {
 
-					panelContent.addComponent(new Label("Document Activity"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Document Activity"));
 
 					if (documentStatusContainer != null
 							&& documentStatusContainer.getDocumentActivityContainer() != null
@@ -207,7 +208,7 @@ public final class DocumentView extends AbstractUserView {
 
 				} else if (parameters.contains(DocumentPageMode.DocumentData.toString())) {
 
-					panelContent.addComponent(new Label("Document Data"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Document Data"));
 
 					final List<DocumentContentData> documentContentlist = documentContentDataDataContainer
 							.getAllBy(DocumentContentData_.id, pageId);
@@ -222,7 +223,7 @@ public final class DocumentView extends AbstractUserView {
 
 				} else if (parameters.contains(DocumentPageMode.DocumentDetails.toString())) {
 
-					panelContent.addComponent(new Label("Document Details"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Document Details"));
 
 					if (documentStatusContainer != null && documentStatusContainer.getDocumentDetailContainer() != null
 							&& documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList() != null) {
@@ -238,7 +239,7 @@ public final class DocumentView extends AbstractUserView {
 
 				} else if (parameters.contains(DocumentPageMode.DocumentReferences.toString())) {
 
-					panelContent.addComponent(new Label("Document References"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Document References"));
 
 					if (documentStatusContainer != null
 							&& documentStatusContainer.getDocumentReferenceContainer() != null
@@ -258,7 +259,7 @@ public final class DocumentView extends AbstractUserView {
 
 				} else if (parameters.contains(DocumentPageMode.PersonReferences.toString())) {
 
-					panelContent.addComponent(new Label("Person References"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Person References"));
 
 					if (documentStatusContainer != null
 							&& documentStatusContainer.getDocumentPersonReferenceContainer() != null
@@ -279,7 +280,7 @@ public final class DocumentView extends AbstractUserView {
 
 				} else if (parameters.contains(DocumentPageMode.DocumentAttachments.toString())) {
 
-					panelContent.addComponent(new Label("Document Attachments"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Document Attachments"));
 
 					if (documentStatusContainer != null
 							&& documentStatusContainer.getDocumentAttachmentContainer() != null

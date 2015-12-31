@@ -88,9 +88,9 @@ public enum ViewAction {
 
  /** The visit document view. */
  VISIT_DOCUMENT_VIEW,
- 
+
  /** The visit admin monitoring view. */
- VISIT_ADMIN_MONITORING_VIEW, 
+ VISIT_ADMIN_MONITORING_VIEW,
  /** The visit user home view. */
  VISIT_USER_HOME_VIEW;
 }

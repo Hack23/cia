@@ -34,12 +34,12 @@ import com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder;
 import com.hack23.cia.service.api.AgentContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.ComboBox;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -88,8 +88,7 @@ public final class AgentOperationView extends AbstractAdminView implements
 	 */
 	@PostConstruct
 	public void postConstruct() {
-		final Label label = new Label("Admin");
-		content.addComponent(label);
+		content.addComponent(LabelFactory.createHeader2Label("Admin"));
 
 		targetSelect = new ComboBox("Target", Arrays.asList(DataAgentTarget
 				.values()));

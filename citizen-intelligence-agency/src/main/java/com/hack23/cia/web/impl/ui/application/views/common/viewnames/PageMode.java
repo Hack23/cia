@@ -25,10 +25,10 @@ public enum PageMode {
 
 /** The Charts. */
 	Charts,
-	
+
 	/** The Data grid. */
 	DataGrid,
-	
+
 	/** The Indicators. */
 	Indicators
 

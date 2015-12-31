@@ -43,6 +43,7 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -54,7 +55,6 @@ import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -128,11 +128,11 @@ public final class UserHomeView extends AbstractUserView {
 			if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 					|| parameters.contains(PageMode.Overview.toString())) {
 
-				panelContent.addComponent(new Label("Overview"));
+				panelContent.addComponent(LabelFactory.createHeader2Label("Overview"));
 
-				Button logoutButton = new Button("Logout");
+				final Button logoutButton = new Button("Logout");
 
-				LogoutRequest logoutRequest = new LogoutRequest();
+				final LogoutRequest logoutRequest = new LogoutRequest();
 				logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 				logoutButton.addClickListener(new LogoutClickListener(logoutRequest,applicationManager));
 
@@ -142,7 +142,7 @@ public final class UserHomeView extends AbstractUserView {
 				final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
 
 
-					UserAccount userAccount = dataContainer.load(getUserIdFromSecurityContext());
+					final UserAccount userAccount = dataContainer.load(getUserIdFromSecurityContext());
 
 					formFactory.addTextFields(panelContent, new BeanItem<UserAccount>(userAccount), UserAccount.class,
 							Arrays.asList(new String[] { "username","createdDate","email","country","numberOfVisits" }));
@@ -178,17 +178,15 @@ public final class UserHomeView extends AbstractUserView {
 
 		Long result=null;
 
-		SecurityContext context = SecurityContextHolder.getContext();
+		final SecurityContext context = SecurityContextHolder.getContext();
 		if (context != null) {
-			Authentication authentication = context.getAuthentication();
+			final Authentication authentication = context.getAuthentication();
 			if (authentication != null) {
-				Object principal = authentication.getPrincipal();
+				final Object principal = authentication.getPrincipal();
 
 				if (principal instanceof UserAccount) {
-					UserAccount userAccount = (UserAccount) principal;
+					final UserAccount userAccount = (UserAccount) principal;
 					result = userAccount.getHjid();
-				} else {
-					System.out.println(result);
 				}
 			}
 		}

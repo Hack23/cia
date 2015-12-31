@@ -57,6 +57,7 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
@@ -153,17 +154,17 @@ public final class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PageMode.Charts.toString())) {
 
-					panelContent.addComponent(new Label("Charts"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Charts"));
 
 				} else if (parameters.contains(PageMode.Indicators.toString())) {
 
-					panelContent.addComponent(new Label("Indicators"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Indicators"));
 
 					panelContent.addComponent(chartDataManager.createPersonLineChart(personData.getId()));
 
 				} else if (parameters.contains(PoliticianPageMode.RoleSummary.toString())) {
 
-					panelContent.addComponent(new Label(PoliticianPageMode.RoleSummary.toString()));
+					panelContent.addComponent(LabelFactory.createHeader2Label(PoliticianPageMode.RoleSummary.toString()));
 
 					final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPolitician.class);
@@ -178,7 +179,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PoliticianPageMode.RoleList.toString())) {
 
-					panelContent.addComponent(new Label(PoliticianPageMode.RoleList.toString()));
+					panelContent.addComponent(LabelFactory.createHeader2Label(PoliticianPageMode.RoleList.toString()));
 
 					final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()
 							.getAssignmentList();
@@ -187,7 +188,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PoliticianPageMode.VoteHistory.toString())) {
 
-					panelContent.addComponent(new Label(PoliticianPageMode.VoteHistory.toString()));
+					panelContent.addComponent(LabelFactory.createHeader2Label(PoliticianPageMode.VoteHistory.toString()));
 
 					final BeanItemContainer<ViewRiksdagenVoteDataBallotPoliticianSummary> politicianBallotDataSource = new BeanItemContainer<ViewRiksdagenVoteDataBallotPoliticianSummary>(
 							ViewRiksdagenVoteDataBallotPoliticianSummary.class,
@@ -200,11 +201,11 @@ public final class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PoliticianPageMode.BallotDecisionSummary.toString())) {
 
-					panelContent.addComponent(new Label(PoliticianPageMode.BallotDecisionSummary.toString()));
+					panelContent.addComponent(LabelFactory.createHeader2Label(PoliticianPageMode.BallotDecisionSummary.toString()));
 
 				} else if (parameters.contains(PoliticianPageMode.DocumentHistory.toString())) {
 
-					panelContent.addComponent(new Label(PoliticianPageMode.DocumentHistory.toString()));
+					panelContent.addComponent(LabelFactory.createHeader2Label(PoliticianPageMode.DocumentHistory.toString()));
 
 					final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPoliticianDocument.class);
@@ -227,7 +228,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PoliticianPageMode.DocumentActivity.toString())) {
 
-					panelContent.addComponent(new Label(PoliticianPageMode.DocumentActivity.toString()));
+					panelContent.addComponent(LabelFactory.createHeader2Label(PoliticianPageMode.DocumentActivity.toString()));
 
 					final DCharts documentHistoryChart = chartDataManager
 							.createPersonDocumentHistoryChart(personData.getId());
@@ -236,7 +237,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PoliticianPageMode.RoleGhant.toString())) {
 
-					panelContent.addComponent(new Label(PoliticianPageMode.RoleGhant.toString()));
+					panelContent.addComponent(LabelFactory.createHeader2Label(PoliticianPageMode.RoleGhant.toString()));
 
 					final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()
 							.getAssignmentList();
@@ -278,8 +279,8 @@ public final class PoliticianView extends AbstractPersonView {
 	 * @param personData
 	 *            the person data
 	 */
-	private void createOverviewContent(VerticalLayout panelContent, final String pageId, final PersonData personData) {
-		panelContent.addComponent(new Label("overview"));
+	private void createOverviewContent(final VerticalLayout panelContent, final String pageId, final PersonData personData) {
+		panelContent.addComponent(LabelFactory.createHeader2Label("overview"));
 
 		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenPolitician.class);
@@ -351,13 +352,7 @@ public final class PoliticianView extends AbstractPersonView {
 	 */
 	private void createRoleList(final Layout roleSummaryLayoutTabsheet, final List<AssignmentData> assignmentList) {
 
-		final Comparator<AssignmentData> compare = new Comparator<AssignmentData>() {
-
-			@Override
-			public int compare(final AssignmentData o1, final AssignmentData o2) {
-				return o1.getFromDate().compareTo(o2.getFromDate());
-			}
-		};
+		final Comparator<AssignmentData> compare = (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
 
 		Collections.sort(assignmentList, compare);
 
@@ -380,13 +375,7 @@ public final class PoliticianView extends AbstractPersonView {
 	 */
 	private void createRoleGhant(final Layout roleSummaryLayoutTabsheet, final List<AssignmentData> assignmentList) {
 
-		final Comparator<AssignmentData> compare = new Comparator<AssignmentData>() {
-
-			@Override
-			public int compare(final AssignmentData o1, final AssignmentData o2) {
-				return o1.getFromDate().compareTo(o2.getFromDate());
-			}
-		};
+		final Comparator<AssignmentData> compare = (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
 
 		Collections.sort(assignmentList, compare);
 
@@ -402,37 +391,28 @@ public final class PoliticianView extends AbstractPersonView {
 	 */
 	private static SortedSet<Map.Entry<String, List<AssignmentData>>> entriesSortedByValues(
 			final Map<String, List<AssignmentData>> map) {
-		final Comparator<? super Entry<String, List<AssignmentData>>> compare = new Comparator<Map.Entry<String, List<AssignmentData>>>() {
+		final Comparator<? super Entry<String, List<AssignmentData>>> compare = (o1, o2) -> {
 
-			@Override
-			public int compare(final Entry<String, List<AssignmentData>> o1,
-					final Entry<String, List<AssignmentData>> o2) {
-
-				final Comparator<AssignmentData> compare = new Comparator<AssignmentData>() {
-
-					@Override
-					public int compare(final AssignmentData o1, final AssignmentData o2) {
-						final int compareDate = o1.getFromDate().compareTo(o2.getFromDate());
-						if (compareDate == 0) {
-							final int compareType = o1.getAssignmentType().compareTo(o2.getAssignmentType());
-							if (compareType == 0) {
-								return o1.getDetail().compareTo(o2.getDetail());
-							} else {
-								return compareType;
-							}
-						} else {
-						}
-						return compareDate;
-
-					}
-				};
-
-				Collections.sort(o1.getValue(), compare);
-				Collections.sort(o2.getValue(), compare);
-
-				return compare.compare(o1.getValue().get(0), o2.getValue().get(0));
+final Comparator<AssignmentData> compare1 = (o11, o21) -> {
+		final int compareDate = o11.getFromDate().compareTo(o21.getFromDate());
+		if (compareDate == 0) {
+			final int compareType = o11.getAssignmentType().compareTo(o21.getAssignmentType());
+			if (compareType == 0) {
+				return o11.getDetail().compareTo(o21.getDetail());
+			} else {
+				return compareType;
 			}
-		};
+		} else {
+		}
+		return compareDate;
+
+};
+
+Collections.sort(o1.getValue(), compare1);
+Collections.sort(o2.getValue(), compare1);
+
+return compare1.compare(o1.getValue().get(0), o2.getValue().get(0));
+};
 
 		final SortedSet<Map.Entry<String, List<AssignmentData>>> sortedEntries = new TreeSet<Map.Entry<String, List<AssignmentData>>>(
 				compare);
@@ -464,7 +444,6 @@ public final class PoliticianView extends AbstractPersonView {
 				}
 
 			}
-
 		};
 
 		final Map<String, List<AssignmentData>> assignmentListMap = assignmentList.stream()
@@ -492,13 +471,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 				final List<AssignmentData> assignments = entry.getValue();
 
-				final Comparator<AssignmentData> compare = new Comparator<AssignmentData>() {
-
-					@Override
-					public int compare(final AssignmentData o1, final AssignmentData o2) {
-						return o1.getFromDate().compareTo(o2.getFromDate());
-					}
-				};
+				final Comparator<AssignmentData> compare = (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
 
 				Collections.sort(assignments, compare);
 

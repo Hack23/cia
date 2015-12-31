@@ -36,12 +36,12 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -104,10 +104,9 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 	 *            the page id
 	 */
 	private void createListAndForm(final String pageId) {
-		VerticalLayout content = new VerticalLayout();
+		final VerticalLayout content = new VerticalLayout();
 
-		final Label label = new Label("Admin Application Event");
-		content.addComponent(label);
+		content.addComponent(LabelFactory.createHeader2Label("Admin Application Event"));
 
 		final DataContainer<ApplicationActionEvent, Long> dataContainer = applicationManager.getDataContainer(ApplicationActionEvent.class);
 
@@ -122,7 +121,7 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 
 		if (pageId != null && !pageId.isEmpty()) {
 
-			ApplicationActionEvent applicationActionEvent = dataContainer.load(Long.valueOf(pageId));
+			final ApplicationActionEvent applicationActionEvent = dataContainer.load(Long.valueOf(pageId));
 
 			formFactory.addTextFields(content, new BeanItem<ApplicationActionEvent>(applicationActionEvent), ApplicationActionEvent.class,
 					Arrays.asList(new String[] { "hjid","createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion"  }));

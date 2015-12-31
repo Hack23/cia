@@ -41,6 +41,7 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -51,7 +52,6 @@ import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Grid;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -131,7 +131,8 @@ public final class CommitteeView extends AbstractGroupView {
 				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 						|| parameters.contains(PageMode.Overview.toString())) {
 
-					panelContent.addComponent(new Label("Overview"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Overview"));
+
 
 					panelContent.addComponent(pageLinkFactory.addCommitteePageLink(viewRiksdagenCommittee));
 
@@ -144,7 +145,9 @@ public final class CommitteeView extends AbstractGroupView {
 
 				} else if (parameters.contains(CommitteePageMode.DOCUMENT_HISTORY.toString())) {
 
-					panelContent.addComponent(new Label("Document History"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Document History"));
+
+
 
 					final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPoliticianDocument.class);
@@ -169,7 +172,8 @@ public final class CommitteeView extends AbstractGroupView {
 
 				} else if (parameters.contains(CommitteePageMode.DocumentActivity.toString())) {
 
-					panelContent.addComponent(new Label("Document Activity"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Document Activity"));
+
 
 					final DCharts createDocumentHistoryChart = chartDataManager
 							.createDocumentHistoryChartByOrg(viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
@@ -177,20 +181,20 @@ public final class CommitteeView extends AbstractGroupView {
 					panelContent.addComponent(createDocumentHistoryChart);
 
 				} else if (parameters.contains(CommitteePageMode.DecisionTypeDailySummary.toString())) {
-					panelContent.addComponent(new Label("Decision Type Daily Summary"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Decision Type Daily Summary"));
 
 					final DCharts createDecisionTypeChart = chartDataManager
 							.createDecisionTypeChart(viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
 					panelContent.addComponent(createDecisionTypeChart);
 				} else if (parameters.contains(CommitteePageMode.BallotDecisionSummary.toString())) {
-					panelContent.addComponent(new Label("Ballot Decision Summary"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Ballot Decision Summary"));
 
 				} else if (parameters.contains(CommitteePageMode.DecisionSummary.toString())) {
 
-					panelContent.addComponent(new Label("Decision Summary"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Decision Summary"));
 
 				} else if (parameters.contains(CommitteePageMode.CURRENT_MEMBERS.toString())) {
-					panelContent.addComponent(new Label("Current Members"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Current Members"));
 
 					final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
@@ -212,7 +216,7 @@ public final class CommitteeView extends AbstractGroupView {
 					panelContent.addComponent(currentMemberBeanItemGrid);
 
 				} else if (parameters.contains(CommitteePageMode.MemberHistory.toString())) {
-					panelContent.addComponent(new Label("Member History"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Member History"));
 
 					final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
@@ -233,7 +237,7 @@ public final class CommitteeView extends AbstractGroupView {
 
 				} else if (parameters.contains(CommitteePageMode.RoleGhant.toString())) {
 
-					panelContent.addComponent(new Label("RoleGhant"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("RoleGhant"));
 				}
 
 				getPanel().setContent(panelContent);

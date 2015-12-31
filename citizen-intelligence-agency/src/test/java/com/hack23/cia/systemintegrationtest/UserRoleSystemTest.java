@@ -178,7 +178,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, ""));
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Agency"));
 
-		String pageId = clickFirstRowInGrid(userPageVisit);
+		final String pageId = clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, pageId));
 
@@ -196,14 +196,14 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the interrupted exception
 	 */
 	private String clickFirstRowInGrid(final UserPageVisit userPageVisit) throws InterruptedException {
-		List<WebElement> gridRows = userPageVisit.getGridRows();
+		final List<WebElement> gridRows = userPageVisit.getGridRows();
 		assertFalse(gridRows.isEmpty());
 
-		WebElement choosenRow = gridRows.iterator().next();
+		final WebElement choosenRow = gridRows.iterator().next();
 
-		List<WebElement> cells = choosenRow.findElements(By.className("v-grid-cell"));
+		final List<WebElement> cells = choosenRow.findElements(By.className("v-grid-cell"));
 
-		WebElement choosenCell = cells.iterator().next();
+		final WebElement choosenCell = cells.iterator().next();
 
 		String pageId = choosenCell.getText();
 		userPageVisit.performClickAction(choosenCell);
@@ -231,7 +231,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Portal"));
 
-		String pageId = clickFirstRowInGrid(userPageVisit);
+		final String pageId = clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, pageId));
 
@@ -254,7 +254,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, ""));
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Country"));
 
-		String pageId = clickFirstRowInGrid(userPageVisit);
+		final String pageId = clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, pageId));
 
@@ -277,7 +277,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Useraccount"));
 
-		String pageId = clickFirstRowInGrid(userPageVisit);
+		final String pageId = clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, pageId));
 
@@ -345,7 +345,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Application Session"));
 
-		String pageId = clickFirstRowInGrid(userPageVisit);
+		final String pageId = clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, pageId));
 
@@ -368,7 +368,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Application Event"));
 
-		String pageId = clickFirstRowInGrid(userPageVisit);
+		final String pageId = clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, pageId));
 
@@ -423,7 +423,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DataGrid));
 
-		WebElement button = userPageVisit.getButtons().iterator().next();
+		final WebElement button = userPageVisit.getButtons().iterator().next();
 		assertNotNull(button);
 
 		userPageVisit.performClickAction(button);
@@ -521,7 +521,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DataGrid));
-		String pageId = clickFirstRowInGrid(userPageVisit);
+		final String pageId = clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, pageId));
 
@@ -693,7 +693,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.Overview));
 
-		WebElement overviewItem = userPageVisit.getMenuItem("Overview");
+		final WebElement overviewItem = userPageVisit.getMenuItem("Overview");
 		assertNotNull(overviewItem);
 
 		userPageVisit.performClickAction(overviewItem);
@@ -715,8 +715,8 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.Overview));
 
-		String username = UUID.randomUUID().toString();
-		String password = UUID.randomUUID().toString();
+		final String username = UUID.randomUUID().toString();
+		final String password = UUID.randomUUID().toString();
 
 		userPageVisit.registerNewUser(username,password);
 
@@ -736,8 +736,8 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.Overview));
 
-		String username = UUID.randomUUID().toString();
-		String password = UUID.randomUUID().toString();
+		final String username = UUID.randomUUID().toString();
+		final String password = UUID.randomUUID().toString();
 
 		userPageVisit.registerNewUser(username,password);
 
@@ -745,7 +745,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		driver.quit();
 
-		WebDriver loginDriver = getWebDriver();
+		final WebDriver loginDriver = getWebDriver();
 
 		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
 
@@ -1025,7 +1025,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.DataGrid));
 
 
-		WebElement button = userPageVisit.getButtons().iterator().next();
+		final WebElement button = userPageVisit.getButtons().iterator().next();
 		assertNotNull(button);
 
 		userPageVisit.performClickAction(button);

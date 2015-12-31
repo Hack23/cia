@@ -44,6 +44,11 @@ public class ChartTest extends Assert {
 
 	static class XYseriesFix extends XYseries {
 
+		/**
+		 *
+		 */
+		private static final long serialVersionUID = 1L;
+
 		/* (non-Javadoc)
 		 * @see org.dussan.vaadin.dcharts.base.elements.XYseries#getValue()
 		 */
@@ -55,6 +60,11 @@ public class ChartTest extends Assert {
 	}
 
 	static class XYaxisFix extends XYaxis {
+
+		/**
+		 *
+		 */
+		private static final long serialVersionUID = 1L;
 
 		/**
 		 * Instantiates a new x yaxis fix.
@@ -69,7 +79,7 @@ public class ChartTest extends Assert {
 		 * @param y
 		 *            the y
 		 */
-		public XYaxisFix(XYaxes y) {
+		public XYaxisFix(final XYaxes y) {
 			super(y);
 		}
 
@@ -91,12 +101,12 @@ public class ChartTest extends Assert {
 	 *            the object
 	 * @return the string
 	 */
-	public static String toJsonString(Object object) {
+	public static String toJsonString(final Object object) {
 		try {
-			Map<String, Object> values = ClassHelper.getFieldValues(object);
-			StringBuilder builder = new StringBuilder();
-			for (Entry<String, Object> entry : values.entrySet()) {
-				String fieldName = entry.getKey();
+			final Map<String, Object> values = ClassHelper.getFieldValues(object);
+			final StringBuilder builder = new StringBuilder();
+			for (final Entry<String, Object> entry : values.entrySet()) {
+				final String fieldName = entry.getKey();
 				Object fieldValue = entry.getValue();
 
 				if (!fieldName.contains("jacocoData")) {
@@ -129,7 +139,7 @@ public class ChartTest extends Assert {
 				}
 			}
 			return builder.insert(0, "{").append("}").toString();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			return null;
 		}

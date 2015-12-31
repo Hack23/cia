@@ -141,7 +141,6 @@ public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 			final Map<String, String> currentSaved = importService
 					.getWorldBankDataMap();
 
-			System.out.println(currentSaved);
 
 			for (final IndicatorElement indicator : indicatorlist) {
 		//		for (final CountryElement country : countryList) {

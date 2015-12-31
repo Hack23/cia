@@ -44,8 +44,8 @@ public class PageActionEventHelperImpl implements PageActionEventHelper {
 	 * @see com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper#createPageEvent(com.hack23.cia.web.impl.ui.application.action.ViewAction, com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void createPageEvent(ViewAction viewAction,ApplicationEventGroup applicationEventGroup,String page, String pageMode, String elementId) {
-		CreateApplicationEventRequest serviceRequest = new CreateApplicationEventRequest();
+	public void createPageEvent(final ViewAction viewAction,final ApplicationEventGroup applicationEventGroup,final String page, final String pageMode, final String elementId) {
+		final CreateApplicationEventRequest serviceRequest = new CreateApplicationEventRequest();
 		serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 
 		serviceRequest.setEventGroup(applicationEventGroup);
@@ -61,7 +61,7 @@ public class PageActionEventHelperImpl implements PageActionEventHelper {
 
 		serviceRequest.setApplicationMessage(viewAction.toString());
 
-		CreateApplicationEventResponse response = (CreateApplicationEventResponse) applicationManager
+		final CreateApplicationEventResponse response = (CreateApplicationEventResponse) applicationManager
 				.service(serviceRequest);
 	}
 
@@ -69,17 +69,15 @@ public class PageActionEventHelperImpl implements PageActionEventHelper {
 
 		String result=null;
 
-		SecurityContext context = SecurityContextHolder.getContext();
+		final SecurityContext context = SecurityContextHolder.getContext();
 		if (context != null) {
-			Authentication authentication = context.getAuthentication();
+			final Authentication authentication = context.getAuthentication();
 			if (authentication != null) {
-				Object principal = authentication.getPrincipal();
+				final Object principal = authentication.getPrincipal();
 
 				if (principal instanceof UserAccount) {
-					UserAccount userAccount = (UserAccount) principal;
+					final UserAccount userAccount = (UserAccount) principal;
 					result = userAccount.getUserId();
-				} else {
-					System.out.println(principal);
 				}
 			}
 		}
