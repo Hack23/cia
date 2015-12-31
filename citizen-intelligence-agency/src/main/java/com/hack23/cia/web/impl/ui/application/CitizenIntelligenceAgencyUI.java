@@ -194,13 +194,13 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 	            Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);
 	            getUI().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
 	            return;
-	        }
-	        // connector event
-	        if (event.getThrowable().getCause().getCause().getCause() instanceof AccessDeniedException) {
+	        } else if (event.getThrowable().getCause() !=null && event.getThrowable().getCause().getCause() != null && event.getThrowable().getCause().getCause().getCause() instanceof AccessDeniedException) {
 	            AccessDeniedException accessDeniedException = (AccessDeniedException) event.getThrowable().getCause().getCause().getCause();
 	            Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);
 	            getUI().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
 	            return;
+	        } else {
+	        	LOGGER.warn("Vaadin error",event.getThrowable());
 	        }
 	}
 
