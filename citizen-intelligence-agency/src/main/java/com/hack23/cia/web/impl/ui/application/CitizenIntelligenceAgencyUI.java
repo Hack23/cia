@@ -29,6 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -41,13 +42,17 @@ import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse;
 import com.hack23.cia.web.impl.ui.application.views.common.MainView;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.server.ErrorHandler;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.server.WebBrowser;
 import com.vaadin.shared.ui.ui.Transport;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 
 import ru.xpoft.vaadin.DiscoveryNavigator;
@@ -60,7 +65,7 @@ import ru.xpoft.vaadin.SpringVaadinServlet;
 @Scope("prototype")
 @Theme("cia")
 @Push(transport = Transport.STREAMING)
-public final class CitizenIntelligenceAgencyUI extends UI {
+public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandler {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -84,6 +89,7 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 	 */
 	@Override
 	protected void init(final VaadinRequest request) {
+		VaadinSession.getCurrent().setErrorHandler(this);
 		setSizeFull();
 		final DiscoveryNavigator navigator = new DiscoveryNavigator(this, this);
 		navigator.addView("", mainView);
@@ -95,12 +101,7 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 
 		currentPage.setTitle("Citizen Intelligence Agency");
 
-		Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
-		authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-
-		SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken("key", "principal", authorities));
+		if (getSession().getUIs().isEmpty()) {
 
 		final WebBrowser webBrowser = currentPage.getWebBrowser();
 
@@ -115,8 +116,8 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 		serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
 
 		ServiceResponse serviceResponse = applicationManager.service(serviceRequest);
-
 		LOGGER.info("Browser address: {} , application:{}, sessionId:{}, result:{}",ipInformation,webBrowser.getBrowserApplication(),serviceRequest.getSessionId(),serviceResponse.getResult().toString());
+		}
 	}
 
 	/**
@@ -182,6 +183,25 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 
 		/** The Constant serialVersionUID. */
 		private static final long serialVersionUID = 1L;
+	}
+
+
+
+	@Override
+	public void error(com.vaadin.server.ErrorEvent event) {
+	     if (event.getThrowable() instanceof AccessDeniedException) {
+	            AccessDeniedException accessDeniedException = (AccessDeniedException) event.getThrowable();
+	            Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);
+	            getUI().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
+	            return;
+	        }
+	        // connector event
+	        if (event.getThrowable().getCause().getCause().getCause() instanceof AccessDeniedException) {
+	            AccessDeniedException accessDeniedException = (AccessDeniedException) event.getThrowable().getCause().getCause().getCause();
+	            Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);
+	            getUI().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
+	            return;
+	        }
 	}
 
 }

@@ -123,7 +123,6 @@ public final class AgentOperationView extends AbstractAdminView implements
 	 */
 	@Override
 	public void buttonClick(final ClickEvent event) {
-		try {
 			if (targetSelect.getValue() != null && operationSelect.getValue()  != null) {
 				final DataAgentWorkOrder dataAgentWorkOrder = new DataAgentWorkOrder();
 				final DataAgentTarget target = DataAgentTarget.valueOf(targetSelect
@@ -134,11 +133,6 @@ public final class AgentOperationView extends AbstractAdminView implements
 
 				agentContainer.execute(dataAgentWorkOrder);
 			}
-
-		}
-		catch (Exception e) {
-			LOGGER.warn("Problem executing agent",e);
-		}
 	}
 
 	/*

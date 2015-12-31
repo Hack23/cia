@@ -18,7 +18,7 @@
 		<param-value>
 			classpath:net/bull/javamelody/monitoring-spring.xml
 			classpath:META-INF/cia-application-context.xml
-			classpath:META-INF/sec.xml
+			classpath:META-INF/security-settings.xml
 			classpath:META-INF/application-context-service-data.xml
 			classpath:META-INF/cia-service-external-common.xml
 			classpath:META-INF/cia-service-external-riksdagen.xml

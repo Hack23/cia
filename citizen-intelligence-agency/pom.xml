@@ -582,6 +582,26 @@
   <build>
     <plugins>
       <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>3.0.0</version>
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>src/main/webapp/</directory>
+              <includes>
+                <include>gwt-unitCache/**/*</include>
+                <include>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/deferredjs/**/*</include>
+                <include>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/deferredjs/**/*</include>
+                <include>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/*.cache.*</include>
+                <include>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/*.css</include>
+                <include>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/*.gz</include>
+              </includes>
+              <followSymlinks>false</followSymlinks>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jdeps-plugin</artifactId>
         <version>3.0.0</version>

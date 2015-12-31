@@ -26,13 +26,7 @@
 	</beans:bean>
 
 <authentication-manager>
-	<authentication-provider>
-	   <user-service id="userDetailsService" >
-	      <user password="password" name="user" authorities="ROLE_USER" />
-	      <user password="admin" name="admin" authorities="ROLE_ADMIN,ROLE_USER" />
-	      <user password="test" name="cia" authorities="ROLE_ADMIN,ROLE_USER" />
-	   </user-service>
-	</authentication-provider>
+	<authentication-provider ref="securityAuthenticationProvider"/>
 </authentication-manager>
 
 </beans:beans>

@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.action;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -50,15 +51,13 @@ public class PageActionEventHelperImpl implements PageActionEventHelper {
 		serviceRequest.setEventGroup(applicationEventGroup);
 		serviceRequest.setApplicationOperation(ApplicationOperationType.READ);
 
-		serviceRequest.setPage(page);
-		serviceRequest.setPageMode(pageMode);
-		serviceRequest.setElementId(elementId);
+		serviceRequest.setPage(StringUtils.defaultString(page));
+		serviceRequest.setPageMode(StringUtils.defaultString(pageMode));
+		serviceRequest.setElementId(StringUtils.defaultString(elementId));
 
 		serviceRequest.setActionName(viewAction.toString());
 
-
 		serviceRequest.setUserId(getUserIdFromSecurityContext());
-
 
 		serviceRequest.setApplicationMessage(viewAction.toString());
 
