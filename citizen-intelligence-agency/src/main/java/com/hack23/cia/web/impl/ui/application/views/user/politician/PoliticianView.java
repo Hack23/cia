@@ -429,7 +429,7 @@ return compare1.compare(o1.getValue().get(0), o2.getValue().get(0));
 	 */
 	private Gantt createGantt(final List<AssignmentData> assignmentList) {
 
-		final Function role = new Function<AssignmentData, String>() {
+		final Function<AssignmentData, String> role = new Function<AssignmentData, String>() {
 
 			@Override
 			public String apply(final AssignmentData t) {
