@@ -172,7 +172,6 @@
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
 
-
 	<filter>
         <filter-name>hibernateFilter</filter-name>
         <filter-class>
