@@ -150,6 +150,13 @@
 		<class>com.hack23.cia.model.internal.application.system.impl.LanguageData</class>
 		<class>com.hack23.cia.model.internal.application.system.impl.ApplicationSession</class>
 
+
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageDailySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageWeeklySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageMontlySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageAnnualSummary</class>
+
+
 		<shared-cache-mode>ALL</shared-cache-mode>
 		<properties>
 			<!-- <property name="hibernate.hbm2ddl.auto" value="${database.ddl}" />
