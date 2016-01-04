@@ -151,11 +151,21 @@
 		<class>com.hack23.cia.model.internal.application.system.impl.ApplicationSession</class>
 
 
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageHourlySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageDailySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageWeeklySummary</class>
-		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageMontlySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageAnnualSummary</class>
 
+
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeHourlySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeDailySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeWeeklySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeAnnualSummary</class>
+
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementHourlySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementDailySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementWeeklySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementAnnualSummary</class>
 
 		<shared-cache-mode>ALL</shared-cache-mode>
 		<properties>
