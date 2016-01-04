@@ -88,6 +88,8 @@ import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenOrgDocumentDailySummary;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPartyDocumentDailySummary;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary;
+import com.hack23.cia.model.internal.application.data.impl.ApplicationActionEventPagePeriodSummaryEmbeddedId;
+import com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageDailySummary;
 import com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
@@ -982,6 +984,50 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.setRendererOptions(
 						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.SLOW).setSeriesToggleReplot(true))
 				.setPlacement(LegendPlacements.OUTSIDE_GRID);
+	}
+
+
+	public Map<String, List<ViewApplicationActionEventPageDailySummary>> getApplicationActionEventPageDailySummaryMap() {
+		final DataContainer<ViewApplicationActionEventPageDailySummary, ApplicationActionEventPagePeriodSummaryEmbeddedId> documentTypeSummaryDailyDataContainer = applicationManager
+				.getDataContainer(ViewApplicationActionEventPageDailySummary.class);
+
+		return documentTypeSummaryDailyDataContainer.getAll().parallelStream()
+				.filter(t -> t != null)
+				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPage()));
+	}
+
+
+	@Override
+	public DCharts createApplicationActionEventPageDailySummaryChart() {
+
+		final Map<String, List<ViewApplicationActionEventPageDailySummary>> map = getApplicationActionEventPageDailySummaryMap();
+
+		final DataSeries dataSeries = new DataSeries();
+
+		final String dateFormatPatter = "dd-MMM-yyyy";
+
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormatPatter, Locale.ENGLISH);
+
+		final Series series = new Series();
+
+		for (final Entry<String, List<ViewApplicationActionEventPageDailySummary>> entry : map.entrySet()) {
+
+			if (entry.getKey() != null) {
+				series.addSeries(new XYseries().setLabel(entry.getKey()));
+
+				dataSeries.newSeries();
+				final List<ViewApplicationActionEventPageDailySummary> list = entry.getValue();
+				for (final ViewApplicationActionEventPageDailySummary viewRiksdagenVoteDataBallotPartySummaryDaily : list) {
+					if (viewRiksdagenVoteDataBallotPartySummaryDaily != null) {
+						dataSeries.add(simpleDateFormat.format(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getCreatedDate()),
+								viewRiksdagenVoteDataBallotPartySummaryDaily.getHits());
+					}
+				}
+			}
+
+		}
+
+		return new DCharts().setDataSeries(dataSeries).setOptions(createOptionsXYDateFloatLegendOutside(series)).show();
 	}
 
 }

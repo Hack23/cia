@@ -169,6 +169,9 @@ public interface ChartDataManager {
 	 */
 	DCharts createDecisionTypeChart();
 
+	DCharts createApplicationActionEventPageDailySummaryChart();
+
+
 	/**
 	 * Creates the decision type chart.
 	 *

@@ -34,6 +34,7 @@ import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
@@ -72,6 +73,9 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 	/** The form factory. */
 	@Autowired
 	private transient FormFactory formFactory;
+
+	@Autowired
+	private transient ChartDataManager chartDataManager;
 
 	/**
 	 * Post construct.
@@ -126,6 +130,8 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 			formFactory.addTextFields(content, new BeanItem<ApplicationActionEvent>(applicationActionEvent), ApplicationActionEvent.class,
 					Arrays.asList(new String[] { "hjid","createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion"  }));
 
+		} else {
+			content.addComponent(chartDataManager.createApplicationActionEventPageDailySummaryChart());
 		}
 
 		content.addComponent(pageLinkFactory.createMainViewPageLink());
