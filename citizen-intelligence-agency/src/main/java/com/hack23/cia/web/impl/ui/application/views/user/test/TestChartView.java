@@ -165,7 +165,9 @@ public final class TestChartView extends AbstractView {
 				pageModeContent.addComponent(createDataIndicatorSummaryChartPanel(indicator));
 		}
 
-		pageActionEventHelper.createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME, parameters, null);
+		final String pageId = parameters.substring(parameters.lastIndexOf('/') + "/".length(), parameters.length());
+
+		pageActionEventHelper.createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
 
 
 	}

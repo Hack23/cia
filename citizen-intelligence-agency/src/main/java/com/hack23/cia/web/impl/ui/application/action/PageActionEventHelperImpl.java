@@ -50,12 +50,14 @@ public class PageActionEventHelperImpl implements PageActionEventHelper {
 
 		String pageModeToUse;
 
-		if ((pageMode == null || pageMode.equals("")) && ApplicationEventGroup.USER.equals(applicationEventGroup)) {
-			pageModeToUse="Overview";
-		} else if (pageMode != null && elementId != null && pageMode.contains(elementId)) {
+		if (pageMode != null && elementId != null && pageMode.contains(elementId)) {
 			pageModeToUse= pageMode.replace(elementId, "").replace("/", "");
 		} else {
 			pageModeToUse = pageMode;
+		}
+
+		if ((pageModeToUse == null || pageModeToUse.equals("")) && ApplicationEventGroup.USER.equals(applicationEventGroup)) {
+			pageModeToUse="Overview";
 		}
 
 		final CreateApplicationEventRequest serviceRequest = new CreateApplicationEventRequest();
