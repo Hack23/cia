@@ -45,6 +45,19 @@ public class PageActionEventHelperImpl implements PageActionEventHelper {
 	 */
 	@Override
 	public void createPageEvent(final ViewAction viewAction,final ApplicationEventGroup applicationEventGroup,final String page, final String pageMode, final String elementId) {
+
+
+
+		String pageModeToUse;
+
+		if ((pageMode == null || pageMode.equals("")) && ApplicationEventGroup.USER.equals(applicationEventGroup)) {
+			pageModeToUse="Overview";
+		} else if (pageMode != null && elementId != null && pageMode.contains(elementId)) {
+			pageModeToUse= pageMode.replace(elementId, "").replace("/", "");
+		} else {
+			pageModeToUse = pageMode;
+		}
+
 		final CreateApplicationEventRequest serviceRequest = new CreateApplicationEventRequest();
 		serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 
@@ -52,7 +65,7 @@ public class PageActionEventHelperImpl implements PageActionEventHelper {
 		serviceRequest.setApplicationOperation(ApplicationOperationType.READ);
 
 		serviceRequest.setPage(StringUtils.defaultString(page));
-		serviceRequest.setPageMode(StringUtils.defaultString(pageMode));
+		serviceRequest.setPageMode(StringUtils.defaultString(pageModeToUse));
 		serviceRequest.setElementId(StringUtils.defaultString(elementId));
 
 		serviceRequest.setActionName(viewAction.toString());
