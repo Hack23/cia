@@ -46,6 +46,10 @@ import org.tltv.gantt.client.shared.SubStep;
 import com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData;
 import com.hack23.cia.model.external.riksdagen.person.impl.DetailData;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId_;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummary;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument_;
@@ -203,6 +207,28 @@ public final class PoliticianView extends AbstractPersonView {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label(PoliticianPageMode.BallotDecisionSummary.toString()));
 
+					final DataContainer<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
+							.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class);
+
+
+					List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> decisionPartySummaryList = committeeBallotDecisionPartyDataContainer.findOrderedListByEmbeddedProperty(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class, ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.embeddedId, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId.class, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId_.intressentId, pageId, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId_.issue);
+
+					final BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> committeeBallotDecisionPartyDataSource = new BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary>(
+							ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class,
+							decisionPartySummaryList);
+
+					final Grid committeeBallotDecisionPartyBeanItemGrid = gridFactory.createBasicBeanItemGrid(
+							committeeBallotDecisionPartyDataSource,
+							"Committee Ballot Decision Politician Summary",
+							null,
+							null,
+							null,
+							null, null);
+
+					panelContent
+					.addComponent(committeeBallotDecisionPartyBeanItemGrid);
+
+
 				} else if (parameters.contains(PoliticianPageMode.DocumentHistory.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label(PoliticianPageMode.DocumentHistory.toString()));
@@ -268,6 +294,7 @@ public final class PoliticianView extends AbstractPersonView {
 		}
 
 	}
+
 
 	/**
 	 * Creates the overview content.

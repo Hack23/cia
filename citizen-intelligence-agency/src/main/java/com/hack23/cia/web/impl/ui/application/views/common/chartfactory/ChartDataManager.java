@@ -25,8 +25,6 @@ import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.data.DataSeries;
 
 import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary;
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeDailySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeOrgDailySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
@@ -91,20 +89,6 @@ public interface ChartDataManager {
 	 * @return the committee decision type org map
 	 */
 	Map<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> getCommitteeDecisionTypeOrgMap();
-
-	/**
-	 * Gets the committee ballot decision party map.
-	 *
-	 * @return the committee ballot decision party map
-	 */
-	Map<String, List<ViewRiksdagenCommitteeBallotDecisionPartySummary>> getCommitteeBallotDecisionPartyMap();
-
-	/**
-	 * Gets the committee ballot decision politician map.
-	 *
-	 * @return the committee ballot decision politician map
-	 */
-	Map<String, List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary>> getCommitteeBallotDecisionPoliticianMap();
 
 	/**
 	 * Gets the max size view riksdagen vote data ballot party summary daily.

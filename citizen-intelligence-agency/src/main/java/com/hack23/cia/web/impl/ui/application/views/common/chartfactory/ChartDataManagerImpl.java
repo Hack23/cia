@@ -68,10 +68,6 @@ import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVo
 import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId;
 import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPoliticianEmbeddedId;
 import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPoliticianEmbeddedId_;
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId;
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary;
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId;
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeDailySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeOrgDailySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
@@ -117,37 +113,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	/** The party map. */
 	private Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> partyMap;
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * getCommitteeBallotDecisionPartyMap()
-	 */
-	@Override
-	public Map<String, List<ViewRiksdagenCommitteeBallotDecisionPartySummary>> getCommitteeBallotDecisionPartyMap() {
-		final DataContainer<ViewRiksdagenCommitteeBallotDecisionPartySummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPartySummary.class);
-
-		return committeeBallotDecisionPartyDataContainer.getAll().parallelStream().filter(t -> t != null)
-				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getParty()));
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * getCommitteeBallotDecisionPoliticianMap()
-	 */
-	@Override
-	public Map<String, List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary>> getCommitteeBallotDecisionPoliticianMap() {
-		final DataContainer<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class);
-
-		return committeeBallotDecisionPartyDataContainer.getAll().parallelStream()
-				.filter(t -> t != null).collect(Collectors.groupingBy(t -> t.getEmbeddedId().getIntressentId()));
-	}
 
 	/*
 	 * (non-Javadoc)

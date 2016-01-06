@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.user.party;
 
 import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -29,6 +30,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId_;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary_;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeRoleMember;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeRoleMember_;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
@@ -422,6 +427,28 @@ public final class PartyView extends AbstractGroupView {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("CommitteeBallotDecisionSummary"));
 
+					final DataContainer<ViewRiksdagenCommitteeBallotDecisionPartySummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
+							.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPartySummary.class);
+
+					List<ViewRiksdagenCommitteeBallotDecisionPartySummary> decisionPartySummaryList = committeeBallotDecisionPartyDataContainer.findOrderedListByEmbeddedProperty(ViewRiksdagenCommitteeBallotDecisionPartySummary.class, ViewRiksdagenCommitteeBallotDecisionPartySummary_.embeddedId, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId.class, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId_.party, pageId, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId_.issue);
+
+
+					final BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionPartySummary> committeeBallotDecisionPartyDataSource = new BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionPartySummary>(
+							ViewRiksdagenCommitteeBallotDecisionPartySummary.class,
+							decisionPartySummaryList);
+
+					final Grid committeeBallotDecisionPartyBeanItemGrid = gridFactory.createBasicBeanItemGrid(
+							committeeBallotDecisionPartyDataSource,
+							"Committee Ballot Decision Party Summary",
+							null,
+							null,
+							null,
+							null, null);
+
+					panelContent
+					.addComponent(committeeBallotDecisionPartyBeanItemGrid);
+
+
 				} else if (parameters.contains(PartyPageMode.VoteHistory.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("VoteHistory"));
@@ -459,6 +486,8 @@ public final class PartyView extends AbstractGroupView {
 		}
 
 	}
+
+
 
 
 
