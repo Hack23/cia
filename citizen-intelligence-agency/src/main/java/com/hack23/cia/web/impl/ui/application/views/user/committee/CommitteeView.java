@@ -238,6 +238,10 @@ public final class CommitteeView extends AbstractGroupView {
 				} else if (parameters.contains(CommitteePageMode.RoleGhant.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("RoleGhant"));
+				} else if (parameters.contains(PageMode.PageVisitHistory.toString())) {
+
+					panelContent.addComponent(chartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME));
+
 				}
 
 				getPanel().setContent(panelContent);

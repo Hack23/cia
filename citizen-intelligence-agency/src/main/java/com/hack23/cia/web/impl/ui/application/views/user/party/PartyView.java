@@ -474,7 +474,13 @@ public final class PartyView extends AbstractGroupView {
 					panelContent.addComponent(LabelFactory.createHeader2Label("PartyWonDailySummaryChart"));
 					panelContent.addComponent(chartDataManager.createPartyLineChart(pageId));
 
+				} else if (parameters.contains(PageMode.PageVisitHistory.toString())) {
+
+					panelContent.addComponent(chartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME));
+
 				}
+
+
 				getPanel().setContent(panelContent);
 				getPanel().setCaption(
 						"Party:" + viewRiksdagenParty.getPartyName());

@@ -130,6 +130,12 @@ public abstract class AbstractRankingView extends AbstractUserView {
 
 			getPanel().setCaption("Charts:" + event.getParameters());
 
+		} else if (parameters.contains(PageMode.PageVisitHistory.toString())) {
+
+			panelContent.addComponent(chartDataManager.createApplicationActionEventPageModeDailySummaryChart(getName()));
+
+			getPanel().setCaption("Page Visit History:" + event.getParameters());
+
 		}
 
 		getPanel().setContent(panelContent);

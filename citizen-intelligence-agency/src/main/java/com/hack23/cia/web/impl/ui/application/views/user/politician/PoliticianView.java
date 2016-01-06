@@ -270,6 +270,10 @@ public final class PoliticianView extends AbstractPersonView {
 
 					createRoleGhant(panelContent, assignmentList);
 
+				} else if (parameters.contains(PageMode.PageVisitHistory.toString())) {
+
+					panelContent.addComponent(chartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME));
+
 				}
 
 				getPanel().setContent(panelContent);

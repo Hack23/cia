@@ -84,8 +84,12 @@ import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenOrgDocumentDailySummary;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPartyDocumentDailySummary;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary;
+import com.hack23.cia.model.internal.application.data.impl.ApplicationActionEventPageModePeriodSummaryEmbeddedId;
+import com.hack23.cia.model.internal.application.data.impl.ApplicationActionEventPageModePeriodSummaryEmbeddedId_;
 import com.hack23.cia.model.internal.application.data.impl.ApplicationActionEventPagePeriodSummaryEmbeddedId;
 import com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageDailySummary;
+import com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeDailySummary;
+import com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeDailySummary_;
 import com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
@@ -953,7 +957,12 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 
-	public Map<String, List<ViewApplicationActionEventPageDailySummary>> getApplicationActionEventPageDailySummaryMap() {
+	/**
+	 * Gets the application action event page daily summary map.
+	 *
+	 * @return the application action event page daily summary map
+	 */
+	private Map<String, List<ViewApplicationActionEventPageDailySummary>> getApplicationActionEventPageDailySummaryMap() {
 		final DataContainer<ViewApplicationActionEventPageDailySummary, ApplicationActionEventPagePeriodSummaryEmbeddedId> documentTypeSummaryDailyDataContainer = applicationManager
 				.getDataContainer(ViewApplicationActionEventPageDailySummary.class);
 
@@ -963,6 +972,9 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager#createApplicationActionEventPageDailySummaryChart()
+	 */
 	@Override
 	public DCharts createApplicationActionEventPageDailySummaryChart() {
 
@@ -987,6 +999,61 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 					if (viewRiksdagenVoteDataBallotPartySummaryDaily != null) {
 						dataSeries.add(simpleDateFormat.format(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getCreatedDate()),
 								viewRiksdagenVoteDataBallotPartySummaryDaily.getHits());
+					}
+				}
+			}
+
+		}
+
+		return new DCharts().setDataSeries(dataSeries).setOptions(createOptionsXYDateFloatLegendOutside(series)).show();
+	}
+
+
+	/**
+	 * Gets the application action event page mode daily summary map.
+	 *
+	 * @param page
+	 *            the page
+	 * @return the application action event page mode daily summary map
+	 */
+	private Map<String, List<ViewApplicationActionEventPageModeDailySummary>> getApplicationActionEventPageModeDailySummaryMap(String page) {
+		final DataContainer<ViewApplicationActionEventPageModeDailySummary, ApplicationActionEventPageModePeriodSummaryEmbeddedId> documentTypeSummaryDailyDataContainer = applicationManager
+				.getDataContainer(ViewApplicationActionEventPageModeDailySummary.class);
+
+		List<ViewApplicationActionEventPageModeDailySummary> findOrderedListByEmbeddedProperty = documentTypeSummaryDailyDataContainer.findOrderedListByEmbeddedProperty(ViewApplicationActionEventPageModeDailySummary.class, ViewApplicationActionEventPageModeDailySummary_.embeddedId, ApplicationActionEventPageModePeriodSummaryEmbeddedId.class, ApplicationActionEventPageModePeriodSummaryEmbeddedId_.page, page, ApplicationActionEventPageModePeriodSummaryEmbeddedId_.createdDate);
+
+		return findOrderedListByEmbeddedProperty.parallelStream()
+				.filter(t -> t != null)
+				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPageMode()));
+	}
+
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager#createApplicationActionEventPageModeDailySummaryChart(java.lang.String)
+	 */
+	@Override
+	public DCharts createApplicationActionEventPageModeDailySummaryChart(String page) {
+
+		final Map<String, List<ViewApplicationActionEventPageModeDailySummary>> map = getApplicationActionEventPageModeDailySummaryMap(page);
+
+		final DataSeries dataSeries = new DataSeries();
+
+		final String dateFormatPatter = "dd-MMM-yyyy";
+
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormatPatter, Locale.ENGLISH);
+
+		final Series series = new Series();
+
+		for (final Entry<String, List<ViewApplicationActionEventPageModeDailySummary>> entry : map.entrySet()) {
+
+			if (entry.getKey() != null) {
+				series.addSeries(new XYseries().setLabel(entry.getKey()));
+
+				dataSeries.newSeries();
+				final List<ViewApplicationActionEventPageModeDailySummary> list = entry.getValue();
+				for (final ViewApplicationActionEventPageModeDailySummary item : list) {
+					if (item != null) {
+						dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getCreatedDate()),
+								item.getHits());
 					}
 				}
 			}

@@ -153,6 +153,11 @@ public interface ChartDataManager {
 	 */
 	DCharts createDecisionTypeChart();
 
+	/**
+	 * Creates the application action event page daily summary chart.
+	 *
+	 * @return the d charts
+	 */
 	DCharts createApplicationActionEventPageDailySummaryChart();
 
 
@@ -231,6 +236,15 @@ public interface ChartDataManager {
 	 * @return the d charts
 	 */
 	DCharts createChartPanel(DataSeries dataSeries, String caption);
+
+	/**
+	 * Creates the application action event page mode daily summary chart.
+	 *
+	 * @param page
+	 *            the page
+	 * @return the d charts
+	 */
+	DCharts createApplicationActionEventPageModeDailySummaryChart(String page);
 
 
 

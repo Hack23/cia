@@ -219,6 +219,10 @@ public final class MinistryView extends AbstractGroupView {
 
 				} else if (parameters.contains(MinistryPageMode.RoleGhant.toString())) {
 					panelContent.addComponent(LabelFactory.createHeader2Label("Role Ghant"));
+				} else if (parameters.contains(PageMode.PageVisitHistory.toString())) {
+
+					panelContent.addComponent(chartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME));
+
 				}
 
 				getPanel().setContent(panelContent);
