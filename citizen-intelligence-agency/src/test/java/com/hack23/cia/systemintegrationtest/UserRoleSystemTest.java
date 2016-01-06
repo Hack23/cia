@@ -144,6 +144,24 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	}
 
 	/**
+	 * Site committee ranking view page visit history test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteCommitteeRankingViewPageVisitHistoryTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.PageVisitHistory));
+
+	}
+
+
+	/**
 	 * Site committee ranking view data grid test.
 	 *
 	 * @throws Exception
@@ -375,13 +393,13 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	}
 
 	/**
-	 * Site admin monitoring test.
+	 * Site admin monitoring failed access test.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void siteAdminMonitoringTest()  throws Exception {
+	public void siteAdminMonitoringFailedAccessTest()  throws Exception {
 		final WebDriver driver = getWebDriver();
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
@@ -389,7 +407,31 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Admin Monitoring"));
+
+		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Login with Username and Password"));
 	}
+
+	/**
+	 * Site admin monitoring failed success test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteAdminMonitoringFailedSuccessTest()  throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		//TODO login admin user.
+
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
+		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Admin Monitoring"));
+
+		assertFalse(userPageVisit.getHtmlBodyAsText().contains("Login with Username and Password"));
+	}
+
 
 
 	/**
@@ -445,6 +487,23 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.Overview));
 	}
 
+
+	/**
+	 * Site party ranking view page visit history test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void sitePartyRankingViewPageVisitHistoryTest()  throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PageVisitHistory));
+	}
+
+
 	/**
 	 * Site party ranking view data grid test.
 	 *
@@ -491,6 +550,22 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.Overview));
 	}
+
+	/**
+	 * Site politician ranking view page visit history test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void sitePoliticianRankingViewPageVisitHistoryTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.PageVisitHistory));
+	}
+
 
 	/**
 	 * Site politician ranking view data grid test.
@@ -560,6 +635,23 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.Overview, "N%C3%A4ringsdepartementet"));
 	}
+
+	/**
+	 * Site ministry page visit history test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteMinistryPageVisitHistoryTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PageVisitHistory, "N%C3%A4ringsdepartementet"));
+	}
+
 
 	/**
 	 * Site ministry document history test.
@@ -662,6 +754,24 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 
 	}
+
+	/**
+	 * Site committee page visit history test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteCommitteePageVisitHistoryTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PageVisitHistory, "UU"));
+
+
+	}
+
 
 	/**
 	 * Site committe role ghant test.
@@ -979,6 +1089,23 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	}
 
 	/**
+	 * Site ministry ranking page visit history test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteMinistryRankingPageVisitHistoryTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.PageVisitHistory));
+
+	}
+
+
+	/**
 	 * Site ministry ranking data grid test.
 	 *
 	 * @throws Exception
@@ -1063,8 +1190,23 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.Overview, "GZ02C343"));
-
 	}
+
+	/**
+	 * Site document page visit history test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteDocumentPageVisitHistoryTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.PageVisitHistory, "GZ02C343"));
+	}
+
 
 	/**
 	 * Site document person ref test.
@@ -1199,9 +1341,23 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.Overview, "S"));
-
-
 	}
+
+	/**
+	 * Site party page visit history test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void sitePartyPageVisitHistoryTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PageVisitHistory, "S"));
+	}
+
 
 	/**
 	 * Site party document history test.
@@ -1475,6 +1631,23 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.Overview, "0980681611418"));
 	}
+
+
+	/**
+	 * Site politican page visit history test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void sitePoliticanPageVisitHistoryTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PageVisitHistory, "0980681611418"));
+	}
+
 
 	/**
 	 * Site politican role summary test.
