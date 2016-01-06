@@ -406,9 +406,9 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
-		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Admin Monitoring"));
+		assertTrue("Expect this content",userPageVisit.getHtmlBodyAsText().contains("Admin Monitoring"));
 
-		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Login with Username and Password"));
+		assertTrue("Expect this content",userPageVisit.getIframesHtmlBodyAsText().contains("Login with Username and Password"));
 	}
 
 	/**
@@ -427,9 +427,9 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
-		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Admin Monitoring"));
+		assertTrue("Expect this content",userPageVisit.getHtmlBodyAsText().contains("Admin Monitoring"));
 
-		assertFalse(userPageVisit.getHtmlBodyAsText().contains("Login with Username and Password"));
+		assertFalse("Dont expect this content",userPageVisit.getIframesHtmlBodyAsText().contains("Login with Username and Password"));
 	}
 
 

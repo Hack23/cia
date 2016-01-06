@@ -476,8 +476,11 @@ public final class PartyView extends AbstractGroupView {
 
 				} else if (parameters.contains(PageMode.PageVisitHistory.toString())) {
 
-					panelContent.addComponent(chartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Current Page Visit History"));
+					panelContent.addComponent(chartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId));
 
+					panelContent.addComponent(LabelFactory.createHeader2Label("General Page Mode Page Visit"));
+					panelContent.addComponent(chartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME));
 				}
 
 

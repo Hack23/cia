@@ -246,6 +246,17 @@ public interface ChartDataManager {
 	 */
 	DCharts createApplicationActionEventPageModeDailySummaryChart(String page);
 
+	/**
+	 * Creates the application action event page element daily summary chart.
+	 *
+	 * @param page
+	 *            the page
+	 * @param elementId
+	 *            the element id
+	 * @return the d charts
+	 */
+	DCharts createApplicationActionEventPageElementDailySummaryChart(String page, String elementId);
+
 
 
 

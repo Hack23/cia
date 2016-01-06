@@ -84,10 +84,14 @@ import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenOrgDocumentDailySummary;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPartyDocumentDailySummary;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary;
+import com.hack23.cia.model.internal.application.data.impl.ApplicationActionEventPageElementPeriodSummaryEmbeddedId;
+import com.hack23.cia.model.internal.application.data.impl.ApplicationActionEventPageElementPeriodSummaryEmbeddedId_;
 import com.hack23.cia.model.internal.application.data.impl.ApplicationActionEventPageModePeriodSummaryEmbeddedId;
 import com.hack23.cia.model.internal.application.data.impl.ApplicationActionEventPageModePeriodSummaryEmbeddedId_;
 import com.hack23.cia.model.internal.application.data.impl.ApplicationActionEventPagePeriodSummaryEmbeddedId;
 import com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageDailySummary;
+import com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementDailySummary;
+import com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementDailySummary_;
 import com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeDailySummary;
 import com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeDailySummary_;
 import com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary;
@@ -1027,6 +1031,9 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPageMode()));
 	}
 
+
+
+
 	/* (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager#createApplicationActionEventPageModeDailySummaryChart(java.lang.String)
 	 */
@@ -1058,6 +1065,65 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				}
 			}
 
+		}
+
+		return new DCharts().setDataSeries(dataSeries).setOptions(createOptionsXYDateFloatLegendOutside(series)).show();
+	}
+
+
+	/**
+	 * Gets the application action event page element daily summary list.
+	 *
+	 * @param page
+	 *            the page
+	 * @param elementId
+	 *            the element id
+	 * @return the application action event page element daily summary list
+	 */
+	private List<ViewApplicationActionEventPageElementDailySummary> getApplicationActionEventPageElementDailySummaryList(String page,String elementId) {
+		final DataContainer<ViewApplicationActionEventPageElementDailySummary, ApplicationActionEventPageElementPeriodSummaryEmbeddedId> documentTypeSummaryDailyDataContainer = applicationManager
+				.getDataContainer(ViewApplicationActionEventPageElementDailySummary.class);
+
+		List<ViewApplicationActionEventPageElementDailySummary> findOrderedListByEmbeddedProperty = documentTypeSummaryDailyDataContainer.findOrderedListByEmbeddedProperty(ViewApplicationActionEventPageElementDailySummary.class, ViewApplicationActionEventPageElementDailySummary_.embeddedId, ApplicationActionEventPageElementPeriodSummaryEmbeddedId.class, ApplicationActionEventPageElementPeriodSummaryEmbeddedId_.elementId, elementId, ApplicationActionEventPageElementPeriodSummaryEmbeddedId_.createdDate);
+
+		return findOrderedListByEmbeddedProperty.parallelStream()
+				.filter(t -> t != null && t.getEmbeddedId().getPage().equals(page))
+				.collect(Collectors.toList());
+	}
+
+
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager#createApplicationActionEventPageElementDailySummaryChart(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public DCharts createApplicationActionEventPageElementDailySummaryChart(String page,String elementId) {
+
+		final List<ViewApplicationActionEventPageElementDailySummary> list = getApplicationActionEventPageElementDailySummaryList(page,elementId);
+
+		final DataSeries dataSeries = new DataSeries();
+
+		final String dateFormatPatter = "dd-MMM-yyyy";
+
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormatPatter, Locale.ENGLISH);
+
+		final Series series = new Series();
+
+		series.addSeries(new XYseries().setLabel("Page Hits"));
+		dataSeries.newSeries();
+		for (final ViewApplicationActionEventPageElementDailySummary item : list) {
+			if (item != null) {
+				dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getCreatedDate()),
+						item.getHits());
+			}
+		}
+
+		series.addSeries(new XYseries().setLabel("Page Rank"));
+		dataSeries.newSeries();
+		for (final ViewApplicationActionEventPageElementDailySummary item : list) {
+			if (item != null) {
+				dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getCreatedDate()),
+						item.getRank());
+			}
 		}
 
 		return new DCharts().setDataSeries(dataSeries).setOptions(createOptionsXYDateFloatLegendOutside(series)).show();

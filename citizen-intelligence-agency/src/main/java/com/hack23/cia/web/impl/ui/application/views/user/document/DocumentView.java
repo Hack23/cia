@@ -47,6 +47,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
@@ -84,6 +85,10 @@ public final class DocumentView extends AbstractUserView {
 	@Autowired
 	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
+
+	/** The chart data manager. */
+	@Autowired
+	private transient ChartDataManager chartDataManager;
 
 	/** The menu item factory. */
 	@Autowired
@@ -296,6 +301,14 @@ public final class DocumentView extends AbstractUserView {
 								null, null, null);
 						panelContent.addComponent(documentAttachmentDataItemGrid);
 					}
+
+				} else if (parameters.contains(PageMode.PageVisitHistory.toString())) {
+
+					panelContent.addComponent(LabelFactory.createHeader2Label("Current Page Visit History"));
+					panelContent.addComponent(chartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId));
+
+					panelContent.addComponent(LabelFactory.createHeader2Label("General Page Mode Page Visit"));
+					panelContent.addComponent(chartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME));
 
 				}
 

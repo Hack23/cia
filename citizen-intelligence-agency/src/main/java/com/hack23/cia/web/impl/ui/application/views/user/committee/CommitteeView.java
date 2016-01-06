@@ -240,6 +240,10 @@ public final class CommitteeView extends AbstractGroupView {
 					panelContent.addComponent(LabelFactory.createHeader2Label("RoleGhant"));
 				} else if (parameters.contains(PageMode.PageVisitHistory.toString())) {
 
+					panelContent.addComponent(LabelFactory.createHeader2Label("Current Page Visit History"));
+					panelContent.addComponent(chartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId));
+
+					panelContent.addComponent(LabelFactory.createHeader2Label("General Page Mode Page Visit"));
 					panelContent.addComponent(chartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME));
 
 				}

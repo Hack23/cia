@@ -65,6 +65,7 @@ public final class UserPageVisit extends Assert {
 	/** The web driver backed selenium. */
 	private WebDriverBackedSelenium webDriverBackedSelenium;
 
+
 	/**
 	 * Instantiates a new user page visit.
 	 *
@@ -78,6 +79,23 @@ public final class UserPageVisit extends Assert {
 		this.driver = driver;
 		this.browser = browser;
 		action = new Actions(driver);
+	}
+
+	/**
+	 * Gets the iframes html body as text.
+	 *
+	 * @return the iframes html body as text
+	 */
+	public String getIframesHtmlBodyAsText() {
+		StringBuilder stringBuilder = new StringBuilder();
+		List<WebElement> ele = driver.findElements(By.tagName("iframe"));
+	    for(WebElement el : ele){
+	    	driver.switchTo().frame(el);
+
+	    	stringBuilder.append(driver.findElement(By.tagName("body")).getText());
+	    	driver.switchTo().defaultContent();
+	    }
+	    return stringBuilder.toString();
 	}
 
 	/**
@@ -717,6 +735,12 @@ public final class UserPageVisit extends Assert {
 
 	}
 
+	/**
+	 * Logout user.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	public void logoutUser() throws Exception {
 
 		final WebElement logoutButton =findButton("Logout");
