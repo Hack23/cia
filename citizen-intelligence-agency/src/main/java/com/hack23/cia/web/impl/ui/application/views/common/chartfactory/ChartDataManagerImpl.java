@@ -932,6 +932,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside());
 	}
 
+
 	/**
 	 * Creates the series default pie chart.
 	 *
@@ -971,7 +972,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	private static Legend createdLegendEnhancedInsideWest() {
 		return new Legend().setShow(true).setPlacement(LegendPlacements.INSIDE_GRID).setLocation(LegendLocations.WEST)
 				.setRenderer(LegendRenderers.ENHANCED).setRendererOptions(
-						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.SLOW).setSeriesToggleReplot(true));
+						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true));
 	}
 
 	/**
@@ -982,7 +983,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	private static Legend createLegendOutside() {
 		return new Legend().setShow(true)
 				.setRendererOptions(
-						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.SLOW).setSeriesToggleReplot(true))
+						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true))
 				.setPlacement(LegendPlacements.OUTSIDE_GRID);
 	}
 
