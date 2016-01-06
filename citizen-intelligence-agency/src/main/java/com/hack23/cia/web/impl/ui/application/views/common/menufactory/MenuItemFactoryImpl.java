@@ -158,6 +158,8 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	/** The Constant MINISTRY_RANKING_LINK_TEXT. */
 	private static final String MINISTRY_RANKING_LINK_TEXT = "Ministry Ranking";
 
+	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
+
 	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory#createMainPageMenuBar()
 	 */
@@ -219,6 +221,11 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 		barmenu.addItem(TEST_TEXT, new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.Overview));
 
+		barmenu.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.PageVisitHistory));
+
+
+
 		return barmenu;
 	}
 
@@ -249,6 +256,9 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.Charts));
 		chartByTopic.addItem(ALL_MINISTRIES_TOTAL_MEMBERS_TEXT,
 				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.Charts));
+
+		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.PageVisitHistory));
 
 	}
 
@@ -288,6 +298,10 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.Charts));
 		chartByTopic.addItem("All committees,total days served in committees",
 				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.Charts));
+
+		committeeMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.PageVisitHistory));
+
 
 	}
 
@@ -339,6 +353,10 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 		chartByTopic.addItem("All parties, total assignments in committees",
 				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.Charts));
 
+		partynMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PageVisitHistory));
+
+
 	}
 
 	/**
@@ -358,6 +376,11 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 		listItem.setDescription("Current and past assignments and summary experience in days");
 
 		final MenuItem chartByTopic = politicianMenuItem.addItem(CHART_BY_TOPIC_TEXT, null, null);
+
+		politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+				new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.PageVisitHistory));
+
+
 	}
 
 	/** (non-Javadoc)
@@ -406,6 +429,11 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 		addSourcesAndIndicatorsToMenu(byTopicItem, topicIndicatorMap);
 		addSourcesAndIndicatorsToMenu(bySourceItem, sourceIndicatorMap);
+
+
+		barmenu.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+				new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.PageVisitHistory));
+
 	}
 
 	/**
@@ -481,6 +509,10 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 			ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, null, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
 					PoliticianPageMode.BallotDecisionSummary.toString(), pageId));
+
+			menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PageVisitHistory,pageId));
+
 	}
 
 	/** (non-Javadoc)
@@ -547,6 +579,10 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 			ballotItem.addItem("Party Won Daily Summary Chart", null, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
 					PartyPageMode.PartyWonDailySummaryChart.toString(), pageId));
 
+			menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+					new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PageVisitHistory,pageId));
+
+
 	}
 
 	/** (non-Javadoc)
@@ -592,6 +628,10 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 			documentItem.addItem("Document Decision", null, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 					DocumentPageMode.DocumenDecision.toString(), pageId));
+
+			menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.PageVisitHistory,pageId));
+
 	}
 
 	/** (non-Javadoc)
@@ -637,6 +677,10 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 			ballotItem.addItem(DECISION_TYPE_DAILY_SUMMARY_TEXT, null, new PageModeMenuCommand(
 					UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DecisionTypeDailySummary.toString(), pageId));
+
+			menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+					new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PageVisitHistory,pageId));
+
 	}
 
 	/** (non-Javadoc)
@@ -682,6 +726,10 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 			documentItem.addItem(DOCUMENT_HISTORY_TEXT, null, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
 					MinistryPageMode.DocumentHistory.toString(), pageId));
 
+			menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+					new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PageVisitHistory,pageId));
+
+
 	}
 
 	/** (non-Javadoc)
@@ -702,6 +750,9 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 		menuBar.addItem(OVERVIEW_TEXT, null,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.Overview, pageId));
+
+		menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.PageVisitHistory,pageId));
 
 	}
 

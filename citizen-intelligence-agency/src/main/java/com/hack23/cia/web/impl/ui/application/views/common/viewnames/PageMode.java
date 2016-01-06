@@ -30,6 +30,8 @@ public enum PageMode {
 	DataGrid,
 
 	/** The Indicators. */
-	Indicators
+	Indicators,
+
+	PageVisitHistory
 
 }
