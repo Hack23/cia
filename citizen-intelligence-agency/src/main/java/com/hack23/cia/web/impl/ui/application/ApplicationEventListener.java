@@ -28,14 +28,23 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.security.access.event.AuthorizationFailureEvent;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.session.HttpSessionCreatedEvent;
 import org.springframework.security.web.session.HttpSessionDestroyedEvent;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
 
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
+import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
+import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.application.DestroyApplicationSessionRequest;
 
 @Service
@@ -68,8 +77,50 @@ public class ApplicationEventListener implements ApplicationListener<Application
 			SecurityContextHolder.getContext().setAuthentication(null);
 
 			LOGGER.info("Session destroyed SESSION_ID :{}", httpSession.getId());
-		} else {
+		}  else if (applicationEvent instanceof AuthorizationFailureEvent) {
+			AuthorizationFailureEvent authorizationFailureEvent = (AuthorizationFailureEvent) applicationEvent;
+
+			String sessionId = RequestContextHolder.currentRequestAttributes().getSessionId();
+
+			final CreateApplicationEventRequest serviceRequest = new CreateApplicationEventRequest();
+			serviceRequest.setSessionId(sessionId);
+
+			serviceRequest.setEventGroup(ApplicationEventGroup.APPLICATION);
+			serviceRequest.setApplicationOperation(ApplicationOperationType.AUTHORIZATION);
+
+			serviceRequest.setUserId(getUserIdFromSecurityContext());
+
+			serviceRequest.setErrorMessage("Authorities:" + authorizationFailureEvent.getAuthentication().getAuthorities().toString() + " , RequiredAuthorities:" + authorizationFailureEvent.getConfigAttributes().toString());
+			serviceRequest.setApplicationMessage("Access Denied");
+
+			final CreateApplicationEventResponse response = (CreateApplicationEventResponse) applicationManager
+					.service(serviceRequest);
+
+			LOGGER.info("Authorization Failure:: SessionId :{} , Authorities : {} , RequiredAuthorities : {}", sessionId,authorizationFailureEvent.getAuthentication().getAuthorities().toString(),authorizationFailureEvent.getConfigAttributes().toString());
+		} 	else {
 			LOGGER.debug("ApplicationEvent :{}", applicationEvent.toString());
 		}
 	}
+
+
+	private static String getUserIdFromSecurityContext() {
+
+		String result=null;
+
+		final SecurityContext context = SecurityContextHolder.getContext();
+		if (context != null) {
+			final Authentication authentication = context.getAuthentication();
+			if (authentication != null) {
+				final Object principal = authentication.getPrincipal();
+
+				if (principal instanceof UserAccount) {
+					final UserAccount userAccount = (UserAccount) principal;
+					result = userAccount.getUserId();
+				}
+			}
+		}
+
+		return result;
+	}
+
 }
