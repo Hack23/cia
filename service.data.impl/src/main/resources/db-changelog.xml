@@ -4371,6 +4371,30 @@ from view_riksdagen_politician group by party</createView>
 		<sql>create view view_application_action_event_page_element_annual_summary as select page as embedded_id_page,element_id as embedded_id_element_id, date_trunc('year',created_date) as embedded_id_created_date ,count(*) as hits,percent_rank() over (PARTITION BY page,date_trunc('year',created_date) order by date_trunc('year',created_date),count(*) desc) as rank_percentage,rank() over (PARTITION BY page,date_trunc('year',created_date) order by date_trunc('year',created_date),count(*) desc) as rank from application_action_event where page is not null and element_id is not null and element_id != ''  group by page,element_id,date_trunc('year',created_date) order by date_trunc('year',created_date), count(*) desc</sql>
 	</changeSet>
 
+	<changeSet author="pether" id="1414872417007-276">
+		<createTable tableName="application_configuration">
+			<column name="hjid" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="model_object_id" type="INT4" />
+			<column name="model_object_version" type="INT4" />
+			<column name="config_title" type="VARCHAR(255)" />
+			<column name="config_description" type="VARCHAR(255)" />
+			<column name="configuration_group" type="VARCHAR(255)" />
+
+			<column name="component" type="VARCHAR(255)" />
+			<column name="component_title" type="VARCHAR(255)" />
+			<column name="component_description" type="VARCHAR(255)" />
+
+			<column name="property_id" type="VARCHAR(255)" />
+			<column name="property_value" type="VARCHAR(255)" />
+
+			<column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE" />
+			<column name="updated_date" type="TIMESTAMP WITHOUT TIME ZONE" />
+		</createTable>
+	</changeSet>
+
+
 	<!-- Materialized views todo
 
 

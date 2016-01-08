@@ -36,8 +36,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
+import com.hack23.cia.model.internal.application.system.impl.ConfigurationGroup;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
 import com.hack23.cia.model.internal.application.user.impl.UserRole;
@@ -46,6 +48,7 @@ import com.hack23.cia.service.api.action.application.CreateApplicationEventRespo
 import com.hack23.cia.service.api.action.application.RegisterUserRequest;
 import com.hack23.cia.service.api.action.application.RegisterUserResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
+import com.hack23.cia.service.data.api.ApplicationConfigurationService;
 import com.hack23.cia.service.data.api.UserDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
@@ -66,6 +69,9 @@ public final class RegisterUserService extends
 
 	@Autowired
 	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
+
+	@Autowired
+	private ApplicationConfigurationService applicationConfigurationService;
 
 	/** The user dao. */
 	@Autowired
@@ -96,6 +102,7 @@ public final class RegisterUserService extends
 		eventRequest.setSessionId(serviceRequest.getSessionId());
 		eventRequest.setElementId(serviceRequest.getEmail());
 
+		ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService.checkValueOrLoadDefault("Registered User All get Role Admin", "Registered User All get Role Admin", ConfigurationGroup.AUTHORIZATION, RegisterUserService.class.getSimpleName(), "Register User Service", "Responsible for create of useraccounts", "registered.users.get.admin", "true");
 
 		UserAccount userNameExist = userDAO.findFirstByProperty(UserAccount_.username, serviceRequest.getUsername());
 		UserAccount userEmailExist = userDAO.findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
@@ -109,11 +116,15 @@ public final class RegisterUserService extends
 			userAccount.setUserId(UUID.randomUUID().toString());
 			userAccount.setUserpassword(passwordEncoder.encode(userAccount.getUserId()+".uuid"+ serviceRequest.getUserpassword()));
 			userAccount.setNumberOfVisits(1);
-			userAccount.setUserRole(UserRole.USER);
 			userAccount.setUserType(serviceRequest.getUserType());
 			userAccount.setCreatedDate(new Date());
 			userDAO.persist(userAccount);
 
+			if ("true".equals(registeredUsersGetAdminConfig.getPropertyValue())) {
+				userAccount.setUserRole(UserRole.ADMIN);
+			} else {
+				userAccount.setUserRole(UserRole.USER);
+			}
 
 			Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 

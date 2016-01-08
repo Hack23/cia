@@ -144,6 +144,7 @@
 		<class>com.hack23.cia.model.internal.application.system.impl.Agency</class>
 		<class>com.hack23.cia.model.internal.application.system.impl.Portal</class>
 		<class>com.hack23.cia.model.internal.application.system.impl.DomainPortal</class>
+		<class>com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration</class>
 
 		<class>com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent</class>
 		<class>com.hack23.cia.model.internal.application.system.impl.LanguageContentData</class>

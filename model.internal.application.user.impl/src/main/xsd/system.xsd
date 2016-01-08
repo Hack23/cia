@@ -141,6 +141,45 @@
 		</xsd:sequence>
 	</xsd:complexType>
 
+	<xsd:complexType name="ApplicationConfiguration">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<hj:entity>
+					<orm:table name="application_configuration" />
+
+				</hj:entity>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+		<xsd:sequence>
+			<xsd:element name="modelObjectId" type="xsd:int"
+				minOccurs="0" />
+			<xsd:element name="modelObjectVersion" type="xsd:int"
+				minOccurs="0" />
+			<xsd:element minOccurs="0" name="configTitle" type="xsd:string" />
+			<xsd:element minOccurs="0" name="configDescription" type="xsd:string" />
+			<xsd:element name="configurationGroup" type="system:ConfigurationGroup" minOccurs="0" />
+
+			<xsd:element minOccurs="0" name="component" type="xsd:string" />
+			<xsd:element minOccurs="0" name="componentTitle" type="xsd:string" />
+			<xsd:element minOccurs="0" name="componentDescription" type="xsd:string" />
+
+			<xsd:element minOccurs="0" name="propertyId" type="xsd:string" />
+			<xsd:element minOccurs="0" name="propertyValue" type="xsd:string" />
+
+			<xsd:element minOccurs="0" name="createdDate" type="xsd:dateTime" />
+			<xsd:element minOccurs="0" name="updatedDate" type="xsd:dateTime" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:simpleType name="ConfigurationGroup">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="AUTHENTICATION" />
+			<xsd:enumeration value="AUTHORIZATION" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+
 	<xsd:simpleType name="ApplicationOperationType">
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="CREATE" />
@@ -151,6 +190,7 @@
 			<xsd:enumeration value="AUTHORIZATION" />
 		</xsd:restriction>
 	</xsd:simpleType>
+
 
 	<xsd:simpleType name="ApplicationEventGroup">
 		<xsd:restriction base="xsd:string">
