@@ -121,9 +121,10 @@ public final class AdminUseraccountView extends AbstractAdminView {
 
 			final UserAccount userAccount = dataContainer.load(Long.valueOf(pageId));
 
+			if (userAccount != null) {
 			formFactory.addTextFields(content, new BeanItem<UserAccount>(userAccount), UserAccount.class,
 					Arrays.asList(new String[] { "hjid","modelObjectId","modelObjectVersion","userId","username","createdDate","userpassword","email","country","numberOfVisits" }));
-
+			}
 		}
 
 

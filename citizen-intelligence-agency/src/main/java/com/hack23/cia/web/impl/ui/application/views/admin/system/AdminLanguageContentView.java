@@ -121,9 +121,10 @@ public final class AdminLanguageContentView extends AbstractAdminView {
 
 			final LanguageContentData languageContentData = dataContainer.load(Long.valueOf(pageId));
 
+			if (languageContentData != null) {
 			formFactory.addTextFields(content, new BeanItem<LanguageContentData>(languageContentData), LanguageContentData.class,
 					Arrays.asList(new String[] { "hjid","refKey","fromLanguage", "toLanguage", "createdDate", "languageValue","modelObjectVersion" }));
-
+			}
 		}
 
 		content.addComponent(pageLinkFactory.createMainViewPageLink());

@@ -133,17 +133,19 @@ public final class AdminAgencyView extends AbstractAdminView {
 
 			final Agency agency = dataContainer.load(Long.valueOf(pageId));
 
-			formFactory.addTextFields(leftLayout, new BeanItem<Agency>(agency), Agency.class,
-					Arrays.asList(new String[] { "hjid", "agencyName", "description", "modelObjectVersion" }));
+			if (agency != null) {
 
-			final BeanItemContainer<Portal> portalItemContainer = new BeanItemContainer<Portal>(Portal.class,
-					agency.getPortals());
+				formFactory.addTextFields(leftLayout, new BeanItem<Agency>(agency), Agency.class,
+						Arrays.asList(new String[] { "hjid", "agencyName", "description", "modelObjectVersion" }));
 
-			rightLayout.addComponent(gridFactory.createBasicBeanItemGrid(portalItemContainer, "Portal",
-					new String[] { "hjid", "portalName", "description","portalType","googleMapApiKey", "modelObjectVersion" },
-					new String[] { "modelObjectId" }, "hjid",
-					new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid"), null));
+				final BeanItemContainer<Portal> portalItemContainer = new BeanItemContainer<Portal>(Portal.class,
+						agency.getPortals());
 
+				rightLayout.addComponent(gridFactory.createBasicBeanItemGrid(portalItemContainer, "Portal",
+						new String[] { "hjid", "portalName", "description","portalType","googleMapApiKey", "modelObjectVersion" },
+						new String[] { "modelObjectId" }, "hjid",
+						new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid"), null));
+			}
 
 		}
 

@@ -124,10 +124,10 @@ public final class AdminCountryView extends AbstractAdminView {
 		if (pageId != null && !pageId.isEmpty()) {
 
 			final CountryElement country = dataContainer.load(Long.valueOf(pageId));
-
+			if (country != null) {
 			formFactory.addTextFields(content, new BeanItem<CountryElement>(country), CountryElement.class,
 					Arrays.asList(new String[] { "hjid", "id","countryName","iso2Code","capitalCity","longitude","latitude" }));
-
+			}
 		}
 
 		content.addComponent(pageLinkFactory.createMainViewPageLink());

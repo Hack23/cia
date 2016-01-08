@@ -256,6 +256,31 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 	}
 
+
+	/**
+	 * Site admin application configuration test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteAdminApplicationConfigurationTest()  throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, ""));
+		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Application Configuration"));
+
+		final String pageId = clickFirstRowInGrid(userPageVisit);
+
+		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, pageId));
+
+
+	}
+
+
 	/**
 	 * Site admin country test.
 	 *

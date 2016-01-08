@@ -57,4 +57,7 @@ public interface AdminViews {
 	/** The admin language content view name. */
 	String ADMIN_LANGUAGE_CONTENT_VIEW_NAME = "adminlanguagecontent";
 
+	/** The admin applications configuration view name. */
+	String ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME = "adminapplicationconfiguration";
+
 }

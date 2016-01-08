@@ -121,9 +121,10 @@ public final class AdminPortalView extends AbstractAdminView {
 
 			final Portal portal = dataContainer.load(Long.valueOf(pageId));
 
+			if (portal != null) {
 			formFactory.addTextFields(content, new BeanItem<Portal>(portal), Portal.class,
 					Arrays.asList(new String[] { "hjid", "portalName", "description","portalType","googleMapApiKey", "modelObjectVersion" }));
-
+			}
 		}
 
 		content.addComponent(pageLinkFactory.createMainViewPageLink());

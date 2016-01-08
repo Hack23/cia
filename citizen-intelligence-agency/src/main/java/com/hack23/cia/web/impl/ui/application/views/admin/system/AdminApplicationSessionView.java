@@ -110,47 +110,59 @@ public final class AdminApplicationSessionView extends AbstractAdminView {
 
 		content.addComponent(LabelFactory.createHeader2Label("Admin Application Session"));
 
-		final DataContainer<ApplicationSession, Long> dataContainer = applicationManager.getDataContainer(ApplicationSession.class);
+		final DataContainer<ApplicationSession, Long> dataContainer = applicationManager
+				.getDataContainer(ApplicationSession.class);
 
-		final BeanItemContainer<ApplicationSession> politicianDocumentDataSource = new BeanItemContainer<ApplicationSession>(ApplicationSession.class,
-				dataContainer.getAllOrderBy(ApplicationSession_.createdDate));
+		final BeanItemContainer<ApplicationSession> politicianDocumentDataSource = new BeanItemContainer<ApplicationSession>(
+				ApplicationSession.class, dataContainer.getAllOrderBy(ApplicationSession_.createdDate));
 
 		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationSession",
-				new String[] { "hjid", "createdDate","sessionType","sessionId", "operatingSystem","locale", "ipInformation","userAgentInformation","events" },
-				new String[] { "modelObjectId","modelObjectVersion" }, "hjid",
+				new String[] { "hjid", "createdDate", "sessionType", "sessionId", "operatingSystem", "locale",
+						"ipInformation", "userAgentInformation", "events" },
+				new String[] { "modelObjectId", "modelObjectVersion" }, "hjid",
 				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid"), null));
 
 		if (pageId != null && !pageId.isEmpty()) {
 
 			final ApplicationSession applicationSession = dataContainer.load(Long.valueOf(pageId));
 
-			final VerticalLayout leftLayout = new VerticalLayout();
-			leftLayout.setSizeFull();
-			final VerticalLayout rightLayout = new VerticalLayout();
-			rightLayout.setSizeFull();
-			final HorizontalLayout horizontalLayout = new HorizontalLayout();
-			horizontalLayout.setWidth("100%");
-			content.addComponent(horizontalLayout);
-			horizontalLayout.addComponent(leftLayout);
-			horizontalLayout.addComponent(rightLayout);
+			if (applicationSession != null) {
 
-			formFactory.addTextFields(leftLayout, new BeanItem<ApplicationSession>(applicationSession), ApplicationSession.class,
-					Arrays.asList(new String[] { "hjid", "createdDate","sessionId", "operatingSystem","locale","ipInformation","userAgentInformation", "modelObjectVersion" }));
+				final VerticalLayout leftLayout = new VerticalLayout();
+				leftLayout.setSizeFull();
+				final VerticalLayout rightLayout = new VerticalLayout();
+				rightLayout.setSizeFull();
+				final HorizontalLayout horizontalLayout = new HorizontalLayout();
+				horizontalLayout.setWidth("100%");
+				content.addComponent(horizontalLayout);
+				horizontalLayout.addComponent(leftLayout);
+				horizontalLayout.addComponent(rightLayout);
 
-			final BeanItemContainer<ApplicationActionEvent> eventsItemContainer = new BeanItemContainer<ApplicationActionEvent>(ApplicationActionEvent.class,
-					applicationSession.getEvents());
+				formFactory.addTextFields(leftLayout, new BeanItem<ApplicationSession>(applicationSession),
+						ApplicationSession.class,
+						Arrays.asList(new String[] { "hjid", "createdDate", "sessionId", "operatingSystem", "locale",
+								"ipInformation", "userAgentInformation", "modelObjectVersion" }));
 
-			rightLayout.addComponent(gridFactory.createBasicBeanItemGrid(eventsItemContainer, "ApplicationActionEvent",
-					new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" },
-					new String[] { "modelObjectId" }, "hjid",
-					new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null));
+				final BeanItemContainer<ApplicationActionEvent> eventsItemContainer = new BeanItemContainer<ApplicationActionEvent>(
+						ApplicationActionEvent.class, applicationSession.getEvents());
+
+				rightLayout.addComponent(gridFactory.createBasicBeanItemGrid(eventsItemContainer,
+						"ApplicationActionEvent",
+						new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation", "page", "pageMode",
+								"elementId", "actionName", "userId", "sessionId", "errorMessage", "applicationMessage",
+								"modelObjectVersion" },
+						new String[] { "modelObjectId" }, "hjid",
+						new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"),
+						null));
+			}
 
 		}
 
 		content.addComponent(pageLinkFactory.createMainViewPageLink());
 
 		setContent(content);
-		pageActionEventHelper.createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_SESSION_VIEW, ApplicationEventGroup.ADMIN, NAME, null, pageId);
+		pageActionEventHelper.createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_SESSION_VIEW,
+				ApplicationEventGroup.ADMIN, NAME, null, pageId);
 
 	}
 

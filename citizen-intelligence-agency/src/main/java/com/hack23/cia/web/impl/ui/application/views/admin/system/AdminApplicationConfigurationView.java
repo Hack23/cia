@@ -27,14 +27,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent;
-import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent_;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
@@ -43,6 +42,7 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -52,14 +52,14 @@ import ru.xpoft.vaadin.VaadinView;
  */
 @Service
 @Scope("prototype")
-@VaadinView(AdminApplicationEventsView.NAME)
-public final class AdminApplicationEventsView extends AbstractAdminView {
+@VaadinView(AdminApplicationConfigurationView.NAME)
+public final class AdminApplicationConfigurationView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The Constant NAME. */
-	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME;
+	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME;
 
 	/** The application manager. */
 	@Autowired
@@ -73,9 +73,6 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 	/** The form factory. */
 	@Autowired
 	private transient FormFactory formFactory;
-
-	@Autowired
-	private transient ChartDataManager chartDataManager;
 
 	/**
 	 * Post construct.
@@ -110,38 +107,52 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		final VerticalLayout content = new VerticalLayout();
 
-		content.addComponent(LabelFactory.createHeader2Label("Admin Application Event"));
+		content.addComponent(LabelFactory.createHeader2Label("Admin Application Configuration"));
 
-		final DataContainer<ApplicationActionEvent, Long> dataContainer = applicationManager.getDataContainer(ApplicationActionEvent.class);
+		final DataContainer<ApplicationConfiguration, Long> dataContainer = applicationManager
+				.getDataContainer(ApplicationConfiguration.class);
 
-		final BeanItemContainer<ApplicationActionEvent> politicianDocumentDataSource = new BeanItemContainer<ApplicationActionEvent>(ApplicationActionEvent.class,
-				dataContainer.getAllOrderBy(ApplicationActionEvent_.createdDate));
+		final BeanItemContainer<ApplicationConfiguration> politicianDocumentDataSource = new BeanItemContainer<ApplicationConfiguration>(
+				ApplicationConfiguration.class,
+				dataContainer.getAllOrderBy(ApplicationConfiguration_.configurationGroup));
 
-		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationActionEvent",
-				new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" },
-				new String[] { "modelObjectId" }, "hjid",
-				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null));
-
+		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource,
+				"ApplicationConfiguration",
+				new String[] { "hjid", "configTitle", "configDescription", "configurationGroup", "component",
+						"componentTitle", "componentDescription", "propertyId", "propertyValue" },
+				new String[] { "modelObjectId", "modelObjectVersion", "createdDate", "updatedDate" }, "hjid",
+				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, "hjid"),
+				null));
 
 		if (pageId != null && !pageId.isEmpty()) {
 
-			final ApplicationActionEvent applicationActionEvent = dataContainer.load(Long.valueOf(pageId));
+			final ApplicationConfiguration applicationConfiguration = dataContainer.load(Long.valueOf(pageId));
 
-			if ( applicationActionEvent != null) {
+			if (applicationConfiguration != null) {
 
-			formFactory.addTextFields(content, new BeanItem<ApplicationActionEvent>(applicationActionEvent), ApplicationActionEvent.class,
-					Arrays.asList(new String[] { "hjid","createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion"  }));
+				final VerticalLayout leftLayout = new VerticalLayout();
+				leftLayout.setSizeFull();
+				final VerticalLayout rightLayout = new VerticalLayout();
+				rightLayout.setSizeFull();
+				final HorizontalLayout horizontalLayout = new HorizontalLayout();
+				horizontalLayout.setWidth("100%");
+				content.addComponent(horizontalLayout);
+				horizontalLayout.addComponent(leftLayout);
+				horizontalLayout.addComponent(rightLayout);
+
+				formFactory.addTextFields(leftLayout, new BeanItem<ApplicationConfiguration>(applicationConfiguration),
+						ApplicationConfiguration.class,
+						Arrays.asList(new String[] { "hjid", "configTitle", "configDescription", "component",
+								"componentTitle", "componentDescription", "propertyId", "propertyValue", "createdDate",
+								"updatedDate" }));
 			}
-
-		} else {
-			content.addComponent(chartDataManager.createApplicationActionEventPageDailySummaryChart());
 		}
 
-	 	content.addComponent(pageLinkFactory.createMainViewPageLink());
+		content.addComponent(pageLinkFactory.createMainViewPageLink());
 
 		setContent(content);
-
-		pageActionEventHelper.createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_EVENTS_VIEW, ApplicationEventGroup.ADMIN, NAME, null, pageId);
+		pageActionEventHelper.createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_CONFIGURATION_VIEW,
+				ApplicationEventGroup.ADMIN, NAME, null, pageId);
 
 	}
 

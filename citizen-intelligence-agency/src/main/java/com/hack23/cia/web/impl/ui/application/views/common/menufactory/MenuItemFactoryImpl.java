@@ -179,6 +179,9 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 		adminMenuItem.addItem("System Performance",
 				new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
 
+		adminMenuItem.addItem("Application Configuration",
+				new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, ""));
+
 		adminMenuItem.addItem("Agency",
 				new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, ""));
 		adminMenuItem.addItem("Portal",
