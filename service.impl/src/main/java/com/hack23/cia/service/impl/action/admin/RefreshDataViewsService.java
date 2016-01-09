@@ -24,8 +24,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
+import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
 import com.hack23.cia.service.api.action.admin.RefreshDataViewsResponse;
+import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
+import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ViewDataManager;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
@@ -52,14 +57,41 @@ public final class RefreshDataViewsService extends
 	@Autowired
 	private ViewDataManager ViewDataManager;
 
+	/** The create application event service. */
+	@Autowired
+	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
+
+
 	/* (non-Javadoc)
 	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
 	 */
 	@Override
 	public RefreshDataViewsResponse processService(
 			RefreshDataViewsRequest serviceRequest) {
+
+		CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
+		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
+		eventRequest.setActionName(RefreshDataViewsRequest.class.getSimpleName());
+		eventRequest.setSessionId(serviceRequest.getSessionId());
+
+		UserAccount userAccount = getUserAccountFromSecurityContext();
+
+
+		if (userAccount != null) {
+
+			eventRequest.setUserId(userAccount.getUserId());
+		}
+
+		RefreshDataViewsResponse response = new RefreshDataViewsResponse(ServiceResult.SUCCESS);
 		ViewDataManager.refreshViews();
-		return new RefreshDataViewsResponse(ServiceResult.SUCCESS);
+
+		eventRequest.setApplicationMessage(response.getResult().toString());
+		createApplicationEventService.processService(eventRequest);
+
+		return response;
 	}
+
+
 
 }

@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
@@ -81,7 +82,12 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 		final Button refreshViewsButton = new Button("Refresh Views");
 
 		refreshViewsButton.addClickListener(event -> {
-			applicationManager.asyncService(new RefreshDataViewsRequest());
+
+
+			RefreshDataViewsRequest serviceRequest = new RefreshDataViewsRequest();
+			serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+
+			applicationManager.asyncService(serviceRequest);
 			Notification.show("Refresh Views Started");
 		});
 

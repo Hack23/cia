@@ -16,56 +16,51 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.impl.action.application;
+package com.hack23.cia.service.impl.action.admin;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
+import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
+import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationRequest;
+import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
-import com.hack23.cia.service.api.action.application.LogoutRequest;
-import com.hack23.cia.service.api.action.application.LogoutResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
+import com.hack23.cia.service.data.api.ApplicationConfigurationDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
- * The Class LogoutService.
+ * The Class UpdateApplicationConfigurationService.
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public final class LogoutService extends AbstractBusinessServiceImpl<LogoutRequest, LogoutResponse>
-		implements BusinessService<LogoutRequest, LogoutResponse> {
-
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(LogoutService.class);
+@Secured({ "ROLE_ADMIN" })
+public final class UpdateApplicationConfigurationService extends
+		AbstractBusinessServiceImpl<UpdateApplicationConfigurationRequest, UpdateApplicationConfigurationResponse>
+		implements BusinessService<UpdateApplicationConfigurationRequest, UpdateApplicationConfigurationResponse> {
 
 	/** The create application event service. */
 	@Autowired
 	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
 
-
+	/** The application configuration dao. */
+	@Autowired
+	private ApplicationConfigurationDAO applicationConfigurationDAO;
 
 	/**
-	 * Instantiates a new logout service.
+	 * Instantiates a new update application configuration service.
 	 */
-	public LogoutService() {
-		super(LogoutRequest.class);
+	public UpdateApplicationConfigurationService() {
+		super(UpdateApplicationConfigurationRequest.class);
 	}
 
 	/*
@@ -76,42 +71,47 @@ public final class LogoutService extends AbstractBusinessServiceImpl<LogoutReque
 	 * com.hack23.cia.service.api.action.common.ServiceRequest)
 	 */
 	@Override
-	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
-	public LogoutResponse processService(LogoutRequest serviceRequest) {
+	public UpdateApplicationConfigurationResponse processService(UpdateApplicationConfigurationRequest serviceRequest) {
 
 		CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
-		eventRequest.setEventGroup(ApplicationEventGroup.USER);
-		eventRequest.setApplicationOperation(ApplicationOperationType.AUTHENTICATION);
-		eventRequest.setActionName(LogoutRequest.class.getSimpleName());
+		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
+		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
+		eventRequest.setActionName(UpdateApplicationConfigurationRequest.class.getSimpleName());
 		eventRequest.setSessionId(serviceRequest.getSessionId());
-
 
 		UserAccount userAccount = getUserAccountFromSecurityContext();
 
-
-		eventRequest.setElementId(userAccount.getEmail());
-
-		LogoutResponse response;
 		if (userAccount != null) {
 
 			eventRequest.setUserId(userAccount.getUserId());
+		}
 
+		UpdateApplicationConfigurationResponse response;
 
-			Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-			authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
-			AnonymousAuthenticationToken anonymousAuthenticationToken = new AnonymousAuthenticationToken(
-					serviceRequest.getSessionId(), "ROLE_ANONYMOUS", authorities);
-			SecurityContextHolder.getContext().setAuthentication(anonymousAuthenticationToken);
+		ApplicationConfiguration applicationConfiguration = applicationConfigurationDAO
+				.load(serviceRequest.getApplicationConfigurationId());
 
-			response=new LogoutResponse(ServiceResult.SUCCESS);
+		if (applicationConfiguration != null) {
+			eventRequest.setElementId(serviceRequest.getApplicationConfigurationId().toString());
+
+			applicationConfiguration.setConfigTitle(serviceRequest.getConfigTitle());
+			applicationConfiguration.setConfigDescription(serviceRequest.getConfigDescription());
+			applicationConfiguration.setComponentTitle(serviceRequest.getComponentTitle());
+			applicationConfiguration.setComponentDescription(serviceRequest.getComponentDescription());
+			applicationConfiguration.setPropertyValue(serviceRequest.getPropertyValue());
+
+			applicationConfigurationDAO.persist(applicationConfiguration);
+
+			response = new UpdateApplicationConfigurationResponse(ServiceResult.SUCCESS);
 		} else {
-			response= new LogoutResponse(ServiceResult.FAILURE);
+			response = new UpdateApplicationConfigurationResponse(ServiceResult.FAILURE);
 		}
 
 		eventRequest.setApplicationMessage(response.getResult().toString());
-
 		createApplicationEventService.processService(eventRequest);
+
 		return response;
+
 	}
 
 }

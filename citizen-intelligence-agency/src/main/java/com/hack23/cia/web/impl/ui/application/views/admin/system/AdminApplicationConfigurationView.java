@@ -26,12 +26,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
@@ -39,9 +41,11 @@ import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFacto
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.UpdateApplicationConfigurationClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.VerticalLayout;
 
@@ -145,6 +149,25 @@ public final class AdminApplicationConfigurationView extends AbstractAdminView {
 						Arrays.asList(new String[] { "hjid", "configTitle", "configDescription", "component",
 								"componentTitle", "componentDescription", "propertyId", "propertyValue", "createdDate",
 								"updatedDate" }));
+
+
+				final UpdateApplicationConfigurationRequest request = new UpdateApplicationConfigurationRequest();
+				request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+				request.setApplicationConfigurationId(applicationConfiguration.getHjid());
+
+				request.setConfigTitle(applicationConfiguration.getConfigTitle());
+				request.setConfigDescription(applicationConfiguration.getConfigDescription());
+
+				request.setComponentTitle(applicationConfiguration.getConfigTitle());
+				request.setComponentDescription(applicationConfiguration.getComponentDescription());
+
+				request.setPropertyValue(applicationConfiguration.getPropertyValue());
+
+				final ClickListener buttonListener = new UpdateApplicationConfigurationClickListener(request,applicationManager);
+				formFactory.addRequestInputFormFields(rightLayout,  new BeanItem<UpdateApplicationConfigurationRequest>(request), UpdateApplicationConfigurationRequest.class,
+						Arrays.asList(new String[] {"configTitle", "configDescription", "componentTitle", "componentDescription" ,"propertyValue"}),"Update Configuration",buttonListener);
+
+
 			}
 		}
 

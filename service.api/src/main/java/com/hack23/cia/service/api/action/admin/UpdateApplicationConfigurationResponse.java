@@ -18,37 +18,26 @@
 */
 package com.hack23.cia.service.api.action.admin;
 
-import com.hack23.cia.service.api.action.common.ServiceRequest;
+import com.hack23.cia.service.api.action.common.AbstractResponse;
 
 
 /**
- * The Class RefreshDataViewsRequest.
+ * The Class UpdateApplicationConfigurationResponse.
  */
-public final class RefreshDataViewsRequest implements ServiceRequest {
+public final class UpdateApplicationConfigurationResponse extends AbstractResponse {
+
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-    /** The session id. */
-    private String sessionId;
-
 	/**
-	 * Gets the session id.
+	 * Instantiates a new update application configuration response.
 	 *
-	 * @return the session id
+	 * @param result
+	 *            the result
 	 */
-	public String getSessionId() {
-		return sessionId;
-	}
-
-	/**
-	 * Sets the session id.
-	 *
-	 * @param sessionId
-	 *            the new session id
-	 */
-	public void setSessionId(String sessionId) {
-		this.sessionId = sessionId;
+	public UpdateApplicationConfigurationResponse(ServiceResult result) {
+		super(result);
 	}
 
 
