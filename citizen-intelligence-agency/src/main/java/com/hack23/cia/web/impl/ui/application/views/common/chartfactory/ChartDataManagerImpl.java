@@ -218,38 +218,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	 *
 	 * @see
 	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * getViewRiksdagenCommitteeDecisionTypeDailySummaryMap()
-	 */
-	@Override
-	public Map<String, List<ViewRiksdagenCommitteeDecisionTypeDailySummary>> getViewRiksdagenCommitteeDecisionTypeDailySummaryMap() {
-		final DataContainer<ViewRiksdagenCommitteeDecisionTypeDailySummary, RiksdagenCommitteeDecisionTypeSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenCommitteeDecisionTypeDailySummary.class);
-
-		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(t -> t != null)
-				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDecisionType()));
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * getViewRiksdagenCommitteeDecisionTypeOrgDailySummaryMap()
-	 */
-	@Override
-	public Map<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> getViewRiksdagenCommitteeDecisionTypeOrgDailySummaryMap() {
-		final DataContainer<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary, RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenCommitteeDecisionTypeOrgDailySummary.class);
-
-		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(t -> t != null)
-				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getOrg().toUpperCase(Locale.ENGLISH).trim()));
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
 	 * getViewRiksdagenOrgDocumentDailySummaryMap()
 	 */
 	@Override

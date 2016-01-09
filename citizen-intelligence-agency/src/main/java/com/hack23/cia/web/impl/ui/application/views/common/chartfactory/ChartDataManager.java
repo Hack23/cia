@@ -119,20 +119,6 @@ public interface ChartDataManager {
 	Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> getViewRiksdagenOrgDocumentDailySummaryMap();
 
 	/**
-	 * Gets the view riksdagen committee decision type daily summary map.
-	 *
-	 * @return the view riksdagen committee decision type daily summary map
-	 */
-	Map<String, List<ViewRiksdagenCommitteeDecisionTypeDailySummary>> getViewRiksdagenCommitteeDecisionTypeDailySummaryMap();
-
-	/**
-	 * Gets the view riksdagen committee decision type org daily summary map.
-	 *
-	 * @return the view riksdagen committee decision type org daily summary map
-	 */
-	Map<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> getViewRiksdagenCommitteeDecisionTypeOrgDailySummaryMap();
-
-	/**
 	 * Creates the party winner chart.
 	 *
 	 * @return the d charts
