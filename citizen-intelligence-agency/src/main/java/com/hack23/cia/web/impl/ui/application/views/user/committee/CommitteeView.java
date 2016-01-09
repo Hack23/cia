@@ -19,6 +19,8 @@
 package com.hack23.cia.web.impl.ui.application.views.user.committee;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.PostConstruct;
 
@@ -30,6 +32,16 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId_;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary_;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId_;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionSummary;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionSummary_;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeRoleMember;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeRoleMember_;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument;
@@ -188,6 +200,29 @@ public final class CommitteeView extends AbstractGroupView {
 					panelContent.addComponent(createDecisionTypeChart);
 				} else if (parameters.contains(CommitteePageMode.BallotDecisionSummary.toString())) {
 					panelContent.addComponent(LabelFactory.createHeader2Label("Ballot Decision Summary"));
+
+
+					final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
+							.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
+
+					List<ViewRiksdagenCommitteeBallotDecisionSummary> decisionPartySummaryList = committeeBallotDecisionPartyDataContainer.findOrderedListByProperty(ViewRiksdagenCommitteeBallotDecisionSummary_.org, pageId.toUpperCase(Locale.ENGLISH), ViewRiksdagenCommitteeBallotDecisionSummary_.createdDate);
+
+
+					final BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionSummary> committeeBallotDecisionPartyDataSource = new BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionSummary>(
+							ViewRiksdagenCommitteeBallotDecisionSummary.class,
+							decisionPartySummaryList);
+
+					final Grid committeeBallotDecisionPartyBeanItemGrid = gridFactory.createBasicBeanItemGrid(
+							committeeBallotDecisionPartyDataSource,
+							"Committee Ballot Decision Summary",
+							null,
+							null,
+							null,
+							null, null);
+
+					panelContent
+					.addComponent(committeeBallotDecisionPartyBeanItemGrid);
+
 
 				} else if (parameters.contains(CommitteePageMode.DecisionSummary.toString())) {
 
