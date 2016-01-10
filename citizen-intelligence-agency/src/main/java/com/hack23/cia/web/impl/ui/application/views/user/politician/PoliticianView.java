@@ -37,7 +37,6 @@ import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.tltv.gantt.Gantt;
 import org.tltv.gantt.client.shared.Resolution;
@@ -201,7 +200,10 @@ public final class PoliticianView extends AbstractPersonView {
 							chartDataManager.getViewRiksdagenVoteDataBallotPoliticianSummary(personData.getId()));
 
 					final Grid politicianBallotsBeanItemGrid = gridFactory
-							.createBasicBeanItemGrid(politicianBallotDataSource, "Ballots", null, null, null, null, null);
+							.createBasicBeanItemNestedPropertiesGrid(politicianBallotDataSource, "Ballots",new String[]{ "embeddedId.ballotId", "embeddedId.concern","embeddedId.issue"}, null, new String[]{ "embeddedId"}, null, null, null);
+
+
+
 
 					panelContent.addComponent(politicianBallotsBeanItemGrid);
 

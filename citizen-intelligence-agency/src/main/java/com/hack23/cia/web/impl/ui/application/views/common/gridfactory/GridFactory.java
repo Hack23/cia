@@ -46,4 +46,28 @@ public interface GridFactory {
 	Grid createBasicBeanItemGrid(Indexed datasource, String caption, Object[] columnOrder, Object[] hideColumns,
 			String idProprty, AbstractPageItemRendererClickListener<?> listener, String actionId);
 
+	/**
+	 * Creates a new Grid object.
+	 *
+	 * @param datasource
+	 *            the datasource
+	 * @param caption
+	 *            the caption
+	 * @param nestedProperties
+	 *            the nested properties
+	 * @param columnOrder
+	 *            the column order
+	 * @param hideColumns
+	 *            the hide columns
+	 * @param idProprty
+	 *            the id proprty
+	 * @param listener
+	 *            the listener
+	 * @param actionId
+	 *            the action id
+	 * @return the grid
+	 */
+	Grid createBasicBeanItemNestedPropertiesGrid(Indexed datasource, String caption, String[] nestedProperties,Object[] columnOrder, Object[] hideColumns,
+			String idProprty, AbstractPageItemRendererClickListener<?> listener, String actionId);
+
 }
