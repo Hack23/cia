@@ -1,11 +1,34 @@
-# cia
-Citizen Intelligence Agency
+# Citizen Intelligence Agency
+
+Tracking politicians like bugs. Citizen Intelligence Agency is independent and non-partisan voluntary project.
 
 
 
-Citizen Intelligence Agency Demo https://www.hack23.com/cia/
+# Goal
+
+Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level.
 
 
+
+# Demo https://www.hack23.com/cia/
+
+Still prototype, live demo running at [https:/www.hack23.com/cia/](https:/www.hack23.com/cia/).
+
+Using open data from  [http://data.riksdagen.se/](http://data.riksdagen.se/) , [http://www.val.se/](http://www.val.se/) and [http://data.worldbank.org/](http://data.worldbank.org/) .
+
+Currently the application displays data, metadata and charts for data related to Swedish parliament and government. Covering parliament members, committees, documents, ballots, decisions, ministries, government members
+
+Limited functionality proper navigation, descriptions,content, ui and styling are still not in place.
+
+
+
+# Roadmap
+
+Plan to make it public some time after 2018.04, running Ubuntu 18.04, Postgresql 9.6+, JDK9, Spring framework 5.x , Hibernate 6.x, Vaadin 8.x.
+
+
+
+#Resources
 
 Project documentation [http://cia.sourceforge.net/](http://cia.sourceforge.net/)
 
@@ -16,7 +39,6 @@ Build server, jenkins [https://www.hack23.com/jenkins/](https://www.hack23.com/j
 QA report, sonarqube [https://www.hack23.com/sonar/](https://www.hack23.com/sonar/)
 
 Repository manager, nexus [https://www.hack23.com/nexus/](https://www.hack23.com/nexus/)
-
 
 
 
