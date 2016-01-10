@@ -16,7 +16,7 @@ Still prototype, live demo running at [https:/www.hack23.com/cia/](https:/www.ha
 
 Using open data from  [http://data.riksdagen.se/](http://data.riksdagen.se/) , [http://www.val.se/](http://www.val.se/) and [http://data.worldbank.org/](http://data.worldbank.org/) .
 
-Currently the application displays data, metadata and charts for data related to Swedish parliament and government. Covering parliament members, committees, documents, ballots, decisions, ministries, government members
+Currently the application displays data, metadata and charts for data related to Swedish parliament and government. Covering parliament members, committees, documents, ballots, decisions, ministries, government members and political parties.
 
 Limited functionality proper navigation, descriptions,content, ui and styling are still not in place.
 
