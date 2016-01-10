@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory;
 
 import java.util.AbstractMap;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,10 +29,15 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary;
 import com.hack23.cia.model.internal.application.data.impl.WorldbankIndicatorDataCountrySummaryEmbeddedId;
+import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageModeMenuCommand;
@@ -169,36 +175,42 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 		barmenu.addItem(OVERVIEW_TEXT, null, new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.Overview));
 
-		final MenuItem adminMenuItem = barmenu.addItem(ADMIN_TEXT, null, null);
+		if (allowRoleInSecurityContext("ROLE_ADMIN")) {
+			final MenuItem adminMenuItem = barmenu.addItem(ADMIN_TEXT, null, null);
 
-		adminMenuItem.addItem(AGENT_OPERATIONS_TEXT,
-				new PageModeMenuCommand(AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, ""));
-		adminMenuItem.addItem(DATA_SUMMARY_TEXT,
-				new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
+			adminMenuItem.addItem(AGENT_OPERATIONS_TEXT,
+					new PageModeMenuCommand(AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, ""));
+			adminMenuItem.addItem(DATA_SUMMARY_TEXT,
+					new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
 
-		adminMenuItem.addItem("System Performance",
-				new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
+			adminMenuItem.addItem("System Performance",
+					new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
 
-		adminMenuItem.addItem("Application Configuration",
-				new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, ""));
+			adminMenuItem.addItem("Application Configuration",
+					new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, ""));
 
-		adminMenuItem.addItem("Agency",
-				new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, ""));
-		adminMenuItem.addItem("Portal",
-				new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
-		adminMenuItem.addItem("Application Session",
-				new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
-		adminMenuItem.addItem("Application Event",
-				new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
-		adminMenuItem.addItem("Useraccount",
-				new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
-		adminMenuItem.addItem("Country",
-				new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, ""));
-		adminMenuItem.addItem("Language",
-				new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
-		adminMenuItem.addItem("Language Content",
-				new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, ""));
+			adminMenuItem.addItem("Agency",
+					new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, ""));
+			adminMenuItem.addItem("Portal",
+					new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
+			adminMenuItem.addItem("Application Session",
+					new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
+			adminMenuItem.addItem("Application Event",
+					new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
+			adminMenuItem.addItem("Useraccount",
+					new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
+			adminMenuItem.addItem("Country",
+					new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, ""));
+			adminMenuItem.addItem("Language",
+					new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
+			adminMenuItem.addItem("Language Content",
+					new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, ""));
+		}
 
+
+		if (allowRoleInSecurityContext("ROLE_ADMIN") || allowRoleInSecurityContext("ROLE_ADMIN")) {
+			final MenuItem userhomeMenuItem = barmenu.addItem("Userhome", new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, ""));
+		}
 
 		final MenuItem rankingsMenuItem = barmenu.addItem(RANKING_TEXT, null, null);
 
@@ -758,5 +770,29 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.PageVisitHistory,pageId));
 
 	}
+
+
+	private static boolean allowRoleInSecurityContext(String role) {
+
+		boolean result=false;
+
+		final SecurityContext context = SecurityContextHolder.getContext();
+		if (context != null) {
+			final Authentication authentication = context.getAuthentication();
+			if (authentication != null) {
+
+				Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+
+				for (GrantedAuthority grantedAuthority : authorities) {
+					if (role.equalsIgnoreCase(grantedAuthority.getAuthority())) {
+						result=true;
+					}
+				}
+			}
+		}
+
+		return result;
+	}
+
 
 }
