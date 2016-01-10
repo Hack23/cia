@@ -51,7 +51,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope("prototype")
 @VaadinView(AgentOperationView.NAME)
-@Secured({ "ROLE_ADMIN" })
+//@Secured({ "ROLE_ADMIN" })
 public final class AgentOperationView extends AbstractAdminView implements
 		Button.ClickListener {
 

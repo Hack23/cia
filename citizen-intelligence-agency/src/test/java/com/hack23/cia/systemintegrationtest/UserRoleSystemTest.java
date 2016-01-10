@@ -192,6 +192,8 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
+		loginAsAdmin(userPageVisit);
+
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, ""));
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Agency"));
@@ -244,6 +246,8 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final WebDriver driver = getWebDriver();
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
@@ -268,6 +272,8 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final WebDriver driver = getWebDriver();
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, ""));
@@ -292,6 +298,8 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final WebDriver driver = getWebDriver();
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, ""));
@@ -315,6 +323,8 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final WebDriver driver = getWebDriver();
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
@@ -337,6 +347,8 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final WebDriver driver = getWebDriver();
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
@@ -360,6 +372,8 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final WebDriver driver = getWebDriver();
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, ""));
@@ -383,6 +397,8 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final WebDriver driver = getWebDriver();
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
@@ -406,6 +422,8 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final WebDriver driver = getWebDriver();
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
@@ -423,7 +441,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout=20000)
 	public void siteAdminMonitoringFailedAccessTest()  throws Exception {
 		final WebDriver driver = getWebDriver();
 
@@ -443,18 +461,24 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	public void siteAdminMonitoringFailedSuccessTest()  throws Exception {
+	public void siteAdminMonitoringSuccessTest()  throws Exception {
 		final WebDriver driver = getWebDriver();
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		//TODO login admin user.
+		loginAsAdmin(userPageVisit);
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
 		assertTrue("Expect this content",userPageVisit.getHtmlBodyAsText().contains("Admin Monitoring"));
 
 		assertFalse("Dont expect this content",userPageVisit.getIframesHtmlBodyAsText().contains("Login with Username and Password"));
+	}
+
+
+	private void loginAsAdmin(final UserPageVisit userPageVisit) throws Exception {
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.Overview));
+		userPageVisit.loginUser("admin@admin.com", "admin");
 	}
 
 
@@ -1618,7 +1642,9 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitStartPage();
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.Overview));
 
 		userPageVisit.visitAdminAgentOperationView();
 		userPageVisit.performAdminAgentOperation(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN, DataAgentOperation.IMPORT);
@@ -1637,7 +1663,10 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitStartPage();
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.Overview));
+
 		userPageVisit.visitAdminDataSummaryView();
 
 	}

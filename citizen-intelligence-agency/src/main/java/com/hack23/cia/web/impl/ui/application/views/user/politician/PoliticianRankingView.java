@@ -50,7 +50,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope("prototype")
 @VaadinView(value = PoliticianRankingView.NAME, cached = true)
-@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
+//@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 public final class PoliticianRankingView extends AbstractRankingView {
 
 	/** The Constant serialVersionUID. */

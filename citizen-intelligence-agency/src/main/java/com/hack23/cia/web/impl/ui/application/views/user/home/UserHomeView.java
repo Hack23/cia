@@ -66,7 +66,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope("prototype")
 @VaadinView(value = UserHomeView.NAME, cached = true)
-@Secured({ "ROLE_USER", "ROLE_ADMIN" })
+//@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 public final class UserHomeView extends AbstractUserView {
 
 	/** The Constant serialVersionUID. */

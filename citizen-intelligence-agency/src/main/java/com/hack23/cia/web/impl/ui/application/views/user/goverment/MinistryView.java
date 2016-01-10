@@ -63,7 +63,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope("prototype")
 @VaadinView(value = MinistryView.NAME, cached = true)
-@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
+//@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 public final class MinistryView extends AbstractGroupView {
 
 	/** The Constant serialVersionUID. */

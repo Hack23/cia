@@ -76,7 +76,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope("prototype")
 @VaadinView(value = PartyView.NAME, cached = true)
-@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
+//@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 public final class PartyView extends AbstractGroupView {
 
 	/** The Constant serialVersionUID. */

@@ -58,7 +58,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope("prototype")
 @VaadinView(AdminApplicationConfigurationView.NAME)
-@Secured({ "ROLE_ADMIN" })
+//@Secured({ "ROLE_ADMIN" })
 public final class AdminApplicationConfigurationView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */

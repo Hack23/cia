@@ -52,7 +52,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope("prototype")
 @VaadinView(AdminPortalView.NAME)
-@Secured({ "ROLE_ADMIN" })
+//@Secured({ "ROLE_ADMIN" })
 public final class AdminPortalView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */
