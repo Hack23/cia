@@ -66,6 +66,8 @@ $ sudo apt-get install oracle-java8-installer
 
 3. Create empty database
 
+Below description set the default username/password and database name used for development, recommend using custom credentials and update the configuration at /opt/cia/webapps/cia/WEB-INF/database.properties to define your own username/password and database name.
+
 ```
 $ sudo su - postgres
 $ psql
