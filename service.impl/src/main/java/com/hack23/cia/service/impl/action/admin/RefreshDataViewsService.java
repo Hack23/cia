@@ -40,7 +40,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
  * The Class RefreshDataViewsService.
  */
 @Service
-@Transactional(propagation = Propagation.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED,timeout=600)
 @Secured({ "ROLE_USER", "ROLE_ADMIN" })
 public final class RefreshDataViewsService extends
 		AbstractBusinessServiceImpl<RefreshDataViewsRequest, RefreshDataViewsResponse>
