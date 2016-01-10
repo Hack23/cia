@@ -2,13 +2,21 @@
 Citizen Intelligence Agency
 
 
+
 Citizen Intelligence Agency Demo https://www.hack23.com/cia/
 
+
+
 Project documentation [http://cia.sourceforge.net/](http://cia.sourceforge.net/)
+
 Github source code location [https://github.com/Hack23/cia](https://github.com/Hack23/cia)
+
 Build server, jenkins [https://www.hack23.com/jenkins/](https://www.hack23.com/jenkins/)
+
 QA report, sonarqube [https://www.hack23.com/sonar/](https://www.hack23.com/sonar/)
+
 Repository manager, nexus [https://www.hack23.com/nexus/](https://www.hack23.com/nexus/)
+
 
 
 
