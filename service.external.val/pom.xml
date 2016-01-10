@@ -101,5 +101,5 @@
       </plugin>
     </plugins>
   </build>
-  <reporting />
+  <reporting></reporting>
 </project>
