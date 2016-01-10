@@ -24,6 +24,7 @@ import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
@@ -52,6 +53,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope("prototype")
 @VaadinView(value = MinistryRankingView.NAME, cached = true)
+@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 public final class MinistryRankingView extends AbstractRankingView {
 
 	/** The Constant serialVersionUID. */

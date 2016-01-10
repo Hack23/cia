@@ -23,6 +23,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 
@@ -45,6 +46,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope("prototype")
 @VaadinView(AdminDataSummaryView.NAME)
+@Secured({ "ROLE_ADMIN" })
 public final class AdminDataSummaryView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */

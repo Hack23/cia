@@ -37,6 +37,7 @@ import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.tltv.gantt.Gantt;
 import org.tltv.gantt.client.shared.Resolution;
@@ -86,6 +87,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope("prototype")
 @VaadinView(value = PoliticianView.NAME, cached = true)
+@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 public final class PoliticianView extends AbstractPersonView {
 
 	/** The Constant serialVersionUID. */

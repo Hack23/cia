@@ -50,7 +50,7 @@ import ru.xpoft.vaadin.VaadinView;
 /**
  * The Class MainView.
  */
-@Service
+@Service(value="MainView")
 @Scope("prototype")
 @VaadinView(MainView.NAME)
 public final class MainView extends Panel implements View {

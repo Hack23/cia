@@ -25,6 +25,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent;
@@ -54,6 +55,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope("prototype")
 @VaadinView(AdminApplicationSessionView.NAME)
+@Secured({ "ROLE_ADMIN" })
 public final class AdminApplicationSessionView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */
