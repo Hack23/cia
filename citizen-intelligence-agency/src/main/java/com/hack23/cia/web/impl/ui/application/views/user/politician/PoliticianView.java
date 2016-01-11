@@ -126,7 +126,7 @@ public final class PoliticianView extends AbstractPersonView {
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -195,7 +195,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label(PoliticianPageMode.VoteHistory.toString()));
 
-					final BeanItemContainer<ViewRiksdagenVoteDataBallotPoliticianSummary> politicianBallotDataSource = new BeanItemContainer<ViewRiksdagenVoteDataBallotPoliticianSummary>(
+					final BeanItemContainer<ViewRiksdagenVoteDataBallotPoliticianSummary> politicianBallotDataSource = new BeanItemContainer<>(
 							ViewRiksdagenVoteDataBallotPoliticianSummary.class,
 							chartDataManager.getViewRiksdagenVoteDataBallotPoliticianSummary(personData.getId()));
 
@@ -215,9 +215,9 @@ public final class PoliticianView extends AbstractPersonView {
 							.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class);
 
 
-					List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> decisionPartySummaryList = committeeBallotDecisionPartyDataContainer.findOrderedListByEmbeddedProperty(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class, ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.embeddedId, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId.class, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId_.intressentId, pageId, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId_.issue);
+					final List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> decisionPartySummaryList = committeeBallotDecisionPartyDataContainer.findOrderedListByEmbeddedProperty(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class, ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.embeddedId, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId.class, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId_.intressentId, pageId, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId_.issue);
 
-					final BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> committeeBallotDecisionPartyDataSource = new BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary>(
+					final BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> committeeBallotDecisionPartyDataSource = new BeanItemContainer<>(
 							ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class,
 							decisionPartySummaryList);
 
@@ -240,7 +240,7 @@ public final class PoliticianView extends AbstractPersonView {
 					final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPoliticianDocument.class);
 
-					final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<ViewRiksdagenPoliticianDocument>(
+					final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<>(
 							ViewRiksdagenPoliticianDocument.class, politicianDocumentDataContainer
 									.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.personReferenceId, personData.getId(),ViewRiksdagenPoliticianDocument_.madePublicDate));
 
@@ -330,7 +330,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 		panelContent.addComponent(new Image("", new ExternalResource(personData.getImageUrl192())));
 
-		formFactory.addTextFields(panelContent, new BeanItem<ViewRiksdagenPolitician>(viewRiksdagenPolitician),
+		formFactory.addTextFields(panelContent, new BeanItem<>(viewRiksdagenPolitician),
 				ViewRiksdagenPolitician.class,
 				Arrays.asList(new String[] { "firstName", "lastName", "gender", "bornYear", "party", "active",
 						"firstAssignmentDate", "lastAssignmentDate", "currentAssignments", "currentMinistryAssignments",
@@ -342,7 +342,7 @@ public final class PoliticianView extends AbstractPersonView {
 						"activeParty", "totalDaysServedParty" }));
 
 		panelContent.addComponent(gridFactory.createBasicBeanItemGrid(
-				new BeanItemContainer<DetailData>(DetailData.class, personData.getPersonDetailData().getDetailList()),
+				new BeanItemContainer<>(DetailData.class, personData.getPersonDetailData().getDetailList()),
 				"Detail", new String[] { "detailType", "detail", "code" }, new String[] { "hjid", "intressentId" },
 				null, null, null));
 
@@ -397,7 +397,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 		roleSummaryLayoutTabsheet
 				.addComponent(gridFactory.createBasicBeanItemGrid(
-						new BeanItemContainer<AssignmentData>(AssignmentData.class, assignmentList), "Assignments",
+						new BeanItemContainer<>(AssignmentData.class, assignmentList), "Assignments",
 						new String[] { "roleCode", "assignmentType", "status", "detail", "orgCode", "fromDate",
 								"toDate" },
 						new String[] { "hjid", "intressentId", "orderNumber", "orgCode" }, null, null, null));
@@ -453,7 +453,7 @@ Collections.sort(o2.getValue(), compare1);
 return compare1.compare(o1.getValue().get(0), o2.getValue().get(0));
 };
 
-		final SortedSet<Map.Entry<String, List<AssignmentData>>> sortedEntries = new TreeSet<Map.Entry<String, List<AssignmentData>>>(
+		final SortedSet<Map.Entry<String, List<AssignmentData>>> sortedEntries = new TreeSet<>(
 				compare);
 		sortedEntries.addAll(map.entrySet());
 		return sortedEntries;
@@ -474,12 +474,8 @@ return compare1.compare(o1.getValue().get(0), o2.getValue().get(0));
 			public String apply(final AssignmentData t) {
 				if ("kammaruppdrag".equalsIgnoreCase(t.getAssignmentType())) {
 					return "Riksdagsledamot";
-				} else if ("Riksdagsorgan".equalsIgnoreCase(t.getAssignmentType())) {
-					return t.getAssignmentType() + "." + t.getDetail() +" " +t.getRoleCode();
-				} else if ("uppdrag".equalsIgnoreCase(t.getAssignmentType())) {
-					return t.getAssignmentType() + "." + t.getDetail() +" "+ t.getRoleCode();
 				} else {
-					return t.getAssignmentType() + "." + t.getDetail() +" " + t.getRoleCode();
+					return t.getAssignmentType() + "." + t.getDetail() + " " + t.getRoleCode();
 				}
 
 			}
@@ -520,10 +516,10 @@ return compare1.compare(o1.getValue().get(0), o2.getValue().get(0));
 					String subStepName = "";
 
 					if (assignmentData.getStatus() != null) {
-						subStepName = assignmentData.getStatus().toString();
+						subStepName = assignmentData.getStatus();
 
 					} else if (assignmentData.getRoleCode() != null) {
-						subStepName = assignmentData.getRoleCode().toString();
+						subStepName = assignmentData.getRoleCode();
 					}
 
 					final SubStep sameRoleSubStep = new SubStep(stepName + "." + subStepName);
@@ -532,19 +528,13 @@ return compare1.compare(o1.getValue().get(0), o2.getValue().get(0));
 
 					if ("LEDIG".equalsIgnoreCase(assignmentData.getStatus())) {
 						sameRoleSubStep.setBackgroundColor("e3e3e3");
+					} else if (parliamentType.equalsIgnoreCase(assignmentData.getAssignmentType())) {
+						sameRoleSubStep.setBackgroundColor("0eab76");
+					} else if ("Departement".equalsIgnoreCase(assignmentData.getAssignmentType())) {
+
+						sameRoleSubStep.setBackgroundColor("ded858");
 					} else {
-						if (parliamentType.equalsIgnoreCase(assignmentData.getAssignmentType())) {
-							sameRoleSubStep.setBackgroundColor("0eab76");
-						} else {
-							if (assignmentData.getAssignmentType().equalsIgnoreCase("Departement")) {
-
-								sameRoleSubStep.setBackgroundColor("ded858");
-							} else {
-								sameRoleSubStep.setBackgroundColor("3271c8");
-							}
-
-						}
-
+						sameRoleSubStep.setBackgroundColor("3271c8");
 					}
 
 					sameRoleSubStep.setStartDate(assignmentData.getFromDate().getTime());

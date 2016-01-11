@@ -132,7 +132,7 @@ public final class TestChartView extends AbstractView {
 
 
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -196,7 +196,7 @@ public final class TestChartView extends AbstractView {
 
 		if (indicatorSummary.isPresent()) {
 			formFactory.addTextFields(verticalLayout,
-					new BeanItem<ViewWorldbankIndicatorDataCountrySummary>(
+					new BeanItem<>(
 							indicatorSummary.get()),
 							ViewWorldbankIndicatorDataCountrySummary.class,
 							Arrays.asList(new String[] {

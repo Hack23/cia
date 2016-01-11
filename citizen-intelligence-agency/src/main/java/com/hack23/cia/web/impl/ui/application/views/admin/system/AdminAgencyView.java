@@ -83,7 +83,7 @@ public final class AdminAgencyView extends AbstractAdminView {
 		createListAndForm(null);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -112,7 +112,7 @@ public final class AdminAgencyView extends AbstractAdminView {
 
 		final DataContainer<Agency, Long> dataContainer = applicationManager.getDataContainer(Agency.class);
 
-		final BeanItemContainer<Agency> politicianDocumentDataSource = new BeanItemContainer<Agency>(Agency.class,
+		final BeanItemContainer<Agency> politicianDocumentDataSource = new BeanItemContainer<>(Agency.class,
 				dataContainer.getAll());
 
 		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Agency",
@@ -136,10 +136,10 @@ public final class AdminAgencyView extends AbstractAdminView {
 
 			if (agency != null) {
 
-				formFactory.addTextFields(leftLayout, new BeanItem<Agency>(agency), Agency.class,
+				formFactory.addTextFields(leftLayout, new BeanItem<>(agency), Agency.class,
 						Arrays.asList(new String[] { "hjid", "agencyName", "description", "modelObjectVersion" }));
 
-				final BeanItemContainer<Portal> portalItemContainer = new BeanItemContainer<Portal>(Portal.class,
+				final BeanItemContainer<Portal> portalItemContainer = new BeanItemContainer<>(Portal.class,
 						agency.getPortals());
 
 				rightLayout.addComponent(gridFactory.createBasicBeanItemGrid(portalItemContainer, "Portal",

@@ -26,7 +26,7 @@ import org.junit.Test;
 public class TestInstanceTest extends AbstractUnitTest {
 
 	/** The order. */
-	int order =0;
+	int order;
 
 	/**
 	 * Test instance example test.

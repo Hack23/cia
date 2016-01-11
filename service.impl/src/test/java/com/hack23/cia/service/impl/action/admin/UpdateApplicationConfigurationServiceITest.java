@@ -63,16 +63,16 @@ public class UpdateApplicationConfigurationServiceITest extends AbstractServiceF
 	@Test
 	public void successTest() throws Exception {
 
-		Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
 		authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
 		SecurityContextHolder.getContext().setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
 
-		CreateApplicationSessionRequest createTestApplicationSession = createTestApplicationSession();
+		final CreateApplicationSessionRequest createTestApplicationSession = createTestApplicationSession();
 
-		String randomUUID = UUID.randomUUID().toString();
-		ApplicationConfiguration applicationConfigurationToUpdate = applicationConfigurationService.checkValueOrLoadDefault(
+		final String randomUUID = UUID.randomUUID().toString();
+		final ApplicationConfiguration applicationConfigurationToUpdate = applicationConfigurationService.checkValueOrLoadDefault(
 				"UpdateApplicationRequestTest property",
 				"UpdateApplicationRequestTest should be set to true/false",
 				ConfigurationGroup.AUTHORIZATION, UpdateApplicationConfigurationServiceITest.class.getSimpleName(),
@@ -80,7 +80,7 @@ public class UpdateApplicationConfigurationServiceITest extends AbstractServiceF
 				"UpdateApplicationRequestTest." + randomUUID, "true");
 
 
-		UpdateApplicationConfigurationRequest serviceRequest = new UpdateApplicationConfigurationRequest();
+		final UpdateApplicationConfigurationRequest serviceRequest = new UpdateApplicationConfigurationRequest();
 		serviceRequest.setApplicationConfigurationId(applicationConfigurationToUpdate.getHjid());
 		serviceRequest.setSessionId(createTestApplicationSession.getSessionId());
 
@@ -90,14 +90,14 @@ public class UpdateApplicationConfigurationServiceITest extends AbstractServiceF
 		serviceRequest.setComponentTitle("componentTitle");
 		serviceRequest.setPropertyValue("false");
 
-		UpdateApplicationConfigurationResponse  response = (UpdateApplicationConfigurationResponse) applicationManager.service(serviceRequest);
+		final UpdateApplicationConfigurationResponse  response = (UpdateApplicationConfigurationResponse) applicationManager.service(serviceRequest);
 
 
 		assertNotNull("Expect a result",response);
 		assertEquals("Expect success", ServiceResult.SUCCESS,response.getResult());
 
 
-		ApplicationConfiguration applicationConfigurationUpdated = applicationConfigurationService.checkValueOrLoadDefault(
+		final ApplicationConfiguration applicationConfigurationUpdated = applicationConfigurationService.checkValueOrLoadDefault(
 				"UpdateApplicationRequestTest property",
 				"UpdateApplicationRequestTest should be set to true/false",
 				ConfigurationGroup.AUTHORIZATION, UpdateApplicationConfigurationServiceITest.class.getSimpleName(),
@@ -119,7 +119,7 @@ public class UpdateApplicationConfigurationServiceITest extends AbstractServiceF
 	 * @return the creates the application session request
 	 */
 	private CreateApplicationSessionRequest createTestApplicationSession() {
-		CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
+		final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
 		serviceRequest.setIpInformation("8.8.8.8");
 		serviceRequest.setLocale("en_US.UTF-8");
 		serviceRequest.setOperatingSystem("LINUX");
@@ -127,7 +127,7 @@ public class UpdateApplicationConfigurationServiceITest extends AbstractServiceF
 		serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
 		serviceRequest.setUserAgentInformation("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0");
 
-		CreateApplicationSessionResponse sessionResponse = (CreateApplicationSessionResponse) applicationManager
+		final CreateApplicationSessionResponse sessionResponse = (CreateApplicationSessionResponse) applicationManager
 				.service(serviceRequest);
 		return serviceRequest;
 	}

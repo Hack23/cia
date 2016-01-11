@@ -44,7 +44,7 @@ public final class ProducerMessageFactory implements MessageCreator {
 		this.message = message;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see org.springframework.jms.core.MessageCreator#createMessage(javax.jms.Session)
 	 */
 	@Override

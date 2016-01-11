@@ -59,13 +59,13 @@ public final class UpdateApplicationConfigurationClickListener implements ClickL
 		this.applicationManager = applicationManager;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.vaadin.ui.Button.ClickListener#buttonClick(com.vaadin.ui.Button.ClickEvent)
 	 */
 	@Override
 	public void buttonClick(final ClickEvent event) {
 		final ServiceResponse response = applicationManager.service(request);
-		if (response.getResult().equals(ServiceResult.SUCCESS)) {
+		if (ServiceResult.SUCCESS.equals(response.getResult())) {
 			LOGGER.info("UpdateApplicationConfiguration {}",request.getApplicationConfigurationId() );
 
 			UI.getCurrent().getNavigator().navigateTo(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME + "/" + request.getApplicationConfigurationId());

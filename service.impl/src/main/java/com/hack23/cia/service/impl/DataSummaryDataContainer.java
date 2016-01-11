@@ -42,7 +42,7 @@ import com.hack23.cia.service.data.api.VoteDataDAO;
 /**
  * The Class DataSummaryDataContainer.
  */
-@Component(value="DataSummaryDataContainer")
+@Component("DataSummaryDataContainer")
 @Transactional(propagation=Propagation.REQUIRED)
 @Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 public final class DataSummaryDataContainer implements DataContainer<DataSummary,String>{
@@ -71,17 +71,17 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 	@Autowired
 	private VoteDataDAO voteDataDAO;
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#getAll()
 	 */
 	@Override
 	public List<DataSummary> getAll() {
-		final List<DataSummary> list = new ArrayList<DataSummary>();
+		final List<DataSummary> list = new ArrayList<>();
 		list.add(load(null));
 		return list;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#load(java.io.Serializable)
 	 */
 	@Override
@@ -92,78 +92,73 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 		return new DataSummary(personSize,voteDataDAO.getSize(),voteDataDAO.getSize(),documentElementDAO.getSize(),documentContentDataDAO.getSize(),documentStatusContainerDAO.getSize(),committeeProposalComponentDataDAO.getSize());
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#getAllBy(javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
 	public List<DataSummary> getAllBy(
-			SingularAttribute<DataSummary, ? extends Object> property,
-			Object value) {
-		return new ArrayList<DataSummary>();
+			final SingularAttribute<DataSummary, ? extends Object> property,
+			final Object value) {
+		return new ArrayList<>();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#findListByProperty(java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
 	 */
 	@Override
-	public List<DataSummary> findListByProperty(Object[] values,
-			SingularAttribute<DataSummary, ? extends Object>... properties) {
-		return new ArrayList<DataSummary>();
+	public List<DataSummary> findListByProperty(final Object[] values,
+			final SingularAttribute<DataSummary, ? extends Object>... properties) {
+		return new ArrayList<>();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#findByQueryProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
-	public <T, V> T findByQueryProperty(Class<T> clazz,
-			SingularAttribute<T, ? extends Object> property, Class<V> clazz2,
-			SingularAttribute<V, ? extends Object> property2, Object value) {
+	public <T, V> T findByQueryProperty(final Class<T> clazz,
+			final SingularAttribute<T, ? extends Object> property, final Class<V> clazz2,
+			final SingularAttribute<V, ? extends Object> property2, final Object value) {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#findListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
-	public <T, V> List<T> findListByEmbeddedProperty(Class<T> clazz,
-			SingularAttribute<T, V> property, Class<V> clazz2,
-			SingularAttribute<V, ? extends Object> property2, Object value) {
-		return new ArrayList<T>();
+	public <T, V> List<T> findListByEmbeddedProperty(final Class<T> clazz,
+			final SingularAttribute<T, V> property, final Class<V> clazz2,
+			final SingularAttribute<V, ? extends Object> property2, final Object value) {
+		return new ArrayList<>();
 	}
 
 	@Override
-	public List<DataSummary> getAllOrderBy(SingularAttribute<DataSummary, ? extends Object> property) {
-		// TODO Auto-generated method stub
+	public List<DataSummary> getAllOrderBy(final SingularAttribute<DataSummary, ? extends Object> property) {
 		return null;
 	}
 
 	@Override
-	public List<DataSummary> findOrderedListByProperty(SingularAttribute<DataSummary, ? extends Object> orderByProperty,
-			Object[] values, SingularAttribute<DataSummary, ? extends Object>... properties) {
-		// TODO Auto-generated method stub
+	public List<DataSummary> findOrderedListByProperty(final SingularAttribute<DataSummary, ? extends Object> orderByProperty,
+			final Object[] values, final SingularAttribute<DataSummary, ? extends Object>... properties) {
 		return null;
 	}
 
 	@Override
-	public <T, V> List<T> findOrderedListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property,
-			Class<V> clazz2, SingularAttribute<V, ? extends Object> property2, Object value,
-			SingularAttribute<V, ? extends Object> orderByProperty) {
-		// TODO Auto-generated method stub
+	public <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
+			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
+			final SingularAttribute<V, ? extends Object> orderByProperty) {
 		return null;
 	}
 
 	@Override
-	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property,
-			Class<V> clazz2, SingularAttribute<V, ? extends Object> property2, Object value,
-			SingularAttribute<T, ? extends Object> orderByProperty) {
-		// TODO Auto-generated method stub
+	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
+			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
+			final SingularAttribute<T, ? extends Object> orderByProperty) {
 		return null;
 	}
 
 	@Override
-	public List<DataSummary> findOrderedListByProperty(SingularAttribute<DataSummary, ? extends Object> property,
-			Object value, SingularAttribute<DataSummary, ? extends Object> orderByProperty) {
-		// TODO Auto-generated method stub
+	public List<DataSummary> findOrderedListByProperty(final SingularAttribute<DataSummary, ? extends Object> property,
+			final Object value, final SingularAttribute<DataSummary, ? extends Object> orderByProperty) {
 		return null;
 	}
 }

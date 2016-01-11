@@ -87,29 +87,29 @@ public final class RegisterUserService extends
 		super(RegisterUserRequest.class);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
 	 */
 	@Override
 	@Secured({"ROLE_ANONYMOUS"})
 	public RegisterUserResponse processService(
-			RegisterUserRequest serviceRequest) {
+			final RegisterUserRequest serviceRequest) {
 
-		CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.USER);
 		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);
 		eventRequest.setActionName(RegisterUserRequest.class.getSimpleName());
 		eventRequest.setSessionId(serviceRequest.getSessionId());
 		eventRequest.setElementId(serviceRequest.getEmail());
 
-		ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService.checkValueOrLoadDefault("Registered User All get Role Admin", "Registered User All get Role Admin", ConfigurationGroup.AUTHORIZATION, RegisterUserService.class.getSimpleName(), "Register User Service", "Responsible for create of useraccounts", "registered.users.get.admin", "true");
+		final ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService.checkValueOrLoadDefault("Registered User All get Role Admin", "Registered User All get Role Admin", ConfigurationGroup.AUTHORIZATION, RegisterUserService.class.getSimpleName(), "Register User Service", "Responsible for create of useraccounts", "registered.users.get.admin", "true");
 
-		UserAccount userNameExist = userDAO.findFirstByProperty(UserAccount_.username, serviceRequest.getUsername());
-		UserAccount userEmailExist = userDAO.findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
+		final UserAccount userNameExist = userDAO.findFirstByProperty(UserAccount_.username, serviceRequest.getUsername());
+		final UserAccount userEmailExist = userDAO.findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
 
 		RegisterUserResponse response;
 		if (userEmailExist == null && userNameExist == null) {
-			UserAccount userAccount = new UserAccount();
+			final UserAccount userAccount = new UserAccount();
 			userAccount.setCountry(serviceRequest.getCountry());
 			userAccount.setEmail(serviceRequest.getEmail());
 			userAccount.setUsername(serviceRequest.getUsername());
@@ -126,11 +126,11 @@ public final class RegisterUserService extends
 				userAccount.setUserRole(UserRole.USER);
 			}
 
-			Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+			final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
-			if (userAccount.getUserRole().equals(UserRole.ADMIN)) {
+			if (UserRole.ADMIN.equals(userAccount.getUserRole())) {
 				authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-			} else if (userAccount.getUserRole().equals(UserRole.USER)) {
+			} else if (UserRole.USER.equals(userAccount.getUserRole())) {
 				authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 			}
 

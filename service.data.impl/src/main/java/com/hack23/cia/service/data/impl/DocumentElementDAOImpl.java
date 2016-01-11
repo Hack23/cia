@@ -37,12 +37,11 @@ import org.springframework.stereotype.Repository;
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement_;
 import com.hack23.cia.service.data.api.DocumentElementDAO;
-import com.hack23.cia.service.data.impl.liquidbase.SpringLiquidBaseFailSafe;
 
 /**
  * The Class DocumentElementDAOImpl.
  */
-@Repository(value = "DocumentElementDAO")
+@Repository("DocumentElementDAO")
 public final class DocumentElementDAOImpl extends
 AbstractGenericDAOImpl<DocumentElement, String> implements
 DocumentElementDAO {
@@ -52,7 +51,7 @@ DocumentElementDAO {
 
 
 	/** The Constant expectedDocumentElements. */
-	private static final Map<String, Long> expectedDocumentElements = new HashMap<String, Long>();
+	private static final Map<String, Long> expectedDocumentElements = new HashMap<>();
 
 	static {
 		expectedDocumentElements.put("", 87L);
@@ -112,7 +111,7 @@ DocumentElementDAO {
 		super(DocumentElement.class);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -135,14 +134,10 @@ DocumentElementDAO {
 
 		final List<DocumentElement> resultList = typedQuery.getResultList();
 
-		if (resultList.isEmpty()) {
-			return false;
-		} else {
-			return true;
-		}
+		return !resultList.isEmpty();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -160,7 +155,7 @@ DocumentElementDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -178,7 +173,7 @@ DocumentElementDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -190,7 +185,7 @@ DocumentElementDAO {
 		return entityManager;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.data.api.DocumentElementDAO#getIdList()
@@ -204,7 +199,7 @@ DocumentElementDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.DocumentElementDAO#getMissingDocumentStartFromYear()
 	 */
 	@Override
@@ -252,7 +247,7 @@ DocumentElementDAO {
 		return 2000;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()

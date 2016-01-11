@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -47,7 +47,7 @@ public final class UserConfigurationImpl implements UserConfiguration {
 		this.portal = portal;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.UserConfiguration#getAgency()
 	 */
 	@Override
@@ -55,7 +55,7 @@ public final class UserConfigurationImpl implements UserConfiguration {
 		return agency;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.UserConfiguration#getPortal()
 	 */
 	@Override

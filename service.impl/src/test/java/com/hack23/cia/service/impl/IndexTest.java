@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,7 +24,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/**
+/*
  * A Java class to test tokenization and indexing of text with WEKA.
  * WEKA is available at: http://www.cs.waikato.ac.nz/ml/weka/
  * Copyright (C) 2013 Jose Maria Gomez Hidalgo - http://www.esp.uem.es/jmgomez
@@ -50,80 +50,80 @@ public class IndexTest {
 
 	/** The input instances. */
 	Instances inputInstances;
-	
+
 	/** The output instances. */
 	Instances outputInstances;
-		
+
 	/**
 	 * Load arff.
 	 *
 	 * @param fileName
 	 *            the file name
 	 */
-	public void loadARFF(String fileName) {
-	
+	public void loadARFF(final String fileName) {
+
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(fileName));
-			ArffReader arff = new ArffReader(reader);
+			final BufferedReader reader = new BufferedReader(new FileReader(fileName));
+			final ArffReader arff = new ArffReader(reader);
 			inputInstances = arff.getData();
 			System.out.println("===== Loaded dataset: " + fileName + " =====");
 			reader.close();
 		}
-		catch (IOException e) {
+		catch (final IOException e) {
 			System.out.println("Problem found when reading: " + fileName);
 		}
 	}
-	
+
 	/**
 	 * Index.
 	 */
 	public void index() {
 		// outputInstances = inputInstances;
 		try {
-			
+
 			// Set the tokenizer
-			NGramTokenizer tokenizer = new NGramTokenizer();
+			final NGramTokenizer tokenizer = new NGramTokenizer();
 			tokenizer.setNGramMinSize(1);
 			tokenizer.setNGramMaxSize(1);
 			tokenizer.setDelimiters("\\W");
-			
+
 			// Set the filter
-			StringToWordVector filter = new StringToWordVector();
+			final StringToWordVector filter = new StringToWordVector();
 			filter.setTokenizer(tokenizer);
 			filter.setInputFormat(inputInstances);
 			filter.setWordsToKeep(1000000);
 			filter.setDoNotOperateOnPerClassBasis(true);
 			filter.setLowerCaseTokens(true);
-			
+
 			// Filter the input instances into the output ones
 			outputInstances = Filter.useFilter(inputInstances,filter);
-			
+
 			System.out.println("===== Filtering dataset done =====");
 		}
-		catch (Exception e) {
+		catch (final Exception e) {
 			System.out.println("Problem found when training");
 		}
 	}
-	
+
 	/**
 	 * Save arff.
 	 *
 	 * @param fileName
 	 *            the file name
-	 */	
-	public void saveARFF(String fileName) {
-	
+	 */
+	public void saveARFF(final String fileName) {
+
 		try {
-			PrintWriter writer = new PrintWriter(new FileWriter(fileName));
+			final PrintWriter writer = new PrintWriter(new FileWriter(fileName));
 			writer.print(outputInstances);
 			System.out.println("===== Saved dataset: " + fileName + " =====");
 			writer.close();
 		}
-		catch (IOException e) {
+		catch (final IOException e) {
 			System.out.println("Problem found when writing: " + fileName);
 		}
 	}
-	
+
 
 	/**
 	 * The main method.
@@ -131,13 +131,13 @@ public class IndexTest {
 	 * @param args
 	 *            the arguments
 	 */
-	public static void main(String[] args) {
-	
+	public static void main(final String[] args) {
+
 		long time1, time2;
-		IndexTest indexer = new IndexTest();
-		if (args.length < 2)
+		final IndexTest indexer = new IndexTest();
+		if (args.length < 2) {
 			System.out.println("Usage: java IndexTest <fileInput> <fileOutput>");
-		else {
+		} else {
 			indexer.loadARFF(args[0]);
 			time1 = System.currentTimeMillis();
 			System.out.println("Started indexing at: " + time1);

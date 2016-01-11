@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,7 +29,7 @@ import com.hack23.cia.service.data.api.CountryElementDAO;
 /**
  * The Class CountryElementDAOImpl.
  */
-@Repository(value="CountryElementDAO")
+@Repository("CountryElementDAO")
 public final class CountryElementDAOImpl extends AbstractGenericDAOImpl<CountryElement, Long> implements CountryElementDAO {
 
 	/** The entity manager. */
@@ -42,7 +42,7 @@ public final class CountryElementDAOImpl extends AbstractGenericDAOImpl<CountryE
 	public CountryElementDAOImpl() {
 		super(CountryElement.class);
 	}
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -54,7 +54,7 @@ public final class CountryElementDAOImpl extends AbstractGenericDAOImpl<CountryE
 		return entityManager;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */
 	@Override

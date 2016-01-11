@@ -24,7 +24,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
@@ -83,7 +82,7 @@ public final class XmlAgentImpl implements XmlAgent {
 		return result.toString();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.external.common.api.XmlAgent#retriveContent(java.lang.String)
 	 */
 	@Override
@@ -116,7 +115,7 @@ public final class XmlAgentImpl implements XmlAgent {
 	}
 
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.external.common.api.XmlAgent#unmarshallXml(org.springframework.oxm.Unmarshaller, java.lang.String)
 	 */
 	@Override
@@ -124,7 +123,7 @@ public final class XmlAgentImpl implements XmlAgent {
 		return unmarshallXml(unmarshaller, accessUrl,null,null,null);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.external.common.api.XmlAgent#unmarshallXml(org.springframework.oxm.Unmarshaller, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
@@ -133,7 +132,7 @@ public final class XmlAgentImpl implements XmlAgent {
 
 		LOGGER.info("Calls {}", accessUrl);
 
-		boolean isWeb = accessUrl.toLowerCase().startsWith("http://") || accessUrl.toLowerCase().startsWith("https://");
+		final boolean isWeb = accessUrl.toLowerCase().startsWith("http://") || accessUrl.toLowerCase().startsWith("https://");
 
 		String xmlContent;
 		if (isWeb) {
@@ -173,7 +172,7 @@ public final class XmlAgentImpl implements XmlAgent {
 
 		final URLConnection connection = url.openConnection();
 
-		InputStream stream = connection.getInputStream();
+		final InputStream stream = connection.getInputStream();
 
 
 		final BufferedReader inputStream = new BufferedReader(new InputStreamReader(

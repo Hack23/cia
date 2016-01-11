@@ -35,7 +35,7 @@ import com.hack23.cia.service.data.api.ViewRiksdagenCommitteeDAO;
 /**
  * The Class ViewRiksdagenCommitteeDataContainer.
  */
-@Component(value="ViewRiksdagenCommitteeDataContainer")
+@Component("ViewRiksdagenCommitteeDataContainer")
 @Transactional(propagation=Propagation.REQUIRED)
 @Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<ViewRiksdagenCommittee,String>{
@@ -44,7 +44,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 	@Autowired
 	private ViewRiksdagenCommitteeDAO viewRiksdagenCommitteeDAO;
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#getAll()
 	 */
 	@Override
@@ -52,7 +52,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return viewRiksdagenCommitteeDAO.getAll();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#load()
 	 */
 	@Override
@@ -67,7 +67,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#getAllBy(javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
@@ -77,7 +77,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return viewRiksdagenCommitteeDAO.findListByProperty(property, value);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#findListByProperty(java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
 	 */
 	@Override
@@ -87,7 +87,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return viewRiksdagenCommitteeDAO.findListByProperty(values, properties);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#findByQueryProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
@@ -97,7 +97,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#findListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
@@ -109,39 +109,35 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 
 	@Override
 	public List<ViewRiksdagenCommittee> getAllOrderBy(
-			SingularAttribute<ViewRiksdagenCommittee, ? extends Object> property) {
+			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> property) {
 		return viewRiksdagenCommitteeDAO.getAllOrderBy(property);
 	}
 
 	@Override
 	public List<ViewRiksdagenCommittee> findOrderedListByProperty(
-			SingularAttribute<ViewRiksdagenCommittee, ? extends Object> orderByProperty, Object[] values,
-			SingularAttribute<ViewRiksdagenCommittee, ? extends Object>... properties) {
-		// TODO Auto-generated method stub
+			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> orderByProperty, final Object[] values,
+			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object>... properties) {
 		return null;
 	}
 
 	@Override
-	public <T, V> List<T> findOrderedListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property,
-			Class<V> clazz2, SingularAttribute<V, ? extends Object> property2, Object value,
-			SingularAttribute<V, ? extends Object> orderByProperty) {
-		// TODO Auto-generated method stub
+	public <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
+			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
+			final SingularAttribute<V, ? extends Object> orderByProperty) {
 		return null;
 	}
 
 	@Override
-	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property,
-			Class<V> clazz2, SingularAttribute<V, ? extends Object> property2, Object value,
-			SingularAttribute<T, ? extends Object> orderByProperty) {
-		// TODO Auto-generated method stub
+	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
+			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
+			final SingularAttribute<T, ? extends Object> orderByProperty) {
 		return null;
 	}
 
 	@Override
 	public List<ViewRiksdagenCommittee> findOrderedListByProperty(
-			SingularAttribute<ViewRiksdagenCommittee, ? extends Object> property, Object value,
-			SingularAttribute<ViewRiksdagenCommittee, ? extends Object> orderByProperty) {
-		// TODO Auto-generated method stub
+			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> property, final Object value,
+			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> orderByProperty) {
 		return null;
 	}
 }

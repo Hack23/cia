@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -37,7 +37,7 @@ import com.hack23.cia.service.data.api.DocumentStatusContainerDAO;
 /**
  * The Class DocumentStatusContainerDAOImpl.
  */
-@Repository(value = "DocumentStatusContainerDAO")
+@Repository("DocumentStatusContainerDAO")
 public final class DocumentStatusContainerDAOImpl extends
 AbstractGenericDAOImpl<DocumentStatusContainer, Long> implements
 DocumentStatusContainerDAO {
@@ -53,7 +53,7 @@ DocumentStatusContainerDAO {
 		super(DocumentStatusContainer.class);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.DocumentStatusContainerDAO#checkExistByDocumentId(java.lang.String)
 	 */
 	@Override
@@ -71,7 +71,7 @@ DocumentStatusContainerDAO {
 		return typedQuery.getResultList().size();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.DocumentStatusContainerDAO#getAvaibleCommitteeProposal()
 	 */
 	@Override
@@ -84,7 +84,7 @@ DocumentStatusContainerDAO {
 
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -96,7 +96,7 @@ DocumentStatusContainerDAO {
 		return entityManager;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.DocumentStatusContainerDAO#getIdList()
 	 */
 	@Override
@@ -107,7 +107,7 @@ DocumentStatusContainerDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */
 	@Override

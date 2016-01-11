@@ -50,7 +50,7 @@ import ru.xpoft.vaadin.VaadinView;
 /**
  * The Class MainView.
  */
-@Service(value="MainView")
+@Service("MainView")
 @Scope("prototype")
 @VaadinView(MainView.NAME)
 public final class MainView extends Panel implements View {
@@ -152,7 +152,7 @@ public final class MainView extends Panel implements View {
 		reqisterRequest.setCountry("");
 		reqisterRequest.setUserpassword("");
 		final ClickListener reqisterListener = new RegisterUserClickListener(reqisterRequest,applicationManager);
-		formFactory.addRequestInputFormFields(registerLayout,  new BeanItem<RegisterUserRequest>(reqisterRequest), RegisterUserRequest.class,
+		formFactory.addRequestInputFormFields(registerLayout,  new BeanItem<>(reqisterRequest), RegisterUserRequest.class,
 				Arrays.asList(new String[] {"username","email", "country", "userpassword" }),"Register",reqisterListener);
 
 		layout.addComponent(registerLayout);
@@ -163,7 +163,7 @@ public final class MainView extends Panel implements View {
 	}
 
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see

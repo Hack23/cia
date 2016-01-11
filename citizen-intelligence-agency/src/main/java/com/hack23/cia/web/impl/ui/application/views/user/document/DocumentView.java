@@ -113,7 +113,7 @@ public final class DocumentView extends AbstractUserView {
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -160,16 +160,16 @@ public final class DocumentView extends AbstractUserView {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Overview"));
 
-					formFactory.addTextFields(panelContent, new BeanItem<DocumentElement>(documentElement), DocumentElement.class,
+					formFactory.addTextFields(panelContent, new BeanItem<>(documentElement), DocumentElement.class,
 							Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status",
 									"title", "subTitle", "madePublicDate", "createdDate", "systemDate", "relatedId",
 									"label", "tempLabel", "numberValue", "kallId", "documentFormat" }));
 
 					if (documentStatusContainer != null) {
-						formFactory.addTextFields(panelContent, new BeanItem<DocumentStatusContainer>(documentStatusContainer),
+						formFactory.addTextFields(panelContent, new BeanItem<>(documentStatusContainer),
 								DocumentStatusContainer.class, Arrays.asList(new String[] { "documentCategory" }));
 
-						formFactory.addTextFields(panelContent, new BeanItem<DocumentData>(documentStatusContainer.getDocument()),
+						formFactory.addTextFields(panelContent, new BeanItem<>(documentStatusContainer.getDocument()),
 								DocumentData.class,
 								Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status",
 										"title", "subTitle", "madePublicDate", "label", "tempLabel", "numberValue",
@@ -185,7 +185,7 @@ public final class DocumentView extends AbstractUserView {
 							&& documentStatusContainer.getDocumentProposal().getProposal() != null) {
 
 						formFactory.addTextFields(panelContent,
-								new BeanItem<DocumentProposalData>(
+								new BeanItem<>(
 										documentStatusContainer.getDocumentProposal().getProposal()),
 								DocumentProposalData.class,
 								Arrays.asList(new String[] { "committee", "chamber", "processedIn", "decisionType",
@@ -201,7 +201,7 @@ public final class DocumentView extends AbstractUserView {
 					if (documentStatusContainer != null
 							&& documentStatusContainer.getDocumentActivityContainer() != null
 							&& documentStatusContainer.getDocumentActivityContainer().getDocumentActivities() != null) {
-						final BeanItemContainer<DocumentActivityData> documentActivityDataDataDataSource = new BeanItemContainer<DocumentActivityData>(
+						final BeanItemContainer<DocumentActivityData> documentActivityDataDataDataSource = new BeanItemContainer<>(
 								DocumentActivityData.class,
 								documentStatusContainer.getDocumentActivityContainer().getDocumentActivities());
 
@@ -233,7 +233,7 @@ public final class DocumentView extends AbstractUserView {
 
 					if (documentStatusContainer != null && documentStatusContainer.getDocumentDetailContainer() != null
 							&& documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList() != null) {
-						final BeanItemContainer<DocumentDetailData> documentDetailDataDataDataSource = new BeanItemContainer<DocumentDetailData>(
+						final BeanItemContainer<DocumentDetailData> documentDetailDataDataDataSource = new BeanItemContainer<>(
 								DocumentDetailData.class,
 								documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList());
 
@@ -251,7 +251,7 @@ public final class DocumentView extends AbstractUserView {
 							&& documentStatusContainer.getDocumentReferenceContainer() != null
 							&& documentStatusContainer.getDocumentReferenceContainer()
 									.getDocumentReferenceList() != null) {
-						final BeanItemContainer<DocumentReferenceData> documentReferenceDataDataSource = new BeanItemContainer<DocumentReferenceData>(
+						final BeanItemContainer<DocumentReferenceData> documentReferenceDataDataSource = new BeanItemContainer<>(
 								DocumentReferenceData.class,
 								documentStatusContainer.getDocumentReferenceContainer().getDocumentReferenceList());
 
@@ -271,7 +271,7 @@ public final class DocumentView extends AbstractUserView {
 							&& documentStatusContainer.getDocumentPersonReferenceContainer() != null
 							&& documentStatusContainer.getDocumentPersonReferenceContainer()
 									.getDocumentPersonReferenceList() != null) {
-						final BeanItemContainer<DocumentPersonReferenceData> documentPersonReferenceDataDataSource = new BeanItemContainer<DocumentPersonReferenceData>(
+						final BeanItemContainer<DocumentPersonReferenceData> documentPersonReferenceDataDataSource = new BeanItemContainer<>(
 								DocumentPersonReferenceData.class, documentStatusContainer
 										.getDocumentPersonReferenceContainer().getDocumentPersonReferenceList());
 
@@ -292,7 +292,7 @@ public final class DocumentView extends AbstractUserView {
 							&& documentStatusContainer.getDocumentAttachmentContainer() != null
 							&& documentStatusContainer.getDocumentAttachmentContainer()
 									.getDocumentAttachmentList() != null) {
-						final BeanItemContainer<DocumentAttachment> documentAttachmentDataSource = new BeanItemContainer<DocumentAttachment>(
+						final BeanItemContainer<DocumentAttachment> documentAttachmentDataSource = new BeanItemContainer<>(
 								DocumentAttachment.class,
 								documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList());
 

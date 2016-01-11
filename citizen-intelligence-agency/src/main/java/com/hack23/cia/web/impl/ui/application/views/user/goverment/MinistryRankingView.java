@@ -91,7 +91,7 @@ public final class MinistryRankingView extends AbstractRankingView {
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
@@ -113,7 +113,7 @@ public final class MinistryRankingView extends AbstractRankingView {
 		return totalCommitteeRankinglistLabel;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
@@ -140,7 +140,7 @@ public final class MinistryRankingView extends AbstractRankingView {
 		return chartLayout;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
@@ -151,7 +151,7 @@ public final class MinistryRankingView extends AbstractRankingView {
 		menuItemFactory.createMinistryRankingMenuBar(getBarmenu());
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
@@ -162,7 +162,7 @@ public final class MinistryRankingView extends AbstractRankingView {
 		final DataContainer<ViewRiksdagenMinistry, String> dataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenMinistry.class);
 
-		final BeanItemContainer<ViewRiksdagenMinistry> dataSource = new BeanItemContainer<ViewRiksdagenMinistry>(
+		final BeanItemContainer<ViewRiksdagenMinistry> dataSource = new BeanItemContainer<>(
 				ViewRiksdagenMinistry.class, dataContainer.getAllOrderBy(ViewRiksdagenMinistry_.currentMemberSize));
 
 		return gridFactory.createBasicBeanItemGrid(dataSource, "Ministries",
@@ -172,7 +172,7 @@ public final class MinistryRankingView extends AbstractRankingView {
 
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
 	 */
 	@Override
@@ -180,7 +180,7 @@ public final class MinistryRankingView extends AbstractRankingView {
 		return dataSeriesFactory.createMinistryChartTimeSeriesAll();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
 	 */
 	@Override
@@ -188,7 +188,7 @@ public final class MinistryRankingView extends AbstractRankingView {
 		return dataSeriesFactory.createMinistryChartTimeSeriesCurrent();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getName()
 	 */
 	@Override
@@ -196,7 +196,7 @@ public final class MinistryRankingView extends AbstractRankingView {
 		return NAME;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getViewAction()
 	 */
 	@Override

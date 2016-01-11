@@ -88,7 +88,7 @@ public final class PoliticianRankingView extends AbstractRankingView {
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createMenuBar()
 	 */
 	@Override
@@ -97,7 +97,7 @@ public final class PoliticianRankingView extends AbstractRankingView {
 	}
 
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -123,7 +123,7 @@ public final class PoliticianRankingView extends AbstractRankingView {
 		return totalpoliticantoplistLabel;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -137,7 +137,7 @@ public final class PoliticianRankingView extends AbstractRankingView {
 			final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
 					.getDataContainer(ViewRiksdagenPolitician.class);
 
-			politicianDataSource = new BeanItemContainer<ViewRiksdagenPolitician>(
+			politicianDataSource = new BeanItemContainer<>(
 					ViewRiksdagenPolitician.class,
 					politicianDataContainer.getAllOrderBy(ViewRiksdagenPolitician_.currentAssignments));
 
@@ -168,7 +168,7 @@ public final class PoliticianRankingView extends AbstractRankingView {
 		new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
 	 */
 	@Override
@@ -176,7 +176,7 @@ public final class PoliticianRankingView extends AbstractRankingView {
 		return dataSeriesFactory.createPartyChartTimeSeriesAll();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
 	 */
 	@Override
@@ -184,7 +184,7 @@ public final class PoliticianRankingView extends AbstractRankingView {
 		return dataSeriesFactory.createPartyChartTimeSeriesCurrent();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getName()
 	 */
 	@Override
@@ -192,7 +192,7 @@ public final class PoliticianRankingView extends AbstractRankingView {
 		return NAME;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getViewAction()
 	 */
 	@Override

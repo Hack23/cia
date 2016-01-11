@@ -44,12 +44,9 @@ public class ChartTest extends Assert {
 
 	static class XYseriesFix extends XYseries {
 
-		/**
-		 *
-		 */
 		private static final long serialVersionUID = 1L;
 
-		/* (non-Javadoc)
+		/** (non-Javadoc)
 		 * @see org.dussan.vaadin.dcharts.base.elements.XYseries#getValue()
 		 */
 		@Override
@@ -61,9 +58,6 @@ public class ChartTest extends Assert {
 
 	static class XYaxisFix extends XYaxis {
 
-		/**
-		 *
-		 */
 		private static final long serialVersionUID = 1L;
 
 		/**
@@ -83,7 +77,7 @@ public class ChartTest extends Assert {
 			super(y);
 		}
 
-		/* (non-Javadoc)
+		/** (non-Javadoc)
 		 * @see org.dussan.vaadin.dcharts.base.elements.XYaxis#getValue()
 		 */
 		@Override
@@ -129,7 +123,7 @@ public class ChartTest extends Assert {
 					fieldValue = !ObjectHelper.isString(fieldValue) ? fieldValue
 							: fieldValue.toString().replaceAll("\"", "'");
 					builder.append(builder.length() > 0 ? ", " : "");
-					builder.append(fieldName + ": ");
+					builder.append(fieldName).append(": ");
 					builder.append(ObjectHelper.isString(fieldValue) ? "\""
 							: "");
 					builder.append(fieldValue);

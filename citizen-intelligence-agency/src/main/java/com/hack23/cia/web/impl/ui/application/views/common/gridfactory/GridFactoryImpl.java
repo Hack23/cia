@@ -33,7 +33,7 @@ import com.vaadin.ui.renderers.ButtonRenderer;
 @Service
 public final class GridFactoryImpl implements GridFactory {
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.gridfactory.
@@ -49,21 +49,21 @@ public final class GridFactoryImpl implements GridFactory {
 		return createBasicBeanItemNestedPropertiesGrid(datasource, caption, null, columnOrder, hideColumns, idProprty, listener, actionId);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory#createBasicBeanItemNestedPropertiesGrid(com.vaadin.data.Container.Indexed, java.lang.String, java.lang.String[], java.lang.Object[], java.lang.Object[], java.lang.String, com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener, java.lang.String)
 	 */
 	@Override
-	public Grid createBasicBeanItemNestedPropertiesGrid(Indexed datasource, String caption, String[] nestedProperties,
-			Object[] columnOrder, Object[] hideColumns, String idProprty,
-			AbstractPageItemRendererClickListener<?> listener, String actionId) {
+	public Grid createBasicBeanItemNestedPropertiesGrid(final Indexed datasource, final String caption, final String[] nestedProperties,
+			final Object[] columnOrder, final Object[] hideColumns, final String idProprty,
+			final AbstractPageItemRendererClickListener<?> listener, final String actionId) {
 		final Grid grid = new Grid(datasource);
 
 		grid.setCaption(caption);
 		grid.setSelectionMode(SelectionMode.SINGLE);
 
 		if (nestedProperties != null) {
-			for (String nestedProperty : nestedProperties) {
-				BeanItemContainer<?>  dataContainer= (BeanItemContainer<?>) datasource;
+			for (final String nestedProperty : nestedProperties) {
+				final BeanItemContainer<?>  dataContainer= (BeanItemContainer<?>) datasource;
 				dataContainer.addNestedContainerProperty(nestedProperty);
 			}
 		}

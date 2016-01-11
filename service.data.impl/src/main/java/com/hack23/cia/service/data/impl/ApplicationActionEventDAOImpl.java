@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,7 +29,7 @@ import com.hack23.cia.service.data.api.ApplicationActionEventDAO;
 /**
  * The Class ApplicationActionEventDAOImpl.
  */
-@Repository(value="ApplicationActionEventDAOImpl")
+@Repository("ApplicationActionEventDAOImpl")
 public final class ApplicationActionEventDAOImpl extends AbstractGenericDAOImpl<ApplicationActionEvent, Long> implements ApplicationActionEventDAO {
 
 	/** The entity manager. */
@@ -42,7 +42,7 @@ public final class ApplicationActionEventDAOImpl extends AbstractGenericDAOImpl<
 	public ApplicationActionEventDAOImpl() {
 		super(ApplicationActionEvent.class);
 	}
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -53,13 +53,12 @@ public final class ApplicationActionEventDAOImpl extends AbstractGenericDAOImpl<
 	protected EntityManager getEntityManager() {
 		return entityManager;
 	}
-	
-	/* (non-Javadoc)
+
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */
 	@Override
 	public Long getSize() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

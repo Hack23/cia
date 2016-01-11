@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -31,7 +31,7 @@ public final class SystemConfigurationImpl implements SystemConfiguration {
 	/** The geoip data file location city. */
 	private String geoipDataFileLocationCity;
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.Configuration#getGeoipDataFileLocation()
 	 */
 	@Override
@@ -39,7 +39,7 @@ public final class SystemConfigurationImpl implements SystemConfiguration {
 		return geoipDataFileLocation;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.Configuration#getGeoipDataFileLocationCity()
 	 */
 	@Override

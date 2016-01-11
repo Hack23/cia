@@ -115,7 +115,7 @@ public final class AgentOperationView extends AbstractAdminView implements
 
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.vaadin.ui.Button.ClickListener#buttonClick(com.vaadin.ui.Button.
@@ -135,7 +135,7 @@ public final class AgentOperationView extends AbstractAdminView implements
 			}
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see

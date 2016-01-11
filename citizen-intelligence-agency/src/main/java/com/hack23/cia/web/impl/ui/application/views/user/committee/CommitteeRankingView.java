@@ -91,7 +91,7 @@ public final class CommitteeRankingView extends AbstractRankingView {
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
@@ -102,7 +102,7 @@ public final class CommitteeRankingView extends AbstractRankingView {
 		menuItemFactory.createCommitteeeRankingMenuBar(getBarmenu());
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
@@ -124,7 +124,7 @@ public final class CommitteeRankingView extends AbstractRankingView {
 		return totalCommitteeRankinglistLabel;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
@@ -151,7 +151,7 @@ public final class CommitteeRankingView extends AbstractRankingView {
 		return chartLayout;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
@@ -162,7 +162,7 @@ public final class CommitteeRankingView extends AbstractRankingView {
 		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenCommittee.class);
 
-		final BeanItemContainer<ViewRiksdagenCommittee> politicianDocumentDataSource = new BeanItemContainer<ViewRiksdagenCommittee>(
+		final BeanItemContainer<ViewRiksdagenCommittee> politicianDocumentDataSource = new BeanItemContainer<>(
 				ViewRiksdagenCommittee.class, dataContainer.getAllOrderBy(ViewRiksdagenCommittee_.currentMemberSize));
 
 		politicianDocumentDataSource.addNestedContainerProperty("embeddedId.detail");
@@ -175,7 +175,7 @@ public final class CommitteeRankingView extends AbstractRankingView {
 				new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, "embeddedId.orgCode"), null);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
 	 */
 	@Override
@@ -183,7 +183,7 @@ public final class CommitteeRankingView extends AbstractRankingView {
 		return dataSeriesFactory.createCommitteeChartTimeSeriesAll();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
 	 */
 	@Override
@@ -191,7 +191,7 @@ public final class CommitteeRankingView extends AbstractRankingView {
 		return dataSeriesFactory.createCommitteeChartTimeSeriesCurrent();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getName()
 	 */
 	@Override
@@ -199,7 +199,7 @@ public final class CommitteeRankingView extends AbstractRankingView {
 		return NAME;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getViewAction()
 	 */
 	@Override

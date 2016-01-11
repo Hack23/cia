@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -43,7 +43,7 @@ public class SimpleXml {
 	 * @param description
 	 *            the description
 	 */
-    public SimpleXml(String description) {
+    public SimpleXml(final String description) {
         this.description = description;
     }
 
@@ -63,39 +63,43 @@ public class SimpleXml {
 	 * @param description
 	 *            the new description
 	 */
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
-    
-    /* (non-Javadoc)
+
+    /** (non-Javadoc)
      * @see java.lang.Object#hashCode()
      */
     @Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
-		result = prime * result
+		final int result = 1;
+		return prime * result
 				+ ((description == null) ? 0 : description.hashCode());
-		return result;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	public boolean equals(final Object obj) {
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
-		SimpleXml other = (SimpleXml) obj;
+		}
+		final SimpleXml other = (SimpleXml) obj;
 		if (description == null) {
-			if (other.description != null)
+			if (other.description != null) {
 				return false;
-		} else if (!description.equals(other.description))
+			}
+		} else if (!description.equals(other.description)) {
 			return false;
+		}
 		return true;
 	}
 

@@ -87,7 +87,7 @@ public final class AdminApplicationConfigurationView extends AbstractAdminView {
 		createListAndForm(null);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -117,7 +117,7 @@ public final class AdminApplicationConfigurationView extends AbstractAdminView {
 		final DataContainer<ApplicationConfiguration, Long> dataContainer = applicationManager
 				.getDataContainer(ApplicationConfiguration.class);
 
-		final BeanItemContainer<ApplicationConfiguration> politicianDocumentDataSource = new BeanItemContainer<ApplicationConfiguration>(
+		final BeanItemContainer<ApplicationConfiguration> politicianDocumentDataSource = new BeanItemContainer<>(
 				ApplicationConfiguration.class,
 				dataContainer.getAllOrderBy(ApplicationConfiguration_.configurationGroup));
 
@@ -145,7 +145,7 @@ public final class AdminApplicationConfigurationView extends AbstractAdminView {
 				horizontalLayout.addComponent(leftLayout);
 				horizontalLayout.addComponent(rightLayout);
 
-				formFactory.addTextFields(leftLayout, new BeanItem<ApplicationConfiguration>(applicationConfiguration),
+				formFactory.addTextFields(leftLayout, new BeanItem<>(applicationConfiguration),
 						ApplicationConfiguration.class,
 						Arrays.asList(new String[] { "hjid", "configTitle", "configDescription", "component",
 								"componentTitle", "componentDescription", "propertyId", "propertyValue", "createdDate",
@@ -165,7 +165,7 @@ public final class AdminApplicationConfigurationView extends AbstractAdminView {
 				request.setPropertyValue(applicationConfiguration.getPropertyValue());
 
 				final ClickListener buttonListener = new UpdateApplicationConfigurationClickListener(request,applicationManager);
-				formFactory.addRequestInputFormFields(rightLayout,  new BeanItem<UpdateApplicationConfigurationRequest>(request), UpdateApplicationConfigurationRequest.class,
+				formFactory.addRequestInputFormFields(rightLayout,  new BeanItem<>(request), UpdateApplicationConfigurationRequest.class,
 						Arrays.asList(new String[] {"configTitle", "configDescription", "componentTitle", "componentDescription" ,"propertyValue"}),"Update Configuration",buttonListener);
 
 

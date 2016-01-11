@@ -38,16 +38,10 @@ public final class ApplicationLoginListener implements LoginListener {
 
 	private final ApplicationManager applicationManager;
 
-	/**
-	 * @param testChartView
-	 */
 	public ApplicationLoginListener(final ApplicationManager applicationManager) {
 		this.applicationManager = applicationManager;
 	}
 
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -59,7 +53,7 @@ public final class ApplicationLoginListener implements LoginListener {
 		loginRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 
 		final LoginResponse response = (LoginResponse) applicationManager.service(loginRequest);
-		if (response.getResult().equals(ServiceResult.SUCCESS)) {
+		if (ServiceResult.SUCCESS.equals(response.getResult())) {
 			LOGGER.info("LoginRequest {}",event.getUserName() );
 
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);

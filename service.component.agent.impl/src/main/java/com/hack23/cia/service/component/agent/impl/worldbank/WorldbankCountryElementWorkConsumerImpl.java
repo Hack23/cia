@@ -33,7 +33,7 @@ import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
 /**
  * The Class WorldbankCountryElementWorkConsumerImpl.
  */
-@Service(value = "worldbankCountryElementWorkConsumerImpl")
+@Service("worldbankCountryElementWorkConsumerImpl")
 @Transactional
 public final class WorldbankCountryElementWorkConsumerImpl implements
 MessageListener {
@@ -46,7 +46,7 @@ MessageListener {
 	@Autowired
 	private WorldbankImportService importService;
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see javax.jms.MessageListener#onMessage(javax.jms.Message)

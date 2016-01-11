@@ -40,7 +40,7 @@ public class PageActionEventHelperImpl implements PageActionEventHelper {
 	@Autowired
 	private ApplicationManager applicationManager;
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper#createPageEvent(com.hack23.cia.web.impl.ui.application.action.ViewAction, com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
@@ -56,7 +56,7 @@ public class PageActionEventHelperImpl implements PageActionEventHelper {
 			pageModeToUse = pageMode;
 		}
 
-		if ((pageModeToUse == null || pageModeToUse.equals("")) && ApplicationEventGroup.USER.equals(applicationEventGroup)) {
+		if ((pageModeToUse == null || "".equals(pageModeToUse)) && ApplicationEventGroup.USER.equals(applicationEventGroup)) {
 			pageModeToUse="Overview";
 		}
 

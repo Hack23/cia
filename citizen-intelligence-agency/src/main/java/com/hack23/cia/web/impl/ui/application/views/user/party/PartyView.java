@@ -118,7 +118,7 @@ public final class PartyView extends AbstractGroupView {
 
 
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -170,7 +170,7 @@ public final class PartyView extends AbstractGroupView {
 
 					formFactory.addTextFields(
 							panelContent,
-							new BeanItem<ViewRiksdagenParty>(viewRiksdagenParty),
+							new BeanItem<>(viewRiksdagenParty),
 							ViewRiksdagenParty.class,
 							Arrays.asList(new String[] { "partyName", "partyId",
 									"headCount", "partyNumber", "registeredDate",
@@ -182,7 +182,7 @@ public final class PartyView extends AbstractGroupView {
 					if (viewRiksdagenPartySummary != null) {
 
 						formFactory.addTextFields(panelContent,
-								new BeanItem<ViewRiksdagenPartySummary>(
+								new BeanItem<>(
 										viewRiksdagenPartySummary),
 										ViewRiksdagenPartySummary.class,
 										Arrays.asList(new String[] { "active",
@@ -209,7 +209,7 @@ public final class PartyView extends AbstractGroupView {
 					final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPoliticianDocument.class);
 
-					final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<ViewRiksdagenPoliticianDocument>(
+					final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<>(
 							ViewRiksdagenPoliticianDocument.class,
 							politicianDocumentDataContainer.findOrderedListByProperty(
 									ViewRiksdagenPoliticianDocument_.partyShortCode,
@@ -244,7 +244,7 @@ public final class PartyView extends AbstractGroupView {
 					final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPolitician.class);
 
-					final BeanItemContainer<ViewRiksdagenPolitician> politicianDataSource = new BeanItemContainer<ViewRiksdagenPolitician>(
+					final BeanItemContainer<ViewRiksdagenPolitician> politicianDataSource = new BeanItemContainer<>(
 							ViewRiksdagenPolitician.class,
 							politicianDataContainer.findListByProperty(new Object[] { viewRiksdagenParty.getPartyId(),
 									true },
@@ -286,7 +286,7 @@ public final class PartyView extends AbstractGroupView {
 					final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPolitician.class);
 
-					final BeanItemContainer<ViewRiksdagenPolitician> politicianDataSource = new BeanItemContainer<ViewRiksdagenPolitician>(
+					final BeanItemContainer<ViewRiksdagenPolitician> politicianDataSource = new BeanItemContainer<>(
 							ViewRiksdagenPolitician.class,
 							politicianDataContainer.getAllBy(
 									ViewRiksdagenPolitician_.party,
@@ -328,7 +328,7 @@ public final class PartyView extends AbstractGroupView {
 					final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPartyRoleMember.class);
 
-						final BeanItemContainer<ViewRiksdagenPartyRoleMember> currentPartyMemberDataSource = new BeanItemContainer<ViewRiksdagenPartyRoleMember>(
+						final BeanItemContainer<ViewRiksdagenPartyRoleMember> currentPartyMemberDataSource = new BeanItemContainer<>(
 								ViewRiksdagenPartyRoleMember.class,
 								partyRoleMemberDataContainer.findListByProperty(
 										new Object[] { viewRiksdagenParty.getPartyId(),
@@ -354,7 +354,7 @@ public final class PartyView extends AbstractGroupView {
 					final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPartyRoleMember.class);
 
-					final BeanItemContainer<ViewRiksdagenPartyRoleMember> partyRoleMemberDataSource = new BeanItemContainer<ViewRiksdagenPartyRoleMember>(
+					final BeanItemContainer<ViewRiksdagenPartyRoleMember> partyRoleMemberDataSource = new BeanItemContainer<>(
 							ViewRiksdagenPartyRoleMember.class,
 							partyRoleMemberDataContainer.getAllBy(
 									ViewRiksdagenPartyRoleMember_.party,
@@ -378,7 +378,7 @@ public final class PartyView extends AbstractGroupView {
 					final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
 
-					final BeanItemContainer<ViewRiksdagenGovermentRoleMember> currentGovermentMemberDataSource = new BeanItemContainer<ViewRiksdagenGovermentRoleMember>(
+					final BeanItemContainer<ViewRiksdagenGovermentRoleMember> currentGovermentMemberDataSource = new BeanItemContainer<>(
 							ViewRiksdagenGovermentRoleMember.class,
 							govermentRoleMemberDataContainer.findListByProperty(
 									new Object[] { viewRiksdagenParty.getPartyId(),
@@ -405,7 +405,7 @@ public final class PartyView extends AbstractGroupView {
 					final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
 
-					final BeanItemContainer<ViewRiksdagenCommitteeRoleMember> committeeMemberDataSource = new BeanItemContainer<ViewRiksdagenCommitteeRoleMember>(
+					final BeanItemContainer<ViewRiksdagenCommitteeRoleMember> committeeMemberDataSource = new BeanItemContainer<>(
 							ViewRiksdagenCommitteeRoleMember.class,
 							committeeRoleMemberDataContainer.findListByProperty(
 									new Object[] { viewRiksdagenParty.getPartyId(),
@@ -431,10 +431,10 @@ public final class PartyView extends AbstractGroupView {
 					final DataContainer<ViewRiksdagenCommitteeBallotDecisionPartySummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPartySummary.class);
 
-					List<ViewRiksdagenCommitteeBallotDecisionPartySummary> decisionPartySummaryList = committeeBallotDecisionPartyDataContainer.findOrderedListByEmbeddedProperty(ViewRiksdagenCommitteeBallotDecisionPartySummary.class, ViewRiksdagenCommitteeBallotDecisionPartySummary_.embeddedId, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId.class, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId_.party, pageId, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId_.issue);
+					final List<ViewRiksdagenCommitteeBallotDecisionPartySummary> decisionPartySummaryList = committeeBallotDecisionPartyDataContainer.findOrderedListByEmbeddedProperty(ViewRiksdagenCommitteeBallotDecisionPartySummary.class, ViewRiksdagenCommitteeBallotDecisionPartySummary_.embeddedId, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId.class, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId_.party, pageId, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId_.issue);
 
 
-					final BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionPartySummary> committeeBallotDecisionPartyDataSource = new BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionPartySummary>(
+					final BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionPartySummary> committeeBallotDecisionPartyDataSource = new BeanItemContainer<>(
 							ViewRiksdagenCommitteeBallotDecisionPartySummary.class,
 							decisionPartySummaryList);
 
@@ -454,7 +454,7 @@ public final class PartyView extends AbstractGroupView {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("VoteHistory"));
 
-					final BeanItemContainer<ViewRiksdagenVoteDataBallotPartySummary> partyBallotDataSource = new BeanItemContainer<ViewRiksdagenVoteDataBallotPartySummary>(
+					final BeanItemContainer<ViewRiksdagenVoteDataBallotPartySummary> partyBallotDataSource = new BeanItemContainer<>(
 							ViewRiksdagenVoteDataBallotPartySummary.class,
 							chartDataManager.getViewRiksdagenVoteDataBallotPartySummary(
 									pageId));

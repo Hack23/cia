@@ -46,7 +46,7 @@ public final class PersonDataContainer implements DataContainer<PersonData,Strin
 	@Autowired
 	private PersonDataDAO personDataDAO;
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#getAll()
 	 */
 	@Override
@@ -64,7 +64,7 @@ public final class PersonDataContainer implements DataContainer<PersonData,Strin
 		return all;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#load()
 	 */
 	@Override
@@ -78,7 +78,7 @@ public final class PersonDataContainer implements DataContainer<PersonData,Strin
 		return load;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#getAllBy(javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
@@ -88,7 +88,7 @@ public final class PersonDataContainer implements DataContainer<PersonData,Strin
 		return personDataDAO.findListByProperty(property, value);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#findListByProperty(java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
 	 */
 	@Override
@@ -97,7 +97,7 @@ public final class PersonDataContainer implements DataContainer<PersonData,Strin
 		return personDataDAO.findListByProperty(values, properties);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#findByQueryProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
@@ -107,48 +107,44 @@ public final class PersonDataContainer implements DataContainer<PersonData,Strin
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.DataContainer#findListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
 	public <T, V> List<T> findListByEmbeddedProperty(final Class<T> clazz,
 			final SingularAttribute<T, V> property, final Class<V> clazz2,
 			final SingularAttribute<V, ? extends Object> property2, final Object value) {
-		return new ArrayList<T>();
+		return new ArrayList<>();
 	}
 
 	@Override
-	public List<PersonData> getAllOrderBy(SingularAttribute<PersonData, ? extends Object> property) {
+	public List<PersonData> getAllOrderBy(final SingularAttribute<PersonData, ? extends Object> property) {
 		return personDataDAO.getAllOrderBy(property);
 	}
 
 	@Override
-	public List<PersonData> findOrderedListByProperty(SingularAttribute<PersonData, ? extends Object> orderByProperty,
-			Object[] values, SingularAttribute<PersonData, ? extends Object>... properties) {
-		// TODO Auto-generated method stub
+	public List<PersonData> findOrderedListByProperty(final SingularAttribute<PersonData, ? extends Object> orderByProperty,
+			final Object[] values, final SingularAttribute<PersonData, ? extends Object>... properties) {
 		return null;
 	}
 
 	@Override
-	public <T, V> List<T> findOrderedListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property,
-			Class<V> clazz2, SingularAttribute<V, ? extends Object> property2, Object value,
-			SingularAttribute<V, ? extends Object> orderByProperty) {
-		// TODO Auto-generated method stub
+	public <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
+			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
+			final SingularAttribute<V, ? extends Object> orderByProperty) {
 		return null;
 	}
 
 	@Override
-	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property,
-			Class<V> clazz2, SingularAttribute<V, ? extends Object> property2, Object value,
-			SingularAttribute<T, ? extends Object> orderByProperty) {
-		// TODO Auto-generated method stub
+	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
+			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
+			final SingularAttribute<T, ? extends Object> orderByProperty) {
 		return null;
 	}
 
 	@Override
-	public List<PersonData> findOrderedListByProperty(SingularAttribute<PersonData, ? extends Object> property,
-			Object value, SingularAttribute<PersonData, ? extends Object> orderByProperty) {
-		// TODO Auto-generated method stub
+	public List<PersonData> findOrderedListByProperty(final SingularAttribute<PersonData, ? extends Object> property,
+			final Object value, final SingularAttribute<PersonData, ? extends Object> orderByProperty) {
 		return null;
 	}
 

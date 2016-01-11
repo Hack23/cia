@@ -30,7 +30,7 @@ public abstract class AbstractTest extends Assert  {
 	 * Instantiates a new abstract test.
 	 */
 	protected AbstractTest() {
-		super();	
+		super();
 	}
 
 }

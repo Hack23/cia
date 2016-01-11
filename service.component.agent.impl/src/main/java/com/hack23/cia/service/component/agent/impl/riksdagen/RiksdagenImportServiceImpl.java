@@ -53,7 +53,7 @@ import com.hack23.cia.service.data.api.VoteDataDAO;
 /**
  * The Class RiksdagenImportServiceImpl.
  */
-@Component(value = "RiksdagenImportService")
+@Component("RiksdagenImportService")
 @Transactional(propagation=Propagation.MANDATORY)
 public final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 
@@ -99,7 +99,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	 * @return the map
 	 */
 	private static Map<String, String> createMapFromList(final List<String> all) {
-		final Map<String, String> map = new ConcurrentHashMap<String, String>();
+		final Map<String, String> map = new ConcurrentHashMap<>();
 
 		for (final String documentElement : all) {
 			map.put(documentElement, documentElement);
@@ -115,7 +115,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	 * @return the map
 	 */
 	private static Map<String, String> createMapFromListVote(final List<VoteDataEmbeddedId> list) {
-		final Map<String, String> map = new ConcurrentHashMap<String, String>();
+		final Map<String, String> map = new ConcurrentHashMap<>();
 
 		for (final VoteDataEmbeddedId documentElement : list) {
 			map.put(documentElement.getBallotId(), documentElement.getBallotId());
@@ -124,7 +124,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	}
 
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
@@ -135,7 +135,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		return documentStatusContainerDAO.getAvaibleCommitteeProposal();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
@@ -146,7 +146,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		return documentElementDAO.getAvaibleDocumentContent();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
@@ -157,7 +157,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		return documentElementDAO.getIdList();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
@@ -168,7 +168,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		return createMapFromList(committeeProposalComponentDataDAO.getIdList());
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
@@ -179,7 +179,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		return createMapFromList(documentContentDataDAO.getIdList());
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
@@ -191,7 +191,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		return createMapFromList(all);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
@@ -203,7 +203,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 			final boolean onlyWithDocStatus) {
 		final List<DocumentElement> all = documentElementDAO.getAll();
 
-		final Map<String, DocumentType> map = new ConcurrentHashMap<String, DocumentType>();
+		final Map<String, DocumentType> map = new ConcurrentHashMap<>();
 
 		for (final DocumentElement documentElement : all) {
 			try {
@@ -250,7 +250,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		}
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
@@ -261,7 +261,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		return createMapFromList(documentStatusContainerDAO.getIdList());
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
@@ -272,7 +272,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		return createMapFromListVote(voteDataDAO.getBallotIdList());
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -284,7 +284,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		return createMapFromList(personDataDAO.getIdList());
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -300,7 +300,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		}
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
@@ -316,7 +316,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		}
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
@@ -331,7 +331,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		}
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
@@ -342,7 +342,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		documentStatusContainerDAO.persist(documentData);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
@@ -359,7 +359,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
@@ -370,7 +370,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		voteDataDAO.persist(list);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.component.agent.impl.riksdagen.RiksdagenImportService#getStartYearForDocumentElement()
 	 */
 	@Override

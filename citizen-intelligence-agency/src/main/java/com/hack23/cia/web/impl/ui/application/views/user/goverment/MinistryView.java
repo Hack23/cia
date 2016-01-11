@@ -102,7 +102,7 @@ public final class MinistryView extends AbstractGroupView {
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -137,7 +137,7 @@ public final class MinistryView extends AbstractGroupView {
 
 					panelContent.addComponent(pageLinkFactory.addMinistryPageLink(viewRiksdagenMinistry));
 
-					formFactory.addTextFields(panelContent, new BeanItem<ViewRiksdagenMinistry>(viewRiksdagenMinistry),
+					formFactory.addTextFields(panelContent, new BeanItem<>(viewRiksdagenMinistry),
 							ViewRiksdagenMinistry.class,
 							Arrays.asList(
 									new String[] { "nameId", "active", "firstAssignmentDate", "lastAssignmentDate",
@@ -150,7 +150,7 @@ public final class MinistryView extends AbstractGroupView {
 					final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPoliticianDocument.class);
 
-					final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<ViewRiksdagenPoliticianDocument>(
+					final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<>(
 							ViewRiksdagenPoliticianDocument.class, politicianDocumentDataContainer
 									.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.org, viewRiksdagenMinistry.getNameId(),ViewRiksdagenPoliticianDocument_.madePublicDate));
 
@@ -182,7 +182,7 @@ public final class MinistryView extends AbstractGroupView {
 					final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
 
-					final BeanItemContainer<ViewRiksdagenGovermentRoleMember> currentMembersMemberDataSource = new BeanItemContainer<ViewRiksdagenGovermentRoleMember>(
+					final BeanItemContainer<ViewRiksdagenGovermentRoleMember> currentMembersMemberDataSource = new BeanItemContainer<>(
 							ViewRiksdagenGovermentRoleMember.class,
 							govermentRoleMemberDataContainer.findListByProperty(
 									new Object[] { viewRiksdagenMinistry.getNameId(), true },
@@ -205,7 +205,7 @@ public final class MinistryView extends AbstractGroupView {
 					final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
 
-					final BeanItemContainer<ViewRiksdagenGovermentRoleMember> govermentRoleMemberDataSource = new BeanItemContainer<ViewRiksdagenGovermentRoleMember>(
+					final BeanItemContainer<ViewRiksdagenGovermentRoleMember> govermentRoleMemberDataSource = new BeanItemContainer<>(
 							ViewRiksdagenGovermentRoleMember.class, govermentRoleMemberDataContainer.getAllBy(
 									ViewRiksdagenGovermentRoleMember_.detail, viewRiksdagenMinistry.getNameId()));
 

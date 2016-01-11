@@ -44,7 +44,7 @@ import com.hack23.cia.service.external.worldbank.api.WorldBankApi;
 /**
  * The Class WorldBankApiAgentWorkConsumerImpl.
  */
-@Service(value = "WorldBankApiAgentWorkConsumer")
+@Service("WorldBankApiAgentWorkConsumer")
 public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkConsumerImpl implements MessageListener {
 
 
@@ -75,7 +75,7 @@ public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 	@Autowired
 	private WorldBankApi worldbankApi;
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see javax.jms.MessageListener#onMessage(javax.jms.Message)
@@ -85,7 +85,7 @@ public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 		final ObjectMessage msg = (ObjectMessage) message;
 
 		try {
-			WorldBankDataSources source =  (WorldBankDataSources) msg.getObject();
+			final WorldBankDataSources source =  (WorldBankDataSources) msg.getObject();
 			LOGGER.info("Consumed message:{}", source);
 
 			switch (source) {
@@ -144,10 +144,10 @@ public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 
 			for (final IndicatorElement indicator : indicatorlist) {
 		//		for (final CountryElement country : countryList) {
-					final List<String> load = new ArrayList<String>();
+					final List<String> load = new ArrayList<>();
 //					if (country.getIso2Code() != null
 //							&& country.getIso2Code().length() > 0) {
-						String swedenIsoCode = "SE";
+						final String swedenIsoCode = "SE";
 						load.add(swedenIsoCode);
 						load.add(indicator.getId());
 

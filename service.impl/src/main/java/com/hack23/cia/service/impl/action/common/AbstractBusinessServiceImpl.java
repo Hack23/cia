@@ -50,7 +50,7 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 		this.clazz = clazz;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -67,15 +67,14 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 	 * @return the user account from security context
 	 */
 	protected final UserAccount getUserAccountFromSecurityContext() {
-		SecurityContext context = SecurityContextHolder.getContext();
+		final SecurityContext context = SecurityContextHolder.getContext();
 		if (context != null) {
-			Authentication authentication = context.getAuthentication();
+			final Authentication authentication = context.getAuthentication();
 			if (authentication != null) {
-				Object principal = authentication.getPrincipal();
+				final Object principal = authentication.getPrincipal();
 
 				if (principal instanceof UserAccount) {
-					UserAccount userAccount = (UserAccount) principal;
-					return userAccount;
+					return (UserAccount) principal;
 				}
 			}
 		}

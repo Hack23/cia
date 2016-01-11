@@ -65,9 +65,9 @@ public final class BootstrapDefaultConfig {
 	 * @param role
 	 *            the role
 	 */
-	private static void configureAuthentication(String role) {
-		Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(role);
-		Authentication authentication = new UsernamePasswordAuthenticationToken("user", role, authorities);
+	private static void configureAuthentication(final String role) {
+		final Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(role);
+		final Authentication authentication = new UsernamePasswordAuthenticationToken("user", role, authorities);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 	}
 

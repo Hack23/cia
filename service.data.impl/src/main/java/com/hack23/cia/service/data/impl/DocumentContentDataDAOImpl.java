@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -36,7 +36,7 @@ import com.hack23.cia.service.data.api.DocumentContentDataDAO;
 /**
  * The Class DocumentContentDataDAOImpl.
  */
-@Repository(value = "DocumentContentDataDAO")
+@Repository("DocumentContentDataDAO")
 public final class DocumentContentDataDAOImpl extends
 AbstractGenericDAOImpl<DocumentContentData, Long>
 implements DocumentContentDataDAO {
@@ -52,7 +52,7 @@ implements DocumentContentDataDAO {
 		super(DocumentContentData.class);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.DocumentContentDataDAO#checkDocumentContentData(java.lang.String)
 	 */
 	@Override
@@ -69,14 +69,10 @@ implements DocumentContentDataDAO {
 
 		final List<DocumentContentData> resultList = typedQuery.getResultList();
 
-		if (resultList.isEmpty()) {
-			return false;
-		} else {
-			return true;
-		}
+		return !resultList.isEmpty();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -89,7 +85,7 @@ implements DocumentContentDataDAO {
 	}
 
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.DocumentContentDataDAO#getIdList()
 	 */
 	@Override
@@ -100,7 +96,7 @@ implements DocumentContentDataDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */
 	@Override

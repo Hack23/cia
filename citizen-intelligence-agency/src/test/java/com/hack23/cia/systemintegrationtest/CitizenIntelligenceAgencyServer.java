@@ -104,7 +104,7 @@ public class CitizenIntelligenceAgencyServer {
 	}
 
 	/** The initialised. */
-	private boolean initialised = false;
+	private boolean initialised;
 
 	/** The server. */
 	private Server server;

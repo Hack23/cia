@@ -246,7 +246,7 @@ AbstractRiksdagenFunctionalIntegrationTest {
 	 */
 	@Test
 	public void processDocumentListByChangedSince() throws Exception {
-		final List<DocumentElement> dokumentList = new ArrayList<DocumentElement>();
+		final List<DocumentElement> dokumentList = new ArrayList<>();
 
 		final ProcessDataStrategy<DocumentElement> strategy = new ProcessDataStrategy<DocumentElement>() {
 			@Override

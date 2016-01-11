@@ -95,7 +95,7 @@ public class LoadHelper {
 						if (origProp != null) {
 							recursiveInitliaze(origProp, dejaVu);
 						}
-						if (origProp instanceof Collection && origProp != null) {
+						if (origProp instanceof Collection) {
 							for (final Object item : (Collection<?>) origProp) {
 								recursiveInitliaze(item, dejaVu);
 							}

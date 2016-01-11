@@ -81,7 +81,7 @@ public final class AdminLanguageContentView extends AbstractAdminView {
 		createListAndForm(null);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -110,7 +110,7 @@ public final class AdminLanguageContentView extends AbstractAdminView {
 
 		final DataContainer<LanguageContentData, Long> dataContainer = applicationManager.getDataContainer(LanguageContentData.class);
 
-		final BeanItemContainer<LanguageContentData> politicianDocumentDataSource = new BeanItemContainer<LanguageContentData>(LanguageContentData.class,
+		final BeanItemContainer<LanguageContentData> politicianDocumentDataSource = new BeanItemContainer<>(LanguageContentData.class,
 				dataContainer.getAll());
 
 		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "LanguageContentData",
@@ -123,7 +123,7 @@ public final class AdminLanguageContentView extends AbstractAdminView {
 			final LanguageContentData languageContentData = dataContainer.load(Long.valueOf(pageId));
 
 			if (languageContentData != null) {
-			formFactory.addTextFields(content, new BeanItem<LanguageContentData>(languageContentData), LanguageContentData.class,
+			formFactory.addTextFields(content, new BeanItem<>(languageContentData), LanguageContentData.class,
 					Arrays.asList(new String[] { "hjid","refKey","fromLanguage", "toLanguage", "createdDate", "languageValue","modelObjectVersion" }));
 			}
 		}

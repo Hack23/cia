@@ -33,7 +33,7 @@ import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
 /**
  * The Class WorldbankIndicatorElementWorkConsumerImpl.
  */
-@Service(value = "worldbankIndicatorElementWorkConsumerImpl")
+@Service("worldbankIndicatorElementWorkConsumerImpl")
 @Transactional
 public final class WorldbankIndicatorElementWorkConsumerImpl implements
 MessageListener {
@@ -46,7 +46,7 @@ MessageListener {
 	@Autowired
 	private WorldbankImportService importService;
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see javax.jms.MessageListener#onMessage(javax.jms.Message)

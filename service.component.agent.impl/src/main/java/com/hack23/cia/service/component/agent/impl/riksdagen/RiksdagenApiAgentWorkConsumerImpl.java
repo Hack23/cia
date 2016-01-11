@@ -18,7 +18,6 @@
  */
 package com.hack23.cia.service.component.agent.impl.riksdagen;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +51,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
 /**
  * The Class RiksdagenApiAgentWorkConsumerImpl.
  */
-@Service(value = "RiksdagenApiAgentWorkConsumer")
+@Service("RiksdagenApiAgentWorkConsumer")
 public final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkConsumerImpl {
 
 	/** The Constant LOGGER. */
@@ -100,7 +99,7 @@ public final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 	@Qualifier("com.hack23.cia.model.external.riksdagen.votering.impl.VoteData")
 	private Destination voteDataWorkdestination;
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see javax.jms.MessageListener#onMessage(javax.jms.Message)
@@ -253,7 +252,7 @@ public final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 					.getDocumentStatusContainerMap();
 
 
-			final List<DocumentType> selectedDocumentTypes = new ArrayList<DocumentType>();
+			final List<DocumentType> selectedDocumentTypes = new ArrayList<>();
 			selectedDocumentTypes.add(DocumentType.BET);
 			selectedDocumentTypes.add(DocumentType.PROP);
 			selectedDocumentTypes.add(DocumentType.MOT);
@@ -312,8 +311,8 @@ public final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 
 	private static String[] readMissingPersonList() {
 
-		Scanner sc = new Scanner(RiksdagenApiAgentWorkConsumerImpl.class.getResourceAsStream("/personlist.txt"));
-		List<String> lines = new ArrayList<String>();
+		final Scanner sc = new Scanner(RiksdagenApiAgentWorkConsumerImpl.class.getResourceAsStream("/personlist.txt"));
+		final List<String> lines = new ArrayList<>();
 		while (sc.hasNextLine()) {
 		  lines.add(sc.nextLine());
 		}
@@ -331,7 +330,7 @@ public final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 		private final Map<String, String> documentElementMap = importService
 				.getDocumentElementMap();
 
-		/*
+		/**
 		 * (non-Javadoc)
 		 *
 		 * @see

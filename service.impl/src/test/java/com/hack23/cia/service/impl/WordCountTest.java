@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -46,30 +46,30 @@ public class WordCountTest {
 
 		// http://weka.wikispaces.com/Use+WEKA+in+your+Java+code#Classification-Building
 
-		String html = "Det måste bli lättare att bygga. Plan- och byggreglerna behöver förenklas och processen förkortas, för att därigenom möjliggöra en ökad takt på byggandet i ett Sverige där bostadsbristen är ett allvarligt problem. Samplaneringen mellan infrastruktur och bostäder behöver förtydligas. Folkpartiet har under Alliansregeringen medverkat till en rad lagändringar för att förenkla plan- och byggprocessen, och även den nu aktuella propositionen är resultatet av ett lagstiftningsarbete som påbörjades under Alliansregeringen. Vi välkomnar att detta arbete nu leder till konkret lagstiftning. Däremot är vi kritiska till att den nuvarande regeringen inte tillräckligt grundligt har vägt in de olika aspekter som behöver uppmärksammas i lagstiftningsarbetet.";
+		final String html = "Det måste bli lättare att bygga. Plan- och byggreglerna behöver förenklas och processen förkortas, för att därigenom möjliggöra en ökad takt på byggandet i ett Sverige där bostadsbristen är ett allvarligt problem. Samplaneringen mellan infrastruktur och bostäder behöver förtydligas. Folkpartiet har under Alliansregeringen medverkat till en rad lagändringar för att förenkla plan- och byggprocessen, och även den nu aktuella propositionen är resultatet av ett lagstiftningsarbete som påbörjades under Alliansregeringen. Vi välkomnar att detta arbete nu leder till konkret lagstiftning. Däremot är vi kritiska till att den nuvarande regeringen inte tillräckligt grundligt har vägt in de olika aspekter som behöver uppmärksammas i lagstiftningsarbetet.";
 
-		Attribute input = new Attribute("html", (FastVector<String>) null);
+		final Attribute input = new Attribute("html", (FastVector<String>) null);
 
-		FastVector inputVec = new FastVector();
+		final FastVector inputVec = new FastVector();
 		inputVec.addElement(input);
 
-		Instances htmlInst = new Instances("html", inputVec, 1);
-		
+		final Instances htmlInst = new Instances("html", inputVec, 1);
+
 		htmlInst.add(new DenseInstance(1));
 		htmlInst.instance(0).setValue(0, html);
-			
 
-		StringToWordVector filter = new StringToWordVector();
-		StopwordsHandler StopwordsHandler = new StopwordsHandler() {
+
+		final StringToWordVector filter = new StringToWordVector();
+		final StopwordsHandler StopwordsHandler = new StopwordsHandler() {
 
 			@Override
-			public boolean isStopword(String word) {
+			public boolean isStopword(final String word) {
 
 				return word.length() <3;
 			}
 		};
 
-		NGramTokenizer tokenizer = new NGramTokenizer();
+		final NGramTokenizer tokenizer = new NGramTokenizer();
 		tokenizer.setNGramMinSize(1);
 		tokenizer.setNGramMaxSize(1);
 		tokenizer.setDelimiters(" \r\n\t.,;:'\"()?!'");
@@ -83,16 +83,17 @@ public class WordCountTest {
 		filter.setWordsToKeep(10);
 
 		filter.setInputFormat(htmlInst);
-		Instances dataFiltered = Filter.useFilter(htmlInst, filter);
+		final Instances dataFiltered = Filter.useFilter(htmlInst, filter);
 
-		Instance last = dataFiltered.lastInstance();
+		final Instance last = dataFiltered.lastInstance();
 
-		int numAttributes = last.numAttributes();
+		final int numAttributes = last.numAttributes();
 
 		for (int i = 0; i < numAttributes; i++) {
-			if (Integer.parseInt(last.toString(i)) > 1) 
-			System.out.println(last.attribute(i).name() + ":"
-					+ last.toString(i));
+			if (Integer.parseInt(last.toString(i)) > 1) {
+				System.out.println(last.attribute(i).name() + ":"
+						+ last.toString(i));
+			}
 		}
 	}
 

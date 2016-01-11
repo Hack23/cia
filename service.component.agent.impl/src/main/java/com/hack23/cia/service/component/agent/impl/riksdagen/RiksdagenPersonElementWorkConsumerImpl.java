@@ -33,7 +33,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
 /**
  * The Class RiksdagenPersonElementWorkConsumerImpl.
  */
-@Service(value = "riksdagenPersonElementWorkConsumerImpl")
+@Service("riksdagenPersonElementWorkConsumerImpl")
 public final class RiksdagenPersonElementWorkConsumerImpl implements MessageListener {
 
 	/** The Constant LOGGER. */
@@ -48,7 +48,7 @@ public final class RiksdagenPersonElementWorkConsumerImpl implements MessageList
 	@Autowired
 	private RiksdagenApi riksdagenApi;
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see javax.jms.MessageListener#onMessage(javax.jms.Message)

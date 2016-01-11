@@ -35,7 +35,7 @@ import com.hack23.cia.service.external.worldbank.api.WorldBankApi;
 /**
  * The Class WorldbankDataWorkConsumerImpl.
  */
-@Service(value = "worldbankDataWorkConsumerImpl")
+@Service("worldbankDataWorkConsumerImpl")
 @Transactional
 public final class WorldbankDataWorkConsumerImpl implements
 MessageListener {
@@ -53,7 +53,7 @@ MessageListener {
 	private WorldBankApi worldBankApi;
 
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see javax.jms.MessageListener#onMessage(javax.jms.Message)

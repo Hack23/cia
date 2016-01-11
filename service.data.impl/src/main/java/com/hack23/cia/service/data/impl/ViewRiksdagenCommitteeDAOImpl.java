@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -36,7 +36,7 @@ import com.hack23.cia.service.data.api.ViewRiksdagenCommitteeDAO;
 /**
  * The Class ViewRiksdagenCommitteeDAOImpl.
  */
-@Repository(value = "ViewRiksdagenCommitteeDAO")
+@Repository("ViewRiksdagenCommitteeDAO")
 public final class ViewRiksdagenCommitteeDAOImpl
 		extends
 		AbstractGenericDAOImpl<ViewRiksdagenCommittee, RiksdagenCommitteeEmbeddedId>
@@ -53,9 +53,9 @@ public final class ViewRiksdagenCommitteeDAOImpl
 		super(ViewRiksdagenCommittee.class);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
 	 * ()
@@ -65,9 +65,9 @@ public final class ViewRiksdagenCommitteeDAOImpl
 		return entityManager;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.hack23.cia.service.data.api.VoteDataDAO#getIdList()
 	 */
 	@Override
@@ -82,9 +82,9 @@ public final class ViewRiksdagenCommitteeDAOImpl
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */
 	@Override

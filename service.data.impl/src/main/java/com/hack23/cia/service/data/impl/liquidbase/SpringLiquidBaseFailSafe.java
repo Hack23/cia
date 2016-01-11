@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -35,7 +35,7 @@ public final class SpringLiquidBaseFailSafe extends SpringLiquibase {
 			.getLogger(SpringLiquidBaseFailSafe.class);
 
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see liquibase.integration.spring.SpringLiquibase#afterPropertiesSet()
 	 */
 	@Override
@@ -43,13 +43,13 @@ public final class SpringLiquidBaseFailSafe extends SpringLiquibase {
 		try {
 			super.afterPropertiesSet();
 		} catch (final Exception e) {
-			String stackTrace = ExceptionUtils.getStackTrace(e);
+			final String stackTrace = ExceptionUtils.getStackTrace(e);
 			if( stackTrace.contains("Connection was already closed - calling hashCode is no longer allowed")) {
 				LOGGER.warn("Problem after executing liquidbase, failed removing closed atomikos connection");
-			} else {				
+			} else {
 				LOGGER.warn("Problem executing liquidbase", e);
 			}
-			
+
 		}
 	}
 

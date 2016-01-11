@@ -57,7 +57,7 @@ public class ApplicationEventListener implements ApplicationListener<Application
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationEventListener.class);
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see org.springframework.context.ApplicationListener#onApplicationEvent(org.springframework.context.ApplicationEvent)
 	 */
 	@Override
@@ -78,9 +78,9 @@ public class ApplicationEventListener implements ApplicationListener<Application
 
 			LOGGER.info("Session destroyed SESSION_ID :{}", httpSession.getId());
 		}  else if (applicationEvent instanceof AuthorizationFailureEvent) {
-			AuthorizationFailureEvent authorizationFailureEvent = (AuthorizationFailureEvent) applicationEvent;
+			final AuthorizationFailureEvent authorizationFailureEvent = (AuthorizationFailureEvent) applicationEvent;
 
-			String sessionId = RequestContextHolder.currentRequestAttributes().getSessionId();
+			final String sessionId = RequestContextHolder.currentRequestAttributes().getSessionId();
 
 			final CreateApplicationEventRequest serviceRequest = new CreateApplicationEventRequest();
 			serviceRequest.setSessionId(sessionId);
@@ -90,7 +90,7 @@ public class ApplicationEventListener implements ApplicationListener<Application
 
 			serviceRequest.setUserId(getUserIdFromSecurityContext());
 
-			serviceRequest.setErrorMessage("Authorities:" + authorizationFailureEvent.getAuthentication().getAuthorities().toString() + " , RequiredAuthorities:" + authorizationFailureEvent.getConfigAttributes().toString());
+			serviceRequest.setErrorMessage("Authorities:" + authorizationFailureEvent.getAuthentication().getAuthorities() + " , RequiredAuthorities:" + authorizationFailureEvent.getConfigAttributes());
 			serviceRequest.setApplicationMessage("Access Denied");
 
 			final CreateApplicationEventResponse response = (CreateApplicationEventResponse) applicationManager

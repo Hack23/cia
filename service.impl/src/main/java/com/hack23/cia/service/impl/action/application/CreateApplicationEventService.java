@@ -65,16 +65,16 @@ public final class CreateApplicationEventService
 		super(CreateApplicationEventRequest.class);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
 	 */
 	@Override
 	@Secured({ "ROLE_ANONYMOUS","ROLE_USER","ROLE_ADMIN" })
-	public CreateApplicationEventResponse processService(CreateApplicationEventRequest serviceRequest) {
-		ApplicationSession applicationSession = applicationSessionDAO.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
+	public CreateApplicationEventResponse processService(final CreateApplicationEventRequest serviceRequest) {
+		final ApplicationSession applicationSession = applicationSessionDAO.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
 
 		if (applicationSession != null) {
-			ApplicationActionEvent applicationActionEvent = new ApplicationActionEvent();
+			final ApplicationActionEvent applicationActionEvent = new ApplicationActionEvent();
 
 			applicationActionEvent.setEventGroup(serviceRequest.getEventGroup());
 			applicationActionEvent.setCreatedDate(new Date());
@@ -85,7 +85,7 @@ public final class CreateApplicationEventService
 			applicationActionEvent.setElementId(serviceRequest.getElementId());
 
 			applicationActionEvent.setUserId(serviceRequest.getUserId());
-			if (serviceRequest.getUserId() != null && applicationSession.getSessionType().equals(ApplicationSessionType.ANONYMOUS)) {
+			if (serviceRequest.getUserId() != null && ApplicationSessionType.ANONYMOUS.equals(applicationSession.getSessionType())) {
 				applicationSession.setSessionType(ApplicationSessionType.REGISTERED_USER);
 				applicationSession.setUserId(serviceRequest.getUserId());
 			}

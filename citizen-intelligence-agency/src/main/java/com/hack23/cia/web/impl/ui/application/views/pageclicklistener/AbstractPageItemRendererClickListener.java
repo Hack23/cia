@@ -54,7 +54,7 @@ public abstract class AbstractPageItemRendererClickListener<T> implements Render
 		this.page = page;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener#click(com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent)
 	 */
 	@SuppressWarnings("unchecked")
@@ -64,7 +64,7 @@ public abstract class AbstractPageItemRendererClickListener<T> implements Render
 	}
 
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.vaadin.event.SelectionEvent.SelectionListener#select(com.vaadin.event.SelectionEvent)
 	 */
 	@Override

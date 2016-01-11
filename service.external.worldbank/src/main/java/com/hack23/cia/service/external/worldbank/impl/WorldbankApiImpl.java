@@ -133,20 +133,20 @@ public final class WorldbankApiImpl implements WorldBankApi {
 	private Unmarshaller topicsUnmarshaller;
 
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.component.agent.impl.worldbank.api.WorlbankApi#getCountries()
 	 */
 	@Override
 	public List<CountryElement> getCountries() throws DataFailureException {
 		try {
 			return ((CountriesElement) xmlAgent.unmarshallXml(countriesUnmarshaller, COUNTRIES,null,XMLNS_WB_HTTP_WWW_WORLDBANK_ORG, XMLNS_WB_HTTP_COUNTRIES_WORLDBANK_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL)).getCountry();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			LOGGER.warn(PROBLEM_GETTING_WORLDBANK_COUNTRY_LIST);
 			throw new DataFailureException(e);
 		}
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.component.agent.impl.worldbank.api.WorlbankApi#getData(java.lang.String, java.lang.String)
 	 */
 	@Override
@@ -154,33 +154,33 @@ public final class WorldbankApiImpl implements WorldBankApi {
 		try {
 			final String url = INDICATOR_COUNTRY_DATA.replace(COUNTRY_KEY,countryCode);
 			return ((DataElement) xmlAgent.unmarshallXml(dataUnmarshaller, url.replace(INDICATOR_KEY, indicatorId),null,XMLNS_WB_HTTP_WWW_WORLDBANK_ORG, XMLNS_WB_HTTP_DATA_WORLDBANK_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL)).getData();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			LOGGER.warn(PROBLEM_GETTING_WORLDBANK_DATA_FOR_COUNTRY_CODE_S_INDICATOR_ID_S,countryCode,indicatorId);
 			throw new DataFailureException(e);
 		}
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.component.agent.impl.worldbank.api.WorlbankApi#getIndicators()
 	 */
 	@Override
 	public List<IndicatorElement> getIndicators() throws DataFailureException {
 		try {
 			return ((IndicatorsElement) xmlAgent.unmarshallXml(indicatorsUnmarshaller, INDICATORS,null,XMLNS_WB_HTTP_WWW_WORLDBANK_ORG, XMLNS_WB_HTTP_INDICATORS_WORLDBANK_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL)).getIndicator();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			LOGGER.warn(PROBLEM_GETTING_WORLDBANK_INDICATOR_LIST);
 			throw new DataFailureException(e);
 		}
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.external.worldbank.api.WorldBankApi#getTopics()
 	 */
 	@Override
 	public List<TopicElement> getTopics() throws DataFailureException {
 		try {
 			return ((TopicsElement) xmlAgent.unmarshallXml(topicsUnmarshaller, TOPICS,null,XMLNS_WB_HTTP_WWW_WORLDBANK_ORG, XMLNS_WB_HTTP_TOPIC_WORLDBANK_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL)).getTopic();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			LOGGER.warn(PROBLEM_GETTING_WORLDBANK_TOPIC_LIST);
 			throw new DataFailureException(e);
 		}

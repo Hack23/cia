@@ -63,7 +63,7 @@ public final class CreateApplicationSessionService
 		super(CreateApplicationSessionRequest.class);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -72,8 +72,8 @@ public final class CreateApplicationSessionService
 	 */
 	@Override
 	@Secured({ "ROLE_ANONYMOUS" })
-	public CreateApplicationSessionResponse processService(CreateApplicationSessionRequest serviceRequest) {
-		ApplicationSession applicationSession = new ApplicationSession();
+	public CreateApplicationSessionResponse processService(final CreateApplicationSessionRequest serviceRequest) {
+		final ApplicationSession applicationSession = new ApplicationSession();
 		applicationSession.setCreatedDate(new Date());
 
 		applicationSession.setSessionId(serviceRequest.getSessionId());

@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -32,7 +32,7 @@ public class DataFailureException extends Exception {
 	 * @param e
 	 *            the e
 	 */
-	public DataFailureException(Exception e) {
+	public DataFailureException(final Exception e) {
 		super(e);
 	}
 

@@ -36,7 +36,7 @@ import com.hack23.cia.service.data.api.SwedenPoliticalPartyDAO;
 /**
  * The Class SwedenPoliticalPartyDAOImpl.
  */
-@Repository(value = "SwedenPoliticalPartyDAO")
+@Repository("SwedenPoliticalPartyDAO")
 public final class SwedenPoliticalPartyDAOImpl extends
 AbstractGenericDAOImpl<SwedenPoliticalParty, String> implements
 SwedenPoliticalPartyDAO {
@@ -61,7 +61,7 @@ SwedenPoliticalPartyDAO {
 
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -73,7 +73,7 @@ SwedenPoliticalPartyDAO {
 		return entityManager;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.data.api.SwedenPoliticalPartyDAO#getIdList()
@@ -89,7 +89,7 @@ SwedenPoliticalPartyDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()

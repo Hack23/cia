@@ -61,7 +61,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
  * The Class UserRoleSystemTest.
  */
 @RunWith(Parallelized.class)
-@FixMethodOrder(value = MethodSorters.NAME_ASCENDING)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 	/** The test server. */
@@ -71,7 +71,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	private final String browser;
 
 	/** The web driver map. */
-	private final Map<String, WebDriver> webDriverMap = new ConcurrentHashMap<String, WebDriver>();
+	private final Map<String, WebDriver> webDriverMap = new ConcurrentHashMap<>();
 
 
 	/**
@@ -105,7 +105,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@BeforeClass
-	public synchronized static void startServer() throws Exception {
+	static synchronized public void startServer() throws Exception {
 		if (testServer == null) {
 			testServer = new CitizenIntelligenceAgencyServer();
 			testServer.startServer();
@@ -119,7 +119,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@AfterClass
-	public synchronized static void stopServer() throws Exception {
+	static synchronized public void stopServer() throws Exception {
 		if (testServer != null) {
 			testServer.stop();
 			testServer = null;
@@ -355,7 +355,6 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Language"));
 
 //		String pageId = clickFirstRowInGrid(userPageVisit);
-//
 //		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, pageId));
 
 
@@ -380,7 +379,6 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Language Content"));
 
 //		String pageId = clickFirstRowInGrid(userPageVisit);
-//
 //		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, pageId));
 
 
@@ -1871,19 +1869,19 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	private synchronized WebDriver getWebDriver() {
 
 		WebDriver driver = null;
-		if (browser.equals("firefox")) {
+		if ("firefox".equals(browser)) {
 			driver = new FirefoxDriver();
-		} else if (browser.equals("chrome")) {
+		} else if ("chrome".equals(browser)) {
 			driver = new ChromeDriver();
-		} else if (browser.equals("htmlunit-firefox")) {
+		} else if ("htmlunit-firefox".equals(browser)) {
 			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.FIREFOX_38);
 			htmlUnitDriver.setJavascriptEnabled(true);
 			driver = htmlUnitDriver;
-		} else if (browser.equals("htmlunit-ie11")) {
+		} else if ("htmlunit-ie11".equals(browser)) {
 			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.INTERNET_EXPLORER_11);
 			htmlUnitDriver.setJavascriptEnabled(true);
 			driver = htmlUnitDriver;
-		} else if (browser.equals("htmlunit-chrome")) {
+		} else if ("htmlunit-chrome".equals(browser)) {
 			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.CHROME);
 			htmlUnitDriver.setJavascriptEnabled(true);
 			driver = htmlUnitDriver;

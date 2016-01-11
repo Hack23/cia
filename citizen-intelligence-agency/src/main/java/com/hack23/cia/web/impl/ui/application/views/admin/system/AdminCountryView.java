@@ -82,7 +82,7 @@ public final class AdminCountryView extends AbstractAdminView {
 		createListAndForm(null);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -111,7 +111,7 @@ public final class AdminCountryView extends AbstractAdminView {
 
 		final DataContainer<CountryElement, Long> dataContainer = applicationManager.getDataContainer(CountryElement.class);
 
-		final BeanItemContainer<CountryElement> politicianDocumentDataSource = new BeanItemContainer<CountryElement>(CountryElement.class,
+		final BeanItemContainer<CountryElement> politicianDocumentDataSource = new BeanItemContainer<>(CountryElement.class,
 				dataContainer.getAllOrderBy(CountryElement_.countryName));
 
 		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Country",
@@ -126,7 +126,7 @@ public final class AdminCountryView extends AbstractAdminView {
 
 			final CountryElement country = dataContainer.load(Long.valueOf(pageId));
 			if (country != null) {
-			formFactory.addTextFields(content, new BeanItem<CountryElement>(country), CountryElement.class,
+			formFactory.addTextFields(content, new BeanItem<>(country), CountryElement.class,
 					Arrays.asList(new String[] { "hjid", "id","countryName","iso2Code","capitalCity","longitude","latitude" }));
 			}
 		}

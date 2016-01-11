@@ -33,7 +33,7 @@ import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElemen
 /**
  * The Class RiksdagenDocumentElementWorkConsumerImpl.
  */
-@Service(value = "riksdagenDocumentElementWorkConsumerImpl")
+@Service("riksdagenDocumentElementWorkConsumerImpl")
 @Transactional
 public final class RiksdagenDocumentElementWorkConsumerImpl implements
 MessageListener {
@@ -46,7 +46,7 @@ MessageListener {
 	@Autowired
 	private RiksdagenImportService importService;
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see javax.jms.MessageListener#onMessage(javax.jms.Message)

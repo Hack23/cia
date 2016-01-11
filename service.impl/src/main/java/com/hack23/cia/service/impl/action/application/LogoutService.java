@@ -68,7 +68,7 @@ public final class LogoutService extends AbstractBusinessServiceImpl<LogoutReque
 		super(LogoutRequest.class);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -77,16 +77,16 @@ public final class LogoutService extends AbstractBusinessServiceImpl<LogoutReque
 	 */
 	@Override
 	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
-	public LogoutResponse processService(LogoutRequest serviceRequest) {
+	public LogoutResponse processService(final LogoutRequest serviceRequest) {
 
-		CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.USER);
 		eventRequest.setApplicationOperation(ApplicationOperationType.AUTHENTICATION);
 		eventRequest.setActionName(LogoutRequest.class.getSimpleName());
 		eventRequest.setSessionId(serviceRequest.getSessionId());
 
 
-		UserAccount userAccount = getUserAccountFromSecurityContext();
+		final UserAccount userAccount = getUserAccountFromSecurityContext();
 
 
 		eventRequest.setElementId(userAccount.getEmail());
@@ -97,9 +97,9 @@ public final class LogoutService extends AbstractBusinessServiceImpl<LogoutReque
 			eventRequest.setUserId(userAccount.getUserId());
 
 
-			Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+			final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 			authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
-			AnonymousAuthenticationToken anonymousAuthenticationToken = new AnonymousAuthenticationToken(
+			final AnonymousAuthenticationToken anonymousAuthenticationToken = new AnonymousAuthenticationToken(
 					serviceRequest.getSessionId(), "ROLE_ANONYMOUS", authorities);
 			SecurityContextHolder.getContext().setAuthentication(anonymousAuthenticationToken);
 

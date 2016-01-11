@@ -87,9 +87,9 @@ public final class UserPageVisit extends Assert {
 	 * @return the iframes html body as text
 	 */
 	public String getIframesHtmlBodyAsText() {
-		StringBuilder stringBuilder = new StringBuilder();
-		List<WebElement> ele = driver.findElements(By.tagName("iframe"));
-	    for(WebElement el : ele){
+		final StringBuilder stringBuilder = new StringBuilder();
+		final List<WebElement> ele = driver.findElements(By.tagName("iframe"));
+	    for(final WebElement el : ele){
 	    	driver.switchTo().frame(el);
 
 	    	stringBuilder.append(driver.findElement(By.tagName("body")).getText());
@@ -151,7 +151,9 @@ public final class UserPageVisit extends Assert {
 		}
 
 		final long end = System.currentTimeMillis() + WAIT_FOR_PAGE_ELEMENT;
-		while (System.currentTimeMillis() < end && !getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW));
+		while (System.currentTimeMillis() < end && !getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW)) {
+			;
+		}
 
 		assertTrue("Each page should contain a MainMenu link",getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW));
 
@@ -178,7 +180,9 @@ public final class UserPageVisit extends Assert {
 
 
 		final long end = System.currentTimeMillis() + WAIT_FOR_PAGE_ELEMENT;
-		while (System.currentTimeMillis() < end && !getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW));
+		while (System.currentTimeMillis() < end && !getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW)) {
+			;
+		}
 
 		assertTrue("Each page should contain a MainMenu link",getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW));
 
@@ -236,16 +240,14 @@ public final class UserPageVisit extends Assert {
 	 * @return the menu item
 	 */
 	private WebElement getMenuItem(final WebElement element,final int level,final String... caption) {
+		final List<WebElement> findElements = element.findElements(By.className("v-menubar-menuitem-caption"));
 		if (caption.length == level) {
-			final List<WebElement> findElements = element.findElements(By.className("v-menubar-menuitem-caption"));
 			for (final WebElement webElement : findElements) {
 				if (caption[level -1].equals(webElement.getText())) {
 					return webElement;
 				}
 			}
 		} else {
-			final List<WebElement> findElements = element.findElements(By.className("v-menubar-menuitem-caption"));
-
 			for (final WebElement webElement : findElements) {
 				if (caption[level -1].equals(webElement.getText())) {
 					return getMenuItem(webElement, level +1 ,caption);
@@ -482,7 +484,6 @@ public final class UserPageVisit extends Assert {
 	public void performAdminAgentOperation(final DataAgentTarget target,final DataAgentOperation operation) throws Exception {
 		//		Select operationSelector = new Select(driver.findElement(By.id(ViewAction.StartAgentButton.name() +"/Operation")));
 		//		Select targetSelector = new Select(driver.findElement(By.id(ViewAction.StartAgentButton.name() +"/Target")));
-		//
 		//		targetSelector.selectByValue(target.name());
 		//		operationSelector.selectByValue(operation.name());
 
@@ -557,7 +558,7 @@ public final class UserPageVisit extends Assert {
 	 * @return the action ids by
 	 */
 	public List<String> getActionIdsBy(final ViewAction action) {
-		final List<String> idList = new ArrayList<String>();
+		final List<String> idList = new ArrayList<>();
 		final String xPath = "//*[contains(@id,'" + action.name() + "')]";
 
 		for (final WebElement webElement : driver.findElements(By.xpath(xPath))) {
@@ -637,7 +638,6 @@ public final class UserPageVisit extends Assert {
 //			//action.doubleClick(clickElement);
 
 //			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", clickElement);
-//
 //			JavascriptExecutor js = (JavascriptExecutor) driver;
 //			js.executeScript("arguments[0].click();", clickElement);
 

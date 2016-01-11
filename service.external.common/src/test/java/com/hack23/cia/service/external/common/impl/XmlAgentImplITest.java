@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -32,7 +32,7 @@ public class XmlAgentImplITest extends AbstractServiceExternalCommonFunctionalIn
 	/** The xml agent. */
 	@Autowired
 	private XmlAgent xmlAgent;
-	
+
 	/**
 	 * Retrive content success test.
 	 *
@@ -41,10 +41,10 @@ public class XmlAgentImplITest extends AbstractServiceExternalCommonFunctionalIn
 	 */
 	@Test
 	public void retriveContentSuccessTest() throws Exception {
-		String retriveContent = xmlAgent.retriveContent(XmlAgentImplITest.class.getResource("/simplexml-missing-namespace.xml").toString());
+		final String retriveContent = xmlAgent.retriveContent(XmlAgentImplITest.class.getResource("/simplexml-missing-namespace.xml").toString());
 		assertEquals( "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><simpleXml><description>abc123</description></simpleXml>", retriveContent);
 	}
-	
+
 	/**
 	 * Unmarshall xml success test.
 	 *
@@ -52,13 +52,13 @@ public class XmlAgentImplITest extends AbstractServiceExternalCommonFunctionalIn
 	 *             the exception
 	 */
 	@Test
-	public void unmarshallXmlSuccessTest() throws Exception {		
-		Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
+	public void unmarshallXmlSuccessTest() throws Exception {
+		final Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
 		jaxb2Marshaller.setClassesToBeBound(SimpleXml.class);
-		SimpleXml simpleXml = (SimpleXml) xmlAgent.unmarshallXml(jaxb2Marshaller, XmlAgentImplITest.class.getResource("/simplexml.xml").toString());
+		final SimpleXml simpleXml = (SimpleXml) xmlAgent.unmarshallXml(jaxb2Marshaller, XmlAgentImplITest.class.getResource("/simplexml.xml").toString());
 		assertEquals(new SimpleXml("abc123"), simpleXml);
 	}
-	
+
 	/**
 	 * Unmarshall xml missing namespace success test.
 	 *
@@ -66,14 +66,14 @@ public class XmlAgentImplITest extends AbstractServiceExternalCommonFunctionalIn
 	 *             the exception
 	 */
 	@Test
-	public void unmarshallXmlMissingNamespaceSuccessTest() throws Exception {		
-		Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
+	public void unmarshallXmlMissingNamespaceSuccessTest() throws Exception {
+		final Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
 		jaxb2Marshaller.setClassesToBeBound(SimpleXml.class);
-		SimpleXml simpleXml = (SimpleXml) xmlAgent.unmarshallXml(jaxb2Marshaller, XmlAgentImplITest.class.getResource("/simplexml-missing-namespace.xml").toString(),"com.hack23.cia.service.external.common.impl",null,null);
+		final SimpleXml simpleXml = (SimpleXml) xmlAgent.unmarshallXml(jaxb2Marshaller, XmlAgentImplITest.class.getResource("/simplexml-missing-namespace.xml").toString(),"com.hack23.cia.service.external.common.impl",null,null);
 		assertEquals(new SimpleXml("abc123"), simpleXml);
 	}
 
-	
+
 	/**
 	 * Unmarshall xml missing namespace and replace success test.
 	 *
@@ -81,10 +81,10 @@ public class XmlAgentImplITest extends AbstractServiceExternalCommonFunctionalIn
 	 *             the exception
 	 */
 	@Test
-	public void unmarshallXmlMissingNamespaceAndReplaceSuccessTest() throws Exception {		
-		Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
+	public void unmarshallXmlMissingNamespaceAndReplaceSuccessTest() throws Exception {
+		final Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
 		jaxb2Marshaller.setClassesToBeBound(SimpleXml.class);
-		SimpleXml simpleXml = (SimpleXml) xmlAgent.unmarshallXml(jaxb2Marshaller, XmlAgentImplITest.class.getResource("/simplexml-missing-namespace.xml").toString(),"com.hack23.cia.service.external.common.impl","abc123","ABC123");
+		final SimpleXml simpleXml = (SimpleXml) xmlAgent.unmarshallXml(jaxb2Marshaller, XmlAgentImplITest.class.getResource("/simplexml-missing-namespace.xml").toString(),"com.hack23.cia.service.external.common.impl","abc123","ABC123");
 		assertEquals(new SimpleXml("ABC123"), simpleXml);
 	}
 

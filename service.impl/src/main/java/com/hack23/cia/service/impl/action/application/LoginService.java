@@ -81,33 +81,33 @@ public final class LoginService extends
 		super(LoginRequest.class);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
 	 */
 	@Override
 	@Secured({"ROLE_ANONYMOUS","ROLE_USER","ROLE_ADMIN"})
 	public LoginResponse processService(
-			LoginRequest serviceRequest) {
+			final LoginRequest serviceRequest) {
 
-		CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.USER);
 		eventRequest.setApplicationOperation(ApplicationOperationType.AUTHENTICATION);
 		eventRequest.setActionName(LoginRequest.class.getSimpleName());
 		eventRequest.setSessionId(serviceRequest.getSessionId());
 		eventRequest.setElementId(serviceRequest.getEmail());
 
-		UserAccount userExist = userDAO.findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
+		final UserAccount userExist = userDAO.findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
 
 		LoginResponse response;
 		if (userExist != null) {
 
 			if (passwordEncoder.matches(userExist.getUserId()+".uuid"+ serviceRequest.getUserpassword(), userExist.getUserpassword())) {
 
-				Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+				final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
-				if (userExist.getUserRole().equals(UserRole.ADMIN)) {
+				if (UserRole.ADMIN.equals(userExist.getUserRole())) {
 					authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-				} else if (userExist.getUserRole().equals(UserRole.USER)) {
+				} else if (UserRole.USER.equals(userExist.getUserRole())) {
 					authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 				}
 

@@ -59,7 +59,7 @@ public final class LogoutClickListener implements ClickListener {
 		this.applicationManager = applicationManager;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.vaadin.ui.Button.ClickListener#buttonClick(com.vaadin.ui.Button.ClickEvent)
 	 */
 	@Override
@@ -67,7 +67,7 @@ public final class LogoutClickListener implements ClickListener {
 		final ServiceResponse response = applicationManager.service(logoutRequest);
 
 
-		if (response.getResult().equals(ServiceResult.SUCCESS)) {
+		if (ServiceResult.SUCCESS.equals(response.getResult())) {
 			UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
 			UI.getCurrent().getSession().close();
 			VaadinService.getCurrentRequest().getWrappedSession().invalidate();

@@ -58,13 +58,13 @@ public final class RegisterUserClickListener implements ClickListener {
 		this.applicationManager = applicationManager;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.vaadin.ui.Button.ClickListener#buttonClick(com.vaadin.ui.Button.ClickEvent)
 	 */
 	@Override
 	public void buttonClick(final ClickEvent event) {
 		final ServiceResponse response = applicationManager.service(reqisterRequest);
-		if (response.getResult().equals(ServiceResult.SUCCESS)) {
+		if (ServiceResult.SUCCESS.equals(response.getResult())) {
 			LOGGER.info("RegisterUser {}",reqisterRequest.getUsername() );
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);
 		} else {

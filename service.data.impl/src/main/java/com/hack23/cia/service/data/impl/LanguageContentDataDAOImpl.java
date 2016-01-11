@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -36,7 +36,7 @@ import com.hack23.cia.service.data.api.LanguageContentDataDAO;
 /**
  * The Class LanguageContentDataDAOImpl.
  */
-@Repository(value = "LanguageContentDataDAO")
+@Repository("LanguageContentDataDAO")
 public final class LanguageContentDataDAOImpl extends
 AbstractGenericDAOImpl<LanguageContentData, Long> implements
 LanguageContentDataDAO {
@@ -52,7 +52,7 @@ LanguageContentDataDAO {
 		super(LanguageContentData.class);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.LanguageContentDataDAO#findTranslation(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
@@ -90,7 +90,7 @@ LanguageContentDataDAO {
 
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -122,7 +122,7 @@ LanguageContentDataDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */
 	@Override

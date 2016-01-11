@@ -33,7 +33,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
 /**
  * The Class RiksdagenDocumentStatusContainerWorkConsumerImpl.
  */
-@Service(value = "riksdagenDocumentStatusContainerWorkConsumerImpl")
+@Service("riksdagenDocumentStatusContainerWorkConsumerImpl")
 @Transactional
 public final class RiksdagenDocumentStatusContainerWorkConsumerImpl implements
 MessageListener {
@@ -50,7 +50,7 @@ MessageListener {
 	@Autowired
 	private RiksdagenApi riksdagenApi;
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see javax.jms.MessageListener#onMessage(javax.jms.Message)

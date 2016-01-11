@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -30,43 +30,43 @@ import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;
  */
 public class LegacyNamingStrategy implements PhysicalNamingStrategy {
 
-    /* (non-Javadoc)
+    /** (non-Javadoc)
      * @see org.hibernate.boot.model.naming.PhysicalNamingStrategy#toPhysicalCatalogName(org.hibernate.boot.model.naming.Identifier, org.hibernate.engine.jdbc.env.spi.JdbcEnvironment)
      */
     @Override
-    public Identifier toPhysicalCatalogName(Identifier identifier, JdbcEnvironment jdbcEnv) {
+    public Identifier toPhysicalCatalogName(final Identifier identifier, final JdbcEnvironment jdbcEnv) {
         return convert(identifier);
     }
 
-    /* (non-Javadoc)
+    /** (non-Javadoc)
      * @see org.hibernate.boot.model.naming.PhysicalNamingStrategy#toPhysicalColumnName(org.hibernate.boot.model.naming.Identifier, org.hibernate.engine.jdbc.env.spi.JdbcEnvironment)
      */
     @Override
-    public Identifier toPhysicalColumnName(Identifier identifier, JdbcEnvironment jdbcEnv) {
+    public Identifier toPhysicalColumnName(final Identifier identifier, final JdbcEnvironment jdbcEnv) {
         return convert(identifier);
     }
 
-    /* (non-Javadoc)
+    /** (non-Javadoc)
      * @see org.hibernate.boot.model.naming.PhysicalNamingStrategy#toPhysicalSchemaName(org.hibernate.boot.model.naming.Identifier, org.hibernate.engine.jdbc.env.spi.JdbcEnvironment)
      */
     @Override
-    public Identifier toPhysicalSchemaName(Identifier identifier, JdbcEnvironment jdbcEnv) {
+    public Identifier toPhysicalSchemaName(final Identifier identifier, final JdbcEnvironment jdbcEnv) {
         return convert(identifier);
     }
 
-    /* (non-Javadoc)
+    /** (non-Javadoc)
      * @see org.hibernate.boot.model.naming.PhysicalNamingStrategy#toPhysicalSequenceName(org.hibernate.boot.model.naming.Identifier, org.hibernate.engine.jdbc.env.spi.JdbcEnvironment)
      */
     @Override
-    public Identifier toPhysicalSequenceName(Identifier identifier, JdbcEnvironment jdbcEnv) {
+    public Identifier toPhysicalSequenceName(final Identifier identifier, final JdbcEnvironment jdbcEnv) {
         return convert(identifier);
     }
 
-    /* (non-Javadoc)
+    /** (non-Javadoc)
      * @see org.hibernate.boot.model.naming.PhysicalNamingStrategy#toPhysicalTableName(org.hibernate.boot.model.naming.Identifier, org.hibernate.engine.jdbc.env.spi.JdbcEnvironment)
      */
     @Override
-    public Identifier toPhysicalTableName(Identifier identifier, JdbcEnvironment jdbcEnv) {
+    public Identifier toPhysicalTableName(final Identifier identifier, final JdbcEnvironment jdbcEnv) {
         return convert(identifier);
     }
 
@@ -77,14 +77,14 @@ public class LegacyNamingStrategy implements PhysicalNamingStrategy {
 	 *            the identifier
 	 * @return the identifier
 	 */
-    private Identifier convert(Identifier identifier) {
+    private Identifier convert(final Identifier identifier) {
         if (identifier == null || StringUtils.isBlank(identifier.getText())) {
             return identifier;
         }
 
-        String regex = "([a-z])([A-Z])";
-        String replacement = "$1_$2";
-        String newName = identifier.getText().replaceAll(regex, replacement).toLowerCase();
+        final String regex = "([a-z])([A-Z])";
+        final String replacement = "$1_$2";
+        final String newName = identifier.getText().replaceAll(regex, replacement).toLowerCase();
         return Identifier.toIdentifier(newName);
     }
 }

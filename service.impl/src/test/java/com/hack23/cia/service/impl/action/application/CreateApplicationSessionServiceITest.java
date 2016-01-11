@@ -72,12 +72,12 @@ public class CreateApplicationSessionServiceITest extends AbstractServiceFunctio
 	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
 	@Required(max = 1000, average = 300, percentile95 = 350, throughput = 20)
 	public void serviceCreateApplicationSessionRequestSuccessTest() throws Exception {
-		Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
 		SecurityContextHolder.getContext()
 				.setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
 
-		CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
+		final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
 		serviceRequest.setIpInformation("8.8.8.8");
 		serviceRequest.setLocale("en_US.UTF-8");
 		serviceRequest.setOperatingSystem("LINUX");
@@ -85,14 +85,14 @@ public class CreateApplicationSessionServiceITest extends AbstractServiceFunctio
 		serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
 		serviceRequest.setUserAgentInformation("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0");
 
-		CreateApplicationSessionResponse response = (CreateApplicationSessionResponse) applicationManager
+		final CreateApplicationSessionResponse response = (CreateApplicationSessionResponse) applicationManager
 				.service(serviceRequest);
 		assertNotNull("Expect a result", response);
 		assertEquals(ServiceResult.SUCCESS, response.getResult());
 
-		List<ApplicationSession> findListByProperty = applicationSessionDAO.findListByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
+		final List<ApplicationSession> findListByProperty = applicationSessionDAO.findListByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
 		assertEquals(1, findListByProperty.size());
-		ApplicationSession applicationSession = findListByProperty.get(0);
+		final ApplicationSession applicationSession = findListByProperty.get(0);
 
 		assertNotNull(applicationSession);
 		assertNotNull(applicationSession.getCreatedDate());

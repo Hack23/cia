@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -35,7 +35,7 @@ import com.hack23.cia.service.data.api.ViewRiksdagenMinistryDAO;
 /**
  * The Class ViewRiksdagenMinistryDAOImpl.
  */
-@Repository(value = "ViewRiksdagenMinistryDAO")
+@Repository("ViewRiksdagenMinistryDAO")
 public final class ViewRiksdagenMinistryDAOImpl extends
 		AbstractGenericDAOImpl<ViewRiksdagenMinistry, String> implements
 		ViewRiksdagenMinistryDAO {
@@ -51,9 +51,9 @@ public final class ViewRiksdagenMinistryDAOImpl extends
 		super(ViewRiksdagenMinistry.class);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
 	 * ()
@@ -63,9 +63,9 @@ public final class ViewRiksdagenMinistryDAOImpl extends
 		return entityManager;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.hack23.cia.service.data.api.VoteDataDAO#getIdList()
 	 */
 	@Override
@@ -79,9 +79,9 @@ public final class ViewRiksdagenMinistryDAOImpl extends
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */
 	@Override

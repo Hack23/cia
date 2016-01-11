@@ -402,8 +402,8 @@
           "sudo apt-get -y install oracle-java8-unlimited-jce-policy\n",
           "sudo apt-get -y install oracle-java8-set-default\n",
 
-          "wget https://oss.sonatype.org/service/local/repositories/releases/content/com/hack23/cia/cia-dist-deb/2015.12.01/cia-dist-deb-2015.12.01.deb \n",
-          "dpkg -i --force all cia-dist-deb-2015.12.01.deb \n",
+          "wget https://oss.sonatype.org/service/local/repositories/releases/content/com/hack23/cia/cia-dist-deb/2016.1.10/cia-dist-deb-2016.1.10.deb \n",
+          "dpkg -i --force all cia-dist-deb-2016.1.10.deb \n",
 
           "# Signal completion\n",
           "cfn-signal -e $? ",

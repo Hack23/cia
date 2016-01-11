@@ -38,12 +38,12 @@ public class ViewDataManagerImpl implements ViewDataManager {
 	@Autowired
 	private DataSource dataSource;
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.ViewDataManager#refreshViews()
 	 */
 	@Override
 	public void refreshViews() {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
 
 		//Handle FP changed to L for folkpartiet name changed to liberalerna.

@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -37,7 +37,7 @@ import com.hack23.cia.service.data.api.AgencyDAO;
 /**
  * The Class ConfigurationManagerImpl.
  */
-@Service(value = "ConfigurationManager")
+@Service("ConfigurationManager")
 @Transactional
 public final class ConfigurationManagerImpl implements ConfigurationManager {
 
@@ -49,7 +49,7 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 	@Autowired
 	private AgencyDAO agencyDAO;
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.api.ConfigurationManager#getConfiguration()
@@ -60,7 +60,7 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 		return configuration;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -84,9 +84,10 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 		return new UserConfigurationImpl(agency, usePortal);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.ConfigurationManager#createDefaultConfigIfEmpty()
 	 */
+	@Override
 	@Secured({"ROLE_ADMIN" })
 	public void createDefaultConfigIfEmpty() {
 		if (agencyDAO.getAll().isEmpty()) {

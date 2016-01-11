@@ -106,7 +106,7 @@ public final class CommitteeView extends AbstractGroupView {
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -143,7 +143,7 @@ public final class CommitteeView extends AbstractGroupView {
 					panelContent.addComponent(pageLinkFactory.addCommitteePageLink(viewRiksdagenCommittee));
 
 
-					formFactory.addTextFields(panelContent, new BeanItem<ViewRiksdagenCommittee>(viewRiksdagenCommittee),
+					formFactory.addTextFields(panelContent, new BeanItem<>(viewRiksdagenCommittee),
 							ViewRiksdagenCommittee.class,
 							Arrays.asList(new String[] { "embeddedId.detail", "active", "firstAssignmentDate",
 									"lastAssignmentDate", "totalAssignments", "totalDaysServed",
@@ -158,7 +158,7 @@ public final class CommitteeView extends AbstractGroupView {
 					final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPoliticianDocument.class);
 
-					final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<ViewRiksdagenPoliticianDocument>(
+					final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<>(
 							ViewRiksdagenPoliticianDocument.class,
 							politicianDocumentDataContainer.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.org,
 									viewRiksdagenCommittee.getEmbeddedId().getOrgCode().replace(" ", "")
@@ -199,10 +199,10 @@ public final class CommitteeView extends AbstractGroupView {
 					final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
 
-					List<ViewRiksdagenCommitteeBallotDecisionSummary> decisionPartySummaryList = committeeBallotDecisionPartyDataContainer.findOrderedListByProperty(ViewRiksdagenCommitteeBallotDecisionSummary_.org, pageId.toUpperCase(Locale.ENGLISH), ViewRiksdagenCommitteeBallotDecisionSummary_.createdDate);
+					final List<ViewRiksdagenCommitteeBallotDecisionSummary> decisionPartySummaryList = committeeBallotDecisionPartyDataContainer.findOrderedListByProperty(ViewRiksdagenCommitteeBallotDecisionSummary_.org, pageId.toUpperCase(Locale.ENGLISH), ViewRiksdagenCommitteeBallotDecisionSummary_.createdDate);
 
 
-					final BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionSummary> committeeBallotDecisionPartyDataSource = new BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionSummary>(
+					final BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionSummary> committeeBallotDecisionPartyDataSource = new BeanItemContainer<>(
 							ViewRiksdagenCommitteeBallotDecisionSummary.class,
 							decisionPartySummaryList);
 
@@ -228,7 +228,7 @@ public final class CommitteeView extends AbstractGroupView {
 					final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
 
-					final BeanItemContainer<ViewRiksdagenCommitteeRoleMember> currentMembersMemberDataSource = new BeanItemContainer<ViewRiksdagenCommitteeRoleMember>(
+					final BeanItemContainer<ViewRiksdagenCommitteeRoleMember> currentMembersMemberDataSource = new BeanItemContainer<>(
 							ViewRiksdagenCommitteeRoleMember.class,
 							committeeRoleMemberDataContainer.findListByProperty(
 									new Object[] { viewRiksdagenCommittee.getEmbeddedId().getDetail(), true },
@@ -250,7 +250,7 @@ public final class CommitteeView extends AbstractGroupView {
 					final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
 
-					final BeanItemContainer<ViewRiksdagenCommitteeRoleMember> committeeRoleMemberDataSource = new BeanItemContainer<ViewRiksdagenCommitteeRoleMember>(
+					final BeanItemContainer<ViewRiksdagenCommitteeRoleMember> committeeRoleMemberDataSource = new BeanItemContainer<>(
 							ViewRiksdagenCommitteeRoleMember.class,
 							committeeRoleMemberDataContainer.getAllBy(ViewRiksdagenCommitteeRoleMember_.detail,
 									viewRiksdagenCommittee.getEmbeddedId().getDetail()));

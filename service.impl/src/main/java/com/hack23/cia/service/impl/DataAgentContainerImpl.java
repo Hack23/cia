@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,14 +29,14 @@ import com.hack23.cia.service.component.agent.api.DataAgentApi;
 /**
  * The Class DataAgentContainerImpl.
  */
-@Component(value="DataAgentContainer")
+@Component("DataAgentContainer")
 public final class DataAgentContainerImpl implements AgentContainer {
 
 	/** The data agent api. */
 	@Autowired
 	private DataAgentApi dataAgentApi;
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.api.AgentContainer#execute()
 	 */
 	@Override

@@ -86,7 +86,7 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 		createListAndForm(null);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -115,7 +115,7 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 
 		final DataContainer<ApplicationActionEvent, Long> dataContainer = applicationManager.getDataContainer(ApplicationActionEvent.class);
 
-		final BeanItemContainer<ApplicationActionEvent> politicianDocumentDataSource = new BeanItemContainer<ApplicationActionEvent>(ApplicationActionEvent.class,
+		final BeanItemContainer<ApplicationActionEvent> politicianDocumentDataSource = new BeanItemContainer<>(ApplicationActionEvent.class,
 				dataContainer.getAllOrderBy(ApplicationActionEvent_.createdDate));
 
 		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationActionEvent",
@@ -130,7 +130,7 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 
 			if ( applicationActionEvent != null) {
 
-			formFactory.addTextFields(content, new BeanItem<ApplicationActionEvent>(applicationActionEvent), ApplicationActionEvent.class,
+			formFactory.addTextFields(content, new BeanItem<>(applicationActionEvent), ApplicationActionEvent.class,
 					Arrays.asList(new String[] { "hjid","createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion"  }));
 			}
 

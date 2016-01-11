@@ -122,7 +122,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	private Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> partyMap;
 
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -142,7 +142,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDecisionType()));
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -158,7 +158,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.filter(t -> t != null).collect(Collectors.groupingBy(t -> t.getEmbeddedId().getOrg()));
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -176,7 +176,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDocumentType()));
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -195,11 +195,11 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		if (first.isPresent()) {
 			return first.get().getValue();
 		} else {
-			return new ArrayList<ViewRiksdagenVoteDataBallotPartySummaryDaily>();
+			return new ArrayList<>();
 		}
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -213,7 +213,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return partyMap;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -230,7 +230,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getOrg().toUpperCase(Locale.ENGLISH).trim()));
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -246,7 +246,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPartyShortCode()));
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -262,7 +262,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPersonId()));
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -301,7 +301,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return partyMap.get(party);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -337,7 +337,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		}
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -390,7 +390,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(createOptionsXYDateFloatLegendOutside(series)).show();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -426,7 +426,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(createOptionsXYDateFloatLegendOutside(series)).show();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -466,7 +466,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(createOptionsXYDateFloatLegendOutside(series)).show();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
@@ -517,7 +517,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(createOptionsXYDateFloatLegendOutside(series)).show();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
@@ -563,7 +563,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(createOptionsXYDateFloatLegendOutside(series)).show();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
@@ -615,7 +615,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(options).show();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
@@ -663,7 +663,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	@Autowired
 	private GenericChartDataManager<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dataChartManager;
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
@@ -735,7 +735,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(options).show();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
@@ -797,7 +797,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFormatString("%.2f")));
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
@@ -819,7 +819,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		for (final WorldBankData item : list) {
 			if (item != null && item.getYearDate() != null && item.getDataValue() != null
 					&& !item.getDataValue().isEmpty()) {
-				dataSeries.add(item.getYearDate().toString() + "-01-01", Float.valueOf(item.getDataValue()));
+				dataSeries.add(item.getYearDate() + "-01-01", Float.valueOf(item.getDataValue()));
 			}
 		}
 
@@ -835,7 +835,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(options).show();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
@@ -944,7 +944,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager#createApplicationActionEventPageDailySummaryChart()
 	 */
 	@Override
@@ -988,11 +988,11 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	 *            the page
 	 * @return the application action event page mode daily summary map
 	 */
-	private Map<String, List<ViewApplicationActionEventPageModeDailySummary>> getApplicationActionEventPageModeDailySummaryMap(String page) {
+	private Map<String, List<ViewApplicationActionEventPageModeDailySummary>> getApplicationActionEventPageModeDailySummaryMap(final String page) {
 		final DataContainer<ViewApplicationActionEventPageModeDailySummary, ApplicationActionEventPageModePeriodSummaryEmbeddedId> documentTypeSummaryDailyDataContainer = applicationManager
 				.getDataContainer(ViewApplicationActionEventPageModeDailySummary.class);
 
-		List<ViewApplicationActionEventPageModeDailySummary> findOrderedListByEmbeddedProperty = documentTypeSummaryDailyDataContainer.findOrderedListByEmbeddedProperty(ViewApplicationActionEventPageModeDailySummary.class, ViewApplicationActionEventPageModeDailySummary_.embeddedId, ApplicationActionEventPageModePeriodSummaryEmbeddedId.class, ApplicationActionEventPageModePeriodSummaryEmbeddedId_.page, page, ApplicationActionEventPageModePeriodSummaryEmbeddedId_.createdDate);
+		final List<ViewApplicationActionEventPageModeDailySummary> findOrderedListByEmbeddedProperty = documentTypeSummaryDailyDataContainer.findOrderedListByEmbeddedProperty(ViewApplicationActionEventPageModeDailySummary.class, ViewApplicationActionEventPageModeDailySummary_.embeddedId, ApplicationActionEventPageModePeriodSummaryEmbeddedId.class, ApplicationActionEventPageModePeriodSummaryEmbeddedId_.page, page, ApplicationActionEventPageModePeriodSummaryEmbeddedId_.createdDate);
 
 		return findOrderedListByEmbeddedProperty.parallelStream()
 				.filter(t -> t != null)
@@ -1002,11 +1002,11 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager#createApplicationActionEventPageModeDailySummaryChart(java.lang.String)
 	 */
 	@Override
-	public DCharts createApplicationActionEventPageModeDailySummaryChart(String page) {
+	public DCharts createApplicationActionEventPageModeDailySummaryChart(final String page) {
 
 		final Map<String, List<ViewApplicationActionEventPageModeDailySummary>> map = getApplicationActionEventPageModeDailySummaryMap(page);
 
@@ -1048,11 +1048,11 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	 *            the element id
 	 * @return the application action event page element daily summary list
 	 */
-	private List<ViewApplicationActionEventPageElementDailySummary> getApplicationActionEventPageElementDailySummaryList(String page,String elementId) {
+	private List<ViewApplicationActionEventPageElementDailySummary> getApplicationActionEventPageElementDailySummaryList(final String page,final String elementId) {
 		final DataContainer<ViewApplicationActionEventPageElementDailySummary, ApplicationActionEventPageElementPeriodSummaryEmbeddedId> documentTypeSummaryDailyDataContainer = applicationManager
 				.getDataContainer(ViewApplicationActionEventPageElementDailySummary.class);
 
-		List<ViewApplicationActionEventPageElementDailySummary> findOrderedListByEmbeddedProperty = documentTypeSummaryDailyDataContainer.findOrderedListByEmbeddedProperty(ViewApplicationActionEventPageElementDailySummary.class, ViewApplicationActionEventPageElementDailySummary_.embeddedId, ApplicationActionEventPageElementPeriodSummaryEmbeddedId.class, ApplicationActionEventPageElementPeriodSummaryEmbeddedId_.elementId, elementId, ApplicationActionEventPageElementPeriodSummaryEmbeddedId_.createdDate);
+		final List<ViewApplicationActionEventPageElementDailySummary> findOrderedListByEmbeddedProperty = documentTypeSummaryDailyDataContainer.findOrderedListByEmbeddedProperty(ViewApplicationActionEventPageElementDailySummary.class, ViewApplicationActionEventPageElementDailySummary_.embeddedId, ApplicationActionEventPageElementPeriodSummaryEmbeddedId.class, ApplicationActionEventPageElementPeriodSummaryEmbeddedId_.elementId, elementId, ApplicationActionEventPageElementPeriodSummaryEmbeddedId_.createdDate);
 
 		return findOrderedListByEmbeddedProperty.parallelStream()
 				.filter(t -> t != null && t.getEmbeddedId().getPage().equals(page))
@@ -1060,11 +1060,11 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager#createApplicationActionEventPageElementDailySummaryChart(java.lang.String, java.lang.String)
 	 */
 	@Override
-	public DCharts createApplicationActionEventPageElementDailySummaryChart(String page,String elementId) {
+	public DCharts createApplicationActionEventPageElementDailySummaryChart(final String page,final String elementId) {
 
 		final List<ViewApplicationActionEventPageElementDailySummary> list = getApplicationActionEventPageElementDailySummaryList(page,elementId);
 

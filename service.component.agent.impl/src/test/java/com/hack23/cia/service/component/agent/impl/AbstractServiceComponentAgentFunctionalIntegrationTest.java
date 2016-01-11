@@ -49,7 +49,7 @@ public abstract class AbstractServiceComponentAgentFunctionalIntegrationTest ext
 		System.setProperty("org.apache.activemq.SERIALIZABLE_PACKAGES","com.hack23.cia,java.util,java.lang,java.math,org.apache");
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest#getDatabaseConnection()
 	 */
 	@Override

@@ -43,7 +43,7 @@ public abstract class AbstractServiceExternalCommonFunctionalIntegrationTest ext
 		super();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest#

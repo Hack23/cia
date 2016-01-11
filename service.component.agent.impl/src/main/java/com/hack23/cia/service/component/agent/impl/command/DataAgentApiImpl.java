@@ -62,7 +62,7 @@ public final class DataAgentApiImpl implements DataAgentApi {
 	@Qualifier("worldbankApiAgentWorkQueue")
 	private Destination worldBankApiDestination;
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see

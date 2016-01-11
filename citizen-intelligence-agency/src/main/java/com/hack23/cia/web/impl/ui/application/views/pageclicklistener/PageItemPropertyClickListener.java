@@ -52,7 +52,7 @@ public final class PageItemPropertyClickListener extends AbstractPageItemRendere
 		this.property = property;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.

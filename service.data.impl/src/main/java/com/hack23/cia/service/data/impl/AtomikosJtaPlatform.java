@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -35,7 +35,7 @@ public final class AtomikosJtaPlatform extends AbstractJtaPlatform implements Jt
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -1L;
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see org.hibernate.engine.transaction.jta.platform.internal.AbstractJtaPlatform#locateTransactionManager()
 	 */
 	@Override
@@ -43,7 +43,7 @@ public final class AtomikosJtaPlatform extends AbstractJtaPlatform implements Jt
 		return new J2eeTransactionManager();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see org.hibernate.engine.transaction.jta.platform.internal.AbstractJtaPlatform#locateUserTransaction()
 	 */
 	@Override

@@ -83,7 +83,7 @@ implements AbstractGenericDAO<T, ID> {
 		typedQuery.setHint("org.hibernate.comment", comment);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -96,7 +96,7 @@ implements AbstractGenericDAO<T, ID> {
 
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -125,7 +125,7 @@ implements AbstractGenericDAO<T, ID> {
 		}
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -149,7 +149,7 @@ implements AbstractGenericDAO<T, ID> {
 
 
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#findListByProperty(java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
 	 */
 	@Override
@@ -185,7 +185,7 @@ implements AbstractGenericDAO<T, ID> {
 		return typedQuery.getResultList();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getAll()
@@ -260,7 +260,7 @@ implements AbstractGenericDAO<T, ID> {
 		this.metamodel = getEntityManager().getMetamodel();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -272,7 +272,7 @@ implements AbstractGenericDAO<T, ID> {
 		return LoadHelper.recursiveInitliaze(getEntityManager().find(getPersistentClass(), id));
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -284,7 +284,7 @@ implements AbstractGenericDAO<T, ID> {
 		return getEntityManager().merge(entity);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -298,7 +298,7 @@ implements AbstractGenericDAO<T, ID> {
 		}
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#persist(java.io.

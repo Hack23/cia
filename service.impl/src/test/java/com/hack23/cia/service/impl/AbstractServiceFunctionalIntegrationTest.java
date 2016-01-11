@@ -50,7 +50,7 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 		System.setProperty("org.apache.activemq.SERIALIZABLE_PACKAGES","com.hack23.cia,java.util,java.lang,java.math,org.apache");
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest#getDatabaseConnection()
 	 */
 	@Override

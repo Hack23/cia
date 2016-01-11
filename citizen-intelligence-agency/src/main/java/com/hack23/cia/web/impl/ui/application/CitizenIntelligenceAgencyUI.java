@@ -147,22 +147,23 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 	 */
 	private String getOperatingSystem(final WebBrowser webBrowser) {
 		String osName = "unknown";
-	       if (webBrowser.isLinux())
-	           osName = "Linux";
-	       else if (webBrowser.isWindows())
-	           osName = "Windows";
-	       else if (webBrowser.isWindowsPhone())
-	           osName = "WindowsPhone";
-	       else if (webBrowser.isMacOSX())
-	           osName = "MacOSX";
-	       else if (webBrowser.isAndroid())
-	    	   osName = "Android";
-	       else if (webBrowser.isIOS())
-	    	   osName = "IOS";
-	       else if (webBrowser.isIPad())
-	    	   osName = "IPad";
-	       else if (webBrowser.isIPhone())
-	    	   osName = "IPhone";
+	       if (webBrowser.isLinux()) {
+			osName = "Linux";
+		} else if (webBrowser.isWindows()) {
+			osName = "Windows";
+		} else if (webBrowser.isWindowsPhone()) {
+			osName = "WindowsPhone";
+		} else if (webBrowser.isMacOSX()) {
+			osName = "MacOSX";
+		} else if (webBrowser.isAndroid()) {
+			osName = "Android";
+		} else if (webBrowser.isIOS()) {
+			osName = "IOS";
+		} else if (webBrowser.isIPad()) {
+			osName = "IPad";
+		} else if (webBrowser.isIPhone()) {
+			osName = "IPhone";
+		}
 		return osName;
 	}
 

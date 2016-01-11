@@ -52,7 +52,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 /**
  * The Class ApplicationManagerImpl.
  */
-@Service(value = "ApplicationManager")
+@Service("ApplicationManager")
 public final class ApplicationManagerImpl implements ApplicationManager, ApplicationContextAware{
 
 	/** The authentication manager. */
@@ -100,7 +100,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	}
 
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -120,7 +120,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 		return returned;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -133,7 +133,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 		return dataAgentContainer;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -160,7 +160,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 		return result;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.api.ApplicationManager#logout()
@@ -171,7 +171,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 		SecurityContextHolder.getContext().setAuthentication(null);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -210,7 +210,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 			serviceResponse = businessService.processService(serviceRequest);
 		}
 
-		return new AsyncResult<ServiceResponse>(serviceResponse);
+		return new AsyncResult<>(serviceResponse);
 	}
 
 
@@ -232,7 +232,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 		}
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see org.springframework.context.ApplicationContextAware#setApplicationContext(org.springframework.context.ApplicationContext)
 	 */
 	@Override

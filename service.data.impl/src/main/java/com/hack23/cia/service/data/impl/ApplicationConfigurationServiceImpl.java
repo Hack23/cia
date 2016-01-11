@@ -44,18 +44,18 @@ public class ApplicationConfigurationServiceImpl implements ApplicationConfigura
 	@Autowired
 	private ApplicationConfigurationDAO applicationConfigurationDAO;
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.ApplicationConfigurationService#checkValueOrLoadDefault(java.lang.String, java.lang.String, com.hack23.cia.model.internal.application.system.impl.ConfigurationGroup, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public ApplicationConfiguration checkValueOrLoadDefault(String configTitle, String configDescription,
-			ConfigurationGroup configurationGroup, String component, String componentTitle, String componentDescription,
-			String propertyId, String propertyValue) {
+	public ApplicationConfiguration checkValueOrLoadDefault(final String configTitle, final String configDescription,
+			final ConfigurationGroup configurationGroup, final String component, final String componentTitle, final String componentDescription,
+			final String propertyId, final String propertyValue) {
 
-		List<ApplicationConfiguration> findListByProperty = applicationConfigurationDAO.findListByProperty(new Object[]{component,configurationGroup,propertyId}, ApplicationConfiguration_.component,ApplicationConfiguration_.configurationGroup,ApplicationConfiguration_.propertyId);
+		final List<ApplicationConfiguration> findListByProperty = applicationConfigurationDAO.findListByProperty(new Object[]{component,configurationGroup,propertyId}, ApplicationConfiguration_.component,ApplicationConfiguration_.configurationGroup,ApplicationConfiguration_.propertyId);
 
 		if (findListByProperty.isEmpty()) {
-			ApplicationConfiguration applicationConfiguration = new ApplicationConfiguration();
+			final ApplicationConfiguration applicationConfiguration = new ApplicationConfiguration();
 			applicationConfiguration.setCreatedDate(new Date());
 			applicationConfiguration.setUpdatedDate(new Date());
 

@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -35,7 +35,7 @@ import com.hack23.cia.service.data.impl.util.LoadHelper;
 /**
  * The Class PersonDataDAOImpl.
  */
-@Repository(value="PersonDataDAO")
+@Repository("PersonDataDAO")
 public final class PersonDataDAOImpl extends AbstractGenericDAOImpl<PersonData, String> implements PersonDataDAO {
 
 	/** The entity manager. */
@@ -49,7 +49,7 @@ public final class PersonDataDAOImpl extends AbstractGenericDAOImpl<PersonData, 
 		super(PersonData.class);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager()
 	 */
 	@Override
@@ -57,7 +57,7 @@ public final class PersonDataDAOImpl extends AbstractGenericDAOImpl<PersonData, 
 		return entityManager;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.PersonDataDAO#getIdList()
 	 */
 	@Override
@@ -68,7 +68,7 @@ public final class PersonDataDAOImpl extends AbstractGenericDAOImpl<PersonData, 
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */
 	@Override
@@ -76,7 +76,7 @@ public final class PersonDataDAOImpl extends AbstractGenericDAOImpl<PersonData, 
 		return (long) getIdList().size();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.impl.AbstractGenericDAOImpl#load(java.io.Serializable)
 	 */
 	@Override

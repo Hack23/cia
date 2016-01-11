@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -38,7 +38,7 @@ import com.hack23.cia.service.data.api.DataDAO;
 /**
  * The Class DataDAOImpl.
  */
-@Repository(value="DataDAOImpl")
+@Repository("DataDAOImpl")
 public final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Long> implements DataDAO {
 
 	/** The entity manager. */
@@ -51,7 +51,7 @@ public final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Lon
 	public DataDAOImpl() {
 		super(WorldBankData.class);
 	}
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -63,7 +63,7 @@ public final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Lon
 		return entityManager;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.DataDAO#getIdList()
 	 */
 	@Override
@@ -75,7 +75,7 @@ public final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Lon
 		criteria.select(getCriteriaBuilder().array(countryPath, indicatorPath));
 		criteria.distinct(true);
 		final List<Object[]> valueArray = getEntityManager().createQuery(criteria).getResultList();
-		final List<String> resultList= new ArrayList<String>();
+		final List<String> resultList= new ArrayList<>();
 
 		for (final Object[]  objects : valueArray) {
 			resultList.add(((Country)  objects[0]).getId() + "." + ((Indicator)  objects[1]).getId());
@@ -83,7 +83,7 @@ public final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Lon
 		return resultList;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */
 	@Override

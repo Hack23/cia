@@ -34,7 +34,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
 /**
  * The Class RiksdagenVoteDataWorkConsumerImpl.
  */
-@Service(value = "riksdagenVoteDataWorkConsumerImpl")
+@Service("riksdagenVoteDataWorkConsumerImpl")
 @Transactional
 public final class RiksdagenVoteDataWorkConsumerImpl implements
 MessageListener {
@@ -51,7 +51,7 @@ MessageListener {
 	@Autowired
 	private RiksdagenApi riksdagenApi;
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see javax.jms.MessageListener#onMessage(javax.jms.Message)

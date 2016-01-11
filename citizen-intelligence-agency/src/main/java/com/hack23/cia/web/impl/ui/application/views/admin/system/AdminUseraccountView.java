@@ -81,7 +81,7 @@ public final class AdminUseraccountView extends AbstractAdminView {
 		createListAndForm(null);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -110,7 +110,7 @@ public final class AdminUseraccountView extends AbstractAdminView {
 
 		final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
 
-		final BeanItemContainer<UserAccount> politicianDocumentDataSource = new BeanItemContainer<UserAccount>(UserAccount.class,
+		final BeanItemContainer<UserAccount> politicianDocumentDataSource = new BeanItemContainer<>(UserAccount.class,
 				dataContainer.getAll());
 
 		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "UserAccount",
@@ -123,7 +123,7 @@ public final class AdminUseraccountView extends AbstractAdminView {
 			final UserAccount userAccount = dataContainer.load(Long.valueOf(pageId));
 
 			if (userAccount != null) {
-			formFactory.addTextFields(content, new BeanItem<UserAccount>(userAccount), UserAccount.class,
+			formFactory.addTextFields(content, new BeanItem<>(userAccount), UserAccount.class,
 					Arrays.asList(new String[] { "hjid","modelObjectId","modelObjectVersion","userId","username","createdDate","userpassword","email","country","numberOfVisits" }));
 			}
 		}

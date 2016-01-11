@@ -92,7 +92,7 @@ public final class PartyRankingView extends AbstractRankingView {
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createMenuBar()
 	 */
 	@Override
@@ -103,7 +103,7 @@ public final class PartyRankingView extends AbstractRankingView {
 
 
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createDescription()
 	 */
 	@Override
@@ -127,7 +127,7 @@ public final class PartyRankingView extends AbstractRankingView {
 
 
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createExtraChartLayout()
 	 */
 	@Override
@@ -149,7 +149,7 @@ public final class PartyRankingView extends AbstractRankingView {
 		return chartLayout;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createTable()
 	 */
 	@Override
@@ -157,7 +157,7 @@ public final class PartyRankingView extends AbstractRankingView {
 			final DataContainer<ViewRiksdagenPartySummary, String> dataContainer = applicationManager
 					.getDataContainer(ViewRiksdagenPartySummary.class);
 
-			final BeanItemContainer<ViewRiksdagenPartySummary> politicianDocumentDataSource = new BeanItemContainer<ViewRiksdagenPartySummary>(
+			final BeanItemContainer<ViewRiksdagenPartySummary> politicianDocumentDataSource = new BeanItemContainer<>(
 					ViewRiksdagenPartySummary.class, dataContainer.getAllOrderBy(ViewRiksdagenPartySummary_.currentAssignments));
 
 			return gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Parties",
@@ -169,7 +169,7 @@ public final class PartyRankingView extends AbstractRankingView {
 					null, "party", new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "party"), null);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
 	 */
 	@Override
@@ -177,7 +177,7 @@ public final class PartyRankingView extends AbstractRankingView {
 		return dataSeriesFactory.createPartyChartTimeSeriesAll();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
 	 */
 	@Override
@@ -186,7 +186,7 @@ public final class PartyRankingView extends AbstractRankingView {
 	}
 
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getName()
 	 */
 	@Override
@@ -194,7 +194,7 @@ public final class PartyRankingView extends AbstractRankingView {
 		return NAME;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getViewAction()
 	 */
 	@Override

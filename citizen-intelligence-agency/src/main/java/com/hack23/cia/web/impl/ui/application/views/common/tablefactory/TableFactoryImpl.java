@@ -37,7 +37,7 @@ public final class TableFactoryImpl implements TableFactory {
 	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.tablefactory.

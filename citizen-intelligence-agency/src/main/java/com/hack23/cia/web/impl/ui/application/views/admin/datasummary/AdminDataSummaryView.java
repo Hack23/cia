@@ -85,7 +85,7 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 		refreshViewsButton.addClickListener(event -> {
 
 
-			RefreshDataViewsRequest serviceRequest = new RefreshDataViewsRequest();
+			final RefreshDataViewsRequest serviceRequest = new RefreshDataViewsRequest();
 			serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 
 			applicationManager.asyncService(serviceRequest);
@@ -100,7 +100,7 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener.ViewChangeEvent)
 	 */
 	@Override

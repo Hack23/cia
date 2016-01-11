@@ -38,7 +38,7 @@ import com.hack23.cia.service.data.api.IndicatorElementDAO;
 /**
  * The Class WorldbankImportServiceImpl.
  */
-@Component(value = "WorldbankImportService")
+@Component("WorldbankImportService")
 @Transactional(propagation = Propagation.MANDATORY)
 public final class WorldbankImportServiceImpl implements WorldbankImportService {
 
@@ -62,7 +62,7 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 	 * @return the map
 	 */
 	private static Map<String, String> createMapFromList(final List<String> all) {
-		final Map<String, String> map = new ConcurrentHashMap<String, String>();
+		final Map<String, String> map = new ConcurrentHashMap<>();
 
 		for (final String documentElement : all) {
 			map.put(documentElement, documentElement);
@@ -70,7 +70,7 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 		return map;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.component.agent.impl.worldbank.WorldbankImportService#getAllIndicators()
 	 */
 	@Override
@@ -78,7 +78,7 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 		return indicatorElementDAO.getAll();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
@@ -86,14 +86,14 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 	 */
 	@Override
 	public Map<String, String> getWorldBankCountryMap() {
-		final List<String> list = new ArrayList<String>();
+		final List<String> list = new ArrayList<>();
 		for (final CountryElement countryElement : countryElementDAO.getAll()) {
 			list.add(countryElement.getIso2Code());
 		}
 		return createMapFromList(list);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
@@ -104,7 +104,7 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 		return createMapFromList(dataDAO.getIdList());
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
@@ -112,14 +112,14 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 	 */
 	@Override
 	public Map<String, String> getWorldBankIndicatorElementMap() {
-		final List<String> list = new ArrayList<String>();
+		final List<String> list = new ArrayList<>();
 		for (final IndicatorElement element : indicatorElementDAO.getAll()) {
 			list.add(element.getId());
 		}
 		return createMapFromList(list);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
@@ -131,7 +131,7 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 		countryElementDAO.persist(country);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -143,7 +143,7 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 		dataDAO.persist(data);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#

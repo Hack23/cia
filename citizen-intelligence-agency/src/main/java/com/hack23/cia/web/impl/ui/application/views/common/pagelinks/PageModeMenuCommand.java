@@ -78,7 +78,7 @@ public final class PageModeMenuCommand implements Command {
 	public PageModeMenuCommand(final String page, final PageMode pageMode,final String part) {
 		super();
 		this.page = page;
-		pageReference = pageMode.toString() + "/" + part;
+		pageReference = pageMode + "/" + part;
 	}
 
 
@@ -111,7 +111,7 @@ public final class PageModeMenuCommand implements Command {
 		}
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.vaadin.ui.MenuBar.Command#menuSelected(com.vaadin.ui.MenuBar.MenuItem)
 	 */
 	@Override

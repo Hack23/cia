@@ -104,7 +104,7 @@ public final class UserHomeView extends AbstractUserView {
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -145,7 +145,7 @@ public final class UserHomeView extends AbstractUserView {
 
 					final UserAccount userAccount = dataContainer.load(getUserIdFromSecurityContext());
 
-					formFactory.addTextFields(panelContent, new BeanItem<UserAccount>(userAccount), UserAccount.class,
+					formFactory.addTextFields(panelContent, new BeanItem<>(userAccount), UserAccount.class,
 							Arrays.asList(new String[] { "username","createdDate","email","country","numberOfVisits" }));
 
 
@@ -153,7 +153,7 @@ public final class UserHomeView extends AbstractUserView {
 					final DataContainer<ApplicationActionEvent, Long> eventDataContainer = applicationManager.getDataContainer(ApplicationActionEvent.class);
 
 
-					final BeanItemContainer<ApplicationActionEvent> politicianDocumentDataSource = new BeanItemContainer<ApplicationActionEvent>(ApplicationActionEvent.class,
+					final BeanItemContainer<ApplicationActionEvent> politicianDocumentDataSource = new BeanItemContainer<>(ApplicationActionEvent.class,
 							eventDataContainer.findOrderedListByProperty(ApplicationActionEvent_.userId,userAccount.getUserId(),ApplicationActionEvent_.createdDate));
 
 					panelContent.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationActionEvent",

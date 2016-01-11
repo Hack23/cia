@@ -49,7 +49,7 @@ public class ApplicationConfigurationServiceITest extends AbstractServiceDataFun
 	@Test
 	public void checkValueOrLoadDefaultNoPropertyExistTest() throws Exception {
 
-		ApplicationConfiguration checkValueOrLoadDefault = applicationConfigurationService.checkValueOrLoadDefault(
+		final ApplicationConfiguration checkValueOrLoadDefault = applicationConfigurationService.checkValueOrLoadDefault(
 				"checkValueOrLoadDefaultNoPropertyExistTest property",
 				"checkValueOrLoadDefaultNoPropertyExistTest should be set to true/false",
 				ConfigurationGroup.AUTHORIZATION, ApplicationConfigurationServiceITest.class.getSimpleName(),
@@ -69,14 +69,14 @@ public class ApplicationConfigurationServiceITest extends AbstractServiceDataFun
 	@Test
 	public void checkValueOrLoadDefaultPropertyAlreadyExistSameValueTest() throws Exception {
 
-		ApplicationConfiguration checkValueOrLoadDefault = applicationConfigurationService.checkValueOrLoadDefault(
+		final ApplicationConfiguration checkValueOrLoadDefault = applicationConfigurationService.checkValueOrLoadDefault(
 				"checkValueOrLoadDefaultPropertyAlreadyExistSameValueTest property",
 				"checkValueOrLoadDefaultPropertyAlreadyExistSameValueTest should be set to true/false",
 				ConfigurationGroup.AUTHORIZATION, ApplicationConfigurationServiceITest.class.getSimpleName(),
 				"ApplicationConfigurationService ITest", "FunctionalIntegrationTest",
 				"checkValueOrLoadDefaultPropertyAlreadyExistSameValueTest", "true");
 
-		ApplicationConfiguration checkValueOrLoadDefault2 = applicationConfigurationService.checkValueOrLoadDefault(
+		final ApplicationConfiguration checkValueOrLoadDefault2 = applicationConfigurationService.checkValueOrLoadDefault(
 				"checkValueOrLoadDefaultPropertyAlreadyExistSameValueTest property",
 				"checkValueOrLoadDefaultPropertyAlreadyExistSameValueTest should be set to true/false",
 				ConfigurationGroup.AUTHORIZATION, ApplicationConfigurationServiceITest.class.getSimpleName(),

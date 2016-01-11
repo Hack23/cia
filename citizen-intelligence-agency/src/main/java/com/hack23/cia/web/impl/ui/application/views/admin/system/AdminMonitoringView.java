@@ -65,7 +65,7 @@ public final class AdminMonitoringView extends AbstractAdminView {
 		createContent();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see

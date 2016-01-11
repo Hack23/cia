@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -47,11 +47,11 @@ public class UnmarshallXmlTest extends AbstractUnmarshallXmlTest<String> {
 		File temp;
 		temp = File.createTempFile("UnmarshallXmlTestTempFile", ".xml");
 
-		BufferedWriter bw = new BufferedWriter(new FileWriter(temp));
+		final BufferedWriter bw = new BufferedWriter(new FileWriter(temp));
 		bw.write(xmlContent);
 		bw.close();
 
-		XStream xstream = new XStream();
+		final XStream xstream = new XStream();
 		xstream.alias("TestXml", TestXml.class);
 
 		assertEquals(content, unmarshallXml(new XStreamMarshaller(), temp.getPath()));

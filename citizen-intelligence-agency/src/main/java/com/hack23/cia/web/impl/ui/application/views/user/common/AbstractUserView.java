@@ -125,7 +125,7 @@ public abstract class AbstractUserView extends VerticalLayout implements View {
 		final long years = totalDays / DAYS_PER_STANDARD_YEAR;
 		final long days = totalDays - years * DAYS_PER_STANDARD_YEAR;
 
-		return Long.toString(years) + " Years " + Long.toString(days) + " days";
+		return years + " Years " + days + " days";
 	}
 
 }

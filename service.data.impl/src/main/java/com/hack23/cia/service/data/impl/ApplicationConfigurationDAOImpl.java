@@ -29,7 +29,7 @@ import com.hack23.cia.service.data.api.ApplicationConfigurationDAO;
 /**
  * The Class ApplicationConfigurationDAOImpl.
  */
-@Repository(value="ApplicationConfigurationDAOImpl")
+@Repository("ApplicationConfigurationDAOImpl")
 public final class ApplicationConfigurationDAOImpl extends AbstractGenericDAOImpl<ApplicationConfiguration, Long> implements ApplicationConfigurationDAO {
 
 	/** The entity manager. */
@@ -42,7 +42,7 @@ public final class ApplicationConfigurationDAOImpl extends AbstractGenericDAOImp
 	public ApplicationConfigurationDAOImpl() {
 		super(ApplicationConfiguration.class);
 	}
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -54,7 +54,7 @@ public final class ApplicationConfigurationDAOImpl extends AbstractGenericDAOImp
 		return entityManager;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */
 	@Override

@@ -43,7 +43,7 @@ public abstract class AbstractUnmarshallXmlTest<T> extends AbstractFunctionalInt
 		super();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest#getDatabaseConnection()
 	 */
 	@Override

@@ -61,7 +61,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	/** The Constant MAIN_VIEW_LINK_TEXT. */
 	private static final String MAIN_VIEW_LINK_TEXT = "Main View";
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createMainViewPageLink()
 	 */
 	@Override
@@ -72,7 +72,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createTestChartViewPageLink()
 	 */
 	@Override
@@ -83,7 +83,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createMinistryRankingViewPageLink()
 	 */
 	@Override
@@ -94,7 +94,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createCommitteeRankingViewPageLink()
 	 */
 	@Override
@@ -105,7 +105,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createPartyRankingViewPageLink()
 	 */
 	@Override
@@ -116,7 +116,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createPoliticianRankingViewPageLink()
 	 */
 	@Override
@@ -127,7 +127,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createAdminDataSummaryViewPageLink()
 	 */
 	@Override
@@ -139,7 +139,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createAdminAgentOperationViewPageLink()
 	 */
 	@Override
@@ -150,7 +150,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#addCommitteePageLink(com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee)
 	 */
 	@Override
@@ -163,7 +163,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#addMinistryPageLink(com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry)
 	 */
 	@Override
@@ -176,7 +176,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#addPartyPageLink(com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty)
 	 */
 	@Override
@@ -190,7 +190,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	}
 
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createPoliticianPageLink(com.hack23.cia.model.external.riksdagen.person.impl.PersonData)
 	 */
 	@Override

@@ -314,7 +314,7 @@ RiksdagenApi {
 	 *             the parse exception
 	 */
 	private static Date checkSameDate(final List<VoteDataDto> voteList) throws ParseException {
-		final Set<String> set = new HashSet<String>();
+		final Set<String> set = new HashSet<>();
 		Date result=null;
 
 		for (final VoteDataDto voteData : voteList) {
@@ -331,7 +331,7 @@ RiksdagenApi {
 		return result;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -353,7 +353,7 @@ RiksdagenApi {
 
 			final Date ballotDate=tryToFindValidVoteDate(ballotContainer, voteDataList);
 
-			final List<VoteData> result = new ArrayList<VoteData>();
+			final List<VoteData> result = new ArrayList<>();
 			for (final VoteDataDto voteDataDto: voteDataList) {
 				final VoteData voteData= new VoteData().withEmbeddedId(new VoteDataEmbeddedId().withBallotId(voteDataDto.getBallotId()).withIntressentId(voteDataDto.getIntressentId()).withIssue(voteDataDto.getIssue()).withConcern(voteDataDto.getConcern()));
 
@@ -380,7 +380,7 @@ RiksdagenApi {
 
 			return result;
 
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			LOGGER.warn(PROBLEM_GETTING_BALLOT_ID_S_FROM_DATA_RIKSDAGEN_SE,id);
 			throw new DataFailureException(e);
 		}
@@ -389,7 +389,7 @@ RiksdagenApi {
 
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenApi#getBallotList()
 	 */
 	@Override
@@ -400,7 +400,7 @@ RiksdagenApi {
 			return ((JAXBElement<VoteListContainerElement>) xmlAgent.unmarshallXml(riksdagenBallotListMarshaller, url,
 							HTTP_VOTERINGLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL,null,null))
 							.getValue().getVotering();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			LOGGER.warn(PROBLEM_GETTING_BALLOT_LIST_FROM_DATA_RIKSDAGEN_SE);
 			throw new DataFailureException(e);
 		}
@@ -408,7 +408,7 @@ RiksdagenApi {
 
 
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -423,14 +423,14 @@ RiksdagenApi {
 			return ((JAXBElement<CommitteeProposalComponentData>) xmlAgent.unmarshallXml(riksdagenCommitteeProposalMarshaller, url,
 							HTTP_UTSKOTTSFORSLAG_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL,null,null))
 							.getValue();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			LOGGER.warn(PROBLEM_GETTING_COMMITTEE_PROPOSAL_FOR_ID_S_FROM_DATA_RIKSDAGEN_SE,id);
 			throw new DataFailureException(e);
 		}
 	}
 
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenApi#getDocumentContent(java.lang.String)
 	 */
 	@Override
@@ -444,13 +444,13 @@ RiksdagenApi {
 			content = xmlAgent.retriveContent(url);
 			documentContentData.setContent(content);
 			return documentContentData;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_CONTENT_FOR_ID_S_FROM_DATA_RIKSDAGEN_SE,id);
 			throw new DataFailureException(e);
 		}
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -464,13 +464,13 @@ RiksdagenApi {
 			return loadDocumentList(
 					DOCUMENT_LIST_TYPE.replace(TYPE_KEY, documentType.value()),
 					maxNumberPages);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_LIST_FOR_DOCUMENT_TYPE_S_MAX_NUMBER_PAGES_S_FROM_DATA_RIKSDAGEN_SE,documentType.toString(), Integer.toString(maxNumberPages));
 			throw new DataFailureException(e);
 		}
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -484,14 +484,14 @@ RiksdagenApi {
 			return loadDocumentList(
 					DOCUMENT_LIST_YEAR.replace(YEAR_KEY, year.toString()),
 					maxNumberPages);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_LIST_FOR_YEAR_S_FROM_DATA_RIKSDAGEN_SE,year.toString());
 			throw new DataFailureException(e);
 		}
 	}
 
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -504,14 +504,14 @@ RiksdagenApi {
 			try {
 				return loadDocumentList(DOCUMENT_LIST_CHANGED_DATE.replace(
 						CHANGED_SINCE_KEY, changedSinceDate).replace(CHANGED_TO_KEY, changedToDate), maxNumberPages);
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				LOGGER.warn(PROBLEM_GETTING_DOCUMENT_LIST_CHANGED_SINCE_DATE_S_CHANGED_TO_DATE_S_FROM_DATA_RIKSDAGEN_SE,changedSinceDate, changedToDate);
 				throw new DataFailureException(e);
 			}
 	}
 
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -526,14 +526,14 @@ RiksdagenApi {
 			return ((JAXBElement<DocumentStatusContainer>) xmlAgent.unmarshallXml(riksdagenDocumentStatusMarshaller, url,
 							HTTP_DOKUMENTSTATUS_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL,null,null))
 							.getValue();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_STATUS_ID_S_FROM_DATA_RIKSDAGEN_SE,id);
 			throw new DataFailureException(e);
 		}
 	}
 
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -547,13 +547,13 @@ RiksdagenApi {
 			return ((JAXBElement<com.hack23.cia.model.external.riksdagen.person.impl.PersonContainerData>) xmlAgent.unmarshallXml(personUnmarshaller, url,
 							HTTP_PERSON_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL,null,null))
 							.getValue().getPerson();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			LOGGER.warn(PROBLEM_GETTING_PERSON_DATA_ID_S_FROM_DATA_RIKSDAGEN_SE,id);
 			throw new DataFailureException(e);
 		}
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -567,7 +567,7 @@ RiksdagenApi {
 					.unmarshallXml(personListUnmarshaller, PERSON_LIST,
 							HTTP_PERSONLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL,null,null))
 							.getValue();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			LOGGER.warn(PROBLEM_GETTING_PERSON_LIST_FROM_DATA_RIKSDAGEN_SE);
 			throw new DataFailureException(e);
 		}
@@ -619,7 +619,7 @@ RiksdagenApi {
 	 */
 	private List<DocumentElement> loadDocumentList(final String url,
 			final int maxNumberPages) throws Exception {
-		final List<DocumentElement> result = new ArrayList<DocumentElement>();
+		final List<DocumentElement> result = new ArrayList<>();
 
 		DocumentContainerElement dokumentLista = ((JAXBElement<DocumentContainerElement>) xmlAgent
 				.unmarshallXml(riksdagenDocumentListMarshaller, url,
@@ -661,7 +661,7 @@ RiksdagenApi {
 	}
 
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenApi#processDocumentList(java.lang.String, com.hack23.cia.service.external.common.api.ProcessDataStrategy)
 	 */
 	@Override
@@ -670,7 +670,7 @@ RiksdagenApi {
 		try {
 			loadAndProcessDocumentList(DOCUMENT_LIST_CHANGED_DATE.replace(
 					CHANGED_SINCE_KEY, changedSinceDate).replace(CHANGED_TO_KEY, changedToDate), processStrategy);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			LOGGER.warn(PROBLEM_PROCCESSING_DOCUMENT_BETWEEN_CHANGED_SINCE_DATE_S_AND_CHANGE_TO_DATE,changedSinceDate,changedToDate);
 			throw new DataFailureException(e);
 		}
@@ -693,10 +693,10 @@ RiksdagenApi {
 		Date ballotDate;
 		final Date sameDate = checkSameDate(voteDataList);
 
-		if (sameDate == null) {
-			ballotDate = bestGuessVoteDate(ballotContainer);
-		} else {
+		if (sameDate != null) {
 			ballotDate = sameDate;
+		} else {
+			ballotDate = bestGuessVoteDate(ballotContainer);
 		}
 		return ballotDate;
 	}

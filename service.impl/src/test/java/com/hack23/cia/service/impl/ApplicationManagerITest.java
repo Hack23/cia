@@ -73,7 +73,7 @@ public class ApplicationManagerITest extends AbstractServiceFunctionalIntegratio
 	 */
 	@Test
 	public void getDataContainerSuccessTest() throws Exception {
-		Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
 		SecurityContextHolder.getContext()
 				.setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
@@ -94,10 +94,10 @@ public class ApplicationManagerITest extends AbstractServiceFunctionalIntegratio
 	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
 	@Required(max = 1000, average = 300, percentile95 = 350, throughput = 20)
 	public void serviceRegisterUserRequestSuccessTest() throws Exception {
-		CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstion();
+		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstion();
 
 
-		RegisterUserRequest serviceRequest = new RegisterUserRequest();
+		final RegisterUserRequest serviceRequest = new RegisterUserRequest();
 		serviceRequest.setCountry("Sweden");
 		serviceRequest.setUsername(UUID.randomUUID().toString());
 		serviceRequest.setEmail(serviceRequest.getUsername() + "@email.com");
@@ -105,12 +105,12 @@ public class ApplicationManagerITest extends AbstractServiceFunctionalIntegratio
 		serviceRequest.setUserType(UserType.PRIVATE);
 		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
 
-		RegisterUserResponse response = (RegisterUserResponse) applicationManager.service(serviceRequest);
+		final RegisterUserResponse response = (RegisterUserResponse) applicationManager.service(serviceRequest);
 		assertNotNull("Expect a result", response);
 		assertEquals(ServiceResult.SUCCESS, response.getResult());
 
 		final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
-		List<UserAccount> allBy = dataContainer.getAllBy(UserAccount_.username, serviceRequest.getUsername());
+		final List<UserAccount> allBy = dataContainer.getAllBy(UserAccount_.username, serviceRequest.getUsername());
 		assertEquals(1, allBy.size());
 	}
 
@@ -125,10 +125,10 @@ public class ApplicationManagerITest extends AbstractServiceFunctionalIntegratio
 	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
 	@Required(max = 1500, average = 500, percentile95 = 750, throughput = 5)
 	public void serviceLoginRequestSuccessTest() throws Exception {
-		CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstion();
+		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstion();
 
 
-		RegisterUserRequest serviceRequest = new RegisterUserRequest();
+		final RegisterUserRequest serviceRequest = new RegisterUserRequest();
 		serviceRequest.setCountry("Sweden");
 		serviceRequest.setUsername(UUID.randomUUID().toString());
 		serviceRequest.setEmail(serviceRequest.getUsername() + "@email.com");
@@ -136,22 +136,22 @@ public class ApplicationManagerITest extends AbstractServiceFunctionalIntegratio
 		serviceRequest.setUserType(UserType.PRIVATE);
 		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
 
-		RegisterUserResponse response = (RegisterUserResponse) applicationManager.service(serviceRequest);
+		final RegisterUserResponse response = (RegisterUserResponse) applicationManager.service(serviceRequest);
 		assertNotNull("Expect a result", response);
 		assertEquals(ServiceResult.SUCCESS, response.getResult());
 
 		final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
-		List<UserAccount> allBy = dataContainer.getAllBy(UserAccount_.username, serviceRequest.getUsername());
+		final List<UserAccount> allBy = dataContainer.getAllBy(UserAccount_.username, serviceRequest.getUsername());
 		assertEquals(1, allBy.size());
 
 
 
-		LoginRequest loginRequest = new LoginRequest();
+		final LoginRequest loginRequest = new LoginRequest();
 		loginRequest.setEmail(serviceRequest.getEmail());
 		loginRequest.setSessionId(serviceRequest.getSessionId());
 		loginRequest.setUserpassword(serviceRequest.getUserpassword());
 
-		LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
+		final LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
 
 		assertNotNull("Expect a result", loginResponse);
 		assertEquals(ServiceResult.SUCCESS, loginResponse.getResult());
@@ -167,12 +167,12 @@ public class ApplicationManagerITest extends AbstractServiceFunctionalIntegratio
 	 */
 	private CreateApplicationSessionRequest createApplicationSesstion() {
 
-		Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
 		SecurityContextHolder.getContext()
 				.setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
 
-		CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
+		final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
 		serviceRequest.setIpInformation("8.8.8.8");
 		serviceRequest.setLocale("en_US.UTF-8");
 		serviceRequest.setOperatingSystem("LINUX");
@@ -181,7 +181,7 @@ public class ApplicationManagerITest extends AbstractServiceFunctionalIntegratio
 		serviceRequest.setUserAgentInformation(
 				"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0");
 
-		CreateApplicationSessionResponse response = (CreateApplicationSessionResponse) applicationManager
+		final CreateApplicationSessionResponse response = (CreateApplicationSessionResponse) applicationManager
 				.service(serviceRequest);
 		assertNotNull("Expect a result", response);
 		assertEquals(ServiceResult.SUCCESS, response.getResult());

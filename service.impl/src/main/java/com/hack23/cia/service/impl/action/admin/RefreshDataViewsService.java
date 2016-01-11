@@ -62,20 +62,20 @@ public final class RefreshDataViewsService extends
 	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
 
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
 	 */
 	@Override
 	public RefreshDataViewsResponse processService(
-			RefreshDataViewsRequest serviceRequest) {
+			final RefreshDataViewsRequest serviceRequest) {
 
-		CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
 		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
 		eventRequest.setActionName(RefreshDataViewsRequest.class.getSimpleName());
 		eventRequest.setSessionId(serviceRequest.getSessionId());
 
-		UserAccount userAccount = getUserAccountFromSecurityContext();
+		final UserAccount userAccount = getUserAccountFromSecurityContext();
 
 
 		if (userAccount != null) {
@@ -83,7 +83,7 @@ public final class RefreshDataViewsService extends
 			eventRequest.setUserId(userAccount.getUserId());
 		}
 
-		RefreshDataViewsResponse response = new RefreshDataViewsResponse(ServiceResult.SUCCESS);
+		final RefreshDataViewsResponse response = new RefreshDataViewsResponse(ServiceResult.SUCCESS);
 		ViewDataManager.refreshViews();
 
 		eventRequest.setApplicationMessage(response.getResult().toString());

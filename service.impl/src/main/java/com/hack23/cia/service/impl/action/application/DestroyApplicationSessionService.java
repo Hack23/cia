@@ -62,7 +62,7 @@ public final class DestroyApplicationSessionService
 		super(DestroyApplicationSessionRequest.class);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -71,8 +71,8 @@ public final class DestroyApplicationSessionService
 	 */
 	@Override
 	@Secured({ "ROLE_ANONYMOUS" })
-	public DestroyApplicationSessionResponse processService(DestroyApplicationSessionRequest serviceRequest) {
-		ApplicationSession applicationSession = applicationSessionDAO.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
+	public DestroyApplicationSessionResponse processService(final DestroyApplicationSessionRequest serviceRequest) {
+		final ApplicationSession applicationSession = applicationSessionDAO.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
 		if (applicationSession != null)  {
 			applicationSession.setDestroyedDate(new Date());
 			applicationSessionDAO.persist(applicationSession);

@@ -50,13 +50,13 @@ public class RefreshDataViewsServiceITest extends AbstractServiceFunctionalInteg
 	 */
 	@Test
 	public void Test() throws Exception {
-		Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
 		authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
 		SecurityContextHolder.getContext().setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
 
-		RefreshDataViewsResponse  response = (RefreshDataViewsResponse) applicationManager.service(new RefreshDataViewsRequest());
+		final RefreshDataViewsResponse  response = (RefreshDataViewsResponse) applicationManager.service(new RefreshDataViewsRequest());
 		assertNotNull("Expect a result",response);
 	}
 

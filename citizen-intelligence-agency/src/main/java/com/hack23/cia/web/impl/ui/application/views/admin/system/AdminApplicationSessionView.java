@@ -84,7 +84,7 @@ public final class AdminApplicationSessionView extends AbstractAdminView {
 		createListAndForm(null);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -114,7 +114,7 @@ public final class AdminApplicationSessionView extends AbstractAdminView {
 		final DataContainer<ApplicationSession, Long> dataContainer = applicationManager
 				.getDataContainer(ApplicationSession.class);
 
-		final BeanItemContainer<ApplicationSession> politicianDocumentDataSource = new BeanItemContainer<ApplicationSession>(
+		final BeanItemContainer<ApplicationSession> politicianDocumentDataSource = new BeanItemContainer<>(
 				ApplicationSession.class, dataContainer.getAllOrderBy(ApplicationSession_.createdDate));
 
 		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationSession",
@@ -139,12 +139,12 @@ public final class AdminApplicationSessionView extends AbstractAdminView {
 				horizontalLayout.addComponent(leftLayout);
 				horizontalLayout.addComponent(rightLayout);
 
-				formFactory.addTextFields(leftLayout, new BeanItem<ApplicationSession>(applicationSession),
+				formFactory.addTextFields(leftLayout, new BeanItem<>(applicationSession),
 						ApplicationSession.class,
 						Arrays.asList(new String[] { "hjid", "createdDate", "sessionId", "operatingSystem", "locale",
 								"ipInformation", "userAgentInformation", "modelObjectVersion" }));
 
-				final BeanItemContainer<ApplicationActionEvent> eventsItemContainer = new BeanItemContainer<ApplicationActionEvent>(
+				final BeanItemContainer<ApplicationActionEvent> eventsItemContainer = new BeanItemContainer<>(
 						ApplicationActionEvent.class, applicationSession.getEvents());
 
 				rightLayout.addComponent(gridFactory.createBasicBeanItemGrid(eventsItemContainer,

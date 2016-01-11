@@ -43,7 +43,7 @@ public abstract class AbstractWorldbankFunctionalIntegrationTest extends Abstrac
 		super();
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest#getDatabaseConnection()
 	 */
 	@Override

@@ -430,7 +430,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 				.getAll().parallelStream()
 				.filter(t -> t != null && t.getSourceValue() != null && t.getEndYear() > 2010 && t.getDataPoint() > 10)
 				.flatMap(t -> Arrays.asList(t.getTopics().split(";")).stream().map(
-						topic -> new AbstractMap.SimpleEntry<String, ViewWorldbankIndicatorDataCountrySummary>(topic,
+						topic -> new AbstractMap.SimpleEntry<>(topic,
 								t)))
 
 		.collect(Collectors.groupingBy(e -> e.getKey(), Collectors.mapping(v -> v.getValue(), Collectors.toList())));
@@ -771,7 +771,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	}
 
 
-	private static boolean allowRoleInSecurityContext(String role) {
+	private static boolean allowRoleInSecurityContext(final String role) {
 
 		boolean result=false;
 
@@ -780,9 +780,9 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 			final Authentication authentication = context.getAuthentication();
 			if (authentication != null) {
 
-				Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+				final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
-				for (GrantedAuthority grantedAuthority : authorities) {
+				for (final GrantedAuthority grantedAuthority : authorities) {
 					if (role.equalsIgnoreCase(grantedAuthority.getAuthority())) {
 						result=true;
 					}

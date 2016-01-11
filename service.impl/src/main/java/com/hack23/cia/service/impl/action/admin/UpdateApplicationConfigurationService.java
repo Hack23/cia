@@ -28,7 +28,6 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationConfigur
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
-import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
 import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationRequest;
 import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
@@ -63,7 +62,7 @@ public final class UpdateApplicationConfigurationService extends
 		super(UpdateApplicationConfigurationRequest.class);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -71,15 +70,15 @@ public final class UpdateApplicationConfigurationService extends
 	 * com.hack23.cia.service.api.action.common.ServiceRequest)
 	 */
 	@Override
-	public UpdateApplicationConfigurationResponse processService(UpdateApplicationConfigurationRequest serviceRequest) {
+	public UpdateApplicationConfigurationResponse processService(final UpdateApplicationConfigurationRequest serviceRequest) {
 
-		CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
 		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
 		eventRequest.setActionName(UpdateApplicationConfigurationRequest.class.getSimpleName());
 		eventRequest.setSessionId(serviceRequest.getSessionId());
 
-		UserAccount userAccount = getUserAccountFromSecurityContext();
+		final UserAccount userAccount = getUserAccountFromSecurityContext();
 
 		if (userAccount != null) {
 
@@ -88,7 +87,7 @@ public final class UpdateApplicationConfigurationService extends
 
 		UpdateApplicationConfigurationResponse response;
 
-		ApplicationConfiguration applicationConfiguration = applicationConfigurationDAO
+		final ApplicationConfiguration applicationConfiguration = applicationConfigurationDAO
 				.load(serviceRequest.getApplicationConfigurationId());
 
 		if (applicationConfiguration != null) {

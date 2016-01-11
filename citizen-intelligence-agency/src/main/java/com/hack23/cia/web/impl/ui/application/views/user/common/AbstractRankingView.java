@@ -74,7 +74,7 @@ public abstract class AbstractRankingView extends AbstractUserView {
 	protected abstract ViewAction getViewAction();
 
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see

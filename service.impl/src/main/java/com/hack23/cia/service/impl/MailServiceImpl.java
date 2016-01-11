@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,7 +29,7 @@ import com.hack23.cia.service.api.MailService;
 /**
  * The Class MailServiceImpl.
  */
-@Component(value = "MailService")
+@Component("MailService")
 @Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 public final class MailServiceImpl implements MailService {
 
@@ -37,7 +37,7 @@ public final class MailServiceImpl implements MailService {
 	@Autowired
 	private MailSender mailSender;
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see com.hack23.cia.service.api.MailService#sendMail(java.lang.String,

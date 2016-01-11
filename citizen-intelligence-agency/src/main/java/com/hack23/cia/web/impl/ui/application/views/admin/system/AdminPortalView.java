@@ -81,7 +81,7 @@ public final class AdminPortalView extends AbstractAdminView {
 		createListAndForm(null);
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 *
 	 * @see
@@ -110,7 +110,7 @@ public final class AdminPortalView extends AbstractAdminView {
 
 		final DataContainer<Portal, Long> dataContainer = applicationManager.getDataContainer(Portal.class);
 
-		final BeanItemContainer<Portal> politicianDocumentDataSource = new BeanItemContainer<Portal>(Portal.class,
+		final BeanItemContainer<Portal> politicianDocumentDataSource = new BeanItemContainer<>(Portal.class,
 				dataContainer.getAll());
 
 		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Portal",
@@ -123,7 +123,7 @@ public final class AdminPortalView extends AbstractAdminView {
 			final Portal portal = dataContainer.load(Long.valueOf(pageId));
 
 			if (portal != null) {
-			formFactory.addTextFields(content, new BeanItem<Portal>(portal), Portal.class,
+			formFactory.addTextFields(content, new BeanItem<>(portal), Portal.class,
 					Arrays.asList(new String[] { "hjid", "portalName", "description","portalType","googleMapApiKey", "modelObjectVersion" }));
 			}
 		}

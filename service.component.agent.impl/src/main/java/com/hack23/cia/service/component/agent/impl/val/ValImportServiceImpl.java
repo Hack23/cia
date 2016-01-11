@@ -31,7 +31,7 @@ import com.hack23.cia.service.external.val.api.ValApi;
 /**
  * The Class ValImportServiceImpl.
  */
-@Component(value = "ValImportService")
+@Component("ValImportService")
 @Transactional(propagation = Propagation.REQUIRED)
 public final class ValImportServiceImpl implements ValImportService {
 
@@ -48,7 +48,7 @@ public final class ValImportServiceImpl implements ValImportService {
 	private ValApi valApi;
 
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.component.agent.impl.val.ValImportService#loadPoliticalParties()
 	 */
 	@Override
