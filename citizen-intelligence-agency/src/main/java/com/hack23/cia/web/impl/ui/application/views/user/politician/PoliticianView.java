@@ -18,11 +18,9 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.politician;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -33,9 +31,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.apache.commons.lang3.StringUtils;
 import org.dussan.vaadin.dcharts.DCharts;
@@ -47,7 +42,6 @@ import org.tltv.gantt.Gantt;
 import org.tltv.gantt.client.shared.Resolution;
 import org.tltv.gantt.client.shared.Step;
 import org.tltv.gantt.client.shared.SubStep;
-import org.w3._2001.xmlschema.Adapter3;
 
 import com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData;
 import com.hack23.cia.model.external.riksdagen.person.impl.DetailData;
@@ -165,7 +159,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PageMode.Charts.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Charts"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Charts Not Implemented"));
 
 				} else if (parameters.contains(PageMode.Indicators.toString())) {
 
@@ -206,7 +200,7 @@ public final class PoliticianView extends AbstractPersonView {
 							chartDataManager.getViewRiksdagenVoteDataBallotPoliticianSummary(personData.getId()));
 
 					final Grid politicianBallotsBeanItemGrid = gridFactory
-							.createBasicBeanItemNestedPropertiesGrid(politicianBallotDataSource, "Ballots",new String[]{ "embeddedId.ballotId", "embeddedId.concern","embeddedId.issue","firstName", "lastName","party" }, new String[]{"voteDate","rm","label","embeddedId.concern","embeddedId.issue","vote","won","partyWon","rebel","noWinner","approved","partyApproved","totalVotes","partyTotalVotes","yesVotes","partyYesVotes", "noVotes", "partyNoVotes","partyAbstainVotes","abstainVotes",  "partyAbsentVotes","absentVotes","bornYear","partyAvgBornYear","avgBornYear", "gender","partyPercentageMale", "percentageMale","ballotType","embeddedId.ballotId"}, new String[]{ "embeddedId","partyNoWinner","partyPercentageYes","partyPercentageNo","partyPercentageAbsent","partyPercentageAbstain","percentageYes","percentageNo", "percentageAbsent","percentageAbstain"}, null, null, null);
+							.createBasicBeanItemNestedPropertiesGrid(politicianBallotDataSource, "Ballots",new String[]{ "embeddedId.ballotId", "embeddedId.concern","embeddedId.issue"}, new String[]{"voteDate","rm","label","embeddedId.concern","embeddedId.issue","vote","won","partyWon","rebel","noWinner","approved","partyApproved","totalVotes","partyTotalVotes","yesVotes","partyYesVotes", "noVotes", "partyNoVotes","partyAbstainVotes","abstainVotes",  "partyAbsentVotes","absentVotes","bornYear","partyAvgBornYear","avgBornYear", "gender","partyPercentageMale", "percentageMale","ballotType","embeddedId.ballotId"}, new String[]{ "embeddedId","partyNoWinner","partyPercentageYes","partyPercentageNo","partyPercentageAbsent","partyPercentageAbstain","percentageYes","percentageNo", "percentageAbsent","percentageAbstain","firstName", "lastName","party" }, null, null, null);
 
 
 					panelContent.addComponent(politicianBallotsBeanItemGrid);
@@ -219,17 +213,17 @@ public final class PoliticianView extends AbstractPersonView {
 							.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class);
 
 
-					final List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> decisionPartySummaryList = committeeBallotDecisionPartyDataContainer.findOrderedListByEmbeddedProperty(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class, ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.embeddedId, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId.class, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId_.intressentId, pageId, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId_.issue);
+					final List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> decisionPartySummaryList = committeeBallotDecisionPartyDataContainer.findOrderedByPropertyListByEmbeddedProperty(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class, ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.embeddedId, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId.class, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId_.intressentId, pageId, ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.voteDate);
 
 					final BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> committeeBallotDecisionPartyDataSource = new BeanItemContainer<>(
 							ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class,
 							decisionPartySummaryList);
 
-					final Grid committeeBallotDecisionPartyBeanItemGrid = gridFactory.createBasicBeanItemGrid(
+					final Grid committeeBallotDecisionPartyBeanItemGrid = gridFactory.createBasicBeanItemNestedPropertiesGrid(
 							committeeBallotDecisionPartyDataSource,
-							"Committee Ballot Decision Politician Summary",
-							null,
-							null,
+							"Committee Ballot Decision Politician Summary",new String[]{"embeddedId.concern","embeddedId.issue"},
+							new String[]{"voteDate","rm","org","committeeReport","title","subTitle","winner","embeddedId.concern","embeddedId.issue","vote","won","rebel","noWinner","approved","partyApproved","againstProposalNumber","againstProposalParties","totalVotes","partyTotalVotes","yesVotes","partyYesVotes", "noVotes", "partyNoVotes","partyAbstainVotes","abstainVotes",  "partyAbsentVotes","absentVotes","bornYear","partyAvgBornYear","avgBornYear","ballotType","decisionType","ballotId"},
+							new String[]{ "label","endNumber","publicDate","createdDate","embeddedId","partyNoWinner","partyPercentageYes","partyPercentageNo","partyPercentageAbsent","partyPercentageAbstain","percentageYes","percentageNo", "percentageAbsent","percentageAbstain","firstName", "lastName","party" },
 							null,
 							null, null);
 
