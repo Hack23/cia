@@ -23,6 +23,13 @@ import com.vaadin.ui.themes.Reindeer;
 
 public final class LabelFactory {
 
+	/**
+	 * Creates a new Label object.
+	 *
+	 * @param content
+	 *            the content
+	 * @return the label
+	 */
 	public static Label createHeader2Label(final String content) {
 		final Label label = new Label(content);
 		label.addStyleName(Reindeer.LABEL_H2);

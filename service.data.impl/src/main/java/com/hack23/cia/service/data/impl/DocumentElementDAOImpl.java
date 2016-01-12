@@ -46,6 +46,7 @@ public final class DocumentElementDAOImpl extends
 AbstractGenericDAOImpl<DocumentElement, String> implements
 DocumentElementDAO {
 
+	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(DocumentElementDAOImpl.class);
 

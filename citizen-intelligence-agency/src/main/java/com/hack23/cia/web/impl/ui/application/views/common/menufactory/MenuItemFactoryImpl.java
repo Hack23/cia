@@ -163,6 +163,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	/** The Constant MINISTRY_RANKING_LINK_TEXT. */
 	private static final String MINISTRY_RANKING_LINK_TEXT = "Ministry Ranking";
 
+	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
 	/** (non-Javadoc)
@@ -758,6 +759,9 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory#createUserHomeMenuBar(com.vaadin.ui.MenuBar, java.lang.String)
+	 */
 	@Override
 	public void createUserHomeMenuBar(final MenuBar menuBar, final String pageId) {
 		menuBar.removeItems();
@@ -771,6 +775,13 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	}
 
 
+	/**
+	 * Allow role in security context.
+	 *
+	 * @param role
+	 *            the role
+	 * @return true, if successful
+	 */
 	private static boolean allowRoleInSecurityContext(final String role) {
 
 		boolean result=false;

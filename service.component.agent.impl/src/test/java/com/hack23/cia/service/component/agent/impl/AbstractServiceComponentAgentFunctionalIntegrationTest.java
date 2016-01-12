@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: AbstractServiceComponentAgentFunctionalIntegrationTest.java 6046 2015-05-06 20:42:53Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/service.component.agent.impl/src/test/java/com/hack23/cia/service/component/agent/impl/AbstractServiceComponentAgentFunctionalIntegrationTest.java $
- */
+ *	$Id$
+ *  $HeadURL$
+*/
 package com.hack23.cia.service.component.agent.impl;
 
 import java.sql.Connection;
@@ -27,7 +27,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest;
 
 /**
- * The Class AbstractRiksdagenFunctionalIntegrationTest.
+ * The Class AbstractServiceComponentAgentFunctionalIntegrationTest.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -42,7 +42,8 @@ import com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest;
 public abstract class AbstractServiceComponentAgentFunctionalIntegrationTest extends AbstractFunctionalIntegrationTest {
 
 	/**
-	 * Instantiates a new abstract riksdagen functional integration test.
+	 * Instantiates a new abstract service component agent functional
+	 * integration test.
 	 */
 	public AbstractServiceComponentAgentFunctionalIntegrationTest() {
 		super();

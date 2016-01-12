@@ -175,6 +175,11 @@ public final class UserHomeView extends AbstractUserView {
 
 	}
 
+	/**
+	 * Gets the user id from security context.
+	 *
+	 * @return the user id from security context
+	 */
 	private static Long getUserIdFromSecurityContext() {
 
 		Long result=null;

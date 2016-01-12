@@ -67,9 +67,11 @@ public final class RegisterUserService extends
 			.getLogger(RegisterUserService.class);
 
 
+	/** The create application event service. */
 	@Autowired
 	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
 
+	/** The application configuration service. */
 	@Autowired
 	private ApplicationConfigurationService applicationConfigurationService;
 

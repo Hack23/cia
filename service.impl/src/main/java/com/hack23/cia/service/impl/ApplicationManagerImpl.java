@@ -195,6 +195,9 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 		return serviceResponse;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.api.ApplicationManager#asyncService(com.hack23.cia.service.api.action.common.ServiceRequest)
+	 */
 	@Override
 	@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
     @Async

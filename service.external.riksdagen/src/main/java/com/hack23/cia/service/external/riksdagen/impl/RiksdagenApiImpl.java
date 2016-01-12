@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: RiksdagenApiImpl.java 6119 2015-07-31 17:44:12Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/service.external.riksdagen/src/main/java/com/hack23/cia/service/external/riksdagen/impl/RiksdagenApiImpl.java $
+ *	$Id$
+ *  $HeadURL$
 */
 package com.hack23.cia.service.external.riksdagen.impl;
 
@@ -64,6 +64,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
 public final class RiksdagenApiImpl implements
 RiksdagenApi {
 
+	/** The Constant CONTAINS_ONE. */
 	private static final int CONTAINS_ONE = 1;
 
 	/** The Constant BALLOT. */
@@ -120,7 +121,9 @@ RiksdagenApi {
 	 */
 	private static final String HTTP_DOKUMENTSTATUS_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL = "http://dokumentstatus.riksdagen.external.model.cia.hack23.com/impl";
 
-	/** The Constant HTTP_PERSON_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL. */
+	/**
+	 * The Constant HTTP_PERSON_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL.
+	 */
 	private static final String HTTP_PERSON_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL = "http://person.riksdagen.external.model.cia.hack23.com/impl";
 
 	/**
@@ -135,9 +138,15 @@ RiksdagenApi {
 	 */
 	private static final String HTTP_UTSKOTTSFORSLAG_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL = "http://utskottsforslag.riksdagen.external.model.cia.hack23.com/impl";
 
-	/** The Constant HTTP_VOTERING_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL. */
+	/**
+	 * The Constant HTTP_VOTERING_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL.
+	 */
 	private static final String HTTP_VOTERING_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL = "http://votering.riksdagen.external.model.cia.hack23.com/impl";
 
+	/**
+	 * The Constant
+	 * HTTP_VOTERINGLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL.
+	 */
 	private static final String HTTP_VOTERINGLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL = "http://voteringlista.riksdagen.external.model.cia.hack23.com/impl";
 
 
@@ -152,7 +161,7 @@ RiksdagenApi {
 	/** The Constant LOADING_DOCUMENTS. */
 	private static final String LOADING_DOCUMENTS = "Loading documents:{}/{}";
 
-	/** The logger. */
+	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(RiksdagenApiImpl.class);
 
@@ -188,15 +197,13 @@ RiksdagenApi {
 
 	/**
 	 * The Constant
-	 * PROBLEM_GETTING_DOCUMENT_LIST_CHANGED_SINCE_DATE_S_CHANGED_TO_DATE_S_FROM_DATA_RIKSDAGEN_SE
-	 * .
+	 * PROBLEM_GETTING_DOCUMENT_LIST_CHANGED_SINCE_DATE_S_CHANGED_TO_DATE_S_FROM_DATA_RIKSDAGEN_SE.
 	 */
 	private static final String PROBLEM_GETTING_DOCUMENT_LIST_CHANGED_SINCE_DATE_S_CHANGED_TO_DATE_S_FROM_DATA_RIKSDAGEN_SE = "Problem getting document list changedSinceDate:{} , changedToDate:{} from data.riksdagen.se";
 
 	/**
 	 * The Constant
-	 * PROBLEM_GETTING_DOCUMENT_LIST_FOR_DOCUMENT_TYPE_S_MAX_NUMBER_PAGES_S_FROM_DATA_RIKSDAGEN_SE
-	 * .
+	 * PROBLEM_GETTING_DOCUMENT_LIST_FOR_DOCUMENT_TYPE_S_MAX_NUMBER_PAGES_S_FROM_DATA_RIKSDAGEN_SE.
 	 */
 	private static final String PROBLEM_GETTING_DOCUMENT_LIST_FOR_DOCUMENT_TYPE_S_MAX_NUMBER_PAGES_S_FROM_DATA_RIKSDAGEN_SE = "Problem getting document list for documentType:{} , maxNumberPages: {} from data.riksdagen.se";
 
@@ -219,8 +226,7 @@ RiksdagenApi {
 
 	/**
 	 * The Constant
-	 * PROBLEM_PROCCESSING_DOCUMENT_BETWEEN_CHANGED_SINCE_DATE_S_AND_CHANGE_TO_DATE
-	 * .
+	 * PROBLEM_PROCCESSING_DOCUMENT_BETWEEN_CHANGED_SINCE_DATE_S_AND_CHANGE_TO_DATE.
 	 */
 	private static final String PROBLEM_PROCCESSING_DOCUMENT_BETWEEN_CHANGED_SINCE_DATE_S_AND_CHANGE_TO_DATE = "Problem proccessing document between changedSinceDate: {} and changeToDate {}";
 
@@ -269,6 +275,7 @@ RiksdagenApi {
 	@Qualifier("riksdagenDocumentStatusMarshaller")
 	private Unmarshaller riksdagenDocumentStatusMarshaller;
 
+	/** The xml agent. */
 	@Autowired
 	private XmlAgent xmlAgent;
 
@@ -307,8 +314,6 @@ RiksdagenApi {
 	 *
 	 * @param voteList
 	 *            the vote list
-	 * @param url
-	 *            the url
 	 * @return the date
 	 * @throws ParseException
 	 *             the parse exception

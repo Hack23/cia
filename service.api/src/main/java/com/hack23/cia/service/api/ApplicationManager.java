@@ -80,6 +80,13 @@ public interface ApplicationManager {
 	ServiceResponse service(ServiceRequest serviceRequest);
 
 
+	/**
+	 * Async service.
+	 *
+	 * @param serviceRequest
+	 *            the service request
+	 * @return the future
+	 */
 	Future<ServiceResponse> asyncService(ServiceRequest serviceRequest);
 
 }

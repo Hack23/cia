@@ -74,6 +74,7 @@ public final class MainView extends Panel implements View {
 	@Autowired
 	private transient MenuItemFactory menuItemFactory;
 
+	/** The form factory. */
 	@Autowired
 	private transient FormFactory formFactory;
 

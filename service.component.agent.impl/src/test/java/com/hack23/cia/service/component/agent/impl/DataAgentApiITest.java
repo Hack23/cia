@@ -30,14 +30,22 @@ import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder;
 import com.hack23.cia.service.component.agent.api.DataAgentApi;
 
+/**
+ * The Class DataAgentApiITest.
+ */
 public class DataAgentApiITest extends AbstractServiceComponentAgentFunctionalIntegrationTest {
 
+	/** The data agent api. */
 	@Autowired
 	private DataAgentApi dataAgentApi;
 
+	/** The broker query. */
 	@Autowired
 	private BrokerFacadeSupport brokerQuery;
 
+	/**
+	 * Import riksdagen data success test.
+	 */
 	@Test
 	public void importRiksdagenDataSuccessTest() {
 		dataAgentApi.execute(new DataAgentWorkOrder().withOperation(DataAgentOperation.IMPORT).withTarget(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN));
@@ -55,6 +63,13 @@ public class DataAgentApiITest extends AbstractServiceComponentAgentFunctionalIn
 		}
 	}
 
+	/**
+	 * Checks if is all completed.
+	 *
+	 * @param queues
+	 *            the queues
+	 * @return true, if is all completed
+	 */
 	private boolean isAllCompleted(final Collection<QueueViewMBean> queues) {
 		boolean allCompleted=true;
 		for(final QueueViewMBean queue: queues) {

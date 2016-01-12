@@ -24,14 +24,23 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
+/**
+ * The Class SecurityAuthenticationProvider.
+ */
 @Component
 public class SecurityAuthenticationProvider implements AuthenticationProvider {
 
+	/* (non-Javadoc)
+	 * @see org.springframework.security.authentication.AuthenticationProvider#authenticate(org.springframework.security.core.Authentication)
+	 */
 	@Override
 	public Authentication authenticate(final Authentication authentication) throws AuthenticationException {
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.springframework.security.authentication.AuthenticationProvider#supports(java.lang.Class)
+	 */
 	@Override
 	public boolean supports(final Class<?> authentication) {
 		return authentication.equals(UsernamePasswordAuthenticationToken.class);

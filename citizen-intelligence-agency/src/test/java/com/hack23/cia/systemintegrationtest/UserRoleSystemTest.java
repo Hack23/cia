@@ -453,7 +453,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	}
 
 	/**
-	 * Site admin monitoring failed success test.
+	 * Site admin monitoring success test.
 	 *
 	 * @throws Exception
 	 *             the exception
@@ -474,6 +474,14 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	}
 
 
+	/**
+	 * Login as admin.
+	 *
+	 * @param userPageVisit
+	 *            the user page visit
+	 * @throws Exception
+	 *             the exception
+	 */
 	private void loginAsAdmin(final UserPageVisit userPageVisit) throws Exception {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.Overview));
 		userPageVisit.loginUser("admin@admin.com", "admin");

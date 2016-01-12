@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: AbstractTest.java 6080 2015-05-25 23:04:36Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/testfoundation/src/main/java/com/hack23/cia/testfoundation/AbstractTest.java $
- */
+ *	$Id$
+ *  $HeadURL$
+*/
 
 package com.hack23.cia.testfoundation;
 

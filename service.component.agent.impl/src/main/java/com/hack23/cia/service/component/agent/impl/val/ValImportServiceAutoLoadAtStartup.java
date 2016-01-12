@@ -35,7 +35,7 @@ public final class ValImportServiceAutoLoadAtStartup {
 
 
 	/**
-	 * Auto lod.
+	 * Auto load.
 	 */
 	@PostConstruct
 	public void autoLoad() {

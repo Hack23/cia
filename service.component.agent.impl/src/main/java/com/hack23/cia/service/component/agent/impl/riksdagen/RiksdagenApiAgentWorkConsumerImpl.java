@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: RiksdagenApiAgentWorkConsumerImpl.java 6088 2015-06-03 22:30:14Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/service.component.agent.impl/src/main/java/com/hack23/cia/service/component/agent/impl/riksdagen/RiksdagenApiAgentWorkConsumerImpl.java $
- */
+ *	$Id$
+ *  $HeadURL$
+*/
 package com.hack23.cia.service.component.agent.impl.riksdagen;
 
 import java.text.SimpleDateFormat;
@@ -61,7 +61,7 @@ public final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 	/** The Constant RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT. */
 	private static final String RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
-	/** The agent work service. */
+	/** The import service. */
 	@Autowired
 	private RiksdagenImportService importService;
 
@@ -309,6 +309,11 @@ public final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 		}
 	}
 
+	/**
+	 * Read missing person list.
+	 *
+	 * @return the string[]
+	 */
 	private static String[] readMissingPersonList() {
 
 		final Scanner sc = new Scanner(RiksdagenApiAgentWorkConsumerImpl.class.getResourceAsStream("/personlist.txt"));

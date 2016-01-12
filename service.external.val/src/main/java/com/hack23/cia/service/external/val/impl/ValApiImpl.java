@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: ValApiImpl.java 6069 2015-05-13 20:45:10Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/service.external.val/src/main/java/com/hack23/cia/service/external/val/impl/ValApiImpl.java $
- */
+ *	$Id$
+ *  $HeadURL$
+*/
 package com.hack23.cia.service.external.val.impl;
 
 import java.net.URL;
@@ -49,10 +49,11 @@ import com.hack23.cia.service.external.val.api.ValApi;
 @Component
 public final class ValApiImpl implements ValApi {
 
-	/** The logger. */
+	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(ValApiImpl.class);
 
+	/** The xml agent. */
 	@Autowired
 	private XmlAgent xmlAgent;
 
@@ -76,12 +77,8 @@ public final class ValApiImpl implements ValApi {
 	@Qualifier("valKommunMarshaller")
 	private Unmarshaller valKommunMarshaller;
 
-	/**
-	 * Gets the election types.
-	 *
-	 * @return the election types
-	 * @throws Exception
-	 *             the exception
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.val.api.ValApi#getElectionTypes()
 	 */
 	@Override
 	public List<SwedenElectionType> getElectionTypes() throws Exception {
@@ -95,12 +92,8 @@ public final class ValApiImpl implements ValApi {
 						null, null)).getValue().getElectionTypes();
 	}
 
-	/**
-	 * Gets the parliament electoral regions.
-	 *
-	 * @return the parliament electoral regions
-	 * @throws Exception
-	 *             the exception
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.val.api.ValApi#getParliamentElectoralRegions()
 	 */
 	@Override
 	public List<SwedenParliamentElectoralRegion> getParliamentElectoralRegions()
@@ -116,12 +109,8 @@ public final class ValApiImpl implements ValApi {
 						null, null)).getValue().getParliamentElectoralRegions();
 	}
 
-	/**
-	 * Gets the county electoral regions.
-	 *
-	 * @return the county electoral regions
-	 * @throws Exception
-	 *             the exception
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.val.api.ValApi#getCountyElectoralRegions()
 	 */
 	@Override
 	public List<SwedenCountyElectoralRegion> getCountyElectoralRegions()
@@ -137,12 +126,8 @@ public final class ValApiImpl implements ValApi {
 						null, null)).getValue().getCountyElectoralRegions();
 	}
 
-	/**
-	 * Gets the county regions.
-	 *
-	 * @return the county regions
-	 * @throws Exception
-	 *             the exception
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.val.api.ValApi#getCountyRegions()
 	 */
 	@Override
 	public List<SwedenCountyData> getCountyRegions() throws Exception {
@@ -155,10 +140,8 @@ public final class ValApiImpl implements ValApi {
 				null, null)).getValue().getCountyRegions();
 	}
 
-	/**
-	 * Gets the sweden election region.
-	 *
-	 * @return the sweden election region
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.val.api.ValApi#getSwedenElectionRegion()
 	 */
 	@Override
 	public SwedenElectionRegion getSwedenElectionRegion() {
@@ -179,10 +162,8 @@ public final class ValApiImpl implements ValApi {
 
 	}
 
-	/**
-	 * Gets the sweden political parties.
-	 *
-	 * @return the sweden political parties
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.val.api.ValApi#getSwedenPoliticalParties()
 	 */
 	@Override
 	public List<SwedenPoliticalParty> getSwedenPoliticalParties() {

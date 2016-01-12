@@ -75,6 +75,7 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 	@Autowired
 	private transient FormFactory formFactory;
 
+	/** The chart data manager. */
 	@Autowired
 	private transient ChartDataManager chartDataManager;
 

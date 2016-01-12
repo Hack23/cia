@@ -40,17 +40,17 @@ public final class UpdateApplicationConfigurationClickListener implements ClickL
 	private static final Logger LOGGER = LoggerFactory.getLogger(UpdateApplicationConfigurationClickListener.class);
 
 
-	/** The reqister request. */
+	/** The request. */
 	private final UpdateApplicationConfigurationRequest request;
 
 	/** The application manager. */
 	private final ApplicationManager applicationManager;
 
 	/**
-	 * Instantiates a new register user click listener.
+	 * Instantiates a new update application configuration click listener.
 	 *
 	 * @param request
-	 *            the reqister request
+	 *            the request
 	 * @param applicationManager
 	 *            the application manager
 	 */

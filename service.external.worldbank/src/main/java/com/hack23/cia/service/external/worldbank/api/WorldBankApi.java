@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: WorldBankApi.java 6046 2015-05-06 20:42:53Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/service.external.worldbank/src/main/java/com/hack23/cia/service/external/worldbank/api/WorldBankApi.java $
- */
+ *	$Id$
+ *  $HeadURL$
+*/
 package com.hack23.cia.service.external.worldbank.api;
 
 import java.util.List;
@@ -36,8 +36,8 @@ public interface WorldBankApi {
 	 * Gets the countries.
 	 *
 	 * @return the countries
-	 * @throws Exception
-	 *             the exception
+	 * @throws DataFailureException
+	 *             the data failure exception
 	 */
 	List<CountryElement> getCountries() throws DataFailureException;
 
@@ -49,8 +49,8 @@ public interface WorldBankApi {
 	 * @param indicatorId
 	 *            the indicator id
 	 * @return the data
-	 * @throws Exception
-	 *             the exception
+	 * @throws DataFailureException
+	 *             the data failure exception
 	 */
 	List<WorldBankData> getData(String countryCode, String indicatorId) throws DataFailureException;
 
@@ -58,8 +58,8 @@ public interface WorldBankApi {
 	 * Gets the indicators.
 	 *
 	 * @return the indicators
-	 * @throws Exception
-	 *             the exception
+	 * @throws DataFailureException
+	 *             the data failure exception
 	 */
 	List<IndicatorElement> getIndicators() throws DataFailureException;
 
@@ -68,8 +68,8 @@ public interface WorldBankApi {
 	 * Gets the topics.
 	 *
 	 * @return the topics
-	 * @throws Exception
-	 *             the exception
+	 * @throws DataFailureException
+	 *             the data failure exception
 	 */
 	List<TopicElement> getTopics() throws DataFailureException;
 

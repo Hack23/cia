@@ -122,6 +122,14 @@ public interface MenuItemFactory {
 	 */
 	void createMinistryRankingMenuBar(MenuBar menuBar);
 
+	/**
+	 * Creates a new MenuItem object.
+	 *
+	 * @param barmenu
+	 *            the barmenu
+	 * @param pageId
+	 *            the page id
+	 */
 	void createUserHomeMenuBar(MenuBar barmenu, String pageId);
 
 

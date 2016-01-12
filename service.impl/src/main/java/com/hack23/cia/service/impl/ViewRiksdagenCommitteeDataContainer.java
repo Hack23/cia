@@ -107,12 +107,18 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.api.DataContainer#getAllOrderBy(javax.persistence.metamodel.SingularAttribute)
+	 */
 	@Override
 	public List<ViewRiksdagenCommittee> getAllOrderBy(
 			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> property) {
 		return viewRiksdagenCommitteeDAO.getAllOrderBy(property);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.api.DataContainer#findOrderedListByProperty(javax.persistence.metamodel.SingularAttribute, java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
+	 */
 	@Override
 	public List<ViewRiksdagenCommittee> findOrderedListByProperty(
 			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> orderByProperty, final Object[] values,
@@ -120,6 +126,9 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.api.DataContainer#findOrderedListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
+	 */
 	@Override
 	public <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
 			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
@@ -127,6 +136,9 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.api.DataContainer#findOrderedByPropertyListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
+	 */
 	@Override
 	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
 			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
@@ -134,6 +146,9 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.api.DataContainer#findOrderedListByProperty(javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
+	 */
 	@Override
 	public List<ViewRiksdagenCommittee> findOrderedListByProperty(
 			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> property, final Object value,

@@ -182,6 +182,9 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 
 
 
+	/* (non-Javadoc)
+	 * @see com.vaadin.server.ErrorHandler#error(com.vaadin.server.ErrorEvent)
+	 */
 	@Override
 	public void error(final com.vaadin.server.ErrorEvent event) {
 	     if (event.getThrowable() instanceof AccessDeniedException) {

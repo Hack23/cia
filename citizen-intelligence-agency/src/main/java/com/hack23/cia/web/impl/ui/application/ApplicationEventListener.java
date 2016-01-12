@@ -103,6 +103,11 @@ public class ApplicationEventListener implements ApplicationListener<Application
 	}
 
 
+	/**
+	 * Gets the user id from security context.
+	 *
+	 * @return the user id from security context
+	 */
 	private static String getUserIdFromSecurityContext() {
 
 		String result=null;

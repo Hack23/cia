@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: WorldBankApiAgentWorkConsumerImpl.java 6102 2015-06-17 21:48:57Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/service.component.agent.impl/src/main/java/com/hack23/cia/service/component/agent/impl/worldbank/WorldBankApiAgentWorkConsumerImpl.java $
- */
+ *	$Id$
+ *  $HeadURL$
+*/
 package com.hack23.cia.service.component.agent.impl.worldbank;
 
 import java.io.Serializable;
@@ -52,7 +52,7 @@ public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(WorldBankApiAgentWorkConsumerImpl.class);
 
-	/** The agent work service. */
+	/** The import service. */
 	@Autowired
 	private WorldbankImportService importService;
 

@@ -196,6 +196,9 @@ implements AbstractGenericDAO<T, ID> {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getAllOrderBy(javax.persistence.metamodel.SingularAttribute)
+	 */
 	@Override
 	public final List<T> getAllOrderBy(final SingularAttribute<T, ? extends Object> orderBy) {
 		final CriteriaQuery<T> criteriaQuery = criteriaBuilder

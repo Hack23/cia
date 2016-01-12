@@ -44,6 +44,7 @@ public class ChartTest extends Assert {
 
 	static class XYseriesFix extends XYseries {
 
+		/** The Constant serialVersionUID. */
 		private static final long serialVersionUID = 1L;
 
 		/** (non-Javadoc)
@@ -58,6 +59,7 @@ public class ChartTest extends Assert {
 
 	static class XYaxisFix extends XYaxis {
 
+		/** The Constant serialVersionUID. */
 		private static final long serialVersionUID = 1L;
 
 		/**

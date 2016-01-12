@@ -32,6 +32,7 @@ public enum PageMode {
 	/** The Indicators. */
 	Indicators,
 
+	/** The Page visit history. */
 	PageVisitHistory
 
 }

@@ -34,16 +34,28 @@ import com.vaadin.ui.UI;
 
 public final class ApplicationLoginListener implements LoginListener {
 
+	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationLoginListener.class);
 
+	/** The application manager. */
 	private final ApplicationManager applicationManager;
 
+	/**
+	 * Instantiates a new application login listener.
+	 *
+	 * @param applicationManager
+	 *            the application manager
+	 */
 	public ApplicationLoginListener(final ApplicationManager applicationManager) {
 		this.applicationManager = applicationManager;
 	}
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/* (non-Javadoc)
+	 * @see com.ejt.vaadin.loginform.LoginForm.LoginListener#onLogin(com.ejt.vaadin.loginform.LoginForm.LoginEvent)
+	 */
 	@Override
 	public void onLogin(final LoginEvent event) {
 
