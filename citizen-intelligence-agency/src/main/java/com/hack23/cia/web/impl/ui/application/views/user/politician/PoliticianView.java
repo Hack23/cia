@@ -18,9 +18,11 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.politician;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -31,6 +33,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.apache.commons.lang3.StringUtils;
 import org.dussan.vaadin.dcharts.DCharts;
@@ -42,6 +47,7 @@ import org.tltv.gantt.Gantt;
 import org.tltv.gantt.client.shared.Resolution;
 import org.tltv.gantt.client.shared.Step;
 import org.tltv.gantt.client.shared.SubStep;
+import org.w3._2001.xmlschema.Adapter3;
 
 import com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData;
 import com.hack23.cia.model.external.riksdagen.person.impl.DetailData;
@@ -200,9 +206,7 @@ public final class PoliticianView extends AbstractPersonView {
 							chartDataManager.getViewRiksdagenVoteDataBallotPoliticianSummary(personData.getId()));
 
 					final Grid politicianBallotsBeanItemGrid = gridFactory
-							.createBasicBeanItemNestedPropertiesGrid(politicianBallotDataSource, "Ballots",new String[]{ "embeddedId.ballotId", "embeddedId.concern","embeddedId.issue"}, null, new String[]{ "embeddedId"}, null, null, null);
-
-
+							.createBasicBeanItemNestedPropertiesGrid(politicianBallotDataSource, "Ballots",new String[]{ "embeddedId.ballotId", "embeddedId.concern","embeddedId.issue","firstName", "lastName","party" }, new String[]{"voteDate","rm","label","embeddedId.concern","embeddedId.issue","vote","won","partyWon","rebel","noWinner","approved","partyApproved","totalVotes","partyTotalVotes","yesVotes","partyYesVotes", "noVotes", "partyNoVotes","partyAbstainVotes","abstainVotes",  "partyAbsentVotes","absentVotes","bornYear","partyAvgBornYear","avgBornYear", "gender","partyPercentageMale", "percentageMale","ballotType","embeddedId.ballotId"}, new String[]{ "embeddedId","partyNoWinner","partyPercentageYes","partyPercentageNo","partyPercentageAbsent","partyPercentageAbstain","percentageYes","percentageNo", "percentageAbsent","percentageAbstain"}, null, null, null);
 
 
 					panelContent.addComponent(politicianBallotsBeanItemGrid);
@@ -246,13 +250,13 @@ public final class PoliticianView extends AbstractPersonView {
 
 					final Grid politicianDocumentBeanItemGrid = gridFactory.createBasicBeanItemGrid(
 							politicianDocumentDataSource, "Documents",
-							new String[] { "id", "docId", "referenceName", "partyShortCode", "personReferenceId",
-									"roleDescription", "documentType", "subType", "org", "label", "rm",
-									"madePublicDate", "numberValue", "status", "title", "subTitle", "tempLabel",
-									"orderNumber" },
+							new String[] { "referenceName", "partyShortCode", "personReferenceId",
+									"roleDescription", "documentType", "subType",
+									 "title", "subTitle", "org", "rm","madePublicDate","id", "docId","tempLabel", "label","numberValue",
+									"orderNumber" ,"status"},
 							new String[] { "id", "partyShortCode", "personReferenceId", "numberValue", "orderNumber",
 									"tempLabel", "referenceName" },
-							"docId", new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME,"docId"), null);
+							null, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME,"docId"), null);
 
 					panelContent.addComponent(politicianDocumentBeanItemGrid);
 

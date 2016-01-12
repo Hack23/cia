@@ -206,13 +206,9 @@ public final class CommitteeView extends AbstractGroupView {
 							ViewRiksdagenCommitteeBallotDecisionSummary.class,
 							decisionPartySummaryList);
 
-					final Grid committeeBallotDecisionPartyBeanItemGrid = gridFactory.createBasicBeanItemGrid(
+					final Grid committeeBallotDecisionPartyBeanItemGrid = gridFactory.createBasicBeanItemNestedPropertiesGrid(
 							committeeBallotDecisionPartyDataSource,
-							"Committee Ballot Decision Summary",
-							null,
-							null,
-							null,
-							null, null);
+							"Committee Ballot Decision Summary",new String[]{ "embeddedId.ballotId", "embeddedId.concern","embeddedId.issue"}, null, new String[]{ "embeddedId"}, null, null, null);
 
 					panelContent
 					.addComponent(committeeBallotDecisionPartyBeanItemGrid);
