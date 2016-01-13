@@ -37,6 +37,7 @@ import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminVi
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.ComboBox;
@@ -111,7 +112,11 @@ public final class AgentOperationView extends AbstractAdminView implements
 
 		content.addComponent(pageLinkFactory.createMainViewPageLink());
 
+		content.setWidth(100, Unit.PERCENTAGE);
+		content.setHeight(100, Unit.PERCENTAGE);
 		setContent(content);
+		setWidth(100, Unit.PERCENTAGE);
+		setHeight(100, Unit.PERCENTAGE);
 
 	}
 

@@ -43,6 +43,7 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.VerticalLayout;
 
@@ -161,7 +162,11 @@ public final class AdminApplicationSessionView extends AbstractAdminView {
 
 		content.addComponent(pageLinkFactory.createMainViewPageLink());
 
+		content.setWidth(100, Unit.PERCENTAGE);
+		content.setHeight(100, Unit.PERCENTAGE);
 		setContent(content);
+		setWidth(100, Unit.PERCENTAGE);
+		setHeight(100, Unit.PERCENTAGE);
 		pageActionEventHelper.createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_SESSION_VIEW,
 				ApplicationEventGroup.ADMIN, NAME, null, pageId);
 

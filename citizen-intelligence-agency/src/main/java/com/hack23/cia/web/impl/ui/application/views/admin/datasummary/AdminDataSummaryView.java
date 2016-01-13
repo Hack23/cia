@@ -33,6 +33,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFac
 import com.hack23.cia.web.impl.ui.application.views.common.tablefactory.TableFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
@@ -96,7 +97,11 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 
 		content.addComponent(pageLinkFactory.createMainViewPageLink());
 
+		content.setWidth(100, Unit.PERCENTAGE);
+		content.setHeight(100, Unit.PERCENTAGE);
 		setContent(content);
+		setWidth(100, Unit.PERCENTAGE);
+		setHeight(100, Unit.PERCENTAGE);
 
 	}
 

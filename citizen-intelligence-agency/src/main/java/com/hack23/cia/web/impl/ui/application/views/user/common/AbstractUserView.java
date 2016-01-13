@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
 import com.vaadin.navigator.View;
+import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -91,6 +92,15 @@ public abstract class AbstractUserView extends VerticalLayout implements View {
 		pageModeContent.addComponent(pageLinkFactory.createMainViewPageLink());
 		addComponent(layout);
 		setExpandRatio(layout, 1.0f);
+
+		pageModeContent.setWidth(100, Unit.PERCENTAGE);
+		pageModeContent.setHeight(100, Unit.PERCENTAGE);
+
+		layout.setWidth(100, Unit.PERCENTAGE);
+		layout.setHeight(100, Unit.PERCENTAGE);
+		setWidth(100, Unit.PERCENTAGE);
+		setHeight(100, Unit.PERCENTAGE);
+
 
 	}
 
