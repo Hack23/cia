@@ -193,7 +193,8 @@ public final class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PoliticianPageMode.VoteHistory.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label(PoliticianPageMode.VoteHistory.toString()));
+					Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.VoteHistory.toString());
+					panelContent.addComponent(createHeader2Label);
 
 					final BeanItemContainer<ViewRiksdagenVoteDataBallotPoliticianSummary> politicianBallotDataSource = new BeanItemContainer<>(
 							ViewRiksdagenVoteDataBallotPoliticianSummary.class,
@@ -204,6 +205,8 @@ public final class PoliticianView extends AbstractPersonView {
 
 
 					panelContent.addComponent(politicianBallotsBeanItemGrid);
+					panelContent.setExpandRatio(createHeader2Label, 1);
+					panelContent.setExpandRatio(politicianBallotsBeanItemGrid, 10);
 
 				} else if (parameters.contains(PoliticianPageMode.BallotDecisionSummary.toString())) {
 
