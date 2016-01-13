@@ -208,7 +208,7 @@ public final class CommitteeView extends AbstractGroupView {
 
 					final Grid committeeBallotDecisionPartyBeanItemGrid = gridFactory.createBasicBeanItemNestedPropertiesGrid(
 							committeeBallotDecisionPartyDataSource,
-							"Committee Ballot Decision Summary",new String[]{ "embeddedId.ballotId", "embeddedId.concern","embeddedId.issue"}, null, new String[]{ "embeddedId"}, null, null, null);
+							"Committee Ballot Decision Summary",new String[]{"embeddedId.concern","embeddedId.issue"}, null, new String[]{ "embeddedId"}, null, null, null);
 
 					panelContent
 					.addComponent(committeeBallotDecisionPartyBeanItemGrid);
@@ -216,7 +216,7 @@ public final class CommitteeView extends AbstractGroupView {
 
 				} else if (parameters.contains(CommitteePageMode.DecisionSummary.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Decision Summary"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("Decision Summary Not Implemented"));
 
 				} else if (parameters.contains(CommitteePageMode.CURRENT_MEMBERS.toString())) {
 					panelContent.addComponent(LabelFactory.createHeader2Label("Current Members"));
@@ -262,7 +262,7 @@ public final class CommitteeView extends AbstractGroupView {
 
 				} else if (parameters.contains(CommitteePageMode.RoleGhant.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("RoleGhant"));
+					panelContent.addComponent(LabelFactory.createHeader2Label("RoleGhant Not Implemented"));
 				} else if (parameters.contains(PageMode.PageVisitHistory.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Current Page Visit History"));
