@@ -91,9 +91,12 @@ public final class AdminMonitoringView extends AbstractAdminView {
 		content.addComponent(browser);
 
 		content.addComponent(pageLinkFactory.createMainViewPageLink());
+		content.setExpandRatio(browser, 1.0f);
 
 		content.setSizeFull();
 		setContent(content);
+
+
 		setSizeFull();
 
 		pageActionEventHelper.createPageEvent(ViewAction.VISIT_ADMIN_MONITORING_VIEW, ApplicationEventGroup.ADMIN, NAME, null, null);

@@ -22,6 +22,7 @@ import java.util.Arrays;
 
 import javax.annotation.PostConstruct;
 
+import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
@@ -43,6 +44,10 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.Grid;
+import com.vaadin.ui.Link;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -119,11 +124,12 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 		final BeanItemContainer<ApplicationActionEvent> politicianDocumentDataSource = new BeanItemContainer<>(ApplicationActionEvent.class,
 				dataContainer.getAllOrderBy(ApplicationActionEvent_.createdDate));
 
-		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationActionEvent",
+		Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationActionEvent",
 				new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" },
 				new String[] { "modelObjectId" }, "hjid",
-				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null));
-
+				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null);
+		content.addComponent(createBasicBeanItemGrid);
+		content.setExpandRatio(createBasicBeanItemGrid, 10);
 
 		if (pageId != null && !pageId.isEmpty()) {
 
@@ -131,17 +137,41 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 
 			if ( applicationActionEvent != null) {
 
-			formFactory.addTextFields(content, new BeanItem<>(applicationActionEvent), ApplicationActionEvent.class,
+				 Panel formPanel = new Panel();
+				 formPanel.setSizeFull();
+
+				final FormLayout formContent = new FormLayout();
+				formPanel.setContent(formContent);
+
+			formFactory.addTextFields(formContent, new BeanItem<>(applicationActionEvent), ApplicationActionEvent.class,
 					Arrays.asList(new String[] { "hjid","createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion"  }));
+
+			content.addComponent(formPanel);
+			content.setExpandRatio(formPanel, 13);
+
 			}
 
+
 		} else {
-			content.addComponent(chartDataManager.createApplicationActionEventPageDailySummaryChart());
+			DCharts createApplicationActionEventPageDailySummaryChart = chartDataManager.createApplicationActionEventPageDailySummaryChart();
+
+
+			content.addComponent(createApplicationActionEventPageDailySummaryChart);
+
+			content.setExpandRatio(createApplicationActionEventPageDailySummaryChart, 15);
+
 		}
 
-	 	content.addComponent(pageLinkFactory.createMainViewPageLink());
+	 	Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
+		content.addComponent(createMainViewPageLink);
+		content.setExpandRatio(createMainViewPageLink,1);
 
+
+		content.setWidth(100, Unit.PERCENTAGE);
+		content.setHeight(100, Unit.PERCENTAGE);
 		setContent(content);
+		setWidth(100, Unit.PERCENTAGE);
+		setHeight(100, Unit.PERCENTAGE);
 
 		pageActionEventHelper.createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_EVENTS_VIEW, ApplicationEventGroup.ADMIN, NAME, null, pageId);
 
