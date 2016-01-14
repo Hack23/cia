@@ -56,7 +56,11 @@ import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractGroupVie
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Grid;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Link;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -137,21 +141,38 @@ public final class CommitteeView extends AbstractGroupView {
 				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 						|| parameters.contains(PageMode.Overview.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Overview"));
+					Label createHeader2Label = LabelFactory.createHeader2Label("Overview");
+					panelContent.addComponent(createHeader2Label);
 
 
-					panelContent.addComponent(pageLinkFactory.addCommitteePageLink(viewRiksdagenCommittee));
+					Link addCommitteePageLink = pageLinkFactory.addCommitteePageLink(viewRiksdagenCommittee);
+					panelContent.addComponent(addCommitteePageLink);
 
 
-					formFactory.addTextFields(panelContent, new BeanItem<>(viewRiksdagenCommittee),
+					Panel formPanel = new Panel();
+					formPanel.setSizeFull();
+
+					panelContent.addComponent(formPanel);
+
+					final FormLayout formContent = new FormLayout();
+					formPanel.setContent(formContent);
+
+
+					formFactory.addTextFields(formContent, new BeanItem<>(viewRiksdagenCommittee),
 							ViewRiksdagenCommittee.class,
 							Arrays.asList(new String[] { "embeddedId.detail", "active", "firstAssignmentDate",
 									"lastAssignmentDate", "totalAssignments", "totalDaysServed",
 									"currentMemberSize" }));
 
+					panelContent.setExpandRatio(createHeader2Label, 1);
+					panelContent.setExpandRatio(addCommitteePageLink,1);
+					panelContent.setExpandRatio(formPanel, 10);
+
+
 				} else if (parameters.contains(CommitteePageMode.DOCUMENT_HISTORY.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Document History"));
+					Label createHeader2Label = LabelFactory.createHeader2Label("Document History");
+					panelContent.addComponent(createHeader2Label);
 
 
 
@@ -176,9 +197,14 @@ public final class CommitteeView extends AbstractGroupView {
 
 					panelContent.addComponent(politicianDocumentBeanItemGrid);
 
+					panelContent.setExpandRatio(createHeader2Label, 1);
+					panelContent.setExpandRatio(politicianDocumentBeanItemGrid, 10);
+
+
 				} else if (parameters.contains(CommitteePageMode.DocumentActivity.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Document Activity"));
+					Label createHeader2Label = LabelFactory.createHeader2Label("Document Activity");
+					panelContent.addComponent(createHeader2Label);
 
 
 					final DCharts createDocumentHistoryChart = chartDataManager
@@ -186,14 +212,25 @@ public final class CommitteeView extends AbstractGroupView {
 
 					panelContent.addComponent(createDocumentHistoryChart);
 
+					panelContent.setExpandRatio(createHeader2Label, 1);
+					panelContent.setExpandRatio(createDocumentHistoryChart, 10);
+
+
 				} else if (parameters.contains(CommitteePageMode.DecisionTypeDailySummary.toString())) {
-					panelContent.addComponent(LabelFactory.createHeader2Label("Decision Type Daily Summary"));
+					Label createHeader2Label = LabelFactory.createHeader2Label("Decision Type Daily Summary");
+					panelContent.addComponent(createHeader2Label);
 
 					final DCharts createDecisionTypeChart = chartDataManager
 							.createDecisionTypeChart(viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
 					panelContent.addComponent(createDecisionTypeChart);
+
+					panelContent.setExpandRatio(createHeader2Label, 1);
+					panelContent.setExpandRatio(createDecisionTypeChart, 10);
+
+
 				} else if (parameters.contains(CommitteePageMode.BallotDecisionSummary.toString())) {
-					panelContent.addComponent(LabelFactory.createHeader2Label("Ballot Decision Summary"));
+					Label createHeader2Label = LabelFactory.createHeader2Label("Ballot Decision Summary");
+					panelContent.addComponent(createHeader2Label);
 
 
 					final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
@@ -210,8 +247,9 @@ public final class CommitteeView extends AbstractGroupView {
 							committeeBallotDecisionPartyDataSource,
 							"Committee Ballot Decision Summary",new String[]{"embeddedId.concern","embeddedId.issue"}, null, new String[]{ "embeddedId"}, null, null, null);
 
-					panelContent
-					.addComponent(committeeBallotDecisionPartyBeanItemGrid);
+					panelContent.addComponent(committeeBallotDecisionPartyBeanItemGrid);
+					panelContent.setExpandRatio(createHeader2Label, 1);
+					panelContent.setExpandRatio(committeeBallotDecisionPartyBeanItemGrid, 10);
 
 
 				} else if (parameters.contains(CommitteePageMode.DecisionSummary.toString())) {
@@ -219,7 +257,8 @@ public final class CommitteeView extends AbstractGroupView {
 					panelContent.addComponent(LabelFactory.createHeader2Label("Decision Summary Not Implemented"));
 
 				} else if (parameters.contains(CommitteePageMode.CURRENT_MEMBERS.toString())) {
-					panelContent.addComponent(LabelFactory.createHeader2Label("Current Members"));
+					Label createHeader2Label = LabelFactory.createHeader2Label("Current Members");
+					panelContent.addComponent(createHeader2Label);
 
 					final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
@@ -239,9 +278,13 @@ public final class CommitteeView extends AbstractGroupView {
 							new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 
 					panelContent.addComponent(currentMemberBeanItemGrid);
+					panelContent.setExpandRatio(createHeader2Label, 1);
+					panelContent.setExpandRatio(currentMemberBeanItemGrid, 10);
+
 
 				} else if (parameters.contains(CommitteePageMode.MemberHistory.toString())) {
-					panelContent.addComponent(LabelFactory.createHeader2Label("Member History"));
+					Label createHeader2Label = LabelFactory.createHeader2Label("Member History");
+					panelContent.addComponent(createHeader2Label);
 
 					final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
@@ -259,17 +302,30 @@ public final class CommitteeView extends AbstractGroupView {
 							new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 
 					panelContent.addComponent(commmitteeRoleMemberBeanItemGrid);
+					panelContent.setExpandRatio(createHeader2Label, 1);
+					panelContent.setExpandRatio(commmitteeRoleMemberBeanItemGrid, 10);
+
 
 				} else if (parameters.contains(CommitteePageMode.RoleGhant.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("RoleGhant Not Implemented"));
 				} else if (parameters.contains(PageMode.PageVisitHistory.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Current Page Visit History"));
-					panelContent.addComponent(chartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId));
+					Label createHeader2Label = LabelFactory.createHeader2Label("Current Page Visit History");
+					panelContent.addComponent(createHeader2Label);
+					DCharts createApplicationActionEventPageElementDailySummaryChart = chartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId);
+					panelContent.addComponent(createApplicationActionEventPageElementDailySummaryChart);
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("General Page Mode Page Visit"));
-					panelContent.addComponent(chartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME));
+					Label createHeader2Label2 = LabelFactory.createHeader2Label("General Page Mode Page Visit");
+					panelContent.addComponent(createHeader2Label2);
+					DCharts createApplicationActionEventPageModeDailySummaryChart = chartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME);
+					panelContent.addComponent(createApplicationActionEventPageModeDailySummaryChart);
+
+					panelContent.setExpandRatio(createHeader2Label, 1);
+					panelContent.setExpandRatio(createApplicationActionEventPageElementDailySummaryChart, 10);
+					panelContent.setExpandRatio(createHeader2Label2, 1);
+					panelContent.setExpandRatio(createApplicationActionEventPageModeDailySummaryChart, 10);
+
 
 				}
 

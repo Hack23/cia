@@ -59,7 +59,7 @@ import ru.xpoft.vaadin.SpringVaadinServlet;
 @Service(value = "ui")
 @Scope("prototype")
 @Theme("cia")
-@Push(transport = Transport.WEBSOCKET_XHR)
+@Push(transport = Transport.STREAMING)
 public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandler {
 
 	/** The Constant serialVersionUID. */

@@ -55,6 +55,10 @@ import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.Grid;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -129,7 +133,8 @@ public final class UserHomeView extends AbstractUserView {
 			if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 					|| parameters.contains(PageMode.Overview.toString())) {
 
-				panelContent.addComponent(LabelFactory.createHeader2Label("Overview"));
+				Label createHeader2Label = LabelFactory.createHeader2Label("Overview");
+				panelContent.addComponent(createHeader2Label);
 
 				final Button logoutButton = new Button("Logout");
 
@@ -145,7 +150,18 @@ public final class UserHomeView extends AbstractUserView {
 
 					final UserAccount userAccount = dataContainer.load(getUserIdFromSecurityContext());
 
-					formFactory.addTextFields(panelContent, new BeanItem<>(userAccount), UserAccount.class,
+
+					Panel formPanel = new Panel();
+					formPanel.setSizeFull();
+
+					panelContent.addComponent(formPanel);
+
+					final FormLayout formContent = new FormLayout();
+					formPanel.setContent(formContent);
+
+
+
+					formFactory.addTextFields(formContent, new BeanItem<>(userAccount), UserAccount.class,
 							Arrays.asList(new String[] { "username","createdDate","email","country","numberOfVisits" }));
 
 
@@ -156,11 +172,18 @@ public final class UserHomeView extends AbstractUserView {
 					final BeanItemContainer<ApplicationActionEvent> politicianDocumentDataSource = new BeanItemContainer<>(ApplicationActionEvent.class,
 							eventDataContainer.findOrderedListByProperty(ApplicationActionEvent_.userId,userAccount.getUserId(),ApplicationActionEvent_.createdDate));
 
-					panelContent.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationActionEvent",
+					Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationActionEvent",
 							new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" },
 							new String[] { "modelObjectId" }, "hjid",
-							new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null));
+							new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null);
+					panelContent.addComponent(createBasicBeanItemGrid);
 
+
+					panelContent.setExpandRatio(createHeader2Label, 1);
+					panelContent.setExpandRatio(logoutButton, 1);
+
+					panelContent.setExpandRatio(formPanel, 10);
+					panelContent.setExpandRatio(createBasicBeanItemGrid, 10);
 
 			}
 

@@ -72,10 +72,13 @@ import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Grid;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Layout;
+import com.vaadin.ui.Link;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -86,7 +89,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope("prototype")
 @VaadinView(value = PoliticianView.NAME, cached = true)
-//@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
+// @Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 public final class PoliticianView extends AbstractPersonView {
 
 	/** The Constant serialVersionUID. */
@@ -116,7 +119,6 @@ public final class PoliticianView extends AbstractPersonView {
 	@Autowired
 	private transient FormFactory formFactory;
 
-
 	/**
 	 * Post construct.
 	 */
@@ -129,9 +131,8 @@ public final class PoliticianView extends AbstractPersonView {
 	/**
 	 * (non-Javadoc)
 	 *
-	 * @see
-	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener
-	 * .ViewChangeEvent)
+	 * @see com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener
+	 *      .ViewChangeEvent)
 	 */
 	@Override
 	public void enter(final ViewChangeEvent event) {
@@ -155,7 +156,7 @@ public final class PoliticianView extends AbstractPersonView {
 				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 						|| parameters.contains(PageMode.Overview.toString())) {
 
-					createOverviewContent(panelContent,pageId, personData);
+					createOverviewContent(panelContent, pageId, personData);
 
 				} else if (parameters.contains(PageMode.Charts.toString())) {
 
@@ -163,13 +164,22 @@ public final class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PageMode.Indicators.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Indicators"));
+					Label createHeader2Label = LabelFactory.createHeader2Label("Indicators");
+					panelContent.addComponent(createHeader2Label);
 
-					panelContent.addComponent(chartDataManager.createPersonLineChart(personData.getId()));
+					DCharts createPersonLineChart = chartDataManager.createPersonLineChart(personData.getId());
+					panelContent.addComponent(createPersonLineChart);
+
+					panelContent.setExpandRatio(createHeader2Label, 1);
+					panelContent.setExpandRatio(createPersonLineChart, 10);
 
 				} else if (parameters.contains(PoliticianPageMode.RoleSummary.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label(PoliticianPageMode.RoleSummary.toString()));
+					Label createHeader2Label = LabelFactory
+							.createHeader2Label(PoliticianPageMode.RoleSummary.toString());
+					panelContent.addComponent(createHeader2Label);
+
+					panelContent.setExpandRatio(createHeader2Label, 1);
 
 					final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPolitician.class);
@@ -184,7 +194,9 @@ public final class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PoliticianPageMode.RoleList.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label(PoliticianPageMode.RoleList.toString()));
+					Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.RoleList.toString());
+					panelContent.addComponent(createHeader2Label);
+					panelContent.setExpandRatio(createHeader2Label, 1);
 
 					final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()
 							.getAssignmentList();
@@ -193,16 +205,27 @@ public final class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PoliticianPageMode.VoteHistory.toString())) {
 
-					Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.VoteHistory.toString());
+					Label createHeader2Label = LabelFactory
+							.createHeader2Label(PoliticianPageMode.VoteHistory.toString());
 					panelContent.addComponent(createHeader2Label);
 
 					final BeanItemContainer<ViewRiksdagenVoteDataBallotPoliticianSummary> politicianBallotDataSource = new BeanItemContainer<>(
 							ViewRiksdagenVoteDataBallotPoliticianSummary.class,
 							chartDataManager.getViewRiksdagenVoteDataBallotPoliticianSummary(personData.getId()));
 
-					final Grid politicianBallotsBeanItemGrid = gridFactory
-							.createBasicBeanItemNestedPropertiesGrid(politicianBallotDataSource, "Ballots",new String[]{ "embeddedId.ballotId", "embeddedId.concern","embeddedId.issue"}, new String[]{"voteDate","rm","label","embeddedId.concern","embeddedId.issue","vote","won","partyWon","rebel","noWinner","approved","partyApproved","totalVotes","partyTotalVotes","yesVotes","partyYesVotes", "noVotes", "partyNoVotes","partyAbstainVotes","abstainVotes",  "partyAbsentVotes","absentVotes","bornYear","partyAvgBornYear","avgBornYear", "gender","partyPercentageMale", "percentageMale","ballotType","embeddedId.ballotId"}, new String[]{ "embeddedId","partyNoWinner","partyPercentageYes","partyPercentageNo","partyPercentageAbsent","partyPercentageAbstain","percentageYes","percentageNo", "percentageAbsent","percentageAbstain","firstName", "lastName","party" }, null, null, null);
-
+					final Grid politicianBallotsBeanItemGrid = gridFactory.createBasicBeanItemNestedPropertiesGrid(
+							politicianBallotDataSource, "Ballots",
+							new String[] { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue" },
+							new String[] { "voteDate", "rm", "label", "embeddedId.concern", "embeddedId.issue", "vote",
+									"won", "partyWon", "rebel", "noWinner", "approved", "partyApproved", "totalVotes",
+									"partyTotalVotes", "yesVotes", "partyYesVotes", "noVotes", "partyNoVotes",
+									"partyAbstainVotes", "abstainVotes", "partyAbsentVotes", "absentVotes", "bornYear",
+									"partyAvgBornYear", "avgBornYear", "gender", "partyPercentageMale",
+									"percentageMale", "ballotType", "embeddedId.ballotId" },
+							new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
+									"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
+									"percentageAbsent", "percentageAbstain", "firstName", "lastName", "party" },
+							null, null, null);
 
 					panelContent.addComponent(politicianBallotsBeanItemGrid);
 					panelContent.setExpandRatio(createHeader2Label, 1);
@@ -210,65 +233,96 @@ public final class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PoliticianPageMode.BallotDecisionSummary.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label(PoliticianPageMode.BallotDecisionSummary.toString()));
+					Label createHeader2Label = LabelFactory
+							.createHeader2Label(PoliticianPageMode.BallotDecisionSummary.toString());
+					panelContent.addComponent(createHeader2Label);
 
 					final DataContainer<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class);
 
-
-					final List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> decisionPartySummaryList = committeeBallotDecisionPartyDataContainer.findOrderedByPropertyListByEmbeddedProperty(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class, ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.embeddedId, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId.class, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId_.intressentId, pageId, ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.voteDate);
+					final List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> decisionPartySummaryList = committeeBallotDecisionPartyDataContainer
+							.findOrderedByPropertyListByEmbeddedProperty(
+									ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class,
+									ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.embeddedId,
+									ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId.class,
+									ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId_.intressentId, pageId,
+									ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.voteDate);
 
 					final BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> committeeBallotDecisionPartyDataSource = new BeanItemContainer<>(
-							ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class,
-							decisionPartySummaryList);
+							ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class, decisionPartySummaryList);
 
-					final Grid committeeBallotDecisionPartyBeanItemGrid = gridFactory.createBasicBeanItemNestedPropertiesGrid(
-							committeeBallotDecisionPartyDataSource,
-							"Committee Ballot Decision Politician Summary",new String[]{"embeddedId.concern","embeddedId.issue"},
-							new String[]{"voteDate","rm","org","committeeReport","title","subTitle","winner","embeddedId.concern","embeddedId.issue","vote","won","rebel","noWinner","approved","partyApproved","againstProposalNumber","againstProposalParties","totalVotes","partyTotalVotes","yesVotes","partyYesVotes", "noVotes", "partyNoVotes","partyAbstainVotes","abstainVotes",  "partyAbsentVotes","absentVotes","bornYear","partyAvgBornYear","avgBornYear","ballotType","decisionType","ballotId"},
-							new String[]{ "label","endNumber","publicDate","createdDate","embeddedId","partyNoWinner","partyPercentageYes","partyPercentageNo","partyPercentageAbsent","partyPercentageAbstain","percentageYes","percentageNo", "percentageAbsent","percentageAbstain","firstName", "lastName","party" },
-							null,
-							null, null);
+					final Grid committeeBallotDecisionPartyBeanItemGrid = gridFactory
+							.createBasicBeanItemNestedPropertiesGrid(committeeBallotDecisionPartyDataSource,
+									"Committee Ballot Decision Politician Summary",
+									new String[] { "embeddedId.concern", "embeddedId.issue" },
+									new String[] { "voteDate", "rm", "org", "committeeReport", "title", "subTitle",
+											"winner", "embeddedId.concern", "embeddedId.issue", "vote", "won", "rebel",
+											"noWinner", "approved", "partyApproved", "againstProposalNumber",
+											"againstProposalParties", "totalVotes", "partyTotalVotes", "yesVotes",
+											"partyYesVotes", "noVotes", "partyNoVotes", "partyAbstainVotes",
+											"abstainVotes", "partyAbsentVotes", "absentVotes", "bornYear",
+											"partyAvgBornYear", "avgBornYear", "ballotType", "decisionType",
+											"ballotId" },
+									new String[] { "label", "endNumber", "publicDate", "createdDate", "embeddedId",
+											"partyNoWinner", "partyPercentageYes", "partyPercentageNo",
+											"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes",
+											"percentageNo", "percentageAbsent", "percentageAbstain", "firstName",
+											"lastName", "party" },
+									null, null, null);
 
-					panelContent
-					.addComponent(committeeBallotDecisionPartyBeanItemGrid);
+					panelContent.addComponent(committeeBallotDecisionPartyBeanItemGrid);
 
+					panelContent.setExpandRatio(createHeader2Label, 1);
+					panelContent.setExpandRatio(committeeBallotDecisionPartyBeanItemGrid, 10);
 
 				} else if (parameters.contains(PoliticianPageMode.DocumentHistory.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label(PoliticianPageMode.DocumentHistory.toString()));
+					Label createHeader2Label = LabelFactory
+							.createHeader2Label(PoliticianPageMode.DocumentHistory.toString());
+					panelContent.addComponent(createHeader2Label);
 
 					final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPoliticianDocument.class);
 
 					final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<>(
-							ViewRiksdagenPoliticianDocument.class, politicianDocumentDataContainer
-									.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.personReferenceId, personData.getId(),ViewRiksdagenPoliticianDocument_.madePublicDate));
+							ViewRiksdagenPoliticianDocument.class,
+							politicianDocumentDataContainer.findOrderedListByProperty(
+									ViewRiksdagenPoliticianDocument_.personReferenceId, personData.getId(),
+									ViewRiksdagenPoliticianDocument_.madePublicDate));
 
 					final Grid politicianDocumentBeanItemGrid = gridFactory.createBasicBeanItemGrid(
 							politicianDocumentDataSource, "Documents",
-							new String[] { "referenceName", "partyShortCode", "personReferenceId",
-									"roleDescription", "documentType", "subType",
-									 "title", "subTitle", "org", "rm","madePublicDate","id", "docId","tempLabel", "label","numberValue",
-									"orderNumber" ,"status"},
+							new String[] { "referenceName", "partyShortCode", "personReferenceId", "roleDescription",
+									"documentType", "subType", "title", "subTitle", "org", "rm", "madePublicDate", "id",
+									"docId", "tempLabel", "label", "numberValue", "orderNumber", "status" },
 							new String[] { "id", "partyShortCode", "personReferenceId", "numberValue", "orderNumber",
 									"tempLabel", "referenceName" },
-							null, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME,"docId"), null);
+							null, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null);
 
 					panelContent.addComponent(politicianDocumentBeanItemGrid);
 
+					panelContent.setExpandRatio(createHeader2Label, 1);
+					panelContent.setExpandRatio(politicianDocumentBeanItemGrid, 10);
+
 				} else if (parameters.contains(PoliticianPageMode.DocumentActivity.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label(PoliticianPageMode.DocumentActivity.toString()));
+					Label createHeader2Label = LabelFactory
+							.createHeader2Label(PoliticianPageMode.DocumentActivity.toString());
+					panelContent.addComponent(createHeader2Label);
 
 					final DCharts documentHistoryChart = chartDataManager
 							.createPersonDocumentHistoryChart(personData.getId());
 
 					panelContent.addComponent(documentHistoryChart);
 
+					panelContent.setExpandRatio(createHeader2Label, 1);
+					panelContent.setExpandRatio(documentHistoryChart, 10);
+
 				} else if (parameters.contains(PoliticianPageMode.RoleGhant.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label(PoliticianPageMode.RoleGhant.toString()));
+					Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.RoleGhant.toString());
+					panelContent.addComponent(createHeader2Label);
+					panelContent.setExpandRatio(createHeader2Label, 1);
 
 					final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()
 							.getAssignmentList();
@@ -277,18 +331,29 @@ public final class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PageMode.PageVisitHistory.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Current Page Visit History"));
-					panelContent.addComponent(chartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId));
+					Label createHeader2Label = LabelFactory.createHeader2Label("Current Page Visit History");
+					panelContent.addComponent(createHeader2Label);
+					DCharts createApplicationActionEventPageElementDailySummaryChart = chartDataManager
+							.createApplicationActionEventPageElementDailySummaryChart(NAME, pageId);
+					panelContent.addComponent(createApplicationActionEventPageElementDailySummaryChart);
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("General Page Mode Page Visit"));
-					panelContent.addComponent(chartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME));
+					Label createHeader2Label2 = LabelFactory.createHeader2Label("General Page Mode Page Visit");
+					panelContent.addComponent(createHeader2Label2);
+					DCharts createApplicationActionEventPageModeDailySummaryChart = chartDataManager
+							.createApplicationActionEventPageModeDailySummaryChart(NAME);
+					panelContent.addComponent(createApplicationActionEventPageModeDailySummaryChart);
+
+					panelContent.setExpandRatio(createHeader2Label, 1);
+					panelContent.setExpandRatio(createApplicationActionEventPageElementDailySummaryChart, 10);
+					panelContent.setExpandRatio(createHeader2Label2, 1);
+					panelContent.setExpandRatio(createApplicationActionEventPageModeDailySummaryChart, 10);
 
 				}
 
 				getPanel().setContent(panelContent);
 
-				pageActionEventHelper.createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
-
+				pageActionEventHelper.createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,
+						NAME, parameters, pageId);
 
 				final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
 						.getDataContainer(ViewRiksdagenPolitician.class);
@@ -308,7 +373,6 @@ public final class PoliticianView extends AbstractPersonView {
 
 	}
 
-
 	/**
 	 * Creates the overview content.
 	 *
@@ -319,20 +383,36 @@ public final class PoliticianView extends AbstractPersonView {
 	 * @param personData
 	 *            the person data
 	 */
-	private void createOverviewContent(final VerticalLayout panelContent, final String pageId, final PersonData personData) {
-		panelContent.addComponent(LabelFactory.createHeader2Label("overview"));
+	private void createOverviewContent(final VerticalLayout panelContent, final String pageId,
+			final PersonData personData) {
+		Label createHeader2Label = LabelFactory.createHeader2Label("overview");
+		panelContent.addComponent(createHeader2Label);
 
 		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenPolitician.class);
 
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = politicianDataContainer.load(personData.getId());
 
-		panelContent.addComponent(pageLinkFactory.createPoliticianPageLink(personData));
+		Link createPoliticianPageLink = pageLinkFactory.createPoliticianPageLink(personData);
+		panelContent.addComponent(createPoliticianPageLink);
 
-		panelContent.addComponent(new Image("", new ExternalResource(personData.getImageUrl192())));
+		Image image = new Image("", new ExternalResource(personData.getImageUrl192()));
 
-		formFactory.addTextFields(panelContent, new BeanItem<>(viewRiksdagenPolitician),
-				ViewRiksdagenPolitician.class,
+		HorizontalLayout horizontalLayout = new HorizontalLayout();
+		horizontalLayout.setSizeFull();
+
+		panelContent.addComponent(horizontalLayout);
+
+		Panel formPanel = new Panel();
+		formPanel.setSizeFull();
+
+		horizontalLayout.addComponent(formPanel);
+		horizontalLayout.addComponent(image);
+
+		final FormLayout formContent = new FormLayout();
+		formPanel.setContent(formContent);
+
+		formFactory.addTextFields(formContent, new BeanItem<>(viewRiksdagenPolitician), ViewRiksdagenPolitician.class,
 				Arrays.asList(new String[] { "firstName", "lastName", "gender", "bornYear", "party", "active",
 						"firstAssignmentDate", "lastAssignmentDate", "currentAssignments", "currentMinistryAssignments",
 						"currentSpeakerAssignments", "currentCommitteeAssignments", "currentPartyAssignments",
@@ -342,10 +422,19 @@ public final class PoliticianView extends AbstractPersonView {
 						"activeCommittee", "totalDaysServedCommittee", "activeParliament", "totalDaysServedParliament",
 						"activeParty", "totalDaysServedParty" }));
 
-		panelContent.addComponent(gridFactory.createBasicBeanItemGrid(
-				new BeanItemContainer<>(DetailData.class, personData.getPersonDetailData().getDetailList()),
-				"Detail", new String[] { "detailType", "detail", "code" }, new String[] { "hjid", "intressentId" },
-				null, null, null));
+		Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(
+				new BeanItemContainer<>(DetailData.class, personData.getPersonDetailData().getDetailList()), "Detail",
+				new String[] { "detailType", "detail", "code" }, new String[] { "hjid", "intressentId" }, null, null,
+				null);
+		panelContent.addComponent(createBasicBeanItemGrid);
+
+
+		panelContent.setExpandRatio(createHeader2Label, 1);
+		panelContent.setExpandRatio(createPoliticianPageLink, 1);
+		panelContent.setExpandRatio(horizontalLayout, 10);
+
+		panelContent.setExpandRatio(createBasicBeanItemGrid, 4);
+
 
 	}
 
@@ -359,26 +448,34 @@ public final class PoliticianView extends AbstractPersonView {
 	 * @param viewRiksdagenPolitician
 	 *            the view riksdagen politician
 	 */
-	private void createRoleSummary(final Layout roleSummaryLayoutTabsheet, final List<AssignmentData> assignmentList,
+	private void createRoleSummary(final VerticalLayout roleSummaryLayoutTabsheet, final List<AssignmentData> assignmentList,
 			final ViewRiksdagenPolitician viewRiksdagenPolitician) {
 
-		roleSummaryLayoutTabsheet.addComponent(new Label("Assignments:" + assignmentList.size()));
+		VerticalLayout layout = new VerticalLayout();
+		layout.setSizeFull();
+
+		layout.addComponent(new Label("Total Assignments:" + assignmentList.size()));
 
 		if (viewRiksdagenPolitician != null) {
 
-			roleSummaryLayoutTabsheet.addComponent(new Label("Government experience:"
+			layout.addComponent(new Label("Government experience:"
 					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedGovernment())));
-			roleSummaryLayoutTabsheet.addComponent(new Label(
+			layout.addComponent(new Label(
 					"Speaker experience:" + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedSpeaker())));
-			roleSummaryLayoutTabsheet.addComponent(new Label("Committee experience:"
+			layout.addComponent(new Label("Committee experience:"
 					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedCommittee())));
-			roleSummaryLayoutTabsheet.addComponent(
+			layout.addComponent(
 					new Label("EU experience:" + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedEu())));
-			roleSummaryLayoutTabsheet.addComponent(new Label("Parliament experience:"
+			layout.addComponent(new Label("Parliament experience:"
 					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParliament())));
-			roleSummaryLayoutTabsheet.addComponent(new Label(
+			layout.addComponent(new Label(
 					"Party experience:" + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParty())));
 		}
+
+		roleSummaryLayoutTabsheet.addComponent(layout);
+		roleSummaryLayoutTabsheet.setExpandRatio(layout, 10);
+
+
 
 	}
 
@@ -390,18 +487,20 @@ public final class PoliticianView extends AbstractPersonView {
 	 * @param assignmentList
 	 *            the assignment list
 	 */
-	private void createRoleList(final Layout roleSummaryLayoutTabsheet, final List<AssignmentData> assignmentList) {
+	private void createRoleList(final VerticalLayout roleSummaryLayoutTabsheet, final List<AssignmentData> assignmentList) {
 
 		final Comparator<AssignmentData> compare = (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
 
 		Collections.sort(assignmentList, compare);
 
-		roleSummaryLayoutTabsheet
-				.addComponent(gridFactory.createBasicBeanItemGrid(
-						new BeanItemContainer<>(AssignmentData.class, assignmentList), "Assignments",
+		Grid createBasicBeanItemGrid = gridFactory
+				.createBasicBeanItemGrid(new BeanItemContainer<>(AssignmentData.class, assignmentList), "Assignments",
 						new String[] { "roleCode", "assignmentType", "status", "detail", "orgCode", "fromDate",
 								"toDate" },
-						new String[] { "hjid", "intressentId", "orderNumber", "orgCode" }, null, null, null));
+						new String[] { "hjid", "intressentId", "orderNumber", "orgCode" }, null, null, null);
+		roleSummaryLayoutTabsheet.addComponent(createBasicBeanItemGrid);
+
+		roleSummaryLayoutTabsheet.setExpandRatio(createBasicBeanItemGrid, 10);
 
 	}
 
@@ -413,13 +512,17 @@ public final class PoliticianView extends AbstractPersonView {
 	 * @param assignmentList
 	 *            the assignment list
 	 */
-	private void createRoleGhant(final Layout roleSummaryLayoutTabsheet, final List<AssignmentData> assignmentList) {
+	private void createRoleGhant(final VerticalLayout roleSummaryLayoutTabsheet,
+			final List<AssignmentData> assignmentList) {
 
 		final Comparator<AssignmentData> compare = (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
 
 		Collections.sort(assignmentList, compare);
 
-		roleSummaryLayoutTabsheet.addComponent(createGantt(assignmentList));
+		Gantt createGantt = createGantt(assignmentList);
+		roleSummaryLayoutTabsheet.addComponent(createGantt);
+		roleSummaryLayoutTabsheet.setExpandRatio(createGantt, 10);
+
 	}
 
 	/**
@@ -433,29 +536,28 @@ public final class PoliticianView extends AbstractPersonView {
 			final Map<String, List<AssignmentData>> map) {
 		final Comparator<? super Entry<String, List<AssignmentData>>> compare = (o1, o2) -> {
 
-final Comparator<AssignmentData> compare1 = (o11, o21) -> {
-		final int compareDate = o11.getFromDate().compareTo(o21.getFromDate());
-		if (compareDate == 0) {
-			final int compareType = o11.getAssignmentType().compareTo(o21.getAssignmentType());
-			if (compareType == 0) {
-				return o11.getDetail().compareTo(o21.getDetail());
-			} else {
-				return compareType;
-			}
-		} else {
-		}
-		return compareDate;
+			final Comparator<AssignmentData> compare1 = (o11, o21) -> {
+				final int compareDate = o11.getFromDate().compareTo(o21.getFromDate());
+				if (compareDate == 0) {
+					final int compareType = o11.getAssignmentType().compareTo(o21.getAssignmentType());
+					if (compareType == 0) {
+						return o11.getDetail().compareTo(o21.getDetail());
+					} else {
+						return compareType;
+					}
+				} else {
+				}
+				return compareDate;
 
-};
+			};
 
-Collections.sort(o1.getValue(), compare1);
-Collections.sort(o2.getValue(), compare1);
+			Collections.sort(o1.getValue(), compare1);
+			Collections.sort(o2.getValue(), compare1);
 
-return compare1.compare(o1.getValue().get(0), o2.getValue().get(0));
-};
+			return compare1.compare(o1.getValue().get(0), o2.getValue().get(0));
+		};
 
-		final SortedSet<Map.Entry<String, List<AssignmentData>>> sortedEntries = new TreeSet<>(
-				compare);
+		final SortedSet<Map.Entry<String, List<AssignmentData>>> sortedEntries = new TreeSet<>(compare);
 		sortedEntries.addAll(map.entrySet());
 		return sortedEntries;
 	}
