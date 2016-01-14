@@ -1,12 +1,13 @@
-@import "../reindeer/reindeer.scss";
+@import "variables";
+@import "../valo/valo.scss";
 
 @import "addons.scss";
 
 
 .cia {
 
-	@include reindeer;
-	
+	@include valo;
+
 	@include addons;
-	
+
 }
