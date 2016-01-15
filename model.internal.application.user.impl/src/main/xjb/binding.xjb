@@ -42,7 +42,7 @@
 	<jaxb:bindings schemaLocation="../xsd/data-committee.xsd"
 		node="/xsd:schema">
 	</jaxb:bindings>
-	
+
 	<jaxb:bindings schemaLocation="../xsd/data-document.xsd"
 		node="/xsd:schema">
 	</jaxb:bindings>
@@ -59,7 +59,11 @@
 		node="/xsd:schema">
 	</jaxb:bindings>
 
-	
+	<jaxb:bindings schemaLocation="../xsd/data-vdem.xsd"
+		node="/xsd:schema">
+	</jaxb:bindings>
+
+
 	<jaxb:bindings schemaLocation="../../../target/dependency/countries.xsd"
 		node="/xsd:schema">
 		<jaxb:schemaBindings map="true">
@@ -68,7 +72,7 @@
         	</jaxb:nameXmlTransform>
 		</jaxb:schemaBindings>
 	</jaxb:bindings>
-<!-- 
+<!--
 	<jaxb:bindings schemaLocation="../../../target/dependency/person.xsd"
 		node="/xsd:schema">
 	</jaxb:bindings>

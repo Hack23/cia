@@ -528,6 +528,16 @@
       <resource>
         <filtering>true</filtering>
         <directory>src/main/resources</directory>
+        <excludes>
+          <exclude>*.xlsx</exclude>
+        </excludes>
+      </resource>
+      <resource>
+        <filtering>false</filtering>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>*.xlsx</include>
+        </includes>
       </resource>
     </resources>
     <pluginManagement>
