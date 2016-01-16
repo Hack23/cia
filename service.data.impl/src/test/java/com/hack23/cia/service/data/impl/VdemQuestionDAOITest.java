@@ -47,9 +47,15 @@ public class VdemQuestionDAOITest extends AbstractServiceDataFunctionalIntegrati
 	 *             the exception
 	 */
 	@Test
-	public void testGetSize() throws Exception {
+	public void testGetAll() throws Exception {
 
 		assertEquals(510,vdemQuestionDAO.getAll().size());
+	}
+
+	@Test
+	public void testGetData() throws Exception {
+
+		assertNotNull(vdemQuestionDAO.getData());
 	}
 
 }

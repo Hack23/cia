@@ -18,16 +18,26 @@
 */
 package com.hack23.cia.service.data.impl;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 
+import com.hack23.cia.model.external.vdem.indicators.impl.CountryQuestionData;
+import com.hack23.cia.model.external.vdem.indicators.impl.CountryQuestionDataEmbeddedId;
 import com.hack23.cia.model.external.vdem.indicators.impl.Question;
 
 /**
@@ -35,6 +45,9 @@ import com.hack23.cia.model.external.vdem.indicators.impl.Question;
  */
 @Service
 public class VdemQuestionDAO {
+
+	/** The Constant VDEM_DATA_DOWNLOAD_URL. */
+	private static final String VDEM_DATA_DOWNLOAD_URL="https://s3-eu-west-1.amazonaws.com/vdemdata/V-Dem-DS-CY-v5.csv";
 
 	/**
 	 * Gets the all.
@@ -80,6 +93,67 @@ public class VdemQuestionDAO {
 
 	}
 
+	/**
+	 * Gets the data.
+	 *
+	 * @return the data
+	 */
+	public List<CountryQuestionData> getData() {
+		List<CountryQuestionData> list = new ArrayList<>();
 
+		List<Question> questions = getAll();
+
+		Reader in;
+		try {
+			in =  new InputStreamReader(new URL(VDEM_DATA_DOWNLOAD_URL).openStream());
+
+			final CSVParser parser = new CSVParser(in, CSVFormat.EXCEL.withHeader().withDelimiter(','));
+
+			//Iterable<CSVRecord> records = CSVFormat.DEFAULT.parse(in);
+			for (CSVRecord record : parser) {
+			    String countryName = record.get("country_name");
+			    String countryId = record.get("country_id");
+			    String countryTextId = record.get("country_text_id");
+			    String year = record.get("year");
+			    String gapStart = record.get("gapstart");
+			    String gapEnd = record.get("gapend");
+			    String codingEnd = record.get("codingend");
+			    String cowCode = record.get("COWcode");
+
+			    for (Question question : questions) {
+			    	if (question.getQuestionId() != null) {
+
+			    		if (record.isMapped(question.getTag())) {
+
+			    			try {
+				    		String questionValue = record.get(question.getTag());
+				    		if (questionValue != null && questionValue.trim().length() >0) {
+				    			CountryQuestionDataEmbeddedId CountryQuestionDataEmbeddedId = new CountryQuestionDataEmbeddedId();
+				    			CountryQuestionData countryQuestionData = new CountryQuestionData();
+
+				    			System.out.println( countryName +"."+ year+ " :" + question.getName() + " :" + questionValue);
+
+				    			list.add(countryQuestionData);
+				    		}
+			    			} catch (Exception e) {
+			    				System.out.println("Missing value for:"+ question.getTag());
+			    			}
+
+			    		}
+			    	}
+				}
+
+
+			}
+
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
 
 }
