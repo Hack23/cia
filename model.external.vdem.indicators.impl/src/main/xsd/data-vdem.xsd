@@ -33,7 +33,7 @@
 			</xsd:appinfo>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="year" type="xsd:integer" />
+			<xsd:element name="year" type="xsd:int" />
 			<xsd:element name="countryId" type="xsd:string" />
 			<xsd:element name="countryName" type="xsd:string" />
 			<xsd:element name="indicatorId" type="xsd:string" />

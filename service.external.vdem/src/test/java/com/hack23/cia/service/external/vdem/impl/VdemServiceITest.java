@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.data.impl;
+package com.hack23.cia.service.external.vdem.impl;
 
 import org.databene.contiperf.PerfTest;
 import org.databene.contiperf.Required;
@@ -25,37 +25,50 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.hack23.cia.service.external.vdem.impl.VdemServiceImpl;
+
 /**
- * The Class VdemQuestionDAOITest.
+ * The Class VdemServiceITest.
  */
 @PerfTest(threads = 1, duration = 3000, warmUp = 1500)
 @Required(max = 4000,average = 2500,percentile95=3000,throughput=2)
-public class VdemQuestionDAOITest extends AbstractServiceDataFunctionalIntegrationTest {
+public class VdemServiceITest extends AbstractVdemFunctionalIntegrationTest {
 
 	/** The i. */
 	@Rule
 	public ContiPerfRule i = new ContiPerfRule();
 
-	/** The vdem question dao. */
+	/** The vdem service. */
 	@Autowired
-	private VdemQuestionDAO vdemQuestionDAO;
+	private VdemServiceImpl vdemService;
 
 	/**
-	 * Test get size.
+	 * Test get questions.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void testGetAll() throws Exception {
+	@PerfTest(threads = 1, duration = 15000, warmUp = 1500)
+	@Required(max = 15000,average = 15000,percentile95=15000)
+	public void testGetQuestions() throws Exception {
 
-		assertEquals(510,vdemQuestionDAO.getAll().size());
+		assertEquals(510,vdemService.getQuestions().size());
 	}
 
+	/**
+	 * Test get country question data.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
-	public void testGetData() throws Exception {
+	@PerfTest(threads = 1, duration = 60000, warmUp = 1500)
+	@Required(max = 60000,average = 60000,percentile95=60000)
 
-		assertNotNull(vdemQuestionDAO.getData());
+	public void testGetCountryQuestionData() throws Exception {
+
+		assertNotNull(vdemService.getCountryQuestionData());
 	}
 
 }

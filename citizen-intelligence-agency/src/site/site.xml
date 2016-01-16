@@ -69,6 +69,8 @@
 			<item name="service.external.riksdagen"
 				href="http://cia.sourceforge.net/service.external.riksdagen/" />
 			<item name="service.external.val" href="http://cia.sourceforge.net/service.external.val/" />
+			<item name="service.external.vdem" href="http://cia.sourceforge.net/service.external.vdem/" />
+
 
 			<item name="Service.Data.Api" href="http://cia.sourceforge.net/service.data.api/" />
 			<item name="Service.Data.Impl" href="http://cia.sourceforge.net/service.data.impl/" />
@@ -87,6 +89,10 @@
 				href="http://cia.sourceforge.net/model.external.worldbank.indicators.impl/" />
 			<item name="worldbank.data.impl"
 				href="http://cia.sourceforge.net/model.external.worldbank.data.impl/" />
+
+			<item name="vdem.indicators.impl"
+				href="http://cia.sourceforge.net/model.external.vdem.indicators.impl/" />
+
 
 			<item name="model.external.val" href="http://cia.sourceforge.net/model.external.val/" />
 			<item name="val.partier.impl"

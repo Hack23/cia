@@ -27,19 +27,19 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest;
 
 /**
- * The Class AbstractWorldbankFunctionalIntegrationTest.
+ * The Class AbstractVdemFunctionalIntegrationTest.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 		"classpath:/META-INF/cia-service-external-vdem.xml",
 		"classpath:META-INF/cia-service-external-common.xml",
 "classpath:/META-INF/cia-test-context.xml" })
-public abstract class AbstractWorldbankFunctionalIntegrationTest extends AbstractFunctionalIntegrationTest {
+public abstract class AbstractVdemFunctionalIntegrationTest extends AbstractFunctionalIntegrationTest {
 
 	/**
-	 * Instantiates a new abstract worldbank functional integration test.
+	 * Instantiates a new abstract vdem functional integration test.
 	 */
-	public AbstractWorldbankFunctionalIntegrationTest() {
+	public AbstractVdemFunctionalIntegrationTest() {
 		super();
 	}
 

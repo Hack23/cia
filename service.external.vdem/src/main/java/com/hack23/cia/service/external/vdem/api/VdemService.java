@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,23 +16,22 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.external.vdem.impl;
+package com.hack23.cia.service.external.vdem.api;
 
 import java.util.List;
 
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.hack23.cia.model.external.vdem.indicators.impl.Question;
 
 /**
- * The Class WorldbankApiImplTest.
+ * The Interface VdemService.
  */
-public class WorldbankApiImplTest extends AbstractWorldbankFunctionalIntegrationTest {
+public interface VdemService {
 
-	@Test
-	public void getTopicsTest() throws Exception {
-//		final List<TopicElement> topics = worlbankApi.getTopics();
-//		assertNotNull("Expect topics",topics);
-//		assertTrue("Expect above 10 topics",topics.size()>10);
-	}
+	/**
+	 * Gets the questions.
+	 *
+	 * @return the questions
+	 */
+	List<Question> getQuestions();
 
 }
