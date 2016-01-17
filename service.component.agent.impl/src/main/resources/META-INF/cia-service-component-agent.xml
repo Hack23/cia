@@ -34,10 +34,17 @@
 	    <property name="acceptMessagesWhileStopping" value="false" />
 	</bean>
 
+
 	<jms:listener-container   transaction-manager="transactionManager" connection-factory="connectionFactory"
 		concurrency="${com.hack23.cia.service.component.agent.impl.jms.speed.category.minimal}">
 		<jms:listener id="WorldbankApiWorkQueueListener" destination="WorldbankApiAgentWorkQueue"
 			ref="WorldBankApiAgentWorkConsumer" />
+	</jms:listener-container>
+
+	<jms:listener-container   transaction-manager="transactionManager" connection-factory="connectionFactory"
+		concurrency="${com.hack23.cia.service.component.agent.impl.jms.speed.category.minimal}">
+		<jms:listener id="VdemApiWorkQueueListener" destination="VdemApiAgentWorkQueue"
+			ref="VdemApiAgentWorkConsumer" />
 	</jms:listener-container>
 
 	<bean id="RiksdagenDocumentElementMessageListenerContainer"
@@ -229,6 +236,14 @@
 		class="org.apache.activemq.command.ActiveMQQueue" autowire="constructor">
 		<constructor-arg>
 			<value>WorldbankApiAgentWorkQueue</value>
+		</constructor-arg>
+	</bean>
+
+	<bean
+		id="vdemApiAgentWorkQueue"
+		class="org.apache.activemq.command.ActiveMQQueue" autowire="constructor">
+		<constructor-arg>
+			<value>VdemApiAgentWorkQueue</value>
 		</constructor-arg>
 	</bean>
 

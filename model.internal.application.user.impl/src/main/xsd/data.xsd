@@ -11,6 +11,7 @@
 			<xsd:enumeration value="Model_External_Worldbank" />
 			<xsd:enumeration value="Model_External_Val" />
 			<xsd:enumeration value="Model_External_Riksdagen" />
+			<xsd:enumeration value="Model_External_Vdem" />
 		</xsd:restriction>
 	</xsd:simpleType>
 
@@ -29,6 +30,12 @@
 		</xsd:restriction>
 	</xsd:simpleType>
 
+	<xsd:simpleType name="VdemDataSources">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Questions" />
+			<xsd:enumeration value="QuestionCountryYearData" />
+		</xsd:restriction>
+	</xsd:simpleType>
 
 	<xsd:simpleType name="RiksdagenDataSources">
 		<xsd:restriction base="xsd:string">

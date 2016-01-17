@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -33,6 +33,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder;
 import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
 import com.hack23.cia.model.internal.application.data.impl.ValDataSources;
+import com.hack23.cia.model.internal.application.data.impl.VdemDataSources;
 import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
 import com.hack23.cia.service.component.agent.api.DataAgentApi;
 import com.hack23.cia.service.component.agent.impl.common.ProducerMessageFactory;
@@ -61,6 +62,10 @@ public final class DataAgentApiImpl implements DataAgentApi {
 	@Autowired
 	@Qualifier("worldbankApiAgentWorkQueue")
 	private Destination worldBankApiDestination;
+
+	@Autowired
+	@Qualifier("vdemApiAgentWorkQueue")
+	private Destination vdemApiDestination;
 
 	/**
 	 * (non-Javadoc)
@@ -105,6 +110,11 @@ public final class DataAgentApiImpl implements DataAgentApi {
 		case MODEL_EXTERNAL_VAL:
 			for (final ValDataSources datasource :ValDataSources.values()) {
 				jmsTemplate.send(new ProducerMessageFactory(datasource));
+			}
+			break;
+		case MODEL_EXTERNAL_VDEM:
+			for (final VdemDataSources datasource :VdemDataSources.values()) {
+				jmsTemplate.send(vdemApiDestination,new ProducerMessageFactory(datasource));
 			}
 			break;
 		default:

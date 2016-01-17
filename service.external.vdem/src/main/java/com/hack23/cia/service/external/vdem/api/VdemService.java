@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,6 +20,7 @@ package com.hack23.cia.service.external.vdem.api;
 
 import java.util.List;
 
+import com.hack23.cia.model.external.vdem.indicators.impl.CountryQuestionData;
 import com.hack23.cia.model.external.vdem.indicators.impl.Question;
 
 /**
@@ -33,5 +34,12 @@ public interface VdemService {
 	 * @return the questions
 	 */
 	List<Question> getQuestions();
+
+	/**
+	 * Gets the country question data.
+	 *
+	 * @return the country question data
+	 */
+	List<CountryQuestionData> getCountryQuestionData();
 
 }

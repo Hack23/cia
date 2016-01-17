@@ -50,11 +50,19 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.VerticalLayout;
 
+import at.downdrown.vaadinaddons.highchartsapi.HighChart;
+import at.downdrown.vaadinaddons.highchartsapi.HighChartFactory;
+import at.downdrown.vaadinaddons.highchartsapi.exceptions.HighChartsException;
+import at.downdrown.vaadinaddons.highchartsapi.model.ChartConfiguration;
+import at.downdrown.vaadinaddons.highchartsapi.model.ChartType;
+import at.downdrown.vaadinaddons.highchartsapi.model.data.PieChartData;
+import at.downdrown.vaadinaddons.highchartsapi.model.series.PieChartSeries;
 import ru.xpoft.vaadin.VaadinView;
 
 
@@ -123,6 +131,9 @@ public final class TestChartView extends AbstractView {
 
 		pageModeContent.addComponent(new Label("overview"));
 
+		createHighChartTest();
+
+
 
 		layout.addComponent(pageLinkFactory.createMainViewPageLink());
 
@@ -150,6 +161,10 @@ public final class TestChartView extends AbstractView {
 
 		if (StringUtils.isEmpty(parameters) ||parameters.contains(PageMode.Overview.toString())) {
 				pageModeContent.addComponent(new Label("overview"));
+
+				createHighChartTest();
+
+
 		} else if (parameters.contains(PageMode.Charts.toString())) {
 
 			if (parameters.contains(ChartIndicators.PartyWinner.toString())) {
@@ -171,6 +186,35 @@ public final class TestChartView extends AbstractView {
 		pageActionEventHelper.createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
 
 
+	}
+
+
+
+	private void createHighChartTest() {
+		ChartConfiguration pieConfiguration = new ChartConfiguration();
+		pieConfiguration.setTitle("Fruits");
+		pieConfiguration.setChartType(ChartType.PIE);
+
+		PieChartSeries pieFruits = new PieChartSeries("Fruits");
+		PieChartData bananas = new PieChartData("Bananas", 33.2);
+		PieChartData melons = new PieChartData("Melons", 6.21);
+		PieChartData apples = new PieChartData("Apples", 3.44);
+
+		pieFruits.getData().add(bananas);
+		pieFruits.getData().add(melons);
+		pieFruits.getData().add(apples);
+
+		pieConfiguration.getSeriesList().add(pieFruits);
+
+		try {
+		   HighChart pieChart = HighChartFactory.renderChart(pieConfiguration);
+		   pieChart.setHeight(40, Unit.PERCENTAGE);
+		   pieChart.setWidth(100, Unit.PERCENTAGE);
+		   pageModeContent.addComponent(pieChart);
+		   pageModeContent.setComponentAlignment(pieChart, Alignment.TOP_CENTER);
+		} catch (HighChartsException e) {
+		   e.printStackTrace();
+		}
 	}
 
 	/**

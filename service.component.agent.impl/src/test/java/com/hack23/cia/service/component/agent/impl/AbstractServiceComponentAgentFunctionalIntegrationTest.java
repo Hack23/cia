@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -37,6 +37,7 @@ import com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest;
 		"classpath:META-INF/cia-service-external-common.xml",
 		"classpath:META-INF/cia-service-external-riksdagen.xml",
 		"classpath:META-INF/cia-service-external-worldbank.xml",
+		"classpath:META-INF/cia-service-external-vdem.xml",
 		"classpath:META-INF/cia-service-external-val.xml",
 "classpath:/META-INF/cia-test-context.xml" })
 public abstract class AbstractServiceComponentAgentFunctionalIntegrationTest extends AbstractFunctionalIntegrationTest {
