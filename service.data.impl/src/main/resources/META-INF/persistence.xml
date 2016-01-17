@@ -41,6 +41,10 @@
 		<class>com.hack23.cia.model.external.worldbank.indicators.impl.Topic</class>
 		<class>com.hack23.cia.model.external.worldbank.indicators.impl.Topics</class>
 
+		<class>com.hack23.cia.model.external.vdem.indicators.impl.Question</class>
+		<class>com.hack23.cia.model.external.vdem.indicators.impl.CountryQuestionData</class>
+
+
 		<class>com.hack23.cia.model.external.riksdagen.personlista.impl.AssignmentElement</class>
 		<class>com.hack23.cia.model.external.riksdagen.personlista.impl.DetailElement</class>
 		<class>com.hack23.cia.model.external.riksdagen.personlista.impl.PersonAssignmentElement</class>

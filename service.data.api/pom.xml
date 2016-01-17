@@ -37,5 +37,10 @@
       <artifactId>model.internal.application.user.impl</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.hack23.cia</groupId>
+      <artifactId>model.external.vdem.indicators.impl</artifactId>
+      <version>${project.version}</version>
+    </dependency>
   </dependencies>
 </project>
