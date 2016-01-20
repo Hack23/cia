@@ -32,7 +32,6 @@
     </site>
   </distributionManagement>
   <dependencies>
-    <!--
 	<dependency>
 	   <groupId>org.hibernate</groupId>
 	   <artifactId>hibernate-search-orm</artifactId>
@@ -43,8 +42,13 @@
 	   			<artifactId>hibernate-core</artifactId>
 	   		</exclusion>
 	   </exclusions>
+	   <scope>provided</scope>
 	</dependency>
--->
+	<dependency>
+		<groupId>org.apache.lucene</groupId>
+		<artifactId>lucene-analyzers-phonetic</artifactId>
+		<version>5.3.1</version>
+	</dependency>
     <dependency>
       <groupId>javax.transaction</groupId>
       <artifactId>jta</artifactId>

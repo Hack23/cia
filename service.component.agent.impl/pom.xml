@@ -43,6 +43,18 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
+	   <groupId>org.hibernate</groupId>
+	   <artifactId>hibernate-search-orm</artifactId>
+	   <version>5.5.2.Final</version>
+	   <exclusions>
+	   		<exclusion>
+	   			<groupId>org.hibernate</groupId>
+	   			<artifactId>hibernate-core</artifactId>
+	   		</exclusion>
+	   </exclusions>
+	   <scope>provided</scope>
+	</dependency>
+    <dependency>
       <groupId>javax.el</groupId>
       <artifactId>javax.el-api</artifactId>
       <version>3.0.0</version>

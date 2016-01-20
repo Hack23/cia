@@ -105,7 +105,7 @@
     <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
-    <cia.project.versions.ant>1.9.3</cia.project.versions.ant>
+    <cia.project.versions.ant>1.9.6</cia.project.versions.ant>
     <cia.project.versions.junit>4.12</cia.project.versions.junit>
     <cia.project.versions.junit.dep>4.11</cia.project.versions.junit.dep>
     <cia.project.versions.xmlunit>1.6</cia.project.versions.xmlunit>
@@ -575,7 +575,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>sonar-maven-plugin</artifactId>
-          <version>3.0</version>
+          <version>3.0.1</version>
         </plugin>
         <plugin>
           <groupId>com.google.code.maven-replacer-plugin</groupId>
@@ -737,7 +737,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.3</version>
+          <version>3.5</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1323,7 +1323,7 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>sonar-maven-plugin</artifactId>
-            <version>3.0</version>
+            <version>3.0.1</version>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -1587,7 +1587,7 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>sonar-maven-plugin</artifactId>
-            <version>3.0</version>
+            <version>3.0.1</version>
           </plugin>
         </plugins>
       </reporting>

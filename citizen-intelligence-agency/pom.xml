@@ -104,6 +104,10 @@
           <artifactId>asm</artifactId>
           <groupId>org.ow2.asm</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>ant</artifactId>
+          <groupId>org.apache.ant</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>

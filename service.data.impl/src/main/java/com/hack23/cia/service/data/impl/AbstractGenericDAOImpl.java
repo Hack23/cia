@@ -32,6 +32,8 @@ import javax.persistence.metamodel.Metamodel;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.hibernate.CacheMode;
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.jpa.Search;
 
 import com.hack23.cia.service.data.api.AbstractGenericDAO;
 import com.hack23.cia.service.data.impl.util.LoadHelper;
@@ -58,6 +60,9 @@ implements AbstractGenericDAO<T, ID> {
 
 	/** The persistent class. */
 	private final Class<T> persistentClass;
+
+	/** The full text entity manager. */
+	private FullTextEntityManager fullTextEntityManager;
 
 	/**
 	 * Instantiates a new abstract generic dao impl.
@@ -235,6 +240,18 @@ implements AbstractGenericDAO<T, ID> {
 	 * @return the entity manager
 	 */
 	protected abstract EntityManager getEntityManager();
+
+	/**
+	 * Gets the full text entity manager.
+	 *
+	 * @return the full text entity manager
+	 */
+	protected FullTextEntityManager getFullTextEntityManager() {
+	        if (fullTextEntityManager == null) {
+	        	fullTextEntityManager = Search.getFullTextEntityManager(getEntityManager());
+	        }
+	        return fullTextEntityManager;
+	}
 
 	/**
 	 * Gets the metamodel.
