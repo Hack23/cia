@@ -32,23 +32,28 @@
     </site>
   </distributionManagement>
   <dependencies>
-	<dependency>
-	   <groupId>org.hibernate</groupId>
-	   <artifactId>hibernate-search-orm</artifactId>
-	   <version>5.5.2.Final</version>
-	   <exclusions>
-	   		<exclusion>
-	   			<groupId>org.hibernate</groupId>
-	   			<artifactId>hibernate-core</artifactId>
-	   		</exclusion>
-	   </exclusions>
-	   <scope>provided</scope>
-	</dependency>
-	<dependency>
-		<groupId>org.apache.lucene</groupId>
-		<artifactId>lucene-analyzers-phonetic</artifactId>
-		<version>5.3.1</version>
-	</dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-search-orm</artifactId>
+      <version>5.5.2.Final</version>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>hibernate-core</artifactId>
+          <groupId>org.hibernate</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-analyzers-phonetic</artifactId>
+      <version>5.3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-core</artifactId>
+      <version>5.3.1</version>
+    </dependency>
     <dependency>
       <groupId>javax.transaction</groupId>
       <artifactId>jta</artifactId>

@@ -26,6 +26,7 @@ import org.apache.lucene.analysis.ngram.NGramFilterFactory;
 import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
 import org.apache.lucene.analysis.sv.SwedishLightStemFilterFactory;
 import org.hibernate.search.annotations.Factory;
+import org.hibernate.search.annotations.Store;
 import org.hibernate.search.cfg.SearchMapping;
 
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
@@ -48,7 +49,7 @@ public final class DataSearchMappingFactory {
 				.analyzerDef("se", StandardTokenizerFactory.class).filter(LowerCaseFilterFactory.class)
 				.filter(SwedishLightStemFilterFactory.class).analyzerDef("en", StandardTokenizerFactory.class)
 				.filter(LowerCaseFilterFactory.class).filter(PorterStemFilterFactory.class)
-				.entity(DocumentContentData.class).indexed().property("content", ElementType.METHOD).documentId().name("id");
+				.entity(DocumentContentData.class).indexed().property("content", ElementType.METHOD).documentId().name("id").field().analyzer("se").store(Store.YES);
 		return mapping;
 	}
 }
