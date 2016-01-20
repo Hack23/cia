@@ -25,6 +25,7 @@ import org.apache.lucene.analysis.en.PorterStemFilterFactory;
 import org.apache.lucene.analysis.ngram.NGramFilterFactory;
 import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
 import org.apache.lucene.analysis.sv.SwedishLightStemFilterFactory;
+import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Factory;
 import org.hibernate.search.annotations.Store;
 import org.hibernate.search.cfg.SearchMapping;
@@ -49,7 +50,8 @@ public final class DataSearchMappingFactory {
 				.analyzerDef("se", StandardTokenizerFactory.class).filter(LowerCaseFilterFactory.class)
 				.filter(SwedishLightStemFilterFactory.class).analyzerDef("en", StandardTokenizerFactory.class)
 				.filter(LowerCaseFilterFactory.class).filter(PorterStemFilterFactory.class)
-				.entity(DocumentContentData.class).indexed().property("content", ElementType.METHOD).documentId().name("id").field().analyzer("se").store(Store.YES);
+				.entity(DocumentContentData.class).indexed().property( "hjid", ElementType.FIELD ).documentId().property("content", ElementType.METHOD).field().analyzer("se").store(Store.YES).analyze(Analyze.YES).property("id", ElementType.METHOD).field();
+
 		return mapping;
 	}
 }
