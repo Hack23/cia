@@ -50,7 +50,7 @@ public final class DataSearchMappingFactory {
 				.analyzerDef("se", StandardTokenizerFactory.class).filter(LowerCaseFilterFactory.class)
 				.filter(SwedishLightStemFilterFactory.class).analyzerDef("en", StandardTokenizerFactory.class)
 				.filter(LowerCaseFilterFactory.class).filter(PorterStemFilterFactory.class)
-				.entity(DocumentContentData.class).indexed().property( "hjid", ElementType.FIELD ).documentId().property("content", ElementType.METHOD).field().analyzer("se").store(Store.YES).analyze(Analyze.YES).property("id", ElementType.METHOD).field();
+				.entity(DocumentContentData.class).indexed().property( "hjid", ElementType.FIELD ).documentId().property("content", ElementType.METHOD).field().analyzer("se").store(Store.NO).analyze(Analyze.YES).property("id", ElementType.METHOD).field();
 
 		return mapping;
 	}

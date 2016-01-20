@@ -18,9 +18,19 @@
 */
 package com.hack23.cia.service.data.impl;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.jpa.Search;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
 import com.hack23.cia.service.data.api.SearchIndexer;
 
 /**
@@ -28,10 +38,28 @@ import com.hack23.cia.service.data.api.SearchIndexer;
  */
 public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegrationTest {
 
-
 	/** The search indexer. */
 	@Autowired
 	private SearchIndexer searchIndexer;
+
+	/** The entity manager. */
+	@PersistenceContext(name = "ciaPersistenceUnit")
+	private EntityManager entityManager;
+
+	/** The full text entity manager. */
+	private FullTextEntityManager fullTextEntityManager;
+
+	/**
+	 * Gets the full text entity manager.
+	 *
+	 * @return the full text entity manager
+	 */
+	private FullTextEntityManager getFullTextEntityManager() {
+		if (fullTextEntityManager == null) {
+			fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
+		}
+		return fullTextEntityManager;
+	}
 
 	/**
 	 * Test update search index.
@@ -40,8 +68,26 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 	 *             the exception
 	 */
 	@Test
-	public void testUpdateSearchIndex() throws Exception {
+	public void testCreateSearchIndex() throws Exception {
 		searchIndexer.updateSearchIndex();
+	}
+
+	@Test
+	@Transactional
+	public void testSearchIndex() throws Exception {
+
+		QueryBuilder qb = getFullTextEntityManager().getSearchFactory().buildQueryBuilder()
+				.forEntity(DocumentContentData.class).get();
+		org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields("content").matching("programmering")
+				.createQuery();
+
+		// wrap Lucene query in a javax.persistence.Query
+		javax.persistence.Query jpaQuery = getFullTextEntityManager().createFullTextQuery(luceneQuery,
+				DocumentContentData.class);
+
+		// execute search
+		List<DocumentContentData> result = jpaQuery.setMaxResults(500).getResultList();
+		assertTrue("expect some result",result.size()> 0);
 	}
 
 }
