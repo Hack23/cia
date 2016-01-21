@@ -42,17 +42,52 @@
           <artifactId>hibernate-core</artifactId>
           <groupId>org.hibernate</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>lucene-backward-codecs</artifactId>
+          <groupId>org.apache.lucene</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>lucene-misc</artifactId>
+          <groupId>org.apache.lucene</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>lucene-facet</artifactId>
+          <groupId>org.apache.lucene</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>lucene-core</artifactId>
+          <groupId>org.apache.lucene</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>lucene-analyzers-common</artifactId>
+          <groupId>org.apache.lucene</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-analyzers-phonetic</artifactId>
-      <version>5.3.1</version>
+      <version>5.4.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-core</artifactId>
-      <version>5.3.1</version>
+      <version>5.4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-backward-codecs</artifactId>
+      <version>5.4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-misc</artifactId>
+      <version>5.4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-facet</artifactId>
+      <version>5.4.0</version>
     </dependency>
     <dependency>
       <groupId>javax.transaction</groupId>

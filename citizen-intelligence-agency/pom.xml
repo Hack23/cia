@@ -27,6 +27,18 @@
     </site>
   </distributionManagement>
   <dependencies>
+
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-analyzers-phonetic</artifactId>
+      <version>5.4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-core</artifactId>
+      <version>5.4.0</version>
+    </dependency>
+
     <dependency>
       <groupId>antlr</groupId>
       <artifactId>antlr</artifactId>
