@@ -57,4 +57,42 @@ public final class SearchDocumentRequest implements ServiceRequest {
 		this.sessionId = sessionId;
 	}
 
+	/**
+	 * Gets the search expression.
+	 *
+	 * @return the search expression
+	 */
+	public String getSearchExpression() {
+		return searchExpression;
+	}
+
+	/**
+	 * Sets the search expression.
+	 *
+	 * @param searchExpression
+	 *            the new search expression
+	 */
+	public void setSearchExpression(String searchExpression) {
+		this.searchExpression = searchExpression;
+	}
+
+	/**
+	 * Gets the max results.
+	 *
+	 * @return the max results
+	 */
+	public Integer getMaxResults() {
+		return maxResults;
+	}
+
+	/**
+	 * Sets the max results.
+	 *
+	 * @param maxResults
+	 *            the new max results
+	 */
+	public void setMaxResults(Integer maxResults) {
+		this.maxResults = maxResults;
+	}
+
 }

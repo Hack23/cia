@@ -28,6 +28,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
+import com.hack23.cia.service.api.action.admin.UpdateSearchIndexRequest;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.tablefactory.TableFactory;
@@ -76,6 +77,7 @@ public class AdminDataSummaryView extends AbstractAdminView {
 	}
 
 	private void createContent() {
+		content.removeAllComponents();
 		content.addComponent(LabelFactory.createHeader2Label("Admin"));
 
 		content.addComponent(tableFactory.createDataSummaryTable());
@@ -97,6 +99,21 @@ public class AdminDataSummaryView extends AbstractAdminView {
 		});
 
 		content.addComponent(refreshViewsButton);
+
+		final Button updateSearchIndexButton = new Button("Update Search Index");
+
+		updateSearchIndexButton.addClickListener(event -> {
+
+
+			final UpdateSearchIndexRequest serviceRequest = new UpdateSearchIndexRequest();
+			serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+
+			applicationManager.asyncService(serviceRequest);
+			Notification.show("Update Search Index Started");
+		});
+
+		content.addComponent(updateSearchIndexButton);
+
 
 		content.addComponent(pageLinkFactory.createMainViewPageLink());
 
