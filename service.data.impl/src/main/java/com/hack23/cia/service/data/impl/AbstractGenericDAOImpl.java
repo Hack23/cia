@@ -153,6 +153,15 @@ implements AbstractGenericDAO<T, ID> {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#search(java.lang.String, java.lang.Integer, java.lang.String[])
+	 */
+	@Override
+	public final List<T> search(String searchExpression, Integer maxResults,String... fields) {
+		return getFullTextEntityManager().createFullTextQuery(getFullTextEntityManager().getSearchFactory().buildQueryBuilder().forEntity(persistentClass).get().
+				keyword().wildcard().onFields(fields).matching(searchExpression).createQuery(),persistentClass).setMaxResults(maxResults).getResultList();
+	}
+
 
 	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#findListByProperty(java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])

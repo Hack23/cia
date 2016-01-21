@@ -66,6 +66,20 @@ public interface AbstractGenericDAO<T extends Serializable, I extends Serializab
 
 
 	/**
+	 * Search.
+	 *
+	 * @param searchExpression
+	 *            the search expression
+	 * @param maxResults
+	 *            the max results
+	 * @param fields
+	 *            the fields
+	 * @return the list
+	 */
+	List<T> search(String searchExpression, Integer maxResults,String ...fields);
+
+
+	/**
 	 * Find list by property.
 	 *
 	 * @param values
