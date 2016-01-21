@@ -89,7 +89,6 @@ public interface ApplicationManager {
 	 *            the service request
 	 * @return the future
 	 */
-	@Async
 	Future<ServiceResponse> asyncService(ServiceRequest serviceRequest);
 
 }

@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.service.impl.action.admin;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
@@ -45,6 +47,11 @@ public final class UpdateSearchIndexService extends
 		AbstractBusinessServiceImpl<UpdateSearchIndexRequest, UpdateSearchIndexResponse>
 		implements BusinessService<UpdateSearchIndexRequest, UpdateSearchIndexResponse> {
 
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(UpdateSearchIndexService.class);
+
+
 	/**
 	 * Instantiates a new update search index service.
 	 */
@@ -69,6 +76,7 @@ public final class UpdateSearchIndexService extends
 	public UpdateSearchIndexResponse processService(
 			final UpdateSearchIndexRequest serviceRequest) {
 
+
 		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
 		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
@@ -79,6 +87,7 @@ public final class UpdateSearchIndexService extends
 
 
 		if (userAccount != null) {
+			LOGGER.info(serviceRequest.getClass().getSimpleName() +" started:" + userAccount.getEmail());
 
 			eventRequest.setUserId(userAccount.getUserId());
 		}
@@ -87,8 +96,7 @@ public final class UpdateSearchIndexService extends
 		try {
 			searchIndexer.updateSearchIndex();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.warn("Update Index failed",e);
 		}
 
 		eventRequest.setApplicationMessage(response.getResult().toString());

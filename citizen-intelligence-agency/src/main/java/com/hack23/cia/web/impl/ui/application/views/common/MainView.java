@@ -31,12 +31,14 @@ import org.springframework.web.context.request.RequestContextHolder;
 import com.ejt.vaadin.loginform.DefaultVerticalLoginForm;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.RegisterUserRequest;
+import com.hack23.cia.service.api.action.user.SearchDocumentRequest;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ApplicationLoginListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RegisterUserClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocumentClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -157,6 +159,19 @@ public class MainView extends Panel implements View {
 				Arrays.asList(new String[] {"username","email", "country", "userpassword" }),"Register",reqisterListener);
 
 		layout.addComponent(registerLayout);
+
+		final VerticalLayout searchLayout = new VerticalLayout();
+		searchLayout.setSizeFull();
+
+		final SearchDocumentRequest searchRequest = new SearchDocumentRequest();
+		searchRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+		searchRequest.setMaxResults(100);
+		searchRequest.setSearchExpression("");
+		final ClickListener searchListener = new SearchDocumentClickListener(searchRequest,applicationManager);
+		formFactory.addRequestInputFormFields(searchLayout,  new BeanItem<>(searchRequest), SearchDocumentRequest.class,
+				Arrays.asList(new String[] {"searchExpression"}),"Search",searchListener);
+
+		layout.addComponent(searchLayout);
 
 
 		setContent(layout);

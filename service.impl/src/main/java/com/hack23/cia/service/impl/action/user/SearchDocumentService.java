@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.service.impl.action.user;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
@@ -45,6 +47,10 @@ public final class SearchDocumentService extends
 		AbstractBusinessServiceImpl<SearchDocumentRequest, SearchDocumentResponse>
 		implements BusinessService<SearchDocumentRequest, SearchDocumentResponse> {
 
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(SearchDocumentService.class);
+
 	/**
 	 * Instantiates a new search document service.
 	 */
@@ -68,6 +74,9 @@ public final class SearchDocumentService extends
 	@Secured({ "ROLE_USER", "ROLE_ADMIN", "ROLE_ANONYMOUS" })
 	public SearchDocumentResponse processService(
 			final SearchDocumentRequest serviceRequest) {
+
+		LOGGER.info(serviceRequest.getClass().getSimpleName() +":" + serviceRequest.getSearchExpression());
+
 
 		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.USER);
