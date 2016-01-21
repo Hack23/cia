@@ -71,10 +71,9 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class PartyView.
  */
 @Service
-@Scope("prototype")
+@Scope(value="prototype")
 @VaadinView(value = DocumentView.NAME, cached = true)
-//@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
-public final class DocumentView extends AbstractUserView {
+public class DocumentView extends AbstractUserView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -121,6 +120,7 @@ public final class DocumentView extends AbstractUserView {
 	 * .ViewChangeEvent)
 	 */
 	@Override
+	//@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 	public void enter(final ViewChangeEvent event) {
 
 		final String parameters = event.getParameters();

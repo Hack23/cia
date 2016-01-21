@@ -48,10 +48,9 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class AgentOperationView.
  */
 @Service
-@Scope("prototype")
+@Scope(value="prototype")
 @VaadinView(AgentOperationView.NAME)
-//@Secured({ "ROLE_ADMIN" })
-public final class AgentOperationView extends AbstractAdminView implements
+public class AgentOperationView extends AbstractAdminView implements
 		Button.ClickListener {
 
 	/** The Constant serialVersionUID. */
@@ -89,6 +88,10 @@ public final class AgentOperationView extends AbstractAdminView implements
 	 */
 	@PostConstruct
 	public void postConstruct() {
+		createContent();
+	}
+
+	private void createContent() {
 		content.addComponent(LabelFactory.createHeader2Label("Admin"));
 
 		targetSelect = new ComboBox("Target", Arrays.asList(DataAgentTarget
@@ -116,7 +119,6 @@ public final class AgentOperationView extends AbstractAdminView implements
 		setContent(content);
 		setWidth(100, Unit.PERCENTAGE);
 		setHeight(100, Unit.PERCENTAGE);
-
 	}
 
 	/**
@@ -147,7 +149,9 @@ public final class AgentOperationView extends AbstractAdminView implements
 	 * .ViewChangeEvent)
 	 */
 	@Override
+	//@Secured({ "ROLE_ADMIN" })
 	public void enter(final ViewChangeEvent event) {
+		createContent();
 	}
 
 }

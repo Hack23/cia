@@ -43,10 +43,9 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class AdminDataSummaryView.
  */
 @Service
-@Scope("prototype")
+@Scope(value="prototype")
 @VaadinView(AdminDataSummaryView.NAME)
-//@Secured({ "ROLE_ADMIN" })
-public final class AdminDataSummaryView extends AbstractAdminView {
+public class AdminDataSummaryView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -72,6 +71,11 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 	 */
 	@PostConstruct
 	public void postConstruct() {
+		createContent();
+
+	}
+
+	private void createContent() {
 		content.addComponent(LabelFactory.createHeader2Label("Admin"));
 
 		content.addComponent(tableFactory.createDataSummaryTable());
@@ -101,14 +105,15 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 		setContent(content);
 		setWidth(100, Unit.PERCENTAGE);
 		setHeight(100, Unit.PERCENTAGE);
-
 	}
 
 	/** (non-Javadoc)
 	 * @see com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener.ViewChangeEvent)
 	 */
 	@Override
+	//@Secured({ "ROLE_ADMIN" })
 	public void enter(final ViewChangeEvent event) {
+		createContent();
 	}
 
 }

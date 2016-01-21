@@ -41,10 +41,9 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class AdminDataSummaryView.
  */
 @Service
-@Scope("prototype")
+@Scope(value="prototype")
 @VaadinView(AdminMonitoringView.NAME)
-//@Secured({ "ROLE_ADMIN" })
-public final class AdminMonitoringView extends AbstractAdminView {
+public class AdminMonitoringView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;

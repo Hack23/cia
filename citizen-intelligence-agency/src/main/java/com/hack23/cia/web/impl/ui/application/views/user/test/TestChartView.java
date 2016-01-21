@@ -71,10 +71,9 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class TestChartView.
  */
 @Service
-@Scope("prototype")
+@Scope(value="prototype")
 @VaadinView(value = TestChartView.NAME, cached = true)
-//@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
-public final class TestChartView extends AbstractView {
+public class TestChartView extends AbstractView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -151,6 +150,7 @@ public final class TestChartView extends AbstractView {
 	 * .ViewChangeEvent)
 	 */
 	@Override
+	//@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 	public void enter(final ViewChangeEvent event) {
 
 		if (pageModeContent.getComponentCount() != 0) {

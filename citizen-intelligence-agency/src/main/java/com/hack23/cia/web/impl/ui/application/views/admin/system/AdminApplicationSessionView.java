@@ -43,7 +43,12 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Link;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -52,10 +57,9 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class AdminDataSummaryView.
  */
 @Service
-@Scope("prototype")
+@Scope(value="prototype")
 @VaadinView(AdminApplicationSessionView.NAME)
-//@Secured({ "ROLE_ADMIN" })
-public final class AdminApplicationSessionView extends AbstractAdminView {
+public class AdminApplicationSessionView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -92,6 +96,7 @@ public final class AdminApplicationSessionView extends AbstractAdminView {
 	 * ViewChangeEvent)
 	 */
 	@Override
+	//@Secured({ "ROLE_ADMIN" })
 	public void enter(final ViewChangeEvent event) {
 		final String parameters = event.getParameters();
 
@@ -109,7 +114,10 @@ public final class AdminApplicationSessionView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		final VerticalLayout content = new VerticalLayout();
 
-		content.addComponent(LabelFactory.createHeader2Label("Admin Application Session"));
+		Label createHeader2Label = LabelFactory.createHeader2Label("Admin Application Session");
+		content.addComponent(createHeader2Label);
+		content.setExpandRatio(createHeader2Label, 1);
+
 
 		final DataContainer<ApplicationSession, Long> dataContainer = applicationManager
 				.getDataContainer(ApplicationSession.class);
@@ -117,11 +125,14 @@ public final class AdminApplicationSessionView extends AbstractAdminView {
 		final BeanItemContainer<ApplicationSession> politicianDocumentDataSource = new BeanItemContainer<>(
 				ApplicationSession.class, dataContainer.getAllOrderBy(ApplicationSession_.createdDate));
 
-		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationSession",
+		Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationSession",
 				new String[] { "hjid", "createdDate", "sessionType", "sessionId", "operatingSystem", "locale",
 						"ipInformation", "userAgentInformation", "events" },
 				new String[] { "modelObjectId", "modelObjectVersion" }, "hjid",
-				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid"), null));
+				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid"), null);
+		content.addComponent(createBasicBeanItemGrid);
+		content.setExpandRatio(createBasicBeanItemGrid, 10);
+
 
 		if (pageId != null && !pageId.isEmpty()) {
 
@@ -129,17 +140,23 @@ public final class AdminApplicationSessionView extends AbstractAdminView {
 
 			if (applicationSession != null) {
 
-				final VerticalLayout leftLayout = new VerticalLayout();
-				leftLayout.setSizeFull();
 				final VerticalLayout rightLayout = new VerticalLayout();
 				rightLayout.setSizeFull();
 				final HorizontalLayout horizontalLayout = new HorizontalLayout();
 				horizontalLayout.setWidth("100%");
 				content.addComponent(horizontalLayout);
-				horizontalLayout.addComponent(leftLayout);
+				content.setExpandRatio(horizontalLayout, 10);
+
+				 Panel formPanel = new Panel();
+				 formPanel.setSizeFull();
+
+				final FormLayout formContent = new FormLayout();
+				formPanel.setContent(formContent);
+
+				horizontalLayout.addComponent(formPanel);
 				horizontalLayout.addComponent(rightLayout);
 
-				formFactory.addTextFields(leftLayout, new BeanItem<>(applicationSession),
+				formFactory.addTextFields(formContent, new BeanItem<>(applicationSession),
 						ApplicationSession.class,
 						Arrays.asList(new String[] { "hjid", "createdDate", "sessionId", "operatingSystem", "locale",
 								"ipInformation", "userAgentInformation", "modelObjectVersion" }));
@@ -147,19 +164,23 @@ public final class AdminApplicationSessionView extends AbstractAdminView {
 				final BeanItemContainer<ApplicationActionEvent> eventsItemContainer = new BeanItemContainer<>(
 						ApplicationActionEvent.class, applicationSession.getEvents());
 
-				rightLayout.addComponent(gridFactory.createBasicBeanItemGrid(eventsItemContainer,
+				Grid createBasicBeanItemGrid2 = gridFactory.createBasicBeanItemGrid(eventsItemContainer,
 						"ApplicationActionEvent",
 						new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation", "page", "pageMode",
 								"elementId", "actionName", "userId", "sessionId", "errorMessage", "applicationMessage",
 								"modelObjectVersion" },
 						new String[] { "modelObjectId" }, "hjid",
 						new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"),
-						null));
+						null);
+				rightLayout.addComponent(createBasicBeanItemGrid2);
 			}
 
 		}
 
-		content.addComponent(pageLinkFactory.createMainViewPageLink());
+		Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
+		content.addComponent(createMainViewPageLink);
+		content.setExpandRatio(createMainViewPageLink, 2);
+
 
 		content.setWidth(100, Unit.PERCENTAGE);
 		content.setHeight(100, Unit.PERCENTAGE);

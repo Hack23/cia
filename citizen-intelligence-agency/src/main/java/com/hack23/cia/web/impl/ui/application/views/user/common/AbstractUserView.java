@@ -31,7 +31,7 @@ import com.vaadin.ui.VerticalLayout;
 /**
  * The Class AbstractUserView.
  */
-public abstract class AbstractUserView extends VerticalLayout implements View {
+public abstract class AbstractUserView extends Panel implements View {
 
 	/** The Constant DAYS_PER_STANDARD_YEAR. */
 	private static final long DAYS_PER_STANDARD_YEAR = 365L;
@@ -89,8 +89,7 @@ public abstract class AbstractUserView extends VerticalLayout implements View {
 		pageModeContent.setExpandRatio(panel, 1.0f);
 
 		pageModeContent.addComponent(pageLinkFactory.createMainViewPageLink());
-		addComponent(layout);
-		setExpandRatio(layout, 1.0f);
+		setContent(layout);
 
 		pageModeContent.setWidth(100, Unit.PERCENTAGE);
 		pageModeContent.setHeight(100, Unit.PERCENTAGE);

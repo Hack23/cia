@@ -26,6 +26,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -67,10 +68,9 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class PartyView.
  */
 @Service
-@Scope("prototype")
+@Scope(value="prototype",proxyMode = ScopedProxyMode.INTERFACES)
 @VaadinView(value = UserHomeView.NAME, cached = true)
-//@Secured({ "ROLE_USER", "ROLE_ADMIN" })
-public final class UserHomeView extends AbstractUserView {
+public class UserHomeView extends AbstractUserView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -116,6 +116,7 @@ public final class UserHomeView extends AbstractUserView {
 	 * .ViewChangeEvent)
 	 */
 	@Override
+	//@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	public void enter(final ViewChangeEvent event) {
 
 		final String parameters = event.getParameters();

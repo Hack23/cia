@@ -69,10 +69,9 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class CommitteeView.
  */
 @Service
-@Scope("prototype")
+@Scope(value="prototype")
 @VaadinView(value = CommitteeView.NAME, cached = true)
-//@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
-public final class CommitteeView extends AbstractGroupView {
+public class CommitteeView extends AbstractGroupView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -118,6 +117,7 @@ public final class CommitteeView extends AbstractGroupView {
 	 * .ViewChangeEvent)
 	 */
 	@Override
+	//@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 	public void enter(final ViewChangeEvent event) {
 
 		final String parameters = event.getParameters();

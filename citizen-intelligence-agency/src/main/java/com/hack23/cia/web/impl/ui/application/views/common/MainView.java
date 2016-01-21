@@ -51,9 +51,9 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class MainView.
  */
 @Service("MainView")
-@Scope("prototype")
+@Scope(value="prototype")
 @VaadinView(MainView.NAME)
-public final class MainView extends Panel implements View {
+public class MainView extends Panel implements View {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;

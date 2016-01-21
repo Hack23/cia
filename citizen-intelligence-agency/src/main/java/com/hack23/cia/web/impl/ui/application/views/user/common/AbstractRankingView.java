@@ -84,7 +84,6 @@ public abstract class AbstractRankingView extends AbstractUserView {
 	@Override
 	public final void enter(final ViewChangeEvent event) {
 
-
 		createMenuBar();
 
 		final String parameters = event.getParameters();

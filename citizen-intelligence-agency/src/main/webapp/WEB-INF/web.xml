@@ -37,6 +37,10 @@
 	    <param-name>org.atmosphere.cpr.sessionSupport</param-name>
 	    <param-value>true</param-value>
 	</context-param>
+	  <context-param>
+        <param-name>org.atmosphere.useStream</param-name>
+        <param-value>true</param-value>
+    </context-param>
 
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>

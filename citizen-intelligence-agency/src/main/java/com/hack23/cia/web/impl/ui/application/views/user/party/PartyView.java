@@ -73,10 +73,9 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class PartyView.
  */
 @Service
-@Scope("prototype")
+@Scope(value="prototype")
 @VaadinView(value = PartyView.NAME, cached = true)
-//@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
-public final class PartyView extends AbstractGroupView {
+public class PartyView extends AbstractGroupView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -126,6 +125,7 @@ public final class PartyView extends AbstractGroupView {
 	 * .ViewChangeEvent)
 	 */
 	@Override
+	//@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 	public void enter(final ViewChangeEvent event) {
 
 		final String parameters = event.getParameters();
@@ -201,6 +201,10 @@ public final class PartyView extends AbstractGroupView {
 				} else if (parameters.contains(PageMode.Charts.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Charts Not Implemented"));
+
+				} else if (parameters.contains(PartyPageMode.RoleGhant.toString())) {
+
+					panelContent.addComponent(LabelFactory.createHeader2Label("Ghant Not Implemented"));
 
 				} else if (parameters.contains(PartyPageMode.DocumentHistory.toString())) {
 

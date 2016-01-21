@@ -50,10 +50,9 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class CommitteeRankingView.
  */
 @Service
-@Scope("prototype")
+@Scope(value="prototype")
 @VaadinView(value = CommitteeRankingView.NAME, cached = true)
-//@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
-public final class CommitteeRankingView extends AbstractRankingView {
+public class CommitteeRankingView extends AbstractRankingView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;

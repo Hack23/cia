@@ -49,10 +49,9 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class AdminDataSummaryView.
  */
 @Service
-@Scope("prototype")
+@Scope(value="prototype")
 @VaadinView(AdminLanguageContentView.NAME)
-//@Secured({ "ROLE_ADMIN" })
-public final class AdminLanguageContentView extends AbstractAdminView {
+public class AdminLanguageContentView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -89,6 +88,7 @@ public final class AdminLanguageContentView extends AbstractAdminView {
 	 * ViewChangeEvent)
 	 */
 	@Override
+	//@Secured({ "ROLE_ADMIN" })
 	public void enter(final ViewChangeEvent event) {
 		final String parameters = event.getParameters();
 
