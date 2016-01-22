@@ -61,9 +61,6 @@ implements AbstractGenericDAO<T, ID> {
 	/** The persistent class. */
 	private final Class<T> persistentClass;
 
-	/** The full text entity manager. */
-	private FullTextEntityManager fullTextEntityManager;
-
 	/**
 	 * Instantiates a new abstract generic dao impl.
 	 *
@@ -256,10 +253,7 @@ implements AbstractGenericDAO<T, ID> {
 	 * @return the full text entity manager
 	 */
 	protected FullTextEntityManager getFullTextEntityManager() {
-	        if (fullTextEntityManager == null) {
-	        	fullTextEntityManager = Search.getFullTextEntityManager(getEntityManager());
-	        }
-	        return fullTextEntityManager;
+		return Search.getFullTextEntityManager(getEntityManager());
 	}
 
 	/**
