@@ -19,11 +19,17 @@
 package com.hack23.cia.service.impl;
 
 import java.sql.Connection;
+import java.util.UUID;
 
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
+import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
+import com.hack23.cia.service.api.action.application.CreateApplicationSessionResponse;
 import com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest;
 
 /**
@@ -43,6 +49,12 @@ import com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest;
 "classpath:/META-INF/cia-test-context.xml" })
 public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractFunctionalIntegrationTest {
 
+
+	/** The application manager. */
+	@Autowired
+	protected ApplicationManager applicationManager;
+
+
 	/**
 	 * Instantiates a new abstract service functional integration test.
 	 */
@@ -58,4 +70,24 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 	protected Connection getDatabaseConnection() throws Exception {
 		return null;
 	}
+
+	/**
+	 * Creates the test application session.
+	 *
+	 * @return the creates the application session request
+	 */
+	protected final CreateApplicationSessionRequest createTestApplicationSession() {
+		final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
+		serviceRequest.setIpInformation("8.8.8.8");
+		serviceRequest.setLocale("en_US.UTF-8");
+		serviceRequest.setOperatingSystem("LINUX");
+		serviceRequest.setSessionId(UUID.randomUUID().toString());
+		serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
+		serviceRequest.setUserAgentInformation("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0");
+
+		final CreateApplicationSessionResponse sessionResponse = (CreateApplicationSessionResponse) applicationManager
+				.service(serviceRequest);
+		return serviceRequest;
+	}
+
 }

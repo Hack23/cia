@@ -21,7 +21,6 @@ package com.hack23.cia.service.impl.action.application;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
 import org.databene.contiperf.PerfTest;
 import org.databene.contiperf.Required;
@@ -36,13 +35,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
-import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_;
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
-import com.hack23.cia.service.api.action.application.CreateApplicationSessionResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ApplicationSessionDAO;
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
@@ -57,11 +53,6 @@ public class CreateApplicationEventServiceITest extends AbstractServiceFunctiona
 	/** The i. */
 	@Rule
 	public ContiPerfRule i = new ContiPerfRule();
-
-
-	/** The application manager. */
-	@Autowired
-	private ApplicationManager applicationManager;
 
 	/** The application session dao. */
 	@Autowired
@@ -116,24 +107,5 @@ public class CreateApplicationEventServiceITest extends AbstractServiceFunctiona
 
 	}
 
-
-	/**
-	 * Creates the test application session.
-	 *
-	 * @return the creates the application session request
-	 */
-	private CreateApplicationSessionRequest createTestApplicationSession() {
-		final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
-		serviceRequest.setIpInformation("8.8.8.8");
-		serviceRequest.setLocale("en_US.UTF-8");
-		serviceRequest.setOperatingSystem("LINUX");
-		serviceRequest.setSessionId(UUID.randomUUID().toString());
-		serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
-		serviceRequest.setUserAgentInformation("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0");
-
-		final CreateApplicationSessionResponse sessionResponse = (CreateApplicationSessionResponse) applicationManager
-				.service(serviceRequest);
-		return serviceRequest;
-	}
 
 }

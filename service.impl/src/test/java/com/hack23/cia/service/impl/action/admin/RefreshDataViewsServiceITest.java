@@ -30,6 +30,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
 import com.hack23.cia.service.api.action.admin.RefreshDataViewsResponse;
+import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 
 /**
@@ -50,11 +51,18 @@ public class RefreshDataViewsServiceITest extends AbstractServiceFunctionalInteg
 	 */
 	@Test
 	public void Test() throws Exception {
-		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
-		authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
-		SecurityContextHolder.getContext().setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
+		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
+
+		SecurityContextHolder.getContext()
+				.setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
+
+		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
+
+		RefreshDataViewsRequest serviceRequest = new RefreshDataViewsRequest();
+		serviceRequest.setSessionId(createSessionRequest.getSessionId());
 
 		final RefreshDataViewsResponse  response = (RefreshDataViewsResponse) applicationManager.service(new RefreshDataViewsRequest());
 		assertNotNull("Expect a result",response);

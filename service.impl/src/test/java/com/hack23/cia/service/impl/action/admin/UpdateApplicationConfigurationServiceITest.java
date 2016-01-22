@@ -29,13 +29,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration;
-import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
 import com.hack23.cia.model.internal.application.system.impl.ConfigurationGroup;
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationRequest;
 import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
-import com.hack23.cia.service.api.action.application.CreateApplicationSessionResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ApplicationConfigurationService;
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
@@ -44,10 +41,6 @@ import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
  * The Class UpdateApplicationConfigurationServiceITest.
  */
 public class UpdateApplicationConfigurationServiceITest extends AbstractServiceFunctionalIntegrationTest {
-
-	/** The application manager. */
-	@Autowired
-	private ApplicationManager applicationManager;
 
 	/** The application configuration service. */
 	@Autowired
@@ -112,25 +105,5 @@ public class UpdateApplicationConfigurationServiceITest extends AbstractServiceF
 		assertEquals("componentDescription",applicationConfigurationUpdated.getComponentDescription());
 
 	}
-
-	/**
-	 * Creates the test application session.
-	 *
-	 * @return the creates the application session request
-	 */
-	private CreateApplicationSessionRequest createTestApplicationSession() {
-		final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
-		serviceRequest.setIpInformation("8.8.8.8");
-		serviceRequest.setLocale("en_US.UTF-8");
-		serviceRequest.setOperatingSystem("LINUX");
-		serviceRequest.setSessionId(UUID.randomUUID().toString());
-		serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
-		serviceRequest.setUserAgentInformation("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0");
-
-		final CreateApplicationSessionResponse sessionResponse = (CreateApplicationSessionResponse) applicationManager
-				.service(serviceRequest);
-		return serviceRequest;
-	}
-
 
 }
