@@ -204,5 +204,13 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
+	@Override
+	public Link createSearchDocumentViewPageLink() {
+		final Link pageLink = new Link("Search", new ExternalResource("#!"
+						+ UserViews.SEARCH_DOCUMENT_VIEW_NAME));
+		pageLink.setId(ViewAction.VISIT_DOCUMENT_VIEW.name());
+		return pageLink;
+	}
+
 
 }

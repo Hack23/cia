@@ -118,4 +118,11 @@ public interface PageLinkFactory {
 	 */
 	Link createPoliticianPageLink(PersonData personData);
 
+	/**
+	 * Creates a new PageLink object.
+	 *
+	 * @return the link
+	 */
+	Link createSearchDocumentViewPageLink();
+
 }

@@ -314,7 +314,7 @@ public class DocumentView extends AbstractUserView {
 				}
 
 				getPanel().setContent(panelContent);
-				pageActionEventHelper.createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.ADMIN, NAME, parameters, pageId);
+				pageActionEventHelper.createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
 			}
 
 		}

@@ -87,14 +87,18 @@ public enum ViewAction {
 	VISIT_ADMIN_USERACCOUNT_VIEW,
 
  /** The visit document view. */
- VISIT_DOCUMENT_VIEW,
+	VISIT_DOCUMENT_VIEW,
+
+	/** The visit search view. */
+	VISIT_SEARCH_VIEW,
+
 
  /** The visit admin monitoring view. */
  VISIT_ADMIN_MONITORING_VIEW,
 
  /** The visit user home view. */
  VISIT_USER_HOME_VIEW,
- 
+
  /** The visit admin application configuration view. */
  VISIT_ADMIN_APPLICATION_CONFIGURATION_VIEW;
 }

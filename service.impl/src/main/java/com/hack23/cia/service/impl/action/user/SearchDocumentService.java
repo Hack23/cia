@@ -18,6 +18,9 @@
 */
 package com.hack23.cia.service.impl.action.user;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
+import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
@@ -34,6 +39,7 @@ import com.hack23.cia.service.api.action.application.CreateApplicationEventRespo
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.api.action.user.SearchDocumentRequest;
 import com.hack23.cia.service.api.action.user.SearchDocumentResponse;
+import com.hack23.cia.service.data.api.DocumentContentDataDAO;
 import com.hack23.cia.service.data.api.DocumentElementDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
@@ -66,6 +72,9 @@ public final class SearchDocumentService extends
 	@Autowired
 	private DocumentElementDAO documentElementDAO;
 
+	@Autowired
+	private DocumentContentDataDAO documentContentDataDAO;
+
 
 	/** (non-Javadoc)
 	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
@@ -94,7 +103,23 @@ public final class SearchDocumentService extends
 
 		final SearchDocumentResponse response = new SearchDocumentResponse(ServiceResult.SUCCESS);
 
-		response.setResultElement(documentElementDAO.search(serviceRequest.getSearchExpression(), serviceRequest.getMaxResults(), "title","subTitle"));
+		List<DocumentElement> searchResultTitles = documentElementDAO.search(serviceRequest.getSearchExpression(), serviceRequest.getMaxResults(),"id", "title","subTitle");
+		if (searchResultTitles.size() >0) {
+		 response.setResultElement(searchResultTitles);
+		} else {
+			List<DocumentContentData> searchResultContent = documentContentDataDAO.search(serviceRequest.getSearchExpression(), serviceRequest.getMaxResults(), "id","content");
+			if (searchResultContent.size() >0) {
+				List<DocumentElement> searchResultTitlesForContent = new ArrayList<>();
+
+				for (DocumentContentData documentContent : searchResultContent) {
+
+					searchResultTitlesForContent.add(documentElementDAO.load(documentContent.getId()));
+				}
+
+				response.setResultElement(searchResultTitlesForContent);
+
+			}
+		}
 
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);

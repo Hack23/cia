@@ -54,6 +54,9 @@ public interface UserViews {
 	/** The document view name. */
 	String DOCUMENT_VIEW_NAME = "document";
 
+	/** The document view name. */
+	String SEARCH_DOCUMENT_VIEW_NAME = "search";
+
 	/** The userhome view name. */
 	String USERHOME_VIEW_NAME = "userhome";
 
