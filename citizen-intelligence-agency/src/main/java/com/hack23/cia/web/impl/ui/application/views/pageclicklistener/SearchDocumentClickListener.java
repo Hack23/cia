@@ -43,17 +43,27 @@ public final class SearchDocumentClickListener implements ClickListener {
 	/** The application manager. */
 	private final ApplicationManager applicationManager;
 
+	private SearchDocumentResponseHandler responseHandler;
+
+	public static interface SearchDocumentResponseHandler {
+		void handle(SearchDocumentResponse response);
+	}
+
+
 	/**
 	 * Instantiates a new search document click listener.
 	 *
 	 * @param reqisterRequest
 	 *            the reqister request
+	 * @param searchLayout
 	 * @param applicationManager
 	 *            the application manager
+	 * @param gridFactory
 	 */
-	public SearchDocumentClickListener(final SearchDocumentRequest reqisterRequest, final ApplicationManager applicationManager) {
+	public SearchDocumentClickListener(final SearchDocumentRequest reqisterRequest, final ApplicationManager applicationManager, final SearchDocumentResponseHandler responseHandler) {
 		this.reqisterRequest = reqisterRequest;
 		this.applicationManager = applicationManager;
+		this.responseHandler = responseHandler;
 	}
 
 	/** (non-Javadoc)
@@ -67,6 +77,8 @@ public final class SearchDocumentClickListener implements ClickListener {
 			Notification.show("Search success",
 	                  "Found :" + response.getResultElement().size(),
 	                  Notification.Type.HUMANIZED_MESSAGE);
+			responseHandler.handle(response);
+
 		} else {
 			Notification.show("Search failed",
 	                  "Error message",
