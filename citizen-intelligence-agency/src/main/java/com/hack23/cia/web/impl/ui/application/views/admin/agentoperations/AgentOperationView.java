@@ -92,6 +92,7 @@ public class AgentOperationView extends AbstractAdminView implements
 	}
 
 	private void createContent() {
+		content.removeAllComponents();
 		content.addComponent(LabelFactory.createHeader2Label("Admin"));
 
 		targetSelect = new ComboBox("Target", Arrays.asList(DataAgentTarget
