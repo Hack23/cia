@@ -8,6 +8,34 @@
       <kommun_id/>
       <namn>HELA LANDET</namn>
       <parti>
+        <partibeteckning>Politiskt Vilde</partibeteckning>
+        <forkortning>-</forkortning>
+        <id_parti>232323</id_parti>
+        <co_adress></co_adress>
+        <telefon></telefon>
+        <gatuadress></gatuadress>
+        <telefax></telefax>
+        <postnummer></postnummer>
+        <postort></postort>
+        <epost></epost>
+        <webbplats></webbplats>
+        <registreringsdatum>1971-01-01</registreringsdatum>
+      </parti>
+      <parti>
+        <partibeteckning>NyDemokrati</partibeteckning>
+        <forkortning>NYD</forkortning>
+        <id_parti>170</id_parti>
+        <co_adress></co_adress>
+        <telefon>08-16 09 30</telefon>
+        <gatuadress>Box 10185</gatuadress>
+        <telefax></telefax>
+        <postnummer>10055</postnummer>
+        <postort>Stockholm</postort>
+        <epost></epost>
+        <webbplats></webbplats>
+        <registreringsdatum>1991-02-15</registreringsdatum>
+      </parti>
+      <parti>
         <partibeteckning>Allianspartiet/Medborgarens röst</partibeteckning>
         <forkortning>ALP</forkortning>
         <id_parti>14</id_parti>
@@ -37,7 +65,7 @@
       </parti>
       <parti>
         <partibeteckning>Borgerlig Framtid</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1147</id_parti>
         <co_adress>c/o Anders Königsson</co_adress>
         <telefon>073-694 13 14</telefon>
@@ -65,7 +93,7 @@
       </parti>
       <parti>
         <partibeteckning>Direktdemokraterna</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1150</id_parti>
         <co_adress>c/o Johan Liljegren</co_adress>
         <telefon>070-670 85 68</telefon>
@@ -135,7 +163,7 @@
       </parti>
       <parti>
         <partibeteckning>Frihetspartiet</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>979</id_parti>
         <co_adress>c/o Mellie Wahlberg</co_adress>
         <telefon>0733-85 34 78</telefon>
@@ -149,7 +177,7 @@
       </parti>
       <parti>
         <partibeteckning>Högerpartiet de konservativa</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>452</id_parti>
         <co_adress/>
         <telefon>070-460 97 07</telefon>
@@ -275,7 +303,7 @@
       </parti>
       <parti>
         <partibeteckning>LOTTOKRATIN</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>518</id_parti>
         <co_adress/>
         <telefon>070-52 47 433</telefon>
@@ -317,7 +345,7 @@
       </parti>
       <parti>
         <partibeteckning>Mosebackedemokraterna</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>976</id_parti>
         <co_adress>c/o Ercan Loströmmer</co_adress>
         <telefon>0738-93 23 53</telefon>
@@ -331,7 +359,7 @@
       </parti>
       <parti>
         <partibeteckning>Nordiska motståndsrörelsen</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1273</id_parti>
         <co_adress/>
         <telefon>0738-396 301</telefon>
@@ -359,7 +387,7 @@
       </parti>
       <parti>
         <partibeteckning>Permalogiskt Samhälle</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1277</id_parti>
         <co_adress>c/o Karl Gustafson</co_adress>
         <telefon>0581-504 05</telefon>
@@ -429,7 +457,7 @@
       </parti>
       <parti>
         <partibeteckning>Sociala Partiet (SP)</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>522</id_parti>
         <co_adress/>
         <telefon/>
@@ -471,7 +499,7 @@
       </parti>
       <parti>
         <partibeteckning>Spritpartiet</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1004</id_parti>
         <co_adress>c/o Benny Haag</co_adress>
         <telefon>073-656 44 19</telefon>
@@ -485,7 +513,7 @@
       </parti>
       <parti>
         <partibeteckning>Svenska Förnufts Partiet (SFP)</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1187</id_parti>
         <co_adress/>
         <telefon>0739-74 20 53</telefon>
@@ -550,7 +578,7 @@
       <namn>Stockholms län</namn>
       <parti>
         <partibeteckning>Lifepartiet</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1155</id_parti>
         <co_adress/>
         <telefon>070-575 69 60</telefon>
@@ -564,7 +592,7 @@
       </parti>
       <parti>
         <partibeteckning>Stockholmspartiet</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>555</id_parti>
         <co_adress/>
         <telefon>08-21 99 59</telefon>
@@ -621,7 +649,7 @@
       <namn>Östergötlands län</namn>
       <parti>
         <partibeteckning>Klimatpartiet</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1276</id_parti>
         <co_adress>c/o Rasmus Orsén &amp; Ingrid Gustafsson</co_adress>
         <telefon>0762-833 476</telefon>
@@ -673,7 +701,7 @@
       <namn>Kronobergs län</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -758,7 +786,7 @@
       </parti>
       <parti>
         <partibeteckning>Sveriges Nationella Demokratiska Parti</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>339</id_parti>
         <co_adress>c/o Pawel Grunneholm</co_adress>
         <telefon>040-93 27 68</telefon>
@@ -772,7 +800,7 @@
       </parti>
       <parti>
         <partibeteckning>Vårdpartiet i Skåne</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1119</id_parti>
         <co_adress>c/o Eva Linander</co_adress>
         <telefon/>
@@ -810,7 +838,7 @@
       <namn>Västra Götalands län</namn>
       <parti>
         <partibeteckning>Missnöjespartiet</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1101</id_parti>
         <co_adress/>
         <telefon/>
@@ -824,7 +852,7 @@
       </parti>
       <parti>
         <partibeteckning>Seniorpartiet</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>470</id_parti>
         <co_adress>c/o Christer Möller</co_adress>
         <telefon>031-52 49 69</telefon>
@@ -928,7 +956,7 @@
       <namn>Dalarnas län</namn>
       <parti>
         <partibeteckning>Borlängepartiet Dalarna</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1161</id_parti>
         <co_adress>c/o Marie Edenhager</co_adress>
         <telefon>0243-745 48</telefon>
@@ -1027,7 +1055,7 @@
       <namn>Jämtlands län</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -1046,7 +1074,7 @@
       <namn>Västerbottens län</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -1149,7 +1177,7 @@
       <namn>Vallentuna</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -1215,7 +1243,7 @@
       <namn>Värmdö</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -1234,7 +1262,7 @@
       <namn>Järfälla</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -1357,7 +1385,7 @@
       <namn>Haninge</namn>
       <parti>
         <partibeteckning>Haningepartiet</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1272</id_parti>
         <co_adress>c/o Olle Ekström</co_adress>
         <telefon>0736-426 746</telefon>
@@ -1376,7 +1404,7 @@
       <namn>Tyresö</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -1395,7 +1423,7 @@
       <namn>Upplands-Bro</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -1433,7 +1461,7 @@
       <namn>Täby</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -1452,7 +1480,7 @@
       <namn>Danderyd</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -1490,7 +1518,7 @@
       <namn>Stockholm</namn>
       <parti>
         <partibeteckning>Etanolpartiet</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1141</id_parti>
         <co_adress>c/o Brand PR</co_adress>
         <telefon>0734-053 053</telefon>
@@ -1504,7 +1532,7 @@
       </parti>
       <parti>
         <partibeteckning>Fria Stockholmare</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1156</id_parti>
         <co_adress>Theodor Smart Randquist</co_adress>
         <telefon>0768-701 368</telefon>
@@ -1518,7 +1546,7 @@
       </parti>
       <parti>
         <partibeteckning>Popvox</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>981</id_parti>
         <co_adress>c/o Peter Ahlm</co_adress>
         <telefon>070-730 50 80</telefon>
@@ -1603,7 +1631,7 @@
       <namn>Sundbyberg</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -1693,7 +1721,7 @@
       <namn>Norrtälje</namn>
       <parti>
         <partibeteckning>Partiet Roslagens Framtid</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1099</id_parti>
         <co_adress/>
         <telefon>070-811 94 14</telefon>
@@ -1778,7 +1806,7 @@
       <namn>Håbo</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -1854,7 +1882,7 @@
       <namn>Tierp</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -1873,7 +1901,7 @@
       <namn>Uppsala</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -1949,7 +1977,7 @@
       <namn>Gnesta</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -1968,7 +1996,7 @@
       <namn>Nyköping</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -1987,7 +2015,7 @@
       <namn>Oxelösund</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2039,7 +2067,7 @@
       <namn>Katrineholm</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2058,7 +2086,7 @@
       <namn>Eskilstuna</namn>
       <parti>
         <partibeteckning>Join The Parti</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1112</id_parti>
         <co_adress>c/o Håkan Ringkvist</co_adress>
         <telefon/>
@@ -2148,7 +2176,7 @@
       <namn>Ydre</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2167,7 +2195,7 @@
       <namn>Kinda</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2186,7 +2214,7 @@
       <namn>Boxholm</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2224,7 +2252,7 @@
       <namn>Finspång</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2262,7 +2290,7 @@
       <namn>Linköping</namn>
       <parti>
         <partibeteckning>Bjorn</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>474</id_parti>
         <co_adress/>
         <telefon/>
@@ -2276,7 +2304,7 @@
       </parti>
       <parti>
         <partibeteckning>Folkfronten</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>828</id_parti>
         <co_adress/>
         <telefon/>
@@ -2290,7 +2318,7 @@
       </parti>
       <parti>
         <partibeteckning>Spiritvs Neronis</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1114</id_parti>
         <co_adress>Adressuppgift saknas</co_adress>
         <telefon/>
@@ -2309,7 +2337,7 @@
       <namn>Norrköping</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2328,7 +2356,7 @@
       <namn>Söderköping</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2347,7 +2375,7 @@
       <namn>Motala</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2385,7 +2413,7 @@
       <namn>Mjölby</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2404,7 +2432,7 @@
       <namn>Aneby</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2423,7 +2451,7 @@
       <namn>Gnosjö</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2442,7 +2470,7 @@
       <namn>Mullsjö</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2461,7 +2489,7 @@
       <namn>Habo</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2480,7 +2508,7 @@
       <namn>Gislaved</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2499,7 +2527,7 @@
       <namn>Vaggeryd</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2518,7 +2546,7 @@
       <namn>Jönköping</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2556,7 +2584,7 @@
       <namn>Värnamo</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2575,7 +2603,7 @@
       <namn>Sävsjö</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2613,7 +2641,7 @@
       <namn>Eksjö</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2632,7 +2660,7 @@
       <namn>Tranås</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2651,7 +2679,7 @@
       <namn>Uppvidinge</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2670,7 +2698,7 @@
       <namn>Lessebo</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2727,7 +2755,7 @@
       <namn>Älmhult</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2746,7 +2774,7 @@
       <namn>Markaryd</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2765,7 +2793,7 @@
       <namn>Växjö</namn>
       <parti>
         <partibeteckning>EtableringsPartiet</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1271</id_parti>
         <co_adress>c/o Rekryterings- och Etableringscentrum Sverige AB</co_adress>
         <telefon>070-225 11 54</telefon>
@@ -2803,7 +2831,7 @@
       <namn>Högsby</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2860,7 +2888,7 @@
       <namn>Hultsfred</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2879,7 +2907,7 @@
       <namn>Mönsterås</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2898,7 +2926,7 @@
       <namn>Emmaboda</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2917,7 +2945,7 @@
       <namn>Kalmar</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2936,7 +2964,7 @@
       <namn>Nybro</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2955,7 +2983,7 @@
       <namn>Oskarshamn</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -2993,7 +3021,7 @@
       <namn>Vimmerby</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3045,7 +3073,7 @@
       <namn>Gotland</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3064,7 +3092,7 @@
       <namn>Olofström</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3083,7 +3111,7 @@
       <namn>Karlskrona</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3121,7 +3149,7 @@
       <namn>Karlshamn</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3140,7 +3168,7 @@
       <namn>Sölvesborg</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3159,7 +3187,7 @@
       <namn>Svalöv</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3197,7 +3225,7 @@
       <namn>Burlöv</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3235,7 +3263,7 @@
       <namn>Östra Göinge</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3254,7 +3282,7 @@
       <namn>Örkelljunga</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3273,7 +3301,7 @@
       <namn>Bjuv</namn>
       <parti>
         <partibeteckning>Bjuvspartiet</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1111</id_parti>
         <co_adress>c/o Malisa Kukulovic</co_adress>
         <telefon>0708-78 26 26</telefon>
@@ -3292,7 +3320,7 @@
       <namn>Kävlinge</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3311,7 +3339,7 @@
       <namn>Lomma</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3330,7 +3358,7 @@
       <namn>Svedala</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3406,7 +3434,7 @@
       <namn>Höör</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3425,7 +3453,7 @@
       <namn>Tomelilla</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3501,7 +3529,7 @@
       <namn>Klippan</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3520,7 +3548,7 @@
       <namn>Åstorp</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3558,7 +3586,7 @@
       <namn>Malmö</namn>
       <parti>
         <partibeteckning>Gula Partiet</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1108</id_parti>
         <co_adress>c/o Stefan Bader</co_adress>
         <telefon>070-636 40 49</telefon>
@@ -3586,7 +3614,7 @@
       </parti>
       <parti>
         <partibeteckning>Malmöpartiet</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>247</id_parti>
         <co_adress>c/o Tony Kaladic'</co_adress>
         <telefon>0703-91 74 72</telefon>
@@ -3600,7 +3628,7 @@
       </parti>
       <parti>
         <partibeteckning>Riksdemokraterna för Sverige</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1279</id_parti>
         <co_adress/>
         <telefon>040-29 00 01</telefon>
@@ -3652,7 +3680,7 @@
       <namn>Landskrona</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3690,7 +3718,7 @@
       <namn>Höganäs</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3728,7 +3756,7 @@
       <namn>Ystad</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3875,7 +3903,7 @@
       <namn>Halmstad</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3913,7 +3941,7 @@
       <namn>Falkenberg</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -3932,7 +3960,7 @@
       <namn>Varberg</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4003,7 +4031,7 @@
       <namn>Partille</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4022,7 +4050,7 @@
       <namn>Öckerö</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4041,7 +4069,7 @@
       <namn>Stenungsund</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4145,7 +4173,7 @@
       <namn>Munkedal</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4164,7 +4192,7 @@
       <namn>Tanum</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4183,7 +4211,7 @@
       <namn>Dals-Ed</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4202,7 +4230,7 @@
       <namn>Färgelanda</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4287,7 +4315,7 @@
       <namn>Vårgårda</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4306,7 +4334,7 @@
       <namn>Bollebygd</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4325,7 +4353,7 @@
       <namn>Grästorp</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4344,7 +4372,7 @@
       <namn>Essunga</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4363,7 +4391,7 @@
       <namn>Karlsborg</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4382,7 +4410,7 @@
       <namn>Gullspång</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4401,7 +4429,7 @@
       <namn>Tranemo</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4420,7 +4448,7 @@
       <namn>Bengtsfors</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4439,7 +4467,7 @@
       <namn>Mellerud</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4458,7 +4486,7 @@
       <namn>Lilla Edet</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4496,7 +4524,7 @@
       <namn>Svenljunga</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4534,7 +4562,7 @@
       <namn>Vara</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4553,7 +4581,7 @@
       <namn>Götene</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4572,7 +4600,7 @@
       <namn>Tibro</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4591,7 +4619,7 @@
       <namn>Töreboda</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4610,7 +4638,7 @@
       <namn>Göteborg</namn>
       <parti>
         <partibeteckning>Barnpartiet</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1016</id_parti>
         <co_adress>c/o Håkan Burden</co_adress>
         <telefon/>
@@ -4624,7 +4652,7 @@
       </parti>
       <parti>
         <partibeteckning>Framtidspartiet Sverige</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>450</id_parti>
         <co_adress>c/o Ulf G Olsson</co_adress>
         <telefon>031-15 89 35</telefon>
@@ -4638,7 +4666,7 @@
       </parti>
       <parti>
         <partibeteckning>Normaldemokraterna</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1124</id_parti>
         <co_adress>c/o GIL</co_adress>
         <telefon>076-107 10 20</telefon>
@@ -4652,7 +4680,7 @@
       </parti>
       <parti>
         <partibeteckning>Öppna Göteborg!</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1130</id_parti>
         <co_adress>c/o Holger Wassgren</co_adress>
         <telefon>031 - 29 24 81</telefon>
@@ -4671,7 +4699,7 @@
       <namn>Mölndal</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4742,7 +4770,7 @@
       <namn>Uddevalla</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4780,7 +4808,7 @@
       <namn>Vänersborg</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4799,7 +4827,7 @@
       <namn>Trollhättan</namn>
       <parti>
         <partibeteckning>Trollhättans Framtid</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1278</id_parti>
         <co_adress>c/o Dan Möllengård</co_adress>
         <telefon>073-448 78 44</telefon>
@@ -4818,7 +4846,7 @@
       <namn>Alingsås</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4875,7 +4903,7 @@
       <namn>Åmål</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4932,7 +4960,7 @@
       <namn>Skara</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4951,7 +4979,7 @@
       <namn>Skövde</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4970,7 +4998,7 @@
       <namn>Hjo</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -4989,7 +5017,7 @@
       <namn>Tidaholm</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5008,7 +5036,7 @@
       <namn>Falköping</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5027,7 +5055,7 @@
       <namn>Kil</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5046,7 +5074,7 @@
       <namn>Eda</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5065,7 +5093,7 @@
       <namn>Torsby</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5084,7 +5112,7 @@
       <namn>Storfors</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5103,7 +5131,7 @@
       <namn>Hammarö</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5122,7 +5150,7 @@
       <namn>Munkfors</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5160,7 +5188,7 @@
       <namn>Grums</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5236,7 +5264,7 @@
       <namn>Kristinehamn</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5255,7 +5283,7 @@
       <namn>Filipstad</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5274,7 +5302,7 @@
       <namn>Hagfors</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5293,7 +5321,7 @@
       <namn>Arvika</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5312,7 +5340,7 @@
       <namn>Säffle</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5369,7 +5397,7 @@
       <namn>Hallsberg</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5388,7 +5416,7 @@
       <namn>Degerfors</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5407,7 +5435,7 @@
       <namn>Hällefors</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5445,7 +5473,7 @@
       <namn>Örebro</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5464,7 +5492,7 @@
       <namn>Kumla</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5483,7 +5511,7 @@
       <namn>Askersund</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5502,7 +5530,7 @@
       <namn>Karlskoga</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5540,7 +5568,7 @@
       <namn>Lindesberg</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5578,7 +5606,7 @@
       <namn>Surahammar</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5597,7 +5625,7 @@
       <namn>Kungsör</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5616,7 +5644,7 @@
       <namn>Hallstahammar</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5654,7 +5682,7 @@
       <namn>Västerås</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5692,7 +5720,7 @@
       <namn>Fagersta</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5711,7 +5739,7 @@
       <namn>Köping</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5806,7 +5834,7 @@
       <namn>Leksand</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5825,7 +5853,7 @@
       <namn>Rättvik</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5844,7 +5872,7 @@
       <namn>Orsa</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5882,7 +5910,7 @@
       <namn>Smedjebacken</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5939,7 +5967,7 @@
       <namn>Borlänge</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5958,7 +5986,7 @@
       <namn>Säter</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -5991,7 +6019,7 @@
       </parti>
       <parti>
         <partibeteckning>Kommunlistan</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>747</id_parti>
         <co_adress>c/o Allan Mattsson</co_adress>
         <telefon>0225-607 18</telefon>
@@ -6048,7 +6076,7 @@
       <namn>Ockelbo</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6067,7 +6095,7 @@
       <namn>Hofors</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6086,7 +6114,7 @@
       <namn>Ovanåker</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6105,7 +6133,7 @@
       <namn>Nordanstig</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6124,7 +6152,7 @@
       <namn>Ljusdal</namn>
       <parti>
         <partibeteckning>Ljusdals Framtids Parti</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1120</id_parti>
         <co_adress/>
         <telefon>070-578 28 74</telefon>
@@ -6138,7 +6166,7 @@
       </parti>
       <parti>
         <partibeteckning>Ljusdalsbygdens parti</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>535</id_parti>
         <co_adress>c/o Elisabet Collin</co_adress>
         <telefon>0651-71 11 10</telefon>
@@ -6157,7 +6185,7 @@
       <namn>Gävle</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6195,7 +6223,7 @@
       <namn>Söderhamn</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6233,7 +6261,7 @@
       <namn>Hudiksvall</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6271,7 +6299,7 @@
       <namn>Timrå</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6290,7 +6318,7 @@
       <namn>Härnösand</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6342,7 +6370,7 @@
       <namn>Kramfors</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6380,7 +6408,7 @@
       <namn>Örnsköldsvik</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6418,7 +6446,7 @@
       <namn>Bräcke</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6437,7 +6465,7 @@
       <namn>Krokom</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6546,7 +6574,7 @@
       <namn>Östersund</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6565,7 +6593,7 @@
       <namn>Nordmaling</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6584,7 +6612,7 @@
       <namn>Bjurholm</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6603,7 +6631,7 @@
       <namn>Vindeln</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6622,7 +6650,7 @@
       <namn>Robertsfors</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6641,7 +6669,7 @@
       <namn>Norsjö</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6698,7 +6726,7 @@
       <namn>Sorsele</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6717,7 +6745,7 @@
       <namn>Dorotea</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6736,7 +6764,7 @@
       <namn>Vännäs</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6821,7 +6849,7 @@
       <namn>Umeå</namn>
       <parti>
         <partibeteckning>Enighet Rättvisa Socialism Arbetarpartiet</partibeteckning>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti>1098</id_parti>
         <co_adress/>
         <telefon>090-19 47 34</telefon>
@@ -6840,7 +6868,7 @@
       <namn>Lycksele</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6859,7 +6887,7 @@
       <namn>Skellefteå</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6878,7 +6906,7 @@
       <namn>Arvidsjaur</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6897,7 +6925,7 @@
       <namn>Arjeplog</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -6949,7 +6977,7 @@
       <namn>Överkalix</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -7001,7 +7029,7 @@
       <namn>Övertorneå</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -7020,7 +7048,7 @@
       <namn>Pajala</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -7058,7 +7086,7 @@
       <namn>Älvsbyn</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -7077,7 +7105,7 @@
       <namn>Luleå</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -7129,7 +7157,7 @@
       <namn>Boden</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -7148,7 +7176,7 @@
       <namn>Haparanda</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -7167,7 +7195,7 @@
       <namn>Kiruna</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -7190,7 +7218,7 @@
       <namn>EU - hela landet</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>
@@ -7213,7 +7241,7 @@
       <namn>Folkomröstning - hela landet</namn>
       <parti>
         <partibeteckning/>
-        <forkortning>-</forkortning>
+        <forkortning>---</forkortning>
         <id_parti/>
         <co_adress/>
         <telefon/>

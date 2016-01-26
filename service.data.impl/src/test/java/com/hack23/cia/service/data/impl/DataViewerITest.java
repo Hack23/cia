@@ -211,7 +211,6 @@ public class DataViewerITest extends
 		long governmentSum = 0;
 
 		for (final ViewRiksdagenPartySummary viewRiksdagenPartySummary : committees) {
-			//System.out.println(viewRiksdagenPartySummary.getParty());
 			if (viewRiksdagenPartySummary != null) {
 				parliamentSum = parliamentSum
 						+ viewRiksdagenPartySummary.getTotalActiveParliament();
@@ -226,8 +225,8 @@ public class DataViewerITest extends
 
 		assertEquals("Should always be 349 in parliament", 349, parliamentSum + activeWithNoParty.size());
 		assertEquals(
-				"Should always be 20 in eu, but riksdagen data contains only 13",
-				13, euSum);
+				"Should always be 20 in eu, but riksdagen data contains only 15",
+				15, euSum);
 		assertEquals("Should always be 24 in current government", 24,
 				governmentSum);
 
