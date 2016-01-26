@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -64,7 +64,7 @@ public class ValApiTest extends AbstractValFunctionalIntegrationTest {
 	public void testGetSwedenPoliticalParties() throws Exception {
 		final List<SwedenPoliticalParty> list = valApi.getSwedenPoliticalParties();
 		assertNotNull(list);
-		assertEquals(38, list.size());
+		assertEquals(40, list.size());
 
 	}
 
