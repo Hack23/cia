@@ -20,6 +20,8 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.List;
 
+import javax.persistence.metamodel.SingularAttribute;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -166,6 +168,12 @@ public class DataViewerITest extends
 
 			assertEquals(viewRiksdagenPoliticianLoaded,
 					viewRiksdagenPoliticianFound);
+
+
+			assertEquals("Should always be 349 in parliament",349,dataViewer
+			.findListByProperty(ViewRiksdagenPolitician.class,
+					ViewRiksdagenPolitician_.activeParliament,
+					true).size());
 		}
 	}
 
@@ -203,6 +211,7 @@ public class DataViewerITest extends
 		long governmentSum = 0;
 
 		for (final ViewRiksdagenPartySummary viewRiksdagenPartySummary : committees) {
+			//System.out.println(viewRiksdagenPartySummary.getParty());
 			if (viewRiksdagenPartySummary != null) {
 				parliamentSum = parliamentSum
 						+ viewRiksdagenPartySummary.getTotalActiveParliament();
@@ -211,7 +220,11 @@ public class DataViewerITest extends
 						+ viewRiksdagenPartySummary.getTotalActiveGovernment();
 			}
 		}
-		assertEquals("Should always be 349 in parliament", 349, parliamentSum);
+
+		List<ViewRiksdagenPolitician> activeWithNoParty = dataViewer.findListByProperty(ViewRiksdagenPolitician.class, new Object[]  {true,null},ViewRiksdagenPolitician_.activeParliament,ViewRiksdagenPolitician_.party);
+
+
+		assertEquals("Should always be 349 in parliament", 349, parliamentSum + activeWithNoParty.size());
 		assertEquals(
 				"Should always be 20 in eu, but riksdagen data contains only 13",
 				13, euSum);

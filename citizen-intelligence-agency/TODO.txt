@@ -1,3 +1,16 @@
+
+wrong view https://www.hack23.com/cia/#!politician/RoleGhant/0599390849728 not active in parliament, correct data view.
+
+
+#active
+
+(CASE WHEN sum(CASE WHEN to_date > CURRENT_DATE AND assignment_type='kammaruppdrag' and assignment_data.status !='LEDIG' THEN 1 ELSE (CASE WHEN to_date > CURRENT_DATE AND assignment_type='kammaruppdrag' and assignment_data.status ='LEDIG' THEN -1 ELSE 0 END) END) > 0 THEN true ELSE false END) as active_parliament
+
+
+#
+sum( CASE WHEN assignment_type='kammaruppdrag' and assignment_data.status !='LEDIG' THEN ((CASE WHEN to_date > CURRENT_DATE THEN CURRENT_DATE ELSE to_date END) - (CASE WHEN from_date > CURRENT_DATE THEN CURRENT_DATE ELSE from_date END)) ELSE 0 END) as total_days_served_parliament,
+
+
 Fix broken pages:
 *
 
