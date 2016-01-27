@@ -61,7 +61,7 @@ First you need to add webupd8team Java PPA repository in your system and install
 ```
 $ sudo add-apt-repository ppa:webupd8team/java
 $ sudo apt-get update
-$ sudo apt-get install oracle-java8-installer
+$ sudo apt-get install oracle-java8-installer oracle-java8-unlimited-jce-policy
 ```
 
 3. Create empty database
