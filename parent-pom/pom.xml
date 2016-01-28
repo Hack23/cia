@@ -140,7 +140,7 @@
     <cia.project.versions.hibernate.build>4.3.11.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>4.3.2.Final</cia.project.versions.hibernate.tools>
     <!--<cia.project.versions.hibernate>3.6.0-SNAPSHOT</cia.project.versions.hibernate> -->
-    <cia.project.versions.hibernate.validator>5.2.2.Final</cia.project.versions.hibernate.validator>
+    <cia.project.versions.hibernate.validator>5.2.3.Final</cia.project.versions.hibernate.validator>
     <!--<cia.project.versions.hibernate.validator>4.2.0-SNAPSHOT</cia.project.versions.hibernate.validator> -->
     <cia.project.versions.atomikos>4.0.0M4</cia.project.versions.atomikos>
     <cia.project.versions.ehcache>2.10.1.1.11</cia.project.versions.ehcache>
