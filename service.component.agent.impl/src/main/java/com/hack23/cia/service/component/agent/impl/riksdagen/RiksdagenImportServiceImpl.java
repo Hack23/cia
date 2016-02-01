@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -198,12 +198,12 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	 * getDocumentElementMap(java.util.Date, java.util.List, boolean)
 	 */
 	@Override
-	public Map<String, DocumentType> getDocumentElementMap(final Date after,
+	public Map<String, String> getDocumentElementMap(final Date after,
 			final List<DocumentType> downloadType,
 			final boolean onlyWithDocStatus) {
 		final List<DocumentElement> all = documentElementDAO.getAll();
 
-		final Map<String, DocumentType> map = new ConcurrentHashMap<>();
+		final Map<String, String> map = new ConcurrentHashMap<>();
 
 		for (final DocumentElement documentElement : all) {
 			try {

@@ -106,8 +106,8 @@
 				</xsd:appinfo>
 			</xsd:annotation>
 		</xsd:attribute>
-		
-		
+
+
 		<xsd:attribute name="warning" use="required" type="xsd:string" />
 	</xsd:complexType>
 
@@ -145,7 +145,7 @@
 					</xsd:appinfo>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="typ" type="dokument:DocumentType">
+			<xsd:element name="typ" type="xsd:string">
 				<xsd:annotation>
 					<xsd:documentation>
 						We have customized the generated property name
@@ -156,7 +156,7 @@
 					</xsd:appinfo>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="subtyp" type="dokument:DocumentSubType">
+			<xsd:element name="subtyp" type="xsd:string">
 				<xsd:annotation>
 					<xsd:documentation>
 						We have customized the generated property name

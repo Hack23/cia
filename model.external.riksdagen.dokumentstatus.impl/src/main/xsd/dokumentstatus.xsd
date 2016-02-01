@@ -46,7 +46,7 @@
 					</xsd:appinfo>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="typ" type="dokument:DocumentType">
+			<xsd:element name="typ" type="xsd:string">
 				<xsd:annotation>
 					<xsd:documentation>
 						We have customized the generated property name
@@ -57,7 +57,7 @@
 					</xsd:appinfo>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="subtyp" type="dokument:DocumentSubType">
+			<xsd:element name="subtyp" type="xsd:string">
 				<xsd:annotation>
 					<xsd:documentation>
 						We have customized the generated property name
@@ -448,7 +448,7 @@
 						<jaxb:property name="wording4" />
 					</xsd:appinfo>
 				</xsd:annotation>
-			</xsd:element>			
+			</xsd:element>
 			<xsd:element name="utskottet" type="xsd:string">
 				<xsd:annotation>
 					<xsd:documentation>
@@ -512,9 +512,9 @@
 			</xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
-	
-	
-	
+
+
+
 
 
 	<xsd:complexType name="DocumentDetailContainer">
