@@ -17,7 +17,7 @@
 			<amq:policyMap>
 				<amq:policyEntries>
 					<amq:policyEntry queue=">" optimizedDispatch="true"
-						lazyDispatch="false" producerFlowControl="false" memoryLimit="1024mb"
+						lazyDispatch="false" producerFlowControl="false" memoryLimit="2048mb"
 						strictOrderDispatch="true">
 						<amq:dispatchPolicy>
 							<amq:strictOrderDispatchPolicy />
