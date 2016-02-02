@@ -4559,6 +4559,26 @@ from view_riksdagen_politician group by party</createView>
 
 	</changeSet>
 
+	<changeSet author="pether (generated)" id="1414872417007-279">
+		 <addColumn tableName="document_element">
+			<column name="domain_org" type="varchar(255)"/>
+			<column name="database_source" type="varchar(255)"/>
+			<column name="origin" type="varchar(255)"/>
+			<column name="lang" type="varchar(255)"/>
+			<column name="summary" type="varchar(8192)"/>
+			<column name="note" type="varchar(8192)"/>
+			<column name="note_title" type="varchar(8192)"/>
+			<column name="debate_name" type="varchar(255)"/>
+			<column name="document_name" type="varchar(255)"/>
+    	</addColumn>
+	</changeSet>
+
+	<changeSet author="pether (generated)" id="1414872417007-280">
+		 <addColumn tableName="document_element">
+			<column name="doc_type" type="varchar(255)"/>
+    	</addColumn>
+	</changeSet>
+
 
 	<!-- Materialized views todo
 
@@ -4569,7 +4589,7 @@ from view_riksdagen_politician group by party</createView>
 			<column name="page" type="varchar(255)"/>
 			<column name="page_mode" type="varchar(255)"/>
 			<column name="element_id" type="varchar(255)"/>
-			<column name="action_name" type="varchar(255)"/>
+			<column name="action_name" type="varchar(255	)"/>
 			<column name="user_id" type="varchar(255)"/>
         	<column name="error_message" type="varchar(255)"/>
 			<column name="application_message" type="varchar(255)"/>
