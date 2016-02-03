@@ -262,7 +262,7 @@ public final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 			final Map<String, String> documentElementMap = importService
 					.getDocumentElementMap(
 							new SimpleDateFormat(
-									RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT,Locale.ENGLISH).parse("2000-01-01 00:00:00"),
+									RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT,Locale.ENGLISH).parse("1999-12-30 00:00:00"),
 							selectedDocumentTypes, false);
 
 			final Set<String> avaibleDocumentStatus = documentElementMap
