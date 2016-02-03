@@ -58,7 +58,7 @@
     <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-themes</artifactId>
-      <version>7.6.1</version>
+      <version>7.6.2</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -732,7 +732,7 @@
                 <artifactItem>
                   <groupId>com.vaadin</groupId>
                   <artifactId>vaadin-themes</artifactId>
-                  <version>7.6.1</version>
+                  <version>7.6.2</version>
                   <type>jar</type>
                   <overWrite>false</overWrite>
                   <outputDirectory>${basedir}/src/main/webapp/</outputDirectory>
