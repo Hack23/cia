@@ -20,6 +20,7 @@ package com.hack23.cia.service.component.agent.impl.riksdagen;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -203,16 +204,19 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 			final boolean onlyWithDocStatus) {
 		final List<DocumentElement> all = documentElementDAO.getAll();
 
+		List<String> documentTypeValues = new ArrayList<>();
+
+		for (DocumentType docType : downloadType) {
+			documentTypeValues.add(docType.value());
+		}
+
 		final Map<String, String> map = new ConcurrentHashMap<>();
 
 		for (final DocumentElement documentElement : all) {
 			try {
-
-
-
 				if (getDate(documentElement.getMadePublicDate())
 						.after(after)
-						&& downloadType.contains(documentElement.getDocumentType())) {
+						&& documentTypeValues.contains(documentElement.getDocumentType())) {
 					if (onlyWithDocStatus) {
 						if (documentElement.getDocumentStatusUrlXml() != null) {
 							map.put(documentElement.getId(),
