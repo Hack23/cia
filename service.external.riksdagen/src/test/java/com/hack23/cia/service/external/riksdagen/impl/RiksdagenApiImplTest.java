@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -176,7 +176,7 @@ AbstractRiksdagenFunctionalIntegrationTest {
 		assertNotNull(dokumentstatus.getDocument().getMadePublicDate());
 		assertNotNull(dokumentstatus.getDocument().getHangarId());
 
-		assertEquals(DocumentType.BET, dokumentstatus.getDocument().getDocumentType());
+		assertEquals(DocumentType.BET.value(), dokumentstatus.getDocument().getDocumentType());
 		assertTrue(dokumentstatus.getDocumentReferenceContainer().getDocumentReferenceList().size()>0);
 		assertTrue(dokumentstatus.getDocumentDetailContainer().getDocumentDetailList().size()>0);
 
@@ -185,7 +185,7 @@ AbstractRiksdagenFunctionalIntegrationTest {
 		assertNotNull(dokumentstatus);
 		assertNotNull(dokumentstatus.getDocument().getMadePublicDate());
 		assertNotNull(dokumentstatus.getDocument().getHangarId());
-		assertEquals(DocumentType.MOT, dokumentstatus.getDocument().getDocumentType());
+		assertEquals(DocumentType.MOT.value(), dokumentstatus.getDocument().getDocumentType());
 
 		assertEquals("Avslag", dokumentstatus.getDocumentProposal().getProposal().getChamber());
 		assertEquals(" Avslag", dokumentstatus.getDocumentProposal().getProposal().getCommittee());
@@ -200,7 +200,7 @@ AbstractRiksdagenFunctionalIntegrationTest {
 		assertNotNull(dokumentstatus);
 		assertNotNull(dokumentstatus.getDocument().getMadePublicDate());
 		assertNotNull(dokumentstatus.getDocument().getHangarId());
-		assertEquals(DocumentType.MOT, dokumentstatus.getDocument().getDocumentType());
+		assertEquals(DocumentType.MOT.value(), dokumentstatus.getDocument().getDocumentType());
 		assertTrue(dokumentstatus.getDocumentDetailContainer().getDocumentDetailList().size()>0);
 		assertEquals(1,dokumentstatus.getDocumentPersonReferenceContainer().getDocumentPersonReferenceList().size());
 
