@@ -163,6 +163,21 @@
         <version>${cia.project.versions.junit.dep}</version>
       </dependency>
       <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.4</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.4</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.logging</groupId>
+        <artifactId>jboss-logging</artifactId>
+        <version>3.3.0.Final</version>
+      </dependency>
+      <dependency>
         <groupId>org.jvnet.hyperjaxb3</groupId>
         <artifactId>hyperjaxb3-ejb-roundtrip</artifactId>
         <version>${cia.project.versions.hyperjaxb3}</version>
@@ -1606,6 +1621,7 @@
                 <phase>validate</phase>
                 <goals>
                   <goal>use-latest-versions</goal>
+                  <goal>update-properties</goal>
                 </goals>
               </execution>
             </executions>
