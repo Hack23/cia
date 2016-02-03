@@ -31,14 +31,11 @@
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-analyzers-phonetic</artifactId>
-      <version>5.4.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-core</artifactId>
-      <version>5.4.1</version>
     </dependency>
-
     <dependency>
       <groupId>antlr</groupId>
       <artifactId>antlr</artifactId>
@@ -324,7 +321,6 @@
     <dependency>
       <groupId>com.thoughtworks.xstream</groupId>
       <artifactId>xstream</artifactId>
-      <version>1.4.8</version>
     </dependency>
     <!-- Web Cache -->
     <dependency>
