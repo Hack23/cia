@@ -123,12 +123,10 @@
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
-      <version>20151123</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
-      <version>4.5.1</version>
       <exclusions>
         <exclusion>
           <artifactId>commons-logging</artifactId>
@@ -143,12 +141,10 @@
     <dependency>
       <groupId>org.codehaus.jackson</groupId>
       <artifactId>jackson-core-asl</artifactId>
-      <version>1.9.13</version>
     </dependency>
     <dependency>
       <groupId>commons-codec</groupId>
       <artifactId>commons-codec</artifactId>
-      <version>1.10</version>
     </dependency>
     <dependency>
       <groupId>com.hack23.cia</groupId>
@@ -177,7 +173,6 @@
     <dependency>
       <groupId>commons-net</groupId>
       <artifactId>commons-net</artifactId>
-      <version>3.4</version>
     </dependency>
     <dependency>
       <groupId>com.hack23.cia</groupId>
@@ -203,7 +198,6 @@
     <dependency>
       <groupId>joda-time</groupId>
       <artifactId>joda-time</artifactId>
-      <version>2.9.2</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
