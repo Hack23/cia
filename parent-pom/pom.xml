@@ -105,55 +105,43 @@
     <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
-    <cia.project.versions.ant>1.9.6</cia.project.versions.ant>
-    <cia.project.versions.junit>4.12</cia.project.versions.junit>
-    <cia.project.versions.junit.dep>4.11</cia.project.versions.junit.dep>
-    <cia.project.versions.xmlunit>1.6</cia.project.versions.xmlunit>
-    <cia.project.versions.dbunit>2.5.1</cia.project.versions.dbunit>
-    <cia.project.versions.xmlbeans>2.6.0</cia.project.versions.xmlbeans>
-    <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
-    <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
-    <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
-    <cia.project.versions.poi>3.14-beta1</cia.project.versions.poi>
-    <cia.project.versions.postgresql>9.4.1207</cia.project.versions.postgresql>
-    <!-- <cia.project.versions.easymock>3.1-SNAPSHOT</cia.project.versions.easymock> -->
-    <cia.project.versions.easymock>3.4</cia.project.versions.easymock>
-    <cia.project.versions.plexus.utils>3.0.22</cia.project.versions.plexus.utils>
-    <cia.project.versions.hyperjaxb3>0.6.1</cia.project.versions.hyperjaxb3>
-    <cia.project.versions.jaxb2.commons>0.11.0</cia.project.versions.jaxb2.commons>
-    <!-- <cia.project.versions.jaxb>2.2.2-SNAPSHOT</cia.project.versions.jaxb> -->
-    <cia.project.versions.jaxb>2.2.11</cia.project.versions.jaxb>
-    <cia.project.versions.jaxb.impl>2.2.11</cia.project.versions.jaxb.impl>
-    <cia.project.versions.jaxb.xjc>2.2.11</cia.project.versions.jaxb.xjc>
-    <cia.project.versions.h2>1.4.191</cia.project.versions.h2>
-    <cia.project.versions.mysql>5.1.34</cia.project.versions.mysql>
-    <cia.project.versions.spring.security>4.0.3.RELEASE</cia.project.versions.spring.security>
-    <!-- <cia.project.versions.spring.security>3.1.1.RELEASE</cia.project.versions.spring.security> -->
-    <!-- <cia.project.versions.spring.security>3.1.0.CI-SNAPSHOT</cia.project.versions.spring.security> -->
-    <!--<cia.project.versions.spring>3.0.4.RELEASE</cia.project.versions.spring> -->
-    <!--<cia.project.versions.spring>3.1.1.RELEASE</cia.project.versions.spring>-->
-    <!-- <cia.project.versions.spring>3.2.5.RELEASE</cia.project.versions.spring>-->
     <cia.project.versions.spring>4.2.4.RELEASE</cia.project.versions.spring>
-    <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
-    <!-- <cia.project.versions.hibernate>3.6.10.Final</cia.project.versions.hibernate> -->
-    <cia.project.versions.hibernate>5.0.7.Final</cia.project.versions.hibernate>
-    <cia.project.versions.hibernate.build>4.3.11.Final</cia.project.versions.hibernate.build>
-    <cia.project.versions.hibernate.tools>4.3.2.Final</cia.project.versions.hibernate.tools>
-    <!--<cia.project.versions.hibernate>3.6.0-SNAPSHOT</cia.project.versions.hibernate> -->
-    <cia.project.versions.hibernate.validator>5.2.3.Final</cia.project.versions.hibernate.validator>
-    <!--<cia.project.versions.hibernate.validator>4.2.0-SNAPSHOT</cia.project.versions.hibernate.validator> -->
-    <cia.project.versions.atomikos>4.0.0M5</cia.project.versions.atomikos>
-    <cia.project.versions.ehcache>2.10.1.1.11</cia.project.versions.ehcache>
-    <!--<cia.project.versions.ehcache>2.3.1-SNAPSHOT</cia.project.versions.ehcache> -->
+    <cia.project.versions.spring.security>4.0.3.RELEASE</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.0.BETA-3</cia.project.versions.aspectj>
-    <!--<cia.project.versions.aspectj>1.7.1.M1.M1.BUILD-SNAPSHOT</cia.project.versions.aspectj> -->
-    <cia.project.versions.slf4j>1.7.14</cia.project.versions.slf4j>
-    <cia.project.versions.logback>1.1.3</cia.project.versions.logback>
     <cia.project.versions.javassist>3.20.0-GA</cia.project.versions.javassist>
     <cia.project.versions.asm>5.0.4</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.0</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
+    <cia.project.versions.slf4j>1.7.14</cia.project.versions.slf4j>
+    <cia.project.versions.logback>1.1.3</cia.project.versions.logback>
+    <cia.project.versions.mysql>5.1.34</cia.project.versions.mysql>
+    <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
+    <cia.project.versions.hibernate>5.0.7.Final</cia.project.versions.hibernate>
+    <cia.project.versions.hibernate.build>4.3.11.Final</cia.project.versions.hibernate.build>
+    <cia.project.versions.hibernate.tools>4.3.2.Final</cia.project.versions.hibernate.tools>
+    <cia.project.versions.hibernate.validator>5.2.3.Final</cia.project.versions.hibernate.validator>
+    <cia.project.versions.h2>1.4.191</cia.project.versions.h2>
+    <cia.project.versions.postgresql>9.4.1207</cia.project.versions.postgresql>
+    <cia.project.versions.atomikos>4.0.0M5</cia.project.versions.atomikos>
+    <cia.project.versions.ehcache>2.10.1.1.11</cia.project.versions.ehcache>
+    <cia.project.versions.poi>3.14-beta1</cia.project.versions.poi>
+    <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
+    <cia.project.versions.ant>1.9.6</cia.project.versions.ant>
+    <cia.project.versions.junit>4.12</cia.project.versions.junit>
+    <cia.project.versions.junit.dep>4.11</cia.project.versions.junit.dep>
+    <cia.project.versions.easymock>3.4</cia.project.versions.easymock>
+    <cia.project.versions.xmlunit>1.6</cia.project.versions.xmlunit>
+    <cia.project.versions.dbunit>2.5.1</cia.project.versions.dbunit>
+    <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
+    <cia.project.versions.xmlbeans>2.6.0</cia.project.versions.xmlbeans>
+    <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
+    <cia.project.versions.plexus.utils>3.0.22</cia.project.versions.plexus.utils>
+    <cia.project.versions.jaxb2.commons>0.11.0</cia.project.versions.jaxb2.commons>
+    <cia.project.versions.hyperjaxb3>0.6.1</cia.project.versions.hyperjaxb3>
+    <cia.project.versions.jaxb>2.2.11</cia.project.versions.jaxb>
+    <cia.project.versions.jaxb.impl>2.2.11</cia.project.versions.jaxb.impl>
+    <cia.project.versions.jaxb.xjc>2.2.11</cia.project.versions.jaxb.xjc>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -1676,6 +1664,64 @@
               </execution>
             </executions>
             <configuration>
+              <properties>
+                <property>
+                  <name>cia.project.versions.spring</name>
+                  <banSnapshots>true</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.spring.security</name>
+                  <banSnapshots>true</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.aspectj</name>
+                  <banSnapshots>true</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.javassist</name>
+                  <banSnapshots>true</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.asm</name>
+                  <banSnapshots>true</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.cglib</name>
+                  <banSnapshots>true</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.commons.collections</name>
+                  <banSnapshots>true</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.commons.lang</name>
+                  <banSnapshots>true</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.slf4j</name>
+                  <banSnapshots>true</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.logback</name>
+                  <banSnapshots>true</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.hibernate</name>
+                  <banSnapshots>true</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.h2</name>
+                  <banSnapshots>true</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.atomikos</name>
+                  <banSnapshots>true</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.ehcache</name>
+                  <banSnapshots>true</banSnapshots>
+                </property>
+              </properties>
               <includes>
                 <include>*:*</include>
               </includes>
@@ -1710,10 +1756,69 @@
                 <phase>validate</phase>
                 <goals>
                   <goal>use-latest-snapshots</goal>
+                  <goal>update-properties</goal>
                 </goals>
               </execution>
             </executions>
             <configuration>
+              <properties>
+                <property>
+                  <name>cia.project.versions.spring</name>
+                  <banSnapshots>false</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.spring.security</name>
+                  <banSnapshots>false</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.aspectj</name>
+                  <banSnapshots>false</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.javassist</name>
+                  <banSnapshots>false</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.asm</name>
+                  <banSnapshots>false</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.cglib</name>
+                  <banSnapshots>false</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.commons.collections</name>
+                  <banSnapshots>false</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.commons.lang</name>
+                  <banSnapshots>false</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.slf4j</name>
+                  <banSnapshots>false</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.logback</name>
+                  <banSnapshots>false</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.hibernate</name>
+                  <banSnapshots>false</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.h2</name>
+                  <banSnapshots>false</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.atomikos</name>
+                  <banSnapshots>false</banSnapshots>
+                </property>
+                <property>
+                  <name>cia.project.versions.ehcache</name>
+                  <banSnapshots>false</banSnapshots>
+                </property>
+              </properties>
               <includes>
                 <include>*:*</include>
               </includes>
