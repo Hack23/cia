@@ -708,7 +708,7 @@
         <executions>
           <execution>
             <id>unpack</id>
-            <phase>test</phase>
+            <phase>compile</phase>
             <goals>
               <goal>unpack</goal>
             </goals>
@@ -727,7 +727,7 @@
                 <artifactItem>
                   <groupId>com.vaadin</groupId>
                   <artifactId>vaadin-themes</artifactId>
-                  <!-- <version>7.6.2</version> -->
+                  <version>7.6.2</version>
                   <type>jar</type>
                   <overWrite>false</overWrite>
                   <outputDirectory>${basedir}/src/main/webapp/</outputDirectory>
