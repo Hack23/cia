@@ -704,8 +704,30 @@ public final class UserPageVisit extends Assert {
 		assertEquals(browser, url,
 				driver.getCurrentUrl());
 
+	}
+
+	/**
+	 * Search document.
+	 *
+	 * @param search
+	 *            the search
+	 * @throws Exception
+	 *             the exception
+	 */
+	public void searchDocument(final String search) throws Exception {
+
+		setFieldValue("Search.searchExpression",search);
+
+		final WebElement searchButton = driver.findElement(By.id("Search"));
+		performClickAction(searchButton);
+
+		final String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + UserViews.SEARCH_DOCUMENT_VIEW_NAME;
+
+		assertEquals(browser, url,
+				driver.getCurrentUrl());
 
 	}
+
 
 	/**
 	 * Login user.

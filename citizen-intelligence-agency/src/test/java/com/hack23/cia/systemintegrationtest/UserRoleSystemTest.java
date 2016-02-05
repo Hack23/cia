@@ -1281,6 +1281,26 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	}
 
 	/**
+	 * Site search document test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteSearchDocumentTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.SEARCH_DOCUMENT_VIEW_NAME,""));
+
+		userPageVisit.searchDocument("2016");
+
+	}
+
+
+	/**
 	 * Site document doc activity test.
 	 *
 	 * @throws Exception
