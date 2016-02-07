@@ -41,6 +41,9 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.Grid;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -106,17 +109,25 @@ public class AdminLanguageContentView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		final VerticalLayout content = new VerticalLayout();
 
-		content.addComponent(LabelFactory.createHeader2Label("Admin Language Content"));
+		Label createHeader2Label = LabelFactory.createHeader2Label("Admin Language Content");
+		content.addComponent(createHeader2Label);
+		content.setExpandRatio(createHeader2Label, 1);
+
 
 		final DataContainer<LanguageContentData, Long> dataContainer = applicationManager.getDataContainer(LanguageContentData.class);
 
 		final BeanItemContainer<LanguageContentData> politicianDocumentDataSource = new BeanItemContainer<>(LanguageContentData.class,
 				dataContainer.getAll());
 
-		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "LanguageContentData",
+		Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "LanguageContentData",
 				new String[] { "hjid", "languageContentType","refKey","fromLanguage", "toLanguage", "createdDate", "languageValue","modelObjectVersion" },
 				new String[] { "modelObjectId" }, "hjid",
-				new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, "hjid"), null));
+				new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, "hjid"), null);
+		content.addComponent(createBasicBeanItemGrid);
+
+		content.addComponent(createBasicBeanItemGrid);
+		content.setExpandRatio(createBasicBeanItemGrid, 10);
+
 
 		if (pageId != null && !pageId.isEmpty()) {
 
@@ -128,7 +139,9 @@ public class AdminLanguageContentView extends AbstractAdminView {
 			}
 		}
 
-		content.addComponent(pageLinkFactory.createMainViewPageLink());
+	 	Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
+		content.addComponent(createMainViewPageLink);
+		content.setExpandRatio(createMainViewPageLink,1);
 
 		content.setWidth(100, Unit.PERCENTAGE);
 		content.setHeight(100, Unit.PERCENTAGE);

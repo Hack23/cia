@@ -42,6 +42,9 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.Grid;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -107,18 +110,24 @@ public class AdminCountryView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		final VerticalLayout content = new VerticalLayout();
 
-		content.addComponent(LabelFactory.createHeader2Label("Admin Country"));
+		Label createHeader2Label = LabelFactory.createHeader2Label("Admin Country");
+		content.addComponent(createHeader2Label);
+		content.setExpandRatio(createHeader2Label, 1);
+
 
 		final DataContainer<CountryElement, Long> dataContainer = applicationManager.getDataContainer(CountryElement.class);
 
 		final BeanItemContainer<CountryElement> politicianDocumentDataSource = new BeanItemContainer<>(CountryElement.class,
 				dataContainer.getAllOrderBy(CountryElement_.countryName));
 
-		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Country",
+		Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Country",
 				new String[] { "hjid", "id", "countryName","iso2Code","capitalCity","longitude","latitude" },
 				new String[] { "region","adminregion" }, "hjid",
-				new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "hjid"), null));
+				new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "hjid"), null);
+		content.addComponent(createBasicBeanItemGrid);
 
+		content.addComponent(createBasicBeanItemGrid);
+		content.setExpandRatio(createBasicBeanItemGrid, 10);
 
 
 
@@ -131,7 +140,9 @@ public class AdminCountryView extends AbstractAdminView {
 			}
 		}
 
-		content.addComponent(pageLinkFactory.createMainViewPageLink());
+	 	Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
+		content.addComponent(createMainViewPageLink);
+		content.setExpandRatio(createMainViewPageLink,1);
 
 		content.setWidth(100, Unit.PERCENTAGE);
 		content.setHeight(100, Unit.PERCENTAGE);

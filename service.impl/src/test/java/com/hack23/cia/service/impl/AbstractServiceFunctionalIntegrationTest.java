@@ -60,7 +60,6 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 	 */
 	public AbstractServiceFunctionalIntegrationTest() {
 		super();
-		System.setProperty("org.apache.activemq.SERIALIZABLE_PACKAGES","com.hack23.cia,java.util,java.lang,java.math,org.apache");
 	}
 
 	/** (non-Javadoc)

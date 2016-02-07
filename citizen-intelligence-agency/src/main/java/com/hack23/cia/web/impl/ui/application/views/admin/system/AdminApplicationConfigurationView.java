@@ -46,7 +46,10 @@ import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -112,7 +115,10 @@ public class AdminApplicationConfigurationView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		final VerticalLayout content = new VerticalLayout();
 
-		content.addComponent(LabelFactory.createHeader2Label("Admin Application Configuration"));
+		Label createHeader2Label = LabelFactory.createHeader2Label("Admin Application Configuration");
+		content.addComponent(createHeader2Label);
+		content.setExpandRatio(createHeader2Label, 1);
+
 
 		final DataContainer<ApplicationConfiguration, Long> dataContainer = applicationManager
 				.getDataContainer(ApplicationConfiguration.class);
@@ -121,13 +127,19 @@ public class AdminApplicationConfigurationView extends AbstractAdminView {
 				ApplicationConfiguration.class,
 				dataContainer.getAllOrderBy(ApplicationConfiguration_.configurationGroup));
 
-		content.addComponent(gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource,
+		Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource,
 				"ApplicationConfiguration",
 				new String[] { "hjid", "configTitle", "configDescription", "configurationGroup", "component",
 						"componentTitle", "componentDescription", "propertyId", "propertyValue" },
 				new String[] { "modelObjectId", "modelObjectVersion", "createdDate", "updatedDate" }, "hjid",
 				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, "hjid"),
-				null));
+				null);
+		content.addComponent(createBasicBeanItemGrid);
+
+		content.addComponent(createBasicBeanItemGrid);
+		content.setExpandRatio(createBasicBeanItemGrid, 10);
+
+
 
 		if (pageId != null && !pageId.isEmpty()) {
 
@@ -172,7 +184,9 @@ public class AdminApplicationConfigurationView extends AbstractAdminView {
 			}
 		}
 
-		content.addComponent(pageLinkFactory.createMainViewPageLink());
+	 	Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
+		content.addComponent(createMainViewPageLink);
+		content.setExpandRatio(createMainViewPageLink,1);
 
 		content.setWidth(100, Unit.PERCENTAGE);
 		content.setHeight(100, Unit.PERCENTAGE);

@@ -46,6 +46,7 @@ import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Grid;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
@@ -117,7 +118,9 @@ public class AdminApplicationEventsView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		final VerticalLayout content = new VerticalLayout();
 
-		content.addComponent(LabelFactory.createHeader2Label("Admin Application Event"));
+		Label createHeader2Label = LabelFactory.createHeader2Label("Admin Application Action Event");
+		content.addComponent(createHeader2Label);
+		content.setExpandRatio(createHeader2Label, 1);
 
 		final DataContainer<ApplicationActionEvent, Long> dataContainer = applicationManager.getDataContainer(ApplicationActionEvent.class);
 
