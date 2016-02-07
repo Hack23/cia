@@ -150,7 +150,7 @@
       <releases>
         <enabled>false</enabled>
       </releases>
-      <snapshots />
+      <snapshots></snapshots>
       <id>vaadin-snapshots</id>
       <url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
     </repository>
@@ -160,7 +160,7 @@
       <releases>
         <enabled>false</enabled>
       </releases>
-      <snapshots />
+      <snapshots></snapshots>
       <id>vaadin-snapshots</id>
       <url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
     </pluginRepository>
@@ -191,7 +191,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore />
+                    <ignore></ignore>
                   </action>
                 </pluginExecution>
               </pluginExecutions>
@@ -275,7 +275,7 @@
               <goal>compile-theme</goal>
               <goal>compile</goal>
             </goals>
-            <configuration />
+            <configuration></configuration>
           </execution>
         </executions>
         <configuration>
