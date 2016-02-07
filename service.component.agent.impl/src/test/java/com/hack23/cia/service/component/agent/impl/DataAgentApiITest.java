@@ -22,6 +22,7 @@ import java.util.Collection;
 
 import org.apache.activemq.broker.jmx.QueueViewMBean;
 import org.apache.activemq.web.BrokerFacadeSupport;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -47,6 +48,7 @@ public class DataAgentApiITest extends AbstractServiceComponentAgentFunctionalIn
 	 * Import riksdagen data success test.
 	 */
 	@Test
+	@Ignore
 	public void importRiksdagenDataSuccessTest() {
 		dataAgentApi.execute(new DataAgentWorkOrder().withOperation(DataAgentOperation.IMPORT).withTarget(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN));
 
