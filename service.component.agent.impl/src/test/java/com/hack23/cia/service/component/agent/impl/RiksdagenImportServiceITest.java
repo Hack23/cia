@@ -62,7 +62,7 @@ public class RiksdagenImportServiceITest extends AbstractServiceComponentAgentFu
 		final Map<String, String> documentElementMap = riksdagenImportService
 				.getDocumentElementMap(
 						new SimpleDateFormat(
-								"yyyy-MM-dd HH:mm:ss",Locale.ENGLISH).parse("1999-12-29 00:00:00"),selectedDocumentTypes, false);
+								"yyyy-MM-dd HH:mm:ss",Locale.ENGLISH).parse("2016-02-02 00:00:00"),selectedDocumentTypes, false);
 
 		assertNotNull(documentElementMap);
 
