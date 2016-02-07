@@ -40,6 +40,8 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -93,27 +95,38 @@ public class AgentOperationView extends AbstractAdminView implements
 
 	private void createContent() {
 		content.removeAllComponents();
-		content.addComponent(LabelFactory.createHeader2Label("Admin"));
+		Label createHeader2Label = LabelFactory.createHeader2Label("Admin Agent Operation");
+		content.addComponent(createHeader2Label);
+		content.setExpandRatio(createHeader2Label, 2);
+
 
 		targetSelect = new ComboBox("Target", Arrays.asList(DataAgentTarget
 				.values()));
 		targetSelect.setId(ViewAction.START_AGENT_BUTTON + "/Target");
 		content.addComponent(targetSelect);
+		content.setExpandRatio(targetSelect, 2);
+
 
 		operationSelect = new ComboBox("Operation",
 				Arrays.asList(DataAgentOperation.values()));
 		operationSelect.setId(ViewAction.START_AGENT_BUTTON + "/Operation");
 		content.addComponent(operationSelect);
+		content.setExpandRatio(operationSelect, 2);
+
 
 		final Button startAgentButton = new Button("Start", this);
 		startAgentButton.setId(ViewAction.START_AGENT_BUTTON.name());
 		content.addComponent(startAgentButton);
+		content.setExpandRatio(startAgentButton, 3);
+
 
 		content.setSizeFull();
 		content.setMargin(false);
 		content.setSpacing(true);
 
-		content.addComponent(pageLinkFactory.createMainViewPageLink());
+	 	Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
+		content.addComponent(createMainViewPageLink);
+		content.setExpandRatio(createMainViewPageLink,1);
 
 		content.setWidth(100, Unit.PERCENTAGE);
 		content.setHeight(100, Unit.PERCENTAGE);

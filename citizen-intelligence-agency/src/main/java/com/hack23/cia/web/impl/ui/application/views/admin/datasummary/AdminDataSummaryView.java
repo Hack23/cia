@@ -35,7 +35,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.tablefactory.TableFac
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -78,9 +81,14 @@ public class AdminDataSummaryView extends AbstractAdminView {
 
 	private void createContent() {
 		content.removeAllComponents();
-		content.addComponent(LabelFactory.createHeader2Label("Admin"));
+		Label createHeader2Label = LabelFactory.createHeader2Label("Admin Data Summary");
+		content.addComponent(createHeader2Label);
+		content.setExpandRatio(createHeader2Label, 1);
 
-		content.addComponent(tableFactory.createDataSummaryTable());
+
+		Table createDataSummaryTable = tableFactory.createDataSummaryTable();
+		content.addComponent(createDataSummaryTable);
+		content.setExpandRatio(createDataSummaryTable, 15);
 
 		content.setSizeFull();
 		content.setMargin(false);
@@ -99,6 +107,8 @@ public class AdminDataSummaryView extends AbstractAdminView {
 		});
 
 		content.addComponent(refreshViewsButton);
+		content.setExpandRatio(refreshViewsButton, 1);
+
 
 		final Button updateSearchIndexButton = new Button("Update Search Index");
 
@@ -113,9 +123,12 @@ public class AdminDataSummaryView extends AbstractAdminView {
 		});
 
 		content.addComponent(updateSearchIndexButton);
+		content.setExpandRatio(updateSearchIndexButton, 1);
 
 
-		content.addComponent(pageLinkFactory.createMainViewPageLink());
+	 	Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
+		content.addComponent(createMainViewPageLink);
+		content.setExpandRatio(createMainViewPageLink,1);
 
 		content.setWidth(100, Unit.PERCENTAGE);
 		content.setHeight(100, Unit.PERCENTAGE);
