@@ -331,6 +331,10 @@
           <artifactId>jboss-logging</artifactId>
           <groupId>org.jboss.logging</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>classmate</artifactId>
+          <groupId>com.fasterxml</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -445,7 +449,7 @@
           <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>${cia.project.versions.hibernate.validator}</version>
+            <version>${cia.project.versions.hibernate.build.validator}</version>
           </dependency>
           <dependency>
             <groupId>org.hibernate</groupId>
