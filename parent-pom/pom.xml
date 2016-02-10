@@ -1737,6 +1737,7 @@
                 <exclude>org.postgresql:postgresql</exclude>
                 <exclude>xml-apis:xml-apis</exclude>
                 <exclude>jdepend:jdepend</exclude>
+                <exclude>org.hibernate.javax.persistence:hibernate-jpa-2.1-api</exclude>
               </excludes>
             </configuration>
           </plugin>
@@ -1834,6 +1835,7 @@
                 <exclude>org.postgresql:postgresql</exclude>
                 <exclude>xml-apis:xml-apis</exclude>
                 <exclude>jdepend:jdepend</exclude>
+                <exclude>org.hibernate.javax.persistence:hibernate-jpa-2.1-api</exclude>
               </excludes>
             </configuration>
           </plugin>
