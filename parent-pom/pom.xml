@@ -1244,6 +1244,17 @@
       </properties>
     </profile>
     <profile>
+      <id>no-release</id>
+      <activation>
+        <property>
+          <name>!performRelease</name>
+        </property>
+      </activation>
+      <properties>
+        <dependency.plugin.unpack.phase>compile</dependency.plugin.unpack.phase>
+      </properties>
+    </profile>
+    <profile>
       <id>release-sign-artifacts</id>
       <activation>
         <property>
@@ -1363,6 +1374,9 @@
           </plugin>
         </plugins>
       </build>
+      <properties>
+        <dependency.plugin.unpack.phase>package</dependency.plugin.unpack.phase>
+      </properties>
     </profile>
     <profile>
       <id>release-site</id>

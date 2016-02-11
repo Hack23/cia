@@ -708,7 +708,7 @@
         <executions>
           <execution>
             <id>unpack</id>
-            <phase>package</phase>
+            <phase>${dependency.plugin.unpack.phase}</phase>
             <goals>
               <goal>unpack</goal>
             </goals>
