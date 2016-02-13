@@ -1251,7 +1251,7 @@
         </property>
       </activation>
       <properties>
-        <dependency.plugin.unpack.phase>prepare-package</dependency.plugin.unpack.phase>
+        <dependency.plugin.unpack.phase>package</dependency.plugin.unpack.phase>
       </properties>
     </profile>
     <profile>
@@ -1375,7 +1375,7 @@
         </plugins>
       </build>
       <properties>
-        <dependency.plugin.unpack.phase>prepare-package</dependency.plugin.unpack.phase>
+        <dependency.plugin.unpack.phase>package</dependency.plugin.unpack.phase>
       </properties>
     </profile>
     <profile>
