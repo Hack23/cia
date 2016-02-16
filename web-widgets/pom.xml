@@ -126,7 +126,6 @@
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-client</artifactId>
       <version>${vaadin.version}</version>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.vaadin</groupId>
