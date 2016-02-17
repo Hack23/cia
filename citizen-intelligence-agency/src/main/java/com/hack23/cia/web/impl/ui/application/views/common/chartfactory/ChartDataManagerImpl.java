@@ -172,7 +172,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		return documentTypeSummaryDailyDataContainer.getAll().parallelStream()
 				.filter(t -> t != null && !t.getEmbeddedId().getPublicDate().startsWith("19")
-						&& "MOT:PROP:BET".contains(t.getEmbeddedId().getDocumentType()))
+						&& "mot:prop:bet".contains(t.getEmbeddedId().getDocumentType()))
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDocumentType()));
 	}
 
