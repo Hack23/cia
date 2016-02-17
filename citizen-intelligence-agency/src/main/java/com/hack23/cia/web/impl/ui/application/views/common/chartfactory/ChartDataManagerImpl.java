@@ -503,7 +503,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 					dataSeries.newSeries();
 					final List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary> list = map
-							.get(key.toUpperCase(Locale.ENGLISH));
+							.get(key);
 					for (final ViewRiksdagenCommitteeDecisionTypeOrgDailySummary item : list) {
 						if (item != null) {
 							dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getDecisionDate()),
@@ -546,7 +546,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				series.addSeries(new XYseries().setLabel(key));
 
 				dataSeries.newSeries();
-				final List<ViewRiksdagenOrgDocumentDailySummary> list = map.get(key.toUpperCase(Locale.ENGLISH));
+				final List<ViewRiksdagenOrgDocumentDailySummary> list = map.get(key);
 				if (list != null) {
 					for (final ViewRiksdagenOrgDocumentDailySummary item : list) {
 						if (item != null) {
@@ -642,7 +642,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				series.addSeries(new XYseries().setLabel(key));
 
 				dataSeries.newSeries();
-				final List<ViewRiksdagenPartyDocumentDailySummary> list = map.get(key.toUpperCase(Locale.ENGLISH));
+				final List<ViewRiksdagenPartyDocumentDailySummary> list = map.get(key);
 				if (list != null) {
 					for (final ViewRiksdagenPartyDocumentDailySummary item : list) {
 						if (item != null) {
@@ -766,7 +766,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				series.addSeries(new XYseries().setLabel(key));
 
 				dataSeries.newSeries();
-				final List<ViewRiksdagenPoliticianDocumentDailySummary> list = map.get(key.toUpperCase(Locale.ENGLISH));
+				final List<ViewRiksdagenPoliticianDocumentDailySummary> list = map.get(key);
 				if (list != null) {
 					for (final ViewRiksdagenPoliticianDocumentDailySummary item : list) {
 						if (item != null) {
