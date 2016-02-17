@@ -31,6 +31,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYaxis;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
@@ -227,7 +228,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream()
 				.filter(t -> t != null && !t.getEmbeddedId().getPublicDate().startsWith("19"))
-				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getOrg().toUpperCase(Locale.ENGLISH).trim()));
+				.collect(Collectors.groupingBy(t -> StringEscapeUtils.unescapeHtml4(t.getEmbeddedId().getOrg()).toUpperCase(Locale.ENGLISH).replace("_", "").replace("-", "").trim()));
 	}
 
 	/**
@@ -243,7 +244,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.getDataContainer(ViewRiksdagenPartyDocumentDailySummary.class);
 
 		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(t -> t != null)
-				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPartyShortCode()));
+				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPartyShortCode().toUpperCase(Locale.ENGLISH).replace("_", "").trim()));
 	}
 
 	/**
@@ -526,6 +527,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	 */
 	@Override
 	public DCharts createDocumentHistoryChartByOrg(final String org) {
+		String searchOrg = org.toUpperCase(Locale.ENGLISH).replace("_", "").replace("-", "").trim();
 
 		final DataSeries dataSeries = new DataSeries();
 
@@ -533,8 +535,11 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		final Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> allMap = getViewRiksdagenOrgDocumentDailySummaryMap();
 
+		LOGGER.info("Trying to find document summary for org:{} in map:{}",searchOrg,allMap.keySet().toString());
+
+
 		final List<ViewRiksdagenOrgDocumentDailySummary> itemList = allMap
-				.get(org.toUpperCase(Locale.ENGLISH).replace("_", "").trim());
+				.get(searchOrg);
 
 		if (itemList != null) {
 
@@ -638,6 +643,8 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 					.filter(t -> t != null).collect(Collectors.groupingBy(
 							t -> StringUtils.defaultIfBlank(t.getEmbeddedId().getDocumentType(), "NoInfo")));
 
+			final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
+
 			for (final String key : map.keySet()) {
 
 				series.addSeries(new XYseries().setLabel(key));
@@ -647,7 +654,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				if (list != null) {
 					for (final ViewRiksdagenPartyDocumentDailySummary item : list) {
 						if (item != null) {
-							dataSeries.add(item.getEmbeddedId().getPublicDate(), item.getTotal());
+							dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getPublicDate()), item.getTotal());
 						}
 					}
 				} else {
