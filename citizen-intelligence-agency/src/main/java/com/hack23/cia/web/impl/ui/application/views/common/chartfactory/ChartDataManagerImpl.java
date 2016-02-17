@@ -408,7 +408,8 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		for (final Entry<String, List<ViewRiksdagenDocumentTypeDailySummary>> entry : map.entrySet()) {
 
-			if (entry.getKey() != null) {
+			if (entry.getKey() != null && !"".equals(entry)) {
+
 				series.addSeries(new XYseries().setLabel(entry.getKey()));
 
 				dataSeries.newSeries();
