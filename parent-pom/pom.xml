@@ -599,7 +599,7 @@
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.7.5.201505241946</version>
+          <version>0.7.6.201602180812</version>
           <dependencies>
             <dependency>
               <groupId>org.ow2.asm</groupId>
@@ -611,7 +611,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.4</version>
+          <version>3.5</version>
           <dependencies>
             <dependency>
               <!-- add support for ssh/scp -->
@@ -624,6 +624,11 @@
               <artifactId>xml-apis</artifactId>
               <version>1.4.01</version>
             </dependency>
+	        <dependency>
+	          <groupId>org.apache.velocity</groupId>
+	          <artifactId>velocity</artifactId>
+	          <version>1.5</version>
+	        </dependency>
           </dependencies>
         </plugin>
         <plugin>
@@ -1557,7 +1562,7 @@
           <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.7.5.201505241946</version>
+            <version>0.7.6.201602180812</version>
             <inherited>true</inherited>
             <configuration>
               <dataFile>${sonar.jacoco.reportPath}</dataFile>

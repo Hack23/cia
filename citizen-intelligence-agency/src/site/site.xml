@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project xmlns="http://maven.apache.org/DECORATION/1.4.0" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.4.0 http://maven.apache.org/xsd/decoration-1.4.0.xsd"
+<project xmlns="http://maven.apache.org/DECORATION/1.7.0" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.7.0 http://maven.apache.org/xsd/decoration-1.7.0.xsd"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  name="${project.name}" >
-
 	<skin>
 		<groupId>com.hack23.cia</groupId>
 		<artifactId>maven-cia-skin</artifactId>
