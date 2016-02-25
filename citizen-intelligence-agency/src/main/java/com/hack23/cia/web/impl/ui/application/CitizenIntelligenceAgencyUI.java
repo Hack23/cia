@@ -172,7 +172,7 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 	/**
 	 * The Class Servlet.
 	 */
-	@WebServlet(value = "/*", asyncSupported = true)
+	@WebServlet(value = "/*", asyncSupported = true, loadOnStartup=1)
 	@VaadinServletConfiguration(productionMode = true, ui = CitizenIntelligenceAgencyUI.class, widgetset = "com.hack23.cia.web.widgets.WebWidgetSet")
 	public static class Servlet extends SpringVaadinServlet {
 

@@ -2,7 +2,35 @@
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-         version="3.1" >
+         version="3.1" metadata-complete="false"  >
+
+   <security-constraint>
+   	 <display-name>DenyHttpMethodsConstraint</display-name>
+	 <web-resource-collection>
+	  <web-resource-name>DenyHttpMethodsConstraint</web-resource-name>
+	  <url-pattern>/*</url-pattern>
+	  <http-method>PUT</http-method>
+	  <http-method>DELETE</http-method>
+	  <http-method>OPTIONS</http-method>
+	  <http-method>TRACE</http-method>
+	 </web-resource-collection>
+	 <auth-constraint/>
+	</security-constraint>
+
+	<!--
+	 <security-constraint>
+	    <display-name>SecureChannelConstraint</display-name>
+	    <web-resource-collection>
+	        <web-resource-name>All traffic</web-resource-name>
+	        <description/>
+	        <url-pattern>/*</url-pattern>
+	    </web-resource-collection>
+	    <user-data-constraint>
+	        <description>Require encrypted traffic</description>
+	        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+	    </user-data-constraint>
+	</security-constraint>
+	-->
 
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
