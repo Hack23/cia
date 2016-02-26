@@ -106,7 +106,7 @@
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <cia.project.versions.spring>4.2.5.RELEASE</cia.project.versions.spring>
-    <cia.project.versions.spring.security>4.0.3.RELEASE</cia.project.versions.spring.security>
+    <cia.project.versions.spring.security>4.0.4.RELEASE</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.0.BETA-3</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.20.0-GA</cia.project.versions.javassist>
     <cia.project.versions.asm>5.0.4</cia.project.versions.asm>
@@ -174,7 +174,7 @@
       <dependency>
         <groupId>org.apache.httpcomponents</groupId>
         <artifactId>httpclient</artifactId>
-        <version>4.5.1</version>
+        <version>4.5.2</version>
       </dependency>
       <dependency>
         <groupId>org.codehaus.jackson</groupId>
