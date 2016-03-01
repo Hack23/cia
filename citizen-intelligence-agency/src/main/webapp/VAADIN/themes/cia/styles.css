@@ -975,7 +975,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "7.7.0.databinding3";
+	content: "7.6.3";
 }
 
 .v-widget {
@@ -5381,11 +5381,11 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .v-ie8 .cia .v-grid-editor-cells  > div .v-datefield-button {
-	margin-left: -30px;
+	margin-left: -37px;
 }
 
 .v-ie8 .cia .v-grid-editor-cells  > div .v-filterselect-button {
-	margin-left: -27px;
+	margin-left: -25px;
 }
 
 .cia .v-grid-editor-cells  > div .v-select, .cia .v-grid-editor-cells  > div .v-select-select {
