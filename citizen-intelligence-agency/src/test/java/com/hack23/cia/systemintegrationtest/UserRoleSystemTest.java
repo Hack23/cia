@@ -425,7 +425,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
-		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Application Event"));
+		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Application Action Event"));
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
 
