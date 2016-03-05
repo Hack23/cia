@@ -328,6 +328,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
+		Thread.sleep(5000);
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Useraccount"));
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
@@ -400,6 +401,7 @@ public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
+		Thread.sleep(5000);
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Application Session"));
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
