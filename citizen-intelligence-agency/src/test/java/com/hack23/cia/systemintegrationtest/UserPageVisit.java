@@ -51,7 +51,7 @@ public final class UserPageVisit extends Assert {
 	private static final int WAIT_FOR_PAGE_DELAY = 2500;
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
-	private static final int WAIT_FOR_PAGE_ELEMENT = 10000;
+	private static final int WAIT_FOR_PAGE_ELEMENT = 12500;
 
 	/** The driver. */
 	private final WebDriver driver;
@@ -206,6 +206,17 @@ public final class UserPageVisit extends Assert {
 	 */
 	public String getHtmlBodyAsText() {
 		return driver.findElement(By.tagName("body")).getText();
+	}
+
+	public void assertHtmlBodyContainsText(String text) throws Exception {
+		int waitTimeForPageLoad=0;
+		while (!getHtmlBodyAsText().contains(text)) {
+			Thread.sleep(10);
+			waitTimeForPageLoad=waitTimeForPageLoad + 10;
+			if (waitTimeForPageLoad > WAIT_FOR_PAGE_ELEMENT) {
+				fail("Exceeded timeout:" + WAIT_FOR_PAGE_ELEMENT +" to find text:" + text );
+			}
+		}
 	}
 
 	/**
