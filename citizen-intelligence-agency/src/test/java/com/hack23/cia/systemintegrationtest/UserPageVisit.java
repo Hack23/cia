@@ -48,7 +48,7 @@ import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 public final class UserPageVisit extends Assert {
 
 	/** The Constant WAIT_FOR_PAGE_DELAY. */
-	private static final int WAIT_FOR_PAGE_DELAY = 6000;
+	private static final int WAIT_FOR_PAGE_DELAY = 2500;
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
 	private static final int WAIT_FOR_PAGE_ELEMENT = 12500;
@@ -174,8 +174,9 @@ public final class UserPageVisit extends Assert {
 	 *
 	 * @param page
 	 *            the page
+	 * @throws Exception
 	 */
-	public void validatePage(final PageModeMenuCommand page) {
+	public void validatePage(final PageModeMenuCommand page) throws Exception {
 		final String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + page.getPagePath();
 
 
@@ -192,8 +193,17 @@ public final class UserPageVisit extends Assert {
 		assertFalse("Page contains exception, url:" + url ,text.contains("Exception"));
 		assertFalse("Page contains widget exception, url:" + url,text.contains("Widget"));
 
-		assertEquals(browser, url,
-				driver.getCurrentUrl());
+
+		int waitTimeForPageLoad=0;
+	    while(!url.equals(driver.getCurrentUrl())) {
+			Thread.sleep(10);
+			waitTimeForPageLoad=waitTimeForPageLoad + 10;
+			if (waitTimeForPageLoad > WAIT_FOR_PAGE_ELEMENT) {
+				assertEquals("Exceeded timeout:" + WAIT_FOR_PAGE_ELEMENT +" to match url:" + url + " browser:" +browser, url,
+						driver.getCurrentUrl());
+			}
+	    }
+
 		assertNotNull(browser, driver.getWindowHandle());
 
 	}
