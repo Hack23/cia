@@ -48,7 +48,7 @@ import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 public final class UserPageVisit extends Assert {
 
 	/** The Constant WAIT_FOR_PAGE_DELAY. */
-	private static final int WAIT_FOR_PAGE_DELAY = 3500;
+	private static final int WAIT_FOR_PAGE_DELAY = 6000;
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
 	private static final int WAIT_FOR_PAGE_ELEMENT = 12500;
