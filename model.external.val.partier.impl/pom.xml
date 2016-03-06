@@ -4,7 +4,7 @@
   <parent>
     <artifactId>parent-model-external-pom</artifactId>
     <groupId>com.hack23.cia</groupId>
-    <version>2016.3.6</version>
+    <version>2016.3.7-SNAPSHOT</version>
     <relativePath>../parent-model-external-pom/pom.xml</relativePath>
   </parent>
   <artifactId>model.external.val.partier.impl</artifactId>
