@@ -47,7 +47,7 @@
       </roles>
     </contributor>
   </contributors>
-  <mailingLists />
+  <mailingLists></mailingLists>
   <prerequisites>
     <maven>3.2.3</maven>
   </prerequisites>
@@ -109,7 +109,7 @@
     <cia.project.versions.spring.security>4.0.4.RELEASE</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.0.BETA-3</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.20.0-GA</cia.project.versions.javassist>
-    <cia.project.versions.asm>5.0.4</cia.project.versions.asm>
+    <cia.project.versions.asm>5.1</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.1</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
@@ -126,7 +126,7 @@
     <cia.project.versions.postgresql>9.4.1208</cia.project.versions.postgresql>
     <cia.project.versions.atomikos>4.0.0M5</cia.project.versions.atomikos>
     <cia.project.versions.ehcache>2.10.1.1.11</cia.project.versions.ehcache>
-    <cia.project.versions.poi>3.14-beta1</cia.project.versions.poi>
+    <cia.project.versions.poi>3.14</cia.project.versions.poi>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.ant>1.9.6</cia.project.versions.ant>
     <cia.project.versions.junit>4.12</cia.project.versions.junit>
@@ -604,7 +604,7 @@
             <dependency>
               <groupId>org.ow2.asm</groupId>
               <artifactId>asm-debug-all</artifactId>
-              <version>5.0.4</version>
+              <version>5.1</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -942,7 +942,7 @@
                   <version>1.8</version>
                 </requireJavaVersion>
                 <!-- <requireOS> <family>unix</family> </requireOS> -->
-                <DependencyConvergence />
+                <DependencyConvergence></DependencyConvergence>
                 <bannedDependencies>
                   <excludes>
                     <exclude>commons-logging:commons-logging</exclude>
