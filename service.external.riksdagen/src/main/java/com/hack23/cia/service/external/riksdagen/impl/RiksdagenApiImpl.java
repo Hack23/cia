@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -635,7 +635,7 @@ RiksdagenApi {
 		for (int i = 1; i < pages.intValue() && i < maxNumberPages; i++) {
 			dokumentLista = ((JAXBElement<DocumentContainerElement>) xmlAgent
 					.unmarshallXml(riksdagenDocumentListMarshaller,
-							dokumentLista.getNextPage(),
+							fixBrokenUrl(dokumentLista.getNextPage()),
 							HTTP_DOKUMENTLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL,null,null))
 							.getValue();
 			result.addAll(dokumentLista.getDokument());
@@ -643,6 +643,12 @@ RiksdagenApi {
 		}
 
 		return result;
+	}
+
+	private static String fixBrokenUrl(final String nextPage) {
+		if (nextPage.startsWith("//")) {
+			return "http:" + nextPage;
+		} else return nextPage;
 	}
 
 	/**
