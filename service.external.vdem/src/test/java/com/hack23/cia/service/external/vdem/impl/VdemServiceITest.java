@@ -49,8 +49,8 @@ public class VdemServiceITest extends AbstractVdemFunctionalIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	@PerfTest(threads = 1, duration = 15000, warmUp = 1500)
-	@Required(max = 15000,average = 15000,percentile95=15000)
+	@PerfTest(threads = 1, duration = 15000, warmUp = 4500)
+	@Required(max = 25000,average = 25000,percentile95=25000)
 	public void testGetQuestions() throws Exception {
 
 		assertEquals(510,vdemService.getQuestions().size());
@@ -63,8 +63,8 @@ public class VdemServiceITest extends AbstractVdemFunctionalIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	@PerfTest(threads = 1, duration = 60000, warmUp = 1500)
-	@Required(max = 60000,average = 60000,percentile95=60000)
+	@PerfTest(threads = 1, duration = 90000, warmUp = 4500)
+	@Required(max = 90000,average = 90000,percentile95=90000)
 
 	public void testGetCountryQuestionData() throws Exception {
 
