@@ -38,7 +38,7 @@ public final class ApplicationLoginListener implements LoginListener {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationLoginListener.class);
 
 	/** The application manager. */
-	private final ApplicationManager applicationManager;
+	private final transient ApplicationManager applicationManager;
 
 	/**
 	 * Instantiates a new application login listener.

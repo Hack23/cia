@@ -69,9 +69,8 @@ public final class CitizenIntelligenceAgencyServer {
 			initLogger();
 			init();
 			start();
-			while (!server.isStarted()) {
-				Thread.sleep(50);
-			}
+			while (!server.isStarted());
+
 		} catch (final Exception e) {
 			LOGGER.error("Application Exception", e);
 		}
@@ -175,9 +174,7 @@ public final class CitizenIntelligenceAgencyServer {
 	public final void stop() throws Exception {
 		Thread.sleep(8000);
 		server.stop();
-		while (!server.isStopped()) {
-			Thread.sleep(50);
-		}
+		while (!server.isStopped());
 
 	}
 }

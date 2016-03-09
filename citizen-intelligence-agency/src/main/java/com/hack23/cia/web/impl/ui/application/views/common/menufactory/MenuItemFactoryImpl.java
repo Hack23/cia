@@ -149,7 +149,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	/** The application manager. */
 	@Autowired
 	@Qualifier("ApplicationManager")
-	private transient ApplicationManager applicationManager;
+	private ApplicationManager applicationManager;
 
 	/** The Constant POLITICIAN_RANKING_LINK_TEXT. */
 	private static final String POLITICIAN_RANKING_LINK_TEXT = "Politician Ranking";
@@ -208,7 +208,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 		}
 
 
-		if (allowRoleInSecurityContext("ROLE_ADMIN") || allowRoleInSecurityContext("ROLE_ADMIN")) {
+		if (allowRoleInSecurityContext("ROLE_ADMIN") || allowRoleInSecurityContext("ROLE_USER")) {
 			final MenuItem userhomeMenuItem = barmenu.addItem("Userhome", new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, ""));
 		}
 

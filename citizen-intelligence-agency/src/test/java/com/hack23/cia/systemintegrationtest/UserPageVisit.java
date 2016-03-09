@@ -108,7 +108,7 @@ public final class UserPageVisit extends Assert {
 		webDriverBackedSelenium = new WebDriverBackedSelenium(driver,CitizenIntelligenceAgencyServer.ACCESS_URL);
 		driver.get(CitizenIntelligenceAgencyServer.ACCESS_URL);
 
-		Thread.sleep(WAIT_FOR_PAGE_DELAY);
+		waitForBrowser(WAIT_FOR_PAGE_DELAY);
 
 		assertEquals(browser, CitizenIntelligenceAgencyServer.ACCESS_URL,
 				driver.getCurrentUrl());
@@ -125,6 +125,10 @@ public final class UserPageVisit extends Assert {
 				ViewAction.VISIT_TEST_CHART_VIEW });
 	}
 
+	private static void waitForBrowser(int delay) throws InterruptedException {
+		Thread.sleep(delay);
+	}
+
 
 	/**
 	 * Visit direct page.
@@ -139,11 +143,11 @@ public final class UserPageVisit extends Assert {
 		final String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + page.getPagePath();
 		driver.get(url);
 
-		Thread.sleep(WAIT_FOR_PAGE_DELAY);
+		waitForBrowser(WAIT_FOR_PAGE_DELAY);
 
 		int waitTimeForPageLoad=0;
 		while (!getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW)) {
-			Thread.sleep(10);
+			waitForBrowser(10);
 			waitTimeForPageLoad=waitTimeForPageLoad + 10;
 			if (waitTimeForPageLoad > WAIT_FOR_PAGE_ELEMENT) {
 				fail("Exceeded timeout for pageload:" + WAIT_FOR_PAGE_ELEMENT);
@@ -196,7 +200,7 @@ public final class UserPageVisit extends Assert {
 
 		int waitTimeForPageLoad=0;
 	    while(!url.equals(driver.getCurrentUrl())) {
-			Thread.sleep(10);
+			waitForBrowser(10);
 			waitTimeForPageLoad=waitTimeForPageLoad + 10;
 			if (waitTimeForPageLoad > WAIT_FOR_PAGE_ELEMENT) {
 				assertEquals("Exceeded timeout:" + WAIT_FOR_PAGE_ELEMENT +" to match url:" + url + " browser:" +browser, url,
@@ -221,7 +225,7 @@ public final class UserPageVisit extends Assert {
 	public void assertHtmlBodyContainsText(final String text) throws Exception {
 		int waitTimeForPageLoad=0;
 		while (!getHtmlBodyAsText().contains(text)) {
-			Thread.sleep(10);
+			waitForBrowser(10);
 			waitTimeForPageLoad=waitTimeForPageLoad + 10;
 			if (waitTimeForPageLoad > WAIT_FOR_PAGE_ELEMENT) {
 				fail("Exceeded timeout:" + WAIT_FOR_PAGE_ELEMENT +" to find text:" + text );
@@ -663,7 +667,7 @@ public final class UserPageVisit extends Assert {
 //			js.executeScript("arguments[0].click();", clickElement);
 
 		}
-		Thread.sleep(waitDelay);
+		waitForBrowser(waitDelay);
 	}
 
 	/**
@@ -799,9 +803,9 @@ public final class UserPageVisit extends Assert {
 		body.sendKeys(Keys.ESCAPE);
 
 
-		Thread.sleep(1000);
+		waitForBrowser(1000);
 		driver.navigate().refresh();
-		Thread.sleep(2000);
+		waitForBrowser(2000);
 
 		final Cookie newCookie= driver.manage().getCookieNamed("JSESSIONID");
 

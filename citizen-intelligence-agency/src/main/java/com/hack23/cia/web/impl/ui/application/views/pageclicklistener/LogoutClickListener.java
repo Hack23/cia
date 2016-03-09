@@ -41,7 +41,7 @@ public final class LogoutClickListener implements ClickListener {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LogoutClickListener.class);
 
 	/** The application manager. */
-	private final ApplicationManager applicationManager;
+	private final transient ApplicationManager applicationManager;
 
 	/** The logout request. */
 	private final LogoutRequest logoutRequest;

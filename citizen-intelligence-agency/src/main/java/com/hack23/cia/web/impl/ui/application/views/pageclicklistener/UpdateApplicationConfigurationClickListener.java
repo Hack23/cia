@@ -44,7 +44,7 @@ public final class UpdateApplicationConfigurationClickListener implements ClickL
 	private final UpdateApplicationConfigurationRequest request;
 
 	/** The application manager. */
-	private final ApplicationManager applicationManager;
+	private final transient ApplicationManager applicationManager;
 
 	/**
 	 * Instantiates a new update application configuration click listener.

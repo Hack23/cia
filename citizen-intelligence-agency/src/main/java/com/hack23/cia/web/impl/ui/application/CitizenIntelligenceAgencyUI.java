@@ -75,7 +75,7 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 
 	/** The application manager. */
 	@Autowired
-	private ApplicationManager applicationManager;
+	private transient ApplicationManager applicationManager;
 
 	/*
 	 * {@inheritDoc}

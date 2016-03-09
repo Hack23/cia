@@ -40,7 +40,7 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 	/** The application manager. */
 	@Autowired
 	@Qualifier("ApplicationManager")
-	private transient ApplicationManager applicationManager;
+	private ApplicationManager applicationManager;
 
 	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory#createCommitteeChartTimeSeriesAll()

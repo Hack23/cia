@@ -35,7 +35,7 @@ public final class TableFactoryImpl implements TableFactory {
 	/** The application manager. */
 	@Autowired
 	@Qualifier("ApplicationManager")
-	private transient ApplicationManager applicationManager;
+	private ApplicationManager applicationManager;
 
 	/**
 	 * {@inheritDoc}

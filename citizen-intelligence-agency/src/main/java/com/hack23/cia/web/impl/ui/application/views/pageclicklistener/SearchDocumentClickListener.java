@@ -41,7 +41,7 @@ public final class SearchDocumentClickListener implements ClickListener {
 	private final SearchDocumentRequest reqisterRequest;
 
 	/** The application manager. */
-	private final ApplicationManager applicationManager;
+	private final transient ApplicationManager applicationManager;
 
 	private final SearchDocumentResponseHandler responseHandler;
 
