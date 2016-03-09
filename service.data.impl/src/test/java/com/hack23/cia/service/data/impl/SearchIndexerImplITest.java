@@ -36,7 +36,7 @@ import com.hack23.cia.service.data.api.SearchIndexer;
 /**
  * The Class SearchIndexerImplITest.
  */
-public final class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegrationTest {
+public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegrationTest {
 
 	/** The search indexer. */
 	@Autowired
