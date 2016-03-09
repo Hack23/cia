@@ -168,10 +168,6 @@ public abstract class AbstractRankingView extends AbstractUserView {
 	 */
 	protected abstract TextArea createDescription();
 
-	/* {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartPanel()
-	 */
-
 	/**
 	 * Creates the chart time series all.
 	 *

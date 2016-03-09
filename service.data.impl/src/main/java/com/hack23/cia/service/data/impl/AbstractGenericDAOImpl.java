@@ -150,7 +150,8 @@ implements AbstractGenericDAO<T, ID> {
 	}
 
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#search(java.lang.String, java.lang.Integer, java.lang.String[])
 	 */
 	@Override
@@ -207,7 +208,8 @@ implements AbstractGenericDAO<T, ID> {
 	}
 
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getAllOrderBy(javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override

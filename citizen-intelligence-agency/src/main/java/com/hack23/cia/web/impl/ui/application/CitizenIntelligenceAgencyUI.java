@@ -182,7 +182,8 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 
 
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.vaadin.server.ErrorHandler#error(com.vaadin.server.ErrorEvent)
 	 */
 	@Override

@@ -195,7 +195,8 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 		return serviceResponse;
 	}
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.hack23.cia.service.api.ApplicationManager#asyncService(com.hack23.cia.service.api.action.common.ServiceRequest)
 	 */
 	@Override

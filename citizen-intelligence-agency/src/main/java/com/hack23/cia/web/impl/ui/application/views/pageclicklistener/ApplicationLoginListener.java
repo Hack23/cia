@@ -53,7 +53,8 @@ public final class ApplicationLoginListener implements LoginListener {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.ejt.vaadin.loginform.LoginForm.LoginListener#onLogin(com.ejt.vaadin.loginform.LoginForm.LoginEvent)
 	 */
 	@Override

@@ -52,7 +52,8 @@ public final class SearchIndexerImpl implements SearchIndexer {
 	        return fullTextEntityManager;
 	}
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.hack23.cia.service.data.impl.SearchIndexer#updateSearchIndex()
 	 */
 	@Override

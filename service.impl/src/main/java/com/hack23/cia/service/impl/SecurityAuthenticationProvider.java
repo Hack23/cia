@@ -30,7 +30,8 @@ import org.springframework.stereotype.Component;
 @Component
 public final class SecurityAuthenticationProvider implements AuthenticationProvider {
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see org.springframework.security.authentication.AuthenticationProvider#authenticate(org.springframework.security.core.Authentication)
 	 */
 	@Override
@@ -38,7 +39,8 @@ public final class SecurityAuthenticationProvider implements AuthenticationProvi
 		return null;
 	}
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see org.springframework.security.authentication.AuthenticationProvider#supports(java.lang.Class)
 	 */
 	@Override

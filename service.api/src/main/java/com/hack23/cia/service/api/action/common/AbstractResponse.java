@@ -29,7 +29,8 @@ public abstract class AbstractResponse implements ServiceResponse {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.hack23.cia.service.api.ServiceResponse#getResult()
 	 */
 	@Override

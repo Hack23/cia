@@ -131,7 +131,8 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 		return new ArrayList<>();
 	}
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.hack23.cia.service.api.DataContainer#getAllOrderBy(javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override
@@ -139,7 +140,8 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 		return null;
 	}
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.hack23.cia.service.api.DataContainer#findOrderedListByProperty(javax.persistence.metamodel.SingularAttribute, java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
 	 */
 	@Override
@@ -148,7 +150,8 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 		return null;
 	}
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.hack23.cia.service.api.DataContainer#findOrderedListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override
@@ -158,7 +161,8 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 		return null;
 	}
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.hack23.cia.service.api.DataContainer#findOrderedByPropertyListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override
@@ -168,7 +172,8 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 		return null;
 	}
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.hack23.cia.service.api.DataContainer#findOrderedListByProperty(javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override

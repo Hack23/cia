@@ -759,7 +759,8 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 	}
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory#createUserHomeMenuBar(com.vaadin.ui.MenuBar, java.lang.String)
 	 */
 	@Override

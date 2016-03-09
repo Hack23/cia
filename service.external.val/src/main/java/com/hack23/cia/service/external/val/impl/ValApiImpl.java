@@ -77,7 +77,8 @@ public final class ValApiImpl implements ValApi {
 	@Qualifier("valKommunMarshaller")
 	private Unmarshaller valKommunMarshaller;
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.hack23.cia.service.external.val.api.ValApi#getElectionTypes()
 	 */
 	@Override
@@ -92,7 +93,8 @@ public final class ValApiImpl implements ValApi {
 						null, null)).getValue().getElectionTypes();
 	}
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.hack23.cia.service.external.val.api.ValApi#getParliamentElectoralRegions()
 	 */
 	@Override
@@ -109,7 +111,8 @@ public final class ValApiImpl implements ValApi {
 						null, null)).getValue().getParliamentElectoralRegions();
 	}
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.hack23.cia.service.external.val.api.ValApi#getCountyElectoralRegions()
 	 */
 	@Override
@@ -126,7 +129,8 @@ public final class ValApiImpl implements ValApi {
 						null, null)).getValue().getCountyElectoralRegions();
 	}
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.hack23.cia.service.external.val.api.ValApi#getCountyRegions()
 	 */
 	@Override
@@ -140,7 +144,8 @@ public final class ValApiImpl implements ValApi {
 				null, null)).getValue().getCountyRegions();
 	}
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.hack23.cia.service.external.val.api.ValApi#getSwedenElectionRegion()
 	 */
 	@Override
@@ -162,7 +167,8 @@ public final class ValApiImpl implements ValApi {
 
 	}
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.hack23.cia.service.external.val.api.ValApi#getSwedenPoliticalParties()
 	 */
 	@Override

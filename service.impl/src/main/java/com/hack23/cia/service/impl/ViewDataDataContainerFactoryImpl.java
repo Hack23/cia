@@ -179,7 +179,8 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/* {@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedByPropertyListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override
