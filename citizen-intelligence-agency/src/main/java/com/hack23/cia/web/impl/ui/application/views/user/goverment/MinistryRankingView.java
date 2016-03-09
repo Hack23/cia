@@ -52,7 +52,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value="prototype")
 @VaadinView(value = MinistryRankingView.NAME, cached = true)
-public class MinistryRankingView extends AbstractRankingView {
+public final class MinistryRankingView extends AbstractRankingView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -91,7 +91,7 @@ public class MinistryRankingView extends AbstractRankingView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
 	 * AbstractRankingView#createDescription()
@@ -113,7 +113,7 @@ public class MinistryRankingView extends AbstractRankingView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
 	 * AbstractRankingView#createExtraChartLayout()
@@ -140,7 +140,7 @@ public class MinistryRankingView extends AbstractRankingView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
 	 * AbstractRankingView#createMenuBar()
@@ -151,7 +151,7 @@ public class MinistryRankingView extends AbstractRankingView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
 	 * AbstractRankingView#createTable()
@@ -171,7 +171,7 @@ public class MinistryRankingView extends AbstractRankingView {
 
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
 	 */
 	@Override
@@ -179,7 +179,7 @@ public class MinistryRankingView extends AbstractRankingView {
 		return dataSeriesFactory.createMinistryChartTimeSeriesAll();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
 	 */
 	@Override
@@ -187,7 +187,7 @@ public class MinistryRankingView extends AbstractRankingView {
 		return dataSeriesFactory.createMinistryChartTimeSeriesCurrent();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getName()
 	 */
 	@Override
@@ -195,7 +195,7 @@ public class MinistryRankingView extends AbstractRankingView {
 		return NAME;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getViewAction()
 	 */
 	@Override

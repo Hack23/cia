@@ -26,14 +26,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.hack23.cia.service.external.vdem.impl.VdemServiceImpl;
-
 /**
  * The Class VdemServiceITest.
  */
 @PerfTest(threads = 1, duration = 3000, warmUp = 1500)
 @Required(max = 4000,average = 2500,percentile95=3000,throughput=2)
-public class VdemServiceITest extends AbstractVdemFunctionalIntegrationTest {
+public final class VdemServiceITest extends AbstractVdemFunctionalIntegrationTest {
 
 	/** The i. */
 	@Rule

@@ -73,7 +73,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value="prototype")
 @VaadinView(value = TestChartView.NAME, cached = true)
-public class TestChartView extends AbstractView {
+public final class TestChartView extends AbstractView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -143,7 +143,7 @@ public class TestChartView extends AbstractView {
 
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener
@@ -191,14 +191,14 @@ public class TestChartView extends AbstractView {
 
 
 	private void createHighChartTest() {
-		ChartConfiguration pieConfiguration = new ChartConfiguration();
+		final ChartConfiguration pieConfiguration = new ChartConfiguration();
 		pieConfiguration.setTitle("Fruits");
 		pieConfiguration.setChartType(ChartType.PIE);
 
-		PieChartSeries pieFruits = new PieChartSeries("Fruits");
-		PieChartData bananas = new PieChartData("Bananas", 33.2);
-		PieChartData melons = new PieChartData("Melons", 6.21);
-		PieChartData apples = new PieChartData("Apples", 3.44);
+		final PieChartSeries pieFruits = new PieChartSeries("Fruits");
+		final PieChartData bananas = new PieChartData("Bananas", 33.2);
+		final PieChartData melons = new PieChartData("Melons", 6.21);
+		final PieChartData apples = new PieChartData("Apples", 3.44);
 
 		pieFruits.getData().add(bananas);
 		pieFruits.getData().add(melons);
@@ -207,12 +207,12 @@ public class TestChartView extends AbstractView {
 		pieConfiguration.getSeriesList().add(pieFruits);
 
 		try {
-		   HighChart pieChart = HighChartFactory.renderChart(pieConfiguration);
+		   final HighChart pieChart = HighChartFactory.renderChart(pieConfiguration);
 		   pieChart.setHeight(40, Unit.PERCENTAGE);
 		   pieChart.setWidth(100, Unit.PERCENTAGE);
 		   pageModeContent.addComponent(pieChart);
 		   pageModeContent.setComponentAlignment(pieChart, Alignment.TOP_CENTER);
-		} catch (HighChartsException e) {
+		} catch (final HighChartsException e) {
 		   e.printStackTrace();
 		}
 	}

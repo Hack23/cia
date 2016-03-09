@@ -68,7 +68,7 @@ public final class DataViewerImpl implements DataViewer {
 	}
 
 	/*
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.api.AbstractGenericDAO#findFirstByProperty
@@ -100,7 +100,7 @@ public final class DataViewerImpl implements DataViewer {
 	}
 
 	/*
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getAll()
 	 */
@@ -119,7 +119,7 @@ public final class DataViewerImpl implements DataViewer {
 	}
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#getAllOrderBy(java.lang.Class, javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override
@@ -150,7 +150,7 @@ public final class DataViewerImpl implements DataViewer {
 		criteriaBuilder = entityManager.getCriteriaBuilder();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#load(java.lang.Class, java.lang.Object)
 	 */
 	@Override
@@ -158,7 +158,7 @@ public final class DataViewerImpl implements DataViewer {
 		return LoadHelper.recursiveInitliaze(entityManager.find(clazz, id));
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#findByQueryProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
@@ -199,7 +199,7 @@ public final class DataViewerImpl implements DataViewer {
 
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#findListByProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
@@ -209,7 +209,7 @@ public final class DataViewerImpl implements DataViewer {
 		return findOrderedListByProperty(clazz,property,value,null);
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#findListByProperty(java.lang.Class, java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
 	 */
 	@Override
@@ -220,7 +220,7 @@ public final class DataViewerImpl implements DataViewer {
 	}
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#findListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
@@ -231,7 +231,7 @@ public final class DataViewerImpl implements DataViewer {
 
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedListByProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override
@@ -264,7 +264,7 @@ public final class DataViewerImpl implements DataViewer {
 		return typedQuery.getResultList();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedListByProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
 	 */
 	@Override
@@ -306,7 +306,7 @@ public final class DataViewerImpl implements DataViewer {
 		return typedQuery.getResultList();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override
@@ -339,7 +339,7 @@ public final class DataViewerImpl implements DataViewer {
 		return typedQuery.getResultList();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedByPropertyListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override

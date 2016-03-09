@@ -28,12 +28,12 @@ import jdepend.framework.JDepend;
 /**
  * The Class ArchitectureRuleTest.
  */
-public class ArchitectureRuleTest extends Assert {
+public final class ArchitectureRuleTest extends Assert {
 
 	/** The jdepend. */
 	JDepend jdepend = new JDepend();
 	/*
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see junit.framework.TestCase#setUp()
 	 */
@@ -49,7 +49,7 @@ public class ArchitectureRuleTest extends Assert {
 	}
 
 	/*
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @seecom.seventytwomiles.architecturerules.
 	 * AbstractArchitectureRulesConfigurationTest#testArchitecture()

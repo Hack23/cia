@@ -75,7 +75,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value="prototype")
 @VaadinView(value = PartyView.NAME, cached = true)
-public class PartyView extends AbstractGroupView {
+public final class PartyView extends AbstractGroupView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -118,7 +118,7 @@ public class PartyView extends AbstractGroupView {
 
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener

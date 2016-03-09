@@ -35,7 +35,7 @@ import com.hack23.cia.service.component.agent.impl.riksdagen.RiksdagenImportServ
  * The Class RiksdagenImportServiceITest.
  */
 @Transactional
-public class RiksdagenImportServiceITest extends AbstractServiceComponentAgentFunctionalIntegrationTest {
+public final class RiksdagenImportServiceITest extends AbstractServiceComponentAgentFunctionalIntegrationTest {
 
 	/** The riksdagen import service. */
 	@Autowired

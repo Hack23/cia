@@ -29,7 +29,7 @@ import org.dussan.vaadin.dcharts.metadata.XYaxes;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ChartTest extends Assert {
+public final class ChartTest extends Assert {
 
 	/**
 	 * Adds the serie test.
@@ -47,7 +47,7 @@ public class ChartTest extends Assert {
 		/** The Constant serialVersionUID. */
 		private static final long serialVersionUID = 1L;
 
-		/** (non-Javadoc)
+		/** {@inheritDoc}
 		 * @see org.dussan.vaadin.dcharts.base.elements.XYseries#getValue()
 		 */
 		@Override
@@ -79,7 +79,7 @@ public class ChartTest extends Assert {
 			super(y);
 		}
 
-		/** (non-Javadoc)
+		/** {@inheritDoc}
 		 * @see org.dussan.vaadin.dcharts.base.elements.XYaxis#getValue()
 		 */
 		@Override

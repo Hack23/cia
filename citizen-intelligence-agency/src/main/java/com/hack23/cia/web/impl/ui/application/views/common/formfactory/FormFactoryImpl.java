@@ -41,7 +41,7 @@ public final class FormFactoryImpl implements FormFactory {
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(FormFactoryImpl.class);
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory#addTextFields(com.vaadin.ui.Layout, com.vaadin.data.util.BeanItem, java.lang.Class, java.util.List)
 	 */
 	@Override
@@ -65,7 +65,7 @@ public final class FormFactoryImpl implements FormFactory {
 
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory#addRequestInputFormFields(com.vaadin.ui.Layout, com.vaadin.data.util.BeanItem, java.lang.Class, java.util.List, java.lang.String, com.vaadin.ui.Button.ClickListener)
 	 */
 	@Override

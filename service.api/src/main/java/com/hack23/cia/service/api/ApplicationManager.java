@@ -22,8 +22,6 @@ package com.hack23.cia.service.api;
 import java.io.Serializable;
 import java.util.concurrent.Future;
 
-import org.springframework.scheduling.annotation.Async;
-
 import com.hack23.cia.service.api.action.common.ServiceRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse;
 

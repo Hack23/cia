@@ -59,7 +59,7 @@ public final class LogoutClickListener implements ClickListener {
 		this.applicationManager = applicationManager;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.vaadin.ui.Button.ClickListener#buttonClick(com.vaadin.ui.Button.ClickEvent)
 	 */
 	@Override

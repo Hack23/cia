@@ -34,7 +34,7 @@ import com.hack23.cia.service.external.val.api.ValApi;
 /**
  * The Class ValApiTest.
  */
-public class ValApiTest extends AbstractValFunctionalIntegrationTest {
+public final class ValApiTest extends AbstractValFunctionalIntegrationTest {
 
 	/** The val api. */
 	@Autowired

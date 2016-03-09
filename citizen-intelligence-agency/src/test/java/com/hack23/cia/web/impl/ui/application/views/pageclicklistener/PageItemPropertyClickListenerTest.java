@@ -24,7 +24,7 @@ import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksda
 import com.hack23.cia.testfoundation.AbstractUnitTest;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
-public class PageItemPropertyClickListenerTest extends AbstractUnitTest {
+public final class PageItemPropertyClickListenerTest extends AbstractUnitTest {
 
 
 	/**

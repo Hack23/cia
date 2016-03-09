@@ -25,11 +25,11 @@ public abstract class AbstractResponse implements ServiceResponse {
 
 	/** The result. */
 	private final ServiceResult result;
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.hack23.cia.service.api.ServiceResponse#getResult()
 	 */
 	@Override

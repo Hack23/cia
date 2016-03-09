@@ -27,7 +27,7 @@ import com.hack23.cia.testfoundation.AbstractTest;
 /**
  * The Class XmlTimeTypeAdapterTest.
  */
-public class XmlTimeTypeAdapterTest extends AbstractTest {
+public final class XmlTimeTypeAdapterTest extends AbstractTest {
 
 	
 	/**

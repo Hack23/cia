@@ -60,7 +60,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value="prototype")
 @VaadinView(AdminApplicationConfigurationView.NAME)
-public class AdminApplicationConfigurationView extends AbstractAdminView {
+public final class AdminApplicationConfigurationView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -90,7 +90,7 @@ public class AdminApplicationConfigurationView extends AbstractAdminView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener.
@@ -115,7 +115,7 @@ public class AdminApplicationConfigurationView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		final VerticalLayout content = new VerticalLayout();
 
-		Label createHeader2Label = LabelFactory.createHeader2Label("Admin Application Configuration");
+		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Application Configuration");
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, 1);
 
@@ -127,7 +127,7 @@ public class AdminApplicationConfigurationView extends AbstractAdminView {
 				ApplicationConfiguration.class,
 				dataContainer.getAllOrderBy(ApplicationConfiguration_.configurationGroup));
 
-		Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource,
+		final Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource,
 				"ApplicationConfiguration",
 				new String[] { "hjid", "configTitle", "configDescription", "configurationGroup", "component",
 						"componentTitle", "componentDescription", "propertyId", "propertyValue" },
@@ -184,7 +184,7 @@ public class AdminApplicationConfigurationView extends AbstractAdminView {
 			}
 		}
 
-	 	Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
+	 	final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 		content.addComponent(createMainViewPageLink);
 		content.setExpandRatio(createMainViewPageLink,1);
 

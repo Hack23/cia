@@ -34,7 +34,7 @@ import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 /**
  * The Class UpdateSearchIndexServiceITest.
  */
-public class UpdateSearchIndexServiceITest extends AbstractServiceFunctionalIntegrationTest {
+public final class UpdateSearchIndexServiceITest extends AbstractServiceFunctionalIntegrationTest {
 
 	/**
 	 * Test.
@@ -53,7 +53,7 @@ public class UpdateSearchIndexServiceITest extends AbstractServiceFunctionalInte
 
 		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
 
-		UpdateSearchIndexRequest serviceRequest = new UpdateSearchIndexRequest();
+		final UpdateSearchIndexRequest serviceRequest = new UpdateSearchIndexRequest();
 		serviceRequest.setSessionId(createSessionRequest.getSessionId());
 
 		final UpdateSearchIndexResponse response = (UpdateSearchIndexResponse) applicationManager

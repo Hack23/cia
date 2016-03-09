@@ -59,7 +59,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value="prototype")
 @VaadinView(AdminApplicationSessionView.NAME)
-public class AdminApplicationSessionView extends AbstractAdminView {
+public final class AdminApplicationSessionView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -89,7 +89,7 @@ public class AdminApplicationSessionView extends AbstractAdminView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener.
@@ -114,7 +114,7 @@ public class AdminApplicationSessionView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		final VerticalLayout content = new VerticalLayout();
 
-		Label createHeader2Label = LabelFactory.createHeader2Label("Admin Application Session");
+		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Application Session");
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, 1);
 
@@ -125,7 +125,7 @@ public class AdminApplicationSessionView extends AbstractAdminView {
 		final BeanItemContainer<ApplicationSession> politicianDocumentDataSource = new BeanItemContainer<>(
 				ApplicationSession.class, dataContainer.getAllOrderBy(ApplicationSession_.createdDate));
 
-		Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationSession",
+		final Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationSession",
 				new String[] { "hjid", "createdDate", "sessionType", "sessionId", "operatingSystem", "locale",
 						"ipInformation", "userAgentInformation", "events" },
 				new String[] { "modelObjectId", "modelObjectVersion" }, "hjid",
@@ -147,7 +147,7 @@ public class AdminApplicationSessionView extends AbstractAdminView {
 				content.addComponent(horizontalLayout);
 				content.setExpandRatio(horizontalLayout, 10);
 
-				 Panel formPanel = new Panel();
+				 final Panel formPanel = new Panel();
 				 formPanel.setSizeFull();
 
 				final FormLayout formContent = new FormLayout();
@@ -164,7 +164,7 @@ public class AdminApplicationSessionView extends AbstractAdminView {
 				final BeanItemContainer<ApplicationActionEvent> eventsItemContainer = new BeanItemContainer<>(
 						ApplicationActionEvent.class, applicationSession.getEvents());
 
-				Grid createBasicBeanItemGrid2 = gridFactory.createBasicBeanItemGrid(eventsItemContainer,
+				final Grid createBasicBeanItemGrid2 = gridFactory.createBasicBeanItemGrid(eventsItemContainer,
 						"ApplicationActionEvent",
 						new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation", "page", "pageMode",
 								"elementId", "actionName", "userId", "sessionId", "errorMessage", "applicationMessage",
@@ -177,7 +177,7 @@ public class AdminApplicationSessionView extends AbstractAdminView {
 
 		}
 
-		Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
+		final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 		content.addComponent(createMainViewPageLink);
 		content.setExpandRatio(createMainViewPageLink, 2);
 

@@ -75,7 +75,7 @@ public abstract class AbstractRankingView extends AbstractUserView {
 
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener
@@ -168,7 +168,7 @@ public abstract class AbstractRankingView extends AbstractUserView {
 	 */
 	protected abstract TextArea createDescription();
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartPanel()
 	 */
 

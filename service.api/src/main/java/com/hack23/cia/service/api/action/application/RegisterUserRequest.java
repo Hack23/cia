@@ -63,7 +63,7 @@ public final class RegisterUserRequest implements ServiceRequest {
 	 * @param country
 	 *            the new country
 	 */
-	public void setCountry(String country) {
+	public void setCountry(final String country) {
 		this.country = country;
 	}
 
@@ -82,7 +82,7 @@ public final class RegisterUserRequest implements ServiceRequest {
 	 * @param username
 	 *            the new username
 	 */
-	public void setUsername(String username) {
+	public void setUsername(final String username) {
 		this.username = username;
 	}
 
@@ -101,7 +101,7 @@ public final class RegisterUserRequest implements ServiceRequest {
 	 * @param email
 	 *            the new email
 	 */
-	public void setEmail(String email) {
+	public void setEmail(final String email) {
 		this.email = email;
 	}
 
@@ -120,7 +120,7 @@ public final class RegisterUserRequest implements ServiceRequest {
 	 * @param userpassword
 	 *            the new userpassword
 	 */
-	public void setUserpassword(String userpassword) {
+	public void setUserpassword(final String userpassword) {
 		this.userpassword = userpassword;
 	}
 
@@ -139,7 +139,7 @@ public final class RegisterUserRequest implements ServiceRequest {
 	 * @param userType
 	 *            the new user type
 	 */
-	public void setUserType(UserType userType) {
+	public void setUserType(final UserType userType) {
 		this.userType = userType;
 	}
 
@@ -158,7 +158,7 @@ public final class RegisterUserRequest implements ServiceRequest {
 	 * @param sessionId
 	 *            the new session id
 	 */
-	public void setSessionId(String sessionId) {
+	public void setSessionId(final String sessionId) {
 		this.sessionId = sessionId;
 	}
 

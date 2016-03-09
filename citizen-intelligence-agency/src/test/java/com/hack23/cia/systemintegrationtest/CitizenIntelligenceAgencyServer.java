@@ -37,7 +37,7 @@ import org.slf4j.bridge.SLF4JBridgeHandler;
 /**
  * The Class CitizenIntelligenceAgencyServer.
  */
-public class CitizenIntelligenceAgencyServer {
+public final class CitizenIntelligenceAgencyServer {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory

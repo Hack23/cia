@@ -54,7 +54,7 @@ implements CommitteeProposalComponentDataDAO {
 		super(CommitteeProposalComponentData.class);
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.CommitteeProposalComponentDataDAO#checkCommitteeDocumentData(java.lang.String)
 	 */
 	@Override
@@ -75,7 +75,7 @@ implements CommitteeProposalComponentDataDAO {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
@@ -86,7 +86,7 @@ implements CommitteeProposalComponentDataDAO {
 		return entityManager;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.CommitteeProposalComponentDataDAO#getIdList()
 	 */
 	@Override
@@ -98,7 +98,7 @@ implements CommitteeProposalComponentDataDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */
 	@Override

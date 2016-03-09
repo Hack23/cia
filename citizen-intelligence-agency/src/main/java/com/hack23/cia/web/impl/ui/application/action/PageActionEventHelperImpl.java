@@ -34,13 +34,13 @@ import com.hack23.cia.service.api.action.application.CreateApplicationEventReque
 import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 
 @Service
-public class PageActionEventHelperImpl implements PageActionEventHelper {
+public final class PageActionEventHelperImpl implements PageActionEventHelper {
 
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper#createPageEvent(com.hack23.cia.web.impl.ui.application.action.ViewAction, com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override

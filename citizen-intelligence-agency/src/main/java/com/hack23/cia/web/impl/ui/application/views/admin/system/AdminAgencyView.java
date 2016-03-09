@@ -56,7 +56,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value="prototype")
 @VaadinView(AdminAgencyView.NAME)
-public class AdminAgencyView extends AbstractAdminView {
+public final class AdminAgencyView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -86,7 +86,7 @@ public class AdminAgencyView extends AbstractAdminView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener.
@@ -111,7 +111,7 @@ public class AdminAgencyView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		final VerticalLayout content = new VerticalLayout();
 
-		Label createHeader2Label = LabelFactory.createHeader2Label("Admin Agency");
+		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Agency");
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, 1);
 
@@ -121,7 +121,7 @@ public class AdminAgencyView extends AbstractAdminView {
 		final BeanItemContainer<Agency> politicianDocumentDataSource = new BeanItemContainer<>(Agency.class,
 				dataContainer.getAll());
 
-		Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Agency",
+		final Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Agency",
 				new String[] { "hjid", "agencyName", "description", "portals", "modelObjectVersion" },
 				new String[] { "modelObjectId" }, "hjid",
 				new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid"), null);
@@ -162,7 +162,7 @@ public class AdminAgencyView extends AbstractAdminView {
 
 		}
 
-	 	Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
+	 	final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 		content.addComponent(createMainViewPageLink);
 		content.setExpandRatio(createMainViewPageLink,1);
 

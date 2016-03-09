@@ -28,9 +28,9 @@ import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;
 /**
  * The Class LegacyNamingStrategy.
  */
-public class LegacyNamingStrategy implements PhysicalNamingStrategy {
+public final class LegacyNamingStrategy implements PhysicalNamingStrategy {
 
-    /** (non-Javadoc)
+    /** {@inheritDoc}
      * @see org.hibernate.boot.model.naming.PhysicalNamingStrategy#toPhysicalCatalogName(org.hibernate.boot.model.naming.Identifier, org.hibernate.engine.jdbc.env.spi.JdbcEnvironment)
      */
     @Override
@@ -38,7 +38,7 @@ public class LegacyNamingStrategy implements PhysicalNamingStrategy {
         return convert(identifier);
     }
 
-    /** (non-Javadoc)
+    /** {@inheritDoc}
      * @see org.hibernate.boot.model.naming.PhysicalNamingStrategy#toPhysicalColumnName(org.hibernate.boot.model.naming.Identifier, org.hibernate.engine.jdbc.env.spi.JdbcEnvironment)
      */
     @Override
@@ -46,7 +46,7 @@ public class LegacyNamingStrategy implements PhysicalNamingStrategy {
         return convert(identifier);
     }
 
-    /** (non-Javadoc)
+    /** {@inheritDoc}
      * @see org.hibernate.boot.model.naming.PhysicalNamingStrategy#toPhysicalSchemaName(org.hibernate.boot.model.naming.Identifier, org.hibernate.engine.jdbc.env.spi.JdbcEnvironment)
      */
     @Override
@@ -54,7 +54,7 @@ public class LegacyNamingStrategy implements PhysicalNamingStrategy {
         return convert(identifier);
     }
 
-    /** (non-Javadoc)
+    /** {@inheritDoc}
      * @see org.hibernate.boot.model.naming.PhysicalNamingStrategy#toPhysicalSequenceName(org.hibernate.boot.model.naming.Identifier, org.hibernate.engine.jdbc.env.spi.JdbcEnvironment)
      */
     @Override
@@ -62,7 +62,7 @@ public class LegacyNamingStrategy implements PhysicalNamingStrategy {
         return convert(identifier);
     }
 
-    /** (non-Javadoc)
+    /** {@inheritDoc}
      * @see org.hibernate.boot.model.naming.PhysicalNamingStrategy#toPhysicalTableName(org.hibernate.boot.model.naming.Identifier, org.hibernate.engine.jdbc.env.spi.JdbcEnvironment)
      */
     @Override

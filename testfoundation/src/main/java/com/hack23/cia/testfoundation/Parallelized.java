@@ -26,7 +26,7 @@ import org.junit.runners.Parameterized;
 /**
  * The Class Parallelized.
  */
-public class Parallelized extends Parameterized {
+public final class Parallelized extends Parameterized {
 
 	/**
 	 * Instantiates a new parallelized.

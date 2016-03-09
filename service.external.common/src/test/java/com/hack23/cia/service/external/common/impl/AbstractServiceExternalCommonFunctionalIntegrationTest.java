@@ -44,7 +44,7 @@ public abstract class AbstractServiceExternalCommonFunctionalIntegrationTest ext
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest#
 	 * getDatabaseConnection()

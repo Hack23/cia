@@ -86,7 +86,7 @@ implements AbstractGenericDAO<T, ID> {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.api.AbstractGenericDAO#delete(com.hack23.
@@ -99,7 +99,7 @@ implements AbstractGenericDAO<T, ID> {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.api.AbstractGenericDAO#findFirstByProperty
@@ -128,7 +128,7 @@ implements AbstractGenericDAO<T, ID> {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.api.AbstractGenericDAO#findListByProperty
@@ -150,17 +150,17 @@ implements AbstractGenericDAO<T, ID> {
 	}
 
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#search(java.lang.String, java.lang.Integer, java.lang.String[])
 	 */
 	@Override
-	public final List<T> search(String searchExpression, Integer maxResults,String... fields) {
+	public final List<T> search(final String searchExpression, final Integer maxResults,final String... fields) {
 		return getFullTextEntityManager().createFullTextQuery(getFullTextEntityManager().getSearchFactory().buildQueryBuilder().forEntity(persistentClass).get().
 				keyword().wildcard().onFields(fields).matching(searchExpression).createQuery(),persistentClass).setMaxResults(maxResults).getResultList();
 	}
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#findListByProperty(java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
 	 */
 	@Override
@@ -197,7 +197,7 @@ implements AbstractGenericDAO<T, ID> {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getAll()
 	 */
@@ -207,7 +207,7 @@ implements AbstractGenericDAO<T, ID> {
 	}
 
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getAllOrderBy(javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override
@@ -284,7 +284,7 @@ implements AbstractGenericDAO<T, ID> {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.api.AbstractGenericDAO#load(java.io.Serializable
@@ -296,7 +296,7 @@ implements AbstractGenericDAO<T, ID> {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.api.AbstractGenericDAO#save(com.hack23.cia
@@ -308,7 +308,7 @@ implements AbstractGenericDAO<T, ID> {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.api.AbstractGenericDAO#persist(java.util.
@@ -322,7 +322,7 @@ implements AbstractGenericDAO<T, ID> {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#persist(java.io.
 	 * Serializable)

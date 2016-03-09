@@ -43,7 +43,7 @@ public final class IndicatorElementDAOImpl extends AbstractGenericDAOImpl<Indica
 		super(IndicatorElement.class);
 	}
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
@@ -54,7 +54,7 @@ public final class IndicatorElementDAOImpl extends AbstractGenericDAOImpl<Indica
 		return entityManager;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */
 	@Override

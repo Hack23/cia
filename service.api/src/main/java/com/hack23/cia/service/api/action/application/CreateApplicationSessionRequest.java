@@ -80,7 +80,7 @@ public final class CreateApplicationSessionRequest implements ServiceRequest {
 	 * @param ipInformation
 	 *            the new ip information
 	 */
-	public void setIpInformation(String ipInformation) {
+	public void setIpInformation(final String ipInformation) {
 		this.ipInformation = ipInformation;
 	}
 
@@ -90,7 +90,7 @@ public final class CreateApplicationSessionRequest implements ServiceRequest {
 	 * @param sessionType
 	 *            the new session type
 	 */
-	public void setSessionType(ApplicationSessionType sessionType) {
+	public void setSessionType(final ApplicationSessionType sessionType) {
 		this.sessionType = sessionType;
 	}
 
@@ -100,7 +100,7 @@ public final class CreateApplicationSessionRequest implements ServiceRequest {
 	 * @param userAgentInformation
 	 *            the new user agent information
 	 */
-	public void setUserAgentInformation(String userAgentInformation) {
+	public void setUserAgentInformation(final String userAgentInformation) {
 		this.userAgentInformation = userAgentInformation;
 	}
 
@@ -119,7 +119,7 @@ public final class CreateApplicationSessionRequest implements ServiceRequest {
 	 * @param sessionId
 	 *            the new session id
 	 */
-	public void setSessionId(String sessionId) {
+	public void setSessionId(final String sessionId) {
 		this.sessionId = sessionId;
 	}
 
@@ -138,7 +138,7 @@ public final class CreateApplicationSessionRequest implements ServiceRequest {
 	 * @param locale
 	 *            the new locale
 	 */
-	public void setLocale(String locale) {
+	public void setLocale(final String locale) {
 		this.locale = locale;
 	}
 
@@ -157,7 +157,7 @@ public final class CreateApplicationSessionRequest implements ServiceRequest {
 	 * @param operatingSystem
 	 *            the new operating system
 	 */
-	public void setOperatingSystem(String operatingSystem) {
+	public void setOperatingSystem(final String operatingSystem) {
 		this.operatingSystem = operatingSystem;
 	}
 }

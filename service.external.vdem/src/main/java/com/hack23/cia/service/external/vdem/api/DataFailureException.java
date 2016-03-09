@@ -21,7 +21,7 @@ package com.hack23.cia.service.external.vdem.api;
 /**
  * The Class DataFailureException.
  */
-public class DataFailureException extends Exception {
+public final class DataFailureException extends Exception {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;

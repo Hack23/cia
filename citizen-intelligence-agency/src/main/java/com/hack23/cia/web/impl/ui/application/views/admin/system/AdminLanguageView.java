@@ -54,7 +54,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value="prototype")
 @VaadinView(AdminLanguageView.NAME)
-public class AdminLanguageView extends AbstractAdminView {
+public final class AdminLanguageView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -84,7 +84,7 @@ public class AdminLanguageView extends AbstractAdminView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener.
@@ -109,7 +109,7 @@ public class AdminLanguageView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		final VerticalLayout content = new VerticalLayout();
 
-		Label createHeader2Label = LabelFactory.createHeader2Label("Admin Language");
+		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Language");
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, 1);
 
@@ -119,7 +119,7 @@ public class AdminLanguageView extends AbstractAdminView {
 		final BeanItemContainer<LanguageData> politicianDocumentDataSource = new BeanItemContainer<>(LanguageData.class,
 				dataContainer.getAll());
 
-		Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "LanguageData",
+		final Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "LanguageData",
 				new String[] { "hjid", "languageName","modelObjectVersion" },
 				new String[] { "modelObjectId" }, "hjid",
 				new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, "hjid"), null);
@@ -139,7 +139,7 @@ public class AdminLanguageView extends AbstractAdminView {
 			}
 		}
 
-	 	Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
+	 	final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 		content.addComponent(createMainViewPageLink);
 		content.setExpandRatio(createMainViewPageLink,1);
 

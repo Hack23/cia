@@ -43,7 +43,7 @@ public final class SearchDocumentClickListener implements ClickListener {
 	/** The application manager. */
 	private final ApplicationManager applicationManager;
 
-	private SearchDocumentResponseHandler responseHandler;
+	private final SearchDocumentResponseHandler responseHandler;
 
 	public static interface SearchDocumentResponseHandler {
 		void handle(SearchDocumentResponse response);
@@ -66,7 +66,7 @@ public final class SearchDocumentClickListener implements ClickListener {
 		this.responseHandler = responseHandler;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.vaadin.ui.Button.ClickListener#buttonClick(com.vaadin.ui.Button.ClickEvent)
 	 */
 	@Override

@@ -23,7 +23,7 @@ import org.junit.Test;
 /**
  * The Class TestInstanceTest.
  */
-public class TestInstanceTest extends AbstractUnitTest {
+public final class TestInstanceTest extends AbstractUnitTest {
 
 	/** The order. */
 	int order;

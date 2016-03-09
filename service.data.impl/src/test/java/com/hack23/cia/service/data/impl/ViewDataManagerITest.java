@@ -26,7 +26,7 @@ import com.hack23.cia.service.data.api.ViewDataManager;
 /**
  * The Class ViewDataManagerITest.
  */
-public class ViewDataManagerITest extends AbstractServiceDataFunctionalIntegrationTest {
+public final class ViewDataManagerITest extends AbstractServiceDataFunctionalIntegrationTest {
 
 	/** The view data manager. */
 	@Autowired

@@ -113,7 +113,7 @@ DocumentElementDAO {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.api.DocumentElementDAO#checkDocumentElement
@@ -139,7 +139,7 @@ DocumentElementDAO {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.api.DocumentElementDAO#getAvaibleDocumentContent
@@ -157,7 +157,7 @@ DocumentElementDAO {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.api.DocumentElementDAO#getAvaibleDocumentStatus
@@ -175,7 +175,7 @@ DocumentElementDAO {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
@@ -187,7 +187,7 @@ DocumentElementDAO {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.data.api.DocumentElementDAO#getIdList()
 	 */
@@ -200,7 +200,7 @@ DocumentElementDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DocumentElementDAO#getMissingDocumentStartFromYear()
 	 */
 	@Override
@@ -249,7 +249,7 @@ DocumentElementDAO {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */

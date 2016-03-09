@@ -55,7 +55,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value="prototype")
 @VaadinView(AdminCountryView.NAME)
-public class AdminCountryView extends AbstractAdminView {
+public final class AdminCountryView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -85,7 +85,7 @@ public class AdminCountryView extends AbstractAdminView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener.
@@ -110,7 +110,7 @@ public class AdminCountryView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		final VerticalLayout content = new VerticalLayout();
 
-		Label createHeader2Label = LabelFactory.createHeader2Label("Admin Country");
+		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Country");
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, 1);
 
@@ -120,7 +120,7 @@ public class AdminCountryView extends AbstractAdminView {
 		final BeanItemContainer<CountryElement> politicianDocumentDataSource = new BeanItemContainer<>(CountryElement.class,
 				dataContainer.getAllOrderBy(CountryElement_.countryName));
 
-		Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Country",
+		final Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Country",
 				new String[] { "hjid", "id", "countryName","iso2Code","capitalCity","longitude","latitude" },
 				new String[] { "region","adminregion" }, "hjid",
 				new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "hjid"), null);
@@ -140,7 +140,7 @@ public class AdminCountryView extends AbstractAdminView {
 			}
 		}
 
-	 	Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
+	 	final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 		content.addComponent(createMainViewPageLink);
 		content.setExpandRatio(createMainViewPageLink,1);
 

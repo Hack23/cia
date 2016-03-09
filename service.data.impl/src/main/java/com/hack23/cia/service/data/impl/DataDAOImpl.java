@@ -52,7 +52,7 @@ public final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Lon
 		super(WorldBankData.class);
 	}
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
@@ -63,7 +63,7 @@ public final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Lon
 		return entityManager;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataDAO#getIdList()
 	 */
 	@Override
@@ -83,7 +83,7 @@ public final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Lon
 		return resultList;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */
 	@Override

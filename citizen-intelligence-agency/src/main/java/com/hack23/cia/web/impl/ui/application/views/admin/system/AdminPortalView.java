@@ -54,7 +54,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value="prototype")
 @VaadinView(AdminPortalView.NAME)
-public class AdminPortalView extends AbstractAdminView {
+public final class AdminPortalView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -84,7 +84,7 @@ public class AdminPortalView extends AbstractAdminView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener.
@@ -109,7 +109,7 @@ public class AdminPortalView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		final VerticalLayout content = new VerticalLayout();
 
-		Label createHeader2Label = LabelFactory.createHeader2Label("Admin Portal");
+		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Portal");
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, 1);
 
@@ -118,7 +118,7 @@ public class AdminPortalView extends AbstractAdminView {
 		final BeanItemContainer<Portal> politicianDocumentDataSource = new BeanItemContainer<>(Portal.class,
 				dataContainer.getAll());
 
-		Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Portal",
+		final Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "Portal",
 				new String[] { "hjid", "portalName", "description","portalType","googleMapApiKey", "modelObjectVersion" },
 				new String[] { "modelObjectId" }, "hjid",
 				new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid"), null);
@@ -137,7 +137,7 @@ public class AdminPortalView extends AbstractAdminView {
 			}
 		}
 
-	 	Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
+	 	final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 		content.addComponent(createMainViewPageLink);
 		content.setExpandRatio(createMainViewPageLink,1);
 

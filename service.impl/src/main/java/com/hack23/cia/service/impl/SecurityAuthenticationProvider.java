@@ -28,9 +28,9 @@ import org.springframework.stereotype.Component;
  * The Class SecurityAuthenticationProvider.
  */
 @Component
-public class SecurityAuthenticationProvider implements AuthenticationProvider {
+public final class SecurityAuthenticationProvider implements AuthenticationProvider {
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see org.springframework.security.authentication.AuthenticationProvider#authenticate(org.springframework.security.core.Authentication)
 	 */
 	@Override
@@ -38,7 +38,7 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see org.springframework.security.authentication.AuthenticationProvider#supports(java.lang.Class)
 	 */
 	@Override

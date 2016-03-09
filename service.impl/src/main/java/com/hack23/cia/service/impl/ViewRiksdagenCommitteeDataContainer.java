@@ -44,7 +44,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 	@Autowired
 	private ViewRiksdagenCommitteeDAO viewRiksdagenCommitteeDAO;
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.api.DataContainer#getAll()
 	 */
 	@Override
@@ -52,7 +52,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return viewRiksdagenCommitteeDAO.getAll();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.api.DataContainer#load()
 	 */
 	@Override
@@ -67,7 +67,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return null;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.api.DataContainer#getAllBy(javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
@@ -77,7 +77,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return viewRiksdagenCommitteeDAO.findListByProperty(property, value);
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.api.DataContainer#findListByProperty(java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
 	 */
 	@Override
@@ -87,7 +87,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return viewRiksdagenCommitteeDAO.findListByProperty(values, properties);
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.api.DataContainer#findByQueryProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
@@ -97,7 +97,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return null;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.api.DataContainer#findListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
@@ -107,7 +107,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.hack23.cia.service.api.DataContainer#getAllOrderBy(javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override
@@ -116,7 +116,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return viewRiksdagenCommitteeDAO.getAllOrderBy(property);
 	}
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.hack23.cia.service.api.DataContainer#findOrderedListByProperty(javax.persistence.metamodel.SingularAttribute, java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
 	 */
 	@Override
@@ -126,7 +126,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.hack23.cia.service.api.DataContainer#findOrderedListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override
@@ -136,7 +136,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.hack23.cia.service.api.DataContainer#findOrderedByPropertyListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override
@@ -146,7 +146,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.hack23.cia.service.api.DataContainer#findOrderedListByProperty(javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override

@@ -89,7 +89,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value="prototype")
 @VaadinView(value = PoliticianView.NAME, cached = true)
-public class PoliticianView extends AbstractPersonView {
+public final class PoliticianView extends AbstractPersonView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -128,7 +128,7 @@ public class PoliticianView extends AbstractPersonView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener
 	 *      .ViewChangeEvent)
@@ -164,10 +164,10 @@ public class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PageMode.Indicators.toString())) {
 
-					Label createHeader2Label = LabelFactory.createHeader2Label("Indicators");
+					final Label createHeader2Label = LabelFactory.createHeader2Label("Indicators");
 					panelContent.addComponent(createHeader2Label);
 
-					DCharts createPersonLineChart = chartDataManager.createPersonLineChart(personData.getId());
+					final DCharts createPersonLineChart = chartDataManager.createPersonLineChart(personData.getId());
 					panelContent.addComponent(createPersonLineChart);
 
 					panelContent.setExpandRatio(createHeader2Label, 1);
@@ -175,7 +175,7 @@ public class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PoliticianPageMode.RoleSummary.toString())) {
 
-					Label createHeader2Label = LabelFactory
+					final Label createHeader2Label = LabelFactory
 							.createHeader2Label(PoliticianPageMode.RoleSummary.toString());
 					panelContent.addComponent(createHeader2Label);
 
@@ -194,7 +194,7 @@ public class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PoliticianPageMode.RoleList.toString())) {
 
-					Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.RoleList.toString());
+					final Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.RoleList.toString());
 					panelContent.addComponent(createHeader2Label);
 					panelContent.setExpandRatio(createHeader2Label, 1);
 
@@ -205,7 +205,7 @@ public class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PoliticianPageMode.VoteHistory.toString())) {
 
-					Label createHeader2Label = LabelFactory
+					final Label createHeader2Label = LabelFactory
 							.createHeader2Label(PoliticianPageMode.VoteHistory.toString());
 					panelContent.addComponent(createHeader2Label);
 
@@ -233,7 +233,7 @@ public class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PoliticianPageMode.BallotDecisionSummary.toString())) {
 
-					Label createHeader2Label = LabelFactory
+					final Label createHeader2Label = LabelFactory
 							.createHeader2Label(PoliticianPageMode.BallotDecisionSummary.toString());
 					panelContent.addComponent(createHeader2Label);
 
@@ -277,7 +277,7 @@ public class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PoliticianPageMode.DocumentHistory.toString())) {
 
-					Label createHeader2Label = LabelFactory
+					final Label createHeader2Label = LabelFactory
 							.createHeader2Label(PoliticianPageMode.DocumentHistory.toString());
 					panelContent.addComponent(createHeader2Label);
 
@@ -306,7 +306,7 @@ public class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PoliticianPageMode.DocumentActivity.toString())) {
 
-					Label createHeader2Label = LabelFactory
+					final Label createHeader2Label = LabelFactory
 							.createHeader2Label(PoliticianPageMode.DocumentActivity.toString());
 					panelContent.addComponent(createHeader2Label);
 
@@ -320,7 +320,7 @@ public class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PoliticianPageMode.RoleGhant.toString())) {
 
-					Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.RoleGhant.toString());
+					final Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.RoleGhant.toString());
 					panelContent.addComponent(createHeader2Label);
 					panelContent.setExpandRatio(createHeader2Label, 1);
 
@@ -331,15 +331,15 @@ public class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PageMode.PageVisitHistory.toString())) {
 
-					Label createHeader2Label = LabelFactory.createHeader2Label("Current Page Visit History");
+					final Label createHeader2Label = LabelFactory.createHeader2Label("Current Page Visit History");
 					panelContent.addComponent(createHeader2Label);
-					DCharts createApplicationActionEventPageElementDailySummaryChart = chartDataManager
+					final DCharts createApplicationActionEventPageElementDailySummaryChart = chartDataManager
 							.createApplicationActionEventPageElementDailySummaryChart(NAME, pageId);
 					panelContent.addComponent(createApplicationActionEventPageElementDailySummaryChart);
 
-					Label createHeader2Label2 = LabelFactory.createHeader2Label("General Page Mode Page Visit");
+					final Label createHeader2Label2 = LabelFactory.createHeader2Label("General Page Mode Page Visit");
 					panelContent.addComponent(createHeader2Label2);
-					DCharts createApplicationActionEventPageModeDailySummaryChart = chartDataManager
+					final DCharts createApplicationActionEventPageModeDailySummaryChart = chartDataManager
 							.createApplicationActionEventPageModeDailySummaryChart(NAME);
 					panelContent.addComponent(createApplicationActionEventPageModeDailySummaryChart);
 
@@ -385,7 +385,7 @@ public class PoliticianView extends AbstractPersonView {
 	 */
 	private void createOverviewContent(final VerticalLayout panelContent, final String pageId,
 			final PersonData personData) {
-		Label createHeader2Label = LabelFactory.createHeader2Label("overview");
+		final Label createHeader2Label = LabelFactory.createHeader2Label("overview");
 		panelContent.addComponent(createHeader2Label);
 
 		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
@@ -393,17 +393,17 @@ public class PoliticianView extends AbstractPersonView {
 
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = politicianDataContainer.load(personData.getId());
 
-		Link createPoliticianPageLink = pageLinkFactory.createPoliticianPageLink(personData);
+		final Link createPoliticianPageLink = pageLinkFactory.createPoliticianPageLink(personData);
 		panelContent.addComponent(createPoliticianPageLink);
 
-		Image image = new Image("", new ExternalResource(personData.getImageUrl192()));
+		final Image image = new Image("", new ExternalResource(personData.getImageUrl192()));
 
-		HorizontalLayout horizontalLayout = new HorizontalLayout();
+		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		horizontalLayout.setSizeFull();
 
 		panelContent.addComponent(horizontalLayout);
 
-		Panel formPanel = new Panel();
+		final Panel formPanel = new Panel();
 		formPanel.setSizeFull();
 
 		horizontalLayout.addComponent(formPanel);
@@ -422,7 +422,7 @@ public class PoliticianView extends AbstractPersonView {
 						"activeCommittee", "totalDaysServedCommittee", "activeParliament", "totalDaysServedParliament",
 						"activeParty", "totalDaysServedParty" }));
 
-		Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(
+		final Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(
 				new BeanItemContainer<>(DetailData.class, personData.getPersonDetailData().getDetailList()), "Detail",
 				new String[] { "detailType", "detail", "code" }, new String[] { "hjid", "intressentId" }, null, null,
 				null);
@@ -451,7 +451,7 @@ public class PoliticianView extends AbstractPersonView {
 	private void createRoleSummary(final VerticalLayout roleSummaryLayoutTabsheet, final List<AssignmentData> assignmentList,
 			final ViewRiksdagenPolitician viewRiksdagenPolitician) {
 
-		VerticalLayout layout = new VerticalLayout();
+		final VerticalLayout layout = new VerticalLayout();
 		layout.setSizeFull();
 
 		layout.addComponent(new Label("Total Assignments:" + assignmentList.size()));
@@ -493,7 +493,7 @@ public class PoliticianView extends AbstractPersonView {
 
 		Collections.sort(assignmentList, compare);
 
-		Grid createBasicBeanItemGrid = gridFactory
+		final Grid createBasicBeanItemGrid = gridFactory
 				.createBasicBeanItemGrid(new BeanItemContainer<>(AssignmentData.class, assignmentList), "Assignments",
 						new String[] { "roleCode", "assignmentType", "status", "detail", "orgCode", "fromDate",
 								"toDate" },
@@ -519,7 +519,7 @@ public class PoliticianView extends AbstractPersonView {
 
 		Collections.sort(assignmentList, compare);
 
-		Gantt createGantt = createGantt(assignmentList);
+		final Gantt createGantt = createGantt(assignmentList);
 		roleSummaryLayoutTabsheet.addComponent(createGantt);
 		roleSummaryLayoutTabsheet.setExpandRatio(createGantt, 10);
 

@@ -45,7 +45,7 @@ import com.hack23.cia.service.external.vdem.api.VdemService;
  * The Class VdemServiceImpl.
  */
 @Service
-public class VdemServiceImpl implements VdemService {
+public final class VdemServiceImpl implements VdemService {
 
 	/** The Constant VDEM_DATA_DOWNLOAD_URL. */
 	private static final String VDEM_DATA_DOWNLOAD_URL = "https://s3-eu-west-1.amazonaws.com/vdemdata/V-Dem-DS-CY-v5.csv";
@@ -54,26 +54,26 @@ public class VdemServiceImpl implements VdemService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(VdemServiceImpl.class);
 
 	/*
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.external.vdem.api.VdemService#getQuestions()
 	 */
 	@Override
 	public List<Question> getQuestions() {
 
-		List<Question> list = new ArrayList<>();
+		final List<Question> list = new ArrayList<>();
 		XSSFWorkbook myWorkBook;
 		try {
 			myWorkBook = new XSSFWorkbook(VdemServiceImpl.class.getResourceAsStream("/V-DemQuestionIDsv5(2016).xlsx"));
-			XSSFSheet mySheet = myWorkBook.getSheetAt(0);
-			Iterator<Row> rowIterator = mySheet.iterator();
+			final XSSFSheet mySheet = myWorkBook.getSheetAt(0);
+			final Iterator<Row> rowIterator = mySheet.iterator();
 
-			Row ignoreFirstRow = rowIterator.next();
+			final Row ignoreFirstRow = rowIterator.next();
 
 			while (rowIterator.hasNext()) {
-				Row row = rowIterator.next();
+				final Row row = rowIterator.next();
 
-				Question question = new Question();
+				final Question question = new Question();
 
 				if (row.getCell(0) == null) {
 					question.setTag(row.getCell(1).toString());
@@ -86,7 +86,7 @@ public class VdemServiceImpl implements VdemService {
 				list.add(question);
 			}
 
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			LOGGER.warn("Problem loading", e);
 		}
 
@@ -101,9 +101,9 @@ public class VdemServiceImpl implements VdemService {
 	 */
 	@Override
 	public List<CountryQuestionData> getCountryQuestionData() {
-		List<CountryQuestionData> list = new ArrayList<>();
+		final List<CountryQuestionData> list = new ArrayList<>();
 
-		List<Question> questions = getQuestions();
+		final List<Question> questions = getQuestions();
 
 		Reader in;
 		try {
@@ -112,29 +112,29 @@ public class VdemServiceImpl implements VdemService {
 			final CSVParser parser = new CSVParser(in, CSVFormat.EXCEL.withHeader().withDelimiter(','));
 
 			// Iterable<CSVRecord> records = CSVFormat.DEFAULT.parse(in);
-			for (CSVRecord record : parser) {
-				String countryName = record.get("country_name");
-				String countryId = record.get("country_id");
-				String countryTextId = record.get("country_text_id");
-				String year = record.get("year");
-				String gapStart = record.get("gapstart");
-				String gapEnd = record.get("gapend");
-				String codingEnd = record.get("codingend");
-				String cowCode = record.get("COWcode");
+			for (final CSVRecord record : parser) {
+				final String countryName = record.get("country_name");
+				final String countryId = record.get("country_id");
+				final String countryTextId = record.get("country_text_id");
+				final String year = record.get("year");
+				final String gapStart = record.get("gapstart");
+				final String gapEnd = record.get("gapend");
+				final String codingEnd = record.get("codingend");
+				final String cowCode = record.get("COWcode");
 
-				int currentSize = list.size();
+				final int currentSize = list.size();
 				LOGGER.info("Loading vdem data for country:{} year {} ",countryName,year);
 
-				for (Question question : questions) {
+				for (final Question question : questions) {
 					if (question.getQuestionId() != null) {
 
 						if (record.isMapped(question.getTag())) {
 
 							try {
-								String questionValue = record.get(question.getTag());
+								final String questionValue = record.get(question.getTag());
 								if (questionValue != null && questionValue.trim().length() > 0) {
-									CountryQuestionData countryQuestionData = new CountryQuestionData();
-									CountryQuestionDataEmbeddedId embeddedId = new CountryQuestionDataEmbeddedId();
+									final CountryQuestionData countryQuestionData = new CountryQuestionData();
+									final CountryQuestionDataEmbeddedId embeddedId = new CountryQuestionDataEmbeddedId();
 
 									embeddedId.setCountryName(countryName);
 									embeddedId.setCountryId(countryId);
@@ -153,19 +153,19 @@ public class VdemServiceImpl implements VdemService {
 
 									list.add(countryQuestionData);
 								}
-							} catch (Exception e) {
+							} catch (final Exception e) {
 								LOGGER.info("Missing value for:" + question.getTag());
 							}
 						}
 					}
 				}
 
-				int afterSize = list.size();
+				final int afterSize = list.size();
 				LOGGER.info("Found vdem data for country:{} year:{} data points:{}",countryName,year,afterSize -currentSize);
 
 			}
 
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			LOGGER.warn("Problem loading vdem data", e);
 		}
 

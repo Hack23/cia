@@ -44,7 +44,7 @@ public final class CountryQuestionDataDAOImpl extends AbstractGenericDAOImpl<Cou
 		super(CountryQuestionData.class);
 	}
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
@@ -55,7 +55,7 @@ public final class CountryQuestionDataDAOImpl extends AbstractGenericDAOImpl<Cou
 		return entityManager;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */
 	@Override

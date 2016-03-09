@@ -54,7 +54,7 @@ public final class ViewRiksdagenCommitteeDAOImpl
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
@@ -66,7 +66,7 @@ public final class ViewRiksdagenCommitteeDAOImpl
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.data.api.VoteDataDAO#getIdList()
 	 */
@@ -83,7 +83,7 @@ public final class ViewRiksdagenCommitteeDAOImpl
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */

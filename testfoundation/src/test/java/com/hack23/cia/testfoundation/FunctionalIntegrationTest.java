@@ -26,9 +26,9 @@ import org.junit.Test;
 /**
  * The Class FunctionalIntegrationTest.
  */
-public class FunctionalIntegrationTest extends AbstractFunctionalIntegrationTest {
+public final class FunctionalIntegrationTest extends AbstractFunctionalIntegrationTest {
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest#getDatabaseConnection()
 	 */
 	@Override

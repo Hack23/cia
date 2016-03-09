@@ -21,7 +21,7 @@ package com.hack23.cia.testfoundation;
 /**
  * The Class TestXml.
  */
-public class TestXml {
+public final class TestXml {
 
 	/** The content. */
 	private String content;

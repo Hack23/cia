@@ -63,7 +63,7 @@ public final class UpdateApplicationConfigurationService extends
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.impl.action.common.BusinessService#processService(

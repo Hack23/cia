@@ -32,7 +32,7 @@ import com.hack23.cia.service.data.api.VoteDataDAO;
  */
 @PerfTest(threads = 1, duration = 3000, warmUp = 1500)
 @Required(max = 1000,average = 500,percentile95=500,throughput=2)
-public class VoteDataDAOITest extends AbstractServiceDataFunctionalIntegrationTest {
+public final class VoteDataDAOITest extends AbstractServiceDataFunctionalIntegrationTest {
 
 	/** The i. */
 	@Rule

@@ -33,7 +33,7 @@ import weka.filters.unsupervised.attribute.StringToWordVector;
 /**
  * The Class WordCountTest.
  */
-public class WordCountTest {
+public final class WordCountTest {
 
 	/**
 	 * Word count test.

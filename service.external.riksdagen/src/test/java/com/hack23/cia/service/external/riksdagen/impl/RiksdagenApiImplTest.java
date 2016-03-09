@@ -40,7 +40,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
 /**
  * The Class RiksdagenApiImplTest.
  */
-public class RiksdagenApiImplTest extends
+public final class RiksdagenApiImplTest extends
 AbstractRiksdagenFunctionalIntegrationTest {
 
 	/** The riksdagen api. */

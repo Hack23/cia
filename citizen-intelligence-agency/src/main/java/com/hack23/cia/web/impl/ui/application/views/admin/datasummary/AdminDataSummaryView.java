@@ -49,7 +49,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value="prototype")
 @VaadinView(AdminDataSummaryView.NAME)
-public class AdminDataSummaryView extends AbstractAdminView {
+public final class AdminDataSummaryView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -81,12 +81,12 @@ public class AdminDataSummaryView extends AbstractAdminView {
 
 	private void createContent() {
 		content.removeAllComponents();
-		Label createHeader2Label = LabelFactory.createHeader2Label("Admin Data Summary");
+		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Data Summary");
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, 1);
 
 
-		Table createDataSummaryTable = tableFactory.createDataSummaryTable();
+		final Table createDataSummaryTable = tableFactory.createDataSummaryTable();
 		content.addComponent(createDataSummaryTable);
 		content.setExpandRatio(createDataSummaryTable, 15);
 
@@ -126,7 +126,7 @@ public class AdminDataSummaryView extends AbstractAdminView {
 		content.setExpandRatio(updateSearchIndexButton, 1);
 
 
-	 	Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
+	 	final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 		content.addComponent(createMainViewPageLink);
 		content.setExpandRatio(createMainViewPageLink,1);
 
@@ -137,7 +137,7 @@ public class AdminDataSummaryView extends AbstractAdminView {
 		setHeight(100, Unit.PERCENTAGE);
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener.ViewChangeEvent)
 	 */
 	@Override

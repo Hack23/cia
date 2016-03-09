@@ -34,7 +34,7 @@ import com.hack23.cia.service.component.agent.api.DataAgentApi;
 /**
  * The Class DataAgentApiITest.
  */
-public class DataAgentApiITest extends AbstractServiceComponentAgentFunctionalIntegrationTest {
+public final class DataAgentApiITest extends AbstractServiceComponentAgentFunctionalIntegrationTest {
 
 	/** The data agent api. */
 	@Autowired

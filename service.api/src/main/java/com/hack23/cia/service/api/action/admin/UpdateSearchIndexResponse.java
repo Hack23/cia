@@ -36,7 +36,7 @@ public final class UpdateSearchIndexResponse extends AbstractResponse {
 	 * @param result
 	 *            the result
 	 */
-	public UpdateSearchIndexResponse(ServiceResult result) {
+	public UpdateSearchIndexResponse(final ServiceResult result) {
 		super(result);
 	}
 

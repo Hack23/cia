@@ -58,7 +58,7 @@ public final class RegisterUserResponse extends AbstractResponse {
 	 * @param userAccount
 	 *            the new user account
 	 */
-	public void setUserAccount(UserAccount userAccount) {
+	public void setUserAccount(final UserAccount userAccount) {
 		this.userAccount = userAccount;
 	}
 

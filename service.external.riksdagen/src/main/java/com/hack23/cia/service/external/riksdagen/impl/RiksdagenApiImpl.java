@@ -337,7 +337,7 @@ RiksdagenApi {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.component.agent.impl.riksdagen.api.RiksdagenApi
@@ -394,7 +394,7 @@ RiksdagenApi {
 
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenApi#getBallotList()
 	 */
 	@Override
@@ -414,7 +414,7 @@ RiksdagenApi {
 
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.component.agent.impl.riksdagen.api.RiksdagenApi
@@ -435,7 +435,7 @@ RiksdagenApi {
 	}
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenApi#getDocumentContent(java.lang.String)
 	 */
 	@Override
@@ -456,7 +456,7 @@ RiksdagenApi {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.external.riksdagen.api.RiksdagenApi#getDocumentList
@@ -476,7 +476,7 @@ RiksdagenApi {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.external.riksdagen.api.RiksdagenApi#getDocumentList
@@ -497,7 +497,7 @@ RiksdagenApi {
 
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.external.riksdagen.api.RiksdagenApi#getDocumentList
@@ -517,7 +517,7 @@ RiksdagenApi {
 
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.component.agent.impl.riksdagen.api.RiksdagenApi
@@ -539,7 +539,7 @@ RiksdagenApi {
 
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.component.agent.impl.riksdagen.api.RiksdagenApi
@@ -559,7 +559,7 @@ RiksdagenApi {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.component.agent.impl.riksdagen.api.RiksdagenApi
@@ -672,7 +672,7 @@ RiksdagenApi {
 	}
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenApi#processDocumentList(java.lang.String, com.hack23.cia.service.external.common.api.ProcessDataStrategy)
 	 */
 	@Override

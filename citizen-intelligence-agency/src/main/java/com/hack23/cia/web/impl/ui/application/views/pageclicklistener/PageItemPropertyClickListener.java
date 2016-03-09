@@ -53,7 +53,7 @@ public final class PageItemPropertyClickListener extends AbstractPageItemRendere
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.
 	 * AbstractPageItemRendererClickListener#getPageId(java.lang.Object)

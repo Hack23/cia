@@ -36,7 +36,7 @@ import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 /**
  * The Class RefreshDataViewsServiceITest.
  */
-public class RefreshDataViewsServiceITest extends AbstractServiceFunctionalIntegrationTest {
+public final class RefreshDataViewsServiceITest extends AbstractServiceFunctionalIntegrationTest {
 
 	/** The application manager. */
 	@Autowired
@@ -61,7 +61,7 @@ public class RefreshDataViewsServiceITest extends AbstractServiceFunctionalInteg
 
 		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
 
-		RefreshDataViewsRequest serviceRequest = new RefreshDataViewsRequest();
+		final RefreshDataViewsRequest serviceRequest = new RefreshDataViewsRequest();
 		serviceRequest.setSessionId(createSessionRequest.getSessionId());
 
 		final RefreshDataViewsResponse  response = (RefreshDataViewsResponse) applicationManager.service(new RefreshDataViewsRequest());

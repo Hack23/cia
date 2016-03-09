@@ -36,7 +36,7 @@ public final class UpdateApplicationConfigurationResponse extends AbstractRespon
 	 * @param result
 	 *            the result
 	 */
-	public UpdateApplicationConfigurationResponse(ServiceResult result) {
+	public UpdateApplicationConfigurationResponse(final ServiceResult result) {
 		super(result);
 	}
 

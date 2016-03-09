@@ -50,7 +50,7 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 	private AgencyDAO agencyDAO;
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.api.ConfigurationManager#getConfiguration()
 	 */
@@ -61,7 +61,7 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.api.ConfigurationManager#getUserConfiguration(
@@ -84,7 +84,7 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 		return new UserConfigurationImpl(agency, usePortal);
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.api.ConfigurationManager#createDefaultConfigIfEmpty()
 	 */
 	@Override

@@ -36,7 +36,7 @@ public final class RefreshDataViewsResponse extends AbstractResponse {
 	 * @param result
 	 *            the result
 	 */
-	public RefreshDataViewsResponse(ServiceResult result) {
+	public RefreshDataViewsResponse(final ServiceResult result) {
 		super(result);
 	}
 

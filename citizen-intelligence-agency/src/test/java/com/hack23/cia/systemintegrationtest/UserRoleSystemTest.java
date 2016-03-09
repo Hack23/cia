@@ -62,7 +62,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
  */
 @RunWith(Parallelized.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class UserRoleSystemTest extends AbstractSystemIntegrationTest {
+public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 	/** The test server. */
 	private static CitizenIntelligenceAgencyServer testServer;

@@ -52,7 +52,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value="prototype")
 @VaadinView(value = CommitteeRankingView.NAME, cached = true)
-public class CommitteeRankingView extends AbstractRankingView {
+public final class CommitteeRankingView extends AbstractRankingView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -91,7 +91,7 @@ public class CommitteeRankingView extends AbstractRankingView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
 	 * AbstractRankingView#createMenuBar()
@@ -102,7 +102,7 @@ public class CommitteeRankingView extends AbstractRankingView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
 	 * AbstractRankingView #createDescription()
@@ -124,7 +124,7 @@ public class CommitteeRankingView extends AbstractRankingView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
 	 * AbstractRankingView#createExtraChartLayout()
@@ -151,7 +151,7 @@ public class CommitteeRankingView extends AbstractRankingView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
 	 * AbstractRankingView#createTable()
@@ -174,7 +174,7 @@ public class CommitteeRankingView extends AbstractRankingView {
 				new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, "embeddedId.orgCode"), null);
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
 	 */
 	@Override
@@ -182,7 +182,7 @@ public class CommitteeRankingView extends AbstractRankingView {
 		return dataSeriesFactory.createCommitteeChartTimeSeriesAll();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
 	 */
 	@Override
@@ -190,7 +190,7 @@ public class CommitteeRankingView extends AbstractRankingView {
 		return dataSeriesFactory.createCommitteeChartTimeSeriesCurrent();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getName()
 	 */
 	@Override
@@ -198,7 +198,7 @@ public class CommitteeRankingView extends AbstractRankingView {
 		return NAME;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getViewAction()
 	 */
 	@Override

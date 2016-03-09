@@ -53,7 +53,7 @@ DocumentStatusContainerDAO {
 		super(DocumentStatusContainer.class);
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DocumentStatusContainerDAO#checkExistByDocumentId(java.lang.String)
 	 */
 	@Override
@@ -71,7 +71,7 @@ DocumentStatusContainerDAO {
 		return typedQuery.getResultList().size();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DocumentStatusContainerDAO#getAvaibleCommitteeProposal()
 	 */
 	@Override
@@ -85,7 +85,7 @@ DocumentStatusContainerDAO {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
@@ -96,7 +96,7 @@ DocumentStatusContainerDAO {
 		return entityManager;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DocumentStatusContainerDAO#getIdList()
 	 */
 	@Override
@@ -107,7 +107,7 @@ DocumentStatusContainerDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */
 	@Override

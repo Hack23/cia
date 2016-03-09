@@ -54,7 +54,7 @@ import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
  */
 @PerfTest(threads = 10, duration = 3000, warmUp = 1500)
 @Required(max = 200, average = 10, percentile95 = 15, throughput = 50000)
-public class ApplicationManagerITest extends AbstractServiceFunctionalIntegrationTest {
+public final class ApplicationManagerITest extends AbstractServiceFunctionalIntegrationTest {
 
 	/** The i. */
 	@Rule

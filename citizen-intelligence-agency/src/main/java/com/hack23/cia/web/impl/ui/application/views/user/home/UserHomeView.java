@@ -70,7 +70,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value="prototype",proxyMode = ScopedProxyMode.INTERFACES)
 @VaadinView(value = UserHomeView.NAME, cached = true)
-public class UserHomeView extends AbstractUserView {
+public final class UserHomeView extends AbstractUserView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -109,7 +109,7 @@ public class UserHomeView extends AbstractUserView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener
@@ -134,7 +134,7 @@ public class UserHomeView extends AbstractUserView {
 			if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 					|| parameters.contains(PageMode.Overview.toString())) {
 
-				Label createHeader2Label = LabelFactory.createHeader2Label("Overview");
+				final Label createHeader2Label = LabelFactory.createHeader2Label("Overview");
 				panelContent.addComponent(createHeader2Label);
 
 				final Button logoutButton = new Button("Logout");
@@ -152,7 +152,7 @@ public class UserHomeView extends AbstractUserView {
 					final UserAccount userAccount = dataContainer.load(getUserIdFromSecurityContext());
 
 
-					Panel formPanel = new Panel();
+					final Panel formPanel = new Panel();
 					formPanel.setSizeFull();
 
 					panelContent.addComponent(formPanel);
@@ -173,7 +173,7 @@ public class UserHomeView extends AbstractUserView {
 					final BeanItemContainer<ApplicationActionEvent> politicianDocumentDataSource = new BeanItemContainer<>(ApplicationActionEvent.class,
 							eventDataContainer.findOrderedListByProperty(ApplicationActionEvent_.userId,userAccount.getUserId(),ApplicationActionEvent_.createdDate));
 
-					Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationActionEvent",
+					final Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationActionEvent",
 							new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" },
 							new String[] { "modelObjectId" }, "hjid",
 							new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null);

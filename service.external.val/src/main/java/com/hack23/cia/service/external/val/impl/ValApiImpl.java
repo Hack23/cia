@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -77,7 +77,7 @@ public final class ValApiImpl implements ValApi {
 	@Qualifier("valKommunMarshaller")
 	private Unmarshaller valKommunMarshaller;
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.hack23.cia.service.external.val.api.ValApi#getElectionTypes()
 	 */
 	@Override
@@ -92,7 +92,7 @@ public final class ValApiImpl implements ValApi {
 						null, null)).getValue().getElectionTypes();
 	}
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.hack23.cia.service.external.val.api.ValApi#getParliamentElectoralRegions()
 	 */
 	@Override
@@ -109,7 +109,7 @@ public final class ValApiImpl implements ValApi {
 						null, null)).getValue().getParliamentElectoralRegions();
 	}
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.hack23.cia.service.external.val.api.ValApi#getCountyElectoralRegions()
 	 */
 	@Override
@@ -126,7 +126,7 @@ public final class ValApiImpl implements ValApi {
 						null, null)).getValue().getCountyElectoralRegions();
 	}
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.hack23.cia.service.external.val.api.ValApi#getCountyRegions()
 	 */
 	@Override
@@ -140,7 +140,7 @@ public final class ValApiImpl implements ValApi {
 				null, null)).getValue().getCountyRegions();
 	}
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.hack23.cia.service.external.val.api.ValApi#getSwedenElectionRegion()
 	 */
 	@Override
@@ -162,7 +162,7 @@ public final class ValApiImpl implements ValApi {
 
 	}
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.hack23.cia.service.external.val.api.ValApi#getSwedenPoliticalParties()
 	 */
 	@Override

@@ -48,7 +48,7 @@ public final class ValImportServiceImpl implements ValImportService {
 	private ValApi valApi;
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.component.agent.impl.val.ValImportService#loadPoliticalParties()
 	 */
 	@Override

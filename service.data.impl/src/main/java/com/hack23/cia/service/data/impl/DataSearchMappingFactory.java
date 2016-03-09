@@ -46,7 +46,7 @@ public final class DataSearchMappingFactory {
 	 */
 	@Factory
 	public SearchMapping getSearchMapping() {
-		SearchMapping mapping = new SearchMapping();
+		final SearchMapping mapping = new SearchMapping();
 		mapping.analyzerDef("ngram", StandardTokenizerFactory.class).filter(LowerCaseFilterFactory.class)
 				.filter(NGramFilterFactory.class).param("minGramSize", "3").param("maxGramSize", "3")
 				.analyzerDef("se", StandardTokenizerFactory.class).filter(LowerCaseFilterFactory.class)

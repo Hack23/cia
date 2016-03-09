@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlRootElement( namespace = "com.hack23.cia.service.external.common.impl")
 @XmlType(propOrder = { "description"})
-public class SimpleXml {
+public final class SimpleXml {
 
 	/** The description. */
 	private String description;
@@ -67,7 +67,7 @@ public class SimpleXml {
         this.description = description;
     }
 
-    /** (non-Javadoc)
+    /** {@inheritDoc}
      * @see java.lang.Object#hashCode()
      */
     @Override
@@ -78,7 +78,7 @@ public class SimpleXml {
 				+ ((description == null) ? 0 : description.hashCode());
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

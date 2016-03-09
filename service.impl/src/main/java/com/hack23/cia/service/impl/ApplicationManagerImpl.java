@@ -101,7 +101,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.api.ApplicationManager#authenticate(java.lang.
@@ -121,7 +121,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.api.ApplicationManager#getAgentContainer(java.
@@ -134,7 +134,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.api.ApplicationManager#getDataContainer(java.io
@@ -161,7 +161,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.api.ApplicationManager#logout()
 	 */
@@ -172,7 +172,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.ApplicationManager#service(com.hack23.cia.service
@@ -195,7 +195,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 		return serviceResponse;
 	}
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.hack23.cia.service.api.ApplicationManager#asyncService(com.hack23.cia.service.api.action.common.ServiceRequest)
 	 */
 	@Override
@@ -235,7 +235,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 		}
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see org.springframework.context.ApplicationContextAware#setApplicationContext(org.springframework.context.ApplicationContext)
 	 */
 	@Override

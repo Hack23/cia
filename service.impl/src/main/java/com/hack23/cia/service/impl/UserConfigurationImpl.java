@@ -47,7 +47,7 @@ public final class UserConfigurationImpl implements UserConfiguration {
 		this.portal = portal;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.api.UserConfiguration#getAgency()
 	 */
 	@Override
@@ -55,7 +55,7 @@ public final class UserConfigurationImpl implements UserConfiguration {
 		return agency;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.api.UserConfiguration#getPortal()
 	 */
 	@Override

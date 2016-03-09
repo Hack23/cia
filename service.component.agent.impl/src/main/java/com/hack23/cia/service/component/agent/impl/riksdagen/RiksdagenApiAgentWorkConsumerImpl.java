@@ -100,7 +100,7 @@ public final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 	private Destination voteDataWorkdestination;
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see javax.jms.MessageListener#onMessage(javax.jms.Message)
 	 */
@@ -336,7 +336,7 @@ public final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 				.getDocumentElementMap();
 
 		/**
-		 * (non-Javadoc)
+		 * {@inheritDoc}
 		 *
 		 * @see
 		 * com.hack23.cia.service.external.common.api.ProcessDataStrategy#process

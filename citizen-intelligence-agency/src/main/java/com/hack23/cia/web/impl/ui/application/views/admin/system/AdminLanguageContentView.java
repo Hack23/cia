@@ -54,7 +54,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value="prototype")
 @VaadinView(AdminLanguageContentView.NAME)
-public class AdminLanguageContentView extends AbstractAdminView {
+public final class AdminLanguageContentView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -84,7 +84,7 @@ public class AdminLanguageContentView extends AbstractAdminView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener.
@@ -109,7 +109,7 @@ public class AdminLanguageContentView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		final VerticalLayout content = new VerticalLayout();
 
-		Label createHeader2Label = LabelFactory.createHeader2Label("Admin Language Content");
+		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Language Content");
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, 1);
 
@@ -119,7 +119,7 @@ public class AdminLanguageContentView extends AbstractAdminView {
 		final BeanItemContainer<LanguageContentData> politicianDocumentDataSource = new BeanItemContainer<>(LanguageContentData.class,
 				dataContainer.getAll());
 
-		Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "LanguageContentData",
+		final Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "LanguageContentData",
 				new String[] { "hjid", "languageContentType","refKey","fromLanguage", "toLanguage", "createdDate", "languageValue","modelObjectVersion" },
 				new String[] { "modelObjectId" }, "hjid",
 				new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, "hjid"), null);
@@ -139,7 +139,7 @@ public class AdminLanguageContentView extends AbstractAdminView {
 			}
 		}
 
-	 	Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
+	 	final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 		content.addComponent(createMainViewPageLink);
 		content.setExpandRatio(createMainViewPageLink,1);
 

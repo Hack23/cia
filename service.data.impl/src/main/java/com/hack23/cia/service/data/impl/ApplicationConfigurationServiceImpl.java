@@ -37,14 +37,14 @@ import com.hack23.cia.service.data.api.ApplicationConfigurationService;
  */
 @Service
 @Transactional(propagation=Propagation.REQUIRES_NEW)
-public class ApplicationConfigurationServiceImpl implements ApplicationConfigurationService {
+public final class ApplicationConfigurationServiceImpl implements ApplicationConfigurationService {
 
 
 	/** The application configuration dao. */
 	@Autowired
 	private ApplicationConfigurationDAO applicationConfigurationDAO;
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.ApplicationConfigurationService#checkValueOrLoadDefault(java.lang.String, java.lang.String, com.hack23.cia.model.internal.application.system.impl.ConfigurationGroup, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override

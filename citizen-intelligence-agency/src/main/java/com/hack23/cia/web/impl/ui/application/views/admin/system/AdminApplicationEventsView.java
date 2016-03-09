@@ -59,7 +59,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value="prototype")
 @VaadinView(AdminApplicationEventsView.NAME)
-public class AdminApplicationEventsView extends AbstractAdminView {
+public final class AdminApplicationEventsView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -93,7 +93,7 @@ public class AdminApplicationEventsView extends AbstractAdminView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener.
@@ -118,7 +118,7 @@ public class AdminApplicationEventsView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		final VerticalLayout content = new VerticalLayout();
 
-		Label createHeader2Label = LabelFactory.createHeader2Label("Admin Application Action Event");
+		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Application Action Event");
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, 1);
 
@@ -127,7 +127,7 @@ public class AdminApplicationEventsView extends AbstractAdminView {
 		final BeanItemContainer<ApplicationActionEvent> politicianDocumentDataSource = new BeanItemContainer<>(ApplicationActionEvent.class,
 				dataContainer.getAllOrderBy(ApplicationActionEvent_.createdDate));
 
-		Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationActionEvent",
+		final Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationActionEvent",
 				new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" },
 				new String[] { "modelObjectId" }, "hjid",
 				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null);
@@ -140,7 +140,7 @@ public class AdminApplicationEventsView extends AbstractAdminView {
 
 			if ( applicationActionEvent != null) {
 
-				 Panel formPanel = new Panel();
+				 final Panel formPanel = new Panel();
 				 formPanel.setSizeFull();
 
 				final FormLayout formContent = new FormLayout();
@@ -156,7 +156,7 @@ public class AdminApplicationEventsView extends AbstractAdminView {
 
 
 		} else {
-			DCharts createApplicationActionEventPageDailySummaryChart = chartDataManager.createApplicationActionEventPageDailySummaryChart();
+			final DCharts createApplicationActionEventPageDailySummaryChart = chartDataManager.createApplicationActionEventPageDailySummaryChart();
 
 
 			content.addComponent(createApplicationActionEventPageDailySummaryChart);
@@ -165,7 +165,7 @@ public class AdminApplicationEventsView extends AbstractAdminView {
 
 		}
 
-	 	Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
+	 	final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 		content.addComponent(createMainViewPageLink);
 		content.setExpandRatio(createMainViewPageLink,1);
 

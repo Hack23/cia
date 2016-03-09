@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -34,7 +34,7 @@ public final class CreateApplicationEventResponse extends AbstractResponse {
 	 * @param result
 	 *            the result
 	 */
-	public CreateApplicationEventResponse(ServiceResult result) {
+	public CreateApplicationEventResponse(final ServiceResult result) {
 		super(result);
 	}
 

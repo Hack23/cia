@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -133,7 +133,7 @@ public final class WorldbankApiImpl implements WorldBankApi {
 	private Unmarshaller topicsUnmarshaller;
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.component.agent.impl.worldbank.api.WorlbankApi#getCountries()
 	 */
 	@Override
@@ -146,7 +146,7 @@ public final class WorldbankApiImpl implements WorldBankApi {
 		}
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.component.agent.impl.worldbank.api.WorlbankApi#getData(java.lang.String, java.lang.String)
 	 */
 	@Override
@@ -160,7 +160,7 @@ public final class WorldbankApiImpl implements WorldBankApi {
 		}
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.component.agent.impl.worldbank.api.WorlbankApi#getIndicators()
 	 */
 	@Override
@@ -173,7 +173,7 @@ public final class WorldbankApiImpl implements WorldBankApi {
 		}
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.external.worldbank.api.WorldBankApi#getTopics()
 	 */
 	@Override

@@ -62,7 +62,7 @@ public final class RefreshDataViewsService extends
 	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
 	 */
 	@Override

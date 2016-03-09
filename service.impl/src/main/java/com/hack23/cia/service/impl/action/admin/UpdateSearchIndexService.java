@@ -68,7 +68,7 @@ public final class UpdateSearchIndexService extends
 	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
 	 */
 	@Override
@@ -95,7 +95,7 @@ public final class UpdateSearchIndexService extends
 		final UpdateSearchIndexResponse response = new UpdateSearchIndexResponse(ServiceResult.SUCCESS);
 		try {
 			searchIndexer.updateSearchIndex();
-		} catch (InterruptedException e) {
+		} catch (final InterruptedException e) {
 			LOGGER.warn("Update Index failed",e);
 		}
 

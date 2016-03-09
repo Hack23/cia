@@ -34,7 +34,7 @@ public final class DestroyApplicationSessionResponse extends AbstractResponse {
 	 * @param result
 	 *            the result
 	 */
-	public DestroyApplicationSessionResponse(ServiceResult result) {
+	public DestroyApplicationSessionResponse(final ServiceResult result) {
 		super(result);
 	}
 

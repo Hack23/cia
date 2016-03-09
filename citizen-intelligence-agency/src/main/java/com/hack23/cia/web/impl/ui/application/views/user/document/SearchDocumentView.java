@@ -55,7 +55,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value = "prototype")
 @VaadinView(value = SearchDocumentView.NAME, cached = true)
-public class SearchDocumentView extends AbstractUserView {
+public final class SearchDocumentView extends AbstractUserView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -86,7 +86,7 @@ public class SearchDocumentView extends AbstractUserView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener
 	 *      .ViewChangeEvent)
@@ -121,10 +121,10 @@ public class SearchDocumentView extends AbstractUserView {
 		searchRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 		searchRequest.setMaxResults(100);
 		searchRequest.setSearchExpression("");
-		SearchDocumentResponseHandler handler = new SearchDocumentResponseHandler() {
+		final SearchDocumentResponseHandler handler = new SearchDocumentResponseHandler() {
 
 			@Override
-			public void handle(SearchDocumentResponse response) {
+			public void handle(final SearchDocumentResponse response) {
 				searchresultLayout.removeAllComponents();
 
 				final BeanItemContainer<DocumentElement> documentActivityDataDataDataSource = new BeanItemContainer<>(

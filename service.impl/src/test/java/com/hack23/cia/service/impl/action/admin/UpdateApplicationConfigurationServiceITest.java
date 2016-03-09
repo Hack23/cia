@@ -40,7 +40,7 @@ import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 /**
  * The Class UpdateApplicationConfigurationServiceITest.
  */
-public class UpdateApplicationConfigurationServiceITest extends AbstractServiceFunctionalIntegrationTest {
+public final class UpdateApplicationConfigurationServiceITest extends AbstractServiceFunctionalIntegrationTest {
 
 	/** The application configuration service. */
 	@Autowired

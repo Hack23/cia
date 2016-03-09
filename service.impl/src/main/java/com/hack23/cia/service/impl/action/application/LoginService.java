@@ -81,7 +81,7 @@ public final class LoginService extends
 		super(LoginRequest.class);
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
 	 */
 	@Override

@@ -43,7 +43,7 @@ public final class ApplicationConfigurationDAOImpl extends AbstractGenericDAOImp
 		super(ApplicationConfiguration.class);
 	}
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
@@ -54,7 +54,7 @@ public final class ApplicationConfigurationDAOImpl extends AbstractGenericDAOImp
 		return entityManager;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */
 	@Override

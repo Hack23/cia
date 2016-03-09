@@ -32,13 +32,13 @@ import com.hack23.cia.service.data.api.ViewDataManager;
  */
 @Service
 @Transactional
-public class ViewDataManagerImpl implements ViewDataManager {
+public final class ViewDataManagerImpl implements ViewDataManager {
 
 	/** The data source. */
 	@Autowired
 	private DataSource dataSource;
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.ViewDataManager#refreshViews()
 	 */
 	@Override

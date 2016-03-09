@@ -69,7 +69,7 @@ public final class LogoutService extends AbstractBusinessServiceImpl<LogoutReque
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.impl.action.common.BusinessService#processService(

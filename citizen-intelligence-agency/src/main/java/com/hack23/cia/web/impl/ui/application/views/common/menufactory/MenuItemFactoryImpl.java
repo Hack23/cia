@@ -166,7 +166,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory#createMainPageMenuBar()
 	 */
 	@Override
@@ -398,7 +398,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory#createTestTopicMenu(com.vaadin.ui.MenuBar)
 	 */
 	@Override
@@ -484,7 +484,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory#createPoliticianMenuBar(com.vaadin.ui.MenuBar, java.lang.String)
 	 */
 	@Override
@@ -530,7 +530,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory#createPoliticianRankingMenuBar(com.vaadin.ui.MenuBar)
 	 */
 	@Override
@@ -540,7 +540,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 		createPoliticianRankingTopics(menuBar.addItem("Politician Ranking", null,null));
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory#createPartyMenuBar(com.vaadin.ui.MenuBar, java.lang.String)
 	 */
 	@Override
@@ -600,7 +600,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory#createPartyRankingMenuBar(com.vaadin.ui.MenuBar)
 	 */
 	@Override
@@ -610,7 +610,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 		createPartyRankingTopics(menuBar.addItem("Party Ranking", null,null));
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory#createDocumentMenuBar(com.vaadin.ui.MenuBar, java.lang.String)
 	 */
 	@Override
@@ -649,7 +649,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory#createCommitteeeMenuBar(com.vaadin.ui.MenuBar, java.lang.String)
 	 */
 	@Override
@@ -698,7 +698,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory#createCommitteeeRankingMenuBar(com.vaadin.ui.MenuBar)
 	 */
 	@Override
@@ -708,7 +708,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 			createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, null,null));
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory#createMinistryMenuBar(com.vaadin.ui.MenuBar, java.lang.String)
 	 */
 	@Override
@@ -747,7 +747,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory#createMinistryRankingMenuBar(com.vaadin.ui.MenuBar)
 	 */
 	@Override
@@ -759,7 +759,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 	}
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory#createUserHomeMenuBar(com.vaadin.ui.MenuBar, java.lang.String)
 	 */
 	@Override

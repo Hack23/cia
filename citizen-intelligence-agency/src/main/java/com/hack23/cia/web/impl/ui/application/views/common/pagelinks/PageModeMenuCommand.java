@@ -111,7 +111,7 @@ public final class PageModeMenuCommand implements Command {
 		}
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.vaadin.ui.MenuBar.Command#menuSelected(com.vaadin.ui.MenuBar.MenuItem)
 	 */
 	@Override

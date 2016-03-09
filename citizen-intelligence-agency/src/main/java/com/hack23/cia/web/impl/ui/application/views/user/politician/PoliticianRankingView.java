@@ -49,7 +49,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value="prototype")
 @VaadinView(value = PoliticianRankingView.NAME, cached = true)
-public class PoliticianRankingView extends AbstractRankingView {
+public final class PoliticianRankingView extends AbstractRankingView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -87,7 +87,7 @@ public class PoliticianRankingView extends AbstractRankingView {
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createMenuBar()
 	 */
 	@Override
@@ -97,7 +97,7 @@ public class PoliticianRankingView extends AbstractRankingView {
 
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView
@@ -123,7 +123,7 @@ public class PoliticianRankingView extends AbstractRankingView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView
@@ -167,7 +167,7 @@ public class PoliticianRankingView extends AbstractRankingView {
 		new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
 	 */
 	@Override
@@ -175,7 +175,7 @@ public class PoliticianRankingView extends AbstractRankingView {
 		return dataSeriesFactory.createPartyChartTimeSeriesAll();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
 	 */
 	@Override
@@ -183,7 +183,7 @@ public class PoliticianRankingView extends AbstractRankingView {
 		return dataSeriesFactory.createPartyChartTimeSeriesCurrent();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getName()
 	 */
 	@Override
@@ -191,7 +191,7 @@ public class PoliticianRankingView extends AbstractRankingView {
 		return NAME;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getViewAction()
 	 */
 	@Override

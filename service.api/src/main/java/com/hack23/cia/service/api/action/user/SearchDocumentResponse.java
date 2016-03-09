@@ -61,7 +61,7 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	}
 
 
-	public void setResultElement(List<DocumentElement> resultElement) {
+	public void setResultElement(final List<DocumentElement> resultElement) {
 		this.resultElement = resultElement;
 	}
 
@@ -71,7 +71,7 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	}
 
 
-	public void setStatusMap(Map<String, DocumentStatusContainer> statusMap) {
+	public void setStatusMap(final Map<String, DocumentStatusContainer> statusMap) {
 		this.statusMap = statusMap;
 	}
 
@@ -81,7 +81,7 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	}
 
 
-	public void setDataMap(Map<String, DocumentContentData> dataMap) {
+	public void setDataMap(final Map<String, DocumentContentData> dataMap) {
 		this.dataMap = dataMap;
 	}
 

@@ -43,7 +43,7 @@ public abstract class AbstractVdemFunctionalIntegrationTest extends AbstractFunc
 		super();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest#getDatabaseConnection()
 	 */
 	@Override

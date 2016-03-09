@@ -82,7 +82,7 @@ public final class XmlAgentImpl implements XmlAgent {
 		return result.toString();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.external.common.api.XmlAgent#retriveContent(java.lang.String)
 	 */
 	@Override
@@ -115,7 +115,7 @@ public final class XmlAgentImpl implements XmlAgent {
 	}
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.external.common.api.XmlAgent#unmarshallXml(org.springframework.oxm.Unmarshaller, java.lang.String)
 	 */
 	@Override
@@ -123,7 +123,7 @@ public final class XmlAgentImpl implements XmlAgent {
 		return unmarshallXml(unmarshaller, accessUrl,null,null,null);
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.external.common.api.XmlAgent#unmarshallXml(org.springframework.oxm.Unmarshaller, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override

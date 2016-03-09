@@ -25,7 +25,7 @@ import com.hack23.cia.service.api.action.common.ServiceRequest;
 /**
  * The Class CreateApplicationEventRequest.
  */
-public class CreateApplicationEventRequest implements ServiceRequest {
+public final class CreateApplicationEventRequest implements ServiceRequest {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -76,7 +76,7 @@ public class CreateApplicationEventRequest implements ServiceRequest {
 	 * @param eventGroup
 	 *            the new event group
 	 */
-	public void setEventGroup(ApplicationEventGroup eventGroup) {
+	public void setEventGroup(final ApplicationEventGroup eventGroup) {
 		this.eventGroup = eventGroup;
 	}
 
@@ -95,7 +95,7 @@ public class CreateApplicationEventRequest implements ServiceRequest {
 	 * @param applicationOperation
 	 *            the new application operation
 	 */
-	public void setApplicationOperation(ApplicationOperationType applicationOperation) {
+	public void setApplicationOperation(final ApplicationOperationType applicationOperation) {
 		this.applicationOperation = applicationOperation;
 	}
 
@@ -114,7 +114,7 @@ public class CreateApplicationEventRequest implements ServiceRequest {
 	 * @param sessionId
 	 *            the new session id
 	 */
-	public void setSessionId(String sessionId) {
+	public void setSessionId(final String sessionId) {
 		this.sessionId = sessionId;
 	}
 
@@ -133,7 +133,7 @@ public class CreateApplicationEventRequest implements ServiceRequest {
 	 * @param page
 	 *            the new page
 	 */
-	public void setPage(String page) {
+	public void setPage(final String page) {
 		this.page = page;
 	}
 
@@ -152,7 +152,7 @@ public class CreateApplicationEventRequest implements ServiceRequest {
 	 * @param pageMode
 	 *            the new page mode
 	 */
-	public void setPageMode(String pageMode) {
+	public void setPageMode(final String pageMode) {
 		this.pageMode = pageMode;
 	}
 
@@ -171,7 +171,7 @@ public class CreateApplicationEventRequest implements ServiceRequest {
 	 * @param elementId
 	 *            the new element id
 	 */
-	public void setElementId(String elementId) {
+	public void setElementId(final String elementId) {
 		this.elementId = elementId;
 	}
 
@@ -190,7 +190,7 @@ public class CreateApplicationEventRequest implements ServiceRequest {
 	 * @param actionName
 	 *            the new action name
 	 */
-	public void setActionName(String actionName) {
+	public void setActionName(final String actionName) {
 		this.actionName = actionName;
 	}
 
@@ -209,7 +209,7 @@ public class CreateApplicationEventRequest implements ServiceRequest {
 	 * @param userId
 	 *            the new user id
 	 */
-	public void setUserId(String userId) {
+	public void setUserId(final String userId) {
 		this.userId = userId;
 	}
 
@@ -228,7 +228,7 @@ public class CreateApplicationEventRequest implements ServiceRequest {
 	 * @param errorMessage
 	 *            the new error message
 	 */
-	public void setErrorMessage(String errorMessage) {
+	public void setErrorMessage(final String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
 
@@ -247,7 +247,7 @@ public class CreateApplicationEventRequest implements ServiceRequest {
 	 * @param applicationMessage
 	 *            the new application message
 	 */
-	public void setApplicationMessage(String applicationMessage) {
+	public void setApplicationMessage(final String applicationMessage) {
 		this.applicationMessage = applicationMessage;
 	}
 

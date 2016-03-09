@@ -20,8 +20,6 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.List;
 
-import javax.persistence.metamodel.SingularAttribute;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -42,7 +40,7 @@ import com.hack23.cia.service.data.api.DataViewer;
  */
 // @PerfTest(threads = 10, duration = 3000, warmUp = 1000)
 // @Required(max = 2000,average = 20,percentile95=20,throughput=4000)
-public class DataViewerITest extends
+public final class DataViewerITest extends
 		AbstractServiceDataFunctionalIntegrationTest {
 
 	/** The data viewer. */
@@ -220,7 +218,7 @@ public class DataViewerITest extends
 			}
 		}
 
-		List<ViewRiksdagenPolitician> activeWithNoParty = dataViewer.findListByProperty(ViewRiksdagenPolitician.class, new Object[]  {true,null},ViewRiksdagenPolitician_.activeParliament,ViewRiksdagenPolitician_.party);
+		final List<ViewRiksdagenPolitician> activeWithNoParty = dataViewer.findListByProperty(ViewRiksdagenPolitician.class, new Object[]  {true,null},ViewRiksdagenPolitician_.activeParliament,ViewRiksdagenPolitician_.party);
 
 
 		assertEquals("Should always be 349 in parliament", 349, parliamentSum + activeWithNoParty.size());

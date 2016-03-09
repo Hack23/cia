@@ -62,7 +62,7 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 		super();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest#getDatabaseConnection()
 	 */
 	@Override

@@ -48,7 +48,7 @@ import com.hack23.cia.service.api.action.application.CreateApplicationEventRespo
 import com.hack23.cia.service.api.action.application.DestroyApplicationSessionRequest;
 
 @Service
-public class ApplicationEventListener implements ApplicationListener<ApplicationEvent> {
+public final class ApplicationEventListener implements ApplicationListener<ApplicationEvent> {
 
 	/** The application manager. */
 	@Autowired
@@ -57,7 +57,7 @@ public class ApplicationEventListener implements ApplicationListener<Application
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationEventListener.class);
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see org.springframework.context.ApplicationListener#onApplicationEvent(org.springframework.context.ApplicationEvent)
 	 */
 	@Override

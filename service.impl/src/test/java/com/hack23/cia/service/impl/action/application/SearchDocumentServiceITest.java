@@ -36,7 +36,7 @@ import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 /**
  * The Class SearchDocumentServiceITest.
  */
-public class SearchDocumentServiceITest extends AbstractServiceFunctionalIntegrationTest {
+public final class SearchDocumentServiceITest extends AbstractServiceFunctionalIntegrationTest {
 
 	/** The application manager. */
 	@Autowired
@@ -58,7 +58,7 @@ public class SearchDocumentServiceITest extends AbstractServiceFunctionalIntegra
 
 		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
 
-		SearchDocumentRequest serviceRequest = new SearchDocumentRequest();
+		final SearchDocumentRequest serviceRequest = new SearchDocumentRequest();
 		serviceRequest.setSessionId(createSessionRequest.getSessionId());
 		serviceRequest.setMaxResults(10);
 		serviceRequest.setSearchExpression("kan");

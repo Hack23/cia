@@ -78,7 +78,7 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 	private ApplicationManager applicationManager;
 
 	/*
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.vaadin.ui.UI#init(com.vaadin.server.VaadinRequest)
 	 */
@@ -182,7 +182,7 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 
 
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.vaadin.server.ErrorHandler#error(com.vaadin.server.ErrorEvent)
 	 */
 	@Override

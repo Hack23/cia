@@ -44,7 +44,7 @@ public final class ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataMan
 	private ApplicationManager applicationManager;
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.
 	 * GenericChartDataManager#findByValue(java.lang.String)

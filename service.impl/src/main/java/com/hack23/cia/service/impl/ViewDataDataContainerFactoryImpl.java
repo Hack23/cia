@@ -48,7 +48,7 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.impl.ViewDataDataContainerFactory#createDataContainer(java.lang.Class)
 	 */
 	@Override
@@ -58,7 +58,7 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#findFirstByProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
@@ -69,7 +69,7 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#findListByProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
@@ -80,7 +80,7 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#getAll(java.lang.Class)
 	 */
 	@Override
@@ -90,7 +90,7 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#load(java.lang.Class, java.lang.Object)
 	 */
 	@Override
@@ -100,7 +100,7 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#findListByProperty(java.lang.Class, java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
 	 */
 	@Override
@@ -111,7 +111,7 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#findByQueryProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
@@ -123,7 +123,7 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#findListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
 	 */
 	@Override
@@ -135,7 +135,7 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#getAllOrderBy(java.lang.Class, javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override
@@ -145,7 +145,7 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedListByProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override
@@ -156,7 +156,7 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedListByProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
 	 */
 	@Override
@@ -167,7 +167,7 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override
@@ -179,7 +179,7 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/* (non-Javadoc)
+	/* {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedByPropertyListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
 	 */
 	@Override

@@ -124,7 +124,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
@@ -144,7 +144,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
@@ -160,7 +160,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
@@ -178,7 +178,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
@@ -201,7 +201,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
@@ -215,7 +215,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
@@ -232,7 +232,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
@@ -248,7 +248,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
@@ -264,7 +264,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
@@ -289,7 +289,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	 * @return the view riksdagen vote data ballot party summary daily
 	 */
 	/*
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
@@ -303,7 +303,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
@@ -339,7 +339,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
@@ -392,7 +392,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
@@ -429,7 +429,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
@@ -469,7 +469,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
 	 * ChartDataManager#createDecisionTypeChart(java.lang.String)
@@ -520,14 +520,14 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
 	 * ChartDataManager#createDocumentHistoryChart(java.lang.String)
 	 */
 	@Override
 	public DCharts createDocumentHistoryChartByOrg(final String org) {
-		String searchOrg = org.toUpperCase(Locale.ENGLISH).replace("_", "").replace("-", "").trim();
+		final String searchOrg = org.toUpperCase(Locale.ENGLISH).replace("_", "").replace("-", "").trim();
 
 		final DataSeries dataSeries = new DataSeries();
 
@@ -570,7 +570,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
 	 * ChartDataManager#createPartyLineChart(java.lang.String)
@@ -622,7 +622,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
 	 * ChartDataManager#createDocumentHistoryPartyChart(java.lang.String)
@@ -672,7 +672,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	private GenericChartDataManager<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dataChartManager;
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
 	 * ChartDataManager#createPersonLineChart(java.lang.String)
@@ -744,7 +744,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
 	 * ChartDataManager#createPersonDocumentHistoryChart(java.lang.String)
@@ -806,7 +806,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
 	 * ChartDataManager#createIndicatorChart(java.util.List,
@@ -844,7 +844,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
 	 * ChartDataManager#createChartPanel(org.dussan.vaadin.dcharts.data.
@@ -952,7 +952,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager#createApplicationActionEventPageDailySummaryChart()
 	 */
 	@Override
@@ -1010,7 +1010,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager#createApplicationActionEventPageModeDailySummaryChart(java.lang.String)
 	 */
 	@Override
@@ -1068,7 +1068,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager#createApplicationActionEventPageElementDailySummaryChart(java.lang.String, java.lang.String)
 	 */
 	@Override

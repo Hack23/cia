@@ -32,7 +32,7 @@ import org.junit.runners.Parameterized.Parameters;
  */
 @RunWith(Parallelized.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class SystemIntegrationTest extends AbstractSystemIntegrationTest {
+public final class SystemIntegrationTest extends AbstractSystemIntegrationTest {
 
 	/** The browser. */
 	private final String browser;

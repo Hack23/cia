@@ -30,7 +30,7 @@ import com.thoughtworks.xstream.XStream;
 /**
  * The Class UnmarshallXmlTest.
  */
-public class UnmarshallXmlTest extends AbstractUnmarshallXmlTest<String> {
+public final class UnmarshallXmlTest extends AbstractUnmarshallXmlTest<String> {
 
 	/**
 	 * Unmarshall test.

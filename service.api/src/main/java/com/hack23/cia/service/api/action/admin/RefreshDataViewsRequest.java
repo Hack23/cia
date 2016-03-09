@@ -47,7 +47,7 @@ public final class RefreshDataViewsRequest implements ServiceRequest {
 	 * @param sessionId
 	 *            the new session id
 	 */
-	public void setSessionId(String sessionId) {
+	public void setSessionId(final String sessionId) {
 		this.sessionId = sessionId;
 	}
 

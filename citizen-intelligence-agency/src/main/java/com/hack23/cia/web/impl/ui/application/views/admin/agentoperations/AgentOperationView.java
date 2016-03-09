@@ -52,7 +52,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value="prototype")
 @VaadinView(AgentOperationView.NAME)
-public class AgentOperationView extends AbstractAdminView implements
+public final class AgentOperationView extends AbstractAdminView implements
 		Button.ClickListener {
 
 	/** The Constant serialVersionUID. */
@@ -95,7 +95,7 @@ public class AgentOperationView extends AbstractAdminView implements
 
 	private void createContent() {
 		content.removeAllComponents();
-		Label createHeader2Label = LabelFactory.createHeader2Label("Admin Agent Operation");
+		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Agent Operation");
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, 2);
 
@@ -124,7 +124,7 @@ public class AgentOperationView extends AbstractAdminView implements
 		content.setMargin(false);
 		content.setSpacing(true);
 
-	 	Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
+	 	final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 		content.addComponent(createMainViewPageLink);
 		content.setExpandRatio(createMainViewPageLink,1);
 
@@ -136,7 +136,7 @@ public class AgentOperationView extends AbstractAdminView implements
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.vaadin.ui.Button.ClickListener#buttonClick(com.vaadin.ui.Button.
 	 * ClickEvent)
@@ -156,7 +156,7 @@ public class AgentOperationView extends AbstractAdminView implements
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener

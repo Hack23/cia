@@ -49,7 +49,7 @@ public final class PersonDataDAOImpl extends AbstractGenericDAOImpl<PersonData, 
 		super(PersonData.class);
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager()
 	 */
 	@Override
@@ -57,7 +57,7 @@ public final class PersonDataDAOImpl extends AbstractGenericDAOImpl<PersonData, 
 		return entityManager;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.PersonDataDAO#getIdList()
 	 */
 	@Override
@@ -68,7 +68,7 @@ public final class PersonDataDAOImpl extends AbstractGenericDAOImpl<PersonData, 
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */
 	@Override
@@ -76,7 +76,7 @@ public final class PersonDataDAOImpl extends AbstractGenericDAOImpl<PersonData, 
 		return (long) getIdList().size();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.data.impl.AbstractGenericDAOImpl#load(java.io.Serializable)
 	 */
 	@Override

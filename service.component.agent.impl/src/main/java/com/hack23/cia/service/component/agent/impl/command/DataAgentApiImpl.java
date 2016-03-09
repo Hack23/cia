@@ -68,7 +68,7 @@ public final class DataAgentApiImpl implements DataAgentApi {
 	private Destination vdemApiDestination;
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.component.agent.api.DataAgentApi#executeImportData

@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,7 +29,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
 /**
  * The Class RiksdagenApiImplPersonDetailsTest.
  */
-public class RiksdagenApiImplPersonDetailsTest extends
+public final class RiksdagenApiImplPersonDetailsTest extends
 AbstractRiksdagenFunctionalIntegrationTest {
 
 	/** The riksdagen api. */

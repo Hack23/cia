@@ -65,7 +65,7 @@ public final class UpdateApplicationConfigurationRequest implements ServiceReque
 	 * @param sessionId
 	 *            the new session id
 	 */
-	public void setSessionId(String sessionId) {
+	public void setSessionId(final String sessionId) {
 		this.sessionId = sessionId;
 	}
 
@@ -84,7 +84,7 @@ public final class UpdateApplicationConfigurationRequest implements ServiceReque
 	 * @param applicationConfigurationId
 	 *            the new application configuration id
 	 */
-	public void setApplicationConfigurationId(Long applicationConfigurationId) {
+	public void setApplicationConfigurationId(final Long applicationConfigurationId) {
 		this.applicationConfigurationId = applicationConfigurationId;
 	}
 
@@ -103,7 +103,7 @@ public final class UpdateApplicationConfigurationRequest implements ServiceReque
 	 * @param configTitle
 	 *            the new config title
 	 */
-	public void setConfigTitle(String configTitle) {
+	public void setConfigTitle(final String configTitle) {
 		this.configTitle = configTitle;
 	}
 
@@ -122,7 +122,7 @@ public final class UpdateApplicationConfigurationRequest implements ServiceReque
 	 * @param configDescription
 	 *            the new config description
 	 */
-	public void setConfigDescription(String configDescription) {
+	public void setConfigDescription(final String configDescription) {
 		this.configDescription = configDescription;
 	}
 
@@ -141,7 +141,7 @@ public final class UpdateApplicationConfigurationRequest implements ServiceReque
 	 * @param componentTitle
 	 *            the new component title
 	 */
-	public void setComponentTitle(String componentTitle) {
+	public void setComponentTitle(final String componentTitle) {
 		this.componentTitle = componentTitle;
 	}
 
@@ -160,7 +160,7 @@ public final class UpdateApplicationConfigurationRequest implements ServiceReque
 	 * @param componentDescription
 	 *            the new component description
 	 */
-	public void setComponentDescription(String componentDescription) {
+	public void setComponentDescription(final String componentDescription) {
 		this.componentDescription = componentDescription;
 	}
 
@@ -179,7 +179,7 @@ public final class UpdateApplicationConfigurationRequest implements ServiceReque
 	 * @param propertyValue
 	 *            the new property value
 	 */
-	public void setPropertyValue(String propertyValue) {
+	public void setPropertyValue(final String propertyValue) {
 		this.propertyValue = propertyValue;
 	}
 

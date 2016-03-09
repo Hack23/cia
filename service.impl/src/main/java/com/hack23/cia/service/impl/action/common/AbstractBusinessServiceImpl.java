@@ -51,7 +51,7 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.impl.common.BusinessService#getSupportedService()

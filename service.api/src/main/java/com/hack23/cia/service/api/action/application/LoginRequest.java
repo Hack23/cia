@@ -53,7 +53,7 @@ public final class LoginRequest implements ServiceRequest {
 	 * @param email
 	 *            the new email
 	 */
-	public void setEmail(String email) {
+	public void setEmail(final String email) {
 		this.email = email;
 	}
 
@@ -72,7 +72,7 @@ public final class LoginRequest implements ServiceRequest {
 	 * @param userpassword
 	 *            the new userpassword
 	 */
-	public void setUserpassword(String userpassword) {
+	public void setUserpassword(final String userpassword) {
 		this.userpassword = userpassword;
 	}
 
@@ -91,7 +91,7 @@ public final class LoginRequest implements ServiceRequest {
 	 * @param sessionId
 	 *            the new session id
 	 */
-	public void setSessionId(String sessionId) {
+	public void setSessionId(final String sessionId) {
 		this.sessionId = sessionId;
 	}
 

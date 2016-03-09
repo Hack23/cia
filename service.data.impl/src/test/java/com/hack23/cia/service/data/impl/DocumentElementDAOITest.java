@@ -32,7 +32,7 @@ import com.hack23.cia.service.data.api.DocumentElementDAO;
  */
 @PerfTest(threads = 1, duration = 3000, warmUp = 1500)
 @Required(max = 1000,average = 500,percentile95=500,throughput=2)
-public class DocumentElementDAOITest extends AbstractServiceDataFunctionalIntegrationTest {
+public final class DocumentElementDAOITest extends AbstractServiceDataFunctionalIntegrationTest {
 
 	/** The i. */
 	@Rule

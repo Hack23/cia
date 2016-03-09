@@ -32,7 +32,7 @@ import com.hack23.cia.service.data.api.PersonDataDAO;
  */
 @PerfTest(threads = 10, duration = 3000, warmUp = 1500)
 @Required(max = 1000,average = 20,percentile95=40,throughput=1000)
-public class PersonDataDAOITest extends AbstractServiceDataFunctionalIntegrationTest {
+public final class PersonDataDAOITest extends AbstractServiceDataFunctionalIntegrationTest {
 
 	/** The i. */
 	@Rule

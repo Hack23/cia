@@ -218,7 +218,7 @@ public final class UserPageVisit extends Assert {
 		return driver.findElement(By.tagName("body")).getText();
 	}
 
-	public void assertHtmlBodyContainsText(String text) throws Exception {
+	public void assertHtmlBodyContainsText(final String text) throws Exception {
 		int waitTimeForPageLoad=0;
 		while (!getHtmlBodyAsText().contains(text)) {
 			Thread.sleep(10);

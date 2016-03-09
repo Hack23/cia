@@ -38,7 +38,7 @@ public final class TableFactoryImpl implements TableFactory {
 	private transient ApplicationManager applicationManager;
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.tablefactory.
 	 * TableFactory#createDataSummaryTable()

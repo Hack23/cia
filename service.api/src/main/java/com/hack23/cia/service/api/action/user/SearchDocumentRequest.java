@@ -53,7 +53,7 @@ public final class SearchDocumentRequest implements ServiceRequest {
 	 * @param sessionId
 	 *            the new session id
 	 */
-	public void setSessionId(String sessionId) {
+	public void setSessionId(final String sessionId) {
 		this.sessionId = sessionId;
 	}
 
@@ -72,7 +72,7 @@ public final class SearchDocumentRequest implements ServiceRequest {
 	 * @param searchExpression
 	 *            the new search expression
 	 */
-	public void setSearchExpression(String searchExpression) {
+	public void setSearchExpression(final String searchExpression) {
 		this.searchExpression = searchExpression;
 	}
 
@@ -91,7 +91,7 @@ public final class SearchDocumentRequest implements ServiceRequest {
 	 * @param maxResults
 	 *            the new max results
 	 */
-	public void setMaxResults(Integer maxResults) {
+	public void setMaxResults(final Integer maxResults) {
 		this.maxResults = maxResults;
 	}
 

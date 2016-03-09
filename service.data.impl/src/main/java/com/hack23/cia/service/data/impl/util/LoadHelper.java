@@ -34,7 +34,7 @@ import org.hibernate.proxy.HibernateProxy;
 /**
  * The Class LoadHelper.
  */
-public class LoadHelper {
+public final class LoadHelper {
 
 	/**
 	 * Recursive initliaze.

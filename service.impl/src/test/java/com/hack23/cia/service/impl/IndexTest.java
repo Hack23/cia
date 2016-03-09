@@ -46,7 +46,7 @@ import weka.filters.unsupervised.attribute.StringToWordVector;
 /**
  * The Class IndexTest.
  */
-public class IndexTest {
+public final class IndexTest {
 
 	/** The input instances. */
 	Instances inputInstances;

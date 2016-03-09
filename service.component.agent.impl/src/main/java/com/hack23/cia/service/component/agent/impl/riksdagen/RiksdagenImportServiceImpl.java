@@ -126,7 +126,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * getAvaibleCommitteeProposal()
@@ -137,7 +137,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * getAvaibleDocumentContent()
@@ -148,7 +148,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * getAvaibleDocumentStatus()
@@ -159,7 +159,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * getCommitteeProposalComponentDataMap()
@@ -170,7 +170,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * getDocumentContentMap()
@@ -181,7 +181,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * getDocumentElementMap()
@@ -193,7 +193,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * getDocumentElementMap(java.util.Date, java.util.List, boolean)
@@ -204,9 +204,9 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 			final boolean onlyWithDocStatus) {
 		final List<DocumentElement> all = documentElementDAO.getAll();
 
-		List<String> documentTypeValues = new ArrayList<>();
+		final List<String> documentTypeValues = new ArrayList<>();
 
-		for (DocumentType docType : downloadType) {
+		for (final DocumentType docType : downloadType) {
 			documentTypeValues.add(docType.value());
 		}
 
@@ -255,7 +255,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * getDocumentStatusContainerMap()
@@ -266,7 +266,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * getLoadedBallotIdMap()
@@ -277,7 +277,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.component.agent.impl.AgentWorkService#getPersonMap
@@ -289,7 +289,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.component.agent.impl.AgentWorkService#update(com
@@ -305,7 +305,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * updateCommitteeProposalComponentDataList(java.util.List)
@@ -321,7 +321,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * updateDocumentContentDataList(java.util.List)
@@ -336,7 +336,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * updateDocumentDataList(java.util.List)
@@ -347,7 +347,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * updateDocumentElementList(java.util.List)
@@ -364,7 +364,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * updateVoteDataData(java.util.List)
@@ -374,7 +374,7 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		voteDataDAO.persist(list);
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.component.agent.impl.riksdagen.RiksdagenImportService#getStartYearForDocumentElement()
 	 */
 	@Override

@@ -54,7 +54,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service("MainView")
 @Scope(value="prototype")
 @VaadinView(MainView.NAME)
-public class MainView extends Panel implements View {
+public final class MainView extends Panel implements View {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -148,6 +148,12 @@ public class MainView extends Panel implements View {
 
 		final DefaultVerticalLoginForm loginForm = new DefaultVerticalLoginForm() {
 
+			/**
+			 *
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
 			protected String getUserNameFieldCaption() {
 		        return "Email";
 		    }
@@ -176,7 +182,7 @@ public class MainView extends Panel implements View {
 
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener

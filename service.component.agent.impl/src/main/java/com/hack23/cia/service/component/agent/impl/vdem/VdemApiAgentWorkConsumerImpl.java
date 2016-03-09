@@ -48,7 +48,7 @@ public final class VdemApiAgentWorkConsumerImpl extends AbstractAgentWorkConsume
 	private VdemService vdemService;
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see javax.jms.MessageListener#onMessage(javax.jms.Message)
 	 */

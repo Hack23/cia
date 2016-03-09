@@ -36,7 +36,7 @@ public final class DataAgentContainerImpl implements AgentContainer {
 	@Autowired
 	private DataAgentApi dataAgentApi;
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.api.AgentContainer#execute()
 	 */
 	@Override

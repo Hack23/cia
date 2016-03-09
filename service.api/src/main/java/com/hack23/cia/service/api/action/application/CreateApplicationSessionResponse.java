@@ -34,7 +34,7 @@ public final class CreateApplicationSessionResponse extends AbstractResponse {
 	 * @param result
 	 *            the result
 	 */
-	public CreateApplicationSessionResponse(ServiceResult result) {
+	public CreateApplicationSessionResponse(final ServiceResult result) {
 		super(result);
 	}
 

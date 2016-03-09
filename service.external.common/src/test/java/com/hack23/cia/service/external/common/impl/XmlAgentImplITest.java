@@ -27,7 +27,7 @@ import com.hack23.cia.service.external.common.api.XmlAgent;
 /**
  * The Class XmlAgentImplITest.
  */
-public class XmlAgentImplITest extends AbstractServiceExternalCommonFunctionalIntegrationTest {
+public final class XmlAgentImplITest extends AbstractServiceExternalCommonFunctionalIntegrationTest {
 
 	/** The xml agent. */
 	@Autowired

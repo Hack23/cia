@@ -50,7 +50,7 @@ public abstract class AbstractServiceComponentAgentFunctionalIntegrationTest ext
 		super();
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest#getDatabaseConnection()
 	 */
 	@Override

@@ -30,7 +30,7 @@ import com.hack23.cia.service.data.api.ApplicationConfigurationService;
 /**
  * The Class ApplicationConfigurationServiceITest.
  */
-public class ApplicationConfigurationServiceITest extends AbstractServiceDataFunctionalIntegrationTest {
+public final class ApplicationConfigurationServiceITest extends AbstractServiceDataFunctionalIntegrationTest {
 
 	/** The i. */
 	@Rule

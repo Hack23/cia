@@ -62,7 +62,7 @@ SwedenPoliticalPartyDAO {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
@@ -74,7 +74,7 @@ SwedenPoliticalPartyDAO {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.data.api.SwedenPoliticalPartyDAO#getIdList()
 	 */
@@ -90,7 +90,7 @@ SwedenPoliticalPartyDAO {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
 	 */

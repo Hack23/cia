@@ -36,7 +36,7 @@ import com.hack23.cia.service.data.api.SearchIndexer;
 /**
  * The Class SearchIndexerImplITest.
  */
-public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegrationTest {
+public final class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegrationTest {
 
 	/** The search indexer. */
 	@Autowired
@@ -76,17 +76,17 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 	@Transactional
 	public void testSearchIndex() throws Exception {
 
-		QueryBuilder qb = getFullTextEntityManager().getSearchFactory().buildQueryBuilder()
+		final QueryBuilder qb = getFullTextEntityManager().getSearchFactory().buildQueryBuilder()
 				.forEntity(DocumentContentData.class).get();
-		org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields("content").matching("programmering")
+		final org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields("content").matching("programmering")
 				.createQuery();
 
 		// wrap Lucene query in a javax.persistence.Query
-		javax.persistence.Query jpaQuery = getFullTextEntityManager().createFullTextQuery(luceneQuery,
+		final javax.persistence.Query jpaQuery = getFullTextEntityManager().createFullTextQuery(luceneQuery,
 				DocumentContentData.class);
 
 		// execute search
-		List<DocumentContentData> result = jpaQuery.setMaxResults(500).getResultList();
+		final List<DocumentContentData> result = jpaQuery.setMaxResults(500).getResultList();
 		assertTrue("expect some result",result.size()> 0);
 	}
 

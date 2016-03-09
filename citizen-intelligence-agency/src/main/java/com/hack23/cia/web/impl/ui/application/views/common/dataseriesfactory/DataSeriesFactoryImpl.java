@@ -42,7 +42,7 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory#createCommitteeChartTimeSeriesAll()
 	 */
 	@Override
@@ -59,7 +59,7 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 	}
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
 	 */
 	@Override
@@ -78,7 +78,7 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 	}
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory#createChartTimeSeriesCurrentCommitteeByParty()
 	 */
 	@Override
@@ -104,7 +104,7 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 	}
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory#createChartTimeSeriesTotalDaysServedCommitteeByParty()
 	 */
 	@Override
@@ -132,7 +132,7 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
 	 */
 	@Override
@@ -148,7 +148,7 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 		return dataSeries;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
 	 */
 	@Override
@@ -166,7 +166,7 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 		return dataSeries;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory#createChartTimeSeriesCurrentGovernmentByParty()
 	 */
 	@Override
@@ -192,7 +192,7 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 	}
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory#createChartTimeSeriesTotalDaysServedGovernmentByParty()
 	 */
 	@Override
@@ -217,7 +217,7 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 		return dataSeries;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
 	 */
 	@Override
@@ -234,7 +234,7 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 		return dataSeries;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
 	 */
 	@Override

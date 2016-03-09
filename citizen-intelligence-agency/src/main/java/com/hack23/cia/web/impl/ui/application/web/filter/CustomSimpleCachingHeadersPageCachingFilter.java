@@ -25,7 +25,7 @@ import net.sf.ehcache.constructs.web.filter.SimpleCachingHeadersPageCachingFilte
 
 public final class CustomSimpleCachingHeadersPageCachingFilter extends SimpleCachingHeadersPageCachingFilter {
 
-	   /** (non-Javadoc)
+	   /** {@inheritDoc}
    	 * @see net.sf.ehcache.constructs.web.filter.SimplePageCachingFilter#getCacheManager()
    	 */
    	@Override

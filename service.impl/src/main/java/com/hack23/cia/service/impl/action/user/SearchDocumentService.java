@@ -76,7 +76,7 @@ public final class SearchDocumentService extends
 	private DocumentContentDataDAO documentContentDataDAO;
 
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
 	 */
 	@Override
@@ -103,15 +103,15 @@ public final class SearchDocumentService extends
 
 		final SearchDocumentResponse response = new SearchDocumentResponse(ServiceResult.SUCCESS);
 
-		List<DocumentElement> searchResultTitles = documentElementDAO.search(serviceRequest.getSearchExpression(), serviceRequest.getMaxResults(),"id", "title","subTitle");
+		final List<DocumentElement> searchResultTitles = documentElementDAO.search(serviceRequest.getSearchExpression(), serviceRequest.getMaxResults(),"id", "title","subTitle");
 		if (searchResultTitles.size() >0) {
 		 response.setResultElement(searchResultTitles);
 		} else {
-			List<DocumentContentData> searchResultContent = documentContentDataDAO.search(serviceRequest.getSearchExpression(), serviceRequest.getMaxResults(), "id","content");
+			final List<DocumentContentData> searchResultContent = documentContentDataDAO.search(serviceRequest.getSearchExpression(), serviceRequest.getMaxResults(), "id","content");
 			if (searchResultContent.size() >0) {
-				List<DocumentElement> searchResultTitlesForContent = new ArrayList<>();
+				final List<DocumentElement> searchResultTitlesForContent = new ArrayList<>();
 
-				for (DocumentContentData documentContent : searchResultContent) {
+				for (final DocumentContentData documentContent : searchResultContent) {
 
 					searchResultTitlesForContent.add(documentElementDAO.load(documentContent.getId()));
 				}

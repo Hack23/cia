@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -70,7 +70,7 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 		return map;
 	}
 
-	/** (non-Javadoc)
+	/** {@inheritDoc}
 	 * @see com.hack23.cia.service.component.agent.impl.worldbank.WorldbankImportService#getAllIndicators()
 	 */
 	@Override
@@ -79,7 +79,7 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * getWorldBankCountryMap()
@@ -94,7 +94,7 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * getWorldBankDataMap()
@@ -105,7 +105,7 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * getWorldBankIndicatorElementMap()
@@ -120,7 +120,7 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * updateCountryElement
@@ -132,7 +132,7 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.hack23.cia.service.component.agent.impl.AgentWorkService#updateData
@@ -144,7 +144,7 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
 	 * updateIndicatorElement

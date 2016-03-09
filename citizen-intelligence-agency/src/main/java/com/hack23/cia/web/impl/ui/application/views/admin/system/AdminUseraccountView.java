@@ -54,7 +54,7 @@ import ru.xpoft.vaadin.VaadinView;
 @Service
 @Scope(value="prototype")
 @VaadinView(AdminUseraccountView.NAME)
-public class AdminUseraccountView extends AbstractAdminView {
+public final class AdminUseraccountView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -84,7 +84,7 @@ public class AdminUseraccountView extends AbstractAdminView {
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * {@inheritDoc}
 	 *
 	 * @see
 	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener.
@@ -109,7 +109,7 @@ public class AdminUseraccountView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		final VerticalLayout content = new VerticalLayout();
 
-		Label createHeader2Label = LabelFactory.createHeader2Label("Admin Useraccount");
+		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Useraccount");
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, 1);
 
@@ -119,7 +119,7 @@ public class AdminUseraccountView extends AbstractAdminView {
 		final BeanItemContainer<UserAccount> politicianDocumentDataSource = new BeanItemContainer<>(UserAccount.class,
 				dataContainer.getAll());
 
-		Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "UserAccount",
+		final Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "UserAccount",
 				new String[] { "hjid","modelObjectId","modelObjectVersion","createdDate","userId","username","userType","userRole","userpassword","email","address","country","numberOfVisits" },
 				new String[] { "modelObjectId" }, "hjid",
 				new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, "hjid"), null);
@@ -140,7 +140,7 @@ public class AdminUseraccountView extends AbstractAdminView {
 		}
 
 
-	 	Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
+	 	final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 		content.addComponent(createMainViewPageLink);
 		content.setExpandRatio(createMainViewPageLink,1);
 
