@@ -33,22 +33,22 @@ public final class UpdateApplicationConfigurationRequest implements ServiceReque
     private String sessionId;
 
 	/** The application configuration id. */
-	protected Long applicationConfigurationId;
+	private Long applicationConfigurationId;
 
     /** The config title. */
-    protected String configTitle;
+    private String configTitle;
 
     /** The config description. */
-    protected String configDescription;
+    private String configDescription;
 
     /** The component title. */
-    protected String componentTitle;
+    private String componentTitle;
 
     /** The component description. */
-    protected String componentDescription;
+    private String componentDescription;
 
     /** The property value. */
-    protected String propertyValue;
+    private String propertyValue;
 
 	/**
 	 * Gets the session id.
