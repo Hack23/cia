@@ -21,6 +21,7 @@ package com.hack23.cia.service.external.vdem.impl;
 import org.databene.contiperf.PerfTest;
 import org.databene.contiperf.Required;
 import org.databene.contiperf.junit.ContiPerfRule;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +66,7 @@ public class VdemServiceITest extends AbstractVdemFunctionalIntegrationTest {
 	@Test
 	@PerfTest(threads = 1, duration = 90000, warmUp = 4500)
 	@Required(max = 90000,average = 90000,percentile95=90000)
-
+	@Ignore
 	public void testGetCountryQuestionData() throws Exception {
 
 		assertNotNull(vdemService.getCountryQuestionData());
