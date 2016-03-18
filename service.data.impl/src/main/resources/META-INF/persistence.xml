@@ -5,7 +5,7 @@
 
 	<persistence-unit name="ciaPersistenceUnit"
 		transaction-type="JTA">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 		<class>com.hack23.cia.model.external.val.partier.impl.SwedenElectionRegion</class>
 		<class>com.hack23.cia.model.external.val.partier.impl.SwedenElectionType</class>

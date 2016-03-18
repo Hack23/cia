@@ -129,8 +129,7 @@
                 <prop key="hibernate.current_session_context_class">jta</prop>
                 <!-- <prop key="hibernate.transaction.factory_class">com.atomikos.icatch.jta.hibernate3.AtomikosJTATransactionFactory</prop> -->
 
-                <prop key="hibernate.transaction.manager_lookup_class">com.atomikos.icatch.jta.hibernate3.TransactionManagerLookup
-                </prop>
+                <prop key="hibernate.transaction.manager_lookup_class">com.atomikos.icatch.jta.hibernate4.AtomikosJ2eePlatform</prop>
 
                 <prop key="hibernate.transaction.jta.platform">com.hack23.cia.service.data.impl.AtomikosJtaPlatform</prop>
 <!--
@@ -154,24 +153,9 @@
 		</property>
 	</bean>
 
-	<bean id="jmxLogAdministrator" class="com.atomikos.icatch.admin.jmx.JmxLogAdministrator "/>
 
 	<bean id="userTransactionService" class="com.atomikos.icatch.config.UserTransactionServiceImp"
 		init-method="init" destroy-method="shutdownForce">
-		<constructor-arg>
-			<!-- IMPORTANT: specify all Atomikos properties here -->
-			<props>
-				<prop key="com.atomikos.icatch.service">
-					com.atomikos.icatch.standalone.UserTransactionServiceFactory
-	            </prop>
-			</props>
-		</constructor-arg>
-		<property name="initialLogAdministrators">
-        <list>
-            <ref bean="jmxLogAdministrator"/>
-        </list>
-    	</property>
-
 	</bean>
 
 	<bean id="AtomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager"
@@ -184,9 +168,6 @@
 		<property name="transactionTimeout" value="300000" />
 	</bean>
 
-	<bean id="jmxTransactionService"
-      class="com.atomikos.icatch.admin.jmx.JmxTransactionService">
-	</bean>
 
 	<bean id="transactionManager"
 		class="org.springframework.transaction.jta.JtaTransactionManager"
@@ -219,10 +200,6 @@
 					</bean>
 				</entry>
 				-->
-				<entry key="atomikos:name=tx-service">
-                    <ref bean="jmxTransactionService"/>
-                </entry>
-
 			</map>
 		</property>
 		 <property name="server">

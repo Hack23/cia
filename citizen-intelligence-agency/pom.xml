@@ -833,20 +833,12 @@
   <reporting>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
+        <groupId>com.github.jrh3k5</groupId>
         <artifactId>l10n-maven-plugin</artifactId>
-        <version>1.0-alpha-2</version>
+        <version>1.4</version>
         <configuration>
-          <locales>
-            <locale>en</locale>
-            <locale>sv</locale>
-            <!-- <locale>da</locale> <locale>de</locale> <locale>es</locale> <locale>fi</locale>
-							<locale>fr</locale> <locale>it</locale> <locale>is</locale> <locale>nl</locale>
-							<locale>no</locale> -->
-          </locales>
-          <includes>
-            <include>IAResources*.properties</include>
-          </includes>
+          <messagesFile>${project.basedir}/src/main/resources/IAResources.properties</messagesFile>
+          <translatedMessagesPattern>src/main/resources/IAResources*.properties</translatedMessagesPattern>
         </configuration>
       </plugin>
       <plugin>

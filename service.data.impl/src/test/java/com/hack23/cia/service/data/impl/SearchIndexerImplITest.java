@@ -73,7 +73,7 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 	}
 
 	@Test
-	@Transactional
+	@Transactional(timeout=900)
 	public void testSearchIndex() throws Exception {
 
 		final QueryBuilder qb = getFullTextEntityManager().getSearchFactory().buildQueryBuilder()

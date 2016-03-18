@@ -67,7 +67,7 @@
       </dependency>
       <dependency>
         <groupId>com.atomikos</groupId>
-        <artifactId>transactions-hibernate3</artifactId>
+        <artifactId>transactions-hibernate4</artifactId>
         <version>${cia.project.versions.atomikos}</version>
         <exclusions>
           <exclusion>

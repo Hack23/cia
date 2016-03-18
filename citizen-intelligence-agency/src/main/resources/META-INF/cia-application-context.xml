@@ -55,8 +55,6 @@
                 </property>
     </bean>
 
-
-
 	<bean id="webCacheManager" depends-on="serviceCacheManager"
 		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
 		<property name="configLocation" value="classpath:web-ehcache.xml" />

@@ -356,7 +356,7 @@
     </dependency>
     <dependency>
       <groupId>com.atomikos</groupId>
-      <artifactId>transactions-hibernate3</artifactId>
+      <artifactId>transactions-hibernate4</artifactId>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>

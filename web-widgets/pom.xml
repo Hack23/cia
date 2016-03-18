@@ -65,7 +65,7 @@
     <dependency>
       <groupId>org.dussan.vaadin</groupId>
       <artifactId>dcharts</artifactId>
-      <version>1.7.1-hack23</version>
+      <version>1.7.2-SNAPSHOT</version>
       <exclusions>
         <exclusion>
           <artifactId>vaadin-server</artifactId>
