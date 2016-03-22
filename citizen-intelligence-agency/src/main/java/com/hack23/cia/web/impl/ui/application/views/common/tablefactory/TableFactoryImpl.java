@@ -37,12 +37,6 @@ public final class TableFactoryImpl implements TableFactory {
 	@Qualifier("ApplicationManager")
 	private ApplicationManager applicationManager;
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.tablefactory.
-	 * TableFactory#createDataSummaryTable()
-	 */
 	@Override
 	public Table createDataSummaryTable() {
 		final Table summaryTable = new Table();

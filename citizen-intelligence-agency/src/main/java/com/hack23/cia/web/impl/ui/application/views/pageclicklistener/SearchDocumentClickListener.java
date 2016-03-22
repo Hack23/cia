@@ -48,7 +48,7 @@ public final class SearchDocumentClickListener implements ClickListener {
 	private final SearchDocumentResponseHandler responseHandler;
 
 	@FunctionalInterface
-	public static interface SearchDocumentResponseHandler extends Serializable {
+	public interface SearchDocumentResponseHandler extends Serializable {
 		void handle(SearchDocumentResponse response);
 	}
 
@@ -69,9 +69,7 @@ public final class SearchDocumentClickListener implements ClickListener {
 		this.responseHandler = responseHandler;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.vaadin.ui.Button.ClickListener#buttonClick(com.vaadin.ui.Button.ClickEvent)
-	 */
+	/** {@inheritDoc} */
 	@Override
 	public void buttonClick(final ClickEvent event) {
 		final SearchDocumentResponse response = (SearchDocumentResponse) applicationManager.service(reqisterRequest);

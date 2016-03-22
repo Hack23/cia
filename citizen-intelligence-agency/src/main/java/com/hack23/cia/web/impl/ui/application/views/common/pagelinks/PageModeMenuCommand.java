@@ -111,9 +111,6 @@ public final class PageModeMenuCommand implements Command {
 		}
 	}
 
-	/** {@inheritDoc}
-	 * @see com.vaadin.ui.MenuBar.Command#menuSelected(com.vaadin.ui.MenuBar.MenuItem)
-	 */
 	@Override
 	public void menuSelected(final MenuItem selectedItem) {
 		UI.getCurrent().getNavigator().navigateTo(page + "/" + pageReference);

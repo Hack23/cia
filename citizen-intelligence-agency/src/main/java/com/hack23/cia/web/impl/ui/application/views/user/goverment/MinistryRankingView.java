@@ -90,12 +90,6 @@ public final class MinistryRankingView extends AbstractRankingView {
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
-	 * AbstractRankingView#createDescription()
-	 */
 	@Override
 	protected TextArea createDescription() {
 		final TextArea totalCommitteeRankinglistLabel = new TextArea("Ministry Ranking by topic",
@@ -112,12 +106,6 @@ public final class MinistryRankingView extends AbstractRankingView {
 		return totalCommitteeRankinglistLabel;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
-	 * AbstractRankingView#createExtraChartLayout()
-	 */
 	@Override
 	protected Layout createExtraChartLayout() {
 		final Layout chartLayout = new HorizontalLayout();
@@ -139,23 +127,11 @@ public final class MinistryRankingView extends AbstractRankingView {
 		return chartLayout;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
-	 * AbstractRankingView#createMenuBar()
-	 */
 	@Override
 	protected void createMenuBar() {
 		menuItemFactory.createMinistryRankingMenuBar(getBarmenu());
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
-	 * AbstractRankingView#createTable()
-	 */
 	@Override
 	protected Component createTable() {
 		final DataContainer<ViewRiksdagenMinistry, String> dataContainer = applicationManager
@@ -171,33 +147,21 @@ public final class MinistryRankingView extends AbstractRankingView {
 
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
-	 */
 	@Override
 	protected DataSeries createChartTimeSeriesAll() {
 		return dataSeriesFactory.createMinistryChartTimeSeriesAll();
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
-	 */
 	@Override
 	protected DataSeries createChartTimeSeriesCurrent() {
 		return dataSeriesFactory.createMinistryChartTimeSeriesCurrent();
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getName()
-	 */
 	@Override
 	protected String getName() {
 		return NAME;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getViewAction()
-	 */
 	@Override
 	protected ViewAction getViewAction() {
 		return ViewAction.VISIT_MINISTRY_RANKING_VIEW;

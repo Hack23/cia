@@ -85,15 +85,8 @@ public final class AdminAgencyView extends AbstractAdminView {
 		createListAndForm(null);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener.
-	 * ViewChangeEvent)
-	 */
-	@Override
 	//@Secured({ "ROLE_ADMIN" })
+	@Override
 	public void enter(final ViewChangeEvent event) {
 		final String parameters = event.getParameters();
 

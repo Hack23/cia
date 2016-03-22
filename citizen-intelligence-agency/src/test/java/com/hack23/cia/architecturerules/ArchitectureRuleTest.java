@@ -32,11 +32,7 @@ public final class ArchitectureRuleTest extends Assert {
 
 	/** The jdepend. */
 	JDepend jdepend = new JDepend();
-	/*
-	 * {@inheritDoc}
-	 *
-	 * @see junit.framework.TestCase#setUp()
-	 */
+
 	/**
 	 * Sets the up.
 	 *
@@ -48,12 +44,6 @@ public final class ArchitectureRuleTest extends Assert {
 		jdepend.addDirectory("target/classes"); //$NON-NLS-1$
 	}
 
-	/*
-	 * {@inheritDoc}
-	 *
-	 * @seecom.seventytwomiles.architecturerules.
-	 * AbstractArchitectureRulesConfigurationTest#testArchitecture()
-	 */
 	/**
 	 * Test architecture no cycles allowed.
 	 */

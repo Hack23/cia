@@ -42,9 +42,6 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 	@Qualifier("ApplicationManager")
 	private ApplicationManager applicationManager;
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory#createCommitteeChartTimeSeriesAll()
-	 */
 	@Override
 	public DataSeries createCommitteeChartTimeSeriesAll() {
 		DataSeries dataSeries = new DataSeries();
@@ -59,9 +56,6 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 	}
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
-	 */
 	@Override
 	public DataSeries createCommitteeChartTimeSeriesCurrent() {
 		DataSeries dataSeries = new DataSeries();
@@ -78,9 +72,6 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 	}
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory#createChartTimeSeriesCurrentCommitteeByParty()
-	 */
 	@Override
 	public DataSeries createChartTimeSeriesCurrentCommitteeByParty() {
 		DataSeries dataSeries = new DataSeries();
@@ -104,9 +95,6 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 	}
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory#createChartTimeSeriesTotalDaysServedCommitteeByParty()
-	 */
 	@Override
 	public DataSeries createChartTimeSeriesTotalDaysServedCommitteeByParty() {
 		DataSeries dataSeries = new DataSeries();
@@ -130,11 +118,6 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 	}
 
 
-
-
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
-	 */
 	@Override
 	public DataSeries createMinistryChartTimeSeriesAll() {
 		DataSeries dataSeries = new DataSeries();
@@ -148,9 +131,6 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 		return dataSeries;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
-	 */
 	@Override
 	public DataSeries createMinistryChartTimeSeriesCurrent() {
 		DataSeries dataSeries = new DataSeries();
@@ -166,9 +146,6 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 		return dataSeries;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory#createChartTimeSeriesCurrentGovernmentByParty()
-	 */
 	@Override
 	public DataSeries createChartTimeSeriesCurrentGovernmentByParty() {
 		DataSeries dataSeries = new DataSeries();
@@ -192,9 +169,6 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 	}
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory#createChartTimeSeriesTotalDaysServedGovernmentByParty()
-	 */
 	@Override
 	public DataSeries createChartTimeSeriesTotalDaysServedGovernmentByParty() {
 		DataSeries dataSeries = new DataSeries();
@@ -217,9 +191,6 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 		return dataSeries;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
-	 */
 	@Override
 	public DataSeries createPartyChartTimeSeriesAll() {
 		DataSeries dataSeries = new DataSeries();
@@ -234,9 +205,6 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 		return dataSeries;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
-	 */
 	@Override
 	public DataSeries createPartyChartTimeSeriesCurrent() {
 		DataSeries dataSeries = new DataSeries();

@@ -25,9 +25,6 @@ import net.sf.ehcache.constructs.web.filter.SimpleCachingHeadersPageCachingFilte
 
 public final class CustomSimpleCachingHeadersPageCachingFilter extends SimpleCachingHeadersPageCachingFilter {
 
-	   /** {@inheritDoc}
-   	 * @see net.sf.ehcache.constructs.web.filter.SimplePageCachingFilter#getCacheManager()
-   	 */
    	@Override
 	protected CacheManager getCacheManager() {
 	    	final List<CacheManager> allCacheManagers = CacheManager.ALL_CACHE_MANAGERS;

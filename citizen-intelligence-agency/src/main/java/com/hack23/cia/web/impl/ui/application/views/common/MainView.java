@@ -181,13 +181,6 @@ public final class MainView extends Panel implements View {
 	}
 
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener
-	 * .ViewChangeEvent)
-	 */
 	@Override
 	public void enter(final ViewChangeEvent event) {
 

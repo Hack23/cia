@@ -87,22 +87,12 @@ public final class PoliticianRankingView extends AbstractRankingView {
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createMenuBar()
-	 */
 	@Override
 	protected void createMenuBar() {
 		menuItemFactory.createPoliticianRankingMenuBar(getBarmenu());
 	}
 
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView
-	 * #createDescription()
-	 */
 	@Override
 	protected TextArea createDescription() {
 		final TextArea totalpoliticantoplistLabel = new TextArea(
@@ -122,13 +112,6 @@ public final class PoliticianRankingView extends AbstractRankingView {
 		return totalpoliticantoplistLabel;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView
-	 * #createTable()
-	 */
 	@Override
 	protected Component createTable() {
 
@@ -167,33 +150,21 @@ public final class PoliticianRankingView extends AbstractRankingView {
 		new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
-	 */
 	@Override
 	protected DataSeries createChartTimeSeriesAll() {
 		return dataSeriesFactory.createPartyChartTimeSeriesAll();
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
-	 */
 	@Override
 	protected DataSeries createChartTimeSeriesCurrent() {
 		return dataSeriesFactory.createPartyChartTimeSeriesCurrent();
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getName()
-	 */
 	@Override
 	protected String getName() {
 		return NAME;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getViewAction()
-	 */
 	@Override
 	protected ViewAction getViewAction() {
 		return ViewAction.VISIT_POLITICIAN_RANKING_VIEW;

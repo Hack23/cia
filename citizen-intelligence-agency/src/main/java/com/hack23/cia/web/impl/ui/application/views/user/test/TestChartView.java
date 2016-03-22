@@ -142,15 +142,8 @@ public final class TestChartView extends AbstractView {
 
 
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener
-	 * .ViewChangeEvent)
-	 */
-	@Override
 	//@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
+	@Override
 	public void enter(final ViewChangeEvent event) {
 
 		if (pageModeContent.getComponentCount() != 0) {

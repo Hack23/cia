@@ -33,15 +33,6 @@ import com.vaadin.ui.renderers.ButtonRenderer;
 @Service
 public final class GridFactoryImpl implements GridFactory {
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.gridfactory.
-	 * GridFactory#createBasicBeanItemGrid(com.vaadin.data.Container.Indexed,
-	 * java.lang.String, java.lang.Object[], java.lang.Object[],
-	 * java.lang.String, com.hack23.cia.web.impl.ui.application.views.common.
-	 * AbstractPageItemRendererClickListener)
-	 */
 	@Override
 	public Grid createBasicBeanItemGrid(final Container.Indexed datasource, final String caption,
 			final Object[] columnOrder, final Object[] hideColumns, final String idProprty,
@@ -49,9 +40,6 @@ public final class GridFactoryImpl implements GridFactory {
 		return createBasicBeanItemNestedPropertiesGrid(datasource, caption, null, columnOrder, hideColumns, idProprty, listener, actionId);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory#createBasicBeanItemNestedPropertiesGrid(com.vaadin.data.Container.Indexed, java.lang.String, java.lang.String[], java.lang.Object[], java.lang.Object[], java.lang.String, com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener, java.lang.String)
-	 */
 	@Override
 	public Grid createBasicBeanItemNestedPropertiesGrid(final Indexed datasource, final String caption, final String[] nestedProperties,
 			final Object[] columnOrder, final Object[] hideColumns, final String idProprty,

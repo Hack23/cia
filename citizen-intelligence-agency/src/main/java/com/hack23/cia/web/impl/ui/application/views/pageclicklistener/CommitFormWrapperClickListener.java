@@ -54,9 +54,6 @@ public final class CommitFormWrapperClickListener implements ClickListener {
 		this.buttonListener = buttonListener;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.vaadin.ui.Button.ClickListener#buttonClick(com.vaadin.ui.Button.ClickEvent)
-	 */
 	@Override
 	public void buttonClick(final ClickEvent event) {
 		try {

@@ -97,11 +97,6 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 	}
 
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.vaadin.ui.UI#init(com.vaadin.server.VaadinRequest)
-	 */
 	@Override
 	protected void init(final VaadinRequest request) {
 		VaadinSession.getCurrent().setErrorHandler(this);
@@ -202,9 +197,6 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 
 
 
-	/* (non-Javadoc)
-	 * @see com.vaadin.server.ErrorHandler#error(com.vaadin.server.ErrorEvent)
-	 */
 	@Override
 	public void error(final com.vaadin.server.ErrorEvent event) {
 	     if (event.getThrowable() instanceof AccessDeniedException) {

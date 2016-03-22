@@ -57,9 +57,6 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationEventListener.class);
 
-	/** {@inheritDoc}
-	 * @see org.springframework.context.ApplicationListener#onApplicationEvent(org.springframework.context.ApplicationEvent)
-	 */
 	@Override
 	public void onApplicationEvent(final ApplicationEvent applicationEvent) {
 		if (applicationEvent instanceof HttpSessionCreatedEvent) {

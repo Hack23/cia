@@ -64,7 +64,6 @@ public final class AgentOperationView extends AbstractAdminView implements
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(AgentOperationView.class);
 
-
 	/** The agent container. */
 	@Autowired
 	private transient AgentContainer agentContainer;
@@ -93,6 +92,9 @@ public final class AgentOperationView extends AbstractAdminView implements
 		createContent();
 	}
 
+	/**
+	 * Creates the content.
+	 */
 	private void createContent() {
 		content.removeAllComponents();
 		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Agent Operation");
@@ -135,12 +137,6 @@ public final class AgentOperationView extends AbstractAdminView implements
 		setHeight(100, Unit.PERCENTAGE);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.vaadin.ui.Button.ClickListener#buttonClick(com.vaadin.ui.Button.
-	 * ClickEvent)
-	 */
 	@Override
 	public void buttonClick(final ClickEvent event) {
 			if (targetSelect.getValue() != null && operationSelect.getValue()  != null) {
@@ -155,15 +151,8 @@ public final class AgentOperationView extends AbstractAdminView implements
 			}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener
-	 * .ViewChangeEvent)
-	 */
-	@Override
 	//@Secured({ "ROLE_ADMIN" })
+	@Override
 	public void enter(final ViewChangeEvent event) {
 		createContent();
 	}

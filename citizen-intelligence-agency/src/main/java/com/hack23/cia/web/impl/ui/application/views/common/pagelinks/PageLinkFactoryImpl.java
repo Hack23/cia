@@ -61,9 +61,6 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	/** The Constant MAIN_VIEW_LINK_TEXT. */
 	private static final String MAIN_VIEW_LINK_TEXT = "Main View";
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createMainViewPageLink()
-	 */
 	@Override
 	public Link createMainViewPageLink() {
 		final Link pageLink = new Link(MAIN_VIEW_LINK_TEXT, new ExternalResource(
@@ -72,9 +69,6 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createTestChartViewPageLink()
-	 */
 	@Override
 	public Link createTestChartViewPageLink() {
 		final Link pageLink = new Link(TEST_CHART_VIEW_LINK_TEXT,
@@ -83,9 +77,6 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createMinistryRankingViewPageLink()
-	 */
 	@Override
 	public Link createMinistryRankingViewPageLink() {
 		final Link pageLink = new Link(MINISTRY_RANKING_LINK_TEXT, new ExternalResource(
@@ -94,9 +85,6 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createCommitteeRankingViewPageLink()
-	 */
 	@Override
 	public Link createCommitteeRankingViewPageLink() {
 		final Link pageLink = new Link(COMMITTEE_RANKING_LINK_TEXT, new ExternalResource(
@@ -105,9 +93,6 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createPartyRankingViewPageLink()
-	 */
 	@Override
 	public Link createPartyRankingViewPageLink() {
 		final Link pageLink = new Link(PARTY_RANKING_LINK_TEXT, new ExternalResource(
@@ -116,9 +101,6 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createPoliticianRankingViewPageLink()
-	 */
 	@Override
 	public Link createPoliticianRankingViewPageLink() {
 		final Link pageLink = new Link(POLITICIAN_RANKING_LINK_TEXT,
@@ -127,9 +109,6 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createAdminDataSummaryViewPageLink()
-	 */
 	@Override
 	public Link createAdminDataSummaryViewPageLink() {
 		final Link pageLink = new Link(ADMIN_DATA_SUMMARY_LINK_TEXT,
@@ -139,9 +118,6 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createAdminAgentOperationViewPageLink()
-	 */
 	@Override
 	public Link createAdminAgentOperationViewPageLink() {
 		final Link pageLink = new Link(ADMIN_AGENT_OPERATIONS_LINK_TEXT, new ExternalResource(
@@ -150,9 +126,6 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#addCommitteePageLink(com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee)
-	 */
 	@Override
 	public Link addCommitteePageLink(final ViewRiksdagenCommittee data) {
 		final Link pageLink = new Link("Committee "
@@ -163,9 +136,6 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#addMinistryPageLink(com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry)
-	 */
 	@Override
 	public Link addMinistryPageLink(final ViewRiksdagenMinistry data) {
 		final Link pageLink = new Link("Ministry " + data.getNameId(),
@@ -176,9 +146,6 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#addPartyPageLink(com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty)
-	 */
 	@Override
 	public Link addPartyPageLink(final ViewRiksdagenParty data) {
 		final Link pageLink = new Link("Party " + data.getPartyName(),
@@ -189,10 +156,6 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.PageLinkFactory#createPoliticianPageLink(com.hack23.cia.model.external.riksdagen.person.impl.PersonData)
-	 */
 	@Override
 	public Link createPoliticianPageLink(final PersonData personData) {
 		final Link pageLink = new Link("Politician "
@@ -211,6 +174,5 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		pageLink.setId(ViewAction.VISIT_DOCUMENT_VIEW.name());
 		return pageLink;
 	}
-
 
 }

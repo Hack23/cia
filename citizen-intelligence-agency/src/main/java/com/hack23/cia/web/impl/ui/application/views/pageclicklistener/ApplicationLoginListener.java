@@ -54,10 +54,6 @@ public final class ApplicationLoginListener implements LoginListener {
 	}
 
 
-	/**
-	 * {@inheritDoc}
-	 * @see com.ejt.vaadin.loginform.LoginForm.LoginListener#onLogin(com.ejt.vaadin.loginform.LoginForm.LoginEvent)
-	 */
 	@Override
 	public void onLogin(final LoginEvent event) {
 

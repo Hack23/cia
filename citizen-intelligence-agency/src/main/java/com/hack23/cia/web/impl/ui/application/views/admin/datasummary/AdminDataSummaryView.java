@@ -79,6 +79,9 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 
 	}
 
+	/**
+	 * Creates the content.
+	 */
 	private void createContent() {
 		content.removeAllComponents();
 		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Data Summary");
@@ -137,9 +140,6 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 		setHeight(100, Unit.PERCENTAGE);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener.ViewChangeEvent)
-	 */
 	@Override
 	//@Secured({ "ROLE_ADMIN" })
 	public void enter(final ViewChangeEvent event) {

@@ -59,9 +59,6 @@ public final class UpdateApplicationConfigurationClickListener implements ClickL
 		this.applicationManager = applicationManager;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.vaadin.ui.Button.ClickListener#buttonClick(com.vaadin.ui.Button.ClickEvent)
-	 */
 	@Override
 	public void buttonClick(final ClickEvent event) {
 		final ServiceResponse response = applicationManager.service(request);

@@ -54,19 +54,12 @@ public abstract class AbstractPageItemRendererClickListener<T> implements Render
 		this.page = page;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener#click(com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent)
-	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public final void click(final RendererClickEvent event) {
 		UI.getCurrent().getNavigator().navigateTo(page + "/" + getPageId((T)event.getItemId()));
 	}
 
 
-	/** {@inheritDoc}
-	 * @see com.vaadin.event.SelectionEvent.SelectionListener#select(com.vaadin.event.SelectionEvent)
-	 */
 	@Override
 	public final void select(final SelectionEvent event) {
 		final Set<T> added =(Set<T>) event.getAdded();

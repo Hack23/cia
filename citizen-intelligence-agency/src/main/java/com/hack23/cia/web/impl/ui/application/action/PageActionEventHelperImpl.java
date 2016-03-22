@@ -40,9 +40,6 @@ public final class PageActionEventHelperImpl implements PageActionEventHelper {
 	@Autowired
 	private ApplicationManager applicationManager;
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper#createPageEvent(com.hack23.cia.web.impl.ui.application.action.ViewAction, com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup, java.lang.String, java.lang.String, java.lang.String)
-	 */
 	@Override
 	public void createPageEvent(final ViewAction viewAction,final ApplicationEventGroup applicationEventGroup,final String page, final String pageMode, final String elementId) {
 

@@ -47,9 +47,6 @@ public final class ChartTest extends Assert {
 		/** The Constant serialVersionUID. */
 		private static final long serialVersionUID = 1L;
 
-		/** {@inheritDoc}
-		 * @see org.dussan.vaadin.dcharts.base.elements.XYseries#getValue()
-		 */
 		@Override
 		public String getValue() {
 			return toJsonString(this);
@@ -79,9 +76,6 @@ public final class ChartTest extends Assert {
 			super(y);
 		}
 
-		/** {@inheritDoc}
-		 * @see org.dussan.vaadin.dcharts.base.elements.XYaxis#getValue()
-		 */
 		@Override
 		public String getValue() {
 			return toJsonString(this);

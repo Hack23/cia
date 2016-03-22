@@ -127,14 +127,8 @@ public final class PoliticianView extends AbstractPersonView {
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener
-	 *      .ViewChangeEvent)
-	 */
-	@Override
 	//@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
+	@Override
 	public void enter(final ViewChangeEvent event) {
 		final String parameters = event.getParameters();
 

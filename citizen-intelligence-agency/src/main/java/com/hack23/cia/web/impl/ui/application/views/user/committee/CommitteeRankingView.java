@@ -90,23 +90,11 @@ public final class CommitteeRankingView extends AbstractRankingView {
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
-	 * AbstractRankingView#createMenuBar()
-	 */
 	@Override
 	protected void createMenuBar() {
 		menuItemFactory.createCommitteeeRankingMenuBar(getBarmenu());
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
-	 * AbstractRankingView #createDescription()
-	 */
 	@Override
 	protected TextArea createDescription() {
 		final TextArea totalCommitteeRankinglistLabel = new TextArea("Committee Ranking by topic",
@@ -123,12 +111,6 @@ public final class CommitteeRankingView extends AbstractRankingView {
 		return totalCommitteeRankinglistLabel;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
-	 * AbstractRankingView#createExtraChartLayout()
-	 */
 	@Override
 	protected Layout createExtraChartLayout() {
 		final Layout chartLayout = new HorizontalLayout();
@@ -150,12 +132,6 @@ public final class CommitteeRankingView extends AbstractRankingView {
 		return chartLayout;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.
-	 * AbstractRankingView#createTable()
-	 */
 	@Override
 	protected Component createTable() {
 		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = applicationManager
@@ -174,33 +150,21 @@ public final class CommitteeRankingView extends AbstractRankingView {
 				new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, "embeddedId.orgCode"), null);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
-	 */
 	@Override
 	protected DataSeries createChartTimeSeriesAll() {
 		return dataSeriesFactory.createCommitteeChartTimeSeriesAll();
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
-	 */
 	@Override
 	protected DataSeries createChartTimeSeriesCurrent() {
 		return dataSeriesFactory.createCommitteeChartTimeSeriesCurrent();
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getName()
-	 */
 	@Override
 	protected String getName() {
 		return NAME;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getViewAction()
-	 */
 	@Override
 	protected ViewAction getViewAction() {
 		return ViewAction.VISIT_COMMITTEE_RANKING_VIEW;

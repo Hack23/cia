@@ -127,17 +127,13 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	/** The party map. */
 	private Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> partyMap;
 
+	/**
+	 * Instantiates a new chart data manager impl.
+	 */
 	public ChartDataManagerImpl() {
 		super();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * getCommitteeDecisionTypeMap()
-	 */
 	@Override
 	public Map<String, List<ViewRiksdagenCommitteeDecisionTypeDailySummary>> getCommitteeDecisionTypeMap() {
 		final DataContainer<ViewRiksdagenCommitteeDecisionTypeDailySummary, RiksdagenCommitteeDecisionTypeSummaryEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
@@ -151,13 +147,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDecisionType()));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * getCommitteeDecisionTypeOrgMap()
-	 */
 	@Override
 	public Map<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> getCommitteeDecisionTypeOrgMap() {
 		final DataContainer<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary, RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
@@ -167,13 +156,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.filter(t -> t != null).collect(Collectors.groupingBy(t -> t.getEmbeddedId().getOrg()));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * getDocumentTypeMap()
-	 */
 	@Override
 	public Map<String, List<ViewRiksdagenDocumentTypeDailySummary>> getDocumentTypeMap() {
 		final DataContainer<ViewRiksdagenDocumentTypeDailySummary, RiksdagenDocumentTypeSummaryEmbeddedId> documentTypeSummaryDailyDataContainer = applicationManager
@@ -185,13 +167,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDocumentType()));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * getMaxSizeViewRiksdagenVoteDataBallotPartySummaryDaily()
-	 */
 	@Override
 	public List<ViewRiksdagenVoteDataBallotPartySummaryDaily> getMaxSizeViewRiksdagenVoteDataBallotPartySummaryDaily() {
 		initPartyMap();
@@ -208,13 +183,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * getPartyMap()
-	 */
 	@Override
 	public Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> getPartyMap() {
 		initPartyMap();
@@ -222,13 +190,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return partyMap;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * getViewRiksdagenOrgDocumentDailySummaryMap()
-	 */
 	@Override
 	public Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> getViewRiksdagenOrgDocumentDailySummaryMap() {
 		final DataContainer<ViewRiksdagenOrgDocumentDailySummary, RiksdagenDocumentOrgSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
@@ -239,13 +200,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.collect(Collectors.groupingBy(t -> StringEscapeUtils.unescapeHtml4(t.getEmbeddedId().getOrg()).toUpperCase(Locale.ENGLISH).replace("_", "").replace("-", "").trim()));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * getViewRiksdagenPartyDocumentDailySummaryMap()
-	 */
 	@Override
 	public Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> getViewRiksdagenPartyDocumentDailySummaryMap() {
 		final DataContainer<ViewRiksdagenPartyDocumentDailySummary, RiksdagenDocumentPartySummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
@@ -255,13 +209,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPartyShortCode().toUpperCase(Locale.ENGLISH).replace("_", "").trim()));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * getViewRiksdagenPoliticianDocumentDailySummaryMap()
-	 */
 	@Override
 	public Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> getViewRiksdagenPoliticianDocumentDailySummaryMap() {
 		final DataContainer<ViewRiksdagenPoliticianDocumentDailySummary, RiksdagenDocumentPersonSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
@@ -271,13 +218,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPersonId()));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * getViewRiksdagenVoteDataBallotPartySummary(java.lang.String)
-	 */
 	@Override
 	public List<ViewRiksdagenVoteDataBallotPartySummary> getViewRiksdagenVoteDataBallotPartySummary(
 			final String party) {
@@ -289,13 +229,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.party, party,ViewRiksdagenVoteDataBallotPartySummary_.voteDate);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * getViewRiksdagenVoteDataBallotPartySummaryDaily(java.lang.String)
-	 */
 	public List<ViewRiksdagenVoteDataBallotPartySummaryDaily> getViewRiksdagenVoteDataBallotPartySummaryDaily(
 			final String party) {
 		initPartyMap();
@@ -303,13 +236,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return partyMap.get(party);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * getViewRiksdagenVoteDataBallotPoliticianSummary(java.lang.String)
-	 */
 	@Override
 	public List<ViewRiksdagenVoteDataBallotPoliticianSummary> getViewRiksdagenVoteDataBallotPoliticianSummary(
 			final String id) {
@@ -339,13 +265,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * createPartyWinnerChart()
-	 */
 	@Override
 	public DCharts createPartyWinnerChart() {
 
@@ -392,13 +311,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(createOptionsXYDateFloatLegendOutside(series)).show();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * createDocumentTypeChart()
-	 */
 	@Override
 	public DCharts createDocumentTypeChart() {
 
@@ -429,13 +341,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(createOptionsXYDateFloatLegendOutside(series)).show();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.web.impl.ui.application.views.common.ChartDataManager#
-	 * createDecisionTypeChart()
-	 */
 	@Override
 	public DCharts createDecisionTypeChart() {
 
@@ -467,12 +372,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(createOptionsXYDateFloatLegendOutside(series)).show();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
-	 * ChartDataManager#createDecisionTypeChart(java.lang.String)
-	 */
 	@Override
 	public DCharts createDecisionTypeChart(final String org) {
 
@@ -516,12 +415,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(createOptionsXYDateFloatLegendOutside(series)).show();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
-	 * ChartDataManager#createDocumentHistoryChart(java.lang.String)
-	 */
 	@Override
 	public DCharts createDocumentHistoryChartByOrg(final String org) {
 		final String searchOrg = org.toUpperCase(Locale.ENGLISH).replace("_", "").replace("-", "").trim();
@@ -566,12 +459,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(createOptionsXYDateFloatLegendOutside(series)).show();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
-	 * ChartDataManager#createPartyLineChart(java.lang.String)
-	 */
 	@Override
 	public DCharts createPartyLineChart(final String partyId) {
 
@@ -616,12 +503,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(options).show();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
-	 * ChartDataManager#createDocumentHistoryPartyChart(java.lang.String)
-	 */
 	@Override
 	public DCharts createDocumentHistoryPartyChart(final String org) {
 		final DataSeries dataSeries = new DataSeries();
@@ -663,12 +544,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
-	 * ChartDataManager#createPersonLineChart(java.lang.String)
-	 */
 	@Override
 	public DCharts createPersonLineChart(final String personId) {
 
@@ -735,12 +610,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(options).show();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
-	 * ChartDataManager#createPersonDocumentHistoryChart(java.lang.String)
-	 */
 	@Override
 	public DCharts createPersonDocumentHistoryChart(final String personId) {
 
@@ -797,14 +666,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFormatString("%.2f")));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
-	 * ChartDataManager#createIndicatorChart(java.util.List,
-	 * com.hack23.cia.model.internal.application.data.impl.
-	 * ViewWorldbankIndicatorDataCountrySummary)
-	 */
 	@Override
 	public DCharts createIndicatorChart(final List<WorldBankData> list,
 			final ViewWorldbankIndicatorDataCountrySummary summary) {
@@ -835,13 +696,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(options).show();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.
-	 * ChartDataManager#createChartPanel(org.dussan.vaadin.dcharts.data.
-	 * DataSeries, java.lang.String)
-	 */
 	@Override
 	public DCharts createChartPanel(final DataSeries dataSeries, final String caption) {
 
@@ -940,9 +794,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager#createApplicationActionEventPageDailySummaryChart()
-	 */
 	@Override
 	public DCharts createApplicationActionEventPageDailySummaryChart() {
 
@@ -996,9 +847,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager#createApplicationActionEventPageModeDailySummaryChart(java.lang.String)
-	 */
 	@Override
 	public DCharts createApplicationActionEventPageModeDailySummaryChart(final String page) {
 
@@ -1052,9 +900,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager#createApplicationActionEventPageElementDailySummaryChart(java.lang.String, java.lang.String)
-	 */
 	@Override
 	public DCharts createApplicationActionEventPageElementDailySummaryChart(final String page,final String elementId) {
 

@@ -74,13 +74,6 @@ public abstract class AbstractRankingView extends AbstractUserView {
 	protected abstract ViewAction getViewAction();
 
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener
-	 * .ViewChangeEvent)
-	 */
 	@Override
 	public final void enter(final ViewChangeEvent event) {
 

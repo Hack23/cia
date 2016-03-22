@@ -91,20 +91,12 @@ public final class PartyRankingView extends AbstractRankingView {
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createMenuBar()
-	 */
 	@Override
 	protected void createMenuBar() {
 		menuItemFactory.createPartyRankingMenuBar(getBarmenu());
 	}
 
 
-
-
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createDescription()
-	 */
 	@Override
 	protected TextArea createDescription() {
 		final TextArea totalpartytoplistLabel = new TextArea(
@@ -126,9 +118,6 @@ public final class PartyRankingView extends AbstractRankingView {
 
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createExtraChartLayout()
-	 */
 	@Override
 	protected Layout createExtraChartLayout() {
 		final Layout chartLayout = new HorizontalLayout();
@@ -148,9 +137,6 @@ public final class PartyRankingView extends AbstractRankingView {
 		return chartLayout;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createTable()
-	 */
 	@Override
 	protected Component createTable() {
 			final DataContainer<ViewRiksdagenPartySummary, String> dataContainer = applicationManager
@@ -168,34 +154,22 @@ public final class PartyRankingView extends AbstractRankingView {
 					null, "party", new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "party"), null);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesAll()
-	 */
 	@Override
 	protected DataSeries createChartTimeSeriesAll() {
 		return dataSeriesFactory.createPartyChartTimeSeriesAll();
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#createChartTimeSeriesCurrent()
-	 */
 	@Override
 	protected DataSeries createChartTimeSeriesCurrent() {
 		return dataSeriesFactory.createPartyChartTimeSeriesCurrent();
 	}
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getName()
-	 */
 	@Override
 	protected String getName() {
 		return NAME;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView#getViewAction()
-	 */
 	@Override
 	protected ViewAction getViewAction() {
 		return ViewAction.VISIT_PARTY_RANKING_VIEW;

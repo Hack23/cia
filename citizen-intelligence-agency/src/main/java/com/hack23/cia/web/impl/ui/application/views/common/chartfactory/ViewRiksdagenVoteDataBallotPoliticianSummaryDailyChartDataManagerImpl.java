@@ -43,12 +43,6 @@ public final class ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataMan
 	@Qualifier("ApplicationManager")
 	private ApplicationManager applicationManager;
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.web.impl.ui.application.views.common.
-	 * GenericChartDataManager#findByValue(java.lang.String)
-	 */
 	@Override
 	public List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> findByValue(final String value) {
 		final DataContainer<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily, RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
