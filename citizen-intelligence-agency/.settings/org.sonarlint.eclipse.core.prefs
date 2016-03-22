@@ -1,0 +1,4 @@
+eclipse.preferences.version=1
+extraProperties=sonar.sources\=src/main
+moduleKey=com.hack23.cia\:citizen-intelligence-agency
+serverId=192
