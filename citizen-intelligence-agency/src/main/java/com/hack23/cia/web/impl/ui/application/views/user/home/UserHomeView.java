@@ -132,7 +132,7 @@ public final class UserHomeView extends AbstractUserView {
 			panelContent.setMargin(true);
 
 			if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-					|| parameters.contains(PageMode.Overview.toString())) {
+					|| parameters.contains(PageMode.OVERVIEW.toString())) {
 
 				final Label createHeader2Label = LabelFactory.createHeader2Label("Overview");
 				panelContent.addComponent(createHeader2Label);

@@ -20,41 +20,41 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
 
 public enum PartyPageMode {
 
-	/** The Document history. */
-	DocumentHistory,
+	/** THE DOCUMENT HISTORY. */
+	DOCUMENTHISTORY,
 
-	/** The Current members. */
-	CurrentMembers,
+	/** THE CURRENT MEMBERS. */
+	CURRENTMEMBERS,
 
-	/** The Member history. */
-	MemberHistory,
+	/** THE MEMBER HISTORY. */
+	MEMBERHISTORY,
 
-	/** The Current leaders. */
-	CurrentLeaders,
+	/** THE CURRENT LEADERS. */
+	CURRENTLEADERS,
 
-	/** The Leader history. */
-	LeaderHistory,
+	/** THE LEADER HISTORY. */
+	LEADERHISTORY,
 
-	/** The Committee roles. */
-	CommitteeRoles,
+	/** THE COMMITTEE ROLES. */
+	COMMITTEEROLES,
 
-	/** The Government roles. */
-	GovernmentRoles,
+	/** THE GOVERNMENT ROLES. */
+	GOVERNMENTROLES,
 
-	/** The Document activity. */
-	DocumentActivity,
+	/** THE DOCUMENT ACTIVITY. */
+	DOCUMENTACTIVITY,
 
-	/** The Committee ballot decision summary. */
-	CommitteeBallotDecisionSummary,
+	/** THE COMMITTEE BALLOT DECISION SUMMARY. */
+	COMMITTEEBALLOTDECISIONSUMMARY,
 
-	/** The Vote history. */
-	VoteHistory,
+	/** THE VOTE HISTORY. */
+	VOTEHISTORY,
 
-/** The Party won daily summary chart. */
-PartyWonDailySummaryChart,
+/** THE PARTY WON DAILY SUMMARY CHART. */
+PARTYWONDAILYSUMMARYCHART,
 
- /** The Role ghant. */
- RoleGhant
+ /** THE ROLE GHANT. */
+ ROLEGHANT
 
 
 }

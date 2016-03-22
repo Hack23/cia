@@ -161,7 +161,7 @@ public final class PartyView extends AbstractGroupView {
 
 
 				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-						|| parameters.contains(PageMode.Overview.toString())) {
+						|| parameters.contains(PageMode.OVERVIEW.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Overview"));
 
@@ -198,15 +198,15 @@ public final class PartyView extends AbstractGroupView {
 										"totalDaysServedParliament" }));
 					}
 
-				} else if (parameters.contains(PageMode.Charts.toString())) {
+				} else if (parameters.contains(PageMode.CHARTS.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Charts Not Implemented"));
 
-				} else if (parameters.contains(PartyPageMode.RoleGhant.toString())) {
+				} else if (parameters.contains(PartyPageMode.ROLEGHANT.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Ghant Not Implemented"));
 
-				} else if (parameters.contains(PartyPageMode.DocumentHistory.toString())) {
+				} else if (parameters.contains(PartyPageMode.DOCUMENTHISTORY.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Document History"));
 
@@ -235,13 +235,13 @@ public final class PartyView extends AbstractGroupView {
 					panelContent
 					.addComponent(politicianDocumentBeanItemGrid);
 
-				} else if (parameters.contains(PartyPageMode.DocumentActivity.toString())) {
+				} else if (parameters.contains(PartyPageMode.DOCUMENTACTIVITY.toString())) {
 					panelContent.addComponent(LabelFactory.createHeader2Label("Document Activity"));
 
 					final DCharts createDocumentHistoryChart = chartDataManager.createDocumentHistoryPartyChart(pageId);
 					panelContent.addComponent(createDocumentHistoryChart);
 
-				} else if (parameters.contains(PartyPageMode.CurrentMembers.toString())) {
+				} else if (parameters.contains(PartyPageMode.CURRENTMEMBERS.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Current Members"));
 
@@ -283,7 +283,7 @@ public final class PartyView extends AbstractGroupView {
 
 					panelContent.addComponent(partyMemberBeanItemGrid);
 
-				} else if (parameters.contains(PartyPageMode.MemberHistory.toString())) {
+				} else if (parameters.contains(PartyPageMode.MEMBERHISTORY.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("MemberHistory"));
 
@@ -325,7 +325,7 @@ public final class PartyView extends AbstractGroupView {
 
 					panelContent.addComponent(partyMemberBeanItemGrid);
 
-				} else if (parameters.contains(PartyPageMode.CurrentLeaders.toString())) {
+				} else if (parameters.contains(PartyPageMode.CURRENTLEADERS.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Current Leaders"));
 
@@ -351,7 +351,7 @@ public final class PartyView extends AbstractGroupView {
 
 						panelContent.addComponent(currentPartyBeanItemGrid);
 
-				} else if (parameters.contains(PartyPageMode.LeaderHistory.toString())) {
+				} else if (parameters.contains(PartyPageMode.LEADERHISTORY.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("LeaderHistory"));
 
@@ -374,7 +374,7 @@ public final class PartyView extends AbstractGroupView {
 
 					panelContent.addComponent(partyRoleMemberBeanItemGrid);
 
-				} else if (parameters.contains(PartyPageMode.GovernmentRoles.toString())) {
+				} else if (parameters.contains(PartyPageMode.GOVERNMENTROLES.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Government Roles"));
 
@@ -402,7 +402,7 @@ public final class PartyView extends AbstractGroupView {
 					panelContent
 					.addComponent(currentGovermentMemberBeanItemGrid);
 
-				} else if (parameters.contains(PartyPageMode.CommitteeRoles.toString())) {
+				} else if (parameters.contains(PartyPageMode.COMMITTEEROLES.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("CommitteeRoles"));
 
@@ -428,7 +428,7 @@ public final class PartyView extends AbstractGroupView {
 					panelContent
 					.addComponent(committeeMemberBeanItemGrid);
 
-				} else if (parameters.contains(PartyPageMode.CommitteeBallotDecisionSummary.toString())) {
+				} else if (parameters.contains(PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("CommitteeBallotDecisionSummary"));
 
@@ -454,7 +454,7 @@ public final class PartyView extends AbstractGroupView {
 					.addComponent(committeeBallotDecisionPartyBeanItemGrid);
 
 
-				} else if (parameters.contains(PartyPageMode.VoteHistory.toString())) {
+				} else if (parameters.contains(PartyPageMode.VOTEHISTORY.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("VoteHistory"));
 
@@ -474,12 +474,12 @@ public final class PartyView extends AbstractGroupView {
 					panelContent
 					.addComponent(partynBallotsBeanItemGrid);
 
-				} else if (parameters.contains(PartyPageMode.PartyWonDailySummaryChart.toString())) {
+				} else if (parameters.contains(PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("PartyWonDailySummaryChart"));
 					panelContent.addComponent(chartDataManager.createPartyLineChart(pageId));
 
-				} else if (parameters.contains(PageMode.PageVisitHistory.toString())) {
+				} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Current Page Visit History"));
 					panelContent.addComponent(chartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId));

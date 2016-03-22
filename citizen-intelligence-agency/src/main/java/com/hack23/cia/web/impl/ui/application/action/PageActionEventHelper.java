@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.action;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 
+@FunctionalInterface
 public interface PageActionEventHelper {
 
 	/**

@@ -119,9 +119,17 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	@Qualifier("ApplicationManager")
 	private ApplicationManager applicationManager;
 
+	/** The data chart manager. */
+	@Autowired
+	private GenericChartDataManager<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dataChartManager;
+
+
 	/** The party map. */
 	private Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> partyMap;
 
+	public ChartDataManagerImpl() {
+		super();
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -282,13 +290,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	}
 
 	/**
-	 * Gets the view riksdagen vote data ballot party summary daily.
-	 *
-	 * @param party
-	 *            the party
-	 * @return the view riksdagen vote data ballot party summary daily
-	 */
-	/*
 	 * {@inheritDoc}
 	 *
 	 * @see
@@ -409,7 +410,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		for (final Entry<String, List<ViewRiksdagenDocumentTypeDailySummary>> entry : map.entrySet()) {
 
-			if (entry.getKey() != null && !"".equals(entry)) {
+			if (entry.getKey() != null && !"".equals(entry.getKey())) {
 
 				series.addSeries(new XYseries().setLabel(entry.getKey()));
 
@@ -440,9 +441,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		final Map<String, List<ViewRiksdagenCommitteeDecisionTypeDailySummary>> map = getCommitteeDecisionTypeMap();
 
-		final String dateFormatPatter = "dd-MMM-yyyy";
-
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormatPatter, Locale.ENGLISH);
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 
 		final DataSeries dataSeries = new DataSeries();
 
@@ -477,9 +476,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	@Override
 	public DCharts createDecisionTypeChart(final String org) {
 
-		final String dateFormatPatter = "dd-MMM-yyyy";
-
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormatPatter, Locale.ENGLISH);
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 
 		final DataSeries dataSeries = new DataSeries();
 		final Series series = new Series();
@@ -586,9 +583,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		final DataSeries dataSeries = new DataSeries().newSeries();
 
-		final String dateFormatPatter = "dd-MMM-yyyy";
-
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormatPatter, Locale.ENGLISH);
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 
 		if (list != null) {
 
@@ -667,9 +662,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(createOptionsXYDateFloatLegendOutside(series)).show();
 	}
 
-	/** The data chart manager. */
-	@Autowired
-	private GenericChartDataManager<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dataChartManager;
 
 	/**
 	 * {@inheritDoc}
@@ -856,10 +848,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		final Options options = new Options().setSeriesDefaults(createSeriesDefaultPieChart())
 				.setLegend(createdLegendEnhancedInsideWest()).setHighlighter(createHighLighter());
 
-		// String[] seriesColors= new String[]{"#333333", "#999999", "#3EA140",
-		// "#3EA140", "#3EA140", "#783F16", "#783F16", "#783F16"};
-		// options.setSeriesColors(seriesColors);
-
 		final DCharts chart = new DCharts().setDataSeries(dataSeries).setOptions(options);
 
 		chart.setCaption(caption);
@@ -962,9 +950,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		final DataSeries dataSeries = new DataSeries();
 
-		final String dateFormatPatter = "dd-MMM-yyyy";
-
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormatPatter, Locale.ENGLISH);
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 
 		final Series series = new Series();
 
@@ -1020,9 +1006,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		final DataSeries dataSeries = new DataSeries();
 
-		final String dateFormatPatter = "dd-MMM-yyyy";
-
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormatPatter, Locale.ENGLISH);
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 
 		final Series series = new Series();
 
@@ -1078,9 +1062,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		final DataSeries dataSeries = new DataSeries();
 
-		final String dateFormatPatter = "dd-MMM-yyyy";
-
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormatPatter, Locale.ENGLISH);
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 
 		final Series series = new Series();
 

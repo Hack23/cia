@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
+import java.io.Serializable;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,7 +47,8 @@ public final class SearchDocumentClickListener implements ClickListener {
 
 	private final SearchDocumentResponseHandler responseHandler;
 
-	public static interface SearchDocumentResponseHandler {
+	@FunctionalInterface
+	public static interface SearchDocumentResponseHandler extends Serializable {
 		void handle(SearchDocumentResponse response);
 	}
 

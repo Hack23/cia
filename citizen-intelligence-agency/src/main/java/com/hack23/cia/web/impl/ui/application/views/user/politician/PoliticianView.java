@@ -154,15 +154,15 @@ public final class PoliticianView extends AbstractPersonView {
 				panelContent.setMargin(true);
 
 				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-						|| parameters.contains(PageMode.Overview.toString())) {
+						|| parameters.contains(PageMode.OVERVIEW.toString())) {
 
 					createOverviewContent(panelContent, pageId, personData);
 
-				} else if (parameters.contains(PageMode.Charts.toString())) {
+				} else if (parameters.contains(PageMode.CHARTS.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Charts Not Implemented"));
 
-				} else if (parameters.contains(PageMode.Indicators.toString())) {
+				} else if (parameters.contains(PageMode.INDICATORS.toString())) {
 
 					final Label createHeader2Label = LabelFactory.createHeader2Label("Indicators");
 					panelContent.addComponent(createHeader2Label);
@@ -173,10 +173,10 @@ public final class PoliticianView extends AbstractPersonView {
 					panelContent.setExpandRatio(createHeader2Label, 1);
 					panelContent.setExpandRatio(createPersonLineChart, 10);
 
-				} else if (parameters.contains(PoliticianPageMode.RoleSummary.toString())) {
+				} else if (parameters.contains(PoliticianPageMode.ROLESUMMARY.toString())) {
 
 					final Label createHeader2Label = LabelFactory
-							.createHeader2Label(PoliticianPageMode.RoleSummary.toString());
+							.createHeader2Label(PoliticianPageMode.ROLESUMMARY.toString());
 					panelContent.addComponent(createHeader2Label);
 
 					panelContent.setExpandRatio(createHeader2Label, 1);
@@ -192,9 +192,9 @@ public final class PoliticianView extends AbstractPersonView {
 
 					createRoleSummary(panelContent, assignmentList, viewRiksdagenPolitician);
 
-				} else if (parameters.contains(PoliticianPageMode.RoleList.toString())) {
+				} else if (parameters.contains(PoliticianPageMode.ROLELIST.toString())) {
 
-					final Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.RoleList.toString());
+					final Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.ROLELIST.toString());
 					panelContent.addComponent(createHeader2Label);
 					panelContent.setExpandRatio(createHeader2Label, 1);
 
@@ -203,10 +203,10 @@ public final class PoliticianView extends AbstractPersonView {
 
 					createRoleList(panelContent, assignmentList);
 
-				} else if (parameters.contains(PoliticianPageMode.VoteHistory.toString())) {
+				} else if (parameters.contains(PoliticianPageMode.VOTEHISTORY.toString())) {
 
 					final Label createHeader2Label = LabelFactory
-							.createHeader2Label(PoliticianPageMode.VoteHistory.toString());
+							.createHeader2Label(PoliticianPageMode.VOTEHISTORY.toString());
 					panelContent.addComponent(createHeader2Label);
 
 					final BeanItemContainer<ViewRiksdagenVoteDataBallotPoliticianSummary> politicianBallotDataSource = new BeanItemContainer<>(
@@ -231,10 +231,10 @@ public final class PoliticianView extends AbstractPersonView {
 					panelContent.setExpandRatio(createHeader2Label, 1);
 					panelContent.setExpandRatio(politicianBallotsBeanItemGrid, 10);
 
-				} else if (parameters.contains(PoliticianPageMode.BallotDecisionSummary.toString())) {
+				} else if (parameters.contains(PoliticianPageMode.BALLOTDECISIONSUMMARY.toString())) {
 
 					final Label createHeader2Label = LabelFactory
-							.createHeader2Label(PoliticianPageMode.BallotDecisionSummary.toString());
+							.createHeader2Label(PoliticianPageMode.BALLOTDECISIONSUMMARY.toString());
 					panelContent.addComponent(createHeader2Label);
 
 					final DataContainer<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
@@ -275,10 +275,10 @@ public final class PoliticianView extends AbstractPersonView {
 					panelContent.setExpandRatio(createHeader2Label, 1);
 					panelContent.setExpandRatio(committeeBallotDecisionPartyBeanItemGrid, 10);
 
-				} else if (parameters.contains(PoliticianPageMode.DocumentHistory.toString())) {
+				} else if (parameters.contains(PoliticianPageMode.DOCUMENTHISTORY.toString())) {
 
 					final Label createHeader2Label = LabelFactory
-							.createHeader2Label(PoliticianPageMode.DocumentHistory.toString());
+							.createHeader2Label(PoliticianPageMode.DOCUMENTHISTORY.toString());
 					panelContent.addComponent(createHeader2Label);
 
 					final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = applicationManager
@@ -304,10 +304,10 @@ public final class PoliticianView extends AbstractPersonView {
 					panelContent.setExpandRatio(createHeader2Label, 1);
 					panelContent.setExpandRatio(politicianDocumentBeanItemGrid, 10);
 
-				} else if (parameters.contains(PoliticianPageMode.DocumentActivity.toString())) {
+				} else if (parameters.contains(PoliticianPageMode.DOCUMENTACTIVITY.toString())) {
 
 					final Label createHeader2Label = LabelFactory
-							.createHeader2Label(PoliticianPageMode.DocumentActivity.toString());
+							.createHeader2Label(PoliticianPageMode.DOCUMENTACTIVITY.toString());
 					panelContent.addComponent(createHeader2Label);
 
 					final DCharts documentHistoryChart = chartDataManager
@@ -318,9 +318,9 @@ public final class PoliticianView extends AbstractPersonView {
 					panelContent.setExpandRatio(createHeader2Label, 1);
 					panelContent.setExpandRatio(documentHistoryChart, 10);
 
-				} else if (parameters.contains(PoliticianPageMode.RoleGhant.toString())) {
+				} else if (parameters.contains(PoliticianPageMode.ROLEGHANT.toString())) {
 
-					final Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.RoleGhant.toString());
+					final Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.ROLEGHANT.toString());
 					panelContent.addComponent(createHeader2Label);
 					panelContent.setExpandRatio(createHeader2Label, 1);
 
@@ -329,7 +329,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 					createRoleGhant(panelContent, assignmentList);
 
-				} else if (parameters.contains(PageMode.PageVisitHistory.toString())) {
+				} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
 
 					final Label createHeader2Label = LabelFactory.createHeader2Label("Current Page Visit History");
 					panelContent.addComponent(createHeader2Label);

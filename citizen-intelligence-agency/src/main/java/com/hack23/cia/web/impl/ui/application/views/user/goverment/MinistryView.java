@@ -135,7 +135,7 @@ public final class MinistryView extends AbstractGroupView {
 				panelContent.setMargin(true);
 
 				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-						|| parameters.contains(PageMode.Overview.toString())) {
+						|| parameters.contains(PageMode.OVERVIEW.toString())) {
 
 					final Label createHeader2Label = LabelFactory.createHeader2Label("Overview");
 					panelContent.addComponent(createHeader2Label);
@@ -163,7 +163,7 @@ public final class MinistryView extends AbstractGroupView {
 					panelContent.setExpandRatio(formPanel, 10);
 
 
-				} else if (parameters.contains(MinistryPageMode.DocumentHistory.toString())) {
+				} else if (parameters.contains(MinistryPageMode.DOCUMENTHISTORY.toString())) {
 
 					final Label createHeader2Label = LabelFactory.createHeader2Label("Document History");
 					panelContent.addComponent(createHeader2Label);
@@ -191,7 +191,7 @@ public final class MinistryView extends AbstractGroupView {
 					panelContent.setExpandRatio(politicianDocumentBeanItemGrid, 10);
 
 
-				} else if (parameters.contains(MinistryPageMode.DocumentActivity.toString())) {
+				} else if (parameters.contains(MinistryPageMode.DOCUMENTACTIVITY.toString())) {
 
 					final Label createHeader2Label = LabelFactory.createHeader2Label("Document Activity");
 					panelContent.addComponent(createHeader2Label);
@@ -205,7 +205,7 @@ public final class MinistryView extends AbstractGroupView {
 					panelContent.setExpandRatio(createDocumentHistoryChart, 10);
 
 
-				} else if (parameters.contains(MinistryPageMode.CurrentMembers.toString())) {
+				} else if (parameters.contains(MinistryPageMode.CURRENTMEMBERS.toString())) {
 
 					final Label createHeader2Label = LabelFactory.createHeader2Label("Current Members");
 					panelContent.addComponent(createHeader2Label);
@@ -233,7 +233,7 @@ public final class MinistryView extends AbstractGroupView {
 					panelContent.setExpandRatio(currentMemberBeanItemGrid, 10);
 
 
-				} else if (parameters.contains(MinistryPageMode.MemberHistory.toString())) {
+				} else if (parameters.contains(MinistryPageMode.MEMBERHISTORY.toString())) {
 
 					final Label createHeader2Label = LabelFactory.createHeader2Label("Member History");
 					panelContent.addComponent(createHeader2Label);
@@ -258,9 +258,9 @@ public final class MinistryView extends AbstractGroupView {
 					panelContent.setExpandRatio(ministryRoleMemberBeanItemGrid, 10);
 
 
-				} else if (parameters.contains(MinistryPageMode.RoleGhant.toString())) {
+				} else if (parameters.contains(MinistryPageMode.ROLEGHANT.toString())) {
 					panelContent.addComponent(LabelFactory.createHeader2Label("Role Ghant"));
-				} else if (parameters.contains(PageMode.PageVisitHistory.toString())) {
+				} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
 
 					final Label createHeader2Label = LabelFactory.createHeader2Label("Current Page Visit History");
 					panelContent.addComponent(createHeader2Label);

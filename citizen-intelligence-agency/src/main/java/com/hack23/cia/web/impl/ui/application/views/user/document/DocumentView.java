@@ -156,7 +156,7 @@ public final class DocumentView extends AbstractUserView {
 								DocumentData.class, DocumentData_.id, pageId);
 
 				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-						|| parameters.contains(PageMode.Overview.toString())) {
+						|| parameters.contains(PageMode.OVERVIEW.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Overview"));
 
@@ -177,7 +177,7 @@ public final class DocumentView extends AbstractUserView {
 
 					}
 
-				} else if (parameters.contains(DocumentPageMode.DocumenDecision.toString())) {
+				} else if (parameters.contains(DocumentPageMode.DOCUMENDECISION.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Document Decision"));
 
@@ -194,7 +194,7 @@ public final class DocumentView extends AbstractUserView {
 
 					}
 
-				} else if (parameters.contains(DocumentPageMode.DocumentActivity.toString())) {
+				} else if (parameters.contains(DocumentPageMode.DOCUMENTACTIVITY.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Document Activity"));
 
@@ -212,7 +212,7 @@ public final class DocumentView extends AbstractUserView {
 						panelContent.addComponent(documentActivityDataItemGrid);
 					}
 
-				} else if (parameters.contains(DocumentPageMode.DocumentData.toString())) {
+				} else if (parameters.contains(DocumentPageMode.DOCUMENTDATA.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Document Data"));
 
@@ -227,7 +227,7 @@ public final class DocumentView extends AbstractUserView {
 
 					}
 
-				} else if (parameters.contains(DocumentPageMode.DocumentDetails.toString())) {
+				} else if (parameters.contains(DocumentPageMode.DOCUMENTDETAILS.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Document Details"));
 
@@ -243,7 +243,7 @@ public final class DocumentView extends AbstractUserView {
 						panelContent.addComponent(documentDetailDataItemGrid);
 					}
 
-				} else if (parameters.contains(DocumentPageMode.DocumentReferences.toString())) {
+				} else if (parameters.contains(DocumentPageMode.DOCUMENTREFERENCES.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Document References"));
 
@@ -263,7 +263,7 @@ public final class DocumentView extends AbstractUserView {
 
 					}
 
-				} else if (parameters.contains(DocumentPageMode.PersonReferences.toString())) {
+				} else if (parameters.contains(DocumentPageMode.PERSONREFERENCES.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Person References"));
 
@@ -284,7 +284,7 @@ public final class DocumentView extends AbstractUserView {
 						panelContent.addComponent(documentPersonReferenceDataItemGrid);
 					}
 
-				} else if (parameters.contains(DocumentPageMode.DocumentAttachments.toString())) {
+				} else if (parameters.contains(DocumentPageMode.DOCUMENTATTACHMENTS.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Document Attachments"));
 
@@ -303,7 +303,7 @@ public final class DocumentView extends AbstractUserView {
 						panelContent.addComponent(documentAttachmentDataItemGrid);
 					}
 
-				} else if (parameters.contains(PageMode.PageVisitHistory.toString())) {
+				} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Current Page Visit History"));
 					panelContent.addComponent(chartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId));

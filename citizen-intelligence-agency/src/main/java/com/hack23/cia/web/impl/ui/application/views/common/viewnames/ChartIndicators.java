@@ -20,12 +20,12 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
 
 public enum ChartIndicators {
 
-/** The Party winner. */
-PartyWinner,
+/** THE PARTY WINNER. */
+PARTYWINNER,
 
-/** The Document activity by type. */
-DocumentActivityByType,
+/** THE DOCUMENT ACTIVITY BY TYPE. */
+DOCUMENTACTIVITYBYTYPE,
 
-/** The Decsion activity by type. */
-DecsionActivityByType
+/** THE DECSION ACTIVITY BY TYPE. */
+DECSIONACTIVITYBYTYPE
 }

@@ -21,44 +21,44 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
 /**
  * The Class UserViews.
  */
-public interface UserViews {
+public class UserViews {
 
 	/** The politician view name. */
-	String POLITICIAN_VIEW_NAME = "politician";
+	public static final String POLITICIAN_VIEW_NAME = "politician";
 
 	/** The politician ranking view name. */
-	String POLITICIAN_RANKING_VIEW_NAME = "politicianranking";
+	public static final String POLITICIAN_RANKING_VIEW_NAME = "politicianranking";
 
 	/** The party view name. */
-	String PARTY_VIEW_NAME = "party";
+	public static final String PARTY_VIEW_NAME = "party";
 
 	/** The party ranking view name. */
-	String PARTY_RANKING_VIEW_NAME = "partyranking";
+	public static final String PARTY_RANKING_VIEW_NAME = "partyranking";
 
 	/** The committee view name. */
-	String COMMITTEE_VIEW_NAME = "committee";
+	public static final String COMMITTEE_VIEW_NAME = "committee";
 
 	/** The committee ranking view name. */
-	String COMMITTEE_RANKING_VIEW_NAME = "committeeranking";
+	public static final String COMMITTEE_RANKING_VIEW_NAME = "committeeranking";
 
 	/** The ministry view name. */
-	String MINISTRY_VIEW_NAME = "ministry";
+	public static final String MINISTRY_VIEW_NAME = "ministry";
 
 	/** The ministry ranking view name. */
-	String MINISTRY_RANKING_VIEW_NAME = "ministryranking";
+	public static final String MINISTRY_RANKING_VIEW_NAME = "ministryranking";
 
 
 	/** The test chart view name. */
-	String TEST_CHART_VIEW_NAME = "testchartview";
+	public static final String TEST_CHART_VIEW_NAME = "testchartview";
 
 	/** The document view name. */
-	String DOCUMENT_VIEW_NAME = "document";
+	public static final String DOCUMENT_VIEW_NAME = "document";
 
 	/** The document view name. */
-	String SEARCH_DOCUMENT_VIEW_NAME = "search";
+	public static final String SEARCH_DOCUMENT_VIEW_NAME = "search";
 
 	/** The userhome view name. */
-	String USERHOME_VIEW_NAME = "userhome";
+	public static final String USERHOME_VIEW_NAME = "userhome";
 
 
 }

@@ -23,6 +23,10 @@ import com.vaadin.ui.themes.Reindeer;
 
 public final class LabelFactory {
 
+	private LabelFactory() {
+		super();
+	}
+
 	/**
 	 * Creates a new Label object.
 	 *

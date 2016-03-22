@@ -92,20 +92,20 @@ public abstract class AbstractRankingView extends AbstractUserView {
 		panelContent.setSizeFull();
 		panelContent.setMargin(true);
 
-		if (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.Overview.toString())) {
+		if (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString())) {
 
 
 			panelContent.addComponent(createDescription());
 
 			getPanel().setCaption("Overview:" + event.getParameters());
 
-		} else 	if (parameters.contains(PageMode.DataGrid.toString())) {
+		} else 	if (parameters.contains(PageMode.DATAGRID.toString())) {
 
 			panelContent.addComponent(createTable());
 
 			getPanel().setCaption("Datagrid:" + event.getParameters());
 
-		} else 	if (parameters.contains(PageMode.Charts.toString())) {
+		} else 	if (parameters.contains(PageMode.CHARTS.toString())) {
 
 			final Layout chartLayout = new HorizontalLayout();
 			chartLayout.setSizeFull();
@@ -129,7 +129,7 @@ public abstract class AbstractRankingView extends AbstractUserView {
 
 			getPanel().setCaption("Charts:" + event.getParameters());
 
-		} else if (parameters.contains(PageMode.PageVisitHistory.toString())) {
+		} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
 
 			panelContent.addComponent(chartDataManager.createApplicationActionEventPageModeDailySummaryChart(getName()));
 

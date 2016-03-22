@@ -47,6 +47,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.server.WebBrowser;
 import com.vaadin.shared.ui.ui.Transport;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 
@@ -61,6 +62,7 @@ import ru.xpoft.vaadin.SpringVaadinServlet;
 @Theme("cia")
 @Push(transport = Transport.STREAMING)
 public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandler {
+
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -77,7 +79,25 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 	@Autowired
 	private transient ApplicationManager applicationManager;
 
-	/*
+	/**
+	 * Instantiates a new citizen intelligence agency ui.
+	 */
+	public CitizenIntelligenceAgencyUI() {
+		super();
+	}
+
+	/**
+	 * Instantiates a new citizen intelligence agency ui.
+	 *
+	 * @param content
+	 *            the content
+	 */
+	public CitizenIntelligenceAgencyUI(Component content) {
+		super(content);
+	}
+
+
+	/**
 	 * {@inheritDoc}
 	 *
 	 * @see com.vaadin.ui.UI#init(com.vaadin.server.VaadinRequest)
@@ -122,7 +142,7 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 	 *            the web browser
 	 * @return the ip information
 	 */
-	private String getIpInformation(final WebBrowser webBrowser) {
+	private static String getIpInformation(final WebBrowser webBrowser) {
 		String ipInformation=webBrowser.getAddress();
 
 		final HttpServletRequest httpRequest=((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
@@ -145,7 +165,7 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 	 *            the web browser
 	 * @return the operating system
 	 */
-	private String getOperatingSystem(final WebBrowser webBrowser) {
+	private static String getOperatingSystem(final WebBrowser webBrowser) {
 		String osName = "unknown";
 	       if (webBrowser.isLinux()) {
 			osName = "Linux";
@@ -172,7 +192,7 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 	/**
 	 * The Class Servlet.
 	 */
-	@WebServlet(value = "/*", asyncSupported = true, loadOnStartup=1)
+	@WebServlet(value = "/*", loadOnStartup=1, asyncSupported = true)
 	@VaadinServletConfiguration(productionMode = true, ui = CitizenIntelligenceAgencyUI.class, widgetset = "com.hack23.cia.web.widgets.WebWidgetSet")
 	public static class Servlet extends SpringVaadinServlet {
 
@@ -182,8 +202,7 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 
 
 
-	/**
-	 * {@inheritDoc}
+	/* (non-Javadoc)
 	 * @see com.vaadin.server.ErrorHandler#error(com.vaadin.server.ErrorEvent)
 	 */
 	@Override

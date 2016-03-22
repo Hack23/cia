@@ -139,7 +139,7 @@ public final class CommitteeView extends AbstractGroupView {
 				panelContent.setMargin(true);
 
 				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-						|| parameters.contains(PageMode.Overview.toString())) {
+						|| parameters.contains(PageMode.OVERVIEW.toString())) {
 
 					final Label createHeader2Label = LabelFactory.createHeader2Label("Overview");
 					panelContent.addComponent(createHeader2Label);
@@ -201,7 +201,7 @@ public final class CommitteeView extends AbstractGroupView {
 					panelContent.setExpandRatio(politicianDocumentBeanItemGrid, 10);
 
 
-				} else if (parameters.contains(CommitteePageMode.DocumentActivity.toString())) {
+				} else if (parameters.contains(CommitteePageMode.DOCUMENTACTIVITY.toString())) {
 
 					final Label createHeader2Label = LabelFactory.createHeader2Label("Document Activity");
 					panelContent.addComponent(createHeader2Label);
@@ -216,7 +216,7 @@ public final class CommitteeView extends AbstractGroupView {
 					panelContent.setExpandRatio(createDocumentHistoryChart, 10);
 
 
-				} else if (parameters.contains(CommitteePageMode.DecisionTypeDailySummary.toString())) {
+				} else if (parameters.contains(CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString())) {
 					final Label createHeader2Label = LabelFactory.createHeader2Label("Decision Type Daily Summary");
 					panelContent.addComponent(createHeader2Label);
 
@@ -228,7 +228,7 @@ public final class CommitteeView extends AbstractGroupView {
 					panelContent.setExpandRatio(createDecisionTypeChart, 10);
 
 
-				} else if (parameters.contains(CommitteePageMode.BallotDecisionSummary.toString())) {
+				} else if (parameters.contains(CommitteePageMode.BALLOTDECISIONSUMMARY.toString())) {
 					final Label createHeader2Label = LabelFactory.createHeader2Label("Ballot Decision Summary");
 					panelContent.addComponent(createHeader2Label);
 
@@ -252,7 +252,7 @@ public final class CommitteeView extends AbstractGroupView {
 					panelContent.setExpandRatio(committeeBallotDecisionPartyBeanItemGrid, 10);
 
 
-				} else if (parameters.contains(CommitteePageMode.DecisionSummary.toString())) {
+				} else if (parameters.contains(CommitteePageMode.DECISIONSUMMARY.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("Decision Summary Not Implemented"));
 
@@ -282,7 +282,7 @@ public final class CommitteeView extends AbstractGroupView {
 					panelContent.setExpandRatio(currentMemberBeanItemGrid, 10);
 
 
-				} else if (parameters.contains(CommitteePageMode.MemberHistory.toString())) {
+				} else if (parameters.contains(CommitteePageMode.MEMBERHISTORY.toString())) {
 					final Label createHeader2Label = LabelFactory.createHeader2Label("Member History");
 					panelContent.addComponent(createHeader2Label);
 
@@ -306,10 +306,10 @@ public final class CommitteeView extends AbstractGroupView {
 					panelContent.setExpandRatio(commmitteeRoleMemberBeanItemGrid, 10);
 
 
-				} else if (parameters.contains(CommitteePageMode.RoleGhant.toString())) {
+				} else if (parameters.contains(CommitteePageMode.ROLEGHANT.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label("RoleGhant Not Implemented"));
-				} else if (parameters.contains(PageMode.PageVisitHistory.toString())) {
+				} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
 
 					final Label createHeader2Label = LabelFactory.createHeader2Label("Current Page Visit History");
 					panelContent.addComponent(createHeader2Label);

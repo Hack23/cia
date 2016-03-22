@@ -20,18 +20,18 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
 
 public enum MinistryPageMode {
 
-	/** The Document history. */
-	DocumentHistory,
+	/** THE DOCUMENT HISTORY. */
+	DOCUMENTHISTORY,
 
-	/** The Document activity. */
-	DocumentActivity,
+	/** THE DOCUMENT ACTIVITY. */
+	DOCUMENTACTIVITY,
 
-	/** The Current members. */
-	CurrentMembers,
+	/** THE CURRENT MEMBERS. */
+	CURRENTMEMBERS,
 
-	/** The Member history. */
-	MemberHistory,
+	/** THE MEMBER HISTORY. */
+	MEMBERHISTORY,
 
- /** The Role ghant. */
- RoleGhant
+ /** THE ROLE GHANT. */
+ ROLEGHANT
 }

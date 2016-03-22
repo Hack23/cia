@@ -173,7 +173,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	public MenuBar createMainPageMenuBar() {
 		final MenuBar barmenu = new MenuBar();
 
-		barmenu.addItem(OVERVIEW_TEXT, null, new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.Overview));
+		barmenu.addItem(OVERVIEW_TEXT, null, new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
 
 		if (allowRoleInSecurityContext("ROLE_ADMIN")) {
 			final MenuItem adminMenuItem = barmenu.addItem(ADMIN_TEXT, null, null);
@@ -215,29 +215,29 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 		final MenuItem rankingsMenuItem = barmenu.addItem(RANKING_TEXT, null, null);
 
 		final MenuItem politicianMenuItem = rankingsMenuItem.addItem(POLITICIAN_RANKING_LINK_TEXT,
-				new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.Overview));
+				new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 
 		createPoliticianRankingTopics(politicianMenuItem);
 
 		final MenuItem partynMenuItem = rankingsMenuItem.addItem(PARTY_RANKING_LINK_TEXT,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.Overview));
+				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 
 		createPartyRankingTopics(partynMenuItem);
 
 		final MenuItem committeeMenuItem = rankingsMenuItem.addItem(COMMITTEE_RANKING_LINK_TEXT,
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.Overview));
+				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 
 		createCommitteeRankingTopics(committeeMenuItem);
 
 		final MenuItem ministryMenuItem = rankingsMenuItem.addItem(MINISTRY_RANKING_LINK_TEXT,
-				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.Overview));
+				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 
 		createMinistryRankingTopics(ministryMenuItem);
 
-		barmenu.addItem(TEST_TEXT, new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.Overview));
+		barmenu.addItem(TEST_TEXT, new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.OVERVIEW));
 
 		barmenu.addItem(PAGE_VISIT_HISTORY_TEXT, null,
-				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.PageVisitHistory));
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.PAGEVISITHISTORY));
 
 
 
@@ -253,27 +253,27 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	private static void createMinistryRankingTopics(final MenuItem ministryMenuItem) {
 
 		ministryMenuItem.addItem(OVERVIEW_TEXT, null,
-				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.Overview));
+				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 
 		final MenuItem listByTopic = ministryMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, null, null);
 
 		final MenuItem listItem = listByTopic.addItem(POLITICAL_WORK_SUMMARY_TEXT,
-				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.DataGrid));
+				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.DATAGRID));
 		listItem.setDescription(CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_TOTAL_POLTICIAL_DAYS_MEMBERSHIP_DESCRIPTION);
 
 		final MenuItem chartByTopic = ministryMenuItem.addItem(CHART_BY_TOPIC_TEXT, null, null);
 
 		chartByTopic.addItem(CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT,
-				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS));
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,
-				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS));
 		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT,
-				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS));
 		chartByTopic.addItem(ALL_MINISTRIES_TOTAL_MEMBERS_TEXT,
-				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS));
 
 		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
-				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.PageVisitHistory));
+				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
 
 	}
 
@@ -285,37 +285,37 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	 */
 	private static void createCommitteeRankingTopics(final MenuItem committeeMenuItem) {
 		committeeMenuItem.addItem(OVERVIEW_TEXT, null,
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.Overview));
+				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 
 		final MenuItem listByTopic = committeeMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, null, null);
 
 		final MenuItem listItem = listByTopic.addItem(POLITICAL_WORK_SUMMARY_TEXT,
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DataGrid));
+				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DATAGRID));
 		listItem.setDescription("Current and past member and summary of polticial days ");
 
 		final MenuItem chartByTopic = committeeMenuItem.addItem(CHART_BY_TOPIC_TEXT, null, null);
 
 		chartByTopic.addItem(CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS));
 		chartByTopic.addItem("Current parties active in committees, head count",
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS));
 		chartByTopic.addItem("Current parties active in committees, current assignments",
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS));
 		chartByTopic.addItem("Current parties active in committees, total days served in committees",
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS));
 
 		chartByTopic.addItem("All parties, total days served in committees",
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS));
 		chartByTopic.addItem("All parties, total assignments",
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS));
 
 		chartByTopic.addItem("All committees, total members",
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS));
 		chartByTopic.addItem("All committees,total days served in committees",
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS));
 
 		committeeMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.PageVisitHistory));
+				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
 
 
 	}
@@ -329,47 +329,47 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	private static void createPartyRankingTopics(final MenuItem partynMenuItem) {
 
 		partynMenuItem.addItem(OVERVIEW_TEXT, null,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.Overview));
+				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 
 		final MenuItem listByTopic = partynMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, null, null);
 
 		final MenuItem listItem = listByTopic.addItem("Total members",
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.DataGrid));
+				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.DATAGRID));
 		listItem.setDescription("Party by total members, based on roles in departments, committees and parliament");
 
 		final MenuItem chartByTopic = partynMenuItem.addItem(CHART_BY_TOPIC_TEXT, null, null);
 
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
 		chartByTopic.addItem("Current parties, total days served in ministries",
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
 
 		chartByTopic.addItem("Current parties active in committees, head count",
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
 		chartByTopic.addItem("Current parties active in committees, current assignments",
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
 		chartByTopic.addItem("Current parties active in committees, total days served in committees",
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
 
 		chartByTopic.addItem("Current parties active in parliament, head count",
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
 		chartByTopic.addItem("Current parties, total days served in parliament",
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
 
 		chartByTopic.addItem("All parties, head count in parliament",
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
 		chartByTopic.addItem("All parties, total days served in parliament",
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
 
 		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
 		chartByTopic.addItem("All parties, total days served in committees",
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
 		chartByTopic.addItem("All parties, total assignments in committees",
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.Charts));
+				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
 
 		partynMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PageVisitHistory));
+				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
 
 
 	}
@@ -382,18 +382,18 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	 */
 	private static void createPoliticianRankingTopics(final MenuItem politicianMenuItem) {
 		politicianMenuItem.addItem(OVERVIEW_TEXT, null,
-				new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.Overview));
+				new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 
 		final MenuItem listByTopic = politicianMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, null, null);
 
 		final MenuItem listItem = listByTopic.addItem("Political Experience Summary",
-				new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DataGrid));
+				new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DATAGRID));
 		listItem.setDescription("Current and past assignments and summary experience in days");
 
 		final MenuItem chartByTopic = politicianMenuItem.addItem(CHART_BY_TOPIC_TEXT, null, null);
 
 		politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
-				new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.PageVisitHistory));
+				new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
 
 
 	}
@@ -403,20 +403,20 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	 */
 	@Override
 	public void createTestTopicMenu(final MenuBar barmenu) {
-		barmenu.addItem(OVERVIEW_TEXT, null, new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.Overview));
+		barmenu.addItem(OVERVIEW_TEXT, null, new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.OVERVIEW));
 
 		final MenuItem charts = barmenu.addItem(CHARTS_TEXT, null, null);
 
 		// Submenu item with a sub-submenu
 		final MenuItem chartIndicators = charts.addItem("Swedish parliament Indicators", null, null);
 		final MenuItem addItem = chartIndicators.addItem("Party Winner", new PageModeMenuCommand(
-				UserViews.TEST_CHART_VIEW_NAME, PageMode.Charts, ChartIndicators.PartyWinner.toString()));
+				UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS, ChartIndicators.PARTYWINNER.toString()));
 		addItem.setDescription("daily average % won ballots");
 		final MenuItem addItem2 = chartIndicators.addItem("Document activity by type", new PageModeMenuCommand(
-				UserViews.TEST_CHART_VIEW_NAME, PageMode.Charts, ChartIndicators.DocumentActivityByType.toString()));
+				UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DOCUMENTACTIVITYBYTYPE.toString()));
 		addItem2.setDescription("daily total of number published documents");
 		final MenuItem addItem3 = chartIndicators.addItem("Decision activity by type", new PageModeMenuCommand(
-				UserViews.TEST_CHART_VIEW_NAME, PageMode.Charts, ChartIndicators.DecsionActivityByType.toString()));
+				UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DECSIONACTIVITYBYTYPE.toString()));
 		addItem3.setDescription("daily total of number of decsions made");
 
 		final DataContainer<ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId> indicatorDataCountrSummaryDailyDataContainer = applicationManager
@@ -447,7 +447,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 
 		barmenu.addItem(PAGE_VISIT_HISTORY_TEXT, null,
-				new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.PageVisitHistory));
+				new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.PAGEVISITHISTORY));
 
 	}
 
@@ -477,7 +477,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 			for (final ViewWorldbankIndicatorDataCountrySummary indciatorSummary : sortedEntries) {
 				final MenuItem addItem3 = sourceItems.addItem(indciatorSummary.getIndicatorName(),
-						new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.Indicators,
+						new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.INDICATORS,
 								indciatorSummary.getEmbeddedId().getIndicatorId()));
 			}
 		}
@@ -492,41 +492,41 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 			menuBar.removeItems();
 
 			menuBar.addItem(OVERVIEW_TEXT, null,
-					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.Overview, pageId));
+					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, pageId));
 			menuBar.addItem(CHARTS_TEXT, null,
-					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.Charts, pageId));
+					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.CHARTS, pageId));
 			menuBar.addItem(INDICATORS_TEXT, null,
-					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.Indicators, pageId));
+					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId));
 
 			final MenuItem rolesItem = menuBar.addItem(ROLES_TEXT, null, null);
 
 			rolesItem.addItem("Total experience", null, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-					PoliticianPageMode.RoleSummary.toString(), pageId));
+					PoliticianPageMode.ROLESUMMARY.toString(), pageId));
 
 			rolesItem.addItem("RoleList", null, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-					PoliticianPageMode.RoleList.toString(), pageId));
+					PoliticianPageMode.ROLELIST.toString(), pageId));
 
 			rolesItem.addItem(ROLE_GHANT_TEXT, null, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-					PoliticianPageMode.RoleGhant.toString(), pageId));
+					PoliticianPageMode.ROLEGHANT.toString(), pageId));
 
 			final MenuItem documentItem = menuBar.addItem(DOCUMENTS_TEXT, null, null);
 
 			documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, null, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-					PoliticianPageMode.DocumentActivity.toString(), pageId));
+					PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId));
 
 			documentItem.addItem(DOCUMENT_HISTORY_TEXT, null, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-					PoliticianPageMode.DocumentHistory.toString(), pageId));
+					PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId));
 
 			final MenuItem ballotItem = menuBar.addItem(BALLOTS_TEXT, null, null);
 
 			ballotItem.addItem("Vote history", null, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-					PoliticianPageMode.VoteHistory.toString(), pageId));
+					PoliticianPageMode.VOTEHISTORY.toString(), pageId));
 
 			ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, null, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-					PoliticianPageMode.BallotDecisionSummary.toString(), pageId));
+					PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId));
 
 			menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
-					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PageVisitHistory,pageId));
+					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
 
 	}
 
@@ -548,54 +548,54 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 			menuBar.removeItems();
 
 			menuBar.addItem(OVERVIEW_TEXT, null,
-					new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.Overview, pageId));
+					new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.OVERVIEW, pageId));
 			menuBar.addItem(CHARTS_TEXT, null,
-					new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.Charts, pageId));
+					new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.CHARTS, pageId));
 
 			menuBar.addItem(INDICATORS_TEXT, null,
-					new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.Indicators, pageId));
+					new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.INDICATORS, pageId));
 
 			final MenuItem rolesItem = menuBar.addItem(ROLES_TEXT, null, null);
 
 			rolesItem.addItem("Current Leaders", null, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-					PartyPageMode.CurrentLeaders.toString(), pageId));
+					PartyPageMode.CURRENTLEADERS.toString(), pageId));
 
 			rolesItem.addItem("Leader History", null,
-					new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.LeaderHistory.toString(), pageId));
+					new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.LEADERHISTORY.toString(), pageId));
 
 			rolesItem.addItem(CURRENT_MEMBERS_TEXT, null, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-					PartyPageMode.CurrentMembers.toString(), pageId));
+					PartyPageMode.CURRENTMEMBERS.toString(), pageId));
 
 			rolesItem.addItem(MEMBER_HISTORY_TEXT, null,
-					new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.MemberHistory.toString(), pageId));
+					new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.MEMBERHISTORY.toString(), pageId));
 
 			rolesItem.addItem("Goverment Roles", null, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-					PartyPageMode.GovernmentRoles.toString(), pageId));
+					PartyPageMode.GOVERNMENTROLES.toString(), pageId));
 
 			rolesItem.addItem("Committee Roles", null, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-					PartyPageMode.CommitteeRoles.toString(), pageId));
+					PartyPageMode.COMMITTEEROLES.toString(), pageId));
 
 			final MenuItem documentItem = menuBar.addItem(DOCUMENTS_TEXT, null, null);
 
 			documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, null, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-					PartyPageMode.DocumentActivity.toString(), pageId));
+					PartyPageMode.DOCUMENTACTIVITY.toString(), pageId));
 
 			documentItem.addItem(DOCUMENT_HISTORY_TEXT, null, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-					PartyPageMode.DocumentHistory.toString(), pageId));
+					PartyPageMode.DOCUMENTHISTORY.toString(), pageId));
 
 			final MenuItem ballotItem = menuBar.addItem(BALLOTS_TEXT, null, null);
 
 			ballotItem.addItem("Vote history", null,
-					new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VoteHistory.toString(), pageId));
+					new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), pageId));
 
 			ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, null, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-					PartyPageMode.CommitteeBallotDecisionSummary.toString(), pageId));
+					PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString(), pageId));
 
 			ballotItem.addItem("Party Won Daily Summary Chart", null, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-					PartyPageMode.PartyWonDailySummaryChart.toString(), pageId));
+					PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), pageId));
 
 			menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
-					new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PageVisitHistory,pageId));
+					new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
 
 
 	}
@@ -618,34 +618,34 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 			menuBar.removeItems();
 
 			menuBar.addItem(OVERVIEW_TEXT, null,
-					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.Overview, pageId));
+					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, pageId));
 			menuBar.addItem(CHARTS_TEXT, null,
-					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.Charts, pageId));
+					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.CHARTS, pageId));
 			menuBar.addItem(INDICATORS_TEXT, null,
-					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.Indicators, pageId));
+					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.INDICATORS, pageId));
 
 			final MenuItem documentItem = menuBar.addItem("Document", null, null);
 
 			documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, null, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-					DocumentPageMode.DocumentActivity.toString(), pageId));
+					DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId));
 
 			documentItem.addItem("Person references", null, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-					DocumentPageMode.PersonReferences.toString(), pageId));
+					DocumentPageMode.PERSONREFERENCES.toString(), pageId));
 
 			documentItem.addItem("Document details", null, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-					DocumentPageMode.DocumentDetails.toString(), pageId));
+					DocumentPageMode.DOCUMENTDETAILS.toString(), pageId));
 
 			documentItem.addItem("Document data", null, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-					DocumentPageMode.DocumentData.toString(), pageId));
+					DocumentPageMode.DOCUMENTDATA.toString(), pageId));
 
 			documentItem.addItem("Document References", null, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-					DocumentPageMode.DocumentReferences.toString(), pageId));
+					DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId));
 
 			documentItem.addItem("Document Decision", null, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-					DocumentPageMode.DocumenDecision.toString(), pageId));
+					DocumentPageMode.DOCUMENDECISION.toString(), pageId));
 
 			menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
-					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.PageVisitHistory,pageId));
+					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
 
 	}
 
@@ -657,11 +657,11 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 		menuBar.removeItems();
 
 			menuBar.addItem(OVERVIEW_TEXT, null,
-					new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.Overview, pageId));
+					new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, pageId));
 			menuBar.addItem(CHARTS_TEXT, null,
-					new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.Charts, pageId));
+					new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS, pageId));
 			menuBar.addItem(INDICATORS_TEXT, null,
-					new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.Indicators, pageId));
+					new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.INDICATORS, pageId));
 
 			final MenuItem rolesItem = menuBar.addItem(ROLES_TEXT, null, null);
 
@@ -669,15 +669,15 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 					CommitteePageMode.CURRENT_MEMBERS.toString(), pageId));
 
 			rolesItem.addItem(MEMBER_HISTORY_TEXT, null, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-					CommitteePageMode.MemberHistory.toString(), pageId));
+					CommitteePageMode.MEMBERHISTORY.toString(), pageId));
 
 			rolesItem.addItem(ROLE_GHANT_TEXT, null, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-					CommitteePageMode.RoleGhant.toString(), pageId));
+					CommitteePageMode.ROLEGHANT.toString(), pageId));
 
 			final MenuItem documentItem = menuBar.addItem(DOCUMENTS_TEXT, null, null);
 
 			documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, null, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-					CommitteePageMode.DocumentActivity.toString(), pageId));
+					CommitteePageMode.DOCUMENTACTIVITY.toString(), pageId));
 
 			documentItem.addItem(DOCUMENT_HISTORY_TEXT, null, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 					CommitteePageMode.DOCUMENT_HISTORY.toString(), pageId));
@@ -685,16 +685,16 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 			final MenuItem ballotItem = menuBar.addItem(BALLOTS_TEXT, null, null);
 
 			ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, null, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-					CommitteePageMode.BallotDecisionSummary.toString(), pageId));
+					CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), pageId));
 
 			ballotItem.addItem(DECISION_SUMMARY_TEXT, null, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-					CommitteePageMode.DecisionSummary.toString(), pageId));
+					CommitteePageMode.DECISIONSUMMARY.toString(), pageId));
 
 			ballotItem.addItem(DECISION_TYPE_DAILY_SUMMARY_TEXT, null, new PageModeMenuCommand(
-					UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DecisionTypeDailySummary.toString(), pageId));
+					UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId));
 
 			menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
-					new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PageVisitHistory,pageId));
+					new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
 
 	}
 
@@ -716,33 +716,33 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 			menuBar.removeItems();
 
 			menuBar.addItem(OVERVIEW_TEXT, null,
-					new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.Overview, pageId));
+					new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW, pageId));
 			menuBar.addItem(CHARTS_TEXT, null,
-					new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.Charts, pageId));
+					new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.CHARTS, pageId));
 			menuBar.addItem(INDICATORS_TEXT, null,
-					new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.Indicators, pageId));
+					new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.INDICATORS, pageId));
 
 			final MenuItem rolesItem = menuBar.addItem(ROLES_TEXT, null, null);
 
 			rolesItem.addItem(CURRENT_MEMBERS_TEXT, null, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-					MinistryPageMode.CurrentMembers.toString(), pageId));
+					MinistryPageMode.CURRENTMEMBERS.toString(), pageId));
 
 			rolesItem.addItem(MEMBER_HISTORY_TEXT, null, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-					MinistryPageMode.MemberHistory.toString(), pageId));
+					MinistryPageMode.MEMBERHISTORY.toString(), pageId));
 
 			rolesItem.addItem(ROLE_GHANT_TEXT, null, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-					MinistryPageMode.RoleGhant.toString(), pageId));
+					MinistryPageMode.ROLEGHANT.toString(), pageId));
 
 			final MenuItem documentItem = menuBar.addItem(DOCUMENTS_TEXT, null, null);
 
 			documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, null, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-					MinistryPageMode.DocumentActivity.toString(), pageId));
+					MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId));
 
 			documentItem.addItem(DOCUMENT_HISTORY_TEXT, null, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-					MinistryPageMode.DocumentHistory.toString(), pageId));
+					MinistryPageMode.DOCUMENTHISTORY.toString(), pageId));
 
 			menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
-					new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PageVisitHistory,pageId));
+					new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
 
 
 	}
@@ -768,10 +768,10 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 		menuBar.removeItems();
 
 		menuBar.addItem(OVERVIEW_TEXT, null,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.Overview, pageId));
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
 		menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.PageVisitHistory,pageId));
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
 
 	}
 

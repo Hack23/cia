@@ -85,7 +85,7 @@ public final class TestChartView extends AbstractView {
 	/** The application manager. */
 	@Autowired
 	@Qualifier("ApplicationManager")
-	transient ApplicationManager applicationManager;
+	private transient ApplicationManager applicationManager;
 
 	/** The chart data manager. */
 	@Autowired
@@ -159,24 +159,24 @@ public final class TestChartView extends AbstractView {
 
 		final String parameters = event.getParameters();
 
-		if (StringUtils.isEmpty(parameters) ||parameters.contains(PageMode.Overview.toString())) {
+		if (StringUtils.isEmpty(parameters) ||parameters.contains(PageMode.OVERVIEW.toString())) {
 				pageModeContent.addComponent(new Label("overview"));
 
 				createHighChartTest();
 
 
-		} else if (parameters.contains(PageMode.Charts.toString())) {
+		} else if (parameters.contains(PageMode.CHARTS.toString())) {
 
-			if (parameters.contains(ChartIndicators.PartyWinner.toString())) {
+			if (parameters.contains(ChartIndicators.PARTYWINNER.toString())) {
 				pageModeContent.addComponent(chartDataManager.createPartyWinnerChart());
-			} else if (parameters.contains(ChartIndicators.DocumentActivityByType.toString())) {
+			} else if (parameters.contains(ChartIndicators.DOCUMENTACTIVITYBYTYPE.toString())) {
 				pageModeContent.addComponent(chartDataManager.createDocumentTypeChart());
-			} else if (parameters.contains(ChartIndicators.DecsionActivityByType.toString())) {
+			} else if (parameters.contains(ChartIndicators.DECSIONACTIVITYBYTYPE.toString())) {
 				pageModeContent.addComponent(chartDataManager.createDecisionTypeChart());
 			}
-		} else if (parameters.contains(PageMode.Indicators.toString())) {
+		} else if (parameters.contains(PageMode.INDICATORS.toString())) {
 
-				final String indicator = parameters.substring(PageMode.Indicators.toString().length()+"/".length(), parameters.length());
+				final String indicator = parameters.substring(PageMode.INDICATORS.toString().length()+"/".length(), parameters.length());
 
 				pageModeContent.addComponent(createDataIndicatorSummaryChartPanel(indicator));
 		}

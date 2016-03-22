@@ -34,6 +34,9 @@ import com.vaadin.ui.UI;
 
 public final class ApplicationLoginListener implements LoginListener {
 
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationLoginListener.class);
 
@@ -50,8 +53,6 @@ public final class ApplicationLoginListener implements LoginListener {
 		this.applicationManager = applicationManager;
 	}
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
 	/**
 	 * {@inheritDoc}

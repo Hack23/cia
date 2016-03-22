@@ -40,7 +40,7 @@ public abstract class AbstractUserView extends Panel implements View {
 	private static final long serialVersionUID = 1L;
 
 	/** The barmenu. */
-	final MenuBar barmenu = new MenuBar();
+	private final MenuBar barmenu = new MenuBar();
 
 	/** The panel. */
 	private Panel panel;
@@ -86,7 +86,7 @@ public abstract class AbstractUserView extends Panel implements View {
 
 		panel.setSizeFull();
 		pageModeContent.addComponent(panel);
-		pageModeContent.setExpandRatio(panel, 1.0f);
+		pageModeContent.setExpandRatio(panel, 1.0F);
 
 		pageModeContent.addComponent(pageLinkFactory.createMainViewPageLink());
 		setContent(layout);

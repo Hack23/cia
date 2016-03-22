@@ -139,7 +139,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.Overview));
+				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 
 	}
 
@@ -156,7 +156,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.PageVisitHistory));
+				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
 
 	}
 
@@ -174,7 +174,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DataGrid));
+				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DATAGRID));
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Datagrid"));
 
 	}
@@ -483,7 +483,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	private void loginAsAdmin(final UserPageVisit userPageVisit) throws Exception {
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.Overview));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.OVERVIEW));
 		userPageVisit.loginUser("admin@admin.com", "admin");
 	}
 
@@ -501,7 +501,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.Charts));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS));
 
 	}
 
@@ -518,7 +518,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DataGrid));
+				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DATAGRID));
 
 		final WebElement button = userPageVisit.getButtons().iterator().next();
 		assertNotNull(button);
@@ -539,7 +539,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.Overview));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 	}
 
 
@@ -555,7 +555,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PageVisitHistory));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
 	}
 
 
@@ -571,7 +571,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.DataGrid));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.DATAGRID));
 
 	}
 
@@ -587,7 +587,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.Charts));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
 
 	}
 
@@ -603,7 +603,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.Overview));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 	}
 
 	/**
@@ -618,7 +618,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.PageVisitHistory));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
 	}
 
 
@@ -634,7 +634,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DataGrid));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DATAGRID));
 
 	}
 
@@ -650,7 +650,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DataGrid));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DATAGRID));
 		final String pageId = clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, pageId));
@@ -671,7 +671,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.Charts));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.CHARTS));
 
 	}
 
@@ -688,7 +688,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.Overview, "N%C3%A4ringsdepartementet"));
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW, "N%C3%A4ringsdepartementet"));
 	}
 
 	/**
@@ -704,7 +704,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PageVisitHistory, "N%C3%A4ringsdepartementet"));
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, "N%C3%A4ringsdepartementet"));
 	}
 
 
@@ -721,7 +721,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.DocumentHistory.toString(), "N%C3%A4ringsdepartementet"));
+				MinistryPageMode.DOCUMENTHISTORY.toString(), "N%C3%A4ringsdepartementet"));
 
 	}
 
@@ -738,7 +738,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.DocumentActivity.toString(), "N%C3%A4ringsdepartementet"));
+				MinistryPageMode.DOCUMENTACTIVITY.toString(), "N%C3%A4ringsdepartementet"));
 
 	}
 
@@ -755,7 +755,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.RoleGhant.toString(), "N%C3%A4ringsdepartementet"));
+				MinistryPageMode.ROLEGHANT.toString(), "N%C3%A4ringsdepartementet"));
 
 	}
 
@@ -773,7 +773,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.CurrentMembers.toString(), "N%C3%A4ringsdepartementet"));
+				MinistryPageMode.CURRENTMEMBERS.toString(), "N%C3%A4ringsdepartementet"));
 
 	}
 
@@ -790,7 +790,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.MemberHistory.toString(), "N%C3%A4ringsdepartementet"));
+				MinistryPageMode.MEMBERHISTORY.toString(), "N%C3%A4ringsdepartementet"));
 	}
 
 	/**
@@ -805,7 +805,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.Overview, "UU"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, "UU"));
 
 
 	}
@@ -822,7 +822,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PageVisitHistory, "UU"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, "UU"));
 
 
 	}
@@ -840,7 +840,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.RoleGhant.toString(), "UU"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), "UU"));
 
 	}
 
@@ -856,7 +856,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.Overview));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.OVERVIEW));
 
 		final WebElement overviewItem = userPageVisit.getMenuItem("Overview");
 		assertNotNull(overviewItem);
@@ -878,7 +878,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.Overview));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.OVERVIEW));
 
 		final String username = UUID.randomUUID().toString();
 		final String password = UUID.randomUUID().toString();
@@ -899,7 +899,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.Overview));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.OVERVIEW));
 
 		final String username = UUID.randomUUID().toString();
 		final String password = UUID.randomUUID().toString();
@@ -914,7 +914,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
 
-		userLoginPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.Overview));
+		userLoginPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.OVERVIEW));
 
 		userLoginPageVisit.loginUser(username+ "@test.com", password);
 
@@ -971,7 +971,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.MemberHistory.toString(), "UU"));
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.MEMBERHISTORY.toString(), "UU"));
 
 	}
 
@@ -988,7 +988,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DocumentActivity.toString(), "UU"));
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DOCUMENTACTIVITY.toString(), "UU"));
 
 	}
 
@@ -1005,7 +1005,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DecisionSummary.toString(), "UU"));
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONSUMMARY.toString(), "UU"));
 
 	}
 
@@ -1022,7 +1022,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.BallotDecisionSummary.toString(), "UU"));
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), "UU"));
 
 	}
 
@@ -1039,7 +1039,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.DecisionTypeDailySummary.toString(), "UU"));
+				CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), "UU"));
 
 	}
 
@@ -1055,7 +1055,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.Overview));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.OVERVIEW));
 
 
 	}
@@ -1072,7 +1072,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.Indicators, "UIS.TEP.5.A"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.INDICATORS, "UIS.TEP.5.A"));
 
 	}
 
@@ -1089,7 +1089,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.Charts, ChartIndicators.PartyWinner.toString()));
+				new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS, ChartIndicators.PARTYWINNER.toString()));
 
 	}
 
@@ -1105,8 +1105,8 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.Charts,
-				ChartIndicators.DecsionActivityByType.toString()));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS,
+				ChartIndicators.DECSIONACTIVITYBYTYPE.toString()));
 
 	}
 
@@ -1122,8 +1122,8 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.Charts,
-				ChartIndicators.DocumentActivityByType.toString()));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS,
+				ChartIndicators.DOCUMENTACTIVITYBYTYPE.toString()));
 
 	}
 
@@ -1139,7 +1139,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.Overview));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 
 	}
 
@@ -1155,7 +1155,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.PageVisitHistory));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
 
 	}
 
@@ -1172,7 +1172,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.DataGrid));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.DATAGRID));
 
 	}
 
@@ -1188,7 +1188,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.Charts));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS));
 
 	}
 
@@ -1204,7 +1204,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.DataGrid));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.DATAGRID));
 
 
 		final WebElement button = userPageVisit.getButtons().iterator().next();
@@ -1227,7 +1227,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DocumentDetails.toString(), "GZ02C343"));
+				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DOCUMENTDETAILS.toString(), "GZ02C343"));
 
 
 	}
@@ -1244,7 +1244,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.Overview, "GZ02C343"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, "GZ02C343"));
 	}
 
 	/**
@@ -1259,7 +1259,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.PageVisitHistory, "GZ02C343"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.PAGEVISITHISTORY, "GZ02C343"));
 	}
 
 
@@ -1276,7 +1276,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.PersonReferences.toString(), "GZ02C343"));
+				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.PERSONREFERENCES.toString(), "GZ02C343"));
 
 	}
 
@@ -1313,7 +1313,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DocumentActivity.toString(), "GZ02C343"));
+				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DOCUMENTACTIVITY.toString(), "GZ02C343"));
 
 	}
 
@@ -1330,7 +1330,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DocumentData.toString(), "GZ02C343"));
+				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DOCUMENTDATA.toString(), "GZ02C343"));
 	}
 
 	/**
@@ -1346,7 +1346,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DocumentReferences.toString(), "GZ02C343"));
+				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DOCUMENTREFERENCES.toString(), "GZ02C343"));
 
 	}
 
@@ -1363,7 +1363,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DocumentReferences.toString(), "H101UU1"));
+				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DOCUMENTREFERENCES.toString(), "H101UU1"));
 
 	}
 
@@ -1382,7 +1382,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DocumenDecision.toString(), "GZ02C343"));
+				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DOCUMENDECISION.toString(), "GZ02C343"));
 
 	}
 
@@ -1399,7 +1399,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DocumentAttachments.toString(), "GZ02C343"));
+				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), "GZ02C343"));
 
 	}
 
@@ -1415,7 +1415,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.Overview, "S"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.OVERVIEW, "S"));
 	}
 
 	/**
@@ -1430,7 +1430,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PageVisitHistory, "S"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, "S"));
 	}
 
 
@@ -1447,7 +1447,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DocumentHistory.toString(), "S"));
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTHISTORY.toString(), "S"));
 
 	}
 
@@ -1464,7 +1464,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.Charts.toString(), "S"));
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.CHARTS.toString(), "S"));
 	}
 
 
@@ -1481,7 +1481,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CurrentMembers.toString(), "S"));
+				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTMEMBERS.toString(), "S"));
 
 	}
 
@@ -1498,7 +1498,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.MemberHistory.toString(), "S"));
+				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.MEMBERHISTORY.toString(), "S"));
 
 	}
 
@@ -1515,7 +1515,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CurrentLeaders.toString(), "S"));
+				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTLEADERS.toString(), "S"));
 
 	}
 
@@ -1532,7 +1532,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.LeaderHistory.toString(), "S"));
+				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.LEADERHISTORY.toString(), "S"));
 
 	}
 
@@ -1549,7 +1549,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CommitteeRoles.toString(), "S"));
+				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEROLES.toString(), "S"));
 
 	}
 
@@ -1566,7 +1566,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.GovernmentRoles.toString(), "S"));
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.GOVERNMENTROLES.toString(), "S"));
 
 	}
 
@@ -1583,7 +1583,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.PartyWonDailySummaryChart.toString(), "S"));
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), "S"));
 
 	}
 
@@ -1600,7 +1600,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DocumentActivity.toString(), "S"));
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTACTIVITY.toString(), "S"));
 
 	}
 
@@ -1617,7 +1617,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.RoleGhant.toString(), "S"));
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.ROLEGHANT.toString(), "S"));
 
 	}
 
@@ -1635,7 +1635,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CommitteeBallotDecisionSummary.toString(), "S"));
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString(), "S"));
 
 	}
 
@@ -1652,7 +1652,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VoteHistory.toString(), "S"));
+				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), "S"));
 
 	}
 
@@ -1670,7 +1670,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		loginAsAdmin(userPageVisit);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.Overview));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.OVERVIEW));
 
 		userPageVisit.visitAdminAgentOperationView();
 		userPageVisit.performAdminAgentOperation(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN, DataAgentOperation.IMPORT);
@@ -1691,7 +1691,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		loginAsAdmin(userPageVisit);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.Overview));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.OVERVIEW));
 
 		userPageVisit.visitAdminDataSummaryView();
 
@@ -1709,7 +1709,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.Overview, "0980681611418"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, "0980681611418"));
 	}
 
 
@@ -1725,7 +1725,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PageVisitHistory, "0980681611418"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY, "0980681611418"));
 	}
 
 
@@ -1742,7 +1742,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.RoleSummary.toString(), "0980681611418"));
+				PoliticianPageMode.ROLESUMMARY.toString(), "0980681611418"));
 	}
 
 	/**
@@ -1758,7 +1758,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PoliticianPageMode.RoleList.toString(), "0980681611418"));
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PoliticianPageMode.ROLELIST.toString(), "0980681611418"));
 
 	}
 
@@ -1775,7 +1775,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PoliticianPageMode.RoleGhant.toString(), "0980681611418"));
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PoliticianPageMode.ROLEGHANT.toString(), "0980681611418"));
 
 	}
 
@@ -1792,7 +1792,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.DocumentHistory.toString(), "0980681611418"));
+				PoliticianPageMode.DOCUMENTHISTORY.toString(), "0980681611418"));
 
 	}
 
@@ -1809,7 +1809,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.VoteHistory.toString(), "0980681611418"));
+				PoliticianPageMode.VOTEHISTORY.toString(), "0980681611418"));
 
 	}
 
@@ -1826,7 +1826,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.BallotDecisionSummary.toString(), "0980681611418"));
+				PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), "0980681611418"));
 
 	}
 
@@ -1843,7 +1843,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.DocumentActivity.toString(), "0980681611418"));
+				PoliticianPageMode.DOCUMENTACTIVITY.toString(), "0980681611418"));
 
 	}
 
@@ -1860,7 +1860,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.Indicators.toString(), "0980681611418"));
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS.toString(), "0980681611418"));
 
 	}
 
@@ -1877,7 +1877,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.Charts.toString(), "0980681611418"));
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.CHARTS.toString(), "0980681611418"));
 
 	}
 

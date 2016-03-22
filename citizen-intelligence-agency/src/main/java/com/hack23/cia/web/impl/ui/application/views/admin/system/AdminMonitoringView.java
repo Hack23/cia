@@ -56,6 +56,10 @@ public final class AdminMonitoringView extends AbstractAdminView {
 	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
+	public AdminMonitoringView() {
+		super();
+	}
+
 	/**
 	 * Post construct.
 	 */
@@ -90,7 +94,7 @@ public final class AdminMonitoringView extends AbstractAdminView {
 		content.addComponent(browser);
 
 		content.addComponent(pageLinkFactory.createMainViewPageLink());
-		content.setExpandRatio(browser, 1.0f);
+		content.setExpandRatio(browser, 1.0F);
 
 		content.setSizeFull();
 		setContent(content);
@@ -100,6 +104,5 @@ public final class AdminMonitoringView extends AbstractAdminView {
 
 		pageActionEventHelper.createPageEvent(ViewAction.VISIT_ADMIN_MONITORING_VIEW, ApplicationEventGroup.ADMIN, NAME, null, null);
 	}
-
 
 }
