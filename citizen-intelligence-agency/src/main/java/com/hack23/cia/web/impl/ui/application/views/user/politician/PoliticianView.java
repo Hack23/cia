@@ -539,10 +539,9 @@ public final class PoliticianView extends AbstractPersonView {
 					} else {
 						return compareType;
 					}
-				} else {
 				}
-				return compareDate;
 
+				return compareDate;
 			};
 
 			Collections.sort(o1.getValue(), compare1);
