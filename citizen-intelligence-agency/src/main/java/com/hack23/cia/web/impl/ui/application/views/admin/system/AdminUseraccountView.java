@@ -75,6 +75,14 @@ public final class AdminUseraccountView extends AbstractAdminView {
 	@Autowired
 	private transient FormFactory formFactory;
 
+
+	/**
+	 * Instantiates a new admin useraccount view.
+	 */
+	public AdminUseraccountView() {
+		super();
+	}
+
 	/**
 	 * Post construct.
 	 */

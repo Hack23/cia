@@ -97,6 +97,13 @@ public final class MinistryView extends AbstractGroupView {
 
 
 	/**
+	 * Instantiates a new ministry view.
+	 */
+	public MinistryView() {
+		super();
+	}
+
+	/**
 	 * Post construct.
 	 */
 	@PostConstruct

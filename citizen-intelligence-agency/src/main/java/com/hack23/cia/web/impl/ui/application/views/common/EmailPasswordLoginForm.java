@@ -16,20 +16,17 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.common.tablefactory;
+package com.hack23.cia.web.impl.ui.application.views.common;
 
-import com.vaadin.ui.Table;
+import com.ejt.vaadin.loginform.DefaultVerticalLoginForm;
 
-/**
- * A factory for creating Table objects.
- */
-@FunctionalInterface
-public interface TableFactory {
+final class EmailPasswordLoginForm extends DefaultVerticalLoginForm {
 
-	/**
-	 * Creates a new Table object.
-	 *
-	 * @return the table
-	 */
-	Table createDataSummaryTable();
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	protected String getUserNameFieldCaption() {
+	    return "Email";
+	}
 }

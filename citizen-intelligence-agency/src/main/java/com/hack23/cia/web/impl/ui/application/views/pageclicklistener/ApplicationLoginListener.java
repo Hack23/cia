@@ -32,6 +32,9 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 
+/**
+ * The Class ApplicationLoginListener.
+ */
 public final class ApplicationLoginListener implements LoginListener {
 
 	/** The Constant serialVersionUID. */

@@ -77,6 +77,12 @@ public final class PoliticianRankingView extends AbstractRankingView {
 	@Autowired
 	private transient DataSeriesFactory dataSeriesFactory;
 
+	/**
+	 * Instantiates a new politician ranking view.
+	 */
+	public PoliticianRankingView() {
+		super();
+	}
 
 	/**
 	 * Post construct.

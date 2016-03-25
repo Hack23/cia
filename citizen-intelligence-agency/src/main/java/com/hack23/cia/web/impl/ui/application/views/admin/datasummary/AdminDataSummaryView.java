@@ -71,6 +71,13 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 
 
 	/**
+	 * Instantiates a new admin data summary view.
+	 */
+	public AdminDataSummaryView() {
+		super();
+	}
+
+	/**
 	 * Post construct.
 	 */
 	@PostConstruct

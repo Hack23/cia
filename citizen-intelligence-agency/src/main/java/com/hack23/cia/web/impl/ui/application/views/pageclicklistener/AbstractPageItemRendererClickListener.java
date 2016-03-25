@@ -27,14 +27,10 @@ import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
 import com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener;
 
 /**
- * The listener interface for receiving pageItemButtonClick events. The class
- * that is interested in processing a pageItemButtonClick event implements this
- * interface, and the object created with that class is registered with a
- * component using the component's
- * <code>addPageItemButtonClickListener</code> method. When
- * the pageItemButtonClick event occurs, that object's appropriate
- * method is invoked.
+ * The class AbstractPageItemRendererClickListener.
  *
+ * @param <T>
+ *            the generic type
  */
 public abstract class AbstractPageItemRendererClickListener<T> implements RendererClickListener ,SelectionListener{
 

@@ -41,7 +41,6 @@ import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.application.LogoutRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
@@ -83,10 +82,6 @@ public final class UserHomeView extends AbstractUserView {
 	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
-	/** The chart data manager. */
-	@Autowired
-	private transient ChartDataManager chartDataManager;
-
 	/** The menu item factory. */
 	@Autowired
 	private transient MenuItemFactory menuItemFactory;
@@ -98,6 +93,13 @@ public final class UserHomeView extends AbstractUserView {
 	/** The form factory. */
 	@Autowired
 	private transient FormFactory formFactory;
+
+	/**
+	 * Instantiates a new user home view.
+	 */
+	public UserHomeView() {
+		super();
+	}
 
 	/**
 	 * Post construct.

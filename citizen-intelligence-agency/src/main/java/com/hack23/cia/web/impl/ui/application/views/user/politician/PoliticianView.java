@@ -91,6 +91,7 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(value = PoliticianView.NAME, cached = true)
 public final class PoliticianView extends AbstractPersonView {
 
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -117,6 +118,13 @@ public final class PoliticianView extends AbstractPersonView {
 	/** The form factory. */
 	@Autowired
 	private transient FormFactory formFactory;
+
+	/**
+	 * Instantiates a new politician view.
+	 */
+	public PoliticianView() {
+		super();
+	}
 
 	/**
 	 * Post construct.
@@ -564,18 +572,7 @@ public final class PoliticianView extends AbstractPersonView {
 	 */
 	private Gantt createGantt(final List<AssignmentData> assignmentList) {
 
-		final Function<AssignmentData, String> role = new Function<AssignmentData, String>() {
-
-			@Override
-			public String apply(final AssignmentData t) {
-				if ("kammaruppdrag".equalsIgnoreCase(t.getAssignmentType())) {
-					return "Riksdagsledamot";
-				} else {
-					return t.getAssignmentType() + "." + t.getDetail() + " " + t.getRoleCode();
-				}
-
-			}
-		};
+		final Function<AssignmentData, String> role = new RoleMapping();
 
 		final Map<String, List<AssignmentData>> assignmentListMap = assignmentList.stream()
 				.collect(Collectors.groupingBy(role, TreeMap::new, Collectors.toList()));
@@ -644,6 +641,21 @@ public final class PoliticianView extends AbstractPersonView {
 		}
 
 		return gantt;
+	}
+
+	/**
+	 * The Class RoleMapping.
+	 */
+	private static final class RoleMapping implements Function<AssignmentData, String> {
+		@Override
+		public String apply(final AssignmentData t) {
+			if ("kammaruppdrag".equalsIgnoreCase(t.getAssignmentType())) {
+				return "Riksdagsledamot";
+			} else {
+				return t.getAssignmentType() + "." + t.getDetail() + " " + t.getRoleCode();
+			}
+
+		}
 	}
 
 }

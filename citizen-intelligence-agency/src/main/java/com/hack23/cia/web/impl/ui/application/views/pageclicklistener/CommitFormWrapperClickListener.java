@@ -27,6 +27,9 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
 
+/**
+ * The Class CommitFormWrapperClickListener.
+ */
 public final class CommitFormWrapperClickListener implements ClickListener {
 
 	/** The Constant serialVersionUID. */

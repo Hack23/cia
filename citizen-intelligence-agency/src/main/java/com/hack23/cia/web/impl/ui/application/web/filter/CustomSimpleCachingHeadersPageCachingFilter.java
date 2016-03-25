@@ -23,6 +23,9 @@ import java.util.List;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.constructs.web.filter.SimpleCachingHeadersPageCachingFilter;
 
+/**
+ * The Class CustomSimpleCachingHeadersPageCachingFilter.
+ */
 public final class CustomSimpleCachingHeadersPageCachingFilter extends SimpleCachingHeadersPageCachingFilter {
 
    	@Override

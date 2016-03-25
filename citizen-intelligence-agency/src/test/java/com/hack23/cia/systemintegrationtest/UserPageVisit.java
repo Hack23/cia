@@ -40,7 +40,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageModeMen
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 
 /**
  * The Class UserPageVisit.
@@ -61,9 +60,6 @@ public final class UserPageVisit extends Assert {
 
 	/** The action. */
 	private final Actions action;
-
-	/** The web driver backed selenium. */
-	private WebDriverBackedSelenium webDriverBackedSelenium;
 
 
 	/**
@@ -105,7 +101,6 @@ public final class UserPageVisit extends Assert {
 	 *             the exception
 	 */
 	public void visitStartPage() throws Exception {
-		webDriverBackedSelenium = new WebDriverBackedSelenium(driver,CitizenIntelligenceAgencyServer.ACCESS_URL);
 		driver.get(CitizenIntelligenceAgencyServer.ACCESS_URL);
 
 		waitForBrowser(WAIT_FOR_PAGE_DELAY);
@@ -125,7 +120,7 @@ public final class UserPageVisit extends Assert {
 				ViewAction.VISIT_TEST_CHART_VIEW });
 	}
 
-	private static void waitForBrowser(int delay) throws InterruptedException {
+	private static void waitForBrowser(final int delay) throws InterruptedException {
 		Thread.sleep(delay);
 	}
 
@@ -139,7 +134,6 @@ public final class UserPageVisit extends Assert {
 	 *             the exception
 	 */
 	public void visitDirectPage(final PageModeMenuCommand page) throws Exception {
-		//webDriverBackedSelenium = new WebDriverBackedSelenium(driver,CitizenIntelligenceAgencyServer.ACCESS_URL);
 		final String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + page.getPagePath();
 		driver.get(url);
 

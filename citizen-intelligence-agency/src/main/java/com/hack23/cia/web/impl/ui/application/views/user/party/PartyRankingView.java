@@ -83,6 +83,13 @@ public final class PartyRankingView extends AbstractRankingView {
 
 
 	/**
+	 * Instantiates a new party ranking view.
+	 */
+	public PartyRankingView() {
+		super();
+	}
+
+	/**
 	 * Post construct.
 	 */
 	@PostConstruct

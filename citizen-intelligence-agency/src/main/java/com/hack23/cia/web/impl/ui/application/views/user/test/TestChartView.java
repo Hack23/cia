@@ -26,6 +26,8 @@ import java.util.Optional;
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
@@ -40,6 +42,7 @@ import com.hack23.cia.model.internal.application.data.impl.WorldbankIndicatorDat
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.CitizenIntelligenceAgencyUI;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.AbstractView;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
@@ -78,9 +81,12 @@ public final class TestChartView extends AbstractView {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(CitizenIntelligenceAgencyUI.class);
+
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.TEST_CHART_VIEW_NAME;
-
 
 	/** The application manager. */
 	@Autowired
@@ -102,6 +108,13 @@ public final class TestChartView extends AbstractView {
 
 	/** The page mode content. */
 	private VerticalLayout pageModeContent;
+
+	/**
+	 * Instantiates a new test chart view.
+	 */
+	public TestChartView() {
+		super();
+	}
 
 	/**
 	 * Post construct.
@@ -206,7 +219,7 @@ public final class TestChartView extends AbstractView {
 		   pageModeContent.addComponent(pieChart);
 		   pageModeContent.setComponentAlignment(pieChart, Alignment.TOP_CENTER);
 		} catch (final HighChartsException e) {
-		   e.printStackTrace();
+			LOGGER.warn("Problem displaying testchart",e);
 		}
 	}
 

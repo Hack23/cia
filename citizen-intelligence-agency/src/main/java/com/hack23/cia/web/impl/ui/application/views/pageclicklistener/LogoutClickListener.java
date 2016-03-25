@@ -32,6 +32,9 @@ import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 
+/**
+ * The Class LogoutClickListener.
+ */
 public final class LogoutClickListener implements ClickListener {
 
 	/** The Constant serialVersionUID. */

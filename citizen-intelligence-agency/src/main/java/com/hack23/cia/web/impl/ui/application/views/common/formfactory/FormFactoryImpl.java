@@ -35,6 +35,9 @@ import com.vaadin.ui.Field;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.PasswordField;
 
+/**
+ * The Class FormFactoryImpl.
+ */
 @Service
 public final class FormFactoryImpl implements FormFactory {
 

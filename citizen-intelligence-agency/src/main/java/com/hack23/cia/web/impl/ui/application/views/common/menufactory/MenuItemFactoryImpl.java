@@ -53,6 +53,9 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 
+/**
+ * The Class MenuItemFactoryImpl.
+ */
 @Service
 public final class MenuItemFactoryImpl implements MenuItemFactory {
 
@@ -166,6 +169,13 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
+	/**
+	 * Instantiates a new menu item factory impl.
+	 */
+	public MenuItemFactoryImpl() {
+		super();
+	}
+
 	@Override
 	public MenuBar createMainPageMenuBar() {
 		final MenuBar barmenu = new MenuBar();
@@ -206,7 +216,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 
 		if (allowRoleInSecurityContext("ROLE_ADMIN") || allowRoleInSecurityContext("ROLE_USER")) {
-			final MenuItem userhomeMenuItem = barmenu.addItem("Userhome", new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, ""));
+			barmenu.addItem("Userhome", new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, ""));
 		}
 
 		final MenuItem rankingsMenuItem = barmenu.addItem(RANKING_TEXT, null, null);
@@ -387,7 +397,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 				new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DATAGRID));
 		listItem.setDescription("Current and past assignments and summary experience in days");
 
-		final MenuItem chartByTopic = politicianMenuItem.addItem(CHART_BY_TOPIC_TEXT, null, null);
+		politicianMenuItem.addItem(CHART_BY_TOPIC_TEXT, null, null);
 
 		politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
 				new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
@@ -470,7 +480,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 					.collect(Collectors.toList());
 
 			for (final ViewWorldbankIndicatorDataCountrySummary indciatorSummary : sortedEntries) {
-				final MenuItem addItem3 = sourceItems.addItem(indciatorSummary.getIndicatorName(),
+				sourceItems.addItem(indciatorSummary.getIndicatorName(),
 						new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.INDICATORS,
 								indciatorSummary.getEmbeddedId().getIndicatorId()));
 			}

@@ -31,6 +31,9 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.Link;
 
+/**
+ * The Class PageLinkFactoryImpl.
+ */
 @Service
 public final class PageLinkFactoryImpl implements PageLinkFactory {
 

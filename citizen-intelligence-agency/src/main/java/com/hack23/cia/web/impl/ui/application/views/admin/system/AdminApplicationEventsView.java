@@ -85,6 +85,13 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 	private transient ChartDataManager chartDataManager;
 
 	/**
+	 * Instantiates a new admin application events view.
+	 */
+	public AdminApplicationEventsView() {
+		super();
+	}
+
+	/**
 	 * Post construct.
 	 */
 	@PostConstruct

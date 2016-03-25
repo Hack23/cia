@@ -105,6 +105,13 @@ public final class PartyView extends AbstractGroupView {
 	private transient FormFactory formFactory;
 
 
+	/**
+	 * Instantiates a new party view.
+	 */
+	public PartyView() {
+		super();
+	}
+
 
 	/**
 	 * Post construct.

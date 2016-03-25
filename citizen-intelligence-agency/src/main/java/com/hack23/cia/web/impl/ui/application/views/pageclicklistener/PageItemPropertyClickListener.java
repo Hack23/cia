@@ -26,6 +26,9 @@ import org.slf4j.LoggerFactory;
 
 import com.hack23.cia.model.common.api.ModelObject;
 
+/**
+ * The Class PageItemPropertyClickListener.
+ */
 public final class PageItemPropertyClickListener extends AbstractPageItemRendererClickListener<ModelObject> {
 
 	/** The Constant serialVersionUID. */

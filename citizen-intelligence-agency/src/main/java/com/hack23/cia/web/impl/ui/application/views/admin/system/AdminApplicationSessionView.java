@@ -81,6 +81,13 @@ public final class AdminApplicationSessionView extends AbstractAdminView {
 	private transient FormFactory formFactory;
 
 	/**
+	 * Instantiates a new admin application session view.
+	 */
+	public AdminApplicationSessionView() {
+		super();
+	}
+
+	/**
 	 * Post construct.
 	 */
 	@PostConstruct

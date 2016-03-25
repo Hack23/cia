@@ -82,6 +82,13 @@ public final class AdminApplicationConfigurationView extends AbstractAdminView {
 	private transient FormFactory formFactory;
 
 	/**
+	 * Instantiates a new admin application configuration view.
+	 */
+	public AdminApplicationConfigurationView() {
+		super();
+	}
+
+	/**
 	 * Post construct.
 	 */
 	@PostConstruct

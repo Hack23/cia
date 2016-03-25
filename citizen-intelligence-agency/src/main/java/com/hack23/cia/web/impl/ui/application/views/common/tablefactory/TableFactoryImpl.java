@@ -29,6 +29,9 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.DataSummary;
 import com.vaadin.ui.Table;
 
+/**
+ * The Class TableFactoryImpl.
+ */
 @Service
 public final class TableFactoryImpl implements TableFactory {
 
@@ -36,6 +39,13 @@ public final class TableFactoryImpl implements TableFactory {
 	@Autowired
 	@Qualifier("ApplicationManager")
 	private ApplicationManager applicationManager;
+
+	/**
+	 * Instantiates a new table factory impl.
+	 */
+	public TableFactoryImpl() {
+		super();
+	}
 
 	@Override
 	public Table createDataSummaryTable() {

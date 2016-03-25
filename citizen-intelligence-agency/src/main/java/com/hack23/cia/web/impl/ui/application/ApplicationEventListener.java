@@ -44,18 +44,28 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationOperatio
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
-import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.application.DestroyApplicationSessionRequest;
 
+/**
+ * The Class ApplicationEventListener.
+ */
 @Service
 public final class ApplicationEventListener implements ApplicationListener<ApplicationEvent> {
+
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationEventListener.class);
 
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
 
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationEventListener.class);
+	/**
+	 * Instantiates a new application event listener.
+	 */
+	public ApplicationEventListener() {
+		super();
+	}
+
 
 	@Override
 	public void onApplicationEvent(final ApplicationEvent applicationEvent) {
@@ -90,7 +100,7 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 			serviceRequest.setErrorMessage("Authorities:" + authorizationFailureEvent.getAuthentication().getAuthorities() + " , RequiredAuthorities:" + authorizationFailureEvent.getConfigAttributes());
 			serviceRequest.setApplicationMessage("Access Denied");
 
-			final CreateApplicationEventResponse response = (CreateApplicationEventResponse) applicationManager
+			applicationManager
 					.service(serviceRequest);
 
 			LOGGER.info("Authorization Failure:: SessionId :{} , Authorities : {} , RequiredAuthorities : {}", sessionId,authorizationFailureEvent.getAuthentication().getAuthorities().toString(),authorizationFailureEvent.getConfigAttributes().toString());

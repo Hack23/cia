@@ -31,6 +31,9 @@ import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 
+/**
+ * The Class UpdateApplicationConfigurationClickListener.
+ */
 public final class UpdateApplicationConfigurationClickListener implements ClickListener {
 
 	/** The Constant serialVersionUID. */

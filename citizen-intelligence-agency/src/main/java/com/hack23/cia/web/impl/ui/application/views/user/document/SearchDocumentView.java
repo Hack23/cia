@@ -38,7 +38,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFacto
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocumentClickListener;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocumentClickListener.SearchDocumentResponseHandler;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocumentResponseHandler;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
@@ -75,6 +75,13 @@ public final class SearchDocumentView extends AbstractUserView {
 	/** The form factory. */
 	@Autowired
 	private transient FormFactory formFactory;
+
+	/**
+	 * Instantiates a new search document view.
+	 */
+	public SearchDocumentView() {
+		super();
+	}
 
 	/**
 	 * Post construct.
@@ -116,6 +123,11 @@ public final class SearchDocumentView extends AbstractUserView {
 		searchRequest.setMaxResults(100);
 		searchRequest.setSearchExpression("");
 		final SearchDocumentResponseHandler handler = new SearchDocumentResponseHandler() {
+
+			/**
+			 *
+			 */
+			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void handle(final SearchDocumentResponse response) {

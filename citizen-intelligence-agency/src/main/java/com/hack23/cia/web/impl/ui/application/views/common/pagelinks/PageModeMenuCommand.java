@@ -23,6 +23,9 @@ import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.UI;
 
+/**
+ * The Class PageModeMenuCommand.
+ */
 public final class PageModeMenuCommand implements Command {
 
 

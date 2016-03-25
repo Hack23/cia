@@ -31,14 +31,24 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationOperatio
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
-import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 
+/**
+ * The Class PageActionEventHelperImpl.
+ */
 @Service
 public final class PageActionEventHelperImpl implements PageActionEventHelper {
 
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
+
+	/**
+	 * Instantiates a new page action event helper impl.
+	 */
+	public PageActionEventHelperImpl() {
+		super();
+	}
+
 
 	@Override
 	public void createPageEvent(final ViewAction viewAction,final ApplicationEventGroup applicationEventGroup,final String page, final String pageMode, final String elementId) {
@@ -73,7 +83,7 @@ public final class PageActionEventHelperImpl implements PageActionEventHelper {
 
 		serviceRequest.setApplicationMessage(viewAction.toString());
 
-		final CreateApplicationEventResponse response = (CreateApplicationEventResponse) applicationManager
+		applicationManager
 				.service(serviceRequest);
 	}
 

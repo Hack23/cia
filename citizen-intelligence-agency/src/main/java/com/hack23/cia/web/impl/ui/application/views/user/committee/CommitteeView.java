@@ -101,6 +101,13 @@ public final class CommitteeView extends AbstractGroupView {
 	private transient FormFactory formFactory;
 
 	/**
+	 * Instantiates a new committee view.
+	 */
+	public CommitteeView() {
+		super();
+	}
+
+	/**
 	 * Post construct.
 	 */
 	@PostConstruct

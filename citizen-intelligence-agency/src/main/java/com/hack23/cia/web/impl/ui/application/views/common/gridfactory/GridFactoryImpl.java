@@ -30,6 +30,9 @@ import com.vaadin.ui.Grid.Column;
 import com.vaadin.ui.Grid.SelectionMode;
 import com.vaadin.ui.renderers.ButtonRenderer;
 
+/**
+ * The Class GridFactoryImpl.
+ */
 @Service
 public final class GridFactoryImpl implements GridFactory {
 

@@ -33,6 +33,9 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 
+/**
+ * The Class DataSeriesFactoryImpl.
+ */
 @Service
 @Transactional(propagation=Propagation.REQUIRED)
 public final class DataSeriesFactoryImpl implements DataSeriesFactory {
@@ -41,6 +44,14 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 	@Autowired
 	@Qualifier("ApplicationManager")
 	private ApplicationManager applicationManager;
+
+	/**
+	 * Instantiates a new data series factory impl.
+	 */
+	public DataSeriesFactoryImpl() {
+		super();
+	}
+
 
 	@Override
 	public DataSeries createCommitteeChartTimeSeriesAll() {

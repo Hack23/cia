@@ -16,20 +16,23 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.common.tablefactory;
+package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
-import com.vaadin.ui.Table;
+import java.io.Serializable;
+
+import com.hack23.cia.service.api.action.user.SearchDocumentResponse;
 
 /**
- * A factory for creating Table objects.
+ * The Interface SearchDocumentResponseHandler.
  */
 @FunctionalInterface
-public interface TableFactory {
+public interface SearchDocumentResponseHandler extends Serializable {
 
 	/**
-	 * Creates a new Table object.
+	 * Handle.
 	 *
-	 * @return the table
+	 * @param response
+	 *            the response
 	 */
-	Table createDataSummaryTable();
+	void handle(SearchDocumentResponse response);
 }

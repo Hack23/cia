@@ -76,6 +76,13 @@ public final class AdminPortalView extends AbstractAdminView {
 	private transient FormFactory formFactory;
 
 	/**
+	 * Instantiates a new admin portal view.
+	 */
+	public AdminPortalView() {
+		super();
+	}
+
+	/**
 	 * Post construct.
 	 */
 	@PostConstruct

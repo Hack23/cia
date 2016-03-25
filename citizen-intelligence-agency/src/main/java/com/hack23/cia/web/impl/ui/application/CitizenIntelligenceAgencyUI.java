@@ -92,7 +92,7 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 	 * @param content
 	 *            the content
 	 */
-	public CitizenIntelligenceAgencyUI(Component content) {
+	public CitizenIntelligenceAgencyUI(final Component content) {
 		super(content);
 	}
 

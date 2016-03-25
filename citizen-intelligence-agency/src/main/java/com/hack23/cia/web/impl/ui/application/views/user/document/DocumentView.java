@@ -104,6 +104,13 @@ public final class DocumentView extends AbstractUserView {
 
 
 	/**
+	 * Instantiates a new document view.
+	 */
+	public DocumentView() {
+		super();
+	}
+
+	/**
 	 * Post construct.
 	 */
 	@PostConstruct
@@ -132,7 +139,7 @@ public final class DocumentView extends AbstractUserView {
 			final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = applicationManager
 					.getDataContainer(DocumentStatusContainer.class);
 
-			final DataContainer<CommitteeProposalComponentData, String> committeeProposalComponentDataContainer = applicationManager
+			applicationManager
 					.getDataContainer(CommitteeProposalComponentData.class);
 
 			final DocumentElement documentElement = documentElementDataContainer.load(pageId);

@@ -75,6 +75,14 @@ public final class AdminLanguageView extends AbstractAdminView {
 	@Autowired
 	private transient FormFactory formFactory;
 
+
+	/**
+	 * Instantiates a new admin language view.
+	 */
+	public AdminLanguageView() {
+		super();
+	}
+
 	/**
 	 * Post construct.
 	 */

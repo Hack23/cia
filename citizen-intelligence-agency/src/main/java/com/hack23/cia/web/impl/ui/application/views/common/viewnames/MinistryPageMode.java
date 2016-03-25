@@ -18,6 +18,9 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
 
+/**
+ * The Enum MinistryPageMode.
+ */
 public enum MinistryPageMode {
 
 	/** THE DOCUMENT HISTORY. */

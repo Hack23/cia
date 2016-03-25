@@ -82,6 +82,13 @@ public final class MinistryRankingView extends AbstractRankingView {
 	private transient DataSeriesFactory dataSeriesFactory;
 
 	/**
+	 * Instantiates a new ministry ranking view.
+	 */
+	public MinistryRankingView() {
+		super();
+	}
+
+	/**
 	 * Post construct.
 	 */
 	@PostConstruct

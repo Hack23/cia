@@ -43,6 +43,14 @@ public final class ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataMan
 	@Qualifier("ApplicationManager")
 	private ApplicationManager applicationManager;
 
+	/**
+	 * Instantiates a new view riksdagen vote data ballot politician summary
+	 * daily chart data manager impl.
+	 */
+	public ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataManagerImpl() {
+		super();
+	}
+
 	@Override
 	public List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> findByValue(final String value) {
 		final DataContainer<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily, RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager

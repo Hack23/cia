@@ -56,6 +56,9 @@ public final class AdminMonitoringView extends AbstractAdminView {
 	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
+	/**
+	 * Instantiates a new admin monitoring view.
+	 */
 	public AdminMonitoringView() {
 		super();
 	}

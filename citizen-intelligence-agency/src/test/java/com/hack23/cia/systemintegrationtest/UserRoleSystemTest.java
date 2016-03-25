@@ -73,7 +73,6 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	/** The web driver map. */
 	private final Map<String, WebDriver> webDriverMap = new ConcurrentHashMap<>();
 
-
 	/**
 	 * Instantiates a new user role system test.
 	 *
@@ -85,7 +84,6 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		this.browser = browser;
 	}
 
-
 	/**
 	 * Browsers strings.
 	 *
@@ -93,7 +91,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 */
 	@Parameters(name = "SiteTest{index}: browser({0})")
 	public static Collection<String[]> browsersStrings() {
-		return Arrays.asList(new String[][] { { "firefox" }});
+		return Arrays.asList(new String[][] { { "firefox" } });
 		// return Arrays.asList(new Object[][] { { "firefox" },{ "chrome" }, {
 		// "htmlunit-firefox" },{ "htmlunit-ie11" },{ "htmlunit-chrome" } });
 	}
@@ -135,6 +133,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeRankingViewOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -152,14 +151,14 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeRankingViewPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
 
 	}
-
 
 	/**
 	 * Site committee ranking view data grid test.
@@ -168,8 +167,9 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	public void siteCommitteeRankingViewDataGridTest()  throws Exception {
+	public void siteCommitteeRankingViewDataGridTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -179,7 +179,6 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 	}
 
-
 	/**
 	 * Site admin agency test.
 	 *
@@ -187,24 +186,22 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	public void siteAdminAgencyTest()  throws Exception {
+	public void siteAdminAgencyTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		loginAsAdmin(userPageVisit);
 
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, ""));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, ""));
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Agency"));
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, pageId));
 
-
 	}
-
 
 	/**
 	 * Click first row in grid.
@@ -228,8 +225,8 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		String pageId = choosenCell.getText();
 		userPageVisit.performClickAction(choosenCell);
 
-		if (pageId !=null) {
-			pageId=pageId.replace(",", "");
+		if (pageId != null) {
+			pageId = pageId.replace(",", "");
 		}
 
 		return pageId;
@@ -242,24 +239,21 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	public void siteAdminPortalTest()  throws Exception {
+	public void siteAdminPortalTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 		loginAsAdmin(userPageVisit);
 
-
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Portal"));
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, pageId));
 
-
 	}
-
 
 	/**
 	 * Site admin application configuration test.
@@ -268,12 +262,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	public void siteAdminApplicationConfigurationTest()  throws Exception {
+	public void siteAdminApplicationConfigurationTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 		loginAsAdmin(userPageVisit);
-
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, ""));
@@ -281,11 +275,10 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
 
-		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, pageId));
-
+		userPageVisit
+				.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, pageId));
 
 	}
-
 
 	/**
 	 * Site admin country test.
@@ -294,21 +287,19 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	public void siteAdminCountryTest()  throws Exception {
+	public void siteAdminCountryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 		loginAsAdmin(userPageVisit);
 
-
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, ""));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, ""));
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Country"));
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, pageId));
-
 
 	}
 
@@ -319,15 +310,14 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	public void siteAdminUseraccountTest()  throws Exception {
+	public void siteAdminUseraccountTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 		loginAsAdmin(userPageVisit);
 
-
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
 		userPageVisit.assertHtmlBodyContainsText("Useraccount");
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
@@ -343,20 +333,19 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	public void siteAdminLanguageTest()  throws Exception {
+	public void siteAdminLanguageTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 		loginAsAdmin(userPageVisit);
 
-
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Language"));
 
-//		String pageId = clickFirstRowInGrid(userPageVisit);
-//		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, pageId));
-
+		// String pageId = clickFirstRowInGrid(userPageVisit);
+		// userPageVisit.validatePage(new
+		// PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, pageId));
 
 	}
 
@@ -367,20 +356,20 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	public void siteAdminLanguageContentTest()  throws Exception {
+	public void siteAdminLanguageContentTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 		loginAsAdmin(userPageVisit);
 
-
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, ""));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, ""));
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Language Content"));
 
-//		String pageId = clickFirstRowInGrid(userPageVisit);
-//		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, pageId));
-
+		// String pageId = clickFirstRowInGrid(userPageVisit);
+		// userPageVisit.validatePage(new
+		// PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME,
+		// pageId));
 
 	}
 
@@ -391,21 +380,19 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	public void siteAdminApplicationSessionTest()  throws Exception {
+	public void siteAdminApplicationSessionTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 		loginAsAdmin(userPageVisit);
 
-
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
 		userPageVisit.assertHtmlBodyContainsText("Application Session");
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, pageId));
-
 
 	}
 
@@ -416,15 +403,14 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	public void siteAdminApplicationEventTest()  throws Exception {
+	public void siteAdminApplicationEventTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 		loginAsAdmin(userPageVisit);
 
-
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
 		userPageVisit.assertHtmlBodyContainsText("Application Action Event");
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
@@ -439,17 +425,18 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test(timeout=20000)
-	public void siteAdminMonitoringFailedAccessTest()  throws Exception {
+	@Test(timeout = 20000)
+	public void siteAdminMonitoringFailedAccessTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
-		assertTrue("Expect this content",userPageVisit.getHtmlBodyAsText().contains("Admin Monitoring"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
+		assertTrue("Expect this content", userPageVisit.getHtmlBodyAsText().contains("Admin Monitoring"));
 
-		assertTrue("Expect this content",userPageVisit.getIframesHtmlBodyAsText().contains("Login with Username and Password"));
+		assertTrue("Expect this content",
+				userPageVisit.getIframesHtmlBodyAsText().contains("Login with Username and Password"));
 	}
 
 	/**
@@ -459,20 +446,20 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	public void siteAdminMonitoringSuccessTest()  throws Exception {
+	public void siteAdminMonitoringSuccessTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		loginAsAdmin(userPageVisit);
 
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
-		assertTrue("Expect this content",userPageVisit.getHtmlBodyAsText().contains("Admin Monitoring"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
+		assertTrue("Expect this content", userPageVisit.getHtmlBodyAsText().contains("Admin Monitoring"));
 
-		assertFalse("Dont expect this content",userPageVisit.getIframesHtmlBodyAsText().contains("Login with Username and Password"));
+		assertFalse("Dont expect this content",
+				userPageVisit.getIframesHtmlBodyAsText().contains("Login with Username and Password"));
 	}
-
 
 	/**
 	 * Login as admin.
@@ -483,11 +470,9 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	private void loginAsAdmin(final UserPageVisit userPageVisit) throws Exception {
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.OVERVIEW));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
 		userPageVisit.loginUser("admin@admin.com", "admin");
 	}
-
-
 
 	/**
 	 * Site committee ranking view charts test.
@@ -496,8 +481,9 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	public void siteCommitteeRankingViewChartsTest()  throws Exception {
+	public void siteCommitteeRankingViewChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -512,8 +498,9 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	public void siteCommitteeRankingViewGridNavigationTest()  throws Exception {
+	public void siteCommitteeRankingViewGridNavigationTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -534,14 +521,14 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	public void sitePartyRankingViewOverviewTest()  throws Exception {
+	public void sitePartyRankingViewOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 	}
-
 
 	/**
 	 * Site party ranking view page visit history test.
@@ -550,14 +537,15 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	public void sitePartyRankingViewPageVisitHistoryTest()  throws Exception {
+	public void sitePartyRankingViewPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
 	}
-
 
 	/**
 	 * Site party ranking view data grid test.
@@ -568,6 +556,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyRankingViewDataGridTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -584,6 +573,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyRankingViewChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -600,10 +590,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticianRankingViewOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.OVERVIEW));
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 	}
 
 	/**
@@ -615,12 +607,13 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticianRankingViewPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
 	}
-
 
 	/**
 	 * Site politician ranking view data grid test.
@@ -631,10 +624,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticianRankingViewDataGridTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DATAGRID));
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DATAGRID));
 
 	}
 
@@ -647,17 +642,17 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticianRankingViewDataGridNavigationTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DATAGRID));
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DATAGRID));
 		final String pageId = clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, pageId));
 
 	}
-
-
 
 	/**
 	 * Site politician ranking view charts test.
@@ -668,6 +663,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticianRankingViewChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -684,6 +680,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -700,13 +697,13 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, "N%C3%A4ringsdepartementet"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY,
+				"N%C3%A4ringsdepartementet"));
 	}
-
 
 	/**
 	 * Site ministry document history test.
@@ -717,6 +714,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryDocumentHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -734,6 +732,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryDocumentActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -751,6 +750,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryRoleGhantTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -758,7 +758,6 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 				MinistryPageMode.ROLEGHANT.toString(), "N%C3%A4ringsdepartementet"));
 
 	}
-
 
 	/**
 	 * Site ministry current members test.
@@ -769,6 +768,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryCurrentMembersTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -786,6 +786,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryMemberHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -802,11 +803,11 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, "UU"));
-
 
 	}
 
@@ -819,14 +820,14 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteePageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, "UU"));
-
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, "UU"));
 
 	}
-
 
 	/**
 	 * Site committe role ghant test.
@@ -837,10 +838,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteRoleGhantTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), "UU"));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), "UU"));
 
 	}
 
@@ -853,10 +856,11 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMainViewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.OVERVIEW));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
 
 		final WebElement overviewItem = userPageVisit.getMenuItem("Overview");
 		assertNotNull(overviewItem);
@@ -864,7 +868,6 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		userPageVisit.performClickAction(overviewItem);
 
 	}
-
 
 	/**
 	 * Site register user test.
@@ -875,15 +878,16 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteRegisterUserTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.OVERVIEW));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
 
 		final String username = UUID.randomUUID().toString();
 		final String password = UUID.randomUUID().toString();
 
-		userPageVisit.registerNewUser(username,password);
+		userPageVisit.registerNewUser(username, password);
 
 	}
 
@@ -896,15 +900,16 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteLoginUserTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.OVERVIEW));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
 
 		final String username = UUID.randomUUID().toString();
 		final String password = UUID.randomUUID().toString();
 
-		userPageVisit.registerNewUser(username,password);
+		userPageVisit.registerNewUser(username, password);
 
 		userPageVisit.logoutUser();
 
@@ -914,15 +919,13 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
 
-		userLoginPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.OVERVIEW));
+		userLoginPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
 
-		userLoginPageVisit.loginUser(username+ "@test.com", password);
+		userLoginPageVisit.loginUser(username + "@test.com", password);
 
 		userLoginPageVisit.logoutUser();
 
 	}
-
-
 
 	/**
 	 * Site committee document history test.
@@ -933,11 +936,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeDocumentHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DOCUMENT_HISTORY.toString(), "UU"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+				CommitteePageMode.DOCUMENT_HISTORY.toString(), "UU"));
 
 	}
 
@@ -950,11 +954,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeCurrentMembersTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.CURRENT_MEMBERS.toString(), "UU"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+				CommitteePageMode.CURRENT_MEMBERS.toString(), "UU"));
 
 	}
 
@@ -967,11 +972,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeMemberHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.MEMBERHISTORY.toString(), "UU"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+				CommitteePageMode.MEMBERHISTORY.toString(), "UU"));
 
 	}
 
@@ -984,11 +990,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeDocumentActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DOCUMENTACTIVITY.toString(), "UU"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+				CommitteePageMode.DOCUMENTACTIVITY.toString(), "UU"));
 
 	}
 
@@ -1001,11 +1008,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeDecisionSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONSUMMARY.toString(), "UU"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+				CommitteePageMode.DECISIONSUMMARY.toString(), "UU"));
 
 	}
 
@@ -1018,11 +1026,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeBallotDecisionSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), "UU"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+				CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), "UU"));
 
 	}
 
@@ -1035,6 +1044,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeDecisionTypeDailySummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1052,11 +1062,11 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteTestChartViewOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.OVERVIEW));
-
 
 	}
 
@@ -1069,10 +1079,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteTestChartViewIndicatorsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.INDICATORS, "UIS.TEP.5.A"));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.INDICATORS, "UIS.TEP.5.A"));
 
 	}
 
@@ -1083,13 +1095,14 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	public void siteTestChartViewPartyWinnerTest() throws Exception{
+	public void siteTestChartViewPartyWinnerTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS, ChartIndicators.PARTYWINNER.toString()));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS,
+				ChartIndicators.PARTYWINNER.toString()));
 
 	}
 
@@ -1102,6 +1115,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteTestChartViewDecsionActivityByTypeTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1119,6 +1133,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteTestChartViewDocumentActivityByTypeTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1136,6 +1151,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryRankingOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1152,13 +1168,14 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryRankingPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
 
 	}
-
 
 	/**
 	 * Site ministry ranking data grid test.
@@ -1169,6 +1186,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryRankingDataGridTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1185,6 +1203,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryRankingChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1201,11 +1220,11 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryRankingNavigationTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.DATAGRID));
-
 
 		final WebElement button = userPageVisit.getButtons().iterator().next();
 		assertNotNull(button);
@@ -1223,12 +1242,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentDetailsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DOCUMENTDETAILS.toString(), "GZ02C343"));
-
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENTDETAILS.toString(), "GZ02C343"));
 
 	}
 
@@ -1241,10 +1260,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentOverViewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, "GZ02C343"));
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, "GZ02C343"));
 	}
 
 	/**
@@ -1256,12 +1277,13 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.PAGEVISITHISTORY, "GZ02C343"));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.PAGEVISITHISTORY, "GZ02C343"));
 	}
-
 
 	/**
 	 * Site document person ref test.
@@ -1272,11 +1294,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentPersonRefTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.PERSONREFERENCES.toString(), "GZ02C343"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.PERSONREFERENCES.toString(), "GZ02C343"));
 
 	}
 
@@ -1289,16 +1312,15 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteSearchDocumentTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.SEARCH_DOCUMENT_VIEW_NAME,""));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.SEARCH_DOCUMENT_VIEW_NAME, ""));
 
 		userPageVisit.searchDocument("2016");
 
 	}
-
 
 	/**
 	 * Site document doc activity test.
@@ -1309,11 +1331,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentDocActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DOCUMENTACTIVITY.toString(), "GZ02C343"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENTACTIVITY.toString(), "GZ02C343"));
 
 	}
 
@@ -1326,11 +1349,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentDocDataTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DOCUMENTDATA.toString(), "GZ02C343"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENTDATA.toString(), "GZ02C343"));
 	}
 
 	/**
@@ -1342,11 +1366,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentDocRefbEmptyTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DOCUMENTREFERENCES.toString(), "GZ02C343"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENTREFERENCES.toString(), "GZ02C343"));
 
 	}
 
@@ -1359,15 +1384,14 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentDocRefbTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DOCUMENTREFERENCES.toString(), "H101UU1"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENTREFERENCES.toString(), "H101UU1"));
 
 	}
-
-
 
 	/**
 	 * Site document doc decision test.
@@ -1378,11 +1402,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentDocDecisionTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DOCUMENDECISION.toString(), "GZ02C343"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENDECISION.toString(), "GZ02C343"));
 
 	}
 
@@ -1393,8 +1418,9 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	@Test
-	public void siteDocumentDocAttachmentTest()  throws Exception {
+	public void siteDocumentDocAttachmentTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1412,6 +1438,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1427,12 +1454,13 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, "S"));
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, "S"));
 	}
-
 
 	/**
 	 * Site party document history test.
@@ -1443,6 +1471,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyDocumentHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1460,13 +1489,13 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.CHARTS.toString(), "S"));
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.CHARTS.toString(), "S"));
 	}
-
 
 	/**
 	 * Site party current members test.
@@ -1477,11 +1506,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyCurrentMembersTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTMEMBERS.toString(), "S"));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTMEMBERS.toString(), "S"));
 
 	}
 
@@ -1494,11 +1524,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyMemberHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.MEMBERHISTORY.toString(), "S"));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.MEMBERHISTORY.toString(), "S"));
 
 	}
 
@@ -1511,11 +1542,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyCurrentLeadersTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTLEADERS.toString(), "S"));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTLEADERS.toString(), "S"));
 
 	}
 
@@ -1528,11 +1560,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyLeaderHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.LEADERHISTORY.toString(), "S"));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.LEADERHISTORY.toString(), "S"));
 
 	}
 
@@ -1545,11 +1578,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyCommitteeRolesTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEROLES.toString(), "S"));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEROLES.toString(), "S"));
 
 	}
 
@@ -1562,6 +1596,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyGovernmentRolesTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1579,11 +1614,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyPartyWonDailySummaryChartTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), "S"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
+				PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), "S"));
 
 	}
 
@@ -1596,6 +1632,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyDocumentActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1613,6 +1650,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyRoleGhantTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1620,7 +1658,6 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.ROLEGHANT.toString(), "S"));
 
 	}
-
 
 	/**
 	 * Site party committee ballot decision summary test.
@@ -1631,11 +1668,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyCommitteeBallotDecisionSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString(), "S"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
+				PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString(), "S"));
 
 	}
 
@@ -1648,11 +1686,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyVoteHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), "S"));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), "S"));
 
 	}
 
@@ -1665,12 +1704,13 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteAdminTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		loginAsAdmin(userPageVisit);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.OVERVIEW));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
 
 		userPageVisit.visitAdminAgentOperationView();
 		userPageVisit.performAdminAgentOperation(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN, DataAgentOperation.IMPORT);
@@ -1686,12 +1726,13 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteAdminDataSummary() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		loginAsAdmin(userPageVisit);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,PageMode.OVERVIEW));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
 
 		userPageVisit.visitAdminDataSummaryView();
 
@@ -1706,12 +1747,13 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanOverViewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, "0980681611418"));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, "0980681611418"));
 	}
-
 
 	/**
 	 * Site politican page visit history test.
@@ -1722,12 +1764,13 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY, "0980681611418"));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY, "0980681611418"));
 	}
-
 
 	/**
 	 * Site politican role summary test.
@@ -1738,6 +1781,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanRoleSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1754,11 +1798,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanRoleListTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PoliticianPageMode.ROLELIST.toString(), "0980681611418"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.ROLELIST.toString(), "0980681611418"));
 
 	}
 
@@ -1771,11 +1816,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanRoleGhantTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PoliticianPageMode.ROLEGHANT.toString(), "0980681611418"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.ROLEGHANT.toString(), "0980681611418"));
 
 	}
 
@@ -1788,6 +1834,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanDocumentHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1805,6 +1852,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanVoteHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1822,6 +1870,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanBallotDecisionSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1839,6 +1888,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanDocumentActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1856,11 +1906,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanIndicatorTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist for browser:" + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS.toString(), "0980681611418"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PageMode.INDICATORS.toString(), "0980681611418"));
 
 	}
 
@@ -1873,6 +1924,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanChartTest() throws Exception {
 		final WebDriver driver = getWebDriver();
+		assertNotNull("No webdriver exist", driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 

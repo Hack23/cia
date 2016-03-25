@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
-import java.io.Serializable;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,6 +29,9 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
 
+/**
+ * The Class SearchDocumentClickListener.
+ */
 public final class SearchDocumentClickListener implements ClickListener {
 
 	/** The Constant serialVersionUID. */
@@ -47,21 +48,15 @@ public final class SearchDocumentClickListener implements ClickListener {
 
 	private final SearchDocumentResponseHandler responseHandler;
 
-	@FunctionalInterface
-	public interface SearchDocumentResponseHandler extends Serializable {
-		void handle(SearchDocumentResponse response);
-	}
-
-
 	/**
 	 * Instantiates a new search document click listener.
 	 *
 	 * @param reqisterRequest
 	 *            the reqister request
-	 * @param searchLayout
 	 * @param applicationManager
 	 *            the application manager
-	 * @param gridFactory
+	 * @param responseHandler
+	 *            the response handler
 	 */
 	public SearchDocumentClickListener(final SearchDocumentRequest reqisterRequest, final ApplicationManager applicationManager, final SearchDocumentResponseHandler responseHandler) {
 		this.reqisterRequest = reqisterRequest;
@@ -69,7 +64,6 @@ public final class SearchDocumentClickListener implements ClickListener {
 		this.responseHandler = responseHandler;
 	}
 
-	/** {@inheritDoc} */
 	@Override
 	public void buttonClick(final ClickEvent event) {
 		final SearchDocumentResponse response = (SearchDocumentResponse) applicationManager.service(reqisterRequest);

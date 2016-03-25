@@ -82,6 +82,13 @@ public final class CommitteeRankingView extends AbstractRankingView {
 	private transient GridFactory gridFactory;
 
 	/**
+	 * Instantiates a new committee ranking view.
+	 */
+	public CommitteeRankingView() {
+		super();
+	}
+
+	/**
 	 * Post construct.
 	 */
 	@PostConstruct

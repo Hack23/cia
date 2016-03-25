@@ -78,6 +78,13 @@ public final class AdminAgencyView extends AbstractAdminView {
 	private transient FormFactory formFactory;
 
 	/**
+	 * Instantiates a new admin agency view.
+	 */
+	public AdminAgencyView() {
+		super();
+	}
+
+	/**
 	 * Post construct.
 	 */
 	@PostConstruct

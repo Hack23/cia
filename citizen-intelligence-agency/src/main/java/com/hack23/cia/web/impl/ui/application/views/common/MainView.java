@@ -32,7 +32,6 @@ import com.ejt.vaadin.loginform.DefaultVerticalLoginForm;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.RegisterUserRequest;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
@@ -65,7 +64,7 @@ public final class MainView extends Panel implements View {
 	/** The application manager. */
 	@Autowired
 	@Qualifier("ApplicationManager")
-	transient ApplicationManager applicationManager;
+	private transient ApplicationManager applicationManager;
 
 	/** The page link factory. */
 	@Autowired
@@ -79,10 +78,13 @@ public final class MainView extends Panel implements View {
 	@Autowired
 	private transient FormFactory formFactory;
 
-	/** The grid factory. */
-	@Autowired
-	private transient GridFactory gridFactory;
 
+	/**
+	 * Instantiates a new main view.
+	 */
+	public MainView() {
+		super();
+	}
 
 	/**
 	 * Post construct.
@@ -90,6 +92,18 @@ public final class MainView extends Panel implements View {
 	@PostConstruct
 	public void postConstruct() {
 		setSizeFull();
+		createContent();
+
+	}
+
+
+	@Override
+	public void enter(final ViewChangeEvent event) {
+		createContent();
+	}
+
+
+	private void createContent() {
 		setCaption("Citizen Intelligence Agency::Main");
 
 		final VerticalLayout layout = new VerticalLayout();
@@ -146,18 +160,7 @@ public final class MainView extends Panel implements View {
 
 		layout.addComponent(pageLinkFactory.createMainViewPageLink());
 
-		final DefaultVerticalLoginForm loginForm = new DefaultVerticalLoginForm() {
-
-			/**
-			 *
-			 */
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			protected String getUserNameFieldCaption() {
-		        return "Email";
-		    }
-		};
+		final DefaultVerticalLoginForm loginForm = new EmailPasswordLoginForm();
 		loginForm.addLoginListener(new ApplicationLoginListener(applicationManager));
 		layout.addComponent(loginForm);
 
@@ -177,12 +180,6 @@ public final class MainView extends Panel implements View {
 		layout.addComponent(registerLayout);
 
 		setContent(layout);
-
 	}
 
-
-	@Override
-	public void enter(final ViewChangeEvent event) {
-
-	}
 }

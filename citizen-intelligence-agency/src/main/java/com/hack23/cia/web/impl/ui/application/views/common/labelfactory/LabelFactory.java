@@ -21,6 +21,9 @@ package com.hack23.cia.web.impl.ui.application.views.common.labelfactory;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.themes.Reindeer;
 
+/**
+ * A factory for creating Label objects.
+ */
 public final class LabelFactory {
 
 	private LabelFactory() {

@@ -76,6 +76,14 @@ public final class AdminCountryView extends AbstractAdminView {
 	@Autowired
 	private transient FormFactory formFactory;
 
+
+	/**
+	 * Instantiates a new admin country view.
+	 */
+	public AdminCountryView() {
+		super();
+	}
+
 	/**
 	 * Post construct.
 	 */

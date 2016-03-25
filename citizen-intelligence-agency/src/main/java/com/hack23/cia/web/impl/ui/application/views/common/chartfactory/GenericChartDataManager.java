@@ -20,6 +20,12 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory;
 
 import java.util.List;
 
+/**
+ * The Interface GenericChartDataManager.
+ *
+ * @param <T>
+ *            the generic type
+ */
 @FunctionalInterface
 public interface GenericChartDataManager<T> {
 
