@@ -20,6 +20,9 @@ package com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory;
 
 import org.dussan.vaadin.dcharts.data.DataSeries;
 
+/**
+ * A factory for creating DataSeries objects.
+ */
 public interface DataSeriesFactory {
 
 	/**

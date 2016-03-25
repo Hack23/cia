@@ -22,6 +22,9 @@ import org.springframework.stereotype.Service;
 
 import com.vaadin.ui.MenuBar;
 
+/**
+ * A factory for creating MenuItem objects.
+ */
 @Service
 public interface MenuItemFactory {
 

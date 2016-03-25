@@ -25,6 +25,9 @@ import com.vaadin.data.util.BeanItem;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Layout;
 
+/**
+ * A factory for creating Form objects.
+ */
 public interface FormFactory {
 
 	/**

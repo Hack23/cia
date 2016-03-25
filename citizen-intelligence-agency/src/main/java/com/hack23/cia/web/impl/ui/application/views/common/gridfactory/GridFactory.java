@@ -22,6 +22,9 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPa
 import com.vaadin.data.Container.Indexed;
 import com.vaadin.ui.Grid;
 
+/**
+ * A factory for creating Grid objects.
+ */
 public interface GridFactory {
 
 	/**

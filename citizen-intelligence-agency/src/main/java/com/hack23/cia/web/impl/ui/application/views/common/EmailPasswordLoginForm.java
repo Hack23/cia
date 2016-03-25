@@ -20,6 +20,9 @@ package com.hack23.cia.web.impl.ui.application.views.common;
 
 import com.ejt.vaadin.loginform.DefaultVerticalLoginForm;
 
+/**
+ * The Class EmailPasswordLoginForm.
+ */
 final class EmailPasswordLoginForm extends DefaultVerticalLoginForm {
 
 	/** The Constant serialVersionUID. */

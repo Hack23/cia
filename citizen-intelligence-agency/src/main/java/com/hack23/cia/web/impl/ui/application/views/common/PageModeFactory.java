@@ -21,6 +21,9 @@ package com.hack23.cia.web.impl.ui.application.views.common;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Panel;
 
+/**
+ * A factory for creating PageMode objects.
+ */
 public interface PageModeFactory {
 
 	/**
