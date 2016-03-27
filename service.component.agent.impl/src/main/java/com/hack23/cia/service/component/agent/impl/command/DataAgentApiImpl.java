@@ -67,13 +67,6 @@ public final class DataAgentApiImpl implements DataAgentApi {
 	@Qualifier("vdemApiAgentWorkQueue")
 	private Destination vdemApiDestination;
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.component.agent.api.DataAgentApi#executeImportData
-	 * (com.hack23.cia.service.component.agent.api.DataAgentApi.ImportControl)
-	 */
 	@Override
 	public void execute(final DataAgentWorkOrder workOrder) {
 		try {

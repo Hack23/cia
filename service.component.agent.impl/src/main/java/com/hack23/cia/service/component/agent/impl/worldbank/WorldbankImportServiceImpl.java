@@ -70,20 +70,11 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 		return map;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.component.agent.impl.worldbank.WorldbankImportService#getAllIndicators()
-	 */
 	@Override
 	public List<IndicatorElement> getAllIndicators() {
 		return indicatorElementDAO.getAll();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * getWorldBankCountryMap()
-	 */
 	@Override
 	public Map<String, String> getWorldBankCountryMap() {
 		final List<String> list = new ArrayList<>();
@@ -93,23 +84,11 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 		return createMapFromList(list);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * getWorldBankDataMap()
-	 */
 	@Override
 	public Map<String, String> getWorldBankDataMap() {
 		return createMapFromList(dataDAO.getIdList());
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * getWorldBankIndicatorElementMap()
-	 */
 	@Override
 	public Map<String, String> getWorldBankIndicatorElementMap() {
 		final List<String> list = new ArrayList<>();
@@ -119,38 +98,16 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 		return createMapFromList(list);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * updateCountryElement
-	 * (com.hack23.cia.model.external.worldbank.countries.impl.CountryElement)
-	 */
 	@Override
 	public void updateCountryElement(final CountryElement country) {
 		countryElementDAO.persist(country);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.component.agent.impl.AgentWorkService#updateData
-	 * (java.util.List)
-	 */
 	@Override
 	public void updateData(final List<WorldBankData> data) {
 		dataDAO.persist(data);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * updateIndicatorElement
-	 * (com.hack23.cia.model.external.worldbank.indicators.
-	 * impl.IndicatorElement)
-	 */
 	@Override
 	public void updateIndicatorElement(final IndicatorElement object) {
 		indicatorElementDAO.persist(object);

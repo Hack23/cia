@@ -82,9 +82,6 @@ public final class XmlAgentImpl implements XmlAgent {
 		return result.toString();
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.external.common.api.XmlAgent#retriveContent(java.lang.String)
-	 */
 	@Override
 	public String retriveContent(final String accessUrl) throws Exception {
 		final URL url = new URL(accessUrl.replace(" ",""));
@@ -115,17 +112,11 @@ public final class XmlAgentImpl implements XmlAgent {
 	}
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.external.common.api.XmlAgent#unmarshallXml(org.springframework.oxm.Unmarshaller, java.lang.String)
-	 */
 	@Override
 	public Object unmarshallXml(final Unmarshaller unmarshaller, final String accessUrl) throws Exception {
 		return unmarshallXml(unmarshaller, accessUrl,null,null,null);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.external.common.api.XmlAgent#unmarshallXml(org.springframework.oxm.Unmarshaller, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
-	 */
 	@Override
 	public Object unmarshallXml(final Unmarshaller unmarshaller, final String accessUrl,
 			final String nameSpace,final String replace, final String with) throws Exception {

@@ -99,11 +99,6 @@ public final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 	@Qualifier("com.hack23.cia.model.external.riksdagen.votering.impl.VoteData")
 	private Destination voteDataWorkdestination;
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see javax.jms.MessageListener#onMessage(javax.jms.Message)
-	 */
 	@Override
 	public void onMessage(final Message message) {
 		final ObjectMessage msg = (ObjectMessage) message;
@@ -335,13 +330,6 @@ public final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 		private final Map<String, String> documentElementMap = importService
 				.getDocumentElementMap();
 
-		/**
-		 * {@inheritDoc}
-		 *
-		 * @see
-		 * com.hack23.cia.service.external.common.api.ProcessDataStrategy#process
-		 * (java.lang.Object)
-		 */
 		@Override
 		public void process(final DocumentElement t) {
 			try {

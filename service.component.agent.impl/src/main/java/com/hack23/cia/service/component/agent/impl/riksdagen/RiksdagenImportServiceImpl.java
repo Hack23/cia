@@ -55,12 +55,11 @@ import com.hack23.cia.service.data.api.VoteDataDAO;
  * The Class RiksdagenImportServiceImpl.
  */
 @Component("RiksdagenImportService")
-@Transactional(propagation=Propagation.MANDATORY)
+@Transactional(propagation = Propagation.MANDATORY)
 public final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 
 	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(RiksdagenImportServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenImportServiceImpl.class);
 
 	/** The Constant RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT. */
 	private static final String RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT = "yyyy-MM-dd";
@@ -124,83 +123,39 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		return map;
 	}
 
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * getAvaibleCommitteeProposal()
-	 */
 	@Override
 	public List<String> getAvaibleCommitteeProposal() {
 		return documentStatusContainerDAO.getAvaibleCommitteeProposal();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * getAvaibleDocumentContent()
-	 */
 	@Override
 	public List<String> getAvaibleDocumentContent() {
 		return documentElementDAO.getAvaibleDocumentContent();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * getAvaibleDocumentStatus()
-	 */
 	@Override
 	public List<String> getAvaibleDocumentStatus() {
 		return documentElementDAO.getIdList();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * getCommitteeProposalComponentDataMap()
-	 */
 	@Override
 	public Map<String, String> getCommitteeProposalComponentDataMap() {
 		return createMapFromList(committeeProposalComponentDataDAO.getIdList());
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * getDocumentContentMap()
-	 */
 	@Override
 	public Map<String, String> getDocumentContentMap() {
 		return createMapFromList(documentContentDataDAO.getIdList());
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * getDocumentElementMap()
-	 */
 	@Override
 	public Map<String, String> getDocumentElementMap() {
 		final List<String> all = documentElementDAO.getIdList();
 		return createMapFromList(all);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * getDocumentElementMap(java.util.Date, java.util.List, boolean)
-	 */
 	@Override
-	public Map<String, String> getDocumentElementMap(final Date after,
-			final List<DocumentType> downloadType,
+	public Map<String, String> getDocumentElementMap(final Date after, final List<DocumentType> downloadType,
 			final boolean onlyWithDocStatus) {
 		final List<DocumentElement> all = documentElementDAO.getAll();
 
@@ -214,22 +169,19 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 
 		for (final DocumentElement documentElement : all) {
 			try {
-				if (getDate(documentElement.getMadePublicDate())
-						.after(after)
+				if (getDate(documentElement.getMadePublicDate()).after(after)
 						&& documentTypeValues.contains(documentElement.getDocumentType())) {
 					if (onlyWithDocStatus) {
 						if (documentElement.getDocumentStatusUrlXml() != null) {
-							map.put(documentElement.getId(),
-									documentElement.getDocumentType());
+							map.put(documentElement.getId(), documentElement.getDocumentType());
 						}
 
 					} else {
-						map.put(documentElement.getId(),
-								documentElement.getDocumentType());
+						map.put(documentElement.getId(), documentElement.getDocumentType());
 					}
 				}
 			} catch (final ParseException e) {
-				LOGGER.warn("Add msg",e);
+				LOGGER.warn("Add msg", e);
 			}
 		}
 		return map;
@@ -245,113 +197,61 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	 *             the parse exception
 	 */
 	private static Date getDate(final String date) throws ParseException {
-		if(RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT.length() > date.length()) {
-			return new SimpleDateFormat(
-					RIKSDAGEN_JAVA_SIMPLE_DATE_TIME_FORMAT,Locale.ENGLISH).parse(date);
+		if (RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT.length() > date.length()) {
+			return new SimpleDateFormat(RIKSDAGEN_JAVA_SIMPLE_DATE_TIME_FORMAT, Locale.ENGLISH).parse(date);
 		} else {
-			return new SimpleDateFormat(
-					RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT,Locale.ENGLISH).parse(date);
+			return new SimpleDateFormat(RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT, Locale.ENGLISH).parse(date);
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * getDocumentStatusContainerMap()
-	 */
 	@Override
 	public Map<String, String> getDocumentStatusContainerMap() {
 		return createMapFromList(documentStatusContainerDAO.getIdList());
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * getLoadedBallotIdMap()
-	 */
 	@Override
 	public Map<String, String> getLoadedBallotIdMap() {
 		return createMapFromListVote(voteDataDAO.getBallotIdList());
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.component.agent.impl.AgentWorkService#getPersonMap
-	 * ()
-	 */
 	@Override
 	public Map<String, String> getPersonMap() {
 		return createMapFromList(personDataDAO.getIdList());
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.component.agent.impl.AgentWorkService#update(com
-	 * .hack23.cia.model.external.riksdagen.person.impl.PersonData)
-	 */
 	@Override
 	public void update(final PersonData personData) {
-		if (personDataDAO.load(personData.getId()) !=null) {
+		if (personDataDAO.load(personData.getId()) != null) {
 			personDataDAO.merge(personData);
 		} else {
 			personDataDAO.persist(personData);
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * updateCommitteeProposalComponentDataList(java.util.List)
-	 */
 	@Override
-	public void updateCommitteeProposalComponentData(
-			final CommitteeProposalComponentData committeeProposal) {
-		if (committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document , committeeProposal.getDocument()) !=null) {
+	public void updateCommitteeProposalComponentData(final CommitteeProposalComponentData committeeProposal) {
+		if (committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
+				committeeProposal.getDocument()) != null) {
 			committeeProposalComponentDataDAO.merge(committeeProposal);
 		} else {
 			committeeProposalComponentDataDAO.persist(committeeProposal);
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * updateDocumentContentDataList(java.util.List)
-	 */
 	@Override
 	public void updateDocumentContentData(final DocumentContentData documentData) {
-		if (documentContentDataDAO.findFirstByProperty(DocumentContentData_.id, documentData.getId()) !=null) {
-			//documentContentDataDAO.merge(documentData);
+		if (documentContentDataDAO.findFirstByProperty(DocumentContentData_.id, documentData.getId()) != null) {
+			// documentContentDataDAO.merge(documentData);
 		} else {
 			documentContentDataDAO.persist(documentData);
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * updateDocumentDataList(java.util.List)
-	 */
 	@Override
 	public void updateDocumentData(final DocumentStatusContainer documentData) {
 		documentStatusContainerDAO.persist(documentData);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * updateDocumentElementList(java.util.List)
-	 */
 	@Override
 	public void updateDocumentElement(final DocumentElement documentData) {
 
@@ -363,20 +263,11 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.component.agent.impl.AgentWorkService#
-	 * updateVoteDataData(java.util.List)
-	 */
 	@Override
 	public void updateVoteDataData(final List<VoteData> list) {
 		voteDataDAO.persist(list);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.component.agent.impl.riksdagen.RiksdagenImportService#getStartYearForDocumentElement()
-	 */
 	@Override
 	public int getStartYearForDocumentElement() {
 		return documentElementDAO.getMissingDocumentStartFromYear();

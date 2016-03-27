@@ -48,9 +48,6 @@ public final class ValImportServiceImpl implements ValImportService {
 	private ValApi valApi;
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.component.agent.impl.val.ValImportService#loadPoliticalParties()
-	 */
 	@Override
 	public void loadPoliticalParties() {
 		if (swedenPoliticalPartyDAO.getSize() ==0) {

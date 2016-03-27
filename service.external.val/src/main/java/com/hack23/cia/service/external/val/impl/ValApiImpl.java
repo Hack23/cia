@@ -77,10 +77,6 @@ public final class ValApiImpl implements ValApi {
 	@Qualifier("valKommunMarshaller")
 	private Unmarshaller valKommunMarshaller;
 
-	/**
-	 * {@inheritDoc}
-	 * @see com.hack23.cia.service.external.val.api.ValApi#getElectionTypes()
-	 */
 	@Override
 	public List<SwedenElectionType> getElectionTypes() throws Exception {
 		final URL resource = ValApiImpl.class.getResource("/partier20151217.xml");
@@ -93,10 +89,6 @@ public final class ValApiImpl implements ValApi {
 						null, null)).getValue().getElectionTypes();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * @see com.hack23.cia.service.external.val.api.ValApi#getParliamentElectoralRegions()
-	 */
 	@Override
 	public List<SwedenParliamentElectoralRegion> getParliamentElectoralRegions()
 			throws Exception {
@@ -111,10 +103,6 @@ public final class ValApiImpl implements ValApi {
 						null, null)).getValue().getParliamentElectoralRegions();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * @see com.hack23.cia.service.external.val.api.ValApi#getCountyElectoralRegions()
-	 */
 	@Override
 	public List<SwedenCountyElectoralRegion> getCountyElectoralRegions()
 			throws Exception {
@@ -129,10 +117,6 @@ public final class ValApiImpl implements ValApi {
 						null, null)).getValue().getCountyElectoralRegions();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * @see com.hack23.cia.service.external.val.api.ValApi#getCountyRegions()
-	 */
 	@Override
 	public List<SwedenCountyData> getCountyRegions() throws Exception {
 		final URL resource = ValApiImpl.class
@@ -144,10 +128,6 @@ public final class ValApiImpl implements ValApi {
 				null, null)).getValue().getCountyRegions();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * @see com.hack23.cia.service.external.val.api.ValApi#getSwedenElectionRegion()
-	 */
 	@Override
 	public SwedenElectionRegion getSwedenElectionRegion() {
 		final URL resource = ValApiImpl.class.getResource("/partier20151217.xml");
@@ -167,10 +147,6 @@ public final class ValApiImpl implements ValApi {
 
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * @see com.hack23.cia.service.external.val.api.ValApi#getSwedenPoliticalParties()
-	 */
 	@Override
 	public List<SwedenPoliticalParty> getSwedenPoliticalParties() {
 		return getSwedenElectionRegion().getParties();

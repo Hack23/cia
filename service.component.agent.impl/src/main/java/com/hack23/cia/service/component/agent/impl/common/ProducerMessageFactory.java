@@ -44,9 +44,6 @@ public final class ProducerMessageFactory implements MessageCreator {
 		this.message = message;
 	}
 
-	/** {@inheritDoc}
-	 * @see org.springframework.jms.core.MessageCreator#createMessage(javax.jms.Session)
-	 */
 	@Override
 	public Message createMessage(final Session session) throws JMSException {
 		return session.createObjectMessage(message);

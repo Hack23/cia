@@ -48,11 +48,6 @@ public final class RiksdagenPersonElementWorkConsumerImpl implements MessageList
 	@Autowired
 	private RiksdagenApi riksdagenApi;
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see javax.jms.MessageListener#onMessage(javax.jms.Message)
-	 */
 	@Override
 	public void onMessage(final Message message) {
 		try {

@@ -53,11 +53,6 @@ public final class VdemServiceImpl implements VdemService {
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(VdemServiceImpl.class);
 
-	/*
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.external.vdem.api.VdemService#getQuestions()
-	 */
 	@Override
 	public List<Question> getQuestions() {
 

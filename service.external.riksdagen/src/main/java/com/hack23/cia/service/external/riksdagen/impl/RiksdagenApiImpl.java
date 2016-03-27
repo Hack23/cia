@@ -336,13 +336,6 @@ RiksdagenApi {
 		return result;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.component.agent.impl.riksdagen.api.RiksdagenApi
-	 * #getBallot(java.lang.String)
-	 */
 	@Override
 	public List<VoteData> getBallot(final String id) throws DataFailureException {
 		final String url = BALLOT.replace(ID_KEY, id);
@@ -394,9 +387,6 @@ RiksdagenApi {
 
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenApi#getBallotList()
-	 */
 	@Override
 	public List<BallotDocumentElement> getBallotList() throws DataFailureException {
 
@@ -413,13 +403,6 @@ RiksdagenApi {
 
 
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.component.agent.impl.riksdagen.api.RiksdagenApi
-	 * #getCommitteeProposal(java.lang.String)
-	 */
 	@Override
 	public CommitteeProposalComponentData getCommitteeProposal(final String id)
 			throws DataFailureException {
@@ -435,9 +418,6 @@ RiksdagenApi {
 	}
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenApi#getDocumentContent(java.lang.String)
-	 */
 	@Override
 	public DocumentContentData getDocumentContent(final String id) throws DataFailureException {
 		try {
@@ -455,13 +435,6 @@ RiksdagenApi {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.external.riksdagen.api.RiksdagenApi#getDocumentList
-	 * (com.hack23.cia.service.external.riksdagen.api.RiksdagenApi.DocumentType)
-	 */
 	@Override
 	public List<DocumentElement> getDocumentList(final DocumentType documentType,
 			final int maxNumberPages) throws DataFailureException {
@@ -475,13 +448,6 @@ RiksdagenApi {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.external.riksdagen.api.RiksdagenApi#getDocumentList
-	 * (java.lang.Integer)
-	 */
 	@Override
 	public List<DocumentElement> getDocumentList(final Integer year,
 			final int maxNumberPages) throws DataFailureException {
@@ -496,13 +462,6 @@ RiksdagenApi {
 	}
 
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.external.riksdagen.api.RiksdagenApi#getDocumentList
-	 * (java.lang.String)
-	 */
 	@Override
 	public List<DocumentElement> getDocumentList(final String changedSinceDate,final String changedToDate,
 			final int maxNumberPages) throws DataFailureException {
@@ -516,13 +475,6 @@ RiksdagenApi {
 	}
 
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.component.agent.impl.riksdagen.api.RiksdagenApi
-	 * #getDocumentStatus(java.lang.String)
-	 */
 	@Override
 	public DocumentStatusContainer getDocumentStatus(final String id)
 			throws DataFailureException {
@@ -538,13 +490,6 @@ RiksdagenApi {
 	}
 
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.component.agent.impl.riksdagen.api.RiksdagenApi
-	 * #getPerson(java.lang.String)
-	 */
 	@Override
 	public PersonData getPerson(final String id) throws DataFailureException {
 		try {
@@ -558,13 +503,6 @@ RiksdagenApi {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.component.agent.impl.riksdagen.api.RiksdagenApi
-	 * #getPersonList()
-	 */
 	@Override
 	public PersonContainerElement getPersonList() throws DataFailureException {
 		try {
@@ -672,9 +610,6 @@ RiksdagenApi {
 	}
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenApi#processDocumentList(java.lang.String, com.hack23.cia.service.external.common.api.ProcessDataStrategy)
-	 */
 	@Override
 	public void processDocumentList(final String changedSinceDate,final String changedToDate,
 			final ProcessDataStrategy<DocumentElement> processStrategy) throws DataFailureException {

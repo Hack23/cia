@@ -75,11 +75,6 @@ public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 	@Autowired
 	private WorldBankApi worldbankApi;
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see javax.jms.MessageListener#onMessage(javax.jms.Message)
-	 */
 	@Override
 	public void onMessage(final Message message) {
 		final ObjectMessage msg = (ObjectMessage) message;

@@ -53,11 +53,6 @@ MessageListener {
 	private WorldBankApi worldBankApi;
 
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see javax.jms.MessageListener#onMessage(javax.jms.Message)
-	 */
 	@Override
 	public void onMessage(final Message message) {
 		try {

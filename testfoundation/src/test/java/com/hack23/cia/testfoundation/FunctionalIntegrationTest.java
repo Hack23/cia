@@ -28,9 +28,6 @@ import org.junit.Test;
  */
 public final class FunctionalIntegrationTest extends AbstractFunctionalIntegrationTest {
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest#getDatabaseConnection()
-	 */
 	@Override
 	protected Connection getDatabaseConnection() throws Exception {
 		final JdbcConnectionPool cp = JdbcConnectionPool.
