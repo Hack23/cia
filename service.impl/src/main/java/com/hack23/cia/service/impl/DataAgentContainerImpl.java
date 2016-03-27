@@ -36,11 +36,15 @@ public final class DataAgentContainerImpl implements AgentContainer {
 	@Autowired
 	private DataAgentApi dataAgentApi;
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.AgentContainer#execute()
+	/**
+	 * Instantiates a new data agent container impl.
 	 */
-	@Override
+	public DataAgentContainerImpl() {
+		super();
+	}
+
 	@Secured({"ROLE_ADMIN" })
+	@Override
 	public void execute(final DataAgentWorkOrder workOrder) {
 		dataAgentApi.execute(workOrder);
 	}

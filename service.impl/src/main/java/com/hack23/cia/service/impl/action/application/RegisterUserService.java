@@ -89,11 +89,8 @@ public final class RegisterUserService extends
 		super(RegisterUserRequest.class);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
-	 */
-	@Override
 	@Secured({"ROLE_ANONYMOUS"})
+	@Override
 	public RegisterUserResponse processService(
 			final RegisterUserRequest serviceRequest) {
 
@@ -146,7 +143,7 @@ public final class RegisterUserService extends
 
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);
-
+		LOGGER.info("Event: {}",eventRequest);
 		return response;
 	}
 

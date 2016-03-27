@@ -50,25 +50,20 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 	private AgencyDAO agencyDAO;
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.api.ConfigurationManager#getConfiguration()
+	 * Instantiates a new configuration manager impl.
 	 */
-	@Override
+	public ConfigurationManagerImpl() {
+		super();
+	}
+
 	@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
+	@Override
 	public SystemConfiguration getSystemConfiguration() {
 		return configuration;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.api.ConfigurationManager#getUserConfiguration(
-	 * java.lang.String)
-	 */
-	@Override
 	@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
+	@Override
 	public UserConfiguration getUserConfiguration(final String url) {
 		final Agency agency = agencyDAO.getAll().get(0);
 		Portal usePortal = null;
@@ -84,11 +79,8 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 		return new UserConfigurationImpl(agency, usePortal);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.ConfigurationManager#createDefaultConfigIfEmpty()
-	 */
-	@Override
 	@Secured({"ROLE_ADMIN" })
+	@Override
 	public void createDefaultConfigIfEmpty() {
 		if (agencyDAO.getAll().isEmpty()) {
 			final List<Portal> portals = new ArrayList<>();

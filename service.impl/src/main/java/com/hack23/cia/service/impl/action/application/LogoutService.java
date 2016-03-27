@@ -68,15 +68,8 @@ public final class LogoutService extends AbstractBusinessServiceImpl<LogoutReque
 		super(LogoutRequest.class);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.impl.action.common.BusinessService#processService(
-	 * com.hack23.cia.service.api.action.common.ServiceRequest)
-	 */
-	@Override
 	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
+	@Override
 	public LogoutResponse processService(final LogoutRequest serviceRequest) {
 
 		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
@@ -111,6 +104,7 @@ public final class LogoutService extends AbstractBusinessServiceImpl<LogoutReque
 		eventRequest.setApplicationMessage(response.getResult().toString());
 
 		createApplicationEventService.processService(eventRequest);
+		LOGGER.info("Event: {}",eventRequest);
 		return response;
 	}
 

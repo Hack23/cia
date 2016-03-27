@@ -46,6 +46,14 @@ public final class RefreshDataViewsService extends
 		AbstractBusinessServiceImpl<RefreshDataViewsRequest, RefreshDataViewsResponse>
 		implements BusinessService<RefreshDataViewsRequest, RefreshDataViewsResponse> {
 
+	/** The View data manager. */
+	@Autowired
+	private ViewDataManager viewDataManager;
+
+	/** The create application event service. */
+	@Autowired
+	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
+
 	/**
 	 * Instantiates a new refresh data views service.
 	 */
@@ -53,18 +61,7 @@ public final class RefreshDataViewsService extends
 		super(RefreshDataViewsRequest.class);
 	}
 
-	/** The View data manager. */
-	@Autowired
-	private ViewDataManager ViewDataManager;
 
-	/** The create application event service. */
-	@Autowired
-	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
-
-
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
-	 */
 	@Override
 	public RefreshDataViewsResponse processService(
 			final RefreshDataViewsRequest serviceRequest) {
@@ -84,7 +81,7 @@ public final class RefreshDataViewsService extends
 		}
 
 		final RefreshDataViewsResponse response = new RefreshDataViewsResponse(ServiceResult.SUCCESS);
-		ViewDataManager.refreshViews();
+		viewDataManager.refreshViews();
 
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);

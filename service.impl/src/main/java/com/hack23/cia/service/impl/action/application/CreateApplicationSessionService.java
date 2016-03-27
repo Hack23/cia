@@ -63,15 +63,8 @@ public final class CreateApplicationSessionService
 		super(CreateApplicationSessionRequest.class);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.impl.action.common.BusinessService#processService(
-	 * com.hack23.cia.service.api.action.common.ServiceRequest)
-	 */
-	@Override
 	@Secured({ "ROLE_ANONYMOUS" })
+	@Override
 	public CreateApplicationSessionResponse processService(final CreateApplicationSessionRequest serviceRequest) {
 		final ApplicationSession applicationSession = new ApplicationSession();
 		applicationSession.setCreatedDate(new Date());
@@ -85,6 +78,8 @@ public final class CreateApplicationSessionService
 		applicationSession.setEvents(new ArrayList<>());
 		applicationSession.setSessionType(ApplicationSessionType.ANONYMOUS);
 		applicationSessionDAO.persist(applicationSession);
+
+		LOGGER.info("Create application session:{}",applicationSession);
 
 		return new CreateApplicationSessionResponse(ServiceResult.SUCCESS);
 	}

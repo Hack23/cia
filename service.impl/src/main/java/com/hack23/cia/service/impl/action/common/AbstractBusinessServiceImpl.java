@@ -50,12 +50,6 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 		this.clazz = clazz;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.impl.common.BusinessService#getSupportedService()
-	 */
 	@Override
 	public final Class<? extends ServiceRequest> getSupportedService() {
 		return clazz;

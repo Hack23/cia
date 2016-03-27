@@ -31,17 +31,18 @@ public final class SystemConfigurationImpl implements SystemConfiguration {
 	/** The geoip data file location city. */
 	private String geoipDataFileLocationCity;
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.Configuration#getGeoipDataFileLocation()
+	/**
+	 * Instantiates a new system configuration impl.
 	 */
+	public SystemConfigurationImpl() {
+		super();
+	}
+
 	@Override
 	public String getGeoipDataFileLocation() {
 		return geoipDataFileLocation;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.Configuration#getGeoipDataFileLocationCity()
-	 */
 	@Override
 	public String getGeoipDataFileLocationCity() {
 		return geoipDataFileLocationCity;

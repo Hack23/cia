@@ -47,17 +47,11 @@ public final class UserConfigurationImpl implements UserConfiguration {
 		this.portal = portal;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.UserConfiguration#getAgency()
-	 */
 	@Override
 	public Agency getAgency() {
 		return agency;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.UserConfiguration#getPortal()
-	 */
 	@Override
 	public Portal getPortal() {
 		return portal;

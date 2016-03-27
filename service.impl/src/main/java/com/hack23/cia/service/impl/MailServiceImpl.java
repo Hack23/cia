@@ -38,11 +38,12 @@ public final class MailServiceImpl implements MailService {
 	private MailSender mailSender;
 
 	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.api.MailService#sendMail(java.lang.String,
-	 * java.lang.String, java.lang.String, java.lang.String)
+	 * Instantiates a new mail service impl.
 	 */
+	public MailServiceImpl() {
+		super();
+	}
+
 	@Override
 	public void sendMail(final String from, final String to,
 			final String subject, final String msg) {

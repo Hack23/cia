@@ -20,8 +20,6 @@ package com.hack23.cia.service.impl.action.application;
 
 import java.util.Date;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
@@ -48,15 +46,9 @@ public final class CreateApplicationEventService
 		extends AbstractBusinessServiceImpl<CreateApplicationEventRequest, CreateApplicationEventResponse>
 		implements BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> {
 
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(CreateApplicationEventService.class);
-
-
 	/** The application session dao. */
 	@Autowired
 	private ApplicationSessionDAO applicationSessionDAO;
-
 
 	/**
 	 * Instantiates a new creates the application event service.
@@ -65,11 +57,8 @@ public final class CreateApplicationEventService
 		super(CreateApplicationEventRequest.class);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
-	 */
-	@Override
 	@Secured({ "ROLE_ANONYMOUS","ROLE_USER","ROLE_ADMIN" })
+	@Override
 	public CreateApplicationEventResponse processService(final CreateApplicationEventRequest serviceRequest) {
 		final ApplicationSession applicationSession = applicationSessionDAO.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
 

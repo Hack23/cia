@@ -57,13 +57,6 @@ public final class SearchDocumentService extends
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(SearchDocumentService.class);
 
-	/**
-	 * Instantiates a new search document service.
-	 */
-	public SearchDocumentService() {
-		super(SearchDocumentRequest.class);
-	}
-
 	/** The create application event service. */
 	@Autowired
 	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
@@ -75,12 +68,16 @@ public final class SearchDocumentService extends
 	@Autowired
 	private DocumentContentDataDAO documentContentDataDAO;
 
-
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
+	/**
+	 * Instantiates a new search document service.
 	 */
-	@Override
+	public SearchDocumentService() {
+		super(SearchDocumentRequest.class);
+	}
+
+
 	@Secured({ "ROLE_USER", "ROLE_ADMIN", "ROLE_ANONYMOUS" })
+	@Override
 	public SearchDocumentResponse processService(
 			final SearchDocumentRequest serviceRequest) {
 
@@ -104,11 +101,11 @@ public final class SearchDocumentService extends
 		final SearchDocumentResponse response = new SearchDocumentResponse(ServiceResult.SUCCESS);
 
 		final List<DocumentElement> searchResultTitles = documentElementDAO.search(serviceRequest.getSearchExpression(), serviceRequest.getMaxResults(),"id", "title","subTitle");
-		if (searchResultTitles.size() >0) {
+		if (!searchResultTitles.isEmpty()) {
 		 response.setResultElement(searchResultTitles);
 		} else {
 			final List<DocumentContentData> searchResultContent = documentContentDataDAO.search(serviceRequest.getSearchExpression(), serviceRequest.getMaxResults(), "id","content");
-			if (searchResultContent.size() >0) {
+			if (!searchResultContent.isEmpty()) {
 				final List<DocumentElement> searchResultTitlesForContent = new ArrayList<>();
 
 				for (final DocumentContentData documentContent : searchResultContent) {

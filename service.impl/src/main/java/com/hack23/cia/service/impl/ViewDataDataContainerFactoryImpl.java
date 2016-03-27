@@ -47,20 +47,20 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 	private DataViewer dataViewer;
 
 
-
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.impl.ViewDataDataContainerFactory#createDataContainer(java.lang.Class)
+	/**
+	 * Instantiates a new view data data container factory impl.
 	 */
+	public ViewDataDataContainerFactoryImpl() {
+		super();
+	}
+
+
 	@Override
-	public <T extends Serializable,ID  extends Serializable> DataContainer<T,ID> createDataContainer(final Class<T> clazz) {
+	public <T extends Serializable,I  extends Serializable> DataContainer<T,I> createDataContainer(final Class<T> clazz) {
 		return new GenericDataContainer<>(clazz,this);
 	}
 
 
-
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.DataViewer#findFirstByProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
-	 */
 	@Override
 	public <T> T findFirstByProperty(final Class<T> clazz,
 			final SingularAttribute<T, ? extends Object> property, final Object value) {
@@ -68,10 +68,6 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 	}
 
 
-
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.DataViewer#findListByProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
-	 */
 	@Override
 	public <T> List<T> findListByProperty(final Class<T> clazz,
 			final SingularAttribute<T, ? extends Object> property, final Object value) {
@@ -79,10 +75,6 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 	}
 
 
-
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.DataViewer#getAll(java.lang.Class)
-	 */
 	@Override
 	public <T> List<T> getAll(final Class<T> clazz) {
 		return dataViewer.getAll(clazz);
@@ -90,9 +82,6 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.DataViewer#load(java.lang.Class, java.lang.Object)
-	 */
 	@Override
 	public <T> T load(final Class<T> clazz, final Object id) {
 		return dataViewer.load(clazz, id);
@@ -100,9 +89,6 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.DataViewer#findListByProperty(java.lang.Class, java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
-	 */
 	@Override
 	public <T> List<T> findListByProperty(final Class<T> clazz, final Object[] values,
 			final SingularAttribute<T, ? extends Object>... properties) {
@@ -111,9 +97,6 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.DataViewer#findByQueryProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
-	 */
 	@Override
 	public <T, V> T findByQueryProperty(final Class<T> clazz,
 			final SingularAttribute<T, ? extends Object> property, final Class<V> clazz2,
@@ -123,9 +106,6 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.DataViewer#findListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
-	 */
 	@Override
 	public <T, V> List<T> findListByEmbeddedProperty(final Class<T> clazz,
 			final SingularAttribute<T, V> property, final Class<V> clazz2,
@@ -135,9 +115,6 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.DataViewer#getAllOrderBy(java.lang.Class, javax.persistence.metamodel.SingularAttribute)
-	 */
 	@Override
 	public <T> List<T> getAllOrderBy(final Class<T> clazz, final SingularAttribute<T, ? extends Object> property) {
 		return dataViewer.getAllOrderBy(clazz, property);
@@ -145,9 +122,6 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedListByProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
-	 */
 	@Override
 	public <T> List<T> findOrderedListByProperty(final Class<T> clazz, final SingularAttribute<T, ? extends Object> property,
 			final Object value, final SingularAttribute<T, ? extends Object> orderByProperty) {
@@ -155,10 +129,6 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 	}
 
 
-
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedListByProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
-	 */
 	@Override
 	public <T> List<T> findOrderedListByProperty(final Class<T> clazz, final SingularAttribute<T, ? extends Object> orderByProperty,
 			final Object[] values, final SingularAttribute<T, ? extends Object>... properties) {
@@ -166,10 +136,6 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 	}
 
 
-
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
-	 */
 	@Override
 	public <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
 			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
@@ -178,17 +144,11 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 	}
 
 
-
-	/**
-	 * {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.DataViewer#findOrderedByPropertyListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
-	 */
 	@Override
 	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
 			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
 			final SingularAttribute<T, ? extends Object> orderByProperty) {
 		return dataViewer.findOrderedByPropertyListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);
 	}
-
 
 }

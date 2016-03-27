@@ -71,9 +71,13 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 	@Autowired
 	private VoteDataDAO voteDataDAO;
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#getAll()
+	/**
+	 * Instantiates a new data summary data container.
 	 */
+	public DataSummaryDataContainer() {
+		super();
+	}
+
 	@Override
 	public List<DataSummary> getAll() {
 		final List<DataSummary> list = new ArrayList<>();
@@ -81,9 +85,6 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 		return list;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#load(java.io.Serializable)
-	 */
 	@Override
 	public DataSummary load(final String id) {
 		final List<PersonData> all = personDataDAO.getAll();
@@ -92,9 +93,6 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 		return new DataSummary(personSize,voteDataDAO.getSize(),voteDataDAO.getSize(),documentElementDAO.getSize(),documentContentDataDAO.getSize(),documentStatusContainerDAO.getSize(),committeeProposalComponentDataDAO.getSize());
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#getAllBy(javax.persistence.metamodel.SingularAttribute, java.lang.Object)
-	 */
 	@Override
 	public List<DataSummary> getAllBy(
 			final SingularAttribute<DataSummary, ? extends Object> property,
@@ -102,18 +100,12 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 		return new ArrayList<>();
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#findListByProperty(java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
-	 */
 	@Override
 	public List<DataSummary> findListByProperty(final Object[] values,
 			final SingularAttribute<DataSummary, ? extends Object>... properties) {
 		return new ArrayList<>();
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#findByQueryProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
-	 */
 	@Override
 	public <T, V> T findByQueryProperty(final Class<T> clazz,
 			final SingularAttribute<T, ? extends Object> property, final Class<V> clazz2,
@@ -121,9 +113,6 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 		return null;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#findListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
-	 */
 	@Override
 	public <T, V> List<T> findListByEmbeddedProperty(final Class<T> clazz,
 			final SingularAttribute<T, V> property, final Class<V> clazz2,
@@ -131,29 +120,17 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 		return new ArrayList<>();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#getAllOrderBy(javax.persistence.metamodel.SingularAttribute)
-	 */
 	@Override
 	public List<DataSummary> getAllOrderBy(final SingularAttribute<DataSummary, ? extends Object> property) {
 		return null;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#findOrderedListByProperty(javax.persistence.metamodel.SingularAttribute, java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
-	 */
 	@Override
 	public List<DataSummary> findOrderedListByProperty(final SingularAttribute<DataSummary, ? extends Object> orderByProperty,
 			final Object[] values, final SingularAttribute<DataSummary, ? extends Object>... properties) {
 		return null;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#findOrderedListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
-	 */
 	@Override
 	public <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
 			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
@@ -161,10 +138,6 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 		return null;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#findOrderedByPropertyListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
-	 */
 	@Override
 	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
 			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
@@ -172,10 +145,6 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 		return null;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#findOrderedListByProperty(javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
-	 */
 	@Override
 	public List<DataSummary> findOrderedListByProperty(final SingularAttribute<DataSummary, ? extends Object> property,
 			final Object value, final SingularAttribute<DataSummary, ? extends Object> orderByProperty) {

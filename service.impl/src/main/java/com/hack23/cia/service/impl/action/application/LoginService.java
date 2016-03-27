@@ -81,11 +81,8 @@ public final class LoginService extends
 		super(LoginRequest.class);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
-	 */
-	@Override
 	@Secured({"ROLE_ANONYMOUS","ROLE_USER","ROLE_ADMIN"})
+	@Override
 	public LoginResponse processService(
 			final LoginRequest serviceRequest) {
 
@@ -129,6 +126,8 @@ public final class LoginService extends
 		eventRequest.setApplicationMessage(response.getResult().toString());
 
 		createApplicationEventService.processService(eventRequest);
+		LOGGER.info("Event: {}",eventRequest);
+
 
 		return response;
 	}

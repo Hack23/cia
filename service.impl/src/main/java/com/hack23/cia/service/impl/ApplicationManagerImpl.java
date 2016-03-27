@@ -100,15 +100,8 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	}
 
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.api.ApplicationManager#authenticate(java.lang.
-	 * String, java.lang.String)
-	 */
-	@Override
 	@Secured({"ROLE_ANONYMOUS"})
+	@Override
 	public Object authenticate(final String username, final String password) {
 		final Authentication auth = new UsernamePasswordAuthenticationToken(
 				username, password);
@@ -120,28 +113,14 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 		return returned;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.api.ApplicationManager#getAgentContainer(java.
-	 * io.Serializable)
-	 */
-	@Override
 	@Secured({"ROLE_ADMIN"})
+	@Override
 	public AgentContainer getAgentContainer() {
 		return dataAgentContainer;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.api.ApplicationManager#getDataContainer(java.io
-	 * .Serializable)
-	 */
-	@Override
 	@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
+	@Override
 	public <T extends Serializable, V extends Serializable> DataContainer<T, V> getDataContainer(
 			final Class<T> dataObject) {
 
@@ -160,26 +139,14 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 		return result;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.api.ApplicationManager#logout()
-	 */
-	@Override
 	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
+	@Override
 	public void logout() {
 		SecurityContextHolder.getContext().setAuthentication(null);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.ApplicationManager#service(com.hack23.cia.service
-	 * .api.ServiceRequest)
-	 */
-	@Override
 	@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
+	@Override
 	public ServiceResponse service(final ServiceRequest serviceRequest) {
 
 		initBusinessServiceMap(serviceRequest);
@@ -195,13 +162,9 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 		return serviceResponse;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * @see com.hack23.cia.service.api.ApplicationManager#asyncService(com.hack23.cia.service.api.action.common.ServiceRequest)
-	 */
-	@Override
-	@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
     @Async
+    @Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
+    @Override
 	public Future<ServiceResponse> asyncService(final ServiceRequest serviceRequest) {
 
 		initBusinessServiceMap(serviceRequest);
@@ -236,9 +199,6 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 		}
 	}
 
-	/** {@inheritDoc}
-	 * @see org.springframework.context.ApplicationContextAware#setApplicationContext(org.springframework.context.ApplicationContext)
-	 */
 	@Override
 	public void setApplicationContext(final ApplicationContext applicationContext)
 			throws BeansException {

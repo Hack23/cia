@@ -62,17 +62,12 @@ public final class DestroyApplicationSessionService
 		super(DestroyApplicationSessionRequest.class);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.impl.action.common.BusinessService#processService(
-	 * com.hack23.cia.service.api.action.common.ServiceRequest)
-	 */
-	@Override
 	@Secured({ "ROLE_ANONYMOUS" })
+	@Override
 	public DestroyApplicationSessionResponse processService(final DestroyApplicationSessionRequest serviceRequest) {
 		final ApplicationSession applicationSession = applicationSessionDAO.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
+		LOGGER.info("Destroy Application session: {}",applicationSession.getSessionId());
+
 		if (applicationSession != null)  {
 			applicationSession.setDestroyedDate(new Date());
 			applicationSessionDAO.persist(applicationSession);

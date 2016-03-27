@@ -34,8 +34,8 @@ import com.hack23.cia.service.data.api.DataViewer;
  * @param <ID>
  *            the generic type
  */
-final class GenericDataContainer<T extends Serializable, ID extends Serializable> implements
-DataContainer<T, ID> {
+final class GenericDataContainer<T extends Serializable, I extends Serializable> implements
+DataContainer<T, I> {
 
 
 
@@ -58,17 +58,11 @@ DataContainer<T, ID> {
 		dataProxy = dataViewer;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#getAll()
-	 */
 	@Override
 	public List<T> getAll() {
 		return dataProxy.getAll(clazz);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#getAllOrderBy(javax.persistence.metamodel.SingularAttribute)
-	 */
 	@Override
 	public List<T> getAllOrderBy(final SingularAttribute<T, ? extends Object> property) {
 		return dataProxy.getAllOrderBy(clazz,property);
@@ -76,9 +70,6 @@ DataContainer<T, ID> {
 
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#getAllBy(javax.persistence.metamodel.SingularAttribute, java.lang.Object)
-	 */
 	@Override
 	public List<T> getAllBy(
 			final SingularAttribute<T, ? extends Object> property,
@@ -86,27 +77,18 @@ DataContainer<T, ID> {
 		return dataProxy.findListByProperty(clazz, property, value);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#load(java.io.Serializable)
-	 */
 	@Override
-	public T load(final ID id) {
+	public T load(final I id) {
 		return dataProxy.load(clazz, id);
 
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#findListByProperty(java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
-	 */
 	@Override
 	public List<T> findListByProperty(final Object[] values,
 			final SingularAttribute<T, ? extends Object>... properties) {
 		return dataProxy.findListByProperty(clazz, values, properties);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#findByQueryProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
-	 */
 	@Override
 	public <T, V> T findByQueryProperty(final Class<T> clazz,
 			final SingularAttribute<T, ? extends Object> property,
@@ -115,9 +97,6 @@ DataContainer<T, ID> {
 		return dataProxy.findByQueryProperty(clazz, property, clazz2, property2, value);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#findListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object)
-	 */
 	@Override
 	public <T, V> List<T> findListByEmbeddedProperty(final Class<T> clazz,
 			final SingularAttribute<T, V> property,
@@ -126,18 +105,12 @@ DataContainer<T, ID> {
 		return dataProxy.findListByEmbeddedProperty(clazz, property, clazz2, property2, value);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#findOrderedListByProperty(javax.persistence.metamodel.SingularAttribute, java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
-	 */
 	@Override
 	public List<T> findOrderedListByProperty(final SingularAttribute<T, ? extends Object> orderByProperty, final Object[] values,
 			final SingularAttribute<T, ? extends Object>... properties) {
 		return dataProxy.findOrderedListByProperty(clazz,orderByProperty,values, properties);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#findOrderedListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
-	 */
 	@Override
 	public <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
 			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
@@ -145,9 +118,6 @@ DataContainer<T, ID> {
 		return dataProxy.findOrderedListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#findOrderedByPropertyListByEmbeddedProperty(java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Class, javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
-	 */
 	@Override
 	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
 			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
@@ -155,9 +125,6 @@ DataContainer<T, ID> {
 		return dataProxy.findOrderedByPropertyListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.api.DataContainer#findOrderedListByProperty(javax.persistence.metamodel.SingularAttribute, java.lang.Object, javax.persistence.metamodel.SingularAttribute)
-	 */
 	@Override
 	public List<T> findOrderedListByProperty(final SingularAttribute<T, ? extends Object> property, final Object value,
 			final SingularAttribute<T, ? extends Object> orderByProperty) {

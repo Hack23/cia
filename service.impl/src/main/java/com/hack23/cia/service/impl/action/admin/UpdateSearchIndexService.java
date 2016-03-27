@@ -51,14 +51,6 @@ public final class UpdateSearchIndexService extends
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(UpdateSearchIndexService.class);
 
-
-	/**
-	 * Instantiates a new update search index service.
-	 */
-	public UpdateSearchIndexService() {
-		super(UpdateSearchIndexRequest.class);
-	}
-
 	/** The search indexer. */
 	@Autowired
 	private SearchIndexer searchIndexer;
@@ -67,10 +59,13 @@ public final class UpdateSearchIndexService extends
 	@Autowired
 	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
 
-
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
+	/**
+	 * Instantiates a new update search index service.
 	 */
+	public UpdateSearchIndexService() {
+		super(UpdateSearchIndexRequest.class);
+	}
+
 	@Override
 	@Secured({ "ROLE_ADMIN" })
 	public UpdateSearchIndexResponse processService(

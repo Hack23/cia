@@ -62,13 +62,6 @@ public final class UpdateApplicationConfigurationService extends
 		super(UpdateApplicationConfigurationRequest.class);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.impl.action.common.BusinessService#processService(
-	 * com.hack23.cia.service.api.action.common.ServiceRequest)
-	 */
 	@Override
 	public UpdateApplicationConfigurationResponse processService(final UpdateApplicationConfigurationRequest serviceRequest) {
 

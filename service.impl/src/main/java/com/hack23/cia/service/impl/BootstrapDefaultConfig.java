@@ -43,6 +43,13 @@ public final class BootstrapDefaultConfig {
 	private ConfigurationManager configurationManager;
 
 	/**
+	 * Instantiates a new bootstrap default config.
+	 */
+	public BootstrapDefaultConfig() {
+		super();
+	}
+
+	/**
 	 * Creates the default configuration.
 	 */
 	@PostConstruct
