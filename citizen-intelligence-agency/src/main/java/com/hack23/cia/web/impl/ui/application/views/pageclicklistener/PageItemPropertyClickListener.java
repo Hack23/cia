@@ -61,7 +61,7 @@ public final class PageItemPropertyClickListener extends AbstractPageItemRendere
 			return BeanUtils.getProperty(t, property);
 		} catch (IllegalAccessException | InvocationTargetException |
 	            NoSuchMethodException e) {
-			LOGGER.warn("Problem getting property {} from object {}",property,t,e);
+			LOGGER.warn("Problem getting property {} from object {} exception {}",property,t,e);
 			return "ErrorGettingPageId";
 		}
 	}

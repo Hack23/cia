@@ -42,7 +42,6 @@ import com.hack23.cia.model.internal.application.data.impl.WorldbankIndicatorDat
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.CitizenIntelligenceAgencyUI;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.AbstractView;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
@@ -83,7 +82,7 @@ public final class TestChartView extends AbstractView {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(CitizenIntelligenceAgencyUI.class);
+			.getLogger(TestChartView.class);
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.TEST_CHART_VIEW_NAME;

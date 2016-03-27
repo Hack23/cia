@@ -183,20 +183,6 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 	}
 
 
-
-	/**
-	 * The Class Servlet.
-	 */
-	@WebServlet(value = "/*", loadOnStartup=1, asyncSupported = true)
-	@VaadinServletConfiguration(productionMode = true, ui = CitizenIntelligenceAgencyUI.class, widgetset = "com.hack23.cia.web.widgets.WebWidgetSet")
-	public static class Servlet extends SpringVaadinServlet {
-
-		/** The Constant serialVersionUID. */
-		private static final long serialVersionUID = 1L;
-	}
-
-
-
 	@Override
 	public void error(final com.vaadin.server.ErrorEvent event) {
 	     if (event.getThrowable() instanceof AccessDeniedException) {
@@ -213,5 +199,18 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 	        	LOGGER.warn("Vaadin error",event.getThrowable());
 	        }
 	}
+
+
+	/**
+	 * The Class Servlet.
+	 */
+	@WebServlet(value = "/*", loadOnStartup=1, asyncSupported = true)
+	@VaadinServletConfiguration(productionMode = true, ui = CitizenIntelligenceAgencyUI.class, widgetset = "com.hack23.cia.web.widgets.WebWidgetSet")
+	public static class Servlet extends SpringVaadinServlet {
+
+		/** The Constant serialVersionUID. */
+		private static final long serialVersionUID = 1L;
+	}
+
 
 }
