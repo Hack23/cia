@@ -138,7 +138,7 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 
 			final ApplicationActionEvent applicationActionEvent = dataContainer.load(Long.valueOf(pageId));
 
-			if ( applicationActionEvent != null) {
+			if (applicationActionEvent != null) {
 
 				 final Panel formPanel = new Panel();
 				 formPanel.setSizeFull();

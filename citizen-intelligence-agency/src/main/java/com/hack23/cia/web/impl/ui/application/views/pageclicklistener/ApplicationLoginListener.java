@@ -67,14 +67,14 @@ public final class ApplicationLoginListener implements LoginListener {
 
 		final LoginResponse response = (LoginResponse) applicationManager.service(loginRequest);
 		if (ServiceResult.SUCCESS.equals(response.getResult())) {
-			LOGGER.info("LoginRequest {}",event.getUserName() );
+			LOGGER.info("LoginRequest {}",event.getUserName());
 
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);
 		} else {
 			Notification.show("Login failed",
 	                  "Error message",
 	                  Notification.Type.WARNING_MESSAGE);
-			LOGGER.info("LoginRequest {} failure",event.getUserName() );
+			LOGGER.info("LoginRequest {} failure",event.getUserName());
 		}
 
 	}

@@ -42,7 +42,7 @@ public final class XmlAgentImplITest extends AbstractServiceExternalCommonFuncti
 	@Test
 	public void retriveContentSuccessTest() throws Exception {
 		final String retriveContent = xmlAgent.retriveContent(XmlAgentImplITest.class.getResource("/simplexml-missing-namespace.xml").toString());
-		assertEquals( "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><simpleXml><description>abc123</description></simpleXml>", retriveContent);
+		assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><simpleXml><description>abc123</description></simpleXml>", retriveContent);
 	}
 
 	/**

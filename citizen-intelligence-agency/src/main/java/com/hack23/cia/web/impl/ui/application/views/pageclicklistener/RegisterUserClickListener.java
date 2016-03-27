@@ -65,7 +65,7 @@ public final class RegisterUserClickListener implements ClickListener {
 	public void buttonClick(final ClickEvent event) {
 		final ServiceResponse response = applicationManager.service(reqisterRequest);
 		if (ServiceResult.SUCCESS.equals(response.getResult())) {
-			LOGGER.info("RegisterUser {}",reqisterRequest.getUsername() );
+			LOGGER.info("RegisterUser {}",reqisterRequest.getUsername());
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);
 		} else {
 			Notification.show("Register failed",

@@ -24,8 +24,8 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * The Class SimpleXml.
  */
-@XmlRootElement( namespace = "com.hack23.cia.service.external.common.impl")
-@XmlType(propOrder = { "description"})
+@XmlRootElement(namespace = "com.hack23.cia.service.external.common.impl")
+@XmlType(propOrder = {"description"})
 public final class SimpleXml {
 
 	/** The description. */

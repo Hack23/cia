@@ -52,9 +52,9 @@ public final class DataSearchMappingFactory {
 				.analyzerDef("se", StandardTokenizerFactory.class).filter(LowerCaseFilterFactory.class)
 				.filter(SwedishLightStemFilterFactory.class).analyzerDef("en", StandardTokenizerFactory.class)
 				.filter(LowerCaseFilterFactory.class).filter(PorterStemFilterFactory.class)
-				.entity(DocumentContentData.class).indexed().property( "hjid", ElementType.FIELD ).documentId().property("content", ElementType.METHOD).field().analyzer("se").store(Store.NO).analyze(Analyze.YES).property("id", ElementType.METHOD).field()
-				.entity(DocumentElement.class).indexed().property( "id", ElementType.FIELD ).documentId().property("title", ElementType.METHOD).field().analyzer("se").store(Store.NO).analyze(Analyze.YES).property("subTitle", ElementType.METHOD).field().analyzer("se").store(Store.NO).analyze(Analyze.YES)
-				.entity(DocumentStatusContainer.class).indexed().property( "hjid", ElementType.FIELD ).documentId().property("documentCategory", ElementType.METHOD).field().analyzer("se").store(Store.NO).analyze(Analyze.YES);
+				.entity(DocumentContentData.class).indexed().property("hjid", ElementType.FIELD).documentId().property("content", ElementType.METHOD).field().analyzer("se").store(Store.NO).analyze(Analyze.YES).property("id", ElementType.METHOD).field()
+				.entity(DocumentElement.class).indexed().property("id", ElementType.FIELD).documentId().property("title", ElementType.METHOD).field().analyzer("se").store(Store.NO).analyze(Analyze.YES).property("subTitle", ElementType.METHOD).field().analyzer("se").store(Store.NO).analyze(Analyze.YES)
+				.entity(DocumentStatusContainer.class).indexed().property("hjid", ElementType.FIELD).documentId().property("documentCategory", ElementType.METHOD).field().analyzer("se").store(Store.NO).analyze(Analyze.YES);
 
 		return mapping;
 	}

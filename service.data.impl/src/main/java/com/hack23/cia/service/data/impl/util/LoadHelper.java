@@ -82,12 +82,12 @@ public final class LoadHelper {
 				Hibernate.initialize(obj);
 			}
 
-			if ( obj instanceof HibernateProxy || obj instanceof PersistentCollection ) {
+			if (obj instanceof HibernateProxy || obj instanceof PersistentCollection) {
 
 				final PropertyDescriptor[] properties = PropertyUtils.getPropertyDescriptors(obj);
 				for (final PropertyDescriptor propertyDescriptor : properties) {
 
-					if (PropertyUtils.getReadMethod( propertyDescriptor) != null) {
+					if (PropertyUtils.getReadMethod(propertyDescriptor) != null) {
 
 						final Object origProp = PropertyUtils.getProperty(obj, propertyDescriptor.getName());
 
