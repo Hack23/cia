@@ -24,6 +24,9 @@ import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.vaadin.ui.Link;
 
+/**
+ * A factory for creating PageLink objects.
+ */
 public interface PageLinkFactory {
 
 	/**

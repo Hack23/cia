@@ -53,7 +53,7 @@ DataContainer<T, I> {
 	 * @param dataViewer
 	 *            the data viewer
 	 */
-	public GenericDataContainer(final Class<T> clazz, final DataViewer dataViewer) {
+	GenericDataContainer(final Class<T> clazz, final DataViewer dataViewer) {
 		this.clazz = clazz;
 		dataProxy = dataViewer;
 	}

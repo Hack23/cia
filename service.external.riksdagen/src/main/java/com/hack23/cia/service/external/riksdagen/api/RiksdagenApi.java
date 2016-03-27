@@ -40,7 +40,7 @@ public interface RiksdagenApi {
 	/**
 	 * The Enum DocumentTypeNames.
 	 */
-	public enum DocumentTypeNames {
+	enum DocumentTypeNames {
 
 		/** The account and report. */
 		ACCOUNT_AND_REPORT("frsrdg","Framställning och redogörelse"),
