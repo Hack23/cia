@@ -18,10 +18,10 @@
 */
 package com.hack23.cia.service.api.action.user;
 
-import static java.util.stream.Collectors.toList;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
@@ -59,12 +59,12 @@ public final class SearchDocumentResponse extends AbstractResponse {
 
 
 	public List<DocumentElement> getResultElement() {
-		return resultElement.stream().collect(toList());
+		return resultElement.stream().collect(Collectors.toList());
 	}
 
 
 	public void setResultElement(final List<DocumentElement> resultElement) {
-		this.resultElement = resultElement.stream().collect(toList());
+		this.resultElement = resultElement.stream().collect(Collectors.toList());
 	}
 
 

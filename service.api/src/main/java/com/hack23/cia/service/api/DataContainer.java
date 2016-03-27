@@ -31,7 +31,7 @@ import javax.persistence.metamodel.SingularAttribute;
  * @param <ID>
  *            the generic type
  */
-public interface DataContainer<T extends Serializable,ID extends Serializable>  {
+public interface DataContainer<T extends Serializable,I extends Serializable>  {
 
 	/**
 	 * Gets the all.
@@ -203,5 +203,5 @@ public interface DataContainer<T extends Serializable,ID extends Serializable>  
 	 *            the id
 	 * @return the t
 	 */
-	T load(ID id);
+	T load(I id);
 }

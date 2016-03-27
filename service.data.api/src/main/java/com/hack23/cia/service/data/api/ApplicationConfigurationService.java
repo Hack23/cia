@@ -24,6 +24,7 @@ import com.hack23.cia.model.internal.application.system.impl.ConfigurationGroup;
 /**
  * The Interface ApplicationConfigurationService.
  */
+@FunctionalInterface
 public interface ApplicationConfigurationService {
 
 	/**

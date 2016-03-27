@@ -21,6 +21,7 @@ package com.hack23.cia.service.api;
 /**
  * The Interface MailService.
  */
+@FunctionalInterface
 public interface MailService {
 
 	/**

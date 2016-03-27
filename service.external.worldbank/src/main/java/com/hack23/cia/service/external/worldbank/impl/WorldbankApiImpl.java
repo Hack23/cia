@@ -45,10 +45,6 @@ import com.hack23.cia.service.external.worldbank.api.WorldBankApi;
 @Component
 public final class WorldbankApiImpl implements WorldBankApi {
 
-	/** The xml agent. */
-	@Autowired
-	private XmlAgent xmlAgent;
-
 	/** The Constant COUNTRIES. */
 	private static final String COUNTRIES= "http://api.worldbank.org/country?per_page=300";
 
@@ -132,10 +128,18 @@ public final class WorldbankApiImpl implements WorldBankApi {
 	@Qualifier("worldbankOrgTopicsMarshaller")
 	private Unmarshaller topicsUnmarshaller;
 
+	/** The xml agent. */
+	@Autowired
+	private XmlAgent xmlAgent;
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.component.agent.impl.worldbank.api.WorlbankApi#getCountries()
+
+	/**
+	 * Instantiates a new worldbank api impl.
 	 */
+	public WorldbankApiImpl() {
+		super();
+	}
+
 	@Override
 	public List<CountryElement> getCountries() throws DataFailureException {
 		try {
@@ -146,9 +150,6 @@ public final class WorldbankApiImpl implements WorldBankApi {
 		}
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.component.agent.impl.worldbank.api.WorlbankApi#getData(java.lang.String, java.lang.String)
-	 */
 	@Override
 	public List<WorldBankData> getData(final String countryCode,final String indicatorId) throws DataFailureException {
 		try {
@@ -160,9 +161,6 @@ public final class WorldbankApiImpl implements WorldBankApi {
 		}
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.component.agent.impl.worldbank.api.WorlbankApi#getIndicators()
-	 */
 	@Override
 	public List<IndicatorElement> getIndicators() throws DataFailureException {
 		try {
@@ -173,9 +171,6 @@ public final class WorldbankApiImpl implements WorldBankApi {
 		}
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.external.worldbank.api.WorldBankApi#getTopics()
-	 */
 	@Override
 	public List<TopicElement> getTopics() throws DataFailureException {
 		try {

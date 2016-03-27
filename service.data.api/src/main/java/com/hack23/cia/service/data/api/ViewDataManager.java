@@ -21,6 +21,7 @@ package com.hack23.cia.service.data.api;
 /**
  * The Interface ViewDataManager.
  */
+@FunctionalInterface
 public interface ViewDataManager {
 
 	/**

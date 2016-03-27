@@ -28,7 +28,7 @@ public interface ServiceResponse extends ServiceMessage {
 	/**
 	 * The Enum ServiceResult.
 	 */
-	public enum ServiceResult {
+	enum ServiceResult {
 
 		/** The failure. */
 		FAILURE,

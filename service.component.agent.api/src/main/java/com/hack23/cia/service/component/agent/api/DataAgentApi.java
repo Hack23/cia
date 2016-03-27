@@ -23,6 +23,7 @@ import com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder;
 /**
  * The Interface DataAgentApi.
  */
+@FunctionalInterface
 public interface DataAgentApi {
 
 	/**

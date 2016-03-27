@@ -30,15 +30,6 @@ public abstract class AbstractResponse implements ServiceResponse {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * {@inheritDoc}
-	 * @see com.hack23.cia.service.api.ServiceResponse#getResult()
-	 */
-	@Override
-	public ServiceResult getResult() {
-		return result;
-	}
-
-	/**
 	 * Instantiates a new abstract response.
 	 *
 	 * @param result
@@ -48,5 +39,11 @@ public abstract class AbstractResponse implements ServiceResponse {
 		super();
 		this.result = result;
 	}
+
+	@Override
+	public final ServiceResult getResult() {
+		return result;
+	}
+
 
 }
