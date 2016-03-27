@@ -41,6 +41,13 @@ public final class SearchIndexerImpl implements SearchIndexer {
 	private FullTextEntityManager fullTextEntityManager;
 
 	/**
+	 * Instantiates a new search indexer impl.
+	 */
+	public SearchIndexerImpl() {
+		super();
+	}
+
+	/**
 	 * Gets the full text entity manager.
 	 *
 	 * @return the full text entity manager
@@ -52,10 +59,6 @@ public final class SearchIndexerImpl implements SearchIndexer {
 	        return fullTextEntityManager;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * @see com.hack23.cia.service.data.impl.SearchIndexer#updateSearchIndex()
-	 */
 	@Override
 	public void updateSearchIndex() throws InterruptedException {
 		getFullTextEntityManager().createIndexer().transactionTimeout(900).startAndWait();

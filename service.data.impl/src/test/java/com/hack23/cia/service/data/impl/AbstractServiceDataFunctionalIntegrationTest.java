@@ -42,9 +42,6 @@ public abstract class AbstractServiceDataFunctionalIntegrationTest extends Abstr
 		super();
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest#getDatabaseConnection()
-	 */
 	@Override
 	protected Connection getDatabaseConnection() throws Exception {
 		return null;

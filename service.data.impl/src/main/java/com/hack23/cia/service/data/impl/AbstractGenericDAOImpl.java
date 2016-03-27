@@ -43,13 +43,13 @@ import com.hack23.cia.service.data.impl.util.LoadHelper;
  *
  * @param <T>
  *            the generic type
- * @param <ID>
+ * @param <I>
  *            the generic type
  */
 
 
-public abstract class AbstractGenericDAOImpl<T extends Serializable, ID extends Serializable>
-implements AbstractGenericDAO<T, ID> {
+public abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializable>
+implements AbstractGenericDAO<T, I> {
 
 
 	/** The criteria builder. */
@@ -85,26 +85,12 @@ implements AbstractGenericDAO<T, ID> {
 		typedQuery.setHint("org.hibernate.comment", comment);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.data.api.AbstractGenericDAO#delete(com.hack23.
-	 * cia.model.common.api.ModelObject)
-	 */
 	@Override
 	public final void delete(final T entity) {
 		getEntityManager().remove(entity);
 
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.data.api.AbstractGenericDAO#findFirstByProperty
-	 * (javax.persistence.metamodel.SingularAttribute, java.lang.Object)
-	 */
 	@Override
 	public final T findFirstByProperty(
 			final SingularAttribute<T, ? extends Object> property, final Object value) {
@@ -127,13 +113,6 @@ implements AbstractGenericDAO<T, ID> {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.data.api.AbstractGenericDAO#findListByProperty
-	 * (javax.persistence.metamodel.SingularAttribute, java.lang.Object)
-	 */
 	@Override
 	public final List<T> findListByProperty(
 			final SingularAttribute<T, ? extends Object> property, final Object value) {
@@ -150,10 +129,6 @@ implements AbstractGenericDAO<T, ID> {
 	}
 
 
-	/**
-	 * {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#search(java.lang.String, java.lang.Integer, java.lang.String[])
-	 */
 	@Override
 	public final List<T> search(final String searchExpression, final Integer maxResults,final String... fields) {
 		return getFullTextEntityManager().createFullTextQuery(getFullTextEntityManager().getSearchFactory().buildQueryBuilder().forEntity(persistentClass).get().
@@ -161,9 +136,6 @@ implements AbstractGenericDAO<T, ID> {
 	}
 
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#findListByProperty(java.lang.Object[], javax.persistence.metamodel.SingularAttribute[])
-	 */
 	@Override
 	public final List<T> findListByProperty(final Object[] values,
 			final SingularAttribute<T, ? extends Object>... properties) {
@@ -197,21 +169,12 @@ implements AbstractGenericDAO<T, ID> {
 		return typedQuery.getResultList();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getAll()
-	 */
 	@Override
 	public final List<T> getAll() {
 		return getAllOrderBy(null);
 	}
 
 
-	/**
-	 * {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getAllOrderBy(javax.persistence.metamodel.SingularAttribute)
-	 */
 	@Override
 	public final List<T> getAllOrderBy(final SingularAttribute<T, ? extends Object> orderBy) {
 		final CriteriaQuery<T> criteriaQuery = criteriaBuilder
@@ -285,37 +248,16 @@ implements AbstractGenericDAO<T, ID> {
 		this.metamodel = getEntityManager().getMetamodel();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.data.api.AbstractGenericDAO#load(java.io.Serializable
-	 *)
-	 */
 	@Override
-	public T load(final ID id) {
+	public T load(final I id) {
 		return LoadHelper.recursiveInitliaze(getEntityManager().find(getPersistentClass(), id));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.data.api.AbstractGenericDAO#save(com.hack23.cia
-	 * .model.common.api.ModelObject)
-	 */
 	@Override
 	public final T merge(final T entity) {
 		return getEntityManager().merge(entity);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.data.api.AbstractGenericDAO#persist(java.util.
-	 * List)
-	 */
 	@Override
 	public final void persist(final List<T> list) {
 		for (final T t : list) {
@@ -323,12 +265,6 @@ implements AbstractGenericDAO<T, ID> {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#persist(java.io.
-	 * Serializable)
-	 */
 	@Override
 	public final void persist(final T entity) {
 		getEntityManager().persist(entity);

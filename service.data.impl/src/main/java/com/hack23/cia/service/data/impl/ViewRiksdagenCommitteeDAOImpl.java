@@ -53,23 +53,11 @@ public final class ViewRiksdagenCommitteeDAOImpl
 		super(ViewRiksdagenCommittee.class);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
-	 * ()
-	 */
 	@Override
 	protected EntityManager getEntityManager() {
 		return entityManager;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.data.api.VoteDataDAO#getIdList()
-	 */
 	@Override
 	public List<RiksdagenCommitteeEmbeddedId> getIdList() {
 		final CriteriaQuery<RiksdagenCommitteeEmbeddedId> criteria = getCriteriaBuilder()
@@ -82,11 +70,6 @@ public final class ViewRiksdagenCommitteeDAOImpl
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
-	 */
 	@Override
 	public Long getSize() {
 

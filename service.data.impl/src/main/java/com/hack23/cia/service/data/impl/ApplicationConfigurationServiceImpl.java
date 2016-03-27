@@ -44,9 +44,13 @@ public final class ApplicationConfigurationServiceImpl implements ApplicationCon
 	@Autowired
 	private ApplicationConfigurationDAO applicationConfigurationDAO;
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.ApplicationConfigurationService#checkValueOrLoadDefault(java.lang.String, java.lang.String, com.hack23.cia.model.internal.application.system.impl.ConfigurationGroup, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	/**
+	 * Instantiates a new application configuration service impl.
 	 */
+	public ApplicationConfigurationServiceImpl() {
+		super();
+	}
+
 	@Override
 	public ApplicationConfiguration checkValueOrLoadDefault(final String configTitle, final String configDescription,
 			final ConfigurationGroup configurationGroup, final String component, final String componentTitle, final String componentDescription,

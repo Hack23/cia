@@ -38,9 +38,13 @@ public final class ViewDataManagerImpl implements ViewDataManager {
 	@Autowired
 	private DataSource dataSource;
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.ViewDataManager#refreshViews()
+	/**
+	 * Instantiates a new view data manager impl.
 	 */
+	public ViewDataManagerImpl() {
+		super();
+	}
+
 	@Override
 	public void refreshViews() {
 		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);

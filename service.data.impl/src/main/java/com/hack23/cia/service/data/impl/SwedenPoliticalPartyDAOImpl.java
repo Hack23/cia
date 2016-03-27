@@ -61,23 +61,11 @@ SwedenPoliticalPartyDAO {
 
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
-	 * ()
-	 */
 	@Override
 	protected EntityManager getEntityManager() {
 		return entityManager;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.data.api.SwedenPoliticalPartyDAO#getIdList()
-	 */
 	@Override
 	public List<String> getIdList() {
 		final CriteriaQuery<String> criteria = getCriteriaBuilder()
@@ -89,11 +77,6 @@ SwedenPoliticalPartyDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
-	 */
 	@Override
 	public Long getSize() {
 

@@ -52,9 +52,6 @@ LanguageContentDataDAO {
 		super(LanguageContentData.class);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.LanguageContentDataDAO#findTranslation(java.lang.String, java.lang.String, java.lang.String)
-	 */
 	@Override
 	public LanguageContentData findTranslation(final String key,
 			final String fromLanguage, final String toLanguage) {
@@ -90,30 +87,18 @@ LanguageContentDataDAO {
 
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
-	 * ()
-	 */
 	@Override
 	protected EntityManager getEntityManager() {
 		return entityManager;
 	}
 
-	/*
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.data.api.LanguageDataDAO#getIdList()
-	 */
+
 	/**
 	 * Gets the id list.
 	 *
 	 * @return the id list
 	 */
-	public List<Long> getIdList() {
+	private List<Long> getIdList() {
 		final CriteriaQuery<Long> criteria = getCriteriaBuilder().createQuery(
 				Long.class);
 		final Root<LanguageContentData> root = criteria
@@ -122,9 +107,6 @@ LanguageContentDataDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
-	 */
 	@Override
 	public Long getSize() {
 		return (long) getIdList().size();

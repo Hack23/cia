@@ -51,21 +51,12 @@ public final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Lon
 	public DataDAOImpl() {
 		super(WorldBankData.class);
 	}
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
-	 * ()
-	 */
+
 	@Override
 	protected EntityManager getEntityManager() {
 		return entityManager;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.DataDAO#getIdList()
-	 */
 	@Override
 	public List<String> getIdList() {
 		final CriteriaQuery<Object[]> criteria = getCriteriaBuilder().createQuery(Object[].class);
@@ -83,9 +74,6 @@ public final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Lon
 		return resultList;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
-	 */
 	@Override
 	public Long getSize() {
 		return (long) getAll().size();

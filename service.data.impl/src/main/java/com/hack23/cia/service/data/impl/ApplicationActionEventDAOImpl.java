@@ -42,21 +42,12 @@ public final class ApplicationActionEventDAOImpl extends AbstractGenericDAOImpl<
 	public ApplicationActionEventDAOImpl() {
 		super(ApplicationActionEvent.class);
 	}
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
-	 * ()
-	 */
+
 	@Override
 	protected EntityManager getEntityManager() {
 		return entityManager;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
-	 */
 	@Override
 	public Long getSize() {
 		return null;

@@ -35,17 +35,11 @@ public final class AtomikosJtaPlatform extends AbstractJtaPlatform implements Jt
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -1L;
 
-	/** {@inheritDoc}
-	 * @see org.hibernate.engine.transaction.jta.platform.internal.AbstractJtaPlatform#locateTransactionManager()
-	 */
 	@Override
 	protected TransactionManager locateTransactionManager() {
 		return new J2eeTransactionManager();
 	}
 
-	/** {@inheritDoc}
-	 * @see org.hibernate.engine.transaction.jta.platform.internal.AbstractJtaPlatform#locateUserTransaction()
-	 */
 	@Override
 	protected UserTransaction locateUserTransaction() {
 		return new J2eeUserTransaction();

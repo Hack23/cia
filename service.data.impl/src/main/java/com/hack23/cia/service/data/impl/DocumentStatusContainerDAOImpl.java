@@ -53,9 +53,6 @@ DocumentStatusContainerDAO {
 		super(DocumentStatusContainer.class);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.DocumentStatusContainerDAO#checkExistByDocumentId(java.lang.String)
-	 */
 	@Override
 	public int checkExistByDocumentId(final String id) {
 		final CriteriaQuery<DocumentData> criteriaQuery = getCriteriaBuilder()
@@ -71,9 +68,6 @@ DocumentStatusContainerDAO {
 		return typedQuery.getResultList().size();
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.DocumentStatusContainerDAO#getAvaibleCommitteeProposal()
-	 */
 	@Override
 	public List<String> getAvaibleCommitteeProposal() {
 		final CriteriaQuery<String> criteria = getCriteriaBuilder().createQuery(String.class);
@@ -84,21 +78,11 @@ DocumentStatusContainerDAO {
 
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
-	 * ()
-	 */
 	@Override
 	protected EntityManager getEntityManager() {
 		return entityManager;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.DocumentStatusContainerDAO#getIdList()
-	 */
 	@Override
 	public List<String> getIdList() {
 		final CriteriaQuery<String> criteria = getCriteriaBuilder().createQuery(String.class);
@@ -107,9 +91,6 @@ DocumentStatusContainerDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
-	 */
 	@Override
 	public Long getSize() {
 		return (long) getIdList().size();

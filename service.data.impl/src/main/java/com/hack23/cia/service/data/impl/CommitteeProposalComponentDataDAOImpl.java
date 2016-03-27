@@ -54,9 +54,6 @@ implements CommitteeProposalComponentDataDAO {
 		super(CommitteeProposalComponentData.class);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.CommitteeProposalComponentDataDAO#checkCommitteeDocumentData(java.lang.String)
-	 */
 	@Override
 	public boolean checkCommitteeDocumentData(final String documentId) {
 		final CriteriaQuery<CommitteeDocumentData> criteriaQuery = getCriteriaBuilder()
@@ -74,21 +71,11 @@ implements CommitteeProposalComponentDataDAO {
 		return !resultList.isEmpty();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
-	 * ()
-	 */
 	@Override
 	protected EntityManager getEntityManager() {
 		return entityManager;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.CommitteeProposalComponentDataDAO#getIdList()
-	 */
 	@Override
 	public List<String> getIdList() {
 		final CriteriaQuery<String> criteria = getCriteriaBuilder().createQuery(String.class);
@@ -98,9 +85,6 @@ implements CommitteeProposalComponentDataDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
-	 */
 	@Override
 	public Long getSize() {
 		final CriteriaQuery<Long> cq = getCriteriaBuilder().createQuery(Long.class);

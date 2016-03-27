@@ -51,9 +51,6 @@ AbstractGenericDAOImpl<VoteData, VoteDataEmbeddedId> implements VoteDataDAO {
 		super(VoteData.class);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.VoteDataDAO#getBallotIdList()
-	 */
 	@Override
 	public List<VoteDataEmbeddedId> getBallotIdList() {
 		final CriteriaQuery<VoteDataEmbeddedId> criteria = getCriteriaBuilder().createQuery(
@@ -64,23 +61,11 @@ AbstractGenericDAOImpl<VoteData, VoteDataEmbeddedId> implements VoteDataDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see
-	 * com.hack23.cia.service.data.impl.AbstractRiksdagenDAOImpl#getEntityManager
-	 * ()
-	 */
 	@Override
 	protected EntityManager getEntityManager() {
 		return entityManager;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see com.hack23.cia.service.data.api.VoteDataDAO#getIdList()
-	 */
 	@Override
 	public List<VoteDataEmbeddedId> getIdList() {
 		final CriteriaQuery<VoteDataEmbeddedId> criteria = getCriteriaBuilder().createQuery(
@@ -91,28 +76,13 @@ AbstractGenericDAOImpl<VoteData, VoteDataEmbeddedId> implements VoteDataDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
-	 */
 	@Override
 	public Long getSize() {
-		//		final CriteriaQuery<VoteDataEmbeddedId> criteria = getCriteriaBuilder().createQuery(
-		//				VoteDataEmbeddedId.class);
-		//		final Root<VoteData> root = criteria.from(VoteData.class);
-		//		criteria.select(root.get(VoteData_.embeddedId));
-		//		criteria.distinct(true);
-		//		return (long) getEntityManager().createQuery(criteria).getResultList().size();
-
-
-
-
 		final CriteriaBuilder cb = getCriteriaBuilder();
 		final CriteriaQuery<Long> cq = cb.createQuery(Long.class);
 		cq.select(cb.count(cq.from(VoteData.class)));
 
 		return getEntityManager().createQuery(cq).getSingleResult();
-
-
 	}
 
 

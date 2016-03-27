@@ -44,20 +44,14 @@ public final class UserDAOImpl extends AbstractGenericDAOImpl<UserAccount, Long>
 		super(UserAccount.class);
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.impl.AbstractGenericDAOImpl#getEntityManager()
-	 */
 	@Override
 	protected EntityManager getEntityManager() {
 		return entityManager;
 	}
 
-	/** {@inheritDoc}
-	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
-	 */
 	@Override
 	public Long getSize() {
-		return 0L;
+		return (long) getAll().size();
 	}
 
 }

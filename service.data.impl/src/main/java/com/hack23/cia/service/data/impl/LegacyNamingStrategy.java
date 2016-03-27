@@ -30,41 +30,26 @@ import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;
  */
 public final class LegacyNamingStrategy implements PhysicalNamingStrategy {
 
-    /** {@inheritDoc}
-     * @see org.hibernate.boot.model.naming.PhysicalNamingStrategy#toPhysicalCatalogName(org.hibernate.boot.model.naming.Identifier, org.hibernate.engine.jdbc.env.spi.JdbcEnvironment)
-     */
     @Override
     public Identifier toPhysicalCatalogName(final Identifier identifier, final JdbcEnvironment jdbcEnv) {
         return convert(identifier);
     }
 
-    /** {@inheritDoc}
-     * @see org.hibernate.boot.model.naming.PhysicalNamingStrategy#toPhysicalColumnName(org.hibernate.boot.model.naming.Identifier, org.hibernate.engine.jdbc.env.spi.JdbcEnvironment)
-     */
     @Override
     public Identifier toPhysicalColumnName(final Identifier identifier, final JdbcEnvironment jdbcEnv) {
         return convert(identifier);
     }
 
-    /** {@inheritDoc}
-     * @see org.hibernate.boot.model.naming.PhysicalNamingStrategy#toPhysicalSchemaName(org.hibernate.boot.model.naming.Identifier, org.hibernate.engine.jdbc.env.spi.JdbcEnvironment)
-     */
     @Override
     public Identifier toPhysicalSchemaName(final Identifier identifier, final JdbcEnvironment jdbcEnv) {
         return convert(identifier);
     }
 
-    /** {@inheritDoc}
-     * @see org.hibernate.boot.model.naming.PhysicalNamingStrategy#toPhysicalSequenceName(org.hibernate.boot.model.naming.Identifier, org.hibernate.engine.jdbc.env.spi.JdbcEnvironment)
-     */
     @Override
     public Identifier toPhysicalSequenceName(final Identifier identifier, final JdbcEnvironment jdbcEnv) {
         return convert(identifier);
     }
 
-    /** {@inheritDoc}
-     * @see org.hibernate.boot.model.naming.PhysicalNamingStrategy#toPhysicalTableName(org.hibernate.boot.model.naming.Identifier, org.hibernate.engine.jdbc.env.spi.JdbcEnvironment)
-     */
     @Override
     public Identifier toPhysicalTableName(final Identifier identifier, final JdbcEnvironment jdbcEnv) {
         return convert(identifier);
@@ -77,7 +62,7 @@ public final class LegacyNamingStrategy implements PhysicalNamingStrategy {
 	 *            the identifier
 	 * @return the identifier
 	 */
-    private Identifier convert(final Identifier identifier) {
+    private static Identifier convert(final Identifier identifier) {
         if (identifier == null || StringUtils.isBlank(identifier.getText())) {
             return identifier;
         }

@@ -35,9 +35,6 @@ public final class SpringLiquidBaseFailSafe extends SpringLiquibase {
 			.getLogger(SpringLiquidBaseFailSafe.class);
 
 
-	/** {@inheritDoc}
-	 * @see liquibase.integration.spring.SpringLiquibase#afterPropertiesSet()
-	 */
 	@Override
 	public void afterPropertiesSet() throws LiquibaseException {
 		try {
