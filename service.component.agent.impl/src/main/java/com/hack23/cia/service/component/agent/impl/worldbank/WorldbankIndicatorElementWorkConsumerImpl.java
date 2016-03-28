@@ -46,6 +46,13 @@ MessageListener {
 	@Autowired
 	private WorldbankImportService importService;
 
+	/**
+	 * Instantiates a new worldbank indicator element work consumer impl.
+	 */
+	public WorldbankIndicatorElementWorkConsumerImpl() {
+		super();
+	}
+
 	@Override
 	public void onMessage(final Message message) {
 		try {

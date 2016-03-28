@@ -50,6 +50,14 @@ MessageListener {
 	@Autowired
 	private RiksdagenApi riksdagenApi;
 
+	/**
+	 * Instantiates a new riksdagen document status container work consumer
+	 * impl.
+	 */
+	public RiksdagenDocumentStatusContainerWorkConsumerImpl() {
+		super();
+	}
+
 	@Override
 	public void onMessage(final Message message) {
 		try {

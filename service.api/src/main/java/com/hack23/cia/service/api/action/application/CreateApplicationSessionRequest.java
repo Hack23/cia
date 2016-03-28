@@ -48,6 +48,13 @@ public final class CreateApplicationSessionRequest implements ServiceRequest {
 	private ApplicationSessionType sessionType;
 
 	/**
+	 * Instantiates a new creates the application session request.
+	 */
+	public CreateApplicationSessionRequest() {
+		super();
+	}
+
+	/**
 	 * Gets the ip information.
 	 *
 	 * @return the ip information

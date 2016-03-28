@@ -32,6 +32,13 @@ public final class DestroyApplicationSessionRequest implements ServiceRequest {
 	private String sessionId;
 
 	/**
+	 * Instantiates a new destroy application session request.
+	 */
+	public DestroyApplicationSessionRequest() {
+		super();
+	}
+
+	/**
 	 * Gets the session id.
 	 *
 	 * @return the session id

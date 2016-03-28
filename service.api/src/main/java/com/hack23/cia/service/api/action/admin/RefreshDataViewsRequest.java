@@ -33,6 +33,13 @@ public final class RefreshDataViewsRequest implements ServiceRequest {
     private String sessionId;
 
 	/**
+	 * Instantiates a new refresh data views request.
+	 */
+	public RefreshDataViewsRequest() {
+		super();
+	}
+
+	/**
 	 * Gets the session id.
 	 *
 	 * @return the session id

@@ -92,6 +92,13 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	private VoteDataDAO voteDataDAO;
 
 	/**
+	 * Instantiates a new riksdagen import service impl.
+	 */
+	public RiksdagenImportServiceImpl() {
+		super();
+	}
+
+	/**
 	 * Creates the map from list.
 	 *
 	 * @param all

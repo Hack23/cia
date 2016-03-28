@@ -33,6 +33,13 @@ public final class UpdateSearchIndexRequest implements ServiceRequest {
     private String sessionId;
 
 	/**
+	 * Instantiates a new update search index request.
+	 */
+	public UpdateSearchIndexRequest() {
+		super();
+	}
+
+	/**
 	 * Gets the session id.
 	 *
 	 * @return the session id

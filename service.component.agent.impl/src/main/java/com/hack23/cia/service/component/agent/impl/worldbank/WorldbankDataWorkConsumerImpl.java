@@ -53,6 +53,14 @@ MessageListener {
 	private WorldBankApi worldBankApi;
 
 
+	/**
+	 * Instantiates a new worldbank data work consumer impl.
+	 */
+	public WorldbankDataWorkConsumerImpl() {
+		super();
+	}
+
+
 	@Override
 	public void onMessage(final Message message) {
 		try {

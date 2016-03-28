@@ -39,6 +39,13 @@ public final class LoginRequest implements ServiceRequest {
     private String userpassword;
 
 	/**
+	 * Instantiates a new login request.
+	 */
+	public LoginRequest() {
+		super();
+	}
+
+	/**
 	 * Gets the email.
 	 *
 	 * @return the email

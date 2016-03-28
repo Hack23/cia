@@ -77,6 +77,13 @@ public final class ValApiImpl implements ValApi {
 	@Qualifier("valKommunMarshaller")
 	private Unmarshaller valKommunMarshaller;
 
+	/**
+	 * Instantiates a new val api impl.
+	 */
+	public ValApiImpl() {
+		super();
+	}
+
 	@Override
 	public List<SwedenElectionType> getElectionTypes() throws Exception {
 		final URL resource = ValApiImpl.class.getResource("/partier20151217.xml");

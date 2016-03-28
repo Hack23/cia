@@ -35,6 +35,14 @@ public final class ValImportServiceAutoLoadAtStartup {
 
 
 	/**
+	 * Instantiates a new val import service auto load at startup.
+	 */
+	public ValImportServiceAutoLoadAtStartup() {
+		super();
+	}
+
+
+	/**
 	 * Auto load.
 	 */
 	@PostConstruct

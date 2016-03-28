@@ -48,6 +48,14 @@ public final class ValImportServiceImpl implements ValImportService {
 	private ValApi valApi;
 
 
+	/**
+	 * Instantiates a new val import service impl.
+	 */
+	public ValImportServiceImpl() {
+		super();
+	}
+
+
 	@Override
 	public void loadPoliticalParties() {
 		if (swedenPoliticalPartyDAO.getSize() ==0) {

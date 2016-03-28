@@ -49,6 +49,16 @@ public final class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl imple
 	@Autowired
 	private RiksdagenApi riksdagenApi;
 
+
+	/**
+	 * Instantiates a new riksdagen committee proposal component data work
+	 * consumer impl.
+	 */
+	public RiksdagenCommitteeProposalComponentDataWorkConsumerImpl() {
+		super();
+	}
+
+
 	@Override
 	public void onMessage(final Message message) {
 		try {

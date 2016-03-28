@@ -39,6 +39,13 @@ public final class SearchDocumentRequest implements ServiceRequest {
     private Integer maxResults;
 
 	/**
+	 * Instantiates a new search document request.
+	 */
+	public SearchDocumentRequest() {
+		super();
+	}
+
+	/**
 	 * Gets the session id.
 	 *
 	 * @return the session id

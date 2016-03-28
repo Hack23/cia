@@ -46,6 +46,13 @@ MessageListener {
 	@Autowired
 	private RiksdagenImportService importService;
 
+	/**
+	 * Instantiates a new riksdagen document element work consumer impl.
+	 */
+	public RiksdagenDocumentElementWorkConsumerImpl() {
+		super();
+	}
+
 	@Override
 	public void onMessage(final Message message) {
 		try {

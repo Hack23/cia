@@ -99,6 +99,13 @@ public final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 	@Qualifier("com.hack23.cia.model.external.riksdagen.votering.impl.VoteData")
 	private Destination voteDataWorkdestination;
 
+	/**
+	 * Instantiates a new riksdagen api agent work consumer impl.
+	 */
+	public RiksdagenApiAgentWorkConsumerImpl() {
+		super();
+	}
+
 	@Override
 	public void onMessage(final Message message) {
 		final ObjectMessage msg = (ObjectMessage) message;

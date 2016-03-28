@@ -67,6 +67,14 @@ public final class DataAgentApiImpl implements DataAgentApi {
 	@Qualifier("vdemApiAgentWorkQueue")
 	private Destination vdemApiDestination;
 
+
+	/**
+	 * Instantiates a new data agent api impl.
+	 */
+	public DataAgentApiImpl() {
+		super();
+	}
+
 	@Override
 	public void execute(final DataAgentWorkOrder workOrder) {
 		try {

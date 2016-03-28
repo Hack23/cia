@@ -55,6 +55,13 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 	private IndicatorElementDAO indicatorElementDAO;
 
 	/**
+	 * Instantiates a new worldbank import service impl.
+	 */
+	public WorldbankImportServiceImpl() {
+		super();
+	}
+
+	/**
 	 * Creates the map from list.
 	 *
 	 * @param all

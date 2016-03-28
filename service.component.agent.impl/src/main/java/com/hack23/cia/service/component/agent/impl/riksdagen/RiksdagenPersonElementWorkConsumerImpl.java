@@ -48,6 +48,13 @@ public final class RiksdagenPersonElementWorkConsumerImpl implements MessageList
 	@Autowired
 	private RiksdagenApi riksdagenApi;
 
+	/**
+	 * Instantiates a new riksdagen person element work consumer impl.
+	 */
+	public RiksdagenPersonElementWorkConsumerImpl() {
+		super();
+	}
+
 	@Override
 	public void onMessage(final Message message) {
 		try {

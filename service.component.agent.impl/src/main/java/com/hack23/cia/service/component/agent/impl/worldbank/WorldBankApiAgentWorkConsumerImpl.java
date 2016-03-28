@@ -75,6 +75,14 @@ public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 	@Autowired
 	private WorldBankApi worldbankApi;
 
+	/**
+	 * Instantiates a new world bank api agent work consumer impl.
+	 */
+	public WorldBankApiAgentWorkConsumerImpl() {
+		super();
+	}
+
+
 	@Override
 	public void onMessage(final Message message) {
 		final ObjectMessage msg = (ObjectMessage) message;

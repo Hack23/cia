@@ -51,6 +51,13 @@ MessageListener {
 	@Autowired
 	private RiksdagenApi riksdagenApi;
 
+	/**
+	 * Instantiates a new riksdagen vote data work consumer impl.
+	 */
+	public RiksdagenVoteDataWorkConsumerImpl() {
+		super();
+	}
+
 	@Override
 	public void onMessage(final Message message) {
 		String ballotId;

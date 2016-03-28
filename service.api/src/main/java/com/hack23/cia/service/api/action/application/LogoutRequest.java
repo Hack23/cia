@@ -33,6 +33,13 @@ public final class LogoutRequest implements ServiceRequest {
     private String sessionId;
 
 	/**
+	 * Instantiates a new logout request.
+	 */
+	public LogoutRequest() {
+		super();
+	}
+
+	/**
 	 * Gets the session id.
 	 *
 	 * @return the session id

@@ -49,6 +49,13 @@ public final class RegisterUserRequest implements ServiceRequest {
     private UserType userType;
 
 	/**
+	 * Instantiates a new register user request.
+	 */
+	public RegisterUserRequest() {
+		super();
+	}
+
+	/**
 	 * Gets the country.
 	 *
 	 * @return the country

@@ -47,6 +47,13 @@ public final class VdemApiAgentWorkConsumerImpl extends AbstractAgentWorkConsume
 	@Autowired
 	private VdemService vdemService;
 
+	/**
+	 * Instantiates a new vdem api agent work consumer impl.
+	 */
+	public VdemApiAgentWorkConsumerImpl() {
+		super();
+	}
+
 	@Override
 	public void onMessage(final Message message) {
 		final ObjectMessage msg = (ObjectMessage) message;

@@ -62,6 +62,13 @@ public final class CreateApplicationEventRequest implements ServiceRequest {
 
 
 	/**
+	 * Instantiates a new creates the application event request.
+	 */
+	public CreateApplicationEventRequest() {
+		super();
+	}
+
+	/**
 	 * Gets the event group.
 	 *
 	 * @return the event group

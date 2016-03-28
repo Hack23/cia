@@ -51,6 +51,13 @@ public final class UpdateApplicationConfigurationRequest implements ServiceReque
     private String propertyValue;
 
 	/**
+	 * Instantiates a new update application configuration request.
+	 */
+	public UpdateApplicationConfigurationRequest() {
+		super();
+	}
+
+	/**
 	 * Gets the session id.
 	 *
 	 * @return the session id

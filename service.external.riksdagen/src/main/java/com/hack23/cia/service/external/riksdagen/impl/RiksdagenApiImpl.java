@@ -61,11 +61,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
  */
 @Component
 @SuppressWarnings("unchecked")
-public final class RiksdagenApiImpl implements
-RiksdagenApi {
-
-	/** The Constant CONTAINS_ONE. */
-	private static final int CONTAINS_ONE = 1;
+public final class RiksdagenApiImpl implements RiksdagenApi {
 
 	/** The Constant BALLOT. */
 	private static final String BALLOT = "http://data.riksdagen.se/votering/${ID_KEY}/xml";
@@ -81,6 +77,9 @@ RiksdagenApi {
 
 	/** The Constant COMMITTE_PROPOSAL. */
 	private static final String COMMITTE_PROPOSAL = "http://data.riksdagen.se/utskottsforslag/${ID_KEY}/xml";
+
+	/** The Constant CONTAINS_ONE. */
+	private static final int CONTAINS_ONE = 1;
 
 	/** The Constant DOC_ID_KEY. */
 	private static final String DOC_ID_KEY = "${DOC_ID}";
@@ -148,11 +147,6 @@ RiksdagenApi {
 	 * HTTP_VOTERINGLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL.
 	 */
 	private static final String HTTP_VOTERINGLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL = "http://voteringlista.riksdagen.external.model.cia.hack23.com/impl";
-
-
-	// http://data.riksdagen.se/personlista/?iid=&fnamn=&enamn=&f_ar=&kn=&parti=&valkrets=&rdlstatus=alla&org=&utformat=xml&termlista=
-
-	// 1671 persons in data.riksdagen.
 
 
 	/** The Constant ID_KEY. */
@@ -239,47 +233,6 @@ RiksdagenApi {
 	/** The Constant YYYY_MM_DD. */
 	private static final String YYYY_MM_DD = "yyyy-MM-dd";
 
-	/** The person list unmarshaller. */
-	@Autowired
-	@Qualifier("riksdagenPersonListMarshaller")
-	private Unmarshaller personListUnmarshaller;
-
-	/** The person unmarshaller. */
-	@Autowired
-	@Qualifier("riksdagenPersonMarshaller")
-	private Unmarshaller personUnmarshaller;
-
-	/** The riksdagen ballot list marshaller. */
-	@Autowired
-	@Qualifier("riksdagenBallotListMarshaller")
-	private Unmarshaller riksdagenBallotListMarshaller;
-
-	/** The riksdagen ballot marshaller. */
-	@Autowired
-	@Qualifier("riksdagenBallotMarshaller")
-	private Unmarshaller riksdagenBallotMarshaller;
-
-	/** The riksdagen committee proposal marshaller. */
-	@Autowired
-	@Qualifier("riksdagenCommitteeProposalMarshaller")
-	private Unmarshaller riksdagenCommitteeProposalMarshaller;
-
-
-	/** The riksdagen document list marshaller. */
-	@Autowired
-	@Qualifier("riksdagenDocumentListMarshaller")
-	private Unmarshaller riksdagenDocumentListMarshaller;
-
-	/** The riksdagen document status marshaller. */
-	@Autowired
-	@Qualifier("riksdagenDocumentStatusMarshaller")
-	private Unmarshaller riksdagenDocumentStatusMarshaller;
-
-	/** The xml agent. */
-	@Autowired
-	private XmlAgent xmlAgent;
-
-
 	/**
 	 * Best guess vote date.
 	 *
@@ -335,6 +288,107 @@ RiksdagenApi {
 		}
 		return result;
 	}
+
+	private static String fixBrokenUrl(final String nextPage) {
+		if (nextPage.startsWith("//")) {
+			return "http:" + nextPage;
+		} else return nextPage;
+	}
+
+	/**
+	 * Process all.
+	 *
+	 * @param dokument
+	 *            the dokument
+	 * @param processStrategy
+	 *            the process strategy
+	 */
+	private static void processAll(final List<DocumentElement> dokument,
+			final ProcessDataStrategy<DocumentElement> processStrategy) {
+		for (final DocumentElement documentElement : dokument) {
+
+			try {
+				processStrategy.process(documentElement);
+			} catch (final Exception e) {
+				LOGGER.warn(ERROR_PROCESSING_DOCUMENT, documentElement.getId(),e);
+			}
+		}
+	}
+
+	/**
+	 * Try to find valid vote date.
+	 *
+	 * @param ballotContainer
+	 *            the ballot container
+	 * @param voteDataList
+	 *            the vote data list
+	 * @return the date
+	 * @throws ParseException
+	 *             the parse exception
+	 */
+	private static Date tryToFindValidVoteDate(final BallotContainer ballotContainer, final List<VoteDataDto> voteDataList)
+					throws ParseException {
+		Date ballotDate;
+		final Date sameDate = checkSameDate(voteDataList);
+
+		if (sameDate != null) {
+			ballotDate = sameDate;
+		} else {
+			ballotDate = bestGuessVoteDate(ballotContainer);
+		}
+		return ballotDate;
+	}
+
+
+	/** The person list unmarshaller. */
+	@Autowired
+	@Qualifier("riksdagenPersonListMarshaller")
+	private Unmarshaller personListUnmarshaller;
+
+	/** The person unmarshaller. */
+	@Autowired
+	@Qualifier("riksdagenPersonMarshaller")
+	private Unmarshaller personUnmarshaller;
+
+	/** The riksdagen ballot list marshaller. */
+	@Autowired
+	@Qualifier("riksdagenBallotListMarshaller")
+	private Unmarshaller riksdagenBallotListMarshaller;
+
+
+	/** The riksdagen ballot marshaller. */
+	@Autowired
+	@Qualifier("riksdagenBallotMarshaller")
+	private Unmarshaller riksdagenBallotMarshaller;
+
+	/** The riksdagen committee proposal marshaller. */
+	@Autowired
+	@Qualifier("riksdagenCommitteeProposalMarshaller")
+	private Unmarshaller riksdagenCommitteeProposalMarshaller;
+
+	/** The riksdagen document list marshaller. */
+	@Autowired
+	@Qualifier("riksdagenDocumentListMarshaller")
+	private Unmarshaller riksdagenDocumentListMarshaller;
+
+	/** The riksdagen document status marshaller. */
+	@Autowired
+	@Qualifier("riksdagenDocumentStatusMarshaller")
+	private Unmarshaller riksdagenDocumentStatusMarshaller;
+
+	/** The xml agent. */
+	@Autowired
+	private XmlAgent xmlAgent;
+
+
+
+	/**
+	 * Instantiates a new riksdagen api impl.
+	 */
+	public RiksdagenApiImpl() {
+		super();
+	}
+
 
 	@Override
 	public List<VoteData> getBallot(final String id) throws DataFailureException {
@@ -401,8 +455,6 @@ RiksdagenApi {
 		}
 	}
 
-
-
 	@Override
 	public CommitteeProposalComponentData getCommitteeProposal(final String id)
 			throws DataFailureException {
@@ -435,6 +487,7 @@ RiksdagenApi {
 		}
 	}
 
+
 	@Override
 	public List<DocumentElement> getDocumentList(final DocumentType documentType,
 			final int maxNumberPages) throws DataFailureException {
@@ -447,6 +500,7 @@ RiksdagenApi {
 			throw new DataFailureException(e);
 		}
 	}
+
 
 	@Override
 	public List<DocumentElement> getDocumentList(final Integer year,
@@ -461,7 +515,6 @@ RiksdagenApi {
 		}
 	}
 
-
 	@Override
 	public List<DocumentElement> getDocumentList(final String changedSinceDate,final String changedToDate,
 			final int maxNumberPages) throws DataFailureException {
@@ -473,7 +526,6 @@ RiksdagenApi {
 				throw new DataFailureException(e);
 			}
 	}
-
 
 	@Override
 	public DocumentStatusContainer getDocumentStatus(final String id)
@@ -488,7 +540,6 @@ RiksdagenApi {
 			throw new DataFailureException(e);
 		}
 	}
-
 
 	@Override
 	public PersonData getPerson(final String id) throws DataFailureException {
@@ -549,6 +600,7 @@ RiksdagenApi {
 		}
 	}
 
+
 	/**
 	 * Load document list.
 	 *
@@ -583,32 +635,6 @@ RiksdagenApi {
 		return result;
 	}
 
-	private static String fixBrokenUrl(final String nextPage) {
-		if (nextPage.startsWith("//")) {
-			return "http:" + nextPage;
-		} else return nextPage;
-	}
-
-	/**
-	 * Process all.
-	 *
-	 * @param dokument
-	 *            the dokument
-	 * @param processStrategy
-	 *            the process strategy
-	 */
-	private static void processAll(final List<DocumentElement> dokument,
-			final ProcessDataStrategy<DocumentElement> processStrategy) {
-		for (final DocumentElement documentElement : dokument) {
-
-			try {
-				processStrategy.process(documentElement);
-			} catch (final Exception e) {
-				LOGGER.warn(ERROR_PROCESSING_DOCUMENT, documentElement.getId(),e);
-			}
-		}
-	}
-
 
 	@Override
 	public void processDocumentList(final String changedSinceDate,final String changedToDate,
@@ -620,31 +646,6 @@ RiksdagenApi {
 			LOGGER.warn(PROBLEM_PROCCESSING_DOCUMENT_BETWEEN_CHANGED_SINCE_DATE_S_AND_CHANGE_TO_DATE,changedSinceDate,changedToDate);
 			throw new DataFailureException(e);
 		}
-	}
-
-
-	/**
-	 * Try to find valid vote date.
-	 *
-	 * @param ballotContainer
-	 *            the ballot container
-	 * @param voteDataList
-	 *            the vote data list
-	 * @return the date
-	 * @throws ParseException
-	 *             the parse exception
-	 */
-	private static Date tryToFindValidVoteDate(final BallotContainer ballotContainer, final List<VoteDataDto> voteDataList)
-					throws ParseException {
-		Date ballotDate;
-		final Date sameDate = checkSameDate(voteDataList);
-
-		if (sameDate != null) {
-			ballotDate = sameDate;
-		} else {
-			ballotDate = bestGuessVoteDate(ballotContainer);
-		}
-		return ballotDate;
 	}
 
 }
