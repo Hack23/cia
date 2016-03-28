@@ -63,7 +63,7 @@ public final class PageActionEventHelperImpl implements PageActionEventHelper {
 			pageModeToUse = pageMode;
 		}
 
-		if ((pageModeToUse == null || "".equals(pageModeToUse)) && ApplicationEventGroup.USER.equals(applicationEventGroup)) {
+		if ((pageModeToUse == null || "".equals(pageModeToUse)) && ApplicationEventGroup.USER == applicationEventGroup) {
 			pageModeToUse="Overview";
 		}
 

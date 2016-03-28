@@ -66,13 +66,14 @@ public final class DestroyApplicationSessionService
 	@Override
 	public DestroyApplicationSessionResponse processService(final DestroyApplicationSessionRequest serviceRequest) {
 		final ApplicationSession applicationSession = applicationSessionDAO.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
-		LOGGER.info("Destroy Application session: {}",applicationSession.getSessionId());
 
 		if (applicationSession != null)  {
+			LOGGER.info("Destroy Application session: {}",applicationSession.getSessionId());
 			applicationSession.setDestroyedDate(new Date());
 			applicationSessionDAO.persist(applicationSession);
 			return new DestroyApplicationSessionResponse(ServiceResult.SUCCESS);
 		} else {
+			LOGGER.warn("Failed to destroy Application session, no session found for id: {}",serviceRequest.getSessionId());
 			return new DestroyApplicationSessionResponse(ServiceResult.FAILURE);
 		}
 	}

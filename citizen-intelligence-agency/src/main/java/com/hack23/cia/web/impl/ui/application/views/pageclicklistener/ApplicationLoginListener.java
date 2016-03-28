@@ -44,7 +44,7 @@ public final class ApplicationLoginListener implements LoginListener {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationLoginListener.class);
 
 	/** The application manager. */
-	private final transient ApplicationManager applicationManager;
+	private transient ApplicationManager applicationManager;
 
 	/**
 	 * Instantiates a new application login listener.
@@ -66,7 +66,7 @@ public final class ApplicationLoginListener implements LoginListener {
 		loginRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 
 		final LoginResponse response = (LoginResponse) applicationManager.service(loginRequest);
-		if (ServiceResult.SUCCESS.equals(response.getResult())) {
+		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info("LoginRequest {}",event.getUserName());
 
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);

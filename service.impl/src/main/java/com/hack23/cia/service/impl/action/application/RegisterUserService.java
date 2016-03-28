@@ -127,9 +127,9 @@ public final class RegisterUserService extends
 
 			final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
-			if (UserRole.ADMIN.equals(userAccount.getUserRole())) {
+			if (UserRole.ADMIN == userAccount.getUserRole()) {
 				authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-			} else if (UserRole.USER.equals(userAccount.getUserRole())) {
+			} else if (UserRole.USER == userAccount.getUserRole()) {
 				authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 			}
 

@@ -78,15 +78,11 @@ public final class LogoutService extends AbstractBusinessServiceImpl<LogoutReque
 		eventRequest.setActionName(LogoutRequest.class.getSimpleName());
 		eventRequest.setSessionId(serviceRequest.getSessionId());
 
-
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
-
-
-		eventRequest.setElementId(userAccount.getEmail());
 
 		LogoutResponse response;
 		if (userAccount != null) {
-
+			eventRequest.setElementId(userAccount.getEmail());
 			eventRequest.setUserId(userAccount.getUserId());
 
 

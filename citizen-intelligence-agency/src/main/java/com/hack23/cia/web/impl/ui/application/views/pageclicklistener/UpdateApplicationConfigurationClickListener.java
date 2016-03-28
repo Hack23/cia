@@ -47,7 +47,7 @@ public final class UpdateApplicationConfigurationClickListener implements ClickL
 	private final UpdateApplicationConfigurationRequest request;
 
 	/** The application manager. */
-	private final transient ApplicationManager applicationManager;
+	private transient ApplicationManager applicationManager;
 
 	/**
 	 * Instantiates a new update application configuration click listener.
@@ -65,7 +65,7 @@ public final class UpdateApplicationConfigurationClickListener implements ClickL
 	@Override
 	public void buttonClick(final ClickEvent event) {
 		final ServiceResponse response = applicationManager.service(request);
-		if (ServiceResult.SUCCESS.equals(response.getResult())) {
+		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info("UpdateApplicationConfiguration {}",request.getApplicationConfigurationId() );
 
 			UI.getCurrent().getNavigator().navigateTo(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME + "/" + request.getApplicationConfigurationId());

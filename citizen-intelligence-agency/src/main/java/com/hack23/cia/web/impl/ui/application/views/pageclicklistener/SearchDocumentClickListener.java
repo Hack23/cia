@@ -44,7 +44,7 @@ public final class SearchDocumentClickListener implements ClickListener {
 	private final SearchDocumentRequest reqisterRequest;
 
 	/** The application manager. */
-	private final transient ApplicationManager applicationManager;
+	private transient ApplicationManager applicationManager;
 
 	private final SearchDocumentResponseHandler responseHandler;
 
@@ -67,7 +67,7 @@ public final class SearchDocumentClickListener implements ClickListener {
 	@Override
 	public void buttonClick(final ClickEvent event) {
 		final SearchDocumentResponse response = (SearchDocumentResponse) applicationManager.service(reqisterRequest);
-		if (ServiceResult.SUCCESS.equals(response.getResult())) {
+		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info("SearchDocument {}",reqisterRequest.getSearchExpression());
 			Notification.show("Search success",
 	                  "Found :" + response.getResultElement().size(),

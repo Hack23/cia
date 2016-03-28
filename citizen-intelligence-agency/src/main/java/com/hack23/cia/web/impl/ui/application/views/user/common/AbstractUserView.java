@@ -107,7 +107,7 @@ public abstract class AbstractUserView extends Panel implements View {
 	 *
 	 * @return the barmenu
 	 */
-	public MenuBar getBarmenu() {
+	public final MenuBar getBarmenu() {
 		return barmenu;
 	}
 

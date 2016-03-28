@@ -44,7 +44,7 @@ public final class LogoutClickListener implements ClickListener {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LogoutClickListener.class);
 
 	/** The application manager. */
-	private final transient ApplicationManager applicationManager;
+	private transient ApplicationManager applicationManager;
 
 	/** The logout request. */
 	private final LogoutRequest logoutRequest;
@@ -67,7 +67,7 @@ public final class LogoutClickListener implements ClickListener {
 		final ServiceResponse response = applicationManager.service(logoutRequest);
 
 
-		if (ServiceResult.SUCCESS.equals(response.getResult())) {
+		if (ServiceResult.SUCCESS == response.getResult()) {
 			UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
 			UI.getCurrent().getSession().close();
 			VaadinService.getCurrentRequest().getWrappedSession().invalidate();

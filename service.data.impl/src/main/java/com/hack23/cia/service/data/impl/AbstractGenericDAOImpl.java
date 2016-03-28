@@ -217,7 +217,7 @@ implements AbstractGenericDAO<T, I> {
 	 *
 	 * @return the full text entity manager
 	 */
-	protected FullTextEntityManager getFullTextEntityManager() {
+	protected final FullTextEntityManager getFullTextEntityManager() {
 		return Search.getFullTextEntityManager(getEntityManager());
 	}
 
@@ -249,7 +249,7 @@ implements AbstractGenericDAO<T, I> {
 	}
 
 	@Override
-	public T load(final I id) {
+	public final T load(final I id) {
 		return LoadHelper.recursiveInitliaze(getEntityManager().find(getPersistentClass(), id));
 	}
 

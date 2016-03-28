@@ -60,7 +60,6 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
  * The Class RiksdagenApiImpl.
  */
 @Component
-@SuppressWarnings("unchecked")
 public final class RiksdagenApiImpl implements RiksdagenApi {
 
 	/** The Constant BALLOT. */

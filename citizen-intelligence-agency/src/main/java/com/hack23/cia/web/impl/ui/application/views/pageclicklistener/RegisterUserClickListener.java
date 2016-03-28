@@ -46,7 +46,7 @@ public final class RegisterUserClickListener implements ClickListener {
 	private final RegisterUserRequest reqisterRequest;
 
 	/** The application manager. */
-	private final transient ApplicationManager applicationManager;
+	private transient ApplicationManager applicationManager;
 
 	/**
 	 * Instantiates a new register user click listener.
@@ -64,7 +64,7 @@ public final class RegisterUserClickListener implements ClickListener {
 	@Override
 	public void buttonClick(final ClickEvent event) {
 		final ServiceResponse response = applicationManager.service(reqisterRequest);
-		if (ServiceResult.SUCCESS.equals(response.getResult())) {
+		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info("RegisterUser {}",reqisterRequest.getUsername());
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);
 		} else {

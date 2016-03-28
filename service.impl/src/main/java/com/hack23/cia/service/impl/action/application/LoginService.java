@@ -102,9 +102,9 @@ public final class LoginService extends
 
 				final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
-				if (UserRole.ADMIN.equals(userExist.getUserRole())) {
+				if (UserRole.ADMIN == userExist.getUserRole()) {
 					authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-				} else if (UserRole.USER.equals(userExist.getUserRole())) {
+				} else if (UserRole.USER == userExist.getUserRole()) {
 					authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 				}
 
