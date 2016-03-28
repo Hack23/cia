@@ -30,7 +30,6 @@ import org.springframework.stereotype.Repository;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData_;
 import com.hack23.cia.service.data.api.PersonDataDAO;
-import com.hack23.cia.service.data.impl.util.LoadHelper;
 
 /**
  * The Class PersonDataDAOImpl.
@@ -65,11 +64,6 @@ public final class PersonDataDAOImpl extends AbstractGenericDAOImpl<PersonData, 
 	@Override
 	public Long getSize() {
 		return (long) getIdList().size();
-	}
-
-	@Override
-	public PersonData load(final String id) {
-		return LoadHelper.recursiveInitliaze(super.load(id));
 	}
 
 }
