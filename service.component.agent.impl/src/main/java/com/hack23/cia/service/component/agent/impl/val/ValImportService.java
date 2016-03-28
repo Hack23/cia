@@ -21,6 +21,7 @@ package com.hack23.cia.service.component.agent.impl.val;
 /**
  * The Interface ValImportService.
  */
+@FunctionalInterface
 public interface ValImportService {
 
 	/**

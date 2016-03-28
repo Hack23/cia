@@ -25,6 +25,7 @@ import com.hack23.cia.service.api.DataContainer;
 /**
  * A factory for creating ViewDataDataContainer objects.
  */
+@FunctionalInterface
 public interface ViewDataDataContainerFactory {
 
 	/**
@@ -32,11 +33,11 @@ public interface ViewDataDataContainerFactory {
 	 *
 	 * @param <T>
 	 *            the generic type
-	 * @param <ID>
+	 * @param <I>
 	 *            the generic type
 	 * @param clazz
 	 *            the clazz
 	 * @return the data container< t, i d>
 	 */
-	<T extends Serializable,ID  extends Serializable> DataContainer<T,ID> createDataContainer(Class<T> clazz);
+	<T extends Serializable,I  extends Serializable> DataContainer<T,I> createDataContainer(Class<T> clazz);
 }

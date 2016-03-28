@@ -24,6 +24,7 @@ package com.hack23.cia.service.external.common.api;
  * @param <T>
  *            the generic type
  */
+@FunctionalInterface
 public interface ProcessDataStrategy<T> {
 
 	/**
