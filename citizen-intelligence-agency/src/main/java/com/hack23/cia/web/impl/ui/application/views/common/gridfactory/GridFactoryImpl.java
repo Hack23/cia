@@ -74,15 +74,6 @@ public final class GridFactoryImpl implements GridFactory {
 
 			column.setRenderer(new ButtonRenderer(listener));
 
-//			column.setRenderer(new ButtonRenderer(listener), new SimpleStringConverter<String>(String.class) {
-//	            @Override
-//	            public String convertToPresentation(final String value, final Class<? extends String> targetType, final Locale locale)
-//	                    throws com.vaadin.data.util.converter.Converter.ConversionException {
-//	                return "<span id=\""  +actionId +"/" +value +"\" >" + value + "</span>";
-//	            }
-//	        });
-
-
 		}
 
 		if (listener != null) {
@@ -93,8 +84,6 @@ public final class GridFactoryImpl implements GridFactory {
 
 		grid.setImmediate(true);
 		grid.setReadOnly(true);
-		// HeaderRow headerRow = grid.appendHeaderRow();
-		// FooterRow footerRow = grid.appendFooterRow();
 
 		if (columnOrder != null) {
 			final GridCellFilter gridCellFilter = new GridCellFilter(grid);
