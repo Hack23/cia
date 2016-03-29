@@ -292,6 +292,10 @@
           <artifactId>xml-apis</artifactId>
           <groupId>xml-apis</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>geronimo-jta_1.1_spec</artifactId>
+          <groupId>org.apache.geronimo.specs</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
