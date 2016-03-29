@@ -31,6 +31,7 @@ import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
 import com.hack23.cia.service.api.action.admin.UpdateSearchIndexRequest;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.tablefactory.TableFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -93,12 +94,12 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 		content.removeAllComponents();
 		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Data Summary");
 		content.addComponent(createHeader2Label);
-		content.setExpandRatio(createHeader2Label, 1);
+		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
 
 
 		final Table createDataSummaryTable = tableFactory.createDataSummaryTable();
 		content.addComponent(createDataSummaryTable);
-		content.setExpandRatio(createDataSummaryTable, 15);
+		content.setExpandRatio(createDataSummaryTable, ContentRatio.LARGE);
 
 		content.setSizeFull();
 		content.setMargin(false);
@@ -117,7 +118,7 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 		});
 
 		content.addComponent(refreshViewsButton);
-		content.setExpandRatio(refreshViewsButton, 1);
+		content.setExpandRatio(refreshViewsButton, ContentRatio.SMALL);
 
 
 		final Button updateSearchIndexButton = new Button("Update Search Index");
@@ -133,12 +134,12 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 		});
 
 		content.addComponent(updateSearchIndexButton);
-		content.setExpandRatio(updateSearchIndexButton, 1);
+		content.setExpandRatio(updateSearchIndexButton, ContentRatio.SMALL);
 
 
 	 	final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 		content.addComponent(createMainViewPageLink);
-		content.setExpandRatio(createMainViewPageLink,1);
+		content.setExpandRatio(createMainViewPageLink,ContentRatio.SMALL);
 
 		content.setWidth(100, Unit.PERCENTAGE);
 		content.setHeight(100, Unit.PERCENTAGE);

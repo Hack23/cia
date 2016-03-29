@@ -45,6 +45,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFacto
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -175,11 +176,11 @@ public final class UserHomeView extends AbstractUserView {
 					panelContent.addComponent(createBasicBeanItemGrid);
 
 
-					panelContent.setExpandRatio(createHeader2Label, 1);
-					panelContent.setExpandRatio(logoutButton, 1);
+					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+					panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);
 
-					panelContent.setExpandRatio(formPanel, 10);
-					panelContent.setExpandRatio(createBasicBeanItemGrid, 10);
+					panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
+					panelContent.setExpandRatio(createBasicBeanItemGrid,ContentRatio.GRID);
 
 			}
 

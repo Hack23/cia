@@ -35,6 +35,7 @@ import com.hack23.cia.service.api.AgentContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
@@ -99,27 +100,27 @@ public final class AgentOperationView extends AbstractAdminView implements
 		content.removeAllComponents();
 		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Agent Operation");
 		content.addComponent(createHeader2Label);
-		content.setExpandRatio(createHeader2Label, 2);
+		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL2);
 
 
 		targetSelect = new ComboBox("Target", Arrays.asList(DataAgentTarget
 				.values()));
 		targetSelect.setId(ViewAction.START_AGENT_BUTTON + "/Target");
 		content.addComponent(targetSelect);
-		content.setExpandRatio(targetSelect, 2);
+		content.setExpandRatio(targetSelect, ContentRatio.SMALL2);
 
 
 		operationSelect = new ComboBox("Operation",
 				Arrays.asList(DataAgentOperation.values()));
 		operationSelect.setId(ViewAction.START_AGENT_BUTTON + "/Operation");
 		content.addComponent(operationSelect);
-		content.setExpandRatio(operationSelect, 2);
+		content.setExpandRatio(operationSelect, ContentRatio.SMALL2);
 
 
 		final Button startAgentButton = new Button("Start", this);
 		startAgentButton.setId(ViewAction.START_AGENT_BUTTON.name());
 		content.addComponent(startAgentButton);
-		content.setExpandRatio(startAgentButton, 3);
+		content.setExpandRatio(startAgentButton, ContentRatio.SMALL3);
 
 
 		content.setSizeFull();
@@ -128,7 +129,7 @@ public final class AgentOperationView extends AbstractAdminView implements
 
 	 	final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 		content.addComponent(createMainViewPageLink);
-		content.setExpandRatio(createMainViewPageLink,1);
+		content.setExpandRatio(createMainViewPageLink,ContentRatio.SMALL);
 
 		content.setWidth(100, Unit.PERCENTAGE);
 		content.setHeight(100, Unit.PERCENTAGE);
@@ -146,7 +147,7 @@ public final class AgentOperationView extends AbstractAdminView implements
 				dataAgentWorkOrder.setTarget(target);
 				dataAgentWorkOrder.setOperation(DataAgentOperation
 						.valueOf(operationSelect.getValue().toString()));
-
+				LOGGER.info("Execute workorder:{}",dataAgentWorkOrder);
 				agentContainer.execute(dataAgentWorkOrder);
 			}
 	}

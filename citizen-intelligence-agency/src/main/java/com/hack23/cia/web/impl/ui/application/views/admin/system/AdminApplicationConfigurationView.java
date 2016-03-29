@@ -39,6 +39,7 @@ import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminVi
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.UpdateApplicationConfigurationClickListener;
@@ -117,7 +118,7 @@ public final class AdminApplicationConfigurationView extends AbstractAdminView {
 
 		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Application Configuration");
 		content.addComponent(createHeader2Label);
-		content.setExpandRatio(createHeader2Label, 1);
+		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
 
 
 		final DataContainer<ApplicationConfiguration, Long> dataContainer = applicationManager
@@ -137,7 +138,7 @@ public final class AdminApplicationConfigurationView extends AbstractAdminView {
 		content.addComponent(createBasicBeanItemGrid);
 
 		content.addComponent(createBasicBeanItemGrid);
-		content.setExpandRatio(createBasicBeanItemGrid, 10);
+		content.setExpandRatio(createBasicBeanItemGrid, ContentRatio.GRID);
 
 
 
@@ -186,7 +187,7 @@ public final class AdminApplicationConfigurationView extends AbstractAdminView {
 
 	 	final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 		content.addComponent(createMainViewPageLink);
-		content.setExpandRatio(createMainViewPageLink,1);
+		content.setExpandRatio(createMainViewPageLink,ContentRatio.SMALL);
 
 		content.setWidth(100, Unit.PERCENTAGE);
 		content.setHeight(100, Unit.PERCENTAGE);

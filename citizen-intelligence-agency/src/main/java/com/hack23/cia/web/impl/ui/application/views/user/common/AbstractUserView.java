@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.navigator.View;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
@@ -86,7 +87,7 @@ public abstract class AbstractUserView extends Panel implements View {
 
 		panel.setSizeFull();
 		pageModeContent.addComponent(panel);
-		pageModeContent.setExpandRatio(panel, 1.0F);
+		pageModeContent.setExpandRatio(panel, ContentRatio.FULL_SIZE);
 
 		pageModeContent.addComponent(pageLinkFactory.createMainViewPageLink());
 		setContent(layout);

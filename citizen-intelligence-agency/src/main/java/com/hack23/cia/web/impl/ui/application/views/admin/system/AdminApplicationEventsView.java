@@ -39,6 +39,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDat
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItem;
@@ -120,7 +121,7 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 
 		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Application Action Event");
 		content.addComponent(createHeader2Label);
-		content.setExpandRatio(createHeader2Label, 1);
+		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
 
 		final DataContainer<ApplicationActionEvent, Long> dataContainer = applicationManager.getDataContainer(ApplicationActionEvent.class);
 
@@ -132,7 +133,7 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 				new String[] { "modelObjectId" }, "hjid",
 				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null);
 		content.addComponent(createBasicBeanItemGrid);
-		content.setExpandRatio(createBasicBeanItemGrid, 10);
+		content.setExpandRatio(createBasicBeanItemGrid, ContentRatio.GRID);
 
 		if (pageId != null && !pageId.isEmpty()) {
 
@@ -150,7 +151,7 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 					Arrays.asList(new String[] { "hjid","createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion"  }));
 
 			content.addComponent(formPanel);
-			content.setExpandRatio(formPanel, 13);
+			content.setExpandRatio(formPanel, ContentRatio.LARGE_FORM);
 
 			}
 
@@ -161,13 +162,13 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 
 			content.addComponent(createApplicationActionEventPageDailySummaryChart);
 
-			content.setExpandRatio(createApplicationActionEventPageDailySummaryChart, 15);
+			content.setExpandRatio(createApplicationActionEventPageDailySummaryChart, ContentRatio.LARGE);
 
 		}
 
 	 	final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 		content.addComponent(createMainViewPageLink);
-		content.setExpandRatio(createMainViewPageLink,1);
+		content.setExpandRatio(createMainViewPageLink,ContentRatio.SMALL);
 
 
 		content.setWidth(100, Unit.PERCENTAGE);

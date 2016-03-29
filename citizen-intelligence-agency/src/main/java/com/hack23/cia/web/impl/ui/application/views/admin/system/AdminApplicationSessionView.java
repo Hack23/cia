@@ -38,6 +38,7 @@ import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminVi
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItem;
@@ -116,7 +117,7 @@ public final class AdminApplicationSessionView extends AbstractAdminView {
 
 		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Application Session");
 		content.addComponent(createHeader2Label);
-		content.setExpandRatio(createHeader2Label, 1);
+		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
 
 
 		final DataContainer<ApplicationSession, Long> dataContainer = applicationManager
@@ -131,7 +132,7 @@ public final class AdminApplicationSessionView extends AbstractAdminView {
 				new String[] { "modelObjectId", "modelObjectVersion" }, "hjid",
 				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid"), null);
 		content.addComponent(createBasicBeanItemGrid);
-		content.setExpandRatio(createBasicBeanItemGrid, 10);
+		content.setExpandRatio(createBasicBeanItemGrid, ContentRatio.GRID);
 
 
 		if (pageId != null && !pageId.isEmpty()) {
@@ -145,7 +146,7 @@ public final class AdminApplicationSessionView extends AbstractAdminView {
 				final HorizontalLayout horizontalLayout = new HorizontalLayout();
 				horizontalLayout.setWidth("100%");
 				content.addComponent(horizontalLayout);
-				content.setExpandRatio(horizontalLayout, 10);
+				content.setExpandRatio(horizontalLayout, ContentRatio.GRID);
 
 				 final Panel formPanel = new Panel();
 				 formPanel.setSizeFull();
@@ -179,7 +180,7 @@ public final class AdminApplicationSessionView extends AbstractAdminView {
 
 		final Link createMainViewPageLink = pageLinkFactory.createMainViewPageLink();
 		content.addComponent(createMainViewPageLink);
-		content.setExpandRatio(createMainViewPageLink, 2);
+		content.setExpandRatio(createMainViewPageLink, ContentRatio.SMALL2);
 
 
 		content.setWidth(100, Unit.PERCENTAGE);

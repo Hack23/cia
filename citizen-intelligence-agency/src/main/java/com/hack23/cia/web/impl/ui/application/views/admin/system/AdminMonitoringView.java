@@ -29,6 +29,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
@@ -90,7 +91,7 @@ public final class AdminMonitoringView extends AbstractAdminView {
 		content.addComponent(browser);
 
 		content.addComponent(pageLinkFactory.createMainViewPageLink());
-		content.setExpandRatio(browser, 1.0F);
+		content.setExpandRatio(browser, ContentRatio.FULL_SIZE);
 
 		content.setSizeFull();
 		setContent(content);

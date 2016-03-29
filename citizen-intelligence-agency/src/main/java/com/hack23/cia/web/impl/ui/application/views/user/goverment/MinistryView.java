@@ -43,6 +43,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFacto
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -158,9 +159,9 @@ public final class MinistryView extends AbstractGroupView {
 									new String[] { "nameId", "active", "firstAssignmentDate", "lastAssignmentDate",
 											"totalAssignments", "totalDaysServed", "currentMemberSize" }));
 
-					panelContent.setExpandRatio(createHeader2Label, 1);
-					panelContent.setExpandRatio(addMinistryPageLink,1);
-					panelContent.setExpandRatio(formPanel, 10);
+					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+					panelContent.setExpandRatio(addMinistryPageLink,ContentRatio.SMALL);
+					panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
 
 
 				} else if (parameters.contains(MinistryPageMode.DOCUMENTHISTORY.toString())) {
@@ -187,8 +188,8 @@ public final class MinistryView extends AbstractGroupView {
 
 					panelContent.addComponent(politicianDocumentBeanItemGrid);
 
-					panelContent.setExpandRatio(createHeader2Label, 1);
-					panelContent.setExpandRatio(politicianDocumentBeanItemGrid, 10);
+					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+					panelContent.setExpandRatio(politicianDocumentBeanItemGrid, ContentRatio.GRID);
 
 
 				} else if (parameters.contains(MinistryPageMode.DOCUMENTACTIVITY.toString())) {
@@ -201,8 +202,8 @@ public final class MinistryView extends AbstractGroupView {
 
 					panelContent.addComponent(createDocumentHistoryChart);
 
-					panelContent.setExpandRatio(createHeader2Label, 1);
-					panelContent.setExpandRatio(createDocumentHistoryChart, 10);
+					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+					panelContent.setExpandRatio(createDocumentHistoryChart, ContentRatio.GRID);
 
 
 				} else if (parameters.contains(MinistryPageMode.CURRENTMEMBERS.toString())) {
@@ -229,8 +230,8 @@ public final class MinistryView extends AbstractGroupView {
 
 					panelContent.addComponent(currentMemberBeanItemGrid);
 
-					panelContent.setExpandRatio(createHeader2Label, 1);
-					panelContent.setExpandRatio(currentMemberBeanItemGrid, 10);
+					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+					panelContent.setExpandRatio(currentMemberBeanItemGrid, ContentRatio.GRID);
 
 
 				} else if (parameters.contains(MinistryPageMode.MEMBERHISTORY.toString())) {
@@ -254,8 +255,8 @@ public final class MinistryView extends AbstractGroupView {
 
 					panelContent.addComponent(ministryRoleMemberBeanItemGrid);
 
-					panelContent.setExpandRatio(createHeader2Label, 1);
-					panelContent.setExpandRatio(ministryRoleMemberBeanItemGrid, 10);
+					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+					panelContent.setExpandRatio(ministryRoleMemberBeanItemGrid, ContentRatio.GRID);
 
 
 				} else if (parameters.contains(MinistryPageMode.ROLEGHANT.toString())) {
@@ -272,10 +273,10 @@ public final class MinistryView extends AbstractGroupView {
 					final DCharts createApplicationActionEventPageModeDailySummaryChart = chartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME);
 					panelContent.addComponent(createApplicationActionEventPageModeDailySummaryChart);
 
-					panelContent.setExpandRatio(createHeader2Label, 1);
-					panelContent.setExpandRatio(createApplicationActionEventPageElementDailySummaryChart, 10);
-					panelContent.setExpandRatio(createHeader2Label2, 1);
-					panelContent.setExpandRatio(createApplicationActionEventPageModeDailySummaryChart, 10);
+					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+					panelContent.setExpandRatio(createApplicationActionEventPageElementDailySummaryChart, ContentRatio.GRID);
+					panelContent.setExpandRatio(createHeader2Label2,ContentRatio.SMALL);
+					panelContent.setExpandRatio(createApplicationActionEventPageModeDailySummaryChart, ContentRatio.GRID);
 
 				}
 

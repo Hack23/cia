@@ -63,6 +63,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFacto
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -172,8 +173,8 @@ public final class PoliticianView extends AbstractPersonView {
 					final DCharts createPersonLineChart = chartDataManager.createPersonLineChart(personData.getId());
 					panelContent.addComponent(createPersonLineChart);
 
-					panelContent.setExpandRatio(createHeader2Label, 1);
-					panelContent.setExpandRatio(createPersonLineChart, 10);
+					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+					panelContent.setExpandRatio(createPersonLineChart, ContentRatio.GRID);
 
 				} else if (parameters.contains(PoliticianPageMode.ROLESUMMARY.toString())) {
 
@@ -181,7 +182,7 @@ public final class PoliticianView extends AbstractPersonView {
 							.createHeader2Label(PoliticianPageMode.ROLESUMMARY.toString());
 					panelContent.addComponent(createHeader2Label);
 
-					panelContent.setExpandRatio(createHeader2Label, 1);
+					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
 
 					final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPolitician.class);
@@ -198,7 +199,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 					final Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.ROLELIST.toString());
 					panelContent.addComponent(createHeader2Label);
-					panelContent.setExpandRatio(createHeader2Label, 1);
+					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
 
 					final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()
 							.getAssignmentList();
@@ -230,8 +231,8 @@ public final class PoliticianView extends AbstractPersonView {
 							null, null, null);
 
 					panelContent.addComponent(politicianBallotsBeanItemGrid);
-					panelContent.setExpandRatio(createHeader2Label, 1);
-					panelContent.setExpandRatio(politicianBallotsBeanItemGrid, 10);
+					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+					panelContent.setExpandRatio(politicianBallotsBeanItemGrid, ContentRatio.GRID);
 
 				} else if (parameters.contains(PoliticianPageMode.BALLOTDECISIONSUMMARY.toString())) {
 
@@ -274,8 +275,8 @@ public final class PoliticianView extends AbstractPersonView {
 
 					panelContent.addComponent(committeeBallotDecisionPartyBeanItemGrid);
 
-					panelContent.setExpandRatio(createHeader2Label, 1);
-					panelContent.setExpandRatio(committeeBallotDecisionPartyBeanItemGrid, 10);
+					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+					panelContent.setExpandRatio(committeeBallotDecisionPartyBeanItemGrid, ContentRatio.GRID);
 
 				} else if (parameters.contains(PoliticianPageMode.DOCUMENTHISTORY.toString())) {
 
@@ -303,8 +304,8 @@ public final class PoliticianView extends AbstractPersonView {
 
 					panelContent.addComponent(politicianDocumentBeanItemGrid);
 
-					panelContent.setExpandRatio(createHeader2Label, 1);
-					panelContent.setExpandRatio(politicianDocumentBeanItemGrid, 10);
+					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+					panelContent.setExpandRatio(politicianDocumentBeanItemGrid, ContentRatio.GRID);
 
 				} else if (parameters.contains(PoliticianPageMode.DOCUMENTACTIVITY.toString())) {
 
@@ -317,14 +318,14 @@ public final class PoliticianView extends AbstractPersonView {
 
 					panelContent.addComponent(documentHistoryChart);
 
-					panelContent.setExpandRatio(createHeader2Label, 1);
-					panelContent.setExpandRatio(documentHistoryChart, 10);
+					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+					panelContent.setExpandRatio(documentHistoryChart, ContentRatio.GRID);
 
 				} else if (parameters.contains(PoliticianPageMode.ROLEGHANT.toString())) {
 
 					final Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.ROLEGHANT.toString());
 					panelContent.addComponent(createHeader2Label);
-					panelContent.setExpandRatio(createHeader2Label, 1);
+					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
 
 					final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()
 							.getAssignmentList();
@@ -345,10 +346,10 @@ public final class PoliticianView extends AbstractPersonView {
 							.createApplicationActionEventPageModeDailySummaryChart(NAME);
 					panelContent.addComponent(createApplicationActionEventPageModeDailySummaryChart);
 
-					panelContent.setExpandRatio(createHeader2Label, 1);
-					panelContent.setExpandRatio(createApplicationActionEventPageElementDailySummaryChart, 10);
-					panelContent.setExpandRatio(createHeader2Label2, 1);
-					panelContent.setExpandRatio(createApplicationActionEventPageModeDailySummaryChart, 10);
+					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+					panelContent.setExpandRatio(createApplicationActionEventPageElementDailySummaryChart,ContentRatio.GRID);
+					panelContent.setExpandRatio(createHeader2Label2,ContentRatio.SMALL);
+					panelContent.setExpandRatio(createApplicationActionEventPageModeDailySummaryChart,ContentRatio.GRID);
 
 				}
 
@@ -431,11 +432,11 @@ public final class PoliticianView extends AbstractPersonView {
 		panelContent.addComponent(createBasicBeanItemGrid);
 
 
-		panelContent.setExpandRatio(createHeader2Label, 1);
-		panelContent.setExpandRatio(createPoliticianPageLink, 1);
-		panelContent.setExpandRatio(horizontalLayout, 10);
+		panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+		panelContent.setExpandRatio(createPoliticianPageLink, ContentRatio.SMALL);
+		panelContent.setExpandRatio(horizontalLayout, ContentRatio.GRID);
 
-		panelContent.setExpandRatio(createBasicBeanItemGrid, 4);
+		panelContent.setExpandRatio(createBasicBeanItemGrid, ContentRatio.SMALL_GRID);
 
 
 	}
@@ -475,7 +476,7 @@ public final class PoliticianView extends AbstractPersonView {
 		}
 
 		roleSummaryLayoutTabsheet.addComponent(layout);
-		roleSummaryLayoutTabsheet.setExpandRatio(layout, 10);
+		roleSummaryLayoutTabsheet.setExpandRatio(layout, ContentRatio.GRID);
 
 
 
@@ -502,7 +503,7 @@ public final class PoliticianView extends AbstractPersonView {
 						new String[] { "hjid", "intressentId", "orderNumber", "orgCode" }, null, null, null);
 		roleSummaryLayoutTabsheet.addComponent(createBasicBeanItemGrid);
 
-		roleSummaryLayoutTabsheet.setExpandRatio(createBasicBeanItemGrid, 10);
+		roleSummaryLayoutTabsheet.setExpandRatio(createBasicBeanItemGrid, ContentRatio.GRID);
 
 	}
 
@@ -523,7 +524,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 		final Gantt createGantt = createGantt(assignmentList);
 		roleSummaryLayoutTabsheet.addComponent(createGantt);
-		roleSummaryLayoutTabsheet.setExpandRatio(createGantt, 10);
+		roleSummaryLayoutTabsheet.setExpandRatio(createGantt, ContentRatio.GRID);
 
 	}
 

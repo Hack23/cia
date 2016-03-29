@@ -57,6 +57,8 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(value = SearchDocumentView.NAME, cached = true)
 public final class SearchDocumentView extends AbstractUserView {
 
+	private static final int MAX_RESULT_SIZE = 100;
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -120,7 +122,7 @@ public final class SearchDocumentView extends AbstractUserView {
 
 		final SearchDocumentRequest searchRequest = new SearchDocumentRequest();
 		searchRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-		searchRequest.setMaxResults(100);
+		searchRequest.setMaxResults(MAX_RESULT_SIZE);
 		searchRequest.setSearchExpression("");
 		final SearchDocumentResponseHandler handler = new SearchDocumentResponseHandler() {
 
