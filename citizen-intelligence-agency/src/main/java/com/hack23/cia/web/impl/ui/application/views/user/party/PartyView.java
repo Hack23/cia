@@ -52,6 +52,7 @@ import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.GenericChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
@@ -122,6 +123,10 @@ public final class PartyView extends AbstractGroupView {
 	/** The chart data manager. */
 	@Autowired
 	private transient ChartDataManager chartDataManager;
+
+	@Autowired
+	private GenericChartDataManager<ViewRiksdagenVoteDataBallotPartySummary> viewRiksdagenVoteDataBallotPartySummaryChartDataManager;
+
 
 	/** The menu item factory. */
 	@Autowired
@@ -491,7 +496,7 @@ public final class PartyView extends AbstractGroupView {
 
 					final BeanItemContainer<ViewRiksdagenVoteDataBallotPartySummary> partyBallotDataSource = new BeanItemContainer<>(
 							ViewRiksdagenVoteDataBallotPartySummary.class,
-							chartDataManager.getViewRiksdagenVoteDataBallotPartySummary(
+							viewRiksdagenVoteDataBallotPartySummaryChartDataManager.findByValue(
 									pageId));
 
 					final Grid partynBallotsBeanItemGrid = gridFactory.createBasicBeanItemGrid(

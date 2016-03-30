@@ -63,19 +63,11 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
 import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId;
 import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenCommitteeDecisionTypeSummaryEmbeddedId;
-import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPartyEmbeddedId;
-import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPartyEmbeddedId_;
 import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId;
-import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPoliticianEmbeddedId;
-import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPoliticianEmbeddedId_;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeDailySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeOrgDailySummary;
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily;
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary_;
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily;
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummary_;
 import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentOrgSummaryEmbeddedId;
 import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentPartySummaryEmbeddedId;
 import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentPersonSummaryEmbeddedId;
@@ -104,38 +96,55 @@ import com.hack23.cia.service.api.DataContainer;
 @Service
 public final class ChartDataManagerImpl implements ChartDataManager {
 
+	/** The Constant YEAR_MONTH_DAY_FORMAT. */
 	private static final String YEAR_MONTH_DAY_FORMAT = "%Y-%#m-%#d";
 
+	/** The Constant PAGE_RANK. */
 	private static final String PAGE_RANK = "Page Rank";
 
+	/** The Constant PAGE_HITS. */
 	private static final String PAGE_HITS = "Page Hits";
 
+	/** The Constant ABSENT. */
 	private static final String ABSENT = "Absent";
 
+	/** The Constant PARTY_REBEL. */
 	private static final String PARTY_REBEL = "Party Rebel";
 
+	/** The Constant WON. */
 	private static final String WON = "Won";
 
+	/** The Constant NO_INFO. */
 	private static final String NO_INFO = "NoInfo";
 
+	/** The Constant MOT_PROP_BET. */
 	private static final String MOT_PROP_BET = "mot:prop:bet";
 
+	/** The Constant PARTY_ABSENT. */
 	private static final String PARTY_ABSENT = "Party Absent";
 
+	/** The Constant LOG_MSG_MISSING_DATA_FOR_KEY. */
 	private static final String LOG_MSG_MISSING_DATA_FOR_KEY = "missing data for key:{}";
 
+	/** The Constant LOG_MSG_TRYING_TO_FIND_DOCUMENT_SUMMARY_FOR_ORG_IN_MAP. */
 	private static final String LOG_MSG_TRYING_TO_FIND_DOCUMENT_SUMMARY_FOR_ORG_IN_MAP = "Trying to find document summary for org:{} in map:{}";
 
+	/** The Constant YEAR_PREFIX. */
 	private static final String YEAR_PREFIX = "19";
 
+	/** The Constant PARTY_WON. */
 	private static final String PARTY_WON = "Party Won";
 
+	/** The Constant MINUS_SIGN. */
 	private static final String MINUS_SIGN = "-";
 
+	/** The Constant EMPTY_STRING. */
 	private static final String EMPTY_STRING = "";
 
+	/** The Constant UNDER_SCORE. */
 	private static final String UNDER_SCORE = "_";
 
+	/** The Constant NUMBER_BALLOTS. */
 	private static final String NUMBER_BALLOTS = "Number ballots";
 
 	/** The Constant LOGGER. */
@@ -166,8 +175,13 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		super();
 	}
 
-	@Override
-	public Map<String, List<ViewRiksdagenCommitteeDecisionTypeDailySummary>> getCommitteeDecisionTypeMap() {
+
+	/**
+	 * Gets the committee decision type map.
+	 *
+	 * @return the committee decision type map
+	 */
+	private Map<String, List<ViewRiksdagenCommitteeDecisionTypeDailySummary>> getCommitteeDecisionTypeMap() {
 		final DataContainer<ViewRiksdagenCommitteeDecisionTypeDailySummary, RiksdagenCommitteeDecisionTypeSummaryEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenCommitteeDecisionTypeDailySummary.class);
 
@@ -179,8 +193,13 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDecisionType()));
 	}
 
-	@Override
-	public Map<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> getCommitteeDecisionTypeOrgMap() {
+
+	/**
+	 * Gets the committee decision type org map.
+	 *
+	 * @return the committee decision type org map
+	 */
+	private Map<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> getCommitteeDecisionTypeOrgMap() {
 		final DataContainer<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary, RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenCommitteeDecisionTypeOrgDailySummary.class);
 
@@ -188,8 +207,13 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.filter(t -> t != null).collect(Collectors.groupingBy(t -> t.getEmbeddedId().getOrg()));
 	}
 
-	@Override
-	public Map<String, List<ViewRiksdagenDocumentTypeDailySummary>> getDocumentTypeMap() {
+
+	/**
+	 * Gets the document type map.
+	 *
+	 * @return the document type map
+	 */
+	private Map<String, List<ViewRiksdagenDocumentTypeDailySummary>> getDocumentTypeMap() {
 		final DataContainer<ViewRiksdagenDocumentTypeDailySummary, RiksdagenDocumentTypeSummaryEmbeddedId> documentTypeSummaryDailyDataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenDocumentTypeDailySummary.class);
 
@@ -199,8 +223,13 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDocumentType()));
 	}
 
-	@Override
-	public List<ViewRiksdagenVoteDataBallotPartySummaryDaily> getMaxSizeViewRiksdagenVoteDataBallotPartySummaryDaily() {
+
+	/**
+	 * Gets the max size view riksdagen vote data ballot party summary daily.
+	 *
+	 * @return the max size view riksdagen vote data ballot party summary daily
+	 */
+	private List<ViewRiksdagenVoteDataBallotPartySummaryDaily> getMaxSizeViewRiksdagenVoteDataBallotPartySummaryDaily() {
 		initPartyMap();
 
 		final Optional<Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>>> first = partyMap.entrySet()
@@ -215,15 +244,25 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		}
 	}
 
-	@Override
-	public Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> getPartyMap() {
+
+	/**
+	 * Gets the party map.
+	 *
+	 * @return the party map
+	 */
+	private Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> getPartyMap() {
 		initPartyMap();
 
 		return partyMap;
 	}
 
-	@Override
-	public Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> getViewRiksdagenOrgDocumentDailySummaryMap() {
+
+	/**
+	 * Gets the view riksdagen org document daily summary map.
+	 *
+	 * @return the view riksdagen org document daily summary map
+	 */
+	private Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> getViewRiksdagenOrgDocumentDailySummaryMap() {
 		final DataContainer<ViewRiksdagenOrgDocumentDailySummary, RiksdagenDocumentOrgSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenOrgDocumentDailySummary.class);
 
@@ -232,8 +271,13 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.collect(Collectors.groupingBy(t -> StringEscapeUtils.unescapeHtml4(t.getEmbeddedId().getOrg()).toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).replace(MINUS_SIGN, EMPTY_STRING).trim()));
 	}
 
-	@Override
-	public Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> getViewRiksdagenPartyDocumentDailySummaryMap() {
+
+	/**
+	 * Gets the view riksdagen party document daily summary map.
+	 *
+	 * @return the view riksdagen party document daily summary map
+	 */
+	private Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> getViewRiksdagenPartyDocumentDailySummaryMap() {
 		final DataContainer<ViewRiksdagenPartyDocumentDailySummary, RiksdagenDocumentPartySummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenPartyDocumentDailySummary.class);
 
@@ -241,24 +285,18 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPartyShortCode().toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).trim()));
 	}
 
-	@Override
-	public Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> getViewRiksdagenPoliticianDocumentDailySummaryMap() {
+
+	/**
+	 * Gets the view riksdagen politician document daily summary map.
+	 *
+	 * @return the view riksdagen politician document daily summary map
+	 */
+	private Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> getViewRiksdagenPoliticianDocumentDailySummaryMap() {
 		final DataContainer<ViewRiksdagenPoliticianDocumentDailySummary, RiksdagenDocumentPersonSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenPoliticianDocumentDailySummary.class);
 
 		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(t -> t != null)
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPersonId()));
-	}
-
-	@Override
-	public List<ViewRiksdagenVoteDataBallotPartySummary> getViewRiksdagenVoteDataBallotPartySummary(
-			final String party) {
-		final DataContainer<ViewRiksdagenVoteDataBallotPartySummary, RiksdagenVoteDataBallotPartyEmbeddedId> partyBallotSummaryDailyDataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenVoteDataBallotPartySummary.class);
-
-		return partyBallotSummaryDailyDataContainer.findOrderedByPropertyListByEmbeddedProperty(
-				ViewRiksdagenVoteDataBallotPartySummary.class, ViewRiksdagenVoteDataBallotPartySummary_.embeddedId,
-				RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.party, party,ViewRiksdagenVoteDataBallotPartySummary_.voteDate);
 	}
 
 
@@ -275,21 +313,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		return partyMap.get(party);
 	}
-
-	@Override
-	public List<ViewRiksdagenVoteDataBallotPoliticianSummary> getViewRiksdagenVoteDataBallotPoliticianSummary(
-			final String id) {
-		final DataContainer<ViewRiksdagenVoteDataBallotPoliticianSummary, RiksdagenVoteDataBallotPoliticianEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenVoteDataBallotPoliticianSummary.class);
-
-		return politicianBallotSummaryDailyDataContainer.findOrderedByPropertyListByEmbeddedProperty(
-				ViewRiksdagenVoteDataBallotPoliticianSummary.class,
-				ViewRiksdagenVoteDataBallotPoliticianSummary_.embeddedId,
-				RiksdagenVoteDataBallotPoliticianEmbeddedId.class,
-				RiksdagenVoteDataBallotPoliticianEmbeddedId_.intressentId, id,ViewRiksdagenVoteDataBallotPoliticianSummary_.voteDate);
-
-	}
-
 
 
 	/**

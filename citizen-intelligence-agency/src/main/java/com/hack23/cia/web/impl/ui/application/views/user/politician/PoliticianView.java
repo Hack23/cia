@@ -59,6 +59,7 @@ import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.GenericChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
@@ -150,6 +151,9 @@ public final class PoliticianView extends AbstractPersonView {
 	/** The form factory. */
 	@Autowired
 	private transient FormFactory formFactory;
+
+	@Autowired
+	private transient GenericChartDataManager<ViewRiksdagenVoteDataBallotPoliticianSummary> viewRiksdagenVoteDataBallotPoliticianSummaryChartDataManager;
 
 	/**
 	 * Instantiates a new politician view.
@@ -245,7 +249,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 					final BeanItemContainer<ViewRiksdagenVoteDataBallotPoliticianSummary> politicianBallotDataSource = new BeanItemContainer<>(
 							ViewRiksdagenVoteDataBallotPoliticianSummary.class,
-							chartDataManager.getViewRiksdagenVoteDataBallotPoliticianSummary(personData.getId()));
+							viewRiksdagenVoteDataBallotPoliticianSummaryChartDataManager.findByValue(personData.getId()));
 
 					final Grid politicianBallotsBeanItemGrid = gridFactory.createBasicBeanItemNestedPropertiesGrid(
 							politicianBallotDataSource, "Ballots",
