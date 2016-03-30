@@ -21,7 +21,6 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPoliticianPeriodSummaryEmbeddedId;

@@ -34,6 +34,16 @@ import com.vaadin.ui.Notification;
  */
 public final class SearchDocumentClickListener implements ClickListener {
 
+	private static final String ERROR_MESSAGE = "Error message";
+
+	private static final String SEARCH_FAILED = "Search failed";
+
+	private static final String LOG_MSG_SEARCH_DOCUMENT_FAILURE = "SearchDocument {} failure";
+
+	private static final String LOG_MSG_SEARCH_DOCUMENT = "SearchDocument {}";
+
+	private static final String SEARCH_SUCCESS = "Search success";
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -68,17 +78,17 @@ public final class SearchDocumentClickListener implements ClickListener {
 	public void buttonClick(final ClickEvent event) {
 		final SearchDocumentResponse response = (SearchDocumentResponse) applicationManager.service(reqisterRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
-			LOGGER.info("SearchDocument {}",reqisterRequest.getSearchExpression());
-			Notification.show("Search success",
+			LOGGER.info(LOG_MSG_SEARCH_DOCUMENT,reqisterRequest.getSearchExpression());
+			Notification.show(SEARCH_SUCCESS,
 	                  "Found :" + response.getResultElement().size(),
 	                  Notification.Type.HUMANIZED_MESSAGE);
 			responseHandler.handle(response);
 
 		} else {
-			Notification.show("Search failed",
-	                  "Error message",
+			Notification.show(SEARCH_FAILED,
+	                  ERROR_MESSAGE,
 	                  Notification.Type.WARNING_MESSAGE);
-			LOGGER.info("SearchDocument {} failure",reqisterRequest.getSearchExpression() );
+			LOGGER.info(LOG_MSG_SEARCH_DOCUMENT_FAILURE,reqisterRequest.getSearchExpression() );
 		}
 	}
 }

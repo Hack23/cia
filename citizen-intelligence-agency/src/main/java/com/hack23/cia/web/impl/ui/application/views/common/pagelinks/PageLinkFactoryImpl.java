@@ -37,6 +37,20 @@ import com.vaadin.ui.Link;
 @Service
 public final class PageLinkFactoryImpl implements PageLinkFactory {
 
+	private static final String PAGE_SEPARATOR = "/";
+
+	private static final String SEARCH = "Search";
+
+	private static final String POLITICIAN = "Politician ";
+
+	private static final String PARTY = "Party ";
+
+	private static final String PAGE_PREFIX = "#!";
+
+	private static final String MINISTRY = "Ministry ";
+
+	private static final String COMMITTEE = "Committee ";
+
 	/** The Constant ADMIN_AGENT_OPERATIONS_LINK_TEXT. */
 	private static final String ADMIN_AGENT_OPERATIONS_LINK_TEXT = "Admin Agent Operations";
 
@@ -59,7 +73,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	private static final String TEST_CHART_VIEW_LINK_TEXT = "Test Chart View";
 
 	/** The Constant LINK_SEPARATOR. */
-	private static final String LINK_SEPARATOR = "#!";
+	private static final String LINK_SEPARATOR = PAGE_PREFIX;
 
 	/** The Constant MAIN_VIEW_LINK_TEXT. */
 	private static final String MAIN_VIEW_LINK_TEXT = "Main View";
@@ -131,48 +145,48 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 
 	@Override
 	public Link addCommitteePageLink(final ViewRiksdagenCommittee data) {
-		final Link pageLink = new Link("Committee "
-				+ data.getEmbeddedId().getDetail(), new ExternalResource("#!"
-						+ UserViews.COMMITTEE_VIEW_NAME + "/" + data.getEmbeddedId().getOrgCode()));
-		pageLink.setId(ViewAction.VISIT_COMMITTEE_VIEW.name() + "/"
+		final Link pageLink = new Link(COMMITTEE
+				+ data.getEmbeddedId().getDetail(), new ExternalResource(PAGE_PREFIX
+						+ UserViews.COMMITTEE_VIEW_NAME + PAGE_SEPARATOR + data.getEmbeddedId().getOrgCode()));
+		pageLink.setId(ViewAction.VISIT_COMMITTEE_VIEW.name() + PAGE_SEPARATOR
 				+ data.getEmbeddedId().getOrgCode());
 		return pageLink;
 	}
 
 	@Override
 	public Link addMinistryPageLink(final ViewRiksdagenMinistry data) {
-		final Link pageLink = new Link("Ministry " + data.getNameId(),
-				new ExternalResource("#!" + UserViews.MINISTRY_VIEW_NAME + "/"
+		final Link pageLink = new Link(MINISTRY + data.getNameId(),
+				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR
 						+ data.getNameId()));
-		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + "/"
+		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR
 				+ data.getNameId());
 		return pageLink;
 	}
 
 	@Override
 	public Link addPartyPageLink(final ViewRiksdagenParty data) {
-		final Link pageLink = new Link("Party " + data.getPartyName(),
-				new ExternalResource("#!" + UserViews.PARTY_VIEW_NAME + "/"
+		final Link pageLink = new Link(PARTY + data.getPartyName(),
+				new ExternalResource(PAGE_PREFIX + UserViews.PARTY_VIEW_NAME + PAGE_SEPARATOR
 						+ data.getPartyId()));
-		pageLink.setId(ViewAction.VISIT_PARTY_VIEW.name() + "/"
+		pageLink.setId(ViewAction.VISIT_PARTY_VIEW.name() + PAGE_SEPARATOR
 				+ data.getPartyId());
 		return pageLink;
 	}
 
 	@Override
 	public Link createPoliticianPageLink(final PersonData personData) {
-		final Link pageLink = new Link("Politician "
+		final Link pageLink = new Link(POLITICIAN
 				+ personData.getFirstName() + " "
-				+ personData.getLastName(), new ExternalResource("#!"
-						+ UserViews.POLITICIAN_VIEW_NAME + "/" + personData.getId()));
-		pageLink.setId(ViewAction.VISIT_POLITICIAN_VIEW.name() + "/"
+				+ personData.getLastName(), new ExternalResource(PAGE_PREFIX
+						+ UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + personData.getId()));
+		pageLink.setId(ViewAction.VISIT_POLITICIAN_VIEW.name() + PAGE_SEPARATOR
 				+ personData.getId());
 		return pageLink;
 	}
 
 	@Override
 	public Link createSearchDocumentViewPageLink() {
-		final Link pageLink = new Link("Search", new ExternalResource("#!"
+		final Link pageLink = new Link(SEARCH, new ExternalResource(PAGE_PREFIX
 						+ UserViews.SEARCH_DOCUMENT_VIEW_NAME));
 		pageLink.setId(ViewAction.VISIT_DOCUMENT_VIEW.name());
 		return pageLink;

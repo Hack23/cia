@@ -58,7 +58,6 @@ import org.dussan.vaadin.dcharts.renderers.tick.AxisTickRenderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
@@ -105,6 +104,40 @@ import com.hack23.cia.service.api.DataContainer;
 @Service
 public final class ChartDataManagerImpl implements ChartDataManager {
 
+	private static final String YEAR_MONTH_DAY_FORMAT = "%Y-%#m-%#d";
+
+	private static final String PAGE_RANK = "Page Rank";
+
+	private static final String PAGE_HITS = "Page Hits";
+
+	private static final String ABSENT = "Absent";
+
+	private static final String PARTY_REBEL = "Party Rebel";
+
+	private static final String WON = "Won";
+
+	private static final String NO_INFO = "NoInfo";
+
+	private static final String MOT_PROP_BET = "mot:prop:bet";
+
+	private static final String PARTY_ABSENT = "Party Absent";
+
+	private static final String LOG_MSG_MISSING_DATA_FOR_KEY = "missing data for key:{}";
+
+	private static final String LOG_MSG_TRYING_TO_FIND_DOCUMENT_SUMMARY_FOR_ORG_IN_MAP = "Trying to find document summary for org:{} in map:{}";
+
+	private static final String YEAR_PREFIX = "19";
+
+	private static final String PARTY_WON = "Party Won";
+
+	private static final String MINUS_SIGN = "-";
+
+	private static final String EMPTY_STRING = "";
+
+	private static final String UNDER_SCORE = "_";
+
+	private static final String NUMBER_BALLOTS = "Number ballots";
+
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ChartDataManagerImpl.class);
 
@@ -116,7 +149,6 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private ApplicationManager applicationManager;
 
 	/** The data chart manager. */
@@ -162,8 +194,8 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.getDataContainer(ViewRiksdagenDocumentTypeDailySummary.class);
 
 		return documentTypeSummaryDailyDataContainer.getAll().parallelStream()
-				.filter(t -> t != null && !t.getEmbeddedId().getPublicDate().startsWith("19")
-						&& "mot:prop:bet".contains(t.getEmbeddedId().getDocumentType()))
+				.filter(t -> t != null && !t.getEmbeddedId().getPublicDate().startsWith(YEAR_PREFIX)
+						&& MOT_PROP_BET.contains(t.getEmbeddedId().getDocumentType()))
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDocumentType()));
 	}
 
@@ -196,8 +228,8 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.getDataContainer(ViewRiksdagenOrgDocumentDailySummary.class);
 
 		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream()
-				.filter(t -> t != null && !t.getEmbeddedId().getPublicDate().startsWith("19"))
-				.collect(Collectors.groupingBy(t -> StringEscapeUtils.unescapeHtml4(t.getEmbeddedId().getOrg()).toUpperCase(Locale.ENGLISH).replace("_", "").replace("-", "").trim()));
+				.filter(t -> t != null && !t.getEmbeddedId().getPublicDate().startsWith(YEAR_PREFIX))
+				.collect(Collectors.groupingBy(t -> StringEscapeUtils.unescapeHtml4(t.getEmbeddedId().getOrg()).toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).replace(MINUS_SIGN, EMPTY_STRING).trim()));
 	}
 
 	@Override
@@ -206,7 +238,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 				.getDataContainer(ViewRiksdagenPartyDocumentDailySummary.class);
 
 		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(t -> t != null)
-				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPartyShortCode().toUpperCase(Locale.ENGLISH).replace("_", "").trim()));
+				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPartyShortCode().toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).trim()));
 	}
 
 	@Override
@@ -280,9 +312,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		final DataSeries dataSeries = new DataSeries();
 
-		final String dateFormatPatter = "dd-MMM-yyyy";
-
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormatPatter, Locale.ENGLISH);
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 
 		final Series series = new Series();
 
@@ -303,7 +333,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		}
 
-		series.addSeries(new XYseries().setLabel("Number ballots"));
+		series.addSeries(new XYseries().setLabel(NUMBER_BALLOTS));
 
 		dataSeries.newSeries();
 		final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> list = getMaxSizeViewRiksdagenVoteDataBallotPartySummaryDaily();
@@ -330,7 +360,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		for (final Entry<String, List<ViewRiksdagenDocumentTypeDailySummary>> entry : map.entrySet()) {
 
-			if (entry.getKey() != null && !"".equals(entry.getKey())) {
+			if (entry.getKey() != null && !EMPTY_STRING.equals(entry.getKey())) {
 
 				series.addSeries(new XYseries().setLabel(entry.getKey()));
 
@@ -391,7 +421,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		final Map<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> allMap = getCommitteeDecisionTypeOrgMap();
 
 		final List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary> itemList = allMap
-				.get(org.toUpperCase(Locale.ENGLISH).replace("_", "").trim());
+				.get(org.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).trim());
 
 		if (itemList != null) {
 
@@ -399,18 +429,16 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 					.filter(t -> t != null && t.getEmbeddedId().getDecisionDate() != null)
 					.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDecisionType()));
 
-			for (final String key : map.keySet()) {
-				if (!"".equals(key)) {
+			for (final Entry<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> entry : map.entrySet()) {
+				if (!EMPTY_STRING.equals(entry.getKey())) {
 
 					final XYseries label = new XYseries();
-					label.setLabel(key);
+					label.setLabel(entry.getKey());
 
 					series.addSeries(label);
 
 					dataSeries.newSeries();
-					final List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary> list = map
-							.get(key);
-					for (final ViewRiksdagenCommitteeDecisionTypeOrgDailySummary item : list) {
+					for (final ViewRiksdagenCommitteeDecisionTypeOrgDailySummary item : entry.getValue()) {
 						if (item != null) {
 							dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getDecisionDate()),
 									item.getTotal());
@@ -423,9 +451,11 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(createOptionsXYDateFloatLegendOutside(series)).show();
 	}
 
+
+
 	@Override
 	public DCharts createDocumentHistoryChartByOrg(final String org) {
-		final String searchOrg = org.toUpperCase(Locale.ENGLISH).replace("_", "").replace("-", "").trim();
+		final String searchOrg = org.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).replace(MINUS_SIGN, EMPTY_STRING).trim();
 
 		final DataSeries dataSeries = new DataSeries();
 
@@ -433,7 +463,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		final Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> allMap = getViewRiksdagenOrgDocumentDailySummaryMap();
 
-		LOGGER.info("Trying to find document summary for org:{} in map:{}",searchOrg,allMap.keySet().toString());
+		LOGGER.info(LOG_MSG_TRYING_TO_FIND_DOCUMENT_SUMMARY_FOR_ORG_IN_MAP,searchOrg,allMap.keySet().toString());
 
 
 		final List<ViewRiksdagenOrgDocumentDailySummary> itemList = allMap
@@ -443,22 +473,21 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 			final Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> map = itemList.parallelStream()
 					.filter(t -> t != null)
-					.collect(Collectors.groupingBy(t -> StringUtils.defaultIfBlank(t.getDocumentType(), "NoInfo")));
+					.collect(Collectors.groupingBy(t -> StringUtils.defaultIfBlank(t.getDocumentType(), NO_INFO)));
 
-			for (final String key : map.keySet()) {
+			for (final Entry<String, List<ViewRiksdagenOrgDocumentDailySummary>> entry : map.entrySet()) {
 
-				series.addSeries(new XYseries().setLabel(key));
+				series.addSeries(new XYseries().setLabel(entry.getKey()));
 
 				dataSeries.newSeries();
-				final List<ViewRiksdagenOrgDocumentDailySummary> list = map.get(key);
-				if (list != null) {
-					for (final ViewRiksdagenOrgDocumentDailySummary item : list) {
+				if (entry.getValue() != null) {
+					for (final ViewRiksdagenOrgDocumentDailySummary item : entry.getValue()) {
 						if (item != null) {
 							dataSeries.add(item.getEmbeddedId().getPublicDate(), item.getTotal());
 						}
 					}
 				} else {
-					LOGGER.info("missing data for key:{}", key);
+					LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
 				}
 
 			}
@@ -467,14 +496,15 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(createOptionsXYDateFloatLegendOutside(series)).show();
 	}
 
+
 	@Override
 	public DCharts createPartyLineChart(final String partyId) {
 
 		final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> list = getViewRiksdagenVoteDataBallotPartySummaryDaily(
 				partyId);
 
-		final Series series = new Series().addSeries(new XYseries().setLabel("Party Won"))
-				.addSeries(new XYseries().setLabel("Party Absent"));
+		final Series series = new Series().addSeries(new XYseries().setLabel(PARTY_WON))
+				.addSeries(new XYseries().setLabel(PARTY_ABSENT));
 
 		final DataSeries dataSeries = new DataSeries().newSeries();
 
@@ -519,30 +549,29 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		final Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> allMap = getViewRiksdagenPartyDocumentDailySummaryMap();
 
 		final List<ViewRiksdagenPartyDocumentDailySummary> itemList = allMap
-				.get(org.toUpperCase(Locale.ENGLISH).replace("_", "").trim());
+				.get(org.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).trim());
 
 		if (itemList != null) {
 
 			final Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> map = itemList.parallelStream()
 					.filter(t -> t != null).collect(Collectors.groupingBy(
-							t -> StringUtils.defaultIfBlank(t.getEmbeddedId().getDocumentType(), "NoInfo")));
+							t -> StringUtils.defaultIfBlank(t.getEmbeddedId().getDocumentType(), NO_INFO)));
 
 			final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 
-			for (final String key : map.keySet()) {
+			for (final Entry<String, List<ViewRiksdagenPartyDocumentDailySummary>> entry : map.entrySet()) {
 
-				series.addSeries(new XYseries().setLabel(key));
+				series.addSeries(new XYseries().setLabel(entry.getKey()));
 
 				dataSeries.newSeries();
-				final List<ViewRiksdagenPartyDocumentDailySummary> list = map.get(key);
-				if (list != null) {
-					for (final ViewRiksdagenPartyDocumentDailySummary item : list) {
+				if (entry.getValue() != null) {
+					for (final ViewRiksdagenPartyDocumentDailySummary item : entry.getValue()) {
 						if (item != null) {
 							dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getPublicDate()), item.getTotal());
 						}
 					}
 				} else {
-					LOGGER.info("missing data for key:{}", key);
+					LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
 				}
 
 			}
@@ -557,9 +586,9 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> list = dataChartManager.findByValue(personId);
 
-		final Series series = new Series().addSeries(new XYseries().setLabel("Won"))
-				.addSeries(new XYseries().setLabel("Party Rebel")).addSeries(new XYseries().setLabel("Absent"))
-				.addSeries(new XYseries().setLabel("Number ballots"));
+		final Series series = new Series().addSeries(new XYseries().setLabel(WON))
+				.addSeries(new XYseries().setLabel(PARTY_REBEL)).addSeries(new XYseries().setLabel(ABSENT))
+				.addSeries(new XYseries().setLabel(NUMBER_BALLOTS));
 
 		final DataSeries dataSeries = new DataSeries().newSeries();
 
@@ -630,29 +659,28 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		final Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> allMap = getViewRiksdagenPoliticianDocumentDailySummaryMap();
 
 		final List<ViewRiksdagenPoliticianDocumentDailySummary> itemList = allMap
-				.get(personId.toUpperCase(Locale.ENGLISH).replace("_", "").trim());
+				.get(personId.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).trim());
 
 		if (itemList != null) {
 
 			final Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> map = itemList.parallelStream()
 					.filter(t -> t != null).collect(Collectors.groupingBy(
-							t -> StringUtils.defaultIfBlank(t.getEmbeddedId().getDocumentType(), "NoInfo")));
+							t -> StringUtils.defaultIfBlank(t.getEmbeddedId().getDocumentType(), NO_INFO)));
 
-			for (final String key : map.keySet()) {
+			for (final Entry<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> entry : map.entrySet()) {
 
-				series.addSeries(new XYseries().setLabel(key));
+				series.addSeries(new XYseries().setLabel(entry.getKey()));
 
 				dataSeries.newSeries();
-				final List<ViewRiksdagenPoliticianDocumentDailySummary> list = map.get(key);
-				if (list != null) {
-					for (final ViewRiksdagenPoliticianDocumentDailySummary item : list) {
+				if (entry.getValue() != null) {
+					for (final ViewRiksdagenPoliticianDocumentDailySummary item : entry.getValue()) {
 						if (item != null) {
 							dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getPublicDate()),
 									item.getTotal());
 						}
 					}
 				} else {
-					LOGGER.info("missing data for key:{}", key);
+					LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
 				}
 
 			}
@@ -660,6 +688,8 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		return new DCharts().setDataSeries(dataSeries).setOptions(createOptionsXYDateFloatLegendOutside(series)).show();
 	}
+
+
 
 	/**
 	 * Creates the axes xy date float.
@@ -669,7 +699,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 	private static Axes createAxesXYDateFloat() {
 		return new Axes()
 				.addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
-						.setTickOptions(new AxisTickRenderer().setFormatString("%Y-%#m-%#d"))
+						.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT))
 						.setNumberTicks(NUMBER_TICKS_DATE))
 				.addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFormatString("%.2f")));
 	}
@@ -694,7 +724,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		final Axes axes = new Axes()
 				.addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
-						.setTickOptions(new AxisTickRenderer().setFormatString("%Y-%#m-%#d"))
+						.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT))
 						.setNumberTicks(NUMBER_TICKS_DATE))
 				.addAxis(new XYaxis(XYaxes.Y).setLabel(summary.getIndicatorName()));
 
@@ -919,7 +949,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 		final Series series = new Series();
 
-		series.addSeries(new XYseries().setLabel("Page Hits"));
+		series.addSeries(new XYseries().setLabel(PAGE_HITS));
 		dataSeries.newSeries();
 		for (final ViewApplicationActionEventPageElementDailySummary item : list) {
 			if (item != null) {
@@ -928,7 +958,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 			}
 		}
 
-		series.addSeries(new XYseries().setLabel("Page Rank"));
+		series.addSeries(new XYseries().setLabel(PAGE_RANK));
 		dataSeries.newSeries();
 		for (final ViewApplicationActionEventPageElementDailySummary item : list) {
 			if (item != null) {

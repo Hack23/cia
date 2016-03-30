@@ -37,6 +37,14 @@ import com.vaadin.ui.UI;
  */
 public final class ApplicationLoginListener implements LoginListener {
 
+	private static final String LOG_MSG_LOGIN_REQUEST_FAILURE = "LoginRequest {} failure";
+
+	private static final String ERROR_MESSAGE = "Error message";
+
+	private static final String LOGIN_FAILED = "Login failed";
+
+	private static final String LOG_MSG_LOGIN_REQUEST = "LoginRequest {}";
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -67,14 +75,14 @@ public final class ApplicationLoginListener implements LoginListener {
 
 		final LoginResponse response = (LoginResponse) applicationManager.service(loginRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
-			LOGGER.info("LoginRequest {}",event.getUserName());
+			LOGGER.info(LOG_MSG_LOGIN_REQUEST,event.getUserName());
 
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);
 		} else {
-			Notification.show("Login failed",
-	                  "Error message",
+			Notification.show(LOGIN_FAILED,
+	                  ERROR_MESSAGE,
 	                  Notification.Type.WARNING_MESSAGE);
-			LOGGER.info("LoginRequest {} failure",event.getUserName());
+			LOGGER.info(LOG_MSG_LOGIN_REQUEST_FAILURE,event.getUserName());
 		}
 
 	}

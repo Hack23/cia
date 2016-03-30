@@ -36,6 +36,14 @@ import com.vaadin.ui.UI;
  */
 public final class RegisterUserClickListener implements ClickListener {
 
+	private static final String REGISTER_USER_FAILURE = "RegisterUser {} failure";
+
+	private static final String ERROR_MESSAGE = "Error message";
+
+	private static final String REGISTER_FAILED = "Register failed";
+
+	private static final String LOG_MSG_REGISTER_USER = "RegisterUser {}";
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -65,13 +73,13 @@ public final class RegisterUserClickListener implements ClickListener {
 	public void buttonClick(final ClickEvent event) {
 		final ServiceResponse response = applicationManager.service(reqisterRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
-			LOGGER.info("RegisterUser {}",reqisterRequest.getUsername());
+			LOGGER.info(LOG_MSG_REGISTER_USER,reqisterRequest.getUsername());
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);
 		} else {
-			Notification.show("Register failed",
-	                  "Error message",
+			Notification.show(REGISTER_FAILED,
+	                  ERROR_MESSAGE,
 	                  Notification.Type.WARNING_MESSAGE);
-			LOGGER.info("RegisterUser {} failure",reqisterRequest.getUsername() );
+			LOGGER.info(REGISTER_USER_FAILURE,reqisterRequest.getUsername() );
 		}
 	}
 }

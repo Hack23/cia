@@ -31,6 +31,10 @@ import com.hack23.cia.model.common.api.ModelObject;
  */
 public final class PageItemPropertyClickListener extends AbstractPageItemRendererClickListener<ModelObject> {
 
+	private static final String ERROR_GETTING_PAGE_ID = "ErrorGettingPageId";
+
+	private static final String LOG_MSG_PROBLEM_GETTING_PROPERTY_FROM_OBJECT_EXCEPTION = "Problem getting property {} from object {} exception {}";
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -61,8 +65,8 @@ public final class PageItemPropertyClickListener extends AbstractPageItemRendere
 			return BeanUtils.getProperty(t, property);
 		} catch (IllegalAccessException | InvocationTargetException |
 	            NoSuchMethodException e) {
-			LOGGER.warn("Problem getting property {} from object {} exception {}",property,t,e);
-			return "ErrorGettingPageId";
+			LOGGER.warn(LOG_MSG_PROBLEM_GETTING_PROPERTY_FROM_OBJECT_EXCEPTION,property,t,e);
+			return ERROR_GETTING_PAGE_ID;
 		}
 	}
 

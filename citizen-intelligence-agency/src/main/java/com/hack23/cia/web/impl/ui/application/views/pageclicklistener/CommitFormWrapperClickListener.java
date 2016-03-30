@@ -32,6 +32,8 @@ import com.vaadin.ui.Notification;
  */
 public final class CommitFormWrapperClickListener implements ClickListener {
 
+	private static final String FORM_ERROR = "Form Error";
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -62,10 +64,10 @@ public final class CommitFormWrapperClickListener implements ClickListener {
 		try {
 			fieldGroup.commit();
 		} catch (final CommitException e) {
-			Notification.show("Form Error",
+			Notification.show(FORM_ERROR,
 	                  e.getMessage(),
 	                  Notification.Type.WARNING_MESSAGE);
-			LOGGER.warn("Form error",e);
+			LOGGER.warn(FORM_ERROR,e);
 		}
 		buttonListener.buttonClick(event);
 	}

@@ -52,6 +52,12 @@ import com.hack23.cia.service.api.action.application.DestroyApplicationSessionRe
 @Service
 public final class ApplicationEventListener implements ApplicationListener<ApplicationEvent> {
 
+	private static final String REQUIRED_AUTHORITIES = " , RequiredAuthorities:";
+
+	private static final String PRINCIPAL = "principal";
+
+	private static final String KEY = "key";
+
 	private static final String LOG_MSG_SESSION_CREATED_SESSION_ID = "Session created SESSION_ID :{}";
 
 	private static final String ROLE_ANONYMOUS = "ROLE_ANONYMOUS";
@@ -93,7 +99,7 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 			final DestroyApplicationSessionRequest destroyApplicationSessionRequest = new DestroyApplicationSessionRequest();
 			destroyApplicationSessionRequest.setSessionId(httpSession.getId());
 
-			SecurityContextHolder.getContext().setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
+			SecurityContextHolder.getContext().setAuthentication(new AnonymousAuthenticationToken(KEY, PRINCIPAL, authorities));
 			applicationManager.service(destroyApplicationSessionRequest);
 			SecurityContextHolder.getContext().setAuthentication(null);
 
@@ -111,7 +117,7 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 
 			serviceRequest.setUserId(getUserIdFromSecurityContext());
 
-			serviceRequest.setErrorMessage(AUTHORITIES + authorizationFailureEvent.getAuthentication().getAuthorities() + " , RequiredAuthorities:" + authorizationFailureEvent.getConfigAttributes());
+			serviceRequest.setErrorMessage(AUTHORITIES + authorizationFailureEvent.getAuthentication().getAuthorities() + REQUIRED_AUTHORITIES + authorizationFailureEvent.getConfigAttributes());
 			serviceRequest.setApplicationMessage(ACCESS_DENIED);
 
 			applicationManager

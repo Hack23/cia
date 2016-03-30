@@ -36,6 +36,14 @@ import com.vaadin.ui.UI;
  */
 public final class UpdateApplicationConfigurationClickListener implements ClickListener {
 
+	private static final String LOG_MSG_UPDATE_APPLICATION_CONFIGURATION_FAILURE = "UpdateApplicationConfiguration {} failure";
+
+	private static final String ERROR_MESSAGE = "Error message";
+
+	private static final String UPDATE_APPLICATION_CONFIGURATION_FAILED = "Update Application Configuration failed";
+
+	private static final String LOG_UPDATE_APPLICATION_CONFIGURATION = "UpdateApplicationConfiguration {}";
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -66,15 +74,15 @@ public final class UpdateApplicationConfigurationClickListener implements ClickL
 	public void buttonClick(final ClickEvent event) {
 		final ServiceResponse response = applicationManager.service(request);
 		if (ServiceResult.SUCCESS == response.getResult()) {
-			LOGGER.info("UpdateApplicationConfiguration {}",request.getApplicationConfigurationId() );
+			LOGGER.info(LOG_UPDATE_APPLICATION_CONFIGURATION,request.getApplicationConfigurationId() );
 
 			UI.getCurrent().getNavigator().navigateTo(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME + "/" + request.getApplicationConfigurationId());
 
 		} else {
-			Notification.show("Update Application Configuration failed",
-	                  "Error message",
+			Notification.show(UPDATE_APPLICATION_CONFIGURATION_FAILED,
+	                  ERROR_MESSAGE,
 	                  Notification.Type.WARNING_MESSAGE);
-			LOGGER.info("UpdateApplicationConfiguration {} failure",request.getApplicationConfigurationId());
+			LOGGER.info(LOG_MSG_UPDATE_APPLICATION_CONFIGURATION_FAILURE,request.getApplicationConfigurationId());
 		}
 	}
 }

@@ -37,6 +37,12 @@ import com.vaadin.ui.UI;
  */
 public final class LogoutClickListener implements ClickListener {
 
+	private static final String LOG_MSG_LOGOUT_FAILURE = "Logout {} failure";
+
+	private static final String ERROR_MESSAGE = "Error message";
+
+	private static final String LOGOUT_FAILED = "Logout failed";
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -72,10 +78,10 @@ public final class LogoutClickListener implements ClickListener {
 			UI.getCurrent().getSession().close();
 			VaadinService.getCurrentRequest().getWrappedSession().invalidate();
 		} else {
-			Notification.show("Logout failed",
-	                  "Error message",
+			Notification.show(LOGOUT_FAILED,
+	                  ERROR_MESSAGE,
 	                  Notification.Type.WARNING_MESSAGE);
-			LOGGER.info("Logout {} failure",logoutRequest.getSessionId());
+			LOGGER.info(LOG_MSG_LOGOUT_FAILURE,logoutRequest.getSessionId());
 		}
 	}
 }
