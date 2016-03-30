@@ -34,6 +34,8 @@ import com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener;
  */
 public abstract class AbstractPageItemRendererClickListener<T> implements RendererClickListener ,SelectionListener{
 
+	private static final Character PAGE_SEPARATOR = '/';
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -52,7 +54,7 @@ public abstract class AbstractPageItemRendererClickListener<T> implements Render
 
 	@Override
 	public final void click(final RendererClickEvent event) {
-		UI.getCurrent().getNavigator().navigateTo(page + "/" + getPageId((T)event.getItemId()));
+		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + getPageId((T)event.getItemId()));
 	}
 
 
@@ -61,7 +63,7 @@ public abstract class AbstractPageItemRendererClickListener<T> implements Render
 		final Set<T> added =(Set<T>) event.getAdded();
 
 		if (!added.isEmpty()) {
-			UI.getCurrent().getNavigator().navigateTo(page + "/" + getPageId(added.iterator().next()));
+			UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + getPageId(added.iterator().next()));
 
 		}
 

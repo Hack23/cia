@@ -190,7 +190,7 @@ public final class PoliticianView extends AbstractPersonView {
 				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 						|| parameters.contains(PageMode.OVERVIEW.toString())) {
 
-					createOverviewContent(panelContent, pageId, personData);
+					createOverviewContent(panelContent,personData);
 
 				} else if (parameters.contains(PageMode.CHARTS.toString())) {
 
@@ -412,13 +412,10 @@ public final class PoliticianView extends AbstractPersonView {
 	 *
 	 * @param panelContent
 	 *            the panel content
-	 * @param pageId
-	 *            the page id
 	 * @param personData
 	 *            the person data
 	 */
-	private void createOverviewContent(final VerticalLayout panelContent, final String pageId,
-			final PersonData personData) {
+	private void createOverviewContent(final VerticalLayout panelContent,final PersonData personData) {
 		final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
 		panelContent.addComponent(createHeader2Label);
 

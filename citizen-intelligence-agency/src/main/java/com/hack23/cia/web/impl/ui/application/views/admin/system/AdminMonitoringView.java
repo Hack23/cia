@@ -20,13 +20,11 @@ package com.hack23.cia.web.impl.ui.application.views.admin.system;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -55,10 +53,6 @@ public final class AdminMonitoringView extends AbstractAdminView {
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_MONITORING_VIEW_NAME;
-
-	/** The application manager. */
-	@Autowired
-	private transient ApplicationManager applicationManager;
 
 	/**
 	 * Instantiates a new admin monitoring view.

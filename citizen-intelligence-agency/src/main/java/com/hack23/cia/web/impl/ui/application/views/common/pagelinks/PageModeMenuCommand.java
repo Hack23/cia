@@ -28,6 +28,7 @@ import com.vaadin.ui.UI;
  */
 public final class PageModeMenuCommand implements Command {
 
+	private static final Character PAGE_SEPARATOR = '/';
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -81,7 +82,7 @@ public final class PageModeMenuCommand implements Command {
 	public PageModeMenuCommand(final String page, final PageMode pageMode,final String part) {
 		super();
 		this.page = page;
-		pageReference = pageMode + "/" + part;
+		pageReference = pageMode.toString() + PAGE_SEPARATOR + part;
 	}
 
 
@@ -98,7 +99,7 @@ public final class PageModeMenuCommand implements Command {
 	 */
 	public PageModeMenuCommand(final String page, final String pageMode, final String part) {
 		this.page = page;
-		pageReference = pageMode + "/" + part;
+		pageReference = pageMode + PAGE_SEPARATOR + part;
 	}
 
 	/**
@@ -108,7 +109,7 @@ public final class PageModeMenuCommand implements Command {
 	 */
 	public String getPagePath() {
 		if (pageReference != null && !pageReference.isEmpty()) {
-			return page + "/" + pageReference;
+			return page + PAGE_SEPARATOR + pageReference;
 		} else {
 			return page;
 		}
@@ -116,7 +117,7 @@ public final class PageModeMenuCommand implements Command {
 
 	@Override
 	public void menuSelected(final MenuItem selectedItem) {
-		UI.getCurrent().getNavigator().navigateTo(page + "/" + pageReference);
+		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + pageReference);
 	}
 
 }

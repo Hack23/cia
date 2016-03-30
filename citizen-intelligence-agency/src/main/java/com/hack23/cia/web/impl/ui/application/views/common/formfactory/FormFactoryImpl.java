@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.common.formfactory;
 
 import java.io.Serializable;
+import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.List;
 
@@ -42,6 +43,12 @@ import com.vaadin.ui.PasswordField;
 @Service
 public final class FormFactoryImpl implements FormFactory {
 
+	/** The Constant LOG_MSG_PROPERTY. */
+	private static final String LOG_MSG_PROPERTY = "property:{}";
+
+	/** The Constant PASSWORD. */
+	private static final String HIDDEN_FIELD_NAME = "password";
+
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(FormFactoryImpl.class);
 
@@ -61,7 +68,7 @@ public final class FormFactoryImpl implements FormFactory {
 		}
 		final Collection<Object> unboundPropertyIds = fieldGroup.getUnboundPropertyIds();
 		for (final Object property : unboundPropertyIds) {
-			LOGGER.info("property:{}", property);
+			LOGGER.debug(LOG_MSG_PROPERTY, property);
 		}
 
 	}
@@ -76,13 +83,13 @@ public final class FormFactoryImpl implements FormFactory {
 		for (final String property : displayProperties) {
 
 			final Field<?> buildAndBind;
-			if (property.contains("password")) {
+			if (property.contains(HIDDEN_FIELD_NAME)) {
 				buildAndBind = fieldGroup.buildAndBind(property,property, PasswordField.class);
 			} else {
 				buildAndBind = fieldGroup.buildAndBind(property);
 			}
 
-			buildAndBind.setId(buttonLabel + "." + property);
+			buildAndBind.setId(MessageFormat.format("{0}.{1}", buttonLabel, property));
 			buildAndBind.setReadOnly(false);
 			buildAndBind.setWidth(ContentSize.HALF_SIZE);
 
@@ -90,7 +97,7 @@ public final class FormFactoryImpl implements FormFactory {
 		}
 		final Collection<Object> unboundPropertyIds = fieldGroup.getUnboundPropertyIds();
 		for (final Object property : unboundPropertyIds) {
-			LOGGER.info("property:{}", property);
+			LOGGER.debug(LOG_MSG_PROPERTY, property);
 		}
 
 

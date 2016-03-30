@@ -37,7 +37,7 @@ import com.vaadin.ui.Link;
 @Service
 public final class PageLinkFactoryImpl implements PageLinkFactory {
 
-	private static final String PAGE_SEPARATOR = "/";
+	private static final Character PAGE_SEPARATOR = '/';
 
 	private static final String SEARCH = "Search";
 
