@@ -234,7 +234,7 @@ public final class MinistryView extends AbstractGroupView {
 					final BeanItemContainer<ViewRiksdagenGovermentRoleMember> currentMembersMemberDataSource = new BeanItemContainer<>(
 							ViewRiksdagenGovermentRoleMember.class,
 							govermentRoleMemberDataContainer.findListByProperty(
-									new Object[] { viewRiksdagenMinistry.getNameId(), true },
+									new Object[] { viewRiksdagenMinistry.getNameId(), Boolean.TRUE},
 									ViewRiksdagenGovermentRoleMember_.detail,
 									ViewRiksdagenGovermentRoleMember_.active));
 

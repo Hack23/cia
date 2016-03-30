@@ -282,7 +282,7 @@ public final class PartyView extends AbstractGroupView {
 					final BeanItemContainer<ViewRiksdagenPolitician> politicianDataSource = new BeanItemContainer<>(
 							ViewRiksdagenPolitician.class,
 							politicianDataContainer.findListByProperty(new Object[] { viewRiksdagenParty.getPartyId(),
-									true },
+									Boolean.TRUE},
 									ViewRiksdagenPolitician_.party,ViewRiksdagenPolitician_.active));
 
 					final Grid partyMemberBeanItemGrid = gridFactory.createBasicBeanItemGrid(
@@ -367,7 +367,7 @@ public final class PartyView extends AbstractGroupView {
 								ViewRiksdagenPartyRoleMember.class,
 								partyRoleMemberDataContainer.findListByProperty(
 										new Object[] { viewRiksdagenParty.getPartyId(),
-												true },
+												Boolean.TRUE },
 												ViewRiksdagenPartyRoleMember_.party,
 												ViewRiksdagenPartyRoleMember_.active));
 
@@ -417,7 +417,7 @@ public final class PartyView extends AbstractGroupView {
 							ViewRiksdagenGovermentRoleMember.class,
 							govermentRoleMemberDataContainer.findListByProperty(
 									new Object[] { viewRiksdagenParty.getPartyId(),
-											true },
+											Boolean.TRUE },
 											ViewRiksdagenGovermentRoleMember_.party,
 											ViewRiksdagenGovermentRoleMember_.active));
 
@@ -444,7 +444,7 @@ public final class PartyView extends AbstractGroupView {
 							ViewRiksdagenCommitteeRoleMember.class,
 							committeeRoleMemberDataContainer.findListByProperty(
 									new Object[] { viewRiksdagenParty.getPartyId(),
-											true },
+											Boolean.TRUE },
 											ViewRiksdagenCommitteeRoleMember_.party,
 											ViewRiksdagenCommitteeRoleMember_.active));
 

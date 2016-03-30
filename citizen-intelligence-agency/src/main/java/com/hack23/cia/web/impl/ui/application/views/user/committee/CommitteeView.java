@@ -290,7 +290,7 @@ public final class CommitteeView extends AbstractGroupView {
 					final BeanItemContainer<ViewRiksdagenCommitteeRoleMember> currentMembersMemberDataSource = new BeanItemContainer<>(
 							ViewRiksdagenCommitteeRoleMember.class,
 							committeeRoleMemberDataContainer.findListByProperty(
-									new Object[] { viewRiksdagenCommittee.getEmbeddedId().getDetail(), true },
+									new Object[] { viewRiksdagenCommittee.getEmbeddedId().getDetail(), Boolean.TRUE},
 									ViewRiksdagenCommitteeRoleMember_.detail,
 									ViewRiksdagenCommitteeRoleMember_.active));
 
