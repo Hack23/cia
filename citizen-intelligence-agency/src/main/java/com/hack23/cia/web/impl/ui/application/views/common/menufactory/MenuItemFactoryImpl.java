@@ -28,7 +28,6 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
@@ -58,6 +57,28 @@ import com.vaadin.ui.MenuBar.MenuItem;
  */
 @Service
 public final class MenuItemFactoryImpl implements MenuItemFactory {
+
+	private static final String LANGUAGE_CONTENT = "Language Content";
+
+	private static final String LANGUAGE = "Language";
+
+	private static final String COUNTRY = "Country";
+
+	private static final String USERACCOUNT = "Useraccount";
+
+	private static final String APPLICATION_EVENT = "Application Event";
+
+	private static final String APPLICATION_SESSION = "Application Session";
+
+	private static final String PORTAL = "Portal";
+
+	private static final String AGENCY = "Agency";
+
+	private static final String APPLICATION_CONFIGURATION = "Application Configuration";
+
+	private static final String SYSTEM_PERFORMANCE = "System Performance";
+
+	private static final String ROLE_ADMIN = "ROLE_ADMIN";
 
 	/** The Constant CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT. */
 	private static final String CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT = "Current committees, current members";
@@ -151,7 +172,6 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private ApplicationManager applicationManager;
 
 	/** The Constant POLITICIAN_RANKING_LINK_TEXT. */
@@ -182,7 +202,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 		barmenu.addItem(OVERVIEW_TEXT, null, new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
 
-		if (allowRoleInSecurityContext("ROLE_ADMIN")) {
+		if (allowRoleInSecurityContext(ROLE_ADMIN)) {
 			final MenuItem adminMenuItem = barmenu.addItem(ADMIN_TEXT, null, null);
 
 			adminMenuItem.addItem(AGENT_OPERATIONS_TEXT,
@@ -190,32 +210,32 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 			adminMenuItem.addItem(DATA_SUMMARY_TEXT,
 					new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
 
-			adminMenuItem.addItem("System Performance",
+			adminMenuItem.addItem(SYSTEM_PERFORMANCE,
 					new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
 
-			adminMenuItem.addItem("Application Configuration",
+			adminMenuItem.addItem(APPLICATION_CONFIGURATION,
 					new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, ""));
 
-			adminMenuItem.addItem("Agency",
+			adminMenuItem.addItem(AGENCY,
 					new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, ""));
-			adminMenuItem.addItem("Portal",
+			adminMenuItem.addItem(PORTAL,
 					new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
-			adminMenuItem.addItem("Application Session",
+			adminMenuItem.addItem(APPLICATION_SESSION,
 					new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
-			adminMenuItem.addItem("Application Event",
+			adminMenuItem.addItem(APPLICATION_EVENT,
 					new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
-			adminMenuItem.addItem("Useraccount",
+			adminMenuItem.addItem(USERACCOUNT,
 					new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
-			adminMenuItem.addItem("Country",
+			adminMenuItem.addItem(COUNTRY,
 					new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, ""));
-			adminMenuItem.addItem("Language",
+			adminMenuItem.addItem(LANGUAGE,
 					new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
-			adminMenuItem.addItem("Language Content",
+			adminMenuItem.addItem(LANGUAGE_CONTENT,
 					new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, ""));
 		}
 
 
-		if (allowRoleInSecurityContext("ROLE_ADMIN") || allowRoleInSecurityContext("ROLE_USER")) {
+		if (allowRoleInSecurityContext(ROLE_ADMIN) || allowRoleInSecurityContext("ROLE_USER")) {
 			barmenu.addItem("Userhome", new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, ""));
 		}
 

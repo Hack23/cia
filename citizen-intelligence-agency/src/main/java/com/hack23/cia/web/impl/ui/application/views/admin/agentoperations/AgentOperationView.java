@@ -25,6 +25,7 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -51,10 +52,24 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class AgentOperationView.
  */
 @Service
-@Scope(value="prototype")
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(AgentOperationView.NAME)
 public final class AgentOperationView extends AbstractAdminView implements
 		Button.ClickListener {
+
+	private static final String OPERATION2 = "/Operation";
+
+	private static final String TARGET2 = "/Target";
+
+	private static final String LOG_MSG_EXECUTE_WORKORDER = "Execute workorder:{}";
+
+	private static final String START = "Start";
+
+	private static final String OPERATION = "Operation";
+
+	private static final String TARGET = "Target";
+
+	private static final String ADMIN_AGENT_OPERATION = "Admin Agent Operation";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -98,26 +113,26 @@ public final class AgentOperationView extends AbstractAdminView implements
 	 */
 	private void createContent() {
 		content.removeAllComponents();
-		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Agent Operation");
+		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_AGENT_OPERATION);
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL2);
 
 
-		targetSelect = new ComboBox("Target", Arrays.asList(DataAgentTarget
+		targetSelect = new ComboBox(TARGET, Arrays.asList(DataAgentTarget
 				.values()));
-		targetSelect.setId(ViewAction.START_AGENT_BUTTON + "/Target");
+		targetSelect.setId(ViewAction.START_AGENT_BUTTON + TARGET2);
 		content.addComponent(targetSelect);
 		content.setExpandRatio(targetSelect, ContentRatio.SMALL2);
 
 
-		operationSelect = new ComboBox("Operation",
+		operationSelect = new ComboBox(OPERATION,
 				Arrays.asList(DataAgentOperation.values()));
-		operationSelect.setId(ViewAction.START_AGENT_BUTTON + "/Operation");
+		operationSelect.setId(ViewAction.START_AGENT_BUTTON + OPERATION2);
 		content.addComponent(operationSelect);
 		content.setExpandRatio(operationSelect, ContentRatio.SMALL2);
 
 
-		final Button startAgentButton = new Button("Start", this);
+		final Button startAgentButton = new Button(START, this);
 		startAgentButton.setId(ViewAction.START_AGENT_BUTTON.name());
 		content.addComponent(startAgentButton);
 		content.setExpandRatio(startAgentButton, ContentRatio.SMALL3);
@@ -147,7 +162,7 @@ public final class AgentOperationView extends AbstractAdminView implements
 				dataAgentWorkOrder.setTarget(target);
 				dataAgentWorkOrder.setOperation(DataAgentOperation
 						.valueOf(operationSelect.getValue().toString()));
-				LOGGER.info("Execute workorder:{}",dataAgentWorkOrder);
+				LOGGER.info(LOG_MSG_EXECUTE_WORKORDER,dataAgentWorkOrder);
 				agentContainer.execute(dataAgentWorkOrder);
 			}
 	}

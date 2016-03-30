@@ -24,7 +24,6 @@ import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.Authentication;
@@ -72,6 +71,12 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(value = UserHomeView.NAME, cached = true)
 public final class UserHomeView extends AbstractUserView {
 
+	private static final String LOGOUT = "Logout";
+
+	private static final String USERHOME = "Userhome:";
+
+	private static final String OVERVIEW = "Overview";
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -80,7 +85,6 @@ public final class UserHomeView extends AbstractUserView {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
 	/** The menu item factory. */
@@ -130,10 +134,10 @@ public final class UserHomeView extends AbstractUserView {
 			if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 					|| parameters.contains(PageMode.OVERVIEW.toString())) {
 
-				final Label createHeader2Label = LabelFactory.createHeader2Label("Overview");
+				final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
 				panelContent.addComponent(createHeader2Label);
 
-				final Button logoutButton = new Button("Logout");
+				final Button logoutButton = new Button(LOGOUT);
 
 				final LogoutRequest logoutRequest = new LogoutRequest();
 				logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
@@ -186,7 +190,7 @@ public final class UserHomeView extends AbstractUserView {
 
 
 			getPanel().setContent(panelContent);
-			getPanel().setCaption("Userhome:");
+			getPanel().setCaption(USERHOME);
 
 			pageActionEventHelper.createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);

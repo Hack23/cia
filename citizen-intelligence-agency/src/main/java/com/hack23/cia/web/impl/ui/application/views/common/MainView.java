@@ -23,7 +23,7 @@ import java.util.Arrays;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -51,9 +51,11 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class MainView.
  */
 @Service("MainView")
-@Scope(value="prototype")
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(MainView.NAME)
 public final class MainView extends Panel implements View {
+
+	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = "Citizen Intelligence Agency::Main";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -63,7 +65,6 @@ public final class MainView extends Panel implements View {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
 	/** The page link factory. */
@@ -104,7 +105,7 @@ public final class MainView extends Panel implements View {
 
 
 	private void createContent() {
-		setCaption("Citizen Intelligence Agency::Main");
+		setCaption(CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 
 		final VerticalLayout layout = new VerticalLayout();
 		layout.setMargin(true);

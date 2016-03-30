@@ -23,7 +23,6 @@ import java.util.Arrays;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -67,7 +66,6 @@ public final class SearchDocumentView extends AbstractUserView {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
 	/** The grid factory. */

@@ -21,7 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.admin.system;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -42,9 +42,13 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class AdminDataSummaryView.
  */
 @Service
-@Scope(value="prototype")
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(AdminMonitoringView.NAME)
 public final class AdminMonitoringView extends AbstractAdminView {
+
+	private static final String MONITORING_CONTEXT_PATH = "./monitoring";
+
+	private static final String ADMIN_MONITORING = "Admin Monitoring";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -54,7 +58,6 @@ public final class AdminMonitoringView extends AbstractAdminView {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
 	/**
@@ -84,8 +87,8 @@ public final class AdminMonitoringView extends AbstractAdminView {
 	private void createContent() {
 		final VerticalLayout content = new VerticalLayout();
 
-		final BrowserFrame browser = new BrowserFrame("Admin Monitoring",
-			    new ExternalResource("./monitoring"));
+		final BrowserFrame browser = new BrowserFrame(ADMIN_MONITORING,
+			    new ExternalResource(MONITORING_CONTEXT_PATH));
 			browser.setSizeFull();
 
 		content.addComponent(browser);

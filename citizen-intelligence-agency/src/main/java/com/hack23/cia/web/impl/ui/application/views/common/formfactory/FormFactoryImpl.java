@@ -26,6 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.CommitFormWrapperClickListener;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.util.BeanItem;
@@ -54,7 +55,7 @@ public final class FormFactoryImpl implements FormFactory {
 
 		for (final String property : displayProperties) {
 			final Field<?> buildAndBind = fieldGroup.buildAndBind(property);
-			buildAndBind.setWidth("100%");
+			buildAndBind.setWidth(ContentSize.FULL_SIZE);
 
 			panelContent.addComponent(buildAndBind);
 		}
@@ -83,7 +84,7 @@ public final class FormFactoryImpl implements FormFactory {
 
 			buildAndBind.setId(buttonLabel + "." + property);
 			buildAndBind.setReadOnly(false);
-			buildAndBind.setWidth("50%");
+			buildAndBind.setWidth(ContentSize.HALF_SIZE);
 
 			panelContent.addComponent(buildAndBind);
 		}

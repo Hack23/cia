@@ -21,7 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.admin.datasummary;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -48,9 +48,19 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class AdminDataSummaryView.
  */
 @Service
-@Scope(value="prototype")
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(AdminDataSummaryView.NAME)
 public final class AdminDataSummaryView extends AbstractAdminView {
+
+	private static final String UPDATE_SEARCH_INDEX_STARTED = "Update Search Index Started";
+
+	private static final String UPDATE_SEARCH_INDEX = "Update Search Index";
+
+	private static final String REFRESH_VIEWS_STARTED = "Refresh Views Started";
+
+	private static final String REFRESH_VIEWS = "Refresh Views";
+
+	private static final String ADMIN_DATA_SUMMARY = "Admin Data Summary";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -67,7 +77,6 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
 
@@ -92,7 +101,7 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 	 */
 	private void createContent() {
 		content.removeAllComponents();
-		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Data Summary");
+		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_DATA_SUMMARY);
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
 
@@ -105,7 +114,7 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 		content.setMargin(false);
 		content.setSpacing(true);
 
-		final Button refreshViewsButton = new Button("Refresh Views");
+		final Button refreshViewsButton = new Button(REFRESH_VIEWS);
 
 		refreshViewsButton.addClickListener(event -> {
 
@@ -114,14 +123,14 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 			serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 
 			applicationManager.asyncService(serviceRequest);
-			Notification.show("Refresh Views Started");
+			Notification.show(REFRESH_VIEWS_STARTED);
 		});
 
 		content.addComponent(refreshViewsButton);
 		content.setExpandRatio(refreshViewsButton, ContentRatio.SMALL);
 
 
-		final Button updateSearchIndexButton = new Button("Update Search Index");
+		final Button updateSearchIndexButton = new Button(UPDATE_SEARCH_INDEX);
 
 		updateSearchIndexButton.addClickListener(event -> {
 
@@ -130,7 +139,7 @@ public final class AdminDataSummaryView extends AbstractAdminView {
 			serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 
 			applicationManager.asyncService(serviceRequest);
-			Notification.show("Update Search Index Started");
+			Notification.show(UPDATE_SEARCH_INDEX_STARTED);
 		});
 
 		content.addComponent(updateSearchIndexButton);

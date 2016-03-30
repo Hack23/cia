@@ -64,6 +64,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
+	private static final String NO_WEBDRIVER_EXIST_FOR_BROWSER = "No webdriver exist for browser:";
+
 	/** The test server. */
 	private static CitizenIntelligenceAgencyServer testServer;
 
@@ -133,7 +135,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeRankingViewOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -151,7 +153,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeRankingViewPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -169,7 +171,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeRankingViewDataGridTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -188,7 +190,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteAdminAgencyTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -241,7 +243,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteAdminPortalTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 		loginAsAdmin(userPageVisit);
@@ -264,7 +266,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteAdminApplicationConfigurationTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 		loginAsAdmin(userPageVisit);
@@ -289,7 +291,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteAdminCountryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 		loginAsAdmin(userPageVisit);
@@ -312,7 +314,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteAdminUseraccountTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 		loginAsAdmin(userPageVisit);
@@ -335,7 +337,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteAdminLanguageTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 		loginAsAdmin(userPageVisit);
@@ -358,7 +360,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteAdminLanguageContentTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 		loginAsAdmin(userPageVisit);
@@ -382,7 +384,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteAdminApplicationSessionTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 		loginAsAdmin(userPageVisit);
@@ -405,7 +407,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteAdminApplicationEventTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 		loginAsAdmin(userPageVisit);
@@ -428,7 +430,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test(timeout = 20000)
 	public void siteAdminMonitoringFailedAccessTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -448,7 +450,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteAdminMonitoringSuccessTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -483,7 +485,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeRankingViewChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -500,7 +502,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeRankingViewGridNavigationTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -523,7 +525,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyRankingViewOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -539,7 +541,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyRankingViewPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -556,7 +558,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyRankingViewDataGridTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -573,7 +575,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyRankingViewChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -590,7 +592,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticianRankingViewOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -607,7 +609,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticianRankingViewPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -624,7 +626,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticianRankingViewDataGridTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -642,7 +644,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticianRankingViewDataGridNavigationTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -663,7 +665,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticianRankingViewChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -680,7 +682,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -697,7 +699,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -714,7 +716,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryDocumentHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -732,7 +734,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryDocumentActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -750,7 +752,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryRoleGhantTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -768,7 +770,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryCurrentMembersTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -786,7 +788,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryMemberHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -803,7 +805,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -820,7 +822,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteePageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -838,7 +840,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteRoleGhantTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -856,7 +858,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMainViewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -878,7 +880,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteRegisterUserTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -900,7 +902,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteLoginUserTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -936,7 +938,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeDocumentHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -954,7 +956,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeCurrentMembersTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -972,7 +974,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeMemberHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -990,7 +992,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeDocumentActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1008,7 +1010,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeDecisionSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1026,7 +1028,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeBallotDecisionSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1044,7 +1046,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteCommitteeDecisionTypeDailySummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1062,7 +1064,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteTestChartViewOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1079,7 +1081,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteTestChartViewIndicatorsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1097,7 +1099,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteTestChartViewPartyWinnerTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1115,7 +1117,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteTestChartViewDecsionActivityByTypeTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1133,7 +1135,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteTestChartViewDocumentActivityByTypeTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1151,7 +1153,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryRankingOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1168,7 +1170,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryRankingPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1186,7 +1188,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryRankingDataGridTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1203,7 +1205,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryRankingChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1220,7 +1222,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteMinistryRankingNavigationTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1242,7 +1244,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentDetailsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1260,7 +1262,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentOverViewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1277,7 +1279,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1294,7 +1296,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentPersonRefTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1312,7 +1314,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteSearchDocumentTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1331,7 +1333,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentDocActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1349,7 +1351,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentDocDataTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1366,7 +1368,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentDocRefbEmptyTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1384,7 +1386,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentDocRefbTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1402,7 +1404,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentDocDecisionTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1420,7 +1422,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteDocumentDocAttachmentTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1438,7 +1440,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1454,7 +1456,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1471,7 +1473,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyDocumentHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1489,7 +1491,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1506,7 +1508,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyCurrentMembersTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1524,7 +1526,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyMemberHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1542,7 +1544,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyCurrentLeadersTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1560,7 +1562,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyLeaderHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1578,7 +1580,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyCommitteeRolesTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1596,7 +1598,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyGovernmentRolesTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1614,7 +1616,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyPartyWonDailySummaryChartTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1632,7 +1634,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyDocumentActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1650,7 +1652,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyRoleGhantTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1668,7 +1670,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyCommitteeBallotDecisionSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1686,7 +1688,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePartyVoteHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1704,7 +1706,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteAdminTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1726,7 +1728,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void siteAdminDataSummary() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1747,7 +1749,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanOverViewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1764,7 +1766,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1781,7 +1783,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanRoleSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1798,7 +1800,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanRoleListTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1816,7 +1818,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanRoleGhantTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1834,7 +1836,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanDocumentHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1852,7 +1854,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanVoteHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1870,7 +1872,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanBallotDecisionSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1888,7 +1890,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanDocumentActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+				assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1906,7 +1908,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanIndicatorTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist for browser:" + browser, driver);
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
@@ -1924,7 +1926,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	@Test
 	public void sitePoliticanChartTest() throws Exception {
 		final WebDriver driver = getWebDriver();
-		assertNotNull("No webdriver exist", driver);
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 

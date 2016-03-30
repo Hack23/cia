@@ -25,7 +25,7 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -65,9 +65,27 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class MinistryView.
  */
 @Service
-@Scope(value="prototype")
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(value = MinistryView.NAME, cached = true)
 public final class MinistryView extends AbstractGroupView {
+
+	private static final String MINISTRY = "Ministry:";
+
+	private static final String GENERAL_PAGE_MODE_PAGE_VISIT = "General Page Mode Page Visit";
+
+	private static final String CURRENT_PAGE_VISIT_HISTORY = "Current Page Visit History";
+
+	private static final String ROLE_GHANT = "Role Ghant";
+
+	private static final String MEMBER_HISTORY = "Member History";
+
+	private static final String CURRENT_MEMBERS = "Current Members";
+
+	private static final String DOCUMENT_ACTIVITY = "Document Activity";
+
+	private static final String DOCUMENT_HISTORY = "Document History";
+
+	private static final String OVERVIEW = "Overview";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -77,7 +95,6 @@ public final class MinistryView extends AbstractGroupView {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
 	/** The chart data manager. */
@@ -138,7 +155,7 @@ public final class MinistryView extends AbstractGroupView {
 				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 						|| parameters.contains(PageMode.OVERVIEW.toString())) {
 
-					final Label createHeader2Label = LabelFactory.createHeader2Label("Overview");
+					final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
 					panelContent.addComponent(createHeader2Label);
 
 					final Link addMinistryPageLink = pageLinkFactory.addMinistryPageLink(viewRiksdagenMinistry);
@@ -166,7 +183,7 @@ public final class MinistryView extends AbstractGroupView {
 
 				} else if (parameters.contains(MinistryPageMode.DOCUMENTHISTORY.toString())) {
 
-					final Label createHeader2Label = LabelFactory.createHeader2Label("Document History");
+					final Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_HISTORY);
 					panelContent.addComponent(createHeader2Label);
 
 					final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = applicationManager
@@ -194,7 +211,7 @@ public final class MinistryView extends AbstractGroupView {
 
 				} else if (parameters.contains(MinistryPageMode.DOCUMENTACTIVITY.toString())) {
 
-					final Label createHeader2Label = LabelFactory.createHeader2Label("Document Activity");
+					final Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_ACTIVITY);
 					panelContent.addComponent(createHeader2Label);
 
 					final DCharts createDocumentHistoryChart = chartDataManager
@@ -208,7 +225,7 @@ public final class MinistryView extends AbstractGroupView {
 
 				} else if (parameters.contains(MinistryPageMode.CURRENTMEMBERS.toString())) {
 
-					final Label createHeader2Label = LabelFactory.createHeader2Label("Current Members");
+					final Label createHeader2Label = LabelFactory.createHeader2Label(CURRENT_MEMBERS);
 					panelContent.addComponent(createHeader2Label);
 
 					final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = applicationManager
@@ -222,7 +239,7 @@ public final class MinistryView extends AbstractGroupView {
 									ViewRiksdagenGovermentRoleMember_.active));
 
 					final Grid currentMemberBeanItemGrid = gridFactory.createBasicBeanItemGrid(
-							currentMembersMemberDataSource, "Current Members",
+							currentMembersMemberDataSource, CURRENT_MEMBERS,
 							new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
 									"roleCode", "fromDate", "toDate", "totalDaysServed" },
 							new String[] { "roleId", "personId", "detail" }, null,
@@ -236,7 +253,7 @@ public final class MinistryView extends AbstractGroupView {
 
 				} else if (parameters.contains(MinistryPageMode.MEMBERHISTORY.toString())) {
 
-					final Label createHeader2Label = LabelFactory.createHeader2Label("Member History");
+					final Label createHeader2Label = LabelFactory.createHeader2Label(MEMBER_HISTORY);
 					panelContent.addComponent(createHeader2Label);
 
 					final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = applicationManager
@@ -247,7 +264,7 @@ public final class MinistryView extends AbstractGroupView {
 									ViewRiksdagenGovermentRoleMember_.detail, viewRiksdagenMinistry.getNameId()));
 
 					final Grid ministryRoleMemberBeanItemGrid = gridFactory.createBasicBeanItemGrid(
-							govermentRoleMemberDataSource, "Member History",
+							govermentRoleMemberDataSource, MEMBER_HISTORY,
 							new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
 									"roleCode", "fromDate", "toDate", "totalDaysServed" },
 							new String[] { "roleId", "personId", "detail" }, null,
@@ -260,15 +277,15 @@ public final class MinistryView extends AbstractGroupView {
 
 
 				} else if (parameters.contains(MinistryPageMode.ROLEGHANT.toString())) {
-					panelContent.addComponent(LabelFactory.createHeader2Label("Role Ghant"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(ROLE_GHANT));
 				} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
 
-					final Label createHeader2Label = LabelFactory.createHeader2Label("Current Page Visit History");
+					final Label createHeader2Label = LabelFactory.createHeader2Label(CURRENT_PAGE_VISIT_HISTORY);
 					panelContent.addComponent(createHeader2Label);
 					final DCharts createApplicationActionEventPageElementDailySummaryChart = chartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId);
 					panelContent.addComponent(createApplicationActionEventPageElementDailySummaryChart);
 
-					final Label createHeader2Label2 = LabelFactory.createHeader2Label("General Page Mode Page Visit");
+					final Label createHeader2Label2 = LabelFactory.createHeader2Label(GENERAL_PAGE_MODE_PAGE_VISIT);
 					panelContent.addComponent(createHeader2Label2);
 					final DCharts createApplicationActionEventPageModeDailySummaryChart = chartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME);
 					panelContent.addComponent(createApplicationActionEventPageModeDailySummaryChart);
@@ -281,7 +298,7 @@ public final class MinistryView extends AbstractGroupView {
 				}
 
 				getPanel().setContent(panelContent);
-				getPanel().setCaption("Ministry:" + viewRiksdagenMinistry.getNameId());
+				getPanel().setCaption(MINISTRY + viewRiksdagenMinistry.getNameId());
 				pageActionEventHelper.createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
 
 			}

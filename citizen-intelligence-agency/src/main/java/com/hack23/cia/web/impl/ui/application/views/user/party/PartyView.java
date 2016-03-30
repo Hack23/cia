@@ -26,7 +26,7 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -73,9 +73,41 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class PartyView.
  */
 @Service
-@Scope(value="prototype")
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(value = PartyView.NAME, cached = true)
 public final class PartyView extends AbstractGroupView {
+
+	private static final String GENERAL_PAGE_MODE_PAGE_VISIT = "General Page Mode Page Visit";
+
+	private static final String CURRENT_PAGE_VISIT_HISTORY = "Current Page Visit History";
+
+	private static final String PARTY_WON_DAILY_SUMMARY_CHART = "PartyWonDailySummaryChart";
+
+	private static final String VOTE_HISTORY = "VoteHistory";
+
+	private static final String COMMITTEE_BALLOT_DECISION_SUMMARY = "CommitteeBallotDecisionSummary";
+
+	private static final String COMMITTEE_ROLES = "CommitteeRoles";
+
+	private static final String GOVERNMENT_ROLES = "Government Roles";
+
+	private static final String LEADER_HISTORY = "LeaderHistory";
+
+	private static final String CURRENT_LEADERS = "Current Leaders";
+
+	private static final String MEMBER_HISTORY = "MemberHistory";
+
+	private static final String OVERVIEW = "Overview";
+
+	private static final String CHARTS_NOT_IMPLEMENTED = "Charts Not Implemented";
+
+	private static final String GHANT_NOT_IMPLEMENTED = "Ghant Not Implemented";
+
+	private static final String DOCUMENT_HISTORY = "Document History";
+
+	private static final String DOCUMENT_ACTIVITY = "Document Activity";
+
+	private static final String CURRENT_MEMBERS = "Current Members";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -85,7 +117,6 @@ public final class PartyView extends AbstractGroupView {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
 	/** The chart data manager. */
@@ -163,7 +194,7 @@ public final class PartyView extends AbstractGroupView {
 				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 						|| parameters.contains(PageMode.OVERVIEW.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Overview"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(OVERVIEW));
 
 					panelContent.addComponent(pageLinkFactory.addPartyPageLink(viewRiksdagenParty));
 
@@ -200,15 +231,15 @@ public final class PartyView extends AbstractGroupView {
 
 				} else if (parameters.contains(PageMode.CHARTS.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Charts Not Implemented"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(CHARTS_NOT_IMPLEMENTED));
 
 				} else if (parameters.contains(PartyPageMode.ROLEGHANT.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Ghant Not Implemented"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(GHANT_NOT_IMPLEMENTED));
 
 				} else if (parameters.contains(PartyPageMode.DOCUMENTHISTORY.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Document History"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_HISTORY));
 
 					final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPoliticianDocument.class);
@@ -236,14 +267,14 @@ public final class PartyView extends AbstractGroupView {
 					.addComponent(politicianDocumentBeanItemGrid);
 
 				} else if (parameters.contains(PartyPageMode.DOCUMENTACTIVITY.toString())) {
-					panelContent.addComponent(LabelFactory.createHeader2Label("Document Activity"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_ACTIVITY));
 
 					final DCharts createDocumentHistoryChart = chartDataManager.createDocumentHistoryPartyChart(pageId);
 					panelContent.addComponent(createDocumentHistoryChart);
 
 				} else if (parameters.contains(PartyPageMode.CURRENTMEMBERS.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Current Members"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(CURRENT_MEMBERS));
 
 					final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPolitician.class);
@@ -285,7 +316,7 @@ public final class PartyView extends AbstractGroupView {
 
 				} else if (parameters.contains(PartyPageMode.MEMBERHISTORY.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("MemberHistory"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(MEMBER_HISTORY));
 
 					final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPolitician.class);
@@ -327,7 +358,7 @@ public final class PartyView extends AbstractGroupView {
 
 				} else if (parameters.contains(PartyPageMode.CURRENTLEADERS.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Current Leaders"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(CURRENT_LEADERS));
 
 					final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPartyRoleMember.class);
@@ -341,7 +372,7 @@ public final class PartyView extends AbstractGroupView {
 												ViewRiksdagenPartyRoleMember_.active));
 
 						final Grid currentPartyBeanItemGrid = gridFactory.createBasicBeanItemGrid(
-								currentPartyMemberDataSource, "Current Leaders",
+								currentPartyMemberDataSource, CURRENT_LEADERS,
 								new String[] { "roleId", "personId", "firstName",
 										"lastName", "party", "active", "detail",
 										"roleCode", "fromDate", "toDate",
@@ -353,7 +384,7 @@ public final class PartyView extends AbstractGroupView {
 
 				} else if (parameters.contains(PartyPageMode.LEADERHISTORY.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("LeaderHistory"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(LEADER_HISTORY));
 
 					final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenPartyRoleMember.class);
@@ -376,7 +407,7 @@ public final class PartyView extends AbstractGroupView {
 
 				} else if (parameters.contains(PartyPageMode.GOVERNMENTROLES.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Government Roles"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(GOVERNMENT_ROLES));
 
 
 					final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = applicationManager
@@ -392,7 +423,7 @@ public final class PartyView extends AbstractGroupView {
 
 					final Grid currentGovermentMemberBeanItemGrid = gridFactory.createBasicBeanItemGrid(
 							currentGovermentMemberDataSource,
-							"Current Members",
+							CURRENT_MEMBERS,
 							new String[] { "roleId", "personId", "firstName",
 									"lastName", "detail", "active", "detail",
 									"roleCode", "fromDate", "toDate", "totalDaysServed" },
@@ -404,7 +435,7 @@ public final class PartyView extends AbstractGroupView {
 
 				} else if (parameters.contains(PartyPageMode.COMMITTEEROLES.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("CommitteeRoles"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(COMMITTEE_ROLES));
 
 					final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
@@ -418,7 +449,7 @@ public final class PartyView extends AbstractGroupView {
 											ViewRiksdagenCommitteeRoleMember_.active));
 
 					final Grid committeeMemberBeanItemGrid = gridFactory.createBasicBeanItemGrid(
-							committeeMemberDataSource, "Current Members", new String[] {
+							committeeMemberDataSource, CURRENT_MEMBERS, new String[] {
 									"roleId", "personId", "firstName", "lastName",
 									"detail", "active", "detail", "roleCode",
 									"fromDate", "toDate", "totalDaysServed" },
@@ -430,7 +461,7 @@ public final class PartyView extends AbstractGroupView {
 
 				} else if (parameters.contains(PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("CommitteeBallotDecisionSummary"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(COMMITTEE_BALLOT_DECISION_SUMMARY));
 
 					final DataContainer<ViewRiksdagenCommitteeBallotDecisionPartySummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
 							.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPartySummary.class);
@@ -456,7 +487,7 @@ public final class PartyView extends AbstractGroupView {
 
 				} else if (parameters.contains(PartyPageMode.VOTEHISTORY.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("VoteHistory"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(VOTE_HISTORY));
 
 					final BeanItemContainer<ViewRiksdagenVoteDataBallotPartySummary> partyBallotDataSource = new BeanItemContainer<>(
 							ViewRiksdagenVoteDataBallotPartySummary.class,
@@ -476,15 +507,15 @@ public final class PartyView extends AbstractGroupView {
 
 				} else if (parameters.contains(PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("PartyWonDailySummaryChart"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(PARTY_WON_DAILY_SUMMARY_CHART));
 					panelContent.addComponent(chartDataManager.createPartyLineChart(pageId));
 
 				} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Current Page Visit History"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(CURRENT_PAGE_VISIT_HISTORY));
 					panelContent.addComponent(chartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId));
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("General Page Mode Page Visit"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(GENERAL_PAGE_MODE_PAGE_VISIT));
 					panelContent.addComponent(chartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME));
 				}
 

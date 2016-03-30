@@ -38,6 +38,14 @@ import com.vaadin.ui.VerticalLayout;
  */
 public abstract class AbstractRankingView extends AbstractUserView {
 
+	private static final String PAGE_VISIT_HISTORY = "Page Visit History:";
+
+	private static final String CHARTS = "Charts:";
+
+	private static final String DATAGRID = "Datagrid:";
+
+	private static final String OVERVIEW = "Overview:";
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -90,13 +98,13 @@ public abstract class AbstractRankingView extends AbstractUserView {
 
 			panelContent.addComponent(createDescription());
 
-			getPanel().setCaption("Overview:" + event.getParameters());
+			getPanel().setCaption(OVERVIEW + event.getParameters());
 
 		} else 	if (parameters.contains(PageMode.DATAGRID.toString())) {
 
 			panelContent.addComponent(createTable());
 
-			getPanel().setCaption("Datagrid:" + event.getParameters());
+			getPanel().setCaption(DATAGRID + event.getParameters());
 
 		} else 	if (parameters.contains(PageMode.CHARTS.toString())) {
 
@@ -104,12 +112,12 @@ public abstract class AbstractRankingView extends AbstractUserView {
 			chartLayout.setSizeFull();
 
 
-			final com.vaadin.ui.Component chartPanelAll = chartDataManager.createChartPanel(createChartTimeSeriesAll(),"All");
+			final Component chartPanelAll = chartDataManager.createChartPanel(createChartTimeSeriesAll(),"All");
 			if (chartPanelAll!=null) {
 				chartLayout.addComponent(chartPanelAll);
 			}
 
-			final com.vaadin.ui.Component chartPanelCurrent = chartDataManager.createChartPanel(createChartTimeSeriesCurrent(),"Current");
+			final Component chartPanelCurrent = chartDataManager.createChartPanel(createChartTimeSeriesCurrent(),"Current");
 			if (chartPanelCurrent!=null) {
 				chartLayout.addComponent(chartPanelCurrent);
 			}
@@ -120,13 +128,13 @@ public abstract class AbstractRankingView extends AbstractUserView {
 				panelContent.addComponent(extraChartLayout);
 			}
 
-			getPanel().setCaption("Charts:" + event.getParameters());
+			getPanel().setCaption(CHARTS + event.getParameters());
 
 		} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
 
 			panelContent.addComponent(chartDataManager.createApplicationActionEventPageModeDailySummaryChart(getName()));
 
-			getPanel().setCaption("Page Visit History:" + event.getParameters());
+			getPanel().setCaption(PAGE_VISIT_HISTORY + event.getParameters());
 
 		}
 

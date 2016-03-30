@@ -22,7 +22,7 @@ import javax.annotation.PostConstruct;
 
 import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -50,9 +50,25 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class CommitteeRankingView.
  */
 @Service
-@Scope(value="prototype")
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(value = CommitteeRankingView.NAME, cached = true)
 public final class CommitteeRankingView extends AbstractRankingView {
+
+	private static final String CURRENT_PARTIES_HEADCOUNT = "Current Parties, headcount";
+
+	private static final String COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION = "Time served in Committee:ALL:CURRENT:" + "\nPoliticans served in Committee:ALL:CURRENT:"
+			+ "\nTop document author NR:ALL:YEAR:CURRENT:*FILTER:DocumnetType"
+			+ "\nTop document author SIZE:YEAR:ALL:CURRENT:*FILTER:DocumnetType"
+
+			+ "\nTop decisions NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
+			+ "\nTop Votes NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
+
+			+ "\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
+			+ "\nSearch by name";
+
+	private static final String COMMITTEE_RANKING_BY_TOPIC = "Committee Ranking by topic";
+
+	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED = "All Parties, total days served";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -62,7 +78,6 @@ public final class CommitteeRankingView extends AbstractRankingView {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
 	/** The chart data manager. */
@@ -104,16 +119,8 @@ public final class CommitteeRankingView extends AbstractRankingView {
 
 	@Override
 	protected TextArea createDescription() {
-		final TextArea totalCommitteeRankinglistLabel = new TextArea("Committee Ranking by topic",
-				"Time served in Committee:ALL:CURRENT:" + "\nPoliticans served in Committee:ALL:CURRENT:"
-						+ "\nTop document author NR:ALL:YEAR:CURRENT:*FILTER:DocumnetType"
-						+ "\nTop document author SIZE:YEAR:ALL:CURRENT:*FILTER:DocumnetType"
-
-						+ "\nTop decisions NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-						+ "\nTop Votes NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-
-						+ "\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-						+ "\nSearch by name");
+		final TextArea totalCommitteeRankinglistLabel = new TextArea(COMMITTEE_RANKING_BY_TOPIC,
+				COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION);
 		totalCommitteeRankinglistLabel.setSizeFull();
 		return totalCommitteeRankinglistLabel;
 	}
@@ -123,15 +130,15 @@ public final class CommitteeRankingView extends AbstractRankingView {
 		final Layout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-		final com.vaadin.ui.Component chartPanelAll = chartDataManager.createChartPanel(
+		final Component chartPanelAll = chartDataManager.createChartPanel(
 				dataSeriesFactory.createChartTimeSeriesTotalDaysServedCommitteeByParty(),
-				"All Parties, total days served");
+				ALL_PARTIES_TOTAL_DAYS_SERVED);
 		if (chartPanelAll != null) {
 			chartLayout.addComponent(chartPanelAll);
 		}
 
-		final com.vaadin.ui.Component chartPanelCurrent = chartDataManager.createChartPanel(
-				dataSeriesFactory.createChartTimeSeriesCurrentCommitteeByParty(), "Current Parties, headcount");
+		final Component chartPanelCurrent = chartDataManager.createChartPanel(
+				dataSeriesFactory.createChartTimeSeriesCurrentCommitteeByParty(), CURRENT_PARTIES_HEADCOUNT);
 		if (chartPanelCurrent != null) {
 			chartLayout.addComponent(chartPanelCurrent);
 		}

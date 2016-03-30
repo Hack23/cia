@@ -52,6 +52,20 @@ import com.hack23.cia.service.api.action.application.DestroyApplicationSessionRe
 @Service
 public final class ApplicationEventListener implements ApplicationListener<ApplicationEvent> {
 
+	private static final String LOG_MSG_SESSION_CREATED_SESSION_ID = "Session created SESSION_ID :{}";
+
+	private static final String ROLE_ANONYMOUS = "ROLE_ANONYMOUS";
+
+	private static final String LOG_MSG_SESSION_DESTROYED_SESSION_ID = "Session destroyed SESSION_ID :{}";
+
+	private static final String ACCESS_DENIED = "Access Denied";
+
+	private static final String AUTHORITIES = "Authorities:";
+
+	private static final String LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES = "Authorization Failure:: SessionId :{} , Authorities : {} , RequiredAuthorities : {}";
+
+	private static final String LOG_MSG_APPLICATION_EVENT = "ApplicationEvent :{}";
+
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationEventListener.class);
 
@@ -71,11 +85,11 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 	public void onApplicationEvent(final ApplicationEvent applicationEvent) {
 		if (applicationEvent instanceof HttpSessionCreatedEvent) {
 			final HttpSession httpSession = ((HttpSessionCreatedEvent) applicationEvent).getSession();
-			LOGGER.info("Session created SESSION_ID :{}", httpSession.getId());
+			LOGGER.info(LOG_MSG_SESSION_CREATED_SESSION_ID, httpSession.getId());
 		} else if (applicationEvent instanceof HttpSessionDestroyedEvent) {
 			final HttpSession httpSession = ((HttpSessionDestroyedEvent) applicationEvent).getSession();
 			final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-			authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
+			authorities.add(new SimpleGrantedAuthority(ROLE_ANONYMOUS));
 			final DestroyApplicationSessionRequest destroyApplicationSessionRequest = new DestroyApplicationSessionRequest();
 			destroyApplicationSessionRequest.setSessionId(httpSession.getId());
 
@@ -83,7 +97,7 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 			applicationManager.service(destroyApplicationSessionRequest);
 			SecurityContextHolder.getContext().setAuthentication(null);
 
-			LOGGER.info("Session destroyed SESSION_ID :{}", httpSession.getId());
+			LOGGER.info(LOG_MSG_SESSION_DESTROYED_SESSION_ID, httpSession.getId());
 		}  else if (applicationEvent instanceof AuthorizationFailureEvent) {
 			final AuthorizationFailureEvent authorizationFailureEvent = (AuthorizationFailureEvent) applicationEvent;
 
@@ -97,15 +111,15 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 
 			serviceRequest.setUserId(getUserIdFromSecurityContext());
 
-			serviceRequest.setErrorMessage("Authorities:" + authorizationFailureEvent.getAuthentication().getAuthorities() + " , RequiredAuthorities:" + authorizationFailureEvent.getConfigAttributes());
-			serviceRequest.setApplicationMessage("Access Denied");
+			serviceRequest.setErrorMessage(AUTHORITIES + authorizationFailureEvent.getAuthentication().getAuthorities() + " , RequiredAuthorities:" + authorizationFailureEvent.getConfigAttributes());
+			serviceRequest.setApplicationMessage(ACCESS_DENIED);
 
 			applicationManager
 					.service(serviceRequest);
 
-			LOGGER.info("Authorization Failure:: SessionId :{} , Authorities : {} , RequiredAuthorities : {}", sessionId,authorizationFailureEvent.getAuthentication().getAuthorities().toString(),authorizationFailureEvent.getConfigAttributes().toString());
+			LOGGER.info(LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES, sessionId,authorizationFailureEvent.getAuthentication().getAuthorities().toString(),authorizationFailureEvent.getConfigAttributes().toString());
 		} 	else {
-			LOGGER.debug("ApplicationEvent :{}", applicationEvent.toString());
+			LOGGER.debug(LOG_MSG_APPLICATION_EVENT, applicationEvent.toString());
 		}
 	}
 

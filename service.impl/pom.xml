@@ -48,10 +48,10 @@
       <artifactId>weka-dev</artifactId>
       <version>3.7.13</version>
       <exclusions>
-      	<exclusion>
-      		<artifactId>java-cup-11b-runtime</artifactId>
-      		<groupId>nz.ac.waikato.cms.weka.thirdparty</groupId>
-      	</exclusion>
+        <exclusion>
+          <artifactId>java-cup-11b-runtime</artifactId>
+          <groupId>nz.ac.waikato.cms.weka.thirdparty</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>

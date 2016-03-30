@@ -23,7 +23,7 @@ import java.util.Arrays;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -53,9 +53,11 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class AdminDataSummaryView.
  */
 @Service
-@Scope(value="prototype")
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(AdminPortalView.NAME)
 public final class AdminPortalView extends AbstractAdminView {
+
+	private static final String ADMIN_PORTAL = "Admin Portal";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -65,7 +67,6 @@ public final class AdminPortalView extends AbstractAdminView {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
 	/** The grid factory. */
@@ -110,7 +111,7 @@ public final class AdminPortalView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		final VerticalLayout content = new VerticalLayout();
 
-		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Portal");
+		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_PORTAL);
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
 

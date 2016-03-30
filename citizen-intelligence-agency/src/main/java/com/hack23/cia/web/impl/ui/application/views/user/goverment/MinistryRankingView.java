@@ -22,7 +22,7 @@ import javax.annotation.PostConstruct;
 
 import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -50,9 +50,21 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class MinistryRankingView.
  */
 @Service
-@Scope(value="prototype")
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(value = MinistryRankingView.NAME, cached = true)
 public final class MinistryRankingView extends AbstractRankingView {
+
+	private static final String MINISTRY_RANKING_BY_TOPIC_DESCRIPTION = "Time served in Ministry:ALL:CURRENT:" + "\nPoliticans served in Committee:ALL:CURRENT:"
+			+ "\nTop document author NR:ALL:YEAR:CURRENT:*FILTER:DocumnetType"
+			+ "\nTop document author SIZE:YEAR:ALL:CURRENT:*FILTER:DocumnetType"
+
+			+ "\nTop decisions NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
+			+ "\nTop Votes NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
+
+			+ "\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
+			+ "\nSearch by name";
+
+	private static final String MINISTRY_RANKING_BY_TOPIC = "Ministry Ranking by topic";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -62,7 +74,6 @@ public final class MinistryRankingView extends AbstractRankingView {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
 	/** The chart data manager. */
@@ -99,16 +110,8 @@ public final class MinistryRankingView extends AbstractRankingView {
 
 	@Override
 	protected TextArea createDescription() {
-		final TextArea totalCommitteeRankinglistLabel = new TextArea("Ministry Ranking by topic",
-				"Time served in Ministry:ALL:CURRENT:" + "\nPoliticans served in Committee:ALL:CURRENT:"
-						+ "\nTop document author NR:ALL:YEAR:CURRENT:*FILTER:DocumnetType"
-						+ "\nTop document author SIZE:YEAR:ALL:CURRENT:*FILTER:DocumnetType"
-
-						+ "\nTop decisions NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-						+ "\nTop Votes NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-
-						+ "\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-						+ "\nSearch by name");
+		final TextArea totalCommitteeRankinglistLabel = new TextArea(MINISTRY_RANKING_BY_TOPIC,
+				MINISTRY_RANKING_BY_TOPIC_DESCRIPTION);
 		totalCommitteeRankinglistLabel.setSizeFull();
 		return totalCommitteeRankinglistLabel;
 	}
@@ -118,14 +121,14 @@ public final class MinistryRankingView extends AbstractRankingView {
 		final Layout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-		final com.vaadin.ui.Component chartPanelAll = chartDataManager.createChartPanel(
+		final Component chartPanelAll = chartDataManager.createChartPanel(
 				dataSeriesFactory.createChartTimeSeriesTotalDaysServedGovernmentByParty(),
 				"All Parties, total days served");
 		if (chartPanelAll != null) {
 			chartLayout.addComponent(chartPanelAll);
 		}
 
-		final com.vaadin.ui.Component chartPanelCurrent = chartDataManager.createChartPanel(
+		final Component chartPanelCurrent = chartDataManager.createChartPanel(
 				dataSeriesFactory.createChartTimeSeriesCurrentGovernmentByParty(), "Current Parties, headcount");
 		if (chartPanelCurrent != null) {
 			chartLayout.addComponent(chartPanelCurrent);

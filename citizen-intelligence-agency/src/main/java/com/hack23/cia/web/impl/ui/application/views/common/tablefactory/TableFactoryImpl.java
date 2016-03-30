@@ -21,7 +21,6 @@ package com.hack23.cia.web.impl.ui.application.views.common.tablefactory;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.service.api.ApplicationManager;
@@ -35,9 +34,41 @@ import com.vaadin.ui.Table;
 @Service
 public final class TableFactoryImpl implements TableFactory {
 
+	/** The Constant VOTES. */
+	private static final String VOTES = "Votes";
+
+	/** The Constant COMMITTEE_PROPOSAL_SIZE. */
+	private static final String COMMITTEE_PROPOSAL_SIZE = "committeeProposalSize";
+
+	/** The Constant DOCUMENT_STATUS. */
+	private static final String DOCUMENT_STATUS = "documentStatus";
+
+	/** The Constant DOCUMENT_CONTENT. */
+	private static final String DOCUMENT_CONTENT = "documentContent";
+
+	/** The Constant DOCUMENT_ELEMENT. */
+	private static final String DOCUMENT_ELEMENT = "DocumentElement";
+
+	/** The Constant PARLIAMENT_MEMBER. */
+	private static final String PARLIAMENT_MEMBER = "Parliament member";
+
+	/** The Constant COLUMN_MISSING. */
+	private static final String COLUMN_MISSING = "Missing";
+
+	/** The Constant COLUMN_SIZE. */
+	private static final String COLUMN_SIZE = "Size";
+
+	/** The Constant COLUMN_NAME. */
+	private static final String COLUMN_NAME = "Name";
+
+	/** The Constant FIRST_AND_ONLY. */
+	private static final int FIRST_AND_ONLY = 0;
+
+	/** The Constant ZERO_MISSING. */
+	private static final String ZERO_MISSING = Long.toString(0);
+
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private ApplicationManager applicationManager;
 
 	/**
@@ -50,39 +81,40 @@ public final class TableFactoryImpl implements TableFactory {
 	@Override
 	public Table createDataSummaryTable() {
 		final Table summaryTable = new Table();
-		summaryTable.addContainerProperty("Name", String.class, null);
-		summaryTable.addContainerProperty("Size", String.class, null);
-		summaryTable.addContainerProperty("Missing", String.class, null);
+		summaryTable.addContainerProperty(COLUMN_NAME, String.class, null);
+		summaryTable.addContainerProperty(COLUMN_SIZE, String.class, null);
+		summaryTable.addContainerProperty(COLUMN_MISSING, String.class, null);
 
 		final DataContainer<DataSummary, String> dataContainer = applicationManager.getDataContainer(DataSummary.class);
 
 		final List<DataSummary> all = dataContainer.getAll();
 
 		if (!all.isEmpty()) {
-			final DataSummary dataSummary = all.get(0);
+			final DataSummary dataSummary = all.get(FIRST_AND_ONLY);
 
-			summaryTable.addItem(
-					new Object[] { "Parliament member", Long.toString(dataSummary.personSize), Long.toString(0) },
-					Integer.valueOf(1));
+			int indexNr = 1;
 
-			summaryTable.addItem(new Object[] { "DocumentElement", Long.toString(dataSummary.documentElementSize),
-					Long.toString(0) }, Integer.valueOf(2));
-			summaryTable.addItem(
-					new Object[] { "documentContent", Long.toString(dataSummary.documentContentSize),
-							Long.toString(dataSummary.documentElementSize - dataSummary.documentContentSize) },
-					Integer.valueOf(3));
+			summaryTable.addItem(new Object[] { PARLIAMENT_MEMBER, Long.toString(dataSummary.personSize), ZERO_MISSING },indexNr);
+			indexNr = indexNr + 1;
 
-			summaryTable.addItem(
-					new Object[] { "documentStatus", Long.toString(dataSummary.documentStatusSize),
-							Long.toString(dataSummary.documentElementSize - dataSummary.documentStatusSize) },
-					Integer.valueOf(4));
-			summaryTable.addItem(new Object[] { "committeeProposalSize",
-					Long.toString(dataSummary.committeeProposalSize), Long.toString(0) }, Integer.valueOf(5));
-			summaryTable
-					.addItem(
-							new Object[] { "Votes", Long.toString(dataSummary.voteSize),
-									Long.toString(dataSummary.totalBallotVotes - dataSummary.voteSize) },
-							Integer.valueOf(6));
+
+			summaryTable.addItem(new Object[] { DOCUMENT_ELEMENT, Long.toString(dataSummary.documentElementSize), ZERO_MISSING },indexNr);
+			indexNr = indexNr + 1;
+
+
+			summaryTable.addItem(new Object[] { DOCUMENT_CONTENT, Long.toString(dataSummary.documentContentSize),Long.toString(dataSummary.documentElementSize - dataSummary.documentContentSize) },indexNr);
+			indexNr = indexNr + 1;
+
+
+			summaryTable.addItem(new Object[] { DOCUMENT_STATUS, Long.toString(dataSummary.documentStatusSize),Long.toString(dataSummary.documentElementSize - dataSummary.documentStatusSize) },indexNr);
+			indexNr = indexNr + 1;
+
+
+			summaryTable.addItem(new Object[] { COMMITTEE_PROPOSAL_SIZE,Long.toString(dataSummary.committeeProposalSize), ZERO_MISSING }, indexNr);
+			indexNr = indexNr + 1;
+
+
+			summaryTable.addItem(new Object[] { VOTES, Long.toString(dataSummary.voteSize),Long.toString(dataSummary.totalBallotVotes - dataSummary.voteSize) },indexNr);
 			summaryTable.setSizeFull();
 
 		}

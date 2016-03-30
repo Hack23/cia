@@ -20,12 +20,12 @@ package com.hack23.cia.web.impl.ui.application;
 
 import java.util.Locale;
 
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
@@ -40,7 +40,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.MainView;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
-import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.ErrorHandler;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
@@ -52,17 +51,42 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 
 import ru.xpoft.vaadin.DiscoveryNavigator;
-import ru.xpoft.vaadin.SpringVaadinServlet;
 
 /**
  * The Class CitizenIntelligenceAgencyUI.
  */
 @Service(value = "ui")
-@Scope(value="prototype")
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @Theme("cia")
 @Push(transport = Transport.STREAMING)
 public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandler {
 
+
+	private static final String LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT = "Browser address: {} , application:{}, sessionId:{}, result:{}";
+
+	private static final String LOG_WARN_VAADIN_ERROR = "Vaadin error";
+
+	private static final String UNKNOWN = "unknown";
+
+	private static final String I_PHONE = "IPhone";
+
+	private static final String IPAD = "IPad";
+
+	private static final String IOS = "IOS";
+
+	private static final String ANDROID = "Android";
+
+	private static final String MAC_OSX = "MacOSX";
+
+	private static final String WINDOWS_PHONE = "WindowsPhone";
+
+	private static final String WINDOWS2 = "Windows";
+
+	private static final String LINUX = "Linux";
+
+	private static final String X_FORWARDED_FOR = "X-Forwarded-For";
+
+	private static final String CITIZEN_INTELLIGENCE_AGENCY = "Citizen Intelligence Agency";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -105,11 +129,11 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 		navigator.addView("", mainView);
 		setNavigator(navigator);
 
-		UI.getCurrent().setLocale(new Locale("en"));
+		UI.getCurrent().setLocale(Locale.ENGLISH);
 
 		final Page currentPage = Page.getCurrent();
 
-		currentPage.setTitle("Citizen Intelligence Agency");
+		currentPage.setTitle(CITIZEN_INTELLIGENCE_AGENCY);
 
 		if (getSession().getUIs().isEmpty()) {
 
@@ -126,7 +150,7 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 		serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
 
 		final ServiceResponse serviceResponse = applicationManager.service(serviceRequest);
-		LOGGER.info("Browser address: {} , application:{}, sessionId:{}, result:{}",ipInformation,webBrowser.getBrowserApplication(),serviceRequest.getSessionId(),serviceResponse.getResult().toString());
+		LOGGER.info(LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT,ipInformation,webBrowser.getBrowserApplication(),serviceRequest.getSessionId(),serviceResponse.getResult().toString());
 		}
 	}
 
@@ -141,7 +165,7 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 		String ipInformation=webBrowser.getAddress();
 
 		final HttpServletRequest httpRequest=((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
-		final String xForwardedForHeader = httpRequest.getHeader("X-Forwarded-For");
+		final String xForwardedForHeader = httpRequest.getHeader(X_FORWARDED_FOR);
 		if (xForwardedForHeader != null) {
 			final String[] split = xForwardedForHeader.split(",");
 			if (split.length != 0) {
@@ -161,23 +185,23 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 	 * @return the operating system
 	 */
 	private static String getOperatingSystem(final WebBrowser webBrowser) {
-		String osName = "unknown";
+		String osName = UNKNOWN;
 	       if (webBrowser.isLinux()) {
-			osName = "Linux";
+			osName = LINUX;
 		} else if (webBrowser.isWindows()) {
-			osName = "Windows";
+			osName = WINDOWS2;
 		} else if (webBrowser.isWindowsPhone()) {
-			osName = "WindowsPhone";
+			osName = WINDOWS_PHONE;
 		} else if (webBrowser.isMacOSX()) {
-			osName = "MacOSX";
+			osName = MAC_OSX;
 		} else if (webBrowser.isAndroid()) {
-			osName = "Android";
+			osName = ANDROID;
 		} else if (webBrowser.isIOS()) {
-			osName = "IOS";
+			osName = IOS;
 		} else if (webBrowser.isIPad()) {
-			osName = "IPad";
+			osName = IPAD;
 		} else if (webBrowser.isIPhone()) {
-			osName = "IPhone";
+			osName = I_PHONE;
 		}
 		return osName;
 	}
@@ -196,20 +220,8 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 	            getUI().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
 	            return;
 	        } else {
-	        	LOGGER.warn("Vaadin error",event.getThrowable());
+	        	LOGGER.warn(LOG_WARN_VAADIN_ERROR,event.getThrowable());
 	        }
-	}
-
-
-	/**
-	 * The Class Servlet.
-	 */
-	@WebServlet(value = "/*", loadOnStartup=1, asyncSupported = true)
-	@VaadinServletConfiguration(productionMode = true, ui = CitizenIntelligenceAgencyUI.class, widgetset = "com.hack23.cia.web.widgets.WebWidgetSet")
-	public static class Servlet extends SpringVaadinServlet {
-
-		/** The Constant serialVersionUID. */
-		private static final long serialVersionUID = 1L;
 	}
 
 

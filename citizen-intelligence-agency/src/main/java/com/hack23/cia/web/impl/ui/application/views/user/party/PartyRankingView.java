@@ -22,7 +22,7 @@ import javax.annotation.PostConstruct;
 
 import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -50,7 +50,7 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class PartyRankingView.
  */
 @Service
-@Scope(value="prototype")
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(value = PartyRankingView.NAME, cached = true)
 public final class PartyRankingView extends AbstractRankingView {
 
@@ -62,7 +62,6 @@ public final class PartyRankingView extends AbstractRankingView {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
 	/** The chart data manager. */
@@ -131,12 +130,12 @@ public final class PartyRankingView extends AbstractRankingView {
 		chartLayout.setSizeFull();
 
 
-		final com.vaadin.ui.Component chartPanelAll = chartDataManager.createChartPanel(dataSeriesFactory.createChartTimeSeriesCurrentGovernmentByParty(),"Current Government");
+		final Component chartPanelAll = chartDataManager.createChartPanel(dataSeriesFactory.createChartTimeSeriesCurrentGovernmentByParty(),"Current Government");
 		if (chartPanelAll!=null) {
 			chartLayout.addComponent(chartPanelAll);
 		}
 
-		final com.vaadin.ui.Component chartPanelCurrent = chartDataManager.createChartPanel(dataSeriesFactory.createChartTimeSeriesCurrentCommitteeByParty(),"Current Committee");
+		final Component chartPanelCurrent = chartDataManager.createChartPanel(dataSeriesFactory.createChartTimeSeriesCurrentCommitteeByParty(),"Current Committee");
 		if (chartPanelCurrent!=null) {
 			chartLayout.addComponent(chartPanelCurrent);
 		}

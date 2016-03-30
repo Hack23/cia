@@ -40,7 +40,6 @@ public final class ViewRiksdagenVoteDataBallotPoliticianSummaryDailyChartDataMan
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private ApplicationManager applicationManager;
 
 	/**

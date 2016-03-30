@@ -25,7 +25,7 @@ import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -71,9 +71,29 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class PartyView.
  */
 @Service
-@Scope(value="prototype")
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(value = DocumentView.NAME, cached = true)
 public final class DocumentView extends AbstractUserView {
+
+	private static final String GENERAL_PAGE_MODE_PAGE_VISIT = "General Page Mode Page Visit";
+
+	private static final String CURRENT_PAGE_VISIT_HISTORY = "Current Page Visit History";
+
+	private static final String DOCUMENT_ATTACHMENTS = "Document Attachments";
+
+	private static final String PERSON_REFERENCES = "Person References";
+
+	private static final String DOCUMENT_REFERENCES = "Document References";
+
+	private static final String DOCUMENT_DETAILS = "Document Details";
+
+	private static final String DOCUMENT_DATA = "Document Data";
+
+	private static final String DOCUMENT_ACTIVITY = "Document Activity";
+
+	private static final String DOCUMENT_DECISION = "Document Decision";
+
+	private static final String OVERVIEW = "Overview";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -83,7 +103,6 @@ public final class DocumentView extends AbstractUserView {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
 	/** The chart data manager. */
@@ -158,7 +177,7 @@ public final class DocumentView extends AbstractUserView {
 				if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 						|| parameters.contains(PageMode.OVERVIEW.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Overview"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(OVERVIEW));
 
 					formFactory.addTextFields(panelContent, new BeanItem<>(documentElement), DocumentElement.class,
 							Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status",
@@ -179,7 +198,7 @@ public final class DocumentView extends AbstractUserView {
 
 				} else if (parameters.contains(DocumentPageMode.DOCUMENDECISION.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Document Decision"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_DECISION));
 
 					if (documentStatusContainer != null && documentStatusContainer.getDocumentProposal() != null
 							&& documentStatusContainer.getDocumentProposal().getProposal() != null) {
@@ -196,7 +215,7 @@ public final class DocumentView extends AbstractUserView {
 
 				} else if (parameters.contains(DocumentPageMode.DOCUMENTACTIVITY.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Document Activity"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_ACTIVITY));
 
 					if (documentStatusContainer != null
 							&& documentStatusContainer.getDocumentActivityContainer() != null
@@ -214,7 +233,7 @@ public final class DocumentView extends AbstractUserView {
 
 				} else if (parameters.contains(DocumentPageMode.DOCUMENTDATA.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Document Data"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_DATA));
 
 					final List<DocumentContentData> documentContentlist = documentContentDataDataContainer
 							.getAllBy(DocumentContentData_.id, pageId);
@@ -229,7 +248,7 @@ public final class DocumentView extends AbstractUserView {
 
 				} else if (parameters.contains(DocumentPageMode.DOCUMENTDETAILS.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Document Details"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_DETAILS));
 
 					if (documentStatusContainer != null && documentStatusContainer.getDocumentDetailContainer() != null
 							&& documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList() != null) {
@@ -245,7 +264,7 @@ public final class DocumentView extends AbstractUserView {
 
 				} else if (parameters.contains(DocumentPageMode.DOCUMENTREFERENCES.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Document References"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_REFERENCES));
 
 					if (documentStatusContainer != null
 							&& documentStatusContainer.getDocumentReferenceContainer() != null
@@ -265,7 +284,7 @@ public final class DocumentView extends AbstractUserView {
 
 				} else if (parameters.contains(DocumentPageMode.PERSONREFERENCES.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Person References"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(PERSON_REFERENCES));
 
 					if (documentStatusContainer != null
 							&& documentStatusContainer.getDocumentPersonReferenceContainer() != null
@@ -286,7 +305,7 @@ public final class DocumentView extends AbstractUserView {
 
 				} else if (parameters.contains(DocumentPageMode.DOCUMENTATTACHMENTS.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Document Attachments"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_ATTACHMENTS));
 
 					if (documentStatusContainer != null
 							&& documentStatusContainer.getDocumentAttachmentContainer() != null
@@ -305,10 +324,10 @@ public final class DocumentView extends AbstractUserView {
 
 				} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Current Page Visit History"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(CURRENT_PAGE_VISIT_HISTORY));
 					panelContent.addComponent(chartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId));
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("General Page Mode Page Visit"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(GENERAL_PAGE_MODE_PAGE_VISIT));
 					panelContent.addComponent(chartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME));
 
 				}

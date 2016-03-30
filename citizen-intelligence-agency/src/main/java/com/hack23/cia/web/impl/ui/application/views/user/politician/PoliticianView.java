@@ -35,7 +35,7 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.tltv.gantt.Gantt;
@@ -88,10 +88,42 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class PoliticianView.
  */
 @Service
-@Scope(value="prototype")
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(value = PoliticianView.NAME, cached = true)
 public final class PoliticianView extends AbstractPersonView {
 
+
+	private static final String DEPARTEMENT = "Departement";
+
+	private static final String LEDIG = "LEDIG";
+
+	private static final String GOVERNMENT_EXPERIENCE = "Government experience:";
+
+	private static final String EU_EXPERIENCE = "EU experience:";
+
+	private static final String TOTAL_ASSIGNMENTS = "Total Assignments:";
+
+	private static final String SPEAKER_EXPERIENCE = "Speaker experience:";
+
+	private static final String POLITICIAN = "Politician:";
+
+	private static final String PARTY_EXPERIENCE = "Party experience:";
+
+	private static final String KAMMARUPPDRAG = "kammaruppdrag";
+
+	private static final String COMMITTEE_EXPERIENCE = "Committee experience:";
+
+	private static final String PARLIAMENT_EXPERIENCE = "Parliament experience:";
+
+	private static final String OVERVIEW = "overview";
+
+	private static final String INDICATORS = "Indicators";
+
+	private static final String CURRENT_PAGE_VISIT_HISTORY = "Current Page Visit History";
+
+	private static final String GENERAL_PAGE_MODE_PAGE_VISIT = "General Page Mode Page Visit";
+
+	private static final String CHARTS_NOT_IMPLEMENTED = "Charts Not Implemented";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -101,7 +133,6 @@ public final class PoliticianView extends AbstractPersonView {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
 	/** The chart data manager. */
@@ -163,11 +194,11 @@ public final class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PageMode.CHARTS.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label("Charts Not Implemented"));
+					panelContent.addComponent(LabelFactory.createHeader2Label(CHARTS_NOT_IMPLEMENTED));
 
 				} else if (parameters.contains(PageMode.INDICATORS.toString())) {
 
-					final Label createHeader2Label = LabelFactory.createHeader2Label("Indicators");
+					final Label createHeader2Label = LabelFactory.createHeader2Label(INDICATORS);
 					panelContent.addComponent(createHeader2Label);
 
 					final DCharts createPersonLineChart = chartDataManager.createPersonLineChart(personData.getId());
@@ -334,13 +365,13 @@ public final class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
 
-					final Label createHeader2Label = LabelFactory.createHeader2Label("Current Page Visit History");
+					final Label createHeader2Label = LabelFactory.createHeader2Label(CURRENT_PAGE_VISIT_HISTORY);
 					panelContent.addComponent(createHeader2Label);
 					final DCharts createApplicationActionEventPageElementDailySummaryChart = chartDataManager
 							.createApplicationActionEventPageElementDailySummaryChart(NAME, pageId);
 					panelContent.addComponent(createApplicationActionEventPageElementDailySummaryChart);
 
-					final Label createHeader2Label2 = LabelFactory.createHeader2Label("General Page Mode Page Visit");
+					final Label createHeader2Label2 = LabelFactory.createHeader2Label(GENERAL_PAGE_MODE_PAGE_VISIT);
 					panelContent.addComponent(createHeader2Label2);
 					final DCharts createApplicationActionEventPageModeDailySummaryChart = chartDataManager
 							.createApplicationActionEventPageModeDailySummaryChart(NAME);
@@ -366,7 +397,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 				if (viewRiksdagenPolitician != null) {
 
-					getPanel().setCaption("Politician:" + viewRiksdagenPolitician.getFirstName() + " "
+					getPanel().setCaption(POLITICIAN + viewRiksdagenPolitician.getFirstName() + " "
 							+ viewRiksdagenPolitician.getLastName() + "(" + viewRiksdagenPolitician.getParty() + ")");
 				}
 
@@ -388,7 +419,7 @@ public final class PoliticianView extends AbstractPersonView {
 	 */
 	private void createOverviewContent(final VerticalLayout panelContent, final String pageId,
 			final PersonData personData) {
-		final Label createHeader2Label = LabelFactory.createHeader2Label("overview");
+		final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
 		panelContent.addComponent(createHeader2Label);
 
 		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
@@ -457,22 +488,22 @@ public final class PoliticianView extends AbstractPersonView {
 		final VerticalLayout layout = new VerticalLayout();
 		layout.setSizeFull();
 
-		layout.addComponent(new Label("Total Assignments:" + assignmentList.size()));
+		layout.addComponent(new Label(TOTAL_ASSIGNMENTS + assignmentList.size()));
 
 		if (viewRiksdagenPolitician != null) {
 
-			layout.addComponent(new Label("Government experience:"
+			layout.addComponent(new Label(GOVERNMENT_EXPERIENCE
 					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedGovernment())));
 			layout.addComponent(new Label(
-					"Speaker experience:" + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedSpeaker())));
-			layout.addComponent(new Label("Committee experience:"
+					SPEAKER_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedSpeaker())));
+			layout.addComponent(new Label(COMMITTEE_EXPERIENCE
 					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedCommittee())));
 			layout.addComponent(
-					new Label("EU experience:" + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedEu())));
-			layout.addComponent(new Label("Parliament experience:"
+					new Label(EU_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedEu())));
+			layout.addComponent(new Label(PARLIAMENT_EXPERIENCE
 					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParliament())));
 			layout.addComponent(new Label(
-					"Party experience:" + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParty())));
+					PARTY_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParty())));
 		}
 
 		roleSummaryLayoutTabsheet.addComponent(layout);
@@ -604,7 +635,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 				Collections.sort(assignments, compare);
 
-				final String parliamentType = "kammaruppdrag";
+				final String parliamentType = KAMMARUPPDRAG;
 				for (final AssignmentData assignmentData : assignments) {
 
 					String subStepName = "";
@@ -620,11 +651,11 @@ public final class PoliticianView extends AbstractPersonView {
 
 					sameRoleSubStep.setBackgroundColor("A8D999");
 
-					if ("LEDIG".equalsIgnoreCase(assignmentData.getStatus())) {
+					if (LEDIG.equalsIgnoreCase(assignmentData.getStatus())) {
 						sameRoleSubStep.setBackgroundColor("e3e3e3");
 					} else if (parliamentType.equalsIgnoreCase(assignmentData.getAssignmentType())) {
 						sameRoleSubStep.setBackgroundColor("0eab76");
-					} else if ("Departement".equalsIgnoreCase(assignmentData.getAssignmentType())) {
+					} else if (DEPARTEMENT.equalsIgnoreCase(assignmentData.getAssignmentType())) {
 
 						sameRoleSubStep.setBackgroundColor("ded858");
 					} else {
@@ -648,10 +679,12 @@ public final class PoliticianView extends AbstractPersonView {
 	 * The Class RoleMapping.
 	 */
 	private static final class RoleMapping implements Function<AssignmentData, String> {
+		private static final String RIKSDAGSLEDAMOT = "Riksdagsledamot";
+
 		@Override
 		public String apply(final AssignmentData t) {
-			if ("kammaruppdrag".equalsIgnoreCase(t.getAssignmentType())) {
-				return "Riksdagsledamot";
+			if (KAMMARUPPDRAG.equalsIgnoreCase(t.getAssignmentType())) {
+				return RIKSDAGSLEDAMOT;
 			} else {
 				return t.getAssignmentType() + "." + t.getDetail() + " " + t.getRoleCode();
 			}

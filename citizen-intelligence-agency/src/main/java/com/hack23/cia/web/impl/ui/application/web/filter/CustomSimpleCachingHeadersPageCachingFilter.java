@@ -28,12 +28,14 @@ import net.sf.ehcache.constructs.web.filter.SimpleCachingHeadersPageCachingFilte
  */
 public final class CustomSimpleCachingHeadersPageCachingFilter extends SimpleCachingHeadersPageCachingFilter {
 
-   	@Override
+   	private static final String WEB_CACHE_MANAGER = "webCacheManager";
+
+	@Override
 	protected CacheManager getCacheManager() {
 	    	final List<CacheManager> allCacheManagers = CacheManager.ALL_CACHE_MANAGERS;
 	    	CacheManager foundCacheManager=null;
 	    	for (final CacheManager cacheManager : allCacheManagers) {
-	        	if (cacheManager.getActiveConfigurationText().contains("webCacheManager")) {
+	        	if (cacheManager.getActiveConfigurationText().contains(WEB_CACHE_MANAGER)) {
 	        		foundCacheManager=cacheManager;
 	        		continue;
 	        	}

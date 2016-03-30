@@ -42,7 +42,6 @@ public final class DataSeriesFactoryImpl implements DataSeriesFactory {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private ApplicationManager applicationManager;
 
 	/**

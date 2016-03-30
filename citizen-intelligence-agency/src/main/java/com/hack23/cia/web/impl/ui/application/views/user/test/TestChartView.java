@@ -29,7 +29,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -73,9 +73,17 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class TestChartView.
  */
 @Service
-@Scope(value="prototype")
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(value = TestChartView.NAME, cached = true)
 public final class TestChartView extends AbstractView {
+
+	private static final String CITIZEN_INTELLIGENCE_AGENCY_TEST_CHART_VIEW = "Citizen Intelligence Agency::Test Chart View";
+
+	private static final String OVERVIEW = "overview";
+
+	private static final int CHART_WIDTH_FULL = 100;
+
+	private static final int CHART_HEIGHT = 40;
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -89,7 +97,6 @@ public final class TestChartView extends AbstractView {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
 	/** The chart data manager. */
@@ -122,7 +129,7 @@ public final class TestChartView extends AbstractView {
 	public void postConstruct() {
 		setSizeFull();
 
-		setCaption("Citizen Intelligence Agency::Test Chart View	");
+		setCaption(CITIZEN_INTELLIGENCE_AGENCY_TEST_CHART_VIEW);
 
 		final VerticalLayout layout = new VerticalLayout();
 		layout.setMargin(true);
@@ -140,7 +147,7 @@ public final class TestChartView extends AbstractView {
 
 		layout.addComponent(pageModeContent);
 
-		pageModeContent.addComponent(new Label("overview"));
+		pageModeContent.addComponent(new Label(OVERVIEW));
 
 		createHighChartTest();
 
@@ -165,7 +172,7 @@ public final class TestChartView extends AbstractView {
 		final String parameters = event.getParameters();
 
 		if (StringUtils.isEmpty(parameters) ||parameters.contains(PageMode.OVERVIEW.toString())) {
-				pageModeContent.addComponent(new Label("overview"));
+				pageModeContent.addComponent(new Label(OVERVIEW));
 
 				createHighChartTest();
 
@@ -213,8 +220,8 @@ public final class TestChartView extends AbstractView {
 
 		try {
 		   final HighChart pieChart = HighChartFactory.renderChart(pieConfiguration);
-		   pieChart.setHeight(40, Unit.PERCENTAGE);
-		   pieChart.setWidth(100, Unit.PERCENTAGE);
+		   pieChart.setHeight(CHART_HEIGHT, Unit.PERCENTAGE);
+		   pieChart.setWidth(CHART_WIDTH_FULL, Unit.PERCENTAGE);
 		   pageModeContent.addComponent(pieChart);
 		   pageModeContent.setComponentAlignment(pieChart, Alignment.TOP_CENTER);
 		} catch (final HighChartsException e) {

@@ -22,7 +22,7 @@ import javax.annotation.PostConstruct;
 
 import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +47,7 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class PoliticianRankingView.
  */
 @Service
-@Scope(value="prototype")
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(value = PoliticianRankingView.NAME, cached = true)
 public final class PoliticianRankingView extends AbstractRankingView {
 
@@ -59,7 +59,6 @@ public final class PoliticianRankingView extends AbstractRankingView {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
 	/** The politician data source. */

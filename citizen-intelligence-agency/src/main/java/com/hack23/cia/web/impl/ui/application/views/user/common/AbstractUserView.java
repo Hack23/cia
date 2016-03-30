@@ -34,6 +34,8 @@ import com.vaadin.ui.VerticalLayout;
  */
 public abstract class AbstractUserView extends Panel implements View {
 
+	private static final String OVERVIEW = "overview";
+
 	/** The Constant DAYS_PER_STANDARD_YEAR. */
 	private static final long DAYS_PER_STANDARD_YEAR = 365L;
 
@@ -80,7 +82,7 @@ public abstract class AbstractUserView extends Panel implements View {
 
 		layout.addComponent(pageModeContent);
 
-		pageModeContent.addComponent(new Label("overview"));
+		pageModeContent.addComponent(new Label(OVERVIEW));
 		pageModeContent.addComponent(barmenu);
 
 		panel = new Panel(panelName);

@@ -23,7 +23,7 @@ import java.util.Arrays;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +38,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFacto
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItem;
@@ -55,9 +56,11 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class AdminDataSummaryView.
  */
 @Service
-@Scope(value="prototype")
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(AdminAgencyView.NAME)
 public final class AdminAgencyView extends AbstractAdminView {
+
+	private static final String ADMIN_AGENCY = "Admin Agency";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -67,7 +70,6 @@ public final class AdminAgencyView extends AbstractAdminView {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
 	/** The grid factory. */
@@ -112,7 +114,7 @@ public final class AdminAgencyView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		final VerticalLayout content = new VerticalLayout();
 
-		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Agency");
+		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_AGENCY);
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
 
@@ -140,7 +142,7 @@ public final class AdminAgencyView extends AbstractAdminView {
 			final VerticalLayout rightLayout = new VerticalLayout();
 			rightLayout.setSizeFull();
 			final HorizontalLayout horizontalLayout = new HorizontalLayout();
-			horizontalLayout.setWidth("100%");
+			horizontalLayout.setWidth(ContentSize.FULL_SIZE);
 			content.addComponent(horizontalLayout);
 			horizontalLayout.addComponent(leftLayout);
 			horizontalLayout.addComponent(rightLayout);

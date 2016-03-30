@@ -24,7 +24,7 @@ import javax.annotation.PostConstruct;
 
 import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -58,9 +58,11 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class AdminDataSummaryView.
  */
 @Service
-@Scope(value="prototype")
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(AdminApplicationEventsView.NAME)
 public final class AdminApplicationEventsView extends AbstractAdminView {
+
+	private static final String ADMIN_APPLICATION_ACTION_EVENT = "Admin Application Action Event";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -70,7 +72,6 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 
 	/** The application manager. */
 	@Autowired
-	@Qualifier("ApplicationManager")
 	private transient ApplicationManager applicationManager;
 
 	/** The grid factory. */
@@ -119,7 +120,7 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 	private void createListAndForm(final String pageId) {
 		final VerticalLayout content = new VerticalLayout();
 
-		final Label createHeader2Label = LabelFactory.createHeader2Label("Admin Application Action Event");
+		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_APPLICATION_ACTION_EVENT);
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
 
