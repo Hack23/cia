@@ -89,14 +89,8 @@ public final class RiksdagenApiImpl implements RiksdagenApi {
 	/** The Constant DOCUMENT_LIST_CHANGED_DATE. */
 	private static final String DOCUMENT_LIST_CHANGED_DATE = "http://data.riksdagen.se/dokumentlista/?sok=&doktyp=&rm=&from=${CHANGED_SINCE}&tom=${CHANGED_TO}&ts=&bet=&tempbet=&nr=&org=&iid=&webbtv=&talare=&exakt=&planering=&sort=datum&sortorder=asc&rapport=&utformat=xml&a=";
 
-	/** The Constant DOCUMENT_LIST_PERSON. */
-	private static final String DOCUMENT_LIST_PERSON = "http://data.riksdagen.se/dokumentlista/?sok=&doktyp=&rm=&from=${FROM}&tom=${TO}&ts=&bet=&tempbet=&nr=&org=&iid=${PERSON_ID}&webbtv=&talare=&exakt=&planering=&sort=datum&sortorder=asc&rapport=&utformat=xml&a=";
-
 	/** The Constant DOCUMENT_LIST_TYPE. */
 	private static final String DOCUMENT_LIST_TYPE = "http://data.riksdagen.se/dokumentlista/?rm=&typ=${TYPE}&d=&ts=&parti=&iid=&bet=&org=&kat=&sz=200&sort=c&utformat=xml";
-
-	/** The Constant DOCUMENT_LIST_TYPE_YEAR. */
-	private static final String DOCUMENT_LIST_TYPE_YEAR = "http://data.riksdagen.se/dokumentlista/?rm=${YEAR}&doktyp=${TYPE}&d=&ts=&parti=&iid=&bet=&org=&kat=&sz=200&sort=c&utformat=xml";
 
 	/** The Constant DOCUMENT_LIST_YEAR. */
 	private static final String DOCUMENT_LIST_YEAR = "http://data.riksdagen.se/dokumentlista/?rm=${YEAR}&typ=&d=&ts=&parti=&iid=&bet=&org=&kat=&sz=200&sort=c&utformat=xml";
@@ -163,9 +157,6 @@ public final class RiksdagenApiImpl implements RiksdagenApi {
 
 	/** The Constant PERSON. */
 	private static final String PERSON = "http://data.riksdagen.se/person/${ID_KEY}";
-
-	/** The Constant PERSON_ID_KEY. */
-	private static final String PERSON_ID_KEY = "${PERSON_ID}";
 
 	/** The Constant PERSON_LIST. */
 	private static final String PERSON_LIST = "http://data.riksdagen.se/personlista/?iid=&fnamn=&enamn=&f_ar=&kn=&parti=&valkrets=&rdlstatus=samtliga&org=";
@@ -337,10 +328,20 @@ public final class RiksdagenApiImpl implements RiksdagenApi {
 		return result;
 	}
 
+
+	/**
+	 * Fix broken url.
+	 *
+	 * @param nextPage
+	 *            the next page
+	 * @return the string
+	 */
 	private static String fixBrokenUrl(final String nextPage) {
 		if (nextPage.startsWith("//")) {
 			return "http:" + nextPage;
-		} else return nextPage;
+		} else {
+			return nextPage;
+		}
 	}
 
 	/**
@@ -392,7 +393,7 @@ public final class RiksdagenApiImpl implements RiksdagenApi {
 	public List<VoteData> getBallot(final String id) throws DataFailureException {
 		final String url = BALLOT.replace(ID_KEY, id);
 
-		BallotContainer ballotContainer;
+		final BallotContainer ballotContainer;
 		try {
 			ballotContainer = ((JAXBElement<BallotContainer>) xmlAgent.unmarshallXml(
 					riksdagenBallotMarshaller, url,
@@ -471,14 +472,7 @@ public final class RiksdagenApiImpl implements RiksdagenApi {
 	@Override
 	public DocumentContentData getDocumentContent(final String id) throws DataFailureException {
 		try {
-			final String url = DOCUMENT_CONTENT.replace(DOC_ID_KEY, id);
-			final DocumentContentData documentContentData = new DocumentContentData();
-			documentContentData.setId(id);
-
-			String content;
-			content = xmlAgent.retriveContent(url);
-			documentContentData.setContent(content);
-			return documentContentData;
+			return new DocumentContentData().withId(id).withContent(xmlAgent.retriveContent(DOCUMENT_CONTENT.replace(DOC_ID_KEY, id)));
 		} catch (final Exception e) {
 			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_CONTENT_FOR_ID_S_FROM_DATA_RIKSDAGEN_SE,id);
 			throw new DataFailureException(e);

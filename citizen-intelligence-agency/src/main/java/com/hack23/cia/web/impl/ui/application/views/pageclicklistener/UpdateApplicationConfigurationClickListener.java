@@ -74,7 +74,7 @@ public final class UpdateApplicationConfigurationClickListener implements ClickL
 	public void buttonClick(final ClickEvent event) {
 		final ServiceResponse response = applicationManager.service(request);
 		if (ServiceResult.SUCCESS == response.getResult()) {
-			LOGGER.info(LOG_UPDATE_APPLICATION_CONFIGURATION,request.getApplicationConfigurationId() );
+			LOGGER.info(LOG_UPDATE_APPLICATION_CONFIGURATION,request.getApplicationConfigurationId());
 
 			UI.getCurrent().getNavigator().navigateTo(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME + "/" + request.getApplicationConfigurationId());
 

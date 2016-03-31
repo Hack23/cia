@@ -88,7 +88,7 @@ public final class SearchDocumentClickListener implements ClickListener {
 			Notification.show(SEARCH_FAILED,
 	                  ERROR_MESSAGE,
 	                  Notification.Type.WARNING_MESSAGE);
-			LOGGER.info(LOG_MSG_SEARCH_DOCUMENT_FAILURE,reqisterRequest.getSearchExpression() );
+			LOGGER.info(LOG_MSG_SEARCH_DOCUMENT_FAILURE,reqisterRequest.getSearchExpression());
 		}
 	}
 }

@@ -26,7 +26,7 @@ public enum PageMode {
 	/** THE OVERVIEW. */
 	OVERVIEW,
 
-/** THE CHARTS. */
+	/** THE CHARTS. */
 	CHARTS,
 
 	/** THE DATA GRID. */

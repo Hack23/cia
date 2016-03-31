@@ -287,8 +287,7 @@ public final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 	 */
 	private void startSwedishParliamentPersonLoading() {
 		try {
-			List<PersonElement> personList;
-			personList = riksdagenApi.getPersonList().getPerson();
+			final List<PersonElement> personList =riksdagenApi.getPersonList().getPerson();
 			final Map<String, String> currentSaved = importService.getPersonMap();
 
 			for (final PersonElement personElement : personList) {

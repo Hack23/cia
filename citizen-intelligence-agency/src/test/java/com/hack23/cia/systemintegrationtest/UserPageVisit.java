@@ -222,7 +222,7 @@ public final class UserPageVisit extends Assert {
 			waitForBrowser(10);
 			waitTimeForPageLoad=waitTimeForPageLoad + 10;
 			if (waitTimeForPageLoad > WAIT_FOR_PAGE_ELEMENT) {
-				fail("Exceeded timeout:" + WAIT_FOR_PAGE_ELEMENT +" to find text:" + text );
+				fail("Exceeded timeout:" + WAIT_FOR_PAGE_ELEMENT +" to find text:" + text);
 			}
 		}
 	}

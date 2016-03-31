@@ -117,8 +117,7 @@ public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 	 */
 	private void startWorldbankCountryLoading() {
 		try {
-			List<CountryElement> countryList;
-			countryList = worldbankApi.getCountries();
+			final List<CountryElement> countryList = worldbankApi.getCountries();
 			final Map<String, String> currentSaved = importService
 					.getWorldBankCountryMap();
 
@@ -139,30 +138,26 @@ public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 	private void startWorldBankDataLoading() {
 		try {
 			final List<IndicatorElement> indicatorlist = importService.getAllIndicators();
-//			final List<CountryElement> countryList = worldbankApi.getCountries();
+			final List<CountryElement> countryList = worldbankApi.getCountries();
 
 			final Map<String, String> currentSaved = importService
 					.getWorldBankDataMap();
 
 
 			for (final IndicatorElement indicator : indicatorlist) {
-		//		for (final CountryElement country : countryList) {
+				for (final CountryElement country : countryList) {
 					final List<String> load = new ArrayList<>();
-//					if (country.getIso2Code() != null
-//							&& country.getIso2Code().length() > 0) {
-						final String swedenIsoCode = "SE";
-						load.add(swedenIsoCode);
+					if (country.getIso2Code() != null
+							&& country.getIso2Code().length() > 0) {
+						load.add(country.getIso2Code());
 						load.add(indicator.getId());
 
-						if (!currentSaved.containsKey(swedenIsoCode
-								+ "." + indicator.getId())) {
-							sendMessage(dataWorkdestination,
-
-									(Serializable) load);
+						if (!currentSaved.containsKey(country.getIso2Code()	+ '.' + indicator.getId())) {
+							sendMessage(dataWorkdestination,(Serializable) load);
 						}
 					}
-//				}
-//			}
+				}
+			}
 		} catch (final Exception e1) {
 			LOGGER.warn("jms", e1);
 		}
@@ -173,8 +168,7 @@ public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 	 */
 	private void startWorldBankIndicatorLoading() {
 		try {
-			List<IndicatorElement> list;
-			list = worldbankApi.getIndicators();
+			final List<IndicatorElement> list =worldbankApi.getIndicators();
 
 			final Map<String, String> currentSaved = importService
 					.getWorldBankIndicatorElementMap();

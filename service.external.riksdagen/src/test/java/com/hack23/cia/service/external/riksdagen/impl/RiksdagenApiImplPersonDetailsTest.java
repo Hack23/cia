@@ -47,7 +47,7 @@ AbstractRiksdagenFunctionalIntegrationTest {
 	public void getPersonMixedTest() throws Exception {
 		final PersonContainerElement personList = riksdagenApi.getPersonList();
 		assertNotNull(personList);
-		assertTrue(personList.getPerson().size()>= 1291 );
+		assertTrue(personList.getPerson().size()>= 1291);
 
 		final PersonElement person = personList.getPerson().get(0);
 

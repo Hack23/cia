@@ -79,7 +79,7 @@ public final class RegisterUserClickListener implements ClickListener {
 			Notification.show(REGISTER_FAILED,
 	                  ERROR_MESSAGE,
 	                  Notification.Type.WARNING_MESSAGE);
-			LOGGER.info(REGISTER_USER_FAILURE,reqisterRequest.getUsername() );
+			LOGGER.info(REGISTER_USER_FAILURE,reqisterRequest.getUsername());
 		}
 	}
 }

@@ -60,7 +60,7 @@ MessageListener {
 
 	@Override
 	public void onMessage(final Message message) {
-		String ballotId;
+		final String ballotId;
 		try {
 			ballotId = (String) ((ObjectMessage) message).getObject();
 			try {

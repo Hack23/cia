@@ -41,6 +41,9 @@ import com.hack23.cia.service.data.api.DataDAO;
 @Repository("DataDAOImpl")
 public final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Long> implements DataDAO {
 
+	/** The Constant EXPECTED_NR_ELEMENTS. */
+	private static final int EXPECTED_NR_ELEMENTS = 2;
+
 	/** The entity manager. */
 	@PersistenceContext(name = "ciaPersistenceUnit")
 	private EntityManager entityManager;
@@ -69,9 +72,9 @@ public final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Lon
 		final List<String> resultList= new ArrayList<>();
 
 		for (final Object[]  objects : valueArray) {
-			if (objects.length == 2) {
+			if (objects.length == EXPECTED_NR_ELEMENTS) {
 				int index=0;
-				StringBuilder stringBuilder = new StringBuilder();
+				final StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.append(((Country)  objects[index]).getId());
 				index = index +1;
 				stringBuilder.append('.');

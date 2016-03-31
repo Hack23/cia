@@ -78,7 +78,7 @@ public final class ApplicationConfigurationServiceImpl implements ApplicationCon
 
 			return applicationConfiguration;
 		} else {
-			return findListByProperty.iterator().next();
+			return findListByProperty.get(0);
 		}
 
 	}
