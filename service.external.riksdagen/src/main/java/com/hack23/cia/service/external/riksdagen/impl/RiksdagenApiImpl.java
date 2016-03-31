@@ -232,6 +232,55 @@ public final class RiksdagenApiImpl implements RiksdagenApi {
 	/** The Constant YYYY_MM_DD. */
 	private static final String YYYY_MM_DD = "yyyy-MM-dd";
 
+	/** The person list unmarshaller. */
+	@Autowired
+	@Qualifier("riksdagenPersonListMarshaller")
+	private Unmarshaller personListUnmarshaller;
+
+	/** The person unmarshaller. */
+	@Autowired
+	@Qualifier("riksdagenPersonMarshaller")
+	private Unmarshaller personUnmarshaller;
+
+	/** The riksdagen ballot list marshaller. */
+	@Autowired
+	@Qualifier("riksdagenBallotListMarshaller")
+	private Unmarshaller riksdagenBallotListMarshaller;
+
+
+	/** The riksdagen ballot marshaller. */
+	@Autowired
+	@Qualifier("riksdagenBallotMarshaller")
+	private Unmarshaller riksdagenBallotMarshaller;
+
+	/** The riksdagen committee proposal marshaller. */
+	@Autowired
+	@Qualifier("riksdagenCommitteeProposalMarshaller")
+	private Unmarshaller riksdagenCommitteeProposalMarshaller;
+
+	/** The riksdagen document list marshaller. */
+	@Autowired
+	@Qualifier("riksdagenDocumentListMarshaller")
+	private Unmarshaller riksdagenDocumentListMarshaller;
+
+	/** The riksdagen document status marshaller. */
+	@Autowired
+	@Qualifier("riksdagenDocumentStatusMarshaller")
+	private Unmarshaller riksdagenDocumentStatusMarshaller;
+
+	/** The xml agent. */
+	@Autowired
+	private XmlAgent xmlAgent;
+
+
+	/**
+	 * Instantiates a new riksdagen api impl.
+	 */
+	public RiksdagenApiImpl() {
+		super();
+	}
+
+
 	/**
 	 * Best guess vote date.
 	 *
@@ -336,56 +385,6 @@ public final class RiksdagenApiImpl implements RiksdagenApi {
 			ballotDate = bestGuessVoteDate(ballotContainer);
 		}
 		return ballotDate;
-	}
-
-
-	/** The person list unmarshaller. */
-	@Autowired
-	@Qualifier("riksdagenPersonListMarshaller")
-	private Unmarshaller personListUnmarshaller;
-
-	/** The person unmarshaller. */
-	@Autowired
-	@Qualifier("riksdagenPersonMarshaller")
-	private Unmarshaller personUnmarshaller;
-
-	/** The riksdagen ballot list marshaller. */
-	@Autowired
-	@Qualifier("riksdagenBallotListMarshaller")
-	private Unmarshaller riksdagenBallotListMarshaller;
-
-
-	/** The riksdagen ballot marshaller. */
-	@Autowired
-	@Qualifier("riksdagenBallotMarshaller")
-	private Unmarshaller riksdagenBallotMarshaller;
-
-	/** The riksdagen committee proposal marshaller. */
-	@Autowired
-	@Qualifier("riksdagenCommitteeProposalMarshaller")
-	private Unmarshaller riksdagenCommitteeProposalMarshaller;
-
-	/** The riksdagen document list marshaller. */
-	@Autowired
-	@Qualifier("riksdagenDocumentListMarshaller")
-	private Unmarshaller riksdagenDocumentListMarshaller;
-
-	/** The riksdagen document status marshaller. */
-	@Autowired
-	@Qualifier("riksdagenDocumentStatusMarshaller")
-	private Unmarshaller riksdagenDocumentStatusMarshaller;
-
-	/** The xml agent. */
-	@Autowired
-	private XmlAgent xmlAgent;
-
-
-
-	/**
-	 * Instantiates a new riksdagen api impl.
-	 */
-	public RiksdagenApiImpl() {
-		super();
 	}
 
 
