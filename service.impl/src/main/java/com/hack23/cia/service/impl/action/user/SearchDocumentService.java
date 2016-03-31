@@ -81,7 +81,7 @@ public final class SearchDocumentService extends
 	public SearchDocumentResponse processService(
 			final SearchDocumentRequest serviceRequest) {
 
-		LOGGER.info(serviceRequest.getClass().getSimpleName() +":" + serviceRequest.getSearchExpression());
+		LOGGER.info("{}:{}",serviceRequest.getClass().getSimpleName(),serviceRequest.getSearchExpression());
 
 
 		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();

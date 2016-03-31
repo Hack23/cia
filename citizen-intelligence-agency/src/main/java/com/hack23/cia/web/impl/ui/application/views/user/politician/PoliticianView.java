@@ -402,7 +402,7 @@ public final class PoliticianView extends AbstractPersonView {
 				if (viewRiksdagenPolitician != null) {
 
 					getPanel().setCaption(POLITICIAN + viewRiksdagenPolitician.getFirstName() + " "
-							+ viewRiksdagenPolitician.getLastName() + "(" + viewRiksdagenPolitician.getParty() + ")");
+							+ viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')');
 				}
 
 			}
@@ -648,7 +648,7 @@ public final class PoliticianView extends AbstractPersonView {
 						subStepName = assignmentData.getRoleCode();
 					}
 
-					final SubStep sameRoleSubStep = new SubStep(stepName + "." + subStepName);
+					final SubStep sameRoleSubStep = new SubStep(stepName + '.' + subStepName);
 
 					sameRoleSubStep.setBackgroundColor("A8D999");
 
@@ -687,7 +687,7 @@ public final class PoliticianView extends AbstractPersonView {
 			if (KAMMARUPPDRAG.equalsIgnoreCase(t.getAssignmentType())) {
 				return RIKSDAGSLEDAMOT;
 			} else {
-				return t.getAssignmentType() + "." + t.getDetail() + " " + t.getRoleCode();
+				return t.getAssignmentType() + '.' + t.getDetail() + " " + t.getRoleCode();
 			}
 
 		}

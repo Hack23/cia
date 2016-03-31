@@ -35,6 +35,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.hack23.cia.model.external.vdem.indicators.impl.CountryQuestionData;
 import com.hack23.cia.model.external.vdem.indicators.impl.CountryQuestionDataEmbeddedId;
@@ -106,7 +107,6 @@ public final class VdemServiceImpl implements VdemService {
 
 			final CSVParser parser = new CSVParser(in, CSVFormat.EXCEL.withHeader().withDelimiter(','));
 
-			// Iterable<CSVRecord> records = CSVFormat.DEFAULT.parse(in);
 			for (final CSVRecord record : parser) {
 				final String countryName = record.get("country_name");
 				final String countryId = record.get("country_id");
@@ -127,14 +127,15 @@ public final class VdemServiceImpl implements VdemService {
 
 							try {
 								final String questionValue = record.get(question.getTag());
-								if (questionValue != null && questionValue.trim().length() > 0) {
+
+								if (questionValue != null && StringUtils.hasText(questionValue)) {
 									final CountryQuestionData countryQuestionData = new CountryQuestionData();
 									final CountryQuestionDataEmbeddedId embeddedId = new CountryQuestionDataEmbeddedId();
 
 									embeddedId.setCountryName(countryName);
 									embeddedId.setCountryId(countryId);
 									embeddedId.setIndicatorId(question.getTag());
-									embeddedId.setYear(Integer.valueOf(year));
+									embeddedId.setYear(Integer.parseInt(year));
 									embeddedId.setCountryId(countryId);
 
 									countryQuestionData.setEmbeddedId(embeddedId);
@@ -144,12 +145,12 @@ public final class VdemServiceImpl implements VdemService {
 									countryQuestionData.setGapend(gapEnd);
 									countryQuestionData.setCodingend(codingEnd);
 									countryQuestionData.setCowCode(cowCode);
-									countryQuestionData.setQuestionValue(questionValue);
+									countryQuestionData.setQuestionValue(questionValue.trim());
 
 									list.add(countryQuestionData);
 								}
 							} catch (final Exception e) {
-								LOGGER.info("Missing value for:" + question.getTag());
+								LOGGER.info("Missing value for:{}", question.getTag());
 							}
 						}
 					}
@@ -159,8 +160,10 @@ public final class VdemServiceImpl implements VdemService {
 				LOGGER.info("Found vdem data for country:{} year:{} data points:{}",countryName,year,afterSize -currentSize);
 
 			}
+			parser.close();
 
 		} catch (final IOException e) {
+
 			LOGGER.warn("Problem loading vdem data", e);
 		}
 

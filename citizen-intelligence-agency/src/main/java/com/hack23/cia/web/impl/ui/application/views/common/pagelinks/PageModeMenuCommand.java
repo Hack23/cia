@@ -82,7 +82,11 @@ public final class PageModeMenuCommand implements Command {
 	public PageModeMenuCommand(final String page, final PageMode pageMode,final String part) {
 		super();
 		this.page = page;
-		pageReference = pageMode.toString() + PAGE_SEPARATOR + part;
+		final StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(pageMode);
+		stringBuilder.append(PAGE_SEPARATOR);
+		stringBuilder.append(part);
+		pageReference = stringBuilder.toString();
 	}
 
 

@@ -176,7 +176,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	@Override
 	public Link createPoliticianPageLink(final PersonData personData) {
 		final Link pageLink = new Link(POLITICIAN
-				+ personData.getFirstName() + " "
+				+ personData.getFirstName() + ' '
 				+ personData.getLastName(), new ExternalResource(PAGE_PREFIX
 						+ UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + personData.getId()));
 		pageLink.setId(ViewAction.VISIT_POLITICIAN_VIEW.name() + PAGE_SEPARATOR

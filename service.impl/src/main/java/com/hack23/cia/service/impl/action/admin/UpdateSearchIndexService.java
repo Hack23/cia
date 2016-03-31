@@ -82,7 +82,7 @@ public final class UpdateSearchIndexService extends
 
 
 		if (userAccount != null) {
-			LOGGER.info(serviceRequest.getClass().getSimpleName() +" started:" + userAccount.getEmail());
+			LOGGER.info("{} started:{}", serviceRequest.getClass().getSimpleName(),userAccount.getEmail());
 
 			eventRequest.setUserId(userAccount.getUserId());
 		}

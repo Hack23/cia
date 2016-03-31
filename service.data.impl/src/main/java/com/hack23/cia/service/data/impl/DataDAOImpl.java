@@ -69,7 +69,15 @@ public final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Lon
 		final List<String> resultList= new ArrayList<>();
 
 		for (final Object[]  objects : valueArray) {
-			resultList.add(((Country)  objects[0]).getId() + "." + ((Indicator)  objects[1]).getId());
+			if (objects.length == 2) {
+				int index=0;
+				StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder.append(((Country)  objects[index]).getId());
+				index = index +1;
+				stringBuilder.append('.');
+				stringBuilder.append(((Indicator)  objects[index]).getId());
+				resultList.add(stringBuilder.toString());
+			}
 		}
 		return resultList;
 	}
