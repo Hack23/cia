@@ -47,8 +47,6 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.AdminChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.DocumentChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
@@ -75,12 +73,6 @@ import ru.xpoft.vaadin.VaadinView;
 @Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(value = DocumentView.NAME, cached = true)
 public final class DocumentView extends AbstractUserView {
-
-	/** The Constant GENERAL_PAGE_MODE_PAGE_VISIT. */
-	private static final String GENERAL_PAGE_MODE_PAGE_VISIT = "General Page Mode Page Visit";
-
-	/** The Constant CURRENT_PAGE_VISIT_HISTORY. */
-	private static final String CURRENT_PAGE_VISIT_HISTORY = "Current Page Visit History";
 
 	/** The Constant DOCUMENT_ATTACHMENTS. */
 	private static final String DOCUMENT_ATTACHMENTS = "Document Attachments";
@@ -115,14 +107,6 @@ public final class DocumentView extends AbstractUserView {
 	/** The application manager. */
 	@Autowired
 	private transient ApplicationManager applicationManager;
-
-	/** The chart data manager. */
-	@Autowired
-	private transient DocumentChartDataManager chartDataManager;
-
-	/** The admin chart data manager. */
-	@Autowired
-	private transient AdminChartDataManager adminChartDataManager;
 
 	/** The menu item factory. */
 	@Autowired
@@ -339,11 +323,7 @@ public final class DocumentView extends AbstractUserView {
 
 				} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
 
-					panelContent.addComponent(LabelFactory.createHeader2Label(CURRENT_PAGE_VISIT_HISTORY));
-					panelContent.addComponent(adminChartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId));
-
-					panelContent.addComponent(LabelFactory.createHeader2Label(GENERAL_PAGE_MODE_PAGE_VISIT));
-					panelContent.addComponent(adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME));
+					createPageVisitHistory(NAME,pageId,panelContent);
 
 				}
 

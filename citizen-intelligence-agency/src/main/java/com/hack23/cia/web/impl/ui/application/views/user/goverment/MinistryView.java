@@ -38,7 +38,6 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.AdminChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.DocumentChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
@@ -73,12 +72,6 @@ public final class MinistryView extends AbstractGroupView {
 	/** The Constant MINISTRY. */
 	private static final String MINISTRY = "Ministry:";
 
-	/** The Constant GENERAL_PAGE_MODE_PAGE_VISIT. */
-	private static final String GENERAL_PAGE_MODE_PAGE_VISIT = "General Page Mode Page Visit";
-
-	/** The Constant CURRENT_PAGE_VISIT_HISTORY. */
-	private static final String CURRENT_PAGE_VISIT_HISTORY = "Current Page Visit History";
-
 	/** The Constant ROLE_GHANT. */
 	private static final String ROLE_GHANT = "Role Ghant";
 
@@ -110,10 +103,6 @@ public final class MinistryView extends AbstractGroupView {
 	/** The chart data manager. */
 	@Autowired
 	private transient DocumentChartDataManager chartDataManager;
-
-	/** The admin chart data manager. */
-	@Autowired
-	private transient AdminChartDataManager adminChartDataManager;
 
 	/** The menu item factory. */
 	@Autowired
@@ -294,20 +283,7 @@ public final class MinistryView extends AbstractGroupView {
 					panelContent.addComponent(LabelFactory.createHeader2Label(ROLE_GHANT));
 				} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
 
-					final Label createHeader2Label = LabelFactory.createHeader2Label(CURRENT_PAGE_VISIT_HISTORY);
-					panelContent.addComponent(createHeader2Label);
-					final DCharts createApplicationActionEventPageElementDailySummaryChart = adminChartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId);
-					panelContent.addComponent(createApplicationActionEventPageElementDailySummaryChart);
-
-					final Label createHeader2Label2 = LabelFactory.createHeader2Label(GENERAL_PAGE_MODE_PAGE_VISIT);
-					panelContent.addComponent(createHeader2Label2);
-					final DCharts createApplicationActionEventPageModeDailySummaryChart = adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME);
-					panelContent.addComponent(createApplicationActionEventPageModeDailySummaryChart);
-
-					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
-					panelContent.setExpandRatio(createApplicationActionEventPageElementDailySummaryChart, ContentRatio.GRID);
-					panelContent.setExpandRatio(createHeader2Label2,ContentRatio.SMALL);
-					panelContent.setExpandRatio(createApplicationActionEventPageModeDailySummaryChart, ContentRatio.GRID);
+					createPageVisitHistory(NAME,pageId,panelContent);
 
 				}
 

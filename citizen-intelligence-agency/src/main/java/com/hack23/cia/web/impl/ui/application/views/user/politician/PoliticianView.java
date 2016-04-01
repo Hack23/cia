@@ -58,7 +58,6 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.AdminChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.DocumentChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.GenericChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.PoliticianChartDataManager;
@@ -135,12 +134,6 @@ public final class PoliticianView extends AbstractPersonView {
 	/** The Constant INDICATORS. */
 	private static final String INDICATORS = "Indicators";
 
-	/** The Constant CURRENT_PAGE_VISIT_HISTORY. */
-	private static final String CURRENT_PAGE_VISIT_HISTORY = "Current Page Visit History";
-
-	/** The Constant GENERAL_PAGE_MODE_PAGE_VISIT. */
-	private static final String GENERAL_PAGE_MODE_PAGE_VISIT = "General Page Mode Page Visit";
-
 	/** The Constant CHARTS_NOT_IMPLEMENTED. */
 	private static final String CHARTS_NOT_IMPLEMENTED = "Charts Not Implemented";
 
@@ -157,10 +150,6 @@ public final class PoliticianView extends AbstractPersonView {
 	/** The chart data manager. */
 	@Autowired
 	private transient PoliticianChartDataManager chartDataManager;
-
-	/** The admin chart data manager. */
-	@Autowired
-	private transient AdminChartDataManager adminChartDataManager;
 
 	/** The document chart data manager. */
 	@Autowired
@@ -400,23 +389,7 @@ public final class PoliticianView extends AbstractPersonView {
 
 				} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
 
-					final Label createHeader2Label = LabelFactory.createHeader2Label(CURRENT_PAGE_VISIT_HISTORY);
-					panelContent.addComponent(createHeader2Label);
-					final DCharts createApplicationActionEventPageElementDailySummaryChart = adminChartDataManager
-							.createApplicationActionEventPageElementDailySummaryChart(NAME, pageId);
-					panelContent.addComponent(createApplicationActionEventPageElementDailySummaryChart);
-
-					final Label createHeader2Label2 = LabelFactory.createHeader2Label(GENERAL_PAGE_MODE_PAGE_VISIT);
-					panelContent.addComponent(createHeader2Label2);
-					final DCharts createApplicationActionEventPageModeDailySummaryChart = adminChartDataManager
-							.createApplicationActionEventPageModeDailySummaryChart(NAME);
-					panelContent.addComponent(createApplicationActionEventPageModeDailySummaryChart);
-
-					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
-					panelContent.setExpandRatio(createApplicationActionEventPageElementDailySummaryChart,ContentRatio.GRID);
-					panelContent.setExpandRatio(createHeader2Label2,ContentRatio.SMALL);
-					panelContent.setExpandRatio(createApplicationActionEventPageModeDailySummaryChart,ContentRatio.GRID);
-
+					createPageVisitHistory(NAME,pageId,panelContent);
 				}
 
 				getPanel().setContent(panelContent);
@@ -711,7 +684,7 @@ public final class PoliticianView extends AbstractPersonView {
 	 * The Class RoleMapping.
 	 */
 	private static final class RoleMapping implements Function<AssignmentData, String> {
-		
+
 		/** The Constant RIKSDAGSLEDAMOT. */
 		private static final String RIKSDAGSLEDAMOT = "Riksdagsledamot";
 

@@ -18,9 +18,12 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.common;
 
+import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.AdminChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.navigator.View;
@@ -33,6 +36,12 @@ import com.vaadin.ui.VerticalLayout;
  * The Class AbstractUserView.
  */
 public abstract class AbstractUserView extends Panel implements View {
+
+	/** The Constant GENERAL_PAGE_MODE_PAGE_VISIT. */
+	public static final String GENERAL_PAGE_MODE_PAGE_VISIT = "General Page Mode Page Visit";
+
+	/** The Constant CURRENT_PAGE_VISIT_HISTORY. */
+	public static final String CURRENT_PAGE_VISIT_HISTORY = "Current Page Visit History";
 
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
@@ -56,6 +65,11 @@ public abstract class AbstractUserView extends Panel implements View {
 	/** The page action event helper. */
 	@Autowired
 	protected transient PageActionEventHelper pageActionEventHelper;
+
+	/** The admin chart data manager. */
+	@Autowired
+	private transient AdminChartDataManager adminChartDataManager;
+
 
 
 	/**
@@ -138,6 +152,33 @@ public abstract class AbstractUserView extends Panel implements View {
 		final long days = totalDays - years * DAYS_PER_STANDARD_YEAR;
 
 		return years + " Years " + days + " days";
+	}
+
+	/**
+	 * Creates the page visit history.
+	 *
+	 * @param pageName
+	 *            the page name
+	 * @param pageId
+	 *            the page id
+	 * @param panelContent
+	 *            the panel content
+	 */
+	protected final void createPageVisitHistory(final String pageName, final String pageId, final VerticalLayout panelContent) {
+		final Label createHeader2Label = LabelFactory.createHeader2Label(CURRENT_PAGE_VISIT_HISTORY);
+		panelContent.addComponent(createHeader2Label);
+		final DCharts createApplicationActionEventPageElementDailySummaryChart = adminChartDataManager.createApplicationActionEventPageElementDailySummaryChart(pageName,pageId);
+		panelContent.addComponent(createApplicationActionEventPageElementDailySummaryChart);
+
+		final Label createHeader2Label2 = LabelFactory.createHeader2Label(GENERAL_PAGE_MODE_PAGE_VISIT);
+		panelContent.addComponent(createHeader2Label2);
+		final DCharts createApplicationActionEventPageModeDailySummaryChart = adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(pageName);
+		panelContent.addComponent(createApplicationActionEventPageModeDailySummaryChart);
+
+		panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+		panelContent.setExpandRatio(createApplicationActionEventPageElementDailySummaryChart, ContentRatio.GRID);
+		panelContent.setExpandRatio(createHeader2Label2,ContentRatio.SMALL);
+		panelContent.setExpandRatio(createApplicationActionEventPageModeDailySummaryChart, ContentRatio.GRID);
 	}
 
 }
