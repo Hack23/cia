@@ -37,6 +37,7 @@ import com.hack23.cia.service.api.DataContainer;
 public final class ViewRiksdagenVoteDataBallotPoliticianSummaryChartDataManagerImpl
 		implements GenericChartDataManager<ViewRiksdagenVoteDataBallotPoliticianSummary> {
 
+	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
 

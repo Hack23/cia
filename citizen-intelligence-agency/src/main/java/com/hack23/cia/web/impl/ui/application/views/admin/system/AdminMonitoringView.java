@@ -44,8 +44,10 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(AdminMonitoringView.NAME)
 public final class AdminMonitoringView extends AbstractAdminView {
 
+	/** The Constant MONITORING_CONTEXT_PATH. */
 	private static final String MONITORING_CONTEXT_PATH = "./monitoring";
 
+	/** The Constant ADMIN_MONITORING. */
 	private static final String ADMIN_MONITORING = "Admin Monitoring";
 
 	/** The Constant serialVersionUID. */

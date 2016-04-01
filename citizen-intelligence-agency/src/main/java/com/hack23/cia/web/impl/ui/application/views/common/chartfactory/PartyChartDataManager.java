@@ -19,24 +19,27 @@
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory;
 
 import org.dussan.vaadin.dcharts.DCharts;
-import org.dussan.vaadin.dcharts.data.DataSeries;
 
 /**
  * The Interface ChartDataManager.
  */
-@FunctionalInterface
-public interface ChartDataManager {
+public interface PartyChartDataManager {
 
 
 	/**
-	 * Creates the chart panel.
+	 * Creates the party winner chart.
 	 *
-	 * @param dataSeries
-	 *            the data series
-	 * @param caption
-	 *            the caption
 	 * @return the d charts
 	 */
-	DCharts createChartPanel(DataSeries dataSeries, String caption);
+	DCharts createPartyWinnerChart();
+
+	/**
+	 * Creates the party line chart.
+	 *
+	 * @param partyId
+	 *            the party id
+	 * @return the d charts
+	 */
+	DCharts createPartyLineChart(String partyId);
 
 }

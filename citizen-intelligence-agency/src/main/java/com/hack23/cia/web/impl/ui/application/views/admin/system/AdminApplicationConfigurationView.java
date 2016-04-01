@@ -64,6 +64,7 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(AdminApplicationConfigurationView.NAME)
 public final class AdminApplicationConfigurationView extends AbstractAdminView {
 
+	/** The Constant ADMIN_APPLICATION_CONFIGURATION. */
 	private static final String ADMIN_APPLICATION_CONFIGURATION = "Admin Application Configuration";
 
 	/** The Constant serialVersionUID. */

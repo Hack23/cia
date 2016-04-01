@@ -15,28 +15,35 @@
  *
  *	$Id$
  *  $HeadURL$
- */
-package com.hack23.cia.web.impl.ui.application.views.common.chartfactory;
+*/
+package com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory;
 
-import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.data.DataSeries;
 
 /**
- * The Interface ChartDataManager.
+ * A factory for creating DataSeries objects.
  */
-@FunctionalInterface
-public interface ChartDataManager {
-
+public interface MinistryDataSeriesFactory {
 
 	/**
-	 * Creates the chart panel.
+	 * Creates a new MinistryDataSeries object.
 	 *
-	 * @param dataSeries
-	 *            the data series
-	 * @param caption
-	 *            the caption
-	 * @return the d charts
+	 * @return the data series
 	 */
-	DCharts createChartPanel(DataSeries dataSeries, String caption);
+	DataSeries createChartTimeSeriesTotalDaysServedGovernmentByParty();
+
+	/**
+	 * Creates a new MinistryDataSeries object.
+	 *
+	 * @return the data series
+	 */
+	DataSeries createMinistryChartTimeSeriesCurrent();
+
+	/**
+	 * Creates a new MinistryDataSeries object.
+	 *
+	 * @return the data series
+	 */
+	DataSeries createMinistryChartTimeSeriesAll();
 
 }

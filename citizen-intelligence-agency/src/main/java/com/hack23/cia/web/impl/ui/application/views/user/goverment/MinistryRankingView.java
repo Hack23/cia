@@ -32,7 +32,8 @@ import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.MinistryDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.PartyDataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -54,6 +55,7 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(value = MinistryRankingView.NAME, cached = true)
 public final class MinistryRankingView extends AbstractRankingView {
 
+	/** The Constant MINISTRY_RANKING_BY_TOPIC_DESCRIPTION. */
 	private static final String MINISTRY_RANKING_BY_TOPIC_DESCRIPTION = "Time served in Ministry:ALL:CURRENT:" + "\nPoliticans served in Committee:ALL:CURRENT:"
 			+ "\nTop document author NR:ALL:YEAR:CURRENT:*FILTER:DocumnetType"
 			+ "\nTop document author SIZE:YEAR:ALL:CURRENT:*FILTER:DocumnetType"
@@ -64,6 +66,7 @@ public final class MinistryRankingView extends AbstractRankingView {
 			+ "\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
 			+ "\nSearch by name";
 
+	/** The Constant MINISTRY_RANKING_BY_TOPIC. */
 	private static final String MINISTRY_RANKING_BY_TOPIC = "Ministry Ranking by topic";
 
 	/** The Constant serialVersionUID. */
@@ -90,7 +93,11 @@ public final class MinistryRankingView extends AbstractRankingView {
 
 	/** The data series factory. */
 	@Autowired
-	private transient DataSeriesFactory dataSeriesFactory;
+	private transient MinistryDataSeriesFactory dataSeriesFactory;
+
+	/** The data series factory2. */
+	@Autowired
+	private transient PartyDataSeriesFactory dataSeriesFactory2;
 
 	/**
 	 * Instantiates a new ministry ranking view.
@@ -129,7 +136,7 @@ public final class MinistryRankingView extends AbstractRankingView {
 		}
 
 		final Component chartPanelCurrent = chartDataManager.createChartPanel(
-				dataSeriesFactory.createChartTimeSeriesCurrentGovernmentByParty(), "Current Parties, headcount");
+				dataSeriesFactory2.createChartTimeSeriesCurrentGovernmentByParty(), "Current Parties, headcount");
 		if (chartPanelCurrent != null) {
 			chartLayout.addComponent(chartPanelCurrent);
 		}

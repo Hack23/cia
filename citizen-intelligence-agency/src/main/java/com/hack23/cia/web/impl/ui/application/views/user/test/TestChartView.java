@@ -44,7 +44,9 @@ import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.AbstractView;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.DocumentChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.PartyChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.WorldIndicatorChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
@@ -77,12 +79,16 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(value = TestChartView.NAME, cached = true)
 public final class TestChartView extends AbstractView {
 
+	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_TEST_CHART_VIEW. */
 	private static final String CITIZEN_INTELLIGENCE_AGENCY_TEST_CHART_VIEW = "Citizen Intelligence Agency::Test Chart View";
 
+	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
 
+	/** The Constant CHART_WIDTH_FULL. */
 	private static final int CHART_WIDTH_FULL = 100;
 
+	/** The Constant CHART_HEIGHT. */
 	private static final int CHART_HEIGHT = 40;
 
 	/** The Constant serialVersionUID. */
@@ -101,7 +107,16 @@ public final class TestChartView extends AbstractView {
 
 	/** The chart data manager. */
 	@Autowired
-	private transient ChartDataManager chartDataManager;
+	private transient WorldIndicatorChartDataManager chartDataManager;
+
+
+	/** The party chart data manager. */
+	@Autowired
+	private transient PartyChartDataManager partyChartDataManager;
+
+	/** The document chart data manager. */
+	@Autowired
+	private transient DocumentChartDataManager documentChartDataManager;
 
 	/** The menu item factory. */
 	@Autowired
@@ -180,11 +195,11 @@ public final class TestChartView extends AbstractView {
 		} else if (parameters.contains(PageMode.CHARTS.toString())) {
 
 			if (parameters.contains(ChartIndicators.PARTYWINNER.toString())) {
-				pageModeContent.addComponent(chartDataManager.createPartyWinnerChart());
+				pageModeContent.addComponent(partyChartDataManager.createPartyWinnerChart());
 			} else if (parameters.contains(ChartIndicators.DOCUMENTACTIVITYBYTYPE.toString())) {
-				pageModeContent.addComponent(chartDataManager.createDocumentTypeChart());
+				pageModeContent.addComponent(documentChartDataManager.createDocumentTypeChart());
 			} else if (parameters.contains(ChartIndicators.DECSIONACTIVITYBYTYPE.toString())) {
-				pageModeContent.addComponent(chartDataManager.createDecisionTypeChart());
+				pageModeContent.addComponent(documentChartDataManager.createDecisionTypeChart());
 			}
 		} else if (parameters.contains(PageMode.INDICATORS.toString())) {
 
@@ -202,6 +217,9 @@ public final class TestChartView extends AbstractView {
 
 
 
+	/**
+	 * Creates the high chart test.
+	 */
 	private void createHighChartTest() {
 		final ChartConfiguration pieConfiguration = new ChartConfiguration();
 		pieConfiguration.setTitle("Fruits");

@@ -57,6 +57,7 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(AdminPortalView.NAME)
 public final class AdminPortalView extends AbstractAdminView {
 
+	/** The Constant ADMIN_PORTAL. */
 	private static final String ADMIN_PORTAL = "Admin Portal";
 
 	/** The Constant serialVersionUID. */

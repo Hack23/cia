@@ -57,6 +57,7 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(AdminLanguageContentView.NAME)
 public final class AdminLanguageContentView extends AbstractAdminView {
 
+	/** The Constant ADMIN_LANGUAGE_CONTENT. */
 	private static final String ADMIN_LANGUAGE_CONTENT = "Admin Language Content";
 
 	/** The Constant serialVersionUID. */

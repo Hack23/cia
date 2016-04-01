@@ -43,7 +43,8 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.AdminChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.DocumentChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
@@ -74,28 +75,40 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(value = CommitteeView.NAME, cached = true)
 public final class CommitteeView extends AbstractGroupView {
 
+	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = "Committee:";
 
+	/** The Constant GENERAL_PAGE_MODE_PAGE_VISIT. */
 	private static final String GENERAL_PAGE_MODE_PAGE_VISIT = "General Page Mode Page Visit";
 
+	/** The Constant CURRENT_PAGE_VISIT_HISTORY. */
 	private static final String CURRENT_PAGE_VISIT_HISTORY = "Current Page Visit History";
 
+	/** The Constant ROLE_GHANT_NOT_IMPLEMENTED. */
 	private static final String ROLE_GHANT_NOT_IMPLEMENTED = "RoleGhant Not Implemented";
 
+	/** The Constant MEMBER_HISTORY. */
 	private static final String MEMBER_HISTORY = "Member History";
 
+	/** The Constant CURRENT_MEMBERS. */
 	private static final String CURRENT_MEMBERS = "Current Members";
 
+	/** The Constant DECISION_SUMMARY_NOT_IMPLEMENTED. */
 	private static final String DECISION_SUMMARY_NOT_IMPLEMENTED = "Decision Summary Not Implemented";
 
+	/** The Constant BALLOT_DECISION_SUMMARY. */
 	private static final String BALLOT_DECISION_SUMMARY = "Ballot Decision Summary";
 
+	/** The Constant DECISION_TYPE_DAILY_SUMMARY. */
 	private static final String DECISION_TYPE_DAILY_SUMMARY = "Decision Type Daily Summary";
 
+	/** The Constant DOCUMENT_ACTIVITY. */
 	private static final String DOCUMENT_ACTIVITY = "Document Activity";
 
+	/** The Constant DOCUMENT_HISTORY. */
 	private static final String DOCUMENT_HISTORY = "Document History";
 
+	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "Overview";
 
 	/** The Constant serialVersionUID. */
@@ -110,7 +123,12 @@ public final class CommitteeView extends AbstractGroupView {
 
 	/** The chart data manager. */
 	@Autowired
-	private transient ChartDataManager chartDataManager;
+	private transient DocumentChartDataManager chartDataManager;
+
+	/** The admin chart data manager. */
+	@Autowired
+	private transient AdminChartDataManager adminChartDataManager;
+
 
 	/** The menu item factory. */
 	@Autowired
@@ -337,12 +355,12 @@ public final class CommitteeView extends AbstractGroupView {
 
 					final Label createHeader2Label = LabelFactory.createHeader2Label(CURRENT_PAGE_VISIT_HISTORY);
 					panelContent.addComponent(createHeader2Label);
-					final DCharts createApplicationActionEventPageElementDailySummaryChart = chartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId);
+					final DCharts createApplicationActionEventPageElementDailySummaryChart = adminChartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId);
 					panelContent.addComponent(createApplicationActionEventPageElementDailySummaryChart);
 
 					final Label createHeader2Label2 = LabelFactory.createHeader2Label(GENERAL_PAGE_MODE_PAGE_VISIT);
 					panelContent.addComponent(createHeader2Label2);
-					final DCharts createApplicationActionEventPageModeDailySummaryChart = chartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME);
+					final DCharts createApplicationActionEventPageModeDailySummaryChart = adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME);
 					panelContent.addComponent(createApplicationActionEventPageModeDailySummaryChart);
 
 					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);

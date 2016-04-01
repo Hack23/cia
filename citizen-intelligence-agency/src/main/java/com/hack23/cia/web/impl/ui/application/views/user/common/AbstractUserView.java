@@ -34,6 +34,7 @@ import com.vaadin.ui.VerticalLayout;
  */
 public abstract class AbstractUserView extends Panel implements View {
 
+	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
 
 	/** The Constant DAYS_PER_STANDARD_YEAR. */

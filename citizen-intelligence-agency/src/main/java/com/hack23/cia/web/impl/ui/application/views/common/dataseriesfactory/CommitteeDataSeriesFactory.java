@@ -23,76 +23,27 @@ import org.dussan.vaadin.dcharts.data.DataSeries;
 /**
  * A factory for creating DataSeries objects.
  */
-public interface DataSeriesFactory {
+public interface CommitteeDataSeriesFactory {
 
 	/**
-	 * Creates a new DataSeries object.
+	 * Creates a new CommitteeDataSeries object.
 	 *
 	 * @return the data series
 	 */
 	DataSeries createCommitteeChartTimeSeriesAll();
 
 	/**
-	 * Creates a new DataSeries object.
+	 * Creates a new CommitteeDataSeries object.
 	 *
 	 * @return the data series
 	 */
 	DataSeries createCommitteeChartTimeSeriesCurrent();
 
 	/**
-	 * Creates a new DataSeries object.
-	 *
-	 * @return the data series
-	 */
-	DataSeries createChartTimeSeriesCurrentCommitteeByParty();
-
-	/**
-	 * Creates a new DataSeries object.
+	 * Creates a new CommitteeDataSeries object.
 	 *
 	 * @return the data series
 	 */
 	DataSeries createChartTimeSeriesTotalDaysServedCommitteeByParty();
-
-	/**
-	 * Creates a new DataSeries object.
-	 *
-	 * @return the data series
-	 */
-	DataSeries createChartTimeSeriesTotalDaysServedGovernmentByParty();
-
-	/**
-	 * Creates a new DataSeries object.
-	 *
-	 * @return the data series
-	 */
-	DataSeries createChartTimeSeriesCurrentGovernmentByParty();
-
-	/**
-	 * Creates a new DataSeries object.
-	 *
-	 * @return the data series
-	 */
-	DataSeries createMinistryChartTimeSeriesCurrent();
-
-	/**
-	 * Creates a new DataSeries object.
-	 *
-	 * @return the data series
-	 */
-	DataSeries createMinistryChartTimeSeriesAll();
-
-	/**
-	 * Creates a new DataSeries object.
-	 *
-	 * @return the data series
-	 */
-	DataSeries createPartyChartTimeSeriesAll();
-
-	/**
-	 * Creates a new DataSeries object.
-	 *
-	 * @return the data series
-	 */
-	DataSeries createPartyChartTimeSeriesCurrent();
 
 }

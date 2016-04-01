@@ -64,6 +64,7 @@ import ru.xpoft.vaadin.VaadinView;
 public final class AdminApplicationSessionView extends AbstractAdminView {
 
 
+	/** The Constant ADMIN_APPLICATION_SESSION. */
 	private static final String ADMIN_APPLICATION_SESSION = "Admin Application Session";
 
 	/** The Constant serialVersionUID. */

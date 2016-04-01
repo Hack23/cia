@@ -58,8 +58,10 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.AdminChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.DocumentChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.GenericChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.PoliticianChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
@@ -94,36 +96,52 @@ import ru.xpoft.vaadin.VaadinView;
 public final class PoliticianView extends AbstractPersonView {
 
 
+	/** The Constant DEPARTEMENT. */
 	private static final String DEPARTEMENT = "Departement";
 
+	/** The Constant LEDIG. */
 	private static final String LEDIG = "LEDIG";
 
+	/** The Constant GOVERNMENT_EXPERIENCE. */
 	private static final String GOVERNMENT_EXPERIENCE = "Government experience:";
 
+	/** The Constant EU_EXPERIENCE. */
 	private static final String EU_EXPERIENCE = "EU experience:";
 
+	/** The Constant TOTAL_ASSIGNMENTS. */
 	private static final String TOTAL_ASSIGNMENTS = "Total Assignments:";
 
+	/** The Constant SPEAKER_EXPERIENCE. */
 	private static final String SPEAKER_EXPERIENCE = "Speaker experience:";
 
+	/** The Constant POLITICIAN. */
 	private static final String POLITICIAN = "Politician:";
 
+	/** The Constant PARTY_EXPERIENCE. */
 	private static final String PARTY_EXPERIENCE = "Party experience:";
 
+	/** The Constant KAMMARUPPDRAG. */
 	private static final String KAMMARUPPDRAG = "kammaruppdrag";
 
+	/** The Constant COMMITTEE_EXPERIENCE. */
 	private static final String COMMITTEE_EXPERIENCE = "Committee experience:";
 
+	/** The Constant PARLIAMENT_EXPERIENCE. */
 	private static final String PARLIAMENT_EXPERIENCE = "Parliament experience:";
 
+	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
 
+	/** The Constant INDICATORS. */
 	private static final String INDICATORS = "Indicators";
 
+	/** The Constant CURRENT_PAGE_VISIT_HISTORY. */
 	private static final String CURRENT_PAGE_VISIT_HISTORY = "Current Page Visit History";
 
+	/** The Constant GENERAL_PAGE_MODE_PAGE_VISIT. */
 	private static final String GENERAL_PAGE_MODE_PAGE_VISIT = "General Page Mode Page Visit";
 
+	/** The Constant CHARTS_NOT_IMPLEMENTED. */
 	private static final String CHARTS_NOT_IMPLEMENTED = "Charts Not Implemented";
 
 	/** The Constant serialVersionUID. */
@@ -138,7 +156,16 @@ public final class PoliticianView extends AbstractPersonView {
 
 	/** The chart data manager. */
 	@Autowired
-	private transient ChartDataManager chartDataManager;
+	private transient PoliticianChartDataManager chartDataManager;
+
+	/** The admin chart data manager. */
+	@Autowired
+	private transient AdminChartDataManager adminChartDataManager;
+
+	/** The document chart data manager. */
+	@Autowired
+	private transient DocumentChartDataManager documentChartDataManager;
+
 
 	/** The menu item factory. */
 	@Autowired
@@ -152,6 +179,10 @@ public final class PoliticianView extends AbstractPersonView {
 	@Autowired
 	private transient FormFactory formFactory;
 
+	/**
+	 * The view riksdagen vote data ballot politician summary chart data
+	 * manager.
+	 */
 	@Autowired
 	private transient GenericChartDataManager<ViewRiksdagenVoteDataBallotPoliticianSummary> viewRiksdagenVoteDataBallotPoliticianSummaryChartDataManager;
 
@@ -348,7 +379,7 @@ public final class PoliticianView extends AbstractPersonView {
 							.createHeader2Label(PoliticianPageMode.DOCUMENTACTIVITY.toString());
 					panelContent.addComponent(createHeader2Label);
 
-					final DCharts documentHistoryChart = chartDataManager
+					final DCharts documentHistoryChart = documentChartDataManager
 							.createPersonDocumentHistoryChart(personData.getId());
 
 					panelContent.addComponent(documentHistoryChart);
@@ -371,13 +402,13 @@ public final class PoliticianView extends AbstractPersonView {
 
 					final Label createHeader2Label = LabelFactory.createHeader2Label(CURRENT_PAGE_VISIT_HISTORY);
 					panelContent.addComponent(createHeader2Label);
-					final DCharts createApplicationActionEventPageElementDailySummaryChart = chartDataManager
+					final DCharts createApplicationActionEventPageElementDailySummaryChart = adminChartDataManager
 							.createApplicationActionEventPageElementDailySummaryChart(NAME, pageId);
 					panelContent.addComponent(createApplicationActionEventPageElementDailySummaryChart);
 
 					final Label createHeader2Label2 = LabelFactory.createHeader2Label(GENERAL_PAGE_MODE_PAGE_VISIT);
 					panelContent.addComponent(createHeader2Label2);
-					final DCharts createApplicationActionEventPageModeDailySummaryChart = chartDataManager
+					final DCharts createApplicationActionEventPageModeDailySummaryChart = adminChartDataManager
 							.createApplicationActionEventPageModeDailySummaryChart(NAME);
 					panelContent.addComponent(createApplicationActionEventPageModeDailySummaryChart);
 
@@ -680,6 +711,8 @@ public final class PoliticianView extends AbstractPersonView {
 	 * The Class RoleMapping.
 	 */
 	private static final class RoleMapping implements Function<AssignmentData, String> {
+		
+		/** The Constant RIKSDAGSLEDAMOT. */
 		private static final String RIKSDAGSLEDAMOT = "Riksdagsledamot";
 
 		@Override

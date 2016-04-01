@@ -56,6 +56,7 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(value = SearchDocumentView.NAME, cached = true)
 public final class SearchDocumentView extends AbstractUserView {
 
+	/** The Constant MAX_RESULT_SIZE. */
 	private static final int MAX_RESULT_SIZE = 100;
 
 	/** The Constant serialVersionUID. */

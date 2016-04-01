@@ -35,7 +35,7 @@ import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.AdminChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
@@ -62,6 +62,7 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(AdminApplicationEventsView.NAME)
 public final class AdminApplicationEventsView extends AbstractAdminView {
 
+	/** The Constant ADMIN_APPLICATION_ACTION_EVENT. */
 	private static final String ADMIN_APPLICATION_ACTION_EVENT = "Admin Application Action Event";
 
 	/** The Constant serialVersionUID. */
@@ -84,7 +85,7 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 
 	/** The chart data manager. */
 	@Autowired
-	private transient ChartDataManager chartDataManager;
+	private transient AdminChartDataManager chartDataManager;
 
 	/**
 	 * Instantiates a new admin application events view.

@@ -60,6 +60,7 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(AdminAgencyView.NAME)
 public final class AdminAgencyView extends AbstractAdminView {
 
+	/** The Constant ADMIN_AGENCY. */
 	private static final String ADMIN_AGENCY = "Admin Agency";
 
 	/** The Constant serialVersionUID. */

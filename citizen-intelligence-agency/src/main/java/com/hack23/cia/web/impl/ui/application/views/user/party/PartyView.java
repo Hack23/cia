@@ -51,8 +51,10 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.AdminChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.DocumentChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.GenericChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.PartyChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
@@ -78,36 +80,52 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(value = PartyView.NAME, cached = true)
 public final class PartyView extends AbstractGroupView {
 
+	/** The Constant GENERAL_PAGE_MODE_PAGE_VISIT. */
 	private static final String GENERAL_PAGE_MODE_PAGE_VISIT = "General Page Mode Page Visit";
 
+	/** The Constant CURRENT_PAGE_VISIT_HISTORY. */
 	private static final String CURRENT_PAGE_VISIT_HISTORY = "Current Page Visit History";
 
+	/** The Constant PARTY_WON_DAILY_SUMMARY_CHART. */
 	private static final String PARTY_WON_DAILY_SUMMARY_CHART = "PartyWonDailySummaryChart";
 
+	/** The Constant VOTE_HISTORY. */
 	private static final String VOTE_HISTORY = "VoteHistory";
 
+	/** The Constant COMMITTEE_BALLOT_DECISION_SUMMARY. */
 	private static final String COMMITTEE_BALLOT_DECISION_SUMMARY = "CommitteeBallotDecisionSummary";
 
+	/** The Constant COMMITTEE_ROLES. */
 	private static final String COMMITTEE_ROLES = "CommitteeRoles";
 
+	/** The Constant GOVERNMENT_ROLES. */
 	private static final String GOVERNMENT_ROLES = "Government Roles";
 
+	/** The Constant LEADER_HISTORY. */
 	private static final String LEADER_HISTORY = "LeaderHistory";
 
+	/** The Constant CURRENT_LEADERS. */
 	private static final String CURRENT_LEADERS = "Current Leaders";
 
+	/** The Constant MEMBER_HISTORY. */
 	private static final String MEMBER_HISTORY = "MemberHistory";
 
+	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "Overview";
 
+	/** The Constant CHARTS_NOT_IMPLEMENTED. */
 	private static final String CHARTS_NOT_IMPLEMENTED = "Charts Not Implemented";
 
+	/** The Constant GHANT_NOT_IMPLEMENTED. */
 	private static final String GHANT_NOT_IMPLEMENTED = "Ghant Not Implemented";
 
+	/** The Constant DOCUMENT_HISTORY. */
 	private static final String DOCUMENT_HISTORY = "Document History";
 
+	/** The Constant DOCUMENT_ACTIVITY. */
 	private static final String DOCUMENT_ACTIVITY = "Document Activity";
 
+	/** The Constant CURRENT_MEMBERS. */
 	private static final String CURRENT_MEMBERS = "Current Members";
 
 	/** The Constant serialVersionUID. */
@@ -122,10 +140,20 @@ public final class PartyView extends AbstractGroupView {
 
 	/** The chart data manager. */
 	@Autowired
-	private transient ChartDataManager chartDataManager;
+	private transient PartyChartDataManager chartDataManager;
 
+	/** The admin chart data manager. */
 	@Autowired
-	private GenericChartDataManager<ViewRiksdagenVoteDataBallotPartySummary> viewRiksdagenVoteDataBallotPartySummaryChartDataManager;
+	private transient AdminChartDataManager adminChartDataManager;
+
+	/** The document chart data manager. */
+	@Autowired
+	private transient DocumentChartDataManager documentChartDataManager;
+
+
+	/** The view riksdagen vote data ballot party summary chart data manager. */
+	@Autowired
+	private transient GenericChartDataManager<ViewRiksdagenVoteDataBallotPartySummary> viewRiksdagenVoteDataBallotPartySummaryChartDataManager;
 
 
 	/** The menu item factory. */
@@ -274,7 +302,7 @@ public final class PartyView extends AbstractGroupView {
 				} else if (parameters.contains(PartyPageMode.DOCUMENTACTIVITY.toString())) {
 					panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_ACTIVITY));
 
-					final DCharts createDocumentHistoryChart = chartDataManager.createDocumentHistoryPartyChart(pageId);
+					final DCharts createDocumentHistoryChart = documentChartDataManager.createDocumentHistoryPartyChart(pageId);
 					panelContent.addComponent(createDocumentHistoryChart);
 
 				} else if (parameters.contains(PartyPageMode.CURRENTMEMBERS.toString())) {
@@ -518,10 +546,10 @@ public final class PartyView extends AbstractGroupView {
 				} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label(CURRENT_PAGE_VISIT_HISTORY));
-					panelContent.addComponent(chartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId));
+					panelContent.addComponent(adminChartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId));
 
 					panelContent.addComponent(LabelFactory.createHeader2Label(GENERAL_PAGE_MODE_PAGE_VISIT));
-					panelContent.addComponent(chartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME));
+					panelContent.addComponent(adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME));
 				}
 
 

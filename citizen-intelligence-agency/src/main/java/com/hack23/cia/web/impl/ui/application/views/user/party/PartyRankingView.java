@@ -32,7 +32,7 @@ import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.PartyDataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -78,7 +78,7 @@ public final class PartyRankingView extends AbstractRankingView {
 
 	/** The data series factory. */
 	@Autowired
-	private transient DataSeriesFactory dataSeriesFactory;
+	private transient PartyDataSeriesFactory dataSeriesFactory;
 
 
 	/**

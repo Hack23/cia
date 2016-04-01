@@ -19,24 +19,20 @@
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory;
 
 import org.dussan.vaadin.dcharts.DCharts;
-import org.dussan.vaadin.dcharts.data.DataSeries;
 
 /**
  * The Interface ChartDataManager.
  */
-@FunctionalInterface
-public interface ChartDataManager {
+public interface PoliticianChartDataManager {
 
 
 	/**
-	 * Creates the chart panel.
+	 * Creates the person line chart.
 	 *
-	 * @param dataSeries
-	 *            the data series
-	 * @param caption
-	 *            the caption
+	 * @param personId
+	 *            the person id
 	 * @return the d charts
 	 */
-	DCharts createChartPanel(DataSeries dataSeries, String caption);
+	DCharts createPersonLineChart(String personId);
 
 }

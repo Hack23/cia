@@ -19,24 +19,39 @@
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory;
 
 import org.dussan.vaadin.dcharts.DCharts;
-import org.dussan.vaadin.dcharts.data.DataSeries;
 
 /**
  * The Interface ChartDataManager.
  */
-@FunctionalInterface
-public interface ChartDataManager {
+public interface AdminChartDataManager {
 
 
 	/**
-	 * Creates the chart panel.
+	 * Creates the application action event page daily summary chart.
 	 *
-	 * @param dataSeries
-	 *            the data series
-	 * @param caption
-	 *            the caption
 	 * @return the d charts
 	 */
-	DCharts createChartPanel(DataSeries dataSeries, String caption);
+	DCharts createApplicationActionEventPageDailySummaryChart();
+
+
+	/**
+	 * Creates the application action event page mode daily summary chart.
+	 *
+	 * @param page
+	 *            the page
+	 * @return the d charts
+	 */
+	DCharts createApplicationActionEventPageModeDailySummaryChart(String page);
+
+	/**
+	 * Creates the application action event page element daily summary chart.
+	 *
+	 * @param page
+	 *            the page
+	 * @param elementId
+	 *            the element id
+	 * @return the d charts
+	 */
+	DCharts createApplicationActionEventPageElementDailySummaryChart(String page, String elementId);
 
 }

@@ -18,25 +18,29 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory;
 
+import java.util.List;
+
 import org.dussan.vaadin.dcharts.DCharts;
-import org.dussan.vaadin.dcharts.data.DataSeries;
+
+import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
+import com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary;
 
 /**
  * The Interface ChartDataManager.
  */
 @FunctionalInterface
-public interface ChartDataManager {
+public interface WorldIndicatorChartDataManager {
 
 
 	/**
-	 * Creates the chart panel.
+	 * Creates the indicator chart.
 	 *
-	 * @param dataSeries
-	 *            the data series
-	 * @param caption
-	 *            the caption
+	 * @param list
+	 *            the list
+	 * @param summary
+	 *            the summary
 	 * @return the d charts
 	 */
-	DCharts createChartPanel(DataSeries dataSeries, String caption);
+	DCharts createIndicatorChart(List<WorldBankData> list, ViewWorldbankIndicatorDataCountrySummary summary);
 
 }

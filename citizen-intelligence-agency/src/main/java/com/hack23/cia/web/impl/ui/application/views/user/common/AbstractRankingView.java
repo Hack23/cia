@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.AdminChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -38,20 +39,29 @@ import com.vaadin.ui.VerticalLayout;
  */
 public abstract class AbstractRankingView extends AbstractUserView {
 
+	/** The Constant PAGE_VISIT_HISTORY. */
 	private static final String PAGE_VISIT_HISTORY = "Page Visit History:";
 
+	/** The Constant CHARTS. */
 	private static final String CHARTS = "Charts:";
 
+	/** The Constant DATAGRID. */
 	private static final String DATAGRID = "Datagrid:";
 
+	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "Overview:";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The admin chart data manager. */
+	@Autowired
+	private transient AdminChartDataManager adminChartDataManager;
+
 	/** The chart data manager. */
 	@Autowired
 	private transient ChartDataManager chartDataManager;
+
 
 
 	/**
@@ -132,7 +142,7 @@ public abstract class AbstractRankingView extends AbstractUserView {
 
 		} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
 
-			panelContent.addComponent(chartDataManager.createApplicationActionEventPageModeDailySummaryChart(getName()));
+			panelContent.addComponent(adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(getName()));
 
 			getPanel().setCaption(PAGE_VISIT_HISTORY + event.getParameters());
 

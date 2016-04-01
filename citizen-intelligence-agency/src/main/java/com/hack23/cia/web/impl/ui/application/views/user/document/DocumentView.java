@@ -47,7 +47,8 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.AdminChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.DocumentChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
@@ -75,24 +76,34 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(value = DocumentView.NAME, cached = true)
 public final class DocumentView extends AbstractUserView {
 
+	/** The Constant GENERAL_PAGE_MODE_PAGE_VISIT. */
 	private static final String GENERAL_PAGE_MODE_PAGE_VISIT = "General Page Mode Page Visit";
 
+	/** The Constant CURRENT_PAGE_VISIT_HISTORY. */
 	private static final String CURRENT_PAGE_VISIT_HISTORY = "Current Page Visit History";
 
+	/** The Constant DOCUMENT_ATTACHMENTS. */
 	private static final String DOCUMENT_ATTACHMENTS = "Document Attachments";
 
+	/** The Constant PERSON_REFERENCES. */
 	private static final String PERSON_REFERENCES = "Person References";
 
+	/** The Constant DOCUMENT_REFERENCES. */
 	private static final String DOCUMENT_REFERENCES = "Document References";
 
+	/** The Constant DOCUMENT_DETAILS. */
 	private static final String DOCUMENT_DETAILS = "Document Details";
 
+	/** The Constant DOCUMENT_DATA. */
 	private static final String DOCUMENT_DATA = "Document Data";
 
+	/** The Constant DOCUMENT_ACTIVITY. */
 	private static final String DOCUMENT_ACTIVITY = "Document Activity";
 
+	/** The Constant DOCUMENT_DECISION. */
 	private static final String DOCUMENT_DECISION = "Document Decision";
 
+	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "Overview";
 
 	/** The Constant serialVersionUID. */
@@ -107,7 +118,11 @@ public final class DocumentView extends AbstractUserView {
 
 	/** The chart data manager. */
 	@Autowired
-	private transient ChartDataManager chartDataManager;
+	private transient DocumentChartDataManager chartDataManager;
+
+	/** The admin chart data manager. */
+	@Autowired
+	private transient AdminChartDataManager adminChartDataManager;
 
 	/** The menu item factory. */
 	@Autowired
@@ -325,10 +340,10 @@ public final class DocumentView extends AbstractUserView {
 				} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
 
 					panelContent.addComponent(LabelFactory.createHeader2Label(CURRENT_PAGE_VISIT_HISTORY));
-					panelContent.addComponent(chartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId));
+					panelContent.addComponent(adminChartDataManager.createApplicationActionEventPageElementDailySummaryChart(NAME,pageId));
 
 					panelContent.addComponent(LabelFactory.createHeader2Label(GENERAL_PAGE_MODE_PAGE_VISIT));
-					panelContent.addComponent(chartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME));
+					panelContent.addComponent(adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME));
 
 				}
 

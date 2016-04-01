@@ -57,6 +57,7 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(AdminUseraccountView.NAME)
 public final class AdminUseraccountView extends AbstractAdminView {
 
+	/** The Constant ADMIN_USERACCOUNT. */
 	private static final String ADMIN_USERACCOUNT = "Admin Useraccount";
 
 	/** The Constant serialVersionUID. */

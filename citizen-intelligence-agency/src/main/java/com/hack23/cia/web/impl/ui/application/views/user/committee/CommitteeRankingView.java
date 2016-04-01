@@ -32,7 +32,8 @@ import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.DataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.CommitteeDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.PartyDataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -54,8 +55,10 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(value = CommitteeRankingView.NAME, cached = true)
 public final class CommitteeRankingView extends AbstractRankingView {
 
+	/** The Constant CURRENT_PARTIES_HEADCOUNT. */
 	private static final String CURRENT_PARTIES_HEADCOUNT = "Current Parties, headcount";
 
+	/** The Constant COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION. */
 	private static final String COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION = "Time served in Committee:ALL:CURRENT:" + "\nPoliticans served in Committee:ALL:CURRENT:"
 			+ "\nTop document author NR:ALL:YEAR:CURRENT:*FILTER:DocumnetType"
 			+ "\nTop document author SIZE:YEAR:ALL:CURRENT:*FILTER:DocumnetType"
@@ -66,8 +69,10 @@ public final class CommitteeRankingView extends AbstractRankingView {
 			+ "\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
 			+ "\nSearch by name";
 
+	/** The Constant COMMITTEE_RANKING_BY_TOPIC. */
 	private static final String COMMITTEE_RANKING_BY_TOPIC = "Committee Ranking by topic";
 
+	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED. */
 	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED = "All Parties, total days served";
 
 	/** The Constant serialVersionUID. */
@@ -90,7 +95,11 @@ public final class CommitteeRankingView extends AbstractRankingView {
 
 	/** The data series factory. */
 	@Autowired
-	private transient DataSeriesFactory dataSeriesFactory;
+	private transient CommitteeDataSeriesFactory dataSeriesFactory;
+
+	/** The data series factory2. */
+	@Autowired
+	private transient PartyDataSeriesFactory dataSeriesFactory2;
 
 	/** The grid factory. */
 	@Autowired
@@ -138,7 +147,7 @@ public final class CommitteeRankingView extends AbstractRankingView {
 		}
 
 		final Component chartPanelCurrent = chartDataManager.createChartPanel(
-				dataSeriesFactory.createChartTimeSeriesCurrentCommitteeByParty(), CURRENT_PARTIES_HEADCOUNT);
+				dataSeriesFactory2.createChartTimeSeriesCurrentCommitteeByParty(), CURRENT_PARTIES_HEADCOUNT);
 		if (chartPanelCurrent != null) {
 			chartLayout.addComponent(chartPanelCurrent);
 		}

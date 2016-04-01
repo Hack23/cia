@@ -58,6 +58,7 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(AdminCountryView.NAME)
 public final class AdminCountryView extends AbstractAdminView {
 
+	/** The Constant ADMIN_COUNTRY. */
 	private static final String ADMIN_COUNTRY = "Admin Country";
 
 	/** The Constant serialVersionUID. */
