@@ -20,6 +20,8 @@ package com.hack23.cia.service.data.impl;
 
 
 
+import java.util.Locale;
+
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.boot.model.naming.Identifier;
 import org.hibernate.boot.model.naming.PhysicalNamingStrategy;
@@ -29,6 +31,32 @@ import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;
  * The Class LegacyNamingStrategy.
  */
 public final class LegacyNamingStrategy implements PhysicalNamingStrategy {
+
+    private static final String REG_EXPR = "([a-z])([A-Z])";
+    private static final String REPLACEMENT_PATTERN = "$1_$2";
+
+
+    /**
+	 * Instantiates a new legacy naming strategy.
+	 */
+    public LegacyNamingStrategy() {
+		super();
+	}
+
+	/**
+	 * Convert.
+	 *
+	 * @param identifier
+	 *            the identifier
+	 * @return the identifier
+	 */
+    private static Identifier convert(final Identifier identifier) {
+        if (identifier == null || StringUtils.isBlank(identifier.getText())) {
+            return identifier;
+        }
+
+        return Identifier.toIdentifier(identifier.getText().replaceAll(REG_EXPR, REPLACEMENT_PATTERN).toLowerCase(Locale.ENGLISH));
+    }
 
     @Override
     public Identifier toPhysicalCatalogName(final Identifier identifier, final JdbcEnvironment jdbcEnv) {
@@ -55,21 +83,4 @@ public final class LegacyNamingStrategy implements PhysicalNamingStrategy {
         return convert(identifier);
     }
 
-    /**
-	 * Convert.
-	 *
-	 * @param identifier
-	 *            the identifier
-	 * @return the identifier
-	 */
-    private static Identifier convert(final Identifier identifier) {
-        if (identifier == null || StringUtils.isBlank(identifier.getText())) {
-            return identifier;
-        }
-
-        final String regex = "([a-z])([A-Z])";
-        final String replacement = "$1_$2";
-        final String newName = identifier.getText().replaceAll(regex, replacement).toLowerCase();
-        return Identifier.toIdentifier(newName);
-    }
 }
