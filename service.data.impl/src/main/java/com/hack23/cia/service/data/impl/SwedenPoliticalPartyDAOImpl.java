@@ -20,7 +20,6 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -50,15 +49,6 @@ SwedenPoliticalPartyDAO {
 	 */
 	public SwedenPoliticalPartyDAOImpl() {
 		super(SwedenPoliticalParty.class);
-	}
-
-	/**
-	 * Void init database.
-	 */
-	@PostConstruct
-	public void voidInitDatabase() {
-
-
 	}
 
 	@Override

@@ -51,7 +51,7 @@ public final class DocumentElementDAOITest extends AbstractServiceDataFunctional
 	@Test
 	public void testGetSize() throws Exception {
 
-		assertTrue(documentElementDAO.getSize() >= 0);
+		assertTrue("Expect some documents in database",documentElementDAO.getSize() >= 0);
 	}
 
 	/**
@@ -62,8 +62,7 @@ public final class DocumentElementDAOITest extends AbstractServiceDataFunctional
 	 */
 	@Test
 	public void testGetMissingDocumentStartFromYear() throws Exception {
-		assertTrue(documentElementDAO.getMissingDocumentStartFromYear()> 1980L);
-
+		assertTrue("Expect documents for all past years in database",documentElementDAO.getMissingDocumentStartFromYear(2000) > 2015L);
 	}
 
 

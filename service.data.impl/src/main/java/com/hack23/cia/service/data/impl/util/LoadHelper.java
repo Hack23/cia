@@ -37,6 +37,13 @@ import org.hibernate.proxy.HibernateProxy;
 public final class LoadHelper {
 
 	/**
+	 * Instantiates a new load helper.
+	 */
+	private LoadHelper() {
+		super();
+	}
+
+	/**
 	 * Recursive initliaze.
 	 *
 	 * @param <T>

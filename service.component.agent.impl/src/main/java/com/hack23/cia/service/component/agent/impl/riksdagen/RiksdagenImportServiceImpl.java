@@ -44,6 +44,9 @@ import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteePro
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData_;
 import com.hack23.cia.model.external.riksdagen.votering.impl.VoteData;
 import com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration;
+import com.hack23.cia.model.internal.application.system.impl.ConfigurationGroup;
+import com.hack23.cia.service.data.api.ApplicationConfigurationService;
 import com.hack23.cia.service.data.api.CommitteeProposalComponentDataDAO;
 import com.hack23.cia.service.data.api.DocumentContentDataDAO;
 import com.hack23.cia.service.data.api.DocumentElementDAO;
@@ -66,6 +69,10 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 
 	/** The Constant RIKSDAGEN_JAVA_SIMPLE_DATE_TIME_FORMAT. */
 	private static final String RIKSDAGEN_JAVA_SIMPLE_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+
+	/** The application configuration service. */
+	@Autowired
+	private ApplicationConfigurationService applicationConfigurationService;
 
 	/** The committee proposal component data dao. */
 	@Autowired
@@ -277,7 +284,9 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 
 	@Override
 	public int getStartYearForDocumentElement() {
-		return documentElementDAO.getMissingDocumentStartFromYear();
+		final ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService.checkValueOrLoadDefault("Load Riksdagen documents from year", "Load Riksdagen documents from year", ConfigurationGroup.AGENT, RiksdagenImportService.class.getSimpleName(), "Riksdagen Import Service", "Responsible import Riksdagen data", "agent.riksdagen.documents.loadfromyear", "2000");
+
+		return documentElementDAO.getMissingDocumentStartFromYear(Integer.parseInt(registeredUsersGetAdminConfig.getPropertyValue()));
 	}
 
 }

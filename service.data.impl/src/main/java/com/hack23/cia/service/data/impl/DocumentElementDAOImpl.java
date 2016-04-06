@@ -18,15 +18,13 @@
 */
 package com.hack23.cia.service.data.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Tuple;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -50,60 +48,10 @@ DocumentElementDAO {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(DocumentElementDAOImpl.class);
 
-
-	/** The Constant expectedDocumentElements. */
-	private static final Map<String, Long> expectedDocumentElements = new HashMap<>();
-
-	static {
-		expectedDocumentElements.put("", 87L);
-		expectedDocumentElements.put("1993/94", 1L);
-		expectedDocumentElements.put("1998/99", 1L);
-		expectedDocumentElements.put("1999", 261L);
-		expectedDocumentElements.put("1999/00", 87L);
-		expectedDocumentElements.put("1999/2000", 2822L);
-		expectedDocumentElements.put("2000", 630L);
-		expectedDocumentElements.put("2000/01", 8333L);
-		expectedDocumentElements.put("2001", 631L);
-		expectedDocumentElements.put("2001/02", 9304L);
-		expectedDocumentElements.put("2002", 719L);
-		expectedDocumentElements.put("2002/03", 8652L);
-		expectedDocumentElements.put("2003", 774L);
-		expectedDocumentElements.put("2003/04", 10458L);
-		expectedDocumentElements.put("2004", 800L);
-		expectedDocumentElements.put("2004/05", 12267L);
-		expectedDocumentElements.put("2005", 731L);
-		expectedDocumentElements.put("2005/06", 14594L);
-		expectedDocumentElements.put("2006", 1205L);
-		expectedDocumentElements.put("2006/07", 10547L);
-		expectedDocumentElements.put("2007", 1681L);
-		expectedDocumentElements.put("2007/08", 12394L);
-		expectedDocumentElements.put("2008", 1427L);
-		expectedDocumentElements.put("2008/09", 11903L);
-		expectedDocumentElements.put("2009", 1255L);
-		expectedDocumentElements.put("2009/10", 12307L);
-		expectedDocumentElements.put("2010", 1164L);
-		expectedDocumentElements.put("2010/11", 11093L);
-		expectedDocumentElements.put("2011", 1383L);
-		expectedDocumentElements.put("2011/12", 11752L);
-		expectedDocumentElements.put("2012", 1168L);
-		expectedDocumentElements.put("2012/12", 1L);
-		expectedDocumentElements.put("2012/13", 11501L);
-		expectedDocumentElements.put("2013", 1262L);
-		expectedDocumentElements.put("2013/13", 1L);
-		expectedDocumentElements.put("2013/14", 11858L);
-		expectedDocumentElements.put("2013/2014", 2L);
-		expectedDocumentElements.put("2014", 1446L);
-		expectedDocumentElements.put("2014/", 1L);
-		expectedDocumentElements.put("2014/15", 11340L);
-		expectedDocumentElements.put("2014/16", 1L);
-		expectedDocumentElements.put("2015", 936L);
-
-
-	}
-
 	/** The entity manager. */
 	@PersistenceContext(name = "ciaPersistenceUnit")
 	private EntityManager entityManager;
+
 
 	/**
 	 * Instantiates a new document element dao impl.
@@ -168,48 +116,23 @@ DocumentElementDAO {
 	}
 
 	@Override
-	public int getMissingDocumentStartFromYear() {
-		final CriteriaQuery<Tuple> criteria = getCriteriaBuilder().createQuery(
-				Tuple.class);
+	public int getMissingDocumentStartFromYear(final int startCheckYear ) {
+
+		final CriteriaQuery<String> criteria = getCriteriaBuilder()
+				.createQuery(String.class);
 		final Root<DocumentElement> root = criteria.from(DocumentElement.class);
-		criteria.multiselect(
+		Expression<String> createdYear = getCriteriaBuilder().substring(root.get(DocumentElement_.createdDate), 0,5);
+		criteria.select(createdYear).groupBy(createdYear).orderBy(getCriteriaBuilder().asc(createdYear));
+		List<String> resultList = getEntityManager().createQuery(criteria).getResultList();
 
-				root.get(DocumentElement_.rm),
-				getCriteriaBuilder().count(root)).orderBy(
-						getCriteriaBuilder().asc(
-								root.get(DocumentElement_.rm)));
 
-		criteria.groupBy(root.get(DocumentElement_.rm));
+		LOGGER.info("getMissingDocumentStartFromYear current years contain documents:{}",resultList);
 
-		final List<Tuple> list = getEntityManager().createQuery(criteria)
-				.getResultList();
-
-		for (final Tuple tuple : list) {
-			final String rm = (String) tuple.get(0);
-			final Long sum = (Long) tuple.get(1);
-
-			if (rm != null && !"".equals(rm)) {
-
-				final Long expectedSum= expectedDocumentElements.get(rm.trim());
-
-				LOGGER.info("getMissingDocumentStartFromYear Rm {} expectedSum {} actualSum {}",rm,expectedSum,sum);
-
-				if (expectedSum !=null) {
-
-					if (sum < expectedSum) {
-						return Integer.parseInt(rm.substring(0, 4));
-					}
-
-				} else {
-
-					return Integer.parseInt(rm.substring(0, 4));
-				}
-
-			}
-
+		if (resultList.isEmpty() || Integer.parseInt(resultList.get(0)) < startCheckYear) {
+			return startCheckYear;
+		} else {
+			return Integer.parseInt(resultList.get(resultList.size()-1));
 		}
-
-		return 2000;
 	}
 
 	@Override

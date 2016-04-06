@@ -176,6 +176,7 @@
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="AUTHENTICATION" />
 			<xsd:enumeration value="AUTHORIZATION" />
+			<xsd:enumeration value="AGENT" />
 		</xsd:restriction>
 	</xsd:simpleType>
 
