@@ -51,7 +51,7 @@ public final class VoteDataDAOITest extends AbstractServiceDataFunctionalIntegra
 	@Test
 	public void testGetSize() throws Exception {
 
-		assertTrue(voteDataDAO.getSize() >= 0);
+		assertTrue("Expect some votes in database",voteDataDAO.getSize() >= 0);
 	}
 
 }

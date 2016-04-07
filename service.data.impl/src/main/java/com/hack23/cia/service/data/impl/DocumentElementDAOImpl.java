@@ -121,10 +121,9 @@ DocumentElementDAO {
 		final CriteriaQuery<String> criteria = getCriteriaBuilder()
 				.createQuery(String.class);
 		final Root<DocumentElement> root = criteria.from(DocumentElement.class);
-		Expression<String> createdYear = getCriteriaBuilder().substring(root.get(DocumentElement_.createdDate), 0,5);
+		final Expression<String> createdYear = getCriteriaBuilder().substring(root.get(DocumentElement_.createdDate), 0,5);
 		criteria.select(createdYear).groupBy(createdYear).orderBy(getCriteriaBuilder().asc(createdYear));
-		List<String> resultList = getEntityManager().createQuery(criteria).getResultList();
-
+		final List<String> resultList = getEntityManager().createQuery(criteria).getResultList();
 
 		LOGGER.info("getMissingDocumentStartFromYear current years contain documents:{}",resultList);
 

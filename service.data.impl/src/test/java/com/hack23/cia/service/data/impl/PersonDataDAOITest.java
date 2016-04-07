@@ -51,7 +51,7 @@ public final class PersonDataDAOITest extends AbstractServiceDataFunctionalInteg
 	@Test
 	public void testGetSize() throws Exception {
 
-		assertTrue(personDataDAO.getSize() >= 0);
+		assertTrue("Expect some persons in database",personDataDAO.getSize() >= 0);
 	}
 
 }

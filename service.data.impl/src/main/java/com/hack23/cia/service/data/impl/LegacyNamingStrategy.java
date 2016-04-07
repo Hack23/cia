@@ -43,7 +43,7 @@ public final class LegacyNamingStrategy implements PhysicalNamingStrategy {
 		super();
 	}
 
-	/**
+    /**
 	 * Convert.
 	 *
 	 * @param identifier
@@ -51,11 +51,11 @@ public final class LegacyNamingStrategy implements PhysicalNamingStrategy {
 	 * @return the identifier
 	 */
     private static Identifier convert(final Identifier identifier) {
-        if (identifier == null || StringUtils.isBlank(identifier.getText())) {
+    	if (identifier == null || StringUtils.isBlank(identifier.getText())) {
             return identifier;
+        } else {
+        	return Identifier.toIdentifier(identifier.getText().replaceAll(REG_EXPR, REPLACEMENT_PATTERN).toLowerCase(Locale.ENGLISH));
         }
-
-        return Identifier.toIdentifier(identifier.getText().replaceAll(REG_EXPR, REPLACEMENT_PATTERN).toLowerCase(Locale.ENGLISH));
     }
 
     @Override

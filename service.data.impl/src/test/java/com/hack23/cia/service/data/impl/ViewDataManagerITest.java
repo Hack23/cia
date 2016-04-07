@@ -21,6 +21,8 @@ package com.hack23.cia.service.data.impl;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
+import com.hack23.cia.service.data.api.DataViewer;
 import com.hack23.cia.service.data.api.ViewDataManager;
 
 /**
@@ -32,6 +34,10 @@ public final class ViewDataManagerITest extends AbstractServiceDataFunctionalInt
 	@Autowired
 	private ViewDataManager viewDataManager;
 
+	@Autowired
+	private DataViewer dataViewer;
+
+
 	/**
 	 * Refresh views test.
 	 *
@@ -39,8 +45,10 @@ public final class ViewDataManagerITest extends AbstractServiceDataFunctionalInt
 	 *             the exception
 	 */
 	@Test
-	public void refreshViewsTest() throws Exception {
+	public void refreshViewsTest() {
 		viewDataManager.refreshViews();
+		assertNotNull("Expect some value in database",dataViewer.getAll(ViewRiksdagenPartySummary.class));
+
 	}
 
 }

@@ -18,6 +18,8 @@
  */
 package com.hack23.cia.service.data.impl;
 
+import java.util.Locale;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
@@ -49,7 +51,7 @@ public final class QueryHelper {
 		Predicate condition;
 		if (value instanceof String) {
 			final Expression<String> propertyObject = (Expression<String>) root.get(property);
-			condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject), ((String) value).toUpperCase());
+			condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject), ((String) value).toUpperCase(Locale.ENGLISH));
 
 		} else {
 			condition = criteriaBuilder.equal(root.get(property), value);

@@ -43,6 +43,15 @@ import com.hack23.cia.service.data.api.DataViewer;
 public final class DataViewerITest extends
 		AbstractServiceDataFunctionalIntegrationTest {
 
+	/** The Constant EXPECT_VALUE_IN_DATABASE. */
+	private static final String EXPECT_VALUE_IN_DATABASE = "Expect value in database";
+
+	/** The Constant SHOULD_ALWAYS_BE_349_IN_PARLIAMENT. */
+	private static final String SHOULD_ALWAYS_BE_349_IN_PARLIAMENT = "Should always be 349 in parliament";
+
+	/** The Constant EXPECT_SAME_OBJECT_LOADED. */
+	private static final String EXPECT_SAME_OBJECT_LOADED = "Expect same object loaded";
+
 	/** The data viewer. */
 	@Autowired
 	private DataViewer dataViewer;
@@ -61,20 +70,20 @@ public final class DataViewerITest extends
 
 		final List<ViewRiksdagenParty> parties = dataViewer
 				.getAll(ViewRiksdagenParty.class);
-		assertNotNull(parties);
+		assertNotNull(EXPECT_VALUE_IN_DATABASE,parties);
 		if (parties.size() > 0) {
 			final ViewRiksdagenParty viewRiksdagenParty = parties.get(0);
 			final ViewRiksdagenParty viewRiksdagenPartyLoaded = dataViewer
 					.load(ViewRiksdagenParty.class,
 							viewRiksdagenParty.getPartyId());
-			assertNotNull(viewRiksdagenPartyLoaded);
+			assertNotNull(EXPECT_VALUE_IN_DATABASE,viewRiksdagenPartyLoaded);
 
 			final ViewRiksdagenParty viewRiksdagenPartyFound = dataViewer
 					.findFirstByProperty(ViewRiksdagenParty.class,
 							ViewRiksdagenParty_.partyName,
 							viewRiksdagenPartyLoaded.getPartyName());
 
-			assertEquals(viewRiksdagenPartyLoaded, viewRiksdagenPartyFound);
+			assertEquals(EXPECT_SAME_OBJECT_LOADED,viewRiksdagenPartyLoaded, viewRiksdagenPartyFound);
 		}
 	}
 
@@ -89,21 +98,21 @@ public final class DataViewerITest extends
 
 		final List<ViewRiksdagenMinistry> ministries = dataViewer
 				.getAll(ViewRiksdagenMinistry.class);
-		assertNotNull(ministries);
+		assertNotNull(EXPECT_VALUE_IN_DATABASE,ministries);
 		if (ministries.size() > 0) {
 			final ViewRiksdagenMinistry viewRiksdagenMinistry = ministries
 					.get(0);
 			final ViewRiksdagenMinistry viewRiksdagenMinistryLoaded = dataViewer
 					.load(ViewRiksdagenMinistry.class,
 							viewRiksdagenMinistry.getNameId());
-			assertNotNull(viewRiksdagenMinistryLoaded);
+			assertNotNull(EXPECT_VALUE_IN_DATABASE,viewRiksdagenMinistryLoaded);
 
 			final ViewRiksdagenMinistry viewRiksdagenMinistryFound = dataViewer
 					.findFirstByProperty(ViewRiksdagenMinistry.class,
 							ViewRiksdagenMinistry_.nameId,
 							viewRiksdagenMinistryLoaded.getNameId());
 
-			assertEquals(viewRiksdagenMinistryLoaded,
+			assertEquals(EXPECT_SAME_OBJECT_LOADED,viewRiksdagenMinistryLoaded,
 					viewRiksdagenMinistryFound);
 		}
 	}
@@ -119,21 +128,21 @@ public final class DataViewerITest extends
 
 		final List<ViewRiksdagenCommittee> committees = dataViewer
 				.getAll(ViewRiksdagenCommittee.class);
-		assertNotNull(committees);
+		assertNotNull(EXPECT_VALUE_IN_DATABASE,committees);
 		if (committees.size() > 0) {
 			final ViewRiksdagenCommittee viewRiksdagenCommittee = committees
 					.get(0);
 			final ViewRiksdagenCommittee viewRiksdagenCommitteeLoaded = dataViewer
 					.load(ViewRiksdagenCommittee.class,
 							viewRiksdagenCommittee.getEmbeddedId());
-			assertNotNull(viewRiksdagenCommitteeLoaded);
+			assertNotNull(EXPECT_VALUE_IN_DATABASE,viewRiksdagenCommitteeLoaded);
 
 			final ViewRiksdagenCommittee viewRiksdagenCommitteeFound = dataViewer
 					.findFirstByProperty(ViewRiksdagenCommittee.class,
 							ViewRiksdagenCommittee_.embeddedId,
 							viewRiksdagenCommitteeLoaded.getEmbeddedId());
 
-			assertEquals(viewRiksdagenCommitteeLoaded,
+			assertEquals(EXPECT_SAME_OBJECT_LOADED,viewRiksdagenCommitteeLoaded,
 					viewRiksdagenCommitteeFound);
 		}
 	}
@@ -149,7 +158,7 @@ public final class DataViewerITest extends
 
 		final List<ViewRiksdagenPolitician> politicians = dataViewer
 				.getAll(ViewRiksdagenPolitician.class);
-		assertNotNull(politicians);
+		assertNotNull(EXPECT_VALUE_IN_DATABASE,politicians);
 		if (politicians.size() > 0) {
 			final ViewRiksdagenPolitician viewRiksdagenPolitician = politicians
 					.get(4);
@@ -157,18 +166,18 @@ public final class DataViewerITest extends
 			final ViewRiksdagenPolitician viewRiksdagenPoliticianLoaded = dataViewer
 					.load(ViewRiksdagenPolitician.class,
 							viewRiksdagenPolitician.getPersonId());
-			assertNotNull(viewRiksdagenPoliticianLoaded);
+			assertNotNull(EXPECT_VALUE_IN_DATABASE,viewRiksdagenPoliticianLoaded);
 
 			final ViewRiksdagenPolitician viewRiksdagenPoliticianFound = dataViewer
 					.findFirstByProperty(ViewRiksdagenPolitician.class,
 							ViewRiksdagenPolitician_.personId,
 							viewRiksdagenPoliticianLoaded.getPersonId());
 
-			assertEquals(viewRiksdagenPoliticianLoaded,
+			assertEquals(EXPECT_SAME_OBJECT_LOADED,viewRiksdagenPoliticianLoaded,
 					viewRiksdagenPoliticianFound);
 
 
-			assertEquals("Should always be 349 in parliament",349,dataViewer
+			assertEquals(SHOULD_ALWAYS_BE_349_IN_PARLIAMENT,349,dataViewer
 			.findListByProperty(ViewRiksdagenPolitician.class,
 					ViewRiksdagenPolitician_.activeParliament,
 					true).size());
@@ -186,21 +195,21 @@ public final class DataViewerITest extends
 
 		final List<ViewRiksdagenPartySummary> committees = dataViewer
 				.getAll(ViewRiksdagenPartySummary.class);
-		assertNotNull(committees);
+		assertNotNull(EXPECT_VALUE_IN_DATABASE,committees);
 		if (committees.size() > 0) {
 			final ViewRiksdagenPartySummary viewRiksdagenPartySummary = committees
 					.get(4);
 			final ViewRiksdagenPartySummary viewRiksdagenPartySummaryLoaded = dataViewer
 					.load(ViewRiksdagenPartySummary.class,
 							viewRiksdagenPartySummary.getParty());
-			assertNotNull(viewRiksdagenPartySummaryLoaded);
+			assertNotNull(EXPECT_VALUE_IN_DATABASE,viewRiksdagenPartySummaryLoaded);
 
 			final ViewRiksdagenPartySummary viewRiksdagenPartySummaryFound = dataViewer
 					.findFirstByProperty(ViewRiksdagenPartySummary.class,
 							ViewRiksdagenPartySummary_.party,
 							viewRiksdagenPartySummaryLoaded.getParty());
 
-			assertEquals(viewRiksdagenPartySummaryLoaded,
+			assertEquals(EXPECT_SAME_OBJECT_LOADED,viewRiksdagenPartySummaryLoaded,
 					viewRiksdagenPartySummaryFound);
 		}
 
@@ -220,8 +229,7 @@ public final class DataViewerITest extends
 
 		final List<ViewRiksdagenPolitician> activeWithNoParty = dataViewer.findListByProperty(ViewRiksdagenPolitician.class, new Object[]  {true,null},ViewRiksdagenPolitician_.activeParliament,ViewRiksdagenPolitician_.party);
 
-
-		assertEquals("Should always be 349 in parliament", 349, parliamentSum + activeWithNoParty.size());
+		assertEquals(SHOULD_ALWAYS_BE_349_IN_PARLIAMENT, 349, parliamentSum + activeWithNoParty.size());
 		assertEquals(
 				"Should always be 20 in eu, but riksdagen data contains only 15",
 				15, euSum);

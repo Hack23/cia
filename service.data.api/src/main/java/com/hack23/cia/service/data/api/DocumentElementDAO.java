@@ -58,5 +58,12 @@ public interface DocumentElementDAO extends AbstractGenericDAO<DocumentElement, 
 	 */
 	List<String> getIdList();
 
+	/**
+	 * Gets the missing document start from year.
+	 *
+	 * @param startFromYear
+	 *            the start from year
+	 * @return the missing document start from year
+	 */
 	int getMissingDocumentStartFromYear(int startFromYear);
 }

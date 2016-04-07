@@ -56,7 +56,7 @@ public final class ApplicationConfigurationServiceITest extends AbstractServiceD
 				"ApplicationConfigurationService ITest", "FunctionalIntegrationTest",
 				"checkValueOrLoadDefaultNoPropertyExistTest", "true");
 
-		assertEquals("true", checkValueOrLoadDefault.getPropertyValue());
+		assertEquals("Expect the config to be set to","true", checkValueOrLoadDefault.getPropertyValue());
 
 	}
 
@@ -83,7 +83,7 @@ public final class ApplicationConfigurationServiceITest extends AbstractServiceD
 				"ApplicationConfigurationService ITest", "FunctionalIntegrationTest",
 				"checkValueOrLoadDefaultPropertyAlreadyExistSameValueTest", "true");
 
-		assertEquals(checkValueOrLoadDefault, checkValueOrLoadDefault2);
+		assertEquals("Expect the config to use the first set value",checkValueOrLoadDefault, checkValueOrLoadDefault2);
 	}
 
 }

@@ -18,16 +18,19 @@
 */
 package com.hack23.cia.service.data.impl;
 
+import java.io.File;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.apache.commons.io.FileUtils;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.Search;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
@@ -49,6 +52,9 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 	/** The full text entity manager. */
 	private FullTextEntityManager fullTextEntityManager;
 
+	@Value("${database.search.index.location}")
+	private String databaseSearchIndexLocation;
+
 	/**
 	 * Gets the full text entity manager.
 	 *
@@ -69,7 +75,9 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 	 */
 	@Test
 	public void testCreateSearchIndex() throws Exception {
+		FileUtils.deleteDirectory(new File(databaseSearchIndexLocation));
 		searchIndexer.updateSearchIndex();
+		assertTrue("Expect index to have been created",new File(databaseSearchIndexLocation).exists());
 	}
 
 	@Test

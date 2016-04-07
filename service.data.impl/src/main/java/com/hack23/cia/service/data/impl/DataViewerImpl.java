@@ -19,6 +19,7 @@
 package com.hack23.cia.service.data.impl;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
@@ -137,7 +138,7 @@ public final class DataViewerImpl implements DataViewer {
 
 		if (value instanceof String) {
 			final Expression<String> propertyObject = (Expression<String>) root.get(property2);
-			final Predicate condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject), ((String) value).toUpperCase());
+			final Predicate condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject), ((String) value).toUpperCase(Locale.ENGLISH));
 			criteriaQuery.where(condition);
 		} else {
 			final Predicate condition = criteriaBuilder.equal(root.get(property2), value);
@@ -200,7 +201,7 @@ public final class DataViewerImpl implements DataViewer {
 
 		if (value instanceof String) {
 			final Expression<String> propertyObject = (Expression<String>) root.get(property);
-			final Predicate condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject), ((String) value).toUpperCase());
+			final Predicate condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject), ((String) value).toUpperCase(Locale.ENGLISH));
 			criteriaQuery.where(condition);
 
 		} else {
