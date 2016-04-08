@@ -116,7 +116,7 @@ DocumentElementDAO {
 	}
 
 	@Override
-	public int getMissingDocumentStartFromYear(final int startCheckYear ) {
+	public int getMissingDocumentStartFromYear(final int startCheckYear) {
 
 		final CriteriaQuery<String> criteria = getCriteriaBuilder()
 				.createQuery(String.class);
