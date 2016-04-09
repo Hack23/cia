@@ -38,4 +38,6 @@
     <inherits name="org.vaadin.gridutil.WidgetSet" />
 
     <inherits name="com.ejt.vaadin.loginform.WidgetSet" />
+
+    <inherits name="fi.jasoft.qrcode.QrcodeWidgetset" />
 </module>

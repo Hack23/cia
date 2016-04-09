@@ -40,6 +40,11 @@
     </dependency>
     <dependency>
       <groupId>org.vaadin.addons</groupId>
+      <artifactId>qrcode</artifactId>
+      <version>2.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.vaadin.addons</groupId>
       <artifactId>loginform</artifactId>
       <version>0.6.2</version>
     </dependency>

@@ -32,21 +32,21 @@
     </site>
   </distributionManagement>
   <dependencies>
-	<dependency>
-	  <groupId>com.warrenstrange</groupId>
-	  <artifactId>googleauth</artifactId>
-	  <version>0.5.0</version>
-	  <exclusions>
-	  	<exclusion>
-	  		<artifactId>httpclient</artifactId>
-	  		<groupId>org.apache.httpcomponents</groupId>
-	  	</exclusion>
-	  	<exclusion>
-	  		<artifactId>commons-codec</artifactId>
-	  		<groupId>commons-codec</groupId>
-	  	</exclusion>
-	  </exclusions>
-	</dependency>
+    <dependency>
+      <groupId>com.warrenstrange</groupId>
+      <artifactId>googleauth</artifactId>
+      <version>0.6.0</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>httpclient</artifactId>
+          <groupId>org.apache.httpcomponents</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>commons-codec</artifactId>
+          <groupId>commons-codec</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
     <!-- Testing -->
     <dependency>
       <groupId>antlr</groupId>
@@ -58,14 +58,14 @@
       <artifactId>testfoundation</artifactId>
       <scope>test</scope>
       <exclusions>
-      	<exclusion>
-      		<artifactId>httpclient</artifactId>
-      		<groupId>org.apache.httpcomponents</groupId>
-      	</exclusion>
-      	<exclusion>
-      		<artifactId>commons-codec</artifactId>
-      		<groupId>commons-codec</groupId>
-      	</exclusion>
+        <exclusion>
+          <artifactId>httpclient</artifactId>
+          <groupId>org.apache.httpcomponents</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>commons-codec</artifactId>
+          <groupId>commons-codec</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -192,10 +192,10 @@
       <artifactId>service.component.agent.impl</artifactId>
       <version>${project.version}</version>
       <exclusions>
-      	<exclusion>
-      		<artifactId>httpclient</artifactId>
-      		<groupId>org.apache.httpcomponents</groupId>
-      	</exclusion>
+        <exclusion>
+          <artifactId>httpclient</artifactId>
+          <groupId>org.apache.httpcomponents</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -208,8 +208,8 @@
           <groupId>javax.persistence</groupId>
         </exclusion>
         <exclusion>
-        	<artifactId>commons-codec</artifactId>
-        	<groupId>commons-codec</groupId>
+          <artifactId>commons-codec</artifactId>
+          <groupId>commons-codec</groupId>
         </exclusion>
       </exclusions>
     </dependency>
