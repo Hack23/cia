@@ -4605,6 +4605,14 @@ from view_riksdagen_politician group by party</createView>
 			referencedTableName="user_account" />
 	</changeSet>
 
+	<changeSet author="pether (generated)" id="1414872417007-284">
+		 <addColumn tableName="user_account">
+			<column name="GOOGLE_AUTH_KEY" type="varchar(1024)"/>
+    	</addColumn>
+    	 <addColumn tableName="user_account">
+			<column name="GOOGLE_AUTH_VERIFICATION_CODE" type="INT4"/>
+    	</addColumn>
+	</changeSet>
 
 	<!-- Materialized views todo
 
