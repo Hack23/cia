@@ -4580,6 +4580,32 @@ from view_riksdagen_politician group by party</createView>
 	</changeSet>
 
 
+	<changeSet author="pether (generated)" id="1414872417007-281">
+		<createTable tableName="USER_ACCOUNT_GOOGLE_AUTH_SCR_0">
+			<column name="hjid" type="INT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="hjvalue" type="INT4" />
+			<column name="hjindex" type="INT4">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet author="pether (generated)" id="1414872417007-282">
+		<addPrimaryKey columnNames="hjid, hjindex"
+			constraintName="USER_ACCOUNT_GOOGLE_AUTH_SCR_0_pkey" tableName="USER_ACCOUNT_GOOGLE_AUTH_SCR_0" />
+	</changeSet>
+
+	<changeSet author="pether (generated)" id="1414872417007-283">
+		<addForeignKeyConstraint baseColumnNames="hjid"
+			baseTableName="USER_ACCOUNT_GOOGLE_AUTH_SCR_0" constraintName="fk_8931ymg13vy6vfkrichdsd4"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="hjid"
+			referencedTableName="user_account" />
+	</changeSet>
+
+
 	<!-- Materialized views todo
 
 
