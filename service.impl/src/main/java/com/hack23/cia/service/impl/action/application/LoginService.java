@@ -47,6 +47,7 @@ import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.UserDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
+import com.warrenstrange.googleauth.GoogleAuthenticator;
 
 /**
  * The Class LoginService.
@@ -98,7 +99,13 @@ public final class LoginService extends
 		LoginResponse response;
 		if (userExist != null) {
 
-			if (passwordEncoder.matches(userExist.getUserId()+".uuid"+ serviceRequest.getUserpassword(), userExist.getUserpassword())) {
+			boolean authorizedOtp=true;
+			if (userExist.getGoogleAuthKey() != null) {
+				GoogleAuthenticator gAuth = new GoogleAuthenticator();
+				authorizedOtp = gAuth.authorize(userExist.getGoogleAuthKey(), Integer.valueOf(serviceRequest.getOtpCode()));
+			}
+
+			if (authorizedOtp && passwordEncoder.matches(userExist.getUserId()+".uuid"+ serviceRequest.getUserpassword(), userExist.getUserpassword())) {
 
 				final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
