@@ -435,7 +435,7 @@ public final class PoliticianView extends AbstractPersonView {
 		final Link createPoliticianPageLink = pageLinkFactory.createPoliticianPageLink(personData);
 		panelContent.addComponent(createPoliticianPageLink);
 
-		final Image image = new Image("", new ExternalResource(personData.getImageUrl192()));
+		final Image image = new Image("", new ExternalResource(personData.getImageUrl192().replace("http://", "https://")));
 
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		horizontalLayout.setSizeFull();
