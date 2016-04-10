@@ -1779,6 +1779,7 @@
                 <exclude>javax.servlet:javax.servlet-api</exclude>
                 <exclude>org.hibernate:hibernate-validator</exclude>
                 <exclude>org.hibernate:*</exclude>
+                <exclude>org.apache.lucene:*</exclude>
                 <exclude>antlr:antlr</exclude>
                 <exclude>io.netty:netty-all</exclude>
                 <exclude>org.postgresql:postgresql</exclude>
@@ -1878,6 +1879,7 @@
                 <exclude>javax.servlet:javax.servlet-api</exclude>
                 <exclude>org.hibernate:hibernate-validator</exclude>
                 <exclude>org.hibernate:*</exclude>
+                <exclude>org.apache.lucene:*</exclude>
                 <exclude>antlr:antlr</exclude>
                 <exclude>io.netty:netty-all</exclude>
                 <exclude>org.postgresql:postgresql</exclude>
