@@ -34,11 +34,13 @@ import com.hack23.cia.service.api.action.application.CreateApplicationEventRespo
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialResponse;
+import com.hack23.cia.service.data.api.AgencyDAO;
 import com.hack23.cia.service.data.api.UserDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
 import com.warrenstrange.googleauth.GoogleAuthenticator;
 import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
+import com.warrenstrange.googleauth.GoogleAuthenticatorQRGenerator;
 
 /**
  * The Class SetGoogleAuthenticatorCredentialService.
@@ -60,6 +62,9 @@ public final class SetGoogleAuthenticatorCredentialService extends
 	/** The user dao. */
 	@Autowired
 	private UserDAO userDAO;
+
+	@Autowired
+	private AgencyDAO agencyDAO;
 
 	/**
 	 * Instantiates a new sets the google authenticator credential service.
@@ -103,6 +108,9 @@ public final class SetGoogleAuthenticatorCredentialService extends
 			updateUserAccount.setGoogleAuthScratchCodes(gKey.getScratchCodes());
 			userDAO.merge(updateUserAccount);
 
+			String otpAuthTotpURL = GoogleAuthenticatorQRGenerator.getOtpAuthTotpURL(agencyDAO.getAll().get(0).getAgencyName(), updateUserAccount.getEmail(), gKey);
+
+			response.setOtpAuthTotpURL(otpAuthTotpURL);
 			response.setGoogleAuthKey(gKey.getKey());
 			response.setGoogleAuthVerificationCode(gKey.getVerificationCode());
 			response.setGoogleAuthScratchCodes(gKey.getScratchCodes());

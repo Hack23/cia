@@ -25,7 +25,7 @@ import com.hack23.cia.service.api.action.common.AbstractResponse;
 
 
 /**
- * The Class SearchDocumentResponse.
+ * The Class SetGoogleAuthenticatorCredentialResponse.
  */
 public final class SetGoogleAuthenticatorCredentialResponse extends AbstractResponse {
 
@@ -33,12 +33,20 @@ public final class SetGoogleAuthenticatorCredentialResponse extends AbstractResp
 	private static final long serialVersionUID = 1L;
 
 
+    /** The google auth key. */
     private String googleAuthKey;
+
+    /** The google auth verification code. */
     private Integer googleAuthVerificationCode;
+
+    /** The google auth scratch codes. */
     private List<Integer> googleAuthScratchCodes;
 
+    /** The otp auth totp url. */
+    private String otpAuthTotpURL;
+
 	/**
-	 * Instantiates a new search document response.
+	 * Instantiates a new sets the google authenticator credential response.
 	 *
 	 * @param result
 	 *            the result
@@ -47,28 +55,80 @@ public final class SetGoogleAuthenticatorCredentialResponse extends AbstractResp
 		super(result);
 	}
 
+	/**
+	 * Gets the google auth key.
+	 *
+	 * @return the google auth key
+	 */
 	public String getGoogleAuthKey() {
 		return googleAuthKey;
 	}
 
+	/**
+	 * Sets the google auth key.
+	 *
+	 * @param googleAuthKey
+	 *            the new google auth key
+	 */
 	public void setGoogleAuthKey(String googleAuthKey) {
 		this.googleAuthKey = googleAuthKey;
 	}
 
+	/**
+	 * Gets the google auth verification code.
+	 *
+	 * @return the google auth verification code
+	 */
 	public Integer getGoogleAuthVerificationCode() {
 		return googleAuthVerificationCode;
 	}
 
+	/**
+	 * Sets the google auth verification code.
+	 *
+	 * @param googleAuthVerificationCode
+	 *            the new google auth verification code
+	 */
 	public void setGoogleAuthVerificationCode(Integer googleAuthVerificationCode) {
 		this.googleAuthVerificationCode = googleAuthVerificationCode;
 	}
 
+	/**
+	 * Gets the google auth scratch codes.
+	 *
+	 * @return the google auth scratch codes
+	 */
 	public List<Integer> getGoogleAuthScratchCodes() {
 		return googleAuthScratchCodes;
 	}
 
+	/**
+	 * Sets the google auth scratch codes.
+	 *
+	 * @param googleAuthScratchCodes
+	 *            the new google auth scratch codes
+	 */
 	public void setGoogleAuthScratchCodes(List<Integer> googleAuthScratchCodes) {
 		this.googleAuthScratchCodes = googleAuthScratchCodes;
+	}
+
+	/**
+	 * Gets the otp auth totp url.
+	 *
+	 * @return the otp auth totp url
+	 */
+	public String getOtpAuthTotpURL() {
+		return otpAuthTotpURL;
+	}
+
+	/**
+	 * Sets the otp auth totp url.
+	 *
+	 * @param otpAuthTotpURL
+	 *            the new otp auth totp url
+	 */
+	public void setOtpAuthTotpURL(String otpAuthTotpURL) {
+		this.otpAuthTotpURL = otpAuthTotpURL;
 	}
 
 }
