@@ -1,0 +1,84 @@
+/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.impl.action.application;
+
+import org.databene.contiperf.PerfTest;
+import org.databene.contiperf.Required;
+import org.databene.contiperf.junit.ContiPerfRule;
+import org.junit.Rule;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_;
+import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
+import com.hack23.cia.service.api.action.application.DestroyApplicationSessionRequest;
+import com.hack23.cia.service.api.action.common.ServiceResponse;
+import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
+import com.hack23.cia.service.data.api.ApplicationSessionDAO;
+import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
+
+/**
+ * The Class DestroyApplicationSessionServiceITest.
+ */
+@PerfTest(threads = 10, duration = 3000, warmUp = 1500)
+@Required(max = 200, average = 10, percentile95 = 15, throughput = 50000)
+public final class DestroyApplicationSessionServiceITest extends AbstractServiceFunctionalIntegrationTest {
+
+
+	/** The i. */
+	@Rule
+	public ContiPerfRule i = new ContiPerfRule();
+
+	/** The application manager. */
+	@Autowired
+	private ApplicationManager applicationManager;
+
+	/** The application session dao. */
+	@Autowired
+	private ApplicationSessionDAO applicationSessionDAO;
+
+	/**
+	 * Service destroy application session request success test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
+	@Required(max = 1000, average = 300, percentile95 = 350, throughput = 20)
+	public void serviceDestroyApplicationSessionRequestSuccessTest() throws Exception {
+
+		setAuthenticatedAnonymousUser();
+		CreateApplicationSessionRequest createTestApplicationSession = createTestApplicationSession();
+
+		DestroyApplicationSessionRequest destroyApplicationSessionRequest = new DestroyApplicationSessionRequest();
+
+		destroyApplicationSessionRequest.setSessionId(createTestApplicationSession.getSessionId());
+		ServiceResponse response = applicationManager.service(destroyApplicationSessionRequest);
+		assertNotNull(EXPECT_A_RESULT,response);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS,response.getResult());
+
+		final ApplicationSession applicationSession = applicationSessionDAO.findFirstByProperty(ApplicationSession_.sessionId, createTestApplicationSession.getSessionId());
+		assertNotNull(EXPECT_A_RESULT,applicationSession);
+		assertNotNull(EXPECT_A_RESULT,applicationSession.getDestroyedDate());
+	}
+
+}

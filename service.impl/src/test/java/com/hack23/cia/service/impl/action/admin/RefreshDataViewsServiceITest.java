@@ -18,19 +18,14 @@
 */
 package com.hack23.cia.service.impl.action.admin;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
 import com.hack23.cia.service.api.action.admin.RefreshDataViewsResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
+import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 
 /**
@@ -52,12 +47,7 @@ public final class RefreshDataViewsServiceITest extends AbstractServiceFunctiona
 	@Test
 	public void Test() throws Exception {
 
-		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
-
-		SecurityContextHolder.getContext()
-				.setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
+		setAuthenticatedAdminuser();
 
 		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
 
@@ -65,7 +55,10 @@ public final class RefreshDataViewsServiceITest extends AbstractServiceFunctiona
 		serviceRequest.setSessionId(createSessionRequest.getSessionId());
 
 		final RefreshDataViewsResponse  response = (RefreshDataViewsResponse) applicationManager.service(new RefreshDataViewsRequest());
-		assertNotNull("Expect a result",response);
+		assertNotNull(EXPECT_A_RESULT,response);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, response.getResult());
+
 	}
+
 
 }

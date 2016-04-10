@@ -19,10 +19,15 @@
 package com.hack23.cia.service.impl;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.UUID;
 
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -30,6 +35,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionT
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionResponse;
+import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest;
 
 /**
@@ -49,6 +55,24 @@ import com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest;
 "classpath:/META-INF/cia-test-context.xml" })
 public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractFunctionalIntegrationTest {
 
+	/** The Constant EXPECT_A_RESULT. */
+	public static final String EXPECT_A_RESULT = "Expect a result";
+
+	/** The Constant EXPECT_SUCCESS. */
+	public static final String EXPECT_SUCCESS = "Expect success";
+
+	/** The Constant PRINCIPAL. */
+	private static final String PRINCIPAL = "principal";
+
+	/** The Constant KEY. */
+	private static final String KEY = "key";
+
+	/** The Constant ROLE_ANONYMOUS. */
+	private static final String ROLE_ANONYMOUS = "ROLE_ANONYMOUS";
+
+	/** The Constant ROLE_ADMIN. */
+	private static final String ROLE_ADMIN = "ROLE_ADMIN";
+
 
 	/** The application manager. */
 	@Autowired
@@ -62,6 +86,9 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 		super();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest#getDatabaseConnection()
+	 */
 	@Override
 	protected Connection getDatabaseConnection() throws Exception {
 		return null;
@@ -79,11 +106,48 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 		serviceRequest.setOperatingSystem("LINUX");
 		serviceRequest.setSessionId(UUID.randomUUID().toString());
 		serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
-		serviceRequest.setUserAgentInformation("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0");
+		serviceRequest.setUserAgentInformation(
+				"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0");
 
-		final CreateApplicationSessionResponse sessionResponse = (CreateApplicationSessionResponse) applicationManager
+		final CreateApplicationSessionResponse response = (CreateApplicationSessionResponse) applicationManager
 				.service(serviceRequest);
+		assertNotNull(EXPECT_A_RESULT, response);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, response.getResult());
 		return serviceRequest;
 	}
+
+	/**
+	 * Creates the application sesstion with role anonymous.
+	 *
+	 * @return the creates the application session request
+	 */
+	protected final CreateApplicationSessionRequest createApplicationSesstionWithRoleAnonymous() {
+		setAuthenticatedAnonymousUser();
+		return createTestApplicationSession();
+	}
+
+
+	/**
+	 * Sets the authenticated anonymous user.
+	 */
+	protected final void setAuthenticatedAnonymousUser() {
+		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority(ROLE_ANONYMOUS));
+		SecurityContextHolder.getContext()
+				.setAuthentication(new AnonymousAuthenticationToken(KEY, PRINCIPAL, authorities));
+	}
+
+	/**
+	 * Sets the authenticated adminuser.
+	 */
+	protected final void setAuthenticatedAdminuser() {
+		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority(ROLE_ADMIN));
+		authorities.add(new SimpleGrantedAuthority(ROLE_ANONYMOUS));
+
+		SecurityContextHolder.getContext()
+				.setAuthentication(new AnonymousAuthenticationToken(KEY, PRINCIPAL, authorities));
+	}
+
 
 }

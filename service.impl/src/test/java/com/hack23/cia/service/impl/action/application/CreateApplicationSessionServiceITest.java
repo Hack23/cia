@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.service.impl.action.application;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,9 +27,6 @@ import org.databene.contiperf.junit.ContiPerfRule;
 import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
@@ -72,10 +67,7 @@ public final class CreateApplicationSessionServiceITest extends AbstractServiceF
 	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
 	@Required(max = 1000, average = 300, percentile95 = 350, throughput = 20)
 	public void serviceCreateApplicationSessionRequestSuccessTest() throws Exception {
-		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
-		SecurityContextHolder.getContext()
-				.setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
+		setAuthenticatedAnonymousUser();
 
 		final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
 		serviceRequest.setIpInformation("8.8.8.8");
@@ -87,8 +79,8 @@ public final class CreateApplicationSessionServiceITest extends AbstractServiceF
 
 		final CreateApplicationSessionResponse response = (CreateApplicationSessionResponse) applicationManager
 				.service(serviceRequest);
-		assertNotNull("Expect a result", response);
-		assertEquals(ServiceResult.SUCCESS, response.getResult());
+		assertNotNull(EXPECT_A_RESULT, response);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, response.getResult());
 
 		final List<ApplicationSession> findListByProperty = applicationSessionDAO.findListByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
 		assertEquals(1, findListByProperty.size());

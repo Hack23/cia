@@ -18,13 +18,7 @@
 */
 package com.hack23.cia.service.impl.action.admin;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import org.junit.Test;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.hack23.cia.service.api.action.admin.UpdateSearchIndexRequest;
 import com.hack23.cia.service.api.action.admin.UpdateSearchIndexResponse;
@@ -44,13 +38,7 @@ public final class UpdateSearchIndexServiceITest extends AbstractServiceFunction
 	 */
 	@Test
 	public void Test() throws Exception {
-		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
-
-		SecurityContextHolder.getContext()
-				.setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
-
+		setAuthenticatedAdminuser();
 		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
 
 		final UpdateSearchIndexRequest serviceRequest = new UpdateSearchIndexRequest();
@@ -58,7 +46,7 @@ public final class UpdateSearchIndexServiceITest extends AbstractServiceFunction
 
 		final UpdateSearchIndexResponse response = (UpdateSearchIndexResponse) applicationManager
 				.service(new UpdateSearchIndexRequest());
-		assertNotNull("Expect a result", response);
+		assertNotNull(EXPECT_A_RESULT, response);
 	}
 
 }

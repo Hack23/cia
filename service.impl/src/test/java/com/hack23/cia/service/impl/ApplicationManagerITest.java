@@ -19,10 +19,6 @@
 package com.hack23.cia.service.impl;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
 
 import org.databene.contiperf.PerfTest;
 import org.databene.contiperf.Required;
@@ -30,30 +26,18 @@ import org.databene.contiperf.junit.ContiPerfRule;
 import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 
+import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
-import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
-import com.hack23.cia.model.internal.application.user.impl.UserAccount;
-import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
-import com.hack23.cia.model.internal.application.user.impl.UserType;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
-import com.hack23.cia.service.api.action.application.CreateApplicationSessionResponse;
-import com.hack23.cia.service.api.action.application.LoginRequest;
-import com.hack23.cia.service.api.action.application.LoginResponse;
-import com.hack23.cia.service.api.action.application.RegisterUserRequest;
-import com.hack23.cia.service.api.action.application.RegisterUserResponse;
-import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
+import com.hack23.cia.service.api.DataSummary;
 
 /**
  * The Class ApplicationManagerITest.
  */
 @PerfTest(threads = 10, duration = 3000, warmUp = 1500)
-@Required(max = 200, average = 10, percentile95 = 15, throughput = 50000)
+@Required(max = 200, average = 10, percentile95 = 15, throughput = 10000)
 public final class ApplicationManagerITest extends AbstractServiceFunctionalIntegrationTest {
 
 	/** The i. */
@@ -73,118 +57,19 @@ public final class ApplicationManagerITest extends AbstractServiceFunctionalInte
 	 */
 	@Test
 	public void getDataContainerSuccessTest() throws Exception {
-		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
-		SecurityContextHolder.getContext()
-				.setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
+		setAuthenticatedAnonymousUser();
 
-		final DataContainer<ViewRiksdagenCommittee, Serializable> dataContainer = applicationManager
+		final DataContainer<ViewRiksdagenCommittee, Serializable> committeeDataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenCommittee.class);
-		assertNotNull("Expect a result", dataContainer);
+		assertNotNull(EXPECT_A_RESULT, committeeDataContainer);
 
+		final DataContainer<DataSummary, Serializable> dataSummarydataContainer = applicationManager
+				.getDataContainer(DataSummary.class);
+		assertNotNull(EXPECT_A_RESULT, dataSummarydataContainer);
+
+		final DataContainer<PersonData, Serializable> personDataContainer = applicationManager
+				.getDataContainer(PersonData.class);
+		assertNotNull(EXPECT_A_RESULT, personDataContainer);
 	}
 
-	/**
-	 * Service register user request success test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 300, percentile95 = 350, throughput = 20)
-	public void serviceRegisterUserRequestSuccessTest() throws Exception {
-		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstion();
-
-
-		final RegisterUserRequest serviceRequest = new RegisterUserRequest();
-		serviceRequest.setCountry("Sweden");
-		serviceRequest.setUsername(UUID.randomUUID().toString());
-		serviceRequest.setEmail(serviceRequest.getUsername() + "@email.com");
-		serviceRequest.setUserpassword("userpassword");
-		serviceRequest.setUserType(UserType.PRIVATE);
-		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
-
-		final RegisterUserResponse response = (RegisterUserResponse) applicationManager.service(serviceRequest);
-		assertNotNull("Expect a result", response);
-		assertEquals(ServiceResult.SUCCESS, response.getResult());
-
-		final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
-		final List<UserAccount> allBy = dataContainer.getAllBy(UserAccount_.username, serviceRequest.getUsername());
-		assertEquals(1, allBy.size());
-	}
-
-
-	/**
-	 * Service login request success test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
-	@Required(max = 1500, average = 500, percentile95 = 750, throughput = 5)
-	public void serviceLoginRequestSuccessTest() throws Exception {
-		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstion();
-
-
-		final RegisterUserRequest serviceRequest = new RegisterUserRequest();
-		serviceRequest.setCountry("Sweden");
-		serviceRequest.setUsername(UUID.randomUUID().toString());
-		serviceRequest.setEmail(serviceRequest.getUsername() + "@email.com");
-		serviceRequest.setUserpassword("userpassword");
-		serviceRequest.setUserType(UserType.PRIVATE);
-		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
-
-		final RegisterUserResponse response = (RegisterUserResponse) applicationManager.service(serviceRequest);
-		assertNotNull("Expect a result", response);
-		assertEquals(ServiceResult.SUCCESS, response.getResult());
-
-		final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
-		final List<UserAccount> allBy = dataContainer.getAllBy(UserAccount_.username, serviceRequest.getUsername());
-		assertEquals(1, allBy.size());
-
-
-
-		final LoginRequest loginRequest = new LoginRequest();
-		loginRequest.setEmail(serviceRequest.getEmail());
-		loginRequest.setSessionId(serviceRequest.getSessionId());
-		loginRequest.setUserpassword(serviceRequest.getUserpassword());
-
-		final LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
-
-		assertNotNull("Expect a result", loginResponse);
-		assertEquals(ServiceResult.SUCCESS, loginResponse.getResult());
-
-	}
-
-
-
-	/**
-	 * Creates the application sesstion.
-	 *
-	 * @return the creates the application session request
-	 */
-	private CreateApplicationSessionRequest createApplicationSesstion() {
-
-		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
-		SecurityContextHolder.getContext()
-				.setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
-
-		final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
-		serviceRequest.setIpInformation("8.8.8.8");
-		serviceRequest.setLocale("en_US.UTF-8");
-		serviceRequest.setOperatingSystem("LINUX");
-		serviceRequest.setSessionId(UUID.randomUUID().toString());
-		serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
-		serviceRequest.setUserAgentInformation(
-				"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0");
-
-		final CreateApplicationSessionResponse response = (CreateApplicationSessionResponse) applicationManager
-				.service(serviceRequest);
-		assertNotNull("Expect a result", response);
-		assertEquals(ServiceResult.SUCCESS, response.getResult());
-		return serviceRequest;
-	}
 }

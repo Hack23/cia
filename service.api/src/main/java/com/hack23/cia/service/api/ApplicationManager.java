@@ -34,17 +34,6 @@ import com.hack23.cia.service.api.action.common.ServiceResponse;
 public interface ApplicationManager {
 
 	/**
-	 * Authenticate.
-	 *
-	 * @param username
-	 *            the username
-	 * @param password
-	 *            the password
-	 * @return the object
-	 */
-	Object authenticate(String username, String password);
-
-	/**
 	 * Gets the agent container.
 	 *
 	 * @return the agent container
@@ -64,11 +53,6 @@ public interface ApplicationManager {
 	 */
 	<T extends Serializable,V extends Serializable> DataContainer<T,V> getDataContainer(Class<T> dataObject);
 
-
-	/**
-	 * Logout.
-	 */
-	void logout();
 
 	/**
 	 * Service.

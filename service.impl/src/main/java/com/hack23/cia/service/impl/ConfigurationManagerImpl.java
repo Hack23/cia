@@ -30,7 +30,6 @@ import com.hack23.cia.model.internal.application.system.impl.Agency;
 import com.hack23.cia.model.internal.application.system.impl.Portal;
 import com.hack23.cia.model.internal.application.system.impl.PortalType;
 import com.hack23.cia.service.api.ConfigurationManager;
-import com.hack23.cia.service.api.SystemConfiguration;
 import com.hack23.cia.service.api.UserConfiguration;
 import com.hack23.cia.service.data.api.AgencyDAO;
 
@@ -41,10 +40,6 @@ import com.hack23.cia.service.data.api.AgencyDAO;
 @Transactional
 public final class ConfigurationManagerImpl implements ConfigurationManager {
 
-	/** The configuration. */
-	@Autowired
-	private SystemConfiguration configuration;
-
 	/** The agency dao. */
 	@Autowired
 	private AgencyDAO agencyDAO;
@@ -54,12 +49,6 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 	 */
 	public ConfigurationManagerImpl() {
 		super();
-	}
-
-	@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
-	@Override
-	public SystemConfiguration getSystemConfiguration() {
-		return configuration;
 	}
 
 	@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })

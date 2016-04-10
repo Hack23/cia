@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.metamodel.SingularAttribute;
@@ -93,7 +94,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 	public <T, V> List<T> findListByEmbeddedProperty(final Class<T> clazz,
 			final SingularAttribute<T, V> property, final Class<V> clazz2,
 			final SingularAttribute<V, ? extends Object> property2, final Object value) {
-		return null;
+		return new ArrayList<>();
 	}
 
 	@Override
@@ -113,20 +114,20 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 	public <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
 			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
 			final SingularAttribute<V, ? extends Object> orderByProperty) {
-		return null;
+		return new ArrayList<>();
 	}
 
 	@Override
 	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
 			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
 			final SingularAttribute<T, ? extends Object> orderByProperty) {
-		return null;
+		return new ArrayList<>();
 	}
 
 	@Override
 	public List<ViewRiksdagenCommittee> findOrderedListByProperty(
 			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> property, final Object value,
 			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> orderByProperty) {
-		return null;
+		return new ArrayList<>();
 	}
 }

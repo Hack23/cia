@@ -26,13 +26,6 @@ package com.hack23.cia.service.api;
 public interface ConfigurationManager {
 
 	/**
-	 * Gets the system configuration.
-	 *
-	 * @return the system configuration
-	 */
-	SystemConfiguration getSystemConfiguration();
-
-	/**
 	 * Gets the user configuration.
 	 *
 	 * @param url

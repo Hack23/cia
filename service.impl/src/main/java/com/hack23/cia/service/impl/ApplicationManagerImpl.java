@@ -34,12 +34,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.service.api.AgentContainer;
 import com.hack23.cia.service.api.ApplicationManager;
@@ -70,11 +66,6 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	@Qualifier("DataSummaryDataContainer")
 	private DataContainer<DataSummary, String> dataSummaryDataContainer;
 
-	/** The person data container. */
-	@Autowired
-	@Qualifier("PersonDataContainer")
-	private DataContainer<PersonData, String> personDataContainer;
-
 	/** The view riksdagen committee data container. */
 	@Autowired
 	@Qualifier("ViewRiksdagenCommitteeDataContainer")
@@ -100,19 +91,6 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	}
 
 
-	@Secured({"ROLE_ANONYMOUS"})
-	@Override
-	public Object authenticate(final String username, final String password) {
-		final Authentication auth = new UsernamePasswordAuthenticationToken(
-				username, password);
-
-		final Authentication returned = authenticationManager
-				.authenticate(auth);
-		SecurityContextHolder.getContext().setAuthentication(returned);
-
-		return returned;
-	}
-
 	@Secured({"ROLE_ADMIN"})
 	@Override
 	public AgentContainer getAgentContainer() {
@@ -128,21 +106,13 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 
 		if (dataObject.equals(DataSummary.class)) {
 			result= (DataContainer<T, V>) dataSummaryDataContainer;
-		} else if (dataObject.equals(PersonData.class)) {
-			result= (DataContainer<T, V>) personDataContainer;
-		}else if (dataObject.equals(ViewRiksdagenCommittee.class)) {
+		} else if (dataObject.equals(ViewRiksdagenCommittee.class)) {
 			result= (DataContainer<T, V>) viewRiksdagenCommitteeDataContainer;
 		} else {
 			result= viewDataDataContainerFactory.createDataContainer(dataObject);
 		}
 
 		return result;
-	}
-
-	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
-	@Override
-	public void logout() {
-		SecurityContextHolder.getContext().setAuthentication(null);
 	}
 
 	@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })

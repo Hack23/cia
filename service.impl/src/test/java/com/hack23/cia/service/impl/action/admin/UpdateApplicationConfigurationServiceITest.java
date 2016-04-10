@@ -18,15 +18,10 @@
 */
 package com.hack23.cia.service.impl.action.admin;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.UUID;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration;
 import com.hack23.cia.model.internal.application.system.impl.ConfigurationGroup;
@@ -56,12 +51,7 @@ public final class UpdateApplicationConfigurationServiceITest extends AbstractSe
 	@Test
 	public void successTest() throws Exception {
 
-		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
-		authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-
-		SecurityContextHolder.getContext().setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
-
+		setAuthenticatedAdminuser();
 		final CreateApplicationSessionRequest createTestApplicationSession = createTestApplicationSession();
 
 		final String randomUUID = UUID.randomUUID().toString();
@@ -86,8 +76,8 @@ public final class UpdateApplicationConfigurationServiceITest extends AbstractSe
 		final UpdateApplicationConfigurationResponse  response = (UpdateApplicationConfigurationResponse) applicationManager.service(serviceRequest);
 
 
-		assertNotNull("Expect a result",response);
-		assertEquals("Expect success", ServiceResult.SUCCESS,response.getResult());
+		assertNotNull(EXPECT_A_RESULT,response);
+		assertEquals(EXPECT_SUCCESS, ServiceResult.SUCCESS,response.getResult());
 
 
 		final ApplicationConfiguration applicationConfigurationUpdated = applicationConfigurationService.checkValueOrLoadDefault(

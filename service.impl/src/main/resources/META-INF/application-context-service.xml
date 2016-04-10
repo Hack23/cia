@@ -35,12 +35,6 @@
 	<task:executor id="myExecutor" pool-size="5"/>
 	<task:scheduler id="myScheduler" pool-size="10"/>
 
-	<bean id="serviceConfiguration"
-		class="com.hack23.cia.service.impl.SystemConfigurationImpl">
-		<property name="geoipDataFileLocation" value="${cia.service.geoipDataFileLocation}" />
-		<property name="geoipDataFileLocationCity" value="${cia.service.geoipDataFileLocation.city}" />
-	</bean>
-
 	<security:global-method-security secured-annotations="enabled"/>
 
 	<security:authentication-manager alias="authenticationManager">

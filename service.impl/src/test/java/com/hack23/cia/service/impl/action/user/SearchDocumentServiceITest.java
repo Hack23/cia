@@ -16,16 +16,10 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.impl.action.application;
-
-import java.util.ArrayList;
-import java.util.Collection;
+package com.hack23.cia.service.impl.action.user;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
@@ -51,10 +45,7 @@ public final class SearchDocumentServiceITest extends AbstractServiceFunctionalI
 	 */
 	@Test
 	public void Test() throws Exception {
-		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
-		SecurityContextHolder.getContext().setAuthentication(new AnonymousAuthenticationToken("key", "principal", authorities));
-
+		setAuthenticatedAnonymousUser();
 
 		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
 
@@ -64,11 +55,8 @@ public final class SearchDocumentServiceITest extends AbstractServiceFunctionalI
 		serviceRequest.setSearchExpression("kan");
 
 		final SearchDocumentResponse  response = (SearchDocumentResponse) applicationManager.service(serviceRequest);
-		assertNotNull("Expect a result",response);
-		assertTrue("Expect a result",response.getResultElement().size() > 0);
-
+		assertNotNull(EXPECT_A_RESULT,response);
+		assertTrue(EXPECT_A_RESULT,response.getResultElement().size() > 0);
 	}
-
-
 
 }
