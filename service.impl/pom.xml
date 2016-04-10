@@ -170,10 +170,6 @@
       <version>${project.version}</version>
       <exclusions>
         <exclusion>
-          <artifactId>commons-codec</artifactId>
-          <groupId>commons-codec</groupId>
-        </exclusion>
-        <exclusion>
           <artifactId>commons-net</artifactId>
           <groupId>commons-net</groupId>
         </exclusion>
@@ -191,12 +187,6 @@
       <groupId>com.hack23.cia</groupId>
       <artifactId>service.component.agent.impl</artifactId>
       <version>${project.version}</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>httpclient</artifactId>
-          <groupId>org.apache.httpcomponents</groupId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.hack23.cia</groupId>
@@ -206,10 +196,6 @@
         <exclusion>
           <artifactId>com.springsource.javax.persistence</artifactId>
           <groupId>javax.persistence</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>commons-codec</artifactId>
-          <groupId>commons-codec</groupId>
         </exclusion>
       </exclusions>
     </dependency>

@@ -39,6 +39,7 @@ import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.application.LogoutRequest;
+import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
@@ -46,10 +47,12 @@ import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFac
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.LogoutClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SetGoogleAuthenticatorCredentialClickListener;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
@@ -59,6 +62,7 @@ import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -70,6 +74,8 @@ import ru.xpoft.vaadin.VaadinView;
 @Scope(value="prototype",proxyMode = ScopedProxyMode.INTERFACES)
 @VaadinView(value = UserHomeView.NAME, cached = true)
 public final class UserHomeView extends AbstractUserView {
+
+	private static final String ENABLE_GOOGLE_AUTHENTICATOR = "Enable Google Authenticator";
 
 	private static final String LOGOUT = "Logout";
 
@@ -145,47 +151,60 @@ public final class UserHomeView extends AbstractUserView {
 
 				panelContent.addComponent(logoutButton);
 
+				final Button googleAuthButton = new Button(ENABLE_GOOGLE_AUTHENTICATOR);
+
+				final SetGoogleAuthenticatorCredentialRequest googleAuthRequest = new SetGoogleAuthenticatorCredentialRequest();
+				googleAuthRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+				googleAuthButton.addClickListener(new SetGoogleAuthenticatorCredentialClickListener(googleAuthRequest,applicationManager));
+
+				panelContent.addComponent(googleAuthButton);
 
 				final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
 
 
-					final UserAccount userAccount = dataContainer.load(getUserIdFromSecurityContext());
+					Long userIdFromSecurityContext = getUserIdFromSecurityContext();
+
+					if (userIdFromSecurityContext == null) {
+						UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
+					} else {
+
+						final UserAccount userAccount = dataContainer.load(userIdFromSecurityContext);
 
 
-					final Panel formPanel = new Panel();
-					formPanel.setSizeFull();
+						final Panel formPanel = new Panel();
+						formPanel.setSizeFull();
 
-					panelContent.addComponent(formPanel);
+						panelContent.addComponent(formPanel);
 
-					final FormLayout formContent = new FormLayout();
-					formPanel.setContent(formContent);
-
-
-
-					formFactory.addTextFields(formContent, new BeanItem<>(userAccount), UserAccount.class,
-							Arrays.asList(new String[] { "username","createdDate","email","country","numberOfVisits" }));
+						final FormLayout formContent = new FormLayout();
+						formPanel.setContent(formContent);
 
 
 
-					final DataContainer<ApplicationActionEvent, Long> eventDataContainer = applicationManager.getDataContainer(ApplicationActionEvent.class);
+						formFactory.addTextFields(formContent, new BeanItem<>(userAccount), UserAccount.class,
+								Arrays.asList(new String[] { "username","createdDate","email","country","numberOfVisits" }));
 
 
-					final BeanItemContainer<ApplicationActionEvent> politicianDocumentDataSource = new BeanItemContainer<>(ApplicationActionEvent.class,
-							eventDataContainer.findOrderedListByProperty(ApplicationActionEvent_.userId,userAccount.getUserId(),ApplicationActionEvent_.createdDate));
 
-					final Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationActionEvent",
-							new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" },
-							new String[] { "modelObjectId" }, "hjid",
-							new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null);
-					panelContent.addComponent(createBasicBeanItemGrid);
+						final DataContainer<ApplicationActionEvent, Long> eventDataContainer = applicationManager.getDataContainer(ApplicationActionEvent.class);
 
 
-					panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
-					panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);
+						final BeanItemContainer<ApplicationActionEvent> politicianDocumentDataSource = new BeanItemContainer<>(ApplicationActionEvent.class,
+								eventDataContainer.findOrderedListByProperty(ApplicationActionEvent_.userId,userAccount.getUserId(),ApplicationActionEvent_.createdDate));
 
-					panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
-					panelContent.setExpandRatio(createBasicBeanItemGrid,ContentRatio.GRID);
+						final Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationActionEvent",
+								new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" },
+								new String[] { "modelObjectId" }, "hjid",
+								new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null);
+						panelContent.addComponent(createBasicBeanItemGrid);
 
+
+						panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+						panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);
+
+						panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
+						panelContent.setExpandRatio(createBasicBeanItemGrid,ContentRatio.GRID);
+					}
 			}
 
 

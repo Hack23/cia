@@ -21,6 +21,7 @@ package com.hack23.cia.service.impl.action.application;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,7 +103,12 @@ public final class LoginService extends
 			boolean authorizedOtp=true;
 			if (userExist.getGoogleAuthKey() != null) {
 				GoogleAuthenticator gAuth = new GoogleAuthenticator();
-				authorizedOtp = gAuth.authorize(userExist.getGoogleAuthKey(), Integer.valueOf(serviceRequest.getOtpCode()));
+
+				if (!StringUtils.isBlank(serviceRequest.getOtpCode()) && StringUtils.isNumeric(serviceRequest.getOtpCode())) {
+					authorizedOtp = gAuth.authorize(userExist.getGoogleAuthKey(), Integer.valueOf(serviceRequest.getOtpCode()));
+				} else {
+					authorizedOtp = false;
+				}
 			}
 
 			if (authorizedOtp && passwordEncoder.matches(userExist.getUserId()+".uuid"+ serviceRequest.getUserpassword(), userExist.getUserpassword())) {

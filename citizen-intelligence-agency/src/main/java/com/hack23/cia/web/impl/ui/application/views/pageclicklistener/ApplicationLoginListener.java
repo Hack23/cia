@@ -54,21 +54,22 @@ public final class ApplicationLoginListener implements LoginListener {
 	/** The application manager. */
 	private transient ApplicationManager applicationManager;
 
+	private final LoginRequest loginRequest;
+
 	/**
 	 * Instantiates a new application login listener.
 	 *
 	 * @param applicationManager
 	 *            the application manager
 	 */
-	public ApplicationLoginListener(final ApplicationManager applicationManager) {
+	public ApplicationLoginListener(final ApplicationManager applicationManager,final LoginRequest loginRequest) {
 		this.applicationManager = applicationManager;
+		this.loginRequest = loginRequest;
 	}
 
 
 	@Override
 	public void onLogin(final LoginEvent event) {
-
-		final LoginRequest loginRequest = new LoginRequest();
 		loginRequest.setEmail(event.getUserName());
 		loginRequest.setUserpassword(event.getPassword());
 		loginRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
