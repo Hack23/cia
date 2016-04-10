@@ -38,6 +38,9 @@ public final class LoginRequest implements ServiceRequest {
     /** The userpassword. */
     private String userpassword;
 
+    /** The otp code. */
+    private String otpCode;
+
 	/**
 	 * Instantiates a new login request.
 	 */
@@ -100,6 +103,25 @@ public final class LoginRequest implements ServiceRequest {
 	 */
 	public void setSessionId(final String sessionId) {
 		this.sessionId = sessionId;
+	}
+
+	/**
+	 * Gets the otp code.
+	 *
+	 * @return the otp code
+	 */
+	public String getOtpCode() {
+		return otpCode;
+	}
+
+	/**
+	 * Sets the otp code.
+	 *
+	 * @param otpCode
+	 *            the new otp code
+	 */
+	public void setOtpCode(String otpCode) {
+		this.otpCode = otpCode;
 	}
 
 }
