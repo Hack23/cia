@@ -756,7 +756,7 @@
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-archiver</artifactId>
-              <version>3.0.3</version>
+              <version>3.1.1</version>
             </dependency>
           </dependencies>
         </plugin>
