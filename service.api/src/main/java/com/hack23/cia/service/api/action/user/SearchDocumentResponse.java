@@ -19,6 +19,7 @@
 package com.hack23.cia.service.api.action.user;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -38,7 +39,7 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	private static final long serialVersionUID = 1L;
 
 	/** The result element. */
-	private List<DocumentElement> resultElement;
+	private List<DocumentElement> resultElement = new ArrayList<>();
 
 	/** The status map. */
 	private Map<String,DocumentStatusContainer> statusMap;
@@ -64,7 +65,9 @@ public final class SearchDocumentResponse extends AbstractResponse {
 
 
 	public void setResultElement(final List<DocumentElement> resultElement) {
-		this.resultElement = resultElement.stream().collect(Collectors.toList());
+		if (resultElement != null) {
+			this.resultElement = resultElement.stream().collect(Collectors.toList());
+		}
 	}
 
 

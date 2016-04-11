@@ -19,7 +19,9 @@
 package com.hack23.cia.service.api.action.user;
 
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.hack23.cia.service.api.action.common.AbstractResponse;
 
@@ -40,7 +42,7 @@ public final class SetGoogleAuthenticatorCredentialResponse extends AbstractResp
     private Integer googleAuthVerificationCode;
 
     /** The google auth scratch codes. */
-    private List<Integer> googleAuthScratchCodes;
+    private List<Integer> googleAuthScratchCodes = new ArrayList<>();
 
     /** The otp auth totp url. */
     private String otpAuthTotpURL;
@@ -99,7 +101,7 @@ public final class SetGoogleAuthenticatorCredentialResponse extends AbstractResp
 	 * @return the google auth scratch codes
 	 */
 	public List<Integer> getGoogleAuthScratchCodes() {
-		return googleAuthScratchCodes;
+		return googleAuthScratchCodes.stream().collect(Collectors.toList());
 	}
 
 	/**
@@ -109,7 +111,9 @@ public final class SetGoogleAuthenticatorCredentialResponse extends AbstractResp
 	 *            the new google auth scratch codes
 	 */
 	public void setGoogleAuthScratchCodes(List<Integer> googleAuthScratchCodes) {
-		this.googleAuthScratchCodes = googleAuthScratchCodes;
+		if (googleAuthScratchCodes != null) {
+			this.googleAuthScratchCodes = googleAuthScratchCodes.stream().collect(Collectors.toList());
+		}
 	}
 
 	/**

@@ -37,5 +37,10 @@
       <artifactId>service.data.api</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.hack23.cia</groupId>
+      <artifactId>testfoundation</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 </project>
