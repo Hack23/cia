@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,7 +29,7 @@ import com.hack23.cia.testfoundation.AbstractTest;
  */
 public final class XmlTimeTypeAdapterTest extends AbstractTest {
 
-	
+
 	/**
 	 * Parses the date test.
 	 *
@@ -38,26 +38,26 @@ public final class XmlTimeTypeAdapterTest extends AbstractTest {
 	 */
 	@Test
 	public void parseDateTest() throws Exception {
-		
+
 		Date simpleSwedishDateForm = XmlTimeTypeAdapter.parseDate("2015-05-20");
-		assertNotNull(simpleSwedishDateForm);
+		assertNotNull("Expect a result",simpleSwedishDateForm);
 		assertEquals("Expect specified date","2015-05-20+02:00",XmlTimeTypeAdapter.printDate(simpleSwedishDateForm));
 
 		Date simpleSwedishDateTimeFormat = XmlTimeTypeAdapter.parseDate("2001-01-01 00:00:00");
-		assertNotNull(simpleSwedishDateTimeFormat);
+		assertNotNull("Expect a result",simpleSwedishDateTimeFormat);
 		assertEquals("Expect specified date","2001-01-01+01:00",XmlTimeTypeAdapter.printDate(simpleSwedishDateTimeFormat));
-		
+
 
 		Date validDateForm = XmlTimeTypeAdapter.parseDate("2001-01-01+01:00");
 		assertNotNull("Expect specified date",validDateForm);
-		assertEquals("2001-01-01+01:00",XmlTimeTypeAdapter.printDate(validDateForm));			
-		
+		assertEquals("2001-01-01+01:00",XmlTimeTypeAdapter.printDate(validDateForm));
+
 		assertNull("Expect null",XmlTimeTypeAdapter.printDate(null));
 		assertNull("Expect null",XmlTimeTypeAdapter.parseDate(null));
 
 	}
-	
-	
+
+
 	/**
 	 * Parses the time test.
 	 *
@@ -66,14 +66,14 @@ public final class XmlTimeTypeAdapterTest extends AbstractTest {
 	 */
 	@Test
 	public void parseTimeTest() throws Exception {
-		
+
 		String printTime = "00:27:55.916+01:00";
 		Date simpleSwedishDateForm = XmlTimeTypeAdapter.parseTime(printTime);
 		assertEquals("Expect specified time",printTime,XmlTimeTypeAdapter.printTime(simpleSwedishDateForm));
 
 		assertNull("Expect null",XmlTimeTypeAdapter.printTime(null));
 		assertNull("Expect null",XmlTimeTypeAdapter.parseTime(null));
-		
+
 	}
 
 	/**

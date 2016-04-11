@@ -24,6 +24,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.hack23.cia.testfoundation.AbstractUnitTest;
 import com.tocea.easycoverage.framework.checkers.ArrayIndexOutOfBoundExceptionChecker;
 import com.tocea.easycoverage.framework.checkers.BijectiveCompareToChecker;
 import com.tocea.easycoverage.framework.checkers.BijectiveEqualsChecker;
@@ -40,8 +41,9 @@ import junit.framework.TestSuite;
 /**
  * The Class ApiActionSanityTest.
  */
-public class ApiActionSanityTest {
+public final class ApiActionSanityTest extends AbstractUnitTest {
 
+	private static final String EXPECT_CLASSES_IN_PACKAGE = "Expect classes in package";
 	private static final char PACKAGE_SEPARATOR = '.';
 	private static final char CLASS_FILE_DIRECTORY_SEPARATOR = '/';
 	private static final String CLASS_SUFFIX = ".class";
@@ -55,9 +57,9 @@ public class ApiActionSanityTest {
 	public static TestSuite suite() {
 		JUnitTestSuiteProvider testSuiteProvider = new JUnitTestSuiteProvider();
 
-		checkAllClassesInPackage(testSuiteProvider,"com.hack23.cia.service.api.action.application");
-		checkAllClassesInPackage(testSuiteProvider,"com.hack23.cia.service.api.action.admin");
-		checkAllClassesInPackage(testSuiteProvider,"com.hack23.cia.service.api.action.user");
+		assertTrue(EXPECT_CLASSES_IN_PACKAGE,checkAllClassesInPackage(testSuiteProvider,"com.hack23.cia.service.api.action.application"));
+		assertTrue(EXPECT_CLASSES_IN_PACKAGE,checkAllClassesInPackage(testSuiteProvider,"com.hack23.cia.service.api.action.admin"));
+		assertTrue(EXPECT_CLASSES_IN_PACKAGE,checkAllClassesInPackage(testSuiteProvider,"com.hack23.cia.service.api.action.user"));
 
 
 		testSuiteProvider.addClassChecker(ToStringNotNullChecker.class);
@@ -82,11 +84,12 @@ public class ApiActionSanityTest {
 	 * @param string
 	 *            the string
 	 */
-	private static void checkAllClassesInPackage(JUnitTestSuiteProvider testSuiteProvider, String string) {
+	private static boolean checkAllClassesInPackage(JUnitTestSuiteProvider testSuiteProvider, String string) {
 		List<Class<?>> allClasses = getAllClasses(string);
 		for (Class<?> class1 : allClasses) {
 			testSuiteProvider.addClass(class1);
 		}
+		return !allClasses.isEmpty();
 	}
 
 	/**

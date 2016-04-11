@@ -36,6 +36,12 @@ import com.hack23.cia.service.external.val.api.ValApi;
  */
 public final class ValApiTest extends AbstractValFunctionalIntegrationTest {
 
+	/** The Constant EXPECT_A_RESULT. */
+	private static final String EXPECT_A_RESULT = "Expect a result";
+
+	/** The Constant EXPECTED_TO_MATCH_NUMBER_OF_IMPORT_ENTRIES_IN_DATA_FILE. */
+	private static final String EXPECTED_TO_MATCH_NUMBER_OF_IMPORT_ENTRIES_IN_DATA_FILE = "Expected to match number of import entries in data file";
+
 	/** The val api. */
 	@Autowired
 	private ValApi valApi;
@@ -49,8 +55,8 @@ public final class ValApiTest extends AbstractValFunctionalIntegrationTest {
 	@Test
 	public void testGetElectionTypes() throws Exception {
 		final List<SwedenElectionType> list = valApi.getElectionTypes();
-		assertNotNull(list);
-		assertEquals(5, list.size());
+		assertNotNull(EXPECT_A_RESULT,list);
+		assertEquals(EXPECTED_TO_MATCH_NUMBER_OF_IMPORT_ENTRIES_IN_DATA_FILE,5, list.size());
 
 	}
 
@@ -63,8 +69,8 @@ public final class ValApiTest extends AbstractValFunctionalIntegrationTest {
 	@Test
 	public void testGetSwedenPoliticalParties() throws Exception {
 		final List<SwedenPoliticalParty> list = valApi.getSwedenPoliticalParties();
-		assertNotNull(list);
-		assertEquals(40, list.size());
+		assertNotNull(EXPECT_A_RESULT,list);
+		assertEquals(EXPECTED_TO_MATCH_NUMBER_OF_IMPORT_ENTRIES_IN_DATA_FILE,40, list.size());
 
 	}
 
@@ -77,7 +83,7 @@ public final class ValApiTest extends AbstractValFunctionalIntegrationTest {
 	@Test
 	public void testSwedenElectionRegion() throws Exception {
 		final SwedenElectionRegion swedenElectionRegion = valApi.getSwedenElectionRegion();
-		assertNotNull(swedenElectionRegion);
+		assertNotNull(EXPECT_A_RESULT,swedenElectionRegion);
 	}
 
 
@@ -90,8 +96,8 @@ public final class ValApiTest extends AbstractValFunctionalIntegrationTest {
 	@Test
 	public void testGetCountyElectoralRegions() throws Exception {
 		final List<SwedenCountyElectoralRegion> list = valApi.getCountyElectoralRegions();
-		assertNotNull(list);
-		assertEquals(20, list.size());
+		assertNotNull(EXPECT_A_RESULT,list);
+		assertEquals(EXPECTED_TO_MATCH_NUMBER_OF_IMPORT_ENTRIES_IN_DATA_FILE,20, list.size());
 	}
 
 	/**
@@ -103,8 +109,8 @@ public final class ValApiTest extends AbstractValFunctionalIntegrationTest {
 	@Test
 	public void testGetParliamentElectoralRegions() throws Exception {
 		final List<SwedenParliamentElectoralRegion> list = valApi.getParliamentElectoralRegions();
-		assertNotNull(list);
-		assertEquals(29, list.size());
+		assertNotNull(EXPECT_A_RESULT,list);
+		assertEquals(EXPECTED_TO_MATCH_NUMBER_OF_IMPORT_ENTRIES_IN_DATA_FILE,29, list.size());
 	}
 
 	/**
@@ -116,8 +122,8 @@ public final class ValApiTest extends AbstractValFunctionalIntegrationTest {
 	@Test
 	public void testGetCountyRegions() throws Exception {
 		final List<SwedenCountyData> list = valApi.getCountyRegions();
-		assertNotNull(list);
-		assertEquals(21, list.size());
+		assertNotNull(EXPECT_A_RESULT,list);
+		assertEquals(EXPECTED_TO_MATCH_NUMBER_OF_IMPORT_ENTRIES_IN_DATA_FILE,21, list.size());
 	}
 
 

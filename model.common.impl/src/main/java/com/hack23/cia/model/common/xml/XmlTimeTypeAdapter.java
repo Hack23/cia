@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id: XmlTimeTypeAdapter.java 6076 2015-05-21 18:59:45Z pether $
- *  $HeadURL: svn+ssh://svn.code.sf.net/p/cia/code/trunk/model.common.impl/src/main/java/com/hack23/cia/model/common/xml/XmlTimeTypeAdapter.java $
+ *	$Id$
+ *  $HeadURL$
 */
 package com.hack23.cia.model.common.xml;
 
@@ -34,12 +34,21 @@ import org.slf4j.LoggerFactory;
  */
 public final class XmlTimeTypeAdapter {
 
+	private static final String YYYY_MM_DD_HH_MM_SS = "2001-01-01 00:00:00";
+
 	/** The Constant YYYY_MM_DD. */
 	private static final String YYYY_MM_DD = "yyyy-MM-dd";
-	
+
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(XmlTimeTypeAdapter.class);
 
+
+	/**
+	 * Instantiates a new xml time type adapter.
+	 */
+	private XmlTimeTypeAdapter() {
+		super();
+	}
 
 	/**
 	 * Parses the date.
@@ -54,11 +63,11 @@ public final class XmlTimeTypeAdapter {
 		}
 		// hack to supported swedish riksdags xml.
 		final String dateStr = s.trim();
-		if ("2001-01-01 00:00:00".length() == dateStr.length()
-				|| "2001-01-01".length() == dateStr.length()) {
+		if (YYYY_MM_DD_HH_MM_SS.length() == dateStr.length()
+				|| YYYY_MM_DD.length() == dateStr.length()) {
 			try {
 				return new SimpleDateFormat(
-						YYYY_MM_DD,Locale.ENGLISH).parse(dateStr.substring(0, 10));
+						YYYY_MM_DD,Locale.ENGLISH).parse(dateStr.substring(0,YYYY_MM_DD.length()));
 			} catch (final ParseException e) {
 				LOGGER.warn("Problem parsing date from str:{}",s,e);
 			}
