@@ -22,7 +22,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.AllTests;
 
 import com.hack23.cia.testfoundation.AbstractUnitTest;
 import com.tocea.easycoverage.framework.checkers.ArrayIndexOutOfBoundExceptionChecker;
@@ -41,6 +42,7 @@ import junit.framework.TestSuite;
 /**
  * The Class ApiActionSanityTest.
  */
+@RunWith(AllTests.class)
 public final class ApiActionSanityTest extends AbstractUnitTest {
 
 	private static final String EXPECT_CLASSES_IN_PACKAGE = "Expect classes in package";
@@ -53,7 +55,6 @@ public final class ApiActionSanityTest extends AbstractUnitTest {
 	 *
 	 * @return the test suite
 	 */
-	@Test
 	public static TestSuite suite() {
 		JUnitTestSuiteProvider testSuiteProvider = new JUnitTestSuiteProvider();
 
