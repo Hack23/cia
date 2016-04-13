@@ -33,6 +33,9 @@ import com.hack23.cia.service.data.api.SearchIndexer;
 @Repository
 public final class SearchIndexerImpl implements SearchIndexer {
 
+	/** The Constant TIMEOUT_IN_SECONDS. */
+	private static final int TIMEOUT_IN_SECONDS = 900;
+
 	/** The entity manager. */
 	@PersistenceContext(name = "ciaPersistenceUnit")
 	private EntityManager entityManager;
@@ -61,6 +64,6 @@ public final class SearchIndexerImpl implements SearchIndexer {
 
 	@Override
 	public void updateSearchIndex() throws InterruptedException {
-		getFullTextEntityManager().createIndexer().transactionTimeout(900).startAndWait();
+		getFullTextEntityManager().createIndexer().transactionTimeout(TIMEOUT_IN_SECONDS).startAndWait();
 	}
 }
