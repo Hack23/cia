@@ -20,7 +20,6 @@ package com.hack23.cia.service.component.agent.impl.vdem;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
-import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 
 import org.slf4j.Logger;
@@ -36,7 +35,7 @@ import com.hack23.cia.service.external.vdem.api.VdemService;
  * The Class VdemApiAgentWorkConsumerImpl.
  */
 @Service("VdemApiAgentWorkConsumer")
-public final class VdemApiAgentWorkConsumerImpl extends AbstractAgentWorkConsumerImpl implements MessageListener {
+public final class VdemApiAgentWorkConsumerImpl extends AbstractAgentWorkConsumerImpl {
 
 
 	/** The Constant LOGGER. */

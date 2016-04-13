@@ -102,10 +102,10 @@ public final class LoginService extends
 
 			boolean authorizedOtp=true;
 			if (userExist.getGoogleAuthKey() != null) {
-				GoogleAuthenticator gAuth = new GoogleAuthenticator();
+				final GoogleAuthenticator gAuth = new GoogleAuthenticator();
 
 				if (!StringUtils.isBlank(serviceRequest.getOtpCode()) && StringUtils.isNumeric(serviceRequest.getOtpCode())) {
-					authorizedOtp = gAuth.authorize(userExist.getGoogleAuthKey(), Integer.valueOf(serviceRequest.getOtpCode()));
+					authorizedOtp = gAuth.authorize(userExist.getGoogleAuthKey(), Integer.parseInt(serviceRequest.getOtpCode()));
 				} else {
 					authorizedOtp = false;
 				}

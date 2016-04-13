@@ -99,10 +99,10 @@ public final class SetGoogleAuthenticatorCredentialServiceITest extends Abstract
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, loginResponse.getResult());
 
 
-		SetGoogleAuthenticatorCredentialRequest setGoogleAuthenticatorCredentialRequest = new SetGoogleAuthenticatorCredentialRequest();
+		final SetGoogleAuthenticatorCredentialRequest setGoogleAuthenticatorCredentialRequest = new SetGoogleAuthenticatorCredentialRequest();
 		setGoogleAuthenticatorCredentialRequest.setSessionId(serviceRequest.getSessionId());
 
-		ServiceResponse setGoogleAuthenticatorCredentialResponse = applicationManager.service(setGoogleAuthenticatorCredentialRequest);
+		final ServiceResponse setGoogleAuthenticatorCredentialResponse = applicationManager.service(setGoogleAuthenticatorCredentialRequest);
 
 		assertNotNull(EXPECT_A_RESULT, setGoogleAuthenticatorCredentialResponse);
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, setGoogleAuthenticatorCredentialResponse.getResult());
@@ -111,7 +111,7 @@ public final class SetGoogleAuthenticatorCredentialServiceITest extends Abstract
 		final LogoutRequest logoutRequest = new LogoutRequest();
 		logoutRequest.setSessionId(serviceRequest.getSessionId());
 
-		ServiceResponse logoutResponse = applicationManager.service(logoutRequest);
+		final ServiceResponse logoutResponse = applicationManager.service(logoutRequest);
 		assertNotNull(EXPECT_A_RESULT, logoutResponse);
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, logoutResponse.getResult());
 

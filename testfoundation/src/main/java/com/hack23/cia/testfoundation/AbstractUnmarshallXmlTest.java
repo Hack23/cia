@@ -60,10 +60,8 @@ public abstract class AbstractUnmarshallXmlTest<T> extends AbstractFunctionalInt
 	 *             the exception
 	 */
 	protected final T unmarshallXml(final Unmarshaller unmarshaller,final String filename) throws Exception {
-		BufferedReader inputStream;
-		inputStream = new BufferedReader(new InputStreamReader(
-				new FileInputStream(
-						new File(filename))));
+		final BufferedReader inputStream= new BufferedReader(new InputStreamReader(new FileInputStream(new File(filename))));
+
 		return (T) unmarshaller
 				.unmarshal(new StreamSource(inputStream));
 	}

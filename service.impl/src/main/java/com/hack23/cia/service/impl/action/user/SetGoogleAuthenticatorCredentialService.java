@@ -98,17 +98,17 @@ public final class SetGoogleAuthenticatorCredentialService extends
 
 			eventRequest.setUserId(userAccount.getUserId());
 
-			GoogleAuthenticator gAuth = new GoogleAuthenticator();
-			GoogleAuthenticatorKey gKey = gAuth.createCredentials();
+			final GoogleAuthenticator gAuth = new GoogleAuthenticator();
+			final GoogleAuthenticatorKey gKey = gAuth.createCredentials();
 
-			UserAccount updateUserAccount = userDAO.load(userAccount.getHjid());
+			final UserAccount updateUserAccount = userDAO.load(userAccount.getHjid());
 
 			updateUserAccount.setGoogleAuthKey(gKey.getKey());
 			updateUserAccount.setGoogleAuthVerificationCode(gKey.getVerificationCode());
 			updateUserAccount.setGoogleAuthScratchCodes(gKey.getScratchCodes());
 			userDAO.merge(updateUserAccount);
 
-			String otpAuthTotpURL = GoogleAuthenticatorQRGenerator.getOtpAuthTotpURL(agencyDAO.getAll().get(0).getAgencyName(), updateUserAccount.getEmail(), gKey);
+			final String otpAuthTotpURL = GoogleAuthenticatorQRGenerator.getOtpAuthTotpURL(agencyDAO.getAll().get(0).getAgencyName(), updateUserAccount.getEmail(), gKey);
 
 			response.setOtpAuthTotpURL(otpAuthTotpURL);
 			response.setGoogleAuthKey(gKey.getKey());

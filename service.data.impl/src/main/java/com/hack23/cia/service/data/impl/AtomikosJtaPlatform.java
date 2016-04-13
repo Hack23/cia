@@ -22,7 +22,6 @@ import javax.transaction.TransactionManager;
 import javax.transaction.UserTransaction;
 
 import org.hibernate.engine.transaction.jta.platform.internal.AbstractJtaPlatform;
-import org.hibernate.engine.transaction.jta.platform.spi.JtaPlatform;
 
 import com.atomikos.icatch.jta.J2eeTransactionManager;
 import com.atomikos.icatch.jta.J2eeUserTransaction;
@@ -30,7 +29,7 @@ import com.atomikos.icatch.jta.J2eeUserTransaction;
 /**
  * The Class AtomikosJtaPlatform.
  */
-public final class AtomikosJtaPlatform extends AbstractJtaPlatform implements JtaPlatform {
+public final class AtomikosJtaPlatform extends AbstractJtaPlatform {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -1L;

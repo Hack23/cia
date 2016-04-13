@@ -20,9 +20,9 @@
 package com.hack23.cia.service.impl;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Future;
 
 import org.springframework.beans.BeansException;
@@ -77,7 +77,7 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	private ViewDataDataContainerFactory viewDataDataContainerFactory;
 
 	/** The service request business service map. */
-	private final Map<Class<? extends ServiceRequest>, BusinessService> serviceRequestBusinessServiceMap = new HashMap<>();
+	private final Map<Class<? extends ServiceRequest>, BusinessService<? extends ServiceRequest,? extends ServiceResponse>> serviceRequestBusinessServiceMap = new ConcurrentHashMap<>();
 
 	/** The application context. */
 	private ApplicationContext applicationContext;

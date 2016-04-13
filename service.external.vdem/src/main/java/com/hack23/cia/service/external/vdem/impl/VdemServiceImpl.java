@@ -64,7 +64,7 @@ public final class VdemServiceImpl implements VdemService {
 			final XSSFSheet mySheet = myWorkBook.getSheetAt(0);
 			final Iterator<Row> rowIterator = mySheet.iterator();
 
-			final Row ignoreFirstRow = rowIterator.next();
+			rowIterator.next();
 
 			while (rowIterator.hasNext()) {
 				final Row row = rowIterator.next();

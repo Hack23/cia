@@ -162,7 +162,7 @@ public final class UserHomeView extends AbstractUserView {
 				final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
 
 
-					Long userIdFromSecurityContext = getUserIdFromSecurityContext();
+					final Long userIdFromSecurityContext = getUserIdFromSecurityContext();
 
 					if (userIdFromSecurityContext == null) {
 						UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);

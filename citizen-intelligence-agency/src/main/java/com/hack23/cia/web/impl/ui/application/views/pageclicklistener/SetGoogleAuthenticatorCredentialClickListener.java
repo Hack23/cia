@@ -105,18 +105,18 @@ public final class SetGoogleAuthenticatorCredentialClickListener implements Clic
 			URI keyUri;
 			try {
 				keyUri = new URI(response.getOtpAuthTotpURL());
-				QRCode qrCode = new QRCode(QR_CODE, keyUri.toASCIIString());
+				final QRCode qrCode = new QRCode(QR_CODE, keyUri.toASCIIString());
 				qrCode.setHeight(QR_CODE_IMAGE_SIZE);
 				qrCode.setWidth(QR_CODE_IMAGE_SIZE);
 
-				Window mywindow = new Window(GOOGLE_AUTHENTICATOR_QR_CODE);
+				final Window mywindow = new Window(GOOGLE_AUTHENTICATOR_QR_CODE);
 				mywindow.setHeight(MODAL_WINDOW_SIZE);
 				mywindow.setWidth(MODAL_WINDOW_SIZE);
 
 				mywindow.setPositionX(WINDOW_POSITION);
 				mywindow.setPositionY(WINDOW_POSITION);
 
-				VerticalLayout panelContent = new VerticalLayout();
+				final VerticalLayout panelContent = new VerticalLayout();
 
 				mywindow.setContent(panelContent);
 				panelContent.addComponent(qrCode);
@@ -124,7 +124,7 @@ public final class SetGoogleAuthenticatorCredentialClickListener implements Clic
 				mywindow.setModal(true);
 				UI.getCurrent().addWindow(mywindow);
 
-			} catch (URISyntaxException e) {
+			} catch (final URISyntaxException e) {
 				LOGGER.warn(PROBLEM_DISPLAYING_QR_CODE,e);
 				Notification.show(PROBLEM_DISPLAYING_QR_CODE,
 		                  ERROR_MESSAGE,

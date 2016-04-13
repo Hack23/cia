@@ -25,6 +25,9 @@ import org.dussan.vaadin.dcharts.options.Options;
 import org.dussan.vaadin.dcharts.options.Series;
 import org.dussan.vaadin.dcharts.options.SeriesDefaults;
 
+/**
+ * The Interface ChartOptions.
+ */
 public interface ChartOptions {
 
 	/**

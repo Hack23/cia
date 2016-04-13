@@ -104,7 +104,7 @@ public final class DocumentWordCountService extends
 
 		final DocumentWordCountResponse response = new DocumentWordCountResponse(ServiceResult.SUCCESS);
 
-		DocumentContentData documentContentData = documentContentDataDAO.findFirstByProperty(DocumentContentData_.id, serviceRequest.getDocumentId());
+		final DocumentContentData documentContentData = documentContentDataDAO.findFirstByProperty(DocumentContentData_.id, serviceRequest.getDocumentId());
 
 		if (documentContentData == null) {
 			response.setWordCountMap(new HashMap<>());
@@ -127,9 +127,9 @@ public final class DocumentWordCountService extends
 	 * @param j
 	 * @return the map
 	 */
-	private static Map<String, Integer> calculateWordCount(DocumentContentData documentContentData, int maxResult) {
+	private static Map<String, Integer> calculateWordCount(final DocumentContentData documentContentData, final int maxResult) {
 
-		String html = documentContentData.getContent();
+		final String html = documentContentData.getContent();
 
 		final Attribute input = new Attribute("html", (FastVector<String>) null);
 
@@ -164,7 +164,7 @@ public final class DocumentWordCountService extends
 		filter.setOutputWordCounts(true);
 		filter.setWordsToKeep(maxResult);
 
-		Map<String,Integer> result = new HashMap<>();
+		final Map<String,Integer> result = new HashMap<>();
 
 		try {
 			filter.setInputFormat(htmlInst);
@@ -177,7 +177,7 @@ public final class DocumentWordCountService extends
 			for (int i = 0; i < numAttributes; i++) {
 				result.put(last.attribute(i).name(), Integer.valueOf(last.toString(i)));
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			LOGGER.warn("Problem calculating wordcount for : {} , exception:{}",documentContentData.getId() ,e);
 		}
 

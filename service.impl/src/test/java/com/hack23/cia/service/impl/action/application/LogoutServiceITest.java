@@ -102,7 +102,7 @@ public final class LogoutServiceITest extends AbstractServiceFunctionalIntegrati
 		final LogoutRequest logoutRequest = new LogoutRequest();
 		logoutRequest.setSessionId(serviceRequest.getSessionId());
 
-		ServiceResponse logoutResponse = applicationManager.service(logoutRequest);
+		final ServiceResponse logoutResponse = applicationManager.service(logoutRequest);
 		assertNotNull(EXPECT_A_RESULT, logoutResponse);
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, logoutResponse.getResult());
 

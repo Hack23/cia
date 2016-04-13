@@ -57,7 +57,7 @@ public final class ConfigurationManagerITest extends AbstractServiceFunctionalIn
 	public void getUserConfigurationSuccessTest() throws Exception {
 		setAuthenticatedAnonymousUser();
 
-		UserConfiguration userConfiguration = configurationManager.getUserConfiguration(WWW_HACK23_COM);
+		final UserConfiguration userConfiguration = configurationManager.getUserConfiguration(WWW_HACK23_COM);
 		assertNotNull(EXPECT_A_RESULT, userConfiguration);
 		assertNotNull(EXPECT_A_RESULT, userConfiguration.getAgency());
 		assertNotNull(EXPECT_A_RESULT, userConfiguration.getPortal());

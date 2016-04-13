@@ -26,7 +26,6 @@ import java.util.Map;
 import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.Message;
-import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 
 import org.slf4j.Logger;
@@ -45,7 +44,7 @@ import com.hack23.cia.service.external.worldbank.api.WorldBankApi;
  * The Class WorldBankApiAgentWorkConsumerImpl.
  */
 @Service("WorldBankApiAgentWorkConsumer")
-public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkConsumerImpl implements MessageListener {
+public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkConsumerImpl {
 
 
 	/** The Constant LOGGER. */

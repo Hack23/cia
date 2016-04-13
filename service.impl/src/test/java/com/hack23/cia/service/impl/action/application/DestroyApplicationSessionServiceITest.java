@@ -67,12 +67,12 @@ public final class DestroyApplicationSessionServiceITest extends AbstractService
 	public void serviceDestroyApplicationSessionRequestSuccessTest() throws Exception {
 
 		setAuthenticatedAnonymousUser();
-		CreateApplicationSessionRequest createTestApplicationSession = createTestApplicationSession();
+		final CreateApplicationSessionRequest createTestApplicationSession = createTestApplicationSession();
 
-		DestroyApplicationSessionRequest destroyApplicationSessionRequest = new DestroyApplicationSessionRequest();
+		final DestroyApplicationSessionRequest destroyApplicationSessionRequest = new DestroyApplicationSessionRequest();
 
 		destroyApplicationSessionRequest.setSessionId(createTestApplicationSession.getSessionId());
-		ServiceResponse response = applicationManager.service(destroyApplicationSessionRequest);
+		final ServiceResponse response = applicationManager.service(destroyApplicationSessionRequest);
 		assertNotNull(EXPECT_A_RESULT,response);
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS,response.getResult());
 

@@ -174,7 +174,7 @@ public final class MainView extends Panel implements View {
 		fieldGroup.setItemDataSource(new BeanItem<>(loginRequest));
 		fieldGroup.setReadOnly(true);
 		fieldGroup.setBuffered(false);
-		Field<?> buildAndBind = fieldGroup.buildAndBind("otpCode");
+		final Field<?> buildAndBind = fieldGroup.buildAndBind("otpCode");
 		buildAndBind.setReadOnly(false);
 		layout.addComponent(buildAndBind);
 
