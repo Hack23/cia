@@ -59,11 +59,22 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	}
 
 
+	/**
+	 * Gets the result element.
+	 *
+	 * @return the result element
+	 */
 	public List<DocumentElement> getResultElement() {
 		return resultElement.stream().collect(Collectors.toList());
 	}
 
 
+	/**
+	 * Sets the result element.
+	 *
+	 * @param resultElement
+	 *            the new result element
+	 */
 	public void setResultElement(final List<DocumentElement> resultElement) {
 		if (resultElement != null) {
 			this.resultElement = resultElement.stream().collect(Collectors.toList());
@@ -71,21 +82,43 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	}
 
 
+	/**
+	 * Gets the status map.
+	 *
+	 * @return the status map
+	 */
 	public Map<String, DocumentStatusContainer> getStatusMap() {
 		return statusMap;
 	}
 
 
+	/**
+	 * Sets the status map.
+	 *
+	 * @param statusMap
+	 *            the new status map
+	 */
 	public void setStatusMap(final Map<String, DocumentStatusContainer> statusMap) {
 		this.statusMap = statusMap;
 	}
 
 
+	/**
+	 * Gets the data map.
+	 *
+	 * @return the data map
+	 */
 	public Map<String, DocumentContentData> getDataMap() {
 		return dataMap;
 	}
 
 
+	/**
+	 * Sets the data map.
+	 *
+	 * @param dataMap
+	 *            the new data map
+	 */
 	public void setDataMap(final Map<String, DocumentContentData> dataMap) {
 		this.dataMap = dataMap;
 	}
