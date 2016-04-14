@@ -18,18 +18,20 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 
-import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummary;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.DocumentChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.GenericChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
+import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.ui.Grid;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -37,25 +39,28 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class DocumentActivityPageModContentFactoryImpl.
+ * The Class VotesHistoryPageModContentFactoryImpl.
  */
 @Component
-public final class DocumentActivityPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
-
-	/** The document chart data manager. */
-	@Autowired
-	private DocumentChartDataManager documentChartDataManager;
+public final class PoliticianVotesHistoryPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
 	/**
-	 * Instantiates a new document activity page mod content factory impl.
+	 * The view riksdagen vote data ballot politician summary chart data
+	 * manager.
 	 */
-	public DocumentActivityPageModContentFactoryImpl() {
+	@Autowired
+	private GenericChartDataManager<ViewRiksdagenVoteDataBallotPoliticianSummary> viewRiksdagenVoteDataBallotPoliticianSummaryChartDataManager;
+
+	/**
+	 * Instantiates a new votes history page mod content factory impl.
+	 */
+	public PoliticianVotesHistoryPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PoliticianPageMode.DOCUMENTACTIVITY.toString());
+		return NAME.equals(page) && parameters.contains(PoliticianPageMode.VOTEHISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -79,16 +84,30 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractPol
 			getMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 			final Label createHeader2Label = LabelFactory
-					.createHeader2Label(PoliticianPageMode.DOCUMENTACTIVITY.toString());
+					.createHeader2Label(PoliticianPageMode.VOTEHISTORY.toString());
 			panelContent.addComponent(createHeader2Label);
 
-			final DCharts documentHistoryChart = documentChartDataManager
-					.createPersonDocumentHistoryChart(personData.getId());
+			final BeanItemContainer<ViewRiksdagenVoteDataBallotPoliticianSummary> politicianBallotDataSource = new BeanItemContainer<>(
+					ViewRiksdagenVoteDataBallotPoliticianSummary.class,
+					viewRiksdagenVoteDataBallotPoliticianSummaryChartDataManager.findByValue(personData.getId()));
 
-			panelContent.addComponent(documentHistoryChart);
+			final Grid politicianBallotsBeanItemGrid = getGridFactory().createBasicBeanItemNestedPropertiesGrid(
+					politicianBallotDataSource, "Ballots",
+					new String[] { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue" },
+					new String[] { "voteDate", "rm", "label", "embeddedId.concern", "embeddedId.issue", "vote",
+							"won", "partyWon", "rebel", "noWinner", "approved", "partyApproved", "totalVotes",
+							"partyTotalVotes", "yesVotes", "partyYesVotes", "noVotes", "partyNoVotes",
+							"partyAbstainVotes", "abstainVotes", "partyAbsentVotes", "absentVotes", "bornYear",
+							"partyAvgBornYear", "avgBornYear", "gender", "partyPercentageMale",
+							"percentageMale", "ballotType", "embeddedId.ballotId" },
+					new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
+							"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
+							"percentageAbsent", "percentageAbstain", "firstName", "lastName", "party" },
+					null, null, null);
 
+			panelContent.addComponent(politicianBallotsBeanItemGrid);
 			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
-			panelContent.setExpandRatio(documentHistoryChart, ContentRatio.GRID);
+			panelContent.setExpandRatio(politicianBallotsBeanItemGrid, ContentRatio.GRID);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 

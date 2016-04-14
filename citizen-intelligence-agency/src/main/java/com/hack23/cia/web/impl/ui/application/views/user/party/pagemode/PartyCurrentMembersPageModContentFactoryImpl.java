@@ -21,9 +21,9 @@ package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember;
-import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember_;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
@@ -37,24 +37,24 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class GovernmentRolesPageModContentFactoryImpl.
+ * The Class CurrentMembersPageModContentFactoryImpl.
  */
 @Component
-public final class GovernmentRolesPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
+public final class PartyCurrentMembersPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	/** The Constant GOVERNMENT_ROLES. */
-	private static final String GOVERNMENT_ROLES = "Government Roles";
+	/** The Constant CURRENT_MEMBERS. */
+	private static final String CURRENT_MEMBERS = "Current Members";
 
 	/**
-	 * Instantiates a new government roles page mod content factory impl.
+	 * Instantiates a new current members page mod content factory impl.
 	 */
-	public GovernmentRolesPageModContentFactoryImpl() {
+	public PartyCurrentMembersPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PartyPageMode.GOVERNMENTROLES.toString());
+		return NAME.equals(page) && parameters.contains(PartyPageMode.CURRENTMEMBERS.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -73,25 +73,37 @@ public final class GovernmentRolesPageModContentFactoryImpl extends AbstractPart
 
 			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(GOVERNMENT_ROLES));
+			panelContent.addComponent(LabelFactory.createHeader2Label(CURRENT_MEMBERS));
 
-			final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
+			final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
+					.getDataContainer(ViewRiksdagenPolitician.class);
 
-			final BeanItemContainer<ViewRiksdagenGovermentRoleMember> currentGovermentMemberDataSource = new BeanItemContainer<>(
-					ViewRiksdagenGovermentRoleMember.class,
-					govermentRoleMemberDataContainer.findListByProperty(
+			final BeanItemContainer<ViewRiksdagenPolitician> politicianDataSource = new BeanItemContainer<>(
+					ViewRiksdagenPolitician.class,
+					politicianDataContainer.findListByProperty(
 							new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },
-							ViewRiksdagenGovermentRoleMember_.party, ViewRiksdagenGovermentRoleMember_.active));
+							ViewRiksdagenPolitician_.party, ViewRiksdagenPolitician_.active));
 
-			final Grid currentGovermentMemberBeanItemGrid = getGridFactory().createBasicBeanItemGrid(
-					currentGovermentMemberDataSource, GOVERNMENT_ROLES,
-					new String[] { "roleId", "personId", "firstName", "lastName", "detail", "active", "detail",
-							"roleCode", "fromDate", "toDate", "totalDaysServed" },
-					new String[] { "roleId", "personId", "party" }, null,
-					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
+			final Grid partyMemberBeanItemGrid = getGridFactory().createBasicBeanItemGrid(politicianDataSource,
+					"Politicians",
+					new String[] { "personId", "firstName", "lastName", "party", "gender", "bornYear",
+							"totalAssignments", "currentAssignments", "firstAssignmentDate", "lastAssignmentDate",
+							"totalDaysServed", "totalDaysServedParliament", "totalDaysServedCommittee",
+							"totalDaysServedGovernment", "totalDaysServedEu",
 
-			panelContent.addComponent(currentGovermentMemberBeanItemGrid);
+							"active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament",
+
+							"activeParty", "activeSpeaker", "totalDaysServedSpeaker", "totalDaysServedParty",
+
+							"totalPartyAssignments", "totalMinistryAssignments", "totalCommitteeAssignments",
+							"totalSpeakerAssignments",
+
+							"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
+							"currentSpeakerAssignments" },
+					null, "personId", new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"),
+					null);
+
+			panelContent.addComponent(partyMemberBeanItemGrid);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}

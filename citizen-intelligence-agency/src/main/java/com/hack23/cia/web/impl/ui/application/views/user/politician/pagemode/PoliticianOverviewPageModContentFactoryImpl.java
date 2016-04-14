@@ -51,19 +51,19 @@ import com.vaadin.ui.VerticalLayout;
  * The Class OverviewPageModContentFactoryImpl.
  */
 @Component
-public final class OverviewPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
+public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
 
 	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(OverviewPageModContentFactoryImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(PoliticianOverviewPageModContentFactoryImpl.class);
 
 
 	/**
 	 * Instantiates a new overview page mod content factory impl.
 	 */
-	public OverviewPageModContentFactoryImpl() {
+	public PoliticianOverviewPageModContentFactoryImpl() {
 		super();
 	}
 

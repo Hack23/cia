@@ -34,7 +34,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class RoleGhantPageModContentFactoryImpl.
  */
 @Component
-public final class RoleGhantPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
+public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
 	/** The Constant GHANT_NOT_IMPLEMENTED. */
 	private static final String GHANT_NOT_IMPLEMENTED = "Ghant Not Implemented";
@@ -42,7 +42,7 @@ public final class RoleGhantPageModContentFactoryImpl extends AbstractPartyPageM
 	/**
 	 * Instantiates a new role ghant page mod content factory impl.
 	 */
-	public RoleGhantPageModContentFactoryImpl() {
+	public PartyRoleGhantPageModContentFactoryImpl() {
 		super();
 	}
 

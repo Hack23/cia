@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
@@ -32,8 +30,6 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
-import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.Grid;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -41,21 +37,43 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class RoleListPageModContentFactoryImpl.
+ * The Class RoleSummaryPageModContentFactoryImpl.
  */
 @Component
-public final class RoleListPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
+public final class PoliticianRoleSummaryPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
+
+	/** The Constant GOVERNMENT_EXPERIENCE. */
+	private static final String GOVERNMENT_EXPERIENCE = "Government experience:";
+
+	/** The Constant EU_EXPERIENCE. */
+	private static final String EU_EXPERIENCE = "EU experience:";
+
+	/** The Constant TOTAL_ASSIGNMENTS. */
+	private static final String TOTAL_ASSIGNMENTS = "Total Assignments:";
+
+	/** The Constant SPEAKER_EXPERIENCE. */
+	private static final String SPEAKER_EXPERIENCE = "Speaker experience:";
+
+	/** The Constant PARTY_EXPERIENCE. */
+	private static final String PARTY_EXPERIENCE = "Party experience:";
+
+	/** The Constant COMMITTEE_EXPERIENCE. */
+	private static final String COMMITTEE_EXPERIENCE = "Committee experience:";
+
+	/** The Constant PARLIAMENT_EXPERIENCE. */
+	private static final String PARLIAMENT_EXPERIENCE = "Parliament experience:";
+
 
 	/**
-	 * Instantiates a new role list page mod content factory impl.
+	 * Instantiates a new role summary page mod content factory impl.
 	 */
-	public RoleListPageModContentFactoryImpl() {
+	public PoliticianRoleSummaryPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PoliticianPageMode.ROLELIST.toString());
+		return NAME.equals(page) && parameters.contains(PoliticianPageMode.ROLESUMMARY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -78,14 +96,17 @@ public final class RoleListPageModContentFactoryImpl extends AbstractPoliticianP
 
 			getMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.ROLELIST.toString());
+			final Label createHeader2Label = LabelFactory
+					.createHeader2Label(PoliticianPageMode.ROLESUMMARY.toString());
 			panelContent.addComponent(createHeader2Label);
+
 			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+
 
 			final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()
 					.getAssignmentList();
 
-			createRoleList(panelContent, assignmentList);
+			createRoleSummary(panelContent, assignmentList, viewRiksdagenPolitician);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 
@@ -95,27 +116,41 @@ public final class RoleListPageModContentFactoryImpl extends AbstractPoliticianP
 	}
 
 	/**
-	 * Creates the role list.
+	 * Creates the role summary.
 	 *
 	 * @param roleSummaryLayoutTabsheet
 	 *            the role summary layout tabsheet
 	 * @param assignmentList
 	 *            the assignment list
+	 * @param viewRiksdagenPolitician
+	 *            the view riksdagen politician
 	 */
-	private void createRoleList(final VerticalLayout roleSummaryLayoutTabsheet, final List<AssignmentData> assignmentList) {
+	private void createRoleSummary(final VerticalLayout roleSummaryLayoutTabsheet, final List<AssignmentData> assignmentList,
+			final ViewRiksdagenPolitician viewRiksdagenPolitician) {
 
-		final Comparator<AssignmentData> compare = (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
+		final VerticalLayout layout = new VerticalLayout();
+		layout.setSizeFull();
 
-		Collections.sort(assignmentList, compare);
+		layout.addComponent(new Label(TOTAL_ASSIGNMENTS + assignmentList.size()));
 
-		final Grid createBasicBeanItemGrid = getGridFactory()
-				.createBasicBeanItemGrid(new BeanItemContainer<>(AssignmentData.class, assignmentList), "Assignments",
-						new String[] { "roleCode", "assignmentType", "status", "detail", "orgCode", "fromDate",
-								"toDate" },
-						new String[] { "hjid", "intressentId", "orderNumber", "orgCode" }, null, null, null);
-		roleSummaryLayoutTabsheet.addComponent(createBasicBeanItemGrid);
+		if (viewRiksdagenPolitician != null) {
 
-		roleSummaryLayoutTabsheet.setExpandRatio(createBasicBeanItemGrid, ContentRatio.GRID);
+			layout.addComponent(new Label(GOVERNMENT_EXPERIENCE
+					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedGovernment())));
+			layout.addComponent(new Label(
+					SPEAKER_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedSpeaker())));
+			layout.addComponent(new Label(COMMITTEE_EXPERIENCE
+					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedCommittee())));
+			layout.addComponent(
+					new Label(EU_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedEu())));
+			layout.addComponent(new Label(PARLIAMENT_EXPERIENCE
+					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParliament())));
+			layout.addComponent(new Label(
+					PARTY_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParty())));
+		}
+
+		roleSummaryLayoutTabsheet.addComponent(layout);
+		roleSummaryLayoutTabsheet.setExpandRatio(layout, ContentRatio.GRID);
 
 	}
 

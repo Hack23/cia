@@ -37,24 +37,24 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class CurrentLeadersPageModContentFactoryImpl.
+ * The Class LeaderHistoryPageModContentFactoryImpl.
  */
 @Component
-public final class CurrentLeadersPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
+public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	/** The Constant CURRENT_LEADERS. */
-	private static final String CURRENT_LEADERS = "Current Leaders";
+	/** The Constant LEADER_HISTORY. */
+	private static final String LEADER_HISTORY = "LeaderHistory";
 
 	/**
-	 * Instantiates a new current leaders page mod content factory impl.
+	 * Instantiates a new leader history page mod content factory impl.
 	 */
-	public CurrentLeadersPageModContentFactoryImpl() {
+	public PartyLeaderHistoryPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PartyPageMode.CURRENTLEADERS.toString());
+		return NAME.equals(page) && parameters.contains(PartyPageMode.LEADERHISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -64,39 +64,41 @@ public final class CurrentLeadersPageModContentFactoryImpl extends AbstractParty
 
 		final String pageId = getPageId(parameters);
 
+
 		final DataContainer<ViewRiksdagenParty, String> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenParty.class);
 
-		final ViewRiksdagenParty viewRiksdagenParty = dataContainer.load(pageId);
+		final ViewRiksdagenParty viewRiksdagenParty = dataContainer
+				.load(pageId);
 
 		if (viewRiksdagenParty != null) {
 
 			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(CURRENT_LEADERS));
+
+			panelContent.addComponent(LabelFactory.createHeader2Label(LEADER_HISTORY));
 
 			final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenPartyRoleMember.class);
 
-			final BeanItemContainer<ViewRiksdagenPartyRoleMember> currentPartyMemberDataSource = new BeanItemContainer<>(
-					ViewRiksdagenPartyRoleMember.class,
-					partyRoleMemberDataContainer.findListByProperty(
-							new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },
-							ViewRiksdagenPartyRoleMember_.party, ViewRiksdagenPartyRoleMember_.active));
+			final BeanItemContainer<ViewRiksdagenPartyRoleMember> partyRoleMemberDataSource = new BeanItemContainer<>(
+					ViewRiksdagenPartyRoleMember.class, partyRoleMemberDataContainer
+							.getAllBy(ViewRiksdagenPartyRoleMember_.party, viewRiksdagenParty.getPartyId()));
 
-			final Grid currentPartyBeanItemGrid = getGridFactory().createBasicBeanItemGrid(currentPartyMemberDataSource,
-					CURRENT_LEADERS,
+			final Grid partyRoleMemberBeanItemGrid = getGridFactory().createBasicBeanItemGrid(
+					partyRoleMemberDataSource, "Leader History",
 					new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
 							"roleCode", "fromDate", "toDate", "totalDaysServed" },
-					new String[] { "roleId", "personId", "detail" }, null,
+					new String[] { "roleId", "personId", "party", "detail" }, null,
 					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
 
-			panelContent.addComponent(currentPartyBeanItemGrid);
+			panelContent.addComponent(partyRoleMemberBeanItemGrid);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}
 		return panelContent;
 
 	}
+
 
 }

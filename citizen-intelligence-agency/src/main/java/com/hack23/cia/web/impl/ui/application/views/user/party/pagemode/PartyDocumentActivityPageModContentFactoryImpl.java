@@ -18,33 +18,44 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 
+import org.dussan.vaadin.dcharts.DCharts;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.DocumentChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class PageVisitHistoryPageModContentFactoryImpl.
+ * The Class DocumentActivityPageModContentFactoryImpl.
  */
 @Component
-public final class PageVisitHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
+public final class PartyDocumentActivityPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
+
+	/** The Constant DOCUMENT_ACTIVITY. */
+	private static final String DOCUMENT_ACTIVITY = "Document Activity";
+
+	/** The document chart data manager. */
+	@Autowired
+	private transient DocumentChartDataManager documentChartDataManager;
 
 	/**
-	 * Instantiates a new page visit history page mod content factory impl.
+	 * Instantiates a new document activity page mod content factory impl.
 	 */
-	public PageVisitHistoryPageModContentFactoryImpl() {
+	public PartyDocumentActivityPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PageMode.PAGEVISITHISTORY.toString());
+		return NAME.equals(page) && parameters.contains(PartyPageMode.DOCUMENTACTIVITY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -63,7 +74,10 @@ public final class PageVisitHistoryPageModContentFactoryImpl extends AbstractPar
 
 			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-			createPageVisitHistory(NAME, pageId, panelContent);
+			panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_ACTIVITY));
+
+			final DCharts createDocumentHistoryChart = documentChartDataManager.createDocumentHistoryPartyChart(pageId);
+			panelContent.addComponent(createDocumentHistoryChart);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}

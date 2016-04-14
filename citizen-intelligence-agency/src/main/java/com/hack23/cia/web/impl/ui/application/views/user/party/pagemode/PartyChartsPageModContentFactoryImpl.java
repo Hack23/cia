@@ -18,44 +18,37 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 
-import org.dussan.vaadin.dcharts.DCharts;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.DocumentChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class DocumentActivityPageModContentFactoryImpl.
+ * The Class ChartsPageModContentFactoryImpl.
  */
 @Component
-public final class DocumentActivityPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
+public final class PartyChartsPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	/** The Constant DOCUMENT_ACTIVITY. */
-	private static final String DOCUMENT_ACTIVITY = "Document Activity";
-
-	/** The document chart data manager. */
-	@Autowired
-	private transient DocumentChartDataManager documentChartDataManager;
+	/** The Constant CHARTS_NOT_IMPLEMENTED. */
+	private static final String CHARTS_NOT_IMPLEMENTED = "Charts Not Implemented";
 
 	/**
-	 * Instantiates a new document activity page mod content factory impl.
+	 * Instantiates a new charts page mod content factory impl.
 	 */
-	public DocumentActivityPageModContentFactoryImpl() {
+	public PartyChartsPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PartyPageMode.DOCUMENTACTIVITY.toString());
+		return NAME.equals(page) && parameters.contains(PageMode.CHARTS.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -68,21 +61,20 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractPar
 		final DataContainer<ViewRiksdagenParty, String> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenParty.class);
 
-		final ViewRiksdagenParty viewRiksdagenParty = dataContainer.load(pageId);
+		final ViewRiksdagenParty viewRiksdagenParty = dataContainer
+				.load(pageId);
 
 		if (viewRiksdagenParty != null) {
 
 			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_ACTIVITY));
-
-			final DCharts createDocumentHistoryChart = documentChartDataManager.createDocumentHistoryPartyChart(pageId);
-			panelContent.addComponent(createDocumentHistoryChart);
+			panelContent.addComponent(LabelFactory.createHeader2Label(CHARTS_NOT_IMPLEMENTED));
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}
 		return panelContent;
 
 	}
+
 
 }

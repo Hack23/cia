@@ -42,7 +42,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class CommitteeBallotDecisionSummaryPageModContentFactoryImpl.
  */
 @Component
-public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
+public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
 	/** The Constant COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY. */
 	private static final String COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY = "Committee Ballot Decision Party Summary";
@@ -54,7 +54,7 @@ public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl exten
 	 * Instantiates a new committee ballot decision summary page mod content
 	 * factory impl.
 	 */
-	public CommitteeBallotDecisionSummaryPageModContentFactoryImpl() {
+	public PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl() {
 		super();
 	}
 

@@ -18,34 +18,42 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 
+import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class OverviewPageModContentFactoryImpl.
+ * The Class IndicatorsPageModContentFactoryImpl.
  */
 @Component
-public final class PageVisitHistoryPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
+public final class PoliticianIndicatorsPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
+
+	/** The Constant INDICATORS. */
+	private static final String INDICATORS = "Indicators";
+
 
 	/**
-	 * Instantiates a new page visit history page mod content factory impl.
+	 * Instantiates a new indicators page mod content factory impl.
 	 */
-	public PageVisitHistoryPageModContentFactoryImpl() {
+	public PoliticianIndicatorsPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PageMode.PAGEVISITHISTORY.toString());
+		return NAME.equals(page) && parameters.contains(PageMode.INDICATORS.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -68,8 +76,14 @@ public final class PageVisitHistoryPageModContentFactoryImpl extends AbstractPol
 
 			getMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			createPageVisitHistory(NAME,pageId,panelContent);
+			final Label createHeader2Label = LabelFactory.createHeader2Label(INDICATORS);
+			panelContent.addComponent(createHeader2Label);
 
+			final DCharts createPersonLineChart = getChartDataManager().createPersonLineChart(personData.getId());
+			panelContent.addComponent(createPersonLineChart);
+
+			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+			panelContent.setExpandRatio(createPersonLineChart, ContentRatio.GRID);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 

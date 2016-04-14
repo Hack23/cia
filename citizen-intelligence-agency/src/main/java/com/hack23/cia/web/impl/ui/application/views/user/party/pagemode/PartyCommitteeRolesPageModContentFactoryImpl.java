@@ -21,8 +21,8 @@ package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument;
-import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument_;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeRoleMember;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeRoleMember_;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
@@ -37,24 +37,24 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class DocumentHistoryPageModContentFactoryImpl.
+ * The Class CommitteeRolesPageModContentFactoryImpl.
  */
 @Component
-public final class DocumentHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
+public final class PartyCommitteeRolesPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	/** The Constant DOCUMENT_HISTORY. */
-	private static final String DOCUMENT_HISTORY = "Document History";
+	/** The Constant COMMITTEE_ROLES. */
+	private static final String COMMITTEE_ROLES = "CommitteeRoles";
 
 	/**
-	 * Instantiates a new document history page mod content factory impl.
+	 * Instantiates a new committee roles page mod content factory impl.
 	 */
-	public DocumentHistoryPageModContentFactoryImpl() {
+	public PartyCommitteeRolesPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PartyPageMode.DOCUMENTHISTORY.toString());
+		return NAME.equals(page) && parameters.contains(PartyPageMode.COMMITTEEROLES.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -73,27 +73,25 @@ public final class DocumentHistoryPageModContentFactoryImpl extends AbstractPart
 
 			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_HISTORY));
+			panelContent.addComponent(LabelFactory.createHeader2Label(COMMITTEE_ROLES));
 
-			final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenPoliticianDocument.class);
+			final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = getApplicationManager()
+					.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
 
-			final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<>(
-					ViewRiksdagenPoliticianDocument.class,
-					politicianDocumentDataContainer.findOrderedListByProperty(
-							ViewRiksdagenPoliticianDocument_.partyShortCode, pageId,
-							ViewRiksdagenPoliticianDocument_.madePublicDate));
+			final BeanItemContainer<ViewRiksdagenCommitteeRoleMember> committeeMemberDataSource = new BeanItemContainer<>(
+					ViewRiksdagenCommitteeRoleMember.class,
+					committeeRoleMemberDataContainer.findListByProperty(
+							new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },
+							ViewRiksdagenCommitteeRoleMember_.party, ViewRiksdagenCommitteeRoleMember_.active));
 
-			final Grid politicianDocumentBeanItemGrid = getGridFactory().createBasicBeanItemGrid(
-					politicianDocumentDataSource, "Member Document history",
-					new String[] { "id", "docId", "referenceName", "partyShortCode", "personReferenceId",
-							"roleDescription", "documentType", "subType", "org", "label", "rm", "madePublicDate",
-							"numberValue", "status", "title", "subTitle", "tempLabel", "orderNumber" },
-					new String[] { "id", "partyShortCode", "personReferenceId", "numberValue", "orderNumber",
-							"tempLabel" },
-					"docId", new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null);
+			final Grid committeeMemberBeanItemGrid = getGridFactory().createBasicBeanItemGrid(committeeMemberDataSource,
+					COMMITTEE_ROLES,
+					new String[] { "roleId", "personId", "firstName", "lastName", "detail", "active", "detail",
+							"roleCode", "fromDate", "toDate", "totalDaysServed" },
+					new String[] { "roleId", "personId", "party" }, null,
+					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
 
-			panelContent.addComponent(politicianDocumentBeanItemGrid);
+			panelContent.addComponent(committeeMemberBeanItemGrid);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}

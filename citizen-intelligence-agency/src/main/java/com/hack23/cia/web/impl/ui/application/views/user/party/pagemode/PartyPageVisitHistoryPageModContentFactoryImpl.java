@@ -23,7 +23,6 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -31,24 +30,21 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class ChartsPageModContentFactoryImpl.
+ * The Class PageVisitHistoryPageModContentFactoryImpl.
  */
 @Component
-public final class ChartsPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
-
-	/** The Constant CHARTS_NOT_IMPLEMENTED. */
-	private static final String CHARTS_NOT_IMPLEMENTED = "Charts Not Implemented";
+public final class PartyPageVisitHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
 	/**
-	 * Instantiates a new charts page mod content factory impl.
+	 * Instantiates a new page visit history page mod content factory impl.
 	 */
-	public ChartsPageModContentFactoryImpl() {
+	public PartyPageVisitHistoryPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PageMode.CHARTS.toString());
+		return NAME.equals(page) && parameters.contains(PageMode.PAGEVISITHISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -61,20 +57,18 @@ public final class ChartsPageModContentFactoryImpl extends AbstractPartyPageModC
 		final DataContainer<ViewRiksdagenParty, String> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenParty.class);
 
-		final ViewRiksdagenParty viewRiksdagenParty = dataContainer
-				.load(pageId);
+		final ViewRiksdagenParty viewRiksdagenParty = dataContainer.load(pageId);
 
 		if (viewRiksdagenParty != null) {
 
 			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(CHARTS_NOT_IMPLEMENTED));
+			createPageVisitHistory(NAME, pageId, panelContent);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}
 		return panelContent;
 
 	}
-
 
 }

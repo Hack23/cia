@@ -18,39 +18,44 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 
+import org.dussan.vaadin.dcharts.DCharts;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.DocumentChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class ChartsPageModContentFactoryImpl.
+ * The Class DocumentActivityPageModContentFactoryImpl.
  */
 @Component
-public final class ChartsPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
+public final class PoliticianDocumentActivityPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
-	/** The Constant CHARTS_NOT_IMPLEMENTED. */
-	private static final String CHARTS_NOT_IMPLEMENTED = "Charts Not Implemented";
-
+	/** The document chart data manager. */
+	@Autowired
+	private DocumentChartDataManager documentChartDataManager;
 
 	/**
-	 * Instantiates a new charts page mod content factory impl.
+	 * Instantiates a new document activity page mod content factory impl.
 	 */
-	public ChartsPageModContentFactoryImpl() {
+	public PoliticianDocumentActivityPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PageMode.CHARTS.toString());
+		return NAME.equals(page) && parameters.contains(PoliticianPageMode.DOCUMENTACTIVITY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -73,7 +78,17 @@ public final class ChartsPageModContentFactoryImpl extends AbstractPoliticianPag
 
 			getMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(CHARTS_NOT_IMPLEMENTED));
+			final Label createHeader2Label = LabelFactory
+					.createHeader2Label(PoliticianPageMode.DOCUMENTACTIVITY.toString());
+			panelContent.addComponent(createHeader2Label);
+
+			final DCharts documentHistoryChart = documentChartDataManager
+					.createPersonDocumentHistoryChart(personData.getId());
+
+			panelContent.addComponent(documentHistoryChart);
+
+			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+			panelContent.setExpandRatio(documentHistoryChart, ContentRatio.GRID);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 
@@ -81,5 +96,4 @@ public final class ChartsPageModContentFactoryImpl extends AbstractPoliticianPag
 		return panelContent;
 
 	}
-
 }

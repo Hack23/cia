@@ -18,16 +18,17 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember_;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.GenericChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Layout;
@@ -36,28 +37,24 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class VoteHistoryPageModContentFactoryImpl.
+ * The Class CurrentLeadersPageModContentFactoryImpl.
  */
 @Component
-public final class VoteHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
+public final class PartyCurrentLeadersPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	/** The Constant VOTE_HISTORY. */
-	private static final String VOTE_HISTORY = "VoteHistory";
-
-	/** The view riksdagen vote data ballot party summary chart data manager. */
-	@Autowired
-	private transient GenericChartDataManager<ViewRiksdagenVoteDataBallotPartySummary> viewRiksdagenVoteDataBallotPartySummaryChartDataManager;
+	/** The Constant CURRENT_LEADERS. */
+	private static final String CURRENT_LEADERS = "Current Leaders";
 
 	/**
-	 * Instantiates a new vote history page mod content factory impl.
+	 * Instantiates a new current leaders page mod content factory impl.
 	 */
-	public VoteHistoryPageModContentFactoryImpl() {
+	public PartyCurrentLeadersPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PartyPageMode.VOTEHISTORY.toString());
+		return NAME.equals(page) && parameters.contains(PartyPageMode.CURRENTLEADERS.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -76,16 +73,25 @@ public final class VoteHistoryPageModContentFactoryImpl extends AbstractPartyPag
 
 			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(VOTE_HISTORY));
+			panelContent.addComponent(LabelFactory.createHeader2Label(CURRENT_LEADERS));
 
-			final BeanItemContainer<ViewRiksdagenVoteDataBallotPartySummary> partyBallotDataSource = new BeanItemContainer<>(
-					ViewRiksdagenVoteDataBallotPartySummary.class,
-					viewRiksdagenVoteDataBallotPartySummaryChartDataManager.findByValue(pageId));
+			final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
+					.getDataContainer(ViewRiksdagenPartyRoleMember.class);
 
-			final Grid partynBallotsBeanItemGrid = getGridFactory().createBasicBeanItemGrid(partyBallotDataSource,
-					"Ballots", null, null, null, null, null);
+			final BeanItemContainer<ViewRiksdagenPartyRoleMember> currentPartyMemberDataSource = new BeanItemContainer<>(
+					ViewRiksdagenPartyRoleMember.class,
+					partyRoleMemberDataContainer.findListByProperty(
+							new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },
+							ViewRiksdagenPartyRoleMember_.party, ViewRiksdagenPartyRoleMember_.active));
 
-			panelContent.addComponent(partynBallotsBeanItemGrid);
+			final Grid currentPartyBeanItemGrid = getGridFactory().createBasicBeanItemGrid(currentPartyMemberDataSource,
+					CURRENT_LEADERS,
+					new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
+							"roleCode", "fromDate", "toDate", "totalDaysServed" },
+					new String[] { "roleId", "personId", "detail" }, null,
+					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
+
+			panelContent.addComponent(currentPartyBeanItemGrid);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}

@@ -18,19 +18,20 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
+import com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
-import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument;
-import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument_;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Label;
@@ -40,21 +41,21 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class OverviewPageModContentFactoryImpl.
+ * The Class RoleListPageModContentFactoryImpl.
  */
 @Component
-public final class DocumentHistoryPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
+public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
 	/**
-	 * Instantiates a new document history page mod content factory impl.
+	 * Instantiates a new role list page mod content factory impl.
 	 */
-	public DocumentHistoryPageModContentFactoryImpl() {
+	public PoliticianRoleListPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PoliticianPageMode.DOCUMENTHISTORY.toString());
+		return NAME.equals(page) && parameters.contains(PoliticianPageMode.ROLELIST.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -77,32 +78,14 @@ public final class DocumentHistoryPageModContentFactoryImpl extends AbstractPoli
 
 			getMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			final Label createHeader2Label = LabelFactory
-					.createHeader2Label(PoliticianPageMode.DOCUMENTHISTORY.toString());
+			final Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.ROLELIST.toString());
 			panelContent.addComponent(createHeader2Label);
-
-			final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenPoliticianDocument.class);
-
-			final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<>(
-					ViewRiksdagenPoliticianDocument.class,
-					politicianDocumentDataContainer.findOrderedListByProperty(
-							ViewRiksdagenPoliticianDocument_.personReferenceId, personData.getId(),
-							ViewRiksdagenPoliticianDocument_.madePublicDate));
-
-			final Grid politicianDocumentBeanItemGrid = getGridFactory().createBasicBeanItemGrid(
-					politicianDocumentDataSource, "Documents",
-					new String[] { "referenceName", "partyShortCode", "personReferenceId", "roleDescription",
-							"documentType", "subType", "title", "subTitle", "org", "rm", "madePublicDate", "id",
-							"docId", "tempLabel", "label", "numberValue", "orderNumber", "status" },
-					new String[] { "id", "partyShortCode", "personReferenceId", "numberValue", "orderNumber",
-							"tempLabel", "referenceName" },
-					null, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null);
-
-			panelContent.addComponent(politicianDocumentBeanItemGrid);
-
 			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
-			panelContent.setExpandRatio(politicianDocumentBeanItemGrid, ContentRatio.GRID);
+
+			final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()
+					.getAssignmentList();
+
+			createRoleList(panelContent, assignmentList);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 
@@ -110,4 +93,31 @@ public final class DocumentHistoryPageModContentFactoryImpl extends AbstractPoli
 		return panelContent;
 
 	}
+
+	/**
+	 * Creates the role list.
+	 *
+	 * @param roleSummaryLayoutTabsheet
+	 *            the role summary layout tabsheet
+	 * @param assignmentList
+	 *            the assignment list
+	 */
+	private void createRoleList(final VerticalLayout roleSummaryLayoutTabsheet, final List<AssignmentData> assignmentList) {
+
+		final Comparator<AssignmentData> compare = (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
+
+		Collections.sort(assignmentList, compare);
+
+		final Grid createBasicBeanItemGrid = getGridFactory()
+				.createBasicBeanItemGrid(new BeanItemContainer<>(AssignmentData.class, assignmentList), "Assignments",
+						new String[] { "roleCode", "assignmentType", "status", "detail", "orgCode", "fromDate",
+								"toDate" },
+						new String[] { "hjid", "intressentId", "orderNumber", "orgCode" }, null, null, null);
+		roleSummaryLayoutTabsheet.addComponent(createBasicBeanItemGrid);
+
+		roleSummaryLayoutTabsheet.setExpandRatio(createBasicBeanItemGrid, ContentRatio.GRID);
+
+	}
+
+
 }
