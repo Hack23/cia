@@ -46,9 +46,6 @@ public abstract class AbstractUserView extends Panel implements View {
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
 
-	/** The Constant DAYS_PER_STANDARD_YEAR. */
-	private static final long DAYS_PER_STANDARD_YEAR = 365L;
-
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -140,19 +137,6 @@ public abstract class AbstractUserView extends Panel implements View {
 	}
 
 
-	/**
-	 * Convert to years string.
-	 *
-	 * @param totalDays
-	 *            the total days
-	 * @return the string
-	 */
-	protected final String convertToYearsString(final long totalDays) {
-		final long years = totalDays / DAYS_PER_STANDARD_YEAR;
-		final long days = totalDays - years * DAYS_PER_STANDARD_YEAR;
-
-		return years + " Years " + days + " days";
-	}
 
 	/**
 	 * Creates the page visit history.
