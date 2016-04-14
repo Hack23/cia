@@ -53,8 +53,7 @@ public final class IndicatorsPageModContentFactoryImpl extends AbstractPageModCo
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
-		return NAME.equals(pageId) && parameters.contains(PageMode.INDICATORS.toString());
+		return NAME.equals(page) && parameters.contains(PageMode.INDICATORS.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
