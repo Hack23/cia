@@ -128,7 +128,7 @@
     <cia.project.versions.ehcache>2.10.1.2.14</cia.project.versions.ehcache>
     <cia.project.versions.poi>3.14</cia.project.versions.poi>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
-    <cia.project.versions.ant>1.9.6</cia.project.versions.ant>
+    <cia.project.versions.ant>1.9.7</cia.project.versions.ant>
     <cia.project.versions.junit>4.12</cia.project.versions.junit>
     <cia.project.versions.junit.dep>4.11</cia.project.versions.junit.dep>
     <cia.project.versions.easymock>3.4</cia.project.versions.easymock>
@@ -789,7 +789,7 @@
             <dependency>
               <groupId>org.apache.ant</groupId>
               <artifactId>ant</artifactId>
-              <version>1.9.6</version>
+              <version>1.9.7</version>
             </dependency>
             <dependency>
               <groupId>org.hibernate</groupId>
