@@ -27,9 +27,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractPersonView;
-import com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode.PageModeContentFactory;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 
 import ru.xpoft.vaadin.VaadinView;

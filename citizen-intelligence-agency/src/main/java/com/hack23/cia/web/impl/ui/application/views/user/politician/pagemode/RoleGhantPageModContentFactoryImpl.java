@@ -54,7 +54,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class RoleGhantPageModContentFactoryImpl.
  */
 @Component
-public final class RoleGhantPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+public final class RoleGhantPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
 	/** The Constant DEPARTEMENT. */
 	private static final String DEPARTEMENT = "Departement";

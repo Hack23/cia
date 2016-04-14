@@ -18,7 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 
-import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
@@ -26,23 +25,19 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.AdminChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.PoliticianChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class AbstractPageModContentFactoryImpl.
+ * The Class AbstractPoliticianPageModContentFactoryImpl.
  */
-public abstract class AbstractPageModContentFactoryImpl implements PageModeContentFactory {
+public abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_VIEW_NAME;
@@ -52,12 +47,6 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 
 	/** The Constant DAYS_PER_STANDARD_YEAR. */
 	private static final long DAYS_PER_STANDARD_YEAR = 365L;
-
-	/** The Constant GENERAL_PAGE_MODE_PAGE_VISIT. */
-	public static final String GENERAL_PAGE_MODE_PAGE_VISIT = "General Page Mode Page Visit";
-
-	/** The Constant CURRENT_PAGE_VISIT_HISTORY. */
-	public static final String CURRENT_PAGE_VISIT_HISTORY = "Current Page Visit History";
 
 	/** The application manager. */
 	@Autowired
@@ -87,14 +76,10 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	@Autowired
 	private PoliticianChartDataManager chartDataManager;
 
-	/** The admin chart data manager. */
-	@Autowired
-	private AdminChartDataManager adminChartDataManager;
-
 	/**
 	 * Instantiates a new abstract page mod content factory impl.
 	 */
-	protected AbstractPageModContentFactoryImpl() {
+	protected AbstractPoliticianPageModContentFactoryImpl() {
 		super();
 	}
 
@@ -123,17 +108,6 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 		return years + " Years " + days + " days";
 	}
 
-	/**
-	 * Creates the panel content.
-	 *
-	 * @return the vertical layout
-	 */
-	protected final VerticalLayout createPanelContent() {
-		final VerticalLayout panelContent = new VerticalLayout();
-		panelContent.setSizeFull();
-		panelContent.setMargin(true);
-		return panelContent;
-	}
 
 	protected final void pageCompleted(final String parameters, final Panel panel, final String pageId,
 			final ViewRiksdagenPolitician viewRiksdagenPolitician) {
@@ -145,35 +119,6 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	}
 
 
-	/**
-	 * Creates the page visit history.
-	 *
-	 * @param pageName
-	 *            the page name
-	 * @param pageId
-	 *            the page id
-	 * @param panelContent
-	 *            the panel content
-	 */
-	protected final void createPageVisitHistory(final String pageName, final String pageId,
-			final VerticalLayout panelContent) {
-		final Label createHeader2Label = LabelFactory.createHeader2Label(CURRENT_PAGE_VISIT_HISTORY);
-		panelContent.addComponent(createHeader2Label);
-		final DCharts createApplicationActionEventPageElementDailySummaryChart = adminChartDataManager
-				.createApplicationActionEventPageElementDailySummaryChart(pageName, pageId);
-		panelContent.addComponent(createApplicationActionEventPageElementDailySummaryChart);
-
-		final Label createHeader2Label2 = LabelFactory.createHeader2Label(GENERAL_PAGE_MODE_PAGE_VISIT);
-		panelContent.addComponent(createHeader2Label2);
-		final DCharts createApplicationActionEventPageModeDailySummaryChart = adminChartDataManager
-				.createApplicationActionEventPageModeDailySummaryChart(pageName);
-		panelContent.addComponent(createApplicationActionEventPageModeDailySummaryChart);
-
-		panelContent.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
-		panelContent.setExpandRatio(createApplicationActionEventPageElementDailySummaryChart, ContentRatio.GRID);
-		panelContent.setExpandRatio(createHeader2Label2, ContentRatio.SMALL);
-		panelContent.setExpandRatio(createApplicationActionEventPageModeDailySummaryChart, ContentRatio.GRID);
-	}
 
 	/**
 	 * Gets the application manager.

@@ -51,7 +51,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class OverviewPageModContentFactoryImpl.
  */
 @Component
-public final class OverviewPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+public final class OverviewPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";

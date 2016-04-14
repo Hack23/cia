@@ -16,21 +16,18 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 
 import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
-import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.DocumentChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
-import com.vaadin.ui.Label;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -40,11 +37,14 @@ import com.vaadin.ui.VerticalLayout;
  * The Class DocumentActivityPageModContentFactoryImpl.
  */
 @Component
-public final class DocumentActivityPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
+public final class DocumentActivityPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
+
+	/** The Constant DOCUMENT_ACTIVITY. */
+	private static final String DOCUMENT_ACTIVITY = "Document Activity";
 
 	/** The document chart data manager. */
 	@Autowired
-	private DocumentChartDataManager documentChartDataManager;
+	private transient DocumentChartDataManager documentChartDataManager;
 
 	/**
 	 * Instantiates a new document activity page mod content factory impl.
@@ -55,7 +55,7 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractPol
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PoliticianPageMode.DOCUMENTACTIVITY.toString());
+		return NAME.equals(page) && parameters.contains(PartyPageMode.DOCUMENTACTIVITY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -65,35 +65,24 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractPol
 
 		final String pageId = getPageId(parameters);
 
-		final DataContainer<PersonData, String> dataContainer = getApplicationManager()
-				.getDataContainer(PersonData.class);
+		final DataContainer<ViewRiksdagenParty, String> dataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenParty.class);
 
-		final PersonData personData = dataContainer.load(pageId);
-		if (personData != null) {
+		final ViewRiksdagenParty viewRiksdagenParty = dataContainer.load(pageId);
 
-			final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenPolitician.class);
+		if (viewRiksdagenParty != null) {
 
-			final ViewRiksdagenPolitician viewRiksdagenPolitician = politicianDataContainer.load(personData.getId());
+			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-			getMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
+			panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_ACTIVITY));
 
-			final Label createHeader2Label = LabelFactory
-					.createHeader2Label(PoliticianPageMode.DOCUMENTACTIVITY.toString());
-			panelContent.addComponent(createHeader2Label);
+			final DCharts createDocumentHistoryChart = documentChartDataManager.createDocumentHistoryPartyChart(pageId);
+			panelContent.addComponent(createDocumentHistoryChart);
 
-			final DCharts documentHistoryChart = documentChartDataManager
-					.createPersonDocumentHistoryChart(personData.getId());
-
-			panelContent.addComponent(documentHistoryChart);
-
-			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
-			panelContent.setExpandRatio(documentHistoryChart, ContentRatio.GRID);
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
-
+			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}
 		return panelContent;
 
 	}
+
 }

@@ -40,7 +40,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class RoleSummaryPageModContentFactoryImpl.
  */
 @Component
-public final class RoleSummaryPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+public final class RoleSummaryPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
 	/** The Constant GOVERNMENT_EXPERIENCE. */
 	private static final String GOVERNMENT_EXPERIENCE = "Government experience:";

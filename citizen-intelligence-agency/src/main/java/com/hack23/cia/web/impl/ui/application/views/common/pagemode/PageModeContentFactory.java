@@ -16,31 +16,39 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.common;
+package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
 
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 
 /**
- * A factory for creating PageMode objects.
+ * A factory for creating PageModeContent objects.
  */
-public interface PageModeFactory {
+public interface PageModeContentFactory {
 
 	/**
-	 * Post construct.
+	 * Matches.
 	 *
-	 * @param panel
-	 *            the panel
+	 * @param page
+	 *            the page
+	 * @param parameters
+	 *            the parameters
+	 * @return true, if successful
 	 */
-	void postConstruct(Panel panel);
+	boolean matches(String page, String parameters);
 
 	/**
-	 * Enter.
+	 * Creates a new PageModeContent object.
 	 *
+	 * @param parameters
+	 *            the parameters
+	 * @param menuBar
+	 *            the menu bar
 	 * @param panel
 	 *            the panel
-	 * @param event
-	 *            the event
+	 * @return the layout
 	 */
-	void enter(Panel panel,ViewChangeEvent event);
+	Layout createContent(String parameters,MenuBar menuBar,Panel panel);
+
 }

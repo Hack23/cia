@@ -38,7 +38,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class IndicatorsPageModContentFactoryImpl.
  */
 @Component
-public final class IndicatorsPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+public final class IndicatorsPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
 	/** The Constant INDICATORS. */
 	private static final String INDICATORS = "Indicators";

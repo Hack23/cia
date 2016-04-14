@@ -16,14 +16,14 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
-import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -31,21 +31,24 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class OverviewPageModContentFactoryImpl.
+ * The Class ChartsPageModContentFactoryImpl.
  */
 @Component
-public final class PageVisitHistoryPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
+public final class ChartsPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
+
+	/** The Constant CHARTS_NOT_IMPLEMENTED. */
+	private static final String CHARTS_NOT_IMPLEMENTED = "Charts Not Implemented";
 
 	/**
-	 * Instantiates a new page visit history page mod content factory impl.
+	 * Instantiates a new charts page mod content factory impl.
 	 */
-	public PageVisitHistoryPageModContentFactoryImpl() {
+	public ChartsPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PageMode.PAGEVISITHISTORY.toString());
+		return NAME.equals(page) && parameters.contains(PageMode.CHARTS.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -55,26 +58,23 @@ public final class PageVisitHistoryPageModContentFactoryImpl extends AbstractPol
 
 		final String pageId = getPageId(parameters);
 
-		final DataContainer<PersonData, String> dataContainer = getApplicationManager()
-				.getDataContainer(PersonData.class);
+		final DataContainer<ViewRiksdagenParty, String> dataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenParty.class);
 
-		final PersonData personData = dataContainer.load(pageId);
-		if (personData != null) {
+		final ViewRiksdagenParty viewRiksdagenParty = dataContainer
+				.load(pageId);
 
-			final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenPolitician.class);
+		if (viewRiksdagenParty != null) {
 
-			final ViewRiksdagenPolitician viewRiksdagenPolitician = politicianDataContainer.load(personData.getId());
+			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-			getMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
+			panelContent.addComponent(LabelFactory.createHeader2Label(CHARTS_NOT_IMPLEMENTED));
 
-			createPageVisitHistory(NAME,pageId,panelContent);
-
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
-
+			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}
 		return panelContent;
 
 	}
+
+
 }

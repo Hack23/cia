@@ -35,7 +35,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class ChartsPageModContentFactoryImpl.
  */
 @Component
-public final class ChartsPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+public final class ChartsPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
 	/** The Constant CHARTS_NOT_IMPLEMENTED. */
 	private static final String CHARTS_NOT_IMPLEMENTED = "Charts Not Implemented";

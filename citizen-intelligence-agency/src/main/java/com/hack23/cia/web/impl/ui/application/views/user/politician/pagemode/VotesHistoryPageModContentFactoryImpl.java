@@ -42,7 +42,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class VotesHistoryPageModContentFactoryImpl.
  */
 @Component
-public final class VotesHistoryPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+public final class VotesHistoryPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
 	/**
 	 * The view riksdagen vote data ballot politician summary chart data
