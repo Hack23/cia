@@ -21,8 +21,6 @@ package com.hack23.cia.web.impl.ui.application.views.admin.agentoperations.pagem
 import java.util.Arrays;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
@@ -41,14 +39,11 @@ import com.vaadin.ui.VerticalLayout;
  * The Class OverviewPageModContentFactoryImpl.
  */
 @Component
-public final class AgentOperationsOverviewPageModContentFactoryImpl extends AbstractAgentOperationsPageModContentFactoryImpl {
+public final class AgentOperationsOverviewPageModContentFactoryImpl
+		extends AbstractAgentOperationsPageModContentFactoryImpl {
 
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
-
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(AgentOperationsOverviewPageModContentFactoryImpl.class);
-
 
 	/**
 	 * Instantiates a new overview page mod content factory impl.
@@ -60,7 +55,6 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl extends Abst
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		final String pageId = getPageId(parameters);
-		LOGGER.info("page:{} , pageId:{} ,parameters:{}",page,pageId,parameters);
 		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 				|| parameters.contains(PageMode.OVERVIEW.toString()));
 	}
@@ -72,61 +66,43 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl extends Abst
 
 		final String pageId = getPageId(parameters);
 
-
 		final DataContainer<ViewRiksdagenParty, String> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenParty.class);
 
 		final DataContainer<ViewRiksdagenPartySummary, String> partySummarydataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartySummary.class);
 
-		final ViewRiksdagenParty viewRiksdagenParty = dataContainer
-				.load(pageId);
+		final ViewRiksdagenParty viewRiksdagenParty = dataContainer.load(pageId);
 
 		if (viewRiksdagenParty != null) {
 
 			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-
 			panelContent.addComponent(LabelFactory.createHeader2Label(OVERVIEW));
 			panelContent.addComponent(getPageLinkFactory().addPartyPageLink(viewRiksdagenParty));
 
-			getFormFactory().addTextFields(
-					panelContent,
-					new BeanItem<>(viewRiksdagenParty),
-					ViewRiksdagenParty.class,
-					Arrays.asList(new String[] { "partyName", "partyId",
-							"headCount", "partyNumber", "registeredDate",
-					"website" }));
+			getFormFactory().addTextFields(panelContent, new BeanItem<>(viewRiksdagenParty), ViewRiksdagenParty.class,
+					Arrays.asList(new String[] { "partyName", "partyId", "headCount", "partyNumber", "registeredDate",
+							"website" }));
 
-			final ViewRiksdagenPartySummary viewRiksdagenPartySummary = partySummarydataContainer
-					.load(pageId);
+			final ViewRiksdagenPartySummary viewRiksdagenPartySummary = partySummarydataContainer.load(pageId);
 
 			if (viewRiksdagenPartySummary != null) {
 
-				getFormFactory().addTextFields(panelContent,
-						new BeanItem<>(
-								viewRiksdagenPartySummary),
-								ViewRiksdagenPartySummary.class,
-								Arrays.asList(new String[] { "active",
-										"firstAssignmentDate", "lastAssignmentDate",
-										"currentAssignments", "totalAssignments",
-										"totalDaysServed", "activeEu", "totalActiveEu",
-										"totalDaysServedEu", "activeGovernment",
-										"totalActiveGovernment",
-										"totalDaysServedGovernment", "activeCommittee",
-										"totalActiveCommittee",
-										"totalDaysServedCommittee", "activeParliament",
-										"totalActiveParliament",
+				getFormFactory().addTextFields(panelContent, new BeanItem<>(viewRiksdagenPartySummary),
+						ViewRiksdagenPartySummary.class,
+						Arrays.asList(new String[] { "active", "firstAssignmentDate", "lastAssignmentDate",
+								"currentAssignments", "totalAssignments", "totalDaysServed", "activeEu",
+								"totalActiveEu", "totalDaysServedEu", "activeGovernment", "totalActiveGovernment",
+								"totalDaysServedGovernment", "activeCommittee", "totalActiveCommittee",
+								"totalDaysServedCommittee", "activeParliament", "totalActiveParliament",
 								"totalDaysServedParliament" }));
 
 			}
 
-
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}
 		return panelContent;
-
 	}
-
 
 }

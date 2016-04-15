@@ -18,52 +18,51 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 
-import java.util.Arrays;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
+import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember;
+import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember_;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.vaadin.data.util.BeanItem;
-import com.vaadin.ui.FormLayout;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.ui.Grid;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
-import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class MinistryOverviewPageModContentFactoryImpl.
+ * The Class MinistryMemberHistoryPageModContentFactoryImpl.
  */
 @Component
-public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
+public final class MinistryMemberHistoryPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
+	/** The Constant MEMBER_HISTORY. */
+	private static final String MEMBER_HISTORY = "Member History";
 
 	/** The Constant MINISTRY. */
 	private static final String MINISTRY = "Ministry:";
 
 	/**
-	 * Instantiates a new ministry overview page mod content factory impl.
+	 * Instantiates a new ministry member history page mod content factory impl.
 	 */
-	public MinistryOverviewPageModContentFactoryImpl() {
+	public MinistryMemberHistoryPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-				|| parameters.contains(PageMode.OVERVIEW.toString()));
+		return NAME.equals(page) && (!StringUtils.isEmpty(parameters) && parameters.contains(MinistryPageMode.MEMBERHISTORY.toString()));
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -82,27 +81,27 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 
 			getMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
+			final Label createHeader2Label = LabelFactory.createHeader2Label(MEMBER_HISTORY);
 			panelContent.addComponent(createHeader2Label);
 
-			final Link addMinistryPageLink = getPageLinkFactory().addMinistryPageLink(viewRiksdagenMinistry);
-			panelContent.addComponent(addMinistryPageLink);
+			final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
+					.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
 
-			final Panel formPanel = new Panel();
-			formPanel.setSizeFull();
+			final BeanItemContainer<ViewRiksdagenGovermentRoleMember> govermentRoleMemberDataSource = new BeanItemContainer<>(
+					ViewRiksdagenGovermentRoleMember.class, govermentRoleMemberDataContainer.getAllBy(
+							ViewRiksdagenGovermentRoleMember_.detail, viewRiksdagenMinistry.getNameId()));
 
-			panelContent.addComponent(formPanel);
+			final Grid ministryRoleMemberBeanItemGrid = getGridFactory().createBasicBeanItemGrid(
+					govermentRoleMemberDataSource, MEMBER_HISTORY,
+					new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
+							"roleCode", "fromDate", "toDate", "totalDaysServed" },
+					new String[] { "roleId", "personId", "detail" }, null,
+					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 
-			final FormLayout formContent = new FormLayout();
-			formPanel.setContent(formContent);
+			panelContent.addComponent(ministryRoleMemberBeanItemGrid);
 
-			getFormFactory().addTextFields(formContent, new BeanItem<>(viewRiksdagenMinistry),
-					ViewRiksdagenMinistry.class, Arrays.asList(new String[] { "nameId", "active", "firstAssignmentDate",
-							"lastAssignmentDate", "totalAssignments", "totalDaysServed", "currentMemberSize" }));
-
-			panelContent.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
-			panelContent.setExpandRatio(addMinistryPageLink, ContentRatio.SMALL);
-			panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
+			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+			panelContent.setExpandRatio(ministryRoleMemberBeanItemGrid, ContentRatio.GRID);
 
 			panel.setCaption(MINISTRY + viewRiksdagenMinistry.getNameId());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
