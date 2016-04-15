@@ -21,8 +21,6 @@ package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 import java.util.Arrays;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
@@ -56,9 +54,6 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
 
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(PoliticianOverviewPageModContentFactoryImpl.class);
-
 
 	/**
 	 * Instantiates a new overview page mod content factory impl.
@@ -70,8 +65,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		final String pageId = getPageId(parameters);
-		LOGGER.info("page:{} , pageId:{} ,parameters:{}",page,pageId,parameters);
-		return NAME.equals(pageId) && StringUtils.isEmpty(parameters) || parameters.equals(pageId)
+		return NAME.equals(page) && StringUtils.isEmpty(parameters) || parameters.equals(pageId)
 				|| parameters.contains(PageMode.OVERVIEW.toString());
 	}
 
