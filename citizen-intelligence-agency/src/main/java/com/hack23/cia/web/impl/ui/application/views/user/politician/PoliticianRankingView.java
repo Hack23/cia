@@ -18,11 +18,14 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.politician;
 
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 
 import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +37,7 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.PartyDataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView;
@@ -76,13 +80,21 @@ public final class PoliticianRankingView extends AbstractRankingView {
 	@Autowired
 	private transient PartyDataSeriesFactory dataSeriesFactory;
 
+	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
+
 
 	/**
 	 * Instantiates a new politician ranking view.
+	 *
+	 * @param context
+	 *            the context
 	 */
-	public PoliticianRankingView() {
+	public PoliticianRankingView(final ApplicationContext context) {
 		super();
+		pageModeContentFactoryMap = context.getBeansOfType(PageModeContentFactory.class);
+
 	}
+
 
 	/**
 	 * Post construct.

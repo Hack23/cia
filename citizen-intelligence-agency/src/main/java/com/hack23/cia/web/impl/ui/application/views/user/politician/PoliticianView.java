@@ -78,6 +78,8 @@ public final class PoliticianView extends AbstractPersonView {
 
 			if (pageModeContentFactory.matches(NAME, parameters)) {
 
+
+
 				getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
 
 				return;

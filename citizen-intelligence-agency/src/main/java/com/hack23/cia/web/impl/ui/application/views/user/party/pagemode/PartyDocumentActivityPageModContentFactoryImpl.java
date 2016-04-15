@@ -44,7 +44,7 @@ public final class PartyDocumentActivityPageModContentFactoryImpl extends Abstra
 
 	/** The document chart data manager. */
 	@Autowired
-	private transient DocumentChartDataManager documentChartDataManager;
+	private DocumentChartDataManager documentChartDataManager;
 
 	/**
 	 * Instantiates a new document activity page mod content factory impl.

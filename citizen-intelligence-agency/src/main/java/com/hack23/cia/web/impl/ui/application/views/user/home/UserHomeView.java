@@ -18,52 +18,19 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.home;
 
-import java.util.Arrays;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.RequestContextHolder;
 
-import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent;
-import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent_;
-import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.model.internal.application.user.impl.UserAccount;
-import com.hack23.cia.service.api.ApplicationManager;
-import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.service.api.action.application.LogoutRequest;
-import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.LogoutClickListener;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SetGoogleAuthenticatorCredentialClickListener;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView;
-import com.vaadin.data.util.BeanItem;
-import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Panel;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
 
@@ -71,17 +38,9 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class PartyView.
  */
 @Service
-@Scope(value="prototype",proxyMode = ScopedProxyMode.INTERFACES)
+@Scope(value = "prototype", proxyMode = ScopedProxyMode.INTERFACES)
 @VaadinView(value = UserHomeView.NAME, cached = true)
 public final class UserHomeView extends AbstractUserView {
-
-	private static final String ENABLE_GOOGLE_AUTHENTICATOR = "Enable Google Authenticator";
-
-	private static final String LOGOUT = "Logout";
-
-	private static final String USERHOME = "Userhome:";
-
-	private static final String OVERVIEW = "Overview";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -89,27 +48,17 @@ public final class UserHomeView extends AbstractUserView {
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.USERHOME_VIEW_NAME;
 
-	/** The application manager. */
-	@Autowired
-	private transient ApplicationManager applicationManager;
-
-	/** The menu item factory. */
-	@Autowired
-	private transient MenuItemFactory menuItemFactory;
-
-	/** The grid factory. */
-	@Autowired
-	private transient GridFactory gridFactory;
-
-	/** The form factory. */
-	@Autowired
-	private transient FormFactory formFactory;
+	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
 	/**
 	 * Instantiates a new user home view.
+	 *
+	 * @param context
+	 *            the context
 	 */
-	public UserHomeView() {
+	public UserHomeView(final ApplicationContext context) {
 		super();
+		pageModeContentFactoryMap = context.getBeansOfType(PageModeContentFactory.class);
 	}
 
 	/**
@@ -121,126 +70,18 @@ public final class UserHomeView extends AbstractUserView {
 		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
-	//@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public void enter(final ViewChangeEvent event) {
-
 		final String parameters = event.getParameters();
 
-		if (parameters != null) {
+		for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
 
-			final String pageId = parameters.substring(parameters.lastIndexOf('/') + "/".length(), parameters.length());
+			if (pageModeContentFactory.matches(NAME, parameters)) {
 
-			menuItemFactory.createUserHomeMenuBar(getBarmenu(), pageId);
-
-			final VerticalLayout panelContent = new VerticalLayout();
-			panelContent.setSizeFull();
-			panelContent.setMargin(true);
-
-			if (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-					|| parameters.contains(PageMode.OVERVIEW.toString())) {
-
-				final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
-				panelContent.addComponent(createHeader2Label);
-
-				final Button logoutButton = new Button(LOGOUT);
-
-				final LogoutRequest logoutRequest = new LogoutRequest();
-				logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-				logoutButton.addClickListener(new LogoutClickListener(logoutRequest,applicationManager));
-
-				panelContent.addComponent(logoutButton);
-
-				final Button googleAuthButton = new Button(ENABLE_GOOGLE_AUTHENTICATOR);
-
-				final SetGoogleAuthenticatorCredentialRequest googleAuthRequest = new SetGoogleAuthenticatorCredentialRequest();
-				googleAuthRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-				googleAuthButton.addClickListener(new SetGoogleAuthenticatorCredentialClickListener(googleAuthRequest,applicationManager));
-
-				panelContent.addComponent(googleAuthButton);
-
-				final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
-
-
-					final Long userIdFromSecurityContext = getUserIdFromSecurityContext();
-
-					if (userIdFromSecurityContext == null) {
-						UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
-					} else {
-
-						final UserAccount userAccount = dataContainer.load(userIdFromSecurityContext);
-
-
-						final Panel formPanel = new Panel();
-						formPanel.setSizeFull();
-
-						panelContent.addComponent(formPanel);
-
-						final FormLayout formContent = new FormLayout();
-						formPanel.setContent(formContent);
-
-
-
-						formFactory.addTextFields(formContent, new BeanItem<>(userAccount), UserAccount.class,
-								Arrays.asList(new String[] { "username","createdDate","email","country","numberOfVisits" }));
-
-
-
-						final DataContainer<ApplicationActionEvent, Long> eventDataContainer = applicationManager.getDataContainer(ApplicationActionEvent.class);
-
-
-						final BeanItemContainer<ApplicationActionEvent> politicianDocumentDataSource = new BeanItemContainer<>(ApplicationActionEvent.class,
-								eventDataContainer.findOrderedListByProperty(ApplicationActionEvent_.userId,userAccount.getUserId(),ApplicationActionEvent_.createdDate));
-
-						final Grid createBasicBeanItemGrid = gridFactory.createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationActionEvent",
-								new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" },
-								new String[] { "modelObjectId" }, "hjid",
-								new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null);
-						panelContent.addComponent(createBasicBeanItemGrid);
-
-
-						panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
-						panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);
-
-						panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
-						panelContent.setExpandRatio(createBasicBeanItemGrid,ContentRatio.GRID);
-					}
-			}
-
-
-			getPanel().setContent(panelContent);
-			getPanel().setCaption(USERHOME);
-
-			pageActionEventHelper.createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,
-					parameters, pageId);
-
-		}
-
-	}
-
-	/**
-	 * Gets the user id from security context.
-	 *
-	 * @return the user id from security context
-	 */
-	private static Long getUserIdFromSecurityContext() {
-
-		Long result=null;
-
-		final SecurityContext context = SecurityContextHolder.getContext();
-		if (context != null) {
-			final Authentication authentication = context.getAuthentication();
-			if (authentication != null) {
-				final Object principal = authentication.getPrincipal();
-
-				if (principal instanceof UserAccount) {
-					final UserAccount userAccount = (UserAccount) principal;
-					result = userAccount.getHjid();
-				}
+				getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
+				return;
 			}
 		}
-
-		return result;
 	}
 
 }

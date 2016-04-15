@@ -76,6 +76,7 @@ public abstract class AbstractUserView extends Panel implements View {
 		super();
 	}
 
+
 	/**
 	 * Creates the basic layout with panel and footer.
 	 *

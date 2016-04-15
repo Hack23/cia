@@ -52,6 +52,9 @@ public final class PartyView extends AbstractGroupView {
 
 	/**
 	 * Instantiates a new party view.
+	 *
+	 * @param context
+	 *            the context
 	 */
 	public PartyView(final ApplicationContext context) {
 		super();
@@ -73,7 +76,21 @@ public final class PartyView extends AbstractGroupView {
 		final String parameters = event.getParameters();
 
 		for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
+
 			if (pageModeContentFactory.matches(NAME, parameters)) {
+
+
+
+				getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
+
+				return;
+			}
+		}
+
+		for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
+			if (pageModeContentFactory.matches(NAME, parameters)) {
+
+
 				getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
 				return;
 			}

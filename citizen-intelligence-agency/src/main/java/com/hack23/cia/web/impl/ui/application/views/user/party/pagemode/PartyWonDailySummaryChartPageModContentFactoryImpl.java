@@ -43,7 +43,7 @@ public final class PartyWonDailySummaryChartPageModContentFactoryImpl extends Ab
 
 	/** The chart data manager. */
 	@Autowired
-	private transient PartyChartDataManager chartDataManager;
+	private PartyChartDataManager chartDataManager;
 
 	/**
 	 * Instantiates a new party won daily summary chart page mod content factory

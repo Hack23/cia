@@ -19,11 +19,13 @@
 package com.hack23.cia.web.impl.ui.application.views.admin.system;
 
 import java.util.Arrays;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +39,7 @@ import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminVi
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
@@ -81,12 +84,20 @@ public final class AdminAgencyView extends AbstractAdminView {
 	@Autowired
 	private transient FormFactory formFactory;
 
+	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
+
 	/**
 	 * Instantiates a new admin agency view.
+	 *
+	 * @param context
+	 *            the context
 	 */
-	public AdminAgencyView() {
+	public AdminAgencyView(final ApplicationContext context) {
 		super();
+		pageModeContentFactoryMap = context.getBeansOfType(PageModeContentFactory.class);
+
 	}
+
 
 	/**
 	 * Post construct.
@@ -100,6 +111,18 @@ public final class AdminAgencyView extends AbstractAdminView {
 	@Override
 	public void enter(final ViewChangeEvent event) {
 		final String parameters = event.getParameters();
+
+		for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
+
+			if (pageModeContentFactory.matches(NAME, parameters)) {
+
+
+
+				setContent(pageModeContentFactory.createContent(parameters, null, this));
+
+				return;
+			}
+		}
 
 		if (parameters != null) {
 			createListAndForm(parameters.substring(parameters.lastIndexOf('/') + "/".length(), parameters.length()));

@@ -61,6 +61,8 @@ public final class ApplicationLoginListener implements LoginListener {
 	 *
 	 * @param applicationManager
 	 *            the application manager
+	 * @param loginRequest
+	 *            the login request
 	 */
 	public ApplicationLoginListener(final ApplicationManager applicationManager,final LoginRequest loginRequest) {
 		this.applicationManager = applicationManager;

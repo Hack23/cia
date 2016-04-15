@@ -19,11 +19,13 @@
 package com.hack23.cia.web.impl.ui.application.views.common;
 
 import java.util.Arrays;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -35,6 +37,7 @@ import com.hack23.cia.service.api.action.application.RegisterUserRequest;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ApplicationLoginListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RegisterUserClickListener;
@@ -82,12 +85,18 @@ public final class MainView extends Panel implements View {
 	@Autowired
 	private transient FormFactory formFactory;
 
+	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
 	/**
 	 * Instantiates a new main view.
+	 *
+	 * @param context
+	 *            the context
 	 */
-	public MainView() {
+	public MainView(final ApplicationContext context) {
 		super();
+		pageModeContentFactoryMap = context.getBeansOfType(PageModeContentFactory.class);
+
 	}
 
 	/**
@@ -103,6 +112,20 @@ public final class MainView extends Panel implements View {
 
 	@Override
 	public void enter(final ViewChangeEvent event) {
+//		final String parameters = event.getParameters();
+//
+//		for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
+//
+//			if (pageModeContentFactory.matches(NAME, parameters)) {
+//
+
+//
+//				setContent(pageModeContentFactory.createContent(parameters, null, this));
+//
+//				return;
+//			}
+//		}
+
 		createContent();
 	}
 

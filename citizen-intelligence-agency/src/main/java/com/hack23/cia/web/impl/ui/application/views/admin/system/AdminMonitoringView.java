@@ -18,15 +18,19 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system;
 
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -56,12 +60,20 @@ public final class AdminMonitoringView extends AbstractAdminView {
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_MONITORING_VIEW_NAME;
 
+	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
+
 	/**
 	 * Instantiates a new admin monitoring view.
+	 *
+	 * @param context
+	 *            the context
 	 */
-	public AdminMonitoringView() {
+	public AdminMonitoringView(final ApplicationContext context) {
 		super();
+		pageModeContentFactoryMap = context.getBeansOfType(PageModeContentFactory.class);
+
 	}
+
 
 	/**
 	 * Post construct.
@@ -73,6 +85,20 @@ public final class AdminMonitoringView extends AbstractAdminView {
 
 	@Override
 	public void enter(final ViewChangeEvent event) {
+		final String parameters = event.getParameters();
+
+		for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
+
+			if (pageModeContentFactory.matches(NAME, parameters)) {
+
+
+
+				setContent(pageModeContentFactory.createContent(parameters, null, this));
+
+				return;
+			}
+		}
+
 
 		createContent();
 	}

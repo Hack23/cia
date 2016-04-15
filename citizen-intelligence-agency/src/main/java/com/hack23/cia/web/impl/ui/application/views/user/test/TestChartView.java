@@ -18,55 +18,25 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.test;
 
-import java.io.Serializable;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import com.hack23.cia.model.external.worldbank.data.impl.Indicator;
-import com.hack23.cia.model.external.worldbank.data.impl.Indicator_;
-import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
-import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData_;
-import com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary;
-import com.hack23.cia.model.internal.application.data.impl.WorldbankIndicatorDataCountrySummaryEmbeddedId;
-import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.service.api.ApplicationManager;
-import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.AbstractView;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.DocumentChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.PartyChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.WorldIndicatorChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.vaadin.data.util.BeanItem;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.VerticalLayout;
 
-import at.downdrown.vaadinaddons.highchartsapi.HighChart;
-import at.downdrown.vaadinaddons.highchartsapi.HighChartFactory;
-import at.downdrown.vaadinaddons.highchartsapi.exceptions.HighChartsException;
-import at.downdrown.vaadinaddons.highchartsapi.model.ChartConfiguration;
-import at.downdrown.vaadinaddons.highchartsapi.model.ChartType;
-import at.downdrown.vaadinaddons.highchartsapi.model.data.PieChartData;
-import at.downdrown.vaadinaddons.highchartsapi.model.series.PieChartSeries;
 import ru.xpoft.vaadin.VaadinView;
 
 
@@ -85,57 +55,33 @@ public final class TestChartView extends AbstractView {
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
 
-	/** The Constant CHART_WIDTH_FULL. */
-	private static final int CHART_WIDTH_FULL = 100;
-
-	/** The Constant CHART_HEIGHT. */
-	private static final int CHART_HEIGHT = 40;
-
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(TestChartView.class);
-
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.TEST_CHART_VIEW_NAME;
-
-	/** The application manager. */
-	@Autowired
-	private transient ApplicationManager applicationManager;
-
-	/** The chart data manager. */
-	@Autowired
-	private transient WorldIndicatorChartDataManager chartDataManager;
-
-
-	/** The party chart data manager. */
-	@Autowired
-	private transient PartyChartDataManager partyChartDataManager;
-
-	/** The document chart data manager. */
-	@Autowired
-	private transient DocumentChartDataManager documentChartDataManager;
 
 	/** The menu item factory. */
 	@Autowired
 	private transient MenuItemFactory menuItemFactory;
 
-	/** The form factory. */
-	@Autowired
-	private transient FormFactory formFactory;
-
-
 	/** The page mode content. */
 	private VerticalLayout pageModeContent;
 
+	private transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
+
 	/**
 	 * Instantiates a new test chart view.
+	 *
+	 * @param context
+	 *            the context
 	 */
-	public TestChartView() {
+	public TestChartView(final ApplicationContext context) {
 		super();
+		pageModeContentFactoryMap = context.getBeansOfType(PageModeContentFactory.class);
+
 	}
+
 
 	/**
 	 * Post construct.
@@ -164,8 +110,6 @@ public final class TestChartView extends AbstractView {
 
 		pageModeContent.addComponent(new Label(OVERVIEW));
 
-		createHighChartTest();
-
 
 
 		layout.addComponent(pageLinkFactory.createMainViewPageLink());
@@ -174,132 +118,22 @@ public final class TestChartView extends AbstractView {
 
 	}
 
-
-
-	//@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public void enter(final ViewChangeEvent event) {
-
 		if (pageModeContent.getComponentCount() != 0) {
 			pageModeContent.removeAllComponents();
 		}
 
 		final String parameters = event.getParameters();
 
-		if (StringUtils.isEmpty(parameters) ||parameters.contains(PageMode.OVERVIEW.toString())) {
-				pageModeContent.addComponent(new Label(OVERVIEW));
+		for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
 
-				createHighChartTest();
-
-
-		} else if (parameters.contains(PageMode.CHARTS.toString())) {
-
-			if (parameters.contains(ChartIndicators.PARTYWINNER.toString())) {
-				pageModeContent.addComponent(partyChartDataManager.createPartyWinnerChart());
-			} else if (parameters.contains(ChartIndicators.DOCUMENTACTIVITYBYTYPE.toString())) {
-				pageModeContent.addComponent(documentChartDataManager.createDocumentTypeChart());
-			} else if (parameters.contains(ChartIndicators.DECSIONACTIVITYBYTYPE.toString())) {
-				pageModeContent.addComponent(documentChartDataManager.createDecisionTypeChart());
+			if (pageModeContentFactory.matches(NAME, parameters)) {
+				pageModeContent.addComponent(pageModeContentFactory.createContent(parameters, null, this));
+				return;
 			}
-		} else if (parameters.contains(PageMode.INDICATORS.toString())) {
-
-				final String indicator = parameters.substring(PageMode.INDICATORS.toString().length()+"/".length(), parameters.length());
-
-				pageModeContent.addComponent(createDataIndicatorSummaryChartPanel(indicator));
 		}
 
-		final String pageId = parameters.substring(parameters.lastIndexOf('/') + "/".length(), parameters.length());
-
-		pageActionEventHelper.createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
-
-
 	}
-
-
-
-	/**
-	 * Creates the high chart test.
-	 */
-	private void createHighChartTest() {
-		final ChartConfiguration pieConfiguration = new ChartConfiguration();
-		pieConfiguration.setTitle("Fruits");
-		pieConfiguration.setChartType(ChartType.PIE);
-
-		final PieChartSeries pieFruits = new PieChartSeries("Fruits");
-		final PieChartData bananas = new PieChartData("Bananas", 33.2);
-		final PieChartData melons = new PieChartData("Melons", 6.21);
-		final PieChartData apples = new PieChartData("Apples", 3.44);
-
-		pieFruits.getData().add(bananas);
-		pieFruits.getData().add(melons);
-		pieFruits.getData().add(apples);
-
-		pieConfiguration.getSeriesList().add(pieFruits);
-
-		try {
-		   final HighChart pieChart = HighChartFactory.renderChart(pieConfiguration);
-		   pieChart.setHeight(CHART_HEIGHT, Unit.PERCENTAGE);
-		   pieChart.setWidth(CHART_WIDTH_FULL, Unit.PERCENTAGE);
-		   pageModeContent.addComponent(pieChart);
-		   pageModeContent.setComponentAlignment(pieChart, Alignment.TOP_CENTER);
-		} catch (final HighChartsException e) {
-			LOGGER.warn("Problem displaying testchart",e);
-		}
-	}
-
-	/**
-	 * Creates the data indicator summary chart panel.
-	 *
-	 * @param indicator
-	 *            the indicator
-	 * @return the component
-	 */
-	private Component createDataIndicatorSummaryChartPanel(final String indicator) {
-		final VerticalLayout verticalLayout = new VerticalLayout();
-		verticalLayout.setSizeFull();
-
-		final DataContainer<ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId> indicatorDataCountrSummaryDailyDataContainer = applicationManager
-				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);
-
-
-		final Optional<ViewWorldbankIndicatorDataCountrySummary> indicatorSummary = indicatorDataCountrSummaryDailyDataContainer
-				.getAll()
-				.parallelStream()
-				.filter(t -> t != null && t.getEmbeddedId().getIndicatorId().equals(indicator)).findFirst();
-
-
-		if (indicatorSummary.isPresent()) {
-			formFactory.addTextFields(verticalLayout,
-					new BeanItem<>(
-							indicatorSummary.get()),
-							ViewWorldbankIndicatorDataCountrySummary.class,
-							Arrays.asList(new String[] {
-									   "indicatorName",
-									   "sourceValue",
-									   "sourceNote",
-									   "sourceOrganization",
-									   "startYear",
-									   "endYear",
-									   "dataPoint","topics"}));
-
-		}
-
-		final DataContainer<WorldBankData, Serializable> dataContainer = applicationManager
-		.getDataContainer(WorldBankData.class);
-
-
-		final List<WorldBankData> dataList = dataContainer.findListByEmbeddedProperty(WorldBankData.class, WorldBankData_.indicator, Indicator.class, Indicator_.id, indicator);
-
-
-		verticalLayout.addComponent(chartDataManager.createIndicatorChart(dataList,indicatorSummary.get()));
-
-		return verticalLayout;
-	}
-
-
-
-
-
-
 
 }

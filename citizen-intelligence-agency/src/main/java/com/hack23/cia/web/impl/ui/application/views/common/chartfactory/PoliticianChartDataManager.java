@@ -23,6 +23,7 @@ import org.dussan.vaadin.dcharts.DCharts;
 /**
  * The Interface ChartDataManager.
  */
+@FunctionalInterface
 public interface PoliticianChartDataManager {
 
 

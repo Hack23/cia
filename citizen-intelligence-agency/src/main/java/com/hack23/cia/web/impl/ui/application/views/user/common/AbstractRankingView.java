@@ -72,6 +72,7 @@ public abstract class AbstractRankingView extends AbstractUserView {
 	}
 
 
+
 	/**
 	 * Creates the menu bar.
 	 */

@@ -19,10 +19,12 @@
 package com.hack23.cia.web.impl.ui.application.views.user.document;
 
 import java.util.Arrays;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -35,6 +37,7 @@ import com.hack23.cia.service.api.action.user.SearchDocumentResponse;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocumentClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocumentResponseHandler;
@@ -77,12 +80,20 @@ public final class SearchDocumentView extends AbstractUserView {
 	@Autowired
 	private transient FormFactory formFactory;
 
+	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
+
 	/**
 	 * Instantiates a new search document view.
+	 *
+	 * @param context
+	 *            the context
 	 */
-	public SearchDocumentView() {
+	public SearchDocumentView(final ApplicationContext context) {
 		super();
+		pageModeContentFactoryMap = context.getBeansOfType(PageModeContentFactory.class);
+
 	}
+
 
 	/**
 	 * Post construct.
@@ -96,8 +107,19 @@ public final class SearchDocumentView extends AbstractUserView {
 	// @Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public void enter(final ViewChangeEvent event) {
-
 		final String parameters = event.getParameters();
+
+		for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
+
+			if (pageModeContentFactory.matches(NAME, parameters)) {
+
+
+
+				getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
+
+				return;
+			}
+		}
 
 		String pageId = null;
 		if (parameters != null) {

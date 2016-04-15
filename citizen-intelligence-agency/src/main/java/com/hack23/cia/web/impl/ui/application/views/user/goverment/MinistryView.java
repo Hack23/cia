@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.user.goverment;
 
 import java.util.Arrays;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -26,6 +27,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +45,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFacto
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -116,13 +119,21 @@ public final class MinistryView extends AbstractGroupView {
 	@Autowired
 	private transient FormFactory formFactory;
 
+	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
+
 
 	/**
 	 * Instantiates a new ministry view.
+	 *
+	 * @param context
+	 *            the context
 	 */
-	public MinistryView() {
+	public MinistryView(final ApplicationContext context) {
 		super();
+		pageModeContentFactoryMap = context.getBeansOfType(PageModeContentFactory.class);
+
 	}
+
 
 	/**
 	 * Post construct.
@@ -136,8 +147,20 @@ public final class MinistryView extends AbstractGroupView {
 	//@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public void enter(final ViewChangeEvent event) {
-
 		final String parameters = event.getParameters();
+
+		for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
+
+			if (pageModeContentFactory.matches(NAME, parameters)) {
+
+
+
+				getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
+
+				return;
+			}
+		}
+
 
 		if (parameters != null) {
 

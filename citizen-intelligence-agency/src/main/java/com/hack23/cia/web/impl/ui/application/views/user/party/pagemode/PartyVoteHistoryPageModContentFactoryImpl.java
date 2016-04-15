@@ -46,7 +46,7 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 
 	/** The view riksdagen vote data ballot party summary chart data manager. */
 	@Autowired
-	private transient GenericChartDataManager<ViewRiksdagenVoteDataBallotPartySummary> viewRiksdagenVoteDataBallotPartySummaryChartDataManager;
+	private GenericChartDataManager<ViewRiksdagenVoteDataBallotPartySummary> viewRiksdagenVoteDataBallotPartySummaryChartDataManager;
 
 	/**
 	 * Instantiates a new vote history page mod content factory impl.

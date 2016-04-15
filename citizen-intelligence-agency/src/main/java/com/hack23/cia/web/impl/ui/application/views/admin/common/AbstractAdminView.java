@@ -35,4 +35,5 @@ public abstract class AbstractAdminView extends AbstractView {
 		super();
 	}
 
+
 }

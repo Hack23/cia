@@ -1,0 +1,138 @@
+/*
+ * Copyright 2014 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.user.test.pagemode;
+
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.model.external.worldbank.data.impl.Indicator;
+import com.hack23.cia.model.external.worldbank.data.impl.Indicator_;
+import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
+import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData_;
+import com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary;
+import com.hack23.cia.model.internal.application.data.impl.WorldbankIndicatorDataCountrySummaryEmbeddedId;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.WorldIndicatorChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.vaadin.data.util.BeanItem;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class WorldIndicatorsPageModContentFactoryImpl.
+ */
+@Component
+public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractTestPageModContentFactoryImpl {
+
+	private static final String WORLD_INDICATORS = "World Indicators";
+
+	/** The chart data manager. */
+	@Autowired
+	private transient WorldIndicatorChartDataManager chartDataManager;
+
+	/**
+	 * Instantiates a new world indicators page mod content factory impl.
+	 */
+	public WorldIndicatorsPageModContentFactoryImpl() {
+		super();
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && parameters.contains(PageMode.INDICATORS.toString());
+	}
+
+	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+		final VerticalLayout panelContent = createPanelContent();
+
+		final String pageId = getPageId(parameters);
+
+		final String indicator = parameters.substring(PageMode.INDICATORS.toString().length()+"/".length(), parameters.length());
+
+		panelContent.addComponent(createDataIndicatorSummaryChartPanel(indicator));
+
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
+		panel.setCaption(WORLD_INDICATORS);
+
+		return panelContent;
+
+	}
+
+	/**
+	 * Creates the data indicator summary chart panel.
+	 *
+	 * @param indicator
+	 *            the indicator
+	 * @return the component
+	 */
+	private VerticalLayout createDataIndicatorSummaryChartPanel(final String indicator) {
+		final VerticalLayout verticalLayout = new VerticalLayout();
+		verticalLayout.setSizeFull();
+
+		final DataContainer<ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId> indicatorDataCountrSummaryDailyDataContainer = getApplicationManager()
+				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);
+
+
+		final Optional<ViewWorldbankIndicatorDataCountrySummary> indicatorSummary = indicatorDataCountrSummaryDailyDataContainer
+				.getAll()
+				.parallelStream()
+				.filter(t -> t != null && t.getEmbeddedId().getIndicatorId().equals(indicator)).findFirst();
+
+
+		if (indicatorSummary.isPresent()) {
+			getFormFactory().addTextFields(verticalLayout,
+					new BeanItem<>(
+							indicatorSummary.get()),
+							ViewWorldbankIndicatorDataCountrySummary.class,
+							Arrays.asList(new String[] {
+									   "indicatorName",
+									   "sourceValue",
+									   "sourceNote",
+									   "sourceOrganization",
+									   "startYear",
+									   "endYear",
+									   "dataPoint","topics"}));
+
+		}
+
+		final DataContainer<WorldBankData, Serializable> dataContainer = getApplicationManager()
+		.getDataContainer(WorldBankData.class);
+
+
+		final List<WorldBankData> dataList = dataContainer.findListByEmbeddedProperty(WorldBankData.class, WorldBankData_.indicator, Indicator.class, Indicator_.id, indicator);
+
+
+		verticalLayout.addComponent(chartDataManager.createIndicatorChart(dataList,indicatorSummary.get()));
+
+		return verticalLayout;
+	}
+
+}
