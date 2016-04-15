@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
-import java.util.Arrays;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -27,6 +25,7 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData_;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentReferenceData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer_;
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
@@ -34,34 +33,35 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.vaadin.data.util.BeanItem;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
+import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.ui.Grid;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class DocumentOverviewPageModContentFactoryImpl.
+ * The Class DocumentReferencesPageModContentFactoryImpl.
  */
 @Component
-public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
+public final class DocumentReferencesPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
+	/** The Constant DOCUMENT_REFERENCES. */
+	private static final String DOCUMENT_REFERENCES = "Document References";
+
+
 
 	/**
-	 * Instantiates a new document overview page mod content factory impl.
+	 * Instantiates a new document references page mod content factory impl.
 	 */
-	public DocumentOverviewPageModContentFactoryImpl() {
+	public DocumentReferencesPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-				|| parameters.contains(PageMode.OVERVIEW.toString()));
+		return NAME.equals(page) && (!StringUtils.isEmpty(parameters) && parameters.contains(DocumentPageMode.DOCUMENTREFERENCES.toString()));
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -77,7 +77,8 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 		final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
 				.getDataContainer(DocumentStatusContainer.class);
 
-		getApplicationManager().getDataContainer(CommitteeProposalComponentData.class);
+		getApplicationManager()
+				.getDataContainer(CommitteeProposalComponentData.class);
 
 		final DocumentElement documentElement = documentElementDataContainer.load(pageId);
 
@@ -89,31 +90,35 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 					.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 							DocumentData.class, DocumentData_.id, pageId);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(OVERVIEW));
-			getFormFactory().addTextFields(panelContent, new BeanItem<>(documentElement), DocumentElement.class,
-					Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status", "title",
-							"subTitle", "madePublicDate", "createdDate", "systemDate", "relatedId", "label",
-							"tempLabel", "numberValue", "kallId", "documentFormat" }));
 
-			if (documentStatusContainer != null) {
-				getFormFactory().addTextFields(panelContent, new BeanItem<>(documentStatusContainer),
-						DocumentStatusContainer.class, Arrays.asList(new String[] { "documentCategory" }));
 
-				getFormFactory()
-						.addTextFields(panelContent, new BeanItem<>(documentStatusContainer.getDocument()),
-								DocumentData.class,
-								Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status",
-										"title", "subTitle", "madePublicDate", "label", "tempLabel", "numberValue",
-										"hangarId", }));
+
+			panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_REFERENCES));
+
+			if (documentStatusContainer != null
+					&& documentStatusContainer.getDocumentReferenceContainer() != null
+					&& documentStatusContainer.getDocumentReferenceContainer()
+							.getDocumentReferenceList() != null) {
+				final BeanItemContainer<DocumentReferenceData> documentReferenceDataDataSource = new BeanItemContainer<>(
+						DocumentReferenceData.class,
+						documentStatusContainer.getDocumentReferenceContainer().getDocumentReferenceList());
+
+				final Grid documentReferenceDataItemGrid = getGridFactory().createBasicBeanItemGrid(
+						documentReferenceDataDataSource, "Document references",
+						new String[] { "referenceType", "referenceDocumentId", "detail" },
+						new String[] { "hjid" }, null, null, null);
+				panelContent.addComponent(documentReferenceDataItemGrid);
+
 			}
 
+
 			panel.setContent(panelContent);
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
-					parameters, pageId);
+			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
 		}
 
 		return panelContent;
 
 	}
+
 
 }

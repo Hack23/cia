@@ -113,8 +113,6 @@ public final class SearchDocumentView extends AbstractUserView {
 
 			if (pageModeContentFactory.matches(NAME, parameters)) {
 
-
-
 				getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
 
 				return;

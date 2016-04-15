@@ -18,13 +18,12 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
-import java.util.Arrays;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentAttachment;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData_;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
@@ -34,34 +33,34 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.vaadin.data.util.BeanItem;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
+import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.ui.Grid;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class DocumentOverviewPageModContentFactoryImpl.
+ * The Class DocumentAttachementsPageModContentFactoryImpl.
  */
 @Component
-public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
+public final class DocumentAttachementsPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
+	/** The Constant DOCUMENT_ATTACHMENTS. */
+	private static final String DOCUMENT_ATTACHMENTS = "Document Attachments";
 
 	/**
-	 * Instantiates a new document overview page mod content factory impl.
+	 * Instantiates a new document attachements page mod content factory impl.
 	 */
-	public DocumentOverviewPageModContentFactoryImpl() {
+	public DocumentAttachementsPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-				|| parameters.contains(PageMode.OVERVIEW.toString()));
+		return NAME.equals(page) && (!StringUtils.isEmpty(parameters)
+				&& parameters.contains(DocumentPageMode.DOCUMENTATTACHMENTS.toString()));
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -89,22 +88,19 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 					.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 							DocumentData.class, DocumentData_.id, pageId);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(OVERVIEW));
-			getFormFactory().addTextFields(panelContent, new BeanItem<>(documentElement), DocumentElement.class,
-					Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status", "title",
-							"subTitle", "madePublicDate", "createdDate", "systemDate", "relatedId", "label",
-							"tempLabel", "numberValue", "kallId", "documentFormat" }));
+			panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_ATTACHMENTS));
 
-			if (documentStatusContainer != null) {
-				getFormFactory().addTextFields(panelContent, new BeanItem<>(documentStatusContainer),
-						DocumentStatusContainer.class, Arrays.asList(new String[] { "documentCategory" }));
+			if (documentStatusContainer != null && documentStatusContainer.getDocumentAttachmentContainer() != null
+					&& documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList() != null) {
+				final BeanItemContainer<DocumentAttachment> documentAttachmentDataSource = new BeanItemContainer<>(
+						DocumentAttachment.class,
+						documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList());
 
-				getFormFactory()
-						.addTextFields(panelContent, new BeanItem<>(documentStatusContainer.getDocument()),
-								DocumentData.class,
-								Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status",
-										"title", "subTitle", "madePublicDate", "label", "tempLabel", "numberValue",
-										"hangarId", }));
+				final Grid documentAttachmentDataItemGrid = getGridFactory().createBasicBeanItemGrid(
+						documentAttachmentDataSource, "Document attachements",
+						new String[] { "fileName", "fileSize", "fileType", "fileUrl" }, new String[] { "hjid" }, null,
+						null, null);
+				panelContent.addComponent(documentAttachmentDataItemGrid);
 			}
 
 			panel.setContent(panelContent);

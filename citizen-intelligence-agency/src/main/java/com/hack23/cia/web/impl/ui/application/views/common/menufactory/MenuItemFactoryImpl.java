@@ -745,7 +745,7 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 					DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId));
 
 			documentItem.addItem(DOCUMENT_DECISION, null, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-					DocumentPageMode.DOCUMENDECISION.toString(), pageId));
+					DocumentPageMode.DOCUMENTDECISION.toString(), pageId));
 
 			menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
 					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));

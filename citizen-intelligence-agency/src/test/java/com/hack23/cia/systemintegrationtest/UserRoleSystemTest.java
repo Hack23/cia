@@ -1409,7 +1409,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENDECISION.toString(), "GZ02C343"));
+				DocumentPageMode.DOCUMENTDECISION.toString(), "GZ02C343"));
 
 	}
 
