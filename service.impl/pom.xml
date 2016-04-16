@@ -71,7 +71,7 @@
     <dependency>
       <groupId>nz.ac.waikato.cms.weka</groupId>
       <artifactId>weka-dev</artifactId>
-      <version>3.9.0</version>
+      <version>3.7.13</version>
       <exclusions>
         <exclusion>
           <artifactId>java-cup-11b-runtime</artifactId>
