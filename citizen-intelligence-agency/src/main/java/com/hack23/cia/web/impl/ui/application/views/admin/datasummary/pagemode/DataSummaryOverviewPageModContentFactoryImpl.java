@@ -18,34 +18,52 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode;
 
-import java.util.Arrays;
-
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
 
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
-import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
+import com.hack23.cia.service.api.action.admin.UpdateSearchIndexRequest;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.vaadin.data.util.BeanItem;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.common.tablefactory.TableFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class OverviewPageModContentFactoryImpl.
+ * The Class DataSummaryOverviewPageModContentFactoryImpl.
  */
 @Component
 public final class DataSummaryOverviewPageModContentFactoryImpl extends AbstractDataSummaryPageModContentFactoryImpl {
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
+	/** The Constant NAME. */
+	public static final String NAME = AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME;
+
+	private static final String UPDATE_SEARCH_INDEX_STARTED = "Update Search Index Started";
+
+	private static final String UPDATE_SEARCH_INDEX = "Update Search Index";
+
+	private static final String REFRESH_VIEWS_STARTED = "Refresh Views Started";
+
+	private static final String REFRESH_VIEWS = "Refresh Views";
+
+	private static final String ADMIN_DATA_SUMMARY = "Admin Data Summary";
+
+	/** The table factory. */
+	@Autowired
+	private transient TableFactory tableFactory;
 
 	/**
-	 * Instantiates a new overview page mod content factory impl.
+	 * Instantiates a new data summary overview page mod content factory impl.
 	 */
 	public DataSummaryOverviewPageModContentFactoryImpl() {
 		super();
@@ -53,73 +71,60 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-				|| parameters.contains(PageMode.OVERVIEW.toString()));
+		return NAME.equals(page);
 	}
 
-	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
+	@Secured({ "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-		final VerticalLayout panelContent = createPanelContent();
+		final VerticalLayout content = createPanelContent();
 
-		final String pageId = getPageId(parameters);
+		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_DATA_SUMMARY);
+		content.addComponent(createHeader2Label);
+		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
 
+		final Table createDataSummaryTable = tableFactory.createDataSummaryTable();
+		content.addComponent(createDataSummaryTable);
+		content.setExpandRatio(createDataSummaryTable, ContentRatio.LARGE);
 
-		final DataContainer<ViewRiksdagenParty, String> dataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenParty.class);
+		content.setSizeFull();
+		content.setMargin(false);
+		content.setSpacing(true);
 
-		final DataContainer<ViewRiksdagenPartySummary, String> partySummarydataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPartySummary.class);
+		final Button refreshViewsButton = new Button(REFRESH_VIEWS);
 
-		final ViewRiksdagenParty viewRiksdagenParty = dataContainer
-				.load(pageId);
+		refreshViewsButton.addClickListener(event -> {
 
-		if (viewRiksdagenParty != null) {
+			final RefreshDataViewsRequest serviceRequest = new RefreshDataViewsRequest();
+			serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 
-			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+			getApplicationManager().asyncService(serviceRequest);
+			Notification.show(REFRESH_VIEWS_STARTED);
+		});
 
+		content.addComponent(refreshViewsButton);
+		content.setExpandRatio(refreshViewsButton, ContentRatio.SMALL);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(OVERVIEW));
-			panelContent.addComponent(getPageLinkFactory().addPartyPageLink(viewRiksdagenParty));
+		final Button updateSearchIndexButton = new Button(UPDATE_SEARCH_INDEX);
 
-			getFormFactory().addTextFields(
-					panelContent,
-					new BeanItem<>(viewRiksdagenParty),
-					ViewRiksdagenParty.class,
-					Arrays.asList(new String[] { "partyName", "partyId",
-							"headCount", "partyNumber", "registeredDate",
-					"website" }));
+		updateSearchIndexButton.addClickListener(event -> {
 
-			final ViewRiksdagenPartySummary viewRiksdagenPartySummary = partySummarydataContainer
-					.load(pageId);
+			final UpdateSearchIndexRequest serviceRequest = new UpdateSearchIndexRequest();
+			serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 
-			if (viewRiksdagenPartySummary != null) {
+			getApplicationManager().asyncService(serviceRequest);
+			Notification.show(UPDATE_SEARCH_INDEX_STARTED);
+		});
 
-				getFormFactory().addTextFields(panelContent,
-						new BeanItem<>(
-								viewRiksdagenPartySummary),
-								ViewRiksdagenPartySummary.class,
-								Arrays.asList(new String[] { "active",
-										"firstAssignmentDate", "lastAssignmentDate",
-										"currentAssignments", "totalAssignments",
-										"totalDaysServed", "activeEu", "totalActiveEu",
-										"totalDaysServedEu", "activeGovernment",
-										"totalActiveGovernment",
-										"totalDaysServedGovernment", "activeCommittee",
-										"totalActiveCommittee",
-										"totalDaysServedCommittee", "activeParliament",
-										"totalActiveParliament",
-								"totalDaysServedParliament" }));
+		content.addComponent(updateSearchIndexButton);
+		content.setExpandRatio(updateSearchIndexButton, ContentRatio.SMALL);
 
-			}
+		final Link createMainViewPageLink = getPageLinkFactory().createMainViewPageLink();
+		content.addComponent(createMainViewPageLink);
+		content.setExpandRatio(createMainViewPageLink, ContentRatio.SMALL);
 
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
-		}
-		return panelContent;
+		return content;
 
 	}
-
 
 }

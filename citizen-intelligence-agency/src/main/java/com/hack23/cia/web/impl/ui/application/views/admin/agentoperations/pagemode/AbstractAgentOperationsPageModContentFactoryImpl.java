@@ -20,29 +20,19 @@ package com.hack23.cia.web.impl.ui.application.views.admin.agentoperations.pagem
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
-import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.PoliticianChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
-import com.vaadin.ui.Panel;
 
 /**
- * The Class AbstractPoliticianPageModContentFactoryImpl.
+ * The Class AbstractAgentOperationsPageModContentFactoryImpl.
  */
 public abstract class AbstractAgentOperationsPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
-
-	private static final String PARTY = "Party:";
-
-	/** The Constant NAME. */
-	public static final String NAME = AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME;
 
 	/** The application manager. */
 	@Autowired
@@ -89,18 +79,6 @@ public abstract class AbstractAgentOperationsPageModContentFactoryImpl extends A
 	protected final String getPageId(final String parameters) {
 		return parameters.substring(parameters.lastIndexOf('/') + "/".length(), parameters.length());
 	}
-
-	protected final void pageCompleted(final String parameters, final Panel panel, final String pageId,
-			final ViewRiksdagenParty viewRiksdagenParty) {
-		final StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append(PARTY);
-				stringBuilder.append(viewRiksdagenParty.getPartyName());
-		panel.setCaption(stringBuilder.toString());
-
-		pageActionEventHelper.createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
-	}
-
-
 
 	/**
 	 * Gets the application manager.

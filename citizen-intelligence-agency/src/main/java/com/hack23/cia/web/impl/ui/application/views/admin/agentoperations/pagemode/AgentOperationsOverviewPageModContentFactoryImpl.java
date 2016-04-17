@@ -20,33 +20,57 @@ package com.hack23.cia.web.impl.ui.application.views.admin.agentoperations.pagem
 
 import java.util.Arrays;
 
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
-import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
+import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
+import com.hack23.cia.service.api.AgentContainer;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.vaadin.data.util.BeanItem;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.StartAgentClickListener;
+import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class OverviewPageModContentFactoryImpl.
+ * The Class AgentOperationsOverviewPageModContentFactoryImpl.
  */
 @Component
 public final class AgentOperationsOverviewPageModContentFactoryImpl
 		extends AbstractAgentOperationsPageModContentFactoryImpl {
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
+	/** The Constant NAME. */
+	public static final String NAME = AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME;
+
+	private static final String OPERATION2 = "/Operation";
+
+	private static final String TARGET2 = "/Target";
+
+	private static final String START = "Start";
+
+	private static final String OPERATION = "Operation";
+
+	private static final String TARGET = "Target";
+
+	private static final String ADMIN_AGENT_OPERATION = "Admin Agent Operation";
+
+	/** The agent container. */
+	@Autowired
+	private transient AgentContainer agentContainer;
 
 	/**
-	 * Instantiates a new overview page mod content factory impl.
+	 * Instantiates a new agent operations overview page mod content factory
+	 * impl.
 	 */
 	public AgentOperationsOverviewPageModContentFactoryImpl() {
 		super();
@@ -54,55 +78,46 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-				|| parameters.contains(PageMode.OVERVIEW.toString()));
+		return NAME.equals(page);
 	}
 
-	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
+	@Secured({ "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-		final VerticalLayout panelContent = createPanelContent();
+		final VerticalLayout content = createPanelContent();
 
-		final String pageId = getPageId(parameters);
+		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_AGENT_OPERATION);
+		content.addComponent(createHeader2Label);
+		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL2);
 
-		final DataContainer<ViewRiksdagenParty, String> dataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenParty.class);
+		ComboBox targetSelect = new ComboBox(TARGET, Arrays.asList(DataAgentTarget.values()));
+		targetSelect.setId(ViewAction.START_AGENT_BUTTON + TARGET2);
+		content.addComponent(targetSelect);
+		content.setExpandRatio(targetSelect, ContentRatio.SMALL2);
 
-		final DataContainer<ViewRiksdagenPartySummary, String> partySummarydataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPartySummary.class);
+		ComboBox operationSelect = new ComboBox(OPERATION, Arrays.asList(DataAgentOperation.values()));
+		operationSelect.setId(ViewAction.START_AGENT_BUTTON + OPERATION2);
+		content.addComponent(operationSelect);
+		content.setExpandRatio(operationSelect, ContentRatio.SMALL2);
 
-		final ViewRiksdagenParty viewRiksdagenParty = dataContainer.load(pageId);
+		final Button startAgentButton = new Button(START,
+				new StartAgentClickListener(targetSelect, operationSelect, agentContainer));
+		startAgentButton.setId(ViewAction.START_AGENT_BUTTON.name());
+		content.addComponent(startAgentButton);
+		content.setExpandRatio(startAgentButton, ContentRatio.SMALL3);
 
-		if (viewRiksdagenParty != null) {
+		content.setSizeFull();
+		content.setMargin(false);
+		content.setSpacing(true);
 
-			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+		final Link createMainViewPageLink = getPageLinkFactory().createMainViewPageLink();
+		content.addComponent(createMainViewPageLink);
+		content.setExpandRatio(createMainViewPageLink, ContentRatio.SMALL);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(OVERVIEW));
-			panelContent.addComponent(getPageLinkFactory().addPartyPageLink(viewRiksdagenParty));
+		content.setWidth(100, Unit.PERCENTAGE);
+		content.setHeight(100, Unit.PERCENTAGE);
 
-			getFormFactory().addTextFields(panelContent, new BeanItem<>(viewRiksdagenParty), ViewRiksdagenParty.class,
-					Arrays.asList(new String[] { "partyName", "partyId", "headCount", "partyNumber", "registeredDate",
-							"website" }));
-
-			final ViewRiksdagenPartySummary viewRiksdagenPartySummary = partySummarydataContainer.load(pageId);
-
-			if (viewRiksdagenPartySummary != null) {
-
-				getFormFactory().addTextFields(panelContent, new BeanItem<>(viewRiksdagenPartySummary),
-						ViewRiksdagenPartySummary.class,
-						Arrays.asList(new String[] { "active", "firstAssignmentDate", "lastAssignmentDate",
-								"currentAssignments", "totalAssignments", "totalDaysServed", "activeEu",
-								"totalActiveEu", "totalDaysServedEu", "activeGovernment", "totalActiveGovernment",
-								"totalDaysServedGovernment", "activeCommittee", "totalActiveCommittee",
-								"totalDaysServedCommittee", "activeParliament", "totalActiveParliament",
-								"totalDaysServedParliament" }));
-
-			}
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
-		}
-		return panelContent;
+		return content;
 	}
 
 }
