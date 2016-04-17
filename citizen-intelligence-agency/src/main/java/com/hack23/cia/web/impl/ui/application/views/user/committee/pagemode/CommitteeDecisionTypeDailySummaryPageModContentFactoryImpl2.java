@@ -18,9 +18,9 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
 
-import java.util.Arrays;
-
 import org.apache.commons.lang3.StringUtils;
+import org.dussan.vaadin.dcharts.DCharts;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
@@ -28,42 +28,45 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.DocumentChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.vaadin.data.util.BeanItem;
-import com.vaadin.ui.FormLayout;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
-import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class CommitteeOverviewPageModContentFactoryImpl.
+ * The Class CommitteeDecisionTypeDailySummaryPageModContentFactoryImpl2.
  */
 @Component
-public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
+public final class CommitteeDecisionTypeDailySummaryPageModContentFactoryImpl2
+		extends AbstractCommitteePageModContentFactoryImpl {
 
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = "Committee:";
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
+	/** The Constant DECISION_TYPE_DAILY_SUMMARY. */
+	private static final String DECISION_TYPE_DAILY_SUMMARY = "Decision Type Daily Summary";
+
+	/** The chart data manager. */
+	@Autowired
+	private DocumentChartDataManager chartDataManager;
 
 	/**
-	 * Instantiates a new committee overview page mod content factory impl.
+	 * Instantiates a new committee decision type daily summary page mod content
+	 * factory impl2.
 	 */
-	public CommitteeOverviewPageModContentFactoryImpl() {
+	public CommitteeDecisionTypeDailySummaryPageModContentFactoryImpl2() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-				|| parameters.contains(PageMode.OVERVIEW.toString()));
+		return NAME.equals(page) && (!StringUtils.isEmpty(parameters)
+				&& parameters.contains(CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString()));
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -72,7 +75,6 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
-
 
 		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommittee.class);
@@ -83,39 +85,22 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 
 			getMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-				final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
-				panelContent.addComponent(createHeader2Label);
+			final Label createHeader2Label = LabelFactory.createHeader2Label(DECISION_TYPE_DAILY_SUMMARY);
+			panelContent.addComponent(createHeader2Label);
 
+			final DCharts createDecisionTypeChart = chartDataManager
+					.createDecisionTypeChart(viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
+			panelContent.addComponent(createDecisionTypeChart);
 
-				final Link addCommitteePageLink = getPageLinkFactory().addCommitteePageLink(viewRiksdagenCommittee);
-				panelContent.addComponent(addCommitteePageLink);
+			panelContent.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
+			panelContent.setExpandRatio(createDecisionTypeChart, ContentRatio.GRID);
 
-
-				final Panel formPanel = new Panel();
-				formPanel.setSizeFull();
-
-				panelContent.addComponent(formPanel);
-
-				final FormLayout formContent = new FormLayout();
-				formPanel.setContent(formContent);
-
-
-				getFormFactory().addTextFields(formContent, new BeanItem<>(viewRiksdagenCommittee),
-						ViewRiksdagenCommittee.class,
-						Arrays.asList(new String[] { "embeddedId.detail", "active", "firstAssignmentDate",
-								"lastAssignmentDate", "totalAssignments", "totalDaysServed",
-								"currentMemberSize" }));
-
-				panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
-				panelContent.setExpandRatio(addCommitteePageLink,ContentRatio.SMALL);
-				panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
-
-				panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
-				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
+			panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
+			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER,
+					NAME, parameters, pageId);
 		}
 		return panelContent;
 
 	}
-
 
 }

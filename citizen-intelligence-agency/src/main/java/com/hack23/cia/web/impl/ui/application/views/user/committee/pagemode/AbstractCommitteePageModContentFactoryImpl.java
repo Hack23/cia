@@ -20,11 +20,8 @@ package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
-import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.PoliticianChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
@@ -32,14 +29,11 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemF
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.vaadin.ui.Panel;
 
 /**
- * The Class AbstractPoliticianPageModContentFactoryImpl.
+ * The Class AbstractCommitteePageModContentFactoryImpl.
  */
 public abstract class AbstractCommitteePageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
-
-	private static final String PARTY = "Party:";
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_VIEW_NAME;
@@ -73,7 +67,7 @@ public abstract class AbstractCommitteePageModContentFactoryImpl extends Abstrac
 	private PoliticianChartDataManager chartDataManager;
 
 	/**
-	 * Instantiates a new abstract page mod content factory impl.
+	 * Instantiates a new abstract committee page mod content factory impl.
 	 */
 	protected AbstractCommitteePageModContentFactoryImpl() {
 		super();
@@ -89,17 +83,6 @@ public abstract class AbstractCommitteePageModContentFactoryImpl extends Abstrac
 	protected final String getPageId(final String parameters) {
 		return parameters.substring(parameters.lastIndexOf('/') + "/".length(), parameters.length());
 	}
-
-	protected final void pageCompleted(final String parameters, final Panel panel, final String pageId,
-			final ViewRiksdagenParty viewRiksdagenParty) {
-		final StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append(PARTY);
-				stringBuilder.append(viewRiksdagenParty.getPartyName());
-		panel.setCaption(stringBuilder.toString());
-
-		pageActionEventHelper.createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
-	}
-
 
 
 	/**
