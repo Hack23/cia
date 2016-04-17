@@ -23,19 +23,19 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public enum PageMode {
 
-	/** THE OVERVIEW. */
+	/** The overview. */
 	OVERVIEW,
 
-	/** THE CHARTS. */
+	/** The charts. */
 	CHARTS,
 
-	/** THE DATA GRID. */
+	/** The datagrid. */
 	DATAGRID,
 
-	/** THE INDICATORS. */
+	/** The indicators. */
 	INDICATORS,
 
-	/** THE PAGE VISIT HISTORY. */
+	/** The pagevisithistory. */
 	PAGEVISITHISTORY
 
 }

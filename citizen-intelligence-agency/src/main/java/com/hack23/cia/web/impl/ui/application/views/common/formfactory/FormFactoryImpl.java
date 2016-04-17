@@ -46,7 +46,7 @@ public final class FormFactoryImpl implements FormFactory {
 	/** The Constant LOG_MSG_PROPERTY. */
 	private static final String LOG_MSG_PROPERTY = "property:{}";
 
-	/** The Constant PASSWORD. */
+	/** The Constant HIDDEN_FIELD_NAME. */
 	private static final String HIDDEN_FIELD_NAME = "password";
 
 	/** The Constant LOGGER. */

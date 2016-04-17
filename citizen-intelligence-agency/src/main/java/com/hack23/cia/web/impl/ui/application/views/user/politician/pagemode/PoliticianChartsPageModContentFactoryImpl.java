@@ -42,7 +42,7 @@ public final class PoliticianChartsPageModContentFactoryImpl extends AbstractPol
 
 
 	/**
-	 * Instantiates a new charts page mod content factory impl.
+	 * Instantiates a new politician charts page mod content factory impl.
 	 */
 	public PoliticianChartsPageModContentFactoryImpl() {
 		super();

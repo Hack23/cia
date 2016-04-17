@@ -56,7 +56,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 
 
 	/**
-	 * Instantiates a new overview page mod content factory impl.
+	 * Instantiates a new politician overview page mod content factory impl.
 	 */
 	public PoliticianOverviewPageModContentFactoryImpl() {
 		super();

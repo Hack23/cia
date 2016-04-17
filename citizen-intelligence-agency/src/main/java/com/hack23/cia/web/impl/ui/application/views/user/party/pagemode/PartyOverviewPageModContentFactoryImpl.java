@@ -45,7 +45,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 	private static final String OVERVIEW = "overview";
 
 	/**
-	 * Instantiates a new overview page mod content factory impl.
+	 * Instantiates a new party overview page mod content factory impl.
 	 */
 	public PartyOverviewPageModContentFactoryImpl() {
 		super();

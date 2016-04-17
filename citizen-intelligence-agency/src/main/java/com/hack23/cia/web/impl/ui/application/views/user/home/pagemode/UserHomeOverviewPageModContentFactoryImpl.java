@@ -62,12 +62,16 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
 
+	/** The Constant ENABLE_GOOGLE_AUTHENTICATOR. */
 	private static final String ENABLE_GOOGLE_AUTHENTICATOR = "Enable Google Authenticator";
 
+	/** The Constant LOGOUT. */
 	private static final String LOGOUT = "Logout";
 
+	/** The Constant USERHOME. */
 	private static final String USERHOME = "Userhome:";
 
+	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "Overview";
 
 	/**

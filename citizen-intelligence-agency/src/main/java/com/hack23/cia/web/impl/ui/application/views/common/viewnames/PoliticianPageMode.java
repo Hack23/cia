@@ -23,25 +23,25 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public enum PoliticianPageMode {
 
-	/** THE ROLE SUMMARY. */
+	/** The rolesummary. */
 	ROLESUMMARY,
 
-	/** THE ROLE LIST. */
+	/** The rolelist. */
 	ROLELIST,
 
-	/** THE ROLE GHANT. */
+	/** The roleghant. */
 	ROLEGHANT,
 
-	/** THE DOCUMENT ACTIVITY. */
+	/** The documentactivity. */
 	DOCUMENTACTIVITY,
 
-	/** THE DOCUMENT HISTORY. */
+	/** The documenthistory. */
 	DOCUMENTHISTORY,
 
-	/** THE BALLOT DECISION SUMMARY. */
+	/** The ballotdecisionsummary. */
 	BALLOTDECISIONSUMMARY,
 
-	/** THE VOTE HISTORY. */
+	/** The votehistory. */
 	VOTEHISTORY
 
 

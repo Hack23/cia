@@ -48,6 +48,7 @@ public final class MinistryView extends AbstractGroupView {
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.MINISTRY_VIEW_NAME;
 
+	/** The page mode content factory map. */
 	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
 	/**

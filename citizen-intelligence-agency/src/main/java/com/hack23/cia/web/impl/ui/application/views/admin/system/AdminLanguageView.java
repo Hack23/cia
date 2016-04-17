@@ -81,6 +81,7 @@ public final class AdminLanguageView extends AbstractAdminView {
 	@Autowired
 	private transient FormFactory formFactory;
 
+	/** The page mode content factory map. */
 	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
 

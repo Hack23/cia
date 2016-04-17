@@ -46,7 +46,7 @@ public final class PartyGovernmentRolesPageModContentFactoryImpl extends Abstrac
 	private static final String GOVERNMENT_ROLES = "Government Roles";
 
 	/**
-	 * Instantiates a new government roles page mod content factory impl.
+	 * Instantiates a new party government roles page mod content factory impl.
 	 */
 	public PartyGovernmentRolesPageModContentFactoryImpl() {
 		super();

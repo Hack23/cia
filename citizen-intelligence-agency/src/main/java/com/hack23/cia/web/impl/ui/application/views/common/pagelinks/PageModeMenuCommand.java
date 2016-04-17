@@ -28,6 +28,7 @@ import com.vaadin.ui.UI;
  */
 public final class PageModeMenuCommand implements Command {
 
+	/** The Constant PAGE_SEPARATOR. */
 	private static final Character PAGE_SEPARATOR = '/';
 
 	/** The Constant serialVersionUID. */

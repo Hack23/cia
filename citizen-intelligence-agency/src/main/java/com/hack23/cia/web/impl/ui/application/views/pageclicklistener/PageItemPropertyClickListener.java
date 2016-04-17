@@ -31,8 +31,10 @@ import com.hack23.cia.model.common.api.ModelObject;
  */
 public final class PageItemPropertyClickListener extends AbstractPageItemRendererClickListener<ModelObject> {
 
+	/** The Constant ERROR_GETTING_PAGE_ID. */
 	private static final String ERROR_GETTING_PAGE_ID = "ErrorGettingPageId";
 
+	/** The Constant LOG_MSG_PROBLEM_GETTING_PROPERTY_FROM_OBJECT_EXCEPTION. */
 	private static final String LOG_MSG_PROBLEM_GETTING_PROPERTY_FROM_OBJECT_EXCEPTION = "Problem getting property {} from object {} exception {}";
 
 	/** The Constant serialVersionUID. */

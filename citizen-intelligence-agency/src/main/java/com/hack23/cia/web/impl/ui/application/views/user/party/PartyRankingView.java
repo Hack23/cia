@@ -84,6 +84,7 @@ public final class PartyRankingView extends AbstractRankingView {
 	@Autowired
 	private transient PartyDataSeriesFactory dataSeriesFactory;
 
+	/** The page mode content factory map. */
 	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
 

@@ -67,7 +67,7 @@ public final class PoliticianRoleGhantPageModContentFactoryImpl extends Abstract
 
 
 	/**
-	 * Instantiates a new role ghant page mod content factory impl.
+	 * Instantiates a new politician role ghant page mod content factory impl.
 	 */
 	public PoliticianRoleGhantPageModContentFactoryImpl() {
 		super();

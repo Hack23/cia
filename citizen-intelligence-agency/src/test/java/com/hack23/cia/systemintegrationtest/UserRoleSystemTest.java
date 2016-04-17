@@ -64,6 +64,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
+	/** The Constant NO_WEBDRIVER_EXIST_FOR_BROWSER. */
 	private static final String NO_WEBDRIVER_EXIST_FOR_BROWSER = "No webdriver exist for browser:";
 
 	/** The test server. */

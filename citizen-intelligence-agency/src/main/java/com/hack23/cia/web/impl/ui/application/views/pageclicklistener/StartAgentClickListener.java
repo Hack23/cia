@@ -30,24 +30,27 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.ComboBox;
 
+/**
+ * The Class StartAgentClickListener.
+ */
 public class StartAgentClickListener implements ClickListener {
 
-	/**
-	 *
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The Constant LOG_MSG_EXECUTE_WORKORDER. */
 	private static final String LOG_MSG_EXECUTE_WORKORDER = "Execute workorder:{}";
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(StartAgentClickListener.class);
 
 	/** The target select. */
-	private ComboBox targetSelect;
+	private final ComboBox targetSelect;
 
 	/** The operation select. */
-	private ComboBox operationSelect;
+	private final ComboBox operationSelect;
 
+	/** The agent container. */
 	@Autowired
 	private transient AgentContainer agentContainer;
 
@@ -61,7 +64,7 @@ public class StartAgentClickListener implements ClickListener {
 	 * @param agentContainer
 	 *            the agent container
 	 */
-	public StartAgentClickListener(ComboBox targetSelect, ComboBox operationSelect, AgentContainer agentContainer) {
+	public StartAgentClickListener(final ComboBox targetSelect, final ComboBox operationSelect, final AgentContainer agentContainer) {
 		super();
 		this.targetSelect = targetSelect;
 		this.operationSelect = operationSelect;
@@ -69,7 +72,7 @@ public class StartAgentClickListener implements ClickListener {
 	}
 
 	@Override
-	public void buttonClick(ClickEvent event) {
+	public void buttonClick(final ClickEvent event) {
 		if (targetSelect.getValue() != null && operationSelect.getValue() != null) {
 			final DataAgentWorkOrder dataAgentWorkOrder = new DataAgentWorkOrder();
 			final DataAgentTarget target = DataAgentTarget.valueOf(targetSelect.getValue().toString());

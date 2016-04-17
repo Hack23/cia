@@ -40,7 +40,7 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 	private static final String GHANT_NOT_IMPLEMENTED = "Ghant Not Implemented";
 
 	/**
-	 * Instantiates a new role ghant page mod content factory impl.
+	 * Instantiates a new party role ghant page mod content factory impl.
 	 */
 	public PartyRoleGhantPageModContentFactoryImpl() {
 		super();

@@ -47,7 +47,8 @@ public final class PoliticianDocumentActivityPageModContentFactoryImpl extends A
 	private DocumentChartDataManager documentChartDataManager;
 
 	/**
-	 * Instantiates a new document activity page mod content factory impl.
+	 * Instantiates a new politician document activity page mod content factory
+	 * impl.
 	 */
 	public PoliticianDocumentActivityPageModContentFactoryImpl() {
 		super();

@@ -32,6 +32,7 @@ import com.vaadin.ui.Notification;
  */
 public final class CommitFormWrapperClickListener implements ClickListener {
 
+	/** The Constant FORM_ERROR. */
 	private static final String FORM_ERROR = "Form Error";
 
 	/** The Constant serialVersionUID. */

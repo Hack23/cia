@@ -65,7 +65,7 @@ public final class PoliticianRoleSummaryPageModContentFactoryImpl extends Abstra
 
 
 	/**
-	 * Instantiates a new role summary page mod content factory impl.
+	 * Instantiates a new politician role summary page mod content factory impl.
 	 */
 	public PoliticianRoleSummaryPageModContentFactoryImpl() {
 		super();

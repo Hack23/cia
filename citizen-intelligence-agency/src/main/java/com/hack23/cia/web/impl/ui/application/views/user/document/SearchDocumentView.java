@@ -80,6 +80,7 @@ public final class SearchDocumentView extends AbstractUserView {
 	@Autowired
 	private transient FormFactory formFactory;
 
+	/** The page mode content factory map. */
 	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
 	/**

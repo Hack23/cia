@@ -46,7 +46,7 @@ public final class PartyCurrentMembersPageModContentFactoryImpl extends Abstract
 	private static final String CURRENT_MEMBERS = "Current Members";
 
 	/**
-	 * Instantiates a new current members page mod content factory impl.
+	 * Instantiates a new party current members page mod content factory impl.
 	 */
 	public PartyCurrentMembersPageModContentFactoryImpl() {
 		super();

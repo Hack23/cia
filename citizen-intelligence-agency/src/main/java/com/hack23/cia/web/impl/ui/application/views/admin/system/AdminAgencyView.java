@@ -48,6 +48,7 @@ public final class AdminAgencyView extends AbstractAdminView {
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_AGENCY_VIEW_NAME;
 
+	/** The page mode content factory map. */
 	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
 	/**

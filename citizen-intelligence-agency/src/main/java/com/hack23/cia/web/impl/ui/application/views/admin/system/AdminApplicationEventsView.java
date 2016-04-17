@@ -90,6 +90,7 @@ public final class AdminApplicationEventsView extends AbstractAdminView {
 	@Autowired
 	private transient AdminChartDataManager chartDataManager;
 
+	/** The page mode content factory map. */
 	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
 	/**

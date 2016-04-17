@@ -61,6 +61,7 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(MainView.NAME)
 public final class MainView extends Panel implements View {
 
+	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_MAIN. */
 	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = "Citizen Intelligence Agency::Main";
 
 	/** The Constant serialVersionUID. */
@@ -85,6 +86,7 @@ public final class MainView extends Panel implements View {
 	@Autowired
 	private transient FormFactory formFactory;
 
+	/** The page mode content factory map. */
 	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
 	/**
@@ -130,6 +132,9 @@ public final class MainView extends Panel implements View {
 	}
 
 
+	/**
+	 * Creates the content.
+	 */
 	private void createContent() {
 		setCaption(CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 

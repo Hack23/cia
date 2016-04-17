@@ -120,6 +120,14 @@ public final class UserPageVisit extends Assert {
 				ViewAction.VISIT_TEST_CHART_VIEW });
 	}
 
+	/**
+	 * Wait for browser.
+	 *
+	 * @param delay
+	 *            the delay
+	 * @throws InterruptedException
+	 *             the interrupted exception
+	 */
 	private static void waitForBrowser(final int delay) throws InterruptedException {
 		Thread.sleep(delay);
 	}
@@ -173,6 +181,7 @@ public final class UserPageVisit extends Assert {
 	 * @param page
 	 *            the page
 	 * @throws Exception
+	 *             the exception
 	 */
 	public void validatePage(final PageModeMenuCommand page) throws Exception {
 		final String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + page.getPagePath();
@@ -216,6 +225,14 @@ public final class UserPageVisit extends Assert {
 		return driver.findElement(By.tagName("body")).getText();
 	}
 
+	/**
+	 * Assert html body contains text.
+	 *
+	 * @param text
+	 *            the text
+	 * @throws Exception
+	 *             the exception
+	 */
 	public void assertHtmlBodyContainsText(final String text) throws Exception {
 		int waitTimeForPageLoad=0;
 		while (!getHtmlBodyAsText().contains(text)) {

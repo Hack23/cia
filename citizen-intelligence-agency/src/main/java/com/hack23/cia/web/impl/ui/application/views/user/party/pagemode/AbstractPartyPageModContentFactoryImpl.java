@@ -39,6 +39,7 @@ import com.vaadin.ui.Panel;
  */
 public abstract class AbstractPartyPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
+	/** The Constant PARTY. */
 	private static final String PARTY = "Party:";
 
 	/** The Constant NAME. */
@@ -73,7 +74,7 @@ public abstract class AbstractPartyPageModContentFactoryImpl extends AbstractPag
 	private PoliticianChartDataManager chartDataManager;
 
 	/**
-	 * Instantiates a new abstract page mod content factory impl.
+	 * Instantiates a new abstract party page mod content factory impl.
 	 */
 	protected AbstractPartyPageModContentFactoryImpl() {
 		super();
@@ -90,6 +91,18 @@ public abstract class AbstractPartyPageModContentFactoryImpl extends AbstractPag
 		return parameters.substring(parameters.lastIndexOf('/') + "/".length(), parameters.length());
 	}
 
+	/**
+	 * Page completed.
+	 *
+	 * @param parameters
+	 *            the parameters
+	 * @param panel
+	 *            the panel
+	 * @param pageId
+	 *            the page id
+	 * @param viewRiksdagenParty
+	 *            the view riksdagen party
+	 */
 	protected final void pageCompleted(final String parameters, final Panel panel, final String pageId,
 			final ViewRiksdagenParty viewRiksdagenParty) {
 		final StringBuilder stringBuilder = new StringBuilder();

@@ -36,7 +36,8 @@ import com.vaadin.ui.VerticalLayout;
 public final class PartyPageVisitHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
 	/**
-	 * Instantiates a new page visit history page mod content factory impl.
+	 * Instantiates a new party page visit history page mod content factory
+	 * impl.
 	 */
 	public PartyPageVisitHistoryPageModContentFactoryImpl() {
 		super();

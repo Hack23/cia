@@ -48,7 +48,8 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
 	/**
-	 * Instantiates a new ballot decision summary page mod content factory impl.
+	 * Instantiates a new politician ballot decision summary page mod content
+	 * factory impl.
 	 */
 	public PoliticianBallotDecisionSummaryPageModContentFactoryImpl() {
 		super();

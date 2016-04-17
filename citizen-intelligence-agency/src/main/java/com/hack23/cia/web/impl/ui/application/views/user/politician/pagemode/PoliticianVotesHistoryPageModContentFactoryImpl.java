@@ -52,7 +52,8 @@ public final class PoliticianVotesHistoryPageModContentFactoryImpl extends Abstr
 	private GenericChartDataManager<ViewRiksdagenVoteDataBallotPoliticianSummary> viewRiksdagenVoteDataBallotPoliticianSummaryChartDataManager;
 
 	/**
-	 * Instantiates a new votes history page mod content factory impl.
+	 * Instantiates a new politician votes history page mod content factory
+	 * impl.
 	 */
 	public PoliticianVotesHistoryPageModContentFactoryImpl() {
 		super();

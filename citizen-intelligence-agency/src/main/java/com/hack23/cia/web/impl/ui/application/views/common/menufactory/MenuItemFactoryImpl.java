@@ -58,120 +58,188 @@ import com.vaadin.ui.MenuBar.MenuItem;
 @Service
 public final class MenuItemFactoryImpl implements MenuItemFactory {
 
+	/** The Constant DOCUMENT_DATA. */
 	private static final String DOCUMENT_DATA = "Document data";
 
+	/** The Constant DOCUMENT. */
 	private static final String DOCUMENT = "Document";
 
+	/** The Constant PARTY_WON_DAILY_SUMMARY_CHART. */
 	private static final String PARTY_WON_DAILY_SUMMARY_CHART = "Party Won Daily Summary Chart";
 
+	/** The Constant COMMITTEE_ROLES. */
 	private static final String COMMITTEE_ROLES = "Committee Roles";
 
+	/** The Constant GOVERMENT_ROLES. */
 	private static final String GOVERMENT_ROLES = "Goverment Roles";
 
+	/** The Constant LEADER_HISTORY. */
 	private static final String LEADER_HISTORY = "Leader History";
 
+	/** The Constant CURRENT_LEADERS. */
 	private static final String CURRENT_LEADERS = "Current Leaders";
 
+	/** The Constant DOCUMENT_DETAILS. */
 	private static final String DOCUMENT_DETAILS = "Document details";
 
+	/** The Constant POLITICIAN_RANKING. */
 	private static final String POLITICIAN_RANKING = "Politician Ranking";
 
+	/** The Constant PARTY_RANKING. */
 	private static final String PARTY_RANKING = "Party Ranking";
 
+	/** The Constant VOTE_HISTORY. */
 	private static final String VOTE_HISTORY = "Vote history";
 
+	/** The Constant PERSON_REFERENCES. */
 	private static final String PERSON_REFERENCES = "Person references";
 
+	/** The Constant ROLE_LIST. */
 	private static final String ROLE_LIST = "RoleList";
 
+	/** The Constant TOTAL_EXPERIENCE. */
 	private static final String TOTAL_EXPERIENCE = "Total experience";
 
+	/** The Constant BY_SOURCE. */
 	private static final String BY_SOURCE = "By Source";
 
+	/** The Constant DAILY_TOTAL_OF_NUMBER_OF_DECSIONS_MADE. */
 	private static final String DAILY_TOTAL_OF_NUMBER_OF_DECSIONS_MADE = "daily total of number of decsions made";
 
+	/** The Constant BY_TOPIC. */
 	private static final String BY_TOPIC = "ByTopic";
 
+	/** The Constant COUNTRY_INDICATORS_SWEDEN. */
 	private static final String COUNTRY_INDICATORS_SWEDEN = "Country Indicators, Sweden";
 
+	/** The Constant DECISION_ACTIVITY_BY_TYPE. */
 	private static final String DECISION_ACTIVITY_BY_TYPE = "Decision activity by type";
 
+	/** The Constant DAILY_TOTAL_OF_NUMBER_PUBLISHED_DOCUMENTS. */
 	private static final String DAILY_TOTAL_OF_NUMBER_PUBLISHED_DOCUMENTS = "daily total of number published documents";
 
+	/** The Constant DOCUMENT_ACTIVITY_BY_TYPE. */
 	private static final String DOCUMENT_ACTIVITY_BY_TYPE = "Document activity by type";
 
+	/** The Constant DAILY_AVERAGE_WON_BALLOTS. */
 	private static final String DAILY_AVERAGE_WON_BALLOTS = "daily average % won ballots";
 
+	/** The Constant PARTY_WINNER. */
 	private static final String PARTY_WINNER = "Party Winner";
 
+	/** The Constant DOCUMENT_REFERENCES. */
 	private static final String DOCUMENT_REFERENCES = "Document References";
 
+	/** The Constant SWEDISH_PARLIAMENT_INDICATORS. */
 	private static final String SWEDISH_PARLIAMENT_INDICATORS = "Swedish parliament Indicators";
 
+	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT. */
 	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT = "All parties, total days served in parliament";
 
+	/**
+	 * The Constant CURRENT_AND_PAST_ASSIGNMENTS_AND_SUMMARY_EXPERIENCE_IN_DAYS.
+	 */
 	private static final String CURRENT_AND_PAST_ASSIGNMENTS_AND_SUMMARY_EXPERIENCE_IN_DAYS = "Current and past assignments and summary experience in days";
 
+	/** The Constant POLITICAL_EXPERIENCE_SUMMARY. */
 	private static final String POLITICAL_EXPERIENCE_SUMMARY = "Political Experience Summary";
 
+	/** The Constant ALL_PARTIES_HEAD_COUNT_IN_PARLIAMENT. */
 	private static final String ALL_PARTIES_HEAD_COUNT_IN_PARLIAMENT = "All parties, head count in parliament";
 
+	/** The Constant CURRENT_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT. */
 	private static final String CURRENT_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT = "Current parties, total days served in parliament";
 
+	/** The Constant CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT. */
 	private static final String CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT = "Current parties active in parliament, head count";
 
+	/** The Constant ALL_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES. */
 	private static final String ALL_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES = "All committees,total days served in committees";
 
+	/** The Constant ALL_PARTIES_TOTAL_ASSIGNMENTS_IN_COMMITTEES. */
 	private static final String ALL_PARTIES_TOTAL_ASSIGNMENTS_IN_COMMITTEES = "All parties, total assignments in committees";
 
+	/** The Constant DOCUMENT_DECISION. */
 	private static final String DOCUMENT_DECISION = "Document Decision";
 
+	/** The Constant MINISTRY_RANKING. */
 	private static final String MINISTRY_RANKING = "Ministry Ranking";
 
+	/** The Constant ALL_COMMITTEES_TOTAL_MEMBERS. */
 	private static final String ALL_COMMITTEES_TOTAL_MEMBERS = "All committees, total members";
 
+	/** The Constant CURRENT_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES. */
 	private static final String CURRENT_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES = "Current parties, total days served in ministries";
 
+	/**
+	 * The Constant
+	 * PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT.
+	 */
 	private static final String PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT = "Party by total members, based on roles in departments, committees and parliament";
 
+	/** The Constant ROLE_USER. */
 	private static final String ROLE_USER = "ROLE_USER";
 
+	/** The Constant USERHOME. */
 	private static final String USERHOME = "Userhome";
 
+	/** The Constant ALL_PARTIES_TOTAL_ASSIGNMENTS. */
 	private static final String ALL_PARTIES_TOTAL_ASSIGNMENTS = "All parties, total assignments";
 
+	/** The Constant TOTAL_MEMBERS. */
 	private static final String TOTAL_MEMBERS = "Total members";
 
+	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED_IN_COMMITTEES. */
 	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED_IN_COMMITTEES = "All parties, total days served in committees";
 
+	/**
+	 * The Constant
+	 * CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES.
+	 */
 	private static final String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES = "Current parties active in committees, total days served in committees";
 
+	/**
+	 * The Constant CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS.
+	 */
 	private static final String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS = "Current parties active in committees, current assignments";
 
+	/** The Constant CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT. */
 	private static final String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT = "Current parties active in committees, head count";
 
+	/** The Constant CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS. */
 	private static final String CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS = "Current and past member and summary of polticial days ";
 
+	/** The Constant LANGUAGE_CONTENT. */
 	private static final String LANGUAGE_CONTENT = "Language Content";
 
+	/** The Constant LANGUAGE. */
 	private static final String LANGUAGE = "Language";
 
+	/** The Constant COUNTRY. */
 	private static final String COUNTRY = "Country";
 
+	/** The Constant USERACCOUNT. */
 	private static final String USERACCOUNT = "Useraccount";
 
+	/** The Constant APPLICATION_EVENT. */
 	private static final String APPLICATION_EVENT = "Application Event";
 
+	/** The Constant APPLICATION_SESSION. */
 	private static final String APPLICATION_SESSION = "Application Session";
 
+	/** The Constant PORTAL. */
 	private static final String PORTAL = "Portal";
 
+	/** The Constant AGENCY. */
 	private static final String AGENCY = "Agency";
 
+	/** The Constant APPLICATION_CONFIGURATION. */
 	private static final String APPLICATION_CONFIGURATION = "Application Configuration";
 
+	/** The Constant SYSTEM_PERFORMANCE. */
 	private static final String SYSTEM_PERFORMANCE = "System Performance";
 
+	/** The Constant ROLE_ADMIN. */
 	private static final String ROLE_ADMIN = "ROLE_ADMIN";
 
 	/** The Constant CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT. */

@@ -39,6 +39,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class TestChartsPartyWinnerPageModContentFactoryImpl extends AbstractTestPageModContentFactoryImpl {
 
+	/** The Constant PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS. */
 	private static final String PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS = "Party Winner, daily average for all ballots";
 
 	/** The party chart data manager. */

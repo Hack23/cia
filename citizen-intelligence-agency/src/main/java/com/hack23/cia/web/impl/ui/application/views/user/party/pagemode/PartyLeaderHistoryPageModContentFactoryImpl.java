@@ -46,7 +46,7 @@ public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractP
 	private static final String LEADER_HISTORY = "LeaderHistory";
 
 	/**
-	 * Instantiates a new leader history page mod content factory impl.
+	 * Instantiates a new party leader history page mod content factory impl.
 	 */
 	public PartyLeaderHistoryPageModContentFactoryImpl() {
 		super();

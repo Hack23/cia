@@ -63,7 +63,8 @@ public abstract class AbstractAgentOperationsPageModContentFactoryImpl extends A
 	private PoliticianChartDataManager chartDataManager;
 
 	/**
-	 * Instantiates a new abstract page mod content factory impl.
+	 * Instantiates a new abstract agent operations page mod content factory
+	 * impl.
 	 */
 	protected AbstractAgentOperationsPageModContentFactoryImpl() {
 		super();

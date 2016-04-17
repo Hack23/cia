@@ -36,12 +36,16 @@ import com.vaadin.ui.UI;
  */
 public final class UpdateApplicationConfigurationClickListener implements ClickListener {
 
+	/** The Constant LOG_MSG_UPDATE_APPLICATION_CONFIGURATION_FAILURE. */
 	private static final String LOG_MSG_UPDATE_APPLICATION_CONFIGURATION_FAILURE = "UpdateApplicationConfiguration {} failure";
 
+	/** The Constant ERROR_MESSAGE. */
 	private static final String ERROR_MESSAGE = "Error message";
 
+	/** The Constant UPDATE_APPLICATION_CONFIGURATION_FAILED. */
 	private static final String UPDATE_APPLICATION_CONFIGURATION_FAILED = "Update Application Configuration failed";
 
+	/** The Constant LOG_UPDATE_APPLICATION_CONFIGURATION. */
 	private static final String LOG_UPDATE_APPLICATION_CONFIGURATION = "UpdateApplicationConfiguration {}";
 
 	/** The Constant serialVersionUID. */

@@ -103,6 +103,7 @@ public final class MinistryRankingView extends AbstractRankingView {
 	@Autowired
 	private transient PartyDataSeriesFactory dataSeriesFactory2;
 
+	/** The page mode content factory map. */
 	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
 	/**

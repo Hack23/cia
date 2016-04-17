@@ -109,6 +109,7 @@ public final class CommitteeRankingView extends AbstractRankingView {
 	@Autowired
 	private transient GridFactory gridFactory;
 
+	/** The page mode content factory map. */
 	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
 	/**

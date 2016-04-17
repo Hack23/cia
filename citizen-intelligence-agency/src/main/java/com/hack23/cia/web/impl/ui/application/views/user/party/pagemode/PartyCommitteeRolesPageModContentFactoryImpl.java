@@ -46,7 +46,7 @@ public final class PartyCommitteeRolesPageModContentFactoryImpl extends Abstract
 	private static final String COMMITTEE_ROLES = "CommitteeRoles";
 
 	/**
-	 * Instantiates a new committee roles page mod content factory impl.
+	 * Instantiates a new party committee roles page mod content factory impl.
 	 */
 	public PartyCommitteeRolesPageModContentFactoryImpl() {
 		super();

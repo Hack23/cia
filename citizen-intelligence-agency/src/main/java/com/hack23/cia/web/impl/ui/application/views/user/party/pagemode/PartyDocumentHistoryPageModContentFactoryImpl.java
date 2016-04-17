@@ -46,7 +46,7 @@ public final class PartyDocumentHistoryPageModContentFactoryImpl extends Abstrac
 	private static final String DOCUMENT_HISTORY = "Document History";
 
 	/**
-	 * Instantiates a new document history page mod content factory impl.
+	 * Instantiates a new party document history page mod content factory impl.
 	 */
 	public PartyDocumentHistoryPageModContentFactoryImpl() {
 		super();

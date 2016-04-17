@@ -46,7 +46,7 @@ public final class CommitteeRoleGhantPageModContentFactoryImpl extends AbstractC
 	private static final String ROLE_GHANT_NOT_IMPLEMENTED = "RoleGhant Not Implemented";
 
 	/**
-	 * Instantiates a new overview page mod content factory impl.
+	 * Instantiates a new committee role ghant page mod content factory impl.
 	 */
 	public CommitteeRoleGhantPageModContentFactoryImpl() {
 		super();

@@ -47,7 +47,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
 	/**
-	 * Instantiates a new role list page mod content factory impl.
+	 * Instantiates a new politician role list page mod content factory impl.
 	 */
 	public PoliticianRoleListPageModContentFactoryImpl() {
 		super();

@@ -26,6 +26,9 @@ import com.vaadin.ui.themes.Reindeer;
  */
 public final class LabelFactory {
 
+	/**
+	 * Instantiates a new label factory.
+	 */
 	private LabelFactory() {
 		super();
 	}

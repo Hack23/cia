@@ -40,7 +40,7 @@ public final class PartyChartsPageModContentFactoryImpl extends AbstractPartyPag
 	private static final String CHARTS_NOT_IMPLEMENTED = "Charts Not Implemented";
 
 	/**
-	 * Instantiates a new charts page mod content factory impl.
+	 * Instantiates a new party charts page mod content factory impl.
 	 */
 	public PartyChartsPageModContentFactoryImpl() {
 		super();

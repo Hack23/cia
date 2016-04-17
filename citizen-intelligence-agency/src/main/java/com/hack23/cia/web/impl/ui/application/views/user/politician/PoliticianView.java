@@ -48,6 +48,7 @@ public final class PoliticianView extends AbstractPersonView {
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_VIEW_NAME;
 
+	/** The page mode content factory map. */
 	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
 	/**

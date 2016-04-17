@@ -49,7 +49,7 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 	private GenericChartDataManager<ViewRiksdagenVoteDataBallotPartySummary> viewRiksdagenVoteDataBallotPartySummaryChartDataManager;
 
 	/**
-	 * Instantiates a new vote history page mod content factory impl.
+	 * Instantiates a new party vote history page mod content factory impl.
 	 */
 	public PartyVoteHistoryPageModContentFactoryImpl() {
 		super();

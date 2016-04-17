@@ -67,7 +67,7 @@ public abstract class AbstractUserHomePageModContentFactoryImpl extends Abstract
 	private PoliticianChartDataManager chartDataManager;
 
 	/**
-	 * Instantiates a new abstract page mod content factory impl.
+	 * Instantiates a new abstract user home page mod content factory impl.
 	 */
 	protected AbstractUserHomePageModContentFactoryImpl() {
 		super();

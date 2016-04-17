@@ -52,21 +52,27 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME;
 
+	/** The Constant OPERATION2. */
 	private static final String OPERATION2 = "/Operation";
 
+	/** The Constant TARGET2. */
 	private static final String TARGET2 = "/Target";
 
+	/** The Constant START. */
 	private static final String START = "Start";
 
+	/** The Constant OPERATION. */
 	private static final String OPERATION = "Operation";
 
+	/** The Constant TARGET. */
 	private static final String TARGET = "Target";
 
+	/** The Constant ADMIN_AGENT_OPERATION. */
 	private static final String ADMIN_AGENT_OPERATION = "Admin Agent Operation";
 
 	/** The agent container. */
 	@Autowired
-	private transient AgentContainer agentContainer;
+	private AgentContainer agentContainer;
 
 	/**
 	 * Instantiates a new agent operations overview page mod content factory
@@ -90,12 +96,12 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL2);
 
-		ComboBox targetSelect = new ComboBox(TARGET, Arrays.asList(DataAgentTarget.values()));
+		final ComboBox targetSelect = new ComboBox(TARGET, Arrays.asList(DataAgentTarget.values()));
 		targetSelect.setId(ViewAction.START_AGENT_BUTTON + TARGET2);
 		content.addComponent(targetSelect);
 		content.setExpandRatio(targetSelect, ContentRatio.SMALL2);
 
-		ComboBox operationSelect = new ComboBox(OPERATION, Arrays.asList(DataAgentOperation.values()));
+		final ComboBox operationSelect = new ComboBox(OPERATION, Arrays.asList(DataAgentOperation.values()));
 		operationSelect.setId(ViewAction.START_AGENT_BUTTON + OPERATION2);
 		content.addComponent(operationSelect);
 		content.setExpandRatio(operationSelect, ContentRatio.SMALL2);

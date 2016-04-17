@@ -68,6 +68,7 @@ public final class TestChartView extends AbstractView {
 	/** The page mode content. */
 	private VerticalLayout pageModeContent;
 
+	/** The page mode content factory map. */
 	private transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
 	/**

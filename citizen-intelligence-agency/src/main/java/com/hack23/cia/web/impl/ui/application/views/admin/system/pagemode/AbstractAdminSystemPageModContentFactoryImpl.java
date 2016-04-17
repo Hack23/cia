@@ -63,7 +63,7 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 	private PoliticianChartDataManager chartDataManager;
 
 	/**
-	 * Instantiates a new abstract page mod content factory impl.
+	 * Instantiates a new abstract admin system page mod content factory impl.
 	 */
 	protected AbstractAdminSystemPageModContentFactoryImpl() {
 		super();

@@ -48,6 +48,7 @@ public final class CommitteeView extends AbstractGroupView {
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_VIEW_NAME;
 
+	/** The page mode content factory map. */
 	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
 	/**

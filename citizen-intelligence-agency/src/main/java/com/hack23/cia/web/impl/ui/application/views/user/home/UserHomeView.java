@@ -48,6 +48,7 @@ public final class UserHomeView extends AbstractUserView {
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.USERHOME_VIEW_NAME;
 
+	/** The page mode content factory map. */
 	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
 	/**

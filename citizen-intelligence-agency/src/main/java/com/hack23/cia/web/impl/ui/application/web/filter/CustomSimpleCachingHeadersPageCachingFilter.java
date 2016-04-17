@@ -28,7 +28,8 @@ import net.sf.ehcache.constructs.web.filter.SimpleCachingHeadersPageCachingFilte
  */
 public final class CustomSimpleCachingHeadersPageCachingFilter extends SimpleCachingHeadersPageCachingFilter {
 
-   	private static final String WEB_CACHE_MANAGER = "webCacheManager";
+   	/** The Constant WEB_CACHE_MANAGER. */
+	   private static final String WEB_CACHE_MANAGER = "webCacheManager";
 
 	@Override
 	protected CacheManager getCacheManager() {

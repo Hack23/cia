@@ -37,7 +37,8 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianPageVisitHistoryPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
 	/**
-	 * Instantiates a new page visit history page mod content factory impl.
+	 * Instantiates a new politician page visit history page mod content factory
+	 * impl.
 	 */
 	public PoliticianPageVisitHistoryPageModContentFactoryImpl() {
 		super();

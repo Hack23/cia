@@ -50,6 +50,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractTestPageModContentFactoryImpl {
 
+	/** The Constant WORLD_INDICATORS. */
 	private static final String WORLD_INDICATORS = "World Indicators";
 
 	/** The chart data manager. */
@@ -91,7 +92,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractTest
 	 *
 	 * @param indicator
 	 *            the indicator
-	 * @return the component
+	 * @return the vertical layout
 	 */
 	private VerticalLayout createDataIndicatorSummaryChartPanel(final String indicator) {
 		final VerticalLayout verticalLayout = new VerticalLayout();

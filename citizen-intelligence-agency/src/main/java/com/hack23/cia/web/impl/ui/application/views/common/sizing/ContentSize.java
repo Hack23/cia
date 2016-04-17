@@ -27,6 +27,7 @@ public final class ContentSize {
 	/** The Constant FULL_SIZE. */
 	public static final String FULL_SIZE = "100%";
 
+	/** The Constant HALF_SIZE. */
 	public static final String HALF_SIZE = "50%";
 
 	/**

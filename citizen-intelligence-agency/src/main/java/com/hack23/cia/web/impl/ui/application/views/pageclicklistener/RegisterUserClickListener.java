@@ -36,12 +36,16 @@ import com.vaadin.ui.UI;
  */
 public final class RegisterUserClickListener implements ClickListener {
 
+	/** The Constant REGISTER_USER_FAILURE. */
 	private static final String REGISTER_USER_FAILURE = "RegisterUser {} failure";
 
+	/** The Constant ERROR_MESSAGE. */
 	private static final String ERROR_MESSAGE = "Error message";
 
+	/** The Constant REGISTER_FAILED. */
 	private static final String REGISTER_FAILED = "Register failed";
 
+	/** The Constant LOG_MSG_REGISTER_USER. */
 	private static final String LOG_MSG_REGISTER_USER = "RegisterUser {}";
 
 	/** The Constant serialVersionUID. */

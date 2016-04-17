@@ -37,12 +37,16 @@ import com.vaadin.ui.UI;
  */
 public final class ApplicationLoginListener implements LoginListener {
 
+	/** The Constant LOG_MSG_LOGIN_REQUEST_FAILURE. */
 	private static final String LOG_MSG_LOGIN_REQUEST_FAILURE = "LoginRequest {} failure";
 
+	/** The Constant ERROR_MESSAGE. */
 	private static final String ERROR_MESSAGE = "Error message";
 
+	/** The Constant LOGIN_FAILED. */
 	private static final String LOGIN_FAILED = "Login failed";
 
+	/** The Constant LOG_MSG_LOGIN_REQUEST. */
 	private static final String LOG_MSG_LOGIN_REQUEST = "LoginRequest {}";
 
 	/** The Constant serialVersionUID. */
@@ -54,6 +58,7 @@ public final class ApplicationLoginListener implements LoginListener {
 	/** The application manager. */
 	private transient ApplicationManager applicationManager;
 
+	/** The login request. */
 	private final LoginRequest loginRequest;
 
 	/**

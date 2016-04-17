@@ -51,8 +51,8 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl 
 	private static final String COMMITTEE_BALLOT_DECISION_SUMMARY = "CommitteeBallotDecisionSummary";
 
 	/**
-	 * Instantiates a new committee ballot decision summary page mod content
-	 * factory impl.
+	 * Instantiates a new party committee ballot decision summary page mod
+	 * content factory impl.
 	 */
 	public PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl() {
 		super();

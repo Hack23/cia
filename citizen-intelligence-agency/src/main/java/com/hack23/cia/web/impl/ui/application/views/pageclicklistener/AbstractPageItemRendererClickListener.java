@@ -34,6 +34,7 @@ import com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener;
  */
 public abstract class AbstractPageItemRendererClickListener<T> implements RendererClickListener ,SelectionListener{
 
+	/** The Constant PAGE_SEPARATOR. */
 	private static final Character PAGE_SEPARATOR = '/';
 
 	/** The Constant serialVersionUID. */

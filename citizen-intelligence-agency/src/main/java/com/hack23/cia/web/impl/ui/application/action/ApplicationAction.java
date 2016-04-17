@@ -23,8 +23,9 @@ package com.hack23.cia.web.impl.ui.application.action;
  */
 public enum ApplicationAction {
 
-	/** The Register user. */
+	/** The register user. */
 	REGISTER_USER,
-/** The Login. */
+
+/** The login. */
 LOGIN
 }

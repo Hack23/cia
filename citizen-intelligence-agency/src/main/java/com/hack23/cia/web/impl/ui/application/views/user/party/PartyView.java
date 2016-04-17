@@ -48,6 +48,7 @@ public final class PartyView extends AbstractGroupView {
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.PARTY_VIEW_NAME;
 
+	/** The page mode content factory map. */
 	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
 	/**

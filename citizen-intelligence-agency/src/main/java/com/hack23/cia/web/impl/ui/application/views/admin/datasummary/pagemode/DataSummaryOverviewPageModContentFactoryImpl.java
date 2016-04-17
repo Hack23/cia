@@ -48,19 +48,24 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME;
 
+	/** The Constant UPDATE_SEARCH_INDEX_STARTED. */
 	private static final String UPDATE_SEARCH_INDEX_STARTED = "Update Search Index Started";
 
+	/** The Constant UPDATE_SEARCH_INDEX. */
 	private static final String UPDATE_SEARCH_INDEX = "Update Search Index";
 
+	/** The Constant REFRESH_VIEWS_STARTED. */
 	private static final String REFRESH_VIEWS_STARTED = "Refresh Views Started";
 
+	/** The Constant REFRESH_VIEWS. */
 	private static final String REFRESH_VIEWS = "Refresh Views";
 
+	/** The Constant ADMIN_DATA_SUMMARY. */
 	private static final String ADMIN_DATA_SUMMARY = "Admin Data Summary";
 
 	/** The table factory. */
 	@Autowired
-	private transient TableFactory tableFactory;
+	private TableFactory tableFactory;
 
 	/**
 	 * Instantiates a new data summary overview page mod content factory impl.

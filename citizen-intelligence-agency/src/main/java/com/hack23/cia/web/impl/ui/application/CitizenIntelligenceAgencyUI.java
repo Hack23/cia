@@ -62,30 +62,43 @@ import ru.xpoft.vaadin.DiscoveryNavigator;
 public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandler {
 
 
+	/** The Constant LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT. */
 	private static final String LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT = "Browser address: {} , application:{}, sessionId:{}, result:{}";
 
+	/** The Constant LOG_WARN_VAADIN_ERROR. */
 	private static final String LOG_WARN_VAADIN_ERROR = "Vaadin error";
 
+	/** The Constant UNKNOWN. */
 	private static final String UNKNOWN = "unknown";
 
+	/** The Constant I_PHONE. */
 	private static final String I_PHONE = "IPhone";
 
+	/** The Constant IPAD. */
 	private static final String IPAD = "IPad";
 
+	/** The Constant IOS. */
 	private static final String IOS = "IOS";
 
+	/** The Constant ANDROID. */
 	private static final String ANDROID = "Android";
 
+	/** The Constant MAC_OSX. */
 	private static final String MAC_OSX = "MacOSX";
 
+	/** The Constant WINDOWS_PHONE. */
 	private static final String WINDOWS_PHONE = "WindowsPhone";
 
+	/** The Constant WINDOWS2. */
 	private static final String WINDOWS2 = "Windows";
 
+	/** The Constant LINUX. */
 	private static final String LINUX = "Linux";
 
+	/** The Constant X_FORWARDED_FOR. */
 	private static final String X_FORWARDED_FOR = "X-Forwarded-For";
 
+	/** The Constant CITIZEN_INTELLIGENCE_AGENCY. */
 	private static final String CITIZEN_INTELLIGENCE_AGENCY = "Citizen Intelligence Agency";
 
 	/** The Constant serialVersionUID. */

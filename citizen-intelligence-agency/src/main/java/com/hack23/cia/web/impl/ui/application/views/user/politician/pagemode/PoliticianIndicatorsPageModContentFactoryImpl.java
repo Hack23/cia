@@ -45,7 +45,7 @@ public final class PoliticianIndicatorsPageModContentFactoryImpl extends Abstrac
 
 
 	/**
-	 * Instantiates a new indicators page mod content factory impl.
+	 * Instantiates a new politician indicators page mod content factory impl.
 	 */
 	public PoliticianIndicatorsPageModContentFactoryImpl() {
 		super();

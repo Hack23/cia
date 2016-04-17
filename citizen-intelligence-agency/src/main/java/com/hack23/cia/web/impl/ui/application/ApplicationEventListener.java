@@ -52,24 +52,37 @@ import com.hack23.cia.service.api.action.application.DestroyApplicationSessionRe
 @Service
 public final class ApplicationEventListener implements ApplicationListener<ApplicationEvent> {
 
+	/** The Constant REQUIRED_AUTHORITIES. */
 	private static final String REQUIRED_AUTHORITIES = " , RequiredAuthorities:";
 
+	/** The Constant PRINCIPAL. */
 	private static final String PRINCIPAL = "principal";
 
+	/** The Constant KEY. */
 	private static final String KEY = "key";
 
+	/** The Constant LOG_MSG_SESSION_CREATED_SESSION_ID. */
 	private static final String LOG_MSG_SESSION_CREATED_SESSION_ID = "Session created SESSION_ID :{}";
 
+	/** The Constant ROLE_ANONYMOUS. */
 	private static final String ROLE_ANONYMOUS = "ROLE_ANONYMOUS";
 
+	/** The Constant LOG_MSG_SESSION_DESTROYED_SESSION_ID. */
 	private static final String LOG_MSG_SESSION_DESTROYED_SESSION_ID = "Session destroyed SESSION_ID :{}";
 
+	/** The Constant ACCESS_DENIED. */
 	private static final String ACCESS_DENIED = "Access Denied";
 
+	/** The Constant AUTHORITIES. */
 	private static final String AUTHORITIES = "Authorities:";
 
+	/**
+	 * The Constant
+	 * LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES.
+	 */
 	private static final String LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES = "Authorization Failure:: SessionId :{} , Authorities : {} , RequiredAuthorities : {}";
 
+	/** The Constant LOG_MSG_APPLICATION_EVENT. */
 	private static final String LOG_MSG_APPLICATION_EVENT = "ApplicationEvent :{}";
 
 	/** The Constant LOGGER. */

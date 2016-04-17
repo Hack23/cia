@@ -52,7 +52,7 @@ public final class MinistryDocumentActivityPageModContentFactoryImpl extends Abs
 
 	/** The chart data manager. */
 	@Autowired
-	private transient DocumentChartDataManager chartDataManager;
+	private DocumentChartDataManager chartDataManager;
 
 	/**
 	 * Instantiates a new ministry document activity page mod content factory

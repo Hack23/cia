@@ -23,41 +23,41 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public final class UserViews {
 
-	/** The committee ranking view name. */
+	/** The Constant COMMITTEE_RANKING_VIEW_NAME. */
 	public static final String COMMITTEE_RANKING_VIEW_NAME = "committeeranking";
 
-	/** The committee view name. */
+	/** The Constant COMMITTEE_VIEW_NAME. */
 	public static final String COMMITTEE_VIEW_NAME = "committee";
 
-	/** The document view name. */
+	/** The Constant DOCUMENT_VIEW_NAME. */
 	public static final String DOCUMENT_VIEW_NAME = "document";
 
-	/** The ministry ranking view name. */
+	/** The Constant MINISTRY_RANKING_VIEW_NAME. */
 	public static final String MINISTRY_RANKING_VIEW_NAME = "ministryranking";
 
-	/** The ministry view name. */
+	/** The Constant MINISTRY_VIEW_NAME. */
 	public static final String MINISTRY_VIEW_NAME = "ministry";
 
-	/** The party ranking view name. */
+	/** The Constant PARTY_RANKING_VIEW_NAME. */
 	public static final String PARTY_RANKING_VIEW_NAME = "partyranking";
 
-	/** The party view name. */
+	/** The Constant PARTY_VIEW_NAME. */
 	public static final String PARTY_VIEW_NAME = "party";
 
-	/** The politician ranking view name. */
+	/** The Constant POLITICIAN_RANKING_VIEW_NAME. */
 	public static final String POLITICIAN_RANKING_VIEW_NAME = "politicianranking";
 
-	/** The politician view name. */
+	/** The Constant POLITICIAN_VIEW_NAME. */
 	public static final String POLITICIAN_VIEW_NAME = "politician";
 
 
-	/** The document view name. */
+	/** The Constant SEARCH_DOCUMENT_VIEW_NAME. */
 	public static final String SEARCH_DOCUMENT_VIEW_NAME = "search";
 
-	/** The test chart view name. */
+	/** The Constant TEST_CHART_VIEW_NAME. */
 	public static final String TEST_CHART_VIEW_NAME = "testchartview";
 
-	/** The userhome view name. */
+	/** The Constant USERHOME_VIEW_NAME. */
 	public static final String USERHOME_VIEW_NAME = "userhome";
 
 	/**

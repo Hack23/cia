@@ -98,6 +98,9 @@ public final class TestOverviewPageModContentFactoryImpl extends AbstractTestPag
 
 	/**
 	 * Creates the high chart test.
+	 *
+	 * @param panelContent
+	 *            the panel content
 	 */
 	private void createHighChartTest(final VerticalLayout panelContent) {
 		final ChartConfiguration pieConfiguration = new ChartConfiguration();

@@ -23,41 +23,41 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public final class AdminViews {
 
-	/** The admin agency view name. */
+	/** The Constant ADMIN_AGENCY_VIEW_NAME. */
 	public static final String ADMIN_AGENCY_VIEW_NAME = "adminagency";
 
-	/** The admin agent operationview name. */
+	/** The Constant ADMIN_AGENT_OPERATIONVIEW_NAME. */
 	public static final String ADMIN_AGENT_OPERATIONVIEW_NAME = "adminagentoperation";
 
-	/** The admin applications configuration view name. */
+	/** The Constant ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME. */
 	public static final String ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME = "adminapplicationconfiguration";
 
-	/** The admin applications events view name. */
+	/** The Constant ADMIN_APPLICATIONS_EVENTS_VIEW_NAME. */
 	public static final String ADMIN_APPLICATIONS_EVENTS_VIEW_NAME = "adminapplicationevents";
 
-	/** The admin applications session view name. */
+	/** The Constant ADMIN_APPLICATIONS_SESSION_VIEW_NAME. */
 	public static final String ADMIN_APPLICATIONS_SESSION_VIEW_NAME = "adminapplicationsession";
 
-	/** The admin country view name. */
+	/** The Constant ADMIN_COUNTRY_VIEW_NAME. */
 	public static final String ADMIN_COUNTRY_VIEW_NAME = "admincountry";
 
 
-	/** The admin data summary view name. */
+	/** The Constant ADMIN_DATA_SUMMARY_VIEW_NAME. */
 	public static final String ADMIN_DATA_SUMMARY_VIEW_NAME = "admindatasummary";
 
-	/** The admin language content view name. */
+	/** The Constant ADMIN_LANGUAGE_CONTENT_VIEW_NAME. */
 	public static final String ADMIN_LANGUAGE_CONTENT_VIEW_NAME = "adminlanguagecontent";
 
-	/** The admin language view name. */
+	/** The Constant ADMIN_LANGUAGE_VIEW_NAME. */
 	public static final String ADMIN_LANGUAGE_VIEW_NAME = "adminlanguage";
 
-	/** The admin monitoring view name. */
+	/** The Constant ADMIN_MONITORING_VIEW_NAME. */
 	public static final String ADMIN_MONITORING_VIEW_NAME = "adminmonitoring";
 
-	/** The admin portal view name. */
+	/** The Constant ADMIN_PORTAL_VIEW_NAME. */
 	public static final String ADMIN_PORTAL_VIEW_NAME = "adminportal";
 
-	/** The admin useraccount view name. */
+	/** The Constant ADMIN_USERACCOUNT_VIEW_NAME. */
 	public static final String ADMIN_USERACCOUNT_VIEW_NAME = "adminuseraccount";
 
 	/**

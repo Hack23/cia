@@ -37,10 +37,13 @@ import com.vaadin.ui.UI;
  */
 public final class LogoutClickListener implements ClickListener {
 
+	/** The Constant LOG_MSG_LOGOUT_FAILURE. */
 	private static final String LOG_MSG_LOGOUT_FAILURE = "Logout {} failure";
 
+	/** The Constant ERROR_MESSAGE. */
 	private static final String ERROR_MESSAGE = "Error message";
 
+	/** The Constant LOGOUT_FAILED. */
 	private static final String LOGOUT_FAILED = "Logout failed";
 
 	/** The Constant serialVersionUID. */

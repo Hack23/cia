@@ -37,18 +37,25 @@ import com.vaadin.ui.Link;
 @Service
 public final class PageLinkFactoryImpl implements PageLinkFactory {
 
+	/** The Constant PAGE_SEPARATOR. */
 	private static final Character PAGE_SEPARATOR = '/';
 
+	/** The Constant SEARCH. */
 	private static final String SEARCH = "Search";
 
+	/** The Constant POLITICIAN. */
 	private static final String POLITICIAN = "Politician ";
 
+	/** The Constant PARTY. */
 	private static final String PARTY = "Party ";
 
+	/** The Constant PAGE_PREFIX. */
 	private static final String PAGE_PREFIX = "#!";
 
+	/** The Constant MINISTRY. */
 	private static final String MINISTRY = "Ministry ";
 
+	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = "Committee ";
 
 	/** The Constant ADMIN_AGENT_OPERATIONS_LINK_TEXT. */

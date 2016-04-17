@@ -77,7 +77,7 @@ public abstract class AbstractPoliticianPageModContentFactoryImpl extends Abstra
 	private PoliticianChartDataManager chartDataManager;
 
 	/**
-	 * Instantiates a new abstract page mod content factory impl.
+	 * Instantiates a new abstract politician page mod content factory impl.
 	 */
 	protected AbstractPoliticianPageModContentFactoryImpl() {
 		super();
@@ -109,6 +109,18 @@ public abstract class AbstractPoliticianPageModContentFactoryImpl extends Abstra
 	}
 
 
+	/**
+	 * Page completed.
+	 *
+	 * @param parameters
+	 *            the parameters
+	 * @param panel
+	 *            the panel
+	 * @param pageId
+	 *            the page id
+	 * @param viewRiksdagenPolitician
+	 *            the view riksdagen politician
+	 */
 	protected final void pageCompleted(final String parameters, final Panel panel, final String pageId,
 			final ViewRiksdagenPolitician viewRiksdagenPolitician) {
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,

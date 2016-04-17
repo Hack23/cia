@@ -47,7 +47,7 @@ public final class PartyDocumentActivityPageModContentFactoryImpl extends Abstra
 	private DocumentChartDataManager documentChartDataManager;
 
 	/**
-	 * Instantiates a new document activity page mod content factory impl.
+	 * Instantiates a new party document activity page mod content factory impl.
 	 */
 	public PartyDocumentActivityPageModContentFactoryImpl() {
 		super();

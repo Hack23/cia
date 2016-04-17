@@ -58,7 +58,7 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 	public static final String NAME = AdminViews.ADMIN_AGENCY_VIEW_NAME;
 
 	/**
-	 * Instantiates a new overview page mod content factory impl.
+	 * Instantiates a new admin agency page mod content factory impl.
 	 */
 	public AdminAgencyPageModContentFactoryImpl() {
 		super();

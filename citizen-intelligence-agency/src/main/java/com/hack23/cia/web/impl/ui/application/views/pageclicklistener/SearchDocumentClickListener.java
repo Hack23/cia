@@ -34,14 +34,19 @@ import com.vaadin.ui.Notification;
  */
 public final class SearchDocumentClickListener implements ClickListener {
 
+	/** The Constant ERROR_MESSAGE. */
 	private static final String ERROR_MESSAGE = "Error message";
 
+	/** The Constant SEARCH_FAILED. */
 	private static final String SEARCH_FAILED = "Search failed";
 
+	/** The Constant LOG_MSG_SEARCH_DOCUMENT_FAILURE. */
 	private static final String LOG_MSG_SEARCH_DOCUMENT_FAILURE = "SearchDocument {} failure";
 
+	/** The Constant LOG_MSG_SEARCH_DOCUMENT. */
 	private static final String LOG_MSG_SEARCH_DOCUMENT = "SearchDocument {}";
 
+	/** The Constant SEARCH_SUCCESS. */
 	private static final String SEARCH_SUCCESS = "Search success";
 
 	/** The Constant serialVersionUID. */
@@ -56,6 +61,7 @@ public final class SearchDocumentClickListener implements ClickListener {
 	/** The application manager. */
 	private transient ApplicationManager applicationManager;
 
+	/** The response handler. */
 	private final SearchDocumentResponseHandler responseHandler;
 
 	/**

@@ -23,24 +23,24 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public enum DocumentPageMode {
 
-	/** THE DOCUMENT ACTIVITY. */
+	/** The documentactivity. */
 	DOCUMENTACTIVITY,
 
-	/** THE PERSON REFERENCES. */
+	/** The personreferences. */
 	PERSONREFERENCES,
 
-	/** THE DOCUMENT DETAILS. */
+	/** The documentdetails. */
 	DOCUMENTDETAILS,
 
-	/** THE DOCUMENT DATA. */
+	/** The documentdata. */
 	DOCUMENTDATA,
 
-	/** THE DOCUMENT REFERENCES. */
+	/** The documentreferences. */
 	DOCUMENTREFERENCES,
 
-	/** THE DOCUMENT DECISION. */
+	/** The documentdecision. */
 	DOCUMENTDECISION,
 
-/** THE DOCUMENT ATTACHMENTS. */
+/** The documentattachments. */
 DOCUMENTATTACHMENTS
 }
