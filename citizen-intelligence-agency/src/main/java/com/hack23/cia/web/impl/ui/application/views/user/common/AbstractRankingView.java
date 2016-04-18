@@ -29,6 +29,11 @@ public abstract class AbstractRankingView extends AbstractUserView {
 
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Instantiates a new abstract ranking view.
 	 *
 	 * @param pageModeContentFactoryMap
@@ -36,7 +41,7 @@ public abstract class AbstractRankingView extends AbstractUserView {
 	 * @param pageName
 	 *            the page name
 	 */
-	protected AbstractRankingView(Map<String, PageModeContentFactory> pageModeContentFactoryMap, String pageName) {
+	protected AbstractRankingView(final Map<String, PageModeContentFactory> pageModeContentFactoryMap, final String pageName) {
 		super(pageModeContentFactoryMap, pageName);
 	}
 

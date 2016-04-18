@@ -38,7 +38,7 @@ public abstract class AbstractGroupView extends AbstractActorView {
 	 * @param pageName
 	 *            the page name
 	 */
-	public AbstractGroupView(Map<String, PageModeContentFactory> pageModeContentFactoryMap, String pageName) {
+	public AbstractGroupView(final Map<String, PageModeContentFactory> pageModeContentFactoryMap, final String pageName) {
 		super(pageModeContentFactoryMap, pageName);
 	}
 

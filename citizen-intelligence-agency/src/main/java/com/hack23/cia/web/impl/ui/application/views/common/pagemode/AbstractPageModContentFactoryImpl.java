@@ -50,23 +50,23 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 
 	/** The menu item factory. */
 	@Autowired
-	protected MenuItemFactory menuItemFactory;
+	private MenuItemFactory menuItemFactory;
 
 	/** The grid factory. */
 	@Autowired
-	protected GridFactory gridFactory;
+	private GridFactory gridFactory;
 
 	/** The form factory. */
 	@Autowired
-	protected FormFactory formFactory;
+	private FormFactory formFactory;
 
 	/** The page link factory. */
 	@Autowired
-	protected PageLinkFactory pageLinkFactory;
+	private PageLinkFactory pageLinkFactory;
 
 	/** The page action event helper. */
 	@Autowired
-	protected PageActionEventHelper pageActionEventHelper;
+	private PageActionEventHelper pageActionEventHelper;
 
 
 	/** The admin chart data manager. */

@@ -38,7 +38,7 @@ public abstract class AbstractPersonView extends AbstractActorView {
 	 * @param pageName
 	 *            the page name
 	 */
-	public AbstractPersonView(Map<String, PageModeContentFactory> pageModeContentFactoryMap, String pageName) {
+	public AbstractPersonView(final Map<String, PageModeContentFactory> pageModeContentFactoryMap, final String pageName) {
 		super(pageModeContentFactoryMap,pageName);
 	}
 

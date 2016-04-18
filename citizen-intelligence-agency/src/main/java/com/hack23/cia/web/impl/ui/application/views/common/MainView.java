@@ -19,13 +19,11 @@
 package com.hack23.cia.web.impl.ui.application.views.common;
 
 import java.util.Arrays;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -37,7 +35,6 @@ import com.hack23.cia.service.api.action.application.RegisterUserRequest;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ApplicationLoginListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RegisterUserClickListener;
@@ -57,7 +54,7 @@ import ru.xpoft.vaadin.VaadinView;
  * The Class MainView.
  */
 @Service("MainView")
-@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(MainView.NAME)
 public final class MainView extends Panel implements View {
 
@@ -86,19 +83,11 @@ public final class MainView extends Panel implements View {
 	@Autowired
 	private transient FormFactory formFactory;
 
-	/** The page mode content factory map. */
-	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
-
 	/**
 	 * Instantiates a new main view.
-	 *
-	 * @param context
-	 *            the context
 	 */
-	public MainView(final ApplicationContext context) {
+	public MainView() {
 		super();
-		pageModeContentFactoryMap = context.getBeansOfType(PageModeContentFactory.class);
-
 	}
 
 	/**
@@ -111,26 +100,10 @@ public final class MainView extends Panel implements View {
 
 	}
 
-
 	@Override
 	public void enter(final ViewChangeEvent event) {
-//		final String parameters = event.getParameters();
-//
-//		for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
-//
-//			if (pageModeContentFactory.matches(NAME, parameters)) {
-//
-
-//
-//				setContent(pageModeContentFactory.createContent(parameters, null, this));
-//
-//				return;
-//			}
-//		}
-
 		createContent();
 	}
-
 
 	/**
 	 * Creates the content.
@@ -143,8 +116,7 @@ public final class MainView extends Panel implements View {
 
 		layout.addComponent(menuItemFactory.createMainPageMenuBar());
 
-		final TextArea totalpoliticantoplistLabel = new TextArea(
-				"Politician Ranking by topic",
+		final TextArea totalpoliticantoplistLabel = new TextArea("Politician Ranking by topic",
 				"Time served in Parliament:ALL:CURRENT:*FILTER:Gender,Party,ElectionRegion"
 						+ "\nTime served in Committees:ALL:CURRENT:*FILTER:Gender,Party,ElectionRegion"
 						+ "\nTime served in Government:ALL:CURRENT:*FILTER:Gender,Party,ElectionRegion"
@@ -159,10 +131,8 @@ public final class MainView extends Panel implements View {
 		totalpoliticantoplistLabel.setSizeFull();
 		layout.addComponent(totalpoliticantoplistLabel);
 
-		final TextArea totalpartytoplistLabel = new TextArea(
-				"Party Ranking by topic",
-				"Time served in Parliament:ALL:CURRENT:"
-						+ "\nTime served in Committees:ALL:CURRENT:"
+		final TextArea totalpartytoplistLabel = new TextArea("Party Ranking by topic",
+				"Time served in Parliament:ALL:CURRENT:" + "\nTime served in Committees:ALL:CURRENT:"
 						+ "\nTime served in Government:ALL:CURRENT:"
 						+ "\nTop document author NR:ALL:YEAR:CURRENT:*FILTER:DocumnetType"
 						+ "\nTop document author SIZE:YEAR:ALL:CURRENT:*FILTER:DocumnetType"
@@ -181,7 +151,6 @@ public final class MainView extends Panel implements View {
 
 		layout.addComponent(pageLinkFactory.createPartyRankingViewPageLink());
 
-
 		layout.addComponent(pageLinkFactory.createCommitteeRankingViewPageLink());
 
 		layout.addComponent(pageLinkFactory.createMinistryRankingViewPageLink());
@@ -195,8 +164,7 @@ public final class MainView extends Panel implements View {
 		final DefaultVerticalLoginForm loginForm = new EmailPasswordLoginForm();
 		final LoginRequest loginRequest = new LoginRequest();
 		loginRequest.setOtpCode("");
-		loginForm.addLoginListener(new ApplicationLoginListener(applicationManager,loginRequest));
-
+		loginForm.addLoginListener(new ApplicationLoginListener(applicationManager, loginRequest));
 
 		final BeanFieldGroup<LoginRequest> fieldGroup = new BeanFieldGroup<>(LoginRequest.class);
 		fieldGroup.setItemDataSource(new BeanItem<>(loginRequest));
@@ -217,9 +185,11 @@ public final class MainView extends Panel implements View {
 		reqisterRequest.setEmail("");
 		reqisterRequest.setCountry("");
 		reqisterRequest.setUserpassword("");
-		final ClickListener reqisterListener = new RegisterUserClickListener(reqisterRequest,applicationManager);
-		formFactory.addRequestInputFormFields(registerLayout,  new BeanItem<>(reqisterRequest), RegisterUserRequest.class,
-				Arrays.asList(new String[] {"username","email", "country", "userpassword" }),"Register",reqisterListener);
+		final ClickListener reqisterListener = new RegisterUserClickListener(reqisterRequest, applicationManager);
+		formFactory.addRequestInputFormFields(registerLayout, new BeanItem<>(reqisterRequest),
+				RegisterUserRequest.class,
+				Arrays.asList(new String[] { "username", "email", "country", "userpassword" }), "Register",
+				reqisterListener);
 
 		layout.addComponent(registerLayout);
 

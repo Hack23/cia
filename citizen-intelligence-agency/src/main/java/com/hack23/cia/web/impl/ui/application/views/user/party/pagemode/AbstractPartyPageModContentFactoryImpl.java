@@ -62,7 +62,7 @@ public abstract class AbstractPartyPageModContentFactoryImpl extends AbstractPag
 		stringBuilder.append(viewRiksdagenParty.getPartyName());
 		panel.setCaption(stringBuilder.toString());
 
-		pageActionEventHelper.createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,
 				pageId);
 	}
 

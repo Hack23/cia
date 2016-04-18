@@ -85,7 +85,7 @@ public abstract class AbstractUserView extends Panel implements View {
 	 * @param pageName
 	 *            the page name
 	 */
-	protected AbstractUserView(Map<String, PageModeContentFactory> pageModeContentFactoryMap, String pageName) {
+	protected AbstractUserView(final Map<String, PageModeContentFactory> pageModeContentFactoryMap, final String pageName) {
 		super();
 		this.pageModeContentFactoryMap = pageModeContentFactoryMap;
 		this.pageName = pageName;
@@ -134,7 +134,7 @@ public abstract class AbstractUserView extends Panel implements View {
 	}
 
 	@Override
-	public void enter(final ViewChangeEvent event) {
+	public final void enter(final ViewChangeEvent event) {
 		final String parameters = event.getParameters();
 		for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
 			if (pageModeContentFactory.matches(pageName, parameters)) {
