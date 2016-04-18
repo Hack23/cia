@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.party;
 
-import java.util.Map;
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -30,7 +28,6 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractGroupView;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 
 import ru.xpoft.vaadin.VaadinView;
 
@@ -48,9 +45,6 @@ public final class PartyView extends AbstractGroupView {
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.PARTY_VIEW_NAME;
 
-	/** The page mode content factory map. */
-	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
-
 	/**
 	 * Instantiates a new party view.
 	 *
@@ -58,9 +52,7 @@ public final class PartyView extends AbstractGroupView {
 	 *            the context
 	 */
 	public PartyView(final ApplicationContext context) {
-		super();
-		pageModeContentFactoryMap = context.getBeansOfType(PageModeContentFactory.class);
-
+		super(context.getBeansOfType(PageModeContentFactory.class), NAME);
 	}
 
 	/**
@@ -70,32 +62,6 @@ public final class PartyView extends AbstractGroupView {
 	public void postConstruct() {
 		setSizeFull();
 		createBasicLayoutWithPanelAndFooter(NAME);
-	}
-
-	@Override
-	public void enter(final ViewChangeEvent event) {
-		final String parameters = event.getParameters();
-
-		for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
-
-			if (pageModeContentFactory.matches(NAME, parameters)) {
-
-
-
-				getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
-
-				return;
-			}
-		}
-
-		for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
-			if (pageModeContentFactory.matches(NAME, parameters)) {
-
-
-				getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
-				return;
-			}
-		}
 	}
 
 }

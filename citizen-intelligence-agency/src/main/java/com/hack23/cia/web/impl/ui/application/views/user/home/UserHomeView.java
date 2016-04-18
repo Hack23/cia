@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.home;
 
-import java.util.Map;
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.context.ApplicationContext;
@@ -30,7 +28,6 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 
 import ru.xpoft.vaadin.VaadinView;
 
@@ -48,9 +45,6 @@ public final class UserHomeView extends AbstractUserView {
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.USERHOME_VIEW_NAME;
 
-	/** The page mode content factory map. */
-	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
-
 	/**
 	 * Instantiates a new user home view.
 	 *
@@ -58,8 +52,7 @@ public final class UserHomeView extends AbstractUserView {
 	 *            the context
 	 */
 	public UserHomeView(final ApplicationContext context) {
-		super();
-		pageModeContentFactoryMap = context.getBeansOfType(PageModeContentFactory.class);
+		super(context.getBeansOfType(PageModeContentFactory.class), NAME);
 	}
 
 	/**
@@ -69,20 +62,6 @@ public final class UserHomeView extends AbstractUserView {
 	public void postConstruct() {
 		setSizeFull();
 		createBasicLayoutWithPanelAndFooter(NAME);
-	}
-
-	@Override
-	public void enter(final ViewChangeEvent event) {
-		final String parameters = event.getParameters();
-
-		for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
-
-			if (pageModeContentFactory.matches(NAME, parameters)) {
-
-				getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
-				return;
-			}
-		}
 	}
 
 }

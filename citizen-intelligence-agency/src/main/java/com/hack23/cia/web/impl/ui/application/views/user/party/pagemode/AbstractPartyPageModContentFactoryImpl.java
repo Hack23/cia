@@ -18,18 +18,9 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.service.api.ApplicationManager;
-import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.PoliticianChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Panel;
@@ -45,50 +36,11 @@ public abstract class AbstractPartyPageModContentFactoryImpl extends AbstractPag
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.PARTY_VIEW_NAME;
 
-	/** The application manager. */
-	@Autowired
-	private ApplicationManager applicationManager;
-
-	/** The menu item factory. */
-	@Autowired
-	private MenuItemFactory menuItemFactory;
-
-	/** The grid factory. */
-	@Autowired
-	private GridFactory gridFactory;
-
-	/** The form factory. */
-	@Autowired
-	private FormFactory formFactory;
-
-	/** The page link factory. */
-	@Autowired
-	private PageLinkFactory pageLinkFactory;
-
-	/** The page action event helper. */
-	@Autowired
-	private PageActionEventHelper pageActionEventHelper;
-
-	/** The chart data manager. */
-	@Autowired
-	private PoliticianChartDataManager chartDataManager;
-
 	/**
 	 * Instantiates a new abstract party page mod content factory impl.
 	 */
 	protected AbstractPartyPageModContentFactoryImpl() {
 		super();
-	}
-
-	/**
-	 * Gets the page id.
-	 *
-	 * @param parameters
-	 *            the parameters
-	 * @return the page id
-	 */
-	protected final String getPageId(final String parameters) {
-		return parameters.substring(parameters.lastIndexOf('/') + "/".length(), parameters.length());
 	}
 
 	/**
@@ -106,76 +58,12 @@ public abstract class AbstractPartyPageModContentFactoryImpl extends AbstractPag
 	protected final void pageCompleted(final String parameters, final Panel panel, final String pageId,
 			final ViewRiksdagenParty viewRiksdagenParty) {
 		final StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append(PARTY);
-				stringBuilder.append(viewRiksdagenParty.getPartyName());
+		stringBuilder.append(PARTY);
+		stringBuilder.append(viewRiksdagenParty.getPartyName());
 		panel.setCaption(stringBuilder.toString());
 
-		pageActionEventHelper.createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
-	}
-
-
-
-	/**
-	 * Gets the application manager.
-	 *
-	 * @return the application manager
-	 */
-	protected final ApplicationManager getApplicationManager() {
-		return applicationManager;
-	}
-
-	/**
-	 * Gets the menu item factory.
-	 *
-	 * @return the menu item factory
-	 */
-	protected final MenuItemFactory getMenuItemFactory() {
-		return menuItemFactory;
-	}
-
-	/**
-	 * Gets the grid factory.
-	 *
-	 * @return the grid factory
-	 */
-	protected final GridFactory getGridFactory() {
-		return gridFactory;
-	}
-
-	/**
-	 * Gets the form factory.
-	 *
-	 * @return the form factory
-	 */
-	protected final FormFactory getFormFactory() {
-		return formFactory;
-	}
-
-	/**
-	 * Gets the page link factory.
-	 *
-	 * @return the page link factory
-	 */
-	protected final PageLinkFactory getPageLinkFactory() {
-		return pageLinkFactory;
-	}
-
-	/**
-	 * Gets the page action event helper.
-	 *
-	 * @return the page action event helper
-	 */
-	protected final PageActionEventHelper getPageActionEventHelper() {
-		return pageActionEventHelper;
-	}
-
-	/**
-	 * Gets the chart data manager.
-	 *
-	 * @return the chart data manager
-	 */
-	public PoliticianChartDataManager getChartDataManager() {
-		return chartDataManager;
+		pageActionEventHelper.createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,
+				pageId);
 	}
 
 }

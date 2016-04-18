@@ -18,10 +18,9 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.politician;
 
-import java.util.Map;
-
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang3.StringUtils;
 import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -31,19 +30,27 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician_;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.AdminChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.PartyDataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView;
 import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Layout;
 import com.vaadin.ui.TextArea;
+import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
 
@@ -55,33 +62,56 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(value = PoliticianRankingView.NAME, cached = true)
 public final class PoliticianRankingView extends AbstractRankingView {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+	/** The Constant CHARTS. */
+	private static final String CHARTS = "Charts:";
+
+	/** The Constant DATAGRID. */
+	private static final String DATAGRID = "Datagrid:";
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_RANKING_VIEW_NAME;
+
+	/** The Constant OVERVIEW. */
+	private static final String OVERVIEW = "Overview:";
+
+	/** The Constant PAGE_VISIT_HISTORY. */
+	private static final String PAGE_VISIT_HISTORY = "Page Visit History:";
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The admin chart data manager. */
+	@Autowired
+	private transient AdminChartDataManager adminChartDataManager;
+
 
 	/** The application manager. */
 	@Autowired
 	private transient ApplicationManager applicationManager;
 
-	/** The politician data source. */
-	private BeanItemContainer<ViewRiksdagenPolitician> politicianDataSource;
 
-	/** The menu item factory. */
+	/** The chart data manager. */
 	@Autowired
-	private transient MenuItemFactory menuItemFactory;
+	private transient ChartDataManager chartDataManager;
 
-	/** The grid factory. */
-	@Autowired
-	private transient GridFactory gridFactory;
 
 	/** The data series factory. */
 	@Autowired
 	private transient PartyDataSeriesFactory dataSeriesFactory;
 
-	/** The page mode content factory map. */
-	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
+
+
+	/** The grid factory. */
+	@Autowired
+	private transient GridFactory gridFactory;
+
+	/** The menu item factory. */
+	@Autowired
+	private transient MenuItemFactory menuItemFactory;
+
+
+	/** The politician data source. */
+	private BeanItemContainer<ViewRiksdagenPolitician> politicianDataSource;
 
 
 	/**
@@ -91,28 +121,34 @@ public final class PoliticianRankingView extends AbstractRankingView {
 	 *            the context
 	 */
 	public PoliticianRankingView(final ApplicationContext context) {
-		super();
-		pageModeContentFactoryMap = context.getBeansOfType(PageModeContentFactory.class);
-
+		super(context.getBeansOfType(PageModeContentFactory.class),NAME);
 	}
 
 
 	/**
-	 * Post construct.
+	 * Creates the chart time series all.
+	 *
+	 * @return the data series
 	 */
-	@PostConstruct
-	public void postConstruct() {
-		setSizeFull();
-		createBasicLayoutWithPanelAndFooter(NAME);
-	}
-
-	@Override
-	protected void createMenuBar() {
-		menuItemFactory.createPoliticianRankingMenuBar(getBarmenu());
+	protected DataSeries createChartTimeSeriesAll() {
+		return dataSeriesFactory.createPartyChartTimeSeriesAll();
 	}
 
 
-	@Override
+	/**
+	 * Creates the chart time series current.
+	 *
+	 * @return the data series
+	 */
+	protected DataSeries createChartTimeSeriesCurrent() {
+		return dataSeriesFactory.createPartyChartTimeSeriesCurrent();
+	}
+
+	/**
+	 * Creates the description.
+	 *
+	 * @return the text area
+	 */
 	protected TextArea createDescription() {
 		final TextArea totalpoliticantoplistLabel = new TextArea(
 				"Politician Ranking by topic",
@@ -131,7 +167,27 @@ public final class PoliticianRankingView extends AbstractRankingView {
 		return totalpoliticantoplistLabel;
 	}
 
-	@Override
+	/**
+	 * Creates the extra chart layout.
+	 *
+	 * @return the layout
+	 */
+	protected Layout createExtraChartLayout() {
+		return null;
+	}
+
+	/**
+	 * Creates the menu bar.
+	 */
+	protected void createMenuBar() {
+		menuItemFactory.createPoliticianRankingMenuBar(getBarmenu());
+	}
+
+	/**
+	 * Creates the table.
+	 *
+	 * @return the component
+	 */
 	protected Component createTable() {
 
 		if (politicianDataSource == null) {
@@ -170,24 +226,100 @@ public final class PoliticianRankingView extends AbstractRankingView {
 	}
 
 	@Override
-	protected DataSeries createChartTimeSeriesAll() {
-		return dataSeriesFactory.createPartyChartTimeSeriesAll();
+	public final void enter(final ViewChangeEvent event) {
+
+		createMenuBar();
+
+		final String parameters = event.getParameters();
+
+		final VerticalLayout panelContent = new VerticalLayout();
+		panelContent.setSizeFull();
+		panelContent.setMargin(true);
+
+		if (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString())) {
+
+
+			panelContent.addComponent(createDescription());
+
+			getPanel().setCaption(OVERVIEW + event.getParameters());
+
+		} else 	if (parameters.contains(PageMode.DATAGRID.toString())) {
+
+			panelContent.addComponent(createTable());
+
+			getPanel().setCaption(DATAGRID + event.getParameters());
+
+		} else 	if (parameters.contains(PageMode.CHARTS.toString())) {
+
+			final Layout chartLayout = new HorizontalLayout();
+			chartLayout.setSizeFull();
+
+
+			final Component chartPanelAll = chartDataManager.createChartPanel(createChartTimeSeriesAll(),"All");
+			if (chartPanelAll!=null) {
+				chartLayout.addComponent(chartPanelAll);
+			}
+
+			final Component chartPanelCurrent = chartDataManager.createChartPanel(createChartTimeSeriesCurrent(),"Current");
+			if (chartPanelCurrent!=null) {
+				chartLayout.addComponent(chartPanelCurrent);
+			}
+			panelContent.addComponent(chartLayout);
+
+			final Layout extraChartLayout = createExtraChartLayout();
+			if (extraChartLayout != null) {
+				panelContent.addComponent(extraChartLayout);
+			}
+
+			getPanel().setCaption(CHARTS + event.getParameters());
+
+		} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
+
+			panelContent.addComponent(adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(getName()));
+
+			getPanel().setCaption(PAGE_VISIT_HISTORY + event.getParameters());
+
+		}
+
+		getPanel().setContent(panelContent);
+
+		pageActionEventHelper.createPageEvent(getViewAction(), ApplicationEventGroup.USER, getName(), parameters, null);
+
+
+
 	}
 
-	@Override
-	protected DataSeries createChartTimeSeriesCurrent() {
-		return dataSeriesFactory.createPartyChartTimeSeriesCurrent();
-	}
-
-	@Override
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	protected String getName() {
 		return NAME;
 	}
 
-	@Override
+
+
+
+	/**
+	 * Gets the view action.
+	 *
+	 * @return the view action
+	 */
 	protected ViewAction getViewAction() {
 		return ViewAction.VISIT_POLITICIAN_RANKING_VIEW;
 	}
+
+	/**
+	 * Post construct.
+	 */
+	@PostConstruct
+	public void postConstruct() {
+		setSizeFull();
+		createBasicLayoutWithPanelAndFooter(NAME);
+	}
+
+
 
 
 }

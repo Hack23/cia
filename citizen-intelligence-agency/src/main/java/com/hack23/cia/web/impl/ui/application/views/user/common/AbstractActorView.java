@@ -18,6 +18,9 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.user.common;
 
+import java.util.Map;
+
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 
 /**
  * The Class AbstractActorView.
@@ -27,5 +30,16 @@ public abstract class AbstractActorView extends AbstractUserView{
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Instantiates a new abstract actor view.
+	 *
+	 * @param pageModeContentFactoryMap
+	 *            the page mode content factory map
+	 * @param pageName
+	 *            the page name
+	 */
+	public AbstractActorView(Map<String, PageModeContentFactory> pageModeContentFactoryMap, String pageName) {
+		super(pageModeContentFactoryMap,pageName);
+	}
 
 }

@@ -18,10 +18,9 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.committee;
 
-import java.util.Map;
-
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang3.StringUtils;
 import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -31,23 +30,28 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee_;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.AdminChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.CommitteeDataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.PartyDataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView;
 import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.TextArea;
+import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
 
@@ -59,8 +63,14 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(value = CommitteeRankingView.NAME, cached = true)
 public final class CommitteeRankingView extends AbstractRankingView {
 
-	/** The Constant CURRENT_PARTIES_HEADCOUNT. */
-	private static final String CURRENT_PARTIES_HEADCOUNT = "Current Parties, headcount";
+	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED. */
+	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED = "All Parties, total days served";
+
+	/** The Constant CHARTS. */
+	private static final String CHARTS = "Charts:";
+
+	/** The Constant COMMITTEE_RANKING_BY_TOPIC. */
+	private static final String COMMITTEE_RANKING_BY_TOPIC = "Committee Ranking by topic";
 
 	/** The Constant COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION. */
 	private static final String COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION = "Time served in Committee:ALL:CURRENT:" + "\nPoliticans served in Committee:ALL:CURRENT:"
@@ -73,29 +83,36 @@ public final class CommitteeRankingView extends AbstractRankingView {
 			+ "\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
 			+ "\nSearch by name";
 
-	/** The Constant COMMITTEE_RANKING_BY_TOPIC. */
-	private static final String COMMITTEE_RANKING_BY_TOPIC = "Committee Ranking by topic";
+	/** The Constant CURRENT_PARTIES_HEADCOUNT. */
+	private static final String CURRENT_PARTIES_HEADCOUNT = "Current Parties, headcount";
 
-	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED. */
-	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED = "All Parties, total days served";
+	/** The Constant DATAGRID. */
+	private static final String DATAGRID = "Datagrid:";
+
+	/** The Constant NAME. */
+	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
+
+	/** The Constant OVERVIEW. */
+	private static final String OVERVIEW = "Overview:";
+
+	/** The Constant PAGE_VISIT_HISTORY. */
+	private static final String PAGE_VISIT_HISTORY = "Page Visit History:";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The Constant NAME. */
-	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
+	/** The admin chart data manager. */
+	@Autowired
+	private transient AdminChartDataManager adminChartDataManager;
 
 	/** The application manager. */
 	@Autowired
 	private transient ApplicationManager applicationManager;
 
+
 	/** The chart data manager. */
 	@Autowired
 	private transient ChartDataManager chartDataManager;
-
-	/** The menu item factory. */
-	@Autowired
-	private transient MenuItemFactory menuItemFactory;
 
 	/** The data series factory. */
 	@Autowired
@@ -109,8 +126,9 @@ public final class CommitteeRankingView extends AbstractRankingView {
 	@Autowired
 	private transient GridFactory gridFactory;
 
-	/** The page mode content factory map. */
-	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
+	/** The menu item factory. */
+	@Autowired
+	private transient MenuItemFactory menuItemFactory;
 
 	/**
 	 * Instantiates a new committee ranking view.
@@ -119,27 +137,34 @@ public final class CommitteeRankingView extends AbstractRankingView {
 	 *            the context
 	 */
 	public CommitteeRankingView(final ApplicationContext context) {
-		super();
-		pageModeContentFactoryMap = context.getBeansOfType(PageModeContentFactory.class);
+		super(context.getBeansOfType(PageModeContentFactory.class), NAME);
+	}
 
+	/**
+	 * Creates the chart time series all.
+	 *
+	 * @return the data series
+	 */
+	protected DataSeries createChartTimeSeriesAll() {
+		return dataSeriesFactory.createCommitteeChartTimeSeriesAll();
 	}
 
 
 	/**
-	 * Post construct.
+	 * Creates the chart time series current.
+	 *
+	 * @return the data series
 	 */
-	@PostConstruct
-	public void postConstruct() {
-		setSizeFull();
-		createBasicLayoutWithPanelAndFooter(NAME);
+	protected DataSeries createChartTimeSeriesCurrent() {
+		return dataSeriesFactory.createCommitteeChartTimeSeriesCurrent();
 	}
 
-	@Override
-	protected void createMenuBar() {
-		menuItemFactory.createCommitteeeRankingMenuBar(getBarmenu());
-	}
 
-	@Override
+	/**
+	 * Creates the description.
+	 *
+	 * @return the text area
+	 */
 	protected TextArea createDescription() {
 		final TextArea totalCommitteeRankinglistLabel = new TextArea(COMMITTEE_RANKING_BY_TOPIC,
 				COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION);
@@ -147,7 +172,11 @@ public final class CommitteeRankingView extends AbstractRankingView {
 		return totalCommitteeRankinglistLabel;
 	}
 
-	@Override
+	/**
+	 * Creates the extra chart layout.
+	 *
+	 * @return the layout
+	 */
 	protected Layout createExtraChartLayout() {
 		final Layout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
@@ -168,7 +197,18 @@ public final class CommitteeRankingView extends AbstractRankingView {
 		return chartLayout;
 	}
 
-	@Override
+	/**
+	 * Creates the menu bar.
+	 */
+	protected void createMenuBar() {
+		menuItemFactory.createCommitteeeRankingMenuBar(getBarmenu());
+	}
+
+	/**
+	 * Creates the table.
+	 *
+	 * @return the component
+	 */
 	protected Component createTable() {
 		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenCommittee.class);
@@ -187,23 +227,98 @@ public final class CommitteeRankingView extends AbstractRankingView {
 	}
 
 	@Override
-	protected DataSeries createChartTimeSeriesAll() {
-		return dataSeriesFactory.createCommitteeChartTimeSeriesAll();
+	public final void enter(final ViewChangeEvent event) {
+
+		createMenuBar();
+
+		final String parameters = event.getParameters();
+
+		final VerticalLayout panelContent = new VerticalLayout();
+		panelContent.setSizeFull();
+		panelContent.setMargin(true);
+
+		if (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString())) {
+
+
+			panelContent.addComponent(createDescription());
+
+			getPanel().setCaption(OVERVIEW + event.getParameters());
+
+		} else 	if (parameters.contains(PageMode.DATAGRID.toString())) {
+
+			panelContent.addComponent(createTable());
+
+			getPanel().setCaption(DATAGRID + event.getParameters());
+
+		} else 	if (parameters.contains(PageMode.CHARTS.toString())) {
+
+			final Layout chartLayout = new HorizontalLayout();
+			chartLayout.setSizeFull();
+
+
+			final Component chartPanelAll = chartDataManager.createChartPanel(createChartTimeSeriesAll(),"All");
+			if (chartPanelAll!=null) {
+				chartLayout.addComponent(chartPanelAll);
+			}
+
+			final Component chartPanelCurrent = chartDataManager.createChartPanel(createChartTimeSeriesCurrent(),"Current");
+			if (chartPanelCurrent!=null) {
+				chartLayout.addComponent(chartPanelCurrent);
+			}
+			panelContent.addComponent(chartLayout);
+
+			final Layout extraChartLayout = createExtraChartLayout();
+			if (extraChartLayout != null) {
+				panelContent.addComponent(extraChartLayout);
+			}
+
+			getPanel().setCaption(CHARTS + event.getParameters());
+
+		} else if (parameters.contains(PageMode.PAGEVISITHISTORY.toString())) {
+
+			panelContent.addComponent(adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(getName()));
+
+			getPanel().setCaption(PAGE_VISIT_HISTORY + event.getParameters());
+
+		}
+
+		getPanel().setContent(panelContent);
+
+		pageActionEventHelper.createPageEvent(getViewAction(), ApplicationEventGroup.USER, getName(), parameters, null);
+
+
+
 	}
 
-	@Override
-	protected DataSeries createChartTimeSeriesCurrent() {
-		return dataSeriesFactory.createCommitteeChartTimeSeriesCurrent();
-	}
-
-	@Override
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	protected String getName() {
 		return NAME;
 	}
 
-	@Override
+	/**
+	 * Gets the view action.
+	 *
+	 * @return the view action
+	 */
 	protected ViewAction getViewAction() {
 		return ViewAction.VISIT_COMMITTEE_RANKING_VIEW;
 	}
+
+
+
+
+	/**
+	 * Post construct.
+	 */
+	@PostConstruct
+	public void postConstruct() {
+		setSizeFull();
+		createBasicLayoutWithPanelAndFooter(NAME);
+	}
+
 
 }

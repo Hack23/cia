@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.common;
 
+import java.util.Map;
+
 import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,8 +27,10 @@ import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.AdminChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -67,13 +71,24 @@ public abstract class AbstractUserView extends Panel implements View {
 	@Autowired
 	private transient AdminChartDataManager adminChartDataManager;
 
+	/** The page mode content factory map. */
+	private final Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
+	/** The page name. */
+	private final String pageName;
 
 	/**
 	 * Instantiates a new abstract user view.
+	 *
+	 * @param pageModeContentFactoryMap
+	 *            the page mode content factory map
+	 * @param pageName
+	 *            the page name
 	 */
-	protected AbstractUserView() {
+	protected AbstractUserView(Map<String, PageModeContentFactory> pageModeContentFactoryMap, String pageName) {
 		super();
+		this.pageModeContentFactoryMap = pageModeContentFactoryMap;
+		this.pageName = pageName;
 	}
 
 
@@ -117,6 +132,18 @@ public abstract class AbstractUserView extends Panel implements View {
 
 
 	}
+
+	@Override
+	public void enter(final ViewChangeEvent event) {
+		final String parameters = event.getParameters();
+		for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
+			if (pageModeContentFactory.matches(pageName, parameters)) {
+				getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
+				return;
+			}
+		}
+	}
+
 
 	/**
 	 * Gets the barmenu.

@@ -90,7 +90,7 @@ public final class SearchDocumentView extends AbstractUserView {
 	 *            the context
 	 */
 	public SearchDocumentView(final ApplicationContext context) {
-		super();
+		super(context.getBeansOfType(PageModeContentFactory.class), NAME);
 		pageModeContentFactoryMap = context.getBeansOfType(PageModeContentFactory.class);
 
 	}
