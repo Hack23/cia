@@ -147,14 +147,6 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.component.agent.impl.riksdagen.RiksdagenImportService#getAvaibleDocumentStatus()
-	 */
-	@Override
-	public List<String> getAvaibleDocumentStatus() {
-		return documentElementDAO.getIdList();
-	}
-
-	/* (non-Javadoc)
 	 * @see com.hack23.cia.service.component.agent.impl.riksdagen.RiksdagenImportService#getCommitteeProposalComponentDataMap()
 	 */
 	@Override

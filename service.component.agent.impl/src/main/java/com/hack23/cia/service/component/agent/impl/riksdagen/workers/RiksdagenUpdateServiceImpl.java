@@ -113,7 +113,6 @@ public final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService 
 
 	@Override
 	public void updateDocumentElement(final DocumentElement documentData) {
-
 		if (documentElementDAO.checkDocumentElement(documentData.getId())) {
 			documentElementDAO.merge(documentData);
 		} else {

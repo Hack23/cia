@@ -51,12 +51,6 @@ public interface RiksdagenImportService {
 	 */
 	List<String> getAvaibleDocumentContent();
 
-	/**
-	 * Gets the avaible document status.
-	 *
-	 * @return the avaible document status
-	 */
-	List<String> getAvaibleDocumentStatus();
 
 	/**
 	 * Gets the committee proposal component data map.
