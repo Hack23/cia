@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.riksdagen;
+package com.hack23.cia.service.component.agent.impl.riksdagen.workers;
 
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -28,37 +28,45 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
+import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
 
 /**
- * The Class RiksdagenDocumentElementWorkConsumerImpl.
+ * The Class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl.
  */
-@Service("riksdagenDocumentElementWorkConsumerImpl")
+@Service("riksdagenCommitteeProposalComponentDataWorkConsumerImpl")
 @Transactional
-public final class RiksdagenDocumentElementWorkConsumerImpl implements
-MessageListener {
+public final class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl implements MessageListener {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(RiksdagenDocumentElementWorkConsumerImpl.class);
+			.getLogger(RiksdagenCommitteeProposalComponentDataWorkConsumerImpl.class);
 
 	/** The import service. */
 	@Autowired
-	private RiksdagenImportService importService;
+	private RiksdagenUpdateService updateService;
+
+	/** The riksdagen api. */
+	@Autowired
+	private RiksdagenApi riksdagenApi;
+
 
 	/**
-	 * Instantiates a new riksdagen document element work consumer impl.
+	 * Instantiates a new riksdagen committee proposal component data work
+	 * consumer impl.
 	 */
-	public RiksdagenDocumentElementWorkConsumerImpl() {
+	public RiksdagenCommitteeProposalComponentDataWorkConsumerImpl() {
 		super();
 	}
+
 
 	@Override
 	public void onMessage(final Message message) {
 		try {
-			importService.updateDocumentElement((DocumentElement) ((ObjectMessage) message).getObject());
+			updateService.updateCommitteeProposalComponentData(riksdagenApi
+					.getCommitteeProposal((String) ((ObjectMessage) message)
+							.getObject()));
 		} catch (final Exception e2) {
-			LOGGER.warn("Error loading riksdagen document" , e2);
+			LOGGER.warn("Error loading CommitteeProposalComponentData" , e2);
 		}
 	}
 }

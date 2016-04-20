@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.riksdagen;
+package com.hack23.cia.service.component.agent.impl.riksdagen.workers;
 
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -44,7 +44,7 @@ MessageListener {
 
 	/** The import service. */
 	@Autowired
-	private RiksdagenImportService importService;
+	private RiksdagenUpdateService updateService;
 
 	/** The riksdagen api. */
 	@Autowired
@@ -61,7 +61,7 @@ MessageListener {
 	@Override
 	public void onMessage(final Message message) {
 		try {
-			importService.updateDocumentData(riksdagenApi
+			updateService.updateDocumentData(riksdagenApi
 					.getDocumentStatus((String) ((ObjectMessage) message).getObject()));
 		} catch (final Exception e2) {
 			LOGGER.warn("Error loading riksdagen documentstatus:" , e2);

@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.riksdagen;
+package com.hack23.cia.service.component.agent.impl.riksdagen.workers;
 
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -26,47 +26,43 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
 
 /**
- * The Class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl.
+ * The Class RiksdagenPersonElementWorkConsumerImpl.
  */
-@Service("riksdagenCommitteeProposalComponentDataWorkConsumerImpl")
-@Transactional
-public final class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl implements MessageListener {
+@Service("riksdagenPersonElementWorkConsumerImpl")
+public final class RiksdagenPersonElementWorkConsumerImpl implements MessageListener {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(RiksdagenCommitteeProposalComponentDataWorkConsumerImpl.class);
+			.getLogger(RiksdagenPersonElementWorkConsumerImpl.class);
 
 	/** The import service. */
 	@Autowired
-	private RiksdagenImportService importService;
+	private RiksdagenUpdateService updateService;
 
 	/** The riksdagen api. */
 	@Autowired
 	private RiksdagenApi riksdagenApi;
 
-
 	/**
-	 * Instantiates a new riksdagen committee proposal component data work
-	 * consumer impl.
+	 * Instantiates a new riksdagen person element work consumer impl.
 	 */
-	public RiksdagenCommitteeProposalComponentDataWorkConsumerImpl() {
+	public RiksdagenPersonElementWorkConsumerImpl() {
 		super();
 	}
-
 
 	@Override
 	public void onMessage(final Message message) {
 		try {
-			importService.updateCommitteeProposalComponentData(riksdagenApi
-					.getCommitteeProposal((String) ((ObjectMessage) message)
-							.getObject()));
+			updateService.update(riksdagenApi
+					.getPerson(((PersonElement) ((ObjectMessage) message)
+							.getObject()).getId()));
 		} catch (final Exception e2) {
-			LOGGER.warn("Error loading CommitteeProposalComponentData" , e2);
+			LOGGER.warn("Error loading PersonElement",e2);
 		}
 	}
 }

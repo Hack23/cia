@@ -16,9 +16,8 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.riksdagen;
+package com.hack23.cia.service.component.agent.impl.riksdagen.workers;
 
-import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
@@ -29,48 +28,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
+import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 
 /**
- * The Class RiksdagenVoteDataWorkConsumerImpl.
+ * The Class RiksdagenDocumentElementWorkConsumerImpl.
  */
-@Service("riksdagenVoteDataWorkConsumerImpl")
+@Service("riksdagenDocumentElementWorkConsumerImpl")
 @Transactional
-public final class RiksdagenVoteDataWorkConsumerImpl implements
+public final class RiksdagenDocumentElementWorkConsumerImpl implements
 MessageListener {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(RiksdagenVoteDataWorkConsumerImpl.class);
+			.getLogger(RiksdagenDocumentElementWorkConsumerImpl.class);
 
 	/** The import service. */
 	@Autowired
-	private RiksdagenImportService importService;
-
-	/** The riksdagen api. */
-	@Autowired
-	private RiksdagenApi riksdagenApi;
+	private RiksdagenUpdateService updateService;
 
 	/**
-	 * Instantiates a new riksdagen vote data work consumer impl.
+	 * Instantiates a new riksdagen document element work consumer impl.
 	 */
-	public RiksdagenVoteDataWorkConsumerImpl() {
+	public RiksdagenDocumentElementWorkConsumerImpl() {
 		super();
 	}
 
 	@Override
 	public void onMessage(final Message message) {
-		final String ballotId;
 		try {
-			ballotId = (String) ((ObjectMessage) message).getObject();
-			try {
-				importService.updateVoteDataData(riksdagenApi
-						.getBallot(ballotId));
-			} catch (final Exception e2) {
-				LOGGER.warn("Eror loading riksdagen voteData:" + ballotId + " errorMessage:" ,e2);
-			}
-		} catch (final JMSException e) {
-			LOGGER.warn("No Valid input",e);
+			updateService.updateDocumentElement((DocumentElement) ((ObjectMessage) message).getObject());
+		} catch (final Exception e2) {
+			LOGGER.warn("Error loading riksdagen document" , e2);
 		}
 	}
 }

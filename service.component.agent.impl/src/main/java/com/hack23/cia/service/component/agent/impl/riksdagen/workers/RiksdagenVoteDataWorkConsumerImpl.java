@@ -16,8 +16,9 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.riksdagen;
+package com.hack23.cia.service.component.agent.impl.riksdagen.workers;
 
+import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
@@ -26,43 +27,50 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
 
 /**
- * The Class RiksdagenPersonElementWorkConsumerImpl.
+ * The Class RiksdagenVoteDataWorkConsumerImpl.
  */
-@Service("riksdagenPersonElementWorkConsumerImpl")
-public final class RiksdagenPersonElementWorkConsumerImpl implements MessageListener {
+@Service("riksdagenVoteDataWorkConsumerImpl")
+@Transactional
+public final class RiksdagenVoteDataWorkConsumerImpl implements
+MessageListener {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(RiksdagenPersonElementWorkConsumerImpl.class);
+			.getLogger(RiksdagenVoteDataWorkConsumerImpl.class);
 
 	/** The import service. */
 	@Autowired
-	private RiksdagenImportService importService;
+	private RiksdagenUpdateService updateService;
 
 	/** The riksdagen api. */
 	@Autowired
 	private RiksdagenApi riksdagenApi;
 
 	/**
-	 * Instantiates a new riksdagen person element work consumer impl.
+	 * Instantiates a new riksdagen vote data work consumer impl.
 	 */
-	public RiksdagenPersonElementWorkConsumerImpl() {
+	public RiksdagenVoteDataWorkConsumerImpl() {
 		super();
 	}
 
 	@Override
 	public void onMessage(final Message message) {
+		final String ballotId;
 		try {
-			importService.update(riksdagenApi
-					.getPerson(((PersonElement) ((ObjectMessage) message)
-							.getObject()).getId()));
-		} catch (final Exception e2) {
-			LOGGER.warn("Error loading PersonElement",e2);
+			ballotId = (String) ((ObjectMessage) message).getObject();
+			try {
+				updateService.updateVoteDataData(riksdagenApi
+						.getBallot(ballotId));
+			} catch (final Exception e2) {
+				LOGGER.warn("Eror loading riksdagen voteData:" + ballotId + " errorMessage:" ,e2);
+			}
+		} catch (final JMSException e) {
+			LOGGER.warn("No Valid input",e);
 		}
 	}
 }

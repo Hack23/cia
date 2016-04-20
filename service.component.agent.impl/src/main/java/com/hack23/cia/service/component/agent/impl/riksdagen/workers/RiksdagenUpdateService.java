@@ -16,110 +16,22 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.riksdagen;
+package com.hack23.cia.service.component.agent.impl.riksdagen.workers;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
-import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentType;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
 import com.hack23.cia.model.external.riksdagen.votering.impl.VoteData;
 
 /**
- * The Interface RiksdagenImportService.
+ * The Interface RiksdagenUpdateService.
  */
-public interface RiksdagenImportService {
+public interface RiksdagenUpdateService {
 
-
-	/**
-	 * Gets the start year for document element.
-	 *
-	 * @return the start year for document element
-	 */
-	int getStartYearForDocumentElement();
-
-	/**
-	 * Gets the avaible committee proposal.
-	 *
-	 * @return the avaible committee proposal
-	 */
-	List<String> getAvaibleCommitteeProposal();
-
-	/**
-	 * Gets the avaible document content.
-	 *
-	 * @return the avaible document content
-	 */
-	List<String> getAvaibleDocumentContent();
-
-	/**
-	 * Gets the avaible document status.
-	 *
-	 * @return the avaible document status
-	 */
-	List<String> getAvaibleDocumentStatus();
-
-	/**
-	 * Gets the committee proposal component data map.
-	 *
-	 * @return the committee proposal component data map
-	 */
-	Map<String, String> getCommitteeProposalComponentDataMap();
-
-	/**
-	 * Gets the document content map.
-	 *
-	 * @return the document content map
-	 */
-	Map<String, String> getDocumentContentMap();
-
-	/**
-	 * Gets the document element map.
-	 *
-	 * @return the document element map
-	 */
-	Map<String, String> getDocumentElementMap();
-
-	/**
-	 * Gets the document element map.
-	 *
-	 * @param after
-	 *            the after
-	 * @param downloadType
-	 *            the download type
-	 * @param onlyWithDocStatus
-	 *            the only with doc status
-	 * @return the document element map
-	 */
-	Map<String, String> getDocumentElementMap(Date after,
-			List<DocumentType> downloadType, boolean onlyWithDocStatus);
-
-	/**
-	 * Gets the document status container map.
-	 *
-	 * @return the document status container map
-	 */
-	Map<String, String> getDocumentStatusContainerMap();
-
-
-	/**
-	 * Gets the loaded ballot id map.
-	 *
-	 * @return the loaded ballot id map
-	 */
-	Map<String, String> getLoadedBallotIdMap();
-
-	/**
-	 * Gets the person map.
-	 *
-	 * @return the person map
-	 */
-	Map<String, String> getPersonMap();
 
 	/**
 	 * Update.

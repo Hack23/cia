@@ -78,8 +78,8 @@
           <groupId>nz.ac.waikato.cms.weka.thirdparty</groupId>
         </exclusion>
         <exclusion>
-        	<groupId>com.github.fommil.netlib</groupId>
-        	<artifactId>all</artifactId>
+          <artifactId>all</artifactId>
+          <groupId>com.github.fommil.netlib</groupId>
         </exclusion>
       </exclusions>
     </dependency>

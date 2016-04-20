@@ -29,7 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentType;
-import com.hack23.cia.service.component.agent.impl.riksdagen.RiksdagenImportService;
+import com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.RiksdagenImportService;
 
 /**
  * The Class RiksdagenImportServiceITest.
