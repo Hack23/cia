@@ -71,11 +71,15 @@
     <dependency>
       <groupId>nz.ac.waikato.cms.weka</groupId>
       <artifactId>weka-dev</artifactId>
-      <version>3.7.13</version>
+      <version>3.9.0</version>
       <exclusions>
         <exclusion>
           <artifactId>java-cup-11b-runtime</artifactId>
           <groupId>nz.ac.waikato.cms.weka.thirdparty</groupId>
+        </exclusion>
+        <exclusion>
+        	<groupId>com.github.fommil.netlib</groupId>
+        	<artifactId>all</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
