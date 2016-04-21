@@ -30,6 +30,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFac
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
@@ -154,8 +155,9 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 */
 	protected final VerticalLayout createPanelContent() {
 		final VerticalLayout panelContent = new VerticalLayout();
-		panelContent.setSizeFull();
 		panelContent.setMargin(true);
+		panelContent.setWidth(100, Unit.PERCENTAGE);
+		panelContent.setHeight(100, Unit.PERCENTAGE);
 		return panelContent;
 	}
 

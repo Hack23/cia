@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.goverment;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
@@ -44,7 +42,6 @@ public final class MinistryRankingView extends AbstractRankingView {
 	 */
 	private static final long serialVersionUID = 1L;
 
-
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.MINISTRY_RANKING_VIEW_NAME;
 
@@ -56,15 +53,6 @@ public final class MinistryRankingView extends AbstractRankingView {
 	 */
 	public MinistryRankingView(final ApplicationContext context) {
 		super(context.getBeansOfType(PageModeContentFactory.class), NAME);
-	}
-
-	/**
-	 * Post construct.
-	 */
-	@PostConstruct
-	public void postConstruct() {
-		setSizeFull();
-		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
 }

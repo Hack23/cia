@@ -23,20 +23,17 @@ import java.util.Arrays;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.internal.application.system.impl.Agency;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.model.internal.application.system.impl.Portal;
+import com.hack23.cia.model.internal.application.system.impl.LanguageData;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Grid;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -44,21 +41,21 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class OverviewPageModContentFactoryImpl.
+ * The Class AdminLanguagePageModContentFactoryImpl.
  */
 @Component
-public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
+public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant ADMIN_AGENCY. */
-	private static final String ADMIN_AGENCY = "Admin Agency";
+	/** The Constant ADMIN_LANGUAGE. */
+	private static final String ADMIN_LANGUAGE = "Admin Language";
 
 	/** The Constant NAME. */
-	public static final String NAME = AdminViews.ADMIN_AGENCY_VIEW_NAME;
+	public static final String NAME = AdminViews.ADMIN_LANGUAGE_VIEW_NAME;
 
 	/**
-	 * Instantiates a new admin agency page mod content factory impl.
+	 * Instantiates a new admin language page mod content factory impl.
 	 */
-	public AdminAgencyPageModContentFactoryImpl() {
+	public AdminLanguagePageModContentFactoryImpl() {
 		super();
 	}
 
@@ -76,57 +73,35 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-
-		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_AGENCY);
+		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_LANGUAGE);
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
 
-		final DataContainer<Agency, Long> dataContainer = getApplicationManager().getDataContainer(Agency.class);
+		final DataContainer<LanguageData, Long> dataContainer = getApplicationManager()
+				.getDataContainer(LanguageData.class);
 
-		final BeanItemContainer<Agency> politicianDocumentDataSource = new BeanItemContainer<>(Agency.class,
+		final BeanItemContainer<LanguageData> politicianDocumentDataSource = new BeanItemContainer<>(LanguageData.class,
 				dataContainer.getAll());
 
 		final Grid createBasicBeanItemGrid = getGridFactory().createBasicBeanItemGrid(politicianDocumentDataSource,
-				"Agency", new String[] { "hjid", "agencyName", "description", "portals", "modelObjectVersion" },
+				"LanguageData", new String[] { "hjid", "languageName", "modelObjectVersion" },
 				new String[] { "modelObjectId" }, "hjid",
-				new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid"), null);
+				new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, "hjid"), null);
 		content.addComponent(createBasicBeanItemGrid);
-
 		content.addComponent(createBasicBeanItemGrid);
 		content.setExpandRatio(createBasicBeanItemGrid, ContentRatio.GRID);
 
 		if (pageId != null && !pageId.isEmpty()) {
 
-			final VerticalLayout leftLayout = new VerticalLayout();
-			leftLayout.setSizeFull();
-			final VerticalLayout rightLayout = new VerticalLayout();
-			rightLayout.setSizeFull();
-			final HorizontalLayout horizontalLayout = new HorizontalLayout();
-			horizontalLayout.setWidth(ContentSize.FULL_SIZE);
-			content.addComponent(horizontalLayout);
-			horizontalLayout.addComponent(leftLayout);
-			horizontalLayout.addComponent(rightLayout);
+			final LanguageData languageData = dataContainer.load(Long.valueOf(pageId));
 
-			final Agency agency = dataContainer.load(Long.valueOf(pageId));
-
-			if (agency != null) {
-
-				getFormFactory().addTextFields(leftLayout, new BeanItem<>(agency), Agency.class,
-						Arrays.asList(new String[] { "hjid", "agencyName", "description", "modelObjectVersion" }));
-
-				final BeanItemContainer<Portal> portalItemContainer = new BeanItemContainer<>(Portal.class,
-						agency.getPortals());
-
-				rightLayout.addComponent(getGridFactory().createBasicBeanItemGrid(portalItemContainer, "Portal",
-						new String[] { "hjid", "portalName", "description", "portalType", "googleMapApiKey",
-								"modelObjectVersion" },
-						new String[] { "modelObjectId" }, "hjid",
-						new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid"), null));
+			if (languageData != null) {
+				getFormFactory().addTextFields(content, new BeanItem<>(languageData), LanguageData.class,
+						Arrays.asList(new String[] { "hjid", "languageName", "modelObjectVersion" }));
 			}
-
 		}
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_AGENCY_VIEW, ApplicationEventGroup.ADMIN,
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_LANGUAGE_VIEW, ApplicationEventGroup.ADMIN,
 				NAME, null, pageId);
 
 		return content;

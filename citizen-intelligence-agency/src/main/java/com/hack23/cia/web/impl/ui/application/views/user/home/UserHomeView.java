@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.home;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -53,15 +51,6 @@ public final class UserHomeView extends AbstractUserView {
 	 */
 	public UserHomeView(final ApplicationContext context) {
 		super(context.getBeansOfType(PageModeContentFactory.class), NAME);
-	}
-
-	/**
-	 * Post construct.
-	 */
-	@PostConstruct
-	public void postConstruct() {
-		setSizeFull();
-		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
 }

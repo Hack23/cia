@@ -18,10 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.test;
 
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
@@ -32,20 +28,17 @@ import com.hack23.cia.web.impl.ui.application.views.common.AbstractView;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
 
-
-
 /**
  * The Class TestChartView.
  */
 @Service
-@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @VaadinView(value = TestChartView.NAME, cached = true)
 public final class TestChartView extends AbstractView {
 
@@ -68,9 +61,6 @@ public final class TestChartView extends AbstractView {
 	/** The page mode content. */
 	private VerticalLayout pageModeContent;
 
-	/** The page mode content factory map. */
-	private transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
-
 	/**
 	 * Instantiates a new test chart view.
 	 *
@@ -78,17 +68,14 @@ public final class TestChartView extends AbstractView {
 	 *            the context
 	 */
 	public TestChartView(final ApplicationContext context) {
-		super();
-		pageModeContentFactoryMap = context.getBeansOfType(PageModeContentFactory.class);
-
+		super(context.getBeansOfType(PageModeContentFactory.class), NAME);
 	}
-
 
 	/**
 	 * Post construct.
 	 */
-	@PostConstruct
-	public void postConstruct() {
+	//@PostConstruct
+	public void content() {
 		setSizeFull();
 
 		setCaption(CITIZEN_INTELLIGENCE_AGENCY_TEST_CHART_VIEW);
@@ -102,7 +89,6 @@ public final class TestChartView extends AbstractView {
 
 		menuItemFactory.createTestTopicMenu(barmenu);
 
-
 		pageModeContent = new VerticalLayout();
 		layout.setMargin(true);
 		layout.setSpacing(true);
@@ -111,29 +97,9 @@ public final class TestChartView extends AbstractView {
 
 		pageModeContent.addComponent(new Label(OVERVIEW));
 
-
-
 		layout.addComponent(pageLinkFactory.createMainViewPageLink());
 
 		setContent(layout);
-
-	}
-
-	@Override
-	public void enter(final ViewChangeEvent event) {
-		if (pageModeContent.getComponentCount() != 0) {
-			pageModeContent.removeAllComponents();
-		}
-
-		final String parameters = event.getParameters();
-
-		for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
-
-			if (pageModeContentFactory.matches(NAME, parameters)) {
-				pageModeContent.addComponent(pageModeContentFactory.createContent(parameters, null, this));
-				return;
-			}
-		}
 
 	}
 

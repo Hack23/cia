@@ -30,10 +30,11 @@ public interface MenuItemFactory {
 
 	/**
 	 * Creates a new MenuItem object.
+	 * @param menuBar
 	 *
 	 * @return the menu bar
 	 */
-	MenuBar createMainPageMenuBar();
+	MenuBar createMainPageMenuBar(MenuBar menuBar);
 
 	/**
 	 * Creates a new MenuItem object.

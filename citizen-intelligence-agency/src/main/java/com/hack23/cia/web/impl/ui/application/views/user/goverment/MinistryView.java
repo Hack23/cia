@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.goverment;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
@@ -53,15 +51,6 @@ public final class MinistryView extends AbstractGroupView {
 	 */
 	public MinistryView(final ApplicationContext context) {
 		super(context.getBeansOfType(PageModeContentFactory.class), NAME);
-	}
-
-	/**
-	 * Post construct.
-	 */
-	@PostConstruct
-	public void postConstruct() {
-		setSizeFull();
-		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
 }

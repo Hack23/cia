@@ -40,6 +40,7 @@ import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
@@ -359,13 +360,21 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 	}
 
 	@Override
-	public MenuBar createMainPageMenuBar() {
-		final MenuBar barmenu = new MenuBar();
+	public MenuBar createMainPageMenuBar(final MenuBar menuBar) {
+		final MenuItem mainViewItem = menuBar.addItem("Application", null, null);
 
-		barmenu.addItem(OVERVIEW_TEXT, null, new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
+		mainViewItem.addItem(OVERVIEW_TEXT, null, new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
+
+		if (allowRoleInSecurityContext(ROLE_ADMIN) || allowRoleInSecurityContext(ROLE_USER)) {
+			mainViewItem.addItem("Logout", null, new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGOUT.toString()));
+		} else {
+			mainViewItem.addItem("Login", null, new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
+			mainViewItem.addItem("Register", null, new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
+		}
+
 
 		if (allowRoleInSecurityContext(ROLE_ADMIN)) {
-			final MenuItem adminMenuItem = barmenu.addItem(ADMIN_TEXT, null, null);
+			final MenuItem adminMenuItem = menuBar.addItem(ADMIN_TEXT, null, null);
 
 			adminMenuItem.addItem(AGENT_OPERATIONS_TEXT,
 					new PageModeMenuCommand(AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, ""));
@@ -398,10 +407,10 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 
 		if (allowRoleInSecurityContext(ROLE_ADMIN) || allowRoleInSecurityContext(ROLE_USER)) {
-			barmenu.addItem(USERHOME, new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, ""));
+			menuBar.addItem(USERHOME, new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, ""));
 		}
 
-		final MenuItem rankingsMenuItem = barmenu.addItem(RANKING_TEXT, null, null);
+		final MenuItem rankingsMenuItem = menuBar.addItem(RANKING_TEXT, null, null);
 
 		final MenuItem politicianMenuItem = rankingsMenuItem.addItem(POLITICIAN_RANKING_LINK_TEXT,
 				new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.OVERVIEW));
@@ -423,14 +432,14 @@ public final class MenuItemFactoryImpl implements MenuItemFactory {
 
 		createMinistryRankingTopics(ministryMenuItem);
 
-		barmenu.addItem(TEST_TEXT, new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.OVERVIEW));
+		menuBar.addItem(TEST_TEXT, new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.OVERVIEW));
 
-		barmenu.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+		menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.PAGEVISITHISTORY));
 
 
 
-		return barmenu;
+		return menuBar;
 	}
 
 	/**

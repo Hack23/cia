@@ -18,7 +18,10 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.common;
 
+import java.util.Map;
+
 import com.hack23.cia.web.impl.ui.application.views.common.AbstractView;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 
 /**
  * The Class AbstractAdminView.
@@ -30,10 +33,15 @@ public abstract class AbstractAdminView extends AbstractView {
 
 	/**
 	 * Instantiates a new abstract admin view.
+	 *
+	 * @param pageModeContentFactoryMap
+	 *            the page mode content factory map
+	 * @param pageName
+	 *            the page name
 	 */
-	protected AbstractAdminView() {
-		super();
+	protected AbstractAdminView(final Map<String, PageModeContentFactory> pageModeContentFactoryMap,
+			final String pageName) {
+		super(pageModeContentFactoryMap, pageName);
 	}
-
 
 }

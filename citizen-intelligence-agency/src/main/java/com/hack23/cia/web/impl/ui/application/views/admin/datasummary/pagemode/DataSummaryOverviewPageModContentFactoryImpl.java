@@ -32,7 +32,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
-import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Panel;
@@ -84,6 +83,8 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout content = createPanelContent();
 
+		getMenuItemFactory().createMainPageMenuBar(menuBar);
+
 		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_DATA_SUMMARY);
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
@@ -123,10 +124,6 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 		content.addComponent(updateSearchIndexButton);
 		content.setExpandRatio(updateSearchIndexButton, ContentRatio.SMALL);
-
-		final Link createMainViewPageLink = getPageLinkFactory().createMainViewPageLink();
-		content.addComponent(createMainViewPageLink);
-		content.setExpandRatio(createMainViewPageLink, ContentRatio.SMALL);
 
 		return content;
 

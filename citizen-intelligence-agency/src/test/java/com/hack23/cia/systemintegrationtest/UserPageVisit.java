@@ -260,8 +260,13 @@ public final class UserPageVisit extends Assert {
 	 *            the caption
 	 * @return the menu item
 	 */
+
 	public WebElement getMenuItem(final String... caption) {
 		return getMenuItem(getMenuBar(), 1,caption);
+	}
+
+	public WebElement getMenuItem(final WebElement element,final String... caption) {
+		return getMenuItem(element, 1,caption);
 	}
 
 	/**
@@ -286,10 +291,22 @@ public final class UserPageVisit extends Assert {
 		} else {
 			for (final WebElement webElement : findElements) {
 				if (caption[level -1].equals(webElement.getText())) {
+
+
 					return getMenuItem(webElement, level +1 ,caption);
 				}
 			}
 		}
+
+			final List<WebElement> findElements2 = driver.findElements(By.className("v-menubar-menuitem"));
+			if (caption.length == level) {
+				for (final WebElement webElement : findElements2) {
+						if (caption[level -1].equals(webElement.getText())) {
+						return webElement;
+					}
+				}
+			}
+
 		return null;
 	}
 

@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.document;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -53,15 +51,6 @@ public final class SearchDocumentView extends AbstractUserView {
 	public SearchDocumentView(final ApplicationContext context) {
 		super(context.getBeansOfType(PageModeContentFactory.class), NAME);
 
-	}
-
-	/**
-	 * Post construct.
-	 */
-	@PostConstruct
-	public void postConstruct() {
-		setSizeFull();
-		createBasicLayoutWithPanelAndFooter(NAME);
 	}
 
 }

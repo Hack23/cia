@@ -24,40 +24,30 @@ import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
+import com.hack23.cia.web.impl.ui.application.views.common.AbstractView;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.AdminChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.MenuBar;
-import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class AbstractUserView.
  */
-public abstract class AbstractUserView extends Panel implements View {
+public abstract class AbstractUserView extends AbstractView {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/** The Constant GENERAL_PAGE_MODE_PAGE_VISIT. */
 	public static final String GENERAL_PAGE_MODE_PAGE_VISIT = "General Page Mode Page Visit";
 
 	/** The Constant CURRENT_PAGE_VISIT_HISTORY. */
 	public static final String CURRENT_PAGE_VISIT_HISTORY = "Current Page Visit History";
-
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
-
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-
-	/** The barmenu. */
-	private final MenuBar barmenu = new MenuBar();
-
-	/** The panel. */
-	private Panel panel;
 
 	/** The page link factory. */
 	@Autowired
@@ -71,12 +61,6 @@ public abstract class AbstractUserView extends Panel implements View {
 	@Autowired
 	private transient AdminChartDataManager adminChartDataManager;
 
-	/** The page mode content factory map. */
-	private final Map<String, PageModeContentFactory> pageModeContentFactoryMap;
-
-	/** The page name. */
-	private final String pageName;
-
 	/**
 	 * Instantiates a new abstract user view.
 	 *
@@ -86,82 +70,7 @@ public abstract class AbstractUserView extends Panel implements View {
 	 *            the page name
 	 */
 	protected AbstractUserView(final Map<String, PageModeContentFactory> pageModeContentFactoryMap, final String pageName) {
-		super();
-		this.pageModeContentFactoryMap = pageModeContentFactoryMap;
-		this.pageName = pageName;
-	}
-
-
-	/**
-	 * Creates the basic layout with panel and footer.
-	 *
-	 * @param panelName
-	 *            the panel name
-	 */
-	protected final void createBasicLayoutWithPanelAndFooter(final String panelName) {
-
-		final VerticalLayout layout = new VerticalLayout();
-		layout.setMargin(true);
-		layout.setSpacing(true);
-
-		final VerticalLayout pageModeContent = new VerticalLayout();
-		layout.setMargin(true);
-		layout.setSpacing(true);
-
-		layout.addComponent(pageModeContent);
-
-		pageModeContent.addComponent(new Label(OVERVIEW));
-		pageModeContent.addComponent(barmenu);
-
-		panel = new Panel(panelName);
-
-		panel.setSizeFull();
-		pageModeContent.addComponent(panel);
-		pageModeContent.setExpandRatio(panel, ContentRatio.FULL_SIZE);
-
-		pageModeContent.addComponent(pageLinkFactory.createMainViewPageLink());
-		setContent(layout);
-
-		pageModeContent.setWidth(100, Unit.PERCENTAGE);
-		pageModeContent.setHeight(100, Unit.PERCENTAGE);
-
-		layout.setWidth(100, Unit.PERCENTAGE);
-		layout.setHeight(100, Unit.PERCENTAGE);
-		setWidth(100, Unit.PERCENTAGE);
-		setHeight(100, Unit.PERCENTAGE);
-
-
-	}
-
-	@Override
-	public final void enter(final ViewChangeEvent event) {
-		final String parameters = event.getParameters();
-		for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
-			if (pageModeContentFactory.matches(pageName, parameters)) {
-				getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
-				return;
-			}
-		}
-	}
-
-
-	/**
-	 * Gets the barmenu.
-	 *
-	 * @return the barmenu
-	 */
-	public final MenuBar getBarmenu() {
-		return barmenu;
-	}
-
-
-	/**
-	 * Gets the panel.
-	 *
-	 * @return the panel
-	 */
-	protected final Panel getPanel() {
-		return panel;
+		super(pageModeContentFactoryMap,pageName);
 	}
 
 

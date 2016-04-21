@@ -37,7 +37,6 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
-import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
@@ -92,6 +91,8 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout content = createPanelContent();
 
+		getMenuItemFactory().createMainPageMenuBar(menuBar);
+
 		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_AGENT_OPERATION);
 		content.addComponent(createHeader2Label);
 		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL2);
@@ -115,10 +116,6 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 		content.setSizeFull();
 		content.setMargin(false);
 		content.setSpacing(true);
-
-		final Link createMainViewPageLink = getPageLinkFactory().createMainViewPageLink();
-		content.addComponent(createMainViewPageLink);
-		content.setExpandRatio(createMainViewPageLink, ContentRatio.SMALL);
 
 		content.setWidth(100, Unit.PERCENTAGE);
 		content.setHeight(100, Unit.PERCENTAGE);

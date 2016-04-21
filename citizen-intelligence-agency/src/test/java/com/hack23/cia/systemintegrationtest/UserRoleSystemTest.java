@@ -47,6 +47,7 @@ import com.hack23.cia.testfoundation.AbstractSystemIntegrationTest;
 import com.hack23.cia.testfoundation.Parallelized;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
@@ -436,11 +437,12 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
-		assertTrue("Expect this content", userPageVisit.getHtmlBodyAsText().contains("Admin Monitoring"));
+		assertTrue("Expect this content", userPageVisit.getHtmlBodyAsText().contains("Access denided:adminmonitoring"));
 
-		assertTrue("Expect this content",
-				userPageVisit.getIframesHtmlBodyAsText().contains("Login with Username and Password"));
+//		assertTrue("Expect this content",
+//				userPageVisit.getIframesHtmlBodyAsText().contains("Access denided:adminmonitoring"));
 	}
+
 
 	/**
 	 * Site admin monitoring success test.
@@ -473,7 +475,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 	 *             the exception
 	 */
 	private void loginAsAdmin(final UserPageVisit userPageVisit) throws Exception {
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 		userPageVisit.loginUser("admin@admin.com", "admin");
 	}
 
@@ -865,10 +867,16 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
 
-		final WebElement overviewItem = userPageVisit.getMenuItem("Overview");
-		assertNotNull(overviewItem);
+		final WebElement applicationMenuItem = userPageVisit.getMenuItem("Application");
+		assertNotNull(applicationMenuItem);
+		userPageVisit.performClickAction(applicationMenuItem);
 
-		userPageVisit.performClickAction(overviewItem);
+		Thread.sleep(1000);
+
+		final WebElement overviewMenuItem = userPageVisit.getMenuItem("Overview");
+		assertNotNull(overviewMenuItem);
+		userPageVisit.performClickAction(overviewMenuItem);
+
 
 	}
 
@@ -885,7 +893,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
 		final String username = UUID.randomUUID().toString();
 		final String password = UUID.randomUUID().toString();
@@ -907,7 +915,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
 		final String username = UUID.randomUUID().toString();
 		final String password = UUID.randomUUID().toString();
@@ -922,7 +930,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
 
-		userLoginPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
+		userLoginPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 
 		userLoginPageVisit.loginUser(username + "@test.com", password);
 

@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.common;
+package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
 
 import com.ejt.vaadin.loginform.DefaultVerticalLoginForm;
 

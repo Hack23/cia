@@ -18,12 +18,23 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common;
 
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 
 import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class AbstractView.
@@ -32,6 +43,18 @@ public abstract class AbstractView extends Panel implements View {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+
+	/** The page mode content factory map. */
+	private transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
+
+	/** The page name. */
+	private final String pageName;
+
+	/** The barmenu. */
+	private final MenuBar barmenu = new MenuBar();
+
+	/** The panel. */
+	private Panel panel;
 
 	/** The page link factory. */
 	@Autowired
@@ -44,8 +67,99 @@ public abstract class AbstractView extends Panel implements View {
 	/**
 	 * Instantiates a new abstract view.
 	 */
-	protected AbstractView() {
+	protected AbstractView(final Map<String, PageModeContentFactory> pageModeContentFactoryMap, final String pageName) {
 		super();
+		this.pageModeContentFactoryMap = pageModeContentFactoryMap;
+		this.pageName = pageName;
+	}
+
+	/**
+	 * Post construct.
+	 */
+	@PostConstruct
+	public final void postConstruct() {
+		setSizeFull();
+		createBasicLayoutWithPanelAndFooter(pageName);
+	}
+
+
+	@Override
+	public final void enter(final ViewChangeEvent event) {
+		try {
+
+			final String parameters = event.getParameters();
+			for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
+				if (pageModeContentFactory.matches(pageName, parameters)) {
+					getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
+					return;
+				}
+			}
+		} catch (final AccessDeniedException e ) {
+			final VerticalLayout panelContent = new VerticalLayout();
+			panelContent.setMargin(true);
+			panelContent.setWidth(100, Unit.PERCENTAGE);
+			panelContent.setHeight(100, Unit.PERCENTAGE);
+			panelContent.addComponent(LabelFactory.createHeader2Label("Access denided:" +pageName));
+			getPanel().setContent(panelContent);
+			getPanel().setCaption("Access denied");
+		}
+	}
+
+	/**
+	 * Creates the basic layout with panel and footer.
+	 *
+	 * @param panelName
+	 *            the panel name
+	 */
+	protected final void createBasicLayoutWithPanelAndFooter(final String panelName) {
+
+		final VerticalLayout layout = new VerticalLayout();
+		layout.setMargin(true);
+		layout.setSpacing(true);
+
+		final VerticalLayout pageModeContent = new VerticalLayout();
+		layout.setMargin(true);
+		layout.setSpacing(true);
+
+		layout.addComponent(pageModeContent);
+
+		pageModeContent.addComponent(barmenu);
+
+		panel = new Panel(panelName);
+
+		panel.setSizeFull();
+		pageModeContent.addComponent(panel);
+		pageModeContent.setExpandRatio(panel, ContentRatio.FULL_SIZE);
+
+		pageModeContent.addComponent(pageLinkFactory.createMainViewPageLink());
+		setContent(layout);
+
+		pageModeContent.setWidth(100, Unit.PERCENTAGE);
+		pageModeContent.setHeight(100, Unit.PERCENTAGE);
+
+		layout.setWidth(100, Unit.PERCENTAGE);
+		layout.setHeight(100, Unit.PERCENTAGE);
+		setWidth(100, Unit.PERCENTAGE);
+		setHeight(100, Unit.PERCENTAGE);
+
+	}
+
+	/**
+	 * Gets the barmenu.
+	 *
+	 * @return the barmenu
+	 */
+	public final MenuBar getBarmenu() {
+		return barmenu;
+	}
+
+	/**
+	 * Gets the panel.
+	 *
+	 * @return the panel
+	 */
+	protected final Panel getPanel() {
+		return panel;
 	}
 
 }
