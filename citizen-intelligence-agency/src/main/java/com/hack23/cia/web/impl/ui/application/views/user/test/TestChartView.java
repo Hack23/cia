@@ -18,19 +18,14 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.test;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.AbstractView;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.MenuBar;
-import com.vaadin.ui.VerticalLayout;
 
 import ru.xpoft.vaadin.VaadinView;
 
@@ -42,24 +37,11 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(value = TestChartView.NAME, cached = true)
 public final class TestChartView extends AbstractView {
 
-	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_TEST_CHART_VIEW. */
-	private static final String CITIZEN_INTELLIGENCE_AGENCY_TEST_CHART_VIEW = "Citizen Intelligence Agency::Test Chart View";
-
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
-
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.TEST_CHART_VIEW_NAME;
-
-	/** The menu item factory. */
-	@Autowired
-	private transient MenuItemFactory menuItemFactory;
-
-	/** The page mode content. */
-	private VerticalLayout pageModeContent;
 
 	/**
 	 * Instantiates a new test chart view.
@@ -69,38 +51,6 @@ public final class TestChartView extends AbstractView {
 	 */
 	public TestChartView(final ApplicationContext context) {
 		super(context.getBeansOfType(PageModeContentFactory.class), NAME);
-	}
-
-	/**
-	 * Post construct.
-	 */
-	//@PostConstruct
-	public void content() {
-		setSizeFull();
-
-		setCaption(CITIZEN_INTELLIGENCE_AGENCY_TEST_CHART_VIEW);
-
-		final VerticalLayout layout = new VerticalLayout();
-		layout.setMargin(true);
-		layout.setSpacing(true);
-
-		final MenuBar barmenu = new MenuBar();
-		layout.addComponent(barmenu);
-
-		menuItemFactory.createTestTopicMenu(barmenu);
-
-		pageModeContent = new VerticalLayout();
-		layout.setMargin(true);
-		layout.setSpacing(true);
-
-		layout.addComponent(pageModeContent);
-
-		pageModeContent.addComponent(new Label(OVERVIEW));
-
-		layout.addComponent(pageLinkFactory.createMainViewPageLink());
-
-		setContent(layout);
-
 	}
 
 }

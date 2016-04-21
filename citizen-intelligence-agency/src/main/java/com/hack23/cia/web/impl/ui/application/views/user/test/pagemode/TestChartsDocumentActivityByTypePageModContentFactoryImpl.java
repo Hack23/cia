@@ -65,6 +65,8 @@ public final class TestChartsDocumentActivityByTypePageModContentFactoryImpl ext
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
+		getMenuItemFactory().createTestTopicMenu(menuBar);
+
 
 		final String pageId = getPageId(parameters);
 
