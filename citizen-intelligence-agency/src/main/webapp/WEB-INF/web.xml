@@ -45,17 +45,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:net/bull/javamelody/monitoring-spring.xml
 			classpath:META-INF/cia-application-context.xml
-			classpath:META-INF/security-settings.xml
-			classpath:META-INF/application-context-service-data.xml
-			classpath:META-INF/cia-service-external-common.xml
-			classpath:META-INF/cia-service-external-riksdagen.xml
-			classpath:META-INF/cia-service-external-worldbank.xml
-			classpath:META-INF/cia-service-external-vdem.xml
-			classpath:META-INF/cia-service-external-val.xml
-			classpath:META-INF/cia-service-component-agent.xml
-			classpath:META-INF/application-context-service.xml
 		</param-value>
 	</context-param>
 
