@@ -20,26 +20,13 @@ package com.hack23.cia.service.external.worldbank.api;
 
 import java.util.List;
 
-import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
 import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
-import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
-import com.hack23.cia.model.external.worldbank.topic.impl.TopicElement;
-
-
 
 /**
- * The Interface WorldBankApi.
+ * The Interface WorldBankDataApi.
  */
-public interface WorldBankApi {
-
-	/**
-	 * Gets the countries.
-	 *
-	 * @return the countries
-	 * @throws DataFailureException
-	 *             the data failure exception
-	 */
-	List<CountryElement> getCountries() throws DataFailureException;
+@FunctionalInterface
+public interface WorldBankDataApi {
 
 	/**
 	 * Gets the data.
@@ -53,26 +40,5 @@ public interface WorldBankApi {
 	 *             the data failure exception
 	 */
 	List<WorldBankData> getData(String countryCode, String indicatorId) throws DataFailureException;
-
-	/**
-	 * Gets the indicators.
-	 *
-	 * @return the indicators
-	 * @throws DataFailureException
-	 *             the data failure exception
-	 */
-	List<IndicatorElement> getIndicators() throws DataFailureException;
-
-
-	/**
-	 * Gets the topics.
-	 *
-	 * @return the topics
-	 * @throws DataFailureException
-	 *             the data failure exception
-	 */
-	List<TopicElement> getTopics() throws DataFailureException;
-
-
 
 }

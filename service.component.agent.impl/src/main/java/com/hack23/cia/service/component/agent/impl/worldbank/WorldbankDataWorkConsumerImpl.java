@@ -30,7 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hack23.cia.service.external.worldbank.api.WorldBankApi;
+import com.hack23.cia.service.external.worldbank.api.WorldBankDataApi;
 
 /**
  * The Class WorldbankDataWorkConsumerImpl.
@@ -48,10 +48,8 @@ MessageListener {
 	@Autowired
 	private WorldbankImportService importService;
 
-	/** The world bank api. */
 	@Autowired
-	private WorldBankApi worldBankApi;
-
+	private WorldBankDataApi worldbankDataApi;
 
 	/**
 	 * Instantiates a new worldbank data work consumer impl.
@@ -65,7 +63,7 @@ MessageListener {
 	public void onMessage(final Message message) {
 		try {
 			final List<String>  countryIndicator= (List<String>) ((ObjectMessage) message).getObject();
-			importService.updateData(worldBankApi.getData(countryIndicator.get(0), countryIndicator.get(1)));
+			importService.updateData(worldbankDataApi.getData(countryIndicator.get(0), countryIndicator.get(1)));
 		} catch (final Exception e2) {
 			LOGGER.warn("Error loading worldbank data:" , e2);
 		}

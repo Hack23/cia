@@ -1,4 +1,0 @@
-#Fools apparmor, edit my.cnf
-sudo mkdir /mnt
-sudo mkdir -m 000 /var/lib/mysql
-sudo mount --bind /mnt/mysql /var/lib/mysql

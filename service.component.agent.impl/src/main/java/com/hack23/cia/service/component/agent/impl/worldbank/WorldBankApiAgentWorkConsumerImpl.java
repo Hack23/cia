@@ -38,7 +38,8 @@ import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
 import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
 import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
 import com.hack23.cia.service.component.agent.impl.common.AbstractAgentWorkConsumerImpl;
-import com.hack23.cia.service.external.worldbank.api.WorldBankApi;
+import com.hack23.cia.service.external.worldbank.api.WorldBankCountryApi;
+import com.hack23.cia.service.external.worldbank.api.WorldBankIndicatorApi;
 
 /**
  * The Class WorldBankApiAgentWorkConsumerImpl.
@@ -70,9 +71,12 @@ public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 	@Qualifier("com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement")
 	private Destination indicatorElementWorkdestination;
 
-	/** The worldbank api. */
 	@Autowired
-	private WorldBankApi worldbankApi;
+	private WorldBankCountryApi worldbankCountryApi;
+
+	@Autowired
+	private WorldBankIndicatorApi worldbankIndicatorApi;
+
 
 	/**
 	 * Instantiates a new world bank api agent work consumer impl.
@@ -116,7 +120,7 @@ public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 	 */
 	private void startWorldbankCountryLoading() {
 		try {
-			final List<CountryElement> countryList = worldbankApi.getCountries();
+			final List<CountryElement> countryList = worldbankCountryApi.getCountries();
 			final Map<String, String> currentSaved = importService
 					.getWorldBankCountryMap();
 
@@ -137,7 +141,7 @@ public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 	private void startWorldBankDataLoading() {
 		try {
 			final List<IndicatorElement> indicatorlist = importService.getAllIndicators();
-			final List<CountryElement> countryList = worldbankApi.getCountries();
+			final List<CountryElement> countryList = worldbankCountryApi.getCountries();
 
 			final Map<String, String> currentSaved = importService
 					.getWorldBankDataMap();
@@ -167,7 +171,7 @@ public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 	 */
 	private void startWorldBankIndicatorLoading() {
 		try {
-			final List<IndicatorElement> list =worldbankApi.getIndicators();
+			final List<IndicatorElement> list =worldbankIndicatorApi.getIndicators();
 
 			final Map<String, String> currentSaved = importService
 					.getWorldBankIndicatorElementMap();
