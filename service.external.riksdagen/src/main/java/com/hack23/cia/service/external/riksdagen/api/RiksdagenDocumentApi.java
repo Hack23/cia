@@ -24,18 +24,14 @@ import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentCont
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentType;
-import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
-import com.hack23.cia.model.external.riksdagen.personlista.impl.PersonContainerElement;
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
-import com.hack23.cia.model.external.riksdagen.votering.impl.VoteData;
-import com.hack23.cia.model.external.riksdagen.voteringlista.impl.BallotDocumentElement;
 import com.hack23.cia.service.external.common.api.ProcessDataStrategy;
 
 
 /**
- * The Interface RiksdagenApi.
+ * The Interface RiksdagenDocumentApi.
  */
-public interface RiksdagenApi {
+public interface RiksdagenDocumentApi {
 
 	/**
 	 * The Enum DocumentTypeNames.
@@ -164,23 +160,6 @@ public interface RiksdagenApi {
 		}
 	}
 
-	/** The riksdagen java simple date format. */
-	String RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT="yyyy-MM-dd HH:mm:ss";
-
-	/** The riksdagen sql str to date format. */
-	String RIKSDAGEN_SQL_STR_TO_DATE_FORMAT="%Y-%m-%d %H:%i:%S";
-
-	/**
-	 * Gets the ballot.
-	 *
-	 * @param id
-	 *            the id
-	 * @return the ballot
-	 * @throws DataFailureException
-	 *             the data failure exception
-	 */
-	List<VoteData> getBallot(String id) throws DataFailureException;
-
 	/**
 	 * Gets the committee proposal.
 	 *
@@ -191,6 +170,7 @@ public interface RiksdagenApi {
 	 *             the data failure exception
 	 */
 	CommitteeProposalComponentData getCommitteeProposal(String id) throws DataFailureException;
+
 
 	/**
 	 * Gets the document content.
@@ -256,26 +236,6 @@ public interface RiksdagenApi {
 	 */
 	DocumentStatusContainer getDocumentStatus(String id) throws DataFailureException;
 
-	/**
-	 * Gets the person.
-	 *
-	 * @param id
-	 *            the id
-	 * @return the person
-	 * @throws DataFailureException
-	 *             the data failure exception
-	 */
-	PersonData getPerson(String id) throws DataFailureException;
-
-
-	/**
-	 * Gets the person list.
-	 *
-	 * @return the person list
-	 * @throws DataFailureException
-	 *             the data failure exception
-	 */
-	PersonContainerElement getPersonList() throws DataFailureException;
 
 	/**
 	 * Process document list.
@@ -289,16 +249,7 @@ public interface RiksdagenApi {
 	 * @throws DataFailureException
 	 *             the data failure exception
 	 */
-	void processDocumentList(String changedSinceDate,String changedToDate,ProcessDataStrategy<DocumentElement> processStrategy) throws DataFailureException;
-
-
-	/**
-	 * Gets the ballot list.
-	 *
-	 * @return the ballot list
-	 * @throws DataFailureException
-	 *             the data failure exception
-	 */
-	List<BallotDocumentElement> getBallotList() throws DataFailureException;
+	void processDocumentList(String changedSinceDate, String changedToDate,
+			ProcessDataStrategy<DocumentElement> processStrategy) throws DataFailureException;
 
 }

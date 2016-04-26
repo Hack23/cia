@@ -29,59 +29,19 @@ import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElemen
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentType;
-import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
-import com.hack23.cia.model.external.riksdagen.personlista.impl.PersonContainerElement;
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
-import com.hack23.cia.model.external.riksdagen.votering.impl.VoteData;
-import com.hack23.cia.model.external.riksdagen.voteringlista.impl.BallotDocumentElement;
 import com.hack23.cia.service.external.common.api.ProcessDataStrategy;
-import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
+import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
 
 /**
- * The Class RiksdagenApiImplTest.
+ * The Class RiksdagenDocumentApiImplITest.
  */
-public final class RiksdagenApiImplTest extends
+public final class RiksdagenDocumentApiImplITest extends
 AbstractRiksdagenFunctionalIntegrationTest {
 
 	/** The riksdagen api. */
 	@Autowired
-	RiksdagenApi riksdagenApi;
-
-	/**
-	 * Gets the ballot test.
-	 *
-	 * @return the ballot test
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public void getBallotTest() throws Exception {
-		final List<VoteData> votering = riksdagenApi
-				.getBallot("E0B34EE1-3FD3-474A-81D7-781B04BB241E");
-		assertNotNull(votering);
-		final VoteData voteData = votering.iterator().next();
-		assertNotNull(voteData.getEmbeddedId());
-		assertNotNull(voteData.getEmbeddedId().getBallotId());
-		assertNotNull(voteData.getEmbeddedId().getIntressentId());
-		assertNotNull(voteData.getEmbeddedId().getIssue());
-	}
-
-	/**
-	 * Gets the ballot list test.
-	 *
-	 * @return the ballot list test
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public void getBallotListTest() throws Exception {
-		final List<BallotDocumentElement> ballotList = riksdagenApi
-				.getBallotList();
-		assertNotNull(ballotList);
-
-		assertTrue(ballotList.size() >= 7888);
-
-	}
+	RiksdagenDocumentApi riksdagenApi;
 
 
 	/**
@@ -210,33 +170,6 @@ AbstractRiksdagenFunctionalIntegrationTest {
 	}
 
 
-	/**
-	 * Gets the person list test.
-	 *
-	 * @return the person list test
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public void getPersonListTest() throws Exception {
-		final PersonContainerElement personList = riksdagenApi.getPersonList();
-		assertNotNull(personList);
-		assertTrue(personList.getPerson().size() >= 1291);
-	}
-
-	/**
-	 * Gets the person test.
-	 *
-	 * @return the person test
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public void getPersonTest() throws Exception {
-		final PersonData personElement = riksdagenApi.getPerson("0389619060499");
-		assertNotNull(personElement);
-		assertEquals("Bohman", personElement.getLastName());
-	}
 
 	/**
 	 * Process document list by changed since.

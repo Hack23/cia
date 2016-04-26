@@ -27,7 +27,6 @@ import org.springframework.jms.core.JmsTemplate;
 
 import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
 import com.hack23.cia.service.component.agent.impl.common.ProducerMessageFactory;
-import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
 
 /**
  * The Class AbstractRiksdagenDataSourcesWorkGenerator.
@@ -37,10 +36,6 @@ public abstract class AbstractRiksdagenDataSourcesWorkGenerator implements Riksd
 	/** The import service. */
 	@Autowired
 	private RiksdagenImportService importService;
-
-	/** The riksdagen api. */
-	@Autowired
-	private RiksdagenApi riksdagenApi;
 
 	/** The jms template. */
 	@Autowired
@@ -88,15 +83,6 @@ public abstract class AbstractRiksdagenDataSourcesWorkGenerator implements Riksd
 	 */
 	protected final RiksdagenImportService getImportService() {
 		return importService;
-	}
-
-	/**
-	 * Gets the riksdagen api.
-	 *
-	 * @return the riksdagen api
-	 */
-	protected final RiksdagenApi getRiksdagenApi() {
-		return riksdagenApi;
 	}
 
 }

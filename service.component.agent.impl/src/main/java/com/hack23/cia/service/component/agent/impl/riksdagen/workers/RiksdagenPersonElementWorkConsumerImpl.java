@@ -28,7 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement;
-import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
+import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
 
 /**
  * The Class RiksdagenPersonElementWorkConsumerImpl.
@@ -46,7 +46,7 @@ public final class RiksdagenPersonElementWorkConsumerImpl implements MessageList
 
 	/** The riksdagen api. */
 	@Autowired
-	private RiksdagenApi riksdagenApi;
+	private RiksdagenPersonApi riksdagenApi;
 
 	/**
 	 * Instantiates a new riksdagen person element work consumer impl.

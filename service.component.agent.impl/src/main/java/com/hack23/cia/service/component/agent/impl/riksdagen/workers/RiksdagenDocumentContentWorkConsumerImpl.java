@@ -28,7 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
+import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
 
 /**
  * The Class RiksdagenDocumentContentWorkConsumerImpl.
@@ -48,7 +48,7 @@ MessageListener {
 
 	/** The riksdagen api. */
 	@Autowired
-	private RiksdagenApi riksdagenApi;
+	private RiksdagenDocumentApi riksdagenApi;
 
 
 	/**

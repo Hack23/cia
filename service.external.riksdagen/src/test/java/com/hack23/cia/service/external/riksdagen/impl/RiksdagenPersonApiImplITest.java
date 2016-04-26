@@ -24,17 +24,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.external.riksdagen.personlista.impl.PersonContainerElement;
 import com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement;
-import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
+import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
 
 /**
- * The Class RiksdagenApiImplPersonDetailsTest.
+ * The Class RiksdagenPersonApiImplITest.
  */
-public final class RiksdagenApiImplPersonDetailsTest extends
-AbstractRiksdagenFunctionalIntegrationTest {
+public final class RiksdagenPersonApiImplITest extends AbstractRiksdagenFunctionalIntegrationTest {
 
 	/** The riksdagen api. */
 	@Autowired
-	RiksdagenApi riksdagenApi;
+	RiksdagenPersonApi riksdagenApi;
 
 	/**
 	 * Gets the person mixed test.
@@ -47,26 +46,48 @@ AbstractRiksdagenFunctionalIntegrationTest {
 	public void getPersonMixedTest() throws Exception {
 		final PersonContainerElement personList = riksdagenApi.getPersonList();
 		assertNotNull(personList);
-		assertTrue(personList.getPerson().size()>= 1291);
+		assertTrue(personList.getPerson().size() >= 1291);
 
 		final PersonElement person = personList.getPerson().get(0);
 
-		assertNotNull("Missing id : " + person.getLastName(),
-				person.getId());
+		assertNotNull("Missing id : " + person.getLastName(), person.getId());
 
-		final PersonData personDetail = riksdagenApi
-				.getPerson(person.getId());
-		assertNotNull("Missing personDetail : " + person.getLastName(),
-				personDetail);
-		assertNotNull(
-				"Missing personDetail.person : " + person.getLastName(),
-				personDetail.getLastName());
-		assertNotNull(
-				"Missing personDetail.person.id : " + person.getLastName(),
-				personDetail.getId());
+		final PersonData personDetail = riksdagenApi.getPerson(person.getId());
+		assertNotNull("Missing personDetail : " + person.getLastName(), personDetail);
+		assertNotNull("Missing personDetail.person : " + person.getLastName(), personDetail.getLastName());
+		assertNotNull("Missing personDetail.person.id : " + person.getLastName(), personDetail.getId());
 
 		assertNotNull(personDetail.getFirstName());
 		assertNotNull(personDetail.getLastName());
 	}
+
+	/**
+	 * Gets the person list test.
+	 *
+	 * @return the person list test
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void getPersonListTest() throws Exception {
+		final PersonContainerElement personList = riksdagenApi.getPersonList();
+		assertNotNull(personList);
+		assertTrue(personList.getPerson().size() >= 1291);
+	}
+
+	/**
+	 * Gets the person test.
+	 *
+	 * @return the person test
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void getPersonTest() throws Exception {
+		final PersonData personElement = riksdagenApi.getPerson("0389619060499");
+		assertNotNull(personElement);
+		assertEquals("Bohman", personElement.getLastName());
+	}
+
 
 }

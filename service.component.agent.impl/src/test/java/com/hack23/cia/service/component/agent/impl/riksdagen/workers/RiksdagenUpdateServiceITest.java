@@ -23,7 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
-import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
+import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
 
 /**
  * The Class RiksdagenUpdateServiceITest.
@@ -37,7 +37,7 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 
 	/** The riksdagen api. */
 	@Autowired
-	private RiksdagenApi riksdagenApi;
+	private RiksdagenPersonApi riksdagenApi;
 
 	/**
 	 * Update person data test.

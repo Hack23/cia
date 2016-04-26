@@ -29,7 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hack23.cia.service.external.riksdagen.api.RiksdagenApi;
+import com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi;
 
 /**
  * The Class RiksdagenVoteDataWorkConsumerImpl.
@@ -49,7 +49,7 @@ MessageListener {
 
 	/** The riksdagen api. */
 	@Autowired
-	private RiksdagenApi riksdagenApi;
+	private RiksdagenBallotApi riksdagenApi;
 
 	/**
 	 * Instantiates a new riksdagen vote data work consumer impl.

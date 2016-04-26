@@ -33,6 +33,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement;
 import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
+import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
 
 /**
  * The Class RiksdagenPersonsWorkGeneratorImpl.
@@ -43,12 +44,14 @@ public final class RiksdagenPersonsWorkGeneratorImpl extends AbstractRiksdagenDa
 	/** The Constant LOGGER. */
 	public static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenPersonsWorkGeneratorImpl.class);
 
-
 	/** The person element workdestination. */
 	@Autowired
 	@Qualifier("com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement")
 	private Destination personElementWorkdestination;
 
+	/** The riksdagen api. */
+	@Autowired
+	private RiksdagenPersonApi riksdagenApi;
 
 	/**
 	 * Instantiates a new riksdagen persons work generator impl.
@@ -60,22 +63,20 @@ public final class RiksdagenPersonsWorkGeneratorImpl extends AbstractRiksdagenDa
 	@Override
 	public void generateWorkOrders() {
 		try {
-			final List<PersonElement> personList =getRiksdagenApi().getPersonList().getPerson();
+			final List<PersonElement> personList = riksdagenApi.getPersonList().getPerson();
 			final Map<String, String> currentSaved = getImportService().getPersonMap();
 
 			for (final PersonElement personElement : personList) {
 				if (!currentSaved.containsKey(personElement.getId())) {
-					LOGGER.info("Send Load Order:{}" , personElement.getPersonUrlXml());
-					sendMessage(personElementWorkdestination,
-							personElement);
+					LOGGER.info("Send Load Order:{}", personElement.getPersonUrlXml());
+					sendMessage(personElementWorkdestination, personElement);
 					currentSaved.put(personElement.getId(), personElement.getId());
 				}
 			}
 			for (final String personId : readMissingPersonList()) {
 				if (!currentSaved.containsKey(personId)) {
-					LOGGER.info("Send Load Order:{}{}" ,"http://data.riksdagen.se/person/", personId);
-					sendMessage(personElementWorkdestination,
-							new PersonElement().withId(personId));
+					LOGGER.info("Send Load Order:{}{}", "http://data.riksdagen.se/person/", personId);
+					sendMessage(personElementWorkdestination, new PersonElement().withId(personId));
 				}
 			}
 		} catch (final Exception e1) {
@@ -93,12 +94,10 @@ public final class RiksdagenPersonsWorkGeneratorImpl extends AbstractRiksdagenDa
 		final Scanner sc = new Scanner(RiksdagenPersonsWorkGeneratorImpl.class.getResourceAsStream("/personlist.txt"));
 		final List<String> lines = new ArrayList<>();
 		while (sc.hasNextLine()) {
-		  lines.add(sc.nextLine());
+			lines.add(sc.nextLine());
 		}
 		sc.close();
 		return lines.toArray(new String[0]);
 	}
-
-
 
 }

@@ -33,6 +33,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
 import com.hack23.cia.service.external.common.api.ProcessDataStrategy;
+import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
 
 /**
  * The Class RiksdagenDocumentListWorkGeneratorImpl.
@@ -47,6 +48,11 @@ public final class RiksdagenDocumentListWorkGeneratorImpl extends AbstractRiksda
 	@Autowired
 	@Qualifier("com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement")
 	private Destination documentElementWorkdestination;
+
+	/** The riksdagen api. */
+	@Autowired
+	private RiksdagenDocumentApi riksdagenApi;
+
 
 	/**
 	 * Instantiates a new riksdagen document list work generator impl.
@@ -70,7 +76,7 @@ public final class RiksdagenDocumentListWorkGeneratorImpl extends AbstractRiksda
 			while (loadedWeekDate.isBefore(toDate)) {
 				loadedWeekDate = loadedWeekDate.plusWeeks(1);
 
-				getRiksdagenApi().processDocumentList(fmt.print(fromDateTime),fmt.print(loadedWeekDate),new DocumentElementWorkProducer());
+				riksdagenApi.processDocumentList(fmt.print(fromDateTime),fmt.print(loadedWeekDate),new DocumentElementWorkProducer());
 				fromDateTime=fromDateTime.plusWeeks(1);
 
 			}

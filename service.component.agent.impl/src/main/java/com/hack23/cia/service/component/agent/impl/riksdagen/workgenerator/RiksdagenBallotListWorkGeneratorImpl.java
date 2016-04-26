@@ -31,6 +31,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.riksdagen.voteringlista.impl.BallotDocumentElement;
 import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
+import com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi;
 
 /**
  * The Class RiksdagenBallotListWorkGeneratorImpl.
@@ -47,6 +48,9 @@ public final class RiksdagenBallotListWorkGeneratorImpl extends AbstractRiksdage
 	@Qualifier("com.hack23.cia.model.external.riksdagen.votering.impl.VoteData")
 	private Destination voteDataWorkdestination;
 
+	/** The riksdagen api. */
+	@Autowired
+	private RiksdagenBallotApi riksdagenApi;
 
 	/**
 	 * Instantiates a new riksdagen ballot list work generator impl.
@@ -58,7 +62,7 @@ public final class RiksdagenBallotListWorkGeneratorImpl extends AbstractRiksdage
 	@Override
 	public void generateWorkOrders() {
 		try {
-			final List<BallotDocumentElement> ballotList = getRiksdagenApi().getBallotList();
+			final List<BallotDocumentElement> ballotList = riksdagenApi.getBallotList();
 			final Map<String, String> alreadySavedIdMap = getImportService()
 					.getLoadedBallotIdMap();
 
