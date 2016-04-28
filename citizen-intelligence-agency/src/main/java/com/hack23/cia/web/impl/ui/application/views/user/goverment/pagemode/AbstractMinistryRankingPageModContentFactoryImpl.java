@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
 
@@ -28,6 +30,7 @@ public abstract class AbstractMinistryRankingPageModContentFactoryImpl extends A
 
 
 	/** The ministry ranking menu item factory. */
+	@Autowired
 	private MinistryRankingMenuItemFactory ministryRankingMenuItemFactory;
 
 	/**
