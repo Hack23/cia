@@ -81,7 +81,7 @@ public final class CommitteeMemberHistoryPageModContentFactoryImpl extends Abstr
 
 		if (viewRiksdagenCommittee != null) {
 
-			getMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
+			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
 			final Label createHeader2Label = LabelFactory.createHeader2Label(MEMBER_HISTORY);
 			panelContent.addComponent(createHeader2Label);

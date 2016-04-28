@@ -18,9 +18,12 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Panel;
@@ -38,6 +41,11 @@ public abstract class AbstractPoliticianPageModContentFactoryImpl extends Abstra
 
 	/** The Constant DAYS_PER_STANDARD_YEAR. */
 	private static final long DAYS_PER_STANDARD_YEAR = 365L;
+
+	/** The politician ranking menu item factory. */
+	@Autowired
+	private PoliticianMenuItemFactory politicianMenuItemFactory;
+
 
 	/**
 	 * Instantiates a new abstract politician page mod content factory impl.
@@ -79,6 +87,15 @@ public abstract class AbstractPoliticianPageModContentFactoryImpl extends Abstra
 
 		panel.setCaption(POLITICIAN + viewRiksdagenPolitician.getFirstName() + ' '
 				+ viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')');
+	}
+
+	/**
+	 * Gets the politician ranking menu item factory.
+	 *
+	 * @return the politician ranking menu item factory
+	 */
+	protected final PoliticianMenuItemFactory getPoliticianMenuItemFactory() {
+		return politicianMenuItemFactory;
 	}
 
 }

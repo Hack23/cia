@@ -73,7 +73,7 @@ public final class PartyWonDailySummaryChartPageModContentFactoryImpl extends Ab
 
 		if (viewRiksdagenParty != null) {
 
-			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 
 			panelContent.addComponent(LabelFactory.createHeader2Label(PARTY_WON_DAILY_SUMMARY_CHART));

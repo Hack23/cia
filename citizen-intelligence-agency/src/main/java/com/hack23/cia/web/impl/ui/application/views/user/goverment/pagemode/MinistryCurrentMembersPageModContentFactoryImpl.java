@@ -81,7 +81,7 @@ public final class MinistryCurrentMembersPageModContentFactoryImpl extends Abstr
 
 		if (viewRiksdagenMinistry != null) {
 
-			getMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
+			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
 			final Label createHeader2Label = LabelFactory.createHeader2Label(CURRENT_MEMBERS);
 			panelContent.addComponent(createHeader2Label);

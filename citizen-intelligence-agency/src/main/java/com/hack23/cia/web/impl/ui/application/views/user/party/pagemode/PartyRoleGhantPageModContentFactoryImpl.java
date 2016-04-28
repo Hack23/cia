@@ -65,7 +65,7 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 
 		if (viewRiksdagenParty != null) {
 
-			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 			panelContent.addComponent(LabelFactory.createHeader2Label(GHANT_NOT_IMPLEMENTED));
 

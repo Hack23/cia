@@ -79,7 +79,7 @@ public final class PoliticianIndicatorsPageModContentFactoryImpl extends Abstrac
 
 			final ViewRiksdagenPolitician viewRiksdagenPolitician = politicianDataContainer.load(personData.getId());
 
-			getMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
+			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 			final Label createHeader2Label = LabelFactory.createHeader2Label(INDICATORS);
 			panelContent.addComponent(createHeader2Label);

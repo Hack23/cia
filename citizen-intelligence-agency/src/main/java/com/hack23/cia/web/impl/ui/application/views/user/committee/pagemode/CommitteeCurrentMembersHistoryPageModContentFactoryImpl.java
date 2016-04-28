@@ -82,7 +82,7 @@ public final class CommitteeCurrentMembersHistoryPageModContentFactoryImpl
 
 		if (viewRiksdagenCommittee != null) {
 
-			getMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
+			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
 			final Label createHeader2Label = LabelFactory.createHeader2Label(CURRENT_MEMBERS);
 			panelContent.addComponent(createHeader2Label);

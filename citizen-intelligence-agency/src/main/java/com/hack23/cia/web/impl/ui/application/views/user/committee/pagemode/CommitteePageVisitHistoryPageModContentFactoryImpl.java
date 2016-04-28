@@ -69,7 +69,7 @@ public final class CommitteePageVisitHistoryPageModContentFactoryImpl extends Ab
 
 		if (viewRiksdagenCommittee != null) {
 
-				getMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
+			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
 				createPageVisitHistory(NAME,pageId,panelContent);
 

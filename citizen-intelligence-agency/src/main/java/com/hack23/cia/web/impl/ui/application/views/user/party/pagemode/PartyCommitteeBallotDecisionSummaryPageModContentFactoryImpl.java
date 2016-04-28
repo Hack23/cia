@@ -78,7 +78,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl 
 
 		if (viewRiksdagenParty != null) {
 
-			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 
 			panelContent.addComponent(LabelFactory.createHeader2Label(COMMITTEE_BALLOT_DECISION_SUMMARY));

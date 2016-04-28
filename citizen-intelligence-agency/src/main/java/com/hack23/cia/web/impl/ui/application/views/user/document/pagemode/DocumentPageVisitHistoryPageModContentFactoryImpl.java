@@ -69,7 +69,7 @@ public final class DocumentPageVisitHistoryPageModContentFactoryImpl extends Abs
 
 		if (documentElement != null) {
 
-			getMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
+			getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
 			createPageVisitHistory(NAME, pageId, panelContent);
 

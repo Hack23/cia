@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
 
 /**
@@ -25,12 +26,25 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPage
  */
 public abstract class AbstractMinistryRankingPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
+
+	/** The ministry ranking menu item factory. */
+	private MinistryRankingMenuItemFactory ministryRankingMenuItemFactory;
+
 	/**
 	 * Instantiates a new abstract ministry ranking page mod content factory
 	 * impl.
 	 */
 	protected AbstractMinistryRankingPageModContentFactoryImpl() {
 		super();
+	}
+
+	/**
+	 * Gets the ministry ranking menu item factory.
+	 *
+	 * @return the ministry ranking menu item factory
+	 */
+	protected final MinistryRankingMenuItemFactory getMinistryRankingMenuItemFactory() {
+		return ministryRankingMenuItemFactory;
 	}
 
 }

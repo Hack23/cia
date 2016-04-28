@@ -68,7 +68,7 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 
-		getMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);
+		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);
 
 		final String pageId = getPageId(parameters);
 

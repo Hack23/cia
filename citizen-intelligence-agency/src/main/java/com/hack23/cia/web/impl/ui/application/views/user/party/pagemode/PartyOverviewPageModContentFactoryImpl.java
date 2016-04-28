@@ -77,7 +77,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 		if (viewRiksdagenParty != null) {
 
-			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 
 			panelContent.addComponent(LabelFactory.createHeader2Label(OVERVIEW));

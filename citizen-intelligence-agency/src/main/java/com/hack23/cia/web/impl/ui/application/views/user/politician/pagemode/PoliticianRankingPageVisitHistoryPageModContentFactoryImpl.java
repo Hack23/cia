@@ -68,7 +68,7 @@ public final class PoliticianRankingPageVisitHistoryPageModContentFactoryImpl
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 
-		getMenuItemFactory().createPoliticianRankingMenuBar(menuBar);
+		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);
 
 		final String pageId = getPageId(parameters);
 

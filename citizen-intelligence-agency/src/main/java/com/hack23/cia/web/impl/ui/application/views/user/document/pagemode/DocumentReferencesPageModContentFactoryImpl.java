@@ -84,7 +84,7 @@ public final class DocumentReferencesPageModContentFactoryImpl extends AbstractD
 
 		if (documentElement != null) {
 
-			getMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
+			getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
 			final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
 					.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,

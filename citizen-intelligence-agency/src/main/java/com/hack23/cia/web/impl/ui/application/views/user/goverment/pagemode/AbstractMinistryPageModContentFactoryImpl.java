@@ -18,6 +18,9 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
@@ -29,11 +32,18 @@ public abstract class AbstractMinistryPageModContentFactoryImpl extends Abstract
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.MINISTRY_VIEW_NAME;
 
+	@Autowired
+	private MinistryMenuItemFactory ministryMenuItemFactory;
+
 	/**
 	 * Instantiates a new abstract ministry page mod content factory impl.
 	 */
 	protected AbstractMinistryPageModContentFactoryImpl() {
 		super();
+	}
+
+	protected final MinistryMenuItemFactory getMinistryMenuItemFactory() {
+		return ministryMenuItemFactory;
 	}
 
 }

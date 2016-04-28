@@ -85,7 +85,7 @@ public final class DocumentPersonReferencesPageModContentFactoryImpl extends Abs
 
 		if (documentElement != null) {
 
-			getMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
+			getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
 			final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
 					.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,

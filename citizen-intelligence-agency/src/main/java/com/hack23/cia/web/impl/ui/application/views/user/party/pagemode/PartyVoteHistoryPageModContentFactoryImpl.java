@@ -74,7 +74,7 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 
 		if (viewRiksdagenParty != null) {
 
-			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 			panelContent.addComponent(LabelFactory.createHeader2Label(VOTE_HISTORY));
 

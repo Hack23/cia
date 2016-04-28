@@ -82,7 +82,7 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 
 		if (documentElement != null) {
 
-			getMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
+			getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
 			panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_DATA));
 

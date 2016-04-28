@@ -18,6 +18,9 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.test.pagemode;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.TestMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
@@ -29,11 +32,19 @@ public abstract class AbstractTestPageModContentFactoryImpl extends AbstractPage
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.TEST_CHART_VIEW_NAME;
 
+	/** The test menu item factory. */
+	@Autowired
+	private TestMenuItemFactory testMenuItemFactory;
+
 	/**
 	 * Instantiates a new abstract test page mod content factory impl.
 	 */
 	protected AbstractTestPageModContentFactoryImpl() {
 		super();
+	}
+
+	protected final TestMenuItemFactory getTestMenuItemFactory() {
+		return testMenuItemFactory;
 	}
 
 }

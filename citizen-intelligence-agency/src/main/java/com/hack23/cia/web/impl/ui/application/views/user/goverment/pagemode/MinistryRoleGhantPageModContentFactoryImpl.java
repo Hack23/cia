@@ -71,7 +71,7 @@ public final class MinistryRoleGhantPageModContentFactoryImpl extends AbstractMi
 
 		if (viewRiksdagenMinistry != null) {
 
-			getMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
+			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
 			panelContent.addComponent(LabelFactory.createHeader2Label(ROLE_GHANT));
 

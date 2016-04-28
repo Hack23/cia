@@ -83,7 +83,7 @@ public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl exten
 
 		if (viewRiksdagenCommittee != null) {
 
-				getMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
+			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
 
 

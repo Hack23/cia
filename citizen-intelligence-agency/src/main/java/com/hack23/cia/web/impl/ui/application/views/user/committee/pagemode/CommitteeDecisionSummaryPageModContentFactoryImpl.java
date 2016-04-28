@@ -73,7 +73,7 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl extends Abs
 
 		if (viewRiksdagenCommittee != null) {
 
-				getMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
+			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
 
 				panelContent.addComponent(LabelFactory.createHeader2Label(DECISION_SUMMARY_NOT_IMPLEMENTED));

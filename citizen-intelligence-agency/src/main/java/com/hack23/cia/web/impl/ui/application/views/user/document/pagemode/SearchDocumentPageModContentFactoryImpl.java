@@ -73,6 +73,8 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractPageM
 
 		final String pageId = getPageId(parameters);
 
+		getMenuItemFactory().createMainPageMenuBar(menuBar);
+
 		final VerticalLayout searchLayout = new VerticalLayout();
 		searchLayout.setSizeFull();
 		panelContent.addComponent(searchLayout);

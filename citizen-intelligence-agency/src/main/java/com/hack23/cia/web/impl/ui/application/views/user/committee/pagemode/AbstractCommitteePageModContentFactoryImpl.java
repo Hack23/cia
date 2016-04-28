@@ -18,6 +18,9 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
@@ -29,11 +32,25 @@ public abstract class AbstractCommitteePageModContentFactoryImpl extends Abstrac
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_VIEW_NAME;
 
+	/** The committee menu item factory. */
+	@Autowired
+	private CommitteeMenuItemFactory committeeMenuItemFactory;
+
 	/**
 	 * Instantiates a new abstract committee page mod content factory impl.
 	 */
 	protected AbstractCommitteePageModContentFactoryImpl() {
 		super();
+	}
+
+
+	/**
+	 * Gets the committee menu item factory.
+	 *
+	 * @return the committee menu item factory
+	 */
+	protected final CommitteeMenuItemFactory getCommitteeMenuItemFactory() {
+		return committeeMenuItemFactory;
 	}
 
 }

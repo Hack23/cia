@@ -78,7 +78,7 @@ public final class PoliticianRankingChartsPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		getMenuItemFactory().createPoliticianRankingMenuBar(menuBar);
+		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);
 
 		final Layout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();

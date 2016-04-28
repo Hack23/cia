@@ -67,7 +67,7 @@ public final class TestChartsDecisionActivityByTypePageModContentFactoryImpl ext
 
 		final String pageId = getPageId(parameters);
 
-		getMenuItemFactory().createTestTopicMenu(menuBar);
+		getTestMenuItemFactory().createTestTopicMenu(menuBar);
 
 		panelContent.addComponent(documentChartDataManager.createDecisionTypeChart());
 

@@ -87,7 +87,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 
 			final ViewRiksdagenPolitician viewRiksdagenPolitician = politicianDataContainer.load(personData.getId());
 
-			getMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
+			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 			createOverviewContent(panelContent, personData, viewRiksdagenPolitician);
 

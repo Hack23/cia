@@ -81,7 +81,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 
 		if (viewRiksdagenCommittee != null) {
 
-			getMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
+			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
 				final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
 				panelContent.addComponent(createHeader2Label);

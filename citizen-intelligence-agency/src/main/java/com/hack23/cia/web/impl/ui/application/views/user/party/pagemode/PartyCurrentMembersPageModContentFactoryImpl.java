@@ -71,7 +71,7 @@ public final class PartyCurrentMembersPageModContentFactoryImpl extends Abstract
 
 		if (viewRiksdagenParty != null) {
 
-			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 			panelContent.addComponent(LabelFactory.createHeader2Label(CURRENT_MEMBERS));
 

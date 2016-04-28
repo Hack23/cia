@@ -79,7 +79,7 @@ public final class MinistryMemberHistoryPageModContentFactoryImpl extends Abstra
 
 		if (viewRiksdagenMinistry != null) {
 
-			getMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
+			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
 			final Label createHeader2Label = LabelFactory.createHeader2Label(MEMBER_HISTORY);
 			panelContent.addComponent(createHeader2Label);

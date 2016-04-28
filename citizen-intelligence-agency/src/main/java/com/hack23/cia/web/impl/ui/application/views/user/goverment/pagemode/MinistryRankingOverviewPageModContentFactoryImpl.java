@@ -78,7 +78,7 @@ public final class MinistryRankingOverviewPageModContentFactoryImpl extends Abst
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 
-		getMenuItemFactory().createMinistryRankingMenuBar(menuBar);
+		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
 
 		final String pageId = getPageId(parameters);
 

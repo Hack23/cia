@@ -27,7 +27,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.AdminCha
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.MenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.server.Sizeable.Unit;
@@ -51,7 +51,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 
 	/** The menu item factory. */
 	@Autowired
-	private MenuItemFactory menuItemFactory;
+	private ApplicationMenuItemFactory menuItemFactory;
 
 	/** The grid factory. */
 	@Autowired
@@ -108,7 +108,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 *
 	 * @return the menu item factory
 	 */
-	protected final MenuItemFactory getMenuItemFactory() {
+	protected final ApplicationMenuItemFactory getMenuItemFactory() {
 		return menuItemFactory;
 	}
 

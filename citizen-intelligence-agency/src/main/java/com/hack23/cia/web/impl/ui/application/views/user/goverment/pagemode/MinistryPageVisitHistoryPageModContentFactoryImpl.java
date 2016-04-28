@@ -68,7 +68,7 @@ public final class MinistryPageVisitHistoryPageModContentFactoryImpl extends Abs
 
 		if (viewRiksdagenMinistry != null) {
 
-			getMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
+			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
 			createPageVisitHistory(NAME,pageId,panelContent);
 

@@ -67,7 +67,7 @@ public final class PoliticianPageVisitHistoryPageModContentFactoryImpl extends A
 
 			final ViewRiksdagenPolitician viewRiksdagenPolitician = politicianDataContainer.load(personData.getId());
 
-			getMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
+			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 			createPageVisitHistory(NAME,pageId,panelContent);
 

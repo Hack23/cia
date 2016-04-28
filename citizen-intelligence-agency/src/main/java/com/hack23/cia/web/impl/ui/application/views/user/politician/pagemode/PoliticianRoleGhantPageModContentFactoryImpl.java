@@ -96,7 +96,7 @@ public final class PoliticianRoleGhantPageModContentFactoryImpl extends Abstract
 
 			final ViewRiksdagenPolitician viewRiksdagenPolitician = politicianDataContainer.load(personData.getId());
 
-			getMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
+			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 			final Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.ROLEGHANT.toString());
 			panelContent.addComponent(createHeader2Label);

@@ -18,6 +18,9 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.DocumentMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
@@ -29,11 +32,18 @@ public abstract class AbstractDocumentPageModContentFactoryImpl extends Abstract
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.DOCUMENT_VIEW_NAME;
 
+	@Autowired
+	private DocumentMenuItemFactory documentMenuItemFactory;
+
 	/**
 	 * Instantiates a new abstract document page mod content factory impl.
 	 */
 	protected AbstractDocumentPageModContentFactoryImpl() {
 		super();
+	}
+
+	protected final DocumentMenuItemFactory getDocumentMenuItemFactory() {
+		return documentMenuItemFactory;
 	}
 
 }

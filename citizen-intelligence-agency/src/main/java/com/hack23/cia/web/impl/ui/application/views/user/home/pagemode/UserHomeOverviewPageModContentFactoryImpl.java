@@ -21,6 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.user.home.pagemode;
 import java.util.Arrays;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -37,6 +38,7 @@ import com.hack23.cia.service.api.action.application.LogoutRequest;
 import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
@@ -74,6 +76,10 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "Overview";
 
+	/** The user home menu item factory. */
+	@Autowired
+	private UserHomeMenuItemFactory userHomeMenuItemFactory;
+
 	/**
 	 * Instantiates a new user home overview page mod content factory impl.
 	 */
@@ -96,7 +102,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 		final String pageId = getPageId(parameters);
 
 
-		getMenuItemFactory().createUserHomeMenuBar(menuBar, pageId);
+		userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
 
 
 		final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);

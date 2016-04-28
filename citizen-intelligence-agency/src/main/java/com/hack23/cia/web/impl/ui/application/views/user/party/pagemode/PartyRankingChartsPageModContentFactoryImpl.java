@@ -71,7 +71,7 @@ public final class PartyRankingChartsPageModContentFactoryImpl extends AbstractP
 		final String pageId = getPageId(parameters);
 
 
-		getMenuItemFactory().createPartyRankingMenuBar(menuBar);
+		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
 		final Layout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 

@@ -62,7 +62,7 @@ public final class PartyPageVisitHistoryPageModContentFactoryImpl extends Abstra
 
 		if (viewRiksdagenParty != null) {
 
-			getMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 			createPageVisitHistory(NAME, pageId, panelContent);
 

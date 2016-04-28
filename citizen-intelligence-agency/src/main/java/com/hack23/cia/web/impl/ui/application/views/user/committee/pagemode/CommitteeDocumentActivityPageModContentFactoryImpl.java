@@ -83,7 +83,7 @@ public final class CommitteeDocumentActivityPageModContentFactoryImpl extends Ab
 
 		if (viewRiksdagenCommittee != null) {
 
-				getMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
+			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
 				final Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_ACTIVITY);
 				panelContent.addComponent(createHeader2Label);

@@ -73,7 +73,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractTest
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
-		getMenuItemFactory().createTestTopicMenu(menuBar);
+		getTestMenuItemFactory().createTestTopicMenu(menuBar);
 
 		final String pageId = getPageId(parameters);
 

@@ -80,7 +80,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 
 		if (viewRiksdagenMinistry != null) {
 
-			getMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
+			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
 			final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
 			panelContent.addComponent(createHeader2Label);

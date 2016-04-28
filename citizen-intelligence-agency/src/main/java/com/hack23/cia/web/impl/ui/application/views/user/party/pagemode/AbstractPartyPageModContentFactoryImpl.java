@@ -18,9 +18,12 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Panel;
@@ -35,6 +38,10 @@ public abstract class AbstractPartyPageModContentFactoryImpl extends AbstractPag
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.PARTY_VIEW_NAME;
+
+	/** The party menu item factory. */
+	@Autowired
+	private PartyMenuItemFactory partyMenuItemFactory;
 
 	/**
 	 * Instantiates a new abstract party page mod content factory impl.
@@ -64,6 +71,15 @@ public abstract class AbstractPartyPageModContentFactoryImpl extends AbstractPag
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,
 				pageId);
+	}
+
+	/**
+	 * Gets the party menu item factory.
+	 *
+	 * @return the party menu item factory
+	 */
+	protected final PartyMenuItemFactory getPartyMenuItemFactory() {
+		return partyMenuItemFactory;
 	}
 
 }

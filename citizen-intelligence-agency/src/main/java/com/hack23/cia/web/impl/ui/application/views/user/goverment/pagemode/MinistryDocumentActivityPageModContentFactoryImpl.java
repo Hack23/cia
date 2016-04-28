@@ -82,7 +82,7 @@ public final class MinistryDocumentActivityPageModContentFactoryImpl extends Abs
 
 		if (viewRiksdagenMinistry != null) {
 
-			getMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
+			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
 			final Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_ACTIVITY);
 			panelContent.addComponent(createHeader2Label);
