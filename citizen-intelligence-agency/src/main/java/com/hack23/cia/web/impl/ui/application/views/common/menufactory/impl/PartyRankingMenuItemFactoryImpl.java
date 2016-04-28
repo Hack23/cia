@@ -31,7 +31,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
  * The Class PartyRankingMenuItemFactoryImpl.
  */
 @Service
-public final class PartyRankingMenuItemFactoryImpl implements PartyRankingMenuItemFactory {
+public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements PartyRankingMenuItemFactory {
 
 	/** The Constant PARTY_RANKING. */
 	private static final String PARTY_RANKING = "Party Ranking";
@@ -100,7 +100,7 @@ public final class PartyRankingMenuItemFactoryImpl implements PartyRankingMenuIt
 
 	@Override
 	public void createPartyRankingMenuBar(final MenuBar menuBar) {
-		menuBar.removeItems();
+		initApplicationMenuBar(menuBar);
 
 		createPartyRankingTopics(menuBar.addItem(PARTY_RANKING, null,null));
 	}

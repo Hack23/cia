@@ -32,7 +32,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
  * The Class PoliticianMenuItemFactoryImpl.
  */
 @Service
-public final class PoliticianMenuItemFactoryImpl implements PoliticianMenuItemFactory {
+public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements PoliticianMenuItemFactory {
 
 
 	/** The Constant VOTE_HISTORY. */
@@ -86,7 +86,7 @@ public final class PoliticianMenuItemFactoryImpl implements PoliticianMenuItemFa
 
 	@Override
 	public void createPoliticianMenuBar(final MenuBar menuBar, final String pageId) {
-			menuBar.removeItems();
+			initApplicationMenuBar(menuBar);
 
 			menuBar.addItem(OVERVIEW_TEXT, null,
 					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, pageId));

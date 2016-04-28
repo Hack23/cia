@@ -32,7 +32,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
  * The Class DocumentMenuItemFactoryImpl.
  */
 @Service
-public final class DocumentMenuItemFactoryImpl implements DocumentMenuItemFactory {
+public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements DocumentMenuItemFactory {
 
 
 	/** The Constant DOCUMENT_DATA. */
@@ -81,7 +81,7 @@ public final class DocumentMenuItemFactoryImpl implements DocumentMenuItemFactor
 
 	@Override
 	public void createDocumentMenuBar(final MenuBar menuBar, final String pageId) {
-			menuBar.removeItems();
+			initApplicationMenuBar(menuBar);
 
 			menuBar.addItem(OVERVIEW_TEXT, null,
 					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, pageId));

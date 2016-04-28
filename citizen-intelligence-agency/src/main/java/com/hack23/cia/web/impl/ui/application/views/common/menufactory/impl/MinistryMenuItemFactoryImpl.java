@@ -32,7 +32,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
  * The Class MenuItemFactoryImpl.
  */
 @Service
-public final class MinistryMenuItemFactoryImpl implements MinistryMenuItemFactory {
+public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements MinistryMenuItemFactory {
 
 	/** The Constant DOCUMENT_HISTORY_TEXT. */
 	private static final String DOCUMENT_HISTORY_TEXT = "Document history";
@@ -76,7 +76,7 @@ public final class MinistryMenuItemFactoryImpl implements MinistryMenuItemFactor
 
 	@Override
 	public void createMinistryMenuBar(final MenuBar menuBar, final String pageId) {
-		menuBar.removeItems();
+		initApplicationMenuBar(menuBar);
 
 		menuBar.addItem(OVERVIEW_TEXT, null,
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW, pageId));

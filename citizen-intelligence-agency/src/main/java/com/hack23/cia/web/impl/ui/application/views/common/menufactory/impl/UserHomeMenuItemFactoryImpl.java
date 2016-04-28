@@ -30,7 +30,7 @@ import com.vaadin.ui.MenuBar;
  * The Class UserHomeMenuItemFactoryImpl.
  */
 @Service
-public final class UserHomeMenuItemFactoryImpl implements UserHomeMenuItemFactory {
+public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements UserHomeMenuItemFactory {
 
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = "Overview";
@@ -49,7 +49,7 @@ public final class UserHomeMenuItemFactoryImpl implements UserHomeMenuItemFactor
 
 	@Override
 	public void createUserHomeMenuBar(final MenuBar menuBar, final String pageId) {
-		menuBar.removeItems();
+		initApplicationMenuBar(menuBar);
 
 		menuBar.addItem(OVERVIEW_TEXT, null,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.OVERVIEW, pageId));

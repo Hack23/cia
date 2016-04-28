@@ -31,7 +31,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
  * The Class PoliticianRankingMenuItemFactoryImpl.
  */
 @Service
-public final class PoliticianRankingMenuItemFactoryImpl implements PoliticianRankingMenuItemFactory {
+public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements PoliticianRankingMenuItemFactory {
 
 	/** The Constant POLITICIAN_RANKING. */
 	private static final String POLITICIAN_RANKING = "Politician Ranking";
@@ -65,7 +65,7 @@ public final class PoliticianRankingMenuItemFactoryImpl implements PoliticianRan
 
 	@Override
 	public void createPoliticianRankingMenuBar(final MenuBar menuBar) {
-		menuBar.removeItems();
+		initApplicationMenuBar(menuBar);
 
 		createPoliticianRankingTopics(menuBar.addItem(POLITICIAN_RANKING, null, null));
 	}

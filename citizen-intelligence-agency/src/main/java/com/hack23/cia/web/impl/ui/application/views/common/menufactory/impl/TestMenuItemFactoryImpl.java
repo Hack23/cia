@@ -45,7 +45,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
  * The Class TestMenuItemFactoryImpl.
  */
 @Service
-public final class TestMenuItemFactoryImpl implements TestMenuItemFactory {
+public final class TestMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements TestMenuItemFactory {
 
 	/** The Constant BY_SOURCE. */
 	private static final String BY_SOURCE = "By Source";
@@ -98,11 +98,13 @@ public final class TestMenuItemFactoryImpl implements TestMenuItemFactory {
 	}
 
 	@Override
-	public void createTestTopicMenu(final MenuBar barmenu) {
-		barmenu.addItem(OVERVIEW_TEXT, null,
+	public void createTestTopicMenu(final MenuBar menuBar) {
+		initApplicationMenuBar(menuBar);
+
+		menuBar.addItem(OVERVIEW_TEXT, null,
 				new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.OVERVIEW));
 
-		final MenuItem charts = barmenu.addItem(CHARTS_TEXT, null, null);
+		final MenuItem charts = menuBar.addItem(CHARTS_TEXT, null, null);
 
 		// Submenu item with a sub-submenu
 		final MenuItem chartIndicators = charts.addItem(SWEDISH_PARLIAMENT_INDICATORS, null, null);
@@ -142,7 +144,7 @@ public final class TestMenuItemFactoryImpl implements TestMenuItemFactory {
 		addSourcesAndIndicatorsToMenu(byTopicItem, topicIndicatorMap);
 		addSourcesAndIndicatorsToMenu(bySourceItem, sourceIndicatorMap);
 
-		barmenu.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+		menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
 				new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.PAGEVISITHISTORY));
 
 	}

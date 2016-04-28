@@ -32,7 +32,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
  * The Class CommitteeMenuItemFactoryImpl.
  */
 @Service
-public final class CommitteeMenuItemFactoryImpl implements CommitteeMenuItemFactory {
+public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements CommitteeMenuItemFactory {
 
 	/** The Constant DOCUMENT_HISTORY_TEXT. */
 	private static final String DOCUMENT_HISTORY_TEXT = "Document history";
@@ -88,7 +88,7 @@ public final class CommitteeMenuItemFactoryImpl implements CommitteeMenuItemFact
 
 	@Override
 	public void createCommitteeeMenuBar(final MenuBar menuBar, final String pageId) {
-		menuBar.removeItems();
+		initApplicationMenuBar(menuBar);
 
 		menuBar.addItem(OVERVIEW_TEXT, null,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, pageId));

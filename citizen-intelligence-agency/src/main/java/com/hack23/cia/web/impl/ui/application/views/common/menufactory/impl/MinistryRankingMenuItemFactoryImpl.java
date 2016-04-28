@@ -31,7 +31,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
  * The Class MinistryRankingMenuItemFactoryImpl.
  */
 @Service
-public final class MinistryRankingMenuItemFactoryImpl implements MinistryRankingMenuItemFactory {
+public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements MinistryRankingMenuItemFactory {
 
 	/** The Constant MINISTRY_RANKING. */
 	private static final String MINISTRY_RANKING = "Ministry Ranking";
@@ -79,7 +79,7 @@ public final class MinistryRankingMenuItemFactoryImpl implements MinistryRanking
 
 	@Override
 	public void createMinistryRankingMenuBar(final MenuBar menuBar) {
-		menuBar.removeItems();
+		initApplicationMenuBar(menuBar);
 
 		createMinistryRankingTopics(menuBar.addItem(MINISTRY_RANKING, null,null));
 

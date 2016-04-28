@@ -32,7 +32,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
  * The Class PartyMenuItemFactoryImpl.
  */
 @Service
-public final class PartyMenuItemFactoryImpl implements PartyMenuItemFactory {
+public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements PartyMenuItemFactory {
 
 	/** The Constant PARTY_WON_DAILY_SUMMARY_CHART. */
 	private static final String PARTY_WON_DAILY_SUMMARY_CHART = "Party Won Daily Summary Chart";
@@ -98,7 +98,7 @@ public final class PartyMenuItemFactoryImpl implements PartyMenuItemFactory {
 
 	@Override
 	public void createPartyMenuBar(final MenuBar menuBar, final String pageId) {
-		menuBar.removeItems();
+		initApplicationMenuBar(menuBar);
 
 		menuBar.addItem(OVERVIEW_TEXT, null,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.OVERVIEW, pageId));

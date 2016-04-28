@@ -31,7 +31,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
  * The Class CommitteeRankingMenuItemFactoryImpl.
  */
 @Service
-public final class CommitteeRankingMenuItemFactoryImpl implements CommitteeRankingMenuItemFactory {
+public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements CommitteeRankingMenuItemFactory {
 
 	/** The Constant ALL_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES. */
 	private static final String ALL_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES = "All committees,total days served in committees";
@@ -87,7 +87,7 @@ public final class CommitteeRankingMenuItemFactoryImpl implements CommitteeRanki
 
 	@Override
 	public void createCommitteeeRankingMenuBar(final MenuBar menuBar) {
-			menuBar.removeItems();
+			initApplicationMenuBar(menuBar);
 
 			createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, null,null));
 	}
