@@ -50,11 +50,15 @@
           <contact>cia</contact>
           <id>cia-dist-rpm</id>
           <contactEmail>cia@hack23.com</contactEmail>
+          <rpm>
+            <group>Application/Collectors</group>
+          </rpm>
           <packages>
             <package>
               <id>cia-dist-rpm</id>
             </package>
           </packages>
+          <assembly></assembly>
         </configuration>
       </plugin>
       <plugin>
