@@ -33,9 +33,9 @@ import com.hack23.cia.service.data.api.DataDAO;
 import com.hack23.cia.service.data.api.IndicatorElementDAO;
 
 /**
- * The Class WorldbankImportServiceImpl.
+ * The Class WorldbankUpdateServiceImpl.
  */
-@Component("WorldbankImportService")
+@Component("WorldbankUpdateService")
 @Transactional(propagation = Propagation.MANDATORY)
 public final class WorldbankUpdateServiceImpl implements WorldbankUpdateService {
 

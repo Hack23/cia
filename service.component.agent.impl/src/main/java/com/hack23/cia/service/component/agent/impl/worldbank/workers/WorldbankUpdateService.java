@@ -25,7 +25,7 @@ import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
 import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
 
 /**
- * The Interface WorldbankImportService.
+ * The Interface WorldbankUpdateService.
  */
 public interface WorldbankUpdateService {
 
