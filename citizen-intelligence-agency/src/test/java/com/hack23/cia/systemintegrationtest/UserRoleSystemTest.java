@@ -873,7 +873,7 @@ public final class UserRoleSystemTest extends AbstractSystemIntegrationTest {
 
 		Thread.sleep(1000);
 
-		final WebElement overviewMenuItem = userPageVisit.getMenuItem("Overview");
+		final WebElement overviewMenuItem = userPageVisit.getMenuItem("Start");
 		assertNotNull(overviewMenuItem);
 		userPageVisit.performClickAction(overviewMenuItem);
 

@@ -70,6 +70,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 	/** The Constant DOCUMENT_ACTIVITY_TEXT. */
 	private static final String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
+	
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = "Overview";
 

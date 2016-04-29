@@ -31,7 +31,24 @@ import com.vaadin.ui.MenuBar.MenuItem;
  * The Class CommitteeRankingMenuItemFactoryImpl.
  */
 @Service
-public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements CommitteeRankingMenuItemFactory {
+public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
+		implements CommitteeRankingMenuItemFactory {
+
+	/** The Constant COMMAND21. */
+	private static final PageModeMenuCommand COMMAND21 = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
+			PageMode.PAGEVISITHISTORY);
+
+	/** The Constant COMMAND20. */
+	private static final PageModeMenuCommand COMMAND20 = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
+			PageMode.CHARTS);
+
+	/** The Constant COMMAND19. */
+	private static final PageModeMenuCommand COMMAND19 = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
+			PageMode.OVERVIEW);
+
+	/** The Constant COMMAND18. */
+	private static final PageModeMenuCommand COMMAND18 = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
+			PageMode.DATAGRID);
 
 	/** The Constant ALL_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES. */
 	private static final String ALL_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES = "All committees,total days served in committees";
@@ -65,10 +82,8 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	/** The Constant CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT. */
 	private static final String CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT = "Current committees, current members";
 
-
 	/** The Constant POLITICAL_WORK_SUMMARY_TEXT. */
 	private static final String POLITICAL_WORK_SUMMARY_TEXT = "Political Work Summary";
-
 
 	/** The Constant COMMITTEE_RANKING_TEXT. */
 	private static final String COMMITTEE_RANKING_TEXT = "Committee Ranking";
@@ -87,46 +102,34 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 
 	@Override
 	public void createCommitteeeRankingMenuBar(final MenuBar menuBar) {
-			initApplicationMenuBar(menuBar);
+		initApplicationMenuBar(menuBar);
 
-			createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, null,null));
+		createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, null, null));
 	}
 
 	@Override
 	public void createCommitteeRankingTopics(final MenuItem committeeMenuItem) {
-		committeeMenuItem.addItem(OVERVIEW_TEXT, null,
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.OVERVIEW));
+		committeeMenuItem.addItem(OVERVIEW_TEXT, null, COMMAND19);
 
 		final MenuItem listByTopic = committeeMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, null, null);
 
-		final MenuItem listItem = listByTopic.addItem(POLITICAL_WORK_SUMMARY_TEXT,
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DATAGRID));
+		final MenuItem listItem = listByTopic.addItem(POLITICAL_WORK_SUMMARY_TEXT, COMMAND18);
 		listItem.setDescription(CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS);
 
 		final MenuItem chartByTopic = committeeMenuItem.addItem(CHART_BY_TOPIC_TEXT, null, null);
 
-		chartByTopic.addItem(CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS));
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS));
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS));
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS));
+		chartByTopic.addItem(CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT, COMMAND20);
+		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT, COMMAND20);
+		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS, COMMAND20);
+		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES, COMMAND20);
 
-		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_COMMITTEES,
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS));
-		chartByTopic.addItem(ALL_PARTIES_TOTAL_ASSIGNMENTS,
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS));
+		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_COMMITTEES, COMMAND20);
+		chartByTopic.addItem(ALL_PARTIES_TOTAL_ASSIGNMENTS, COMMAND20);
 
-		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_MEMBERS,
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS));
-		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS));
+		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_MEMBERS, COMMAND20);
+		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES, COMMAND20);
 
-		committeeMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
-
+		committeeMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, null, COMMAND21);
 
 	}
 

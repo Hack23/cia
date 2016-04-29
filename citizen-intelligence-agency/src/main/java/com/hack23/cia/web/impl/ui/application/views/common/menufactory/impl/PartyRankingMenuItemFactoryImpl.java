@@ -33,6 +33,18 @@ import com.vaadin.ui.MenuBar.MenuItem;
 @Service
 public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements PartyRankingMenuItemFactory {
 
+	/** The Constant COMMAND21. */
+	private static final PageModeMenuCommand COMMAND21 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+
+	/** The Constant COMMAND20. */
+	private static final PageModeMenuCommand COMMAND20 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS);
+
+	/** The Constant COMMAND19. */
+	private static final PageModeMenuCommand COMMAND19 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.DATAGRID);
+
+	/** The Constant COMMAND18. */
+	private static final PageModeMenuCommand COMMAND18 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
 	/** The Constant PARTY_RANKING. */
 	private static final String PARTY_RANKING = "Party Ranking";
 
@@ -110,47 +122,47 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 	public void createPartyRankingTopics(final MenuItem partynMenuItem) {
 
 		partynMenuItem.addItem(OVERVIEW_TEXT, null,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW));
+				COMMAND18);
 
 		final MenuItem listByTopic = partynMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, null, null);
 
 		final MenuItem listItem = listByTopic.addItem(TOTAL_MEMBERS,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.DATAGRID));
+				COMMAND19);
 		listItem.setDescription(PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT);
 
 		final MenuItem chartByTopic = partynMenuItem.addItem(CHART_BY_TOPIC_TEXT, null, null);
 
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
+				COMMAND20);
 		chartByTopic.addItem(CURRENT_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
+				COMMAND20);
 
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
+				COMMAND20);
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
+				COMMAND20);
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
+				COMMAND20);
 
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
+				COMMAND20);
 		chartByTopic.addItem(CURRENT_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
+				COMMAND20);
 
 		chartByTopic.addItem(ALL_PARTIES_HEAD_COUNT_IN_PARLIAMENT,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
+				COMMAND20);
 		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
+				COMMAND20);
 
 		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
+				COMMAND20);
 		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_COMMITTEES,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
+				COMMAND20);
 		chartByTopic.addItem(ALL_PARTIES_TOTAL_ASSIGNMENTS_IN_COMMITTEES,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
+				COMMAND20);
 
 		partynMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
+				COMMAND21);
 	}
 
 }

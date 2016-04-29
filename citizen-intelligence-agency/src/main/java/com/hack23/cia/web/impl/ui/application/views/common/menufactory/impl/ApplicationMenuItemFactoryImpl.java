@@ -40,6 +40,24 @@ import com.vaadin.ui.MenuBar.MenuItem;
 public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		implements ApplicationMenuItemFactory {
 
+	/** The Constant COMMAND6. */
+	private static final PageModeMenuCommand COMMAND6 = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+
+	/** The Constant COMMAND5. */
+	private static final PageModeMenuCommand COMMAND5 = new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.OVERVIEW);
+
+	/** The Constant COMMAND4. */
+	private static final PageModeMenuCommand COMMAND4 = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
+	/** The Constant COMMAND3. */
+	private static final PageModeMenuCommand COMMAND3 = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
+	/** The Constant COMMAND2. */
+	private static final PageModeMenuCommand COMMAND2 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
+	/** The Constant COMMAND. */
+	private static final PageModeMenuCommand COMMAND = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
 	/** The Constant POLITICIAN_RANKING. */
 	private static final String POLITICIAN_RANKING = "Politician Ranking";
 
@@ -73,15 +91,19 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
+	/** The politician ranking menu item factory. */
 	@Autowired
 	private PoliticianRankingMenuItemFactory politicianRankingMenuItemFactory;
 
+	/** The party ranking menu item factory. */
 	@Autowired
 	private PartyRankingMenuItemFactory partyRankingMenuItemFactory;
 
+	/** The committee ranking menu item factory. */
 	@Autowired
 	private CommitteeRankingMenuItemFactory committeeRankingMenuItemFactory;
 
+	/** The ministry ranking menu item factory. */
 	@Autowired
 	private MinistryRankingMenuItemFactory ministryRankingMenuItemFactory;
 
@@ -99,29 +121,28 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 		final MenuItem rankingsMenuItem = menuBar.addItem(RANKING_TEXT, null, null);
 
 		final MenuItem politicianMenuItem = rankingsMenuItem.addItem(POLITICIAN_RANKING_LINK_TEXT,
-				new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.OVERVIEW));
+				COMMAND);
 
 		politicianRankingMenuItemFactory.createPoliticianRankingTopics(politicianMenuItem);
 
 		final MenuItem partynMenuItem = rankingsMenuItem.addItem(PARTY_RANKING_LINK_TEXT,
-				new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW));
+				COMMAND2);
 
 		partyRankingMenuItemFactory.createPartyRankingTopics(partynMenuItem);
 
 		final MenuItem committeeMenuItem = rankingsMenuItem.addItem(COMMITTEE_RANKING_LINK_TEXT,
-				new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.OVERVIEW));
+				COMMAND3);
 
 		committeeRankingMenuItemFactory.createCommitteeRankingTopics(committeeMenuItem);
 
 		final MenuItem ministryMenuItem = rankingsMenuItem.addItem(MINISTRY_RANKING_LINK_TEXT,
-				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW));
+				COMMAND4);
 
 		ministryRankingMenuItemFactory.createMinistryRankingTopics(ministryMenuItem);
 
-		menuBar.addItem(TEST_TEXT, new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.OVERVIEW));
+		menuBar.addItem(TEST_TEXT, COMMAND5);
 
-		menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
-				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.PAGEVISITHISTORY));
+		menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,COMMAND6);
 
 		return menuBar;
 	}

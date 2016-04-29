@@ -37,12 +37,79 @@ import com.vaadin.ui.MenuBar.MenuItem;
 /**
  * The Class AbstractMenuItemFactoryImpl.
  */
-public abstract class AbstractMenuItemFactoryImpl  {
+public abstract class AbstractMenuItemFactoryImpl {
 
+	/** The Constant COMMAND17. */
+	private static final PageModeMenuCommand COMMAND17 = new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME,
+			"");
+
+	/** The Constant COMMAND16. */
+	private static final PageModeMenuCommand COMMAND16 = new PageModeMenuCommand(
+			AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "");
+
+	/** The Constant COMMAND15. */
+	private static final PageModeMenuCommand COMMAND15 = new PageModeMenuCommand(
+			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "");
+
+	/** The Constant COMMAND14. */
+	private static final PageModeMenuCommand COMMAND14 = new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME,
+			"");
+
+	/** The Constant COMMAND13. */
+	private static final PageModeMenuCommand COMMAND13 = new PageModeMenuCommand(
+			AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, "");
+
+	/** The Constant COMMAND12. */
+	private static final PageModeMenuCommand COMMAND12 = new PageModeMenuCommand(
+			AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, "");
+
+	/** The Constant COMMAND11. */
+	private static final PageModeMenuCommand COMMAND11 = new PageModeMenuCommand(
+			AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, "");
+
+	/** The Constant COMMAND10. */
+	private static final PageModeMenuCommand COMMAND10 = new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME,
+			"");
+
+	/** The Constant COMMAND9. */
+	private static final PageModeMenuCommand COMMAND9 = new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "");
+
+	/** The Constant COMMAND8. */
+	private static final PageModeMenuCommand COMMAND8 = new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, "");
+
+	/** The Constant COMMAND7. */
+	private static final PageModeMenuCommand COMMAND7 = new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, "");
+
+	/** The Constant COMMAND6. */
+	private static final PageModeMenuCommand COMMAND6 = new PageModeMenuCommand(
+			AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, "");
+
+	/** The Constant COMMAND5. */
+	private static final PageModeMenuCommand COMMAND5 = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
+			ApplicationPageMode.REGISTER.toString());
+
+	/** The Constant COMMAND4. */
+	private static final PageModeMenuCommand COMMAND4 = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
+			ApplicationPageMode.LOGIN.toString());
+
+	/** The Constant COMMAND3. */
+	private static final PageModeMenuCommand COMMAND3 = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
+			ApplicationPageMode.LOGOUT.toString());
+
+	/** The Constant COMMAND2. */
+	private static final PageModeMenuCommand COMMAND2 = new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, "");
+
+	/** The Constant COMMAND. */
+	private static final PageModeMenuCommand COMMAND = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
+			PageMode.OVERVIEW);
+
+	/** The Constant USER_ACTIVITY. */
 	private static final String USER_ACTIVITY = "User Activity";
 
+	/** The Constant MANAGEMENT. */
 	private static final String MANAGEMENT = "Management";
 
+	/** The Constant CONFIGURATION. */
 	private static final String CONFIGURATION = "Configuration";
 
 	/** The Constant ROLE_USER. */
@@ -51,7 +118,7 @@ public abstract class AbstractMenuItemFactoryImpl  {
 	/** The Constant ROLE_ADMIN. */
 	private static final String ROLE_ADMIN = "ROLE_ADMIN";
 
-	/** The Constant OVERVIEW_TEXT. */
+	/** The Constant START_TEXT. */
 	private static final String START_TEXT = "Start";
 
 	/** The Constant USERHOME. */
@@ -96,8 +163,6 @@ public abstract class AbstractMenuItemFactoryImpl  {
 	/** The Constant ADMIN_TEXT. */
 	private static final String ADMIN_TEXT = "Admin";
 
-
-
 	/**
 	 * Instantiates a new abstract menu item factory impl.
 	 */
@@ -105,63 +170,59 @@ public abstract class AbstractMenuItemFactoryImpl  {
 		super();
 	}
 
+	/**
+	 * Inits the application menu bar.
+	 *
+	 * @param menuBar
+	 *            the menu bar
+	 */
 	protected final void initApplicationMenuBar(final MenuBar menuBar) {
 		menuBar.removeItems();
 		final MenuItem mainViewItem = menuBar.addItem("Application", null, null);
 
-		mainViewItem.addItem(START_TEXT, null, new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
+		mainViewItem.addItem(START_TEXT, null, COMMAND);
 
 		if (allowRoleInSecurityContext(ROLE_ADMIN) || allowRoleInSecurityContext(ROLE_USER)) {
-			mainViewItem.addItem(USERHOME, new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, ""));
+			mainViewItem.addItem(USERHOME, COMMAND2);
 			createAdminMenu(mainViewItem);
-			mainViewItem.addItem("Logout", null, new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGOUT.toString()));
+			mainViewItem.addItem("Logout", null, COMMAND3);
 		} else {
-			mainViewItem.addItem("Login", null, new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
-			mainViewItem.addItem("Register", null, new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
+			mainViewItem.addItem("Login", null, COMMAND4);
+			mainViewItem.addItem("Register", null, COMMAND5);
 		}
-
 
 	}
 
+	/**
+	 * Creates the admin menu.
+	 *
+	 * @param mainViewItem
+	 *            the main view item
+	 */
 	private void createAdminMenu(final MenuItem mainViewItem) {
 		if (allowRoleInSecurityContext(ROLE_ADMIN)) {
 			final MenuItem adminMenuItem = mainViewItem.addItem(ADMIN_TEXT, null, null);
 
-
 			final MenuItem configurationMenuItem = adminMenuItem.addItem(CONFIGURATION, null, null);
-			configurationMenuItem.addItem(APPLICATION_CONFIGURATION,
-					new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, ""));
+			configurationMenuItem.addItem(APPLICATION_CONFIGURATION, COMMAND6);
 
-			configurationMenuItem.addItem(AGENCY,
-					new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, ""));
-			configurationMenuItem.addItem(PORTAL,
-					new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
-			configurationMenuItem.addItem(COUNTRY,
-					new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, ""));
-			configurationMenuItem.addItem(LANGUAGE,
-					new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
-			configurationMenuItem.addItem(LANGUAGE_CONTENT,
-					new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, ""));
+			configurationMenuItem.addItem(AGENCY, COMMAND7);
+			configurationMenuItem.addItem(PORTAL, COMMAND8);
+			configurationMenuItem.addItem(COUNTRY, COMMAND9);
+			configurationMenuItem.addItem(LANGUAGE, COMMAND10);
+			configurationMenuItem.addItem(LANGUAGE_CONTENT, COMMAND11);
 
 			final MenuItem managementMenuItem = adminMenuItem.addItem(MANAGEMENT, null, null);
 
-			managementMenuItem.addItem(AGENT_OPERATIONS_TEXT,
-					new PageModeMenuCommand(AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, ""));
-			managementMenuItem.addItem(DATA_SUMMARY_TEXT,
-					new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
+			managementMenuItem.addItem(AGENT_OPERATIONS_TEXT, COMMAND12);
+			managementMenuItem.addItem(DATA_SUMMARY_TEXT, COMMAND13);
 
-			managementMenuItem.addItem(SYSTEM_PERFORMANCE,
-					new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
-
-
+			managementMenuItem.addItem(SYSTEM_PERFORMANCE, COMMAND14);
 
 			final MenuItem userActivityMenuItem = adminMenuItem.addItem(USER_ACTIVITY, null, null);
-			userActivityMenuItem.addItem(APPLICATION_SESSION,
-					new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
-			userActivityMenuItem.addItem(APPLICATION_EVENT,
-					new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
-			userActivityMenuItem.addItem(USERACCOUNT,
-					new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
+			userActivityMenuItem.addItem(APPLICATION_SESSION, COMMAND15);
+			userActivityMenuItem.addItem(APPLICATION_EVENT, COMMAND16);
+			userActivityMenuItem.addItem(USERACCOUNT, COMMAND17);
 
 		}
 	}
@@ -175,7 +236,7 @@ public abstract class AbstractMenuItemFactoryImpl  {
 	 */
 	protected static boolean allowRoleInSecurityContext(final String role) {
 
-		boolean result=false;
+		boolean result = false;
 
 		final SecurityContext context = SecurityContextHolder.getContext();
 		if (context != null) {
@@ -186,7 +247,7 @@ public abstract class AbstractMenuItemFactoryImpl  {
 
 				for (final GrantedAuthority grantedAuthority : authorities) {
 					if (role.equalsIgnoreCase(grantedAuthority.getAuthority())) {
-						result=true;
+						result = true;
 					}
 				}
 			}
@@ -194,6 +255,5 @@ public abstract class AbstractMenuItemFactoryImpl  {
 
 		return result;
 	}
-
 
 }

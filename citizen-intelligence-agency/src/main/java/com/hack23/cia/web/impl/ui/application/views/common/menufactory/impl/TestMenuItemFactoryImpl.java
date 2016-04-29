@@ -47,6 +47,24 @@ import com.vaadin.ui.MenuBar.MenuItem;
 @Service
 public final class TestMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements TestMenuItemFactory {
 
+	/** The Constant COMMAND22. */
+	private static final PageModeMenuCommand COMMAND22 = new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+
+	/** The Constant COMMAND21. */
+	private static final PageModeMenuCommand COMMAND21 = new PageModeMenuCommand(
+			UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DECSIONACTIVITYBYTYPE.toString());
+
+	/** The Constant COMMAND20. */
+	private static final PageModeMenuCommand COMMAND20 = new PageModeMenuCommand(
+			UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DOCUMENTACTIVITYBYTYPE.toString());
+
+	/** The Constant COMMAND19. */
+	private static final PageModeMenuCommand COMMAND19 = new PageModeMenuCommand(
+			UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS, ChartIndicators.PARTYWINNER.toString());
+
+	/** The Constant COMMAND18. */
+	private static final PageModeMenuCommand COMMAND18 = new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.OVERVIEW);
+
 	/** The Constant BY_SOURCE. */
 	private static final String BY_SOURCE = "By Source";
 
@@ -102,20 +120,17 @@ public final class TestMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl i
 		initApplicationMenuBar(menuBar);
 
 		menuBar.addItem(OVERVIEW_TEXT, null,
-				new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.OVERVIEW));
+				COMMAND18);
 
 		final MenuItem charts = menuBar.addItem(CHARTS_TEXT, null, null);
 
 		// Submenu item with a sub-submenu
 		final MenuItem chartIndicators = charts.addItem(SWEDISH_PARLIAMENT_INDICATORS, null, null);
-		final MenuItem addItem = chartIndicators.addItem(PARTY_WINNER, new PageModeMenuCommand(
-				UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS, ChartIndicators.PARTYWINNER.toString()));
+		final MenuItem addItem = chartIndicators.addItem(PARTY_WINNER, COMMAND19);
 		addItem.setDescription(DAILY_AVERAGE_WON_BALLOTS);
-		final MenuItem addItem2 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE, new PageModeMenuCommand(
-				UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DOCUMENTACTIVITYBYTYPE.toString()));
+		final MenuItem addItem2 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE, COMMAND20);
 		addItem2.setDescription(DAILY_TOTAL_OF_NUMBER_PUBLISHED_DOCUMENTS);
-		final MenuItem addItem3 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, new PageModeMenuCommand(
-				UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DECSIONACTIVITYBYTYPE.toString()));
+		final MenuItem addItem3 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, COMMAND21);
 		addItem3.setDescription(DAILY_TOTAL_OF_NUMBER_OF_DECSIONS_MADE);
 
 		final DataContainer<ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId> indicatorDataCountrSummaryDailyDataContainer = applicationManager
@@ -145,7 +160,7 @@ public final class TestMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl i
 		addSourcesAndIndicatorsToMenu(bySourceItem, sourceIndicatorMap);
 
 		menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
-				new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.PAGEVISITHISTORY));
+				COMMAND22);
 
 	}
 

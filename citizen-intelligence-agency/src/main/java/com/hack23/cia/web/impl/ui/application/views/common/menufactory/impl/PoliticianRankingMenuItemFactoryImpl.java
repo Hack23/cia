@@ -31,7 +31,20 @@ import com.vaadin.ui.MenuBar.MenuItem;
  * The Class PoliticianRankingMenuItemFactoryImpl.
  */
 @Service
-public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements PoliticianRankingMenuItemFactory {
+public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
+		implements PoliticianRankingMenuItemFactory {
+
+	/** The Constant COMMAND20. */
+	private static final PageModeMenuCommand COMMAND20 = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
+			PageMode.PAGEVISITHISTORY);
+
+	/** The Constant COMMAND19. */
+	private static final PageModeMenuCommand COMMAND19 = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
+			PageMode.DATAGRID);
+
+	/** The Constant COMMAND18. */
+	private static final PageModeMenuCommand COMMAND18 = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
+			PageMode.OVERVIEW);
 
 	/** The Constant POLITICIAN_RANKING. */
 	private static final String POLITICIAN_RANKING = "Politician Ranking";
@@ -72,19 +85,16 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 
 	@Override
 	public void createPoliticianRankingTopics(final MenuItem politicianMenuItem) {
-		politicianMenuItem.addItem(OVERVIEW_TEXT, null,
-				new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.OVERVIEW));
+		politicianMenuItem.addItem(OVERVIEW_TEXT, null, COMMAND18);
 
 		final MenuItem listByTopic = politicianMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, null, null);
 
-		final MenuItem listItem = listByTopic.addItem(POLITICAL_EXPERIENCE_SUMMARY,
-				new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DATAGRID));
+		final MenuItem listItem = listByTopic.addItem(POLITICAL_EXPERIENCE_SUMMARY, COMMAND19);
 		listItem.setDescription(CURRENT_AND_PAST_ASSIGNMENTS_AND_SUMMARY_EXPERIENCE_IN_DAYS);
 
 		politicianMenuItem.addItem(CHART_BY_TOPIC_TEXT, null, null);
 
-		politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
-				new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
+		politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, null, COMMAND20);
 
 	}
 

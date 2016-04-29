@@ -33,6 +33,18 @@ import com.vaadin.ui.MenuBar.MenuItem;
 @Service
 public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements MinistryRankingMenuItemFactory {
 
+	/** The Constant COMMAND21. */
+	private static final PageModeMenuCommand COMMAND21 = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+
+	/** The Constant COMMAND20. */
+	private static final PageModeMenuCommand COMMAND20 = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS);
+
+	/** The Constant COMMAND19. */
+	private static final PageModeMenuCommand COMMAND19 = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.DATAGRID);
+
+	/** The Constant COMMAND18. */
+	private static final PageModeMenuCommand COMMAND18 = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
 	/** The Constant MINISTRY_RANKING. */
 	private static final String MINISTRY_RANKING = "Ministry Ranking";
 
@@ -90,27 +102,27 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 	public void createMinistryRankingTopics(final MenuItem ministryMenuItem) {
 
 		ministryMenuItem.addItem(OVERVIEW_TEXT, null,
-				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW));
+				COMMAND18);
 
 		final MenuItem listByTopic = ministryMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, null, null);
 
 		final MenuItem listItem = listByTopic.addItem(POLITICAL_WORK_SUMMARY_TEXT,
-				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.DATAGRID));
+				COMMAND19);
 		listItem.setDescription(CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_TOTAL_POLTICIAL_DAYS_MEMBERSHIP_DESCRIPTION);
 
 		final MenuItem chartByTopic = ministryMenuItem.addItem(CHART_BY_TOPIC_TEXT, null, null);
 
 		chartByTopic.addItem(CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT,
-				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS));
+				COMMAND20);
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,
-				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS));
+				COMMAND20);
 		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT,
-				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS));
+				COMMAND20);
 		chartByTopic.addItem(ALL_MINISTRIES_TOTAL_MEMBERS_TEXT,
-				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS));
+				COMMAND20);
 
 		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
-				new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
+				COMMAND21);
 
 	}
 
