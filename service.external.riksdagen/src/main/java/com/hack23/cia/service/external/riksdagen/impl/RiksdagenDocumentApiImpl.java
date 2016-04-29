@@ -36,14 +36,13 @@ import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentContai
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentType;
-import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
 import com.hack23.cia.service.external.common.api.ProcessDataStrategy;
 import com.hack23.cia.service.external.common.api.XmlAgent;
 import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
 
 /**
- * The Class RiksdagenApiImpl.
+ * The Class RiksdagenDocumentApiImpl.
  */
 @Component
 public final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
@@ -53,9 +52,6 @@ public final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 
 	/** The Constant CHANGED_TO_KEY. */
 	private static final String CHANGED_TO_KEY = "${CHANGED_TO}";
-
-	/** The Constant COMMITTE_PROPOSAL. */
-	private static final String COMMITTE_PROPOSAL = "http://data.riksdagen.se/utskottsforslag/${ID_KEY}/xml";
 
 	/** The Constant DOC_ID_KEY. */
 	private static final String DOC_ID_KEY = "${DOC_ID}";
@@ -90,12 +86,6 @@ public final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	 */
 	private static final String HTTP_DOKUMENTSTATUS_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL = "http://dokumentstatus.riksdagen.external.model.cia.hack23.com/impl";
 
-	/**
-	 * The Constant
-	 * HTTP_UTSKOTTSFORSLAG_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL.
-	 */
-	private static final String HTTP_UTSKOTTSFORSLAG_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL = "http://utskottsforslag.riksdagen.external.model.cia.hack23.com/impl";
-
 	/** The Constant ID_KEY. */
 	private static final String ID_KEY = "${ID_KEY}";
 
@@ -107,12 +97,6 @@ public final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 
 	/** The Constant PAGE_PROPERTY. */
 	private static final String PAGE_PROPERTY = "&p=";
-
-	/**
-	 * The Constant
-	 * PROBLEM_GETTING_COMMITTEE_PROPOSAL_FOR_ID_S_FROM_DATA_RIKSDAGEN_SE.
-	 */
-	private static final String PROBLEM_GETTING_COMMITTEE_PROPOSAL_FOR_ID_S_FROM_DATA_RIKSDAGEN_SE = "Problem getting committee proposal for id:{} from data.riksdagen.se";
 
 	/**
 	 * The Constant
@@ -155,31 +139,6 @@ public final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	/** The Constant YEAR_KEY. */
 	private static final String YEAR_KEY = "${YEAR}";
 
-	/** The person list unmarshaller. */
-	@Autowired
-	@Qualifier("riksdagenPersonListMarshaller")
-	private Unmarshaller personListUnmarshaller;
-
-	/** The person unmarshaller. */
-	@Autowired
-	@Qualifier("riksdagenPersonMarshaller")
-	private Unmarshaller personUnmarshaller;
-
-	/** The riksdagen ballot list marshaller. */
-	@Autowired
-	@Qualifier("riksdagenBallotListMarshaller")
-	private Unmarshaller riksdagenBallotListMarshaller;
-
-	/** The riksdagen ballot marshaller. */
-	@Autowired
-	@Qualifier("riksdagenBallotMarshaller")
-	private Unmarshaller riksdagenBallotMarshaller;
-
-	/** The riksdagen committee proposal marshaller. */
-	@Autowired
-	@Qualifier("riksdagenCommitteeProposalMarshaller")
-	private Unmarshaller riksdagenCommitteeProposalMarshaller;
-
 	/** The riksdagen document list marshaller. */
 	@Autowired
 	@Qualifier("riksdagenDocumentListMarshaller")
@@ -195,7 +154,7 @@ public final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	private XmlAgent xmlAgent;
 
 	/**
-	 * Instantiates a new riksdagen api impl.
+	 * Instantiates a new riksdagen document api impl.
 	 */
 	public RiksdagenDocumentApiImpl() {
 		super();
@@ -233,19 +192,6 @@ public final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 			} catch (final Exception e) {
 				LOGGER.warn(ERROR_PROCESSING_DOCUMENT, documentElement.getId(), e);
 			}
-		}
-	}
-
-	@Override
-	public CommitteeProposalComponentData getCommitteeProposal(final String id) throws DataFailureException {
-		try {
-			final String url = COMMITTE_PROPOSAL.replace(ID_KEY, id);
-			return ((JAXBElement<CommitteeProposalComponentData>) xmlAgent.unmarshallXml(
-					riksdagenCommitteeProposalMarshaller, url,
-					HTTP_UTSKOTTSFORSLAG_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL, null, null)).getValue();
-		} catch (final Exception e) {
-			LOGGER.warn(PROBLEM_GETTING_COMMITTEE_PROPOSAL_FOR_ID_S_FROM_DATA_RIKSDAGEN_SE, id);
-			throw new DataFailureException(e);
 		}
 	}
 

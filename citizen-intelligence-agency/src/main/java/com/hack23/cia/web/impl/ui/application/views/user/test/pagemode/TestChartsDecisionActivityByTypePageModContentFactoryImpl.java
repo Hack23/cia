@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.DocumentChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.DecisionChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
@@ -44,7 +44,7 @@ public final class TestChartsDecisionActivityByTypePageModContentFactoryImpl ext
 
 	/** The document chart data manager. */
 	@Autowired
-	private transient DocumentChartDataManager documentChartDataManager;
+	private transient DecisionChartDataManager decisionChartDataManager;
 
 	/**
 	 * Instantiates a new test charts decision activity by type page mod content
@@ -69,7 +69,7 @@ public final class TestChartsDecisionActivityByTypePageModContentFactoryImpl ext
 
 		getTestMenuItemFactory().createTestTopicMenu(menuBar);
 
-		panelContent.addComponent(documentChartDataManager.createDecisionTypeChart());
+		panelContent.addComponent(decisionChartDataManager.createDecisionTypeChart());
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

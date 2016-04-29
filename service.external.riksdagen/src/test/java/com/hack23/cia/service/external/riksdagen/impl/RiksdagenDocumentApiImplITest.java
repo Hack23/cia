@@ -29,7 +29,6 @@ import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElemen
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentType;
-import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
 import com.hack23.cia.service.external.common.api.ProcessDataStrategy;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
 
@@ -41,22 +40,8 @@ AbstractRiksdagenFunctionalIntegrationTest {
 
 	/** The riksdagen api. */
 	@Autowired
-	RiksdagenDocumentApi riksdagenApi;
+	private RiksdagenDocumentApi riksdagenApi;
 
-
-	/**
-	 * Gets the committee proposal test.
-	 *
-	 * @return the committee proposal test
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public void getCommitteeProposalTest() throws Exception {
-		final CommitteeProposalComponentData proposal = riksdagenApi
-				.getCommitteeProposal("GX01FiU35");
-		assertNotNull(proposal);
-	}
 
 	/**
 	 * Gets the document content.
@@ -168,7 +153,6 @@ AbstractRiksdagenFunctionalIntegrationTest {
 		assertEquals("Thomas Bodström",documentPersonReferenceData.getReferenceName());
 
 	}
-
 
 
 	/**

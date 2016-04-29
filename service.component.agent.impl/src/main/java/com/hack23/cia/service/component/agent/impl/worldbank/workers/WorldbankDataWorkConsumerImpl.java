@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.worldbank;
+package com.hack23.cia.service.component.agent.impl.worldbank.workers;
 
 import java.util.List;
 
@@ -44,9 +44,9 @@ MessageListener {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(WorldbankDataWorkConsumerImpl.class);
 
-	/** The import service. */
+	/** The update service. */
 	@Autowired
-	private WorldbankImportService importService;
+	private WorldbankUpdateService updateService;
 
 	@Autowired
 	private WorldBankDataApi worldbankDataApi;
@@ -63,7 +63,7 @@ MessageListener {
 	public void onMessage(final Message message) {
 		try {
 			final List<String>  countryIndicator= (List<String>) ((ObjectMessage) message).getObject();
-			importService.updateData(worldbankDataApi.getData(countryIndicator.get(0), countryIndicator.get(1)));
+			updateService.updateData(worldbankDataApi.getData(countryIndicator.get(0), countryIndicator.get(1)));
 		} catch (final Exception e2) {
 			LOGGER.warn("Error loading worldbank data:" , e2);
 		}

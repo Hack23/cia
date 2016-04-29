@@ -20,44 +20,27 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory;
 
 import org.dussan.vaadin.dcharts.DCharts;
 
+import com.vaadin.ui.Component;
+
 /**
  * The Interface ChartDataManager.
  */
-public interface DocumentChartDataManager {
-
-
-	/**
-	 * Creates the document type chart.
-	 *
-	 * @return the d charts
-	 */
-	DCharts createDocumentTypeChart();
+public interface DecisionChartDataManager {
 
 	/**
-	 * Creates the document history chart by org.
+	 * Creates the decision type chart.
 	 *
-	 * @param org
-	 *            the org
-	 * @return the d charts
+	 * @return the component
 	 */
-	DCharts createDocumentHistoryChartByOrg(String org);
+	Component createDecisionTypeChart();
 
 	/**
-	 * Creates the document history party chart.
+	 * Creates the decision type chart.
 	 *
-	 * @param org
-	 *            the org
+	 * @param orgCode
+	 *            the org code
 	 * @return the d charts
 	 */
-	DCharts createDocumentHistoryPartyChart(String org);
-
-	/**
-	 * Creates the person document history chart.
-	 *
-	 * @param personId
-	 *            the person id
-	 * @return the d charts
-	 */
-	DCharts createPersonDocumentHistoryChart(String personId);
+	DCharts createDecisionTypeChart(String orgCode);
 
 }

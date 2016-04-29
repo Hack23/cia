@@ -35,7 +35,7 @@ AbstractRiksdagenFunctionalIntegrationTest {
 
 	/** The riksdagen api. */
 	@Autowired
-	RiksdagenBallotApi riksdagenApi;
+	private RiksdagenBallotApi riksdagenApi;
 
 	/**
 	 * Gets the ballot test.

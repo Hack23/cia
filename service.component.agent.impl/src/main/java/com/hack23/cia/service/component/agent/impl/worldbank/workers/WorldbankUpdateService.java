@@ -16,10 +16,9 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.worldbank;
+package com.hack23.cia.service.component.agent.impl.worldbank.workers;
 
 import java.util.List;
-import java.util.Map;
 
 import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
 import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
@@ -28,29 +27,7 @@ import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
 /**
  * The Interface WorldbankImportService.
  */
-public interface WorldbankImportService {
-
-	/**
-	 * Gets the world bank country map.
-	 *
-	 * @return the world bank country map
-	 */
-	Map<String, String> getWorldBankCountryMap();
-
-	/**
-	 * Gets the world bank data map.
-	 *
-	 * @return the world bank data map
-	 */
-	Map<String, String> getWorldBankDataMap();
-
-	/**
-	 * Gets the world bank indicator element map.
-	 *
-	 * @return the world bank indicator element map
-	 */
-	Map<String, String> getWorldBankIndicatorElementMap();
-
+public interface WorldbankUpdateService {
 
 	/**
 	 * Update country element.
@@ -78,14 +55,5 @@ public interface WorldbankImportService {
 	 *            the object
 	 */
 	void updateIndicatorElement(IndicatorElement object);
-
-	/**
-	 * Gets the all indicators.
-	 *
-	 * @return the all indicators
-	 */
-	List<IndicatorElement> getAllIndicators();
-
-
 
 }

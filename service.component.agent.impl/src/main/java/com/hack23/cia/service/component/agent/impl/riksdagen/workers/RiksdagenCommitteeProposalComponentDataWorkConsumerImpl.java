@@ -28,7 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
+import com.hack23.cia.service.external.riksdagen.api.RiksdagenCommitteeProposalApi;
 
 /**
  * The Class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl.
@@ -47,7 +47,7 @@ public final class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl imple
 
 	/** The riksdagen api. */
 	@Autowired
-	private RiksdagenDocumentApi riksdagenApi;
+	private RiksdagenCommitteeProposalApi riksdagenApi;
 
 
 	/**

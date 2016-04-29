@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.worldbank;
+package com.hack23.cia.service.component.agent.impl.worldbank.workers;
 
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -42,9 +42,9 @@ MessageListener {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(WorldbankCountryElementWorkConsumerImpl.class);
 
-	/** The import service. */
+	/** The update service. */
 	@Autowired
-	private WorldbankImportService importService;
+	private WorldbankUpdateService updateService;
 
 	/**
 	 * Instantiates a new worldbank country element work consumer impl.
@@ -56,7 +56,7 @@ MessageListener {
 	@Override
 	public void onMessage(final Message message) {
 		try {
-			importService.updateCountryElement((CountryElement)((ObjectMessage) message).getObject());
+			updateService.updateCountryElement((CountryElement)((ObjectMessage) message).getObject());
 		} catch (final Exception e2) {
 			LOGGER.warn("Error loading worldbank country:" , e2);
 		}

@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.worldbank;
+package com.hack23.cia.service.component.agent.impl.worldbank.workgenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
-import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
 import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
 import com.hack23.cia.service.data.api.CountryElementDAO;
 import com.hack23.cia.service.data.api.DataDAO;
@@ -103,21 +102,6 @@ public final class WorldbankImportServiceImpl implements WorldbankImportService 
 			list.add(element.getId());
 		}
 		return createMapFromList(list);
-	}
-
-	@Override
-	public void updateCountryElement(final CountryElement country) {
-		countryElementDAO.persist(country);
-	}
-
-	@Override
-	public void updateData(final List<WorldBankData> data) {
-		dataDAO.persist(data);
-	}
-
-	@Override
-	public void updateIndicatorElement(final IndicatorElement object) {
-		indicatorElementDAO.persist(object);
 	}
 
 }

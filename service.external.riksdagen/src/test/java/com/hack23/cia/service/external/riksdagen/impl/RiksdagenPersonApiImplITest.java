@@ -33,7 +33,7 @@ public final class RiksdagenPersonApiImplITest extends AbstractRiksdagenFunction
 
 	/** The riksdagen api. */
 	@Autowired
-	RiksdagenPersonApi riksdagenApi;
+	private RiksdagenPersonApi riksdagenApi;
 
 	/**
 	 * Gets the person mixed test.
