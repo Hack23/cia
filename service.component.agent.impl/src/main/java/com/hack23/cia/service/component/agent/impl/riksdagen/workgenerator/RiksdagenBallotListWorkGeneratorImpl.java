@@ -40,7 +40,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi;
 public final class RiksdagenBallotListWorkGeneratorImpl extends AbstractRiksdagenDataSourcesWorkGenerator {
 
 	/** The Constant LOGGER. */
-	public static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenBallotListWorkGeneratorImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenBallotListWorkGeneratorImpl.class);
 
 
 	/** The vote data workdestination. */

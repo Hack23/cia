@@ -27,6 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
 import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
@@ -35,7 +36,8 @@ import com.hack23.cia.service.external.worldbank.api.WorldBankIndicatorApi;
 /**
  * The Class WorldBankIndicatorWorkGeneratorImpl.
  */
-public class WorldBankIndicatorWorkGeneratorImpl extends AbstractWorldBankDataSourcesWorkGenerator {
+@Service
+public final class WorldBankIndicatorWorkGeneratorImpl extends AbstractWorldBankDataSourcesWorkGenerator {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory

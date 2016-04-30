@@ -42,7 +42,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
 public final class RiksdagenDocumentListWorkGeneratorImpl extends AbstractRiksdagenDataSourcesWorkGenerator {
 
 	/** The Constant LOGGER. */
-	public static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenDocumentListWorkGeneratorImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenDocumentListWorkGeneratorImpl.class);
 
 	/** The document element workdestination. */
 	@Autowired

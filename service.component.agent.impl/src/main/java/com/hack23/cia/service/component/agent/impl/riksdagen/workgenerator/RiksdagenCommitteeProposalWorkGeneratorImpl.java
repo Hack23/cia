@@ -38,7 +38,7 @@ import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
 public final class RiksdagenCommitteeProposalWorkGeneratorImpl extends AbstractRiksdagenDataSourcesWorkGenerator {
 
 	/** The Constant LOGGER. */
-	public static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenCommitteeProposalWorkGeneratorImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenCommitteeProposalWorkGeneratorImpl.class);
 
 
 	/** The committee proposal component data workdestination. */

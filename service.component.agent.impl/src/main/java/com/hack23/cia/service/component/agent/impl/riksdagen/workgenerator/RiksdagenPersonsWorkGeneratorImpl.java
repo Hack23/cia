@@ -42,7 +42,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
 public final class RiksdagenPersonsWorkGeneratorImpl extends AbstractRiksdagenDataSourcesWorkGenerator {
 
 	/** The Constant LOGGER. */
-	public static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenPersonsWorkGeneratorImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenPersonsWorkGeneratorImpl.class);
 
 	/** The person element workdestination. */
 	@Autowired

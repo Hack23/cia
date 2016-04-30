@@ -48,6 +48,9 @@ public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkCo
 
 	/**
 	 * Instantiates a new world bank api agent work consumer impl.
+	 *
+	 * @param context
+	 *            the context
 	 */
 	public WorldBankApiAgentWorkConsumerImpl(final ApplicationContext context) {
 		super();

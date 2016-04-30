@@ -33,7 +33,7 @@ import com.vaadin.ui.ComboBox;
 /**
  * The Class StartAgentClickListener.
  */
-public class StartAgentClickListener implements ClickListener {
+public final class StartAgentClickListener implements ClickListener {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;

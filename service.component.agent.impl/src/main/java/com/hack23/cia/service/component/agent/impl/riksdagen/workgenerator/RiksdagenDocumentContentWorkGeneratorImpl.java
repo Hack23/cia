@@ -38,7 +38,7 @@ import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
 public final class RiksdagenDocumentContentWorkGeneratorImpl extends AbstractRiksdagenDataSourcesWorkGenerator {
 
 	/** The Constant LOGGER. */
-	public static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenDocumentContentWorkGeneratorImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenDocumentContentWorkGeneratorImpl.class);
 
 	/** The document content workdestination. */
 	@Autowired
