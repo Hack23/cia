@@ -59,7 +59,7 @@ public final class WorldBankIndicatorWorkGeneratorImpl extends AbstractWorldBank
 	 * @param datasource
 	 *            the datasource
 	 */
-	public WorldBankIndicatorWorkGeneratorImpl(final WorldBankDataSources datasource) {
+	public WorldBankIndicatorWorkGeneratorImpl() {
 		super(WorldBankDataSources.INDICATORS);
 	}
 

@@ -58,11 +58,8 @@ public final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataS
 
 	/**
 	 * Instantiates a new world bank data work generator impl.
-	 *
-	 * @param datasource
-	 *            the datasource
 	 */
-	public WorldBankDataWorkGeneratorImpl(final WorldBankDataSources datasource) {
+	public WorldBankDataWorkGeneratorImpl() {
 		super(WorldBankDataSources.DATA);
 	}
 

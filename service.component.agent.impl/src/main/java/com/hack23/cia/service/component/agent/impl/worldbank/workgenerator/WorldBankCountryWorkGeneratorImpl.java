@@ -55,11 +55,8 @@ public final class WorldBankCountryWorkGeneratorImpl extends AbstractWorldBankDa
 
 	/**
 	 * Instantiates a new world bank country work generator impl.
-	 *
-	 * @param datasource
-	 *            the datasource
 	 */
-	public WorldBankCountryWorkGeneratorImpl(final WorldBankDataSources datasource) {
+	public WorldBankCountryWorkGeneratorImpl() {
 		super(WorldBankDataSources.COUNTRIES);
 	}
 
