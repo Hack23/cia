@@ -49,6 +49,12 @@ public final class CitizenIntelligenceAgencyServer {
 	/** The Constant ACCESS_URL. */
 	public static final String ACCESS_URL = "http://localhost:" + PORT + "/";
 
+	/** The test server. */
+	private static CitizenIntelligenceAgencyServer testServer;
+
+	/** The server started. */
+	private static int serverStarted = 0;
+
 	/**
 	 * The main method.
 	 *
@@ -60,6 +66,36 @@ public final class CitizenIntelligenceAgencyServer {
 		final CitizenIntelligenceAgencyServer testServer = new CitizenIntelligenceAgencyServer();
 		testServer.startServer();
 	}
+
+
+	/**
+	 * Start server.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	public static final synchronized void startTestServer() throws Exception {
+		serverStarted++;
+		if (testServer == null) {
+			testServer = new CitizenIntelligenceAgencyServer();
+			testServer.startServer();
+		}
+	}
+
+	/**
+	 * Stop server.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	public static final synchronized void stopTestServer() throws Exception {
+		serverStarted--;
+		if (serverStarted == 0 && testServer != null) {
+//			testServer.stop();
+//			testServer = null;
+		}
+	}
+
 
 	/**
 	 * Start server.
