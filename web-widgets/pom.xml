@@ -110,7 +110,16 @@
           <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>jsoup</artifactId>
+          <groupId>org.jsoup</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.jsoup</groupId>
+      <artifactId>jsoup</artifactId>
+      <version>1.9.1</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
