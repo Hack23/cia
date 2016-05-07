@@ -23,8 +23,6 @@ Project Documentation
 
  * Javadoc & UML {{{http://cia.sourceforge.net/apidocs/index.html}Generated javadoc with UML diagrams}}.
 
- * Project Dependency Graph {{{./images/Project-Dependencies.png}Graph Image}}.
-
  * Entity Model {{{.//service.data.impl/hbm2doc/entities/index.html}Hibernate Mapping Documentation}}.
 
  * Test Result {{{http://cia.sourceforge.net/surefire-report.html}Surefire test report}}.

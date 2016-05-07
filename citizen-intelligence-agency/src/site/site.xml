@@ -132,13 +132,6 @@
 
 		<menu name="Documentation [Development]">
 			<item name="Developer Guide" href="developer.html" />
-			<item name="Designer Guide" href="designer.html" />
-			<item name="Translator Guide" href="translator.html" />
-			<item name="Admin Guide" href="admin.html" />
-			<item name="Fork Guide" href="fork.html" />
-			<item name="User Guide" href="user.html" />
-			<item name="Press Guide" href="press.html" />
-			<item name="FAQ" href="faq.html" />
 		</menu>
 	</body>
 
