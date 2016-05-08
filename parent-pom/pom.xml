@@ -136,7 +136,7 @@
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
     <cia.project.versions.xmlbeans>2.6.0</cia.project.versions.xmlbeans>
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
-    <cia.project.versions.plexus.utils>3.0.23</cia.project.versions.plexus.utils>
+    <cia.project.versions.plexus.utils>3.0.24</cia.project.versions.plexus.utils>
     <cia.project.versions.jaxb2.commons>0.11.0</cia.project.versions.jaxb2.commons>
     <cia.project.versions.hyperjaxb3>0.6.1</cia.project.versions.hyperjaxb3>
     <cia.project.versions.jaxb>2.2.11</cia.project.versions.jaxb>
@@ -745,7 +745,7 @@
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-utils</artifactId>
-              <version>3.0.23</version>
+              <version>3.0.24</version>
             </dependency>
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
