@@ -97,7 +97,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-search-orm</artifactId>
-      <version>5.6.0.Alpha3</version>
+      <version>5.5.3.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-core</artifactId>

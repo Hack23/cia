@@ -31,7 +31,7 @@ import com.hack23.cia.service.data.api.ViewDataManager;
  * The Class ViewDataManagerImpl.
  */
 @Service
-@Transactional
+@Transactional(timeout=900)
 public final class ViewDataManagerImpl implements ViewDataManager {
 
 	/** The data source. */

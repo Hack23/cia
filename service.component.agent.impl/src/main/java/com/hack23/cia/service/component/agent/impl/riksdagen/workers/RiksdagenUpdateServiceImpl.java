@@ -81,7 +81,7 @@ public final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService 
 	@Override
 	public void update(final PersonData personData) {
 		if (personDataDAO.load(personData.getId()) != null) {
-			personDataDAO.merge(personData);
+			//personDataDAO.merge(personData);
 		} else {
 			personDataDAO.persist(personData);
 		}
@@ -91,7 +91,7 @@ public final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService 
 	public void updateCommitteeProposalComponentData(final CommitteeProposalComponentData committeeProposal) {
 		if (committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
 				committeeProposal.getDocument()) != null) {
-			committeeProposalComponentDataDAO.merge(committeeProposal);
+			//committeeProposalComponentDataDAO.merge(committeeProposal);
 		} else {
 			committeeProposalComponentDataDAO.persist(committeeProposal);
 		}
@@ -114,7 +114,7 @@ public final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService 
 	@Override
 	public void updateDocumentElement(final DocumentElement documentData) {
 		if (documentElementDAO.checkDocumentElement(documentData.getId())) {
-			documentElementDAO.merge(documentData);
+			//documentElementDAO.merge(documentData);
 		} else {
 			documentElementDAO.persist(documentData);
 		}

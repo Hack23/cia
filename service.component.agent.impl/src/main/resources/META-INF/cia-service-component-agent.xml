@@ -30,6 +30,7 @@
     	<property name="messageListener" ref="RiksdagenApiAgentWorkConsumer" />
         <property name="sessionTransacted" value="true"/>
 	    <property name="receiveTimeout" value="5000" />
+	    <property name="transactionTimeout" value="60"/>
 	    <property name="recoveryInterval" value="6000" />
 	    <property name="acceptMessagesWhileStopping" value="false" />
 	</bean>
@@ -56,9 +57,25 @@
     	<property name="messageListener" ref="riksdagenDocumentElementWorkConsumerImpl" />
         <property name="sessionTransacted" value="true"/>
 	    <property name="receiveTimeout" value="5000" />
+	    <property name="transactionTimeout" value="60"/>
 	    <property name="recoveryInterval" value="6000" />
 	    <property name="acceptMessagesWhileStopping" value="false" />
 	</bean>
+
+	<bean id="RiksdagenLoadDocumentWorkMessageListenerContainer"
+	    class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+	    <property name="concurrency" value="${com.hack23.cia.service.component.agent.impl.jms.speed.category.riksdagen}" />
+	    <property name="connectionFactory" ref="connectionFactory" />
+	    <property name="transactionManager" ref="transactionManager" />
+	    <property name="destination" ref="com.hack23.cia.service.component.agent.impl.riksdagen.workers.LoadDocumentWork" />
+    	<property name="messageListener" ref="riksdagenLoadDocumentWorkConsumerImpl" />
+        <property name="sessionTransacted" value="true"/>
+	    <property name="receiveTimeout" value="5000" />
+	    <property name="transactionTimeout" value="60"/>
+	    <property name="recoveryInterval" value="6000" />
+	    <property name="acceptMessagesWhileStopping" value="false" />
+	</bean>
+
 
 	<bean id="RiksdagenDocumentStatusMessageListenerContainer"
 	    class="org.springframework.jms.listener.DefaultMessageListenerContainer">
@@ -69,6 +86,7 @@
     	<property name="messageListener" ref="riksdagenDocumentStatusContainerWorkConsumerImpl" />
         <property name="sessionTransacted" value="true"/>
 	    <property name="receiveTimeout" value="5000" />
+	    <property name="transactionTimeout" value="60"/>
 	    <property name="recoveryInterval" value="6000" />
 	    <property name="acceptMessagesWhileStopping" value="false" />
 	</bean>
@@ -82,6 +100,7 @@
     	<property name="messageListener" ref="riksdagenPersonElementWorkConsumerImpl" />
         <property name="sessionTransacted" value="true"/>
 	    <property name="receiveTimeout" value="5000" />
+	    <property name="transactionTimeout" value="60"/>
 	    <property name="recoveryInterval" value="6000" />
 	    <property name="acceptMessagesWhileStopping" value="false" />
 	</bean>
@@ -95,6 +114,7 @@
     	<property name="messageListener" ref="riksdagenCommitteeProposalComponentDataWorkConsumerImpl" />
         <property name="sessionTransacted" value="true"/>
 	    <property name="receiveTimeout" value="5000" />
+	    <property name="transactionTimeout" value="60"/>
 	    <property name="recoveryInterval" value="6000" />
 	    <property name="acceptMessagesWhileStopping" value="false" />
 	</bean>
@@ -108,6 +128,7 @@
     	<property name="messageListener" ref="riksdagenDocumentContentWorkConsumerImpl" />
         <property name="sessionTransacted" value="true"/>
 	    <property name="receiveTimeout" value="5000" />
+	    <property name="transactionTimeout" value="60"/>
 	    <property name="recoveryInterval" value="6000" />
 	    <property name="acceptMessagesWhileStopping" value="false" />
 	</bean>
@@ -121,6 +142,7 @@
     	<property name="messageListener" ref="riksdagenVoteDataWorkConsumerImpl" />
         <property name="sessionTransacted" value="true"/>
 	    <property name="receiveTimeout" value="5000" />
+	    <property name="transactionTimeout" value="60"/>
 	    <property name="recoveryInterval" value="6000" />
 	    <property name="acceptMessagesWhileStopping" value="false" />
 	</bean>
@@ -176,6 +198,15 @@
 			<value>com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement</value>
 		</constructor-arg>
 	</bean>
+
+	<bean
+		id="com.hack23.cia.service.component.agent.impl.riksdagen.workers.LoadDocumentWork"
+		class="org.apache.activemq.command.ActiveMQQueue" autowire="constructor">
+		<constructor-arg>
+			<value>com.hack23.cia.service.component.agent.impl.riksdagen.workers.LoadDocumentWork</value>
+		</constructor-arg>
+	</bean>
+
 
 	<bean
 		id="com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement"

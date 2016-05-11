@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator;
 
-import java.util.Map;
-
 import javax.jms.Destination;
 
 import org.joda.time.DateTime;
@@ -30,10 +28,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
-import com.hack23.cia.service.external.common.api.ProcessDataStrategy;
-import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
+import com.hack23.cia.service.component.agent.impl.riksdagen.workers.LoadDocumentWork;
 
 /**
  * The Class RiksdagenDocumentListWorkGeneratorImpl.
@@ -46,13 +42,8 @@ public final class RiksdagenDocumentListWorkGeneratorImpl extends AbstractRiksda
 
 	/** The document element workdestination. */
 	@Autowired
-	@Qualifier("com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement")
-	private Destination documentElementWorkdestination;
-
-	/** The riksdagen api. */
-	@Autowired
-	private RiksdagenDocumentApi riksdagenApi;
-
+	@Qualifier("com.hack23.cia.service.component.agent.impl.riksdagen.workers.LoadDocumentWork")
+	private Destination loadDocumentWorkdestination;
 
 	/**
 	 * Instantiates a new riksdagen document list work generator impl.
@@ -68,44 +59,22 @@ public final class RiksdagenDocumentListWorkGeneratorImpl extends AbstractRiksda
 			final int startYearForDocumentElement = getImportService().getStartYearForDocumentElement();
 
 			final org.joda.time.format.DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd");
-			DateTime fromDateTime = fmt.parseDateTime(startYearForDocumentElement+ "-01-01");
+			DateTime fromDateTime = fmt.parseDateTime(startYearForDocumentElement + "-01-01");
 
-			DateTime loadedWeekDate = fmt.parseDateTime(startYearForDocumentElement+ "-01-01");
+			DateTime loadedWeekDate = fmt.parseDateTime(startYearForDocumentElement + "-01-01");
 
 			final DateTime toDate = new DateTime();
 			while (loadedWeekDate.isBefore(toDate)) {
 				loadedWeekDate = loadedWeekDate.plusWeeks(1);
 
-				riksdagenApi.processDocumentList(fmt.print(fromDateTime),fmt.print(loadedWeekDate),new DocumentElementWorkProducer());
-				fromDateTime=fromDateTime.plusWeeks(1);
+				sendMessage(loadDocumentWorkdestination,
+						new LoadDocumentWork(fmt.print(fromDateTime), fmt.print(loadedWeekDate)));
 
+				fromDateTime = fromDateTime.plusWeeks(1);
 			}
 
 		} catch (final Exception e) {
-			LOGGER.warn("error loading documents", e);
-		}
-	}
-
-	/**
-	 * The Class DocumentElementWorkProducer.
-	 */
-	private class DocumentElementWorkProducer implements
-	ProcessDataStrategy<DocumentElement> {
-
-		/** The document element map. */
-		private final Map<String, String> documentElementMap = getImportService()
-				.getDocumentElementMap();
-
-		@Override
-		public void process(final DocumentElement t) {
-			try {
-				if (!documentElementMap.containsKey(t.getId())) {
-					sendMessage(documentElementWorkdestination,
-							t);
-				}
-			} catch (final Exception e) {
-				LOGGER.warn("Error proccessing documentElement",e);
-			}
+			LOGGER.warn("error generating work for loading documents", e);
 		}
 	}
 

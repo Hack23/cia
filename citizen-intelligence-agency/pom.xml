@@ -719,7 +719,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
-        <version>1.4.0</version>
+        <version>1.5.0</version>
         <executions>
           <execution>
             <phase>generate-sources</phase>
@@ -762,7 +762,7 @@
                 <artifactItem>
                   <groupId>com.vaadin</groupId>
                   <artifactId>vaadin-themes</artifactId>
-                  <version>7.7.0.alpha1</version>
+                  <version>7.7.0.alpha2</version>
                   <type>jar</type>
                   <overWrite>false</overWrite>
                   <outputDirectory>${basedir}/src/main/webapp/</outputDirectory>
