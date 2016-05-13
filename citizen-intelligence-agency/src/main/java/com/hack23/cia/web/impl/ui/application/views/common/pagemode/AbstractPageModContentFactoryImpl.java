@@ -23,12 +23,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.AdminChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.formfactory.FormFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.GridFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.formfactory.api.FormFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.PageLinkFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Label;

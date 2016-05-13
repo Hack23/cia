@@ -25,6 +25,8 @@ public enum ChartIndicators {
 
 /** The partywinner. */
 PARTYWINNER,
+PARTYGENDER,
+PARTYAGE,
 
 /** The documentactivitybytype. */
 DOCUMENTACTIVITYBYTYPE,
