@@ -769,6 +769,43 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	}
 
 	/**
+	 * Site test chart view party gender test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteTestChartViewPartyGenderTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS,
+				ChartIndicators.PARTYGENDER.toString()));
+
+	}
+
+	/**
+	 * Site test chart view party age test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteTestChartViewPartyAgeTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS,
+				ChartIndicators.PARTYAGE.toString()));
+
+	}
+
+
+	/**
 	 * Site test chart view decsion activity by type test.
 	 *
 	 * @throws Exception

@@ -233,37 +233,54 @@ public final class PartyChartDataManagerImpl implements PartyChartDataManager {
 
 	@Override
 	public DCharts createPartyGenderChart() {
-		final Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> map = getPartyMap();
 
-		final DataSeries dataSeries = new DataSeries();
-
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
-
-		final Series series = new Series();
-
-		for (final Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> entry : map.entrySet()) {
-
-			series.addSeries(new XYseries().setLabel(entry.getKey()));
-
-			dataSeries.newSeries();
-			final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> list = entry.getValue();
-			for (final ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily : list) {
-				if (viewRiksdagenVoteDataBallotPartySummaryDaily != null) {
-					dataSeries.add(
-							simpleDateFormat
-									.format(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()),
-							viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgPercentageMale());
-				}
+		return createPartyBallotChart(new DataValueCalculator() {
+			@Override
+			public Object getDataValue(ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily) {
+				return viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgPercentageMale();
 			}
 
-		}
+		});
 
-		return new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show();
 	}
 
 
 	@Override
 	public DCharts createPartyAgeChart() {
+		return createPartyBallotChart(new DataValueCalculator() {
+			@Override
+			public Object getDataValue(ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily) {
+				return (viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate().getYear() + 1900) -  viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgBornYear().intValue();
+			}
+
+		});
+	}
+
+
+	/**
+	 * The Interface DataValueCalculator.
+	 */
+	@FunctionalInterface
+	interface DataValueCalculator {
+
+		/**
+		 * Gets the data value.
+		 *
+		 * @param item
+		 *            the item
+		 * @return the data value
+		 */
+		Object getDataValue(ViewRiksdagenVoteDataBallotPartySummaryDaily item);
+	}
+
+	/**
+	 * Creates the party ballot chart.
+	 *
+	 * @param dataValueCalculator
+	 *            the data value calculator
+	 * @return the d charts
+	 */
+	private DCharts createPartyBallotChart(DataValueCalculator dataValueCalculator) {
 		final Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> map = getPartyMap();
 
 		final DataSeries dataSeries = new DataSeries();
@@ -283,7 +300,7 @@ public final class PartyChartDataManagerImpl implements PartyChartDataManager {
 					dataSeries.add(
 							simpleDateFormat
 									.format(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()),
-									(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate().getYear() + 1900) -  viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgBornYear().intValue());
+									dataValueCalculator.getDataValue(viewRiksdagenVoteDataBallotPartySummaryDaily));
 				}
 			}
 
