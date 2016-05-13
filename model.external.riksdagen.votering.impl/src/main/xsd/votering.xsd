@@ -35,8 +35,8 @@
 			</xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
-	
-	
+
+
 		<xsd:complexType name="BallotDocumentElement">
 		<xsd:sequence>
 			<xsd:element name="hangar_id" type="xsd:string">
@@ -60,8 +60,8 @@
 						<jaxb:property name="doc_id" />
 					</xsd:appinfo>
 				</xsd:annotation>
-			</xsd:element>			
-			
+			</xsd:element>
+
 			<xsd:element name="htmlformat" type="xsd:string"/>
 			<xsd:element name="relaterat_id" type="xsd:string">
 				<xsd:annotation>
@@ -184,7 +184,7 @@
 					</xsd:appinfo>
 				</xsd:annotation>
 			</xsd:element>
-			
+
 			<xsd:element name="titel" type="xsd:string">
 				<xsd:annotation>
 					<xsd:documentation>
@@ -213,7 +213,7 @@
 					</xsd:appinfo>
 				</xsd:annotation>
 			</xsd:element>
-						
+
 			<xsd:element name="datum" type="xsd:string">
 				<xsd:annotation>
 					<xsd:documentation>
@@ -293,7 +293,7 @@
 			</xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
-	
+
 
 	<xsd:complexType name="BallotDocumentData">
 		<xsd:sequence>
@@ -403,7 +403,7 @@
 					</xsd:appinfo>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="kon" type="ballot:SexType" >
+			<xsd:element name="kon" type="xsd:string" >
 				<xsd:annotation>
 					<xsd:documentation>
 						We have customized the generated property name
@@ -516,8 +516,8 @@
 						<jaxb:property name="voteDate" />
 					</xsd:appinfo>
 				</xsd:annotation>
-			</xsd:element>			
-			
+			</xsd:element>
+
 		</xsd:sequence>
 	</xsd:complexType>
 
@@ -592,7 +592,7 @@
 					</xsd:appinfo>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="kon" type="ballot:SexType" >
+			<xsd:element name="kon" type="xsd:string" >
 				<xsd:annotation>
 					<xsd:documentation>
 						We have customized the generated property name
@@ -624,7 +624,7 @@
 						<jaxb:property name="voteDate" />
 					</xsd:appinfo>
 				</xsd:annotation>
-			</xsd:element>			
+			</xsd:element>
 			<xsd:element name="parti" type="xsd:string" >
 				<xsd:annotation>
 					<xsd:documentation>
@@ -636,7 +636,7 @@
 					</xsd:appinfo>
 				</xsd:annotation>
 			</xsd:element>
-			<!-- 
+			<!--
 			<xsd:element name="punkt" type="xsd:string" >
 				<xsd:annotation>
 					<xsd:documentation>
@@ -695,7 +695,7 @@
 					</xsd:appinfo>
 				</xsd:annotation>
 			</xsd:element>
-			<!-- 
+			<!--
 			<xsd:element name="votering_id" type="xsd:string" >
 				<xsd:annotation>
 					<xsd:documentation>
@@ -709,7 +709,7 @@
 				</xsd:annotation>
 			</xsd:element>
 			-->
-			
+
 			 <xsd:element name="embeddedId" type="ballot:VoteDataEmbeddedId">
                                 <xsd:annotation>
                                         <xsd:appinfo>
@@ -719,8 +719,8 @@
              </xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
-	
-	
+
+
 	<xsd:complexType name="VoteDataEmbeddedId">
                 <xsd:annotation>
                         <xsd:appinfo>
@@ -739,7 +739,7 @@
 						</xsd:appinfo>
 					</xsd:annotation>
 				</xsd:element>
-                               
+
                         <xsd:element name="votering_id" type="xsd:string">
 						<xsd:annotation>
 							<xsd:documentation>
@@ -751,7 +751,7 @@
 							</xsd:appinfo>
 						</xsd:annotation>
 					</xsd:element>
-					
+
 					<xsd:element name="intressent_id" type="xsd:string" >
 				<xsd:annotation>
 					<xsd:documentation>
@@ -763,7 +763,7 @@
 					</xsd:appinfo>
 				</xsd:annotation>
 			</xsd:element>
-			
+
 			<xsd:element name="avser" type="ballot:VoteIssueType" >
 				<xsd:annotation>
 					<xsd:documentation>
@@ -775,11 +775,11 @@
 					</xsd:appinfo>
 				</xsd:annotation>
 			</xsd:element>
-			
-					
+
+
             </xsd:sequence>
    </xsd:complexType>
-	
+
 
 	<xsd:simpleType name="SexType">
 		<xsd:restriction base="xsd:string">

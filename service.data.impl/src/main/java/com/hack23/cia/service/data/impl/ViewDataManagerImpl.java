@@ -52,7 +52,11 @@ public final class ViewDataManagerImpl implements ViewDataManager {
 
 		//Handle FP changed to L for folkpartiet name changed to liberalerna.
 
+		jdbcTemplate.execute("update vote_data set gender='MAN' where gender='M'");
+		jdbcTemplate.execute("update vote_data set gender='KVINNA' where gender='K'");
+
 		jdbcTemplate.execute("update vote_data set party='L' where party='FP'");
+
 		jdbcTemplate.execute("update person_data set party='L' where party='FP'");
 		jdbcTemplate.execute("update document_element set org='L' where org='FP' or org='fp'");
 		jdbcTemplate.execute("update document_data set org='L' where org='FP' or org='fp'");
