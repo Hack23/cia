@@ -40,7 +40,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class TestChartsPartyGenderPageModContentFactoryImpl extends AbstractTestPageModContentFactoryImpl {
 
 	/** The Constant PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS. */
-	private static final String PARTY_GENDER_DAILY_AVERAGE_FOR_ALL_BALLOTS = "Party percentage male, daily average for ballot days";
+	private static final String PARTY_GENDER_DAILY_AVERAGE_FOR_ALL_BALLOTS = "Party percentage female, daily average for ballot days";
 
 	/** The party chart data manager. */
 	@Autowired

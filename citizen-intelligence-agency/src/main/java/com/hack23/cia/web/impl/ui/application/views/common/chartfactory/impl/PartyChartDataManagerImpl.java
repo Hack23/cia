@@ -237,7 +237,7 @@ public final class PartyChartDataManagerImpl implements PartyChartDataManager {
 		return createPartyBallotChart(new DataValueCalculator() {
 			@Override
 			public Object getDataValue(ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily) {
-				return viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgPercentageMale();
+				return (100 - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgPercentageMale().intValue());
 			}
 
 		});
@@ -291,19 +291,20 @@ public final class PartyChartDataManagerImpl implements PartyChartDataManager {
 
 		for (final Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> entry : map.entrySet()) {
 
-			series.addSeries(new XYseries().setLabel(entry.getKey()));
+			if (!"-".equals(entry.getKey())) {
+				series.addSeries(new XYseries().setLabel(entry.getKey()));
 
-			dataSeries.newSeries();
-			final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> list = entry.getValue();
-			for (final ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily : list) {
-				if (viewRiksdagenVoteDataBallotPartySummaryDaily != null) {
-					dataSeries.add(
-							simpleDateFormat
-									.format(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()),
-									dataValueCalculator.getDataValue(viewRiksdagenVoteDataBallotPartySummaryDaily));
+				dataSeries.newSeries();
+				final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> list = entry.getValue();
+				for (final ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily : list) {
+					if (viewRiksdagenVoteDataBallotPartySummaryDaily != null) {
+						dataSeries.add(
+								simpleDateFormat
+										.format(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()),
+										dataValueCalculator.getDataValue(viewRiksdagenVoteDataBallotPartySummaryDaily));
+					}
 				}
 			}
-
 		}
 
 		return new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show();
