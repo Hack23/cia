@@ -16,33 +16,26 @@
  *	$Id$
  *  $HeadURL$
 */
-
-package com.hack23.cia.service.api;
-
+package com.hack23.cia.service.impl.action.application.translation;
 
 /**
- * The Interface ConfigurationManager.
+ * The Class TranslationException.
  */
-public interface ConfigurationManager {
+public class TranslationException extends Exception {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Gets the user configuration.
+	 * Instantiates a new translation exception.
 	 *
-	 * @param url
-	 *            the url
-	 * @param locale
-	 *            the locale
-	 * @return the user configuration
+	 * @param string
+	 *            the string
+	 * @param e
+	 *            the e
 	 */
-	UserConfiguration getUserConfiguration(String url,String locale);
+	public TranslationException(String string, Exception e) {
+		super(string, e);
+	}
 
-	/**
-	 * Creates the default config if empty.
-	 */
-	void createDefaultConfigIfEmpty();
-
-	/**
-	 * Creates the default languages if empty.
-	 */
-	void createDefaultLanguagesIfEmpty();
 }

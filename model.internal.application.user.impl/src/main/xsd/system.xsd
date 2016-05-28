@@ -56,7 +56,13 @@
 				minOccurs="0" />
 			<xsd:element name="modelObjectVersion" type="xsd:int"
 				minOccurs="0" />
+			<xsd:element minOccurs="0" name="createdDate" type="xsd:dateTime" />
 			<xsd:element minOccurs="0" name="languageName" type="xsd:string" />
+			<xsd:element minOccurs="0" name="languageCode" type="xsd:string" />
+			<xsd:element minOccurs="0" name="translationStatus" type="xsd:string" />
+			<xsd:element minOccurs="0" name="languageEnabled" type="xsd:boolean" />
+			<xsd:element minOccurs="0" name="autoTranslationEnabled" type="xsd:boolean" />
+			<xsd:element minOccurs="0" name="lastModifiedDate" type="xsd:dateTime" />
 		</xsd:sequence>
 	</xsd:complexType>
 
@@ -177,6 +183,8 @@
 			<xsd:enumeration value="AUTHENTICATION" />
 			<xsd:enumeration value="AUTHORIZATION" />
 			<xsd:enumeration value="AGENT" />
+			<xsd:enumeration value="EXTERNAL_SERVICES" />
+
 		</xsd:restriction>
 	</xsd:simpleType>
 

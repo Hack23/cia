@@ -18,8 +18,11 @@
 */
 package com.hack23.cia.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -27,11 +30,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.internal.application.system.impl.Agency;
+import com.hack23.cia.model.internal.application.system.impl.LanguageData;
 import com.hack23.cia.model.internal.application.system.impl.Portal;
 import com.hack23.cia.model.internal.application.system.impl.PortalType;
 import com.hack23.cia.service.api.ConfigurationManager;
 import com.hack23.cia.service.api.UserConfiguration;
 import com.hack23.cia.service.data.api.AgencyDAO;
+import com.hack23.cia.service.data.api.LanguageDataDAO;
 
 /**
  * The Class ConfigurationManagerImpl.
@@ -44,6 +49,11 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 	@Autowired
 	private AgencyDAO agencyDAO;
 
+	@Autowired
+	private LanguageDataDAO languageDataDAO;
+
+	private List<LanguageData> supportedLocalesLanguageData;
+
 	/**
 	 * Instantiates a new configuration manager impl.
 	 */
@@ -53,9 +63,10 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 
 	@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 	@Override
-	public UserConfiguration getUserConfiguration(final String url) {
+	public UserConfiguration getUserConfiguration(final String url,final String locale) {
 		final Agency agency = agencyDAO.getAll().get(0);
 		Portal usePortal = null;
+		LanguageData languageData = null;
 		for (final Portal portal : agency.getPortals()) {
 			if (usePortal == null
 					&& PortalType.DEFAULT == portal.getPortalType()) {
@@ -65,7 +76,7 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 			}
 		}
 
-		return new UserConfigurationImpl(agency, usePortal);
+		return new UserConfigurationImpl(agency, usePortal,languageData);
 	}
 
 	@Secured({"ROLE_ADMIN" })
@@ -91,5 +102,38 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 			agencyDAO.persist(agency);
 		}
 	}
+
+
+	@Secured({"ROLE_ADMIN" })
+	@Override
+	public void createDefaultLanguagesIfEmpty() {
+		if (languageDataDAO.getAll().isEmpty()) {
+
+			supportedLocalesLanguageData = getSupportedLocalesLanguageData();
+
+			languageDataDAO.persist(supportedLocalesLanguageData);
+
+		}
+	}
+
+
+	/**
+	 * Gets the supported locales language data.
+	 *
+	 * @return the supported locales language data
+	 */
+	private static List<LanguageData> getSupportedLocalesLanguageData() {
+		List<LanguageData> languages = new ArrayList<>();
+
+        for (Locale locale : SimpleDateFormat.getAvailableLocales()) {
+        	if (locale.getDisplayCountry(Locale.ENGLISH).length() == 0 ) {
+        		languages.add(new LanguageData().withCreatedDate(new Date()).withLanguageCode(locale.toString()).withLanguageName(locale.getDisplayName(Locale.ENGLISH)).withLanguageEnabled(false));
+
+        	}
+		}
+
+        return languages;
+    }
+
 
 }

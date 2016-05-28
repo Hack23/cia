@@ -19,6 +19,7 @@
 package com.hack23.cia.service.impl;
 
 import com.hack23.cia.model.internal.application.system.impl.Agency;
+import com.hack23.cia.model.internal.application.system.impl.LanguageData;
 import com.hack23.cia.model.internal.application.system.impl.Portal;
 import com.hack23.cia.service.api.UserConfiguration;
 
@@ -33,6 +34,8 @@ public final class UserConfigurationImpl implements UserConfiguration {
 	/** The portal. */
 	private final Portal portal;
 
+	private final LanguageData languageData;
+
 	/**
 	 * Instantiates a new user configuration impl.
 	 *
@@ -41,10 +44,11 @@ public final class UserConfigurationImpl implements UserConfiguration {
 	 * @param portal
 	 *            the portal
 	 */
-	public UserConfigurationImpl(final Agency agency, final Portal portal) {
+	public UserConfigurationImpl(final Agency agency, final Portal portal, final LanguageData languageData) {
 		super();
 		this.agency = agency;
 		this.portal = portal;
+		this.languageData = languageData;
 	}
 
 	@Override
@@ -55,5 +59,10 @@ public final class UserConfigurationImpl implements UserConfiguration {
 	@Override
 	public Portal getPortal() {
 		return portal;
+	}
+
+	@Override
+	public LanguageData getLanguage() {
+		return languageData;
 	}
 }

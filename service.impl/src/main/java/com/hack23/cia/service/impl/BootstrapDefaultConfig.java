@@ -56,6 +56,7 @@ public final class BootstrapDefaultConfig {
 	public void createDefaultConfiguration() {
 		configureAuthentication("ROLE_ADMIN");
 		configurationManager.createDefaultConfigIfEmpty();
+		configurationManager.createDefaultLanguagesIfEmpty();
 		clearAuthentication();
 	}
 

@@ -25,6 +25,7 @@ import org.springframework.stereotype.Component;
 import com.ejt.vaadin.loginform.DefaultVerticalLoginForm;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.action.application.LoginRequest;
+import com.hack23.cia.web.impl.ui.application.action.ApplicationAction;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
@@ -76,6 +77,7 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractPageMo
 		final LoginRequest loginRequest = new LoginRequest();
 		loginRequest.setOtpCode("");
 		loginForm.addLoginListener(new ApplicationLoginListener(getApplicationManager(), loginRequest));
+		loginForm.setId(ApplicationAction.LOGIN.toString());
 
 		final BeanFieldGroup<LoginRequest> fieldGroup = new BeanFieldGroup<>(LoginRequest.class);
 		fieldGroup.setItemDataSource(new BeanItem<>(loginRequest));

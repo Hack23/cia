@@ -16,33 +16,24 @@
  *	$Id$
  *  $HeadURL$
 */
-
-package com.hack23.cia.service.api;
-
+package com.hack23.cia.service.impl.action.application.translation;
 
 /**
- * The Interface ConfigurationManager.
+ * The Interface TranslationService.
  */
-public interface ConfigurationManager {
+public interface TranslationService {
 
 	/**
-	 * Gets the user configuration.
+	 * Translate.
 	 *
-	 * @param url
-	 *            the url
-	 * @param locale
-	 *            the locale
-	 * @return the user configuration
+	 * @param translateText
+	 *            the translate text
+	 * @param targetLanguage
+	 *            the target language
+	 * @return the string
+	 * @throws TranslationException
+	 *             the translation exception
 	 */
-	UserConfiguration getUserConfiguration(String url,String locale);
+	String translate(String translateText, String targetLanguage) throws TranslationException;
 
-	/**
-	 * Creates the default config if empty.
-	 */
-	void createDefaultConfigIfEmpty();
-
-	/**
-	 * Creates the default languages if empty.
-	 */
-	void createDefaultLanguagesIfEmpty();
 }

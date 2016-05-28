@@ -19,6 +19,7 @@
 package com.hack23.cia.service.api;
 
 import com.hack23.cia.model.internal.application.system.impl.Agency;
+import com.hack23.cia.model.internal.application.system.impl.LanguageData;
 import com.hack23.cia.model.internal.application.system.impl.Portal;
 
 /**
@@ -39,4 +40,11 @@ public interface UserConfiguration {
 	 * @return the portal
 	 */
 	Portal getPortal();
+
+	/**
+	 * Gets the language.
+	 *
+	 * @return the language
+	 */
+	LanguageData getLanguage();
 }

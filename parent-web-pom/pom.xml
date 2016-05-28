@@ -44,10 +44,10 @@
     <cia.project.versions.javamelody>1.59.0</cia.project.versions.javamelody>
     <cia.project.versions.vaadin>7.6.6</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.8.0.20150603</cia.project.versions.vaadin.gwt.user>
-    <cia.project.versions.vaadin.cssparser>0.9.18</cia.project.versions.vaadin.cssparser>
+    <cia.project.versions.vaadin.cssparser>0.9.19</cia.project.versions.vaadin.cssparser>
     <cia.project.versions.servlet.api>3.1.0</cia.project.versions.servlet.api>
-    <cia.project.versions.jetty>9.3.9.v20160517</cia.project.versions.jetty>
-    <cia.project.versions.jetty.plugin>9.3.9.v20160517</cia.project.versions.jetty.plugin>
+    <cia.project.versions.jetty>9.3.10.M0</cia.project.versions.jetty>
+    <cia.project.versions.jetty.plugin>9.3.10.M0</cia.project.versions.jetty.plugin>
     <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
   </properties>
   <dependencyManagement>

@@ -16,33 +16,13 @@
  *	$Id$
  *  $HeadURL$
 */
+package com.hack23.cia.service.data.api;
 
-package com.hack23.cia.service.api;
-
+import com.hack23.cia.model.internal.application.system.impl.LanguageData;
 
 /**
- * The Interface ConfigurationManager.
+ * The Interface LanguageDataDAO.
  */
-public interface ConfigurationManager {
+public interface LanguageDataDAO extends AbstractGenericDAO<LanguageData, Long> {
 
-	/**
-	 * Gets the user configuration.
-	 *
-	 * @param url
-	 *            the url
-	 * @param locale
-	 *            the locale
-	 * @return the user configuration
-	 */
-	UserConfiguration getUserConfiguration(String url,String locale);
-
-	/**
-	 * Creates the default config if empty.
-	 */
-	void createDefaultConfigIfEmpty();
-
-	/**
-	 * Creates the default languages if empty.
-	 */
-	void createDefaultLanguagesIfEmpty();
 }
