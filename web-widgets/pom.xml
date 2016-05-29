@@ -321,7 +321,7 @@
       <plugin>
         <groupId>org.eclipse.jettys</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
-        <version>9.3.10.M0</version>
+        <version>9.3.9.v20160517</version>
       </plugin>
     </plugins>
   </build>
