@@ -16,4 +16,12 @@
     	</addColumn>
 	</changeSet>
 
+	<changeSet author="pether (generated)" id="1414872417007-286">
+		 <addColumn tableName="language_content_data">
+		 	<column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE" />
+			<column name="key_group" type="varchar(255)"/>
+			<column name="location_context" type="varchar(255)"/>
+    	</addColumn>
+	</changeSet>
+
 </databaseChangeLog>

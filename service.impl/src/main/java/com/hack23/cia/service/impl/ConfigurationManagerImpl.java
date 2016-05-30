@@ -24,6 +24,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
@@ -126,7 +127,7 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 		List<LanguageData> languages = new ArrayList<>();
 
         for (Locale locale : SimpleDateFormat.getAvailableLocales()) {
-        	if (locale.getDisplayCountry(Locale.ENGLISH).length() == 0 ) {
+        	if (locale.getDisplayCountry(Locale.ENGLISH).length() == 0 && !StringUtils.isEmpty(locale.toString()) && locale.toString().trim().length() == 2) {
         		languages.add(new LanguageData().withCreatedDate(new Date()).withLanguageCode(locale.toString()).withLanguageName(locale.getDisplayName(Locale.ENGLISH)).withLanguageEnabled(false));
 
         	}

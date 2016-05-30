@@ -75,6 +75,10 @@
 			<xsd:element minOccurs="0" name="fromLanguage" type="xsd:string" />
 			<xsd:element minOccurs="0" name="toLanguage" type="xsd:string" />
 			<xsd:element minOccurs="0" name="createdDate" type="xsd:dateTime" />
+			<xsd:element minOccurs="0" name="keyGroup" type="xsd:string" />
+			<xsd:element minOccurs="0" name="locationContext" type="xsd:string" />
+			<xsd:element minOccurs="0" name="lastModifiedDate" type="xsd:dateTime" />
+
 			<xsd:element minOccurs="0" name="refKey" type="xsd:string">
 				<xsd:annotation>
 					<xsd:documentation>
@@ -112,6 +116,9 @@
 			<xsd:enumeration value="Human Translation" />
 		</xsd:restriction>
 	</xsd:simpleType>
+
+
+
 
 	<xsd:complexType name="ApplicationActionEvent">
 		<xsd:sequence>
