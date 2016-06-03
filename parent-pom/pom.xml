@@ -117,8 +117,8 @@
     <cia.project.versions.logback>1.1.7</cia.project.versions.logback>
     <cia.project.versions.mysql>5.1.34</cia.project.versions.mysql>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
-    <cia.project.versions.hibernate>5.1.0.Final</cia.project.versions.hibernate>
-    <cia.project.versions.hibernate.build>5.1.0.Final</cia.project.versions.hibernate.build>
+    <cia.project.versions.hibernate>5.2.0.Final</cia.project.versions.hibernate>
+    <cia.project.versions.hibernate.build>5.2.0.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.1.0.Alpha3</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.validator>5.3.0.Alpha1</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>5.2.3.Final</cia.project.versions.hibernate.build.validator>
@@ -277,7 +277,7 @@
       </dependency>
       <dependency>
         <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-entitymanager</artifactId>
+        <artifactId>hibernate-core</artifactId>
         <version>${cia.project.versions.hibernate}</version>
         <exclusions>
           <exclusion>
@@ -794,7 +794,7 @@
 							<version>3.3.0.ga</version> </dependency> -->
             <dependency>
               <groupId>org.hibernate</groupId>
-              <artifactId>hibernate-entitymanager</artifactId>
+              <artifactId>hibernate-core</artifactId>
               <version>${cia.project.versions.hibernate.build}</version>
             </dependency>
             <dependency>

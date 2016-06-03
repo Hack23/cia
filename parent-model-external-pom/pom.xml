@@ -95,7 +95,7 @@
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-entitymanager</artifactId>
+      <artifactId>hibernate-core</artifactId>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -199,7 +199,7 @@
             </dependency>
             <dependency>
               <groupId>org.hibernate</groupId>
-              <artifactId>hibernate-entitymanager</artifactId>
+              <artifactId>hibernate-core</artifactId>
               <version>${cia.project.versions.hibernate}</version>
             </dependency>
             <!--  <dependency>

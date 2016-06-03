@@ -276,7 +276,7 @@
 			</dependency> -->
     <dependency>
       <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-entitymanager</artifactId>
+      <artifactId>hibernate-core</artifactId>
       <exclusions>
         <exclusion>
           <artifactId>antlr</artifactId>
@@ -295,11 +295,6 @@
           <groupId>org.apache.geronimo.specs</groupId>
         </exclusion>
       </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-java8</artifactId>
-      <version>${cia.project.versions.hibernate}</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
@@ -454,7 +449,7 @@
           </dependency>
           <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
+            <artifactId>hibernate-core</artifactId>
             <version>${cia.project.versions.hibernate.build}</version>
           </dependency>
         </dependencies>
