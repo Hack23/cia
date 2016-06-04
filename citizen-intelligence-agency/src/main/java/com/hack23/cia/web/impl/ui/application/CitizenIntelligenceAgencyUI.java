@@ -58,7 +58,7 @@ import ru.xpoft.vaadin.DiscoveryNavigator;
 @Service(value = "ui")
 @Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @Theme("cia")
-@Push(transport = Transport.STREAMING)
+@Push(transport = Transport.WEBSOCKET_XHR)
 public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandler {
 
 
