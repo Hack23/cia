@@ -129,7 +129,7 @@
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-core</artifactId>
+      <artifactId>hibernate-entitymanager</artifactId>
       <scope>provided</scope>
       <exclusions>
         <exclusion>

@@ -39,6 +39,10 @@
       <scope>provided</scope>
       <exclusions>
         <exclusion>
+          <artifactId>hibernate-entitymanager</artifactId>
+          <groupId>org.hibernate</groupId>
+        </exclusion>
+        <exclusion>
           <artifactId>hibernate-core</artifactId>
           <groupId>org.hibernate</groupId>
         </exclusion>
@@ -276,7 +280,7 @@
 			</dependency> -->
     <dependency>
       <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-core</artifactId>
+      <artifactId>hibernate-entitymanager</artifactId>
       <exclusions>
         <exclusion>
           <artifactId>antlr</artifactId>
@@ -298,11 +302,16 @@
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-java8</artifactId>
+      <version>${cia.project.versions.hibernate}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
       <artifactId>hibernate-ehcache</artifactId>
       <version>${cia.project.versions.hibernate}</version>
       <exclusions>
         <exclusion>
-          <artifactId>hibernate-core</artifactId>
+          <artifactId>hibernate-entitymanager</artifactId>
           <groupId>org.hibernate</groupId>
         </exclusion>
         <exclusion>
@@ -449,7 +458,7 @@
           </dependency>
           <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
+            <artifactId>hibernate-entitymanager</artifactId>
             <version>${cia.project.versions.hibernate.build}</version>
           </dependency>
         </dependencies>
