@@ -1065,7 +1065,7 @@
         <jdk>9</jdk>
       </activation>
       <properties>
-        <additionalRuntimeArgLine>-addmods java.xml.bind</additionalRuntimeArgLine>
+        <additionalRuntimeArgLine>-addmods java.xml.bind,ALL-MODULE-PATH -XaddExports:java.base/sun.nio.ch=ALL-UNNAMED</additionalRuntimeArgLine>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
       </properties>
