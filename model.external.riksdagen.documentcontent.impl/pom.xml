@@ -8,7 +8,7 @@
     <relativePath>../parent-model-external-pom/pom.xml</relativePath>
   </parent>
   <artifactId>model.external.riksdagen.documentcontent.impl</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>model.external.riksdagen.documentcontent.impl</name>
   <description>model.external.riksdagen.documentcontent.impl</description>
   <url>http://cia.sourceforge.net/model.external.riksdagen.documentcontent.impl</url>

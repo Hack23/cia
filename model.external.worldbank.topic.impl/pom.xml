@@ -8,7 +8,7 @@
     <relativePath>../parent-model-external-pom/pom.xml</relativePath>
   </parent>
   <artifactId>model.external.worldbank.topic.impl</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>model.external.worldbank.topic.impl</name>
   <description>model.external.worldbank.topic.impl</description>
   <url>http://cia.sourceforge.net/model.external.worldbank.topic.impl</url>

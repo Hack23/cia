@@ -8,7 +8,7 @@
     <relativePath>../parent-pom/pom.xml</relativePath>
   </parent>
   <artifactId>testfoundation</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>testfoundation</name>
   <description>Testfoundation</description>
   <url>http://cia.sourceforge.net/testfoundation/</url>

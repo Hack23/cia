@@ -8,7 +8,7 @@
     <relativePath>../parent-model-external-pom/pom.xml</relativePath>
   </parent>
   <artifactId>model.external.val.partier.impl</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>model.external.val.partier.impl</name>
   <description>model.external.val.partier.impl</description>
   <url>http://cia.sourceforge.net/model.external.val.partier.impl</url>

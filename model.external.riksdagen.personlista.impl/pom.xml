@@ -8,7 +8,7 @@
     <relativePath>../parent-model-external-pom/pom.xml</relativePath>
   </parent>
   <artifactId>model.external.riksdagen.personlista.impl</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>model.external.riksdagen.personlista.impl</name>
   <description>model.external.riksdagen.personlista.impl</description>
   <url>http://cia.sourceforge.net/model.external.riksdagen.personlista.impl</url>

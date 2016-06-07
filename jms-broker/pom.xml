@@ -8,7 +8,7 @@
     <relativePath>../parent-service-pom/pom.xml</relativePath>
   </parent>
   <artifactId>jms-broker</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>jms-broker</name>
   <description>jms-broker</description>
   <url>http://cia.sourceforge.net/jms-broker</url>

@@ -8,7 +8,7 @@
     <relativePath>../parent-model-external-pom/pom.xml</relativePath>
   </parent>
   <artifactId>model.external.val.landstingvalkrets.impl</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>model.external.val.landstingvalkrets.impl</name>
   <description>model.external.val.landstingvalkrets.impl</description>
   <url>http://cia.sourceforge.net/model.external.val.landstingvalkrets.impl</url>

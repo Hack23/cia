@@ -8,7 +8,7 @@
     <relativePath>../parent-service-pom/pom.xml</relativePath>
   </parent>
   <artifactId>service.external.riksdagen</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>service.external.riksdagen</name>
   <description>service.external.riksdagen</description>
   <url>http://cia.sourceforge.net/service.external.riksdagen/</url>

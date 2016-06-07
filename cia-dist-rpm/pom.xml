@@ -73,10 +73,10 @@
             <configuration combine.self="override">
               <rules>
                 <requireMavenVersion>
-                  <version>3.3.3</version>
+                  <version>3.3.9</version>
                 </requireMavenVersion>
                 <requireJavaVersion>
-                  <version>1.8</version>
+                  <version>${jdk.src.version}</version>
                 </requireJavaVersion>
               </rules>
             </configuration>

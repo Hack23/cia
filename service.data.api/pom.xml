@@ -8,7 +8,7 @@
     <relativePath>../parent-service-pom/pom.xml</relativePath>
   </parent>
   <artifactId>service.data.api</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>service.data.api</name>
   <description>service.data.api</description>
   <url>http://cia.sourceforge.net/service.data.api</url>

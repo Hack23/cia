@@ -8,7 +8,7 @@
     <relativePath>../parent-model-jpa2-pom/pom.xml</relativePath>
   </parent>
   <artifactId>model.common.impl</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>model.common.impl</name>
   <description>model.common.impl</description>
   <url>http://cia.sourceforge.net/model.common.impl/</url>

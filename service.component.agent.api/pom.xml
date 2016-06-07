@@ -8,7 +8,7 @@
     <relativePath>../parent-service-pom/pom.xml</relativePath>
   </parent>
   <artifactId>service.component.agent.api</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>service.component.agent.api</name>
   <description>service.component.agent.api</description>
   <url>http://cia.sourceforge.net/service.component.agent.api</url>

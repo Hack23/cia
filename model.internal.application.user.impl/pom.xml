@@ -8,7 +8,7 @@
     <relativePath>../parent-model-internal-pom/pom.xml</relativePath>
   </parent>
   <artifactId>model.internal.application.user.impl</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>model.internal.application.user.impl</name>
   <description>model.internal.application.user.impl</description>
   <url>http://cia.sourceforge.net/model.internal.application.user.impl</url>

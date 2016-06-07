@@ -250,7 +250,7 @@
               <processors>
                 <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
               </processors>
-              <compilerArguments>-source 1.8 -target 1.8</compilerArguments>
+              <compilerArguments>-source ${jdk.src.version} -target ${jdk.target.version}</compilerArguments>
             </configuration>
           </execution>
         </executions>

@@ -8,7 +8,7 @@
     <relativePath>../parent-service-pom/pom.xml</relativePath>
   </parent>
   <artifactId>service.external.common</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>service.external.common</name>
   <description>service.external.common</description>
   <url>http://cia.sourceforge.net/service.external.common/</url>

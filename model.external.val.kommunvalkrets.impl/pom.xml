@@ -8,7 +8,7 @@
     <relativePath>../parent-model-external-pom/pom.xml</relativePath>
   </parent>
   <artifactId>model.external.val.kommunvalkrets.impl</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>model.external.val.kommunvalkrets.impl</name>
   <description>model.external.val.kommunvalkrets.impl</description>
   <url>http://cia.sourceforge.net/model.external.val.kommunvalkrets.impl</url>

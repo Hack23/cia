@@ -132,8 +132,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <inherited>true</inherited>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <source>${jdk.src.version}</source>
+          <target>${jdk.target.version}</target>
           <compilerArgument>-proc:none</compilerArgument>
         </configuration>
       </plugin>
