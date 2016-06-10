@@ -53,7 +53,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 */
 	@Parameters(name = "AdminRoleSiteTest{index}: browser({0})")
 	public final static Collection<String[]> browsersStrings() {
-		return Arrays.asList(new String[][] { { "firefox" } });
+		return Arrays.asList(new String[][] { { "chrome" } });
 		// return Arrays.asList(new Object[][] { { "firefox" },{ "chrome" }, {
 		// "htmlunit-firefox" },{ "htmlunit-ie11" },{ "htmlunit-chrome" } });
 	}

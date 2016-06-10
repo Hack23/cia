@@ -32,7 +32,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.MarionetteDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
@@ -75,6 +75,7 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 	 */
 	@BeforeClass
 	static final synchronized public void startServer() throws Exception {
+		System.setProperty("webdriver.gecko.driver", "/usr/bin/geckodriver-0.8.0-linux64");
 		CitizenIntelligenceAgencyServer.startTestServer();
 	}
 
@@ -106,7 +107,7 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 
 		WebDriver driver = null;
 		if ("firefox".equals(browser)) {
-			driver = new FirefoxDriver();
+			driver = new MarionetteDriver();
 		} else if ("chrome".equals(browser)) {
 			driver = new ChromeDriver();
 		} else if ("htmlunit-firefox".equals(browser)) {

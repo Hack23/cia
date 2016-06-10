@@ -209,6 +209,12 @@
       </exclusions>
     </dependency>
     <dependency>
+	    <groupId>io.github.bonigarcia</groupId>
+	    <artifactId>webdrivermanager</artifactId>
+	    <version>1.4.4</version>
+	    <scope>test</scope>
+	</dependency>
+    <dependency>
       <groupId>org.webbitserver</groupId>
       <artifactId>webbit</artifactId>
       <version>0.4.15</version>
