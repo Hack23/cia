@@ -32,7 +32,7 @@ import com.hack23.cia.service.api.UserConfiguration;
  * The Class ConfigurationManagerITest.
  */
 @PerfTest(threads = 10, duration = 3000, warmUp = 1500)
-@Required(max = 200, average = 10, percentile95 = 15, throughput = 1000)
+@Required(max = 200, average = 100, percentile95 = 150, throughput = 100)
 public final class ConfigurationManagerITest extends AbstractServiceFunctionalIntegrationTest {
 
 	/** The Constant WWW_HACK23_COM. */

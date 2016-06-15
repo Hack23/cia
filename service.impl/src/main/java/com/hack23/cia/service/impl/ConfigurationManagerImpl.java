@@ -53,8 +53,6 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 	@Autowired
 	private LanguageDataDAO languageDataDAO;
 
-	private List<LanguageData> supportedLocalesLanguageData;
-
 	/**
 	 * Instantiates a new configuration manager impl.
 	 */
@@ -89,7 +87,7 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 	 * @return the language data
 	 */
 	private LanguageData findLanguage(String locale) {
-		for (LanguageData languageData : supportedLocalesLanguageData) {
+		for (LanguageData languageData : languageDataDAO.getAll()) {
 			if (languageData.getLanguageCode().equalsIgnoreCase("en")) {
 				return languageData;
 			}
@@ -126,10 +124,7 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 	@Override
 	public void createDefaultLanguagesIfEmpty() {
 		if (languageDataDAO.getAll().isEmpty()) {
-
-			supportedLocalesLanguageData = getSupportedLocalesLanguageData();
-
-			languageDataDAO.persist(supportedLocalesLanguageData);
+			languageDataDAO.persist(getSupportedLocalesLanguageData());
 
 		}
 	}
