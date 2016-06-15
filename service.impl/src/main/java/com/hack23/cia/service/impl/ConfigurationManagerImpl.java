@@ -67,7 +67,7 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 	public UserConfiguration getUserConfiguration(final String url,final String locale) {
 		final Agency agency = agencyDAO.getAll().get(0);
 		Portal usePortal = null;
-		LanguageData languageData = null;
+		LanguageData languageData = findLanguage(locale);
 		for (final Portal portal : agency.getPortals()) {
 			if (usePortal == null
 					&& PortalType.DEFAULT == portal.getPortalType()) {
@@ -77,7 +77,24 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 			}
 		}
 
+
 		return new UserConfigurationImpl(agency, usePortal,languageData);
+	}
+
+	/**
+	 * Find language.
+	 *
+	 * @param locale
+	 *            the string
+	 * @return the language data
+	 */
+	private LanguageData findLanguage(String locale) {
+		for (LanguageData languageData : supportedLocalesLanguageData) {
+			if (languageData.getLanguageCode().equalsIgnoreCase("en")) {
+				return languageData;
+			}
+		}
+		return null;
 	}
 
 	@Secured({"ROLE_ADMIN" })
