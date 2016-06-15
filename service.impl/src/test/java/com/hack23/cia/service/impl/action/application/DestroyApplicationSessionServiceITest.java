@@ -63,7 +63,7 @@ public final class DestroyApplicationSessionServiceITest extends AbstractService
 	 */
 	@Test
 	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 300, percentile95 = 350, throughput = 20)
+	@Required(max = 1000, average = 400, percentile95 = 350, throughput = 20)
 	public void serviceDestroyApplicationSessionRequestSuccessTest() throws Exception {
 
 		setAuthenticatedAnonymousUser();
