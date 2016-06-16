@@ -44,7 +44,7 @@ public final class TestChartsDocumentActivityByTypePageModContentFactoryImpl ext
 
 	/** The document chart data manager. */
 	@Autowired
-	private transient DocumentChartDataManager documentChartDataManager;
+	private DocumentChartDataManager documentChartDataManager;
 
 
 	/**

@@ -114,29 +114,6 @@ implements AbstractGenericDAO<T, I> {
 	}
 
 	@Override
-	public final List<T> findListByProperty(
-			final SingularAttribute<T, ? extends Object> property, final Object value) {
-		final CriteriaQuery<T> criteriaQuery = criteriaBuilder
-				.createQuery(getPersistentClass());
-		final Root<T> root = criteriaQuery.from(getPersistentClass());
-		criteriaQuery.select(root);
-		final Predicate condition = criteriaBuilder.equal(root.get(property), value);
-		criteriaQuery.where(condition);
-		final TypedQuery<T> typedQuery = getEntityManager()
-				.createQuery(criteriaQuery);
-		addCacheHints(typedQuery, "findListByProperty");
-		return typedQuery.getResultList();
-	}
-
-
-	@Override
-	public final List<T> search(final String searchExpression, final Integer maxResults,final String... fields) {
-		return getFullTextEntityManager().createFullTextQuery(getFullTextEntityManager().getSearchFactory().buildQueryBuilder().forEntity(persistentClass).get().
-				keyword().wildcard().onFields(fields).matching(searchExpression).createQuery(),persistentClass).setMaxResults(maxResults).getResultList();
-	}
-
-
-	@Override
 	public final List<T> findListByProperty(final Object[] values,
 			final SingularAttribute<T, ? extends Object>... properties) {
 		final CriteriaQuery<T> criteriaQuery = criteriaBuilder
@@ -169,11 +146,27 @@ implements AbstractGenericDAO<T, I> {
 		return typedQuery.getResultList();
 	}
 
+
+	@Override
+	public final List<T> findListByProperty(
+			final SingularAttribute<T, ? extends Object> property, final Object value) {
+		final CriteriaQuery<T> criteriaQuery = criteriaBuilder
+				.createQuery(getPersistentClass());
+		final Root<T> root = criteriaQuery.from(getPersistentClass());
+		criteriaQuery.select(root);
+		final Predicate condition = criteriaBuilder.equal(root.get(property), value);
+		criteriaQuery.where(condition);
+		final TypedQuery<T> typedQuery = getEntityManager()
+				.createQuery(criteriaQuery);
+		addCacheHints(typedQuery, "findListByProperty");
+		return typedQuery.getResultList();
+	}
+
+
 	@Override
 	public final List<T> getAll() {
 		return getAllOrderBy(null);
 	}
-
 
 	@Override
 	public final List<T> getAllOrderBy(final SingularAttribute<T, ? extends Object> orderBy) {
@@ -204,6 +197,7 @@ implements AbstractGenericDAO<T, I> {
 	public final CriteriaBuilder getCriteriaBuilder() {
 		return criteriaBuilder;
 	}
+
 
 	/**
 	 * Gets the entity manager.
@@ -268,6 +262,12 @@ implements AbstractGenericDAO<T, I> {
 	@Override
 	public final void persist(final T entity) {
 		getEntityManager().persist(entity);
+	}
+
+	@Override
+	public final List<T> search(final String searchExpression, final Integer maxResults,final String... fields) {
+		return getFullTextEntityManager().createFullTextQuery(getFullTextEntityManager().getSearchFactory().buildQueryBuilder().forEntity(persistentClass).get().
+				keyword().wildcard().onFields(fields).matching(searchExpression).createQuery(),persistentClass).setMaxResults(maxResults).getResultList();
 	}
 
 }

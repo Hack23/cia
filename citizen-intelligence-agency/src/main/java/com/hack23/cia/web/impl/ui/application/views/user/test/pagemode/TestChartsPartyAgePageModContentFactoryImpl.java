@@ -44,7 +44,7 @@ public final class TestChartsPartyAgePageModContentFactoryImpl extends AbstractT
 
 	/** The party chart data manager. */
 	@Autowired
-	private transient PartyChartDataManager partyChartDataManager;
+	private PartyChartDataManager partyChartDataManager;
 
 	/**
 	 * Instantiates a new test charts party age page mod content factory impl.

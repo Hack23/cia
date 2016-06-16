@@ -90,9 +90,7 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractPageM
 		searchRequest.setSearchExpression("");
 		final SearchDocumentResponseHandler handler = new SearchDocumentResponseHandler() {
 
-			/**
-			 *
-			 */
+			/** The Constant serialVersionUID. */
 			private static final long serialVersionUID = 1L;
 
 			@Override

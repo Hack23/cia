@@ -102,9 +102,8 @@ public final class SetGoogleAuthenticatorCredentialClickListener implements Clic
 
 		if (ServiceResult.SUCCESS == response.getResult()) {
 
-			URI keyUri;
 			try {
-				keyUri = new URI(response.getOtpAuthTotpURL());
+				final URI keyUri = new URI(response.getOtpAuthTotpURL());
 				final QRCode qrCode = new QRCode(QR_CODE, keyUri.toASCIIString());
 				qrCode.setHeight(QR_CODE_IMAGE_SIZE);
 				qrCode.setWidth(QR_CODE_IMAGE_SIZE);

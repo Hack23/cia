@@ -22,9 +22,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
@@ -53,9 +51,6 @@ LanguageDataDAO {
 	}
 
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.data.impl.AbstractGenericDAOImpl#getEntityManager()
-	 */
 	@Override
 	protected EntityManager getEntityManager() {
 		return entityManager;
@@ -76,9 +71,6 @@ LanguageDataDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.data.api.AbstractGenericDAO#getSize()
-	 */
 	@Override
 	public Long getSize() {
 		return (long) getIdList().size();

@@ -44,7 +44,7 @@ public final class TestChartsDecisionActivityByTypePageModContentFactoryImpl ext
 
 	/** The document chart data manager. */
 	@Autowired
-	private transient DecisionChartDataManager decisionChartDataManager;
+	private DecisionChartDataManager decisionChartDataManager;
 
 	/**
 	 * Instantiates a new test charts decision activity by type page mod content

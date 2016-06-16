@@ -23,6 +23,8 @@ import java.security.GeneralSecurityException;
 import java.util.Arrays;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -42,6 +44,10 @@ import com.hack23.cia.service.data.api.ApplicationConfigurationService;
 @Transactional(propagation = Propagation.REQUIRED)
 public final class TranslationServiceImpl implements TranslationService {
 
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory.getLogger(TranslationServiceImpl.class);
+
+
 	/** The application configuration service. */
 	@Autowired
 	private ApplicationConfigurationService applicationConfigurationService;
@@ -53,9 +59,6 @@ public final class TranslationServiceImpl implements TranslationService {
 		super();
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.impl.action.application.translation.TranslationService#translate(java.lang.String, java.lang.String)
-	 */
 	@Override
 	public String translate(final String translateText, final String targetLanguage) throws TranslationException {
 
@@ -75,22 +78,27 @@ public final class TranslationServiceImpl implements TranslationService {
 				&& !StringUtils.isBlank(googleTranslateApiApplicationName.getPropertyValue())) {
 
 			try {
-				Translate t = new Translate.Builder(
+				final Translate t = new Translate.Builder(
 						com.google.api.client.googleapis.javanet.GoogleNetHttpTransport.newTrustedTransport(),
 						JacksonFactory.getDefaultInstance(), null)
 								.setApplicationName(googleTranslateApiApplicationName.getPropertyValue()).build();
 
-				Translate.Translations.List list = t.new Translations().list(Arrays.asList(translateText),
+				final Translate.Translations.List list = t.new Translations().list(Arrays.asList(translateText),
 						targetLanguage);
 				list.setKey(googleTranslateApiKey.getPropertyValue());
 				list.setSource("EN");
-				TranslationsListResponse response = list.execute();
+				final TranslationsListResponse response = list.execute();
 
 				return response.getTranslations().listIterator().next().getTranslatedText();
 
 			} catch (GeneralSecurityException | IOException e) {
-				e.printStackTrace();
-				throw new TranslationException("mgs", e);
+				StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder.append("Problem translation text:");
+				stringBuilder.append(translateText);
+				stringBuilder.append("to language:");
+				stringBuilder.append(targetLanguage);
+				LOGGER.warn(stringBuilder.toString(),e);
+				throw new TranslationException(stringBuilder.toString(), e);
 			}
 		}
 		throw new TranslationException("Missing google api key or application name", null);

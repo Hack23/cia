@@ -44,7 +44,7 @@ public final class TestChartsPartyGenderPageModContentFactoryImpl extends Abstra
 
 	/** The party chart data manager. */
 	@Autowired
-	private transient PartyChartDataManager partyChartDataManager;
+	private PartyChartDataManager partyChartDataManager;
 
 	/**
 	 * Instantiates a new test charts party gender page mod content factory

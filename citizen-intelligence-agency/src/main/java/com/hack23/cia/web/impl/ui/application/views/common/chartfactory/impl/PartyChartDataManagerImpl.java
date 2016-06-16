@@ -258,22 +258,6 @@ public final class PartyChartDataManagerImpl implements PartyChartDataManager {
 
 
 	/**
-	 * The Interface DataValueCalculator.
-	 */
-	@FunctionalInterface
-	interface DataValueCalculator {
-
-		/**
-		 * Gets the data value.
-		 *
-		 * @param item
-		 *            the item
-		 * @return the data value
-		 */
-		Object getDataValue(ViewRiksdagenVoteDataBallotPartySummaryDaily item);
-	}
-
-	/**
 	 * Creates the party ballot chart.
 	 *
 	 * @param dataValueCalculator
@@ -310,6 +294,21 @@ public final class PartyChartDataManagerImpl implements PartyChartDataManager {
 		return new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show();
 	}
 
+	/**
+	 * The Interface DataValueCalculator.
+	 */
+	@FunctionalInterface
+	interface DataValueCalculator {
+
+		/**
+		 * Gets the data value.
+		 *
+		 * @param item
+		 *            the item
+		 * @return the data value
+		 */
+		Object getDataValue(ViewRiksdagenVoteDataBallotPartySummaryDaily item);
+	}
 
 
 }

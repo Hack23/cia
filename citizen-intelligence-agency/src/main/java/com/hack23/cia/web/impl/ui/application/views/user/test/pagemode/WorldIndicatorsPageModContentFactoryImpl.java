@@ -55,7 +55,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractTest
 
 	/** The chart data manager. */
 	@Autowired
-	private transient WorldIndicatorChartDataManager chartDataManager;
+	private WorldIndicatorChartDataManager chartDataManager;
 
 	/**
 	 * Instantiates a new world indicators page mod content factory impl.

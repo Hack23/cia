@@ -26,7 +26,7 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.vaadin.ui.Panel;
+import com.vaadin.ui.Component;
 
 /**
  * The Class AbstractPoliticianPageModContentFactoryImpl.
@@ -62,7 +62,7 @@ public abstract class AbstractPartyPageModContentFactoryImpl extends AbstractPag
 	 * @param viewRiksdagenParty
 	 *            the view riksdagen party
 	 */
-	protected final void pageCompleted(final String parameters, final Panel panel, final String pageId,
+	protected final void pageCompleted(final String parameters, final Component panel, final String pageId,
 			final ViewRiksdagenParty viewRiksdagenParty) {
 		final StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(PARTY);

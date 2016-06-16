@@ -74,9 +74,6 @@ public final class SetGoogleAuthenticatorCredentialService extends
 	}
 
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.impl.action.common.BusinessService#processService(com.hack23.cia.service.api.action.common.ServiceRequest)
-	 */
 	@Secured({ "ROLE_USER", "ROLE_ADMIN"})
 	@Override
 	public SetGoogleAuthenticatorCredentialResponse processService(

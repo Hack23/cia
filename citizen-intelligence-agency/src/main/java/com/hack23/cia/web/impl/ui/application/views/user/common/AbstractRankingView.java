@@ -28,9 +28,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeCont
 public abstract class AbstractRankingView extends AbstractUserView {
 
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/**

@@ -58,9 +58,8 @@ public final class VdemServiceImpl implements VdemService {
 	public List<Question> getQuestions() {
 
 		final List<Question> list = new ArrayList<>();
-		XSSFWorkbook myWorkBook;
 		try {
-			myWorkBook = new XSSFWorkbook(VdemServiceImpl.class.getResourceAsStream("/V-DemQuestionIDsv5(2016).xlsx"));
+			final XSSFWorkbook myWorkBook = new XSSFWorkbook(VdemServiceImpl.class.getResourceAsStream("/V-DemQuestionIDsv5(2016).xlsx"));
 			final XSSFSheet mySheet = myWorkBook.getSheetAt(0);
 			final Iterator<Row> rowIterator = mySheet.iterator();
 
@@ -82,6 +81,7 @@ public final class VdemServiceImpl implements VdemService {
 				list.add(question);
 			}
 
+			myWorkBook.close();
 		} catch (final IOException e) {
 			LOGGER.warn("Problem loading", e);
 		}
@@ -101,9 +101,8 @@ public final class VdemServiceImpl implements VdemService {
 
 		final List<Question> questions = getQuestions();
 
-		Reader in;
 		try {
-			in = new InputStreamReader(new URL(VDEM_DATA_DOWNLOAD_URL).openStream());
+			final Reader in = new InputStreamReader(new URL(VDEM_DATA_DOWNLOAD_URL).openStream());
 
 			final CSVParser parser = new CSVParser(in, CSVFormat.EXCEL.withHeader().withDelimiter(','));
 

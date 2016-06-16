@@ -62,6 +62,14 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 	@Override
+	public <T, V> T findByQueryProperty(final Class<T> clazz,
+			final SingularAttribute<T, ? extends Object> property, final Class<V> clazz2,
+			final SingularAttribute<V, ? extends Object> property2, final Object value) {
+		return dataViewer.findByQueryProperty(clazz, property, clazz2, property2, value);
+	}
+
+
+	@Override
 	public <T> T findFirstByProperty(final Class<T> clazz,
 			final SingularAttribute<T, ? extends Object> property, final Object value) {
 		return dataViewer.findFirstByProperty(clazz, property, value);
@@ -69,22 +77,10 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 	@Override
-	public <T> List<T> findListByProperty(final Class<T> clazz,
-			final SingularAttribute<T, ? extends Object> property, final Object value) {
-		return dataViewer.findListByProperty(clazz, property, value);
-	}
-
-
-	@Override
-	public <T> List<T> getAll(final Class<T> clazz) {
-		return dataViewer.getAll(clazz);
-	}
-
-
-
-	@Override
-	public <T> T load(final Class<T> clazz, final Object id) {
-		return dataViewer.load(clazz, id);
+	public <T, V> List<T> findListByEmbeddedProperty(final Class<T> clazz,
+			final SingularAttribute<T, V> property, final Class<V> clazz2,
+			final SingularAttribute<V, ? extends Object> property2, final Object value) {
+		return dataViewer.findListByEmbeddedProperty(clazz, property, clazz2, property2, value);
 	}
 
 
@@ -98,26 +94,27 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 	@Override
-	public <T, V> T findByQueryProperty(final Class<T> clazz,
-			final SingularAttribute<T, ? extends Object> property, final Class<V> clazz2,
-			final SingularAttribute<V, ? extends Object> property2, final Object value) {
-		return dataViewer.findByQueryProperty(clazz, property, clazz2, property2, value);
+	public <T> List<T> findListByProperty(final Class<T> clazz,
+			final SingularAttribute<T, ? extends Object> property, final Object value) {
+		return dataViewer.findListByProperty(clazz, property, value);
 	}
 
 
 
 	@Override
-	public <T, V> List<T> findListByEmbeddedProperty(final Class<T> clazz,
-			final SingularAttribute<T, V> property, final Class<V> clazz2,
-			final SingularAttribute<V, ? extends Object> property2, final Object value) {
-		return dataViewer.findListByEmbeddedProperty(clazz, property, clazz2, property2, value);
+	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
+			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
+			final SingularAttribute<T, ? extends Object> orderByProperty) {
+		return dataViewer.findOrderedByPropertyListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);
 	}
 
 
 
 	@Override
-	public <T> List<T> getAllOrderBy(final Class<T> clazz, final SingularAttribute<T, ? extends Object> property) {
-		return dataViewer.getAllOrderBy(clazz, property);
+	public <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
+			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
+			final SingularAttribute<V, ? extends Object> orderByProperty) {
+		return dataViewer.findOrderedListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);
 	}
 
 
@@ -129,6 +126,7 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 	}
 
 
+
 	@Override
 	public <T> List<T> findOrderedListByProperty(final Class<T> clazz, final SingularAttribute<T, ? extends Object> orderByProperty,
 			final Object[] values, final SingularAttribute<T, ? extends Object>... properties) {
@@ -137,18 +135,20 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 	@Override
-	public <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
-			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
-			final SingularAttribute<V, ? extends Object> orderByProperty) {
-		return dataViewer.findOrderedListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);
+	public <T> List<T> getAll(final Class<T> clazz) {
+		return dataViewer.getAll(clazz);
 	}
 
 
 	@Override
-	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
-			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
-			final SingularAttribute<T, ? extends Object> orderByProperty) {
-		return dataViewer.findOrderedByPropertyListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);
+	public <T> List<T> getAllOrderBy(final Class<T> clazz, final SingularAttribute<T, ? extends Object> property) {
+		return dataViewer.getAllOrderBy(clazz, property);
+	}
+
+
+	@Override
+	public <T> T load(final Class<T> clazz, final Object id) {
+		return dataViewer.load(clazz, id);
 	}
 
 }

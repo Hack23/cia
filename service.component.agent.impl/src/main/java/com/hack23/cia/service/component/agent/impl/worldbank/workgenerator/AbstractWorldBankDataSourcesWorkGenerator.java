@@ -56,7 +56,7 @@ public abstract class AbstractWorldBankDataSourcesWorkGenerator implements World
 	}
 
 	@Override
-	public boolean matches(final WorldBankDataSources datasource) {
+	public final boolean matches(final WorldBankDataSources datasource) {
 		return this.datasource == datasource;
 	}
 

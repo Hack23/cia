@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.service.component.agent.impl.riksdagen.workers;
 
-import java.util.Map;
-
 import javax.jms.Destination;
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -35,7 +33,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.service.component.agent.impl.common.ProducerMessageFactory;
-import com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.RiksdagenImportService;
 import com.hack23.cia.service.external.common.api.ProcessDataStrategy;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
 
@@ -76,7 +73,7 @@ MessageListener {
 	@Override
 	public void onMessage(final Message message) {
 		try {
-			LoadDocumentWork work = (LoadDocumentWork) ((ObjectMessage) message).getObject();
+			final LoadDocumentWork work = (LoadDocumentWork) ((ObjectMessage) message).getObject();
 
 			riksdagenApi.processDocumentList(work.getFromDate(),work.getToDate(),new DocumentElementWorkProducer());
 

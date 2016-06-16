@@ -142,7 +142,6 @@ public final class DocumentWordCountService extends
 		htmlInst.instance(0).setValue(0, html);
 
 
-		final StringToWordVector filter = new StringToWordVector();
 		final StopwordsHandler StopwordsHandler = new StopwordsHandler() {
 
 			@Override
@@ -157,8 +156,8 @@ public final class DocumentWordCountService extends
 		tokenizer.setNGramMaxSize(1);
 		tokenizer.setDelimiters(" \r\n\t.,;:'\"()?!'");
 
+		final StringToWordVector filter = new StringToWordVector();
 		filter.setTokenizer(tokenizer);
-
 		filter.setStopwordsHandler(StopwordsHandler);
 		filter.setLowerCaseTokens(true);
 		filter.setOutputWordCounts(true);

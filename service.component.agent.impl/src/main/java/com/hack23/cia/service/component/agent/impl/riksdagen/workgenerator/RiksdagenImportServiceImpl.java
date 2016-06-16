@@ -130,50 +130,32 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		return map;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.component.agent.impl.riksdagen.RiksdagenImportService#getAvaibleCommitteeProposal()
-	 */
 	@Override
 	public List<String> getAvaibleCommitteeProposal() {
 		return documentStatusContainerDAO.getAvaibleCommitteeProposal();
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.component.agent.impl.riksdagen.RiksdagenImportService#getAvaibleDocumentContent()
-	 */
 	@Override
 	public List<String> getAvaibleDocumentContent() {
 		return documentElementDAO.getAvaibleDocumentContent();
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.component.agent.impl.riksdagen.RiksdagenImportService#getCommitteeProposalComponentDataMap()
-	 */
 	@Override
 	public Map<String, String> getCommitteeProposalComponentDataMap() {
 		return createMapFromList(committeeProposalComponentDataDAO.getIdList());
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.component.agent.impl.riksdagen.RiksdagenImportService#getDocumentContentMap()
-	 */
 	@Override
 	public Map<String, String> getDocumentContentMap() {
 		return createMapFromList(documentContentDataDAO.getIdList());
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.component.agent.impl.riksdagen.RiksdagenImportService#getDocumentElementMap()
-	 */
 	@Override
 	public Map<String, String> getDocumentElementMap() {
 		final List<String> all = documentElementDAO.getIdList();
 		return createMapFromList(all);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.component.agent.impl.riksdagen.RiksdagenImportService#getDocumentElementMap(java.util.Date, java.util.List, boolean)
-	 */
 	@Override
 	public Map<String, String> getDocumentElementMap(final Date after, final List<DocumentType> downloadType,
 			final boolean onlyWithDocStatus) {
@@ -224,34 +206,22 @@ public final class RiksdagenImportServiceImpl implements RiksdagenImportService 
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.component.agent.impl.riksdagen.RiksdagenImportService#getDocumentStatusContainerMap()
-	 */
 	@Override
 	public Map<String, String> getDocumentStatusContainerMap() {
 		return createMapFromList(documentStatusContainerDAO.getIdList());
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.component.agent.impl.riksdagen.RiksdagenImportService#getLoadedBallotIdMap()
-	 */
 	@Override
 	public Map<String, String> getLoadedBallotIdMap() {
 		return createMapFromListVote(voteDataDAO.getBallotIdList());
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.component.agent.impl.riksdagen.RiksdagenImportService#getPersonMap()
-	 */
 	@Override
 	public Map<String, String> getPersonMap() {
 		return createMapFromList(personDataDAO.getIdList());
 	}
 
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.component.agent.impl.riksdagen.RiksdagenImportService#getStartYearForDocumentElement()
-	 */
 	@Override
 	public int getStartYearForDocumentElement() {
 		final ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService.checkValueOrLoadDefault("Load Riksdagen documents from year", "Load Riksdagen documents from year", ConfigurationGroup.AGENT, RiksdagenImportService.class.getSimpleName(), "Riksdagen Import Service", "Responsible import Riksdagen data", "agent.riksdagen.documents.loadfromyear", "2000");

@@ -37,9 +37,7 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(value = MinistryRankingView.NAME, cached = true)
 public final class MinistryRankingView extends AbstractRankingView {
 
-	/**
-	 *
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The Constant NAME. */

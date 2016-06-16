@@ -56,6 +56,18 @@ public interface AbstractGenericDAO<T extends Serializable, I extends Serializab
 	/**
 	 * Find list by property.
 	 *
+	 * @param values
+	 *            the values
+	 * @param properties
+	 *            the properties
+	 * @return the list
+	 */
+	List<T> findListByProperty(final Object[] values,final SingularAttribute<T, ? extends Object>... properties);
+
+
+	/**
+	 * Find list by property.
+	 *
 	 * @param property
 	 *            the property
 	 * @param value
@@ -64,31 +76,6 @@ public interface AbstractGenericDAO<T extends Serializable, I extends Serializab
 	 */
 	List<T> findListByProperty(SingularAttribute<T, ? extends Object> property, Object value);
 
-
-	/**
-	 * Search.
-	 *
-	 * @param searchExpression
-	 *            the search expression
-	 * @param maxResults
-	 *            the max results
-	 * @param fields
-	 *            the fields
-	 * @return the list
-	 */
-	List<T> search(String searchExpression, Integer maxResults,String ...fields);
-
-
-	/**
-	 * Find list by property.
-	 *
-	 * @param values
-	 *            the values
-	 * @param properties
-	 *            the properties
-	 * @return the list
-	 */
-	List<T> findListByProperty(final Object[] values,final SingularAttribute<T, ? extends Object>... properties);
 
 	/**
 	 * Gets the all.
@@ -146,5 +133,18 @@ public interface AbstractGenericDAO<T extends Serializable, I extends Serializab
 	 *            the entity
 	 */
 	void persist(T entity);
+
+	/**
+	 * Search.
+	 *
+	 * @param searchExpression
+	 *            the search expression
+	 * @param maxResults
+	 *            the max results
+	 * @param fields
+	 *            the fields
+	 * @return the list
+	 */
+	List<T> search(String searchExpression, Integer maxResults,String ...fields);
 
 }

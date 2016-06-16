@@ -59,37 +59,6 @@ DataContainer<T, I> {
 	}
 
 	@Override
-	public List<T> getAll() {
-		return dataProxy.getAll(clazz);
-	}
-
-	@Override
-	public List<T> getAllOrderBy(final SingularAttribute<T, ? extends Object> property) {
-		return dataProxy.getAllOrderBy(clazz,property);
-	}
-
-
-
-	@Override
-	public List<T> getAllBy(
-			final SingularAttribute<T, ? extends Object> property,
-			final Object value) {
-		return dataProxy.findListByProperty(clazz, property, value);
-	}
-
-	@Override
-	public T load(final I id) {
-		return dataProxy.load(clazz, id);
-
-	}
-
-	@Override
-	public List<T> findListByProperty(final Object[] values,
-			final SingularAttribute<T, ? extends Object>... properties) {
-		return dataProxy.findListByProperty(clazz, values, properties);
-	}
-
-	@Override
 	public <T, V> T findByQueryProperty(final Class<T> clazz,
 			final SingularAttribute<T, ? extends Object> property,
 			final Class<V> clazz2,
@@ -105,17 +74,12 @@ DataContainer<T, I> {
 		return dataProxy.findListByEmbeddedProperty(clazz, property, clazz2, property2, value);
 	}
 
-	@Override
-	public List<T> findOrderedListByProperty(final SingularAttribute<T, ? extends Object> orderByProperty, final Object[] values,
-			final SingularAttribute<T, ? extends Object>... properties) {
-		return dataProxy.findOrderedListByProperty(clazz,orderByProperty,values, properties);
-	}
+
 
 	@Override
-	public <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
-			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
-			final SingularAttribute<V, ? extends Object> orderByProperty) {
-		return dataProxy.findOrderedListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);
+	public List<T> findListByProperty(final Object[] values,
+			final SingularAttribute<T, ? extends Object>... properties) {
+		return dataProxy.findListByProperty(clazz, values, properties);
 	}
 
 	@Override
@@ -126,9 +90,45 @@ DataContainer<T, I> {
 	}
 
 	@Override
+	public <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
+			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
+			final SingularAttribute<V, ? extends Object> orderByProperty) {
+		return dataProxy.findOrderedListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);
+	}
+
+	@Override
 	public List<T> findOrderedListByProperty(final SingularAttribute<T, ? extends Object> property, final Object value,
 			final SingularAttribute<T, ? extends Object> orderByProperty) {
 		return dataProxy.findOrderedListByProperty(clazz,property,value,orderByProperty);
+	}
+
+	@Override
+	public List<T> findOrderedListByProperty(final SingularAttribute<T, ? extends Object> orderByProperty, final Object[] values,
+			final SingularAttribute<T, ? extends Object>... properties) {
+		return dataProxy.findOrderedListByProperty(clazz,orderByProperty,values, properties);
+	}
+
+	@Override
+	public List<T> getAll() {
+		return dataProxy.getAll(clazz);
+	}
+
+	@Override
+	public List<T> getAllBy(
+			final SingularAttribute<T, ? extends Object> property,
+			final Object value) {
+		return dataProxy.findListByProperty(clazz, property, value);
+	}
+
+	@Override
+	public List<T> getAllOrderBy(final SingularAttribute<T, ? extends Object> property) {
+		return dataProxy.getAllOrderBy(clazz,property);
+	}
+
+	@Override
+	public T load(final I id) {
+		return dataProxy.load(clazz, id);
+
 	}
 
 }

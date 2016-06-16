@@ -46,10 +46,14 @@ import com.hack23.cia.service.data.api.LanguageDataDAO;
 @Transactional
 public final class ConfigurationManagerImpl implements ConfigurationManager {
 
+	/** The Constant EXPECTED_LOCALE_LENGTH. */
+	private static final int EXPECTED_LOCALE_LENGTH = 2;
+
 	/** The agency dao. */
 	@Autowired
 	private AgencyDAO agencyDAO;
 
+	/** The language data dao. */
 	@Autowired
 	private LanguageDataDAO languageDataDAO;
 
@@ -65,16 +69,12 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 	public UserConfiguration getUserConfiguration(final String url,final String locale) {
 		final Agency agency = agencyDAO.getAll().get(0);
 		Portal usePortal = null;
-		LanguageData languageData = findLanguage(locale);
+		final LanguageData languageData = findLanguage(locale);
 		for (final Portal portal : agency.getPortals()) {
-			if (usePortal == null
-					&& PortalType.DEFAULT == portal.getPortalType()) {
-				usePortal = portal;
-			} else if (url.contains(portal.getPortalName())) {
+			if ((usePortal == null	&& PortalType.DEFAULT == portal.getPortalType()) || url.contains(portal.getPortalName())) {
 				usePortal = portal;
 			}
 		}
-
 
 		return new UserConfigurationImpl(agency, usePortal,languageData);
 	}
@@ -83,44 +83,39 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 	 * Find language.
 	 *
 	 * @param locale
-	 *            the string
+	 *            the locale
 	 * @return the language data
 	 */
-	private LanguageData findLanguage(String locale) {
+	private LanguageData findLanguage(final String locale) {
 		for (LanguageData languageData : languageDataDAO.getAll()) {
-			if (languageData.getLanguageCode().equalsIgnoreCase("en")) {
+			if (languageData.getLanguageCode().equalsIgnoreCase(locale)) {
 				return languageData;
 			}
 		}
 		return null;
 	}
 
-	@Secured({"ROLE_ADMIN" })
+	@Secured({ "ROLE_ADMIN" })
 	@Override
 	public void createDefaultConfigIfEmpty() {
 		if (agencyDAO.getAll().isEmpty()) {
 			final List<Portal> portals = new ArrayList<>();
-			final Portal defaulPortal = new Portal()
-					.withPortalType(PortalType.DEFAULT)
-					.withDescription("Global Portal").withPortalName("Default");
+			final Portal defaulPortal = new Portal().withPortalType(PortalType.DEFAULT).withDescription("Global Portal")
+					.withPortalName("Default");
 			portals.add(defaulPortal);
 
-			final Portal domainPortal = new Portal()
-					.withPortalType(PortalType.DOMAIN)
-					.withDescription("Hack23.com")
+			final Portal domainPortal = new Portal().withPortalType(PortalType.DOMAIN).withDescription("Hack23.com")
 					.withPortalName("www.hack23.com");
 			portals.add(domainPortal);
 
-			final Agency agency = new Agency().withAgencyName(
-					"Citizen Intelligence Agency").withDescription(
-					"Tracking politicians like bugs");
+			final Agency agency = new Agency().withAgencyName("Citizen Intelligence Agency")
+					.withDescription("Tracking politicians like bugs");
 			agency.setPortals(portals);
 			agencyDAO.persist(agency);
 		}
 	}
 
-
-	@Secured({"ROLE_ADMIN" })
+	@Secured({ "ROLE_ADMIN" })
 	@Override
 	public void createDefaultLanguagesIfEmpty() {
 		if (languageDataDAO.getAll().isEmpty()) {
@@ -129,24 +124,24 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 		}
 	}
 
-
 	/**
 	 * Gets the supported locales language data.
 	 *
 	 * @return the supported locales language data
 	 */
 	private static List<LanguageData> getSupportedLocalesLanguageData() {
-		List<LanguageData> languages = new ArrayList<>();
+		final List<LanguageData> languages = new ArrayList<>();
 
-        for (Locale locale : SimpleDateFormat.getAvailableLocales()) {
-        	if (locale.getDisplayCountry(Locale.ENGLISH).length() == 0 && !StringUtils.isEmpty(locale.toString()) && locale.toString().trim().length() == 2) {
-        		languages.add(new LanguageData().withCreatedDate(new Date()).withLanguageCode(locale.toString()).withLanguageName(locale.getDisplayName(Locale.ENGLISH)).withLanguageEnabled(false));
+		for (Locale locale : SimpleDateFormat.getAvailableLocales()) {
+			if (locale.getDisplayCountry(Locale.ENGLISH).length() == 0 && !StringUtils.isEmpty(locale.toString())
+					&& locale.toString().trim().length() == EXPECTED_LOCALE_LENGTH) {
+				languages.add(new LanguageData().withCreatedDate(new Date()).withLanguageCode(locale.toString())
+						.withLanguageName(locale.getDisplayName(Locale.ENGLISH)).withLanguageEnabled(false));
 
-        	}
+			}
 		}
 
-        return languages;
-    }
-
+		return languages;
+	}
 
 }

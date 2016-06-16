@@ -79,34 +79,6 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 	}
 
 	@Override
-	public List<DataSummary> getAll() {
-		final List<DataSummary> list = new ArrayList<>();
-		list.add(load(null));
-		return list;
-	}
-
-	@Override
-	public DataSummary load(final String id) {
-		final List<PersonData> all = personDataDAO.getAll();
-		final long personSize=all.size();
-
-		return new DataSummary(personSize,voteDataDAO.getSize(),voteDataDAO.getSize(),documentElementDAO.getSize(),documentContentDataDAO.getSize(),documentStatusContainerDAO.getSize(),committeeProposalComponentDataDAO.getSize());
-	}
-
-	@Override
-	public List<DataSummary> getAllBy(
-			final SingularAttribute<DataSummary, ? extends Object> property,
-			final Object value) {
-		return new ArrayList<>();
-	}
-
-	@Override
-	public List<DataSummary> findListByProperty(final Object[] values,
-			final SingularAttribute<DataSummary, ? extends Object>... properties) {
-		return new ArrayList<>();
-	}
-
-	@Override
 	public <T, V> T findByQueryProperty(final Class<T> clazz,
 			final SingularAttribute<T, ? extends Object> property, final Class<V> clazz2,
 			final SingularAttribute<V, ? extends Object> property2, final Object value) {
@@ -121,20 +93,8 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 	}
 
 	@Override
-	public List<DataSummary> getAllOrderBy(final SingularAttribute<DataSummary, ? extends Object> property) {
-		return new ArrayList<>();
-	}
-
-	@Override
-	public List<DataSummary> findOrderedListByProperty(final SingularAttribute<DataSummary, ? extends Object> orderByProperty,
-			final Object[] values, final SingularAttribute<DataSummary, ? extends Object>... properties) {
-		return new ArrayList<>();
-	}
-
-	@Override
-	public <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
-			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
-			final SingularAttribute<V, ? extends Object> orderByProperty) {
+	public List<DataSummary> findListByProperty(final Object[] values,
+			final SingularAttribute<DataSummary, ? extends Object>... properties) {
 		return new ArrayList<>();
 	}
 
@@ -146,8 +106,48 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 	}
 
 	@Override
+	public <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
+			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
+			final SingularAttribute<V, ? extends Object> orderByProperty) {
+		return new ArrayList<>();
+	}
+
+	@Override
 	public List<DataSummary> findOrderedListByProperty(final SingularAttribute<DataSummary, ? extends Object> property,
 			final Object value, final SingularAttribute<DataSummary, ? extends Object> orderByProperty) {
 		return new ArrayList<>();
+	}
+
+	@Override
+	public List<DataSummary> findOrderedListByProperty(final SingularAttribute<DataSummary, ? extends Object> orderByProperty,
+			final Object[] values, final SingularAttribute<DataSummary, ? extends Object>... properties) {
+		return new ArrayList<>();
+	}
+
+	@Override
+	public List<DataSummary> getAll() {
+		final List<DataSummary> list = new ArrayList<>();
+		list.add(load(null));
+		return list;
+	}
+
+	@Override
+	public List<DataSummary> getAllBy(
+			final SingularAttribute<DataSummary, ? extends Object> property,
+			final Object value) {
+		return new ArrayList<>();
+	}
+
+	@Override
+	public List<DataSummary> getAllOrderBy(final SingularAttribute<DataSummary, ? extends Object> property) {
+		return new ArrayList<>();
+	}
+
+	@Override
+	public DataSummary load(final String id) {
+		final List<PersonData> all = personDataDAO.getAll();
+		final long personSize=all.size();
+
+		return new DataSummary(personSize,voteDataDAO.getSize(),voteDataDAO.getSize(),documentElementDAO.getSize(),documentContentDataDAO.getSize(),documentStatusContainerDAO.getSize(),committeeProposalComponentDataDAO.getSize());
 	}
 }

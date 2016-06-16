@@ -23,11 +23,9 @@ import java.io.Serializable;
 /**
  * The Class LoadDocumentWork.
  */
-public class LoadDocumentWork implements Serializable {
+public final class LoadDocumentWork implements Serializable {
 
-	/**
-	 *
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The from date. */

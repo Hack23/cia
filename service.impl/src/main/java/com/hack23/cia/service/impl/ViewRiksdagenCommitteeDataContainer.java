@@ -53,37 +53,6 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 	}
 
 	@Override
-	public List<ViewRiksdagenCommittee> getAll() {
-		return viewRiksdagenCommitteeDAO.getAll();
-	}
-
-	@Override
-	public ViewRiksdagenCommittee load(final String id) {
-		for (final ViewRiksdagenCommittee riksdagenCommittee : viewRiksdagenCommitteeDAO.getAll()) {
-			if (id.equals(riksdagenCommittee.getEmbeddedId().getOrgCode())) {
-				return riksdagenCommittee;
-			}
-
-		}
-
-		return null;
-	}
-
-	@Override
-	public List<ViewRiksdagenCommittee> getAllBy(
-			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> property,
-			final Object value) {
-		return viewRiksdagenCommitteeDAO.findListByProperty(property, value);
-	}
-
-	@Override
-	public List<ViewRiksdagenCommittee> findListByProperty(
-			final Object[] values,
-			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object>... properties) {
-		return viewRiksdagenCommitteeDAO.findListByProperty(values, properties);
-	}
-
-	@Override
 	public <T, V> T findByQueryProperty(final Class<T> clazz,
 			final SingularAttribute<T, ? extends Object> property, final Class<V> clazz2,
 			final SingularAttribute<V, ? extends Object> property2, final Object value) {
@@ -98,23 +67,10 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 	}
 
 	@Override
-	public List<ViewRiksdagenCommittee> getAllOrderBy(
-			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> property) {
-		return viewRiksdagenCommitteeDAO.getAllOrderBy(property);
-	}
-
-	@Override
-	public List<ViewRiksdagenCommittee> findOrderedListByProperty(
-			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> orderByProperty, final Object[] values,
+	public List<ViewRiksdagenCommittee> findListByProperty(
+			final Object[] values,
 			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object>... properties) {
-		return null;
-	}
-
-	@Override
-	public <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
-			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
-			final SingularAttribute<V, ? extends Object> orderByProperty) {
-		return new ArrayList<>();
+		return viewRiksdagenCommitteeDAO.findListByProperty(values, properties);
 	}
 
 	@Override
@@ -125,9 +81,53 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 	}
 
 	@Override
+	public <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
+			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
+			final SingularAttribute<V, ? extends Object> orderByProperty) {
+		return new ArrayList<>();
+	}
+
+	@Override
 	public List<ViewRiksdagenCommittee> findOrderedListByProperty(
 			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> property, final Object value,
 			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> orderByProperty) {
 		return new ArrayList<>();
+	}
+
+	@Override
+	public List<ViewRiksdagenCommittee> findOrderedListByProperty(
+			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> orderByProperty, final Object[] values,
+			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object>... properties) {
+		return null;
+	}
+
+	@Override
+	public List<ViewRiksdagenCommittee> getAll() {
+		return viewRiksdagenCommitteeDAO.getAll();
+	}
+
+	@Override
+	public List<ViewRiksdagenCommittee> getAllBy(
+			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> property,
+			final Object value) {
+		return viewRiksdagenCommitteeDAO.findListByProperty(property, value);
+	}
+
+	@Override
+	public List<ViewRiksdagenCommittee> getAllOrderBy(
+			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> property) {
+		return viewRiksdagenCommitteeDAO.getAllOrderBy(property);
+	}
+
+	@Override
+	public ViewRiksdagenCommittee load(final String id) {
+		for (final ViewRiksdagenCommittee riksdagenCommittee : viewRiksdagenCommitteeDAO.getAll()) {
+			if (id.equals(riksdagenCommittee.getEmbeddedId().getOrgCode())) {
+				return riksdagenCommittee;
+			}
+
+		}
+
+		return null;
 	}
 }
