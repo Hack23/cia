@@ -42,8 +42,18 @@ public interface PartyChartDataManager {
 	 */
 	DCharts createPartyLineChart(String partyId);
 
+	/**
+	 * Creates the party gender chart.
+	 *
+	 * @return the d charts
+	 */
 	DCharts createPartyGenderChart();
 
+	/**
+	 * Creates the party age chart.
+	 *
+	 * @return the d charts
+	 */
 	DCharts createPartyAgeChart();
 
 }
