@@ -18,9 +18,6 @@
 */
 package com.hack23.cia.service.data.impl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Repository;
 
 import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
@@ -32,25 +29,11 @@ import com.hack23.cia.service.data.api.CountryElementDAO;
 @Repository("CountryElementDAO")
 public final class CountryElementDAOImpl extends AbstractGenericDAOImpl<CountryElement, Long> implements CountryElementDAO {
 
-	/** The entity manager. */
-	@PersistenceContext(name = "ciaPersistenceUnit")
-	private EntityManager entityManager;
-
 	/**
 	 * Instantiates a new country element dao impl.
 	 */
 	public CountryElementDAOImpl() {
 		super(CountryElement.class);
-	}
-
-	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	@Override
-	public Long getSize() {
-		return (long) getAll().size();
 	}
 
 }

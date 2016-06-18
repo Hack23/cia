@@ -37,13 +37,6 @@ public final class LegacyNamingStrategy implements PhysicalNamingStrategy {
 
 
     /**
-	 * Instantiates a new legacy naming strategy.
-	 */
-    public LegacyNamingStrategy() {
-		super();
-	}
-
-    /**
 	 * Convert.
 	 *
 	 * @param identifier
@@ -57,6 +50,13 @@ public final class LegacyNamingStrategy implements PhysicalNamingStrategy {
         	return Identifier.toIdentifier(identifier.getText().replaceAll(REG_EXPR, REPLACEMENT_PATTERN).toLowerCase(Locale.ENGLISH));
         }
     }
+
+    /**
+	 * Instantiates a new legacy naming strategy.
+	 */
+    public LegacyNamingStrategy() {
+		super();
+	}
 
     @Override
     public Identifier toPhysicalCatalogName(final Identifier identifier, final JdbcEnvironment jdbcEnv) {

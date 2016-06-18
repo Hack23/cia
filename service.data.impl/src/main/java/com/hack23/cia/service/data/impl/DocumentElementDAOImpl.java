@@ -20,8 +20,6 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
@@ -47,10 +45,6 @@ DocumentElementDAO {
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(DocumentElementDAOImpl.class);
-
-	/** The entity manager. */
-	@PersistenceContext(name = "ciaPersistenceUnit")
-	private EntityManager entityManager;
 
 
 	/**
@@ -102,11 +96,6 @@ DocumentElementDAO {
 	}
 
 	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	@Override
 	public List<String> getIdList() {
 		final CriteriaQuery<String> criteria = getCriteriaBuilder()
 				.createQuery(String.class);
@@ -132,11 +121,6 @@ DocumentElementDAO {
 		} else {
 			return Integer.parseInt(resultList.get(resultList.size()-1));
 		}
-	}
-
-	@Override
-	public Long getSize() {
-		return (long) getIdList().size();
 	}
 
 }

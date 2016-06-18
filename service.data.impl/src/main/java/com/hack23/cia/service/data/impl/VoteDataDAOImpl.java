@@ -20,9 +20,6 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -39,10 +36,6 @@ import com.hack23.cia.service.data.api.VoteDataDAO;
 @Repository("VoteDataDAO")
 public final class VoteDataDAOImpl extends
 AbstractGenericDAOImpl<VoteData, VoteDataEmbeddedId> implements VoteDataDAO {
-
-	/** The entity manager. */
-	@PersistenceContext(name = "ciaPersistenceUnit")
-	private EntityManager entityManager;
 
 	/**
 	 * Instantiates a new vote data dao impl.
@@ -62,11 +55,6 @@ AbstractGenericDAOImpl<VoteData, VoteDataEmbeddedId> implements VoteDataDAO {
 	}
 
 	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	@Override
 	public List<VoteDataEmbeddedId> getIdList() {
 		final CriteriaQuery<VoteDataEmbeddedId> criteria = getCriteriaBuilder().createQuery(
 				VoteDataEmbeddedId.class);
@@ -75,15 +63,5 @@ AbstractGenericDAOImpl<VoteData, VoteDataEmbeddedId> implements VoteDataDAO {
 				root.get(VoteData_.embeddedId)));
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
-
-	@Override
-	public Long getSize() {
-		final CriteriaBuilder cb = getCriteriaBuilder();
-		final CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-		cq.select(cb.count(cq.from(VoteData.class)));
-
-		return getEntityManager().createQuery(cq).getSingleResult();
-	}
-
 
 }

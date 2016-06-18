@@ -18,9 +18,6 @@
 */
 package com.hack23.cia.service.data.impl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Repository;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent;
@@ -32,10 +29,6 @@ import com.hack23.cia.service.data.api.ApplicationActionEventDAO;
 @Repository("ApplicationActionEventDAOImpl")
 public final class ApplicationActionEventDAOImpl extends AbstractGenericDAOImpl<ApplicationActionEvent, Long> implements ApplicationActionEventDAO {
 
-	/** The entity manager. */
-	@PersistenceContext(name = "ciaPersistenceUnit")
-	private EntityManager entityManager;
-
 	/**
 	 * Instantiates a new application action event dao impl.
 	 */
@@ -43,13 +36,4 @@ public final class ApplicationActionEventDAOImpl extends AbstractGenericDAOImpl<
 		super(ApplicationActionEvent.class);
 	}
 
-	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	@Override
-	public Long getSize() {
-		return null;
-	}
 }

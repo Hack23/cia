@@ -84,6 +84,7 @@ public interface AbstractGenericDAO<T extends Serializable, I extends Serializab
 	 */
 	List<T> getAll();
 
+
 	/**
 	 * Gets the all order by.
 	 *
@@ -92,6 +93,32 @@ public interface AbstractGenericDAO<T extends Serializable, I extends Serializab
 	 * @return the all order by
 	 */
 	List<T> getAllOrderBy(final SingularAttribute<T, ? extends Object> orderBy);
+
+
+	/**
+	 * Gets the page.
+	 *
+	 * @param pageNr
+	 *            the page nr
+	 * @param resultPerPage
+	 *            the result per page
+	 * @return the page
+	 */
+	List<T> getPage(int pageNr,int resultPerPage);
+
+	/**
+	 * Gets the page order by.
+	 *
+	 * @param pageNr
+	 *            the page nr
+	 * @param resultPerPage
+	 *            the result per page
+	 * @param orderBy
+	 *            the order by
+	 * @return the page order by
+	 */
+	List<T> getPageOrderBy(int pageNr,int resultPerPage,final SingularAttribute<T, ? extends Object> orderBy);
+
 
 	/**
 	 * Gets the size.

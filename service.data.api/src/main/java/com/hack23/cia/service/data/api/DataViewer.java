@@ -224,6 +224,7 @@ public interface DataViewer {
 	 */
 	<T> List<T> getAll(Class<T> clazz);
 
+
 	/**
 	 * Gets the all order by.
 	 *
@@ -239,6 +240,46 @@ public interface DataViewer {
 
 
 	/**
+	 * Gets the page.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param clazz
+	 *            the clazz
+	 * @param pageNr
+	 *            the page nr
+	 * @param resultPerPage
+	 *            the result per page
+	 * @return the page
+	 */
+	<T> List<T> getPage(Class<T> clazz,int pageNr,int resultPerPage);
+
+	/**
+	 * Gets the page order by.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param clazz
+	 *            the clazz
+	 * @param pageNr
+	 *            the page nr
+	 * @param resultPerPage
+	 *            the result per page
+	 * @param property
+	 *            the property
+	 * @return the page order by
+	 */
+	<T> List<T> getPageOrderBy(Class<T> clazz,int pageNr,int resultPerPage,SingularAttribute<T, ? extends Object> property);
+
+
+	/**
+	 * Gets the size.
+	 *
+	 * @return the size
+	 */
+	<T> Long getSize(final Class<T> clazz);
+
+	/**
 	 * Load.
 	 *
 	 * @param <T>
@@ -250,4 +291,5 @@ public interface DataViewer {
 	 * @return the t
 	 */
 	<T> T load(Class<T> clazz,Object id);
+
 }

@@ -18,9 +18,6 @@
 */
 package com.hack23.cia.service.data.impl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Repository;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
@@ -32,10 +29,6 @@ import com.hack23.cia.service.data.api.ApplicationSessionDAO;
 @Repository("ApplicationSessionDAOImpl")
 public final class ApplicationSessionDAOImpl extends AbstractGenericDAOImpl<ApplicationSession, Long> implements ApplicationSessionDAO {
 
-	/** The entity manager. */
-	@PersistenceContext(name = "ciaPersistenceUnit")
-	private EntityManager entityManager;
-
 	/**
 	 * Instantiates a new application session dao impl.
 	 */
@@ -43,13 +36,4 @@ public final class ApplicationSessionDAOImpl extends AbstractGenericDAOImpl<Appl
 		super(ApplicationSession.class);
 	}
 
-	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	@Override
-	public Long getSize() {
-		return (long) getAll().size();
-	}
 }

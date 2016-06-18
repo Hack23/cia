@@ -20,9 +20,6 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -42,20 +39,11 @@ public final class ViewRiksdagenCommitteeDAOImpl
 		AbstractGenericDAOImpl<ViewRiksdagenCommittee, RiksdagenCommitteeEmbeddedId>
 		implements ViewRiksdagenCommitteeDAO {
 
-	/** The entity manager. */
-	@PersistenceContext(name = "ciaPersistenceUnit")
-	private EntityManager entityManager;
-
 	/**
 	 * Instantiates a new view riksdagen committee dao impl.
 	 */
 	public ViewRiksdagenCommitteeDAOImpl() {
 		super(ViewRiksdagenCommittee.class);
-	}
-
-	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
 	}
 
 	@Override
@@ -68,17 +56,6 @@ public final class ViewRiksdagenCommitteeDAOImpl
 				RiksdagenCommitteeEmbeddedId.class,
 				root.get(ViewRiksdagenCommittee_.embeddedId)));
 		return getEntityManager().createQuery(criteria).getResultList();
-	}
-
-	@Override
-	public Long getSize() {
-
-		final CriteriaBuilder cb = getCriteriaBuilder();
-		final CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-		cq.select(cb.count(cq.from(ViewRiksdagenCommittee.class)));
-
-		return getEntityManager().createQuery(cq).getSingleResult();
-
 	}
 
 }

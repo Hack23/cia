@@ -43,6 +43,17 @@ public final class DocumentElementDAOITest extends AbstractServiceDataFunctional
 	private DocumentElementDAO documentElementDAO;
 
 	/**
+	 * Test get missing document start from year.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void testGetMissingDocumentStartFromYear() throws Exception {
+		assertTrue("Expect documents for all past years in database",documentElementDAO.getMissingDocumentStartFromYear(2000) > 2015L);
+	}
+
+	/**
 	 * Test get size.
 	 *
 	 * @throws Exception
@@ -52,17 +63,6 @@ public final class DocumentElementDAOITest extends AbstractServiceDataFunctional
 	public void testGetSize() throws Exception {
 
 		assertTrue("Expect some documents in database",documentElementDAO.getSize() >= 0);
-	}
-
-	/**
-	 * Test get missing document start from year.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public void testGetMissingDocumentStartFromYear() throws Exception {
-		assertTrue("Expect documents for all past years in database",documentElementDAO.getMissingDocumentStartFromYear(2000) > 2015L);
 	}
 
 

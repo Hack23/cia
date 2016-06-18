@@ -20,9 +20,6 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -40,20 +37,11 @@ public final class SwedenPoliticalPartyDAOImpl extends
 AbstractGenericDAOImpl<SwedenPoliticalParty, String> implements
 SwedenPoliticalPartyDAO {
 
-	/** The entity manager. */
-	@PersistenceContext(name = "ciaPersistenceUnit")
-	private EntityManager entityManager;
-
 	/**
 	 * Instantiates a new sweden political party dao impl.
 	 */
 	public SwedenPoliticalPartyDAOImpl() {
 		super(SwedenPoliticalParty.class);
-	}
-
-	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
 	}
 
 	@Override
@@ -65,17 +53,6 @@ SwedenPoliticalPartyDAO {
 		criteria.select(getCriteriaBuilder().construct(String.class,
 				root.get(SwedenPoliticalParty_.partyId)));
 		return getEntityManager().createQuery(criteria).getResultList();
-	}
-
-	@Override
-	public Long getSize() {
-
-		final CriteriaBuilder cb = getCriteriaBuilder();
-		final CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-		cq.select(cb.count(cq.from(SwedenPoliticalParty.class)));
-
-		return getEntityManager().createQuery(cq).getSingleResult();
-
 	}
 
 }

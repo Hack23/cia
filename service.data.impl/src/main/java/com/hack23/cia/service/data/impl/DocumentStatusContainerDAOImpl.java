@@ -20,8 +20,6 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -41,10 +39,6 @@ import com.hack23.cia.service.data.api.DocumentStatusContainerDAO;
 public final class DocumentStatusContainerDAOImpl extends
 AbstractGenericDAOImpl<DocumentStatusContainer, Long> implements
 DocumentStatusContainerDAO {
-
-	/** The entity manager. */
-	@PersistenceContext(name = "ciaPersistenceUnit")
-	private EntityManager entityManager;
 
 	/**
 	 * Instantiates a new document status container dao impl.
@@ -79,11 +73,6 @@ DocumentStatusContainerDAO {
 	}
 
 	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	@Override
 	public List<String> getIdList() {
 		final CriteriaQuery<String> criteria = getCriteriaBuilder().createQuery(String.class);
 		final Root<DocumentData> root = criteria.from(DocumentData.class);
@@ -91,8 +80,4 @@ DocumentStatusContainerDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	@Override
-	public Long getSize() {
-		return (long) getIdList().size();
-	}
 }

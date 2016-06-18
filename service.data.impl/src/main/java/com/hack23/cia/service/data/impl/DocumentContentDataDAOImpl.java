@@ -69,11 +69,6 @@ implements DocumentContentDataDAO {
 		return !resultList.isEmpty();
 	}
 
-	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
-	}
-
 
 	@Override
 	public List<String> getIdList() {
@@ -81,11 +76,6 @@ implements DocumentContentDataDAO {
 		final Root<DocumentContentData> root = criteria.from(DocumentContentData.class);
 		criteria.select(root.get(DocumentContentData_.id));
 		return getEntityManager().createQuery(criteria).getResultList();
-	}
-
-	@Override
-	public Long getSize() {
-		return (long) getIdList().size();
 	}
 
 }

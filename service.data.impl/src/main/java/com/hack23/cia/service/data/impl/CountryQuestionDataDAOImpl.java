@@ -18,9 +18,6 @@
 */
 package com.hack23.cia.service.data.impl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Repository;
 
 import com.hack23.cia.model.external.vdem.indicators.impl.CountryQuestionData;
@@ -33,10 +30,6 @@ import com.hack23.cia.service.data.api.CountryQuestionDataDAO;
 @Repository("CountryQuestionDataDAOImpl")
 public final class CountryQuestionDataDAOImpl extends AbstractGenericDAOImpl<CountryQuestionData, CountryQuestionDataEmbeddedId> implements CountryQuestionDataDAO {
 
-	/** The entity manager. */
-	@PersistenceContext(name = "ciaPersistenceUnit")
-	private EntityManager entityManager;
-
 	/**
 	 * Instantiates a new country question data dao impl.
 	 */
@@ -44,13 +37,4 @@ public final class CountryQuestionDataDAOImpl extends AbstractGenericDAOImpl<Cou
 		super(CountryQuestionData.class);
 	}
 
-	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	@Override
-	public Long getSize() {
-		return (long) getAll().size();
-	}
 }

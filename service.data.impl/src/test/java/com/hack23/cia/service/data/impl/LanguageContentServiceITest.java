@@ -41,24 +41,6 @@ public final class LanguageContentServiceITest extends AbstractServiceDataFuncti
 	private LanguageContentService languageContentService;
 
 	/**
-	 * Check value or load default no property exist test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public void getLanguageResourceNoValueExistTest() throws Exception {
-
-		String defaultEnglishValue = "defaultValue";
-		String key = UUID.randomUUID().toString();
-		final String languageResource = languageContentService.getLanguageResource(key, "test","en",
-				defaultEnglishValue);
-
-		assertEquals("Expect to get default english value",defaultEnglishValue, languageResource);
-
-	}
-
-	/**
 	 * Check value or load default property already exist same value test.
 	 *
 	 * @throws Exception
@@ -78,6 +60,24 @@ public final class LanguageContentServiceITest extends AbstractServiceDataFuncti
 				"Some strange value");
 
 		assertEquals("Expect to get default english value",defaultEnglishValue, languageResourceAfterOtherValueCreated);
+	}
+
+	/**
+	 * Check value or load default no property exist test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void getLanguageResourceNoValueExistTest() throws Exception {
+
+		String defaultEnglishValue = "defaultValue";
+		String key = UUID.randomUUID().toString();
+		final String languageResource = languageContentService.getLanguageResource(key, "test","en",
+				defaultEnglishValue);
+
+		assertEquals("Expect to get default english value",defaultEnglishValue, languageResource);
+
 	}
 
 }

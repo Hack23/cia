@@ -20,8 +20,6 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -37,10 +35,6 @@ import com.hack23.cia.service.data.api.PersonDataDAO;
 @Repository("PersonDataDAO")
 public final class PersonDataDAOImpl extends AbstractGenericDAOImpl<PersonData, String> implements PersonDataDAO {
 
-	/** The entity manager. */
-	@PersistenceContext(name = "ciaPersistenceUnit")
-	private EntityManager entityManager;
-
 	/**
 	 * Instantiates a new person data dao impl.
 	 */
@@ -49,21 +43,11 @@ public final class PersonDataDAOImpl extends AbstractGenericDAOImpl<PersonData, 
 	}
 
 	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	@Override
 	public List<String> getIdList() {
 		final CriteriaQuery<String> criteria = getCriteriaBuilder().createQuery(String.class);
 		final Root<PersonData> root = criteria.from(PersonData.class);
 		criteria.select(root.get(PersonData_.id));
 		return getEntityManager().createQuery(criteria).getResultList();
-	}
-
-	@Override
-	public Long getSize() {
-		return (long) getIdList().size();
 	}
 
 }

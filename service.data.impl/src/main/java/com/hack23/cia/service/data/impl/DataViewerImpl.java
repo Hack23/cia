@@ -47,20 +47,6 @@ import com.hack23.cia.service.data.impl.util.LoadHelper;
 @Repository("DataViewer")
 public final class DataViewerImpl implements DataViewer {
 
-	/** The entity manager. */
-	@PersistenceContext(name = "ciaPersistenceUnit")
-	private EntityManager entityManager;
-
-	/** The criteria builder. */
-	private CriteriaBuilder criteriaBuilder;
-
-	/**
-	 * Instantiates a new data viewer impl.
-	 */
-	public DataViewerImpl() {
-		super();
-	}
-
 	/**
 	 * Adds the cache hints.
 	 *
@@ -75,55 +61,18 @@ public final class DataViewerImpl implements DataViewer {
 		typedQuery.setHint("org.hibernate.comment", comment);
 	}
 
-	@Override
-	public <T> T findFirstByProperty(final Class<T> clazz,
-			final SingularAttribute<T, ? extends Object> property, final Object value) {
-		final List<T> resultList = findListByProperty(clazz,property,value);
+	/** The entity manager. */
+	@PersistenceContext(name = "ciaPersistenceUnit")
+	private EntityManager entityManager;
 
-		if (resultList.isEmpty()) {
-			return null;
-		} else {
-			return LoadHelper.recursiveInitliaze(resultList.get(0));
-		}
-	}
-
-	@Override
-	public <T> List<T> getAll(final Class<T> clazz) {
-		return getAllOrderBy(clazz,null);
-	}
-
-
-	@Override
-	public <T> List<T> getAllOrderBy(final Class<T> clazz, final SingularAttribute<T, ? extends Object> property) {
-		final CriteriaQuery<T> criteriaQuery = criteriaBuilder
-				.createQuery(clazz);
-		final Root<T> root = criteriaQuery.from(clazz);
-
-		criteriaQuery.select(root);
-
-		if (property != null) {
-			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(property)));
-		}
-
-		final TypedQuery<T> typedQuery = entityManager
-				.createQuery(criteriaQuery);
-		addCacheHints(typedQuery, "getAll." + clazz.getSimpleName());
-
-		return typedQuery.getResultList();
-	}
-
+	/** The criteria builder. */
+	private CriteriaBuilder criteriaBuilder;
 
 	/**
-	 * Inits the.
+	 * Instantiates a new data viewer impl.
 	 */
-	@PostConstruct
-	private void init() {
-		criteriaBuilder = entityManager.getCriteriaBuilder();
-	}
-
-	@Override
-	public <T> T load(final Class<T> clazz,final Object id) {
-		return LoadHelper.recursiveInitliaze(entityManager.find(clazz, id));
+	public DataViewerImpl() {
+		super();
 	}
 
 	@Override
@@ -165,10 +114,24 @@ public final class DataViewerImpl implements DataViewer {
 	}
 
 	@Override
-	public <T> List<T> findListByProperty(final Class<T> clazz,
+	public <T> T findFirstByProperty(final Class<T> clazz,
 			final SingularAttribute<T, ? extends Object> property, final Object value) {
+		final List<T> resultList = findListByProperty(clazz,property,value);
 
-		return findOrderedListByProperty(clazz,property,value,null);
+		if (resultList.isEmpty()) {
+			return null;
+		} else {
+			return LoadHelper.recursiveInitliaze(resultList.get(0));
+		}
+	}
+
+
+	@Override
+	public <T, V> List<T> findListByEmbeddedProperty(final Class<T> clazz,
+			final SingularAttribute<T, V> property, final Class<V> clazz2,
+			final SingularAttribute<V, ? extends Object> property2, final Object value) {
+		return findOrderedListByEmbeddedProperty(clazz,property,clazz2,property2,value,null);
+
 	}
 
 	@Override
@@ -180,11 +143,73 @@ public final class DataViewerImpl implements DataViewer {
 
 
 	@Override
-	public <T, V> List<T> findListByEmbeddedProperty(final Class<T> clazz,
-			final SingularAttribute<T, V> property, final Class<V> clazz2,
-			final SingularAttribute<V, ? extends Object> property2, final Object value) {
-		return findOrderedListByEmbeddedProperty(clazz,property,clazz2,property2,value,null);
+	public <T> List<T> findListByProperty(final Class<T> clazz,
+			final SingularAttribute<T, ? extends Object> property, final Object value) {
 
+		return findOrderedListByProperty(clazz,property,value,null);
+	}
+
+	@Override
+	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
+			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
+			final SingularAttribute<T, ? extends Object> orderByProperty) {
+		final CriteriaQuery<T> criteriaQuery = criteriaBuilder
+				.createQuery(clazz);
+		final Root<T> root = criteriaQuery.from(clazz);
+		criteriaQuery.select(root);
+
+		if (orderByProperty != null) {
+			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderByProperty)));
+		}
+
+
+		final Join<T, V> join = root.join(property);
+
+		final Path<? extends Object> path = join.get(property2);
+
+		final Predicate condition = criteriaBuilder.equal(path, value);
+
+		criteriaQuery.where(condition);
+
+		final TypedQuery<T> typedQuery = entityManager
+				.createQuery(criteriaQuery);
+
+		addCacheHints(typedQuery, "findListByEmbeddedProperty." + clazz.getSimpleName());
+
+
+		return typedQuery.getResultList();
+	}
+
+
+
+	@Override
+	public <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
+			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
+			final SingularAttribute<V, ? extends Object> orderByProperty) {
+		final CriteriaQuery<T> criteriaQuery = criteriaBuilder
+				.createQuery(clazz);
+		final Root<T> root = criteriaQuery.from(clazz);
+		criteriaQuery.select(root);
+
+		final Join<T, V> join = root.join(property);
+
+		final Path<? extends Object> path = join.get(property2);
+
+		if (orderByProperty != null) {
+			criteriaQuery.orderBy(criteriaBuilder.desc(join.get(orderByProperty)));
+		}
+
+		final Predicate condition = criteriaBuilder.equal(path, value);
+
+		criteriaQuery.where(condition);
+
+		final TypedQuery<T> typedQuery = entityManager
+				.createQuery(criteriaQuery);
+
+		addCacheHints(typedQuery, "findListByEmbeddedProperty." + clazz.getSimpleName());
+
+
+		return typedQuery.getResultList();
 	}
 
 	@Override
@@ -257,64 +282,68 @@ public final class DataViewerImpl implements DataViewer {
 	}
 
 	@Override
-	public <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
-			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
-			final SingularAttribute<V, ? extends Object> orderByProperty) {
+	public <T> List<T> getAll(final Class<T> clazz) {
+		return getAllOrderBy(clazz,null);
+	}
+
+	@Override
+	public <T> List<T> getAllOrderBy(final Class<T> clazz, final SingularAttribute<T, ? extends Object> property) {
+		return getPageOrderBy(clazz, null, null, property);
+	}
+
+
+	@Override
+	public <T> List<T> getPage(Class<T> clazz, int pageNr, int resultPerPage) {
+		return getPageOrderBy(clazz, pageNr, resultPerPage, null);
+	}
+
+	@Override
+	public <T> List<T> getPageOrderBy(Class<T> clazz, int pageNr, int resultPerPage,
+			SingularAttribute<T, ? extends Object> property) {
+		return getPageOrderBy(clazz, pageNr, resultPerPage, property);
+	}
+
+	private <T> List<T> getPageOrderBy(final Class<T> clazz, Integer pageNr,Integer resultPerPage,final SingularAttribute<T, ? extends Object> property) {
 		final CriteriaQuery<T> criteriaQuery = criteriaBuilder
 				.createQuery(clazz);
 		final Root<T> root = criteriaQuery.from(clazz);
+
 		criteriaQuery.select(root);
 
-		final Join<T, V> join = root.join(property);
-
-		final Path<? extends Object> path = join.get(property2);
-
-		if (orderByProperty != null) {
-			criteriaQuery.orderBy(criteriaBuilder.desc(join.get(orderByProperty)));
+		if (property != null) {
+			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(property)));
 		}
-
-		final Predicate condition = criteriaBuilder.equal(path, value);
-
-		criteriaQuery.where(condition);
 
 		final TypedQuery<T> typedQuery = entityManager
 				.createQuery(criteriaQuery);
+		addCacheHints(typedQuery, "getAll." + clazz.getSimpleName());
 
-		addCacheHints(typedQuery, "findListByEmbeddedProperty." + clazz.getSimpleName());
+		if (pageNr != null && resultPerPage != null) {
+			typedQuery.setFirstResult((pageNr-1) * resultPerPage);
+			typedQuery.setMaxResults(resultPerPage);
 
+		}
 
 		return typedQuery.getResultList();
 	}
 
 	@Override
-	public <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
-			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
-			final SingularAttribute<T, ? extends Object> orderByProperty) {
-		final CriteriaQuery<T> criteriaQuery = criteriaBuilder
-				.createQuery(clazz);
-		final Root<T> root = criteriaQuery.from(clazz);
-		criteriaQuery.select(root);
+	public final <T> Long getSize(final Class<T> clazz) {
+		CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
+		countQuery.select(criteriaBuilder.count(countQuery.from(clazz)));
+		return entityManager.createQuery(countQuery).getSingleResult();	}
 
-		if (orderByProperty != null) {
-			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderByProperty)));
-		}
+	/**
+	 * Inits the.
+	 */
+	@PostConstruct
+	private void init() {
+		criteriaBuilder = entityManager.getCriteriaBuilder();
+	}
 
-
-		final Join<T, V> join = root.join(property);
-
-		final Path<? extends Object> path = join.get(property2);
-
-		final Predicate condition = criteriaBuilder.equal(path, value);
-
-		criteriaQuery.where(condition);
-
-		final TypedQuery<T> typedQuery = entityManager
-				.createQuery(criteriaQuery);
-
-		addCacheHints(typedQuery, "findListByEmbeddedProperty." + clazz.getSimpleName());
-
-
-		return typedQuery.getResultList();
+	@Override
+	public <T> T load(final Class<T> clazz,final Object id) {
+		return LoadHelper.recursiveInitliaze(entityManager.find(clazz, id));
 	}
 
 }

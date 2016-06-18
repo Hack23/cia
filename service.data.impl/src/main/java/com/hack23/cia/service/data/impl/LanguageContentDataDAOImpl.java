@@ -20,8 +20,6 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -40,10 +38,6 @@ import com.hack23.cia.service.data.api.LanguageContentDataDAO;
 public final class LanguageContentDataDAOImpl extends
 AbstractGenericDAOImpl<LanguageContentData, Long> implements
 LanguageContentDataDAO {
-
-	/** The entity manager. */
-	@PersistenceContext(name = "ciaPersistenceUnit")
-	private EntityManager entityManager;
 
 	/**
 	 * Instantiates a new language content data dao impl.
@@ -87,12 +81,6 @@ LanguageContentDataDAO {
 
 	}
 
-	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-
 	/**
 	 * Gets the id list.
 	 *
@@ -107,8 +95,4 @@ LanguageContentDataDAO {
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
-	@Override
-	public Long getSize() {
-		return (long) getIdList().size();
-	}
 }

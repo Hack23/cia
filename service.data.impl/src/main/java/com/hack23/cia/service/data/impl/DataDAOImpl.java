@@ -21,8 +21,6 @@ package com.hack23.cia.service.data.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
@@ -44,20 +42,11 @@ public final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Lon
 	/** The Constant EXPECTED_NR_ELEMENTS. */
 	private static final int EXPECTED_NR_ELEMENTS = 2;
 
-	/** The entity manager. */
-	@PersistenceContext(name = "ciaPersistenceUnit")
-	private EntityManager entityManager;
-
 	/**
 	 * Instantiates a new data dao impl.
 	 */
 	public DataDAOImpl() {
 		super(WorldBankData.class);
-	}
-
-	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
 	}
 
 	@Override
@@ -83,11 +72,6 @@ public final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Lon
 			}
 		}
 		return resultList;
-	}
-
-	@Override
-	public Long getSize() {
-		return (long) getAll().size();
 	}
 
 }

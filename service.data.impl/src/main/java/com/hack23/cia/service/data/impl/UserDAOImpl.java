@@ -18,9 +18,6 @@
 */
 package com.hack23.cia.service.data.impl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Repository;
 
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
@@ -32,26 +29,11 @@ import com.hack23.cia.service.data.api.UserDAO;
 @Repository("UserDAO")
 public final class UserDAOImpl extends AbstractGenericDAOImpl<UserAccount, Long> implements UserDAO {
 
-
-	/** The entity manager. */
-	@PersistenceContext(name = "ciaPersistenceUnit")
-	private EntityManager entityManager;
-
 	/**
 	 * Instantiates a new user dao impl.
 	 */
 	public UserDAOImpl() {
 		super(UserAccount.class);
-	}
-
-	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	@Override
-	public Long getSize() {
-		return (long) getAll().size();
 	}
 
 }

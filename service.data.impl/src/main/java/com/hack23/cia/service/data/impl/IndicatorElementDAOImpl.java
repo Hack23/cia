@@ -43,14 +43,4 @@ public final class IndicatorElementDAOImpl extends AbstractGenericDAOImpl<Indica
 		super(IndicatorElement.class);
 	}
 
-	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	@Override
-	public Long getSize() {
-		return (long) getAll().size();
-	}
-
 }

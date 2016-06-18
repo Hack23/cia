@@ -37,32 +37,22 @@ import org.hibernate.proxy.HibernateProxy;
 public final class LoadHelper {
 
 	/**
-	 * Instantiates a new load helper.
-	 */
-	private LoadHelper() {
-		super();
-	}
-
-	/**
-	 * Recursive initliaze.
+	 * Handle reflection exception.
 	 *
-	 * @param <T>
-	 *            the generic type
-	 * @param obj
-	 *            the obj
-	 * @return the t
+	 * @param ex
+	 *            the ex
 	 */
-	public static <T> T recursiveInitliaze(final T obj) {
-		if (obj != null) {
-
-			final Set<Object> dejaVu = Collections.newSetFromMap(new IdentityHashMap<Object, Boolean>());
-			try {
-				recursiveInitliaze(obj, dejaVu);
-			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-				handleReflectionException(e);
-			}
+	private static void handleReflectionException(final Exception ex) {
+		if (ex instanceof NoSuchMethodException) {
+			throw new IllegalStateException("Method not found: " + ex.getMessage());
 		}
-		return obj;
+		if (ex instanceof IllegalAccessException) {
+			throw new IllegalStateException("Could not access method: " + ex.getMessage());
+		}
+		if (ex instanceof RuntimeException) {
+			throw (RuntimeException) ex;
+		}
+		throw new UndeclaredThrowableException(ex);
 	}
 
 	/**
@@ -114,22 +104,32 @@ public final class LoadHelper {
 	}
 
 	/**
-	 * Handle reflection exception.
+	 * Recursive initliaze.
 	 *
-	 * @param ex
-	 *            the ex
+	 * @param <T>
+	 *            the generic type
+	 * @param obj
+	 *            the obj
+	 * @return the t
 	 */
-	private static void handleReflectionException(final Exception ex) {
-		if (ex instanceof NoSuchMethodException) {
-			throw new IllegalStateException("Method not found: " + ex.getMessage());
+	public static <T> T recursiveInitliaze(final T obj) {
+		if (obj != null) {
+
+			final Set<Object> dejaVu = Collections.newSetFromMap(new IdentityHashMap<Object, Boolean>());
+			try {
+				recursiveInitliaze(obj, dejaVu);
+			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+				handleReflectionException(e);
+			}
 		}
-		if (ex instanceof IllegalAccessException) {
-			throw new IllegalStateException("Could not access method: " + ex.getMessage());
-		}
-		if (ex instanceof RuntimeException) {
-			throw (RuntimeException) ex;
-		}
-		throw new UndeclaredThrowableException(ex);
+		return obj;
+	}
+
+	/**
+	 * Instantiates a new load helper.
+	 */
+	private LoadHelper() {
+		super();
 	}
 
 }

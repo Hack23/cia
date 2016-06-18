@@ -60,30 +60,32 @@ public final class DataViewerITest extends
 	// public ContiPerfRule i = new ContiPerfRule();
 
 	/**
-	 * View riksdagen party.
+	 * View riksdagen committee.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void viewRiksdagenParty() throws Exception {
+	public void viewRiksdagenCommittee() throws Exception {
 
-		final List<ViewRiksdagenParty> parties = dataViewer
-				.getAll(ViewRiksdagenParty.class);
-		assertNotNull(EXPECT_VALUE_IN_DATABASE,parties);
-		if (parties.size() > 0) {
-			final ViewRiksdagenParty viewRiksdagenParty = parties.get(0);
-			final ViewRiksdagenParty viewRiksdagenPartyLoaded = dataViewer
-					.load(ViewRiksdagenParty.class,
-							viewRiksdagenParty.getPartyId());
-			assertNotNull(EXPECT_VALUE_IN_DATABASE,viewRiksdagenPartyLoaded);
+		final List<ViewRiksdagenCommittee> committees = dataViewer
+				.getAll(ViewRiksdagenCommittee.class);
+		assertNotNull(EXPECT_VALUE_IN_DATABASE,committees);
+		if (committees.size() > 0) {
+			final ViewRiksdagenCommittee viewRiksdagenCommittee = committees
+					.get(0);
+			final ViewRiksdagenCommittee viewRiksdagenCommitteeLoaded = dataViewer
+					.load(ViewRiksdagenCommittee.class,
+							viewRiksdagenCommittee.getEmbeddedId());
+			assertNotNull(EXPECT_VALUE_IN_DATABASE,viewRiksdagenCommitteeLoaded);
 
-			final ViewRiksdagenParty viewRiksdagenPartyFound = dataViewer
-					.findFirstByProperty(ViewRiksdagenParty.class,
-							ViewRiksdagenParty_.partyName,
-							viewRiksdagenPartyLoaded.getPartyName());
+			final ViewRiksdagenCommittee viewRiksdagenCommitteeFound = dataViewer
+					.findFirstByProperty(ViewRiksdagenCommittee.class,
+							ViewRiksdagenCommittee_.embeddedId,
+							viewRiksdagenCommitteeLoaded.getEmbeddedId());
 
-			assertEquals(EXPECT_SAME_OBJECT_LOADED,viewRiksdagenPartyLoaded, viewRiksdagenPartyFound);
+			assertEquals(EXPECT_SAME_OBJECT_LOADED,viewRiksdagenCommitteeLoaded,
+					viewRiksdagenCommitteeFound);
 		}
 	}
 
@@ -118,69 +120,30 @@ public final class DataViewerITest extends
 	}
 
 	/**
-	 * View riksdagen committee.
+	 * View riksdagen party.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void viewRiksdagenCommittee() throws Exception {
+	public void viewRiksdagenParty() throws Exception {
 
-		final List<ViewRiksdagenCommittee> committees = dataViewer
-				.getAll(ViewRiksdagenCommittee.class);
-		assertNotNull(EXPECT_VALUE_IN_DATABASE,committees);
-		if (committees.size() > 0) {
-			final ViewRiksdagenCommittee viewRiksdagenCommittee = committees
-					.get(0);
-			final ViewRiksdagenCommittee viewRiksdagenCommitteeLoaded = dataViewer
-					.load(ViewRiksdagenCommittee.class,
-							viewRiksdagenCommittee.getEmbeddedId());
-			assertNotNull(EXPECT_VALUE_IN_DATABASE,viewRiksdagenCommitteeLoaded);
+		final List<ViewRiksdagenParty> parties = dataViewer
+				.getAll(ViewRiksdagenParty.class);
+		assertNotNull(EXPECT_VALUE_IN_DATABASE,parties);
+		if (parties.size() > 0) {
+			final ViewRiksdagenParty viewRiksdagenParty = parties.get(0);
+			final ViewRiksdagenParty viewRiksdagenPartyLoaded = dataViewer
+					.load(ViewRiksdagenParty.class,
+							viewRiksdagenParty.getPartyId());
+			assertNotNull(EXPECT_VALUE_IN_DATABASE,viewRiksdagenPartyLoaded);
 
-			final ViewRiksdagenCommittee viewRiksdagenCommitteeFound = dataViewer
-					.findFirstByProperty(ViewRiksdagenCommittee.class,
-							ViewRiksdagenCommittee_.embeddedId,
-							viewRiksdagenCommitteeLoaded.getEmbeddedId());
+			final ViewRiksdagenParty viewRiksdagenPartyFound = dataViewer
+					.findFirstByProperty(ViewRiksdagenParty.class,
+							ViewRiksdagenParty_.partyName,
+							viewRiksdagenPartyLoaded.getPartyName());
 
-			assertEquals(EXPECT_SAME_OBJECT_LOADED,viewRiksdagenCommitteeLoaded,
-					viewRiksdagenCommitteeFound);
-		}
-	}
-
-	/**
-	 * View riksdagen politician.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public void viewRiksdagenPolitician() throws Exception {
-
-		final List<ViewRiksdagenPolitician> politicians = dataViewer
-				.getAll(ViewRiksdagenPolitician.class);
-		assertNotNull(EXPECT_VALUE_IN_DATABASE,politicians);
-		if (politicians.size() > 0) {
-			final ViewRiksdagenPolitician viewRiksdagenPolitician = politicians
-					.get(4);
-
-			final ViewRiksdagenPolitician viewRiksdagenPoliticianLoaded = dataViewer
-					.load(ViewRiksdagenPolitician.class,
-							viewRiksdagenPolitician.getPersonId());
-			assertNotNull(EXPECT_VALUE_IN_DATABASE,viewRiksdagenPoliticianLoaded);
-
-			final ViewRiksdagenPolitician viewRiksdagenPoliticianFound = dataViewer
-					.findFirstByProperty(ViewRiksdagenPolitician.class,
-							ViewRiksdagenPolitician_.personId,
-							viewRiksdagenPoliticianLoaded.getPersonId());
-
-			assertEquals(EXPECT_SAME_OBJECT_LOADED,viewRiksdagenPoliticianLoaded,
-					viewRiksdagenPoliticianFound);
-
-
-			assertEquals(SHOULD_ALWAYS_BE_349_IN_PARLIAMENT,349,dataViewer
-			.findListByProperty(ViewRiksdagenPolitician.class,
-					ViewRiksdagenPolitician_.activeParliament,
-					true).size());
+			assertEquals(EXPECT_SAME_OBJECT_LOADED,viewRiksdagenPartyLoaded, viewRiksdagenPartyFound);
 		}
 	}
 
@@ -236,6 +199,43 @@ public final class DataViewerITest extends
 		assertEquals("Should always be 24 in current government", 24,
 				governmentSum);
 
+	}
+
+	/**
+	 * View riksdagen politician.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void viewRiksdagenPolitician() throws Exception {
+
+		final List<ViewRiksdagenPolitician> politicians = dataViewer
+				.getAll(ViewRiksdagenPolitician.class);
+		assertNotNull(EXPECT_VALUE_IN_DATABASE,politicians);
+		if (politicians.size() > 0) {
+			final ViewRiksdagenPolitician viewRiksdagenPolitician = politicians
+					.get(4);
+
+			final ViewRiksdagenPolitician viewRiksdagenPoliticianLoaded = dataViewer
+					.load(ViewRiksdagenPolitician.class,
+							viewRiksdagenPolitician.getPersonId());
+			assertNotNull(EXPECT_VALUE_IN_DATABASE,viewRiksdagenPoliticianLoaded);
+
+			final ViewRiksdagenPolitician viewRiksdagenPoliticianFound = dataViewer
+					.findFirstByProperty(ViewRiksdagenPolitician.class,
+							ViewRiksdagenPolitician_.personId,
+							viewRiksdagenPoliticianLoaded.getPersonId());
+
+			assertEquals(EXPECT_SAME_OBJECT_LOADED,viewRiksdagenPoliticianLoaded,
+					viewRiksdagenPoliticianFound);
+
+
+			assertEquals(SHOULD_ALWAYS_BE_349_IN_PARLIAMENT,349,dataViewer
+			.findListByProperty(ViewRiksdagenPolitician.class,
+					ViewRiksdagenPolitician_.activeParliament,
+					true).size());
+		}
 	}
 
 }

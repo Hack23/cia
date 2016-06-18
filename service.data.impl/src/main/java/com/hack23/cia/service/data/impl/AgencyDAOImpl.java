@@ -18,9 +18,6 @@
 */
 package com.hack23.cia.service.data.impl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Repository;
 
 import com.hack23.cia.model.internal.application.system.impl.Agency;
@@ -32,10 +29,6 @@ import com.hack23.cia.service.data.api.AgencyDAO;
 @Repository("AgencyDAOImpl")
 public final class AgencyDAOImpl extends AbstractGenericDAOImpl<Agency, Long> implements AgencyDAO {
 
-	/** The entity manager. */
-	@PersistenceContext(name = "ciaPersistenceUnit")
-	private EntityManager entityManager;
-
 	/**
 	 * Instantiates a new agency dao impl.
 	 */
@@ -43,13 +36,4 @@ public final class AgencyDAOImpl extends AbstractGenericDAOImpl<Agency, Long> im
 		super(Agency.class);
 	}
 
-	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	@Override
-	public Long getSize() {
-		return (long) getAll().size();
-	}
 }

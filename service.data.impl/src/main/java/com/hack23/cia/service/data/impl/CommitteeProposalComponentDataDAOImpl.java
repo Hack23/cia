@@ -20,8 +20,6 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -32,7 +30,6 @@ import org.springframework.stereotype.Repository;
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeDocumentData;
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeDocumentData_;
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
-import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData_;
 import com.hack23.cia.service.data.api.CommitteeProposalComponentDataDAO;
 
 /**
@@ -42,10 +39,6 @@ import com.hack23.cia.service.data.api.CommitteeProposalComponentDataDAO;
 public final class CommitteeProposalComponentDataDAOImpl extends
 AbstractGenericDAOImpl<CommitteeProposalComponentData, Long>
 implements CommitteeProposalComponentDataDAO {
-
-	/** The entity manager. */
-	@PersistenceContext(name = "ciaPersistenceUnit")
-	private EntityManager entityManager;
 
 	/**
 	 * Instantiates a new committee proposal component data dao impl.
@@ -72,25 +65,12 @@ implements CommitteeProposalComponentDataDAO {
 	}
 
 	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	@Override
 	public List<String> getIdList() {
 		final CriteriaQuery<String> criteria = getCriteriaBuilder().createQuery(String.class);
 		final Root<CommitteeDocumentData> root = criteria.from(CommitteeDocumentData.class);
 		criteria.select(root.get(CommitteeDocumentData_.id));
 		criteria.distinct(true);
 		return getEntityManager().createQuery(criteria).getResultList();
-	}
-
-	@Override
-	public Long getSize() {
-		final CriteriaQuery<Long> cq = getCriteriaBuilder().createQuery(Long.class);
-		final Root<CommitteeProposalComponentData> from = cq.from(getPersistentClass());
-		cq.select(getCriteriaBuilder().count(from.get(CommitteeProposalComponentData_.hjid)));
-		return getEntityManager().createQuery(cq).getSingleResult();
 	}
 
 }
