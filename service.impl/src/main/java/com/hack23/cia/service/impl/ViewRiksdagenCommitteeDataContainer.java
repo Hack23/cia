@@ -130,4 +130,20 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 
 		return null;
 	}
+
+	@Override
+	public List<ViewRiksdagenCommittee> getPage(int pageNr, int resultPerPage) {
+		return viewRiksdagenCommitteeDAO.getPage(pageNr, resultPerPage);
+	}
+
+	@Override
+	public List<ViewRiksdagenCommittee> getPageOrderBy(int pageNr, int resultPerPage,
+			SingularAttribute<ViewRiksdagenCommittee, ? extends Object> orderBy) {
+		return viewRiksdagenCommitteeDAO.getPageOrderBy(pageNr, resultPerPage, orderBy);
+	}
+
+	@Override
+	public Long getSize() {
+		return viewRiksdagenCommitteeDAO.getSize();
+	}
 }

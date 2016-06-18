@@ -150,4 +150,20 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 
 		return new DataSummary(personSize,voteDataDAO.getSize(),voteDataDAO.getSize(),documentElementDAO.getSize(),documentContentDataDAO.getSize(),documentStatusContainerDAO.getSize(),committeeProposalComponentDataDAO.getSize());
 	}
+
+	@Override
+	public List<DataSummary> getPage(int pageNr, int resultPerPage) {
+		return new ArrayList<>();
+	}
+
+	@Override
+	public List<DataSummary> getPageOrderBy(int pageNr, int resultPerPage,
+			SingularAttribute<DataSummary, ? extends Object> orderBy) {
+		return new ArrayList<>();
+	}
+
+	@Override
+	public Long getSize() {
+		return Long.valueOf(getAll().size());
+	}
 }

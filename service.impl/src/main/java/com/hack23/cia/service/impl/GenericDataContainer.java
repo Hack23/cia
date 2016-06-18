@@ -131,4 +131,19 @@ DataContainer<T, I> {
 
 	}
 
+	@Override
+	public List<T> getPage(int pageNr, int resultPerPage) {
+		return dataProxy.getPage(clazz,pageNr, resultPerPage);
+	}
+
+	@Override
+	public List<T> getPageOrderBy(int pageNr, int resultPerPage, SingularAttribute<T, ? extends Object> orderBy) {
+		return dataProxy.getPageOrderBy(clazz,pageNr, resultPerPage, orderBy);
+	}
+
+	@Override
+	public Long getSize() {
+		return dataProxy.getSize(clazz);
+	}
+
 }
