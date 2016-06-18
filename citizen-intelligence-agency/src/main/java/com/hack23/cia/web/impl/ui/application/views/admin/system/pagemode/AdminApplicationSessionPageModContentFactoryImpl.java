@@ -89,7 +89,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 				.getDataContainer(ApplicationSession.class);
 
 		final BeanItemContainer<ApplicationSession> politicianDocumentDataSource = new BeanItemContainer<>(
-				ApplicationSession.class, dataContainer.getAllOrderBy(ApplicationSession_.createdDate));
+				ApplicationSession.class, dataContainer.getPageOrderBy(1,250,ApplicationSession_.createdDate));
 
 		final Grid createBasicBeanItemGrid = getGridFactory().createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationSession",
 				new String[] { "hjid", "createdDate", "sessionType", "sessionId", "operatingSystem", "locale",
