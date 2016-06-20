@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application;
 
-import java.util.Locale;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -34,6 +32,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
 import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.ConfigurationManager;
+import com.hack23.cia.service.api.UserConfiguration;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse;
 import com.hack23.cia.web.impl.ui.application.views.common.MainView;
@@ -63,7 +63,7 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 
 
 	/** The Constant LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT. */
-	private static final String LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT = "Browser address: {} , application:{}, sessionId:{}, result:{}";
+	private static final String LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT = "Browser url: {} , lang: {} , address: {} , application:{}, sessionId:{}, result:{}";
 
 	/** The Constant LOG_WARN_VAADIN_ERROR. */
 	private static final String LOG_WARN_VAADIN_ERROR = "Vaadin error";
@@ -98,9 +98,6 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 	/** The Constant X_FORWARDED_FOR. */
 	private static final String X_FORWARDED_FOR = "X-Forwarded-For";
 
-	/** The Constant CITIZEN_INTELLIGENCE_AGENCY. */
-	private static final String CITIZEN_INTELLIGENCE_AGENCY = "Citizen Intelligence Agency";
-
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -115,6 +112,9 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 	/** The application manager. */
 	@Autowired
 	private transient ApplicationManager applicationManager;
+
+	@Autowired
+	private transient ConfigurationManager configurationManager;
 
 	/**
 	 * Instantiates a new citizen intelligence agency ui.
@@ -136,17 +136,22 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 
 	@Override
 	protected void init(final VaadinRequest request) {
+
+
+
 		VaadinSession.getCurrent().setErrorHandler(this);
 		setSizeFull();
 		final DiscoveryNavigator navigator = new DiscoveryNavigator(this, this);
 		navigator.addView("", mainView);
 		setNavigator(navigator);
 
-		UI.getCurrent().setLocale(Locale.ENGLISH);
 
 		final Page currentPage = Page.getCurrent();
+		final String requestUrl = currentPage.getLocation().toString();
+		final String language = request.getLocale().getLanguage();
+		final UserConfiguration userConfiguration = configurationManager.getUserConfiguration(requestUrl, language);
 
-		currentPage.setTitle(CITIZEN_INTELLIGENCE_AGENCY);
+		currentPage.setTitle(userConfiguration.getAgency().getAgencyName() + ":" + userConfiguration.getPortal().getPortalName() + ":" + userConfiguration.getLanguage().getLanguageName());
 
 		if (getSession().getUIs().isEmpty()) {
 
@@ -163,7 +168,7 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 		serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
 
 		final ServiceResponse serviceResponse = applicationManager.service(serviceRequest);
-		LOGGER.info(LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT,ipInformation,webBrowser.getBrowserApplication(),serviceRequest.getSessionId(),serviceResponse.getResult().toString());
+		LOGGER.info(LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT,requestUrl,language,ipInformation,webBrowser.getBrowserApplication(),serviceRequest.getSessionId(),serviceResponse.getResult().toString());
 		}
 	}
 
@@ -187,7 +192,6 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 		}
 		return ipInformation;
 	}
-
 
 
 	/**

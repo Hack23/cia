@@ -21,6 +21,7 @@ package com.hack23.cia.web.impl.ui.application;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -38,6 +39,7 @@ import org.springframework.security.web.session.HttpSessionCreatedEvent;
 import org.springframework.security.web.session.HttpSessionDestroyedEvent;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
@@ -45,6 +47,8 @@ import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.application.DestroyApplicationSessionRequest;
+import com.vaadin.server.Page;
+import com.vaadin.ui.UI;
 
 /**
  * The Class ApplicationEventListener.
@@ -80,7 +84,7 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 	 * The Constant
 	 * LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES.
 	 */
-	private static final String LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES = "Authorization Failure:: SessionId :{} , Authorities : {} , RequiredAuthorities : {}";
+	private static final String LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES = "Authorization Failure:: url : {} SessionId :{} , Authorities : {} , RequiredAuthorities : {}";
 
 	/** The Constant LOG_MSG_APPLICATION_EVENT. */
 	private static final String LOG_MSG_APPLICATION_EVENT = "ApplicationEvent :{}";
@@ -130,18 +134,27 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 
 			serviceRequest.setUserId(getUserIdFromSecurityContext());
 
-			serviceRequest.setErrorMessage(AUTHORITIES + authorizationFailureEvent.getAuthentication().getAuthorities() + REQUIRED_AUTHORITIES + authorizationFailureEvent.getConfigAttributes());
+
+			Page currentPageIfAny = Page.getCurrent();
+			String requestUrl = getRequestUrl(currentPageIfAny);
+			UI currentUiIfAny = UI.getCurrent();
+
+			if (currentPageIfAny != null && currentUiIfAny != null) {
+				serviceRequest.setPage(currentUiIfAny.getNavigator().getCurrentView().getClass().getSimpleName());
+				serviceRequest.setPageMode(currentPageIfAny.getUriFragment());
+			}
+
+			serviceRequest.setErrorMessage("Url:" + requestUrl +" ," + AUTHORITIES + authorizationFailureEvent.getAuthentication().getAuthorities() + REQUIRED_AUTHORITIES + authorizationFailureEvent.getConfigAttributes());
 			serviceRequest.setApplicationMessage(ACCESS_DENIED);
 
 			applicationManager
 					.service(serviceRequest);
 
-			LOGGER.info(LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES, sessionId,authorizationFailureEvent.getAuthentication().getAuthorities().toString(),authorizationFailureEvent.getConfigAttributes().toString());
+			LOGGER.info(LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES,requestUrl, sessionId,authorizationFailureEvent.getAuthentication().getAuthorities().toString(),authorizationFailureEvent.getConfigAttributes().toString());
 		} 	else {
 			LOGGER.debug(LOG_MSG_APPLICATION_EVENT, applicationEvent.toString());
 		}
 	}
-
 
 	/**
 	 * Gets the user id from security context.
@@ -164,8 +177,17 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 				}
 			}
 		}
-
 		return result;
+	}
+
+	private static String getRequestUrl(final Page current) {
+		if (current != null) {
+			return current.getLocation().toString();
+
+		} else {
+			final HttpServletRequest httpRequest=((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+			return httpRequest.getRequestURL().toString();
+		}
 	}
 
 }
