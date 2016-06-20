@@ -67,7 +67,7 @@ public final class SetGoogleAuthenticatorCredentialServiceITest extends Abstract
 	 */
 	@Test
 	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 400, percentile95 = 450, throughput = 10)
+	@Required(max = 1000, average = 400, percentile95 = 500, throughput = 10)
 	public void servicesetGoogleAuthenticatorCredentialRequestSuccessTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
 
