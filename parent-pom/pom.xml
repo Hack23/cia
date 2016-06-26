@@ -110,7 +110,7 @@
     <cia.project.versions.aspectj>1.9.0.BETA-3</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.20.0-GA</cia.project.versions.javassist>
     <cia.project.versions.asm>5.1</cia.project.versions.asm>
-    <cia.project.versions.cglib>3.2.3</cia.project.versions.cglib>
+    <cia.project.versions.cglib>3.2.4</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
     <cia.project.versions.slf4j>1.7.21</cia.project.versions.slf4j>
@@ -203,12 +203,12 @@
       <dependency>
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-analyzers-phonetic</artifactId>
-        <version>5.5.1</version>
+        <version>5.5.2</version>
       </dependency>
       <dependency>
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-core</artifactId>
-        <version>5.5.1</version>
+        <version>5.5.2</version>
       </dependency>
       <dependency>
         <groupId>org.jboss.logging</groupId>
