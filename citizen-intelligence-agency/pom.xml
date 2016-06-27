@@ -289,7 +289,7 @@
     <dependency>
       <groupId>org.ow2.asm</groupId>
       <artifactId>asm-commons</artifactId>
-      <version>5.1</version>
+      <version>${cia.project.versions.asm}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -816,12 +816,12 @@
           <dependency>
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm-tree</artifactId>
-            <version>5.1</version>
+            <version>${cia.project.versions.asm}</version>
           </dependency>
           <dependency>
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm</artifactId>
-            <version>5.1</version>
+            <version>${cia.project.versions.asm}</version>
           </dependency>
         </dependencies>
         <configuration>

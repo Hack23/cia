@@ -109,7 +109,7 @@
     <cia.project.versions.spring.security>4.1.0.RELEASE</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.0.BETA-3</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.20.0-GA</cia.project.versions.javassist>
-    <cia.project.versions.asm>5.1</cia.project.versions.asm>
+    <cia.project.versions.asm>6.0_ALPHA</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.4</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
@@ -593,12 +593,12 @@
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.7.7.201606060606</version>
+          <version>0.7.8-SNAPSHOT</version>
           <dependencies>
             <dependency>
               <groupId>org.ow2.asm</groupId>
               <artifactId>asm-debug-all</artifactId>
-              <version>5.1</version>
+              <version>${cia.project.versions.asm}</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -1605,7 +1605,7 @@
           <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.7.7.201606060606</version>
+            <version>0.7.8-SNAPSHOT</version>
             <inherited>true</inherited>
             <configuration>
               <dataFile>${sonar.jacoco.reportPath}</dataFile>
