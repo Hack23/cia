@@ -128,7 +128,11 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit
 				.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, pageId));
-
+		
+		userPageVisit.updateConfigurationProperty("Update Configuration.propertyValue", String.valueOf(false));
+		
+		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, pageId));
+		
 	}
 
 	/**
@@ -194,7 +198,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Language"));
 
-		String pageId = clickFirstRowInGrid(userPageVisit);
+		final String pageId = clickFirstRowInGrid(userPageVisit);
 		userPageVisit.validatePage(new
 		PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, pageId));
 
@@ -217,7 +221,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, ""));
 		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Language Content"));
 
-		String pageId = clickFirstRowInGrid(userPageVisit);
+		final String pageId = clickFirstRowInGrid(userPageVisit);
 		userPageVisit.validatePage(new
 		PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME,
 		pageId));

@@ -135,9 +135,9 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 			serviceRequest.setUserId(getUserIdFromSecurityContext());
 
 
-			Page currentPageIfAny = Page.getCurrent();
-			String requestUrl = getRequestUrl(currentPageIfAny);
-			UI currentUiIfAny = UI.getCurrent();
+			final Page currentPageIfAny = Page.getCurrent();
+			final String requestUrl = getRequestUrl(currentPageIfAny);
+			final UI currentUiIfAny = UI.getCurrent();
 
 			if (currentPageIfAny != null && currentUiIfAny != null) {
 				serviceRequest.setPage(currentUiIfAny.getNavigator().getCurrentView().getClass().getSimpleName());

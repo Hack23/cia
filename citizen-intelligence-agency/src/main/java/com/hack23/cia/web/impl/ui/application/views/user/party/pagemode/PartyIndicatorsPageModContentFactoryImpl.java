@@ -31,24 +31,24 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class ChartsPageModContentFactoryImpl.
+ * The Class PartyIndicatorsPageModContentFactoryImpl.
  */
 @Component
-public final class PartyChartsPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
+public final class PartyIndicatorsPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
 	/** The Constant CHARTS_NOT_IMPLEMENTED. */
-	private static final String CHARTS_NOT_IMPLEMENTED = "Charts Not Implemented";
+	private static final String INDICATORS_NOT_IMPLEMENTED = "Indicators Not Implemented";
 
 	/**
-	 * Instantiates a new party charts page mod content factory impl.
+	 * Instantiates a new party indicators page mod content factory impl.
 	 */
-	public PartyChartsPageModContentFactoryImpl() {
+	public PartyIndicatorsPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PageMode.CHARTS.toString());
+		return NAME.equals(page) && parameters.contains(PageMode.INDICATORS.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -68,8 +68,8 @@ public final class PartyChartsPageModContentFactoryImpl extends AbstractPartyPag
 
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(CHARTS_NOT_IMPLEMENTED));
-			
+			panelContent.addComponent(LabelFactory.createHeader2Label(INDICATORS_NOT_IMPLEMENTED));
+
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}
 		return panelContent;

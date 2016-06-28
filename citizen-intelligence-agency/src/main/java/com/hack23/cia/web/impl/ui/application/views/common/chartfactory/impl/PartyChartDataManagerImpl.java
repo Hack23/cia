@@ -236,7 +236,7 @@ public final class PartyChartDataManagerImpl implements PartyChartDataManager {
 
 		return createPartyBallotChart(new DataValueCalculator() {
 			@Override
-			public Object getDataValue(ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily) {
+			public Object getDataValue(final ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily) {
 				return (100 - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgPercentageMale().intValue());
 			}
 
@@ -249,7 +249,7 @@ public final class PartyChartDataManagerImpl implements PartyChartDataManager {
 	public DCharts createPartyAgeChart() {
 		return createPartyBallotChart(new DataValueCalculator() {
 			@Override
-			public Object getDataValue(ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily) {
+			public Object getDataValue(final ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily) {
 				return (viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate().getYear() + 1900) -  viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgBornYear().intValue();
 			}
 
@@ -264,7 +264,7 @@ public final class PartyChartDataManagerImpl implements PartyChartDataManager {
 	 *            the data value calculator
 	 * @return the d charts
 	 */
-	private DCharts createPartyBallotChart(DataValueCalculator dataValueCalculator) {
+	private DCharts createPartyBallotChart(final DataValueCalculator dataValueCalculator) {
 		final Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> map = getPartyMap();
 
 		final DataSeries dataSeries = new DataSeries();

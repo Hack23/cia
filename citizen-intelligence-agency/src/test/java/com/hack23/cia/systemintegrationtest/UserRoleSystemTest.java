@@ -589,6 +589,48 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
+	
+	/**
+	 * Site login user enable google authenticator test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteLoginUserEnableGoogleAuthenticatorTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
+
+		final String username = UUID.randomUUID().toString();
+		final String password = UUID.randomUUID().toString();
+
+		userPageVisit.registerNewUser(username, password);
+
+		userPageVisit.logoutUser();
+
+		driver.quit();
+
+		final WebDriver loginDriver = getWebDriver();
+
+		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
+
+		userLoginPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
+
+		userLoginPageVisit.loginUser(username + "@test.com", password);
+
+		userLoginPageVisit.enableGoogleAuthenticator();
+		
+		userLoginPageVisit.logoutUser();
+
+	}
+
+	
 	/**
 	 * Site committee document history test.
 	 *
@@ -1196,6 +1238,25 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.CHARTS.toString(), "S"));
 	}
 
+	
+	/**
+	 * Site party indicators test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void sitePartyIndicatorsTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit
+				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.INDICATORS.toString(), "S"));
+	}
+
+	
 	/**
 	 * Site party current members test.
 	 *

@@ -27,9 +27,11 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Grid;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -76,7 +78,8 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(VOTE_HISTORY));
+			final Label createHeader2Label = LabelFactory.createHeader2Label(VOTE_HISTORY);
+			panelContent.addComponent(createHeader2Label);
 
 			final BeanItemContainer<ViewRiksdagenVoteDataBallotPartySummary> partyBallotDataSource = new BeanItemContainer<>(
 					ViewRiksdagenVoteDataBallotPartySummary.class,
@@ -87,6 +90,10 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 
 			panelContent.addComponent(partynBallotsBeanItemGrid);
 
+			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+			panelContent.setExpandRatio(partynBallotsBeanItemGrid, ContentRatio.GRID);
+			
+			
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}
 		return panelContent;

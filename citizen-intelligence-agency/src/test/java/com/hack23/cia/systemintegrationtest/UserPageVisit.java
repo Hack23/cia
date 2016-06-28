@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Keys;
@@ -880,6 +881,42 @@ public final class UserPageVisit extends Assert {
 		final WebElement findElement = driver.findElement(By.id(id));
 		findElement.clear();
 		findElement.sendKeys(value);
+	}
+	
+	/**
+	 * Update configuration property.
+	 *
+	 * @param property
+	 *            the property
+	 * @param value
+	 *            the value
+	 * @throws Exception
+	 *             the exception
+	 */
+	public void updateConfigurationProperty(final String property, final String value) throws Exception {
+		setFieldValue(property, value);
+		WebElement updateConfigButton = findButton("Update Configuration");
+		assertNotNull("Expect to find a Update Config Button",updateConfigButton);
+
+		performClickAction(updateConfigButton);
+		
+	}
+
+	public void enableGoogleAuthenticator() throws Exception {
+		WebElement enableGoogleAuthButton = findButton("Enable Google Authenticator");
+		assertNotNull("Expect to find a Enable Google Authenticator Button",enableGoogleAuthButton);
+
+		performClickAction(enableGoogleAuthButton);
+	
+		closeModal();
+	}
+	
+	public void closeModal() throws Exception {
+		final WebElement closeModalWindow = driver.findElement(By.className("v-window-closebox"));
+		assertNotNull("Expect to find a Window close Box",closeModalWindow);
+		
+		performClickAction(closeModalWindow);
+
 	}
 
 }

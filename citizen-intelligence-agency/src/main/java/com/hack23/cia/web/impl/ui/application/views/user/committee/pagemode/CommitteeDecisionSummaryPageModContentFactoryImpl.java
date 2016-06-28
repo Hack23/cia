@@ -18,16 +18,25 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisions;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionsEmbeddedId;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisions_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
+import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.ui.Grid;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -37,13 +46,14 @@ import com.vaadin.ui.VerticalLayout;
  * The Class CommitteeDecisionSummaryPageModContentFactoryImpl.
  */
 @Component
-public final class CommitteeDecisionSummaryPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
+public final class CommitteeDecisionSummaryPageModContentFactoryImpl
+		extends AbstractCommitteePageModContentFactoryImpl {
 
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = "Committee:";
 
 	/** The Constant DECISION_SUMMARY_NOT_IMPLEMENTED. */
-	private static final String DECISION_SUMMARY_NOT_IMPLEMENTED = "Decision Summary Not Implemented";
+	private static final String DECISION_SUMMARY = "Decision Summary";
 
 	/**
 	 * Instantiates a new committee decision summary page mod content factory
@@ -55,7 +65,8 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl extends Abs
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (!StringUtils.isEmpty(parameters) && parameters.contains(CommitteePageMode.DECISIONSUMMARY.toString()));
+		return NAME.equals(page) && (!StringUtils.isEmpty(parameters)
+				&& parameters.contains(CommitteePageMode.DECISIONSUMMARY.toString()));
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -64,7 +75,6 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl extends Abs
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
-
 
 		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommittee.class);
@@ -75,16 +85,34 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl extends Abs
 
 			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
+			final Label createHeader2Label = LabelFactory.createHeader2Label(DECISION_SUMMARY);
+			panelContent.addComponent(createHeader2Label);
 
-				panelContent.addComponent(LabelFactory.createHeader2Label(DECISION_SUMMARY_NOT_IMPLEMENTED));
+			final DataContainer<ViewRiksdagenCommitteeDecisions, ViewRiksdagenCommitteeDecisionsEmbeddedId> committeeDecisionDataContainer = getApplicationManager()
+					.getDataContainer(ViewRiksdagenCommitteeDecisions.class);
+
+			final List<ViewRiksdagenCommitteeDecisions> decisionPartySummaryList = committeeDecisionDataContainer
+					.findOrderedListByProperty(ViewRiksdagenCommitteeDecisions_.org, pageId,
+							ViewRiksdagenCommitteeDecisions_.createdDate);
+
+			final BeanItemContainer<ViewRiksdagenCommitteeDecisions> committeeDecisionDataSource = new BeanItemContainer<>(
+					ViewRiksdagenCommitteeDecisions.class, decisionPartySummaryList);
+
+			final Grid committeeDecisionBeanItemGrid = getGridFactory().createBasicBeanItemGrid(
+					committeeDecisionDataSource, DECISION_SUMMARY, null, null, null, null, null);
+
+			panelContent.addComponent(committeeDecisionBeanItemGrid);
+			
+			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+			panelContent.setExpandRatio(committeeDecisionBeanItemGrid, ContentRatio.GRID);
 
 
-				panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
-				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
+			panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
+			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER,
+					NAME, parameters, pageId);
 		}
 		return panelContent;
 
 	}
-
 
 }

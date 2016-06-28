@@ -117,6 +117,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 		panelContent.addComponent(logoutButton);
 
 		final Button googleAuthButton = new Button(ENABLE_GOOGLE_AUTHENTICATOR);
+		googleAuthButton.setId(ENABLE_GOOGLE_AUTHENTICATOR);
 
 		final SetGoogleAuthenticatorCredentialRequest googleAuthRequest = new SetGoogleAuthenticatorCredentialRequest();
 		googleAuthRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
