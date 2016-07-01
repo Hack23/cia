@@ -32,6 +32,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Label;
@@ -84,7 +85,8 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 
 			getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_DATA));
+			Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_DATA);
+			panelContent.addComponent(createHeader2Label);
 
 			final List<DocumentContentData> documentContentlist = documentContentDataDataContainer
 					.getAllBy(DocumentContentData_.id, pageId);
@@ -94,6 +96,9 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 				final Label htmlContent = new Label(documentContentlist.get(0).getContent(), ContentMode.HTML);
 
 				panelContent.addComponent(htmlContent);
+	
+				panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+				panelContent.setExpandRatio(htmlContent, ContentRatio.GRID);
 
 			}
 

@@ -33,9 +33,11 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Grid;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -88,7 +90,8 @@ public final class DocumentDetailsPageModContentFactoryImpl extends AbstractDocu
 					.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 							DocumentData.class, DocumentData_.id, pageId);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_DETAILS));
+			Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_DETAILS);
+			panelContent.addComponent(createHeader2Label);
 
 			if (documentStatusContainer != null && documentStatusContainer.getDocumentDetailContainer() != null
 					&& documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList() != null) {
@@ -100,6 +103,10 @@ public final class DocumentDetailsPageModContentFactoryImpl extends AbstractDocu
 						documentDetailDataDataDataSource, "Document details",
 						new String[] { "code", "detailName", "text" }, new String[] { "hjid" }, null, null, null);
 				panelContent.addComponent(documentDetailDataItemGrid);
+				
+				panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+				panelContent.setExpandRatio(documentDetailDataItemGrid, ContentRatio.GRID);
+
 			}
 
 			panel.setContent(panelContent);

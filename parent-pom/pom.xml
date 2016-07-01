@@ -105,8 +105,8 @@
     <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
-    <cia.project.versions.spring>4.3.0.RELEASE</cia.project.versions.spring>
-    <cia.project.versions.spring.security>4.1.0.RELEASE</cia.project.versions.spring.security>
+    <cia.project.versions.spring>4.3.1.BUILD-SNAPSHOT</cia.project.versions.spring>
+    <cia.project.versions.spring.security>4.1.1.BUILD-SNAPSHOT</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.0.BETA-3</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.20.0-GA</cia.project.versions.javassist>
     <cia.project.versions.asm>5.1</cia.project.versions.asm>
@@ -120,13 +120,13 @@
     <cia.project.versions.hibernate>5.1.0.Final</cia.project.versions.hibernate>
     <cia.project.versions.hibernate.build>5.1.0.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.1.0.Beta1</cia.project.versions.hibernate.tools>
-    <cia.project.versions.hibernate.validator>5.3.0.Alpha1</cia.project.versions.hibernate.validator>
-    <cia.project.versions.hibernate.build.validator>5.2.3.Final</cia.project.versions.hibernate.build.validator>
+    <cia.project.versions.hibernate.validator>5.2.4.Final</cia.project.versions.hibernate.validator>
+    <cia.project.versions.hibernate.build.validator>5.2.4.Final</cia.project.versions.hibernate.build.validator>
     <cia.project.versions.h2>1.4.192</cia.project.versions.h2>
     <cia.project.versions.postgresql>9.4.1208</cia.project.versions.postgresql>
     <cia.project.versions.atomikos>4.0.3</cia.project.versions.atomikos>
     <cia.project.versions.ehcache>2.10.2.2.21</cia.project.versions.ehcache>
-    <cia.project.versions.poi>3.15-beta1</cia.project.versions.poi>
+    <cia.project.versions.poi>3.15-beta2</cia.project.versions.poi>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.ant>1.9.7</cia.project.versions.ant>
     <cia.project.versions.junit>4.12</cia.project.versions.junit>

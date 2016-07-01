@@ -139,7 +139,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>2.53.0</version>
+      <version>2.53.1</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -224,6 +224,10 @@
         </exclusion>
         <exclusion>
           <artifactId>selenium-api</artifactId>
+          <groupId>org.seleniumhq.selenium</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>selenium-java</artifactId>
           <groupId>org.seleniumhq.selenium</groupId>
         </exclusion>
       </exclusions>

@@ -33,9 +33,11 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Grid;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -93,7 +95,8 @@ public final class DocumentReferencesPageModContentFactoryImpl extends AbstractD
 
 
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(DOCUMENT_REFERENCES));
+			Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_REFERENCES);
+			panelContent.addComponent(createHeader2Label);
 
 			if (documentStatusContainer != null
 					&& documentStatusContainer.getDocumentReferenceContainer() != null
@@ -108,6 +111,10 @@ public final class DocumentReferencesPageModContentFactoryImpl extends AbstractD
 						new String[] { "referenceType", "referenceDocumentId", "detail" },
 						new String[] { "hjid" }, null, null, null);
 				panelContent.addComponent(documentReferenceDataItemGrid);
+				
+				panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+				panelContent.setExpandRatio(documentReferenceDataItemGrid, ContentRatio.GRID);
+
 
 			}
 
