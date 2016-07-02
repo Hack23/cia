@@ -786,7 +786,7 @@
                 <artifactItem>
                   <groupId>com.vaadin</groupId>
                   <artifactId>vaadin-themes</artifactId>
-                  <version>7.6.7</version>
+                  <version>7.7.0.alpha3</version>
                   <type>jar</type>
                   <overWrite>false</overWrite>
                   <outputDirectory>${basedir}/src/main/webapp/</outputDirectory>

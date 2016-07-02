@@ -148,7 +148,7 @@
       <dependency>
         <groupId>com.vaadin</groupId>
         <artifactId>vaadin-themes</artifactId>
-        <version>7.6.7</version>
+        <version>7.7.0.alpha3</version>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
@@ -593,7 +593,7 @@
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.7.8-SNAPSHOT</version>
+          <version>${jacoco.version}</version>
           <dependencies>
             <dependency>
               <groupId>org.ow2.asm</groupId>
@@ -817,7 +817,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.6-jigsaw-SNAPSHOT</version>
+          <version>${compiler.plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1068,6 +1068,8 @@
         <additionalRuntimeArgLine>-addmods java.xml.bind,ALL-MODULE-PATH -XaddExports:java.base/sun.nio.ch=ALL-UNNAMED -XaddExports:java.base/jdk.internal.ref=ALL-UNNAMED</additionalRuntimeArgLine>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
+        <jacoco.version>0.7.8-SNAPSHOT</jacoco.version>
+        <compiler.plugin.version>3.6-jigsaw-SNAPSHOT</compiler.plugin.version>
       </properties>
     </profile>
     <profile>
@@ -1079,6 +1081,8 @@
         <additionalRuntimeArgLine></additionalRuntimeArgLine>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
+        <jacoco.version>0.7.7.201606060606</jacoco.version>
+        <compiler.plugin.version>3.5.1</compiler.plugin.version>
       </properties>
     </profile>
     <profile>
