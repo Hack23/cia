@@ -137,7 +137,7 @@
     <cia.project.versions.xmlbeans>2.6.0</cia.project.versions.xmlbeans>
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
     <cia.project.versions.plexus.utils>3.0.24</cia.project.versions.plexus.utils>
-    <cia.project.versions.jaxb2.commons>0.11.0</cia.project.versions.jaxb2.commons>
+    <cia.project.versions.jaxb2.commons>0.11.1</cia.project.versions.jaxb2.commons>
     <cia.project.versions.hyperjaxb3>0.6.1</cia.project.versions.hyperjaxb3>
     <cia.project.versions.jaxb>2.2.11</cia.project.versions.jaxb>
     <cia.project.versions.jaxb.impl>2.2.11</cia.project.versions.jaxb.impl>
@@ -148,7 +148,7 @@
       <dependency>
         <groupId>com.vaadin</groupId>
         <artifactId>vaadin-themes</artifactId>
-        <version>7.7.0.alpha3</version>
+        <version>7.6.7</version>
       </dependency>
       <dependency>
         <groupId>junit</groupId>

@@ -265,19 +265,19 @@
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-jmx</artifactId>
-      <version>9.4.0.M0</version>
+      <version>9.3.10.v20160621</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-plus</artifactId>
-      <version>9.4.0.M0</version>
+      <version>9.3.10.v20160621</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-annotations</artifactId>
-      <version>9.4.0.M0</version>
+      <version>9.3.10.v20160621</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -299,13 +299,13 @@
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-continuation</artifactId>
-      <version>9.4.0.M0</version>
+      <version>9.3.10.v20160621</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty.websocket</groupId>
       <artifactId>websocket-server</artifactId>
-      <version>9.4.0.M0</version>
+      <version>9.3.10.v20160621</version>
       <scope>test</scope>
     </dependency>
     <!--
@@ -786,7 +786,7 @@
                 <artifactItem>
                   <groupId>com.vaadin</groupId>
                   <artifactId>vaadin-themes</artifactId>
-                  <version>7.7.0.alpha3</version>
+                  <version>7.6.7</version>
                   <type>jar</type>
                   <overWrite>false</overWrite>
                   <outputDirectory>${basedir}/src/main/webapp/</outputDirectory>
