@@ -211,7 +211,7 @@
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
-      <version>1.4.5</version>
+      <version>1.4.6</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -247,7 +247,7 @@
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-all</artifactId>
-      <version>4.1.1.Final</version>
+      <version>4.1.2.Final</version>
       <scope>test</scope>
     </dependency>
     <!--
