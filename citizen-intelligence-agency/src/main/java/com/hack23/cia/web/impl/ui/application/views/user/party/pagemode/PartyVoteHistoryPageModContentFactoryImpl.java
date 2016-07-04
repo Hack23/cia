@@ -29,6 +29,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Gene
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Label;
@@ -85,9 +87,20 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 					ViewRiksdagenVoteDataBallotPartySummary.class,
 					viewRiksdagenVoteDataBallotPartySummaryChartDataManager.findByValue(pageId));
 
-			final Grid partynBallotsBeanItemGrid = getGridFactory().createBasicBeanItemGrid(partyBallotDataSource,
-					"Ballots", null, null, null, null, null);
-
+			final Grid partynBallotsBeanItemGrid = getGridFactory().createBasicBeanItemNestedPropertiesGrid(partyBallotDataSource,
+					"Ballots", 
+					new String[] { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue", "embeddedId.party" },
+					new String[] { "embeddedId.party","voteDate", "rm", "label", "embeddedId.concern", "embeddedId.issue",	"approved", "partyApproved", "totalVotes",
+							"partyTotalVotes", "yesVotes", "partyYesVotes", "noVotes", "partyNoVotes",
+							"partyAbstainVotes", "abstainVotes", "partyAbsentVotes", "absentVotes",
+							"partyAvgBornYear", "avgBornYear", "partyPercentageMale",
+							"percentageMale", "ballotType", "embeddedId.ballotId" },
+					new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
+							"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
+							"percentageAbsent", "percentageAbstain" },
+					"embeddedId.ballotId", new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "embeddedId.ballotId"), "embeddedId.ballotId");
+			
+		
 			panelContent.addComponent(partynBallotsBeanItemGrid);
 
 			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);

@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -37,8 +38,10 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.WorldIndicatorChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.data.util.BeanItem;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -79,7 +82,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractTest
 
 		final String indicator = parameters.substring(PageMode.INDICATORS.toString().length()+"/".length(), parameters.length());
 
-		panelContent.addComponent(createDataIndicatorSummaryChartPanel(indicator));
+		createDataIndicatorSummaryChartPanel(panelContent,indicator);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
 		panel.setCaption(WORLD_INDICATORS);
@@ -95,9 +98,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractTest
 	 *            the indicator
 	 * @return the vertical layout
 	 */
-	private VerticalLayout createDataIndicatorSummaryChartPanel(final String indicator) {
-		final VerticalLayout verticalLayout = new VerticalLayout();
-		verticalLayout.setSizeFull();
+	private void createDataIndicatorSummaryChartPanel(VerticalLayout verticalLayout,final String indicator) {
 
 		final DataContainer<ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId> indicatorDataCountrSummaryDailyDataContainer = getApplicationManager()
 				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);
@@ -110,7 +111,18 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractTest
 
 
 		if (indicatorSummary.isPresent()) {
-			getFormFactory().addTextFields(verticalLayout,
+			
+			
+			final Panel formPanel = new Panel();
+			formPanel.setSizeFull();
+
+			verticalLayout.addComponent(formPanel);
+
+			final FormLayout formContent = new FormLayout();
+			formPanel.setContent(formContent);
+
+			
+			getFormFactory().addTextFields(formContent,
 					new BeanItem<>(
 							indicatorSummary.get()),
 							ViewWorldbankIndicatorDataCountrySummary.class,
@@ -123,6 +135,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractTest
 									   "endYear",
 									   "dataPoint","topics"}));
 
+			verticalLayout.setExpandRatio(formPanel, ContentRatio.GRID);
 		}
 
 		final DataContainer<WorldBankData, Serializable> dataContainer = getApplicationManager()
@@ -132,9 +145,11 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractTest
 		final List<WorldBankData> dataList = dataContainer.findListByEmbeddedProperty(WorldBankData.class, WorldBankData_.indicator, Indicator.class, Indicator_.id, indicator);
 
 
-		verticalLayout.addComponent(chartDataManager.createIndicatorChart(dataList,indicatorSummary.get()));
+		DCharts createIndicatorChart = chartDataManager.createIndicatorChart(dataList,indicatorSummary.get());
+		verticalLayout.addComponent(createIndicatorChart);
+		
+		verticalLayout.setExpandRatio(createIndicatorChart,ContentRatio.LARGE);
 
-		return verticalLayout;
 	}
 
 }

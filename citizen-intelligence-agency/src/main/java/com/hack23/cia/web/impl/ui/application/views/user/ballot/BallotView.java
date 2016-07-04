@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.document;
+package com.hack23.cia.web.impl.ui.application.views.user.ballot;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
@@ -30,26 +30,26 @@ import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView
 import ru.xpoft.vaadin.VaadinView;
 
 /**
- * The Class DocumentView.
+ * The Class BallotView.
  */
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-@VaadinView(value = DocumentView.NAME, cached = true)
-public final class DocumentView extends AbstractUserView {
+@VaadinView(value = BallotView.NAME, cached = true)
+public final class BallotView extends AbstractUserView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The Constant NAME. */
-	public static final String NAME = UserViews.DOCUMENT_VIEW_NAME;
+	public static final String NAME = UserViews.BALLOT_VIEW_NAME;
 
 	/**
-	 * Instantiates a new document view.
+	 * Instantiates a new ballot view.
 	 *
 	 * @param context
 	 *            the context
 	 */
-	public DocumentView(final ApplicationContext context) {
+	public BallotView(final ApplicationContext context) {
 		super(context.getBeansOfType(PageModeContentFactory.class), NAME);
 
 	}

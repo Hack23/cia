@@ -30,6 +30,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Gene
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Label;
@@ -104,7 +106,7 @@ public final class PoliticianVotesHistoryPageModContentFactoryImpl extends Abstr
 					new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
 							"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
 							"percentageAbsent", "percentageAbstain", "firstName", "lastName", "party" },
-					null, null, null);
+					"embeddedId.ballotId", new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "embeddedId.ballotId"), "embeddedId.ballotId");
 
 			panelContent.addComponent(politicianBallotsBeanItemGrid);
 			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);

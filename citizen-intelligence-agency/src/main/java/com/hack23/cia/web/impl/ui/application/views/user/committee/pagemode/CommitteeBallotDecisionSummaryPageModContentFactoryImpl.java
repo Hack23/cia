@@ -35,6 +35,8 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Label;
@@ -101,9 +103,38 @@ public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl exten
 						ViewRiksdagenCommitteeBallotDecisionSummary.class,
 						decisionPartySummaryList);
 
+				
 				final Grid committeeBallotDecisionPartyBeanItemGrid = getGridFactory().createBasicBeanItemNestedPropertiesGrid(
 						committeeBallotDecisionPartyDataSource,
-						"Committee Ballot Decision Summary",new String[]{"embeddedId.concern","embeddedId.issue"}, null, new String[]{ "embeddedId"}, null, null, null);
+						"Committee Ballot Decision Summary",new String[]{"embeddedId.concern","embeddedId.issue","embeddedId.id"}, new String[]{"embeddedId.concern","embeddedId.issue","embeddedId.id",    "committeeReport",
+							    "rm",
+							    "title",
+							    "subTitle",
+							    "endNumber",
+							    "org",
+							    "createdDate",
+							    "publicDate",
+							    "ballotId",
+							    "decisionType",
+							    "againstProposalParties",
+							    "againstProposalNumber",
+							    "winner",
+							    "ballotType",
+							    "label",
+							    "voteDate",
+							    "avgBornYear",
+							    "totalVotes",
+							    "yesVotes",
+							    "noVotes",
+							    "abstainVotes",
+							    "absentVotes",
+							    "approved",
+							    "noWinner",
+							    "percentageYes",
+							    "percentageNo",
+							    "percentageAbsent",
+							    "percentageAbstain",
+							    "percentageMale"}, new String[]{ "embeddedId"}, "ballotId", new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "ballotId"), "ballotId");
 
 				panelContent.addComponent(committeeBallotDecisionPartyBeanItemGrid);
 				panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);

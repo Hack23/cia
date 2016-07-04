@@ -23,6 +23,8 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public final class UserViews {
 
+	public static final String BALLOT_VIEW_NAME = "ballot";
+	
 	/** The Constant COMMITTEE_RANKING_VIEW_NAME. */
 	public static final String COMMITTEE_RANKING_VIEW_NAME = "committeeranking";
 
