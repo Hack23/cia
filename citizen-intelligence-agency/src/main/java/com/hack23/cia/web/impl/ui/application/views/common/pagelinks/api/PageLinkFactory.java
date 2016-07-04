@@ -111,6 +111,8 @@ public interface PageLinkFactory {
 	 * @return the link
 	 */
 	Link addPartyPageLink(ViewRiksdagenParty data);
+	
+	Link createAdminPagingLink(String page,String pageId,String pageNr);
 
 	/**
 	 * Creates a new PageLink object.

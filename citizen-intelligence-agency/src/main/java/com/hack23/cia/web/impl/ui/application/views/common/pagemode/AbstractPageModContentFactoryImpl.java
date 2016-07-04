@@ -90,9 +90,26 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the page id
 	 */
 	protected final String getPageId(final String parameters) {
-		return parameters.substring(parameters.lastIndexOf('/') + "/".length(), parameters.length());
+		String pageNr = getPageNr(parameters);
+		String cleanedString = parameters.replace("["+ pageNr +"]","");
+		
+		return cleanedString.substring(cleanedString.lastIndexOf('/') + "/".length(), cleanedString.length());
 	}
 
+	/**
+	 * Gets the page nr.
+	 *
+	 * @param parameters
+	 *            the parameters
+	 * @return the page nr
+	 */
+	protected final String getPageNr(final String parameters) {
+		if (parameters != null && parameters.contains("[") && parameters.contains("]")) {			
+			return parameters.substring(parameters.indexOf('[')+1, parameters.lastIndexOf(']'));
+		} else {
+			return ""; 
+		}		
+	}
 
 	/**
 	 * Gets the application manager.

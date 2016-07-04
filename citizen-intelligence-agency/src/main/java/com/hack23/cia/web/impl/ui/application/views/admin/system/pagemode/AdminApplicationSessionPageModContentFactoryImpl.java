@@ -41,6 +41,7 @@ import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
@@ -76,7 +77,10 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 		final VerticalLayout content = createPanelContent();
 
 		final String pageId = getPageId(parameters);
+		String pageNrValue= getPageNr(parameters);
 
+		
+		
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
 
@@ -88,9 +92,29 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 		final DataContainer<ApplicationSession, Long> dataContainer = getApplicationManager()
 				.getDataContainer(ApplicationSession.class);
 
-		final BeanItemContainer<ApplicationSession> politicianDocumentDataSource = new BeanItemContainer<>(
-				ApplicationSession.class, dataContainer.getPageOrderBy(1,250,ApplicationSession_.createdDate));
+		
+		Long size = dataContainer.getSize();
+		int pageNr=1;
+		
+		if (pageNrValue.length() > 0) {
+			pageNr = Integer.valueOf(pageNrValue);
+		}
+		
+		int resultPerPage=250;
 
+		
+		final BeanItemContainer<ApplicationSession> politicianDocumentDataSource = new BeanItemContainer<>(
+				ApplicationSession.class, dataContainer.getPageOrderBy(pageNr,resultPerPage,ApplicationSession_.createdDate));
+		
+		Label pageInfo = new Label("Page:" + pageNr + " of:" + ((size +(resultPerPage-1)) / resultPerPage) + " pages. Total results:" + size + " resultsPerPage:" + resultPerPage);
+		content.addComponent(pageInfo);
+		content.setExpandRatio(pageInfo, ContentRatio.SMALL);
+		
+		Link createAdminPagingLink = getPageLinkFactory().createAdminPagingLink(NAME, pageId, String.valueOf(pageNr +1));
+		content.addComponent(createAdminPagingLink);
+		content.setExpandRatio(createAdminPagingLink, ContentRatio.SMALL);
+		
+		
 		final Grid createBasicBeanItemGrid = getGridFactory().createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationSession",
 				new String[] { "hjid", "createdDate", "sessionType", "sessionId", "operatingSystem", "locale",
 						"ipInformation", "userAgentInformation", "events" },
