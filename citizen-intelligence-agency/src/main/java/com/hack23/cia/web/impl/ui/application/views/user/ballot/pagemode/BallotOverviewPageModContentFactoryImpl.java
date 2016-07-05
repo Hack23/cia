@@ -22,21 +22,30 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.dussan.vaadin.dcharts.DCharts;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotEmbeddedId;
 import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotEmbeddedId_;
+import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPartyEmbeddedId;
+import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPartyEmbeddedId_;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary_;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.BallotChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.data.util.BeanItem;
+import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -56,6 +65,9 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
+	
+	@Autowired
+	private BallotChartDataManager ballotChartDataManager;
 
 	/**
 	 * Instantiates a new committee overview page mod content factory impl.
@@ -82,9 +94,14 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 		final DataContainer<ViewRiksdagenVoteDataBallotSummary, RiksdagenVoteDataBallotEmbeddedId> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenVoteDataBallotSummary.class);
 
+		final DataContainer<ViewRiksdagenVoteDataBallotPartySummary, RiksdagenVoteDataBallotPartyEmbeddedId> dataPartyContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenVoteDataBallotPartySummary.class);
+
 		
 		final List<ViewRiksdagenVoteDataBallotSummary> ballots = dataContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotSummary.class, ViewRiksdagenVoteDataBallotSummary_.embeddedId, RiksdagenVoteDataBallotEmbeddedId.class, RiksdagenVoteDataBallotEmbeddedId_.ballotId, pageId);
 
+		List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList = dataPartyContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotPartySummary.class, ViewRiksdagenVoteDataBallotPartySummary_.embeddedId, RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.ballotId, pageId);
+		
 		if (!ballots.isEmpty()) {
 			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);
 
@@ -118,9 +135,26 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 							    "percentageAbstain",
 							    "percentageMale" }));
 				
-				
 				panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
 				panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
+				
+				HorizontalLayout horizontalLayout = new HorizontalLayout();
+				horizontalLayout.setMargin(true);
+				horizontalLayout.setWidth(100, Unit.PERCENTAGE);
+				horizontalLayout.setHeight(100, Unit.PERCENTAGE);
+				
+				panelContent.addComponent(horizontalLayout);
+				panelContent.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
+				
+				DCharts createChart = ballotChartDataManager.createChart(viewRiksdagenVoteDataBallotSummary);
+				horizontalLayout.addComponent(createChart);
+				horizontalLayout.setExpandRatio(createChart, ContentRatio.GRID);
+
+				DCharts createPartyChart = ballotChartDataManager.createChart(partyBallotList);
+				horizontalLayout.addComponent(createPartyChart);
+				horizontalLayout.setExpandRatio(createPartyChart, ContentRatio.GRID);
+				
+				
 
 				panel.setCaption(BALLOT + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getBallotId());
 				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
