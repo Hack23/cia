@@ -35,6 +35,7 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Grid;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -71,6 +72,7 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 		final VerticalLayout content = createPanelContent();
 
 		final String pageId = getPageId(parameters);
+		final int pageNr= getPageNr(parameters);
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
@@ -82,8 +84,13 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 				.getDataContainer(CountryElement.class);
 
 		final BeanItemContainer<CountryElement> politicianDocumentDataSource = new BeanItemContainer<>(
-				CountryElement.class, dataContainer.getAllOrderBy(CountryElement_.countryName));
+				CountryElement.class, dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,CountryElement_.countryName));
+		
+		final HorizontalLayout pagingControls = createPagingControls(NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);		
+		content.addComponent(pagingControls);
+		content.setExpandRatio(pagingControls, ContentRatio.SMALL);
 
+		
 		final Grid createBasicBeanItemGrid = getGridFactory()
 				.createBasicBeanItemGrid(politicianDocumentDataSource, "Country",
 						new String[] { "hjid", "id", "countryName", "iso2Code", "capitalCity", "longitude",

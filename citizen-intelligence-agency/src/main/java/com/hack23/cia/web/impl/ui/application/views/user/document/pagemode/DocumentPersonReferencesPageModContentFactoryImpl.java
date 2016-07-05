@@ -94,7 +94,7 @@ public final class DocumentPersonReferencesPageModContentFactoryImpl extends Abs
 							DocumentData.class, DocumentData_.id, pageId);
 
 
-			Label createHeader2Label = LabelFactory.createHeader2Label(PERSON_REFERENCES);
+			final Label createHeader2Label = LabelFactory.createHeader2Label(PERSON_REFERENCES);
 			panelContent.addComponent(createHeader2Label);
 
 			if (documentStatusContainer != null

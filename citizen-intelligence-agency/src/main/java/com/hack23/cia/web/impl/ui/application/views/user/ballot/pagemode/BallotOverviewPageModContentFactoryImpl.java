@@ -83,12 +83,12 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 				.getDataContainer(ViewRiksdagenVoteDataBallotSummary.class);
 
 		
-		List<ViewRiksdagenVoteDataBallotSummary> ballots = dataContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotSummary.class, ViewRiksdagenVoteDataBallotSummary_.embeddedId, RiksdagenVoteDataBallotEmbeddedId.class, RiksdagenVoteDataBallotEmbeddedId_.ballotId, pageId);
+		final List<ViewRiksdagenVoteDataBallotSummary> ballots = dataContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotSummary.class, ViewRiksdagenVoteDataBallotSummary_.embeddedId, RiksdagenVoteDataBallotEmbeddedId.class, RiksdagenVoteDataBallotEmbeddedId_.ballotId, pageId);
 
 		if (!ballots.isEmpty()) {
 			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);
 
-			ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary = ballots.get(FIRST_OBJECT);
+			final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary = ballots.get(FIRST_OBJECT);
 						
 				final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
 				panelContent.addComponent(createHeader2Label);

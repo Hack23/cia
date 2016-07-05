@@ -201,8 +201,8 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	}
 
 	@Override
-	public Link createAdminPagingLink(String page, String pageId, String pageNr) {
-		final Link pageLink = new Link("Show page:" + pageNr,
+	public Link createAdminPagingLink(final String label,final String page, final String pageId, final String pageNr) {
+		final Link pageLink = new Link(label,
 				new ExternalResource(PAGE_PREFIX + page + PAGE_SEPARATOR
 						+ "[" + pageNr + "]"));
 		pageLink.setId(page +"ShowPage" + PAGE_SEPARATOR

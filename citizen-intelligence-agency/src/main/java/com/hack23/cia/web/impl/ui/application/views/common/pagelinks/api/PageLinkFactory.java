@@ -112,7 +112,20 @@ public interface PageLinkFactory {
 	 */
 	Link addPartyPageLink(ViewRiksdagenParty data);
 	
-	Link createAdminPagingLink(String page,String pageId,String pageNr);
+	/**
+	 * Creates a new PageLink object.
+	 *
+	 * @param label
+	 *            the label
+	 * @param page
+	 *            the page
+	 * @param pageId
+	 *            the page id
+	 * @param pageNr
+	 *            the page nr
+	 * @return the link
+	 */
+	Link createAdminPagingLink(String label,String page,String pageId,String pageNr);
 
 	/**
 	 * Creates a new PageLink object.

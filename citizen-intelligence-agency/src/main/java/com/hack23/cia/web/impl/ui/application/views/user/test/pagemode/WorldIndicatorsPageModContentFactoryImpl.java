@@ -98,7 +98,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractTest
 	 *            the indicator
 	 * @return the vertical layout
 	 */
-	private void createDataIndicatorSummaryChartPanel(VerticalLayout verticalLayout,final String indicator) {
+	private void createDataIndicatorSummaryChartPanel(final VerticalLayout verticalLayout,final String indicator) {
 
 		final DataContainer<ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId> indicatorDataCountrSummaryDailyDataContainer = getApplicationManager()
 				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);
@@ -145,7 +145,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractTest
 		final List<WorldBankData> dataList = dataContainer.findListByEmbeddedProperty(WorldBankData.class, WorldBankData_.indicator, Indicator.class, Indicator_.id, indicator);
 
 
-		DCharts createIndicatorChart = chartDataManager.createIndicatorChart(dataList,indicatorSummary.get());
+		final DCharts createIndicatorChart = chartDataManager.createIndicatorChart(dataList,indicatorSummary.get());
 		verticalLayout.addComponent(createIndicatorChart);
 		
 		verticalLayout.setExpandRatio(createIndicatorChart,ContentRatio.LARGE);

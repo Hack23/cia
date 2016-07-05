@@ -85,7 +85,7 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 
 			getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
-			Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_DATA);
+			final Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_DATA);
 			panelContent.addComponent(createHeader2Label);
 
 			final List<DocumentContentData> documentContentlist = documentContentDataDataContainer

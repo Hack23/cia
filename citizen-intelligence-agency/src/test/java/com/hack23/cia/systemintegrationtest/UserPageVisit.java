@@ -894,7 +894,7 @@ public final class UserPageVisit extends Assert {
 	 */
 	public void updateConfigurationProperty(final String property, final String value) throws Exception {
 		setFieldValue(property, value);
-		WebElement updateConfigButton = findButton("Update Configuration");
+		final WebElement updateConfigButton = findButton("Update Configuration");
 		assertNotNull("Expect to find a Update Config Button",updateConfigButton);
 
 		performClickAction(updateConfigButton);
@@ -902,7 +902,7 @@ public final class UserPageVisit extends Assert {
 	}
 
 	public void enableGoogleAuthenticator() throws Exception {
-		WebElement enableGoogleAuthButton = findButton("Enable Google Authenticator");
+		final WebElement enableGoogleAuthButton = findButton("Enable Google Authenticator");
 		assertNotNull("Expect to find a Enable Google Authenticator Button",enableGoogleAuthButton);
 
 		performClickAction(enableGoogleAuthButton);

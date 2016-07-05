@@ -95,7 +95,7 @@ public final class DocumentReferencesPageModContentFactoryImpl extends AbstractD
 
 
 
-			Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_REFERENCES);
+			final Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_REFERENCES);
 			panelContent.addComponent(createHeader2Label);
 
 			if (documentStatusContainer != null

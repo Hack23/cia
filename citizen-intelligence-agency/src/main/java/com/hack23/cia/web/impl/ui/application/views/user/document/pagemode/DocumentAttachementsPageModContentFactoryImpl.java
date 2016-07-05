@@ -90,7 +90,7 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 					.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 							DocumentData.class, DocumentData_.id, pageId);
 
-			Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_ATTACHMENTS);
+			final Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_ATTACHMENTS);
 			panelContent.addComponent(createHeader2Label);
 
 			if (documentStatusContainer != null && documentStatusContainer.getDocumentAttachmentContainer() != null

@@ -90,7 +90,7 @@ public final class DocumentDetailsPageModContentFactoryImpl extends AbstractDocu
 					.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 							DocumentData.class, DocumentData_.id, pageId);
 
-			Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_DETAILS);
+			final Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_DETAILS);
 			panelContent.addComponent(createHeader2Label);
 
 			if (documentStatusContainer != null && documentStatusContainer.getDocumentDetailContainer() != null

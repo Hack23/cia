@@ -24,6 +24,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.Agency;
+import com.hack23.cia.model.internal.application.system.impl.Agency_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.Portal;
 import com.hack23.cia.service.api.DataContainer;
@@ -73,6 +74,7 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 		final VerticalLayout content = createPanelContent();
 
 		final String pageId = getPageId(parameters);
+		final int pageNr= getPageNr(parameters);
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
@@ -84,7 +86,12 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 		final DataContainer<Agency, Long> dataContainer = getApplicationManager().getDataContainer(Agency.class);
 
 		final BeanItemContainer<Agency> politicianDocumentDataSource = new BeanItemContainer<>(Agency.class,
-				dataContainer.getAll());
+				dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,Agency_.agencyName));
+		
+		final HorizontalLayout pagingControls = createPagingControls(NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);		
+		content.addComponent(pagingControls);
+		content.setExpandRatio(pagingControls, ContentRatio.SMALL);
+
 
 		final Grid createBasicBeanItemGrid = getGridFactory().createBasicBeanItemGrid(politicianDocumentDataSource,
 				"Agency", new String[] { "hjid", "agencyName", "description", "portals", "modelObjectVersion" },

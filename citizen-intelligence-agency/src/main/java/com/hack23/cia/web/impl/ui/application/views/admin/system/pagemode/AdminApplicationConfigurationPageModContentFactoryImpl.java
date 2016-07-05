@@ -79,6 +79,8 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 		final VerticalLayout content = createPanelContent();
 
 		final String pageId = getPageId(parameters);
+		final int pageNr= getPageNr(parameters);
+
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
@@ -91,7 +93,12 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 
 		final BeanItemContainer<ApplicationConfiguration> politicianDocumentDataSource = new BeanItemContainer<>(
 				ApplicationConfiguration.class,
-				dataContainer.getAllOrderBy(ApplicationConfiguration_.configurationGroup));
+		dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,ApplicationConfiguration_.configurationGroup));
+		
+		final HorizontalLayout pagingControls = createPagingControls(NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);		
+		content.addComponent(pagingControls);
+		content.setExpandRatio(pagingControls, ContentRatio.SMALL);
+
 
 		final Grid createBasicBeanItemGrid = getGridFactory().createBasicBeanItemGrid(politicianDocumentDataSource,
 				"ApplicationConfiguration",

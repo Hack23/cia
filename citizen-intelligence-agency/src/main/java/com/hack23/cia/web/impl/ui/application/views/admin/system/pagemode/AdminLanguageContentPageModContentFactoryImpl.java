@@ -25,6 +25,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.LanguageContentData;
+import com.hack23.cia.model.internal.application.system.impl.LanguageContentData_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
@@ -34,6 +35,7 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Grid;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -70,6 +72,7 @@ public final class AdminLanguageContentPageModContentFactoryImpl extends Abstrac
 		final VerticalLayout content = createPanelContent();
 
 		final String pageId = getPageId(parameters);
+		final int pageNr= getPageNr(parameters);
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
@@ -81,7 +84,12 @@ public final class AdminLanguageContentPageModContentFactoryImpl extends Abstrac
 				.getDataContainer(LanguageContentData.class);
 
 		final BeanItemContainer<LanguageContentData> politicianDocumentDataSource = new BeanItemContainer<>(
-				LanguageContentData.class, dataContainer.getAll());
+				LanguageContentData.class, dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,LanguageContentData_.toLanguage));
+		
+		final HorizontalLayout pagingControls = createPagingControls(NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);		
+		content.addComponent(pagingControls);
+		content.setExpandRatio(pagingControls, ContentRatio.SMALL);		
+		
 
 		final Grid createBasicBeanItemGrid = getGridFactory().createBasicBeanItemGrid(politicianDocumentDataSource,
 				"LanguageContentData",

@@ -51,7 +51,7 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 	}
 
 	@Override
-	public void createBallotMenuBar(MenuBar menuBar, String pageId) {
+	public void createBallotMenuBar(final MenuBar menuBar, final String pageId) {
 		initApplicationMenuBar(menuBar);
 
 		menuBar.addItem(OVERVIEW_TEXT, null,

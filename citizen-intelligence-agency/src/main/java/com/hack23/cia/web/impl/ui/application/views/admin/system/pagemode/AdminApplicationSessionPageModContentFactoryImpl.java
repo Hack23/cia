@@ -41,7 +41,6 @@ import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
-import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
@@ -77,12 +76,9 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 		final VerticalLayout content = createPanelContent();
 
 		final String pageId = getPageId(parameters);
-		String pageNrValue= getPageNr(parameters);
-
-		
-		
+		final int pageNr= getPageNr(parameters);
+	
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
-
 
 		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_APPLICATION_SESSION);
 		content.addComponent(createHeader2Label);
@@ -92,28 +88,14 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 		final DataContainer<ApplicationSession, Long> dataContainer = getApplicationManager()
 				.getDataContainer(ApplicationSession.class);
 
-		
-		Long size = dataContainer.getSize();
-		int pageNr=1;
-		
-		if (pageNrValue.length() > 0) {
-			pageNr = Integer.valueOf(pageNrValue);
-		}
-		
-		int resultPerPage=250;
-
-		
+	
 		final BeanItemContainer<ApplicationSession> politicianDocumentDataSource = new BeanItemContainer<>(
-				ApplicationSession.class, dataContainer.getPageOrderBy(pageNr,resultPerPage,ApplicationSession_.createdDate));
+				ApplicationSession.class, dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,ApplicationSession_.createdDate));
 		
-		Label pageInfo = new Label("Page:" + pageNr + " of:" + ((size +(resultPerPage-1)) / resultPerPage) + " pages. Total results:" + size + " resultsPerPage:" + resultPerPage);
-		content.addComponent(pageInfo);
-		content.setExpandRatio(pageInfo, ContentRatio.SMALL);
-		
-		Link createAdminPagingLink = getPageLinkFactory().createAdminPagingLink(NAME, pageId, String.valueOf(pageNr +1));
-		content.addComponent(createAdminPagingLink);
-		content.setExpandRatio(createAdminPagingLink, ContentRatio.SMALL);
-		
+		final HorizontalLayout pagingControls = createPagingControls(NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);		
+		content.addComponent(pagingControls);
+		content.setExpandRatio(pagingControls, ContentRatio.SMALL);
+
 		
 		final Grid createBasicBeanItemGrid = getGridFactory().createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationSession",
 				new String[] { "hjid", "createdDate", "sessionType", "sessionId", "operatingSystem", "locale",

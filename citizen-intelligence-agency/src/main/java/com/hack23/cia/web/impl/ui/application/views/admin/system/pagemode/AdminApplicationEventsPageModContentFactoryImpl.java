@@ -39,6 +39,7 @@ import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Grid;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -80,6 +81,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 		final VerticalLayout content = createPanelContent();
 
 		final String pageId = getPageId(parameters);
+		final int pageNr= getPageNr(parameters);
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
@@ -91,7 +93,11 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 		final DataContainer<ApplicationActionEvent, Long> dataContainer = getApplicationManager().getDataContainer(ApplicationActionEvent.class);
 
 		final BeanItemContainer<ApplicationActionEvent> politicianDocumentDataSource = new BeanItemContainer<>(ApplicationActionEvent.class,
-				dataContainer.getAllOrderBy(ApplicationActionEvent_.createdDate));
+		dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,ApplicationActionEvent_.createdDate));
+		
+		final HorizontalLayout pagingControls = createPagingControls(NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);		
+		content.addComponent(pagingControls);
+		content.setExpandRatio(pagingControls, ContentRatio.SMALL);		
 
 		final Grid createBasicBeanItemGrid = getGridFactory().createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationActionEvent",
 				new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" },
