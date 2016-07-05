@@ -50,7 +50,7 @@ public final class UserPageVisit extends Assert {
 	private static final int WAIT_FOR_PAGE_DELAY = 2500;
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
-	private static final int WAIT_FOR_PAGE_ELEMENT = 5000;
+	private static final int WAIT_FOR_PAGE_ELEMENT = 25000;
 
 	/** The driver. */
 	private final WebDriver driver;
