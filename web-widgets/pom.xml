@@ -4,7 +4,7 @@
   <parent>
     <artifactId>parent-web-pom</artifactId>
     <groupId>com.hack23.cia</groupId>
-    <version>2016.7.5</version>
+    <version>2016.7.6-SNAPSHOT</version>
     <relativePath>../parent-web-pom/pom.xml</relativePath>
   </parent>
   <artifactId>web-widgets</artifactId>
@@ -13,7 +13,7 @@
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
-    <tag>cia-all-2016.7.5</tag>
+    <tag>cia-all-2016.3.6</tag>
     <url>https://github.com/Hack23/cia/tree/master/web-widgets</url>
   </scm>
   <properties>
@@ -167,7 +167,7 @@
       <releases>
         <enabled>false</enabled>
       </releases>
-      <snapshots></snapshots>
+      <snapshots />
       <id>vaadin-snapshots</id>
       <url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
     </repository>
@@ -177,7 +177,7 @@
       <releases>
         <enabled>false</enabled>
       </releases>
-      <snapshots></snapshots>
+      <snapshots />
       <id>vaadin-snapshots</id>
       <url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
     </pluginRepository>
@@ -208,7 +208,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore />
                   </action>
                 </pluginExecution>
               </pluginExecutions>
@@ -292,7 +292,7 @@
               <goal>compile-theme</goal>
               <goal>compile</goal>
             </goals>
-            <configuration></configuration>
+            <configuration />
           </execution>
         </executions>
         <configuration>
