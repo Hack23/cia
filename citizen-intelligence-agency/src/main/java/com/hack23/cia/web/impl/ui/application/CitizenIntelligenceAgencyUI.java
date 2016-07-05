@@ -46,7 +46,6 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.server.WebBrowser;
 import com.vaadin.shared.ui.ui.Transport;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 
@@ -123,22 +122,9 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 		super();
 	}
 
-	/**
-	 * Instantiates a new citizen intelligence agency ui.
-	 *
-	 * @param content
-	 *            the content
-	 */
-	public CitizenIntelligenceAgencyUI(final Component content) {
-		super(content);
-	}
-
 
 	@Override
 	protected void init(final VaadinRequest request) {
-
-
-
 		VaadinSession.getCurrent().setErrorHandler(this);
 		setSizeFull();
 		final DiscoveryNavigator navigator = new DiscoveryNavigator(this, this);
@@ -154,21 +140,20 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 		currentPage.setTitle(userConfiguration.getAgency().getAgencyName() + ":" + userConfiguration.getPortal().getPortalName() + ":" + userConfiguration.getLanguage().getLanguageName());
 
 		if (getSession().getUIs().isEmpty()) {
-
-		final WebBrowser webBrowser = currentPage.getWebBrowser();
-
-		final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
-		serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-
-		final String ipInformation = getIpInformation(webBrowser);
-		serviceRequest.setIpInformation(ipInformation);
-		serviceRequest.setUserAgentInformation(webBrowser.getBrowserApplication());
-		serviceRequest.setLocale(webBrowser.getLocale().toString());
-		serviceRequest.setOperatingSystem(getOperatingSystem(webBrowser));
-		serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
-
-		final ServiceResponse serviceResponse = applicationManager.service(serviceRequest);
-		LOGGER.info(LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT,requestUrl,language,ipInformation,webBrowser.getBrowserApplication(),serviceRequest.getSessionId(),serviceResponse.getResult().toString());
+			final WebBrowser webBrowser = currentPage.getWebBrowser();
+	
+			final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
+			serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+	
+			final String ipInformation = getIpInformation(webBrowser);
+			serviceRequest.setIpInformation(ipInformation);
+			serviceRequest.setUserAgentInformation(webBrowser.getBrowserApplication());
+			serviceRequest.setLocale(webBrowser.getLocale().toString());
+			serviceRequest.setOperatingSystem(getOperatingSystem(webBrowser));
+			serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
+	
+			final ServiceResponse serviceResponse = applicationManager.service(serviceRequest);
+			LOGGER.info(LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT,requestUrl,language,ipInformation,webBrowser.getBrowserApplication(),serviceRequest.getSessionId(),serviceResponse.getResult().toString());
 		}
 	}
 
