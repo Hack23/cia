@@ -31,6 +31,9 @@ public enum ViewAction {
 
 	/** The visit admin agency view. */
 	VISIT_ADMIN_AGENCY_VIEW,
+	
+	/** The visit ballot view. */
+	VISIT_BALLOT_VIEW,
 
 	/** The visit test chart view. */
 	VISIT_TEST_CHART_VIEW,
