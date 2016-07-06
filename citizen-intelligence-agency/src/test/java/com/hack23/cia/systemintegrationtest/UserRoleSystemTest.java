@@ -123,7 +123,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DATAGRID));
-		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Datagrid"));
+		assertTrue(userPageVisit.checkHtmlBodyContainsText("Datagrid"));
 
 	}
 
@@ -991,7 +991,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME,"A411DA4A-430F-408A-99BE-3539E0E2D82A"));
 
-		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Ballot"));
+		assertTrue(userPageVisit.checkHtmlBodyContainsText("Ballot"));
 
 	}
 

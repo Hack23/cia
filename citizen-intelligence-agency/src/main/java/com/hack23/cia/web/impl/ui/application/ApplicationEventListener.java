@@ -21,7 +21,6 @@ package com.hack23.cia.web.impl.ui.application;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -31,22 +30,19 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.security.access.event.AuthorizationFailureEvent;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.session.HttpSessionCreatedEvent;
 import org.springframework.security.web.session.HttpSessionDestroyedEvent;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
-import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.application.DestroyApplicationSessionRequest;
+import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
 import com.vaadin.server.Page;
 import com.vaadin.ui.UI;
 
@@ -132,11 +128,11 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 			serviceRequest.setEventGroup(ApplicationEventGroup.APPLICATION);
 			serviceRequest.setApplicationOperation(ApplicationOperationType.AUTHORIZATION);
 
-			serviceRequest.setUserId(getUserIdFromSecurityContext());
+			serviceRequest.setUserId(UserContextUtil.getUserIdFromSecurityContext());
 
 
 			final Page currentPageIfAny = Page.getCurrent();
-			final String requestUrl = getRequestUrl(currentPageIfAny);
+			final String requestUrl = UserContextUtil.getRequestUrl(currentPageIfAny);
 			final UI currentUiIfAny = UI.getCurrent();
 
 			if (currentPageIfAny != null && currentUiIfAny != null) {
@@ -156,38 +152,5 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 		}
 	}
 
-	/**
-	 * Gets the user id from security context.
-	 *
-	 * @return the user id from security context
-	 */
-	private static String getUserIdFromSecurityContext() {
-
-		String result=null;
-
-		final SecurityContext context = SecurityContextHolder.getContext();
-		if (context != null) {
-			final Authentication authentication = context.getAuthentication();
-			if (authentication != null) {
-				final Object principal = authentication.getPrincipal();
-
-				if (principal instanceof UserAccount) {
-					final UserAccount userAccount = (UserAccount) principal;
-					result = userAccount.getUserId();
-				}
-			}
-		}
-		return result;
-	}
-
-	private static String getRequestUrl(final Page current) {
-		if (current != null) {
-			return current.getLocation().toString();
-
-		} else {
-			final HttpServletRequest httpRequest=((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
-			return httpRequest.getRequestURL().toString();
-		}
-	}
 
 }

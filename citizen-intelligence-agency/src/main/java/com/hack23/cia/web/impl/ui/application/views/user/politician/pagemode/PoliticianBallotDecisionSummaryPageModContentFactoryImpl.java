@@ -33,6 +33,8 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Label;
@@ -115,7 +117,7 @@ public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl exte
 									"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes",
 									"percentageNo", "percentageAbsent", "percentageAbstain", "firstName",
 									"lastName", "party" },
-							null, null, null);
+							"ballotId", new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "ballotId"), "ballotId");
 
 			panelContent.addComponent(committeeBallotDecisionPartyBeanItemGrid);
 

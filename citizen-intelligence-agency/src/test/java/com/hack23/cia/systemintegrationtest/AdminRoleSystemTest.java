@@ -75,7 +75,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, ""));
-		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Agency"));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Agency"));
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
 
@@ -98,7 +98,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
-		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Portal"));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Portal"));
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
 
@@ -122,7 +122,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, ""));
-		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Application Configuration"));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Configuration"));
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
 
@@ -150,7 +150,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, ""));
-		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Country"));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Country"));
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
 
@@ -173,7 +173,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
-		userPageVisit.assertHtmlBodyContainsText("Useraccount");
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Useraccount"));
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
 
@@ -196,7 +196,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
-		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Language"));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Language"));
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
 		userPageVisit.validatePage(new
@@ -219,7 +219,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, ""));
-		assertTrue(userPageVisit.getHtmlBodyAsText().contains("Language Content"));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Language Content"));
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
 		userPageVisit.validatePage(new
@@ -243,7 +243,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
-		userPageVisit.assertHtmlBodyContainsText("Application Session");
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Session"));
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
 
@@ -266,7 +266,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
-		userPageVisit.assertHtmlBodyContainsText("Application Action Event");
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Action Event"));
 
 		final String pageId = clickFirstRowInGrid(userPageVisit);
 
@@ -288,7 +288,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
-		assertTrue("Expect this content", userPageVisit.getHtmlBodyAsText().contains("Access denided:adminmonitoring"));
+		assertTrue("Expect this content", userPageVisit.checkHtmlBodyContainsText("Access denided:adminmonitoring"));
 
 		// assertTrue("Expect this content",
 		// userPageVisit.getIframesHtmlBodyAsText().contains("Access
@@ -311,7 +311,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME, ""));
-		assertTrue("Expect this content", userPageVisit.getHtmlBodyAsText().contains("Admin Monitoring"));
+		assertTrue("Expect this content", userPageVisit.checkHtmlBodyContainsText("Admin Monitoring"));
 
 		assertFalse("Dont expect this content",
 				userPageVisit.getIframesHtmlBodyAsText().contains("Login with Username and Password"));

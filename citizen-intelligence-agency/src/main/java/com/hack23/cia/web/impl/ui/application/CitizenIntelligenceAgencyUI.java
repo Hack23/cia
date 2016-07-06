@@ -18,17 +18,13 @@
 */
 package com.hack23.cia.web.impl.ui.application;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
 import com.hack23.cia.service.api.ApplicationManager;
@@ -36,17 +32,15 @@ import com.hack23.cia.service.api.ConfigurationManager;
 import com.hack23.cia.service.api.UserConfiguration;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse;
+import com.hack23.cia.web.impl.ui.application.util.WebBrowserUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.MainView;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
-import com.vaadin.server.ErrorHandler;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.server.WebBrowser;
 import com.vaadin.shared.ui.ui.Transport;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 
 import ru.xpoft.vaadin.DiscoveryNavigator;
@@ -58,47 +52,13 @@ import ru.xpoft.vaadin.DiscoveryNavigator;
 @Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @Theme("cia")
 @Push(transport = Transport.WEBSOCKET_XHR)
-public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandler {
-
-
-	/** The Constant LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT. */
-	private static final String LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT = "Browser url: {} , lang: {} , address: {} , application:{}, sessionId:{}, result:{}";
-
-	/** The Constant LOG_WARN_VAADIN_ERROR. */
-	private static final String LOG_WARN_VAADIN_ERROR = "Vaadin error";
-
-	/** The Constant UNKNOWN. */
-	private static final String UNKNOWN = "unknown";
-
-	/** The Constant I_PHONE. */
-	private static final String I_PHONE = "IPhone";
-
-	/** The Constant IPAD. */
-	private static final String IPAD = "IPad";
-
-	/** The Constant IOS. */
-	private static final String IOS = "IOS";
-
-	/** The Constant ANDROID. */
-	private static final String ANDROID = "Android";
-
-	/** The Constant MAC_OSX. */
-	private static final String MAC_OSX = "MacOSX";
-
-	/** The Constant WINDOWS_PHONE. */
-	private static final String WINDOWS_PHONE = "WindowsPhone";
-
-	/** The Constant WINDOWS2. */
-	private static final String WINDOWS2 = "Windows";
-
-	/** The Constant LINUX. */
-	private static final String LINUX = "Linux";
-
-	/** The Constant X_FORWARDED_FOR. */
-	private static final String X_FORWARDED_FOR = "X-Forwarded-For";
+public final class CitizenIntelligenceAgencyUI extends UI {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+
+	/** The Constant LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT. */
+	private static final String LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT = "Browser url: {} , lang: {} , address: {} , application:{}, sessionId:{}, result:{}";
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
@@ -125,7 +85,7 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 
 	@Override
 	protected void init(final VaadinRequest request) {
-		VaadinSession.getCurrent().setErrorHandler(this);
+		VaadinSession.getCurrent().setErrorHandler(new UiInstanceErrorHandler(this));
 		setSizeFull();
 		final DiscoveryNavigator navigator = new DiscoveryNavigator(this, this);
 		navigator.addView("", mainView);
@@ -145,85 +105,16 @@ public final class CitizenIntelligenceAgencyUI extends UI implements ErrorHandle
 			final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
 			serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 	
-			final String ipInformation = getIpInformation(webBrowser);
+			final String ipInformation = WebBrowserUtil.getIpInformation(webBrowser);
 			serviceRequest.setIpInformation(ipInformation);
 			serviceRequest.setUserAgentInformation(webBrowser.getBrowserApplication());
 			serviceRequest.setLocale(webBrowser.getLocale().toString());
-			serviceRequest.setOperatingSystem(getOperatingSystem(webBrowser));
+			serviceRequest.setOperatingSystem(WebBrowserUtil.getOperatingSystem(webBrowser));
 			serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
 	
 			final ServiceResponse serviceResponse = applicationManager.service(serviceRequest);
 			LOGGER.info(LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT,requestUrl,language,ipInformation,webBrowser.getBrowserApplication(),serviceRequest.getSessionId(),serviceResponse.getResult().toString());
 		}
-	}
-
-	/**
-	 * Gets the ip information.
-	 *
-	 * @param webBrowser
-	 *            the web browser
-	 * @return the ip information
-	 */
-	private static String getIpInformation(final WebBrowser webBrowser) {
-		String ipInformation=webBrowser.getAddress();
-
-		final HttpServletRequest httpRequest=((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
-		final String xForwardedForHeader = httpRequest.getHeader(X_FORWARDED_FOR);
-		if (xForwardedForHeader != null) {
-			final String[] split = xForwardedForHeader.split(",");
-			if (split.length != 0) {
-				ipInformation = split[0];
-			}
-		}
-		return ipInformation;
-	}
-
-
-	/**
-	 * Gets the operating system.
-	 *
-	 * @param webBrowser
-	 *            the web browser
-	 * @return the operating system
-	 */
-	private static String getOperatingSystem(final WebBrowser webBrowser) {
-		String osName = UNKNOWN;
-	       if (webBrowser.isLinux()) {
-			osName = LINUX;
-		} else if (webBrowser.isWindows()) {
-			osName = WINDOWS2;
-		} else if (webBrowser.isWindowsPhone()) {
-			osName = WINDOWS_PHONE;
-		} else if (webBrowser.isMacOSX()) {
-			osName = MAC_OSX;
-		} else if (webBrowser.isAndroid()) {
-			osName = ANDROID;
-		} else if (webBrowser.isIOS()) {
-			osName = IOS;
-		} else if (webBrowser.isIPad()) {
-			osName = IPAD;
-		} else if (webBrowser.isIPhone()) {
-			osName = I_PHONE;
-		}
-		return osName;
-	}
-
-
-	@Override
-	public void error(final com.vaadin.server.ErrorEvent event) {
-	     if (event.getThrowable() instanceof AccessDeniedException) {
-	            final AccessDeniedException accessDeniedException = (AccessDeniedException) event.getThrowable();
-	            Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);
-	            getUI().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
-	            return;
-	        } else if (event.getThrowable().getCause() !=null && event.getThrowable().getCause().getCause() != null && event.getThrowable().getCause().getCause().getCause() instanceof AccessDeniedException) {
-	            final AccessDeniedException accessDeniedException = (AccessDeniedException) event.getThrowable().getCause().getCause().getCause();
-	            Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);
-	            getUI().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
-	            return;
-	        } else {
-	        	LOGGER.warn(LOG_WARN_VAADIN_ERROR,event.getThrowable());
-	        }
 	}
 
 

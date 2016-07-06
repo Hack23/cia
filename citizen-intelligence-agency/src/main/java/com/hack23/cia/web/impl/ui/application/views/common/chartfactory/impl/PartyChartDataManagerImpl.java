@@ -237,7 +237,7 @@ public final class PartyChartDataManagerImpl implements PartyChartDataManager {
 		return createPartyBallotChart(new DataValueCalculator() {
 			@Override
 			public Object getDataValue(final ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily) {
-				return (100 - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgPercentageMale().intValue());
+				return 100 - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgPercentageMale().intValue();
 			}
 
 		});
