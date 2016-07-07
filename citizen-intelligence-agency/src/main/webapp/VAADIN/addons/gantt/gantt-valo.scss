@@ -12,7 +12,7 @@
 		    border-right: none;
 		    background-color: darken($v-background-color, 10%);
 		    font-size: $v-caption-font-size;
-		    font.weight: $v-caption-font-weight;
+		    font-weight: $v-caption-font-weight;
 		}
 		
 		.year:nth-of-type(even) {

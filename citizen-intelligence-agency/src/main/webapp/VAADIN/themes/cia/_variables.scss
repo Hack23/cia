@@ -1,21 +1,43 @@
 $v-app-loading-text: "Loading Citizen Intelligence Agency:: Tracking politicians like bugs!";
 
-$v-background-color: #fafafa;
-$v-focus-color: #3b5998;
-$v-app-background-color: #e7ebf2;
-$v-panel-background-color: #fff;
+/* use https://coolors.co/app/ */
 
+$v-background-color: #F49F0A;
+$v-app-background-color: #EFCA08;
+$v-link-font-color: #084887;
+$v-selection-color: #efdb3f; 
+$v-font-color: #FFFFFF;
+$v-focus-color: #efdb3f;
+
+$v-component-group-spacing: 6px;
 
 $v-focus-style: 0 0 3px 2px $v-focus-color;
-$v-bevel-depth: 40%;
-$v-bevel: inset 0 1px 2px v-tint, inset 0 0 1px (v-tint 0.1);
+$v-overlay-shadow: 0 0 0 3px (v-shade 8), 0 5px 10px (v-shade 4);
+
 $v-gradient: v-linear 12%;
 $v-border-radius: 10px;
+
+$v-bevel-depth: 40%;
+$v-bevel: inset 0 1px 2px v-tint, inset 0 0 1px (v-tint 0.1);
+
 $v-shadow: 0 0 0 3px rgba(0,0,0,0.32), 0 1px 0 3px rgba(255,255,255,0.14);
-$v-textfield-bevel: inset 0 2px 2px v-shade;
+
+$v-window-modality-curtain-background-color: $v-background-color;
+$v-panel-background-color: $v-background-color;
+$v-overlay-background-color: $v-background-color;
+$v-table-background-color: $v-background-color;
+$v-menu-background-color: $v-background-color;
+$v-textfield-background-color: $v-background-color;
+$v-button-background-color: $v-background-color;
+$v-nativebutton-background-color: $v-background-color;
+$v-link-background-color: $v-background-color;
+$v-selection-overlay-background-color: $v-background-color;
+$v-selection-item-selection-color: $v-selection-color;
+
+
 $v-textfield-shadow: $v-shadow;
-$v-overlay-shadow: 0 0 0 3px (v-shade 8), 0 5px 10px (v-shade 4);
-$v-component-group-spacing: 6px;
+$v-textfield-bevel: inset 0 2px 2px v-shade;
+
 $v-font-size: 12px;
 $v-unit-size: 26px;
 $v-unit-size--small: 20px;
@@ -29,5 +51,6 @@ $v-layout-margin-bottom: 18px;
 $v-layout-margin-left: 18px;
 $v-layout-spacing-vertical: 7px;
 $v-layout-spacing-horizontal: 6px;
+
 
 @import "../valo/valo";
