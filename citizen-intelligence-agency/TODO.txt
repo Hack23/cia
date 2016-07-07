@@ -1,15 +1,18 @@
-translations
-
-add generated links in grid:s https://vaadin.com/book/-/page/components.grid.html
-
-review and include all current view classes.
-
-party view: summary,roles.members,
-politician view summary , documents,proposals, votes.
-ministry view summary,roles,members,propoals
-committee view summary,roles, members , committee decisions
 BallotView
 
-layouts, logo & styling
+Title and description on all views.
 
+set property order, nested properties, hidden properties and pagelinks on all grids.
+
+Fix missing views and breakdown complex pages into new.
+
+code cleanup, refactorings, add unit/integration tests.
+
+Layouts, logo & styling and navigation.
+
+Translations: externalize all strings, populate default english content, use translate service for other languages.
+
+
+Good Examples
+-------------
 finviz.com
