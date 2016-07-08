@@ -28,9 +28,14 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.data.util.BeanItem;
+import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
@@ -80,11 +85,25 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(OVERVIEW));
-			panelContent.addComponent(getPageLinkFactory().addPartyPageLink(viewRiksdagenParty));
+			Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
+			panelContent.addComponent(createHeader2Label);
+			Link addPartyPageLink = getPageLinkFactory().addPartyPageLink(viewRiksdagenParty);
+			panelContent.addComponent(addPartyPageLink);
 
+			final Panel formPanel = new Panel();
+			formPanel.setSizeFull();
+
+			panelContent.addComponent(formPanel);
+
+			final FormLayout formContent = new FormLayout();
+			formPanel.setContent(formContent);
+
+			panelContent.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
+			panelContent.setExpandRatio(addPartyPageLink, ContentRatio.SMALL);
+			panelContent.setExpandRatio(formPanel, ContentRatio.LARGE);
+			
 			getFormFactory().addTextFields(
-					panelContent,
+					formContent,
 					new BeanItem<>(viewRiksdagenParty),
 					ViewRiksdagenParty.class,
 					Arrays.asList(new String[] { "partyName", "partyId",
@@ -96,7 +115,9 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 			if (viewRiksdagenPartySummary != null) {
 
-				getFormFactory().addTextFields(panelContent,
+	
+				
+				getFormFactory().addTextFields(formContent,
 						new BeanItem<>(
 								viewRiksdagenPartySummary),
 								ViewRiksdagenPartySummary.class,

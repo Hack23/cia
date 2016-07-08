@@ -538,7 +538,7 @@
 	right: -3px;
 	bottom: -3px;
 	left: -3px;
-	background: black;
+	background: white;
 	filter: alpha(opacity=40) progid:DXImageTransform.Microsoft.blur(pixelradius=0, makeShadow=false);
 }
 
@@ -548,7 +548,7 @@
 	right: 10px;
 	bottom: 5px;
 	left: -10px;
-	background: black;
+	background: white;
 	filter: alpha(opacity=20) progid:DXImageTransform.Microsoft.blur(pixelradius=10, makeShadow=false);
 }
 
@@ -1811,7 +1811,7 @@ div.v-layout.v-horizontal.v-widget {
 	right: -3px;
 	bottom: -3px;
 	left: -3px;
-	background: black;
+	background: white;
 	filter: alpha(opacity=40) progid:DXImageTransform.Microsoft.blur(pixelradius=0, makeShadow=false);
 }
 
@@ -1821,7 +1821,7 @@ div.v-layout.v-horizontal.v-widget {
 	right: 10px;
 	bottom: 5px;
 	left: -10px;
-	background: black;
+	background: white;
 	filter: alpha(opacity=20) progid:DXImageTransform.Microsoft.blur(pixelradius=10, makeShadow=false);
 }
 
@@ -2527,8 +2527,8 @@ div.v-layout.v-horizontal.v-widget {
 	border-radius: 10px;
 	background-color: #F49F0A;
 	color: #f0e1c6;
-	-webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.2);
-	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4), 0 5px 10px rgba(255, 255, 255, 0.2);
+	box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4), 0 5px 10px rgba(255, 255, 255, 0.2);
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	-ms-backface-visibility: hidden;
@@ -2687,8 +2687,8 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-verticallayout-well, .cia .v-horizontallayout-well {
 	background: #e9980b;
 	color: #efe0c4;
-	-webkit-box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset 0 0 0 3px rgba(0, 0, 0, 0.32), inset 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset 0 0 0 3px rgba(0, 0, 0, 0.32), inset 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset inset 0 1px 2px rgba(255, 255, 255, 0.05), inset inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset inset 0 1px 2px rgba(255, 255, 255, 0.05), inset inset 0 0 1px rgba(255, 255, 255, 0.005);
 	border-radius: 10px;
 	border: 1px solid #af7207;
 }
@@ -2720,8 +2720,8 @@ div.v-layout.v-horizontal.v-widget {
 	color: #f0e1c6;
 	border-radius: 10px;
 	border: 1px solid #c47f08;
-	-webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 }
 
 .cia .v-verticallayout-card  > .v-margin-top, .cia .v-horizontallayout-card  > .v-margin-top {
@@ -2773,8 +2773,8 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #F49F0A;
 	background-image: -webkit-linear-gradient(top, #f5aa0b 2%, #e38a07 98%);
 	background-image: linear-gradient(to bottom,#f5aa0b 2%, #e38a07 98%);
-	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
 }
 
@@ -2866,8 +2866,8 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #efdb3f;
 	background-image: -webkit-linear-gradient(top, #f0df46 2%, #dec933 98%);
 	background-image: linear-gradient(to bottom,#f0df46 2%, #dec933 98%);
-	-webkit-box-shadow: inset 0 1px 2px #f2e284, inset 0 0 1px #f0df5e, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 1px 2px #f2e284, inset 0 0 1px #f0df5e, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px #f2e284, inset 0 0 1px #f0df5e, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px #f2e284, inset 0 0 1px #f0df5e, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
 	padding: 0 13px;
 	font-weight: bold;
@@ -2914,8 +2914,8 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #2c9720;
 	background-image: -webkit-linear-gradient(top, #31a323 2%, #23811a 98%);
 	background-image: linear-gradient(to bottom,#31a323 2%, #23811a 98%);
-	-webkit-box-shadow: inset 0 1px 2px #51bd45, inset 0 0 1px #42a638, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 1px 2px #51bd45, inset 0 0 1px #42a638, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px #51bd45, inset 0 0 1px #42a638, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px #51bd45, inset 0 0 1px #42a638, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
 }
 
@@ -2955,8 +2955,8 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #ed473b;
 	background-image: -webkit-linear-gradient(top, #ef4f42 2%, #db3a2f 98%);
 	background-image: linear-gradient(to bottom,#ef4f42 2%, #db3a2f 98%);
-	-webkit-box-shadow: inset 0 1px 2px #f18880, inset 0 0 1px #ef645b, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 1px 2px #f18880, inset 0 0 1px #ef645b, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px #f18880, inset 0 0 1px #ef645b, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px #f18880, inset 0 0 1px #ef645b, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
 }
 
@@ -3246,8 +3246,8 @@ div.v-layout.v-horizontal.v-widget {
 	border: 1px solid #af7207;
 	-webkit-box-shadow: 0 0 3px 2px #efdb3f;
 	box-shadow: 0 0 3px 2px #efdb3f;
-	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 }
 
 :root .cia .v-checkbox > input ~ label:before, :root .cia .v-checkbox > input ~ label:after {
@@ -3280,8 +3280,8 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #F49F0A;
 	background-image: -webkit-linear-gradient(top, #f5aa0b 2%, #e38a07 98%);
 	background-image: linear-gradient(to bottom,#f5aa0b 2%, #e38a07 98%);
-	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
 	padding: 0;
 	height: 13px;
@@ -3376,8 +3376,8 @@ div.v-layout.v-horizontal.v-widget {
 	border: 1px solid #af7207;
 	-webkit-box-shadow: 0 0 3px 2px #efdb3f;
 	box-shadow: 0 0 3px 2px #efdb3f;
-	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 }
 
 :root .cia .v-checkbox-small > input ~ label:before, :root .cia .v-checkbox-small > input ~ label:after {
@@ -3410,8 +3410,8 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #F49F0A;
 	background-image: -webkit-linear-gradient(top, #f5aa0b 2%, #e38a07 98%);
 	background-image: linear-gradient(to bottom,#f5aa0b 2%, #e38a07 98%);
-	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
 	padding: 0;
 	height: 10px;
@@ -3506,8 +3506,8 @@ div.v-layout.v-horizontal.v-widget {
 	border: 1px solid #af7207;
 	-webkit-box-shadow: 0 0 3px 2px #efdb3f;
 	box-shadow: 0 0 3px 2px #efdb3f;
-	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 }
 
 :root .cia .v-checkbox-large > input ~ label:before, :root .cia .v-checkbox-large > input ~ label:after {
@@ -3540,8 +3540,8 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #F49F0A;
 	background-image: -webkit-linear-gradient(top, #f5aa0b 2%, #e38a07 98%);
 	background-image: linear-gradient(to bottom,#f5aa0b 2%, #e38a07 98%);
-	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
 	padding: 0;
 	height: 16px;
@@ -3633,8 +3633,8 @@ div.v-layout.v-horizontal.v-widget {
 	border: 1px solid #af7207;
 	background: #F49F0A;
 	color: #f0e1c6;
-	-webkit-box-shadow: inset 0 2px 2px #de940a, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 2px 2px #de940a, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 2px 2px #f6ad4f, $v-tint;
+	box-shadow: inset 0 2px 2px #f6ad4f, $v-tint;
 	-webkit-transition: box-shadow 180ms, border 180ms;
 	-moz-transition: box-shadow 180ms, border 180ms;
 	transition: box-shadow 180ms, border 180ms;
@@ -3660,8 +3660,8 @@ div.v-layout.v-horizontal.v-widget {
 	-webkit-transition: none;
 	-moz-transition: none;
 	transition: none;
-	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 2px 2px #de940a, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 3px 2px #efdb3f, inset 0 2px 2px #de940a, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 2px 2px #f6ad4f, $v-tint;
+	box-shadow: 0 0 3px 2px #efdb3f, inset 0 2px 2px #f6ad4f, $v-tint;
 	-webkit-box-shadow: 0 0 3px 2px #efdb3f;
 	box-shadow: 0 0 3px 2px #efdb3f;
 }
@@ -3803,8 +3803,8 @@ div.v-layout.v-horizontal.v-widget {
 	border-radius: 10px;
 	background-color: #F49F0A;
 	color: #f0e1c6;
-	-webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.2);
-	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4), 0 5px 10px rgba(255, 255, 255, 0.2);
+	box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4), 0 5px 10px rgba(255, 255, 255, 0.2);
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	-ms-backface-visibility: hidden;
@@ -3992,8 +3992,8 @@ div.v-layout.v-horizontal.v-widget {
 	background-image: -webkit-linear-gradient(top, #f5aa0b 2%, #e38a07 98%);
 	background-image: linear-gradient(to bottom,#f5aa0b 2%, #e38a07 98%);
 	cursor: inherit;
-	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	border: 1px solid #af7207;
 	border-top-color: #b07a07;
 	border-bottom-color: #a36305;
@@ -4007,8 +4007,8 @@ div.v-layout.v-horizontal.v-widget {
 	-webkit-transition: none;
 	-moz-transition: none;
 	transition: none;
-	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	-webkit-box-shadow: 0 0 3px 2px #efdb3f;
 	box-shadow: 0 0 3px 2px #efdb3f;
 }
@@ -4580,8 +4580,8 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-csslayout-well {
 	background: #e9980b;
 	color: #efe0c4;
-	-webkit-box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset 0 0 0 3px rgba(0, 0, 0, 0.32), inset 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset 0 0 0 3px rgba(0, 0, 0, 0.32), inset 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset inset 0 1px 2px rgba(255, 255, 255, 0.05), inset inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset inset 0 1px 2px rgba(255, 255, 255, 0.05), inset inset 0 0 1px rgba(255, 255, 255, 0.005);
 	border-radius: 10px;
 	border: 1px solid #af7207;
 }
@@ -4613,8 +4613,8 @@ div.v-layout.v-horizontal.v-widget {
 	color: #f0e1c6;
 	border-radius: 10px;
 	border: 1px solid #c47f08;
-	-webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 }
 
 .cia .v-csslayout-card  > .v-margin-top {
@@ -5618,8 +5618,8 @@ div.v-layout.v-horizontal.v-widget {
 	border: none;
 	border-radius: 0;
 	background: transparent;
-	-webkit-box-shadow: inset 0 2px 2px #de940a;
-	box-shadow: inset 0 2px 2px #de940a;
+	-webkit-box-shadow: inset 0 2px 2px #f6ad4f;
+	box-shadow: inset 0 2px 2px #f6ad4f;
 }
 
 .cia .v-grid-editor-cells > div input[type="text"].v-datefield-textfield {
@@ -5748,8 +5748,8 @@ div.v-layout.v-horizontal.v-widget {
 	border: 1px solid #af7207;
 	background: #F49F0A;
 	color: #f0e1c6;
-	-webkit-box-shadow: inset 0 2px 2px #de940a, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 2px 2px #de940a, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 2px 2px #f6ad4f, $v-tint;
+	box-shadow: inset 0 2px 2px #f6ad4f, $v-tint;
 	-webkit-transition: box-shadow 180ms, border 180ms;
 	-moz-transition: box-shadow 180ms, border 180ms;
 	transition: box-shadow 180ms, border 180ms;
@@ -5772,8 +5772,8 @@ div.v-layout.v-horizontal.v-widget {
 	-webkit-transition: none;
 	-moz-transition: none;
 	transition: none;
-	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 2px 2px #de940a, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 3px 2px #efdb3f, inset 0 2px 2px #de940a, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 2px 2px #f6ad4f, $v-tint;
+	box-shadow: 0 0 3px 2px #efdb3f, inset 0 2px 2px #f6ad4f, $v-tint;
 	-webkit-box-shadow: 0 0 3px 2px #efdb3f;
 	box-shadow: 0 0 3px 2px #efdb3f;
 }
@@ -6214,8 +6214,8 @@ div.v-layout.v-horizontal.v-widget {
 	border: 1px solid #af7207;
 	background: #F49F0A;
 	color: #f0e1c6;
-	-webkit-box-shadow: inset 0 2px 2px #de940a, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 2px 2px #de940a, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 2px 2px #f6ad4f, $v-tint;
+	box-shadow: inset 0 2px 2px #f6ad4f, $v-tint;
 	-webkit-transition: box-shadow 180ms, border 180ms;
 	-moz-transition: box-shadow 180ms, border 180ms;
 	transition: box-shadow 180ms, border 180ms;
@@ -6241,8 +6241,8 @@ div.v-layout.v-horizontal.v-widget {
 	-webkit-transition: none;
 	-moz-transition: none;
 	transition: none;
-	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 2px 2px #de940a, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 3px 2px #efdb3f, inset 0 2px 2px #de940a, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 2px 2px #f6ad4f, $v-tint;
+	box-shadow: 0 0 3px 2px #efdb3f, inset 0 2px 2px #f6ad4f, $v-tint;
 	-webkit-box-shadow: 0 0 3px 2px #efdb3f;
 	box-shadow: 0 0 3px 2px #efdb3f;
 }
@@ -6502,8 +6502,8 @@ div.v-layout.v-horizontal.v-widget {
 	border: 1px solid #af7207;
 	background: #F49F0A;
 	color: #f0e1c6;
-	-webkit-box-shadow: inset 0 2px 2px #de940a, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 2px 2px #de940a, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 2px 2px #f6ad4f, $v-tint;
+	box-shadow: inset 0 2px 2px #f6ad4f, $v-tint;
 	-webkit-transition: box-shadow 180ms, border 180ms;
 	-moz-transition: box-shadow 180ms, border 180ms;
 	transition: box-shadow 180ms, border 180ms;
@@ -6529,8 +6529,8 @@ div.v-layout.v-horizontal.v-widget {
 	-webkit-transition: none;
 	-moz-transition: none;
 	transition: none;
-	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 2px 2px #de940a, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 3px 2px #efdb3f, inset 0 2px 2px #de940a, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 2px 2px #f6ad4f, $v-tint;
+	box-shadow: 0 0 3px 2px #efdb3f, inset 0 2px 2px #f6ad4f, $v-tint;
 	-webkit-box-shadow: 0 0 3px 2px #efdb3f;
 	box-shadow: 0 0 3px 2px #efdb3f;
 }
@@ -6657,8 +6657,8 @@ div.v-layout.v-horizontal.v-widget {
 	border-radius: 10px;
 	background-color: #F49F0A;
 	color: #f0e1c6;
-	-webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.2);
-	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4), 0 5px 10px rgba(255, 255, 255, 0.2);
+	box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4), 0 5px 10px rgba(255, 255, 255, 0.2);
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	-ms-backface-visibility: hidden;
@@ -7821,8 +7821,8 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #F49F0A;
 	background-image: -webkit-linear-gradient(top, #f5aa0b 2%, #e38a07 98%);
 	background-image: linear-gradient(to bottom,#f5aa0b 2%, #e38a07 98%);
-	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
 	padding: 0;
 	text-align: left;
@@ -8036,8 +8036,8 @@ div.v-layout.v-horizontal.v-widget {
 	border-radius: 10px;
 	background-color: #F49F0A;
 	color: #f0e1c6;
-	-webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.2);
-	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4), 0 5px 10px rgba(255, 255, 255, 0.2);
+	box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4), 0 5px 10px rgba(255, 255, 255, 0.2);
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	-ms-backface-visibility: hidden;
@@ -8270,8 +8270,8 @@ div.v-layout.v-horizontal.v-widget {
 	border: 1px solid #af7207;
 	-webkit-box-shadow: 0 0 3px 2px #efdb3f;
 	box-shadow: 0 0 3px 2px #efdb3f;
-	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 }
 
 :root .cia .v-radiobutton > input ~ label:before, :root .cia .v-radiobutton > input ~ label:after {
@@ -8304,8 +8304,8 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #F49F0A;
 	background-image: -webkit-linear-gradient(top, #f5aa0b 2%, #e38a07 98%);
 	background-image: linear-gradient(to bottom,#f5aa0b 2%, #e38a07 98%);
-	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
 	padding: 0;
 	height: 13px;
@@ -8433,8 +8433,8 @@ div.v-layout.v-horizontal.v-widget {
 	border: 1px solid #af7207;
 	-webkit-box-shadow: 0 0 3px 2px #efdb3f;
 	box-shadow: 0 0 3px 2px #efdb3f;
-	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 }
 
 :root .cia .v-select-optiongroup-small .v-checkbox > input ~ label:before, :root .cia .v-select-optiongroup-small .v-checkbox > input ~ label:after {
@@ -8467,8 +8467,8 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #F49F0A;
 	background-image: -webkit-linear-gradient(top, #f5aa0b 2%, #e38a07 98%);
 	background-image: linear-gradient(to bottom,#f5aa0b 2%, #e38a07 98%);
-	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
 	padding: 0;
 	height: 10px;
@@ -8562,8 +8562,8 @@ div.v-layout.v-horizontal.v-widget {
 	border: 1px solid #af7207;
 	-webkit-box-shadow: 0 0 3px 2px #efdb3f;
 	box-shadow: 0 0 3px 2px #efdb3f;
-	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 }
 
 :root .cia .v-select-optiongroup-small .v-radiobutton > input ~ label:before, :root .cia .v-select-optiongroup-small .v-radiobutton > input ~ label:after {
@@ -8596,8 +8596,8 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #F49F0A;
 	background-image: -webkit-linear-gradient(top, #f5aa0b 2%, #e38a07 98%);
 	background-image: linear-gradient(to bottom,#f5aa0b 2%, #e38a07 98%);
-	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
 	padding: 0;
 	height: 10px;
@@ -8725,8 +8725,8 @@ div.v-layout.v-horizontal.v-widget {
 	border: 1px solid #af7207;
 	-webkit-box-shadow: 0 0 3px 2px #efdb3f;
 	box-shadow: 0 0 3px 2px #efdb3f;
-	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 }
 
 :root .cia .v-select-optiongroup-large .v-checkbox > input ~ label:before, :root .cia .v-select-optiongroup-large .v-checkbox > input ~ label:after {
@@ -8759,8 +8759,8 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #F49F0A;
 	background-image: -webkit-linear-gradient(top, #f5aa0b 2%, #e38a07 98%);
 	background-image: linear-gradient(to bottom,#f5aa0b 2%, #e38a07 98%);
-	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
 	padding: 0;
 	height: 16px;
@@ -8854,8 +8854,8 @@ div.v-layout.v-horizontal.v-widget {
 	border: 1px solid #af7207;
 	-webkit-box-shadow: 0 0 3px 2px #efdb3f;
 	box-shadow: 0 0 3px 2px #efdb3f;
-	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: 0 0 3px 2px #efdb3f, inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 }
 
 :root .cia .v-select-optiongroup-large .v-radiobutton > input ~ label:before, :root .cia .v-select-optiongroup-large .v-radiobutton > input ~ label:after {
@@ -8888,8 +8888,8 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #F49F0A;
 	background-image: -webkit-linear-gradient(top, #f5aa0b 2%, #e38a07 98%);
 	background-image: linear-gradient(to bottom,#f5aa0b 2%, #e38a07 98%);
-	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
 	padding: 0;
 	height: 16px;
@@ -9040,14 +9040,14 @@ div.v-layout.v-horizontal.v-widget {
 	border-radius: 10px;
 	background-color: #F49F0A;
 	color: #f0e1c6;
-	-webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.2);
-	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4), 0 5px 10px rgba(255, 255, 255, 0.2);
+	box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4), 0 5px 10px rgba(255, 255, 255, 0.2);
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	-ms-backface-visibility: hidden;
 	backface-visibility: hidden;
-	-webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1), 0 16px 80px -6px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.2);
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1), 0 16px 80px -6px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1), 0 16px 80px -6px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(255, 255, 255, 0.2);
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1), 0 16px 80px -6px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(255, 255, 255, 0.2);
 	padding: 0;
 	min-width: 104px !important;
 	min-height: 26px !important;
@@ -10645,8 +10645,8 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #F49F0A;
 	background-image: -webkit-linear-gradient(top, #f5aa0b 2%, #e38a07 98%);
 	background-image: linear-gradient(to bottom,#f5aa0b 2%, #e38a07 98%);
-	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px #f6b450, inset 0 0 1px #f5ab29, inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
 }
 
@@ -11318,8 +11318,8 @@ div.v-layout.v-horizontal.v-widget {
 	color: #f0e1c6;
 	border-radius: 10px;
 	border: 1px solid #c47f08;
-	-webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	overflow: visible !important;
 }
 
@@ -11388,8 +11388,8 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-panel-well {
 	background: #e9980b;
 	color: #efe0c4;
-	-webkit-box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset 0 0 0 3px rgba(0, 0, 0, 0.32), inset 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset 0 0 0 3px rgba(0, 0, 0, 0.32), inset 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset inset 0 1px 2px rgba(255, 255, 255, 0.05), inset inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset inset 0 1px 2px rgba(255, 255, 255, 0.05), inset inset 0 0 1px rgba(255, 255, 255, 0.005);
 	border-radius: 10px;
 	border: 1px solid #af7207;
 }
@@ -11445,8 +11445,8 @@ div.v-layout.v-horizontal.v-widget {
 	color: #f0e1c6;
 	border-radius: 10px;
 	border: 1px solid #c47f08;
-	-webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	background-color: #F49F0A;
 	background-image: -webkit-linear-gradient(top, #f4a40a 2%, #eb9408 98%);
 	background-image: linear-gradient(to bottom,#f4a40a 2%, #eb9408 98%);
@@ -12451,8 +12451,8 @@ div.v-layout.v-horizontal.v-widget {
 	border-radius: 10px;
 	background-color: #F49F0A;
 	color: #f0e1c6;
-	-webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.2);
-	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4), 0 5px 10px rgba(255, 255, 255, 0.2);
+	box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4), 0 5px 10px rgba(255, 255, 255, 0.2);
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	-ms-backface-visibility: hidden;
@@ -12537,8 +12537,8 @@ div.v-layout.v-horizontal.v-widget {
 	border: 1px solid #af7207;
 	background: #F49F0A;
 	color: #f0e1c6;
-	-webkit-box-shadow: inset 0 2px 2px #de940a, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: inset 0 2px 2px #de940a, 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 2px 2px #f6ad4f, $v-tint;
+	box-shadow: inset 0 2px 2px #f6ad4f, $v-tint;
 	-webkit-transition: box-shadow 180ms, border 180ms;
 	-moz-transition: box-shadow 180ms, border 180ms;
 	transition: box-shadow 180ms, border 180ms;
@@ -13135,8 +13135,8 @@ div.v-layout.v-horizontal.v-widget {
 	padding: 9px 13px;
 	font-size: 11px;
 	border-bottom: 1px solid #ac9d2d;
-	-webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	text-align: center;
 }
 
@@ -13248,7 +13248,7 @@ div.v-layout.v-horizontal.v-widget {
 	width: 39px;
 	height: 39px;
 	border-radius: 21px;
-	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 	display: block;
 	margin: 0 auto 0.3em;
 	border: 1px solid #af7207;
@@ -13384,7 +13384,7 @@ div.v-layout.v-horizontal.v-widget {
 	overflow: hidden;
 	background: #2a2401;
 	font-size: 10px;
-	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 }
 
 .cia .valo-menu-part.large-icons [class*="subtitle"] [class*="badge"] {
@@ -13459,8 +13459,8 @@ div.v-layout.v-horizontal.v-widget {
 	font-size: 17px;
 	line-height: 31px;
 	margin: 13px auto;
-	-webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
-	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	-webkit-box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
+	box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 }
 
 .cia .valo-menu-logo:focus {
@@ -13501,7 +13501,7 @@ div.v-layout.v-horizontal.v-widget {
 	overflow: hidden;
 	background: #2a2401;
 	font-size: 10px;
-	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), inset 0 0 1px rgba(255, 255, 255, 0.005);
 }
 
 .cia .valo-menu-responsive[width-range~="801px-1100px"] .valo-menu-part [class*="subtitle"] [class*="badge"] {
@@ -13891,7 +13891,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .gantt .bar {
 	height: 26px;
 	border-radius: 10px;
-	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.32), 0 1px 0 3px rgba(255, 255, 255, 0.14);
+	box-shadow: inset 0 1px 2px v-tint, inset 0 0 1px v-tint 0.1;
 	color: #FFFFFF;
 }
 

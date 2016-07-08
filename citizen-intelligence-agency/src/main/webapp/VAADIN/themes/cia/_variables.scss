@@ -12,15 +12,16 @@ $v-focus-color: #efdb3f;
 $v-component-group-spacing: 6px;
 
 $v-focus-style: 0 0 3px 2px $v-focus-color;
-$v-overlay-shadow: 0 0 0 3px (v-shade 8), 0 5px 10px (v-shade 4);
+$v-overlay-shadow: 0 0 0 3px (v-tint 8), 0 5px 10px (v-tint 4);
 
-$v-gradient: v-linear 12%;
 $v-border-radius: 10px;
 
 $v-bevel-depth: 40%;
 $v-bevel: inset 0 1px 2px v-tint, inset 0 0 1px (v-tint 0.1);
 
-$v-shadow: 0 0 0 3px rgba(0,0,0,0.32), 0 1px 0 3px rgba(255,255,255,0.14);
+$v-gradient: v-linear 12%;
+
+$v-shadow: inset 0 1px 2px v-tint, inset 0 0 1px (v-tint 0.1);
 
 $v-window-modality-curtain-background-color: $v-background-color;
 $v-panel-background-color: $v-background-color;
@@ -35,8 +36,8 @@ $v-selection-overlay-background-color: $v-background-color;
 $v-selection-item-selection-color: $v-selection-color;
 
 
-$v-textfield-shadow: $v-shadow;
-$v-textfield-bevel: inset 0 2px 2px v-shade;
+$v-textfield-shadow: $v-tint;
+$v-textfield-bevel: inset 0 2px 2px v-tint;
 
 $v-font-size: 12px;
 $v-unit-size: 26px;
