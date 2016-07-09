@@ -34,8 +34,11 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.data.util.BeanItem;
+import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -89,24 +92,39 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 					.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 							DocumentData.class, DocumentData_.id, pageId);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(OVERVIEW));
-			getFormFactory().addTextFields(panelContent, new BeanItem<>(documentElement), DocumentElement.class,
+			Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
+			panelContent.addComponent(createHeader2Label);
+		
+			final Panel formPanel = new Panel();
+			formPanel.setSizeFull();
+
+			panelContent.addComponent(formPanel);
+
+			final FormLayout formContent = new FormLayout();
+			formPanel.setContent(formContent);
+
+			getFormFactory().addTextFields(formContent, new BeanItem<>(documentElement), DocumentElement.class,
 					Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status", "title",
 							"subTitle", "madePublicDate", "createdDate", "systemDate", "relatedId", "label",
 							"tempLabel", "numberValue", "kallId", "documentFormat" }));
 
+			
 			if (documentStatusContainer != null) {
-				getFormFactory().addTextFields(panelContent, new BeanItem<>(documentStatusContainer),
+				getFormFactory().addTextFields(formContent, new BeanItem<>(documentStatusContainer),
 						DocumentStatusContainer.class, Arrays.asList(new String[] { "documentCategory" }));
 
 				getFormFactory()
-						.addTextFields(panelContent, new BeanItem<>(documentStatusContainer.getDocument()),
+						.addTextFields(formContent, new BeanItem<>(documentStatusContainer.getDocument()),
 								DocumentData.class,
 								Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status",
 										"title", "subTitle", "madePublicDate", "label", "tempLabel", "numberValue",
 										"hangarId", }));
 			}
 
+			panelContent.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
+			panelContent.setExpandRatio(formPanel, ContentRatio.LARGE);
+
+			
 			panel.setContent(panelContent);
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);

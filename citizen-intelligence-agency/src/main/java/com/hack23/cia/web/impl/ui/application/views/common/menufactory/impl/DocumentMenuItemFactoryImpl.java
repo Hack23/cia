@@ -35,6 +35,9 @@ import com.vaadin.ui.MenuBar.MenuItem;
 public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements DocumentMenuItemFactory {
 
 
+	/** The Constant DOCUMENT_ATTACHEMENTS. */
+	private static final String DOCUMENT_ATTACHEMENTS = "Document Attachements";
+
 	/** The Constant DOCUMENT_DATA. */
 	private static final String DOCUMENT_DATA = "Document data";
 
@@ -109,6 +112,10 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 			documentItem.addItem(DOCUMENT_DECISION, null, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 					DocumentPageMode.DOCUMENTDECISION.toString(), pageId));
+			
+			documentItem.addItem(DOCUMENT_ATTACHEMENTS, null, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+					DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId));
+			
 
 			menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
 					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));

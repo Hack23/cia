@@ -35,6 +35,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFac
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -93,12 +94,21 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 
 			if (!documentContentlist.isEmpty()) {
 
+				final Panel formPanel = new Panel();
+				formPanel.setSizeFull();
+
+				panelContent.addComponent(formPanel);
+
+				final FormLayout formContent = new FormLayout();
+				formPanel.setContent(formContent);
+
 				final Label htmlContent = new Label(documentContentlist.get(0).getContent(), ContentMode.HTML);
 
-				panelContent.addComponent(htmlContent);
+			
+				formContent.addComponent(htmlContent);
 	
 				panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
-				panelContent.setExpandRatio(htmlContent, ContentRatio.GRID);
+				panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
 
 			}
 
