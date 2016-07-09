@@ -27,6 +27,7 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.ExternalResource;
@@ -94,6 +95,23 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
+	@Override
+	public Link createRegisterPageLink() {
+		final Link pageLink = new Link("Register", new ExternalResource(
+				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + LINK_SEPARATOR + ApplicationPageMode.REGISTER.toString()));
+		pageLink.setId(ViewAction.VISIT_REGISTER.name());
+		return pageLink;
+	}
+
+	@Override
+	public Link createLoginPageLink() {
+		final Link pageLink = new Link("Login", new ExternalResource(
+				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + LINK_SEPARATOR + ApplicationPageMode.LOGIN.toString()));
+		pageLink.setId(ViewAction.VISIT_LOGIN.name());
+		return pageLink;
+	}
+
+	
 	@Override
 	public Link createTestChartViewPageLink() {
 		final Link pageLink = new Link(TEST_CHART_VIEW_LINK_TEXT,

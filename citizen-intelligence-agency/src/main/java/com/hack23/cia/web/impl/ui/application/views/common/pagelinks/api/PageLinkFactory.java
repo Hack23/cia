@@ -143,4 +143,18 @@ public interface PageLinkFactory {
 	 */
 	Link createSearchDocumentViewPageLink();
 
+	/**
+	 * Creates a new PageLink object.
+	 *
+	 * @return the link
+	 */
+	Link createRegisterPageLink();
+
+	/**
+	 * Creates a new PageLink object.
+	 *
+	 * @return the link
+	 */
+	Link createLoginPageLink();
+
 }
