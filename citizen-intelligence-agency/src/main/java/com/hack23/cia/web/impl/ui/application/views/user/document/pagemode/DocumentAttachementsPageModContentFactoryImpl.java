@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -33,6 +35,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl.ExternalAttachmentDownloadLink;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.vaadin.data.util.BeanItemContainer;
@@ -108,6 +111,16 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 				panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
 				panelContent.setExpandRatio(documentAttachmentDataItemGrid, ContentRatio.GRID);
 
+				List<DocumentAttachment> documentAttachmentList = documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList();
+		
+				VerticalLayout verticalLayout = new VerticalLayout();
+				panelContent.addComponent(verticalLayout);
+				panelContent.setExpandRatio(verticalLayout,ContentRatio.SMALL);
+				
+				for (DocumentAttachment documentAttachment : documentAttachmentList) {
+					ExternalAttachmentDownloadLink link = new ExternalAttachmentDownloadLink(documentAttachment.getFileName(), documentAttachment.getFileType(), documentAttachment.getFileUrl());
+					verticalLayout.addComponent(link);
+				}
 			}
 
 			panel.setContent(panelContent);
