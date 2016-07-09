@@ -34,6 +34,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
@@ -107,7 +108,16 @@ public final class AdminLanguageContentPageModContentFactoryImpl extends Abstrac
 			final LanguageContentData languageContentData = dataContainer.load(Long.valueOf(pageId));
 
 			if (languageContentData != null) {
-				getFormFactory().addTextFields(content, new BeanItem<>(languageContentData), LanguageContentData.class,
+				
+				final Panel formPanel = new Panel();
+				formPanel.setSizeFull();
+
+				content.addComponent(formPanel);
+
+				final FormLayout formContent = new FormLayout();
+				formPanel.setContent(formContent);
+
+				getFormFactory().addTextFields(formContent, new BeanItem<>(languageContentData), LanguageContentData.class,
 						Arrays.asList(new String[] { "hjid", "refKey", "fromLanguage", "toLanguage", "createdDate",
 								"languageValue", "modelObjectVersion" }));
 			}

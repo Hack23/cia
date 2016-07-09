@@ -23,7 +23,7 @@ import java.util.List;
 
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Layout;
+import com.vaadin.ui.FormLayout;
 
 /**
  * A factory for creating Form objects.
@@ -44,7 +44,7 @@ public interface FormFactory {
 	 * @param displayProperties
 	 *            the display properties
 	 */
-	<T extends Serializable> void addTextFields(Layout panelContent, BeanItem<T> item, Class<T> beanType, List<String> displayProperties);
+	<T extends Serializable> void addTextFields(FormLayout panelContent, BeanItem<T> item, Class<T> beanType, List<String> displayProperties);
 
 	/**
 	 * Adds the request input form fields.
@@ -64,7 +64,7 @@ public interface FormFactory {
 	 * @param buttonListener
 	 *            the button listener
 	 */
-	<T extends Serializable> void addRequestInputFormFields(Layout panelContent, BeanItem<T> item, Class<T> beanType, List<String> displayProperties,String buttonLabel,ClickListener buttonListener);
+	<T extends Serializable> void addRequestInputFormFields(FormLayout panelContent, BeanItem<T> item, Class<T> beanType, List<String> displayProperties,String buttonLabel,ClickListener buttonListener);
 
 
 }

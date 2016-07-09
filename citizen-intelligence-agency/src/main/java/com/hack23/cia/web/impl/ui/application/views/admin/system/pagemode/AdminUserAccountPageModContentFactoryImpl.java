@@ -34,6 +34,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
@@ -106,8 +107,17 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 			final UserAccount userAccount = dataContainer.load(Long.valueOf(pageId));
 
 			if (userAccount != null) {
+				
+				final Panel formPanel = new Panel();
+				formPanel.setSizeFull();
+
+				content.addComponent(formPanel);
+
+				final FormLayout formContent = new FormLayout();
+				formPanel.setContent(formContent);
+
 				getFormFactory()
-						.addTextFields(content, new BeanItem<>(userAccount), UserAccount.class,
+						.addTextFields(formContent, new BeanItem<>(userAccount), UserAccount.class,
 								Arrays.asList(new String[] { "hjid", "modelObjectId", "modelObjectVersion", "userId",
 										"username", "createdDate", "userpassword", "email", "country",
 										"numberOfVisits" }));

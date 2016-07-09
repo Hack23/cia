@@ -33,6 +33,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsView
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RegisterUserClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -75,6 +76,14 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractPag
 		final VerticalLayout registerLayout = new VerticalLayout();
 		registerLayout.setSizeFull();
 
+		final Panel formPanel = new Panel();
+		formPanel.setSizeFull();
+
+		registerLayout.addComponent(formPanel);
+
+		final FormLayout formContent = new FormLayout();
+		formPanel.setContent(formContent);
+		
 		final RegisterUserRequest reqisterRequest = new RegisterUserRequest();
 		reqisterRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 		reqisterRequest.setUsername("");
@@ -82,7 +91,7 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractPag
 		reqisterRequest.setCountry("");
 		reqisterRequest.setUserpassword("");
 		final ClickListener reqisterListener = new RegisterUserClickListener(reqisterRequest, getApplicationManager());
-		getFormFactory().addRequestInputFormFields(registerLayout, new BeanItem<>(reqisterRequest),
+		getFormFactory().addRequestInputFormFields(formContent, new BeanItem<>(reqisterRequest),
 				RegisterUserRequest.class,
 				Arrays.asList(new String[] { "username", "email", "country", "userpassword" }), "Register",
 				reqisterListener);

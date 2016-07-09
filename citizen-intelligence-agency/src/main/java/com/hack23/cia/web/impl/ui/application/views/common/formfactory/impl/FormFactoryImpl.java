@@ -32,11 +32,13 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.CommitFormWrapperClickListener;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.util.BeanItem;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Field;
-import com.vaadin.ui.Layout;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.PasswordField;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class FormFactoryImpl.
@@ -54,7 +56,7 @@ public final class FormFactoryImpl implements FormFactory {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FormFactoryImpl.class);
 
 	@Override
-	public <T extends Serializable> void addTextFields(final Layout panelContent, final BeanItem<T> item, final Class<T> beanType,
+	public <T extends Serializable> void addTextFields(final FormLayout panelContent, final BeanItem<T> item, final Class<T> beanType,
 			final List<String> displayProperties) {
 
 		final BeanFieldGroup<T> fieldGroup = new BeanFieldGroup<>(beanType);
@@ -75,7 +77,7 @@ public final class FormFactoryImpl implements FormFactory {
 	}
 
 	@Override
-	public <T extends Serializable> void addRequestInputFormFields(final Layout panelContent, final BeanItem<T> item,
+	public <T extends Serializable> void addRequestInputFormFields(final FormLayout panelContent, final BeanItem<T> item,
 			final Class<T> beanType, final List<String> displayProperties,final String buttonLabel,final ClickListener buttonListener) {
 		final BeanFieldGroup<T> fieldGroup = new BeanFieldGroup<>(beanType);
 		fieldGroup.setItemDataSource(item);
@@ -101,11 +103,17 @@ public final class FormFactoryImpl implements FormFactory {
 			LOGGER.debug(LOG_MSG_PROPERTY, property);
 		}
 
+		VerticalLayout verticalLayout = new VerticalLayout();
+		verticalLayout.setWidth("50%");
 
 		final Button button = new Button(buttonLabel,new CommitFormWrapperClickListener(fieldGroup,buttonListener));
 		button.setId(buttonLabel);
-		panelContent.addComponent(button);
-
+		button.setWidth("25%");
+		
+		verticalLayout.addComponent(button);		
+		verticalLayout.setComponentAlignment(button, Alignment.MIDDLE_RIGHT);
+		
+		panelContent.addComponent(verticalLayout);
 	}
 
 

@@ -36,6 +36,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
@@ -118,7 +119,15 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 
 			if (agency != null) {
 
-				getFormFactory().addTextFields(leftLayout, new BeanItem<>(agency), Agency.class,
+				final Panel formPanel = new Panel();
+				formPanel.setSizeFull();
+
+				leftLayout.addComponent(formPanel);
+
+				final FormLayout formContent = new FormLayout();
+				formPanel.setContent(formContent);
+
+				getFormFactory().addTextFields(formContent, new BeanItem<>(agency), Agency.class,
 						Arrays.asList(new String[] { "hjid", "agencyName", "description", "modelObjectVersion" }));
 
 				final BeanItemContainer<Portal> portalItemContainer = new BeanItemContainer<>(Portal.class,

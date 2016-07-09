@@ -36,6 +36,7 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocu
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -82,6 +83,14 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractPageM
 		final VerticalLayout searchresultLayout = new VerticalLayout();
 		searchresultLayout.setSizeFull();
 
+		final Panel formPanel = new Panel();
+		formPanel.setSizeFull();
+
+		searchresultLayout.addComponent(formPanel);
+
+		final FormLayout formContent = new FormLayout();
+		formPanel.setContent(formContent);
+
 		panelContent.addComponent(searchresultLayout);
 
 		final SearchDocumentRequest searchRequest = new SearchDocumentRequest();
@@ -114,7 +123,7 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractPageM
 		};
 		final ClickListener searchListener = new SearchDocumentClickListener(searchRequest, getApplicationManager(),
 				handler);
-		getFormFactory().addRequestInputFormFields(searchLayout, new BeanItem<>(searchRequest), SearchDocumentRequest.class,
+		getFormFactory().addRequestInputFormFields(formContent, new BeanItem<>(searchRequest), SearchDocumentRequest.class,
 				Arrays.asList(new String[] { "searchExpression" }), "Search", searchListener);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,

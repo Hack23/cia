@@ -39,6 +39,7 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.UpdateAppl
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
@@ -126,8 +127,17 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 				content.addComponent(horizontalLayout);
 				horizontalLayout.addComponent(leftLayout);
 				horizontalLayout.addComponent(rightLayout);
+				
+				final Panel formPanel = new Panel();
+				formPanel.setSizeFull();
 
-				getFormFactory().addTextFields(leftLayout, new BeanItem<>(applicationConfiguration),
+				leftLayout.addComponent(formPanel);
+
+				final FormLayout formContent = new FormLayout();
+				formPanel.setContent(formContent);
+
+
+				getFormFactory().addTextFields(formContent, new BeanItem<>(applicationConfiguration),
 						ApplicationConfiguration.class,
 						Arrays.asList(new String[] { "hjid", "configTitle", "configDescription", "component",
 								"componentTitle", "componentDescription", "propertyId", "propertyValue", "createdDate",
@@ -147,7 +157,16 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 
 				final ClickListener buttonListener = new UpdateApplicationConfigurationClickListener(request,
 						getApplicationManager());
-				getFormFactory().addRequestInputFormFields(rightLayout, new BeanItem<>(request),
+				
+				final Panel updateFormPanel = new Panel();
+				formPanel.setSizeFull();
+
+				rightLayout.addComponent(updateFormPanel);
+
+				final FormLayout updateFormContent = new FormLayout();
+				updateFormPanel.setContent(updateFormContent);
+
+				getFormFactory().addRequestInputFormFields(updateFormContent, new BeanItem<>(request),
 						UpdateApplicationConfigurationRequest.class, Arrays.asList(new String[] { "configTitle",
 								"configDescription", "componentTitle", "componentDescription", "propertyValue" }),
 						"Update Configuration", buttonListener);
