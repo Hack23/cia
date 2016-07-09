@@ -995,6 +995,12 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
+	/**
+	 * Site ballot chart test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public void siteBallotChartTest() throws Exception {
 		final WebDriver driver = getWebDriver();
@@ -1003,6 +1009,45 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME,PageMode.CHARTS,"A411DA4A-430F-408A-99BE-3539E0E2D82A"));
+
+		//assertTrue(userPageVisit.checkHtmlBodyContainsText("Ballot"));
+
+	}
+
+
+	/**
+	 * Site ballot overview multiple votes test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteBallotOverviewMultipleVotesTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME,"A1A613C2-D942-4D5D-AC29-4AE3C4B57486"));
+
+		//assertTrue(userPageVisit.checkHtmlBodyContainsText("Ballot"));
+
+	}
+
+	/**
+	 * Site ballot chart multiple votes test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteBallotChartMultipleVotesTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME,PageMode.CHARTS,"A1A613C2-D942-4D5D-AC29-4AE3C4B57486"));
 
 		//assertTrue(userPageVisit.checkHtmlBodyContainsText("Ballot"));
 

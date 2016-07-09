@@ -178,6 +178,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 */
 	protected final void initApplicationMenuBar(final MenuBar menuBar) {
 		menuBar.removeItems();
+		menuBar.setWidth("50%");
 		final MenuItem mainViewItem = menuBar.addItem("Application", null, null);
 
 		mainViewItem.addItem(START_TEXT, null, COMMAND);

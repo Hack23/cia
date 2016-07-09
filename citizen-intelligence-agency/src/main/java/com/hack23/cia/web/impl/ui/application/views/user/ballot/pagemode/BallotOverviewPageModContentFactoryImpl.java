@@ -67,7 +67,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
-	
+
 	/**
 	 * Instantiates a new ballot overview page mod content factory impl.
 	 */
@@ -89,36 +89,37 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 		final String pageId = getPageId(parameters);
 
-
 		final DataContainer<ViewRiksdagenVoteDataBallotSummary, RiksdagenVoteDataBallotEmbeddedId> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenVoteDataBallotSummary.class);
 
 		final DataContainer<ViewRiksdagenVoteDataBallotPartySummary, RiksdagenVoteDataBallotPartyEmbeddedId> dataPartyContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenVoteDataBallotPartySummary.class);
 
-
 		final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId> dataDecisionContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
 
-		
-		final List<ViewRiksdagenVoteDataBallotSummary> ballots = dataContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotSummary.class, ViewRiksdagenVoteDataBallotSummary_.embeddedId, RiksdagenVoteDataBallotEmbeddedId.class, RiksdagenVoteDataBallotEmbeddedId_.ballotId, pageId);
+		final List<ViewRiksdagenVoteDataBallotSummary> ballots = dataContainer.findListByEmbeddedProperty(
+				ViewRiksdagenVoteDataBallotSummary.class, ViewRiksdagenVoteDataBallotSummary_.embeddedId,
+				RiksdagenVoteDataBallotEmbeddedId.class, RiksdagenVoteDataBallotEmbeddedId_.ballotId, pageId);
 
-		List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList = dataPartyContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotPartySummary.class, ViewRiksdagenVoteDataBallotPartySummary_.embeddedId, RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.ballotId, pageId);
+		List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList = dataPartyContainer.findListByEmbeddedProperty(
+				ViewRiksdagenVoteDataBallotPartySummary.class, ViewRiksdagenVoteDataBallotPartySummary_.embeddedId,
+				RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.ballotId, pageId);
 
-		List<ViewRiksdagenCommitteeBallotDecisionSummary> decisionSummaries = dataDecisionContainer.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.ballotId, pageId);
-		
-		
+		List<ViewRiksdagenCommitteeBallotDecisionSummary> decisionSummaries = dataDecisionContainer
+				.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.ballotId, pageId);
+
 		if (!ballots.isEmpty()) {
 			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);
 
-			final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary = ballots.get(FIRST_OBJECT);
-						
-				final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
-				panelContent.addComponent(createHeader2Label);
+			final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
+			panelContent.addComponent(createHeader2Label);
+			panelContent.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
 
-				
+			for (ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
+
 				if (!decisionSummaries.isEmpty()) {
-					
+
 					final Panel formPanel = new Panel();
 					formPanel.setSizeFull();
 
@@ -129,75 +130,61 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 					getFormFactory().addTextFields(formContent, new BeanItem<>(decisionSummaries.get(FIRST_OBJECT)),
 							ViewRiksdagenCommitteeBallotDecisionSummary.class,
-							Arrays.asList(new String[] { "embeddedId.id","ballotId","rm","voteDate",
-									"org","committeeReport","embeddedId.issue",								    								    
-								    "title",
-								    "subTitle",
-								    "decisionType",
-								    "embeddedId.concern",
-								    "ballotType",
-								    "winner",
-								    "totalVotes",
-								    "yesVotes",
-								    "noVotes",
-								    "abstainVotes",
-								    "absentVotes",
-								    "approved",
-								    "endNumber",								    
-								    "againstProposalParties",
-								    "againstProposalNumber"}));
-										
-					panelContent.setExpandRatio(formPanel, ContentRatio.GRID);				
+							Arrays.asList(new String[] { "embeddedId.id", "ballotId", "rm", "voteDate", "org",
+									"committeeReport", "embeddedId.issue", "title", "subTitle", "decisionType",
+									"embeddedId.concern", "ballotType", "winner", "totalVotes", "yesVotes", "noVotes",
+									"abstainVotes", "absentVotes", "approved", "endNumber", "againstProposalParties",
+									"againstProposalNumber" }));
+
+					panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
 				} else {
-								
+
 					final Panel formPanel = new Panel();
 					formPanel.setSizeFull();
-	
+
 					panelContent.addComponent(formPanel);
-	
+
 					final FormLayout formContent = new FormLayout();
 					formPanel.setContent(formContent);
-	
+
 					getFormFactory().addTextFields(formContent, new BeanItem<>(viewRiksdagenVoteDataBallotSummary),
 							ViewRiksdagenVoteDataBallotSummary.class,
-							Arrays.asList(new String[] { "embeddedId.ballotId","rm","voteDate", "embeddedId.issue","embeddedId.concern",
-								    "ballotType",  "label","totalVotes",
-								    "yesVotes",
-								    "noVotes",
-								    "abstainVotes",
-								    "absentVotes",
-								    "approved"}));
-					
-					
+							Arrays.asList(new String[] { "embeddedId.ballotId", "rm", "voteDate", "embeddedId.issue",
+									"embeddedId.concern", "ballotType", "label", "totalVotes", "yesVotes", "noVotes",
+									"abstainVotes", "absentVotes", "approved" }));
+
 					panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
 				}
-				
-				panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
 
-				final BeanItemContainer<ViewRiksdagenVoteDataBallotPartySummary> partyBallotDataSource = new BeanItemContainer<>(
-						ViewRiksdagenVoteDataBallotPartySummary.class,
-						partyBallotList);
+			}
+			
 
-				
-				final Grid partynBallotsBeanItemGrid = getGridFactory().createBasicBeanItemNestedPropertiesGrid(partyBallotDataSource,
-						"Party Ballot Summary", 
-						new String[] { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue", "embeddedId.party" },
-						new String[] { "embeddedId.party","voteDate", "rm", "label", "embeddedId.concern", "embeddedId.issue",	"approved", "partyApproved", "totalVotes",
-								"partyTotalVotes", "yesVotes", "partyYesVotes", "noVotes", "partyNoVotes",
-								"partyAbstainVotes", "abstainVotes", "partyAbsentVotes", "absentVotes",
-								"partyAvgBornYear", "avgBornYear", "partyPercentageMale",
-								"percentageMale", "ballotType", "embeddedId.ballotId" },
-						new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
-								"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
-								"percentageAbsent", "percentageAbstain","voteDate", "rm", "label", "embeddedId.concern", "embeddedId.issue" ,"totalVotes","approved","yesVotes", "noVotes","ballotType","abstainVotes","absentVotes","embeddedId.ballotId","noWinner"},
-						null, new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "embeddedId.party"), "embeddedId.party");
+			final BeanItemContainer<ViewRiksdagenVoteDataBallotPartySummary> partyBallotDataSource = new BeanItemContainer<>(
+					ViewRiksdagenVoteDataBallotPartySummary.class, partyBallotList);
 
-				panelContent.addComponent(partynBallotsBeanItemGrid);
-				panelContent.setExpandRatio(partynBallotsBeanItemGrid, ContentRatio.GRID);
+			final Grid partynBallotsBeanItemGrid = getGridFactory().createBasicBeanItemNestedPropertiesGrid(
+					partyBallotDataSource, "Party Ballot Summary",
+					new String[] { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue",
+							"embeddedId.party" },
+					new String[] { "embeddedId.party", "voteDate", "rm", "label", "embeddedId.concern",
+							"embeddedId.issue", "approved", "partyApproved", "totalVotes", "partyTotalVotes",
+							"yesVotes", "partyYesVotes", "noVotes", "partyNoVotes", "partyAbstainVotes", "abstainVotes",
+							"partyAbsentVotes", "absentVotes", "partyAvgBornYear", "avgBornYear", "partyPercentageMale",
+							"percentageMale", "ballotType", "embeddedId.ballotId" },
+					new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
+							"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
+							"percentageAbsent", "percentageAbstain", "voteDate", "rm", "label", "embeddedId.concern",
+							"totalVotes", "approved", "yesVotes", "noVotes", "ballotType",
+							"abstainVotes", "absentVotes", "embeddedId.ballotId", "noWinner" },
+					null, new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "embeddedId.party"),
+					"embeddedId.party");
 
-				
-				panel.setCaption(BALLOT + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getBallotId());
-				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
+			panelContent.addComponent(partynBallotsBeanItemGrid);
+			panelContent.setExpandRatio(partynBallotsBeanItemGrid, ContentRatio.GRID);
+
+			panel.setCaption(BALLOT + pageId);
+			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME,
+					parameters, pageId);
 		}
 		return panelContent;
 

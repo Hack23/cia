@@ -99,8 +99,9 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 		if (!ballots.isEmpty()) {
 			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);
 
-			final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary = ballots.get(FIRST_OBJECT);
-						
+		
+				
+			
 				final Label createHeader2Label = LabelFactory.createHeader2Label(CHARTS);
 				panelContent.addComponent(createHeader2Label);
 				
@@ -112,15 +113,17 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 				panelContent.addComponent(horizontalLayout);
 				panelContent.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
 				
-				DCharts createChart = ballotChartDataManager.createChart(viewRiksdagenVoteDataBallotSummary);
-				horizontalLayout.addComponent(createChart);
-				horizontalLayout.setExpandRatio(createChart, ContentRatio.GRID);
+				for (ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
+					DCharts createChart = ballotChartDataManager.createChart(viewRiksdagenVoteDataBallotSummary);
+					horizontalLayout.addComponent(createChart);
+					horizontalLayout.setExpandRatio(createChart, ContentRatio.GRID);
+				}
 
 				DCharts createPartyChart = ballotChartDataManager.createChart(partyBallotList);
 				horizontalLayout.addComponent(createPartyChart);
 				horizontalLayout.setExpandRatio(createPartyChart, ContentRatio.GRID);
 
-				panel.setCaption(BALLOT + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getBallotId());
+				panel.setCaption(BALLOT + pageId);
 				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
 		}
 		return panelContent;
