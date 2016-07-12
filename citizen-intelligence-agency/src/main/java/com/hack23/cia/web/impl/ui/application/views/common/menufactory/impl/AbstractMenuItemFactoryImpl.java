@@ -18,13 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 
-import java.util.Collection;
-
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-
+import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
@@ -183,7 +177,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 
 		mainViewItem.addItem(START_TEXT, null, COMMAND);
 
-		if (allowRoleInSecurityContext(ROLE_ADMIN) || allowRoleInSecurityContext(ROLE_USER)) {
+		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {
 			mainViewItem.addItem(USERHOME, COMMAND2);
 			createAdminMenu(mainViewItem);
 			mainViewItem.addItem("Logout", null, COMMAND3);
@@ -201,7 +195,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 *            the main view item
 	 */
 	private void createAdminMenu(final MenuItem mainViewItem) {
-		if (allowRoleInSecurityContext(ROLE_ADMIN)) {
+		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN)) {
 			final MenuItem adminMenuItem = mainViewItem.addItem(ADMIN_TEXT, null, null);
 
 			final MenuItem configurationMenuItem = adminMenuItem.addItem(CONFIGURATION, null, null);
@@ -226,35 +220,6 @@ public abstract class AbstractMenuItemFactoryImpl {
 			userActivityMenuItem.addItem(USERACCOUNT, COMMAND17);
 
 		}
-	}
-
-	/**
-	 * Allow role in security context.
-	 *
-	 * @param role
-	 *            the role
-	 * @return true, if successful
-	 */
-	protected static boolean allowRoleInSecurityContext(final String role) {
-
-		boolean result = false;
-
-		final SecurityContext context = SecurityContextHolder.getContext();
-		if (context != null) {
-			final Authentication authentication = context.getAuthentication();
-			if (authentication != null) {
-
-				final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-
-				for (final GrantedAuthority grantedAuthority : authorities) {
-					if (role.equalsIgnoreCase(grantedAuthority.getAuthority())) {
-						result = true;
-					}
-				}
-			}
-		}
-
-		return result;
 	}
 
 }

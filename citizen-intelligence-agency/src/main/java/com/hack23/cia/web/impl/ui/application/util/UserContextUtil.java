@@ -18,9 +18,12 @@
 */
 package com.hack23.cia.web.impl.ui.application.util;
 
+import java.util.Collection;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -60,6 +63,33 @@ public final class UserContextUtil {
 		return result;
 	}
 	
+	
+	/**
+	 * Gets the user internal id from security context.
+	 *
+	 * @return the user internal id from security context
+	 */
+	public static Long getUserInternalIdFromSecurityContext() {
+
+		Long result=null;
+
+		final SecurityContext context = SecurityContextHolder.getContext();
+		if (context != null) {
+			final Authentication authentication = context.getAuthentication();
+			if (authentication != null) {
+				final Object principal = authentication.getPrincipal();
+
+				if (principal instanceof UserAccount) {
+					final UserAccount userAccount = (UserAccount) principal;
+					result = userAccount.getHjid();
+				}
+			}
+		}
+
+		return result;
+	}
+
+	
 	/**
 	 * Gets the request url.
 	 *
@@ -75,6 +105,35 @@ public final class UserContextUtil {
 			final HttpServletRequest httpRequest=((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
 			return httpRequest.getRequestURL().toString();
 		}
+	}
+
+	/**
+	 * Allow role in security context.
+	 *
+	 * @param role
+	 *            the role
+	 * @return true, if successful
+	 */
+	public static boolean allowRoleInSecurityContext(final String role) {
+
+		boolean result = false;
+
+		final SecurityContext context = SecurityContextHolder.getContext();
+		if (context != null) {
+			final Authentication authentication = context.getAuthentication();
+			if (authentication != null) {
+
+				final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+
+				for (final GrantedAuthority grantedAuthority : authorities) {
+					if (role.equalsIgnoreCase(grantedAuthority.getAuthority())) {
+						result = true;
+					}
+				}
+			}
+		}
+
+		return result;
 	}
 
 

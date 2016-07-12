@@ -24,16 +24,22 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.web.context.request.RequestContextHolder;
 
+import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.action.application.LogoutRequest;
 import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
+import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.LogoutClickListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Link;
@@ -49,6 +55,20 @@ public abstract class AbstractView extends Panel implements View {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The Constant LOGOUT. */
+	private static final String LOGOUT = "Logout";
+
+	/** The Constant ROLE_USER. */
+	private static final String ROLE_USER = "ROLE_USER";
+
+	/** The Constant ROLE_ADMIN. */
+	private static final String ROLE_ADMIN = "ROLE_ADMIN";
+	
+	/** The application manager. */
+	@Autowired
+	private ApplicationManager applicationManager;
+
+	
 	/** The page mode content factory map. */
 	private transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
@@ -57,7 +77,10 @@ public abstract class AbstractView extends Panel implements View {
 
 	/** The barmenu. */
 	private final MenuBar barmenu = new MenuBar();
-		
+
+	/** The top header right panel. */
+	private final HorizontalLayout topHeaderRightPanel = new HorizontalLayout();
+
 	/** The panel. */
 	private Panel panel;
 
@@ -138,15 +161,37 @@ public abstract class AbstractView extends Panel implements View {
 		ciaLogoImage.setWidth("75px");
 		ciaLogoImage.setHeight("75px");
 		topHeader.setComponentAlignment(ciaLogoImage, Alignment.MIDDLE_LEFT);
+		
+		topHeaderRightPanel.removeAllComponents();
+		topHeader.addComponent(topHeaderRightPanel);
+		topHeader.setComponentAlignment(topHeaderRightPanel, Alignment.MIDDLE_RIGHT);
 
-		Link createRegisterPageLink = pageLinkFactory.createRegisterPageLink();	
-		topHeader.addComponent(createRegisterPageLink);
-		topHeader.setComponentAlignment(createRegisterPageLink, Alignment.MIDDLE_RIGHT);
+		
+		
+		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {
+			final Button logoutButton = new Button(LOGOUT);
 
-		Link createLoginPageLink = pageLinkFactory.createLoginPageLink();	
-		topHeader.addComponent(createLoginPageLink);
-		topHeader.setComponentAlignment(createLoginPageLink, Alignment.MIDDLE_RIGHT);
+			final LogoutRequest logoutRequest = new LogoutRequest();
+			logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+			logoutButton.addClickListener(new LogoutClickListener(logoutRequest,applicationManager));
+
+			topHeaderRightPanel.addComponent(logoutButton);
+			topHeaderRightPanel.setComponentAlignment(logoutButton, Alignment.MIDDLE_RIGHT);
+
+		} else {
+			Link createRegisterPageLink = pageLinkFactory.createRegisterPageLink();	
+			topHeaderRightPanel.addComponent(createRegisterPageLink);
+			topHeaderRightPanel.setComponentAlignment(createRegisterPageLink, Alignment.MIDDLE_RIGHT);
+
+			Link createLoginPageLink = pageLinkFactory.createLoginPageLink();	
+			topHeaderRightPanel.addComponent(createLoginPageLink);
+			topHeaderRightPanel.setComponentAlignment(createLoginPageLink, Alignment.MIDDLE_RIGHT);
+		}
+		
 				
+		topHeaderRightPanel.setWidth("100%");
+		topHeaderRightPanel.setHeight("60px");
+		
 		topHeader.setWidth("100%");
 		topHeader.setHeight("60px");
 		
@@ -194,6 +239,15 @@ public abstract class AbstractView extends Panel implements View {
 	 */
 	protected final Panel getPanel() {
 		return panel;
+	}
+
+	/**
+	 * Gets the top header right panel.
+	 *
+	 * @return the top header right panel
+	 */
+	protected final HorizontalLayout getTopHeaderRightPanel() {
+		return topHeaderRightPanel;
 	}
 
 }

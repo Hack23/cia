@@ -23,9 +23,6 @@ import java.util.Arrays;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 
@@ -37,6 +34,7 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.application.LogoutRequest;
 import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -128,7 +126,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 		final DataContainer<UserAccount, Long> dataContainer = getApplicationManager().getDataContainer(UserAccount.class);
 
 
-			final Long userIdFromSecurityContext = getUserIdFromSecurityContext();
+			final Long userIdFromSecurityContext = UserContextUtil.getUserInternalIdFromSecurityContext();
 
 			if (userIdFromSecurityContext == null) {
 				UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
@@ -179,31 +177,6 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 		return panelContent;
 
-	}
-
-	/**
-	 * Gets the user id from security context.
-	 *
-	 * @return the user id from security context
-	 */
-	private static Long getUserIdFromSecurityContext() {
-
-		Long result=null;
-
-		final SecurityContext context = SecurityContextHolder.getContext();
-		if (context != null) {
-			final Authentication authentication = context.getAuthentication();
-			if (authentication != null) {
-				final Object principal = authentication.getPrincipal();
-
-				if (principal instanceof UserAccount) {
-					final UserAccount userAccount = (UserAccount) principal;
-					result = userAccount.getHjid();
-				}
-			}
-		}
-
-		return result;
 	}
 
 }
