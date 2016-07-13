@@ -169,6 +169,13 @@ public abstract class AbstractView extends Panel implements View {
 		
 		
 		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {
+
+			
+			Link userHomePageLink = pageLinkFactory.createUserHomeViewPageLink();	
+			topHeaderRightPanel.addComponent(userHomePageLink);
+			topHeaderRightPanel.setComponentAlignment(userHomePageLink, Alignment.MIDDLE_RIGHT);
+
+			
 			final Button logoutButton = new Button(LOGOUT);
 
 			final LogoutRequest logoutRequest = new LogoutRequest();

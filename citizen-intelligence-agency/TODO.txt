@@ -13,6 +13,15 @@ Layouts, logo & styling and navigation.
 Translations: externalize all strings, populate default english content, use translate service for other languages.
 
 
+User actions and gamification.
+------------------------------
+http://www.oracle.com/webfolder/ux/applications/uxd/assets/sites/gamification/index.html
+http://www.oracle.com/webfolder/ux/applications/uxd/assets/sites/gamification/phase_3.html
+http://www.slideshare.net/gamemaki/gamification-101
+http://www.dzonesoftware.com/blog/5-ways-to-increase-community-engagement-through-gamification
+
+
+
 Good Examples
 -------------
 finviz.com

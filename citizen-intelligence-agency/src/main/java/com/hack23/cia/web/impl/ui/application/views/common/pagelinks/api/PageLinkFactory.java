@@ -41,6 +41,13 @@ public interface PageLinkFactory {
 	 *
 	 * @return the link
 	 */
+	Link createUserHomeViewPageLink();
+	
+	/**
+	 * Creates a new PageLink object.
+	 *
+	 * @return the link
+	 */
 	Link createTestChartViewPageLink();
 
 	/**

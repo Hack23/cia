@@ -37,6 +37,31 @@ import com.vaadin.server.Page;
  */
 public final class UserContextUtil {
 
+	/**
+	 * Gets the user name from security context.
+	 *
+	 * @return the user name from security context
+	 */
+	public static String getUserNameFromSecurityContext() {
+
+		String result=null;
+
+		final SecurityContext context = SecurityContextHolder.getContext();
+		if (context != null) {
+			final Authentication authentication = context.getAuthentication();
+			if (authentication != null) {
+				final Object principal = authentication.getPrincipal();
+
+				if (principal instanceof UserAccount) {
+					final UserAccount userAccount = (UserAccount) principal;
+					result = userAccount.getUsername();
+				}
+			}
+		}
+
+		return result;
+	}
+
 	
 	/**
 	 * Gets the user id from security context.
