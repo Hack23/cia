@@ -82,6 +82,7 @@
               <replacement>.</replacement>
               <excludes>
                 <exclude>**/demo-base/**</exclude>
+                <exclude>**/start.ini</exclude>
               </excludes>
             </extract-artifact>
             <extract-artifact>
@@ -91,6 +92,10 @@
             <copyFile>
               <path>src/main/config/etc/default/cia</path>
               <toFile>/etc/default/cia</toFile>
+            </copyFile>
+            <copyFile>
+              <path>src/main/config/jetty/start.ini</path>
+              <toFile>/opt/cia/start.ini</toFile>
             </copyFile>
           </assembly>
         </configuration>
