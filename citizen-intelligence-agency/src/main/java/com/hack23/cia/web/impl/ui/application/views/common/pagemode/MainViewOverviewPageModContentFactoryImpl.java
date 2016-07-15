@@ -26,6 +26,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -97,22 +98,25 @@ public final class MainViewOverviewPageModContentFactoryImpl extends AbstractPag
 		totalpartytoplistLabel.setSizeFull();
 		content.addComponent(totalpartytoplistLabel);
 
-		content.addComponent(getPageLinkFactory().createAdminAgentOperationViewPageLink());
-		content.addComponent(getPageLinkFactory().createAdminDataSummaryViewPageLink());
-		content.addComponent(getPageLinkFactory().createPoliticianRankingViewPageLink());
+		
+		
+		FormLayout formLayout = new FormLayout();
+		
+		content.addComponent(formLayout);
+		
+		formLayout.addComponent(getPageLinkFactory().createPoliticianRankingViewPageLink());
 
-		content.addComponent(getPageLinkFactory().createPartyRankingViewPageLink());
+		formLayout.addComponent(getPageLinkFactory().createPartyRankingViewPageLink());
 
-		content.addComponent(getPageLinkFactory().createCommitteeRankingViewPageLink());
+		formLayout.addComponent(getPageLinkFactory().createCommitteeRankingViewPageLink());
 
-		content.addComponent(getPageLinkFactory().createMinistryRankingViewPageLink());
+		formLayout.addComponent(getPageLinkFactory().createMinistryRankingViewPageLink());
 
-		content.addComponent(getPageLinkFactory().createSearchDocumentViewPageLink());
+		formLayout.addComponent(getPageLinkFactory().createSearchDocumentViewPageLink());
 
-		content.addComponent(getPageLinkFactory().createTestChartViewPageLink());
+		formLayout.addComponent(getPageLinkFactory().createTestChartViewPageLink());
 
-		content.addComponent(getPageLinkFactory().createMainViewPageLink());
-
+		
 		panel.setCaption(CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);
