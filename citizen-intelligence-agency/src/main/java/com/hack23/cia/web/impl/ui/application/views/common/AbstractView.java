@@ -42,6 +42,7 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -162,6 +163,12 @@ public abstract class AbstractView extends Panel implements View {
 		ciaLogoImage.setHeight("75px");
 		topHeader.setComponentAlignment(ciaLogoImage, Alignment.MIDDLE_LEFT);
 		
+		final Label sloganLabel = new Label("Citizen Intelligence Agency :: Tracking politicians like bugs!");
+		sloganLabel.setStyleName("Header");
+		topHeader.addComponent(sloganLabel);
+		topHeader.setComponentAlignment(sloganLabel, Alignment.MIDDLE_CENTER);
+		
+		
 		topHeaderRightPanel.removeAllComponents();
 		topHeader.addComponent(topHeaderRightPanel);
 		topHeader.setComponentAlignment(topHeaderRightPanel, Alignment.MIDDLE_RIGHT);
@@ -236,6 +243,7 @@ public abstract class AbstractView extends Panel implements View {
 	 */
 	public final MenuBar getBarmenu() {
 		barmenu.setWidth("100%");
+		barmenu.setStyleName("Header");
 		return barmenu;
 	}
 

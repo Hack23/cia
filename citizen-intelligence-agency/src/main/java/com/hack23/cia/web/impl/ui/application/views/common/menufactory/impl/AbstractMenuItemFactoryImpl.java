@@ -174,7 +174,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 		menuBar.removeItems();
 		menuBar.setWidth("50%");
 		final MenuItem mainViewItem = menuBar.addItem("Application", null, null);
-
+		
 		mainViewItem.addItem(START_TEXT, null, COMMAND);
 
 		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {

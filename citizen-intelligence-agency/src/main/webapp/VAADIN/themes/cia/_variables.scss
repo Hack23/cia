@@ -56,5 +56,30 @@ $v-layout-margin-left: 18px;
 $v-layout-spacing-vertical: 7px;
 $v-layout-spacing-horizontal: 6px;
 
+/* Headers */
+.v-label-Header {
+ font-size: 18px;
+}
+
+
+.v-menubar-Header {
+ font-size: 18px;
+}
+
+.v-menubar-menuitem-Header {
+ font-size: 12px;
+}
+
+.v-menubar-menuitem-caption-Header {
+ font-size: 12px;
+}
+
+.v-menubar-submenu-Header {
+ font-size: 12px;
+}
+
+.v-menubar-selected-Header {
+ font-size: 12px;
+}
 
 @import "../valo/valo";
