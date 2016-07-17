@@ -183,6 +183,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 		panelContent.setMargin(true);
 		panelContent.setWidth(100, Unit.PERCENTAGE);
 		panelContent.setHeight(100, Unit.PERCENTAGE);
+		panelContent.setStyleName("Header");
 		return panelContent;
 	}
 
