@@ -81,6 +81,7 @@ public final class MainViewOverviewPageModContentFactoryImpl extends AbstractPag
 						+ "\nTop vote party rebel NR/PERCENTAGE :ALL:YEAR:CURRENT::*FILTER:Gender,Party,ElectionRegion"
 						+ "\nTop vote presence NR/PERCENTAGE :ALL:YEAR:CURRENT::*FILTER:Gender,Party,ElectionRegion"
 						+ "\nSearch by name");
+		totalpoliticantoplistLabel.setStyleName("Level2Header");
 		totalpoliticantoplistLabel.setSizeFull();
 		content.addComponent(totalpoliticantoplistLabel);
 
@@ -96,6 +97,7 @@ public final class MainViewOverviewPageModContentFactoryImpl extends AbstractPag
 						+ "\nTop vote presence NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
 						+ "\nSearch by name");
 		totalpartytoplistLabel.setSizeFull();
+		totalpartytoplistLabel.setStyleName("Level2Header");
 		content.addComponent(totalpartytoplistLabel);
 
 		

@@ -83,6 +83,8 @@ public final class GridFactoryImpl implements GridFactory {
 
 		grid.setSizeFull();
 
+		grid.setStyleName("Level2Header");
+
 		grid.setImmediate(true);
 		grid.setReadOnly(true);
 

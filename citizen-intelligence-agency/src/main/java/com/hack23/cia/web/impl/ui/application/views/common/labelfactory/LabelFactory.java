@@ -19,7 +19,6 @@
 package com.hack23.cia.web.impl.ui.application.views.common.labelfactory;
 
 import com.vaadin.ui.Label;
-import com.vaadin.ui.themes.Reindeer;
 
 /**
  * A factory for creating Label objects.
@@ -42,7 +41,7 @@ public final class LabelFactory {
 	 */
 	public static Label createHeader2Label(final String content) {
 		final Label label = new Label(content);
-		label.addStyleName(Reindeer.LABEL_H2);
+		label.setStyleName("Level2Header");
 		return label;
 	}
 

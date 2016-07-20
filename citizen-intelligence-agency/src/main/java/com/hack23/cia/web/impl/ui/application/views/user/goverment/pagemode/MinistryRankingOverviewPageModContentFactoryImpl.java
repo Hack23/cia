@@ -103,6 +103,7 @@ public final class MinistryRankingOverviewPageModContentFactoryImpl extends Abst
 		final TextArea totalCommitteeRankinglistLabel = new TextArea(MINISTRY_RANKING_BY_TOPIC,
 				MINISTRY_RANKING_BY_TOPIC_DESCRIPTION);
 		totalCommitteeRankinglistLabel.setSizeFull();
+		totalCommitteeRankinglistLabel.setStyleName("Level2Header");
 		return totalCommitteeRankinglistLabel;
 	}
 

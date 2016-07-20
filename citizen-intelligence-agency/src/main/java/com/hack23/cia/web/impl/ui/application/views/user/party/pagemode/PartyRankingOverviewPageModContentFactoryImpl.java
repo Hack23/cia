@@ -92,6 +92,7 @@ public final class PartyRankingOverviewPageModContentFactoryImpl extends Abstrac
 						+ "\nTop vote presence NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
 						+ "\nSearch by name");
 		totalpartytoplistLabel.setSizeFull();
+		totalpartytoplistLabel.setStyleName("Level2Header");
 		return totalpartytoplistLabel;
 	}
 

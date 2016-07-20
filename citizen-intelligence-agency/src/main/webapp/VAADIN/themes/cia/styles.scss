@@ -1,13 +1,11 @@
 @import "variables";
 @import "../valo/valo.scss";
-
 @import "addons.scss";
-
+@import "cia.scss";
 
 .cia {
-
-	@include valo;
-
-	@include addons;
-
+	@include cia;
+	
+	
 }
+

@@ -102,6 +102,7 @@ public final class CommitteeRankingOverviewPageModContentFactoryImpl extends Abs
 		final TextArea totalCommitteeRankinglistLabel = new TextArea(COMMITTEE_RANKING_BY_TOPIC,
 				COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION);
 		totalCommitteeRankinglistLabel.setSizeFull();
+		totalCommitteeRankinglistLabel.setStyleName("Level2Header");
 		return totalCommitteeRankinglistLabel;
 	}
 

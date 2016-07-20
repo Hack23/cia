@@ -1,0 +1,82 @@
+@mixin cia {
+
+
+	@include valo;
+
+	@include addons;
+	
+
+/*
+	$color1: $panelCaptionColor;		
+    @include valo-panel-caption-style($background-color: $color1);	
+	@include valo-caption-style($background-color: $color1);	
+	
+	
+	HeaderText
+	http://www.color-hex.com/color/003cf0
+	
+	
+	http://www.color-hex.com/color/00b4f0	
+	http://www.color-hex.com/color/ccf2ff
+	
+	http://www.color-hex.com/color/40b527
+	http://www.color-hex.com/color/deffd7
+	
+*/	
+
+		
+	$headerBorderRadius : 6px;
+	$headerFontSize : 18px;
+	
+	
+	.v-label-Header {
+	 font-size: 22px;
+	 color: #003cf0;	 
+	 border-radius: $headerBorderRadius;	 
+	}	
+
+	.v-label-Level2Header {
+	 color: #40b527;
+	 background-color: #deffd7;
+	 font-size: $headerFontSize;
+	 border-radius: $headerBorderRadius;
+	}	
+			
+	.v-panel-caption {
+	 color: #00b4f0;
+	 background-color: #ccf2ff;
+	 background-image: none;	 
+	 font-size: $headerFontSize;
+	 border-radius: $headerBorderRadius;
+	}
+
+	
+	.v-caption-Level2Header {
+	 color: #40b527;
+	 background-color: #deffd7;
+	 font-size: $headerFontSize;
+	 border-radius: $headerBorderRadius;
+	}
+			
+	.v-menubar-Header {
+	 font-size: $headerFontSize;
+	}
+	
+	.v-menubar-menuitem-Header {
+	 font-size: 12px;
+	}
+	
+	.v-menubar-menuitem-caption-Header {
+	 font-size: 12px;
+	}
+	
+	.v-menubar-submenu-Header {
+	 font-size: 12px;
+	}
+	
+	.v-menubar-selected-Header {
+	 font-size: 12px;
+	}
+
+	
+}

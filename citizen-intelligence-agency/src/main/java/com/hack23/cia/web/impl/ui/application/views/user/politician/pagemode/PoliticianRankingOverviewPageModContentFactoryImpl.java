@@ -97,6 +97,7 @@ public final class PoliticianRankingOverviewPageModContentFactoryImpl
 						+ "\nTop vote presence NR/PERCENTAGE :ALL:YEAR:CURRENT::*FILTER:Gender,Party,ElectionRegion"
 						+ "\nSearch by name");
 		totalpoliticantoplistLabel.setSizeFull();
+		totalpoliticantoplistLabel.setStyleName("Level2Header");
 		return totalpoliticantoplistLabel;
 	}
 

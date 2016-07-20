@@ -2,15 +2,26 @@ $v-app-loading-text: "Loading Citizen Intelligence Agency:: Tracking politicians
 
 /* use 
 https://coolors.co/app/ 
-http://www.color-hex.com/color/a3cdf1
+
+http://www.color-hex.com/color/FFFFFF
+http://www.color-hex.com/color/b2cbe5
+
+alt
+
+http://www.color-hex.com/color/A8BDFF
+
+
 */
 
 $v-background-color: #FFFFFF;
 $v-app-background-color: #b2cbe5;
+
 /* $v-font-color: #FFFFFF; 
 $v-link-font-color: #084887;
 $v-selection-color: #EFDB3F; 
 $v-focus-color: #EFDB3F; */
+
+$v-caption-font-size: 22px; 
 
 $v-component-group-spacing: 6px;
 
@@ -55,35 +66,5 @@ $v-layout-margin-bottom: 18px;
 $v-layout-margin-left: 18px;
 $v-layout-spacing-vertical: 7px;
 $v-layout-spacing-horizontal: 6px;
-
-/* Headers */
-.v-label-Header {
- font-size: 18px;
-}
-
-.v-panel-caption {
- font-size: 18px;
-}
-
-
-.v-menubar-Header {
- font-size: 18px;
-}
-
-.v-menubar-menuitem-Header {
- font-size: 12px;
-}
-
-.v-menubar-menuitem-caption-Header {
- font-size: 12px;
-}
-
-.v-menubar-submenu-Header {
- font-size: 12px;
-}
-
-.v-menubar-selected-Header {
- font-size: 12px;
-}
-
+	
 @import "../valo/valo";
