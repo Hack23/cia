@@ -18,8 +18,10 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -68,6 +70,10 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
+	
+	@Autowired
+	private ApplicationMenuItemFactory applicationMenuItemFactory;
+
 
 	/**
 	 * Instantiates a new politician ranking menu item factory impl.
@@ -79,6 +85,8 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 	@Override
 	public void createPoliticianRankingMenuBar(final MenuBar menuBar) {
 		initApplicationMenuBar(menuBar);
+		
+		applicationMenuItemFactory.addRankingMenu(menuBar);
 
 		createPoliticianRankingTopics(menuBar.addItem(POLITICIAN_RANKING, null, null));
 	}

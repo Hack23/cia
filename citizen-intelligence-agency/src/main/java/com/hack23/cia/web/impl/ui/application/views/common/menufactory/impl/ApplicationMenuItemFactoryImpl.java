@@ -118,6 +118,21 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	public MenuBar createMainPageMenuBar(final MenuBar menuBar) {
 		initApplicationMenuBar(menuBar);
 
+		addRankingMenu(menuBar);
+
+		return menuBar;
+	}
+
+	@Override
+	public void addRankingMenu(final MenuBar menuBar) {
+		
+		MenuItem mainItem = menuBar.addItem("Main", null, null);
+
+		mainItem.addItem(TEST_TEXT, COMMAND5);
+
+		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,COMMAND6);
+
+		
 		final MenuItem rankingsMenuItem = menuBar.addItem(RANKING_TEXT, null, null);
 
 		final MenuItem politicianMenuItem = rankingsMenuItem.addItem(POLITICIAN_RANKING_LINK_TEXT,
@@ -140,11 +155,6 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 		ministryRankingMenuItemFactory.createMinistryRankingTopics(ministryMenuItem);
 
-		menuBar.addItem(TEST_TEXT, COMMAND5);
-
-		menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,COMMAND6);
-
-		return menuBar;
 	}
 
 }

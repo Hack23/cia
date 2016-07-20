@@ -23,7 +23,6 @@ import com.vaadin.ui.MenuBar;
 /**
  * A factory for creating ApplicationMenuItem objects.
  */
-@FunctionalInterface
 public interface ApplicationMenuItemFactory {
 
 	/**
@@ -33,5 +32,7 @@ public interface ApplicationMenuItemFactory {
 	 * @return the menu bar
 	 */
 	MenuBar createMainPageMenuBar(MenuBar menuBar);
+
+	void addRankingMenu(MenuBar menuBar);
 
 }

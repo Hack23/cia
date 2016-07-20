@@ -18,9 +18,12 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
@@ -33,6 +36,9 @@ import com.vaadin.ui.MenuBar.MenuItem;
  */
 @Service
 public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements PartyMenuItemFactory {
+
+	/** The Constant PARTY_RANKING. */
+	private static final String PARTY_RANKING = "Party Ranking";
 
 	/** The Constant PARTY_WON_DAILY_SUMMARY_CHART. */
 	private static final String PARTY_WON_DAILY_SUMMARY_CHART = "Party Won Daily Summary Chart";
@@ -88,6 +94,12 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
+	
+	@Autowired
+	private ApplicationMenuItemFactory applicationMenuItemFactory;
+	
+	@Autowired
+	private PartyRankingMenuItemFactory partyRankingMenuItemFactory;
 
 	/**
 	 * Instantiates a new party menu item factory impl.
@@ -100,14 +112,20 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 	public void createPartyMenuBar(final MenuBar menuBar, final String pageId) {
 		initApplicationMenuBar(menuBar);
 
-		menuBar.addItem(OVERVIEW_TEXT, null,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.OVERVIEW, pageId));
-		menuBar.addItem(CHARTS_TEXT, null, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.CHARTS, pageId));
+		applicationMenuItemFactory.addRankingMenu(menuBar);
+		
+		partyRankingMenuItemFactory.createPartyRankingTopics(menuBar.addItem(PARTY_RANKING, null,null));
 
-		menuBar.addItem(INDICATORS_TEXT, null,
+		MenuItem partyItem = menuBar.addItem("Party "+ pageId, null,null);
+		
+		partyItem.addItem(OVERVIEW_TEXT, null,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.OVERVIEW, pageId));
+		partyItem.addItem(CHARTS_TEXT, null, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.CHARTS, pageId));
+
+		partyItem.addItem(INDICATORS_TEXT, null,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.INDICATORS, pageId));
 
-		final MenuItem rolesItem = menuBar.addItem(ROLES_TEXT, null, null);
+		final MenuItem rolesItem = partyItem.addItem(ROLES_TEXT, null, null);
 
 		rolesItem.addItem(CURRENT_LEADERS, null,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTLEADERS.toString(), pageId));
@@ -127,7 +145,7 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 		rolesItem.addItem(COMMITTEE_ROLES, null,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEROLES.toString(), pageId));
 
-		final MenuItem documentItem = menuBar.addItem(DOCUMENTS_TEXT, null, null);
+		final MenuItem documentItem = partyItem.addItem(DOCUMENTS_TEXT, null, null);
 
 		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, null,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTACTIVITY.toString(), pageId));
@@ -135,7 +153,7 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 		documentItem.addItem(DOCUMENT_HISTORY_TEXT, null,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTHISTORY.toString(), pageId));
 
-		final MenuItem ballotItem = menuBar.addItem(BALLOTS_TEXT, null, null);
+		final MenuItem ballotItem = partyItem.addItem(BALLOTS_TEXT, null, null);
 
 		ballotItem.addItem(VOTE_HISTORY, null,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), pageId));
@@ -146,7 +164,7 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 		ballotItem.addItem(PARTY_WON_DAILY_SUMMARY_CHART, null, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
 				PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), pageId));
 
-		menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+		partyItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
 	}

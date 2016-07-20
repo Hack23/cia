@@ -18,8 +18,10 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -109,12 +111,19 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
+	
+	@Autowired
+	private ApplicationMenuItemFactory applicationMenuItemFactory;
+	
 
 	@Override
 	public void createPartyRankingMenuBar(final MenuBar menuBar) {
 		initApplicationMenuBar(menuBar);
 
-		createPartyRankingTopics(menuBar.addItem(PARTY_RANKING, null,null));
+		applicationMenuItemFactory.addRankingMenu(menuBar);
+		
+		createPartyRankingTopics(menuBar.addItem(PARTY_RANKING, null,null));		
+		
 	}
 
 
