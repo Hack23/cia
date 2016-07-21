@@ -102,7 +102,7 @@ public final class MainViewOverviewPageModContentFactoryImpl extends AbstractPag
 
 		
 		
-		FormLayout formLayout = new FormLayout();
+		final FormLayout formLayout = new FormLayout();
 		
 		content.addComponent(formLayout);
 		

@@ -53,36 +53,36 @@ public final class BallotChartDataManagerImpl implements BallotChartDataManager 
 	}
 
 	@Override
-	public DCharts createChart(ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary) {
-		DataSeries dataSeries = new DataSeries();
+	public DCharts createChart(final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary) {
+		final DataSeries dataSeries = new DataSeries();
 
 		dataSeries.newSeries().add("Yes", viewRiksdagenVoteDataBallotSummary.getYesVotes());
 		dataSeries.newSeries().add("No", viewRiksdagenVoteDataBallotSummary.getNoVotes());
 		dataSeries.newSeries().add("Abstain", viewRiksdagenVoteDataBallotSummary.getAbstainVotes());
 		dataSeries.newSeries().add("Absent", viewRiksdagenVoteDataBallotSummary.getAbsentVotes());
 
-		SeriesDefaults seriesDefaults = new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
+		final SeriesDefaults seriesDefaults = new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
 				.setRendererOptions(new DonutRenderer().setSliceMargin(3).setStartAngle(-90).setShowDataLabels(true)
 						.setDataLabels(DataLabels.VALUE));
 
-		Legend legend = new Legend().setShow(true).setPlacement(LegendPlacements.OUTSIDE_GRID)
+		final Legend legend = new Legend().setShow(true).setPlacement(LegendPlacements.OUTSIDE_GRID)
 				.setLocation(LegendLocations.WEST);
 
-		Highlighter highlighter = new Highlighter()
+		final Highlighter highlighter = new Highlighter()
 				.setShow(true)
 				.setShowTooltip(true)
 				.setTooltipAlwaysVisible(true)
 				.setKeepTooltipInsideChart(true);
 		
-		Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend).setHighlighter(highlighter);
+		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend).setHighlighter(highlighter);
 
-		DCharts chart = new DCharts().setDataSeries(dataSeries).setOptions(options).show();
+		final DCharts chart = new DCharts().setDataSeries(dataSeries).setOptions(options).show();
 		return chart;
 	}
 
 	@Override
-	public DCharts createChart(List<ViewRiksdagenVoteDataBallotPartySummary> partyList) {
-		DataSeries dataSeries = new DataSeries();
+	public DCharts createChart(final List<ViewRiksdagenVoteDataBallotPartySummary> partyList) {
+		final DataSeries dataSeries = new DataSeries();
 
 		final Series series = new Series();
 
@@ -91,7 +91,7 @@ public final class BallotChartDataManagerImpl implements BallotChartDataManager 
 		series.addSeries(new XYseries().setLabel("Abstain"));
 		series.addSeries(new XYseries().setLabel("Absent"));
 		
-		for (ViewRiksdagenVoteDataBallotPartySummary viewRiksdagenVoteDataBallotPartySummary : partyList) {
+		for (final ViewRiksdagenVoteDataBallotPartySummary viewRiksdagenVoteDataBallotPartySummary : partyList) {
 			
 			
 			dataSeries.newSeries()
@@ -101,22 +101,22 @@ public final class BallotChartDataManagerImpl implements BallotChartDataManager 
 			.add(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty(),viewRiksdagenVoteDataBallotPartySummary.getPartyAbsentVotes());			
 		}	
 
-		SeriesDefaults seriesDefaults = new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
+		final SeriesDefaults seriesDefaults = new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
 				.setRendererOptions(new DonutRenderer().setSliceMargin(3).setStartAngle(-90).setShowDataLabels(true)
 						.setDataLabels(DataLabels.VALUE));
 
-		Legend legend = new Legend().setShow(true).setPlacement(LegendPlacements.OUTSIDE_GRID)
+		final Legend legend = new Legend().setShow(true).setPlacement(LegendPlacements.OUTSIDE_GRID)
 				.setLocation(LegendLocations.WEST);
 
-		Highlighter highlighter = new Highlighter()
+		final Highlighter highlighter = new Highlighter()
 				.setShow(true)
 				.setShowTooltip(true)
 				.setTooltipAlwaysVisible(true)
 				.setKeepTooltipInsideChart(true);
 		
-		Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend).setHighlighter(highlighter).addOption(series);
+		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend).setHighlighter(highlighter).addOption(series);
 
-		DCharts chart = new DCharts().setDataSeries(dataSeries).setOptions(options).show();
+		final DCharts chart = new DCharts().setDataSeries(dataSeries).setOptions(options).show();
 		return chart;
 	}
 

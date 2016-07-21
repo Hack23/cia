@@ -95,7 +95,7 @@ public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDoc
 
 
 
-			Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_DECISION);
+			final Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_DECISION);
 			panelContent.addComponent(createHeader2Label);
 			
 			final Panel formPanel = new Panel();

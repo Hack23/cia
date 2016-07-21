@@ -37,7 +37,6 @@ import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
@@ -457,7 +456,7 @@ public final class UserPageVisit extends Assert {
 	 * @param viewActions
 	 *            the view actions
 	 */
-	private void verifyViewActions(final ViewAction[] viewActions) {
+	public void verifyViewActions(final ViewAction[] viewActions) {
 		final Set<ViewAction> actionsAvailable = getActionsAvailable();
 		for (final ViewAction viewAction : viewActions) {
 			assertTrue(browser, actionsAvailable.contains(viewAction));
@@ -506,26 +505,6 @@ public final class UserPageVisit extends Assert {
 	}
 
 
-	/**
-	 * Visit admin agent operation view.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	public void visitAdminAgentOperationView() throws Exception {
-		final WebElement adminViewLink = driver.findElement(By
-				.id(ViewAction.VISIT_ADMIN_AGENT_OPERATION_VIEW.name()));
-
-		performClickAction(adminViewLink, WAIT_FOR_PAGE_DELAY);
-
-		assertEquals("http://localhost:8080/#!" + AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME,
-				driver.getCurrentUrl());
-
-		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW,ViewAction.START_AGENT_BUTTON });
-
-		final List<String> actionIdsBy = getActionIdsBy(ViewAction.START_AGENT_BUTTON);
-		assertTrue(actionIdsBy.size() > 0);
-	}
 
 	/**
 	 * Perform admin agent operation.
@@ -551,23 +530,6 @@ public final class UserPageVisit extends Assert {
 		performClickAction(startButtion, WAIT_FOR_PAGE_DELAY);
 	}
 
-	/**
-	 * Visit admin data summary view.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	public void visitAdminDataSummaryView() throws Exception {
-		final WebElement adminDataummaryViewLink = driver.findElement(By
-				.id(ViewAction.VISIT_ADMIN_DATA_SUMMARY_VIEW.name()));
-		performClickAction(adminDataummaryViewLink, WAIT_FOR_PAGE_DELAY);
-
-		assertEquals("http://localhost:8080/#!" + AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME,
-				driver.getCurrentUrl());
-
-		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW });
-
-	}
 
 	/**
 	 * Visit main view.

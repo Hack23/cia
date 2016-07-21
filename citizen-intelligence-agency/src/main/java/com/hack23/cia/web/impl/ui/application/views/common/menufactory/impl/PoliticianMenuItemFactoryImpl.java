@@ -82,9 +82,11 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
+	/** The politician ranking menu item factory. */
 	@Autowired
 	private PoliticianRankingMenuItemFactory politicianRankingMenuItemFactory;
 	
+	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
 
@@ -104,7 +106,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 			
 			politicianRankingMenuItemFactory.createPoliticianRankingTopics(menuBar.addItem(POLITICIAN_RANKING, null, null));
 			
-			MenuItem politicanItem = menuBar.addItem("Politician "+ pageId, null,null);
+			final MenuItem politicanItem = menuBar.addItem("Politician "+ pageId, null,null);
 
 
 			politicanItem.addItem(OVERVIEW_TEXT, null,

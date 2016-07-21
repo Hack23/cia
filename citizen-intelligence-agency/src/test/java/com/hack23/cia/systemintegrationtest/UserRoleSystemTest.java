@@ -27,8 +27,6 @@ import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
-import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
@@ -1532,49 +1530,6 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), "S"));
-
-	}
-
-	/**
-	 * Site admin test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public void siteAdminTest() throws Exception {
-		final WebDriver driver = getWebDriver();
-		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-
-		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-
-		loginAsAdmin(userPageVisit);
-
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
-
-		userPageVisit.visitAdminAgentOperationView();
-		userPageVisit.performAdminAgentOperation(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN, DataAgentOperation.IMPORT);
-
-	}
-
-	/**
-	 * Site admin data summary.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public void siteAdminDataSummary() throws Exception {
-		final WebDriver driver = getWebDriver();
-		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-
-		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-
-		loginAsAdmin(userPageVisit);
-
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.OVERVIEW));
-
-		userPageVisit.visitAdminDataSummaryView();
 
 	}
 

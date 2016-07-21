@@ -20,11 +20,15 @@ package com.hack23.cia.systemintegrationtest;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.WebDriver;
 
+import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
+import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 
@@ -317,4 +321,52 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 				userPageVisit.getIframesHtmlBodyAsText().contains("Login with Username and Password"));
 	}
 
+	
+	/**
+	 * Visit admin data summary view.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	public void visitAdminDataSummaryView() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
+	}
+	
+	/**
+	 * Site admin test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteAdminAgentOperationTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, ""));
+
+		
+		userPageVisit.verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW,ViewAction.START_AGENT_BUTTON });
+
+		final List<String> actionIdsBy = userPageVisit.getActionIdsBy(ViewAction.START_AGENT_BUTTON);
+		assertTrue(actionIdsBy.size() > 0);
+
+		
+		userPageVisit.performAdminAgentOperation(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN, DataAgentOperation.IMPORT);
+
+	}
+
+
+	
 }

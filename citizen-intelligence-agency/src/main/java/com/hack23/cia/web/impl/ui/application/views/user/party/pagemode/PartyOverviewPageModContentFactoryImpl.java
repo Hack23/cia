@@ -84,9 +84,9 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 
-			Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
+			final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
 			panelContent.addComponent(createHeader2Label);
-			Link addPartyPageLink = getPageLinkFactory().addPartyPageLink(viewRiksdagenParty);
+			final Link addPartyPageLink = getPageLinkFactory().addPartyPageLink(viewRiksdagenParty);
 			panelContent.addComponent(addPartyPageLink);
 
 			final Panel formPanel = new Panel();

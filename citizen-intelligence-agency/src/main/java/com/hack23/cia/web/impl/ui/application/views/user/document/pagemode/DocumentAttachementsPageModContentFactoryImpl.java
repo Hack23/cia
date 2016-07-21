@@ -111,14 +111,14 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 				panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
 				panelContent.setExpandRatio(documentAttachmentDataItemGrid, ContentRatio.GRID);
 
-				List<DocumentAttachment> documentAttachmentList = documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList();
+				final List<DocumentAttachment> documentAttachmentList = documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList();
 		
-				VerticalLayout verticalLayout = new VerticalLayout();
+				final VerticalLayout verticalLayout = new VerticalLayout();
 				panelContent.addComponent(verticalLayout);
 				panelContent.setExpandRatio(verticalLayout,ContentRatio.SMALL);
 				
-				for (DocumentAttachment documentAttachment : documentAttachmentList) {
-					ExternalAttachmentDownloadLink link = new ExternalAttachmentDownloadLink(documentAttachment.getFileName(), documentAttachment.getFileType(), documentAttachment.getFileUrl());
+				for (final DocumentAttachment documentAttachment : documentAttachmentList) {
+					final ExternalAttachmentDownloadLink link = new ExternalAttachmentDownloadLink(documentAttachment.getFileName(), documentAttachment.getFileType(), documentAttachment.getFileUrl());
 					verticalLayout.addComponent(link);
 				}
 			}

@@ -178,7 +178,7 @@ public abstract class AbstractView extends Panel implements View {
 		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {
 
 			
-			Link userHomePageLink = pageLinkFactory.createUserHomeViewPageLink();	
+			final Link userHomePageLink = pageLinkFactory.createUserHomeViewPageLink();	
 			topHeaderRightPanel.addComponent(userHomePageLink);
 			topHeaderRightPanel.setComponentAlignment(userHomePageLink, Alignment.MIDDLE_RIGHT);
 
@@ -193,11 +193,11 @@ public abstract class AbstractView extends Panel implements View {
 			topHeaderRightPanel.setComponentAlignment(logoutButton, Alignment.MIDDLE_RIGHT);
 
 		} else {
-			Link createRegisterPageLink = pageLinkFactory.createRegisterPageLink();	
+			final Link createRegisterPageLink = pageLinkFactory.createRegisterPageLink();	
 			topHeaderRightPanel.addComponent(createRegisterPageLink);
 			topHeaderRightPanel.setComponentAlignment(createRegisterPageLink, Alignment.MIDDLE_RIGHT);
 
-			Link createLoginPageLink = pageLinkFactory.createLoginPageLink();	
+			final Link createLoginPageLink = pageLinkFactory.createLoginPageLink();	
 			topHeaderRightPanel.addComponent(createLoginPageLink);
 			topHeaderRightPanel.setComponentAlignment(createLoginPageLink, Alignment.MIDDLE_RIGHT);
 		}

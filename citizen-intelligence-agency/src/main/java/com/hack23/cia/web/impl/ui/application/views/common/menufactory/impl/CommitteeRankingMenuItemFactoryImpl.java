@@ -102,6 +102,7 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 	
+	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
 

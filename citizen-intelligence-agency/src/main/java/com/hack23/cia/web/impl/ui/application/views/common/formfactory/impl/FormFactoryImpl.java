@@ -103,7 +103,7 @@ public final class FormFactoryImpl implements FormFactory {
 			LOGGER.debug(LOG_MSG_PROPERTY, property);
 		}
 
-		VerticalLayout verticalLayout = new VerticalLayout();
+		final VerticalLayout verticalLayout = new VerticalLayout();
 		verticalLayout.setWidth("50%");
 
 		final Button button = new Button(buttonLabel,new CommitFormWrapperClickListener(fieldGroup,buttonListener));

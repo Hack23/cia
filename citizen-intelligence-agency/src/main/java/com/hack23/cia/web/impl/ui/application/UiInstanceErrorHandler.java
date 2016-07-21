@@ -57,7 +57,7 @@ public class UiInstanceErrorHandler implements ErrorHandler {
 	}
 
 	@Override
-	public void error(ErrorEvent event) {
+	public void error(final ErrorEvent event) {
 		if (event.getThrowable() instanceof AccessDeniedException) {
 			final AccessDeniedException accessDeniedException = (AccessDeniedException) event.getThrowable();
 			Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);

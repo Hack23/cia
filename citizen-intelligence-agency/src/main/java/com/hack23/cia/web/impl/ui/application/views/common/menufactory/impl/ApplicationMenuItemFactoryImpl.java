@@ -126,7 +126,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	@Override
 	public void addRankingMenu(final MenuBar menuBar) {
 		
-		MenuItem mainItem = menuBar.addItem("Main", null, null);
+		final MenuItem mainItem = menuBar.addItem("Main", null, null);
 
 		mainItem.addItem(TEST_TEXT, COMMAND5);
 

@@ -18,9 +18,12 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -33,6 +36,9 @@ import com.vaadin.ui.MenuBar.MenuItem;
  */
 @Service
 public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements CommitteeMenuItemFactory {
+
+	/** The Constant COMMITTEE_RANKING_TEXT. */
+	private static final String COMMITTEE_RANKING_TEXT = "Committee Ranking";
 
 	/** The Constant DOCUMENT_HISTORY_TEXT. */
 	private static final String DOCUMENT_HISTORY_TEXT = "Document history";
@@ -79,6 +85,15 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
+	/** The committee ranking menu item factory. */
+	@Autowired
+	private CommitteeRankingMenuItemFactory committeeRankingMenuItemFactory;
+	
+	/** The application menu item factory. */
+	@Autowired
+	private ApplicationMenuItemFactory applicationMenuItemFactory;
+
+	
 	/**
 	 * Instantiates a new committee menu item factory impl.
 	 */
@@ -89,15 +104,22 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 	@Override
 	public void createCommitteeeMenuBar(final MenuBar menuBar, final String pageId) {
 		initApplicationMenuBar(menuBar);
+		
+		applicationMenuItemFactory.addRankingMenu(menuBar);
 
-		menuBar.addItem(OVERVIEW_TEXT, null,
+		committeeRankingMenuItemFactory.createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, null, null));
+
+		final MenuItem committeeItem = menuBar.addItem("Committee "+ pageId, null,null);
+
+
+		committeeItem.addItem(OVERVIEW_TEXT, null,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, pageId));
-		menuBar.addItem(CHARTS_TEXT, null,
+		committeeItem.addItem(CHARTS_TEXT, null,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS, pageId));
-		menuBar.addItem(INDICATORS_TEXT, null,
+		committeeItem.addItem(INDICATORS_TEXT, null,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.INDICATORS, pageId));
 
-		final MenuItem rolesItem = menuBar.addItem(ROLES_TEXT, null, null);
+		final MenuItem rolesItem = committeeItem.addItem(ROLES_TEXT, null, null);
 
 		rolesItem.addItem(CURRENT_MEMBERS_TEXT, null, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.CURRENT_MEMBERS.toString(), pageId));
@@ -108,7 +130,7 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 		rolesItem.addItem(ROLE_GHANT_TEXT, null,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), pageId));
 
-		final MenuItem documentItem = menuBar.addItem(DOCUMENTS_TEXT, null, null);
+		final MenuItem documentItem = committeeItem.addItem(DOCUMENTS_TEXT, null, null);
 
 		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, null, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.DOCUMENTACTIVITY.toString(), pageId));
@@ -116,7 +138,7 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 		documentItem.addItem(DOCUMENT_HISTORY_TEXT, null, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.DOCUMENT_HISTORY.toString(), pageId));
 
-		final MenuItem ballotItem = menuBar.addItem(BALLOTS_TEXT, null, null);
+		final MenuItem ballotItem = committeeItem.addItem(BALLOTS_TEXT, null, null);
 
 		ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, null, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), pageId));
@@ -127,7 +149,7 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 		ballotItem.addItem(DECISION_TYPE_DAILY_SUMMARY_TEXT, null, new PageModeMenuCommand(
 				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId));
 
-		menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+		committeeItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
 	}

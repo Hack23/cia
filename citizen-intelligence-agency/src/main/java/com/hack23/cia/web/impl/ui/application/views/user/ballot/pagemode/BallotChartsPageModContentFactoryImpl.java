@@ -94,7 +94,7 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 		
 		final List<ViewRiksdagenVoteDataBallotSummary> ballots = dataContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotSummary.class, ViewRiksdagenVoteDataBallotSummary_.embeddedId, RiksdagenVoteDataBallotEmbeddedId.class, RiksdagenVoteDataBallotEmbeddedId_.ballotId, pageId);
 
-		List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList = dataPartyContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotPartySummary.class, ViewRiksdagenVoteDataBallotPartySummary_.embeddedId, RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.ballotId, pageId);
+		final List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList = dataPartyContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotPartySummary.class, ViewRiksdagenVoteDataBallotPartySummary_.embeddedId, RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.ballotId, pageId);
 		
 		if (!ballots.isEmpty()) {
 			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);
@@ -105,7 +105,7 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 				final Label createHeader2Label = LabelFactory.createHeader2Label(CHARTS);
 				panelContent.addComponent(createHeader2Label);
 				
-				HorizontalLayout horizontalLayout = new HorizontalLayout();
+				final HorizontalLayout horizontalLayout = new HorizontalLayout();
 				horizontalLayout.setMargin(true);
 				horizontalLayout.setWidth(100, Unit.PERCENTAGE);
 				horizontalLayout.setHeight(100, Unit.PERCENTAGE);
@@ -113,13 +113,13 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 				panelContent.addComponent(horizontalLayout);
 				panelContent.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
 				
-				for (ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
-					DCharts createChart = ballotChartDataManager.createChart(viewRiksdagenVoteDataBallotSummary);
+				for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
+					final DCharts createChart = ballotChartDataManager.createChart(viewRiksdagenVoteDataBallotSummary);
 					horizontalLayout.addComponent(createChart);
 					horizontalLayout.setExpandRatio(createChart, ContentRatio.GRID);
 				}
 
-				DCharts createPartyChart = ballotChartDataManager.createChart(partyBallotList);
+				final DCharts createPartyChart = ballotChartDataManager.createChart(partyBallotList);
 				horizontalLayout.addComponent(createPartyChart);
 				horizontalLayout.setExpandRatio(createPartyChart, ContentRatio.GRID);
 

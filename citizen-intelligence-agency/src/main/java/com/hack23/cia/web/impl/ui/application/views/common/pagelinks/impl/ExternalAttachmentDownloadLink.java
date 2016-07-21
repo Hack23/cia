@@ -35,13 +35,13 @@ public class ExternalAttachmentDownloadLink extends Link {
 	private static final long serialVersionUID = 1L;
 		
 		/** The file name. */
-		private String fileName;
+		private final String fileName;
 		
 		/** The file type. */
-		private String fileType;
+		private final String fileType;
 		
 		/** The file url. */
-		private String fileUrl;
+		private final String fileUrl;
 
 		/**
 		 * Instantiates a new external attachment download link.
@@ -53,7 +53,7 @@ public class ExternalAttachmentDownloadLink extends Link {
 		 * @param fileUrl
 		 *            the file url
 		 */
-		public ExternalAttachmentDownloadLink(final String fileName,final String fileType, String fileUrl) {
+		public ExternalAttachmentDownloadLink(final String fileName,final String fileType, final String fileUrl) {
 	        super();
 			this.fileName = fileName;
 			this.fileType = fileType;
@@ -67,7 +67,7 @@ public class ExternalAttachmentDownloadLink extends Link {
 	    public void attach() {
 	        super.attach(); 
 
-	        StreamResource.StreamSource source = new StreamResource.StreamSource() {
+	        final StreamResource.StreamSource source = new StreamResource.StreamSource() {
 
 	            /**
 				 * 
@@ -78,13 +78,13 @@ public class ExternalAttachmentDownloadLink extends Link {
 										
 	                try {
 						return new URL(fileUrl).openStream();
-					} catch (IOException e) {
+					} catch (final IOException e) {
 						return new ByteArrayInputStream("".getBytes());
 					}
 	            }
 	        };
 
-	        StreamResource resource = new StreamResource(source, fileName);
+	        final StreamResource resource = new StreamResource(source, fileName);
 
 	        resource.getStream().setParameter("Content-Disposition", "attachment;filename=\"" + fileName + "\"");
 	        resource.setMIMEType("application/" + fileType);
