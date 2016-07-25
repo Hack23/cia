@@ -975,7 +975,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "7.7.0.alpha3";
+	content: "7.7.0.beta1";
 }
 
 .v-widget {
