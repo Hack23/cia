@@ -265,19 +265,19 @@
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-jmx</artifactId>
-      <version>9.3.10.v20160621</version>
+      <version>9.3.11.v20160721</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-plus</artifactId>
-      <version>9.3.10.v20160621</version>
+      <version>9.3.11.v20160721</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-annotations</artifactId>
-      <version>9.3.10.v20160621</version>
+      <version>9.3.11.v20160721</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -299,13 +299,13 @@
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-continuation</artifactId>
-      <version>9.3.10.v20160621</version>
+      <version>9.3.11.v20160721</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty.websocket</groupId>
       <artifactId>websocket-server</artifactId>
-      <version>9.3.10.v20160621</version>
+      <version>9.3.11.v20160721</version>
       <scope>test</scope>
     </dependency>
     <!--
