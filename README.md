@@ -103,7 +103,7 @@ $ service postgresql restart
 
 
 ```
-$ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2016.7.5/cia-dist-deb-2016.7.5.deb
+$ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2016.7.28/cia-dist-deb-2016.7.28.deb
 ```
 
 
