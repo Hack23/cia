@@ -223,7 +223,7 @@
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
-      <version>1.4.6</version>
+      <version>1.4.7</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
