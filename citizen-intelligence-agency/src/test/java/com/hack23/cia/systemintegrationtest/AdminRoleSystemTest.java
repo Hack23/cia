@@ -328,7 +328,8 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	public void visitAdminDataSummaryView() throws Exception {
+	@Test
+	public void visitAdminDataSummaryViewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
