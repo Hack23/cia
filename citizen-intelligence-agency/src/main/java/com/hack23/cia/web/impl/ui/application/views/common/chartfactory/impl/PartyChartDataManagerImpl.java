@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -27,6 +28,7 @@ import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
 import org.dussan.vaadin.dcharts.data.DataSeries;
@@ -234,28 +236,17 @@ public final class PartyChartDataManagerImpl implements PartyChartDataManager {
 	@Override
 	public DCharts createPartyGenderChart() {
 
-		return createPartyBallotChart(new DataValueCalculator() {
-			@Override
-			public Object getDataValue(final ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily) {
-				return 100 - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgPercentageMale().intValue();
-			}
-
-		});
+		return createPartyBallotChart(viewRiksdagenVoteDataBallotPartySummaryDaily -> 100 - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgPercentageMale().intValue());
 
 	}
 
 
 	@Override
 	public DCharts createPartyAgeChart() {
-		return createPartyBallotChart(new DataValueCalculator() {
-			@Override
-			public Object getDataValue(final ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily) {
-				return (viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate().getYear() + 1900) -  viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgBornYear().intValue();
-			}
-
-		});
+		return createPartyBallotChart(viewRiksdagenVoteDataBallotPartySummaryDaily -> (DateUtils.toCalendar(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()).get(Calendar.YEAR)) -  viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgBornYear().intValue());
 	}
 
+	
 
 	/**
 	 * Creates the party ballot chart.

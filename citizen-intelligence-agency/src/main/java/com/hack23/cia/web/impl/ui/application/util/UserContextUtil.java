@@ -38,6 +38,13 @@ import com.vaadin.server.Page;
 public final class UserContextUtil {
 
 	/**
+	 * Instantiates a new user context util.
+	 */
+	private UserContextUtil() {
+		super();
+	}
+
+	/**
 	 * Gets the user name from security context.
 	 *
 	 * @return the user name from security context
@@ -144,20 +151,15 @@ public final class UserContextUtil {
 		boolean result = false;
 
 		final SecurityContext context = SecurityContextHolder.getContext();
-		if (context != null) {
-			final Authentication authentication = context.getAuthentication();
-			if (authentication != null) {
+		if (context != null && context.getAuthentication() != null) {
+			final Collection<? extends GrantedAuthority> authorities = context.getAuthentication().getAuthorities();
 
-				final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-
-				for (final GrantedAuthority grantedAuthority : authorities) {
-					if (role.equalsIgnoreCase(grantedAuthority.getAuthority())) {
-						result = true;
-					}
+			for (final GrantedAuthority grantedAuthority : authorities) {
+				if (role.equalsIgnoreCase(grantedAuthority.getAuthority())) {
+					result = true;
 				}
 			}
 		}
-
 		return result;
 	}
 

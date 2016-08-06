@@ -79,7 +79,7 @@ public class ExternalAttachmentDownloadLink extends Link {
 	                try {
 						return new URL(fileUrl).openStream();
 					} catch (final IOException e) {
-						return new ByteArrayInputStream("".getBytes());
+						return new ByteArrayInputStream(new byte[0]);
 					}
 	            }
 	        };

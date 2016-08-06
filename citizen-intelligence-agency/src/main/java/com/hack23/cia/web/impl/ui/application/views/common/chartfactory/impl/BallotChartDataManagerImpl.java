@@ -76,8 +76,7 @@ public final class BallotChartDataManagerImpl implements BallotChartDataManager 
 		
 		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend).setHighlighter(highlighter);
 
-		final DCharts chart = new DCharts().setDataSeries(dataSeries).setOptions(options).show();
-		return chart;
+		return new DCharts().setDataSeries(dataSeries).setOptions(options).show();
 	}
 
 	@Override
@@ -116,8 +115,7 @@ public final class BallotChartDataManagerImpl implements BallotChartDataManager 
 		
 		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend).setHighlighter(highlighter).addOption(series);
 
-		final DCharts chart = new DCharts().setDataSeries(dataSeries).setOptions(options).show();
-		return chart;
+		return new DCharts().setDataSeries(dataSeries).setOptions(options).show();
 	}
 
 }

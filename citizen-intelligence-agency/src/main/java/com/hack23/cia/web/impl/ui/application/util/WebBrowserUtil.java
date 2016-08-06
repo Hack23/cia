@@ -61,6 +61,14 @@ public final class WebBrowserUtil {
 	private static final String X_FORWARDED_FOR = "X-Forwarded-For";
 
 	/**
+	 * Instantiates a new web browser util.
+	 */
+	private WebBrowserUtil() {
+		super();
+	}
+
+
+	/**
 	 * Gets the ip information.
 	 *
 	 * @param webBrowser

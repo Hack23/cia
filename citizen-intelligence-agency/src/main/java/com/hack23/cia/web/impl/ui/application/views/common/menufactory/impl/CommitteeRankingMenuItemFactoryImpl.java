@@ -106,6 +106,13 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
 
+	/**
+	 * Instantiates a new committee ranking menu item factory impl.
+	 */
+	public CommitteeRankingMenuItemFactoryImpl() {
+		super();
+	}
+
 	@Override
 	public void createCommitteeeRankingMenuBar(final MenuBar menuBar) {
 		initApplicationMenuBar(menuBar);

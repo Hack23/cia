@@ -116,6 +116,14 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
 	
+	
+	/**
+	 * Instantiates a new party ranking menu item factory impl.
+	 */
+	public PartyRankingMenuItemFactoryImpl() {
+		super();
+	}
+
 
 	@Override
 	public void createPartyRankingMenuBar(final MenuBar menuBar) {

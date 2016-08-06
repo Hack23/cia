@@ -33,8 +33,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.MarionetteDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.hack23.cia.testfoundation.AbstractSystemIntegrationTest;
@@ -108,11 +109,13 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 
 		WebDriver driver = null;
 		if ("firefox".equals(browser)) {
-			driver = new MarionetteDriver();
+			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+			capabilities.setCapability("marionette", true);
+			driver = new FirefoxDriver(capabilities);			
 		} else if ("chrome".equals(browser)) {
 			driver = new ChromeDriver();
 		} else if ("htmlunit-firefox".equals(browser)) {
-			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.FIREFOX_38);
+			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.FIREFOX_45);
 			htmlUnitDriver.setJavascriptEnabled(true);
 			driver = htmlUnitDriver;
 		} else if ("htmlunit-ie11".equals(browser)) {
