@@ -47,12 +47,13 @@ import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdage
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DocumentChartDataManager;
+import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
  * The Class ChartDataManagerImpl.
  */
 @Service
-public final class DocumentChartDataManagerImpl implements DocumentChartDataManager {
+public final class DocumentChartDataManagerImpl extends AbstractChartDataManagerImpl implements DocumentChartDataManager {
 
 	/** The Constant NO_INFO. */
 	private static final String NO_INFO = "NoInfo";
@@ -158,7 +159,7 @@ public final class DocumentChartDataManagerImpl implements DocumentChartDataMana
 
 
 	@Override
-	public DCharts createDocumentHistoryChartByOrg(final String org) {
+	public void createDocumentHistoryChartByOrg(final AbstractOrderedLayout content,final String org) {
 		final String searchOrg = org.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).replace(MINUS_SIGN, EMPTY_STRING).trim();
 
 		final DataSeries dataSeries = new DataSeries();
@@ -197,11 +198,11 @@ public final class DocumentChartDataManagerImpl implements DocumentChartDataMana
 			}
 		}
 
-		return new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show();
+		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 	@Override
-	public DCharts createDocumentHistoryPartyChart(final String org) {
+	public void createDocumentHistoryPartyChart(final AbstractOrderedLayout content,final String org) {
 		final DataSeries dataSeries = new DataSeries();
 		final Series series = new Series();
 
@@ -236,13 +237,13 @@ public final class DocumentChartDataManagerImpl implements DocumentChartDataMana
 			}
 		}
 
-		return new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show();
+		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 
 
 	@Override
-	public DCharts createPersonDocumentHistoryChart(final String personId) {
+	public void createPersonDocumentHistoryChart(final AbstractOrderedLayout content,final String personId) {
 
 		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 
@@ -280,7 +281,7 @@ public final class DocumentChartDataManagerImpl implements DocumentChartDataMana
 			}
 		}
 
-		return new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show();
+		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 
@@ -288,7 +289,7 @@ public final class DocumentChartDataManagerImpl implements DocumentChartDataMana
 
 
 	@Override
-	public DCharts createDocumentTypeChart() {
+	public void createDocumentTypeChart(final AbstractOrderedLayout content) {
 
 		final Map<String, List<ViewRiksdagenDocumentTypeDailySummary>> map = getDocumentTypeMap();
 
@@ -314,7 +315,7 @@ public final class DocumentChartDataManagerImpl implements DocumentChartDataMana
 
 		}
 
-		return new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show();
+		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 

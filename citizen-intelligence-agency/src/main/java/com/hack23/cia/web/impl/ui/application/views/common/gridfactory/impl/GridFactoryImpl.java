@@ -43,15 +43,13 @@ public final class GridFactoryImpl implements GridFactory {
 	public void createBasicBeanItemGrid(final AbstractOrderedLayout panelContent, final Container.Indexed datasource,
 			final String caption, final Object[] columnOrder, final Object[] hideColumns,
 			final String idProprty, final AbstractPageItemRendererClickListener<?> listener, final String actionId) {
-		final Grid createBasicBeanItemNestedPropertiesGrid = createBasicBeanItemNestedPropertiesGrid(datasource, caption, null, columnOrder, hideColumns, idProprty, listener, actionId);
+		createBasicBeanItemNestedPropertiesGrid(panelContent,datasource, caption, null, columnOrder, hideColumns, idProprty, listener, actionId);
 		
-		panelContent.addComponent(createBasicBeanItemNestedPropertiesGrid);
-		panelContent.setExpandRatio(createBasicBeanItemNestedPropertiesGrid, ContentRatio.GRID);
 
 	}
 
 	@Override
-	public Grid createBasicBeanItemNestedPropertiesGrid(final Indexed datasource, final String caption, final String[] nestedProperties,
+	public void createBasicBeanItemNestedPropertiesGrid(final AbstractOrderedLayout panelContent,final Indexed datasource, final String caption, final String[] nestedProperties,
 			final Object[] columnOrder, final Object[] hideColumns, final String idProprty,
 			final AbstractPageItemRendererClickListener<?> listener, final String actionId) {
 		final Grid grid = new Grid(datasource);
@@ -105,8 +103,8 @@ public final class GridFactoryImpl implements GridFactory {
 
 		}
 
-		return grid;
-
+		panelContent.addComponent(grid);
+		panelContent.setExpandRatio(grid, ContentRatio.GRID);
 	}
 
 }

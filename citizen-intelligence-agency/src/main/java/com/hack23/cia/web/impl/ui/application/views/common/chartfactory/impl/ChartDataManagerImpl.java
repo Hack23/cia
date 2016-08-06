@@ -24,12 +24,13 @@ import org.dussan.vaadin.dcharts.options.Options;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
+import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
  * The Class ChartDataManagerImpl.
  */
 @Service
-public final class ChartDataManagerImpl implements ChartDataManager {
+public final class ChartDataManagerImpl extends AbstractChartDataManagerImpl implements ChartDataManager {
 
 
 	/**
@@ -41,7 +42,7 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 
 
 	@Override
-	public DCharts createChartPanel(final DataSeries dataSeries, final String caption) {
+	public void createChartPanel(final AbstractOrderedLayout content,final DataSeries dataSeries, final String caption) {
 
 		final Options options = new Options().setSeriesDefaults(ChartOptionsImpl.INSTANCE.createSeriesDefaultPieChart())
 				.setLegend(ChartOptionsImpl.INSTANCE.createdLegendEnhancedInsideWest()).setHighlighter(ChartOptionsImpl.INSTANCE.createHighLighter());
@@ -51,7 +52,8 @@ public final class ChartDataManagerImpl implements ChartDataManager {
 		chart.setCaption(caption);
 		chart.show();
 		chart.setSizeFull();
-		return chart;
+		
+		addChart(content, chart);
 
 	}
 

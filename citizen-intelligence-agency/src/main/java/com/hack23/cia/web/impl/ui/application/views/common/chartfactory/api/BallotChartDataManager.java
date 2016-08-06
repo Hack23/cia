@@ -20,10 +20,9 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
 
 import java.util.List;
 
-import org.dussan.vaadin.dcharts.DCharts;
-
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary;
+import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
  * The Interface BallotChartDataManager.
@@ -34,18 +33,20 @@ public interface BallotChartDataManager {
 	/**
 	 * Creates the chart.
 	 *
+	 * @param content
+	 *            the content
 	 * @param viewRiksdagenVoteDataBallotSummary
 	 *            the view riksdagen vote data ballot summary
-	 * @return the d charts
 	 */
-	DCharts createChart(ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary);
+	void createChart(AbstractOrderedLayout content,ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary);
 	
 	/**
 	 * Creates the chart.
 	 *
+	 * @param content
+	 *            the content
 	 * @param partyList
 	 *            the party list
-	 * @return the d charts
 	 */
-	DCharts createChart(List<ViewRiksdagenVoteDataBallotPartySummary> partyList);
+	void createChart(AbstractOrderedLayout content,List<ViewRiksdagenVoteDataBallotPartySummary> partyList);
 }

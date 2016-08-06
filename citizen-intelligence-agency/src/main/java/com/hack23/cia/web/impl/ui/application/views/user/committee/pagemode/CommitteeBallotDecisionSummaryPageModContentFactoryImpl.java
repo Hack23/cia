@@ -33,12 +33,10 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.Grid;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -103,7 +101,7 @@ public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl exten
 						decisionPartySummaryList);
 
 				
-				final Grid committeeBallotDecisionPartyBeanItemGrid = getGridFactory().createBasicBeanItemNestedPropertiesGrid(
+				getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
 						committeeBallotDecisionPartyDataSource,
 						"Committee Ballot Decision Summary",new String[]{"embeddedId.concern","embeddedId.issue","embeddedId.id"}, new String[]{"embeddedId.concern","embeddedId.issue","embeddedId.id",    "committeeReport",
 							    "rm",
@@ -134,12 +132,6 @@ public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl exten
 							    "percentageAbsent",
 							    "percentageAbstain",
 							    "percentageMale"}, new String[]{ "embeddedId"}, "ballotId", new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "ballotId"), "ballotId");
-
-				panelContent.addComponent(committeeBallotDecisionPartyBeanItemGrid);
-				
-				panelContent.setExpandRatio(committeeBallotDecisionPartyBeanItemGrid, ContentRatio.GRID);
-
-
 
 				panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);

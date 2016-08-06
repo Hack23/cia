@@ -18,7 +18,7 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
 
-import org.dussan.vaadin.dcharts.DCharts;
+import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
  * The Interface ChartDataManager.
@@ -29,31 +29,35 @@ public interface PartyChartDataManager {
 	/**
 	 * Creates the party winner chart.
 	 *
-	 * @return the d charts
+	 * @param content
+	 *            the content
 	 */
-	DCharts createPartyWinnerChart();
+	void createPartyWinnerChart(AbstractOrderedLayout content);
 
 	/**
 	 * Creates the party line chart.
 	 *
+	 * @param content
+	 *            the content
 	 * @param partyId
 	 *            the party id
-	 * @return the d charts
 	 */
-	DCharts createPartyLineChart(String partyId);
+	void createPartyLineChart(AbstractOrderedLayout content,String partyId);
 
 	/**
 	 * Creates the party gender chart.
 	 *
-	 * @return the d charts
+	 * @param content
+	 *            the content
 	 */
-	DCharts createPartyGenderChart();
+	void createPartyGenderChart(AbstractOrderedLayout content);
 
 	/**
 	 * Creates the party age chart.
 	 *
-	 * @return the d charts
+	 * @param content
+	 *            the content
 	 */
-	DCharts createPartyAgeChart();
+	void createPartyAgeChart(AbstractOrderedLayout content);
 
 }

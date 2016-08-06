@@ -18,7 +18,7 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
 
-import org.dussan.vaadin.dcharts.DCharts;
+import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
  * The Interface ChartDataManager.
@@ -29,29 +29,32 @@ public interface AdminChartDataManager {
 	/**
 	 * Creates the application action event page daily summary chart.
 	 *
-	 * @return the d charts
+	 * @param content
+	 *            the content
 	 */
-	DCharts createApplicationActionEventPageDailySummaryChart();
+	void createApplicationActionEventPageDailySummaryChart(AbstractOrderedLayout content);
 
 
 	/**
 	 * Creates the application action event page mode daily summary chart.
 	 *
+	 * @param content
+	 *            the content
 	 * @param page
 	 *            the page
-	 * @return the d charts
 	 */
-	DCharts createApplicationActionEventPageModeDailySummaryChart(String page);
+	void createApplicationActionEventPageModeDailySummaryChart(AbstractOrderedLayout content,String page);
 
 	/**
 	 * Creates the application action event page element daily summary chart.
 	 *
+	 * @param content
+	 *            the content
 	 * @param page
 	 *            the page
 	 * @param elementId
 	 *            the element id
-	 * @return the d charts
 	 */
-	DCharts createApplicationActionEventPageElementDailySummaryChart(String page, String elementId);
+	void createApplicationActionEventPageElementDailySummaryChart(AbstractOrderedLayout content,String page, String elementId);
 
 }

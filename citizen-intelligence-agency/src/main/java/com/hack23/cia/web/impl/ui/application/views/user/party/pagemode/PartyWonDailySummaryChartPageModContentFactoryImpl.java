@@ -18,7 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 
-import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -27,7 +26,6 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -80,12 +78,7 @@ public final class PartyWonDailySummaryChartPageModContentFactoryImpl extends Ab
 
 			LabelFactory.createHeader2Label(panelContent,PARTY_WON_DAILY_SUMMARY_CHART);
 			
-			final DCharts createPartyLineChart = chartDataManager.createPartyLineChart(pageId);
-			panelContent.addComponent(createPartyLineChart);
-			
-			
-			panelContent.setExpandRatio(createPartyLineChart, ContentRatio.GRID);
-
+			chartDataManager.createPartyLineChart(panelContent,pageId);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}

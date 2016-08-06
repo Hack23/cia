@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
@@ -81,7 +82,7 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 	 *            the result per page
 	 * @return the horizontal layout
 	 */
-	protected final HorizontalLayout createPagingControls(final String name,final String pageId, final Long size, final int pageNr, final int resultPerPage) {
+	protected final void createPagingControls(final AbstractOrderedLayout content,final String name,final String pageId, final Long size, final int pageNr, final int resultPerPage) {
 		final HorizontalLayout pagingControls = new HorizontalLayout();
 		pagingControls.setSpacing(true);
 		pagingControls.setMargin(true);
@@ -119,7 +120,9 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 			addPagingLink(LAST_PAGE,name, pageId, maxPages,pagingControls);			
 		}
 		
-		return pagingControls;
+		content.addComponent(pagingControls);
+		content.setExpandRatio(pagingControls, ContentRatio.SMALL);		
+
 	}
 
 	

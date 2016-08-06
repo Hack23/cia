@@ -35,12 +35,13 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PoliticianChartDataManager;
+import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
  * The Class ChartDataManagerImpl.
  */
 @Service
-public final class PoliticianDataManagerImpl implements PoliticianChartDataManager {
+public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImpl implements PoliticianChartDataManager {
 
 	/** The Constant ABSENT. */
 	private static final String ABSENT = "Absent";
@@ -72,7 +73,7 @@ public final class PoliticianDataManagerImpl implements PoliticianChartDataManag
 
 
 	@Override
-	public DCharts createPersonLineChart(final String personId) {
+	public void createPersonLineChart(final AbstractOrderedLayout content,final String personId) {
 
 		final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> list = dataChartManager.findByValue(personId);
 
@@ -134,7 +135,7 @@ public final class PoliticianDataManagerImpl implements PoliticianChartDataManag
 				.addOption(ChartOptionsImpl.INSTANCE.createHighLighterNorth()).addOption(cursor).addOption(series)
 				.addOption(ChartOptionsImpl.INSTANCE.createLegendOutside());
 
-		return new DCharts().setDataSeries(dataSeries).setOptions(options).show();
+		addChart(content,  new DCharts().setDataSeries(dataSeries).setOptions(options).show());
 	}
 
 

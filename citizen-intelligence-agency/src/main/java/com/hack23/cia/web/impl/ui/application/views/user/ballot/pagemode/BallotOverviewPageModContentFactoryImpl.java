@@ -40,13 +40,11 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.Grid;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -141,7 +139,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			final BeanItemContainer<ViewRiksdagenVoteDataBallotPartySummary> partyBallotDataSource = new BeanItemContainer<>(
 					ViewRiksdagenVoteDataBallotPartySummary.class, partyBallotList);
 
-			final Grid partynBallotsBeanItemGrid = getGridFactory().createBasicBeanItemNestedPropertiesGrid(
+			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
 					partyBallotDataSource, "Party Ballot Summary",
 					new String[] { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue",
 							"embeddedId.party" },
@@ -157,9 +155,6 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 							"abstainVotes", "absentVotes", "embeddedId.ballotId", "noWinner" },
 					null, new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "embeddedId.party"),
 					"embeddedId.party");
-
-			panelContent.addComponent(partynBallotsBeanItemGrid);
-			panelContent.setExpandRatio(partynBallotsBeanItemGrid, ContentRatio.GRID);
 
 			panel.setCaption(BALLOT + pageId);
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME,

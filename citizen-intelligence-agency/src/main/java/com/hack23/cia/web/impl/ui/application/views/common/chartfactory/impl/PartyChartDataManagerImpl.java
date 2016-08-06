@@ -44,12 +44,13 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyChartDataManager;
+import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
  * The Class ChartDataManagerImpl.
  */
 @Service
-public final class PartyChartDataManagerImpl implements PartyChartDataManager {
+public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImpl implements PartyChartDataManager {
 
 
 	/** The Constant PARTY_ABSENT. */
@@ -130,7 +131,7 @@ public final class PartyChartDataManagerImpl implements PartyChartDataManager {
 	}
 
 	@Override
-	public DCharts createPartyWinnerChart() {
+	public void createPartyWinnerChart(final AbstractOrderedLayout content) {
 
 		final Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> map = getPartyMap();
 
@@ -170,7 +171,7 @@ public final class PartyChartDataManagerImpl implements PartyChartDataManager {
 			}
 		}
 
-		return new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show();
+		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 	/**
@@ -189,7 +190,7 @@ public final class PartyChartDataManagerImpl implements PartyChartDataManager {
 
 
 	@Override
-	public DCharts createPartyLineChart(final String partyId) {
+	public void createPartyLineChart(final AbstractOrderedLayout content,final String partyId) {
 
 		final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> list = getViewRiksdagenVoteDataBallotPartySummaryDaily(
 				partyId);
@@ -229,21 +230,21 @@ public final class PartyChartDataManagerImpl implements PartyChartDataManager {
 				.addOption(ChartOptionsImpl.INSTANCE.createHighLighterNorth()).addOption(cursor).addOption(series)
 				.addOption(ChartOptionsImpl.INSTANCE.createLegendOutside());
 
-		return new DCharts().setDataSeries(dataSeries).setOptions(options).show();
+		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(options).show());
 	}
 
 
 	@Override
-	public DCharts createPartyGenderChart() {
+	public void createPartyGenderChart(final AbstractOrderedLayout content) {
 
-		return createPartyBallotChart(viewRiksdagenVoteDataBallotPartySummaryDaily -> 100 - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgPercentageMale().intValue());
+		createPartyBallotChart(content,viewRiksdagenVoteDataBallotPartySummaryDaily -> 100 - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgPercentageMale().intValue());
 
 	}
 
 
 	@Override
-	public DCharts createPartyAgeChart() {
-		return createPartyBallotChart(viewRiksdagenVoteDataBallotPartySummaryDaily -> (DateUtils.toCalendar(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()).get(Calendar.YEAR)) -  viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgBornYear().intValue());
+	public void createPartyAgeChart(final AbstractOrderedLayout content) {
+		createPartyBallotChart(content,viewRiksdagenVoteDataBallotPartySummaryDaily -> (DateUtils.toCalendar(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()).get(Calendar.YEAR)) -  viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgBornYear().intValue());
 	}
 
 	
@@ -255,7 +256,7 @@ public final class PartyChartDataManagerImpl implements PartyChartDataManager {
 	 *            the data value calculator
 	 * @return the d charts
 	 */
-	private DCharts createPartyBallotChart(final DataValueCalculator dataValueCalculator) {
+	private void createPartyBallotChart(final AbstractOrderedLayout content,final DataValueCalculator dataValueCalculator) {
 		final Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> map = getPartyMap();
 
 		final DataSeries dataSeries = new DataSeries();
@@ -282,7 +283,7 @@ public final class PartyChartDataManagerImpl implements PartyChartDataManager {
 			}
 		}
 
-		return new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show();
+		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 	/**

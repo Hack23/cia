@@ -42,12 +42,13 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionChartDataManager;
+import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
  * The Class DecisionChartDataManagerImpl.
  */
 @Service
-public final class DecisionChartDataManagerImpl implements DecisionChartDataManager {
+public final class DecisionChartDataManagerImpl extends AbstractChartDataManagerImpl implements DecisionChartDataManager {
 
 	/** The Constant EMPTY_STRING. */
 	private static final String EMPTY_STRING = "";
@@ -103,7 +104,7 @@ public final class DecisionChartDataManagerImpl implements DecisionChartDataMana
 
 
 	@Override
-	public DCharts createDecisionTypeChart() {
+	public void createDecisionTypeChart(final AbstractOrderedLayout content) {
 
 		final Map<String, List<ViewRiksdagenCommitteeDecisionTypeDailySummary>> map = getCommitteeDecisionTypeMap();
 
@@ -130,12 +131,12 @@ public final class DecisionChartDataManagerImpl implements DecisionChartDataMana
 
 		}
 
-		return new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show();
+		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 
 	@Override
-	public DCharts createDecisionTypeChart(final String org) {
+	public void createDecisionTypeChart(final AbstractOrderedLayout content,final String org) {
 
 		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 
@@ -172,7 +173,7 @@ public final class DecisionChartDataManagerImpl implements DecisionChartDataMana
 			}
 		}
 
-		return new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show();
+		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 }

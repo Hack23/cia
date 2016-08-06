@@ -23,7 +23,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -38,7 +37,6 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.WorldIndicatorChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.ui.Layout;
@@ -131,12 +129,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractTest
 
 		final List<WorldBankData> dataList = dataContainer.findListByEmbeddedProperty(WorldBankData.class, WorldBankData_.indicator, Indicator.class, Indicator_.id, indicator);
 
-
-		final DCharts createIndicatorChart = chartDataManager.createIndicatorChart(dataList,indicatorSummary.get());
-		verticalLayout.addComponent(createIndicatorChart);
-		
-		verticalLayout.setExpandRatio(createIndicatorChart,ContentRatio.LARGE);
-
+		chartDataManager.createIndicatorChart(verticalLayout,dataList,indicatorSummary.get());
 	}
 
 }

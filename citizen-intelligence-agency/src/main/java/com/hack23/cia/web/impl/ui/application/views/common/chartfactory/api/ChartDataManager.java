@@ -18,8 +18,9 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
 
-import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.data.DataSeries;
+
+import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
  * The Interface ChartDataManager.
@@ -31,12 +32,13 @@ public interface ChartDataManager {
 	/**
 	 * Creates the chart panel.
 	 *
+	 * @param content
+	 *            the content
 	 * @param dataSeries
 	 *            the data series
 	 * @param caption
 	 *            the caption
-	 * @return the d charts
 	 */
-	DCharts createChartPanel(DataSeries dataSeries, String caption);
+	void createChartPanel(AbstractOrderedLayout content,DataSeries dataSeries, String caption);
 
 }

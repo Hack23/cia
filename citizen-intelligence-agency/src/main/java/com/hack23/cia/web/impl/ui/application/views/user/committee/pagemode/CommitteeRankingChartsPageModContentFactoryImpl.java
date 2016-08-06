@@ -30,7 +30,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -91,23 +90,17 @@ public final class CommitteeRankingChartsPageModContentFactoryImpl extends Abstr
 
 		final String pageId = getPageId(parameters);
 
-		final Layout chartLayout = new HorizontalLayout();
+		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
 
-		final Component chartPanelAll = chartDataManager.createChartPanel(dataSeriesFactory.createCommitteeChartTimeSeriesAll(),"All");
-		if (chartPanelAll!=null) {
-			chartLayout.addComponent(chartPanelAll);
-		}
+		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createCommitteeChartTimeSeriesAll(),"All");
 
-		final Component chartPanelCurrent = chartDataManager.createChartPanel(dataSeriesFactory.createCommitteeChartTimeSeriesCurrent(),"Current");
-		if (chartPanelCurrent!=null) {
-			chartLayout.addComponent(chartPanelCurrent);
-		}
+		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createCommitteeChartTimeSeriesCurrent(),"Current");
 
 		panelContent.addComponent(chartLayout);
 
-		panelContent.addComponent(createExtraChartLayout());
+		createExtraChartLayout(panelContent);
 
 		panel.setCaption(CHARTS + parameters);
 
@@ -124,24 +117,19 @@ public final class CommitteeRankingChartsPageModContentFactoryImpl extends Abstr
 	 *
 	 * @return the layout
 	 */
-	private Layout createExtraChartLayout() {
-		final Layout chartLayout = new HorizontalLayout();
+	private void createExtraChartLayout(final VerticalLayout panelContent) {
+		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
+		
+		panelContent.addComponent(chartLayout);
 
-		final Component chartPanelAll = chartDataManager.createChartPanel(
+		chartDataManager.createChartPanel(chartLayout,
 				dataSeriesFactory.createChartTimeSeriesTotalDaysServedCommitteeByParty(),
 				ALL_PARTIES_TOTAL_DAYS_SERVED);
-		if (chartPanelAll != null) {
-			chartLayout.addComponent(chartPanelAll);
-		}
 
-		final Component chartPanelCurrent = chartDataManager.createChartPanel(
+		chartDataManager.createChartPanel(chartLayout,
 				dataSeriesFactory2.createChartTimeSeriesCurrentCommitteeByParty(), CURRENT_PARTIES_HEADCOUNT);
-		if (chartPanelCurrent != null) {
-			chartLayout.addComponent(chartPanelCurrent);
-		}
 
-		return chartLayout;
 	}
 
 

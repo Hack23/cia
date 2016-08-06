@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
 import java.util.Arrays;
 
-import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -32,12 +31,10 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -90,9 +87,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 		final BeanItemContainer<ApplicationActionEvent> politicianDocumentDataSource = new BeanItemContainer<>(ApplicationActionEvent.class,
 		dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,ApplicationActionEvent_.createdDate));
 		
-		final HorizontalLayout pagingControls = createPagingControls(NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);		
-		content.addComponent(pagingControls);
-		content.setExpandRatio(pagingControls, ContentRatio.SMALL);		
+		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);		
 
 		getGridFactory().createBasicBeanItemGrid(content, politicianDocumentDataSource,
 				"ApplicationActionEvent",
@@ -111,13 +106,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 
 
 		} else {
-			final DCharts createApplicationActionEventPageDailySummaryChart = chartDataManager.createApplicationActionEventPageDailySummaryChart();
-
-
-			content.addComponent(createApplicationActionEventPageDailySummaryChart);
-
-			content.setExpandRatio(createApplicationActionEventPageDailySummaryChart, ContentRatio.LARGE);
-
+			chartDataManager.createApplicationActionEventPageDailySummaryChart(content);
 		}
 
 

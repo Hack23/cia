@@ -21,7 +21,6 @@ package com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener;
 import com.vaadin.data.Container.Indexed;
 import com.vaadin.ui.AbstractOrderedLayout;
-import com.vaadin.ui.Grid;
 
 /**
  * A factory for creating Grid objects.
@@ -54,6 +53,8 @@ public interface GridFactory {
 	/**
 	 * Creates a new Grid object.
 	 *
+	 * @param panelContent
+	 *            the panel content
 	 * @param datasource
 	 *            the datasource
 	 * @param caption
@@ -70,9 +71,8 @@ public interface GridFactory {
 	 *            the listener
 	 * @param actionId
 	 *            the action id
-	 * @return the grid
 	 */
-	Grid createBasicBeanItemNestedPropertiesGrid(Indexed datasource, String caption, String[] nestedProperties,Object[] columnOrder, Object[] hideColumns,
+	void createBasicBeanItemNestedPropertiesGrid(AbstractOrderedLayout panelContent,Indexed datasource, String caption, String[] nestedProperties,Object[] columnOrder, Object[] hideColumns,
 			String idProprty, AbstractPageItemRendererClickListener<?> listener, String actionId);
 
 }

@@ -18,7 +18,7 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
 
-import org.dussan.vaadin.dcharts.DCharts;
+import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
  * The Interface ChartDataManager.
@@ -30,10 +30,11 @@ public interface PoliticianChartDataManager {
 	/**
 	 * Creates the person line chart.
 	 *
+	 * @param content
+	 *            the content
 	 * @param personId
 	 *            the person id
-	 * @return the d charts
 	 */
-	DCharts createPersonLineChart(String personId);
+	void createPersonLineChart(AbstractOrderedLayout content,String personId);
 
 }

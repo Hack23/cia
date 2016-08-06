@@ -18,7 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
 
-import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.service.api.ApplicationManager;
@@ -29,7 +28,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridF
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.VerticalLayout;
 
@@ -199,20 +197,13 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 */
 	protected final void createPageVisitHistory(final String pageName, final String pageId,
 			final VerticalLayout panelContent) {
-		LabelFactory.createHeader2Label(panelContent,CURRENT_PAGE_VISIT_HISTORY);
-		
-		final DCharts createApplicationActionEventPageElementDailySummaryChart = adminChartDataManager
-				.createApplicationActionEventPageElementDailySummaryChart(pageName, pageId);
-		panelContent.addComponent(createApplicationActionEventPageElementDailySummaryChart);
+		LabelFactory.createHeader2Label(panelContent,CURRENT_PAGE_VISIT_HISTORY);		
+		adminChartDataManager
+				.createApplicationActionEventPageElementDailySummaryChart(panelContent,pageName, pageId);
 
 		LabelFactory.createHeader2Label(panelContent,GENERAL_PAGE_MODE_PAGE_VISIT);
-		final DCharts createApplicationActionEventPageModeDailySummaryChart = adminChartDataManager
-				.createApplicationActionEventPageModeDailySummaryChart(pageName);
-		panelContent.addComponent(createApplicationActionEventPageModeDailySummaryChart);
-
-		
-		panelContent.setExpandRatio(createApplicationActionEventPageElementDailySummaryChart, ContentRatio.GRID);
-		panelContent.setExpandRatio(createApplicationActionEventPageModeDailySummaryChart, ContentRatio.GRID);
+		adminChartDataManager
+				.createApplicationActionEventPageModeDailySummaryChart(panelContent,pageName);
 	}
 
 

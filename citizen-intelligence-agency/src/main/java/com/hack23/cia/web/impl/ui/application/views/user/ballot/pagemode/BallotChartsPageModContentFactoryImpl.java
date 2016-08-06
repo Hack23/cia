@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.user.ballot.pagemode;
 
 import java.util.List;
 
-import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -111,14 +110,10 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 				panelContent.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
 				
 				for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
-					final DCharts createChart = ballotChartDataManager.createChart(viewRiksdagenVoteDataBallotSummary);
-					horizontalLayout.addComponent(createChart);
-					horizontalLayout.setExpandRatio(createChart, ContentRatio.GRID);
+					ballotChartDataManager.createChart(horizontalLayout,viewRiksdagenVoteDataBallotSummary);
 				}
 
-				final DCharts createPartyChart = ballotChartDataManager.createChart(partyBallotList);
-				horizontalLayout.addComponent(createPartyChart);
-				horizontalLayout.setExpandRatio(createPartyChart, ContentRatio.GRID);
+				ballotChartDataManager.createChart(horizontalLayout,partyBallotList);
 
 				panel.setCaption(BALLOT + pageId);
 				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);

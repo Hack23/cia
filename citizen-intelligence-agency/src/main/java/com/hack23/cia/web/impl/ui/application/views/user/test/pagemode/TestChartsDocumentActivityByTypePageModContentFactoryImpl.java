@@ -70,7 +70,7 @@ public final class TestChartsDocumentActivityByTypePageModContentFactoryImpl ext
 
 		final String pageId = getPageId(parameters);
 
-		panelContent.addComponent(documentChartDataManager.createDocumentTypeChart());
+		documentChartDataManager.createDocumentTypeChart(panelContent);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

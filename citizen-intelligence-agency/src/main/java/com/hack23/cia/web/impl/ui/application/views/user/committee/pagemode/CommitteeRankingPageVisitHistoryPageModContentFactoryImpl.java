@@ -72,7 +72,7 @@ public final class CommitteeRankingPageVisitHistoryPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		panelContent.addComponent(adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(NAME));
+		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
 
 		panel.setCaption(PAGE_VISIT_HISTORY + parameters);
 

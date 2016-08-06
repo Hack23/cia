@@ -29,7 +29,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Char
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -80,20 +79,15 @@ public final class PoliticianRankingChartsPageModContentFactoryImpl
 
 		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);
 
-		final Layout chartLayout = new HorizontalLayout();
+		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-		final Component chartPanelAll = chartDataManager
-				.createChartPanel(dataSeriesFactory.createPartyChartTimeSeriesAll(), "All");
-		if (chartPanelAll != null) {
-			chartLayout.addComponent(chartPanelAll);
-		}
+		chartDataManager
+				.createChartPanel(chartLayout,dataSeriesFactory.createPartyChartTimeSeriesAll(), "All");
 
-		final Component chartPanelCurrent = chartDataManager
-				.createChartPanel(dataSeriesFactory.createPartyChartTimeSeriesCurrent(), "Current");
-		if (chartPanelCurrent != null) {
-			chartLayout.addComponent(chartPanelCurrent);
-		}
+		chartDataManager
+				.createChartPanel(chartLayout,dataSeriesFactory.createPartyChartTimeSeriesCurrent(), "Current");
+		
 		panelContent.addComponent(chartLayout);
 
 		panel.setCaption(CHARTS + parameters);

@@ -18,7 +18,7 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
 
-import org.dussan.vaadin.dcharts.DCharts;
+import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
  * The Interface ChartDataManager.
@@ -29,35 +29,39 @@ public interface DocumentChartDataManager {
 	/**
 	 * Creates the document type chart.
 	 *
-	 * @return the d charts
+	 * @param content
+	 *            the content
 	 */
-	DCharts createDocumentTypeChart();
+	void createDocumentTypeChart(AbstractOrderedLayout content);
 
 	/**
 	 * Creates the document history chart by org.
 	 *
+	 * @param content
+	 *            the content
 	 * @param org
 	 *            the org
-	 * @return the d charts
 	 */
-	DCharts createDocumentHistoryChartByOrg(String org);
+	void createDocumentHistoryChartByOrg(AbstractOrderedLayout content,String org);
 
 	/**
 	 * Creates the document history party chart.
 	 *
+	 * @param content
+	 *            the content
 	 * @param org
 	 *            the org
-	 * @return the d charts
 	 */
-	DCharts createDocumentHistoryPartyChart(String org);
+	void createDocumentHistoryPartyChart(AbstractOrderedLayout content,String org);
 
 	/**
 	 * Creates the person document history chart.
 	 *
+	 * @param content
+	 *            the content
 	 * @param personId
 	 *            the person id
-	 * @return the d charts
 	 */
-	DCharts createPersonDocumentHistoryChart(String personId);
+	void createPersonDocumentHistoryChart(AbstractOrderedLayout content,String personId);
 
 }

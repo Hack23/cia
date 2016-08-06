@@ -29,7 +29,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Char
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -72,19 +71,12 @@ public final class PartyRankingChartsPageModContentFactoryImpl extends AbstractP
 
 
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
-		final Layout chartLayout = new HorizontalLayout();
+		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
+		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createPartyChartTimeSeriesAll(),"All");
+		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createPartyChartTimeSeriesCurrent(),"Current");
 
-		final Component chartPanelAll = chartDataManager.createChartPanel(dataSeriesFactory.createPartyChartTimeSeriesAll(),"All");
-		if (chartPanelAll!=null) {
-			chartLayout.addComponent(chartPanelAll);
-		}
-
-		final Component chartPanelCurrent = chartDataManager.createChartPanel(dataSeriesFactory.createPartyChartTimeSeriesCurrent(),"Current");
-		if (chartPanelCurrent!=null) {
-			chartLayout.addComponent(chartPanelCurrent);
-		}
 		panelContent.addComponent(chartLayout);
 
 		panelContent.addComponent(createExtraChartLayout());
@@ -104,20 +96,14 @@ public final class PartyRankingChartsPageModContentFactoryImpl extends AbstractP
 	 * @return the layout
 	 */
 	private Layout createExtraChartLayout() {
-		final Layout chartLayout = new HorizontalLayout();
+		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
 
-		final Component chartPanelAll = chartDataManager.createChartPanel(dataSeriesFactory.createChartTimeSeriesCurrentGovernmentByParty(),"Current Government");
-		if (chartPanelAll!=null) {
-			chartLayout.addComponent(chartPanelAll);
-		}
-
-		final Component chartPanelCurrent = chartDataManager.createChartPanel(dataSeriesFactory.createChartTimeSeriesCurrentCommitteeByParty(),"Current Committee");
-		if (chartPanelCurrent!=null) {
-			chartLayout.addComponent(chartPanelCurrent);
-		}
-
+		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createChartTimeSeriesCurrentGovernmentByParty(),"Current Government");
+	
+		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createChartTimeSeriesCurrentCommitteeByParty(),"Current Committee");
+	
 		return chartLayout;
 	}
 

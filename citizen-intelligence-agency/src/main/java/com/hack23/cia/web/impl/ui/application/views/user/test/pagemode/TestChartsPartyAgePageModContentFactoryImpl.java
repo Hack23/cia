@@ -68,7 +68,7 @@ public final class TestChartsPartyAgePageModContentFactoryImpl extends AbstractT
 
 		final String pageId = getPageId(parameters);
 
-		panelContent.addComponent(partyChartDataManager.createPartyAgeChart());
+		partyChartDataManager.createPartyAgeChart(panelContent);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

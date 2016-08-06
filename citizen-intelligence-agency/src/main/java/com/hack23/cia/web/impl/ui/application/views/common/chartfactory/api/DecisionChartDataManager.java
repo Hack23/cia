@@ -18,9 +18,7 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
 
-import org.dussan.vaadin.dcharts.DCharts;
-
-import com.vaadin.ui.Component;
+import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
  * The Interface ChartDataManager.
@@ -30,17 +28,19 @@ public interface DecisionChartDataManager {
 	/**
 	 * Creates the decision type chart.
 	 *
-	 * @return the component
+	 * @param content
+	 *            the content
 	 */
-	Component createDecisionTypeChart();
+	void createDecisionTypeChart(AbstractOrderedLayout content);
 
 	/**
 	 * Creates the decision type chart.
 	 *
+	 * @param content
+	 *            the content
 	 * @param orgCode
 	 *            the org code
-	 * @return the d charts
 	 */
-	DCharts createDecisionTypeChart(String orgCode);
+	void createDecisionTypeChart(AbstractOrderedLayout content,String orgCode);
 
 }

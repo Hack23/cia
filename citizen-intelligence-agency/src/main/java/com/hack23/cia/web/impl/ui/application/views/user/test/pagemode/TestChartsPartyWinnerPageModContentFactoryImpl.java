@@ -69,7 +69,7 @@ public final class TestChartsPartyWinnerPageModContentFactoryImpl extends Abstra
 
 		final String pageId = getPageId(parameters);
 
-		panelContent.addComponent(partyChartDataManager.createPartyWinnerChart());
+		partyChartDataManager.createPartyWinnerChart(panelContent);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

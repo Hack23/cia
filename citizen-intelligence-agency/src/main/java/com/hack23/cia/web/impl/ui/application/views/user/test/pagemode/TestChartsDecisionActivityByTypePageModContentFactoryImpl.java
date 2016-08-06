@@ -69,7 +69,7 @@ public final class TestChartsDecisionActivityByTypePageModContentFactoryImpl ext
 
 		getTestMenuItemFactory().createTestTopicMenu(menuBar);
 
-		panelContent.addComponent(decisionChartDataManager.createDecisionTypeChart());
+		decisionChartDataManager.createDecisionTypeChart(panelContent);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

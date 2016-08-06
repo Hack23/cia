@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,32 +15,37 @@
  *
  *	$Id$
  *  $HeadURL$
- */
-package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
+*/
+package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
-import java.util.List;
+import org.dussan.vaadin.dcharts.DCharts;
 
-import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
-import com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
- * The Interface ChartDataManager.
+ * The Class AbstractChartDataManagerImpl.
  */
-@FunctionalInterface
-public interface WorldIndicatorChartDataManager {
-
+public abstract class AbstractChartDataManagerImpl {
 
 	/**
-	 * Creates the indicator chart.
+	 * Instantiates a new abstract chart data manager impl.
+	 */
+	public AbstractChartDataManagerImpl() {
+		super();
+	}
+	
+	/**
+	 * Adds the chart.
 	 *
 	 * @param content
 	 *            the content
-	 * @param list
-	 *            the list
-	 * @param summary
-	 *            the summary
+	 * @param chart
+	 *            the chart
 	 */
-	void createIndicatorChart(AbstractOrderedLayout content,List<WorldBankData> list, ViewWorldbankIndicatorDataCountrySummary summary);
+	protected final void addChart(final AbstractOrderedLayout content, final DCharts chart) {
+		content.addComponent(chart);
+		content.setExpandRatio(chart, ContentRatio.GRID);		
+	}
 
 }

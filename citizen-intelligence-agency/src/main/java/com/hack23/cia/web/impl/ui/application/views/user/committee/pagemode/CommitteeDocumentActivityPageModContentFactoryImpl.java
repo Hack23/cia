@@ -19,7 +19,6 @@
 package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
 
 import org.apache.commons.lang3.StringUtils;
-import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -30,7 +29,6 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DocumentChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -86,16 +84,8 @@ public final class CommitteeDocumentActivityPageModContentFactoryImpl extends Ab
 
 				LabelFactory.createHeader2Label(panelContent,DOCUMENT_ACTIVITY);
 				
-
-
-				final DCharts createDocumentHistoryChart = chartDataManager
-						.createDocumentHistoryChartByOrg(viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
-
-				panelContent.addComponent(createDocumentHistoryChart);
-
-				
-				panelContent.setExpandRatio(createDocumentHistoryChart, ContentRatio.GRID);
-
+				chartDataManager
+						.createDocumentHistoryChartByOrg(panelContent,viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
 
 				panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);

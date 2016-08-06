@@ -45,12 +45,13 @@ import com.hack23.cia.model.internal.application.data.impl.ViewApplicationAction
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager;
+import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
  * The Class ChartDataManagerImpl.
  */
 @Service
-public final class AdminChartDataManagerImpl implements AdminChartDataManager {
+public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImpl implements AdminChartDataManager {
 
 	/** The Constant PAGE_RANK. */
 	private static final String PAGE_RANK = "Page Rank";
@@ -89,7 +90,7 @@ public final class AdminChartDataManagerImpl implements AdminChartDataManager {
 
 
 	@Override
-	public DCharts createApplicationActionEventPageDailySummaryChart() {
+	public void createApplicationActionEventPageDailySummaryChart(final AbstractOrderedLayout content) {
 
 		final Map<String, List<ViewApplicationActionEventPageDailySummary>> map = getApplicationActionEventPageDailySummaryMap();
 
@@ -116,7 +117,7 @@ public final class AdminChartDataManagerImpl implements AdminChartDataManager {
 
 		}
 
-		return new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show();
+		addChart(content,  new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 
@@ -142,7 +143,7 @@ public final class AdminChartDataManagerImpl implements AdminChartDataManager {
 
 
 	@Override
-	public DCharts createApplicationActionEventPageModeDailySummaryChart(final String page) {
+	public void createApplicationActionEventPageModeDailySummaryChart(final AbstractOrderedLayout content,final String page) {
 
 		final Map<String, List<ViewApplicationActionEventPageModeDailySummary>> map = getApplicationActionEventPageModeDailySummaryMap(page);
 
@@ -169,7 +170,7 @@ public final class AdminChartDataManagerImpl implements AdminChartDataManager {
 
 		}
 
-		return new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show();
+		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 
@@ -195,7 +196,7 @@ public final class AdminChartDataManagerImpl implements AdminChartDataManager {
 
 
 	@Override
-	public DCharts createApplicationActionEventPageElementDailySummaryChart(final String page,final String elementId) {
+	public void createApplicationActionEventPageElementDailySummaryChart(final AbstractOrderedLayout content,final String page,final String elementId) {
 
 		final List<ViewApplicationActionEventPageElementDailySummary> list = getApplicationActionEventPageElementDailySummaryList(page,elementId);
 
@@ -223,7 +224,8 @@ public final class AdminChartDataManagerImpl implements AdminChartDataManager {
 			}
 		}
 
-		return new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show();
+		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
+
 
 }

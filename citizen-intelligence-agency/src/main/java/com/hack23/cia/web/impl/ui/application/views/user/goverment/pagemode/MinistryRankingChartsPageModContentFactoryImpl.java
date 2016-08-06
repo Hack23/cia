@@ -30,7 +30,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -83,25 +82,16 @@ public final class MinistryRankingChartsPageModContentFactoryImpl extends Abstra
 		final String pageId = getPageId(parameters);
 
 
-		final Layout chartLayout = new HorizontalLayout();
+		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-		final Component chartPanelAll = chartDataManager.createChartPanel(dataSeriesFactory.createMinistryChartTimeSeriesAll(), "All");
-		if (chartPanelAll != null) {
-			chartLayout.addComponent(chartPanelAll);
-		}
+		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createMinistryChartTimeSeriesAll(), "All");
 
-		final Component chartPanelCurrent = chartDataManager.createChartPanel(dataSeriesFactory.createMinistryChartTimeSeriesCurrent(),
+		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createMinistryChartTimeSeriesCurrent(),
 				"Current");
-		if (chartPanelCurrent != null) {
-			chartLayout.addComponent(chartPanelCurrent);
-		}
 		panelContent.addComponent(chartLayout);
 
-		final Layout extraChartLayout = createExtraChartLayout();
-		if (extraChartLayout != null) {
-			panelContent.addComponent(extraChartLayout);
-		}
+		createExtraChartLayout(panelContent);
 
 
 		panel.setCaption(CHARTS + parameters);
@@ -118,24 +108,18 @@ public final class MinistryRankingChartsPageModContentFactoryImpl extends Abstra
 	 *
 	 * @return the layout
 	 */
-	private Layout createExtraChartLayout() {
-		final Layout chartLayout = new HorizontalLayout();
+	private void createExtraChartLayout(final VerticalLayout panelContent) {
+		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-		final Component chartPanelAll = chartDataManager.createChartPanel(
+		chartDataManager.createChartPanel(chartLayout,
 				dataSeriesFactory.createChartTimeSeriesTotalDaysServedGovernmentByParty(),
 				"All Parties, total days served");
-		if (chartPanelAll != null) {
-			chartLayout.addComponent(chartPanelAll);
-		}
 
-		final Component chartPanelCurrent = chartDataManager.createChartPanel(
+		chartDataManager.createChartPanel(chartLayout,
 				dataSeriesFactory2.createChartTimeSeriesCurrentGovernmentByParty(), "Current Parties, headcount");
-		if (chartPanelCurrent != null) {
-			chartLayout.addComponent(chartPanelCurrent);
-		}
 
-		return chartLayout;
+		panelContent.addComponent(chartLayout);
 	}
 
 

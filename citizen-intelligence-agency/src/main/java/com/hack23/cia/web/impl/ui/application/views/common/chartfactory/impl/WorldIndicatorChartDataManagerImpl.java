@@ -36,12 +36,13 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
 import com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.WorldIndicatorChartDataManager;
+import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
  * The Class ChartDataManagerImpl.
  */
 @Service
-public final class WorldIndicatorChartDataManagerImpl implements WorldIndicatorChartDataManager {
+public final class WorldIndicatorChartDataManagerImpl extends AbstractChartDataManagerImpl implements WorldIndicatorChartDataManager {
 
 	/** The Constant YEAR_MONTH_DAY_FORMAT. */
 	private static final String YEAR_MONTH_DAY_FORMAT = "%Y-%#m-%#d";
@@ -59,7 +60,7 @@ public final class WorldIndicatorChartDataManagerImpl implements WorldIndicatorC
 
 
 	@Override
-	public DCharts createIndicatorChart(final List<WorldBankData> list,
+	public void createIndicatorChart(final AbstractOrderedLayout content,final List<WorldBankData> list,
 			final ViewWorldbankIndicatorDataCountrySummary summary) {
 		final DataSeries dataSeries = new DataSeries();
 
@@ -85,7 +86,7 @@ public final class WorldIndicatorChartDataManagerImpl implements WorldIndicatorC
 		final Options options = new Options().addOption(new SeriesDefaults()).addOption(axes)
 				.addOption(ChartOptionsImpl.INSTANCE.createHighLighterNorth()).addOption(series).addOption(ChartOptionsImpl.INSTANCE.createLegendOutside());
 
-		return new DCharts().setDataSeries(dataSeries).setOptions(options).show();
+		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(options).show());
 	}
 
 }

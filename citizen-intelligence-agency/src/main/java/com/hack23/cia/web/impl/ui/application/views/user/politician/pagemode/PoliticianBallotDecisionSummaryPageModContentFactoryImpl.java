@@ -31,12 +31,10 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.Grid;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -98,8 +96,8 @@ public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl exte
 			final BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> committeeBallotDecisionPartyDataSource = new BeanItemContainer<>(
 					ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class, decisionPartySummaryList);
 
-			final Grid committeeBallotDecisionPartyBeanItemGrid = getGridFactory()
-					.createBasicBeanItemNestedPropertiesGrid(committeeBallotDecisionPartyDataSource,
+			getGridFactory()
+					.createBasicBeanItemNestedPropertiesGrid(panelContent,committeeBallotDecisionPartyDataSource,
 							"Committee Ballot Decision Politician Summary",
 							new String[] { "embeddedId.concern", "embeddedId.issue" },
 							new String[] { "voteDate", "rm", "org", "committeeReport", "title", "subTitle",
@@ -116,11 +114,6 @@ public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl exte
 									"percentageNo", "percentageAbsent", "percentageAbstain", "firstName",
 									"lastName", "party" },
 							"ballotId", new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "ballotId"), "ballotId");
-
-			panelContent.addComponent(committeeBallotDecisionPartyBeanItemGrid);
-
-			
-			panelContent.setExpandRatio(committeeBallotDecisionPartyBeanItemGrid, ContentRatio.GRID);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 

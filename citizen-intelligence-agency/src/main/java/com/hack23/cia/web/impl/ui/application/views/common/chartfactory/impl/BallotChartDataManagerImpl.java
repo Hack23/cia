@@ -38,12 +38,13 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.BallotChartDataManager;
+import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
  * The Class BallotChartDataManagerImpl.
  */
 @Service
-public final class BallotChartDataManagerImpl implements BallotChartDataManager {
+public final class BallotChartDataManagerImpl extends AbstractChartDataManagerImpl implements BallotChartDataManager {
 
 	/**
 	 * Instantiates a new ballot chart data manager impl.
@@ -53,7 +54,7 @@ public final class BallotChartDataManagerImpl implements BallotChartDataManager 
 	}
 
 	@Override
-	public DCharts createChart(final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary) {
+	public void createChart(final AbstractOrderedLayout content,final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary) {
 		final DataSeries dataSeries = new DataSeries();
 
 		dataSeries.newSeries().add("Yes", viewRiksdagenVoteDataBallotSummary.getYesVotes());
@@ -76,11 +77,11 @@ public final class BallotChartDataManagerImpl implements BallotChartDataManager 
 		
 		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend).setHighlighter(highlighter);
 
-		return new DCharts().setDataSeries(dataSeries).setOptions(options).show();
+		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(options).show());
 	}
 
 	@Override
-	public DCharts createChart(final List<ViewRiksdagenVoteDataBallotPartySummary> partyList) {
+	public void createChart(final AbstractOrderedLayout content,final List<ViewRiksdagenVoteDataBallotPartySummary> partyList) {
 		final DataSeries dataSeries = new DataSeries();
 
 		final Series series = new Series();
@@ -115,7 +116,7 @@ public final class BallotChartDataManagerImpl implements BallotChartDataManager 
 		
 		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend).setHighlighter(highlighter).addOption(series);
 
-		return new DCharts().setDataSeries(dataSeries).setOptions(options).show();
+		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(options).show());
 	}
 
 }

@@ -18,7 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 
-import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -28,7 +27,6 @@ import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksda
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PoliticianChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -82,12 +80,7 @@ public final class PoliticianIndicatorsPageModContentFactoryImpl extends Abstrac
 
 			LabelFactory.createHeader2Label(panelContent,INDICATORS);
 			
-
-			final DCharts createPersonLineChart = politicianChartDataManager.createPersonLineChart(personData.getId());
-			panelContent.addComponent(createPersonLineChart);
-
-			
-			panelContent.setExpandRatio(createPersonLineChart, ContentRatio.GRID);
+			politicianChartDataManager.createPersonLineChart(panelContent,personData.getId());
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 
