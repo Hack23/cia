@@ -29,7 +29,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Part
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -79,12 +78,12 @@ public final class PartyWonDailySummaryChartPageModContentFactoryImpl extends Ab
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(PARTY_WON_DAILY_SUMMARY_CHART);
-			panelContent.addComponent(createHeader2Label);
+			LabelFactory.createHeader2Label(panelContent,PARTY_WON_DAILY_SUMMARY_CHART);
+			
 			final DCharts createPartyLineChart = chartDataManager.createPartyLineChart(pageId);
 			panelContent.addComponent(createPartyLineChart);
 			
-			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+			
 			panelContent.setExpandRatio(createPartyLineChart, ContentRatio.GRID);
 
 

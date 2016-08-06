@@ -32,7 +32,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Deci
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -85,14 +84,14 @@ public final class CommitteeDecisionTypeDailySummaryPageModContentFactoryImpl2
 
 			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(DECISION_TYPE_DAILY_SUMMARY);
-			panelContent.addComponent(createHeader2Label);
+			LabelFactory.createHeader2Label(panelContent,DECISION_TYPE_DAILY_SUMMARY);
+			
 
 			final DCharts createDecisionTypeChart = chartDataManager
 					.createDecisionTypeChart(viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
 			panelContent.addComponent(createDecisionTypeChart);
 
-			panelContent.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
+			
 			panelContent.setExpandRatio(createDecisionTypeChart, ContentRatio.GRID);
 
 			panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());

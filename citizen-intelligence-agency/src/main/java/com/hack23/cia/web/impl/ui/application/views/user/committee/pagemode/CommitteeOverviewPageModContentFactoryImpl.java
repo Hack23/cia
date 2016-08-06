@@ -32,8 +32,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFac
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
@@ -83,32 +81,19 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 
 			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-				final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
-				panelContent.addComponent(createHeader2Label);
-
-
+				LabelFactory.createHeader2Label(panelContent,OVERVIEW);
+				
 				final Link addCommitteePageLink = getPageLinkFactory().addCommitteePageLink(viewRiksdagenCommittee);
 				panelContent.addComponent(addCommitteePageLink);
 
-
-				final Panel formPanel = new Panel();
-				formPanel.setSizeFull();
-
-				panelContent.addComponent(formPanel);
-
-				final FormLayout formContent = new FormLayout();
-				formPanel.setContent(formContent);
-
-
-				getFormFactory().addTextFields(formContent, new BeanItem<>(viewRiksdagenCommittee),
+				getFormFactory().addFormPanelTextFields(panelContent, new BeanItem<>(viewRiksdagenCommittee),
 						ViewRiksdagenCommittee.class,
 						Arrays.asList(new String[] { "embeddedId.detail", "active", "firstAssignmentDate",
 								"lastAssignmentDate", "totalAssignments", "totalDaysServed",
 								"currentMemberSize" }));
 
-				panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+				
 				panelContent.setExpandRatio(addCommitteePageLink,ContentRatio.SMALL);
-				panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
 
 				panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);

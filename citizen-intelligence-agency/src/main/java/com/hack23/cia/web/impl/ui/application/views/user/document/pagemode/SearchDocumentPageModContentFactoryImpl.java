@@ -37,7 +37,6 @@ import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Grid;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -109,16 +108,15 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractPageM
 				final BeanItemContainer<DocumentElement> documentActivityDataDataDataSource = new BeanItemContainer<>(
 						DocumentElement.class, response.getResultElement());
 
-				final Grid documentActivityDataItemGrid = getGridFactory().createBasicBeanItemGrid(
-						documentActivityDataDataDataSource, "Document",
+				getGridFactory().createBasicBeanItemGrid(
+						searchresultLayout, documentActivityDataDataDataSource,
+						"Document",
 						new String[] { "rm", "createdDate", "madePublicDate", "documentType", "subType", "title",
 								"subTitle", "status" },
 						new String[] { "label", "id", "hit", "relatedId", "org", "tempLabel", "numberValue",
 								"systemDate", "kallId", "documentFormat", "documentUrlText", "documentUrlHtml",
-								"documentStatusUrlXml", "committeeReportUrlXml" },
-						null, null, null);
+								"documentStatusUrlXml", "committeeReportUrlXml" }, null, null, null);
 
-				searchresultLayout.addComponent(documentActivityDataItemGrid);
 			}
 		};
 		final ClickListener searchListener = new SearchDocumentClickListener(searchRequest, getApplicationManager(),

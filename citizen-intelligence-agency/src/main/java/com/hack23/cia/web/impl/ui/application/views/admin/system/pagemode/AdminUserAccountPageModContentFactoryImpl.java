@@ -34,10 +34,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -77,9 +74,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_USERACCOUNT);
-		content.addComponent(createHeader2Label);
-		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
+		LabelFactory.createHeader2Label(content,ADMIN_USERACCOUNT);
 
 		final DataContainer<UserAccount, Long> dataContainer = getApplicationManager()
 				.getDataContainer(UserAccount.class);
@@ -91,33 +86,22 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 		content.addComponent(pagingControls);
 		content.setExpandRatio(pagingControls, ContentRatio.SMALL);		
 
-		final Grid createBasicBeanItemGrid = getGridFactory().createBasicBeanItemGrid(politicianDocumentDataSource,
+		getGridFactory().createBasicBeanItemGrid(content,
+				politicianDocumentDataSource,
 				"UserAccount",
 				new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "userId", "username",
-						"userType", "userRole", "userpassword", "email", "address", "country", "numberOfVisits" },
-				new String[] { "modelObjectId" }, "hjid",
-				new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, "hjid"), null);
-		content.addComponent(createBasicBeanItemGrid);
+						"userType", "userRole", "userpassword", "email", "address", "country", "numberOfVisits" }, new String[] { "modelObjectId" },
+				"hjid", new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, "hjid"), null);
 
-		content.addComponent(createBasicBeanItemGrid);
-		content.setExpandRatio(createBasicBeanItemGrid, ContentRatio.GRID);
-
+		
 		if (pageId != null && !pageId.isEmpty()) {
 
 			final UserAccount userAccount = dataContainer.load(Long.valueOf(pageId));
 
 			if (userAccount != null) {
 				
-				final Panel formPanel = new Panel();
-				formPanel.setSizeFull();
-
-				content.addComponent(formPanel);
-
-				final FormLayout formContent = new FormLayout();
-				formPanel.setContent(formContent);
-
 				getFormFactory()
-						.addTextFields(formContent, new BeanItem<>(userAccount), UserAccount.class,
+						.addFormPanelTextFields(content, new BeanItem<>(userAccount), UserAccount.class,
 								Arrays.asList(new String[] { "hjid", "modelObjectId", "modelObjectVersion", "userId",
 										"username", "createdDate", "userpassword", "email", "country",
 										"numberOfVisits" }));

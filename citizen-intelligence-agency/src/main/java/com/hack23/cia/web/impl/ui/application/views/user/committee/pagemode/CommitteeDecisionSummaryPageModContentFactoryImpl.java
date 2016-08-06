@@ -32,11 +32,8 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -85,8 +82,8 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 
 			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(DECISION_SUMMARY);
-			panelContent.addComponent(createHeader2Label);
+			LabelFactory.createHeader2Label(panelContent,DECISION_SUMMARY);
+			
 
 			final DataContainer<ViewRiksdagenCommitteeDecisions, ViewRiksdagenCommitteeDecisionsEmbeddedId> committeeDecisionDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenCommitteeDecisions.class);
@@ -98,14 +95,8 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 			final BeanItemContainer<ViewRiksdagenCommitteeDecisions> committeeDecisionDataSource = new BeanItemContainer<>(
 					ViewRiksdagenCommitteeDecisions.class, decisionPartySummaryList);
 
-			final Grid committeeDecisionBeanItemGrid = getGridFactory().createBasicBeanItemGrid(
-					committeeDecisionDataSource, DECISION_SUMMARY, null, null, null, null, null);
-
-			panelContent.addComponent(committeeDecisionBeanItemGrid);
-			
-			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
-			panelContent.setExpandRatio(committeeDecisionBeanItemGrid, ContentRatio.GRID);
-
+			getGridFactory().createBasicBeanItemGrid(
+					panelContent, committeeDecisionDataSource, DECISION_SUMMARY, null, null, null, null, null);
 
 			panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER,

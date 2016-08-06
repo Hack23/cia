@@ -30,7 +30,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.tablefactory.TableFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Notification;
@@ -85,9 +84,7 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_DATA_SUMMARY);
-		content.addComponent(createHeader2Label);
-		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
+		LabelFactory.createHeader2Label(content,ADMIN_DATA_SUMMARY);
 
 		final Table createDataSummaryTable = tableFactory.createDataSummaryTable();
 		content.addComponent(createDataSummaryTable);

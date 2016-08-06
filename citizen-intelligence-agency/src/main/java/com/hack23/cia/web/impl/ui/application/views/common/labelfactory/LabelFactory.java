@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.labelfactory;
 
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Label;
 
 /**
@@ -32,17 +34,22 @@ public final class LabelFactory {
 		super();
 	}
 
+
 	/**
 	 * Creates a new Label object.
 	 *
+	 * @param panel
+	 *            the panel
 	 * @param content
 	 *            the content
-	 * @return the label
 	 */
-	public static Label createHeader2Label(final String content) {
+	public static void createHeader2Label(final AbstractOrderedLayout panel,final String content) {
 		final Label label = new Label(content);
 		label.setStyleName("Level2Header");
-		return label;
+		
+		panel.addComponent(label);
+		panel.setExpandRatio(label,ContentRatio.SMALL);
 	}
-
+	
+	
 }

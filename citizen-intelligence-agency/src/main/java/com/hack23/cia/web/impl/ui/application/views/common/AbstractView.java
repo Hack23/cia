@@ -128,7 +128,7 @@ public abstract class AbstractView extends Panel implements View {
 			panelContent.setMargin(true);
 			panelContent.setWidth(100, Unit.PERCENTAGE);
 			panelContent.setHeight(100, Unit.PERCENTAGE);
-			panelContent.addComponent(LabelFactory.createHeader2Label("Access denided:" +pageName));
+			LabelFactory.createHeader2Label(panelContent,"Access denided:" +pageName);
 			getPanel().setContent(panelContent);
 			getPanel().setCaption("Access denied");
 		}

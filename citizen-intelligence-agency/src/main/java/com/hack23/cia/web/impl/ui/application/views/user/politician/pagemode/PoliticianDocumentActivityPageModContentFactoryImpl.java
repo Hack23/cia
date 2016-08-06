@@ -30,7 +30,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Docu
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -79,16 +78,15 @@ public final class PoliticianDocumentActivityPageModContentFactoryImpl extends A
 
 			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			final Label createHeader2Label = LabelFactory
-					.createHeader2Label(PoliticianPageMode.DOCUMENTACTIVITY.toString());
-			panelContent.addComponent(createHeader2Label);
+			LabelFactory.createHeader2Label(panelContent,PoliticianPageMode.DOCUMENTACTIVITY.toString());
+			
 
 			final DCharts documentHistoryChart = documentChartDataManager
 					.createPersonDocumentHistoryChart(personData.getId());
 
 			panelContent.addComponent(documentHistoryChart);
 
-			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+			
 			panelContent.setExpandRatio(documentHistoryChart, ContentRatio.GRID);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);

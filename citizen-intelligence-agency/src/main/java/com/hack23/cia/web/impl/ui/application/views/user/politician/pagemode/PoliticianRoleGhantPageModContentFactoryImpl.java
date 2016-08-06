@@ -44,7 +44,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFac
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
 import com.vaadin.server.Sizeable.Unit;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -98,9 +97,9 @@ public final class PoliticianRoleGhantPageModContentFactoryImpl extends Abstract
 
 			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.ROLEGHANT.toString());
-			panelContent.addComponent(createHeader2Label);
-			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+			LabelFactory.createHeader2Label(panelContent,PoliticianPageMode.ROLEGHANT.toString());
+			
+			
 
 			final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()
 					.getAssignmentList();

@@ -109,7 +109,7 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 
 		WebDriver driver = null;
 		if ("firefox".equals(browser)) {
-			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+			final DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 			capabilities.setCapability("marionette", true);
 			driver = new FirefoxDriver(capabilities);			
 		} else if ("chrome".equals(browser)) {

@@ -35,11 +35,8 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -95,23 +92,12 @@ public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDoc
 
 
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_DECISION);
-			panelContent.addComponent(createHeader2Label);
-			
-			final Panel formPanel = new Panel();
-			formPanel.setSizeFull();
-
-			panelContent.addComponent(formPanel);
-			
-			final FormLayout formContent = new FormLayout();
-			formPanel.setContent(formContent);
-
-
+			LabelFactory.createHeader2Label(panelContent,DOCUMENT_DECISION);
 
 			if (documentStatusContainer != null && documentStatusContainer.getDocumentProposal() != null
 					&& documentStatusContainer.getDocumentProposal().getProposal() != null) {
 
-				getFormFactory().addTextFields(formContent,
+				getFormFactory().addFormPanelTextFields(panelContent,
 						new BeanItem<>(
 								documentStatusContainer.getDocumentProposal().getProposal()),
 						DocumentProposalData.class,
@@ -120,9 +106,6 @@ public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDoc
 								"wording4" }));
 
 			}
-
-			panelContent.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
-			panelContent.setExpandRatio(formPanel, ContentRatio.LARGE);
 
 			panel.setContent(panelContent);
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);

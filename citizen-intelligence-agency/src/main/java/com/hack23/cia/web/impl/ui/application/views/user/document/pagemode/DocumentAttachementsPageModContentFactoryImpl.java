@@ -39,8 +39,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl.Extern
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -93,8 +91,8 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 					.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 							DocumentData.class, DocumentData_.id, pageId);
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_ATTACHMENTS);
-			panelContent.addComponent(createHeader2Label);
+			LabelFactory.createHeader2Label(panelContent,DOCUMENT_ATTACHMENTS);
+			
 
 			if (documentStatusContainer != null && documentStatusContainer.getDocumentAttachmentContainer() != null
 					&& documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList() != null) {
@@ -102,14 +100,10 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 						DocumentAttachment.class,
 						documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList());
 
-				final Grid documentAttachmentDataItemGrid = getGridFactory().createBasicBeanItemGrid(
-						documentAttachmentDataSource, "Document attachements",
-						new String[] { "fileName", "fileSize", "fileType", "fileUrl" }, new String[] { "hjid" }, null,
-						null, null);
-				panelContent.addComponent(documentAttachmentDataItemGrid);
-				
-				panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
-				panelContent.setExpandRatio(documentAttachmentDataItemGrid, ContentRatio.GRID);
+				getGridFactory().createBasicBeanItemGrid(
+						panelContent, documentAttachmentDataSource,
+						"Document attachements", new String[] { "fileName", "fileSize", "fileType", "fileUrl" }, new String[] { "hjid" },
+						null, null, null);
 
 				final List<DocumentAttachment> documentAttachmentList = documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList();
 		

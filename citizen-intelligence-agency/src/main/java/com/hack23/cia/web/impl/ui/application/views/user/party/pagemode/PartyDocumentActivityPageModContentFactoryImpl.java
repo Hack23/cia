@@ -29,7 +29,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Docu
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -76,13 +75,13 @@ public final class PartyDocumentActivityPageModContentFactoryImpl extends Abstra
 
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_ACTIVITY);
-			panelContent.addComponent(createHeader2Label);
+			LabelFactory.createHeader2Label(panelContent,DOCUMENT_ACTIVITY);
+			
 
 			final DCharts createDocumentHistoryChart = documentChartDataManager.createDocumentHistoryPartyChart(pageId);
 			panelContent.addComponent(createDocumentHistoryChart);
 			
-			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+			
 			panelContent.setExpandRatio(createDocumentHistoryChart, ContentRatio.GRID);
 
 

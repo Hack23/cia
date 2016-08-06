@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api;
 
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener;
 import com.vaadin.data.Container.Indexed;
+import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Grid;
 
 /**
@@ -30,6 +31,8 @@ public interface GridFactory {
 	/**
 	 * Creates a new Grid object.
 	 *
+	 * @param panelContent
+	 *            the panel content
 	 * @param datasource
 	 *            the datasource
 	 * @param caption
@@ -44,10 +47,9 @@ public interface GridFactory {
 	 *            the listener
 	 * @param actionId
 	 *            the action id
-	 * @return the grid
 	 */
-	Grid createBasicBeanItemGrid(Indexed datasource, String caption, Object[] columnOrder, Object[] hideColumns,
-			String idProprty, AbstractPageItemRendererClickListener<?> listener, String actionId);
+	void createBasicBeanItemGrid(AbstractOrderedLayout panelContent, Indexed datasource, String caption, Object[] columnOrder,
+			Object[] hideColumns, String idProprty, AbstractPageItemRendererClickListener<?> listener, String actionId);
 
 	/**
 	 * Creates a new Grid object.

@@ -31,7 +31,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -65,23 +64,7 @@ public final class PartyRankingDataGridPageModContentFactoryImpl extends Abstrac
 
 		final String pageId = getPageId(parameters);
 
-		panelContent.addComponent(createTable());
 
-		panel.setCaption(DATAGRID + parameters);
-
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER,
-				NAME, parameters, pageId);
-
-		return panelContent;
-
-	}
-
-	/**
-	 * Creates the table.
-	 *
-	 * @return the component
-	 */
-	private Component createTable() {
 		final DataContainer<ViewRiksdagenPartySummary, String> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartySummary.class);
 
@@ -89,13 +72,22 @@ public final class PartyRankingDataGridPageModContentFactoryImpl extends Abstrac
 				ViewRiksdagenPartySummary.class,
 				dataContainer.getAllOrderBy(ViewRiksdagenPartySummary_.currentAssignments));
 
-		return getGridFactory().createBasicBeanItemGrid(politicianDocumentDataSource, "Parties",
+		getGridFactory().createBasicBeanItemGrid(panelContent, politicianDocumentDataSource,
+				"Parties",
 				new String[] { "party", "active", "firstAssignmentDate", "lastAssignmentDate", "currentAssignments",
 						"totalAssignments", "totalDaysServed", "activeEu", "totalActiveEu", "totalDaysServedEu",
 						"activeGovernment", "totalActiveGovernment", "totalDaysServedGovernment", "activeCommittee",
 						"totalActiveCommittee", "totalDaysServedCommittee", "activeParliament", "totalActiveParliament",
-						"totalDaysServedParliament" },
-				null, "party", new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "party"), null);
+						"totalDaysServedParliament" }, null, "party", new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "party"), null);
+
+		
+		panel.setCaption(DATAGRID + parameters);
+
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER,
+				NAME, parameters, pageId);
+
+		return panelContent;
+
 	}
 
 	@Override

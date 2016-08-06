@@ -42,7 +42,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -53,8 +52,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotPageModContentFactoryImpl {
-
-	private static final int FIRST_OBJECT = 0;
 
 	/** The Constant COMMITTEE. */
 	private static final String BALLOT = "Ballot:";
@@ -102,8 +99,8 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 		
 				
 			
-				final Label createHeader2Label = LabelFactory.createHeader2Label(CHARTS);
-				panelContent.addComponent(createHeader2Label);
+				LabelFactory.createHeader2Label(panelContent,CHARTS);
+				
 				
 				final HorizontalLayout horizontalLayout = new HorizontalLayout();
 				horizontalLayout.setMargin(true);

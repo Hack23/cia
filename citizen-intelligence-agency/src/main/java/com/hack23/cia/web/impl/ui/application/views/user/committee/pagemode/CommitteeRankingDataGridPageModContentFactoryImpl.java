@@ -31,7 +31,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -72,23 +71,6 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 
 		final String pageId = getPageId(parameters);
 
-		panelContent.addComponent(createTable());
-
-		panel.setCaption(DATAGRID + parameters);
-
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
-				parameters, pageId);
-
-		return panelContent;
-
-	}
-
-	/**
-	 * Creates the table.
-	 *
-	 * @return the component
-	 */
-	private Component createTable() {
 		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommittee.class);
 
@@ -98,12 +80,19 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 		politicianDocumentDataSource.addNestedContainerProperty("embeddedId.detail");
 		politicianDocumentDataSource.addNestedContainerProperty("embeddedId.orgCode");
 
-		return getGridFactory().createBasicBeanItemGrid(politicianDocumentDataSource, "Committees",
+		getGridFactory().createBasicBeanItemGrid(panelContent, politicianDocumentDataSource,
+				"Committees",
 				new String[] { "embeddedId.orgCode", "embeddedId.detail", "totalDaysServed", "currentMemberSize",
-						"totalAssignments", "firstAssignmentDate", "active", "lastAssignmentDate" },
-				new String[] { "embeddedId" }, "embeddedId.orgCode",
-				new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, "embeddedId.orgCode"), null);
-	}
+						"totalAssignments", "firstAssignmentDate", "active", "lastAssignmentDate" }, new String[] { "embeddedId" },
+				"embeddedId.orgCode", new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, "embeddedId.orgCode"), null);
 
+		panel.setCaption(DATAGRID + parameters);
+
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
+
+		return panelContent;
+
+	}
 
 }

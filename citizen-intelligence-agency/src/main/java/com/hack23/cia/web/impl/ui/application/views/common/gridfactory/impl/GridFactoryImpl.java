@@ -22,10 +22,12 @@ import org.springframework.stereotype.Service;
 import org.vaadin.gridutil.cell.GridCellFilter;
 
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener;
 import com.vaadin.data.Container;
 import com.vaadin.data.Container.Indexed;
 import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Grid.Column;
 import com.vaadin.ui.Grid.SelectionMode;
@@ -38,10 +40,14 @@ import com.vaadin.ui.renderers.ButtonRenderer;
 public final class GridFactoryImpl implements GridFactory {
 
 	@Override
-	public Grid createBasicBeanItemGrid(final Container.Indexed datasource, final String caption,
-			final Object[] columnOrder, final Object[] hideColumns, final String idProprty,
-			final AbstractPageItemRendererClickListener<?> listener, final String actionId) {
-		return createBasicBeanItemNestedPropertiesGrid(datasource, caption, null, columnOrder, hideColumns, idProprty, listener, actionId);
+	public void createBasicBeanItemGrid(final AbstractOrderedLayout panelContent, final Container.Indexed datasource,
+			final String caption, final Object[] columnOrder, final Object[] hideColumns,
+			final String idProprty, final AbstractPageItemRendererClickListener<?> listener, final String actionId) {
+		final Grid createBasicBeanItemNestedPropertiesGrid = createBasicBeanItemNestedPropertiesGrid(datasource, caption, null, columnOrder, hideColumns, idProprty, listener, actionId);
+		
+		panelContent.addComponent(createBasicBeanItemNestedPropertiesGrid);
+		panelContent.setExpandRatio(createBasicBeanItemNestedPropertiesGrid, ContentRatio.GRID);
+
 	}
 
 	@Override

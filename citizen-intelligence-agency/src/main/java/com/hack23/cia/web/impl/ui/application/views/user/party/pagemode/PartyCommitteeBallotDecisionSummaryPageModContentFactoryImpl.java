@@ -36,7 +36,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Grid;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -85,8 +84,8 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl 
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(COMMITTEE_BALLOT_DECISION_SUMMARY);
-			panelContent.addComponent(createHeader2Label);
+			LabelFactory.createHeader2Label(panelContent,COMMITTEE_BALLOT_DECISION_SUMMARY);
+			
 
 			final DataContainer<ViewRiksdagenCommitteeBallotDecisionPartySummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPartySummary.class);
@@ -150,7 +149,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl 
 
 			panelContent.addComponent(committeeBallotDecisionPartyBeanItemGrid);
 
-			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+			
 			panelContent.setExpandRatio(committeeBallotDecisionPartyBeanItemGrid, ContentRatio.GRID);
 
 			

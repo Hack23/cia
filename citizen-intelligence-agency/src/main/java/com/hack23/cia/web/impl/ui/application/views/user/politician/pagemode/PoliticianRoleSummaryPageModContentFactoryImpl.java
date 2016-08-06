@@ -96,11 +96,10 @@ public final class PoliticianRoleSummaryPageModContentFactoryImpl extends Abstra
 
 			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			final Label createHeader2Label = LabelFactory
-					.createHeader2Label(PoliticianPageMode.ROLESUMMARY.toString());
-			panelContent.addComponent(createHeader2Label);
+			LabelFactory.createHeader2Label(panelContent,PoliticianPageMode.ROLESUMMARY.toString());
+			
 
-			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+			
 
 
 			final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()

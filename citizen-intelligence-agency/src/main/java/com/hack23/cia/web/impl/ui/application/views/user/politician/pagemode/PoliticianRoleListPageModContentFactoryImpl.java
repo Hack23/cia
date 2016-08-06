@@ -30,11 +30,8 @@ import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -78,9 +75,9 @@ public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractP
 
 			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(PoliticianPageMode.ROLELIST.toString());
-			panelContent.addComponent(createHeader2Label);
-			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+			LabelFactory.createHeader2Label(panelContent,PoliticianPageMode.ROLELIST.toString());
+			
+			
 
 			final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()
 					.getAssignmentList();
@@ -108,14 +105,11 @@ public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractP
 
 		Collections.sort(assignmentList, compare);
 
-		final Grid createBasicBeanItemGrid = getGridFactory()
-				.createBasicBeanItemGrid(new BeanItemContainer<>(AssignmentData.class, assignmentList), "Assignments",
+		getGridFactory()
+				.createBasicBeanItemGrid(roleSummaryLayoutTabsheet, new BeanItemContainer<>(AssignmentData.class, assignmentList),
+						"Assignments",
 						new String[] { "roleCode", "assignmentType", "status", "detail", "orgCode", "fromDate",
-								"toDate" },
-						new String[] { "hjid", "intressentId", "orderNumber", "orgCode" }, null, null, null);
-		roleSummaryLayoutTabsheet.addComponent(createBasicBeanItemGrid);
-
-		roleSummaryLayoutTabsheet.setExpandRatio(createBasicBeanItemGrid, ContentRatio.GRID);
+								"toDate" }, new String[] { "hjid", "intressentId", "orderNumber", "orgCode" }, null, null, null);
 
 	}
 

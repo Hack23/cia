@@ -29,13 +29,10 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -82,8 +79,8 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 
 			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_HISTORY);
-			panelContent.addComponent(createHeader2Label);
+			LabelFactory.createHeader2Label(panelContent,DOCUMENT_HISTORY);
+			
 
 			final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenPoliticianDocument.class);
@@ -92,21 +89,15 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 					ViewRiksdagenPoliticianDocument.class, politicianDocumentDataContainer
 							.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.org, viewRiksdagenMinistry.getNameId(),ViewRiksdagenPoliticianDocument_.madePublicDate));
 
-			final Grid politicianDocumentBeanItemGrid = getGridFactory().createBasicBeanItemGrid(
-					politicianDocumentDataSource, "Documents",
+			getGridFactory().createBasicBeanItemGrid(
+					panelContent, politicianDocumentDataSource,
+					"Documents",
 					new String[] { "id", "docId", "referenceName", "partyShortCode", "personReferenceId",
 							"roleDescription", "documentType", "subType", "org", "label", "rm",
 							"madePublicDate", "numberValue", "status", "title", "subTitle", "tempLabel",
 							"orderNumber" },
 					new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId",
-							"org" },
-					"docId", new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME,"docId"), null);
-
-			panelContent.addComponent(politicianDocumentBeanItemGrid);
-
-			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
-			panelContent.setExpandRatio(politicianDocumentBeanItemGrid, ContentRatio.GRID);
-
+							"org" }, "docId", new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME,"docId"), null);
 
 			panel.setCaption(MINISTRY + viewRiksdagenMinistry.getNameId());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,

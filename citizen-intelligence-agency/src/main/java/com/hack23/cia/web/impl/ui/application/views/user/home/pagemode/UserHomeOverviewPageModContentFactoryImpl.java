@@ -47,9 +47,6 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SetGoogleA
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -102,9 +99,8 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 		userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
 
-
-		final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
-		panelContent.addComponent(createHeader2Label);
+		LabelFactory.createHeader2Label(panelContent,OVERVIEW);
+		
 
 		final Button logoutButton = new Button(LOGOUT);
 
@@ -135,17 +131,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 				final UserAccount userAccount = dataContainer.load(userIdFromSecurityContext);
 
 
-				final Panel formPanel = new Panel();
-				formPanel.setSizeFull();
-
-				panelContent.addComponent(formPanel);
-
-				final FormLayout formContent = new FormLayout();
-				formPanel.setContent(formContent);
-
-
-
-				getFormFactory().addTextFields(formContent, new BeanItem<>(userAccount), UserAccount.class,
+				getFormFactory().addFormPanelTextFields(panelContent, new BeanItem<>(userAccount), UserAccount.class,
 						Arrays.asList(new String[] { "username","createdDate","email","country","numberOfVisits" }));
 
 
@@ -156,18 +142,13 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 				final BeanItemContainer<ApplicationActionEvent> politicianDocumentDataSource = new BeanItemContainer<>(ApplicationActionEvent.class,
 						eventDataContainer.findOrderedListByProperty(ApplicationActionEvent_.userId,userAccount.getUserId(),ApplicationActionEvent_.createdDate));
 
-				final Grid createBasicBeanItemGrid = getGridFactory().createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationActionEvent",
-						new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" },
-						new String[] { "modelObjectId" }, "hjid",
-						new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null);
-				panelContent.addComponent(createBasicBeanItemGrid);
-
-
-				panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+				getGridFactory().createBasicBeanItemGrid(panelContent, politicianDocumentDataSource,
+						"ApplicationActionEvent",
+						new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" }, new String[] { "modelObjectId" },
+						"hjid", new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null);
+			
 				panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);
 
-				panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
-				panelContent.setExpandRatio(createBasicBeanItemGrid,ContentRatio.GRID);
 			}
 
 			panel.setCaption(USERHOME);

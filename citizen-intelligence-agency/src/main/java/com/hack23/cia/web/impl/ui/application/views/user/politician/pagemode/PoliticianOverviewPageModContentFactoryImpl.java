@@ -34,11 +34,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.ExternalResource;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
@@ -110,8 +107,8 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	 */
 	private void createOverviewContent(final VerticalLayout panelContent, final PersonData personData,
 			final ViewRiksdagenPolitician viewRiksdagenPolitician) {
-		final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
-		panelContent.addComponent(createHeader2Label);
+		LabelFactory.createHeader2Label(panelContent,OVERVIEW);
+		
 
 		final Link createPoliticianPageLink = getPageLinkFactory().createPoliticianPageLink(personData);
 		panelContent.addComponent(createPoliticianPageLink);
@@ -124,16 +121,9 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 
 		panelContent.addComponent(horizontalLayout);
 
-		final Panel formPanel = new Panel();
-		formPanel.setSizeFull();
-
-		horizontalLayout.addComponent(formPanel);
 		horizontalLayout.addComponent(image);
 
-		final FormLayout formContent = new FormLayout();
-		formPanel.setContent(formContent);
-
-		getFormFactory().addTextFields(formContent, new BeanItem<>(viewRiksdagenPolitician),
+		getFormFactory().addFormPanelTextFields(horizontalLayout, new BeanItem<>(viewRiksdagenPolitician),
 				ViewRiksdagenPolitician.class,
 				Arrays.asList(new String[] { "firstName", "lastName", "gender", "bornYear", "party", "active",
 						"firstAssignmentDate", "lastAssignmentDate", "currentAssignments", "currentMinistryAssignments",
@@ -144,17 +134,14 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 						"activeCommittee", "totalDaysServedCommittee", "activeParliament", "totalDaysServedParliament",
 						"activeParty", "totalDaysServedParty" }));
 
-		final Grid createBasicBeanItemGrid = getGridFactory().createBasicBeanItemGrid(
-				new BeanItemContainer<>(DetailData.class, personData.getPersonDetailData().getDetailList()), "Detail",
-				new String[] { "detailType", "detail", "code" }, new String[] { "hjid", "intressentId" }, null, null,
-				null);
-		panelContent.addComponent(createBasicBeanItemGrid);
-
-		panelContent.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
+		getGridFactory().createBasicBeanItemGrid(
+				panelContent, new BeanItemContainer<>(DetailData.class, personData.getPersonDetailData().getDetailList()),
+				"Detail", new String[] { "detailType", "detail", "code" }, new String[] { "hjid", "intressentId" }, null,
+				null, null);
+		
 		panelContent.setExpandRatio(createPoliticianPageLink, ContentRatio.SMALL);
 		panelContent.setExpandRatio(horizontalLayout, ContentRatio.GRID);
 
-		panelContent.setExpandRatio(createBasicBeanItemGrid, ContentRatio.SMALL_GRID);
 	}
 
 }

@@ -36,10 +36,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -80,9 +77,7 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
 
-		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_AGENCY);
-		content.addComponent(createHeader2Label);
-		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
+		LabelFactory.createHeader2Label(content,ADMIN_AGENCY);
 
 		final DataContainer<Agency, Long> dataContainer = getApplicationManager().getDataContainer(Agency.class);
 
@@ -94,14 +89,10 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 		content.setExpandRatio(pagingControls, ContentRatio.SMALL);
 
 
-		final Grid createBasicBeanItemGrid = getGridFactory().createBasicBeanItemGrid(politicianDocumentDataSource,
-				"Agency", new String[] { "hjid", "agencyName", "description", "portals", "modelObjectVersion" },
-				new String[] { "modelObjectId" }, "hjid",
-				new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid"), null);
-		content.addComponent(createBasicBeanItemGrid);
-
-		content.addComponent(createBasicBeanItemGrid);
-		content.setExpandRatio(createBasicBeanItemGrid, ContentRatio.GRID);
+		getGridFactory().createBasicBeanItemGrid(content,
+				politicianDocumentDataSource, "Agency",
+				new String[] { "hjid", "agencyName", "description", "portals", "modelObjectVersion" }, new String[] { "modelObjectId" },
+				"hjid", new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid"), null);
 
 		if (pageId != null && !pageId.isEmpty()) {
 
@@ -119,25 +110,17 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 
 			if (agency != null) {
 
-				final Panel formPanel = new Panel();
-				formPanel.setSizeFull();
-
-				leftLayout.addComponent(formPanel);
-
-				final FormLayout formContent = new FormLayout();
-				formPanel.setContent(formContent);
-
-				getFormFactory().addTextFields(formContent, new BeanItem<>(agency), Agency.class,
+				getFormFactory().addFormPanelTextFields(leftLayout, new BeanItem<>(agency), Agency.class,
 						Arrays.asList(new String[] { "hjid", "agencyName", "description", "modelObjectVersion" }));
 
 				final BeanItemContainer<Portal> portalItemContainer = new BeanItemContainer<>(Portal.class,
 						agency.getPortals());
 
-				rightLayout.addComponent(getGridFactory().createBasicBeanItemGrid(portalItemContainer, "Portal",
+				getGridFactory().createBasicBeanItemGrid(rightLayout, portalItemContainer,
+						"Portal",
 						new String[] { "hjid", "portalName", "description", "portalType", "googleMapApiKey",
-								"modelObjectVersion" },
-						new String[] { "modelObjectId" }, "hjid",
-						new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid"), null));
+								"modelObjectVersion" }, new String[] { "modelObjectId" },
+						"hjid", new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid"), null);
 			}
 
 		}

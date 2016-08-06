@@ -26,13 +26,10 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -78,8 +75,8 @@ public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractP
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(LEADER_HISTORY);
-			panelContent.addComponent(createHeader2Label);
+			LabelFactory.createHeader2Label(panelContent,LEADER_HISTORY);
+			
 
 			final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenPartyRoleMember.class);
@@ -88,17 +85,12 @@ public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractP
 					ViewRiksdagenPartyRoleMember.class, partyRoleMemberDataContainer
 							.getAllBy(ViewRiksdagenPartyRoleMember_.party, viewRiksdagenParty.getPartyId()));
 
-			final Grid partyRoleMemberBeanItemGrid = getGridFactory().createBasicBeanItemGrid(
-					partyRoleMemberDataSource, "Leader History",
+			getGridFactory().createBasicBeanItemGrid(
+					panelContent, partyRoleMemberDataSource,
+					"Leader History",
 					new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
-							"roleCode", "fromDate", "toDate", "totalDaysServed" },
-					new String[] { "roleId", "personId", "party", "detail" }, null,
-					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
-
-			panelContent.addComponent(partyRoleMemberBeanItemGrid);
-			
-			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
-			panelContent.setExpandRatio(partyRoleMemberBeanItemGrid, ContentRatio.GRID);
+							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "roleId", "personId", "party", "detail" },
+					null, new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
 			
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);

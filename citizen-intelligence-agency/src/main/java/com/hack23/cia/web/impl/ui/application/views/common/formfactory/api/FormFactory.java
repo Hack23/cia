@@ -22,6 +22,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.vaadin.data.util.BeanItem;
+import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.FormLayout;
 
@@ -31,7 +32,7 @@ import com.vaadin.ui.FormLayout;
 public interface FormFactory {
 
 	/**
-	 * Adds the text fields.
+	 * Adds the form panel text fields.
 	 *
 	 * @param <T>
 	 *            the generic type
@@ -44,8 +45,9 @@ public interface FormFactory {
 	 * @param displayProperties
 	 *            the display properties
 	 */
-	<T extends Serializable> void addTextFields(FormLayout panelContent, BeanItem<T> item, Class<T> beanType, List<String> displayProperties);
+	<T extends Serializable> void addFormPanelTextFields(AbstractOrderedLayout panelContent, BeanItem<T> item, Class<T> beanType, List<String> displayProperties);
 
+	
 	/**
 	 * Adds the request input form fields.
 	 *

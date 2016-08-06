@@ -34,7 +34,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Grid;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -86,9 +85,8 @@ public final class PoliticianVotesHistoryPageModContentFactoryImpl extends Abstr
 
 			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			final Label createHeader2Label = LabelFactory
-					.createHeader2Label(PoliticianPageMode.VOTEHISTORY.toString());
-			panelContent.addComponent(createHeader2Label);
+			LabelFactory.createHeader2Label(panelContent,PoliticianPageMode.VOTEHISTORY.toString());
+			
 
 			final BeanItemContainer<ViewRiksdagenVoteDataBallotPoliticianSummary> politicianBallotDataSource = new BeanItemContainer<>(
 					ViewRiksdagenVoteDataBallotPoliticianSummary.class,
@@ -109,7 +107,7 @@ public final class PoliticianVotesHistoryPageModContentFactoryImpl extends Abstr
 					"embeddedId.ballotId", new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "embeddedId.ballotId"), "embeddedId.ballotId");
 
 			panelContent.addComponent(politicianBallotsBeanItemGrid);
-			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+			
 			panelContent.setExpandRatio(politicianBallotsBeanItemGrid, ContentRatio.GRID);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);

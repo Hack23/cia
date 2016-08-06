@@ -28,15 +28,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.api.FormFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.CommitFormWrapperClickListener;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.util.BeanItem;
+import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Field;
 import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.VerticalLayout;
 
@@ -54,27 +57,6 @@ public final class FormFactoryImpl implements FormFactory {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(FormFactoryImpl.class);
-
-	@Override
-	public <T extends Serializable> void addTextFields(final FormLayout panelContent, final BeanItem<T> item, final Class<T> beanType,
-			final List<String> displayProperties) {
-
-		final BeanFieldGroup<T> fieldGroup = new BeanFieldGroup<>(beanType);
-		fieldGroup.setItemDataSource(item);
-		fieldGroup.setReadOnly(true);
-
-		for (final String property : displayProperties) {
-			final Field<?> buildAndBind = fieldGroup.buildAndBind(property);
-			buildAndBind.setWidth(ContentSize.FULL_SIZE);
-
-			panelContent.addComponent(buildAndBind);
-		}
-		final Collection<Object> unboundPropertyIds = fieldGroup.getUnboundPropertyIds();
-		for (final Object property : unboundPropertyIds) {
-			LOGGER.debug(LOG_MSG_PROPERTY, property);
-		}
-
-	}
 
 	@Override
 	public <T extends Serializable> void addRequestInputFormFields(final FormLayout panelContent, final BeanItem<T> item,
@@ -114,6 +96,39 @@ public final class FormFactoryImpl implements FormFactory {
 		verticalLayout.setComponentAlignment(button, Alignment.MIDDLE_RIGHT);
 		
 		panelContent.addComponent(verticalLayout);
+	}
+
+	@Override
+	public <T extends Serializable> void addFormPanelTextFields(final AbstractOrderedLayout panelContent, final BeanItem<T> item,
+			final Class<T> beanType, final List<String> displayProperties) {
+
+		
+		final Panel formPanel = new Panel();
+		formPanel.setSizeFull();
+
+		panelContent.addComponent(formPanel);
+		panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
+
+		final FormLayout formContent = new FormLayout();
+		formPanel.setContent(formContent);
+		
+		
+		final BeanFieldGroup<T> fieldGroup = new BeanFieldGroup<>(beanType);
+		fieldGroup.setItemDataSource(item);
+		fieldGroup.setReadOnly(true);
+
+		for (final String property : displayProperties) {
+			final Field<?> buildAndBind = fieldGroup.buildAndBind(property);
+			buildAndBind.setWidth(ContentSize.FULL_SIZE);
+
+			formContent.addComponent(buildAndBind);
+		}
+		final Collection<Object> unboundPropertyIds = fieldGroup.getUnboundPropertyIds();
+		for (final Object property : unboundPropertyIds) {
+			LOGGER.debug(LOG_MSG_PROPERTY, property);
+		}
+
+
 	}
 
 

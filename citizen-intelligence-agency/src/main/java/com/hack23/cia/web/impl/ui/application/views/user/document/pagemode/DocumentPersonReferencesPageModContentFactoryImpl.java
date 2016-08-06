@@ -33,13 +33,10 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -94,8 +91,8 @@ public final class DocumentPersonReferencesPageModContentFactoryImpl extends Abs
 							DocumentData.class, DocumentData_.id, pageId);
 
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(PERSON_REFERENCES);
-			panelContent.addComponent(createHeader2Label);
+			LabelFactory.createHeader2Label(panelContent,PERSON_REFERENCES);
+			
 
 			if (documentStatusContainer != null
 					&& documentStatusContainer.getDocumentPersonReferenceContainer() != null
@@ -105,16 +102,12 @@ public final class DocumentPersonReferencesPageModContentFactoryImpl extends Abs
 						DocumentPersonReferenceData.class, documentStatusContainer
 								.getDocumentPersonReferenceContainer().getDocumentPersonReferenceList());
 
-				final Grid documentPersonReferenceDataItemGrid = getGridFactory().createBasicBeanItemGrid(
-						documentPersonReferenceDataDataSource, "Document person references",
+				getGridFactory().createBasicBeanItemGrid(
+						panelContent, documentPersonReferenceDataDataSource,
+						"Document person references",
 						new String[] { "personReferenceId", "referenceName", "partyShortCode", "orderNumber",
-								"roleDescription" },
-						new String[] { "hjid" }, "personReferenceId",
-						new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personReferenceId"), null);
-				panelContent.addComponent(documentPersonReferenceDataItemGrid);
-				
-				panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
-				panelContent.setExpandRatio(documentPersonReferenceDataItemGrid, ContentRatio.GRID);
+								"roleDescription" }, new String[] { "hjid" },
+						"personReferenceId", new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personReferenceId"), null);
 
 			}
 

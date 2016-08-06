@@ -68,7 +68,7 @@ public final class PartyChartsPageModContentFactoryImpl extends AbstractPartyPag
 
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(CHARTS_NOT_IMPLEMENTED));
+			LabelFactory.createHeader2Label(panelContent,CHARTS_NOT_IMPLEMENTED);
 			
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}

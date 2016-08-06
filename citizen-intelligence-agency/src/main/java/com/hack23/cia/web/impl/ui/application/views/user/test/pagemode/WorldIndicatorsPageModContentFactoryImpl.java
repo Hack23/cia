@@ -41,7 +41,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Worl
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -111,18 +110,8 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractTest
 
 
 		if (indicatorSummary.isPresent()) {
-			
-			
-			final Panel formPanel = new Panel();
-			formPanel.setSizeFull();
-
-			verticalLayout.addComponent(formPanel);
-
-			final FormLayout formContent = new FormLayout();
-			formPanel.setContent(formContent);
-
-			
-			getFormFactory().addTextFields(formContent,
+						
+			getFormFactory().addFormPanelTextFields(verticalLayout,
 					new BeanItem<>(
 							indicatorSummary.get()),
 							ViewWorldbankIndicatorDataCountrySummary.class,
@@ -134,8 +123,6 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractTest
 									   "startYear",
 									   "endYear",
 									   "dataPoint","topics"}));
-
-			verticalLayout.setExpandRatio(formPanel, ContentRatio.GRID);
 		}
 
 		final DataContainer<WorldBankData, Serializable> dataContainer = getApplicationManager()

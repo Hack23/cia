@@ -35,7 +35,6 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.StartAgent
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -93,9 +92,7 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_AGENT_OPERATION);
-		content.addComponent(createHeader2Label);
-		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL2);
+		LabelFactory.createHeader2Label(content,ADMIN_AGENT_OPERATION);
 
 		final ComboBox targetSelect = new ComboBox(TARGET, Arrays.asList(DataAgentTarget.values()));
 		targetSelect.setId(ViewAction.START_AGENT_BUTTON + TARGET2);

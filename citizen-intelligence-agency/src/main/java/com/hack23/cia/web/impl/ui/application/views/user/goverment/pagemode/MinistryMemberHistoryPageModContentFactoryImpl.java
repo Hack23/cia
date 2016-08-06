@@ -29,13 +29,10 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -81,8 +78,8 @@ public final class MinistryMemberHistoryPageModContentFactoryImpl extends Abstra
 
 			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(MEMBER_HISTORY);
-			panelContent.addComponent(createHeader2Label);
+			LabelFactory.createHeader2Label(panelContent,MEMBER_HISTORY);
+			
 
 			final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
@@ -91,17 +88,12 @@ public final class MinistryMemberHistoryPageModContentFactoryImpl extends Abstra
 					ViewRiksdagenGovermentRoleMember.class, govermentRoleMemberDataContainer.getAllBy(
 							ViewRiksdagenGovermentRoleMember_.detail, viewRiksdagenMinistry.getNameId()));
 
-			final Grid ministryRoleMemberBeanItemGrid = getGridFactory().createBasicBeanItemGrid(
-					govermentRoleMemberDataSource, MEMBER_HISTORY,
+			getGridFactory().createBasicBeanItemGrid(
+					panelContent, govermentRoleMemberDataSource,
+					MEMBER_HISTORY,
 					new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
-							"roleCode", "fromDate", "toDate", "totalDaysServed" },
-					new String[] { "roleId", "personId", "detail" }, null,
-					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
-
-			panelContent.addComponent(ministryRoleMemberBeanItemGrid);
-
-			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
-			panelContent.setExpandRatio(ministryRoleMemberBeanItemGrid, ContentRatio.GRID);
+							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "roleId", "personId", "detail" },
+					null, new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 
 			panel.setCaption(MINISTRY + viewRiksdagenMinistry.getNameId());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,

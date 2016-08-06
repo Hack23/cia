@@ -31,7 +31,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Appli
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.server.Sizeable.Unit;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -200,21 +199,19 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 */
 	protected final void createPageVisitHistory(final String pageName, final String pageId,
 			final VerticalLayout panelContent) {
-		final Label createHeader2Label = LabelFactory.createHeader2Label(CURRENT_PAGE_VISIT_HISTORY);
-		panelContent.addComponent(createHeader2Label);
+		LabelFactory.createHeader2Label(panelContent,CURRENT_PAGE_VISIT_HISTORY);
+		
 		final DCharts createApplicationActionEventPageElementDailySummaryChart = adminChartDataManager
 				.createApplicationActionEventPageElementDailySummaryChart(pageName, pageId);
 		panelContent.addComponent(createApplicationActionEventPageElementDailySummaryChart);
 
-		final Label createHeader2Label2 = LabelFactory.createHeader2Label(GENERAL_PAGE_MODE_PAGE_VISIT);
-		panelContent.addComponent(createHeader2Label2);
+		LabelFactory.createHeader2Label(panelContent,GENERAL_PAGE_MODE_PAGE_VISIT);
 		final DCharts createApplicationActionEventPageModeDailySummaryChart = adminChartDataManager
 				.createApplicationActionEventPageModeDailySummaryChart(pageName);
 		panelContent.addComponent(createApplicationActionEventPageModeDailySummaryChart);
 
-		panelContent.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
+		
 		panelContent.setExpandRatio(createApplicationActionEventPageElementDailySummaryChart, ContentRatio.GRID);
-		panelContent.setExpandRatio(createHeader2Label2, ContentRatio.SMALL);
 		panelContent.setExpandRatio(createApplicationActionEventPageModeDailySummaryChart, ContentRatio.GRID);
 	}
 

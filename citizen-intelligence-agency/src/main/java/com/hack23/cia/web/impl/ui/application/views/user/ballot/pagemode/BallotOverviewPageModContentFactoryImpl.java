@@ -46,9 +46,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Grid;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -112,23 +110,15 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 		if (!ballots.isEmpty()) {
 			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
-			panelContent.addComponent(createHeader2Label);
-			panelContent.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
+			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
+			
+			
 
 			for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
 
 				if (!decisionSummaries.isEmpty()) {
 
-					final Panel formPanel = new Panel();
-					formPanel.setSizeFull();
-
-					panelContent.addComponent(formPanel);
-
-					final FormLayout formContent = new FormLayout();
-					formPanel.setContent(formContent);
-
-					getFormFactory().addTextFields(formContent, new BeanItem<>(decisionSummaries.get(FIRST_OBJECT)),
+					getFormFactory().addFormPanelTextFields(panelContent, new BeanItem<>(decisionSummaries.get(FIRST_OBJECT)),
 							ViewRiksdagenCommitteeBallotDecisionSummary.class,
 							Arrays.asList(new String[] { "embeddedId.id", "ballotId", "rm", "voteDate", "org",
 									"committeeReport", "embeddedId.issue", "title", "subTitle", "decisionType",
@@ -136,24 +126,13 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 									"abstainVotes", "absentVotes", "approved", "endNumber", "againstProposalParties",
 									"againstProposalNumber" }));
 
-					panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
 				} else {
 
-					final Panel formPanel = new Panel();
-					formPanel.setSizeFull();
-
-					panelContent.addComponent(formPanel);
-
-					final FormLayout formContent = new FormLayout();
-					formPanel.setContent(formContent);
-
-					getFormFactory().addTextFields(formContent, new BeanItem<>(viewRiksdagenVoteDataBallotSummary),
+					getFormFactory().addFormPanelTextFields(panelContent, new BeanItem<>(viewRiksdagenVoteDataBallotSummary),
 							ViewRiksdagenVoteDataBallotSummary.class,
 							Arrays.asList(new String[] { "embeddedId.ballotId", "rm", "voteDate", "embeddedId.issue",
 									"embeddedId.concern", "ballotType", "label", "totalVotes", "yesVotes", "noVotes",
 									"abstainVotes", "absentVotes", "approved" }));
-
-					panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
 				}
 
 			}

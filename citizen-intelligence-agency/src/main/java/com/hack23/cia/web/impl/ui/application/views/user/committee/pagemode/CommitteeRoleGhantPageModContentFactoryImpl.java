@@ -74,7 +74,7 @@ public final class CommitteeRoleGhantPageModContentFactoryImpl extends AbstractC
 
 			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(ROLE_GHANT_NOT_IMPLEMENTED));
+			LabelFactory.createHeader2Label(panelContent,ROLE_GHANT_NOT_IMPLEMENTED);
 
 			panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER,

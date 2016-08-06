@@ -26,13 +26,10 @@ import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksda
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -75,8 +72,8 @@ public final class PartyCurrentMembersPageModContentFactoryImpl extends Abstract
 
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(CURRENT_MEMBERS);
-			panelContent.addComponent(createHeader2Label);
+			LabelFactory.createHeader2Label(panelContent,CURRENT_MEMBERS);
+			
 
 			final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenPolitician.class);
@@ -87,7 +84,8 @@ public final class PartyCurrentMembersPageModContentFactoryImpl extends Abstract
 							new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },
 							ViewRiksdagenPolitician_.party, ViewRiksdagenPolitician_.active));
 
-			final Grid partyMemberBeanItemGrid = getGridFactory().createBasicBeanItemGrid(politicianDataSource,
+			getGridFactory().createBasicBeanItemGrid(panelContent,
+					politicianDataSource,
 					"Politicians",
 					new String[] { "personId", "firstName", "lastName", "party", "gender", "bornYear",
 							"totalAssignments", "currentAssignments", "firstAssignmentDate", "lastAssignmentDate",
@@ -102,14 +100,8 @@ public final class PartyCurrentMembersPageModContentFactoryImpl extends Abstract
 							"totalSpeakerAssignments",
 
 							"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
-							"currentSpeakerAssignments" },
-					null, "personId", new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"),
-					null);
-
-			panelContent.addComponent(partyMemberBeanItemGrid);
-			
-			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
-			panelContent.setExpandRatio(partyMemberBeanItemGrid, ContentRatio.GRID);
+							"currentSpeakerAssignments" }, null, "personId",
+					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
 
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);

@@ -86,8 +86,8 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 
 			getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(DOCUMENT_DATA);
-			panelContent.addComponent(createHeader2Label);
+			LabelFactory.createHeader2Label(panelContent,DOCUMENT_DATA);
+			
 
 			final List<DocumentContentData> documentContentlist = documentContentDataDataContainer
 					.getAllBy(DocumentContentData_.id, pageId);
@@ -107,7 +107,7 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 			
 				formContent.addComponent(htmlContent);
 	
-				panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
+				
 				panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
 
 			}

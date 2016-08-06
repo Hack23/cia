@@ -31,7 +31,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -73,7 +72,16 @@ public final class MinistryRankingDataGridPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		panelContent.addComponent(createTable());
+		final DataContainer<ViewRiksdagenMinistry, String> dataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenMinistry.class);
+
+		final BeanItemContainer<ViewRiksdagenMinistry> dataSource = new BeanItemContainer<>(ViewRiksdagenMinistry.class,
+				dataContainer.getAllOrderBy(ViewRiksdagenMinistry_.currentMemberSize));
+
+		getGridFactory().createBasicBeanItemGrid(panelContent, dataSource,
+				"Ministries",
+				new String[] { "nameId", "totalDaysServed", "currentMemberSize", "totalAssignments",
+						"firstAssignmentDate", "lastAssignmentDate", "active" }, null, "nameId", new PageItemPropertyClickListener(UserViews.MINISTRY_VIEW_NAME, "nameId"), null);
 
 		panel.setCaption(DATAGRID + parameters);
 
@@ -81,25 +89,6 @@ public final class MinistryRankingDataGridPageModContentFactoryImpl
 				NAME, parameters, pageId);
 
 		return panelContent;
-
-	}
-
-	/**
-	 * Creates the table.
-	 *
-	 * @return the component
-	 */
-	private Component createTable() {
-		final DataContainer<ViewRiksdagenMinistry, String> dataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenMinistry.class);
-
-		final BeanItemContainer<ViewRiksdagenMinistry> dataSource = new BeanItemContainer<>(ViewRiksdagenMinistry.class,
-				dataContainer.getAllOrderBy(ViewRiksdagenMinistry_.currentMemberSize));
-
-		return getGridFactory().createBasicBeanItemGrid(dataSource, "Ministries",
-				new String[] { "nameId", "totalDaysServed", "currentMemberSize", "totalAssignments",
-						"firstAssignmentDate", "lastAssignmentDate", "active" },
-				null, "nameId", new PageItemPropertyClickListener(UserViews.MINISTRY_VIEW_NAME, "nameId"), null);
 
 	}
 

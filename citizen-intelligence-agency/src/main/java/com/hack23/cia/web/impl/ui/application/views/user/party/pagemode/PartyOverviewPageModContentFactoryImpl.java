@@ -31,8 +31,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFac
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
@@ -84,25 +82,15 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(OVERVIEW);
-			panelContent.addComponent(createHeader2Label);
+			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
+			
 			final Link addPartyPageLink = getPageLinkFactory().addPartyPageLink(viewRiksdagenParty);
 			panelContent.addComponent(addPartyPageLink);
 
-			final Panel formPanel = new Panel();
-			formPanel.setSizeFull();
-
-			panelContent.addComponent(formPanel);
-
-			final FormLayout formContent = new FormLayout();
-			formPanel.setContent(formContent);
-
-			panelContent.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
 			panelContent.setExpandRatio(addPartyPageLink, ContentRatio.SMALL);
-			panelContent.setExpandRatio(formPanel, ContentRatio.LARGE);
 			
-			getFormFactory().addTextFields(
-					formContent,
+			getFormFactory().addFormPanelTextFields(
+					panelContent,
 					new BeanItem<>(viewRiksdagenParty),
 					ViewRiksdagenParty.class,
 					Arrays.asList(new String[] { "partyName", "partyId",
@@ -116,7 +104,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 	
 				
-				getFormFactory().addTextFields(formContent,
+				getFormFactory().addFormPanelTextFields(panelContent,
 						new BeanItem<>(
 								viewRiksdagenPartySummary),
 								ViewRiksdagenPartySummary.class,

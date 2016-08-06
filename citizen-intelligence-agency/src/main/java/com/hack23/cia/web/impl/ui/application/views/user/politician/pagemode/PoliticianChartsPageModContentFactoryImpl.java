@@ -73,7 +73,7 @@ public final class PoliticianChartsPageModContentFactoryImpl extends AbstractPol
 
 			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(CHARTS_NOT_IMPLEMENTED));
+			LabelFactory.createHeader2Label(panelContent,CHARTS_NOT_IMPLEMENTED);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 

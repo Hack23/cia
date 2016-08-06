@@ -40,9 +40,7 @@ import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -85,9 +83,7 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_APPLICATION_CONFIGURATION);
-		content.addComponent(createHeader2Label);
-		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
+		LabelFactory.createHeader2Label(content,ADMIN_APPLICATION_CONFIGURATION);
 
 		final DataContainer<ApplicationConfiguration, Long> dataContainer = getApplicationManager()
 				.getDataContainer(ApplicationConfiguration.class);
@@ -101,16 +97,12 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 		content.setExpandRatio(pagingControls, ContentRatio.SMALL);
 
 
-		final Grid createBasicBeanItemGrid = getGridFactory().createBasicBeanItemGrid(politicianDocumentDataSource,
+		getGridFactory().createBasicBeanItemGrid(content,
+				politicianDocumentDataSource,
 				"ApplicationConfiguration",
 				new String[] { "hjid", "configTitle", "configDescription", "configurationGroup", "component",
-						"componentTitle", "componentDescription", "propertyId", "propertyValue" },
-				new String[] { "modelObjectId", "modelObjectVersion", "createdDate", "updatedDate" }, "hjid",
-				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, "hjid"), null);
-		content.addComponent(createBasicBeanItemGrid);
-
-		content.addComponent(createBasicBeanItemGrid);
-		content.setExpandRatio(createBasicBeanItemGrid, ContentRatio.GRID);
+						"componentTitle", "componentDescription", "propertyId", "propertyValue" }, new String[] { "modelObjectId", "modelObjectVersion", "createdDate", "updatedDate" },
+				"hjid", new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, "hjid"), null);
 
 		if (pageId != null && !pageId.isEmpty()) {
 
@@ -128,16 +120,8 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 				horizontalLayout.addComponent(leftLayout);
 				horizontalLayout.addComponent(rightLayout);
 				
-				final Panel formPanel = new Panel();
-				formPanel.setSizeFull();
 
-				leftLayout.addComponent(formPanel);
-
-				final FormLayout formContent = new FormLayout();
-				formPanel.setContent(formContent);
-
-
-				getFormFactory().addTextFields(formContent, new BeanItem<>(applicationConfiguration),
+				getFormFactory().addFormPanelTextFields(leftLayout, new BeanItem<>(applicationConfiguration),
 						ApplicationConfiguration.class,
 						Arrays.asList(new String[] { "hjid", "configTitle", "configDescription", "component",
 								"componentTitle", "componentDescription", "propertyId", "propertyValue", "createdDate",
@@ -159,7 +143,7 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 						getApplicationManager());
 				
 				final Panel updateFormPanel = new Panel();
-				formPanel.setSizeFull();
+				updateFormPanel.setSizeFull();
 
 				rightLayout.addComponent(updateFormPanel);
 

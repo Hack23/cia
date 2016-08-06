@@ -37,10 +37,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -86,9 +83,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
 
-		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_APPLICATION_ACTION_EVENT);
-		content.addComponent(createHeader2Label);
-		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
+		LabelFactory.createHeader2Label(content,ADMIN_APPLICATION_ACTION_EVENT);
 
 		final DataContainer<ApplicationActionEvent, Long> dataContainer = getApplicationManager().getDataContainer(ApplicationActionEvent.class);
 
@@ -99,12 +94,10 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 		content.addComponent(pagingControls);
 		content.setExpandRatio(pagingControls, ContentRatio.SMALL);		
 
-		final Grid createBasicBeanItemGrid = getGridFactory().createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationActionEvent",
-				new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" },
-				new String[] { "modelObjectId" }, "hjid",
-				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null);
-		content.addComponent(createBasicBeanItemGrid);
-		content.setExpandRatio(createBasicBeanItemGrid, ContentRatio.GRID);
+		getGridFactory().createBasicBeanItemGrid(content, politicianDocumentDataSource,
+				"ApplicationActionEvent",
+				new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" }, new String[] { "modelObjectId" },
+				"hjid", new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null);
 
 		if (pageId != null && !pageId.isEmpty()) {
 
@@ -112,18 +105,8 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 
 			if (applicationActionEvent != null) {
 
-				 final Panel formPanel = new Panel();
-				 formPanel.setSizeFull();
-
-				final FormLayout formContent = new FormLayout();
-				formPanel.setContent(formContent);
-
-			getFormFactory().addTextFields(formContent, new BeanItem<>(applicationActionEvent), ApplicationActionEvent.class,
+				getFormFactory().addFormPanelTextFields(content, new BeanItem<>(applicationActionEvent), ApplicationActionEvent.class,
 					Arrays.asList(new String[] { "hjid","createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion"  }));
-
-			content.addComponent(formPanel);
-			content.setExpandRatio(formPanel, ContentRatio.LARGE_FORM);
-
 			}
 
 

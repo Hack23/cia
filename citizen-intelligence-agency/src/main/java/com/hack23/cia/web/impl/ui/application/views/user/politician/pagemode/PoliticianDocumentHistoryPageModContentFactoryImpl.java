@@ -27,13 +27,10 @@ import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -78,9 +75,8 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl extends Ab
 
 			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			final Label createHeader2Label = LabelFactory
-					.createHeader2Label(PoliticianPageMode.DOCUMENTHISTORY.toString());
-			panelContent.addComponent(createHeader2Label);
+			LabelFactory.createHeader2Label(panelContent,PoliticianPageMode.DOCUMENTHISTORY.toString());
+			
 
 			final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenPoliticianDocument.class);
@@ -91,19 +87,14 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl extends Ab
 							ViewRiksdagenPoliticianDocument_.personReferenceId, personData.getId(),
 							ViewRiksdagenPoliticianDocument_.madePublicDate));
 
-			final Grid politicianDocumentBeanItemGrid = getGridFactory().createBasicBeanItemGrid(
-					politicianDocumentDataSource, "Documents",
+			getGridFactory().createBasicBeanItemGrid(
+					panelContent, politicianDocumentDataSource,
+					"Documents",
 					new String[] { "referenceName", "partyShortCode", "personReferenceId", "roleDescription",
 							"documentType", "subType", "title", "subTitle", "org", "rm", "madePublicDate", "id",
 							"docId", "tempLabel", "label", "numberValue", "orderNumber", "status" },
 					new String[] { "id", "partyShortCode", "personReferenceId", "numberValue", "orderNumber",
-							"tempLabel", "referenceName" },
-					null, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null);
-
-			panelContent.addComponent(politicianDocumentBeanItemGrid);
-
-			panelContent.setExpandRatio(createHeader2Label,ContentRatio.SMALL);
-			panelContent.setExpandRatio(politicianDocumentBeanItemGrid, ContentRatio.GRID);
+							"tempLabel", "referenceName" }, null, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 

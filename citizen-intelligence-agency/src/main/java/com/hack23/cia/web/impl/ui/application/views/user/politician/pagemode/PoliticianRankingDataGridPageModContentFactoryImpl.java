@@ -31,7 +31,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -73,24 +72,6 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		panelContent.addComponent(createTable());
-
-		panel.setCaption(DATAGRID + parameters);
-
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,
-				NAME, parameters, pageId);
-
-		return panelContent;
-
-	}
-
-	/**
-	 * Creates the table.
-	 *
-	 * @return the component
-	 */
-	private Component createTable() {
-
 		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPolitician.class);
 
@@ -98,7 +79,8 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 				ViewRiksdagenPolitician.class,
 				politicianDataContainer.getAllOrderBy(ViewRiksdagenPolitician_.currentAssignments));
 
-		return getGridFactory().createBasicBeanItemGrid(politicianDataSource, "Politicians",
+		getGridFactory().createBasicBeanItemGrid(panelContent, politicianDataSource,
+				"Politicians",
 				new String[] { "personId", "firstName", "lastName", "party", "gender", "bornYear", "totalAssignments",
 						"currentAssignments", "firstAssignmentDate", "lastAssignmentDate", "totalDaysServed",
 						"totalDaysServedParliament", "totalDaysServedCommittee", "totalDaysServedGovernment",
@@ -112,8 +94,15 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 						"totalSpeakerAssignments",
 
 						"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
-						"currentSpeakerAssignments" },
-				null, "personId", new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
+						"currentSpeakerAssignments" }, null, "personId", new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
+
+		panel.setCaption(DATAGRID + parameters);
+
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,
+				NAME, parameters, pageId);
+
+		return panelContent;
+
 	}
 
 }

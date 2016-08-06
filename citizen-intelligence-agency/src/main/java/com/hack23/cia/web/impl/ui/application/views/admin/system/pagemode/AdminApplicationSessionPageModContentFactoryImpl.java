@@ -36,10 +36,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -80,10 +77,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 	
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_APPLICATION_SESSION);
-		content.addComponent(createHeader2Label);
-		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
-
+		LabelFactory.createHeader2Label(content,ADMIN_APPLICATION_SESSION);
 
 		final DataContainer<ApplicationSession, Long> dataContainer = getApplicationManager()
 				.getDataContainer(ApplicationSession.class);
@@ -97,14 +91,11 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 		content.setExpandRatio(pagingControls, ContentRatio.SMALL);
 
 		
-		final Grid createBasicBeanItemGrid = getGridFactory().createBasicBeanItemGrid(politicianDocumentDataSource, "ApplicationSession",
+		getGridFactory().createBasicBeanItemGrid(content, politicianDocumentDataSource,
+				"ApplicationSession",
 				new String[] { "hjid", "createdDate", "sessionType", "sessionId", "operatingSystem", "locale",
-						"ipInformation", "userAgentInformation", "events" },
-				new String[] { "modelObjectId", "modelObjectVersion" }, "hjid",
-				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid"), null);
-		content.addComponent(createBasicBeanItemGrid);
-		content.setExpandRatio(createBasicBeanItemGrid, ContentRatio.GRID);
-
+						"ipInformation", "userAgentInformation", "events" }, new String[] { "modelObjectId", "modelObjectVersion" },
+				"hjid", new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid"), null);
 
 		if (pageId != null && !pageId.isEmpty()) {
 
@@ -119,32 +110,25 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 				content.addComponent(horizontalLayout);
 				content.setExpandRatio(horizontalLayout, ContentRatio.GRID);
 
-				 final Panel formPanel = new Panel();
-				 formPanel.setSizeFull();
 
-				final FormLayout formContent = new FormLayout();
-				formPanel.setContent(formContent);
-
-				horizontalLayout.addComponent(formPanel);
-				horizontalLayout.addComponent(rightLayout);
-
-				getFormFactory().addTextFields(formContent, new BeanItem<>(applicationSession),
+				getFormFactory().addFormPanelTextFields(horizontalLayout, new BeanItem<>(applicationSession),
 						ApplicationSession.class,
 						Arrays.asList(new String[] { "hjid", "createdDate", "sessionId", "operatingSystem", "locale",
 								"ipInformation", "userAgentInformation", "modelObjectVersion" }));
 
+				horizontalLayout.addComponent(rightLayout);
+				
 				final BeanItemContainer<ApplicationActionEvent> eventsItemContainer = new BeanItemContainer<>(
 						ApplicationActionEvent.class, applicationSession.getEvents());
 
-				final Grid createBasicBeanItemGrid2 = getGridFactory().createBasicBeanItemGrid(eventsItemContainer,
+				getGridFactory().createBasicBeanItemGrid(rightLayout,
+						eventsItemContainer,
 						"ApplicationActionEvent",
 						new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation", "page", "pageMode",
 								"elementId", "actionName", "userId", "sessionId", "errorMessage", "applicationMessage",
-								"modelObjectVersion" },
-						new String[] { "modelObjectId" }, "hjid",
-						new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"),
-						null);
-				rightLayout.addComponent(createBasicBeanItemGrid2);
+								"modelObjectVersion" }, new String[] { "modelObjectId" },
+						"hjid",
+						new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null);
 			}
 
 		}

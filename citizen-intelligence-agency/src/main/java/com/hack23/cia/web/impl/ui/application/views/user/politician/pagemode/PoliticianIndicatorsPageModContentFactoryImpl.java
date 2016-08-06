@@ -30,7 +30,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Poli
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -81,13 +80,13 @@ public final class PoliticianIndicatorsPageModContentFactoryImpl extends Abstrac
 
 			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			final Label createHeader2Label = LabelFactory.createHeader2Label(INDICATORS);
-			panelContent.addComponent(createHeader2Label);
+			LabelFactory.createHeader2Label(panelContent,INDICATORS);
+			
 
 			final DCharts createPersonLineChart = politicianChartDataManager.createPersonLineChart(personData.getId());
 			panelContent.addComponent(createPersonLineChart);
 
-			panelContent.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
+			
 			panelContent.setExpandRatio(createPersonLineChart, ContentRatio.GRID);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);

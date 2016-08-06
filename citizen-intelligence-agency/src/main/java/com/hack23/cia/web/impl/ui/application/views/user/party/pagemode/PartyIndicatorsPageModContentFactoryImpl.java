@@ -68,7 +68,7 @@ public final class PartyIndicatorsPageModContentFactoryImpl extends AbstractPart
 
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-			panelContent.addComponent(LabelFactory.createHeader2Label(INDICATORS_NOT_IMPLEMENTED));
+			LabelFactory.createHeader2Label(panelContent,INDICATORS_NOT_IMPLEMENTED);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}

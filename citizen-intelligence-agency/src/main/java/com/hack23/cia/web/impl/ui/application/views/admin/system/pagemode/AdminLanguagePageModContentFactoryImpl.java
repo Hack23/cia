@@ -34,10 +34,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -78,9 +75,7 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		final Label createHeader2Label = LabelFactory.createHeader2Label(ADMIN_LANGUAGE);
-		content.addComponent(createHeader2Label);
-		content.setExpandRatio(createHeader2Label, ContentRatio.SMALL);
+		LabelFactory.createHeader2Label(content,ADMIN_LANGUAGE);
 
 		final DataContainer<LanguageData, Long> dataContainer = getApplicationManager()
 				.getDataContainer(LanguageData.class);
@@ -93,30 +88,18 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
 		content.setExpandRatio(pagingControls, ContentRatio.SMALL);
 
 
-		final Grid createBasicBeanItemGrid = getGridFactory().createBasicBeanItemGrid(politicianDocumentDataSource,
-				"LanguageData", new String[] { "hjid", "languageName", "modelObjectVersion" },
-				new String[] { "modelObjectId" }, "hjid",
-				new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, "hjid"), null);
-		content.addComponent(createBasicBeanItemGrid);
-		content.addComponent(createBasicBeanItemGrid);
-		content.setExpandRatio(createBasicBeanItemGrid, ContentRatio.GRID);
+		getGridFactory().createBasicBeanItemGrid(content,
+				politicianDocumentDataSource, "LanguageData",
+				new String[] { "hjid", "languageName", "modelObjectVersion" }, new String[] { "modelObjectId" },
+				"hjid", new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, "hjid"), null);
 
 		if (pageId != null && !pageId.isEmpty()) {
 
 			final LanguageData languageData = dataContainer.load(Long.valueOf(pageId));
 
 			if (languageData != null) {
-				
-				final Panel formPanel = new Panel();
-				formPanel.setSizeFull();
-
-				content.addComponent(formPanel);
-
-				final FormLayout formContent = new FormLayout();
-				formPanel.setContent(formContent);
-
-				
-				getFormFactory().addTextFields(formContent, new BeanItem<>(languageData), LanguageData.class,
+								
+				getFormFactory().addFormPanelTextFields(content, new BeanItem<>(languageData), LanguageData.class,
 						Arrays.asList(new String[] { "hjid", "languageName", "modelObjectVersion" }));
 			}
 		}
