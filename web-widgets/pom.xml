@@ -49,25 +49,6 @@
       <version>0.6.2</version>
     </dependency>
     <dependency>
-      <groupId>at.downdrown.vaadinaddons</groupId>
-      <artifactId>highchartsapi</artifactId>
-      <version>2.2.1-QF</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>vaadin-server</artifactId>
-          <groupId>com.vaadin</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>vaadin-client-compiled</artifactId>
-          <groupId>com.vaadin</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>vaadin-themes</artifactId>
-          <groupId>com.vaadin</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
       <groupId>org.dussan.vaadin</groupId>
       <artifactId>dcharts</artifactId>
       <version>1.7.1-hack23</version>
