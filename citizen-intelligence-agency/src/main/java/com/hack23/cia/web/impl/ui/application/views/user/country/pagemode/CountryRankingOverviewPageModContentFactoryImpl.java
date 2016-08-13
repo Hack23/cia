@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.test.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.country.pagemode;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -44,10 +44,10 @@ import at.downdrown.vaadinaddons.highchartsapi.model.data.PieChartData;
 import at.downdrown.vaadinaddons.highchartsapi.model.series.PieChartSeries;
 
 /**
- * The Class TestOverviewPageModContentFactoryImpl.
+ * The Class CountryRankingOverviewPageModContentFactoryImpl.
  */
 @Component
-public final class TestOverviewPageModContentFactoryImpl extends AbstractTestPageModContentFactoryImpl {
+public final class CountryRankingOverviewPageModContentFactoryImpl extends AbstractCountryPageModContentFactoryImpl {
 
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
@@ -60,14 +60,15 @@ public final class TestOverviewPageModContentFactoryImpl extends AbstractTestPag
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(TestOverviewPageModContentFactoryImpl.class);
+			.getLogger(CountryRankingOverviewPageModContentFactoryImpl.class);
 
 
 
 	/**
-	 * Instantiates a new test overview page mod content factory impl.
+	 * Instantiates a new country ranking overview page mod content factory
+	 * impl.
 	 */
-	public TestOverviewPageModContentFactoryImpl() {
+	public CountryRankingOverviewPageModContentFactoryImpl() {
 		super();
 	}
 
@@ -82,7 +83,7 @@ public final class TestOverviewPageModContentFactoryImpl extends AbstractTestPag
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
-		getTestMenuItemFactory().createTestTopicMenu(menuBar);
+		getCountryMenuItemFactory().createCountryTopicMenu(menuBar);
 
 		final String pageId = getPageId(parameters);
 

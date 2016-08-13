@@ -23,6 +23,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public final class UserViews {
 
+	/** The Constant BALLOT_VIEW_NAME. */
 	public static final String BALLOT_VIEW_NAME = "ballot";
 	
 	/** The Constant COMMITTEE_RANKING_VIEW_NAME. */
@@ -56,11 +57,14 @@ public final class UserViews {
 	/** The Constant SEARCH_DOCUMENT_VIEW_NAME. */
 	public static final String SEARCH_DOCUMENT_VIEW_NAME = "search";
 
-	/** The Constant TEST_CHART_VIEW_NAME. */
-	public static final String TEST_CHART_VIEW_NAME = "testchartview";
-
 	/** The Constant USERHOME_VIEW_NAME. */
 	public static final String USERHOME_VIEW_NAME = "userhome";
+
+	/** The Constant COUNTRY_RANKING_VIEW_NAME. */
+	public static final String COUNTRY_RANKING_VIEW_NAME = "countryranking";
+
+	/** The Constant PARLIAMENT_RANKING_VIEW_NAME. */
+	public static final String PARLIAMENT_RANKING_VIEW_NAME = "parliamentranking";
 
 	/**
 	 * Instantiates a new user views.

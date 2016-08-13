@@ -16,35 +16,40 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.test.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.TestMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ParliamentMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 /**
  * The Class AbstractPoliticianPageModContentFactoryImpl.
  */
-public abstract class AbstractTestPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+public abstract class AbstractParliamentPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
 	/** The Constant NAME. */
-	public static final String NAME = UserViews.TEST_CHART_VIEW_NAME;
+	public static final String NAME = UserViews.PARLIAMENT_RANKING_VIEW_NAME;
 
 	/** The test menu item factory. */
 	@Autowired
-	private TestMenuItemFactory testMenuItemFactory;
+	private ParliamentMenuItemFactory parliamentMenuItemFactory;
 
 	/**
-	 * Instantiates a new abstract test page mod content factory impl.
+	 * Instantiates a new abstract parliament page mod content factory impl.
 	 */
-	protected AbstractTestPageModContentFactoryImpl() {
+	protected AbstractParliamentPageModContentFactoryImpl() {
 		super();
 	}
 
-	protected final TestMenuItemFactory getTestMenuItemFactory() {
-		return testMenuItemFactory;
+	/**
+	 * Gets the test menu item factory.
+	 *
+	 * @return the test menu item factory
+	 */
+	protected final ParliamentMenuItemFactory getParliamentMenuItemFactory() {
+		return parliamentMenuItemFactory;
 	}
 
 }

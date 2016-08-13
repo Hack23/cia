@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.test.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DocumentChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
@@ -34,42 +34,43 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class TestChartsPartyWinnerPageModContentFactoryImpl.
+ * The Class TestChartsDocumentActivityByTypePageModContentFactoryImpl.
  */
 @Component
-public final class TestChartsPartyWinnerPageModContentFactoryImpl extends AbstractTestPageModContentFactoryImpl {
+public final class ParliamentChartsDocumentActivityByTypePageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
 	/** The Constant PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS. */
 	private static final String PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS = "Party Winner, daily average for all ballots";
 
-	/** The party chart data manager. */
+	/** The document chart data manager. */
 	@Autowired
-	private PartyChartDataManager partyChartDataManager;
+	private DocumentChartDataManager documentChartDataManager;
+
 
 	/**
-	 * Instantiates a new test charts party winner page mod content factory
-	 * impl.
+	 * Instantiates a new test charts document activity by type page mod content
+	 * factory impl.
 	 */
-	public TestChartsPartyWinnerPageModContentFactoryImpl() {
+	public ParliamentChartsDocumentActivityByTypePageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(PageMode.CHARTS.toString())
-				&& parameters.contains(ChartIndicators.PARTYWINNER.toString());
+				&& parameters.contains(ChartIndicators.DOCUMENTACTIVITYBYTYPE.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
-		getTestMenuItemFactory().createTestTopicMenu(menuBar);
+		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 
 
 		final String pageId = getPageId(parameters);
 
-		partyChartDataManager.createPartyWinnerChart(panelContent);
+		documentChartDataManager.createDocumentTypeChart(panelContent);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

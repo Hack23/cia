@@ -79,9 +79,12 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	/** The Constant MINISTRY_RANKING_LINK_TEXT. */
 	private static final String MINISTRY_RANKING_LINK_TEXT = "Ministry Ranking";
 
-	/** The Constant TEST_CHART_VIEW_LINK_TEXT. */
-	private static final String TEST_CHART_VIEW_LINK_TEXT = "Test Chart View";
+	/** The Constant COUNTRY_RANKING_LINK_TEXT. */
+	private static final String COUNTRY_RANKING_LINK_TEXT = "Country Ranking";
 
+	/** The Constant PARLIAMENT_RANKING_LINK_TEXT. */
+	private static final String PARLIAMENT_RANKING_LINK_TEXT = "Parliament Ranking";
+	
 	/** The Constant LINK_SEPARATOR. */
 	private static final String LINK_SEPARATOR = PAGE_PREFIX;
 
@@ -114,12 +117,21 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 
 	
 	@Override
-	public Link createTestChartViewPageLink() {
-		final Link pageLink = new Link(TEST_CHART_VIEW_LINK_TEXT,
-				new ExternalResource(LINK_SEPARATOR + UserViews.TEST_CHART_VIEW_NAME));
+	public Link createCountryRankingViewPageLink() {
+		final Link pageLink = new Link(COUNTRY_RANKING_LINK_TEXT,
+				new ExternalResource(LINK_SEPARATOR + UserViews.COUNTRY_RANKING_VIEW_NAME));
 		pageLink.setId(ViewAction.VISIT_TEST_CHART_VIEW.name());
 		return pageLink;
 	}
+
+	@Override
+	public Link createParliamentViewPageLink() {
+		final Link pageLink = new Link(PARLIAMENT_RANKING_LINK_TEXT,
+				new ExternalResource(LINK_SEPARATOR + UserViews.PARLIAMENT_RANKING_VIEW_NAME));
+		pageLink.setId(ViewAction.VISIT_TEST_CHART_VIEW.name());
+		return pageLink;
+	}
+	
 
 	@Override
 	public Link createMinistryRankingViewPageLink() {

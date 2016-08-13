@@ -48,13 +48,6 @@ public interface PageLinkFactory {
 	 *
 	 * @return the link
 	 */
-	Link createTestChartViewPageLink();
-
-	/**
-	 * Creates a new PageLink object.
-	 *
-	 * @return the link
-	 */
 	Link createMinistryRankingViewPageLink();
 
 	/**
@@ -163,5 +156,19 @@ public interface PageLinkFactory {
 	 * @return the link
 	 */
 	Link createLoginPageLink();
+
+	/**
+	 * Creates a new PageLink object.
+	 *
+	 * @return the link
+	 */
+	Link createCountryRankingViewPageLink();
+
+	/**
+	 * Creates a new PageLink object.
+	 *
+	 * @return the link
+	 */
+	Link createParliamentViewPageLink();
 
 }

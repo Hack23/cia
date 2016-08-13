@@ -16,40 +16,40 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.test;
+package com.hack23.cia.web.impl.ui.application.views.user.country;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import com.hack23.cia.web.impl.ui.application.views.common.AbstractView;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView;
 
 import ru.xpoft.vaadin.VaadinView;
 
 /**
- * The Class TestChartView.
+ * The Class CountryRankingView.
  */
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-@VaadinView(value = TestChartView.NAME, cached = true)
-public final class TestChartView extends AbstractView {
+@VaadinView(value = CountryRankingView.NAME, cached = true)
+public final class CountryRankingView extends AbstractRankingView {
+
+	/** The Constant NAME. */
+	public static final String NAME = UserViews.COUNTRY_RANKING_VIEW_NAME;
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The Constant NAME. */
-	public static final String NAME = UserViews.TEST_CHART_VIEW_NAME;
-
 	/**
-	 * Instantiates a new test chart view.
+	 * Instantiates a new country ranking view.
 	 *
 	 * @param context
 	 *            the context
 	 */
-	public TestChartView(final ApplicationContext context) {
+	public CountryRankingView(final ApplicationContext context) {
 		super(context.getBeansOfType(PageModeContentFactory.class), NAME);
 	}
 

@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.test.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,12 +37,12 @@ import com.vaadin.ui.VerticalLayout;
  * The Class TestChartsDecisionActivityByTypePageModContentFactoryImpl.
  */
 @Component
-public final class TestChartsDecisionActivityByTypePageModContentFactoryImpl extends AbstractTestPageModContentFactoryImpl {
+public final class ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
 	/** The Constant PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS. */
 	private static final String PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS = "Party Winner, daily average for all ballots";
 
-	/** The document chart data manager. */
+	/** The decision chart data manager. */
 	@Autowired
 	private DecisionChartDataManager decisionChartDataManager;
 
@@ -50,7 +50,7 @@ public final class TestChartsDecisionActivityByTypePageModContentFactoryImpl ext
 	 * Instantiates a new test charts decision activity by type page mod content
 	 * factory impl.
 	 */
-	public TestChartsDecisionActivityByTypePageModContentFactoryImpl() {
+	public ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl() {
 		super();
 	}
 
@@ -67,7 +67,7 @@ public final class TestChartsDecisionActivityByTypePageModContentFactoryImpl ext
 
 		final String pageId = getPageId(parameters);
 
-		getTestMenuItemFactory().createTestTopicMenu(menuBar);
+		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 
 		decisionChartDataManager.createDecisionTypeChart(panelContent);
 

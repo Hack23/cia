@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.test.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +37,9 @@ import com.vaadin.ui.VerticalLayout;
  * The Class TestChartsPartyGenderPageModContentFactoryImpl.
  */
 @Component
-public final class TestChartsPartyGenderPageModContentFactoryImpl extends AbstractTestPageModContentFactoryImpl {
+public final class ParliamentChartsPartyGenderPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
-	/** The Constant PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS. */
+	/** The Constant PARTY_GENDER_DAILY_AVERAGE_FOR_ALL_BALLOTS. */
 	private static final String PARTY_GENDER_DAILY_AVERAGE_FOR_ALL_BALLOTS = "Party percentage female, daily average for ballot days";
 
 	/** The party chart data manager. */
@@ -50,7 +50,7 @@ public final class TestChartsPartyGenderPageModContentFactoryImpl extends Abstra
 	 * Instantiates a new test charts party gender page mod content factory
 	 * impl.
 	 */
-	public TestChartsPartyGenderPageModContentFactoryImpl() {
+	public ParliamentChartsPartyGenderPageModContentFactoryImpl() {
 		super();
 	}
 
@@ -64,7 +64,7 @@ public final class TestChartsPartyGenderPageModContentFactoryImpl extends Abstra
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
-		getTestMenuItemFactory().createTestTopicMenu(menuBar);
+		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 
 
 		final String pageId = getPageId(parameters);

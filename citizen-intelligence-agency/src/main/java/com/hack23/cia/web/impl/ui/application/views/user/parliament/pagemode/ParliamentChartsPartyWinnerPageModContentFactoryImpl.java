@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.test.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,45 +34,46 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class TestChartsPartyAgePageModContentFactoryImpl.
+ * The Class TestChartsPartyWinnerPageModContentFactoryImpl.
  */
 @Component
-public final class TestChartsPartyAgePageModContentFactoryImpl extends AbstractTestPageModContentFactoryImpl {
+public final class ParliamentChartsPartyWinnerPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
 	/** The Constant PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS. */
-	private static final String PARTY_AGE_DAILY_AVERAGE_FOR_ALL_BALLOTS = "Party average age at day of ballot";
+	private static final String PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS = "Party Winner, daily average for all ballots";
 
 	/** The party chart data manager. */
 	@Autowired
 	private PartyChartDataManager partyChartDataManager;
 
 	/**
-	 * Instantiates a new test charts party age page mod content factory impl.
+	 * Instantiates a new test charts party winner page mod content factory
+	 * impl.
 	 */
-	public TestChartsPartyAgePageModContentFactoryImpl() {
+	public ParliamentChartsPartyWinnerPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(PageMode.CHARTS.toString())
-				&& parameters.contains(ChartIndicators.PARTYAGE.toString());
+				&& parameters.contains(ChartIndicators.PARTYWINNER.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
-		getTestMenuItemFactory().createTestTopicMenu(menuBar);
+		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 
 
 		final String pageId = getPageId(parameters);
 
-		partyChartDataManager.createPartyAgeChart(panelContent);
+		partyChartDataManager.createPartyWinnerChart(panelContent);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
-		panel.setCaption(PARTY_AGE_DAILY_AVERAGE_FOR_ALL_BALLOTS);
+		panel.setCaption(PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS);
 
 		return panelContent;
 

@@ -19,19 +19,27 @@
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api;
 
 import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.MenuBar.MenuItem;
 
 /**
  * A factory for creating TestMenuItem objects.
  */
-@FunctionalInterface
-public interface TestMenuItemFactory {
+public interface CountryMenuItemFactory {
 
 	/**
-	 * Creates a new MenuItem object.
+	 * Creates a new CountryMenuItem object.
 	 *
 	 * @param barmenu
 	 *            the barmenu
 	 */
-	void createTestTopicMenu(MenuBar barmenu);
+	void createCountryTopicMenu(MenuBar barmenu);
+
+	/**
+	 * Creates a new CountryMenuItem object.
+	 *
+	 * @param countryMenuItem
+	 *            the country menu item
+	 */
+	void createCountryTopicMenu(MenuItem countryMenuItem);
 
 }

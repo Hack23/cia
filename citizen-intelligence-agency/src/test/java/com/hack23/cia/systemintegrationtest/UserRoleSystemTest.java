@@ -756,127 +756,144 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	}
 
 	/**
-	 * Site test chart view overview test.
+	 * Site test parliament overview test.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void siteTestChartViewOverviewTest() throws Exception {
+	public void siteTestParliamentOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.OVERVIEW));
-
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 	}
 
 	/**
-	 * Site test chart view indicators test.
+	 * Site test country ranking overview test.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void siteTestChartViewIndicatorsTest() throws Exception {
+	public void siteTestCountryRankingOverviewTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW));
+	}
+	
+	
+
+	/**
+	 * Site country ranking view indicators test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteCountryRankingViewIndicatorsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.INDICATORS, "UIS.TEP.5.A"));
+				new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.INDICATORS, "UIS.TEP.5.A"));
 
 	}
 
 	/**
-	 * Site test chart view party winner test.
+	 * Site parliament chart view party winner test.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void siteTestChartViewPartyWinnerTest() throws Exception {
+	public void siteParliamentChartViewPartyWinnerTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS,
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS,
 				ChartIndicators.PARTYWINNER.toString()));
 
 	}
 
 	/**
-	 * Site test chart view party gender test.
+	 * Site parliament chart view party gender test.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void siteTestChartViewPartyGenderTest() throws Exception {
+	public void siteParliamentChartViewPartyGenderTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS,
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS,
 				ChartIndicators.PARTYGENDER.toString()));
 
 	}
 
 	/**
-	 * Site test chart view party age test.
+	 * Site parliament chart view party age test.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void siteTestChartViewPartyAgeTest() throws Exception {
+	public void siteParliamentChartViewPartyAgeTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS,
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS,
 				ChartIndicators.PARTYAGE.toString()));
 
 	}
 
 
 	/**
-	 * Site test chart view decsion activity by type test.
+	 * Site parliament chart view decsion activity by type test.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void siteTestChartViewDecsionActivityByTypeTest() throws Exception {
+	public void siteParliamentChartViewDecsionActivityByTypeTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS,
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS,
 				ChartIndicators.DECSIONACTIVITYBYTYPE.toString()));
 
 	}
 
 	/**
-	 * Site test chart view document activity by type test.
+	 * Site parliament chart view document activity by type test.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void siteTestChartViewDocumentActivityByTypeTest() throws Exception {
+	public void siteParliamentChartViewDocumentActivityByTypeTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.CHARTS,
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS,
 				ChartIndicators.DOCUMENTACTIVITYBYTYPE.toString()));
 
 	}

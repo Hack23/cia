@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.test.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.country.pagemode;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -48,7 +48,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class WorldIndicatorsPageModContentFactoryImpl.
  */
 @Component
-public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractTestPageModContentFactoryImpl {
+public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCountryPageModContentFactoryImpl {
 
 	/** The Constant WORLD_INDICATORS. */
 	private static final String WORLD_INDICATORS = "World Indicators";
@@ -73,7 +73,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractTest
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
-		getTestMenuItemFactory().createTestTopicMenu(menuBar);
+		getCountryMenuItemFactory().createCountryTopicMenu(menuBar);
 
 		final String pageId = getPageId(parameters);
 
@@ -91,9 +91,10 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractTest
 	/**
 	 * Creates the data indicator summary chart panel.
 	 *
+	 * @param verticalLayout
+	 *            the vertical layout
 	 * @param indicator
 	 *            the indicator
-	 * @return the vertical layout
 	 */
 	private void createDataIndicatorSummaryChartPanel(final VerticalLayout verticalLayout,final String indicator) {
 

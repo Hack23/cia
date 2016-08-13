@@ -23,7 +23,9 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CountryMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ParliamentMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
@@ -41,22 +43,32 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 		implements ApplicationMenuItemFactory {
 
 	/** The Constant COMMAND6. */
-	private static final PageModeMenuCommand COMMAND6 = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+	private static final PageModeMenuCommand COMMAND6 = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
+			PageMode.PAGEVISITHISTORY);
 
 	/** The Constant COMMAND5. */
-	private static final PageModeMenuCommand COMMAND5 = new PageModeMenuCommand(UserViews.TEST_CHART_VIEW_NAME, PageMode.OVERVIEW);
+	private static final PageModeMenuCommand COMMAND5 = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME,
+			PageMode.OVERVIEW);
+
+	/** The Constant COMMAND7. */
+	private static final PageModeMenuCommand COMMAND7 = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME,
+			PageMode.OVERVIEW);
 
 	/** The Constant COMMAND4. */
-	private static final PageModeMenuCommand COMMAND4 = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+	private static final PageModeMenuCommand COMMAND4 = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
+			PageMode.OVERVIEW);
 
 	/** The Constant COMMAND3. */
-	private static final PageModeMenuCommand COMMAND3 = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+	private static final PageModeMenuCommand COMMAND3 = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
+			PageMode.OVERVIEW);
 
 	/** The Constant COMMAND2. */
-	private static final PageModeMenuCommand COMMAND2 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+	private static final PageModeMenuCommand COMMAND2 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME,
+			PageMode.OVERVIEW);
 
 	/** The Constant COMMAND. */
-	private static final PageModeMenuCommand COMMAND = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+	private static final PageModeMenuCommand COMMAND = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
+			PageMode.OVERVIEW);
 
 	/** The Constant POLITICIAN_RANKING. */
 	private static final String POLITICIAN_RANKING = "Politician Ranking";
@@ -69,9 +81,6 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 	/** The Constant COMMITTEE_RANKING_TEXT. */
 	private static final String COMMITTEE_RANKING_TEXT = "Committee Ranking";
-
-	/** The Constant TEST_TEXT. */
-	private static final String TEST_TEXT = "Test";
 
 	/** The Constant RANKING_TEXT. */
 	private static final String RANKING_TEXT = "Ranking";
@@ -91,6 +100,12 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
+	/** The Constant COUNTRY_RANKING_LINK_TEXT. */
+	private static final String COUNTRY_RANKING_LINK_TEXT = "Country Ranking";
+
+	/** The Constant PARLIAMENT_RANKING_LINK_TEXT. */
+	private static final String PARLIAMENT_RANKING_LINK_TEXT = "Parliament Ranking";
+
 	/** The politician ranking menu item factory. */
 	@Autowired
 	private PoliticianRankingMenuItemFactory politicianRankingMenuItemFactory;
@@ -106,6 +121,14 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	/** The ministry ranking menu item factory. */
 	@Autowired
 	private MinistryRankingMenuItemFactory ministryRankingMenuItemFactory;
+
+	/** The country menu item factory. */
+	@Autowired
+	private CountryMenuItemFactory countryMenuItemFactory;
+
+	/** The parliament menu item factory. */
+	@Autowired
+	private ParliamentMenuItemFactory parliamentMenuItemFactory;
 
 	/**
 	 * Instantiates a new application menu item factory impl.
@@ -125,33 +148,34 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 	@Override
 	public void addRankingMenu(final MenuBar menuBar) {
-		
+
 		final MenuItem mainItem = menuBar.addItem("Main", null, null);
 
-		mainItem.addItem(TEST_TEXT, COMMAND5);
+		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, null, COMMAND6);
 
-		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,COMMAND6);
-
-		
 		final MenuItem rankingsMenuItem = menuBar.addItem(RANKING_TEXT, null, null);
 
-		final MenuItem politicianMenuItem = rankingsMenuItem.addItem(POLITICIAN_RANKING_LINK_TEXT,
-				COMMAND);
+		final MenuItem countryMenuItem = rankingsMenuItem.addItem(COUNTRY_RANKING_LINK_TEXT, COMMAND7);
+
+		countryMenuItemFactory.createCountryTopicMenu(countryMenuItem);
+
+		final MenuItem parliamentMenuItem = rankingsMenuItem.addItem(PARLIAMENT_RANKING_LINK_TEXT, COMMAND5);
+
+		parliamentMenuItemFactory.createParliamentTopicMenu(parliamentMenuItem);
+
+		final MenuItem politicianMenuItem = rankingsMenuItem.addItem(POLITICIAN_RANKING_LINK_TEXT, COMMAND);
 
 		politicianRankingMenuItemFactory.createPoliticianRankingTopics(politicianMenuItem);
 
-		final MenuItem partynMenuItem = rankingsMenuItem.addItem(PARTY_RANKING_LINK_TEXT,
-				COMMAND2);
+		final MenuItem partynMenuItem = rankingsMenuItem.addItem(PARTY_RANKING_LINK_TEXT, COMMAND2);
 
 		partyRankingMenuItemFactory.createPartyRankingTopics(partynMenuItem);
 
-		final MenuItem committeeMenuItem = rankingsMenuItem.addItem(COMMITTEE_RANKING_LINK_TEXT,
-				COMMAND3);
+		final MenuItem committeeMenuItem = rankingsMenuItem.addItem(COMMITTEE_RANKING_LINK_TEXT, COMMAND3);
 
 		committeeRankingMenuItemFactory.createCommitteeRankingTopics(committeeMenuItem);
 
-		final MenuItem ministryMenuItem = rankingsMenuItem.addItem(MINISTRY_RANKING_LINK_TEXT,
-				COMMAND4);
+		final MenuItem ministryMenuItem = rankingsMenuItem.addItem(MINISTRY_RANKING_LINK_TEXT, COMMAND4);
 
 		ministryRankingMenuItemFactory.createMinistryRankingTopics(ministryMenuItem);
 

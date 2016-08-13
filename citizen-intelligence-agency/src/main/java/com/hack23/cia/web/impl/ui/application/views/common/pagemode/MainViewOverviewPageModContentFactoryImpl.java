@@ -105,6 +105,10 @@ public final class MainViewOverviewPageModContentFactoryImpl extends AbstractPag
 		final FormLayout formLayout = new FormLayout();
 		
 		content.addComponent(formLayout);
+
+		formLayout.addComponent(getPageLinkFactory().createCountryRankingViewPageLink());
+		
+		formLayout.addComponent(getPageLinkFactory().createParliamentViewPageLink());
 		
 		formLayout.addComponent(getPageLinkFactory().createPoliticianRankingViewPageLink());
 
@@ -115,8 +119,6 @@ public final class MainViewOverviewPageModContentFactoryImpl extends AbstractPag
 		formLayout.addComponent(getPageLinkFactory().createMinistryRankingViewPageLink());
 
 		formLayout.addComponent(getPageLinkFactory().createSearchDocumentViewPageLink());
-
-		formLayout.addComponent(getPageLinkFactory().createTestChartViewPageLink());
 
 		
 		panel.setCaption(CITIZEN_INTELLIGENCE_AGENCY_MAIN);
