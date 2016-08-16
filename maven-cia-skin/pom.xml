@@ -4,7 +4,7 @@
   <parent>
     <artifactId>parent-pom</artifactId>
     <groupId>com.hack23.cia</groupId>
-    <version>2016.7.29-SNAPSHOT</version>
+    <version>2016.8.16</version>
     <relativePath>../parent-pom/pom.xml</relativePath>
   </parent>
   <artifactId>maven-cia-skin</artifactId>
@@ -16,7 +16,7 @@
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
-    <tag>cia-all-2016.3.6</tag>
+    <tag>cia-all-2016.8.16</tag>
     <url>https://github.com/Hack23/cia/tree/master/maven-cia-skin</url>
   </scm>
   <distributionManagement>
