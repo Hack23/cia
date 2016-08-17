@@ -47,7 +47,7 @@
       </roles>
     </contributor>
   </contributors>
-  <mailingLists />
+  <mailingLists></mailingLists>
   <prerequisites>
     <maven>3.2.3</maven>
   </prerequisites>
@@ -937,7 +937,7 @@
                   <version>${jdk.src.version}</version>
                 </requireJavaVersion>
                 <!-- <requireOS> <family>unix</family> </requireOS> -->
-                <DependencyConvergence />
+                <DependencyConvergence></DependencyConvergence>
                 <bannedDependencies>
                   <excludes>
                     <exclude>commons-logging:commons-logging</exclude>
@@ -1079,7 +1079,7 @@
         <jdk>1.8</jdk>
       </activation>
       <properties>
-        <additionalRuntimeArgLine />
+        <additionalRuntimeArgLine></additionalRuntimeArgLine>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jacoco.version>0.7.7.201606060606</jacoco.version>
