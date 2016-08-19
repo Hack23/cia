@@ -32,6 +32,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageMod
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 
@@ -149,33 +150,33 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	@Override
 	public void addRankingMenu(final MenuBar menuBar) {
 
-		final MenuItem mainItem = menuBar.addItem("Main", null, null);
+		final MenuItem mainItem = menuBar.addItem("Main", FontAwesome.SERVER, null);
 
-		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, null, COMMAND6);
+		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.SERVER, COMMAND6);
 
-		final MenuItem rankingsMenuItem = menuBar.addItem(RANKING_TEXT, null, null);
+		final MenuItem rankingsMenuItem = menuBar.addItem(RANKING_TEXT, FontAwesome.SERVER, null);
 
-		final MenuItem countryMenuItem = rankingsMenuItem.addItem(COUNTRY_RANKING_LINK_TEXT, COMMAND7);
+		final MenuItem countryMenuItem = rankingsMenuItem.addItem(COUNTRY_RANKING_LINK_TEXT,FontAwesome.SERVER, COMMAND7);
 
 		countryMenuItemFactory.createCountryTopicMenu(countryMenuItem);
 
-		final MenuItem parliamentMenuItem = rankingsMenuItem.addItem(PARLIAMENT_RANKING_LINK_TEXT, COMMAND5);
+		final MenuItem parliamentMenuItem = rankingsMenuItem.addItem(PARLIAMENT_RANKING_LINK_TEXT,FontAwesome.SERVER, COMMAND5);
 
 		parliamentMenuItemFactory.createParliamentTopicMenu(parliamentMenuItem);
 
-		final MenuItem politicianMenuItem = rankingsMenuItem.addItem(POLITICIAN_RANKING_LINK_TEXT, COMMAND);
+		final MenuItem politicianMenuItem = rankingsMenuItem.addItem(POLITICIAN_RANKING_LINK_TEXT,FontAwesome.SERVER, COMMAND);
 
 		politicianRankingMenuItemFactory.createPoliticianRankingTopics(politicianMenuItem);
 
-		final MenuItem partynMenuItem = rankingsMenuItem.addItem(PARTY_RANKING_LINK_TEXT, COMMAND2);
+		final MenuItem partynMenuItem = rankingsMenuItem.addItem(PARTY_RANKING_LINK_TEXT, FontAwesome.SERVER,COMMAND2);
 
 		partyRankingMenuItemFactory.createPartyRankingTopics(partynMenuItem);
 
-		final MenuItem committeeMenuItem = rankingsMenuItem.addItem(COMMITTEE_RANKING_LINK_TEXT, COMMAND3);
+		final MenuItem committeeMenuItem = rankingsMenuItem.addItem(COMMITTEE_RANKING_LINK_TEXT,FontAwesome.SERVER, COMMAND3);
 
 		committeeRankingMenuItemFactory.createCommitteeRankingTopics(committeeMenuItem);
 
-		final MenuItem ministryMenuItem = rankingsMenuItem.addItem(MINISTRY_RANKING_LINK_TEXT, COMMAND4);
+		final MenuItem ministryMenuItem = rankingsMenuItem.addItem(MINISTRY_RANKING_LINK_TEXT,FontAwesome.SERVER, COMMAND4);
 
 		ministryRankingMenuItemFactory.createMinistryRankingTopics(ministryMenuItem);
 

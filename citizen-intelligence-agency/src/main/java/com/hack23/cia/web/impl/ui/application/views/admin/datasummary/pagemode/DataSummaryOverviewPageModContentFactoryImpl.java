@@ -29,6 +29,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFac
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.tablefactory.TableFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -94,7 +95,7 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 		content.setMargin(false);
 		content.setSpacing(true);
 
-		final Button refreshViewsButton = new Button(REFRESH_VIEWS);
+		final Button refreshViewsButton = new Button(REFRESH_VIEWS,FontAwesome.REFRESH);
 
 		refreshViewsButton.addClickListener(event -> {
 
@@ -108,7 +109,7 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 		content.addComponent(refreshViewsButton);
 		content.setExpandRatio(refreshViewsButton, ContentRatio.SMALL);
 
-		final Button updateSearchIndexButton = new Button(UPDATE_SEARCH_INDEX);
+		final Button updateSearchIndexButton = new Button(UPDATE_SEARCH_INDEX,FontAwesome.REFRESH);
 
 		updateSearchIndexButton.addClickListener(event -> {
 

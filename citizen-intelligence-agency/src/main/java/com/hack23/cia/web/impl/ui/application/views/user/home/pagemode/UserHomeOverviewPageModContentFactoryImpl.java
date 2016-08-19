@@ -46,6 +46,7 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SetGoogleAuthenticatorCredentialClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -102,7 +103,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 		LabelFactory.createHeader2Label(panelContent,OVERVIEW);
 		
 
-		final Button logoutButton = new Button(LOGOUT);
+		final Button logoutButton = new Button(LOGOUT,FontAwesome.SIGN_OUT);
 
 		final LogoutRequest logoutRequest = new LogoutRequest();
 		logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
@@ -110,7 +111,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 		panelContent.addComponent(logoutButton);
 
-		final Button googleAuthButton = new Button(ENABLE_GOOGLE_AUTHENTICATOR);
+		final Button googleAuthButton = new Button(ENABLE_GOOGLE_AUTHENTICATOR,FontAwesome.USER_SECRET);
 		googleAuthButton.setId(ENABLE_GOOGLE_AUTHENTICATOR);
 
 		final SetGoogleAuthenticatorCredentialRequest googleAuthRequest = new SetGoogleAuthenticatorCredentialRequest();

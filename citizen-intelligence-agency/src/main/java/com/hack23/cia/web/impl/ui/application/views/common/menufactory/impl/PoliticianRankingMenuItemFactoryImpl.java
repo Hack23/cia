@@ -26,6 +26,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Polit
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 
@@ -89,21 +90,21 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 		
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
-		createPoliticianRankingTopics(menuBar.addItem(POLITICIAN_RANKING, null, null));
+		createPoliticianRankingTopics(menuBar.addItem(POLITICIAN_RANKING, FontAwesome.BUG, null));
 	}
 
 	@Override
 	public void createPoliticianRankingTopics(final MenuItem politicianMenuItem) {
-		politicianMenuItem.addItem(OVERVIEW_TEXT, null, COMMAND18);
+		politicianMenuItem.addItem(OVERVIEW_TEXT, FontAwesome.BUG, COMMAND18);
 
-		final MenuItem listByTopic = politicianMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, null, null);
+		final MenuItem listByTopic = politicianMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, FontAwesome.BUG, null);
 
-		final MenuItem listItem = listByTopic.addItem(POLITICAL_EXPERIENCE_SUMMARY, COMMAND19);
+		final MenuItem listItem = listByTopic.addItem(POLITICAL_EXPERIENCE_SUMMARY,FontAwesome.BUG, COMMAND19);
 		listItem.setDescription(CURRENT_AND_PAST_ASSIGNMENTS_AND_SUMMARY_EXPERIENCE_IN_DAYS);
 
-		politicianMenuItem.addItem(CHART_BY_TOPIC_TEXT, null, null);
+		politicianMenuItem.addItem(CHART_BY_TOPIC_TEXT, FontAwesome.BUG, null);
 
-		politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, null, COMMAND20);
+		politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG, COMMAND20);
 
 	}
 

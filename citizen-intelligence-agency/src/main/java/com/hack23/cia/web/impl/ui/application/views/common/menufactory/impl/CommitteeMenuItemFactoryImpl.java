@@ -28,6 +28,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageMod
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 
@@ -107,49 +108,49 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 		
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
-		committeeRankingMenuItemFactory.createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, null, null));
+		committeeRankingMenuItemFactory.createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, FontAwesome.SERVER, null));
 
-		final MenuItem committeeItem = menuBar.addItem("Committee "+ pageId, null,null);
+		final MenuItem committeeItem = menuBar.addItem("Committee "+ pageId, FontAwesome.SERVER,null);
 
 
-		committeeItem.addItem(OVERVIEW_TEXT, null,
+		committeeItem.addItem(OVERVIEW_TEXT, FontAwesome.SERVER,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, pageId));
-		committeeItem.addItem(CHARTS_TEXT, null,
+		committeeItem.addItem(CHARTS_TEXT, FontAwesome.SERVER,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS, pageId));
-		committeeItem.addItem(INDICATORS_TEXT, null,
+		committeeItem.addItem(INDICATORS_TEXT, FontAwesome.SERVER,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.INDICATORS, pageId));
 
-		final MenuItem rolesItem = committeeItem.addItem(ROLES_TEXT, null, null);
+		final MenuItem rolesItem = committeeItem.addItem(ROLES_TEXT, FontAwesome.SERVER, null);
 
-		rolesItem.addItem(CURRENT_MEMBERS_TEXT, null, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		rolesItem.addItem(CURRENT_MEMBERS_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.CURRENT_MEMBERS.toString(), pageId));
 
-		rolesItem.addItem(MEMBER_HISTORY_TEXT, null, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		rolesItem.addItem(MEMBER_HISTORY_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.MEMBERHISTORY.toString(), pageId));
 
-		rolesItem.addItem(ROLE_GHANT_TEXT, null,
+		rolesItem.addItem(ROLE_GHANT_TEXT, FontAwesome.SERVER,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), pageId));
 
-		final MenuItem documentItem = committeeItem.addItem(DOCUMENTS_TEXT, null, null);
+		final MenuItem documentItem = committeeItem.addItem(DOCUMENTS_TEXT, FontAwesome.SERVER, null);
 
-		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, null, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.DOCUMENTACTIVITY.toString(), pageId));
 
-		documentItem.addItem(DOCUMENT_HISTORY_TEXT, null, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		documentItem.addItem(DOCUMENT_HISTORY_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.DOCUMENT_HISTORY.toString(), pageId));
 
-		final MenuItem ballotItem = committeeItem.addItem(BALLOTS_TEXT, null, null);
+		final MenuItem ballotItem = committeeItem.addItem(BALLOTS_TEXT, FontAwesome.SERVER, null);
 
-		ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, null, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), pageId));
 
-		ballotItem.addItem(DECISION_SUMMARY_TEXT, null, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		ballotItem.addItem(DECISION_SUMMARY_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.DECISIONSUMMARY.toString(), pageId));
 
-		ballotItem.addItem(DECISION_TYPE_DAILY_SUMMARY_TEXT, null, new PageModeMenuCommand(
+		ballotItem.addItem(DECISION_TYPE_DAILY_SUMMARY_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(
 				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId));
 
-		committeeItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+		committeeItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.SERVER,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
 	}

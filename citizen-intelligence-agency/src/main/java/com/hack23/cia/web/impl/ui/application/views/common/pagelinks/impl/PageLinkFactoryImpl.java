@@ -32,6 +32,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.Application
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.ExternalResource;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Link;
 
 /**
@@ -96,6 +97,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link(MAIN_VIEW_LINK_TEXT, new ExternalResource(
 				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME));
 		pageLink.setId(ViewAction.VISIT_MAIN_VIEW.name());
+		pageLink.setIcon(FontAwesome.STAR);
 		return pageLink;
 	}
 
@@ -104,6 +106,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link("Register", new ExternalResource(
 				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + PAGE_SEPARATOR + ApplicationPageMode.REGISTER.toString()));
 		pageLink.setId(ViewAction.VISIT_REGISTER.name());
+		pageLink.setIcon(FontAwesome.USER_PLUS);
 		return pageLink;
 	}
 
@@ -112,6 +115,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link("Login", new ExternalResource(
 				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + PAGE_SEPARATOR + ApplicationPageMode.LOGIN.toString()));
 		pageLink.setId(ViewAction.VISIT_LOGIN.name());
+		pageLink.setIcon(FontAwesome.SIGN_IN);
 		return pageLink;
 	}
 
@@ -121,6 +125,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link(COUNTRY_RANKING_LINK_TEXT,
 				new ExternalResource(LINK_SEPARATOR + UserViews.COUNTRY_RANKING_VIEW_NAME));
 		pageLink.setId(ViewAction.VISIT_TEST_CHART_VIEW.name());
+		pageLink.setIcon(FontAwesome.FLAG);
 		return pageLink;
 	}
 
@@ -129,6 +134,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link(PARLIAMENT_RANKING_LINK_TEXT,
 				new ExternalResource(LINK_SEPARATOR + UserViews.PARLIAMENT_RANKING_VIEW_NAME));
 		pageLink.setId(ViewAction.VISIT_TEST_CHART_VIEW.name());
+		pageLink.setIcon(FontAwesome.INSTITUTION);
 		return pageLink;
 	}
 	
@@ -138,6 +144,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link(MINISTRY_RANKING_LINK_TEXT, new ExternalResource(
 				LINK_SEPARATOR + UserViews.MINISTRY_RANKING_VIEW_NAME));
 		pageLink.setId(ViewAction.VISIT_MINISTRY_RANKING_VIEW.name());
+		pageLink.setIcon(FontAwesome.GROUP);
 		return pageLink;
 	}
 
@@ -146,6 +153,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link(COMMITTEE_RANKING_LINK_TEXT, new ExternalResource(
 				LINK_SEPARATOR + UserViews.COMMITTEE_RANKING_VIEW_NAME));
 		pageLink.setId(ViewAction.VISIT_COMMITTEE_RANKING_VIEW.name());
+		pageLink.setIcon(FontAwesome.GROUP);
 		return pageLink;
 	}
 
@@ -154,6 +162,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link(PARTY_RANKING_LINK_TEXT, new ExternalResource(
 				LINK_SEPARATOR + UserViews.PARTY_RANKING_VIEW_NAME));
 		pageLink.setId(ViewAction.VISIT_PARTY_RANKING_VIEW.name());
+		pageLink.setIcon(FontAwesome.GROUP);
 		return pageLink;
 	}
 
@@ -162,6 +171,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link(POLITICIAN_RANKING_LINK_TEXT,
 				new ExternalResource(LINK_SEPARATOR + UserViews.POLITICIAN_RANKING_VIEW_NAME));
 		pageLink.setId(ViewAction.VISIT_POLITICIAN_RANKING_VIEW.name());
+		pageLink.setIcon(FontAwesome.BUG);
 		return pageLink;
 	}
 
@@ -171,6 +181,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 				new ExternalResource(LINK_SEPARATOR
 						+ AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME));
 		pageLink.setId(ViewAction.VISIT_ADMIN_DATA_SUMMARY_VIEW.name());
+		pageLink.setIcon(FontAwesome.DATABASE);
 		return pageLink;
 	}
 
@@ -179,6 +190,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link(ADMIN_AGENT_OPERATIONS_LINK_TEXT, new ExternalResource(
 				LINK_SEPARATOR + AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME));
 		pageLink.setId(ViewAction.VISIT_ADMIN_AGENT_OPERATION_VIEW.name());
+		pageLink.setIcon(FontAwesome.USER_SECRET);
 		return pageLink;
 	}
 
@@ -189,6 +201,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 						+ UserViews.COMMITTEE_VIEW_NAME + PAGE_SEPARATOR + data.getEmbeddedId().getOrgCode()));
 		pageLink.setId(ViewAction.VISIT_COMMITTEE_VIEW.name() + PAGE_SEPARATOR
 				+ data.getEmbeddedId().getOrgCode());
+		pageLink.setIcon(FontAwesome.GROUP);
 		return pageLink;
 	}
 
@@ -199,6 +212,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 						+ data.getNameId()));
 		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR
 				+ data.getNameId());
+		pageLink.setIcon(FontAwesome.GROUP);
 		return pageLink;
 	}
 
@@ -209,6 +223,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 						+ data.getPartyId()));
 		pageLink.setId(ViewAction.VISIT_PARTY_VIEW.name() + PAGE_SEPARATOR
 				+ data.getPartyId());
+		pageLink.setIcon(FontAwesome.GROUP);
 		return pageLink;
 	}
 
@@ -220,6 +235,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 						+ UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + personData.getId()));
 		pageLink.setId(ViewAction.VISIT_POLITICIAN_VIEW.name() + PAGE_SEPARATOR
 				+ personData.getId());
+		pageLink.setIcon(FontAwesome.BUG);
 		return pageLink;
 	}
 
@@ -228,6 +244,8 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link(SEARCH, new ExternalResource(PAGE_PREFIX
 						+ UserViews.SEARCH_DOCUMENT_VIEW_NAME));
 		pageLink.setId(ViewAction.VISIT_DOCUMENT_VIEW.name());
+		pageLink.setIcon(FontAwesome.SEARCH);
+
 		return pageLink;
 	}
 
@@ -238,6 +256,8 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 						+ "[" + pageNr + "]"));
 		pageLink.setId(page +"ShowPage" + PAGE_SEPARATOR
 				+ pageNr);
+		pageLink.setIcon(FontAwesome.SERVER);
+
 		return pageLink;
 	}
 
@@ -246,6 +266,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link("User account:" + UserContextUtil.getUserNameFromSecurityContext(), new ExternalResource(PAGE_PREFIX
 				+ UserViews.USERHOME_VIEW_NAME));
 			pageLink.setId(ViewAction.VISIT_USER_HOME_VIEW.name());
+			pageLink.setIcon(FontAwesome.USER);
 			return pageLink;
 	}
 
