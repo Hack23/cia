@@ -26,6 +26,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Minis
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 
@@ -109,27 +110,27 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 	@Override
 	public void createMinistryRankingTopics(final MenuItem ministryMenuItem) {
 
-		ministryMenuItem.addItem(OVERVIEW_TEXT, null,
+		ministryMenuItem.addItem(OVERVIEW_TEXT, FontAwesome.INSTITUTION,
 				COMMAND18);
 
-		final MenuItem listByTopic = ministryMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, null, null);
+		final MenuItem listByTopic = ministryMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, FontAwesome.INSTITUTION, null);
 
-		final MenuItem listItem = listByTopic.addItem(POLITICAL_WORK_SUMMARY_TEXT,
+		final MenuItem listItem = listByTopic.addItem(POLITICAL_WORK_SUMMARY_TEXT,FontAwesome.INSTITUTION,
 				COMMAND19);
 		listItem.setDescription(CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_TOTAL_POLTICIAL_DAYS_MEMBERSHIP_DESCRIPTION);
 
-		final MenuItem chartByTopic = ministryMenuItem.addItem(CHART_BY_TOPIC_TEXT, null, null);
+		final MenuItem chartByTopic = ministryMenuItem.addItem(CHART_BY_TOPIC_TEXT, FontAwesome.INSTITUTION, null);
 
-		chartByTopic.addItem(CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT,
+		chartByTopic.addItem(CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT,FontAwesome.INSTITUTION,
 				COMMAND20);
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,
+		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,FontAwesome.INSTITUTION,
 				COMMAND20);
-		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT,
+		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT,FontAwesome.INSTITUTION,
 				COMMAND20);
-		chartByTopic.addItem(ALL_MINISTRIES_TOTAL_MEMBERS_TEXT,
+		chartByTopic.addItem(ALL_MINISTRIES_TOTAL_MEMBERS_TEXT,FontAwesome.INSTITUTION,
 				COMMAND20);
 
-		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.INSTITUTION,
 				COMMAND21);
 
 	}

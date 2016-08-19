@@ -32,6 +32,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsView
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ApplicationLoginListener;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.util.BeanItem;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Field;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -78,6 +79,7 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractPageMo
 		loginRequest.setOtpCode("");
 		loginForm.addLoginListener(new ApplicationLoginListener(getApplicationManager(), loginRequest));
 		loginForm.setId(ApplicationAction.LOGIN.toString());
+		loginForm.setIcon(FontAwesome.SIGN_IN);
 
 		final BeanFieldGroup<LoginRequest> fieldGroup = new BeanFieldGroup<>(LoginRequest.class);
 		fieldGroup.setItemDataSource(new BeanItem<>(loginRequest));

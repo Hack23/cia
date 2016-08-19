@@ -33,6 +33,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.CommitFormWrapperClickListener;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.util.BeanItem;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -91,6 +92,7 @@ public final class FormFactoryImpl implements FormFactory {
 		final Button button = new Button(buttonLabel,new CommitFormWrapperClickListener(fieldGroup,buttonListener));
 		button.setId(buttonLabel);
 		button.setWidth("25%");
+		button.setIcon(FontAwesome.PAW);
 		
 		verticalLayout.addComponent(button);		
 		verticalLayout.setComponentAlignment(button, Alignment.MIDDLE_RIGHT);

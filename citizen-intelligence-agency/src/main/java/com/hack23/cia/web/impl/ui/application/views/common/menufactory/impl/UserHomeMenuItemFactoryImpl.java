@@ -24,6 +24,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserH
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.MenuBar;
 
 /**
@@ -51,10 +52,10 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	public void createUserHomeMenuBar(final MenuBar menuBar, final String pageId) {
 		initApplicationMenuBar(menuBar);
 
-		menuBar.addItem(OVERVIEW_TEXT, null,
+		menuBar.addItem(OVERVIEW_TEXT, FontAwesome.USER,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
-		menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+		menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.LINE_CHART,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
 
 	}

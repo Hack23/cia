@@ -25,6 +25,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.Application
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 
@@ -173,17 +174,17 @@ public abstract class AbstractMenuItemFactoryImpl {
 	protected final void initApplicationMenuBar(final MenuBar menuBar) {
 		menuBar.removeItems();
 		menuBar.setWidth("50%");
-		final MenuItem mainViewItem = menuBar.addItem("Application", null, null);
+		final MenuItem mainViewItem = menuBar.addItem("Application", FontAwesome.SERVER, null);
 		
-		mainViewItem.addItem(START_TEXT, null, COMMAND);
+		mainViewItem.addItem(START_TEXT, FontAwesome.STAR, COMMAND);
 
 		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {
-			mainViewItem.addItem(USERHOME, COMMAND2);
+			mainViewItem.addItem(USERHOME, FontAwesome.USER,COMMAND2);
 			createAdminMenu(mainViewItem);
-			mainViewItem.addItem("Logout", null, COMMAND3);
+			mainViewItem.addItem("Logout", FontAwesome.SIGN_OUT, COMMAND3);
 		} else {
-			mainViewItem.addItem("Login", null, COMMAND4);
-			mainViewItem.addItem("Register", null, COMMAND5);
+			mainViewItem.addItem("Login", FontAwesome.SIGN_IN, COMMAND4);
+			mainViewItem.addItem("Register", FontAwesome.USER_PLUS, COMMAND5);
 		}
 
 	}
@@ -196,25 +197,25 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 */
 	private void createAdminMenu(final MenuItem mainViewItem) {
 		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN)) {
-			final MenuItem adminMenuItem = mainViewItem.addItem(ADMIN_TEXT, null, null);
+			final MenuItem adminMenuItem = mainViewItem.addItem(ADMIN_TEXT, FontAwesome.SERVER, null);
 
-			final MenuItem configurationMenuItem = adminMenuItem.addItem(CONFIGURATION, null, null);
-			configurationMenuItem.addItem(APPLICATION_CONFIGURATION, COMMAND6);
+			final MenuItem configurationMenuItem = adminMenuItem.addItem(CONFIGURATION, FontAwesome.SERVER, null);
+			configurationMenuItem.addItem(APPLICATION_CONFIGURATION,FontAwesome.SERVER, COMMAND6);
 
-			configurationMenuItem.addItem(AGENCY, COMMAND7);
-			configurationMenuItem.addItem(PORTAL, COMMAND8);
-			configurationMenuItem.addItem(COUNTRY, COMMAND9);
-			configurationMenuItem.addItem(LANGUAGE, COMMAND10);
-			configurationMenuItem.addItem(LANGUAGE_CONTENT, COMMAND11);
+			configurationMenuItem.addItem(AGENCY,FontAwesome.SERVER, COMMAND7);
+			configurationMenuItem.addItem(PORTAL, FontAwesome.SERVER,COMMAND8);
+			configurationMenuItem.addItem(COUNTRY,FontAwesome.SERVER, COMMAND9);
+			configurationMenuItem.addItem(LANGUAGE,FontAwesome.SERVER, COMMAND10);
+			configurationMenuItem.addItem(LANGUAGE_CONTENT,FontAwesome.SERVER, COMMAND11);
 
-			final MenuItem managementMenuItem = adminMenuItem.addItem(MANAGEMENT, null, null);
+			final MenuItem managementMenuItem = adminMenuItem.addItem(MANAGEMENT, FontAwesome.SERVER, null);
 
 			managementMenuItem.addItem(AGENT_OPERATIONS_TEXT, COMMAND12);
 			managementMenuItem.addItem(DATA_SUMMARY_TEXT, COMMAND13);
 
 			managementMenuItem.addItem(SYSTEM_PERFORMANCE, COMMAND14);
 
-			final MenuItem userActivityMenuItem = adminMenuItem.addItem(USER_ACTIVITY, null, null);
+			final MenuItem userActivityMenuItem = adminMenuItem.addItem(USER_ACTIVITY, FontAwesome.SERVER, null);
 			userActivityMenuItem.addItem(APPLICATION_SESSION, COMMAND15);
 			userActivityMenuItem.addItem(APPLICATION_EVENT, COMMAND16);
 			userActivityMenuItem.addItem(USERACCOUNT, COMMAND17);

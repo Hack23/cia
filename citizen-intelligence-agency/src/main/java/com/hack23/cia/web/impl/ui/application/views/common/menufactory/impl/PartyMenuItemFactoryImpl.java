@@ -28,6 +28,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageMod
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 
@@ -116,57 +117,57 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 		
-		partyRankingMenuItemFactory.createPartyRankingTopics(menuBar.addItem(PARTY_RANKING, null,null));
+		partyRankingMenuItemFactory.createPartyRankingTopics(menuBar.addItem(PARTY_RANKING, FontAwesome.GROUP,null));
 
-		final MenuItem partyItem = menuBar.addItem("Party "+ pageId, null,null);
+		final MenuItem partyItem = menuBar.addItem("Party "+ pageId, FontAwesome.GROUP,null);
 		
-		partyItem.addItem(OVERVIEW_TEXT, null,
+		partyItem.addItem(OVERVIEW_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.OVERVIEW, pageId));
 		partyItem.addItem(CHARTS_TEXT, null, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.CHARTS, pageId));
 
-		partyItem.addItem(INDICATORS_TEXT, null,
+		partyItem.addItem(INDICATORS_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.INDICATORS, pageId));
 
-		final MenuItem rolesItem = partyItem.addItem(ROLES_TEXT, null, null);
+		final MenuItem rolesItem = partyItem.addItem(ROLES_TEXT, FontAwesome.GROUP, null);
 
-		rolesItem.addItem(CURRENT_LEADERS, null,
+		rolesItem.addItem(CURRENT_LEADERS, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTLEADERS.toString(), pageId));
 
-		rolesItem.addItem(LEADER_HISTORY, null,
+		rolesItem.addItem(LEADER_HISTORY, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.LEADERHISTORY.toString(), pageId));
 
-		rolesItem.addItem(CURRENT_MEMBERS_TEXT, null,
+		rolesItem.addItem(CURRENT_MEMBERS_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTMEMBERS.toString(), pageId));
 
-		rolesItem.addItem(MEMBER_HISTORY_TEXT, null,
+		rolesItem.addItem(MEMBER_HISTORY_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.MEMBERHISTORY.toString(), pageId));
 
-		rolesItem.addItem(GOVERMENT_ROLES, null,
+		rolesItem.addItem(GOVERMENT_ROLES, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.GOVERNMENTROLES.toString(), pageId));
 
-		rolesItem.addItem(COMMITTEE_ROLES, null,
+		rolesItem.addItem(COMMITTEE_ROLES, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEROLES.toString(), pageId));
 
-		final MenuItem documentItem = partyItem.addItem(DOCUMENTS_TEXT, null, null);
+		final MenuItem documentItem = partyItem.addItem(DOCUMENTS_TEXT, FontAwesome.GROUP, null);
 
-		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, null,
+		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTACTIVITY.toString(), pageId));
 
-		documentItem.addItem(DOCUMENT_HISTORY_TEXT, null,
+		documentItem.addItem(DOCUMENT_HISTORY_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTHISTORY.toString(), pageId));
 
-		final MenuItem ballotItem = partyItem.addItem(BALLOTS_TEXT, null, null);
+		final MenuItem ballotItem = partyItem.addItem(BALLOTS_TEXT, FontAwesome.GROUP, null);
 
-		ballotItem.addItem(VOTE_HISTORY, null,
+		ballotItem.addItem(VOTE_HISTORY, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), pageId));
 
-		ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, null, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
+		ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
 				PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString(), pageId));
 
-		ballotItem.addItem(PARTY_WON_DAILY_SUMMARY_CHART, null, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
+		ballotItem.addItem(PARTY_WON_DAILY_SUMMARY_CHART, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
 				PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), pageId));
 
-		partyItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+		partyItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
 	}

@@ -37,6 +37,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.LogoutClickListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -183,7 +184,7 @@ public abstract class AbstractView extends Panel implements View {
 			topHeaderRightPanel.setComponentAlignment(userHomePageLink, Alignment.MIDDLE_RIGHT);
 
 			
-			final Button logoutButton = new Button(LOGOUT);
+			final Button logoutButton = new Button(LOGOUT,FontAwesome.SIGN_OUT);
 
 			final LogoutRequest logoutRequest = new LogoutRequest();
 			logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());

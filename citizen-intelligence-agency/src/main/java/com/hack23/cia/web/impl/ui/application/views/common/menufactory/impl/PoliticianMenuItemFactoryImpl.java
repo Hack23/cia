@@ -28,6 +28,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageMod
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 
@@ -104,46 +105,46 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 			
 			applicationMenuItemFactory.addRankingMenu(menuBar);
 			
-			politicianRankingMenuItemFactory.createPoliticianRankingTopics(menuBar.addItem(POLITICIAN_RANKING, null, null));
+			politicianRankingMenuItemFactory.createPoliticianRankingTopics(menuBar.addItem(POLITICIAN_RANKING, FontAwesome.BUG, null));
 			
-			final MenuItem politicanItem = menuBar.addItem("Politician "+ pageId, null,null);
+			final MenuItem politicanItem = menuBar.addItem("Politician "+ pageId, FontAwesome.BUG,null);
 
 
-			politicanItem.addItem(OVERVIEW_TEXT, null,
+			politicanItem.addItem(OVERVIEW_TEXT, FontAwesome.BUG,
 					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, pageId));
-			politicanItem.addItem(CHARTS_TEXT, null,
+			politicanItem.addItem(CHARTS_TEXT, FontAwesome.BUG,
 					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.CHARTS, pageId));
-			politicanItem.addItem(INDICATORS_TEXT, null,
+			politicanItem.addItem(INDICATORS_TEXT, FontAwesome.BUG,
 					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId));
 
-			final MenuItem rolesItem = politicanItem.addItem(ROLES_TEXT, null, null);
+			final MenuItem rolesItem = politicanItem.addItem(ROLES_TEXT, FontAwesome.BUG, null);
 
-			rolesItem.addItem(TOTAL_EXPERIENCE, null, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+			rolesItem.addItem(TOTAL_EXPERIENCE, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
 					PoliticianPageMode.ROLESUMMARY.toString(), pageId));
 
-			rolesItem.addItem(ROLE_LIST, null, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+			rolesItem.addItem(ROLE_LIST, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
 					PoliticianPageMode.ROLELIST.toString(), pageId));
 
-			rolesItem.addItem(ROLE_GHANT_TEXT, null, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+			rolesItem.addItem(ROLE_GHANT_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
 					PoliticianPageMode.ROLEGHANT.toString(), pageId));
 
-			final MenuItem documentItem = politicanItem.addItem(DOCUMENTS_TEXT, null, null);
+			final MenuItem documentItem = politicanItem.addItem(DOCUMENTS_TEXT, FontAwesome.BUG, null);
 
-			documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, null, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+			documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
 					PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId));
 
-			documentItem.addItem(DOCUMENT_HISTORY_TEXT, null, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+			documentItem.addItem(DOCUMENT_HISTORY_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
 					PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId));
 
-			final MenuItem ballotItem = politicanItem.addItem(BALLOTS_TEXT, null, null);
+			final MenuItem ballotItem = politicanItem.addItem(BALLOTS_TEXT, FontAwesome.BUG, null);
 
-			ballotItem.addItem(VOTE_HISTORY, null, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+			ballotItem.addItem(VOTE_HISTORY, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
 					PoliticianPageMode.VOTEHISTORY.toString(), pageId));
 
-			ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, null, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+			ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
 					PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId));
 
-			politicanItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+			politicanItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG,
 					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
 
 	}

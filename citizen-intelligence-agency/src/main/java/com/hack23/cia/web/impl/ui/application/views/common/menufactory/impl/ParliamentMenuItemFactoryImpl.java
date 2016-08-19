@@ -27,6 +27,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageMod
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 
@@ -122,35 +123,35 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 		
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
-		createParliamentTopicMenu(menuBar.addItem(PARLIAMENT_RANKING_TEXT, null, null));
+		createParliamentTopicMenu(menuBar.addItem(PARLIAMENT_RANKING_TEXT, FontAwesome.INSTITUTION, null));
 
 	}
 
 	@Override
 	public void createParliamentTopicMenu(final MenuItem charts) {
-		charts.addItem(OVERVIEW_TEXT, null,
+		charts.addItem(OVERVIEW_TEXT, FontAwesome.INSTITUTION,
 				COMMAND18);
 
 		// Submenu item with a sub-submenu
-		final MenuItem chartIndicators = charts.addItem(SWEDISH_PARLIAMENT_INDICATORS, null, null);
+		final MenuItem chartIndicators = charts.addItem(SWEDISH_PARLIAMENT_INDICATORS, FontAwesome.INSTITUTION, null);
 
-		final MenuItem addItem = chartIndicators.addItem(PARTY_WINNER, COMMAND19);
+		final MenuItem addItem = chartIndicators.addItem(PARTY_WINNER,FontAwesome.INSTITUTION, COMMAND19);
 		addItem.setDescription(DAILY_AVERAGE_WON_BALLOTS);
 
-		final MenuItem addItem2 = chartIndicators.addItem(PARTY_GENDER, COMMAND23);
+		final MenuItem addItem2 = chartIndicators.addItem(PARTY_GENDER,FontAwesome.INSTITUTION, COMMAND23);
 		addItem2.setDescription(AVERAGE_PERCENTAGE_MALE);
 
-		final MenuItem addItem3 = chartIndicators.addItem(PARTY_AGE, COMMAND24);
+		final MenuItem addItem3 = chartIndicators.addItem(PARTY_AGE, FontAwesome.INSTITUTION,COMMAND24);
 		addItem3.setDescription(AVERAGE_AGE);
 
 
-		final MenuItem addItem4 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE, COMMAND20);
+		final MenuItem addItem4 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE,FontAwesome.INSTITUTION, COMMAND20);
 		addItem4.setDescription(DAILY_TOTAL_OF_NUMBER_PUBLISHED_DOCUMENTS);
-		final MenuItem addItem5 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, COMMAND21);
+		final MenuItem addItem5 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, FontAwesome.INSTITUTION,COMMAND21);
 		addItem5.setDescription(DAILY_TOTAL_OF_NUMBER_OF_DECSIONS_MADE);
 
 
-		charts.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+		charts.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.INSTITUTION,
 				COMMAND22);
 		
 	}

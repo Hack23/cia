@@ -12,6 +12,10 @@ Layouts, logo & styling and navigation.
 
 Translations: externalize all strings, populate default english content, use translate service for other languages.
 
+Icons
+-----
+https://vaadin.com/wiki/-/wiki/Main/Using+font+icons
+https://icomoon.io/app/#/select
 
 User actions and gamification.
 ------------------------------

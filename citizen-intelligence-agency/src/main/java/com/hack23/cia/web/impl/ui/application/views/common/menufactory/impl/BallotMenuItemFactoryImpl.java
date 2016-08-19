@@ -24,6 +24,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Ballo
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.MenuBar;
 
 /**
@@ -54,11 +55,11 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 	public void createBallotMenuBar(final MenuBar menuBar, final String pageId) {
 		initApplicationMenuBar(menuBar);
 
-		menuBar.addItem(OVERVIEW_TEXT, null,
+		menuBar.addItem(OVERVIEW_TEXT, FontAwesome.SERVER,
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.OVERVIEW, pageId));
-		menuBar.addItem(CHARTS_TEXT, null,
+		menuBar.addItem(CHARTS_TEXT, FontAwesome.SERVER,
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId));
-		menuBar.addItem(INDICATORS_TEXT, null,
+		menuBar.addItem(INDICATORS_TEXT, FontAwesome.SERVER,
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.INDICATORS, pageId));
 
 	}

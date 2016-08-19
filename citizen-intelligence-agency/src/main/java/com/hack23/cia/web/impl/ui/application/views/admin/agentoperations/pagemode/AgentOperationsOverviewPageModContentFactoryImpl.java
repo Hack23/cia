@@ -32,6 +32,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFac
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.StartAgentClickListener;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
@@ -107,6 +108,7 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 		final Button startAgentButton = new Button(START,
 				new StartAgentClickListener(targetSelect, operationSelect, agentContainer));
 		startAgentButton.setId(ViewAction.START_AGENT_BUTTON.name());
+		startAgentButton.setIcon(FontAwesome.CROSSHAIRS);
 		content.addComponent(startAgentButton);
 		content.setExpandRatio(startAgentButton, ContentRatio.SMALL3);
 
