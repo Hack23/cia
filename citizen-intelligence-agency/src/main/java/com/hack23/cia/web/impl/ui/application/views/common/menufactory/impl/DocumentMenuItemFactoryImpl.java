@@ -87,34 +87,34 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	public void createDocumentMenuBar(final MenuBar menuBar, final String pageId) {
 			initApplicationMenuBar(menuBar);
 
-			menuBar.addItem(OVERVIEW_TEXT, FontAwesome.SERVER,
+			menuBar.addItem(OVERVIEW_TEXT, FontAwesome.FILE,
 					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, pageId));
-			menuBar.addItem(CHARTS_TEXT, FontAwesome.SERVER,
+			menuBar.addItem(CHARTS_TEXT, FontAwesome.FILE,
 					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.CHARTS, pageId));
-			menuBar.addItem(INDICATORS_TEXT, FontAwesome.SERVER,
+			menuBar.addItem(INDICATORS_TEXT, FontAwesome.FILE,
 					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.INDICATORS, pageId));
 
-			final MenuItem documentItem = menuBar.addItem(DOCUMENT, FontAwesome.SERVER, null);
+			final MenuItem documentItem = menuBar.addItem(DOCUMENT, FontAwesome.FILE, null);
 
-			documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+			documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 					DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId));
 
-			documentItem.addItem(PERSON_REFERENCES, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+			documentItem.addItem(PERSON_REFERENCES, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 					DocumentPageMode.PERSONREFERENCES.toString(), pageId));
 
-			documentItem.addItem(DOCUMENT_DETAILS, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+			documentItem.addItem(DOCUMENT_DETAILS, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 					DocumentPageMode.DOCUMENTDETAILS.toString(), pageId));
 
-			documentItem.addItem(DOCUMENT_DATA, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+			documentItem.addItem(DOCUMENT_DATA, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 					DocumentPageMode.DOCUMENTDATA.toString(), pageId));
 
-			documentItem.addItem(DOCUMENT_REFERENCES, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+			documentItem.addItem(DOCUMENT_REFERENCES, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 					DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId));
 
-			documentItem.addItem(DOCUMENT_DECISION, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+			documentItem.addItem(DOCUMENT_DECISION, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 					DocumentPageMode.DOCUMENTDECISION.toString(), pageId));
 			
-			documentItem.addItem(DOCUMENT_ATTACHEMENTS, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+			documentItem.addItem(DOCUMENT_ATTACHEMENTS, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 					DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId));
 			
 

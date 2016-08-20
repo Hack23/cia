@@ -108,49 +108,49 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 		
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
-		committeeRankingMenuItemFactory.createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, FontAwesome.SERVER, null));
+		committeeRankingMenuItemFactory.createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, FontAwesome.GROUP, null));
 
-		final MenuItem committeeItem = menuBar.addItem("Committee "+ pageId, FontAwesome.SERVER,null);
+		final MenuItem committeeItem = menuBar.addItem("Committee "+ pageId, FontAwesome.GROUP,null);
 
 
-		committeeItem.addItem(OVERVIEW_TEXT, FontAwesome.SERVER,
+		committeeItem.addItem(OVERVIEW_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, pageId));
-		committeeItem.addItem(CHARTS_TEXT, FontAwesome.SERVER,
+		committeeItem.addItem(CHARTS_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS, pageId));
-		committeeItem.addItem(INDICATORS_TEXT, FontAwesome.SERVER,
+		committeeItem.addItem(INDICATORS_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.INDICATORS, pageId));
 
-		final MenuItem rolesItem = committeeItem.addItem(ROLES_TEXT, FontAwesome.SERVER, null);
+		final MenuItem rolesItem = committeeItem.addItem(ROLES_TEXT, FontAwesome.GROUP, null);
 
-		rolesItem.addItem(CURRENT_MEMBERS_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		rolesItem.addItem(CURRENT_MEMBERS_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.CURRENT_MEMBERS.toString(), pageId));
 
-		rolesItem.addItem(MEMBER_HISTORY_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		rolesItem.addItem(MEMBER_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.MEMBERHISTORY.toString(), pageId));
 
-		rolesItem.addItem(ROLE_GHANT_TEXT, FontAwesome.SERVER,
+		rolesItem.addItem(ROLE_GHANT_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), pageId));
 
-		final MenuItem documentItem = committeeItem.addItem(DOCUMENTS_TEXT, FontAwesome.SERVER, null);
+		final MenuItem documentItem = committeeItem.addItem(DOCUMENTS_TEXT, FontAwesome.GROUP, null);
 
-		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.DOCUMENTACTIVITY.toString(), pageId));
 
-		documentItem.addItem(DOCUMENT_HISTORY_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		documentItem.addItem(DOCUMENT_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.DOCUMENT_HISTORY.toString(), pageId));
 
-		final MenuItem ballotItem = committeeItem.addItem(BALLOTS_TEXT, FontAwesome.SERVER, null);
+		final MenuItem ballotItem = committeeItem.addItem(BALLOTS_TEXT, FontAwesome.GROUP, null);
 
-		ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), pageId));
 
-		ballotItem.addItem(DECISION_SUMMARY_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		ballotItem.addItem(DECISION_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.DECISIONSUMMARY.toString(), pageId));
 
-		ballotItem.addItem(DECISION_TYPE_DAILY_SUMMARY_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(
+		ballotItem.addItem(DECISION_TYPE_DAILY_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(
 				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId));
 
-		committeeItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.SERVER,
+		committeeItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
 	}

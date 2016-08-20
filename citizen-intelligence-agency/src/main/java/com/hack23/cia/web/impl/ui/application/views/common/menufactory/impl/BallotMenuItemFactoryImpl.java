@@ -55,11 +55,11 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 	public void createBallotMenuBar(final MenuBar menuBar, final String pageId) {
 		initApplicationMenuBar(menuBar);
 
-		menuBar.addItem(OVERVIEW_TEXT, FontAwesome.SERVER,
+		menuBar.addItem(OVERVIEW_TEXT, FontAwesome.PIE_CHART,
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.OVERVIEW, pageId));
-		menuBar.addItem(CHARTS_TEXT, FontAwesome.SERVER,
+		menuBar.addItem(CHARTS_TEXT, FontAwesome.PIE_CHART,
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId));
-		menuBar.addItem(INDICATORS_TEXT, FontAwesome.SERVER,
+		menuBar.addItem(INDICATORS_TEXT, FontAwesome.PIE_CHART,
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.INDICATORS, pageId));
 
 	}

@@ -136,7 +136,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 	public void createCountryTopicMenu(final MenuItem charts) {
 		
 		
-		charts.addItem(OVERVIEW_TEXT, FontAwesome.SERVER,
+		charts.addItem(OVERVIEW_TEXT, FontAwesome.LINE_CHART,
 				COMMAND18);
 
 
@@ -158,16 +158,16 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 				.collect(Collectors.groupingBy(e -> e.getKey(),
 						Collectors.mapping(v -> v.getValue(), Collectors.toList())));
 
-		final MenuItem countryIndicators = charts.addItem(COUNTRY_INDICATORS_SWEDEN, FontAwesome.SERVER, null);
+		final MenuItem countryIndicators = charts.addItem(COUNTRY_INDICATORS_SWEDEN, FontAwesome.LINE_CHART, null);
 
-		final MenuItem byTopicItem = countryIndicators.addItem(BY_TOPIC,FontAwesome.SERVER, null);
+		final MenuItem byTopicItem = countryIndicators.addItem(BY_TOPIC,FontAwesome.LINE_CHART, null);
 
-		final MenuItem bySourceItem = countryIndicators.addItem(BY_SOURCE,FontAwesome.SERVER, null);
+		final MenuItem bySourceItem = countryIndicators.addItem(BY_SOURCE,FontAwesome.LINE_CHART, null);
 
 		addSourcesAndIndicatorsToMenu(byTopicItem, topicIndicatorMap);
 		addSourcesAndIndicatorsToMenu(bySourceItem, sourceIndicatorMap);
 
-		charts.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.SERVER,
+		charts.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.LINE_CHART,
 				COMMAND22);
 		
 	}

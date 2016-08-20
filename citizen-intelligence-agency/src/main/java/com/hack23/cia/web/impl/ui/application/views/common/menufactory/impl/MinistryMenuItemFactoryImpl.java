@@ -95,38 +95,38 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 		
-		ministryRankingMenuItemFactory.createMinistryRankingTopics(menuBar.addItem(MINISTRY_RANKING, FontAwesome.SERVER,null));
+		ministryRankingMenuItemFactory.createMinistryRankingTopics(menuBar.addItem(MINISTRY_RANKING, FontAwesome.GROUP,null));
 
-		final MenuItem ministryItem = menuBar.addItem("Ministry "+ pageId, FontAwesome.SERVER,null);
+		final MenuItem ministryItem = menuBar.addItem("Ministry "+ pageId, FontAwesome.GROUP,null);
 
 
-		ministryItem.addItem(OVERVIEW_TEXT, FontAwesome.SERVER,
+		ministryItem.addItem(OVERVIEW_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW, pageId));
-		ministryItem.addItem(CHARTS_TEXT, FontAwesome.SERVER,
+		ministryItem.addItem(CHARTS_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.CHARTS, pageId));
-		ministryItem.addItem(INDICATORS_TEXT, FontAwesome.SERVER,
+		ministryItem.addItem(INDICATORS_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.INDICATORS, pageId));
 
-		final MenuItem rolesItem = ministryItem.addItem(ROLES_TEXT, FontAwesome.SERVER, null);
+		final MenuItem rolesItem = ministryItem.addItem(ROLES_TEXT, FontAwesome.GROUP, null);
 
-		rolesItem.addItem(CURRENT_MEMBERS_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+		rolesItem.addItem(CURRENT_MEMBERS_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
 				MinistryPageMode.CURRENTMEMBERS.toString(), pageId));
 
-		rolesItem.addItem(MEMBER_HISTORY_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+		rolesItem.addItem(MEMBER_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
 				MinistryPageMode.MEMBERHISTORY.toString(), pageId));
 
-		rolesItem.addItem(ROLE_GHANT_TEXT, FontAwesome.SERVER,
+		rolesItem.addItem(ROLE_GHANT_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString(), pageId));
 
-		final MenuItem documentItem = ministryItem.addItem(DOCUMENTS_TEXT, FontAwesome.SERVER, null);
+		final MenuItem documentItem = ministryItem.addItem(DOCUMENTS_TEXT, FontAwesome.GROUP, null);
 
-		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
 				MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId));
 
-		documentItem.addItem(DOCUMENT_HISTORY_TEXT, FontAwesome.SERVER, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+		documentItem.addItem(DOCUMENT_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
 				MinistryPageMode.DOCUMENTHISTORY.toString(), pageId));
 
-		ministryItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.SERVER,
+		ministryItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
 	}
