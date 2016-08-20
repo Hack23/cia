@@ -101,7 +101,6 @@
               <path>src/main/config/jetty/etc/jetty-logging.xml</path>
               <toFile>/opt/cia/etc/jetty-logging.xml</toFile>
             </copyFile>
-            
           </assembly>
         </configuration>
       </plugin>

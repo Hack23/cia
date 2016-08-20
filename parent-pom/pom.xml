@@ -1733,10 +1733,12 @@
             </executions>
             <configuration>
               <properties>
+                <!-- 
                 <property>
                   <name>cia.project.versions.spring</name>
                   <banSnapshots>true</banSnapshots>
                 </property>
+                 -->
                 <property>
                   <name>cia.project.versions.spring.security</name>
                   <banSnapshots>true</banSnapshots>
@@ -1749,10 +1751,12 @@
                   <name>cia.project.versions.javassist</name>
                   <banSnapshots>true</banSnapshots>
                 </property>
+                <!--
                 <property>
                   <name>cia.project.versions.asm</name>
                   <banSnapshots>true</banSnapshots>
                 </property>
+                -->
                 <property>
                   <name>cia.project.versions.cglib</name>
                   <banSnapshots>true</banSnapshots>
@@ -1833,10 +1837,12 @@
             </executions>
             <configuration>
               <properties>
+                <!-- 
                 <property>
                   <name>cia.project.versions.spring</name>
                   <banSnapshots>false</banSnapshots>
                 </property>
+                -->
                 <property>
                   <name>cia.project.versions.spring.security</name>
                   <banSnapshots>false</banSnapshots>
@@ -1849,10 +1855,12 @@
                   <name>cia.project.versions.javassist</name>
                   <banSnapshots>false</banSnapshots>
                 </property>
+                <!-- 
                 <property>
                   <name>cia.project.versions.asm</name>
                   <banSnapshots>false</banSnapshots>
                 </property>
+                 -->
                 <property>
                   <name>cia.project.versions.cglib</name>
                   <banSnapshots>false</banSnapshots>
