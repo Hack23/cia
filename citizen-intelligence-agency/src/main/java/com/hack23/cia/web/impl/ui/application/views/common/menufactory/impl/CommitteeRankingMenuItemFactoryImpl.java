@@ -125,27 +125,27 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 
 	@Override
 	public void createCommitteeRankingTopics(final MenuItem committeeMenuItem) {
-		committeeMenuItem.addItem(OVERVIEW_TEXT, FontAwesome.SERVER, COMMAND19);
+		committeeMenuItem.addItem(OVERVIEW_TEXT, FontAwesome.GROUP, COMMAND19);
 
-		final MenuItem listByTopic = committeeMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, FontAwesome.SERVER, null);
+		final MenuItem listByTopic = committeeMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, FontAwesome.GROUP, null);
 
-		final MenuItem listItem = listByTopic.addItem(POLITICAL_WORK_SUMMARY_TEXT,FontAwesome.SERVER, COMMAND18);
+		final MenuItem listItem = listByTopic.addItem(POLITICAL_WORK_SUMMARY_TEXT,FontAwesome.GROUP, COMMAND18);
 		listItem.setDescription(CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS);
 
-		final MenuItem chartByTopic = committeeMenuItem.addItem(CHART_BY_TOPIC_TEXT, FontAwesome.SERVER, null);
+		final MenuItem chartByTopic = committeeMenuItem.addItem(CHART_BY_TOPIC_TEXT, FontAwesome.GROUP, null);
 
-		chartByTopic.addItem(CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,FontAwesome.SERVER, COMMAND20);
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,FontAwesome.SERVER, COMMAND20);
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,FontAwesome.SERVER, COMMAND20);
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.SERVER, COMMAND20);
+		chartByTopic.addItem(CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,FontAwesome.GROUP, COMMAND20);
+		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,FontAwesome.GROUP, COMMAND20);
+		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,FontAwesome.GROUP, COMMAND20);
+		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND20);
 
-		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.SERVER, COMMAND20);
-		chartByTopic.addItem(ALL_PARTIES_TOTAL_ASSIGNMENTS,FontAwesome.SERVER, COMMAND20);
+		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND20);
+		chartByTopic.addItem(ALL_PARTIES_TOTAL_ASSIGNMENTS,FontAwesome.GROUP, COMMAND20);
 
-		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_MEMBERS,FontAwesome.SERVER, COMMAND20);
-		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.SERVER, COMMAND20);
+		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_MEMBERS,FontAwesome.GROUP, COMMAND20);
+		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND20);
 
-		committeeMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.SERVER, COMMAND21);
+		committeeMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP, COMMAND21);
 
 	}
 

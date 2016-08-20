@@ -199,26 +199,26 @@ public abstract class AbstractMenuItemFactoryImpl {
 		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN)) {
 			final MenuItem adminMenuItem = mainViewItem.addItem(ADMIN_TEXT, FontAwesome.SERVER, null);
 
-			final MenuItem configurationMenuItem = adminMenuItem.addItem(CONFIGURATION, FontAwesome.SERVER, null);
-			configurationMenuItem.addItem(APPLICATION_CONFIGURATION,FontAwesome.SERVER, COMMAND6);
+			final MenuItem configurationMenuItem = adminMenuItem.addItem(CONFIGURATION, FontAwesome.GEARS, null);
+			configurationMenuItem.addItem(APPLICATION_CONFIGURATION,FontAwesome.GEARS, COMMAND6);
 
 			configurationMenuItem.addItem(AGENCY,FontAwesome.SERVER, COMMAND7);
-			configurationMenuItem.addItem(PORTAL, FontAwesome.SERVER,COMMAND8);
-			configurationMenuItem.addItem(COUNTRY,FontAwesome.SERVER, COMMAND9);
-			configurationMenuItem.addItem(LANGUAGE,FontAwesome.SERVER, COMMAND10);
-			configurationMenuItem.addItem(LANGUAGE_CONTENT,FontAwesome.SERVER, COMMAND11);
+			configurationMenuItem.addItem(PORTAL, FontAwesome.SITEMAP,COMMAND8);
+			configurationMenuItem.addItem(COUNTRY,FontAwesome.FLAG, COMMAND9);
+			configurationMenuItem.addItem(LANGUAGE,FontAwesome.LANGUAGE, COMMAND10);
+			configurationMenuItem.addItem(LANGUAGE_CONTENT,FontAwesome.FILE_TEXT, COMMAND11);
 
 			final MenuItem managementMenuItem = adminMenuItem.addItem(MANAGEMENT, FontAwesome.SERVER, null);
 
-			managementMenuItem.addItem(AGENT_OPERATIONS_TEXT, COMMAND12);
-			managementMenuItem.addItem(DATA_SUMMARY_TEXT, COMMAND13);
+			managementMenuItem.addItem(AGENT_OPERATIONS_TEXT,FontAwesome.USER_SECRET, COMMAND12);
+			managementMenuItem.addItem(DATA_SUMMARY_TEXT,FontAwesome.DATABASE, COMMAND13);
 
-			managementMenuItem.addItem(SYSTEM_PERFORMANCE, COMMAND14);
+			managementMenuItem.addItem(SYSTEM_PERFORMANCE,FontAwesome.DASHBOARD, COMMAND14);
 
-			final MenuItem userActivityMenuItem = adminMenuItem.addItem(USER_ACTIVITY, FontAwesome.SERVER, null);
-			userActivityMenuItem.addItem(APPLICATION_SESSION, COMMAND15);
-			userActivityMenuItem.addItem(APPLICATION_EVENT, COMMAND16);
-			userActivityMenuItem.addItem(USERACCOUNT, COMMAND17);
+			final MenuItem userActivityMenuItem = adminMenuItem.addItem(USER_ACTIVITY, FontAwesome.DATABASE, null);
+			userActivityMenuItem.addItem(APPLICATION_SESSION,FontAwesome.LAPTOP, COMMAND15);
+			userActivityMenuItem.addItem(APPLICATION_EVENT,FontAwesome.ARROWS, COMMAND16);
+			userActivityMenuItem.addItem(USERACCOUNT,FontAwesome.GROUP, COMMAND17);
 
 		}
 	}

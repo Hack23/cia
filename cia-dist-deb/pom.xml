@@ -17,13 +17,13 @@
     <url>https://github.com/Hack23/cia/tree/master/cia-dist-deb</url>
   </scm>
   <properties>
-    <cia.project.versions.jetty>9.3.11.v20160721</cia.project.versions.jetty>
+    <cia.project.versions.jetty>9.4.0.M1</cia.project.versions.jetty>
   </properties>
   <dependencies>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-distribution</artifactId>
-      <version>9.3.11.v20160721</version>
+      <version>9.4.0.M1</version>
       <type>zip</type>
       <exclusions>
         <exclusion>
