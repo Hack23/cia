@@ -97,6 +97,11 @@
               <path>src/main/config/jetty/start.ini</path>
               <toFile>/opt/cia/start.ini</toFile>
             </copyFile>
+            <copyFile>
+              <path>src/main/config/jetty/etc/jetty-logging.xml</path>
+              <toFile>/opt/cia/etc/jetty-logging.xml</toFile>
+            </copyFile>
+            
           </assembly>
         </configuration>
       </plugin>
