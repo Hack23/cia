@@ -1,0 +1,1095 @@
+Buildfile: /home/pether/git/cia/citizen-intelligence-agency/build.xml
+[echoproperties] #Ant properties
+[echoproperties] #Mon Aug 22 22:19:43 CEST 2016
+[echoproperties] ant.core.lib=/usr/share/ant/lib/ant.jar
+[echoproperties] ant.file=/home/pether/git/cia/citizen-intelligence-agency/build.xml
+[echoproperties] ant.file.citizen-intelligence-agency=/home/pether/git/cia/citizen-intelligence-agency/build.xml
+[echoproperties] ant.file.type=file
+[echoproperties] ant.file.type.citizen-intelligence-agency=file
+[echoproperties] ant.home=/usr/share/ant
+[echoproperties] ant.java.version=1.8
+[echoproperties] ant.library.dir=/usr/share/ant/lib
+[echoproperties] ant.project.name=citizen-intelligence-agency
+[echoproperties] ant.version=Apache Ant(TM) version 1.9.6 compiled on July 8 2015
+[echoproperties] awt.toolkit=sun.awt.X11.XToolkit
+[echoproperties] basedir=/home/pether/git/cia/citizen-intelligence-agency
+[echoproperties] env.CLUTTER_IM_MODULE=xim
+[echoproperties] env.DBUS_SESSION_BUS_ADDRESS=unix\:abstract\=/tmp/dbus-iv7rPFlTqc
+[echoproperties] env.DEFAULTS_PATH=/usr/share/gconf/gnome.default.path
+[echoproperties] env.DESKTOP_SESSION=gnome
+[echoproperties] env.DISPLAY=\:0
+[echoproperties] env.ECLIPSE_HOME=/home/pether/tools/eclipse
+[echoproperties] env.GDMSESSION=gnome
+[echoproperties] env.GDM_LANG=en_US
+[echoproperties] env.GJS_DEBUG_OUTPUT=stderr
+[echoproperties] env.GJS_DEBUG_TOPICS=JS ERROR;JS LOG
+[echoproperties] env.GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+[echoproperties] env.GNOME_KEYRING_CONTROL=
+[echoproperties] env.GNOME_KEYRING_PID=
+[echoproperties] env.GPG_AGENT_INFO=/home/pether/.gnupg/S.gpg-agent\:0\:1
+[echoproperties] env.GTK_IM_MODULE=ibus
+[echoproperties] env.GTK_MODULES=gail\:atk-bridge
+[echoproperties] env.HOME=/home/pether
+[echoproperties] env.IM_CONFIG_PHASE=1
+[echoproperties] env.INSTANCE=
+[echoproperties] env.JAVA_HOME=/usr/lib/jvm/java-8-oracle
+[echoproperties] env.JOB=dbus
+[echoproperties] env.LANG=en_US.UTF-8
+[echoproperties] env.LANGUAGE=en_US\:en
+[echoproperties] env.LC_ADDRESS=sv_SE.UTF-8
+[echoproperties] env.LC_IDENTIFICATION=sv_SE.UTF-8
+[echoproperties] env.LC_MEASUREMENT=sv_SE.UTF-8
+[echoproperties] env.LC_MONETARY=sv_SE.UTF-8
+[echoproperties] env.LC_NAME=sv_SE.UTF-8
+[echoproperties] env.LC_NUMERIC=sv_SE.UTF-8
+[echoproperties] env.LC_PAPER=sv_SE.UTF-8
+[echoproperties] env.LC_TELEPHONE=sv_SE.UTF-8
+[echoproperties] env.LC_TIME=sv_SE.UTF-8
+[echoproperties] env.LESSCLOSE=/usr/bin/lesspipe %s %s
+[echoproperties] env.LESSOPEN=| /usr/bin/lesspipe %s
+[echoproperties] env.LOGNAME=pether
+[echoproperties] env.LS_COLORS=rs\=0\:di\=01;34\:ln\=01;36\:mh\=00\:pi\=40;33\:so\=01;35\:do\=01;35\:bd\=40;33;01\:cd\=40;33;01\:or\=40;31;01\:mi\=00\:su\=37;41\:sg\=30;43\:ca\=30;41\:tw\=30;42\:ow\=34;42\:st\=37;44\:ex\=01;32\:*.tar\=01;31\:*.tgz\=01;31\:*.arc\=01;31\:*.arj\=01;31\:*.taz\=01;31\:*.lha\=01;31\:*.lz4\=01;31\:*.lzh\=01;31\:*.lzma\=01;31\:*.tlz\=01;31\:*.txz\=01;31\:*.tzo\=01;31\:*.t7z\=01;31\:*.zip\=01;31\:*.z\=01;31\:*.Z\=01;31\:*.dz\=01;31\:*.gz\=01;31\:*.lrz\=01;31\:*.lz\=01;31\:*.lzo\=01;31\:*.xz\=01;31\:*.bz2\=01;31\:*.bz\=01;31\:*.tbz\=01;31\:*.tbz2\=01;31\:*.tz\=01;31\:*.deb\=01;31\:*.rpm\=01;31\:*.jar\=01;31\:*.war\=01;31\:*.ear\=01;31\:*.sar\=01;31\:*.rar\=01;31\:*.alz\=01;31\:*.ace\=01;31\:*.zoo\=01;31\:*.cpio\=01;31\:*.7z\=01;31\:*.rz\=01;31\:*.cab\=01;31\:*.jpg\=01;35\:*.jpeg\=01;35\:*.gif\=01;35\:*.bmp\=01;35\:*.pbm\=01;35\:*.pgm\=01;35\:*.ppm\=01;35\:*.tga\=01;35\:*.xbm\=01;35\:*.xpm\=01;35\:*.tif\=01;35\:*.tiff\=01;35\:*.png\=01;35\:*.svg\=01;35\:*.svgz\=01;35\:*.mng\=01;35\:*.pcx\=01;35\:*.mov\=01;35\:*.mpg\=01;35\:*.mpeg\=01;35\:*.m2v\=01;35\:*.mkv\=01;35\:*.webm\=01;35\:*.ogm\=01;35\:*.mp4\=01;35\:*.m4v\=01;35\:*.mp4v\=01;35\:*.vob\=01;35\:*.qt\=01;35\:*.nuv\=01;35\:*.wmv\=01;35\:*.asf\=01;35\:*.rm\=01;35\:*.rmvb\=01;35\:*.flc\=01;35\:*.avi\=01;35\:*.fli\=01;35\:*.flv\=01;35\:*.gl\=01;35\:*.dl\=01;35\:*.xcf\=01;35\:*.xwd\=01;35\:*.yuv\=01;35\:*.cgm\=01;35\:*.emf\=01;35\:*.ogv\=01;35\:*.ogx\=01;35\:*.aac\=00;36\:*.au\=00;36\:*.flac\=00;36\:*.m4a\=00;36\:*.mid\=00;36\:*.midi\=00;36\:*.mka\=00;36\:*.mp3\=00;36\:*.mpc\=00;36\:*.ogg\=00;36\:*.ra\=00;36\:*.wav\=00;36\:*.oga\=00;36\:*.opus\=00;36\:*.spx\=00;36\:*.xspf\=00;36\:
+[echoproperties] env.M2_HOME=/home/pether/tools/maven
+[echoproperties] env.MANDATORY_PATH=/usr/share/gconf/gnome.mandatory.path
+[echoproperties] env.MAVEN_HOME=/home/pether/tools/maven
+[echoproperties] env.NLSPATH=/usr/dt/lib/nls/msg/%L/%N.cat
+[echoproperties] env.OLDPWD=/home/pether/git/cia
+[echoproperties] env.PATH=/usr/lib/jvm/java-8-oracle/bin\:/home/pether/tools/eclipse\:MAVEN_HOME/bin\:/home/pether/tools/walkmod/bin\:/home/pether/tools/maven/bin\:/home/pether/tools/eclipse\:/usr/lib/jvm/java-8-oracle/bin\:/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/usr/games\:/usr/local/games\:/snap/bin
+[echoproperties] env.PWD=/home/pether/git/cia/citizen-intelligence-agency
+[echoproperties] env.QT4_IM_MODULE=xim
+[echoproperties] env.QT_ACCESSIBILITY=1
+[echoproperties] env.QT_IM_MODULE=ibus
+[echoproperties] env.QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
+[echoproperties] env.QT_QPA_PLATFORMTHEME=appmenu-qt5
+[echoproperties] env.SESSION=gnome
+[echoproperties] env.SESSIONTYPE=gnome-session
+[echoproperties] env.SESSION_MANAGER=local/horus\:@/tmp/.ICE-unix/3874,unix/horus\:/tmp/.ICE-unix/3874
+[echoproperties] env.SHELL=/bin/bash
+[echoproperties] env.SHLVL=1
+[echoproperties] env.SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+[echoproperties] env.SWT_GTK3=0
+[echoproperties] env.TERM=xterm-256color
+[echoproperties] env.UPSTART_SESSION=unix\:abstract\=/com/ubuntu/upstart-session/1000/3637
+[echoproperties] env.USER=pether
+[echoproperties] env.VTE_VERSION=4205
+[echoproperties] env.WALKMOD_HOME=/home/pether/tools/walkmod
+[echoproperties] env.WINDOWID=31457373
+[echoproperties] env.XAUTHORITY=/home/pether/.Xauthority
+[echoproperties] env.XDG_CONFIG_DIRS=/etc/xdg/xdg-gnome\:/usr/share/upstart/xdg\:/etc/xdg
+[echoproperties] env.XDG_CURRENT_DESKTOP=GNOME
+[echoproperties] env.XDG_DATA_DIRS=/usr/share/gnome\:/usr/local/share/\:/usr/share/\:/var/lib/snapd/desktop
+[echoproperties] env.XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/pether
+[echoproperties] env.XDG_MENU_PREFIX=gnome-
+[echoproperties] env.XDG_RUNTIME_DIR=/run/user/1000
+[echoproperties] env.XDG_SEAT=seat0
+[echoproperties] env.XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+[echoproperties] env.XDG_SESSION_DESKTOP=gnome
+[echoproperties] env.XDG_SESSION_ID=c2
+[echoproperties] env.XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
+[echoproperties] env.XDG_SESSION_TYPE=x11
+[echoproperties] env.XDG_VTNR=7
+[echoproperties] env.XFILESEARCHPATH=/usr/dt/app-defaults/%L/Dt
+[echoproperties] env.XMODIFIERS=@im\=ibus
+[echoproperties] env._=/usr/bin/ant
+[echoproperties] file.encoding=UTF-8
+[echoproperties] file.encoding.pkg=sun.io
+[echoproperties] file.separator=/
+[echoproperties] java.awt.graphicsenv=sun.awt.X11GraphicsEnvironment
+[echoproperties] java.awt.printerjob=sun.print.PSPrinterJob
+[echoproperties] java.class.path=/usr/share/ant/lib/ant-launcher.jar\:/usr/share/ant/lib/ant-apache-resolver.jar\:/usr/share/ant/lib/ant-antlr.jar\:/usr/share/ant/lib/ant-commons-net.jar\:/usr/share/ant/lib/ant-jsch.jar\:/usr/share/ant/lib/ant-junit.jar\:/usr/share/ant/lib/ant-testutil.jar\:/usr/share/ant/lib/ant-jmf.jar\:/usr/share/ant/lib/ant-jdepend.jar\:/usr/share/ant/lib/ant-apache-oro.jar\:/usr/share/ant/lib/ant-swing.jar\:/usr/share/ant/lib/ant-apache-xalan2.jar\:/usr/share/ant/lib/ant-apache-bcel.jar\:/usr/share/ant/lib/ant-apache-regexp.jar\:/usr/share/ant/lib/ant.jar\:/usr/share/ant/lib/ant-apache-log4j.jar\:/usr/share/ant/lib/ant-apache-bsf.jar\:/usr/share/ant/lib/ant-commons-logging.jar\:/usr/share/ant/lib/ant-javamail.jar\:/usr/share/ant/lib/ant-junit4.jar\:/usr/share/ant/lib/ant-launcher.jar\:/usr/lib/jvm/java-8-oracle/lib/tools.jar
+[echoproperties] java.class.version=52.0
+[echoproperties] java.endorsed.dirs=/usr/lib/jvm/java-8-oracle/jre/lib/endorsed
+[echoproperties] java.ext.dirs=/usr/lib/jvm/java-8-oracle/jre/lib/ext\:/usr/java/packages/lib/ext
+[echoproperties] java.home=/usr/lib/jvm/java-8-oracle/jre
+[echoproperties] java.io.tmpdir=/tmp
+[echoproperties] java.library.path=/usr/java/packages/lib/amd64\:/usr/lib64\:/lib64\:/lib\:/usr/lib
+[echoproperties] java.runtime.name=Java(TM) SE Runtime Environment
+[echoproperties] java.runtime.version=1.8.0_101-b13
+[echoproperties] java.specification.name=Java Platform API Specification
+[echoproperties] java.specification.vendor=Oracle Corporation
+[echoproperties] java.specification.version=1.8
+[echoproperties] java.vendor=Oracle Corporation
+[echoproperties] java.vendor.url=http\://java.oracle.com/
+[echoproperties] java.vendor.url.bug=http\://bugreport.sun.com/bugreport/
+[echoproperties] java.version=1.8.0_101
+[echoproperties] java.vm.info=mixed mode
+[echoproperties] java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+[echoproperties] java.vm.specification.name=Java Virtual Machine Specification
+[echoproperties] java.vm.specification.vendor=Oracle Corporation
+[echoproperties] java.vm.specification.version=1.8
+[echoproperties] java.vm.vendor=Oracle Corporation
+[echoproperties] java.vm.version=25.101-b13
+[echoproperties] line.separator=\n
+[echoproperties] os.arch=amd64
+[echoproperties] os.name=Linux
+[echoproperties] os.version=4.4.0-36-generic
+[echoproperties] path.separator=\:
+[echoproperties] sun.arch.data.model=64
+[echoproperties] sun.boot.class.path=/usr/lib/jvm/java-8-oracle/jre/lib/resources.jar\:/usr/lib/jvm/java-8-oracle/jre/lib/rt.jar\:/usr/lib/jvm/java-8-oracle/jre/lib/sunrsasign.jar\:/usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar\:/usr/lib/jvm/java-8-oracle/jre/lib/jce.jar\:/usr/lib/jvm/java-8-oracle/jre/lib/charsets.jar\:/usr/lib/jvm/java-8-oracle/jre/lib/jfr.jar\:/usr/lib/jvm/java-8-oracle/jre/classes
+[echoproperties] sun.boot.library.path=/usr/lib/jvm/java-8-oracle/jre/lib/amd64
+[echoproperties] sun.cpu.endian=little
+[echoproperties] sun.cpu.isalist=
+[echoproperties] sun.desktop=gnome
+[echoproperties] sun.io.unicode.encoding=UnicodeLittle
+[echoproperties] sun.java.command=org.apache.tools.ant.launch.Launcher -cp  check-plugin-updates
+[echoproperties] sun.java.launcher=SUN_STANDARD
+[echoproperties] sun.jnu.encoding=UTF-8
+[echoproperties] sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+[echoproperties] sun.os.patch.level=unknown
+[echoproperties] user.country=US
+[echoproperties] user.dir=/home/pether/git/cia/citizen-intelligence-agency
+[echoproperties] user.home=/home/pether
+[echoproperties] user.language=en
+[echoproperties] user.name=pether
+[echoproperties] user.timezone=
+
+init:
+     [echo] JBOSS_HOME = ${env.JBOSS_HOME}
+     [echo] M2_HOME = /home/pether/tools/maven
+     [echo] MAVEN binary = /home/pether/tools/maven\bin\mvn
+
+check-plugin-updates:
+     [exec] [INFO] Scanning for projects...
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Reactor Build Order:
+     [exec] [INFO] 
+     [exec] [INFO] CIA Project
+     [exec] [INFO] maven-cia-skin
+     [exec] [INFO] testfoundation
+     [exec] [INFO] parent-model-pom
+     [exec] [INFO] model.common.api
+     [exec] [INFO] parent-model-jpa2-pom
+     [exec] [INFO] model.common.impl
+     [exec] [INFO] parent-model-external-pom
+     [exec] [INFO] model.external.worldbank.countries.impl
+     [exec] [INFO] model.external.worldbank.data.impl
+     [exec] [INFO] model.external.worldbank.indicators.impl
+     [exec] [INFO] model.external.worldbank.topic.impl
+     [exec] [INFO] model.external.val.partier.impl
+     [exec] [INFO] model.external.val.riksdagsvalkrets.impl
+     [exec] [INFO] model.external.val.landstingvalkrets.impl
+     [exec] [INFO] model.external.val.kommunvalkrets.impl
+     [exec] [INFO] model.external.riksdagen.person.impl
+     [exec] [INFO] model.external.riksdagen.personlista.impl
+     [exec] [INFO] model.external.riksdagen.dokumentlista.impl
+     [exec] [INFO] model.external.riksdagen.documentcontent.impl
+     [exec] [INFO] model.external.riksdagen.dokumentstatus.impl
+     [exec] [INFO] model.external.riksdagen.utskottsforslag.impl
+     [exec] [INFO] model.external.riksdagen.votering.impl
+     [exec] [INFO] model.external.riksdagen.voteringlista.impl
+     [exec] [INFO] parent-model-internal-pom
+     [exec] [INFO] model.internal.application.user.impl
+     [exec] [INFO] model.internal.application
+     [exec] [INFO] model.external.worldbank
+     [exec] [INFO] model.external.riksdagen
+     [exec] [INFO] model.external.val
+     [exec] [INFO] model.external.vdem.indicators.impl
+     [exec] [INFO] parent-service-pom
+     [exec] [INFO] service.data.api
+     [exec] [INFO] service.api
+     [exec] [INFO] jms-broker
+     [exec] [INFO] service.component.agent.api
+     [exec] [INFO] service.external.common
+     [exec] [INFO] service.external.riksdagen
+     [exec] [INFO] service.external.worldbank
+     [exec] [INFO] service.external.vdem
+     [exec] [INFO] service.external.val
+     [exec] [INFO] service.data.impl
+     [exec] [INFO] service.component.agent.impl
+     [exec] [INFO] service.impl
+     [exec] [INFO] parent-web-pom
+     [exec] [INFO] Web-Widgets
+     [exec] [INFO] Citizen Intelligence Agency
+     [exec] [INFO] cia-dist-deb
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building CIA Project 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ parent-pom ---
+     [exec] [INFO] artifact com.github.ekryd.sortpom:sortpom-maven-plugin: checking for updates from nexus
+     [exec] [INFO] artifact com.google.code.maven-replacer-plugin:maven-replacer-plugin: checking for updates from nexus
+     [exec] [INFO] artifact com.systemsplanet.plugin:google-api-translate-java-maven-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.felix:maven-bundle-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-antrun-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-assembly-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-changelog-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-checkstyle-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-clean-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-compiler-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-dependency-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-deploy-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-ear-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-eclipse-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-ejb-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-enforcer-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-gpg-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-install-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-jar-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-javadoc-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-jxr-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-pdf-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-plugin-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-pmd-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-project-info-reports-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-release-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-resources-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-site-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-source-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-surefire-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-surefire-report-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-war-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.bsc.maven:maven-processor-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.codehaus.mojo:aspectj-maven-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.codehaus.mojo:build-helper-maven-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.codehaus.mojo:findbugs-maven-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.codehaus.mojo:hibernate3-maven-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.codehaus.mojo:sonar-maven-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.codehaus.mojo:versions-maven-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.jacoco:jacoco-maven-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.jboss.tattletale:tattletale-maven: checking for updates from nexus
+     [exec] [INFO] artifact org.liquibase:liquibase-maven-plugin: checking for updates from nexus
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project defines minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: 3.1
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building maven-cia-skin 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ maven-cia-skin ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building testfoundation 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ testfoundation ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building parent-model-pom 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ parent-model-pom ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.common.api 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.common.api ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building parent-model-jpa2-pom 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ parent-model-jpa2-pom ---
+     [exec] [INFO] artifact org.bsc.maven:maven-processor-plugin: checking for updates from nexus
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [WARNING] The following plugins do not have their version specified:
+     [exec] [WARNING]   org.bsc.maven:maven-processor-plugin ....................... 3.1.0
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: 3.1
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.common.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.common.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building parent-model-external-pom 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ parent-model-external-pom ---
+     [exec] [INFO] artifact org.jvnet.hyperjaxb3:maven-hyperjaxb3-plugin: checking for updates from nexus
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: 2.0
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.worldbank.countries.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.worldbank.countries.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.worldbank.data.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.worldbank.data.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.worldbank.indicators.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.worldbank.indicators.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.worldbank.topic.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.worldbank.topic.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.val.partier.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.val.partier.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.val.riksdagsvalkrets.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.val.riksdagsvalkrets.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.val.landstingvalkrets.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.val.landstingvalkrets.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.val.kommunvalkrets.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.val.kommunvalkrets.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.riksdagen.person.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.riksdagen.person.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.riksdagen.personlista.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.riksdagen.personlista.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.riksdagen.dokumentlista.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.riksdagen.dokumentlista.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.riksdagen.documentcontent.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.riksdagen.documentcontent.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.riksdagen.dokumentstatus.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.riksdagen.dokumentstatus.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.riksdagen.utskottsforslag.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.riksdagen.utskottsforslag.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.riksdagen.votering.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.riksdagen.votering.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.riksdagen.voteringlista.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.riksdagen.voteringlista.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building parent-model-internal-pom 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ parent-model-internal-pom ---
+     [exec] [INFO] artifact org.jvnet.hyperjaxb3:maven-hyperjaxb3-plugin: checking for updates from nexus
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: 2.0
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.internal.application.user.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.internal.application.user.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.internal.application 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.internal.application ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.worldbank 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.worldbank ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.riksdagen 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.riksdagen ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.val 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.val ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building model.external.vdem.indicators.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ model.external.vdem.indicators.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building parent-service-pom 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ parent-service-pom ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building service.data.api 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ service.data.api ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building service.api 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ service.api ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building jms-broker 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ jms-broker ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building service.component.agent.api 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ service.component.agent.api ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building service.external.common 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ service.external.common ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building service.external.riksdagen 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ service.external.riksdagen ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building service.external.worldbank 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ service.external.worldbank ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building service.external.vdem 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ service.external.vdem ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building service.external.val 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ service.external.val ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building service.data.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ service.data.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building service.component.agent.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ service.component.agent.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building service.impl 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ service.impl ---
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: null
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building parent-web-pom 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ parent-web-pom ---
+     [exec] [INFO] artifact com.vaadin:vaadin-maven-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.codehaus.mojo:gwt-maven-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.eclipse.jetty:jetty-maven-plugin: checking for updates from nexus
+     [exec] [INFO] 
+     [exec] [INFO] The following plugin updates are available:
+     [exec] [INFO]   com.vaadin:vaadin-maven-plugin ..... 7.7.0.rc1 -> 7.7.0.appwidgetset6
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: 3
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building Web-Widgets 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ web-widgets ---
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-eclipse-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.eclipse.jettys:jetty-maven-plugin: checking for updates from nexus
+     [exec] Downloading: http://192.168.0.12:8081/nexus/repository/maven-public/org/eclipse/jettys/jetty-maven-plugin/9.4.0.M1/jetty-maven-plugin-9.4.0.M1.pom
+     [exec] [INFO] artifact org.eclipse.m2e:lifecycle-mapping: checking for updates from nexus
+     [exec] Downloading: http://192.168.0.12:8081/nexus/repository/maven-public/org/eclipse/m2e/lifecycle-mapping/1.0.0/lifecycle-mapping-1.0.0.pom
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [WARNING] The following plugins do not have their version specified:
+     [exec] [WARNING]   maven-eclipse-plugin ........................................ 2.10
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: 2.2.1
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building Citizen Intelligence Agency 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ citizen-intelligence-agency ---
+     [exec] [INFO] artifact com.github.jrh3k5:l10n-maven-plugin: checking for updates from nexus
+     [exec] [INFO] artifact com.systemsplanet.plugin:google-api-translate-java-maven-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.apache.maven.plugins:maven-jdeps-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.codehaus.mojo:exec-maven-plugin: checking for updates from nexus
+     [exec] [INFO] artifact org.codehaus.mojo:license-maven-plugin: checking for updates from nexus
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [WARNING] The following plugins do not have their version specified:
+     [exec] [WARNING]   com.systemsplanet.plugin:google-api-translate-java-maven-plugin  1.5
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: 3.0
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Building cia-dist-deb 2016.8.18-SNAPSHOT
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] 
+     [exec] [INFO] --- versions-maven-plugin:2.3:display-plugin-updates (default-cli) @ cia-dist-deb ---
+     [exec] [INFO] artifact com.stratio.mojo.unix:unix-maven-plugin: checking for updates from nexus
+     [exec] [INFO] 
+     [exec] [INFO] All plugins with a version specified are using the latest versions.
+     [exec] [INFO] 
+     [exec] [INFO] All plugins have a version specified.
+     [exec] [INFO] 
+     [exec] [INFO] Project inherits minimum Maven version as: 3.2.3
+     [exec] [INFO] Plugins require minimum Maven version of: 3.0
+     [exec] [INFO] 
+     [exec] [INFO] No plugins require a newer version of Maven than specified by the pom.
+     [exec] [INFO] 
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Reactor Summary:
+     [exec] [INFO] 
+     [exec] [INFO] CIA Project ........................................ SUCCESS [07:11 min]
+     [exec] [INFO] maven-cia-skin ..................................... SUCCESS [  0.024 s]
+     [exec] [INFO] testfoundation ..................................... SUCCESS [  0.016 s]
+     [exec] [INFO] parent-model-pom ................................... SUCCESS [  0.016 s]
+     [exec] [INFO] model.common.api ................................... SUCCESS [  0.012 s]
+     [exec] [INFO] parent-model-jpa2-pom .............................. SUCCESS [  0.080 s]
+     [exec] [INFO] model.common.impl .................................. SUCCESS [  0.012 s]
+     [exec] [INFO] parent-model-external-pom .......................... SUCCESS [ 14.184 s]
+     [exec] [INFO] model.external.worldbank.countries.impl ............ SUCCESS [  0.012 s]
+     [exec] [INFO] model.external.worldbank.data.impl ................. SUCCESS [  0.016 s]
+     [exec] [INFO] model.external.worldbank.indicators.impl ........... SUCCESS [  0.016 s]
+     [exec] [INFO] model.external.worldbank.topic.impl ................ SUCCESS [  0.012 s]
+     [exec] [INFO] model.external.val.partier.impl .................... SUCCESS [  0.016 s]
+     [exec] [INFO] model.external.val.riksdagsvalkrets.impl ........... SUCCESS [  0.012 s]
+     [exec] [INFO] model.external.val.landstingvalkrets.impl .......... SUCCESS [  0.016 s]
+     [exec] [INFO] model.external.val.kommunvalkrets.impl ............. SUCCESS [  0.016 s]
+     [exec] [INFO] model.external.riksdagen.person.impl ............... SUCCESS [  0.012 s]
+     [exec] [INFO] model.external.riksdagen.personlista.impl .......... SUCCESS [  0.012 s]
+     [exec] [INFO] model.external.riksdagen.dokumentlista.impl ........ SUCCESS [  0.012 s]
+     [exec] [INFO] model.external.riksdagen.documentcontent.impl ...... SUCCESS [  0.012 s]
+     [exec] [INFO] model.external.riksdagen.dokumentstatus.impl ....... SUCCESS [  0.008 s]
+     [exec] [INFO] model.external.riksdagen.utskottsforslag.impl ...... SUCCESS [  0.012 s]
+     [exec] [INFO] model.external.riksdagen.votering.impl ............. SUCCESS [  0.012 s]
+     [exec] [INFO] model.external.riksdagen.voteringlista.impl ........ SUCCESS [  0.012 s]
+     [exec] [INFO] parent-model-internal-pom .......................... SUCCESS [  0.044 s]
+     [exec] [INFO] model.internal.application.user.impl ............... SUCCESS [  0.012 s]
+     [exec] [INFO] model.internal.application ......................... SUCCESS [  0.012 s]
+     [exec] [INFO] model.external.worldbank ........................... SUCCESS [  0.008 s]
+     [exec] [INFO] model.external.riksdagen ........................... SUCCESS [  0.012 s]
+     [exec] [INFO] model.external.val ................................. SUCCESS [  0.012 s]
+     [exec] [INFO] model.external.vdem.indicators.impl ................ SUCCESS [  0.008 s]
+     [exec] [INFO] parent-service-pom ................................. SUCCESS [  0.012 s]
+     [exec] [INFO] service.data.api ................................... SUCCESS [  0.008 s]
+     [exec] [INFO] service.api ........................................ SUCCESS [  0.032 s]
+     [exec] [INFO] jms-broker ......................................... SUCCESS [  0.008 s]
+     [exec] [INFO] service.component.agent.api ........................ SUCCESS [  0.008 s]
+     [exec] [INFO] service.external.common ............................ SUCCESS [  0.012 s]
+     [exec] [INFO] service.external.riksdagen ......................... SUCCESS [  0.008 s]
+     [exec] [INFO] service.external.worldbank ......................... SUCCESS [  0.008 s]
+     [exec] [INFO] service.external.vdem .............................. SUCCESS [  0.012 s]
+     [exec] [INFO] service.external.val ............................... SUCCESS [  0.008 s]
+     [exec] [INFO] service.data.impl .................................. SUCCESS [  0.008 s]
+     [exec] [INFO] service.component.agent.impl ....................... SUCCESS [  0.012 s]
+     [exec] [INFO] service.impl ....................................... SUCCESS [  0.008 s]
+     [exec] [INFO] parent-web-pom ..................................... SUCCESS [ 31.703 s]
+     [exec] [INFO] Web-Widgets ........................................ SUCCESS [ 33.123 s]
+     [exec] [INFO] Citizen Intelligence Agency ........................ SUCCESS [01:05 min]
+     [exec] [INFO] cia-dist-deb ....................................... SUCCESS [ 19.943 s]
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] BUILD SUCCESS
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Total time: 09:57 min
+     [exec] [INFO] Finished at: 2016-08-22T22:29:41+02:00
+     [exec] [INFO] Final Memory: 47M/796M
+     [exec] [INFO] ------------------------------------------------------------------------
+
+BUILD SUCCESSFUL
+Total time: 9 minutes 58 seconds
