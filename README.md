@@ -3,11 +3,9 @@
 Tracking politicians like bugs. Citizen Intelligence Agency is independent and non-partisan voluntary project.
 
 
-
 # Goal
 
 Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level.
-
 
 
 # Demo https://www.hack23.com/cia/
@@ -39,6 +37,54 @@ Build server, jenkins [https://www.hack23.com/jenkins/](https://www.hack23.com/j
 QA report, sonarqube [https://www.hack23.com/sonar/](https://www.hack23.com/sonar/)
 
 Repository manager, nexus [https://www.hack23.com/nexus/](https://www.hack23.com/nexus/)
+
+# Parlimentary informatics
+
+[https://en.wikipedia.org/wiki/Parliamentary_informatics](https://en.wikipedia.org/wiki/Parliamentary_informatics) list many good examples of other projects in the domain around the world. 
+
+USA
+[https://www.govtrack.us/](https://www.govtrack.us/)
+
+Canada
+[http://OpenParliament.ca](http://OpenParliament.ca)
+
+European Union
+[http://www.votewatch.eu/](http://www.votewatch.eu/)
+
+Sweden
+[http://govdata.se/api](http://govdata.se/api)
+[http://riksdagsskolket.se/](http://riksdagsskolket.se/)
+
+Denmark
+[http://www.hvemstemmerhvad.dk/](http://www.hvemstemmerhvad.dk/)
+
+Finland
+[http://kansanmuisti.fi/](http://kansanmuisti.fi/)
+
+Norway
+[https://www.holderdeord.no/](https://www.holderdeord.no/)
+
+UK
+[https://www.theyworkforyou.com/](https://www.theyworkforyou.com/)
+[http://www.publicwhip.org.uk/](http://www.publicwhip.org.uk/)
+
+Germany
+[http://offenesparlament.de](http://offenesparlament.de)
+
+Italy
+[http://parlamento17.openpolis.it/](http://parlamento17.openpolis.it/)
+
+France
+[http://mon-depute.fr/](http://mon-depute.fr/)
+
+Netherlands
+[POLITIX.nl](POLITIX.nl)
+
+South Korea
+[http://pokr.kr/](http://pokr.kr/)
+
+Israel
+[https://oknesset.org/](https://oknesset.org/)
 
 
 
