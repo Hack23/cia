@@ -77,9 +77,6 @@ Italy
 France
 [http://mon-depute.fr/](http://mon-depute.fr/)
 
-Netherlands
-[POLITIX.nl](POLITIX.nl)
-
 South Korea
 [http://pokr.kr/](http://pokr.kr/)
 
