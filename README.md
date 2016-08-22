@@ -53,7 +53,11 @@ European Union
 
 Sweden
 [http://govdata.se/api](http://govdata.se/api)
+
 [http://riksdagsskolket.se/](http://riksdagsskolket.se/)
+
+[http://www.demokratikollen.se](http://www.demokratikollen.se)
+
 
 Denmark
 [http://www.hvemstemmerhvad.dk/](http://www.hvemstemmerhvad.dk/)
