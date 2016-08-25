@@ -286,7 +286,7 @@ public final class UserPageVisit extends Assert {
 		final List<WebElement> findElements = element.findElements(By.className("v-menubar-menuitem-caption"));
 		if (caption.length == level) {
 			for (final WebElement webElement : findElements) {
-				if (caption[level -1].equals(webElement.getText())) {
+				if (webElement.getText().contains(caption[level -1])) {
 					return webElement;
 				}
 			}
@@ -303,7 +303,7 @@ public final class UserPageVisit extends Assert {
 			final List<WebElement> findElements2 = driver.findElements(By.className("v-menubar-menuitem"));
 			if (caption.length == level) {
 				for (final WebElement webElement : findElements2) {
-						if (caption[level -1].equals(webElement.getText())) {
+						if (webElement.getText().contains(caption[level -1])) {
 						return webElement;
 					}
 				}
