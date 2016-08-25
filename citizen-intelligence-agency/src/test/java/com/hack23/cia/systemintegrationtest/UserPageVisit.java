@@ -322,8 +322,12 @@ public final class UserPageVisit extends Assert {
 		final List<WebElement> result = new ArrayList<>();
 		final List<WebElement> nativeButtons = driver.findElements(By.className("v-nativebutton"));
 		final List<WebElement> buttons = driver.findElements(By.className("v-button"));
+		final List<WebElement> buttonsCaption = driver.findElements(By.className("v-button-caption"));
+		
 		result.addAll(nativeButtons);
 		result.addAll(buttons);
+		result.addAll(buttonsCaption);
+		
 		return result;
 	}
 
