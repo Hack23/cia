@@ -2380,7 +2380,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-caption {
-	font-size: 22px;
+	font-size: 10px;
 	font-weight: 400;
 	padding-bottom: 0.3em;
 	padding-left: 3px;
@@ -5964,7 +5964,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-caption-inline-icon .v-captiontext {
-	font-size: 22px;
+	font-size: 10px;
 	font-weight: 400;
 	padding-bottom: 0.3em;
 	padding-left: 3px;
@@ -6003,7 +6003,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-caption-inline-icon.v-caption-tiny .v-captiontext {
-	font-size: 22px;
+	font-size: 10px;
 	font-weight: 400;
 	padding-bottom: 0.3em;
 	padding-left: 3px;
@@ -6042,7 +6042,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-caption-inline-icon.v-caption-compact .v-captiontext {
-	font-size: 22px;
+	font-size: 10px;
 	font-weight: 400;
 	padding-bottom: 0.3em;
 	padding-left: 3px;
@@ -6081,7 +6081,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-caption-inline-icon.v-caption-small .v-captiontext {
-	font-size: 22px;
+	font-size: 10px;
 	font-weight: 400;
 	padding-bottom: 0.3em;
 	padding-left: 3px;
@@ -6120,7 +6120,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-caption-inline-icon.v-caption-large .v-captiontext {
-	font-size: 22px;
+	font-size: 10px;
 	font-weight: 400;
 	padding-bottom: 0.3em;
 	padding-left: 3px;
@@ -6159,7 +6159,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-caption-inline-icon.v-caption-huge .v-captiontext {
-	font-size: 22px;
+	font-size: 10px;
 	font-weight: 400;
 	padding-bottom: 0.3em;
 	padding-left: 3px;
@@ -11342,7 +11342,7 @@ div.v-layout.v-horizontal.v-widget {
 	background-image: linear-gradient(to bottom,white 2%, #fbfbfb 98%);
 	color: #474747;
 	font-weight: 400;
-	font-size: 22px;
+	font-size: 10px;
 	-webkit-box-shadow: inset 0 1px 2px white, inset 0 0 1px white;
 	box-shadow: inset 0 1px 2px white, inset 0 0 1px white;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -11507,7 +11507,7 @@ div.v-layout.v-horizontal.v-widget {
 	background-image: linear-gradient(to bottom,white 2%, #fbfbfb 98%);
 	color: #474747;
 	font-weight: 400;
-	font-size: 22px;
+	font-size: 10px;
 	-webkit-box-shadow: inset 0 1px 2px white, inset 0 0 1px white;
 	box-shadow: inset 0 1px 2px white, inset 0 0 1px white;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -11602,7 +11602,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-select-twincol-caption-left, .cia .v-select-twincol-caption-right {
-	font-size: 22px;
+	font-size: 10px;
 	font-weight: 400;
 	padding-bottom: 0.3em;
 	padding-left: 3px;
@@ -13845,7 +13845,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .gantt .year, .cia .gantt .month, .cia .gantt .day {
 	border-right: none;
 	background-color: #e6e6e6;
-	font-size: 22px;
+	font-size: 10px;
 	font-weight: 400;
 }
 
@@ -13868,7 +13868,7 @@ div.v-layout.v-horizontal.v-widget {
 .cia .gantt .col {
 	border-right: none;
 	background-color: #e6e6e6;
-	font-size: 22px;
+	font-size: 10px;
 }
 
 .cia .gantt .col.weekend {
@@ -13917,7 +13917,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-label-Header {
-	font-size: 22px;
+	font-size: 18px;
 	color: #003cf0;
 	border-radius: 6px;
 }
@@ -13949,17 +13949,17 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-menubar-menuitem-Header {
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .cia .v-menubar-menuitem-caption-Header {
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .cia .v-menubar-submenu-Header {
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .cia .v-menubar-selected-Header {
-	font-size: 12px;
+	font-size: 14px;
 }

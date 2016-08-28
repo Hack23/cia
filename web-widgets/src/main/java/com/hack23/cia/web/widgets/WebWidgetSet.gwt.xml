@@ -30,7 +30,6 @@
     <!-- <set-configuration-property name="devModeRedirectEnabled" value="true" /> -->
 
 
-
     <inherits name="org.dussan.vaadin.dcharts.DchartsWidgetset" />
 
     <inherits name="org.tltv.gantt.WidgetSet" />
@@ -40,4 +39,6 @@
     <inherits name="com.ejt.vaadin.loginform.WidgetSet" />
 
     <inherits name="fi.jasoft.qrcode.QrcodeWidgetset" />
+    
+    <inherits name="com.google.gwt.precompress.Precompress"/> 
 </module>
