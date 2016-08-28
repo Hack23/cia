@@ -277,6 +277,7 @@
           </execution>
         </executions>
         <configuration>
+          <widgetsetMode>local</widgetsetMode>
           <extraJvmArgs>-Xmx512M -Xss1024k</extraJvmArgs>
           <!-- <runTarget>mobilemail</runTarget> -->
           <!-- We are doing "inplace" but into subdir VAADIN/widgetsets. This
