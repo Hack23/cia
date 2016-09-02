@@ -51,14 +51,6 @@
   <prerequisites>
     <maven>3.2.3</maven>
   </prerequisites>
-  <modules>
-    <module>../maven-cia-skin</module>
-    <module>../testfoundation</module>
-    <module>../parent-model-pom</module>
-    <module>../parent-service-pom</module>
-    <module>../parent-web-pom</module>
-    <module>../cia-dist-deb</module>
-  </modules>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
@@ -1057,6 +1049,82 @@
         <jdk.target.version>1.8</jdk.target.version>
         <jacoco.version>0.7.7.201606060606</jacoco.version>
         <compiler.plugin.version>3.5.1</compiler.plugin.version>
+      </properties>
+    </profile>
+    <profile>
+      <id>all-modules</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <modules>
+        <module>../maven-cia-skin</module>
+        <module>../testfoundation</module>
+        <module>../parent-model-pom</module>
+        <module>../parent-service-pom</module>
+        <module>../parent-web-pom</module>
+        <module>../cia-dist-deb</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>site-run</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <modules>
+        <module>../parent-model-pom</module>
+        <module>../parent-service-pom</module>
+        <module>../citizen-intelligence-agency</module>
+      </modules>
+      <properties>
+        <cia.project.phase.site>true</cia.project.phase.site>
+      </properties>
+    </profile>
+    <profile>
+      <id>model-modules</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <modules>
+        <module>../parent-model-pom</module>
+      </modules>
+      <properties>
+        <cia.project.phase.site>true</cia.project.phase.site>
+      </properties>
+    </profile>
+    <profile>
+      <id>service-modules</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <modules>
+        <module>../parent-service-pom</module>
+      </modules>
+      <properties>
+        <cia.project.phase.site>true</cia.project.phase.site>
+      </properties>
+    </profile>
+    <profile>
+      <id>web-modules</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <modules>
+        <module>../parent-web-pom</module>
+      </modules>
+      <properties>
+        <cia.project.phase.site>true</cia.project.phase.site>
+      </properties>
+    </profile>
+    <profile>
+      <id>cia-app</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <modules>
+        <module>../citizen-intelligence-agency</module>
+      </modules>
+      <properties>
+        <cia.project.phase.site>true</cia.project.phase.site>
       </properties>
     </profile>
     <profile>
