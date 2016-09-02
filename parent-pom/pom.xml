@@ -1054,9 +1054,7 @@
     <profile>
       <id>all-modules</id>
       <activation>
-        <property>
-          <name>cia.project.phase.site</name>
-        </property>
+        <jdk>(,1.8],[9,)</jdk>
       </activation>
       <modules>
         <module>../maven-cia-skin</module>
@@ -1069,9 +1067,6 @@
     </profile>
     <profile>
       <id>site-run</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
       <modules>
         <module>../parent-model-pom</module>
         <module>../parent-service-pom</module>
@@ -1083,9 +1078,6 @@
     </profile>
     <profile>
       <id>model-modules</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
       <modules>
         <module>../parent-model-pom</module>
       </modules>
@@ -1095,9 +1087,6 @@
     </profile>
     <profile>
       <id>service-modules</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
       <modules>
         <module>../parent-service-pom</module>
       </modules>
@@ -1107,9 +1096,6 @@
     </profile>
     <profile>
       <id>web-modules</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
       <modules>
         <module>../parent-web-pom</module>
       </modules>
@@ -1119,9 +1105,6 @@
     </profile>
     <profile>
       <id>cia-app</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
       <modules>
         <module>../citizen-intelligence-agency</module>
       </modules>
@@ -1131,9 +1114,6 @@
     </profile>
     <profile>
       <id>download-repositories</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
       <repositories>
         <repository>
           <releases>
@@ -1300,7 +1280,6 @@
     <profile>
       <id>cia-dev-windows</id>
       <activation>
-        <activeByDefault>true</activeByDefault>
         <os>
           <family>windows</family>
         </os>
@@ -1315,7 +1294,6 @@
     <profile>
       <id>cia-dev-mac</id>
       <activation>
-        <activeByDefault>false</activeByDefault>
         <os>
           <family>mac</family>
         </os>
@@ -1328,7 +1306,6 @@
     <profile>
       <id>cia-dev-linux</id>
       <activation>
-        <activeByDefault>false</activeByDefault>
         <os>
           <name>linux</name>
         </os>
@@ -1898,7 +1875,7 @@
                   <name>cia.project.versions.javassist</name>
                   <banSnapshots>false</banSnapshots>
                 </property>
-                <!-- 
+                <!--  
                 <property>
                   <name>cia.project.versions.asm</name>
                   <banSnapshots>false</banSnapshots>
