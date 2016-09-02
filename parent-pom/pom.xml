@@ -1054,7 +1054,9 @@
     <profile>
       <id>all-modules</id>
       <activation>
-        <activeByDefault>true</activeByDefault>
+        <property>
+          <name>cia.project.phase.site</name>
+        </property>
       </activation>
       <modules>
         <module>../maven-cia-skin</module>

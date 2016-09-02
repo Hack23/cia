@@ -10,6 +10,8 @@
     </encoder>
   </appender>
 
+  <logger name="org.springframework.oxm.jaxb" level="error"/>
+
   <root level="warn">
     <appender-ref ref="console" />
   </root>
