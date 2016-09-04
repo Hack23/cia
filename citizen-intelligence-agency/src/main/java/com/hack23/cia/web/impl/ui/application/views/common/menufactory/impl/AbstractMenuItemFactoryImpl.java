@@ -34,6 +34,10 @@ import com.vaadin.ui.MenuBar.MenuItem;
  */
 public abstract class AbstractMenuItemFactoryImpl {
 
+	/** The Constant COMMAND18. */
+	private static final PageModeMenuCommand COMMAND18 = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
+			PageMode.PAGEVISITHISTORY);
+
 	/** The Constant COMMAND17. */
 	private static final PageModeMenuCommand COMMAND17 = new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME,
 			"");
@@ -157,6 +161,11 @@ public abstract class AbstractMenuItemFactoryImpl {
 
 	/** The Constant ADMIN_TEXT. */
 	private static final String ADMIN_TEXT = "Admin";
+	
+	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
+	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
+
+
 
 	/**
 	 * Instantiates a new abstract menu item factory impl.
@@ -177,6 +186,11 @@ public abstract class AbstractMenuItemFactoryImpl {
 		final MenuItem mainViewItem = menuBar.addItem("Application", FontAwesome.SERVER, null);
 		
 		mainViewItem.addItem(START_TEXT, FontAwesome.STAR, COMMAND);
+		
+		final MenuItem mainItem = mainViewItem.addItem("Main", FontAwesome.STAR, null);
+
+		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.AREA_CHART, COMMAND18);
+
 
 		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {
 			mainViewItem.addItem(USERHOME, FontAwesome.USER,COMMAND2);

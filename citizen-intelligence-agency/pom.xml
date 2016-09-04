@@ -399,6 +399,16 @@
     <dependency>
       <groupId>com.thoughtworks.xstream</groupId>
       <artifactId>xstream</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>xmlpull</artifactId>
+          <groupId>xmlpull</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>xpp3_min</artifactId>
+          <groupId>xpp3</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <!-- Web Cache -->
     <dependency>
