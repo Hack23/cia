@@ -20,12 +20,12 @@ package com.hack23.cia.service.api.action.application;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
-import com.hack23.cia.service.api.action.common.ServiceRequest;
+import com.hack23.cia.service.api.action.common.AbstractRequest;
 
 /**
  * The Class CreateApplicationEventRequest.
  */
-public final class CreateApplicationEventRequest implements ServiceRequest {
+public final class CreateApplicationEventRequest extends AbstractRequest {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;

@@ -18,13 +18,13 @@
 */
 package com.hack23.cia.service.api.action.admin;
 
-import com.hack23.cia.service.api.action.common.ServiceRequest;
+import com.hack23.cia.service.api.action.common.AbstractRequest;
 
 
 /**
  * The Class TranslateLanguageContentToLanguageRequest.
  */
-public final class TranslateLanguageContentToLanguageRequest implements ServiceRequest {
+public final class TranslateLanguageContentToLanguageRequest extends AbstractRequest {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;

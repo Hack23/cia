@@ -19,12 +19,12 @@
 package com.hack23.cia.service.api.action.application;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
-import com.hack23.cia.service.api.action.common.ServiceRequest;
+import com.hack23.cia.service.api.action.common.AbstractRequest;
 
 /**
  * The Class CreateApplicationSessionRequest.
  */
-public final class CreateApplicationSessionRequest implements ServiceRequest {
+public final class CreateApplicationSessionRequest extends AbstractRequest {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;

@@ -24,30 +24,18 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- * The Class AbstractResponse.
+ * The Class AbstractRequest.
  */
-public abstract class AbstractResponse implements ServiceResponse {
-
-	/** The result. */
-	private final ServiceResult result;
+public abstract class AbstractRequest implements ServiceRequest {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Instantiates a new abstract response.
-	 *
-	 * @param result
-	 *            the result
+	 * Instantiates a new abstract request.
 	 */
-	public AbstractResponse(final ServiceResult result) {
+	public AbstractRequest() {
 		super();
-		this.result = result;
-	}
-
-	@Override
-	public final ServiceResult getResult() {
-		return result;
 	}
 
 	@Override

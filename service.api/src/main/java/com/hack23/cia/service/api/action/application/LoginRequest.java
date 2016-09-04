@@ -18,13 +18,13 @@
 */
 package com.hack23.cia.service.api.action.application;
 
-import com.hack23.cia.service.api.action.common.ServiceRequest;
+import com.hack23.cia.service.api.action.common.AbstractRequest;
 
 
 /**
  * The Class LoginRequest.
  */
-public final class LoginRequest implements ServiceRequest {
+public final class LoginRequest extends AbstractRequest {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
