@@ -18,13 +18,13 @@
 */
 package com.hack23.cia.service.api.action.user;
 
-import com.hack23.cia.service.api.action.common.ServiceRequest;
+import com.hack23.cia.service.api.action.common.AbstractRequest;
 
 
 /**
  * The Class SetGoogleAuthenticatorCredentialRequest.
  */
-public final class SetGoogleAuthenticatorCredentialRequest implements ServiceRequest {
+public final class SetGoogleAuthenticatorCredentialRequest extends AbstractRequest {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
