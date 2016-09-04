@@ -29,7 +29,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Parli
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
@@ -42,10 +41,6 @@ import com.vaadin.ui.MenuBar.MenuItem;
 @Service
 public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		implements ApplicationMenuItemFactory {
-
-	/** The Constant COMMAND6. */
-	private static final PageModeMenuCommand COMMAND6 = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
-			PageMode.PAGEVISITHISTORY);
 
 	/** The Constant COMMAND5. */
 	private static final PageModeMenuCommand COMMAND5 = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME,
@@ -98,9 +93,6 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	/** The Constant MINISTRY_RANKING_LINK_TEXT. */
 	private static final String MINISTRY_RANKING_LINK_TEXT = MINISTRY_RANKING;
 
-	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
-	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
-
 	/** The Constant COUNTRY_RANKING_LINK_TEXT. */
 	private static final String COUNTRY_RANKING_LINK_TEXT = "Country Ranking";
 
@@ -149,10 +141,6 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 	@Override
 	public void addRankingMenu(final MenuBar menuBar) {
-
-		final MenuItem mainItem = menuBar.addItem("Main", FontAwesome.STAR, null);
-
-		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.AREA_CHART, COMMAND6);
 
 		final MenuItem rankingsMenuItem = menuBar.addItem(RANKING_TEXT, FontAwesome.AREA_CHART, null);
 
