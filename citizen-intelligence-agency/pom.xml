@@ -62,34 +62,8 @@
       <version>1.7.21</version>
     </dependency>
     <dependency>
-      <groupId>org.antlr</groupId>
-      <artifactId>antlr</artifactId>
-      <version>3.5.2</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>ST4</artifactId>
-          <groupId>org.antlr</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>stringtemplate</artifactId>
-          <groupId>org.antlr</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
       <groupId>org.ow2.asm</groupId>
       <artifactId>asm-tree</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.antlr</groupId>
-      <artifactId>stringtemplate</artifactId>
-      <version>4.0.2</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>antlr-runtime</artifactId>
-          <groupId>org.antlr</groupId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -186,7 +160,20 @@
           <artifactId>cglib-nodep</artifactId>
           <groupId>cglib</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>jna-platform</artifactId>
+          <groupId>net.java.dev.jna</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jna</artifactId>
+          <groupId>net.java.dev.jna</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>net.java.dev.jna</groupId>
+      <artifactId>jna-platform</artifactId>
+      <version>4.2.2</version>
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
