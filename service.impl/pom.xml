@@ -103,12 +103,27 @@
           <artifactId>weka-dev</artifactId>
           <groupId>nz.ac.waikato.cms.weka</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>moa</artifactId>
+          <groupId>nz.ac.waikato.cms.moa</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>nz.ac.waikato.cms.moa</groupId>
+      <artifactId>moa</artifactId>
+      <version>2016.04</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>weka-dev</artifactId>
+          <groupId>nz.ac.waikato.cms.weka</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-search-orm</artifactId>
-      <version>5.5.4.Final</version>
+      <version>5.6.0.Beta2</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-entitymanager</artifactId>
@@ -162,14 +177,10 @@
       <groupId>javax.interceptor</groupId>
       <artifactId>javax.interceptor-api</artifactId>
       <version>1.2</version>
-      <!-- <scope>provided</scope>-->
+      <!-- <scope>provided</scope> -->
     </dependency>
-    <!--
-    <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>org.json</artifactId>
-      <version>2.0</version>
-    </dependency>-->
+    <!-- <dependency> <groupId>org.json</groupId> <artifactId>org.json</artifactId> 
+			<version>2.0</version> </dependency> -->
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
@@ -217,11 +228,6 @@
           <groupId>javax.persistence</groupId>
         </exclusion>
       </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.dspace.dependencies</groupId>
-      <artifactId>dspace-geoip</artifactId>
-      <version>1.2.3</version>
     </dependency>
     <dependency>
       <groupId>joda-time</groupId>
