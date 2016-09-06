@@ -2,6 +2,7 @@
 
 Tracking politicians like bugs. Citizen Intelligence Agency is independent and non-partisan voluntary project.
 
+[![Maven Central](https://img.shields.io/maven-central/v/com.hack23.cia/cia-dist-deb.svg)]()
 
 # Goal
 
