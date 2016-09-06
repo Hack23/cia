@@ -3,6 +3,10 @@
 Tracking politicians like bugs. Citizen Intelligence Agency is independent and non-partisan voluntary project.
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.hack23.cia/cia-dist-deb.svg)](http://mvnrepository.com/artifact/com.hack23.cia/cia-dist-deb) 
+[![Jenkins](https://img.shields.io/jenkins/s/https/www.hack23.com/jenkins/Citizen-Intelligence-Agency.svg)](https://www.hack23.com/jenkins/)
+[![Jenkins tests](https://img.shields.io/jenkins/t/https/www.hack23.com/jenkins/Citizen-Intelligence-Agency.svg)](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency/lastCompletedBuild/testReport/)
+[![SonarQube Coverage](https://img.shields.io/sonar/https/www.hack23.com/sonar/com.hack23.cia:parent-pom/coverage.svg)](https://www.hack23.com/sonar/component_measures/domain/Coverage?id=com.hack23.cia%3Aparent-pom)
+[![SonarQube Tech Debt](https://img.shields.io/sonar/https/www.hack23.com/sonar/com.hack23.cia:parent-pom/tech_debt.svg)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Aparent-pom&did=1)
 
 # Goal
 
