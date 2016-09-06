@@ -2,6 +2,7 @@
 
 Tracking politicians like bugs. Citizen Intelligence Agency is independent and non-partisan voluntary project.
 
+[![license](https://img.shields.io/github/license/Hack23/cia.svg)](https://raw.githubusercontent.com/Hack23/cia/master/citizen-intelligence-agency/LICENSE.txt)
 [![Maven Central](https://img.shields.io/maven-central/v/com.hack23.cia/cia-dist-deb.svg)](http://mvnrepository.com/artifact/com.hack23.cia/cia-dist-deb) 
 [![Jenkins](https://img.shields.io/jenkins/s/https/www.hack23.com/jenkins/Citizen-Intelligence-Agency.svg)](https://www.hack23.com/jenkins/)
 [![Jenkins tests](https://img.shields.io/jenkins/t/https/www.hack23.com/jenkins/Citizen-Intelligence-Agency.svg)](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency/lastCompletedBuild/testReport/)
