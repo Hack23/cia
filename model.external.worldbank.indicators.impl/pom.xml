@@ -79,6 +79,7 @@
           <roundtripTestClassName>com.hack23.cia.model.external.worldbank.indicators.impl.RoundtripTest</roundtripTestClassName>
           <args>
             <arg>-Xfluent-api</arg>
+            <arg>-XtoString</arg>
           </args>
           <plugins>
             <plugin>

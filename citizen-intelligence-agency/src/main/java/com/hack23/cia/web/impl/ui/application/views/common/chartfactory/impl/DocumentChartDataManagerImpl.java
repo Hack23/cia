@@ -168,7 +168,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 
 		final Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> allMap = getViewRiksdagenOrgDocumentDailySummaryMap();
 
-		LOGGER.info(LOG_MSG_TRYING_TO_FIND_DOCUMENT_SUMMARY_FOR_ORG_IN_MAP,searchOrg,allMap.keySet().toString());
+		LOGGER.debug(LOG_MSG_TRYING_TO_FIND_DOCUMENT_SUMMARY_FOR_ORG_IN_MAP,searchOrg,allMap.keySet().toString());
 
 
 		final List<ViewRiksdagenOrgDocumentDailySummary> itemList = allMap
