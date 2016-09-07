@@ -81,6 +81,7 @@
           <roundtripTestClassName>com.hack23.cia.model.external.riksdagen.votering.impl.RoundtripTest</roundtripTestClassName>
           <args>
             <arg>-Xfluent-api</arg>
+            <arg>-XtoString</arg>
           </args>
           <plugins>
             <plugin>

@@ -226,6 +226,7 @@
           <!-- <roundtripTestClassName>com.hack23.cia.model.internal.application.user.impl.RoundtripTest</roundtripTestClassName> -->
           <args>
             <arg>-Xfluent-api</arg>
+            <arg>-XtoString</arg>
           </args>
           <plugins>
             <plugin>
