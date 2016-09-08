@@ -84,7 +84,7 @@
               <excludes>
                 <exclude>**/demo-base/**</exclude>
                 <exclude>**/start.ini</exclude>
-                <exclude>**/etc/jetty-gzip.xml</exclude>                
+                <exclude>**/etc/jetty-gzip.xml</exclude>
               </excludes>
             </extract-artifact>
             <extract-artifact>
@@ -106,7 +106,7 @@
             <copyFile>
               <path>src/main/config/jetty/etc/jetty-gzip.xml</path>
               <toFile>/opt/cia/etc/jetty-gzip.xml</toFile>
-            </copyFile>            
+            </copyFile>
           </assembly>
         </configuration>
       </plugin>
