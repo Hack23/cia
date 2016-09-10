@@ -45,7 +45,7 @@ public abstract class AbstractRequest implements ServiceRequest {
 
 	@Override
 	public final String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.NO_FIELD_NAMES_STYLE);
 	}
 
 	@Override
