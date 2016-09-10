@@ -21,6 +21,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 /**
  * The Class SimpleXml.
  */
@@ -67,34 +72,19 @@ public final class SimpleXml {
         this.description = description;
     }
 
-    @Override
-	public int hashCode() {
-		final int prime = 31;
-		final int result = 1;
-		return prime * result
-				+ ((description == null) ? 0 : description.hashCode());
+	@Override
+	public final boolean equals(Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
 	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final SimpleXml other = (SimpleXml) obj;
-		if (description == null) {
-			if (other.description != null) {
-				return false;
-			}
-		} else if (!description.equals(other.description)) {
-			return false;
-		}
-		return true;
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.NO_FIELD_NAMES_STYLE);
+	}
+
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
 	}
 
 }
