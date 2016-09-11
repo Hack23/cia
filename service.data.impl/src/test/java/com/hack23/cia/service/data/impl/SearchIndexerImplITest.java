@@ -28,6 +28,7 @@ import org.apache.commons.io.FileUtils;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.Search;
 import org.hibernate.search.query.dsl.QueryBuilder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -74,6 +75,7 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 	 *             the exception
 	 */
 	@Test
+	@Ignore
 	public void testCreateSearchIndex() throws Exception {
 		FileUtils.deleteDirectory(new File(databaseSearchIndexLocation));
 		searchIndexer.updateSearchIndex();
@@ -81,6 +83,7 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 	}
 
 	@Test
+	@Ignore
 	@Transactional(timeout=900)
 	public void testSearchIndex() throws Exception {
 
