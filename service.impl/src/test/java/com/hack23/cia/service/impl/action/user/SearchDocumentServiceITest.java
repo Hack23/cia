@@ -18,7 +18,6 @@
 */
 package com.hack23.cia.service.impl.action.user;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -45,7 +44,6 @@ public final class SearchDocumentServiceITest extends AbstractServiceFunctionalI
 	 *             the exception
 	 */
 	@Test
-	@Ignore
 	public void Test() throws Exception {
 		setAuthenticatedAnonymousUser();
 

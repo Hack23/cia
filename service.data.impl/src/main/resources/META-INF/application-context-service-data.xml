@@ -14,7 +14,7 @@
 	</bean>
 	
 	<bean id="jCacheManager" class="org.springframework.cache.jcache.JCacheManagerFactoryBean">
-	 <!--      <property name="cacheManagerUri" value="/ehcache.xml" /> -->	
+	     <property name="cacheManagerUri"   value="classpath:ehcache3.xml" /> 	
 	</bean>
 
 	<bean id="databasePropertyConfigurer"
@@ -91,7 +91,7 @@
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-		depends-on="dataCacheManager,liquibase,transactionManager">
+		depends-on="dataCacheManager,liquibase,transactionManager,jCacheManager">
 		<property name="dataSource" ref="dataSource" />
 		<property name="persistenceUnitName" value="ciaPersistenceUnit" />
 		<property name="jpaVendorAdapter">
@@ -159,11 +159,12 @@
                 <prop key="hibernate.cache.use_minimal_puts">true</prop>
                 <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop>
                 <prop key="hibernate.cache.default_cache_concurrency_strategy">TRANSACTIONAL</prop>
-                <!-- 
+                <!--
 	                <prop key="hibernate.cache.default_cache_concurrency_strategy">READ_WRITE</prop>
 	                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.JCacheRegionFactory</prop>
 					<prop key="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</prop>
-				-->                
+			    -->
+				               
                 <prop key="hibernate.search.default.indexBase">${database.search.index.location}</prop>                
 				
 			</props>
@@ -208,7 +209,7 @@
 			<map>
 				<!-- temp disabled hibernate 4.3.1
 				<entry key="org.hibernate:name=cia-statistics">
-					<bean class="org.hibernate.jmx.StatisticsService">
+					<bean class="org.hibernate.jmx.spi.JmxService">
 						<property name="statisticsEnabled" value="true" />
 						<property name="sessionFactory">
 							<bean id="entityManagerFactory.sessionFactory"
