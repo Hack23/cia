@@ -155,15 +155,15 @@
                 <prop key="hibernate.cache.use_query_cache">true</prop>
                 <prop key="hibernate.cache.use_second_level_cache">true</prop>
                 <prop key="hibernate.cache.use_structured_entries">true</prop>
-                <!-- <prop key="hibernate.cache.default_cache_concurrency_strategy">TRANSACTIONAL</prop>-->
-                <prop key="hibernate.cache.default_cache_concurrency_strategy">READ_WRITE</prop>
                 
                 <prop key="hibernate.cache.use_minimal_puts">true</prop>
-                <!-- 
                 <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop>
+                <prop key="hibernate.cache.default_cache_concurrency_strategy">TRANSACTIONAL</prop>
+                <!-- 
+	                <prop key="hibernate.cache.default_cache_concurrency_strategy">READ_WRITE</prop>
+	                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.JCacheRegionFactory</prop>
+					<prop key="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</prop>
 				-->                
-                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.JCacheRegionFactory</prop>
-				<prop key="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</prop>
                 <prop key="hibernate.search.default.indexBase">${database.search.index.location}</prop>                
 				
 			</props>
