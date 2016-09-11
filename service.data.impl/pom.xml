@@ -289,18 +289,18 @@
       <groupId>org.ehcache</groupId>
       <artifactId>ehcache-clustered</artifactId>
       <version>3.1.2</version>
-    </dependency>    
+    </dependency>
     <dependency>
-	    <groupId>org.hibernate</groupId>
-	    <artifactId>hibernate-jcache</artifactId>
-	    <version>5.2.2.Final</version>
-	    <exclusions>
-	    	<exclusion>
-	    	   <groupId>org.hibernate</groupId>
-    		   <artifactId>hibernate-core</artifactId>
-	    	</exclusion>
-	    </exclusions>
-	</dependency> 
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-jcache</artifactId>
+      <version>5.2.2.Final</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>hibernate-core</artifactId>
+          <groupId>org.hibernate</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
     <!-- <dependency> <groupId>cglib</groupId> <artifactId>cglib</artifactId> 
 			</dependency> <dependency> <groupId>asm</groupId> <artifactId>asm-tree</artifactId> 
 			</dependency> -->
