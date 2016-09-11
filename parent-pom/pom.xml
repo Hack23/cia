@@ -97,10 +97,10 @@
     <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
-    <!-- <cia.project.versions.spring>4.3.2.RELEASE/5.0.0.M1</cia.project.versions.spring> -->
-    <cia.project.versions.spring>5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring>
-    <!-- <cia.project.versions.spring.security>4.1.3.RELEASE</cia.project.versions.spring.security>-->
-    <cia.project.versions.spring.security>4.2.0.BUILD-SNAPSHOT</cia.project.versions.spring.security>
+    <!-- <cia.project.versions.spring>4.3.2.RELEASE/5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring> -->
+    <cia.project.versions.spring>5.0.0.M1</cia.project.versions.spring>
+    <!-- <cia.project.versions.spring.security>4.2.0.BUILD-SNAPSHOT</cia.project.versions.spring.security>-->
+    <cia.project.versions.spring.security>4.1.3.RELEASE</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.0.BETA-3</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.20.0-GA</cia.project.versions.javassist>
     <cia.project.versions.asm>5.1</cia.project.versions.asm>
