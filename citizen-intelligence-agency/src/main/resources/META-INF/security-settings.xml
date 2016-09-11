@@ -7,8 +7,8 @@
 
 	 <http use-expressions="false">
 
-	    <intercept-url pattern="/monitoring" access="ROLE_ADMIN" />
-	 	<intercept-url pattern="/monitoring/**" access="ROLE_ADMIN" />
+	  <intercept-url pattern="/monitoring" access="ROLE_ADMIN" />
+	  <intercept-url pattern="/monitoring/**" access="ROLE_ADMIN" />
 
 	 	<csrf disabled="true"/>
 	   <!--   <http-basic />-->
