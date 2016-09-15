@@ -293,7 +293,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jcache</artifactId>
-      <version>5.2.2.Final</version>
+      <version>5.2.3-SNAPSHOT</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-core</artifactId>
