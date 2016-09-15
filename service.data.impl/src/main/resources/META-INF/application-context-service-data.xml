@@ -7,6 +7,7 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.3.xsd">
 
+	<context:mbean-export />
 	<cache:annotation-driven/>
 	
 	<bean id="cacheManager" class="org.springframework.cache.jcache.JCacheCacheManager">
@@ -107,6 +108,12 @@
 				<prop key="hibernate.hbm2ddl.auto">${database.ddl}</prop>
 				Do not support materialized views in postgres
 				-->
+				<prop key="hibernate.jmx.enabled">true</prop>
+				<prop key="hibernate.jmx.usePlatformServer">true</prop>
+
+				<prop key="hibernate.jmx.agentId">cia-statistics</prop>
+				<prop key="hibernate.jmx.defaultDomain">org.hibernate.core</prop>
+				<prop key="hibernate.jmx.sessionFactoryName">sessionFactory</prop>
 
 			    <prop key="hibernate.generate_statistics">true</prop>
                 <prop key="hibernate.show_sql">false</prop>
@@ -122,7 +129,11 @@
                 <prop key="hibernate.jdbc.use_streams_for_binary">true</prop>
                 <prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
                 <prop key="hibernate.connection.isolation">3</prop>
-                <!-- <prop key="hibernate.connection.release_mode">on_close</prop> -->
+                <!-- 
+                <prop key="hibernate.connection.release_mode">on_close</prop> 
+                <prop key="hibernate.connection.acquisition_mode">immediate</prop>
+                -->
+                <prop key="hibernate.connection.handling_mode">DELAYED_ACQUISITION_AND_RELEASE_AFTER_STATEMENT</prop>
                 <prop key="hibernate.connection.release_mode">auto</prop>
                 <prop key="hibernate.connection.useUnicode">true</prop>
                 <prop key="hibernate.connection.characterEncoding">UTF-8</prop>
@@ -131,7 +142,7 @@
 
                 <prop key="hibernate.default_batch_fetch_size">1024</prop>
                 <prop key="hibernate.jdbc.batch_size">1024</prop>
-                <prop key="hibernate.jdbc.fetch_size">1024</prop>
+                <prop key="hibernate.jdbc.fetch_size">1024</prop>	
                 <prop key="hibernate.jdbc.batch_versioned_data">true</prop>
                 <prop key="hibernate.jdbc.use_getGeneratedKeys">true</prop>
                 <prop key="hibernate.jdbc.use_get_generated_keys">true</prop>
@@ -212,7 +223,7 @@
 					<bean class="org.hibernate.jmx.spi.JmxService">
 						<property name="statisticsEnabled" value="true" />
 						<property name="sessionFactory">
-							<bean id="entityManagerFactory.sessionFactory"
+							<bean id="entityManagerFactory.sessionFactory.statistics"
 								class="org.springframework.beans.factory.config.PropertyPathFactoryBean" />
 						</property>
 					</bean>

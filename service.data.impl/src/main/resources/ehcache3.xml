@@ -6,9 +6,16 @@
         http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.1.xsd
         http://www.ehcache.org/v3/jsr107 http://www.ehcache.org/schema/ehcache-107-ext-3.1.xsd">
 
-
+	
   <service>
     <jsr107:defaults enable-management="true" enable-statistics="true" />
   </service>
+
+	<cache alias="myCache">
+	  <expiry>
+	    <ttl unit="seconds">20</ttl>
+	  </expiry>
+	  <heap>100</heap>
+	</cache>
 
 </config>
