@@ -132,9 +132,9 @@
                 <!-- 
                 <prop key="hibernate.connection.release_mode">on_close</prop> 
                 <prop key="hibernate.connection.acquisition_mode">immediate</prop>
-                -->
-                <prop key="hibernate.connection.handling_mode">DELAYED_ACQUISITION_AND_RELEASE_AFTER_STATEMENT</prop>
                 <prop key="hibernate.connection.release_mode">auto</prop>
+                -->
+                <prop key="hibernate.connection.handling_mode">DELAYED_ACQUISITION_AND_RELEASE_AFTER_TRANSACTION</prop>
                 <prop key="hibernate.connection.useUnicode">true</prop>
                 <prop key="hibernate.connection.characterEncoding">UTF-8</prop>
                 <prop key="hibernate.connection.charSet">UTF-8</prop>
