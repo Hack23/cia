@@ -47,7 +47,7 @@
       </roles>
     </contributor>
   </contributors>
-  <mailingLists />
+  <mailingLists></mailingLists>
   <prerequisites>
     <maven>3.2.3</maven>
   </prerequisites>
@@ -924,7 +924,7 @@
                   <version>${jdk.src.version}</version>
                 </requireJavaVersion>
                 <!-- <requireOS> <family>unix</family> </requireOS> -->
-                <DependencyConvergence />
+                <DependencyConvergence></DependencyConvergence>
                 <bannedDependencies>
                   <excludes>
                     <exclude>commons-logging:commons-logging</exclude>
@@ -1059,7 +1059,7 @@
         <additionalRuntimeArgLine>-addmods java.xml.bind,ALL-MODULE-PATH -XaddExports:java.base/sun.nio.ch=ALL-UNNAMED -XaddExports:java.base/jdk.internal.ref=ALL-UNNAMED</additionalRuntimeArgLine>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
-        <jdk.src.exclude />
+        <jdk.src.exclude></jdk.src.exclude>
         <jacoco.version>0.7.8-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.6-jigsaw-SNAPSHOT</compiler.plugin.version>
       </properties>
@@ -1070,7 +1070,7 @@
         <jdk>1.8</jdk>
       </activation>
       <properties>
-        <additionalRuntimeArgLine />
+        <additionalRuntimeArgLine></additionalRuntimeArgLine>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>

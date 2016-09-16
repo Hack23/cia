@@ -156,15 +156,20 @@ $ service postgresql restart
 
 
 ```
-$ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2016.8.17/cia-dist-deb-2016.8.17.deb
+$ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2016.9.17/cia-dist-deb-2016.9.17.deb
 ```
 
 
 8. Install debian package
 
 ```
-$ sudo dpkg -i cia-dist-deb-2016.8.17.deb
+$ sudo dpkg -i cia-dist-deb-2016.9.17.deb
 ```
 
 
 9. Access the server at [http://localhost:2323/cia/](http://localhost:2323/cia/) .
+
+
+# Application package diagram overview
+
+[![SonarQube Tech Debt](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-Complete-Javadoc/lastSuccessfulBuild/artifact/citizen-intelligence-agency/target/apidocs/overview-summary.png)](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-Complete-Javadoc/lastSuccessfulBuild/artifact/citizen-intelligence-agency/target/apidocs/index.html)
