@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.hack23.cia</groupId>
   <artifactId>parent-pom</artifactId>
-  <version>2016.9.17</version>
+  <version>2016.9.18-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>CIA Project</name>
   <description>CIA Parent pom</description>
@@ -47,14 +47,14 @@
       </roles>
     </contributor>
   </contributors>
-  <mailingLists></mailingLists>
+  <mailingLists />
   <prerequisites>
     <maven>3.2.3</maven>
   </prerequisites>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
-    <tag>cia-all-2016.9.17</tag>
+    <tag>cia-all-2016.3.6</tag>
     <url>https://github.com/Hack23/cia/tree/master/parent-pom</url>
   </scm>
   <issueManagement>
@@ -924,7 +924,7 @@
                   <version>${jdk.src.version}</version>
                 </requireJavaVersion>
                 <!-- <requireOS> <family>unix</family> </requireOS> -->
-                <DependencyConvergence></DependencyConvergence>
+                <DependencyConvergence />
                 <bannedDependencies>
                   <excludes>
                     <exclude>commons-logging:commons-logging</exclude>
@@ -1059,7 +1059,7 @@
         <additionalRuntimeArgLine>-addmods java.xml.bind,ALL-MODULE-PATH -XaddExports:java.base/sun.nio.ch=ALL-UNNAMED -XaddExports:java.base/jdk.internal.ref=ALL-UNNAMED</additionalRuntimeArgLine>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
-        <jdk.src.exclude></jdk.src.exclude>
+        <jdk.src.exclude />
         <jacoco.version>0.7.8-SNAPSHOT</jacoco.version>
         <compiler.plugin.version>3.6-jigsaw-SNAPSHOT</compiler.plugin.version>
       </properties>
@@ -1070,7 +1070,7 @@
         <jdk>1.8</jdk>
       </activation>
       <properties>
-        <additionalRuntimeArgLine></additionalRuntimeArgLine>
+        <additionalRuntimeArgLine />
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
