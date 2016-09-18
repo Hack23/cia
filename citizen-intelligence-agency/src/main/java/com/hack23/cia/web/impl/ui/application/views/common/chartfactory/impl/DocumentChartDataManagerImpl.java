@@ -198,7 +198,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 			}
 		}
 
-		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,"Document History by Org", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 	@Override
@@ -237,7 +237,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 			}
 		}
 
-		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content, "Document history party",new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 
@@ -281,7 +281,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 			}
 		}
 
-		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,"Document history ", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 
@@ -315,7 +315,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 
 		}
 
-		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,"Document type", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 

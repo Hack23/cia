@@ -131,7 +131,7 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 
 		}
 
-		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,"Decision type daily summary", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 
@@ -173,7 +173,7 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 			}
 		}
 
-		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,"Org Decision type daily summary", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 }

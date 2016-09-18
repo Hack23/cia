@@ -49,11 +49,10 @@ public final class ChartDataManagerImpl extends AbstractChartDataManagerImpl imp
 
 		final DCharts chart = new DCharts().setDataSeries(dataSeries).setOptions(options);
 
-		chart.setCaption(caption);
 		chart.show();
 		chart.setSizeFull();
 		
-		addChart(content, chart);
+		addChart(content,caption, chart);
 
 	}
 

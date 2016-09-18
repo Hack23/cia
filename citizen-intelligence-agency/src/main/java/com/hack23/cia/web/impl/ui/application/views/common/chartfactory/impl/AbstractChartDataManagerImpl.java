@@ -18,8 +18,14 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
-import org.dussan.vaadin.dcharts.DCharts;
+import java.util.Optional;
 
+import org.dussan.vaadin.dcharts.DCharts;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.ui.AbstractOrderedLayout;
 
@@ -27,6 +33,11 @@ import com.vaadin.ui.AbstractOrderedLayout;
  * The Class AbstractChartDataManagerImpl.
  */
 public abstract class AbstractChartDataManagerImpl {
+
+	
+	/** The application manager. */
+	@Autowired
+	private ApplicationManager applicationManager;
 
 	/**
 	 * Instantiates a new abstract chart data manager impl.
@@ -40,12 +51,39 @@ public abstract class AbstractChartDataManagerImpl {
 	 *
 	 * @param content
 	 *            the content
+	 * @param caption
+	 *            the caption
 	 * @param chart
 	 *            the chart
 	 */
-	protected final void addChart(final AbstractOrderedLayout content, final DCharts chart) {
+	protected final void addChart(final AbstractOrderedLayout content,final String caption, final DCharts chart) {
 		content.addComponent(chart);
+		chart.setCaption(caption);
 		content.setExpandRatio(chart, ContentRatio.GRID);		
 	}
+
+	/**
+	 * Gets the party name.
+	 *
+	 * @param party
+	 *            the party
+	 * @return the party name
+	 */
+	protected final String getPartyName(final String party) {
+		final DataContainer<ViewRiksdagenParty, String> dataContainer = applicationManager
+				.getDataContainer(ViewRiksdagenParty.class);
+		
+		Optional<ViewRiksdagenParty> matchingObjects =dataContainer.getAll().stream().
+			    filter(p -> p.getPartyId().equalsIgnoreCase(party)).
+			    findFirst();
+		
+		if (matchingObjects.isPresent()) {
+			return matchingObjects.get().getPartyName();
+		
+		} else {
+			return party;
+		}
+	}
+	
 
 }
