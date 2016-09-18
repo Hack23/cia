@@ -37,7 +37,11 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary_;
+import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.BallotChartDataManager;
+import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
@@ -53,6 +57,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 		super();
 	}
 
+
 	@Override
 	public void createChart(final AbstractOrderedLayout content,final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary) {
 		final DataSeries dataSeries = new DataSeries();
@@ -62,12 +67,15 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 		dataSeries.newSeries().add("Abstain", viewRiksdagenVoteDataBallotSummary.getAbstainVotes());
 		dataSeries.newSeries().add("Absent", viewRiksdagenVoteDataBallotSummary.getAbsentVotes());
 
+	
+		String	caption = viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getIssue() + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern(); 
+
 		final SeriesDefaults seriesDefaults = new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
 				.setRendererOptions(new DonutRenderer().setSliceMargin(3).setStartAngle(-90).setShowDataLabels(true)
 						.setDataLabels(DataLabels.VALUE));
 
-		final Legend legend = new Legend().setShow(true).setPlacement(LegendPlacements.OUTSIDE_GRID)
-				.setLocation(LegendLocations.WEST);
+		final Legend legend = new Legend().setShow(true).setPlacement(LegendPlacements.INSIDE_GRID)
+				.setLocation(LegendLocations.NORTH_WEST);
 
 		final Highlighter highlighter = new Highlighter()
 				.setShow(true)
@@ -77,7 +85,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 		
 		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend).setHighlighter(highlighter);
 
-		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(options).show());
+		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(options).show());
 	}
 
 	@Override
@@ -91,22 +99,25 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 		series.addSeries(new XYseries().setLabel("Abstain"));
 		series.addSeries(new XYseries().setLabel("Absent"));
 		
+		String caption=null;
 		for (final ViewRiksdagenVoteDataBallotPartySummary viewRiksdagenVoteDataBallotPartySummary : partyList) {
-			
+			if (caption == null) {
+				caption = viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getIssue() + viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getConcern(); 
+			}
 			
 			dataSeries.newSeries()
-			.add(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty(), viewRiksdagenVoteDataBallotPartySummary.getPartyYesVotes())
-			.add(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty(),viewRiksdagenVoteDataBallotPartySummary.getPartyNoVotes())
-			.add(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty(),viewRiksdagenVoteDataBallotPartySummary.getPartyAbstainVotes())
-			.add(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty(),viewRiksdagenVoteDataBallotPartySummary.getPartyAbsentVotes());			
+			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()), viewRiksdagenVoteDataBallotPartySummary.getPartyYesVotes())
+			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()),viewRiksdagenVoteDataBallotPartySummary.getPartyNoVotes())
+			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()),viewRiksdagenVoteDataBallotPartySummary.getPartyAbstainVotes())
+			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()),viewRiksdagenVoteDataBallotPartySummary.getPartyAbsentVotes());			
 		}	
 
 		final SeriesDefaults seriesDefaults = new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
 				.setRendererOptions(new DonutRenderer().setSliceMargin(3).setStartAngle(-90).setShowDataLabels(true)
 						.setDataLabels(DataLabels.VALUE));
 
-		final Legend legend = new Legend().setShow(true).setPlacement(LegendPlacements.OUTSIDE_GRID)
-				.setLocation(LegendLocations.WEST);
+		final Legend legend = new Legend().setShow(true).setPlacement(LegendPlacements.INSIDE_GRID)
+				.setLocation(LegendLocations.NORTH_WEST);
 
 		final Highlighter highlighter = new Highlighter()
 				.setShow(true)
@@ -116,7 +127,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 		
 		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend).setHighlighter(highlighter).addOption(series);
 
-		addChart(content, new DCharts().setDataSeries(dataSeries).setOptions(options).show());
+		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(options).show());
 	}
 
 }

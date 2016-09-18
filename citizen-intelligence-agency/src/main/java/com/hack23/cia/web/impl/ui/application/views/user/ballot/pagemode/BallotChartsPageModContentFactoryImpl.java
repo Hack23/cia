@@ -18,7 +18,12 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.ballot.pagemode;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -109,17 +114,47 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 				panelContent.addComponent(horizontalLayout);
 				panelContent.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
 				
+				Collections.sort(ballots, (Comparator<ViewRiksdagenVoteDataBallotSummary>) (o1, o2) -> (o1.getEmbeddedId().getIssue() + o2.getEmbeddedId().getConcern()).compareTo(o1.getEmbeddedId().getIssue() + o2.getEmbeddedId().getConcern()));
+				
 				for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
 					ballotChartDataManager.createChart(horizontalLayout,viewRiksdagenVoteDataBallotSummary);
 				}
 
-				ballotChartDataManager.createChart(horizontalLayout,partyBallotList);
+				Map<String, List<ViewRiksdagenVoteDataBallotPartySummary>> concernIssuePartyBallotSummaryMap = createIssueConcernMap(partyBallotList);
+				
+				for (List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotSummaryList : concernIssuePartyBallotSummaryMap.values()) {					
+					ballotChartDataManager.createChart(horizontalLayout,partyBallotSummaryList);
+				}
+				
 
 				panel.setCaption(BALLOT + pageId);
 				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
 		}
 		return panelContent;
 
+	}
+
+	/**
+	 * Creates the issue concern map.
+	 *
+	 * @param partyBallotList
+	 *            the party ballot list
+	 * @return the map
+	 */
+	private static Map<String,List<ViewRiksdagenVoteDataBallotPartySummary>> createIssueConcernMap(List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList) {
+		Map<String,List<ViewRiksdagenVoteDataBallotPartySummary>> concernIssuePartyBallotSummaryMap = new HashMap<>();
+		for (ViewRiksdagenVoteDataBallotPartySummary partySummary: partyBallotList) {
+			
+			if (partySummary.getEmbeddedId().getIssue() !=null || partySummary.getEmbeddedId().getConcern() != null ) {
+				String key = partySummary.getEmbeddedId().getIssue() + partySummary.getEmbeddedId().getConcern();
+				if (concernIssuePartyBallotSummaryMap.get(key) == null) {
+					concernIssuePartyBallotSummaryMap.put(key, new ArrayList<>());				
+				}
+				concernIssuePartyBallotSummaryMap.get(key).add(partySummary);				
+			}
+		}
+		
+		return concernIssuePartyBallotSummaryMap;
 	}
 
 }

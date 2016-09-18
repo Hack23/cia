@@ -135,7 +135,7 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 				.addOption(ChartOptionsImpl.INSTANCE.createHighLighterNorth()).addOption(cursor).addOption(series)
 				.addOption(ChartOptionsImpl.INSTANCE.createLegendOutside());
 
-		addChart(content,  new DCharts().setDataSeries(dataSeries).setOptions(options).show());
+		addChart(content,"Ballot indicators",  new DCharts().setDataSeries(dataSeries).setOptions(options).show());
 	}
 
 

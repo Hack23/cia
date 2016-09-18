@@ -1006,7 +1006,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME,"A411DA4A-430F-408A-99BE-3539E0E2D82A"));
 
-		//assertTrue(userPageVisit.checkHtmlBodyContainsText("Ballot"));
+		assertTrue(userPageVisit.checkHtmlBodyContainsText("Ballot"));
 
 	}
 
@@ -1025,7 +1025,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME,PageMode.CHARTS,"A411DA4A-430F-408A-99BE-3539E0E2D82A"));
 
-		//assertTrue(userPageVisit.checkHtmlBodyContainsText("Ballot"));
+		assertTrue(userPageVisit.checkHtmlBodyContainsText("Ballot"));
 
 	}
 
@@ -1045,7 +1045,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME,"A1A613C2-D942-4D5D-AC29-4AE3C4B57486"));
 
-		//assertTrue(userPageVisit.checkHtmlBodyContainsText("Ballot"));
+		assertTrue(userPageVisit.checkHtmlBodyContainsText("Ballot"));
 
 	}
 
@@ -1064,7 +1064,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME,PageMode.CHARTS,"A1A613C2-D942-4D5D-AC29-4AE3C4B57486"));
 
-		//assertTrue(userPageVisit.checkHtmlBodyContainsText("Ballot"));
+		assertTrue(userPageVisit.checkHtmlBodyContainsText("Ballot"));
 
 	}
 
