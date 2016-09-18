@@ -37,11 +37,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary;
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary_;
-import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.BallotChartDataManager;
-import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
