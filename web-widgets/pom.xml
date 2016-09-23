@@ -253,6 +253,12 @@
             <fileset>
               <directory>src/main/webapp/VAADIN/widgetsets</directory>
             </fileset>
+            <fileset>
+              <directory>src/main/java/com/hack23/cia/web/widgets/</directory>
+              <includes>
+                <include>com/**/*</include>
+              </includes>
+            </fileset>
           </filesets>
         </configuration>
       </plugin>
