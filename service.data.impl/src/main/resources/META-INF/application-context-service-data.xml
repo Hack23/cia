@@ -149,11 +149,15 @@
                 <prop key="hibernate.jdbc.use_scrollable_resultset">true</prop>
 
                 <prop key="hibernate.current_session_context_class">jta</prop>
-                <!-- <prop key="hibernate.transaction.factory_class">com.atomikos.icatch.jta.hibernate3.AtomikosJTATransactionFactory</prop> -->
 
+				<!-- 
                 <prop key="hibernate.transaction.manager_lookup_class">com.atomikos.icatch.jta.hibernate4.AtomikosJ2eePlatform</prop>
-
                 <prop key="hibernate.transaction.jta.platform">com.hack23.cia.service.data.impl.AtomikosJtaPlatform</prop>
+                -->
+                <prop key="hibernate.transaction.manager_lookup_class">com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple</prop>
+                <prop key="hibernate.transaction.jta.platform">org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform</prop>
+                
+                
 <!--
                 <prop key="hibernate.implicit_naming_strategy">legacy-hbm</prop>
 -->
@@ -182,7 +186,7 @@
 		</property>
 	</bean>
 
-
+<!-- 
 	<bean id="userTransactionService" class="com.atomikos.icatch.config.UserTransactionServiceImp"
 		init-method="init" destroy-method="shutdownForce">
 	</bean>
@@ -197,12 +201,21 @@
 		<property name="transactionTimeout" value="300000" />
 	</bean>
 
-
 	<bean id="transactionManager"
 		class="org.springframework.transaction.jta.JtaTransactionManager"
 		depends-on="userTransactionService">
 		<property name="transactionManager" ref="AtomikosTransactionManager" />
 		<property name="userTransaction" ref="AtomikosUserTransaction" />
+	</bean>
+-->
+	
+	<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+		<property name="transactionManager">
+			<bean class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple" />
+		</property>
+		<property name="userTransaction">
+			<bean class="com.arjuna.ats.internal.jta.transaction.arjunacore.UserTransactionImple" />
+		</property>
 	</bean>
 
 	<bean class="org.springframework.jmx.export.MBeanExporter">
