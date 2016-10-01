@@ -113,7 +113,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>2.53.1</version>
+      <version>3.0.0-beta4</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -143,6 +143,74 @@
         <exclusion>
           <artifactId>httpclient</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>selenium-remote-driver</artifactId>
+          <groupId>org.seleniumhq.selenium</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>xml-apis</artifactId>
+          <groupId>xml-apis</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>gson</artifactId>
+          <groupId>com.google.code.gson</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>webbit</artifactId>
+          <groupId>org.webbitserver</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>cglib-nodep</artifactId>
+          <groupId>cglib</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jna-platform</artifactId>
+          <groupId>net.java.dev.jna</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jna</artifactId>
+          <groupId>net.java.dev.jna</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-remote-driver</artifactId>
+      <version>3.0.0-beta4</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>htmlunit-driver</artifactId>
+          <groupId>org.seleniumhq.selenium</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jetty-websocket</artifactId>
+          <groupId>org.eclipse.jetty</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>selenium-java</artifactId>
+          <groupId>org.seleniumhq.selenium</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>phantomjsdriver</artifactId>
+          <groupId>com.github.detro.ghostdriver</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>commons-logging</artifactId>
+          <groupId>commons-logging</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>htmlunit</artifactId>
+          <groupId>net.sourceforge.htmlunit</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>httpclient</artifactId>
+          <groupId>org.apache.httpcomponents</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>selenium-remote-driver</artifactId>
+          <groupId>org.seleniumhq.selenium</groupId>
         </exclusion>
         <exclusion>
           <artifactId>xml-apis</artifactId>
@@ -236,6 +304,10 @@
         <exclusion>
           <artifactId>selenium-java</artifactId>
           <groupId>org.seleniumhq.selenium</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>phantomjsdriver</artifactId>
+          <groupId>com.codeborne</groupId>
         </exclusion>
       </exclusions>
     </dependency>
