@@ -402,12 +402,17 @@
     <dependency>
       <groupId>com.atomikos</groupId>
       <artifactId>transactions-hibernate4</artifactId>
-    </dependency>   
+    </dependency>
     <dependency>
-		<groupId>org.jboss.narayana.jta</groupId>
-		<artifactId>narayana-jta</artifactId>
-		<version>5.3.5.Final</version>
-	</dependency>    
+      <groupId>org.jboss.narayana.jta</groupId>
+      <artifactId>narayana-jta</artifactId>
+      <version>5.3.5.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.narayana.jta</groupId>
+      <artifactId>jms</artifactId>
+      <version>5.3.5.Final</version>
+    </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>jcl-over-slf4j</artifactId>
