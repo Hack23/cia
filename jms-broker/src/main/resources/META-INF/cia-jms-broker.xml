@@ -72,6 +72,12 @@
 		<property name="sessionCacheSize" value="100" />
 	</bean>
  -->
+ 
+ 
+ 
+ 
+ <!-- 
+ 	
    <bean name="connectionFactory" id="connectionFactory" depends-on="broker"
               class="com.atomikos.jms.AtomikosConnectionFactoryBean"
               init-method="init" destroy-method="close">
@@ -95,6 +101,45 @@
 
        <property name="localTransactionMode" value="false" />
    </bean>
+-->
+
+	<amq:xaConnectionFactory  id="connectionFactory" brokerURL="vm://localhost"  checkForDuplicates="false" >
+		<amq:redeliveryPolicy>
+    		<amq:redeliveryPolicy maximumRedeliveries="1" initialRedeliveryDelay="30000" />
+  		</amq:redeliveryPolicy>
+  	 <property name="trustedPackages">
+        <list>
+            <value>com.hack23.cia</value>
+            <value>java.util</value>
+            <value>java.lang</value>
+            <value>java.math</value>
+            <value>org.apache</value>
+            <value>org.apache</value>
+            <value>com.fasterxml</value>
+            <value>org.joda</value>
+        </list>
+    </property>
+  	</amq:xaConnectionFactory>
+
+	<amq:xaConnectionFactory  id="senderConnectionFactory" brokerURL="vm://localhost"  checkForDuplicates="false" >
+		<amq:redeliveryPolicy>
+    		<amq:redeliveryPolicy maximumRedeliveries="1" initialRedeliveryDelay="30000" />
+  		</amq:redeliveryPolicy>
+  	 <property name="trustedPackages">
+        <list>
+            <value>com.hack23.cia</value>
+            <value>java.util</value>
+            <value>java.lang</value>
+            <value>java.math</value>
+            <value>org.apache</value>
+            <value>org.apache</value>
+            <value>com.fasterxml</value>
+            <value>org.joda</value>
+        </list>
+    </property>
+  	</amq:xaConnectionFactory>
+
+
 
 	<bean id="brokerQuery" class="org.apache.activemq.web.SingletonBrokerFacade" autowire="constructor" scope="prototype"/>
 
