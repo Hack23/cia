@@ -72,11 +72,7 @@
 		<property name="sessionCacheSize" value="100" />
 	</bean>
  -->
- 
- 
- 
- 
- <!-- 
+
  	
    <bean name="connectionFactory" id="connectionFactory" depends-on="broker"
               class="com.atomikos.jms.AtomikosConnectionFactoryBean"
@@ -101,8 +97,8 @@
 
        <property name="localTransactionMode" value="false" />
    </bean>
--->
 
+ <!-- 
 	<amq:xaConnectionFactory  id="connectionFactory" brokerURL="vm://localhost"  checkForDuplicates="false" >
 		<amq:redeliveryPolicy>
     		<amq:redeliveryPolicy maximumRedeliveries="1" initialRedeliveryDelay="30000" />
@@ -139,6 +135,7 @@
     </property>
   	</amq:xaConnectionFactory>
 
+-->
 
 
 	<bean id="brokerQuery" class="org.apache.activemq.web.SingletonBrokerFacade" autowire="constructor" scope="prototype"/>
