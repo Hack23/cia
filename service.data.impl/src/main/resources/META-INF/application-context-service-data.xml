@@ -150,12 +150,12 @@
 
                 <prop key="hibernate.current_session_context_class">jta</prop>
 
-				<!-- 
                 <prop key="hibernate.transaction.manager_lookup_class">com.atomikos.icatch.jta.hibernate4.AtomikosJ2eePlatform</prop>
                 <prop key="hibernate.transaction.jta.platform">com.hack23.cia.service.data.impl.AtomikosJtaPlatform</prop>
-                -->
+				<!-- 
                 <prop key="hibernate.transaction.manager_lookup_class">com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple</prop>
                 <prop key="hibernate.transaction.jta.platform">org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform</prop>
+                -->
                 
                 
 <!--
