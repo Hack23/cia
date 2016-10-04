@@ -37,6 +37,13 @@ import org.hibernate.proxy.HibernateProxy;
 public final class LoadHelper {
 
 	/**
+	 * Instantiates a new load helper.
+	 */
+	private LoadHelper() {
+		super();
+	}
+
+	/**
 	 * Handle reflection exception.
 	 *
 	 * @param ex
@@ -125,11 +132,5 @@ public final class LoadHelper {
 		return obj;
 	}
 
-	/**
-	 * Instantiates a new load helper.
-	 */
-	private LoadHelper() {
-		super();
-	}
 
 }
