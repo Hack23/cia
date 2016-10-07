@@ -333,7 +333,7 @@
       <plugin>
         <groupId>org.eclipse.jettys</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
-        <version>9.4.0-SNAPSHOT</version>
+        <version>9.4.0.RC0</version>
       </plugin>
     </plugins>
   </build>
