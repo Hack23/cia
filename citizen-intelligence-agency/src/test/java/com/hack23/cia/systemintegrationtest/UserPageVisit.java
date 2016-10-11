@@ -871,6 +871,7 @@ public final class UserPageVisit extends Assert {
 	}
 
 	public void enableGoogleAuthenticator() throws Exception {
+				
 		final WebElement enableGoogleAuthButton = findButton("Enable Google Authenticator");
 		assertNotNull("Expect to find a Enable Google Authenticator Button",enableGoogleAuthButton);
 

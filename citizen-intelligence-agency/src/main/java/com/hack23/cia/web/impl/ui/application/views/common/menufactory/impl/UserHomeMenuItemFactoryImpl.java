@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.MenuBar;
@@ -39,6 +40,9 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
+	/** The Constant SECURITY_SETTING_TEXT. */
+	private static final String SECURITY_SETTING_TEXT = "Security settings";
+
 
 	/**
 	 * Instantiates a new user home menu item factory impl.
@@ -54,6 +58,10 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 		menuBar.addItem(OVERVIEW_TEXT, FontAwesome.USER,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.OVERVIEW, pageId));
+		
+		menuBar.addItem(SECURITY_SETTING_TEXT, FontAwesome.USER,
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString(), pageId));
+		
 
 		menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.LINE_CHART,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
