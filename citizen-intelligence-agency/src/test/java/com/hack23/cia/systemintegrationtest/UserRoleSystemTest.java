@@ -621,6 +621,11 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 
 		userLoginPageVisit.loginUser(username + "@test.com", password);
+		
+		final WebElement securitySettingMenuItem = userLoginPageVisit.getMenuItem("Security settings");
+		assertNotNull(securitySettingMenuItem);
+		userLoginPageVisit.performClickAction(securitySettingMenuItem);
+
 
 		userLoginPageVisit.enableGoogleAuthenticator();
 		

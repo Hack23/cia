@@ -32,7 +32,6 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.application.LogoutRequest;
-import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
@@ -43,7 +42,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsView
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.LogoutClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SetGoogleAuthenticatorCredentialClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.FontAwesome;
@@ -59,9 +57,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
-
-	/** The Constant ENABLE_GOOGLE_AUTHENTICATOR. */
-	private static final String ENABLE_GOOGLE_AUTHENTICATOR = "Enable Google Authenticator";
 
 	/** The Constant LOGOUT. */
 	private static final String LOGOUT = "Logout";
@@ -111,14 +106,6 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 		panelContent.addComponent(logoutButton);
 
-		final Button googleAuthButton = new Button(ENABLE_GOOGLE_AUTHENTICATOR,FontAwesome.USER_SECRET);
-		googleAuthButton.setId(ENABLE_GOOGLE_AUTHENTICATOR);
-
-		final SetGoogleAuthenticatorCredentialRequest googleAuthRequest = new SetGoogleAuthenticatorCredentialRequest();
-		googleAuthRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-		googleAuthButton.addClickListener(new SetGoogleAuthenticatorCredentialClickListener(googleAuthRequest,getApplicationManager()));
-
-		panelContent.addComponent(googleAuthButton);
 
 		final DataContainer<UserAccount, Long> dataContainer = getApplicationManager().getDataContainer(UserAccount.class);
 
