@@ -487,10 +487,6 @@
       <version>${project.version}</version>
       <exclusions>
         <exclusion>
-          <artifactId>gwt-user</artifactId>
-          <groupId>com.google.gwt</groupId>
-        </exclusion>
-        <exclusion>
           <artifactId>spring-web</artifactId>
           <groupId>org.springframework</groupId>
         </exclusion>
