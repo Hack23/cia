@@ -182,7 +182,8 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 */
 	protected final void initApplicationMenuBar(final MenuBar menuBar) {
 		menuBar.removeItems();
-		menuBar.setWidth("50%");
+		menuBar.setWidth("80%");
+		menuBar.setStyleName("Header");
 		final MenuItem mainViewItem = menuBar.addItem("Application", FontAwesome.SERVER, null);
 		
 		mainViewItem.addItem(START_TEXT, FontAwesome.STAR, COMMAND);

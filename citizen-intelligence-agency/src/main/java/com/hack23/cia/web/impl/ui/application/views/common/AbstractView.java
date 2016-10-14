@@ -142,14 +142,18 @@ public abstract class AbstractView extends Panel implements View {
 	 *            the panel name
 	 */
 	protected final void createBasicLayoutWithPanelAndFooter(final String panelName) {
-
 		final VerticalLayout layout = new VerticalLayout();
 		layout.setMargin(true);
 		layout.setSpacing(true);
+		layout.setWidth(100, Unit.PERCENTAGE);
+		layout.setHeight(100, Unit.PERCENTAGE);
+
 
 		final VerticalLayout pageModeContent = new VerticalLayout();
-		layout.setMargin(true);
-		layout.setSpacing(true);
+		pageModeContent.setMargin(true);
+		pageModeContent.setSpacing(true);
+		pageModeContent.setWidth(100, Unit.PERCENTAGE);
+		pageModeContent.setHeight(100, Unit.PERCENTAGE);
 
 		layout.addComponent(pageModeContent);
 
@@ -214,9 +218,8 @@ public abstract class AbstractView extends Panel implements View {
 		pageModeContent.setComponentAlignment(topHeader, Alignment.TOP_CENTER);
 		
 		
-		barmenu.setWidth("100%");
-		pageModeContent.addComponent(barmenu);
-		pageModeContent.setComponentAlignment(barmenu, Alignment.TOP_CENTER);
+		pageModeContent.addComponent(getBarmenu());
+		pageModeContent.setComponentAlignment(getBarmenu(), Alignment.TOP_CENTER);
 
 		panel = new Panel(panelName);
 
@@ -227,13 +230,9 @@ public abstract class AbstractView extends Panel implements View {
 		pageModeContent.addComponent(pageLinkFactory.createMainViewPageLink());
 		setContent(layout);
 
-		pageModeContent.setWidth(100, Unit.PERCENTAGE);
-		pageModeContent.setHeight(100, Unit.PERCENTAGE);
-
-		layout.setWidth(100, Unit.PERCENTAGE);
-		layout.setHeight(100, Unit.PERCENTAGE);
 		setWidth(100, Unit.PERCENTAGE);
 		setHeight(100, Unit.PERCENTAGE);
+		setSizeFull();
 
 	}
 
@@ -243,8 +242,6 @@ public abstract class AbstractView extends Panel implements View {
 	 * @return the barmenu
 	 */
 	public final MenuBar getBarmenu() {
-		barmenu.setWidth("100%");
-		barmenu.setStyleName("Header");
 		return barmenu;
 	}
 
