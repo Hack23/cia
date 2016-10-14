@@ -180,6 +180,10 @@
       <version>3.0.0</version>
       <scope>test</scope>
       <exclusions>
+       	<exclusion>
+       		<groupId>org.apache.httpcomponents</groupId>
+       		<artifactId>httpmime</artifactId>
+       	</exclusion>
         <exclusion>
           <artifactId>htmlunit-driver</artifactId>
           <groupId>org.seleniumhq.selenium</groupId>

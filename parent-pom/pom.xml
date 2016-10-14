@@ -167,7 +167,7 @@
       <dependency>
         <groupId>org.apache.httpcomponents</groupId>
         <artifactId>httpclient</artifactId>
-        <version>4.5.2</version>
+        <version>4.5.3-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.codehaus.jackson</groupId>
@@ -1975,7 +1975,7 @@
                 <exclude>org.hibernate.javax.persistence:hibernate-jpa-2.1-api</exclude>
                 <exclude>com.vaadin:vaadin-client-compiler</exclude>
                 <exclude>com.google.gwt:gwt-dev</exclude>
-                <exclude>com.google.gwt:gwt-elemental</exclude>                
+                <exclude>com.google.gwt:gwt-elemental</exclude>
               </excludes>
             </configuration>
           </plugin>
