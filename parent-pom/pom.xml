@@ -152,7 +152,7 @@
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-lang3</artifactId>
-        <version>3.5-SNAPSHOT</version>
+        <version>3.5</version>
       </dependency>
       <dependency>
         <groupId>commons-io</groupId>
@@ -1862,9 +1862,10 @@
                 <exclude>org.hibernate.javax.persistence:hibernate-jpa-2.1-api</exclude>
                 <exclude>org.ow2.asm:asm</exclude>
                 <exclude>org.ow2.asm:asm-commons</exclude>
+                <exclude>org.ow2.asm:asm-util</exclude>
                 <exclude>org.ow2.asm:asm-tree</exclude>
                 <exclude>com.vaadin:vaadin-client-compiler</exclude>
-                <exclude>com.vaadin:vaadin-themes</exclude>                
+                <exclude>com.vaadin:vaadin-themes</exclude>
                 <exclude>com.google.gwt:gwt-dev</exclude>
                 <exclude>com.google.gwt:gwt-elemental</exclude>
               </excludes>
@@ -1974,8 +1975,12 @@
                 <exclude>xml-apis:xml-apis</exclude>
                 <exclude>jdepend:jdepend</exclude>
                 <exclude>org.hibernate.javax.persistence:hibernate-jpa-2.1-api</exclude>
+                <exclude>org.ow2.asm:asm</exclude>
+                <exclude>org.ow2.asm:asm-commons</exclude>
+                <exclude>org.ow2.asm:asm-util</exclude>
+                <exclude>org.ow2.asm:asm-tree</exclude>
                 <exclude>com.vaadin:vaadin-client-compiler</exclude>
-                <exclude>com.vaadin:vaadin-themes</exclude>                                
+                <exclude>com.vaadin:vaadin-themes</exclude>
                 <exclude>com.google.gwt:gwt-dev</exclude>
                 <exclude>com.google.gwt:gwt-elemental</exclude>
               </excludes>
