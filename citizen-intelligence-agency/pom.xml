@@ -290,7 +290,7 @@
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
-      <version>1.4.9</version>
+      <version>1.4.10</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
