@@ -441,7 +441,7 @@
         <configuration>
           <generatedWidgetsetDirectory>${basedir}/src/main/java</generatedWidgetsetDirectory>
           <widgetsetMode>local</widgetsetMode>
-          <extraJvmArgs>-Xmx512M -Xss1024k</extraJvmArgs>
+          <extraJvmArgs>${additionalRuntimeArgLine}</extraJvmArgs>
           <!-- <runTarget>mobilemail</runTarget> -->
           <!-- We are doing "inplace" but into subdir VAADIN/widgetsets. This
 						way compatible with Vaadin eclipse plugin. -->
@@ -477,6 +477,7 @@
         <configuration>
           <webappDirectory>${basedir}/target/classes/VAADIN/widgetsets</webappDirectory>
           <style>OBF</style>
+          <extraJvmArgs>${additionalRuntimeArgLine}</extraJvmArgs>
         </configuration>
       </plugin>
       <plugin>
