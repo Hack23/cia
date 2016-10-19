@@ -125,6 +125,14 @@
           <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
+          <artifactId>websocket-server</artifactId>
+          <groupId>org.eclipse.jetty</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>websocket-client</artifactId>
+          <groupId>org.eclipse.jetty</groupId>
+        </exclusion>        
+        <exclusion>        
           <artifactId>selenium-java</artifactId>
           <groupId>org.seleniumhq.selenium</groupId>
         </exclusion>
