@@ -719,13 +719,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>2.10.4</version>
-          <dependencies>
-            <dependency>
-              <groupId>jdepend</groupId>
-              <artifactId>jdepend</artifactId>
-              <version>1.2.4-eclipsejdepend</version>
-            </dependency>
-          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1425,9 +1418,9 @@
               <doclet>org.jboss.apiviz.APIviz</doclet>
               <docletArtifacts>
                 <docletArtifact>
-                  <groupId>org.jboss.apiviz</groupId>
+                  <groupId>com.grahamedgecombe.apiviz</groupId>
                   <artifactId>apiviz</artifactId>
-                  <version>1.3.2-ciajdk8</version>
+                  <version>1.3.3</version>
                 </docletArtifact>
               </docletArtifacts>
               <useStandardDocletOptions>true</useStandardDocletOptions>
@@ -1621,9 +1614,9 @@
 					 -->
               <doclet>org.jboss.apiviz.APIviz</doclet>
               <docletArtifact>
-                <groupId>org.jboss.apiviz</groupId>
+                <groupId>com.grahamedgecombe.apiviz</groupId>
                 <artifactId>apiviz</artifactId>
-                <version>1.3.2-ciajdk8</version>
+                <version>1.3.3</version>
               </docletArtifact>
               <useStandardDocletOptions>true</useStandardDocletOptions>
               <charset>UTF-8</charset>
