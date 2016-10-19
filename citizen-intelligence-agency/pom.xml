@@ -131,8 +131,8 @@
         <exclusion>
           <artifactId>websocket-client</artifactId>
           <groupId>org.eclipse.jetty.websocket</groupId>
-        </exclusion>        
-        <exclusion>        
+        </exclusion>
+        <exclusion>
           <artifactId>selenium-java</artifactId>
           <groupId>org.seleniumhq.selenium</groupId>
         </exclusion>
