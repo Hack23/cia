@@ -1867,6 +1867,7 @@
                 <exclude>com.vaadin:vaadin-client-compiler</exclude>
                 <exclude>com.vaadin:vaadin-themes</exclude>
                 <exclude>com.google.gwt:gwt-dev</exclude>
+                <exclude>com.google.gwt:gwt-user</exclude>
                 <exclude>com.google.gwt:gwt-elemental</exclude>
               </excludes>
             </configuration>
@@ -1982,6 +1983,7 @@
                 <exclude>com.vaadin:vaadin-client-compiler</exclude>
                 <exclude>com.vaadin:vaadin-themes</exclude>
                 <exclude>com.google.gwt:gwt-dev</exclude>
+                <exclude>com.google.gwt:gwt-user</exclude>
                 <exclude>com.google.gwt:gwt-elemental</exclude>
               </excludes>
             </configuration>
