@@ -1056,7 +1056,7 @@
         <jdk>9</jdk>
       </activation>
       <properties>
-        <additionalRuntimeArgLine>--add-modules java.xml.bind,ALL-MODULE-PATH --add-exports java.base/sun.nio.ch=ALL-UNNAMED --add-exports java.base/jdk.internal.ref=ALL-UNNAMED</additionalRuntimeArgLine>
+        <additionalRuntimeArgLine>-Xmx512M -Xss1024k --add-modules java.xml.bind,ALL-MODULE-PATH --add-exports java.base/sun.nio.ch=ALL-UNNAMED --add-exports java.base/jdk.internal.ref=ALL-UNNAMED</additionalRuntimeArgLine>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude></jdk.src.exclude>
@@ -1070,7 +1070,7 @@
         <jdk>1.8</jdk>
       </activation>
       <properties>
-        <additionalRuntimeArgLine></additionalRuntimeArgLine>
+        <additionalRuntimeArgLine>-Xmx512M -Xss1024k</additionalRuntimeArgLine>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
