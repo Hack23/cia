@@ -59,7 +59,7 @@ public final class GridFactoryImpl implements GridFactory {
 
 		if (nestedProperties != null) {
 			for (final String nestedProperty : nestedProperties) {
-				final BeanItemContainer<?>  dataContainer= (BeanItemContainer<?>) datasource;
+				final BeanItemContainer<?> dataContainer = (BeanItemContainer<?>) datasource;
 				dataContainer.addNestedContainerProperty(nestedProperty);
 			}
 		}

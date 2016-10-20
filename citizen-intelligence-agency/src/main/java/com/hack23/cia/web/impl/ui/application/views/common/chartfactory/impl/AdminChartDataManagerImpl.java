@@ -117,7 +117,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 
 		}
 
-		addChart(content,"Application Action Events daily Summary",  new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,"Application Action Events daily Summary", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 

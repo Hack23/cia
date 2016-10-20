@@ -77,26 +77,27 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-			LabelFactory.createHeader2Label(panelContent,VOTE_HISTORY);
-			
+			LabelFactory.createHeader2Label(panelContent, VOTE_HISTORY);
 
 			final BeanItemContainer<ViewRiksdagenVoteDataBallotPartySummary> partyBallotDataSource = new BeanItemContainer<>(
 					ViewRiksdagenVoteDataBallotPartySummary.class,
 					viewRiksdagenVoteDataBallotPartySummaryChartDataManager.findByValue(pageId));
 
-			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,partyBallotDataSource,
-					"Ballots", 
-					new String[] { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue", "embeddedId.party" },
-					new String[] { "embeddedId.party","voteDate", "rm", "label", "embeddedId.concern", "embeddedId.issue",	"approved", "partyApproved", "totalVotes",
-							"partyTotalVotes", "yesVotes", "partyYesVotes", "noVotes", "partyNoVotes",
-							"partyAbstainVotes", "abstainVotes", "partyAbsentVotes", "absentVotes",
-							"partyAvgBornYear", "avgBornYear", "partyPercentageMale",
+			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, partyBallotDataSource, "Ballots",
+					new String[] { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue",
+							"embeddedId.party" },
+					new String[] { "embeddedId.party", "voteDate", "rm", "label", "embeddedId.concern",
+							"embeddedId.issue", "approved", "partyApproved", "totalVotes", "partyTotalVotes",
+							"yesVotes", "partyYesVotes", "noVotes", "partyNoVotes", "partyAbstainVotes", "abstainVotes",
+							"partyAbsentVotes", "absentVotes", "partyAvgBornYear", "avgBornYear", "partyPercentageMale",
 							"percentageMale", "ballotType", "embeddedId.ballotId" },
 					new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
 							"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
 							"percentageAbsent", "percentageAbstain" },
-					"embeddedId.ballotId", new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "embeddedId.ballotId"), "embeddedId.ballotId");
-						
+					"embeddedId.ballotId",
+					new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "embeddedId.ballotId"),
+					"embeddedId.ballotId");
+
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}
 		return panelContent;

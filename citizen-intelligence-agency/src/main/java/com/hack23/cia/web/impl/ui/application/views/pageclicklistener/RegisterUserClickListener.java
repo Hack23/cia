@@ -58,7 +58,7 @@ public final class RegisterUserClickListener implements ClickListener {
 	private final RegisterUserRequest reqisterRequest;
 
 	/** The application manager. */
-	private transient ApplicationManager applicationManager;
+	private final transient ApplicationManager applicationManager;
 
 	/**
 	 * Instantiates a new register user click listener.

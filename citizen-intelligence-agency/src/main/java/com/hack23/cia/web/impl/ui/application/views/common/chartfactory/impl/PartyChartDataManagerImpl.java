@@ -244,7 +244,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 
 	@Override
 	public void createPartyAgeChart(final AbstractOrderedLayout content) {
-		createPartyBallotChart(content,viewRiksdagenVoteDataBallotPartySummaryDaily -> (DateUtils.toCalendar(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()).get(Calendar.YEAR)) -  viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgBornYear().intValue());
+		createPartyBallotChart(content,viewRiksdagenVoteDataBallotPartySummaryDaily -> (DateUtils.toCalendar(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()).get(Calendar.YEAR)) - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgBornYear().intValue());
 	}
 
 	

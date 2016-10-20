@@ -68,11 +68,10 @@ public abstract class AbstractView extends Panel implements View {
 	
 	/** The application manager. */
 	@Autowired
-	private ApplicationManager applicationManager;
-
+	private transient ApplicationManager applicationManager;
 	
 	/** The page mode content factory map. */
-	private transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
+	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
 	/** The page name. */
 	private final String pageName;

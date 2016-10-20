@@ -29,68 +29,67 @@ import com.vaadin.ui.Link;
 /**
  * The Class ExternalAttachmentDownloadLink.
  */
-public class ExternalAttachmentDownloadLink extends Link {
+public final class ExternalAttachmentDownloadLink extends Link {
 
-	    /** The Constant serialVersionUID. */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-		
-		/** The file name. */
-		private final String fileName;
-		
-		/** The file type. */
-		private final String fileType;
-		
-		/** The file url. */
-		private final String fileUrl;
 
-		/**
-		 * Instantiates a new external attachment download link.
-		 *
-		 * @param fileName
-		 *            the file name
-		 * @param fileType
-		 *            the file type
-		 * @param fileUrl
-		 *            the file url
-		 */
-		public ExternalAttachmentDownloadLink(final String fileName,final String fileType, final String fileUrl) {
-	        super();
-			this.fileName = fileName;
-			this.fileType = fileType;
-			this.fileUrl = fileUrl;
-	        setCaption(fileName);
-	        setDescription("Download " + fileName);
-	        setTargetName("_blank");
-	    }
+	/** The file name. */
+	private final String fileName;
 
-	    @Override
-	    public void attach() {
-	        super.attach(); 
+	/** The file type. */
+	private final String fileType;
 
-	        final StreamResource.StreamSource source = new StreamResource.StreamSource() {
+	/** The file url. */
+	private final String fileUrl;
 
-	            /**
-				 * 
-				 */
-				private static final long serialVersionUID = 1L;
-
-				public InputStream getStream() {
-										
-	                try {
-						return new URL(fileUrl).openStream();
-					} catch (final IOException e) {
-						return new ByteArrayInputStream(new byte[0]);
-					}
-	            }
-	        };
-
-	        final StreamResource resource = new StreamResource(source, fileName);
-
-	        resource.getStream().setParameter("Content-Disposition", "attachment;filename=\"" + fileName + "\"");
-	        resource.setMIMEType("application/" + fileType);
-	        resource.setCacheTime(0);
-
-	        setResource(resource);
-	    }
+	/**
+	 * Instantiates a new external attachment download link.
+	 *
+	 * @param fileName
+	 *            the file name
+	 * @param fileType
+	 *            the file type
+	 * @param fileUrl
+	 *            the file url
+	 */
+	public ExternalAttachmentDownloadLink(final String fileName, final String fileType, final String fileUrl) {
+		super();
+		this.fileName = fileName;
+		this.fileType = fileType;
+		this.fileUrl = fileUrl;
+		setCaption(fileName);
+		setDescription("Download " + fileName);
+		setTargetName("_blank");
 	}
-	
+
+	@Override
+	public void attach() {
+		super.attach();
+
+		final StreamResource.StreamSource source = new StreamResource.StreamSource() {
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public InputStream getStream() {
+
+				try {
+					return new URL(fileUrl).openStream();
+				} catch (final IOException e) {
+					return new ByteArrayInputStream(new byte[0]);
+				}
+			}
+		};
+
+		final StreamResource resource = new StreamResource(source, fileName);
+
+		resource.getStream().setParameter("Content-Disposition", "attachment;filename=\"" + fileName + "\"");
+		resource.setMIMEType("application/" + fileType);
+		resource.setCacheTime(0);
+
+		setResource(resource);
+	}
+}

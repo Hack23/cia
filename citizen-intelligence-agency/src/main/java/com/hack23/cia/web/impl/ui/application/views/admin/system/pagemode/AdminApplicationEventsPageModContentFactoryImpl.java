@@ -101,7 +101,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 			if (applicationActionEvent != null) {
 
 				getFormFactory().addFormPanelTextFields(content, new BeanItem<>(applicationActionEvent), ApplicationActionEvent.class,
-					Arrays.asList(new String[] { "hjid","createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion"  }));
+					Arrays.asList(new String[] { "hjid","createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" }));
 			}
 
 

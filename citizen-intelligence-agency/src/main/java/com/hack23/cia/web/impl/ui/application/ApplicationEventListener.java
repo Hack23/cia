@@ -117,7 +117,7 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 			SecurityContextHolder.getContext().setAuthentication(null);
 
 			LOGGER.info(LOG_MSG_SESSION_DESTROYED_SESSION_ID, httpSession.getId());
-		}  else if (applicationEvent instanceof AuthorizationFailureEvent) {
+		} else if (applicationEvent instanceof AuthorizationFailureEvent) {
 			final AuthorizationFailureEvent authorizationFailureEvent = (AuthorizationFailureEvent) applicationEvent;
 
 			final String sessionId = RequestContextHolder.currentRequestAttributes().getSessionId();
@@ -147,7 +147,7 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 					.service(serviceRequest);
 
 			LOGGER.info(LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES,requestUrl, sessionId,authorizationFailureEvent.getAuthentication().getAuthorities().toString(),authorizationFailureEvent.getConfigAttributes().toString());
-		} 	else {
+		} else {
 			LOGGER.debug(LOG_MSG_APPLICATION_EVENT, applicationEvent.toString());
 		}
 	}

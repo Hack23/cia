@@ -210,7 +210,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 * @param mainViewItem
 	 *            the main view item
 	 */
-	private void createAdminMenu(final MenuItem mainViewItem) {
+	private static void createAdminMenu(final MenuItem mainViewItem) {
 		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN)) {
 			final MenuItem adminMenuItem = mainViewItem.addItem(ADMIN_TEXT, FontAwesome.SERVER, null);
 
