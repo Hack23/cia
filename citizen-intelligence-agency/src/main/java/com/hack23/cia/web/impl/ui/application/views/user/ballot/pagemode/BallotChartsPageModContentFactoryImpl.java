@@ -120,7 +120,7 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 					ballotChartDataManager.createChart(horizontalLayout,viewRiksdagenVoteDataBallotSummary);
 				}
 
-				Map<String, List<ViewRiksdagenVoteDataBallotPartySummary>> concernIssuePartyBallotSummaryMap = createIssueConcernMap(partyBallotList);
+				final Map<String, List<ViewRiksdagenVoteDataBallotPartySummary>> concernIssuePartyBallotSummaryMap = createIssueConcernMap(partyBallotList);
 				
 				for (List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotSummaryList : concernIssuePartyBallotSummaryMap.values()) {					
 					ballotChartDataManager.createChart(horizontalLayout,partyBallotSummaryList);
@@ -142,11 +142,11 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 	 * @return the map
 	 */
 	private static Map<String,List<ViewRiksdagenVoteDataBallotPartySummary>> createIssueConcernMap(List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList) {
-		Map<String,List<ViewRiksdagenVoteDataBallotPartySummary>> concernIssuePartyBallotSummaryMap = new HashMap<>();
+		final Map<String,List<ViewRiksdagenVoteDataBallotPartySummary>> concernIssuePartyBallotSummaryMap = new HashMap<>();
 		for (ViewRiksdagenVoteDataBallotPartySummary partySummary: partyBallotList) {
 			
 			if (partySummary.getEmbeddedId().getIssue() !=null || partySummary.getEmbeddedId().getConcern() != null ) {
-				String key = partySummary.getEmbeddedId().getIssue() + partySummary.getEmbeddedId().getConcern();
+				final String key = partySummary.getEmbeddedId().getIssue() + partySummary.getEmbeddedId().getConcern();
 				if (concernIssuePartyBallotSummaryMap.get(key) == null) {
 					concernIssuePartyBallotSummaryMap.put(key, new ArrayList<>());				
 				}

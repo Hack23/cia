@@ -77,7 +77,7 @@ public final class SetGoogleAuthenticatorCredentialClickListener implements Clic
 	private static final Logger LOGGER = LoggerFactory.getLogger(SetGoogleAuthenticatorCredentialClickListener.class);
 
 	/** The application manager. */
-	private transient ApplicationManager applicationManager;
+	private final transient ApplicationManager applicationManager;
 
 	/** The google auth request. */
 	private final SetGoogleAuthenticatorCredentialRequest googleAuthRequest;

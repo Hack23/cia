@@ -26,13 +26,20 @@ import com.vaadin.ui.MenuBar;
 public interface ApplicationMenuItemFactory {
 
 	/**
-	 * Creates a new MenuItem object.
-	 * @param menuBar
+	 * Creates a new ApplicationMenuItem object.
 	 *
+	 * @param menuBar
+	 *            the menu bar
 	 * @return the menu bar
 	 */
 	MenuBar createMainPageMenuBar(MenuBar menuBar);
 
+	/**
+	 * Adds the ranking menu.
+	 *
+	 * @param menuBar
+	 *            the menu bar
+	 */
 	void addRankingMenu(MenuBar menuBar);
 
 }

@@ -111,7 +111,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 		int pageNr=1;
 		
 		if (pageNrValue.length() > 0) {
-			pageNr = Integer.valueOf(pageNrValue);
+			pageNr = Integer.parseInt(pageNrValue);
 		}
 		return pageNr;
 	}

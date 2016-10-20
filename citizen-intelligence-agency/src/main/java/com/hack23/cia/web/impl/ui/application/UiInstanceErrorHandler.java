@@ -31,7 +31,7 @@ import com.vaadin.ui.UI;
 /**
  * The Class UiInstanceErrorHandler.
  */
-public class UiInstanceErrorHandler implements ErrorHandler {
+public final class UiInstanceErrorHandler implements ErrorHandler {
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;

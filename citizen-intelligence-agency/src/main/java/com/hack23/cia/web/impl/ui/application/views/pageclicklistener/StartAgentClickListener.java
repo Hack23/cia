@@ -52,7 +52,7 @@ public final class StartAgentClickListener implements ClickListener {
 
 	/** The agent container. */
 	@Autowired
-	private transient AgentContainer agentContainer;
+	private final transient AgentContainer agentContainer;
 
 	/**
 	 * Instantiates a new start agent click listener.

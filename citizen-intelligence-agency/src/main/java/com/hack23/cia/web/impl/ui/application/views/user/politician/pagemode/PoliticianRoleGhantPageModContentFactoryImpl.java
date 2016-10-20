@@ -178,7 +178,7 @@ public final class PoliticianRoleGhantPageModContentFactoryImpl extends Abstract
 	 *            the assignment list
 	 * @return the gantt
 	 */
-	private Gantt createGantt(final List<AssignmentData> assignmentList) {
+	private static Gantt createGantt(final List<AssignmentData> assignmentList) {
 
 		final Function<AssignmentData, String> role = new RoleMapping();
 

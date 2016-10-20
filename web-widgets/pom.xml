@@ -56,7 +56,7 @@
     <dependency>
       <groupId>org.vaadin</groupId>
       <artifactId>viritin</artifactId>
-      <version>1.57</version>
+      <version>1.58</version>
       <exclusions>
         <exclusion>
           <artifactId>vaadin-server</artifactId>

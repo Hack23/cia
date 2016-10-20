@@ -30,6 +30,12 @@ import com.vaadin.ui.Link;
  */
 public abstract class AbstractAdminSystemPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
+	/** The Constant LIMIT_FOR_DISPLAYING_START_END_LINKS. */
+	private static final int LIMIT_FOR_DISPLAYING_START_END_LINKS = 5;
+
+	/** The Constant PAGE_ONE. */
+	private static final int PAGE_ONE = 1;
+
 	/** The Constant PAGE_SEPARATOR. */
 	private static final String PAGE_SEPARATOR = "/";
 	
@@ -90,33 +96,33 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 		final int maxPages = (int) ((size +(resultPerPage-1)) / resultPerPage);
 		
 		final StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(PAGE_HEADER);
-		stringBuilder.append(pageNr);
-		stringBuilder.append(PAGE_SEPARATOR);
-		stringBuilder.append(maxPages);
-		stringBuilder.append(PAGES_TOTAL_RESULTS);
-		stringBuilder.append(size);
-		stringBuilder.append(RESULTS_PER_PAGE);
-		stringBuilder.append(resultPerPage);
-		stringBuilder.append(SHOW);
+		stringBuilder.append(PAGE_HEADER)
+		.append(pageNr)
+		.append(PAGE_SEPARATOR)
+		.append(maxPages)
+		.append(PAGES_TOTAL_RESULTS)
+		.append(size)
+		.append(RESULTS_PER_PAGE)
+		.append(resultPerPage)
+		.append(SHOW);
 		final Label pageInfo = new Label(stringBuilder.toString());
 		pagingControls.addComponent(pageInfo);
 		pagingControls.setExpandRatio(pageInfo, ContentRatio.SMALL);
 
 		
-		if (pageNr > 1) {		
+		if (pageNr > PAGE_ONE) {		
 			addPagingLink(PREVIOUS_PAGE,name, pageId, pageNr -1,pagingControls);			
 		}
 
-		if (maxPages > 1 && pageNr < maxPages) {		
+		if (maxPages > PAGE_ONE && pageNr < maxPages) {		
 			addPagingLink(NEXT_PAGE,name, pageId, pageNr +1,pagingControls);			
 		}
 
-		if (maxPages > 5 && pageNr > 1) {
+		if (maxPages > LIMIT_FOR_DISPLAYING_START_END_LINKS && pageNr > PAGE_ONE) {
 			addPagingLink(FIRST_PAGE,name, pageId, 1,pagingControls);			
 		}
 
-		if (maxPages > 5 && pageNr < maxPages) {			
+		if (maxPages > LIMIT_FOR_DISPLAYING_START_END_LINKS && pageNr < maxPages) {			
 			addPagingLink(LAST_PAGE,name, pageId, maxPages,pagingControls);			
 		}
 		
