@@ -68,6 +68,7 @@
 			<item name="service.external.riksdagen"
 				href="http://cia.sourceforge.net/service.external.riksdagen/" />
 			<item name="service.external.val" href="http://cia.sourceforge.net/service.external.val/" />
+			<item name="service.external.esv" href="http://cia.sourceforge.net/service.external.esv/" />			
 			<item name="service.external.vdem" href="http://cia.sourceforge.net/service.external.vdem/" />
 
 
