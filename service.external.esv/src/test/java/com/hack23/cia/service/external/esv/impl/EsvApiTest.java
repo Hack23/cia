@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.service.external.esv.impl;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -34,5 +32,9 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	@Autowired
 	private EsvApi esvApi;
 
-
+	@Test
+	public void emptyTest() {
+		
+	}
+	
 }
