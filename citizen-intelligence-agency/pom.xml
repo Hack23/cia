@@ -756,7 +756,7 @@
               <directory>src/main/webapp/</directory>
               <includes>
                 <include>gwt-unitCache/**/*</include>
-                <include>cia/VAADIN/gwt-unitCache/**/*</include>
+                <include>**/gwt-unitCache/**/*</include>
                 <include>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/deferredjs/**/*</include>
                 <include>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/deferredjs/**/*</include>
                 <include>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/*.cache.*</include>
