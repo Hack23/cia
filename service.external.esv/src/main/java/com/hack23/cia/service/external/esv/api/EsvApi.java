@@ -18,10 +18,19 @@
 */
 package com.hack23.cia.service.external.esv.api;
 
+import java.util.List;
+
 /**
  * The Interface EsvApi.
  */
+@FunctionalInterface
 public interface EsvApi {
 
+	/**
+	 * Gets the government body annual summary data.
+	 *
+	 * @return the government body annual summary data
+	 */
+	List<List<GovernmentBodyAnnualSummary>> getGovernmentBodyAnnualSummaryData();
 
 }

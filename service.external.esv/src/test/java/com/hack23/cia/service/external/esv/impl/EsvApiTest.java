@@ -32,9 +32,14 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	@Autowired
 	private EsvApi esvApi;
 
+	/**
+	 * Gets the government body annual summary data success test.
+	 *
+	 * @return the government body annual summary data success test
+	 */
 	@Test
-	public void emptyTest() {
-		
+	public void getGovernmentBodyAnnualSummaryDataSuccessTest() {
+		assertNotNull(esvApi.getGovernmentBodyAnnualSummaryData());
 	}
-	
+
 }
