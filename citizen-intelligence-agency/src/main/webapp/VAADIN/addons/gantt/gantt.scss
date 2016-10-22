@@ -57,6 +57,15 @@
 			background-color: #ccc;
 		}
 		
+		.col.measure {
+		    // Change min-width to adjust grid's cell width with day and hour-resolution.
+			//min-width: 40px;
+		}
+		.col.w.measure {
+			// Change min-width to adjust grid's cell width with week-resolution.
+			//min-width: 70px;
+		}
+		
 		.row {
 			width: 100%;
 			float: left;
@@ -104,6 +113,45 @@
 		  	-webkit-box-shadow: 2px 0 3px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.07);
 		  	-moz-box-shadow: 2px 0 3px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.07);
 		  	box-shadow: 2px 0 3px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.07);
+		  	
+			&.sub-bar {
+			
+			}
+			&.has-sub-steps:hover {
+		  		> .bar-label {
+    				width: 100%;
+    				padding-left: 3px;
+		  			background-color: rgba(246, 255, 99, 0.3);
+		  			-webkit-border-radius: 6px;
+		  			-moz-border-radius: 6px;
+		  			border-radius: 6px;
+					transform: translate(0,-27px);
+    				-webkit-transform: translate(0,-27px);
+    				-o-transform: translate(0,-27px);
+    				-moz-transform: translate(0,-27px);
+				}
+				> .bar-label:hover {
+					cursor: move;
+					
+					~ .bar-progress {
+						display: block;	
+					}
+				}
+			}
+			
+			&.has-sub-steps {
+				background-color: rgba(246, 255, 99, 0.3) !important;
+				
+				> .bar-label {
+					position: absolute;
+					max-width: 100%;
+				}
+				> .bar-progress {
+					z-index: 2;
+					bottom: 0;
+					display: none;				
+				}
+			}
 		}
 		
 		.bar-label {
@@ -111,6 +159,19 @@
 			white-space: nowrap;
 			overflow: hidden;
 			margin: 3px;
+		}
+		
+		.bar-progress {
+			position: absolute;
+			bottom: 0;
+			display: block;
+			width: 100%;
+			overflow: hidden;
+			
+			.v-progressbar-wrapper,
+			.v-progressbar-indicator {
+				min-width: auto;
+			}
 		}
 		
 		.bar.moving {
@@ -140,6 +201,42 @@
 			background: transparent;
 			border-left: 1px dashed #ddd;
 			border-right: 1px dashed #ddd;
+		}
+		
+		.arrow {
+			.start-p,
+			.end-p {
+				fill: #005fff;
+    			stroke: #0019ff;
+			}
+			.start-p:hover,
+			.end-p:hover {
+				fill: orange;
+    			stroke: orange;
+			}
+			.curve-line {
+			
+			}
+		}
+		
+		/* Bar elements on selection mode.
+		 Highlight hovered bar elements */
+		.select-target-step {
+			touch-action: none;
+			-ms-touch-action: none;
+			
+			.bar:hover {
+				background: orange !important;
+			}
+		}
+		
+		/* Optional background svg element. */
+		svg.bg-grid {
+			position: absolute;
+			overflow: hidden;
+			top: 0;
+			z-index: 0;
+			background: transparent;
 		}
 	}
 }

@@ -86,6 +86,12 @@
 			border-left: 1px dashed darken($v-background-color, 30%);
 			border-right: 1px dashed darken($v-background-color, 30%);
 		}
+		
+		.select-target-step {
+			.bar:hover {
+				background: $v-focus-color !important;
+			}
+		}
 	}
 }
 
