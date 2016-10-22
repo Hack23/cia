@@ -13802,11 +13802,59 @@ div.v-layout.v-horizontal.v-widget {
 	box-shadow: 2px 0 3px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.07);
 }
 
+.cia .gantt .bar.has-sub-steps:hover  > .bar-label {
+	width: 100%;
+	padding-left: 3px;
+	background-color: rgba(246, 255, 99, 0.3);
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	transform: translate(0, -27px);
+	-webkit-transform: translate(0, -27px);
+	-o-transform: translate(0, -27px);
+	-moz-transform: translate(0, -27px);
+}
+
+.cia .gantt .bar.has-sub-steps:hover  > .bar-label:hover {
+	cursor: move;
+}
+
+.cia .gantt .bar.has-sub-steps:hover  > .bar-label:hover  ~ .bar-progress {
+	display: block;
+}
+
+.cia .gantt .bar.has-sub-steps {
+	background-color: rgba(246, 255, 99, 0.3) !important;
+}
+
+.cia .gantt .bar.has-sub-steps  > .bar-label {
+	position: absolute;
+	max-width: 100%;
+}
+
+.cia .gantt .bar.has-sub-steps  > .bar-progress {
+	z-index: 2;
+	bottom: 0;
+	display: none;
+}
+
 .cia .gantt .bar-label {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
 	margin: 3px;
+}
+
+.cia .gantt .bar-progress {
+	position: absolute;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	overflow: hidden;
+}
+
+.cia .gantt .bar-progress .v-progressbar-wrapper, .cia .gantt .bar-progress .v-progressbar-indicator {
+	min-width: auto;
 }
 
 .cia .gantt .bar.moving {
@@ -13836,6 +13884,33 @@ div.v-layout.v-horizontal.v-widget {
 	background: transparent;
 	border-left: 1px dashed #ddd;
 	border-right: 1px dashed #ddd;
+}
+
+.cia .gantt .arrow .start-p, .cia .gantt .arrow .end-p {
+	fill: #005fff;
+	stroke: #0019ff;
+}
+
+.cia .gantt .arrow .start-p:hover, .cia .gantt .arrow .end-p:hover {
+	fill: orange;
+	stroke: orange;
+}
+
+.cia .gantt .select-target-step {
+	touch-action: none;
+	-ms-touch-action: none;
+}
+
+.cia .gantt .select-target-step .bar:hover {
+	background: orange !important;
+}
+
+.cia .gantt svg.bg-grid {
+	position: absolute;
+	overflow: hidden;
+	top: 0;
+	z-index: 0;
+	background: transparent;
 }
 
 .cia .gantt {
@@ -13914,6 +13989,10 @@ div.v-layout.v-horizontal.v-widget {
 	background: transparent;
 	border-left: 1px dashed #b3b3b3;
 	border-right: 1px dashed #b3b3b3;
+}
+
+.cia .gantt .select-target-step .bar:hover {
+	background: #0a64c1 !important;
 }
 
 .cia .v-label-Header {
