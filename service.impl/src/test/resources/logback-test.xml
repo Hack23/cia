@@ -22,7 +22,7 @@
   <logger name="org.quartz" level="warn"/>
   <logger name="atomikos" level="error"/>
   <logger name="com.atomikos" level="error"/>
-  <logger name="org.hibernate.cache.ehcache" level="error"/>
+  <logger name="org.hibernate" level="error"/>
   
   
   
