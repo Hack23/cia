@@ -102,7 +102,7 @@ public final class SetGoogleAuthenticatorCredentialService extends
 
 			updateUserAccount.setGoogleAuthKey(gKey.getKey());
 			updateUserAccount.setGoogleAuthVerificationCode(gKey.getVerificationCode());
-			updateUserAccount.setGoogleAuthScratchCodes(gKey.getScratchCodes());
+			//updateUserAccount.setGoogleAuthScratchCodes(gKey.getScratchCodes());
 			userDAO.merge(updateUserAccount);
 
 			final String otpAuthTotpURL = GoogleAuthenticatorQRGenerator.getOtpAuthTotpURL(agencyDAO.getAll().get(0).getAgencyName(), updateUserAccount.getEmail(), gKey);
