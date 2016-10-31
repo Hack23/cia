@@ -189,6 +189,10 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
+          <artifactId>guava</artifactId>
+          <groupId>com.google.guava</groupId>
+        </exclusion>
+        <exclusion>
           <artifactId>httpmime</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
         </exclusion>
@@ -301,6 +305,10 @@
       <version>1.4.10</version>
       <scope>test</scope>
       <exclusions>
+        <exclusion>
+          <artifactId>guava</artifactId>
+          <groupId>com.google.guava</groupId>
+        </exclusion>
         <exclusion>
           <artifactId>gson</artifactId>
           <groupId>com.google.code.gson</groupId>
