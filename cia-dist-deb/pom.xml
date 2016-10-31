@@ -95,7 +95,6 @@
                 <exclude>**/demo-base/**</exclude>
                 <exclude>**/start.ini</exclude>
                 <exclude>**/etc/jetty-gzip.xml</exclude>
-                <exclude>**/etc/jetty-http2c.xml</exclude>
                 <!--  <exclude>**/lib/annotations/asm-5.1.jar</exclude>
                 <exclude>**/lib/annotations/asm-commons-5.1.jar</exclude>-->
               </excludes>
@@ -123,16 +122,8 @@
               <toFile>/opt/cia/start.ini</toFile>
             </copyFile>
             <copyFile>
-              <path>src/main/config/jetty/etc/jetty-logging.xml</path>
-              <toFile>/opt/cia/etc/jetty-logging.xml</toFile>
-            </copyFile>
-            <copyFile>
               <path>src/main/config/jetty/etc/jetty-gzip.xml</path>
               <toFile>/opt/cia/etc/jetty-gzip.xml</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/etc/jetty-http2c.xml</path>
-              <toFile>/opt/cia/etc/jetty-http2c.xml</toFile>
             </copyFile>
           </assembly>
         </configuration>
