@@ -18,11 +18,15 @@
 */
 package com.hack23.cia.service.external.common.impl;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 import com.hack23.cia.service.external.common.api.XmlAgent;
+import com.hack23.cia.service.external.common.impl.test.SimpleXml;
 
 /**
  * The Class XmlAgentImplITest.
@@ -69,7 +73,7 @@ public final class XmlAgentImplITest extends AbstractServiceExternalCommonFuncti
 	public void unmarshallXmlMissingNamespaceSuccessTest() throws Exception {
 		final Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
 		jaxb2Marshaller.setClassesToBeBound(SimpleXml.class);
-		final SimpleXml simpleXml = (SimpleXml) xmlAgent.unmarshallXml(jaxb2Marshaller, XmlAgentImplITest.class.getResource("/simplexml-missing-namespace.xml").toString(),"com.hack23.cia.service.external.common.impl",null,null);
+		final SimpleXml simpleXml = (SimpleXml) xmlAgent.unmarshallXml(jaxb2Marshaller, XmlAgentImplITest.class.getResource("/simplexml-missing-namespace.xml").toString(),"com.hack23.cia.service.external.common.impl.test",null,null);
 		assertEquals(new SimpleXml("abc123"), simpleXml);
 	}
 
@@ -84,7 +88,7 @@ public final class XmlAgentImplITest extends AbstractServiceExternalCommonFuncti
 	public void unmarshallXmlMissingNamespaceAndReplaceSuccessTest() throws Exception {
 		final Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
 		jaxb2Marshaller.setClassesToBeBound(SimpleXml.class);
-		final SimpleXml simpleXml = (SimpleXml) xmlAgent.unmarshallXml(jaxb2Marshaller, XmlAgentImplITest.class.getResource("/simplexml-missing-namespace.xml").toString(),"com.hack23.cia.service.external.common.impl","abc123","ABC123");
+		final SimpleXml simpleXml = (SimpleXml) xmlAgent.unmarshallXml(jaxb2Marshaller, XmlAgentImplITest.class.getResource("/simplexml-missing-namespace.xml").toString(),"com.hack23.cia.service.external.common.impl.test","abc123","ABC123");
 		assertEquals(new SimpleXml("ABC123"), simpleXml);
 	}
 
