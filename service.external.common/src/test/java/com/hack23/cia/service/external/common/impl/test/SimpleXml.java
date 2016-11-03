@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.external.common.impl;
+package com.hack23.cia.service.external.common.impl.test;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
@@ -29,7 +29,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * The Class SimpleXml.
  */
-@XmlRootElement(namespace = "com.hack23.cia.service.external.common.impl")
+@XmlRootElement(namespace = "com.hack23.cia.service.external.common.impl.test")
 @XmlType(propOrder = {"description"})
 public final class SimpleXml {
 

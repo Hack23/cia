@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<simpleXml xmlns="com.hack23.cia.service.external.common.impl"><description>abc123</description></simpleXml>
+<ns1:simpleXml xmlns:ns1="com.hack23.cia.service.external.common.impl.test">
+    <description>abc123</description>
+</ns1:simpleXml>
