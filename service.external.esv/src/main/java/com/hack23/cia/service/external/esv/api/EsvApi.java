@@ -19,6 +19,7 @@
 package com.hack23.cia.service.external.esv.api;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * The Interface EsvApi.
@@ -31,6 +32,6 @@ public interface EsvApi {
 	 *
 	 * @return the government body annual summary data
 	 */
-	List<List<GovernmentBodyAnnualSummary>> getGovernmentBodyAnnualSummaryData();
+	Map<Integer, List<GovernmentBodyAnnualSummary>> getGovernmentBodyAnnualSummaryData();
 
 }

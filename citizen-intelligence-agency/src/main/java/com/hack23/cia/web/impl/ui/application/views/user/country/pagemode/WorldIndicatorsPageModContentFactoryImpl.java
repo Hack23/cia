@@ -108,11 +108,13 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 				.filter(t -> t != null && t.getEmbeddedId().getIndicatorId().equals(indicator)).findFirst();
 
 
+		ViewWorldbankIndicatorDataCountrySummary indicatorSummaryValue = null;
 		if (indicatorSummary.isPresent()) {
-						
+			indicatorSummaryValue = indicatorSummary.get();			
+			
 			getFormFactory().addFormPanelTextFields(verticalLayout,
 					new BeanItem<>(
-							indicatorSummary.get()),
+							indicatorSummaryValue),
 							ViewWorldbankIndicatorDataCountrySummary.class,
 							Arrays.asList(new String[] {
 									   "indicatorName",
@@ -130,7 +132,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 
 		final List<WorldBankData> dataList = dataContainer.findListByEmbeddedProperty(WorldBankData.class, WorldBankData_.indicator, Indicator.class, Indicator_.id, indicator);
 
-		chartDataManager.createIndicatorChart(verticalLayout,dataList,indicatorSummary.get());
+		chartDataManager.createIndicatorChart(verticalLayout,dataList,indicatorSummaryValue);
 	}
 
 }

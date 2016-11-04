@@ -83,7 +83,7 @@
       <id>cia.sf.net</id>
       <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/parent-pom</url>
     </site>
-  </distributionManagement>	  
+  </distributionManagement>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -1052,7 +1052,7 @@
         </configuration>
       </plugin>
     </plugins>
-  </build>  
+  </build>
   <profiles>
     <profile>
       <id>java9</id>
