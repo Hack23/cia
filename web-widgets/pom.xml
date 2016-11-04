@@ -293,30 +293,6 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
-  <repositories>
-    <repository>
-      <id>vaadin-addons</id>
-      <url>http://maven.vaadin.com/vaadin-addons</url>
-    </repository>
-    <repository>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots></snapshots>
-      <id>vaadin-snapshots</id>
-      <url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
-    </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots></snapshots>
-      <id>vaadin-snapshots</id>
-      <url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
-    </pluginRepository>
-  </pluginRepositories>
   <build>
     <pluginManagement>
       <plugins>
