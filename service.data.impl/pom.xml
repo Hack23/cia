@@ -278,17 +278,17 @@
     <dependency>
       <groupId>org.ehcache</groupId>
       <artifactId>ehcache</artifactId>
-      <version>3.1.3</version>
+      <version>${cia.project.versions.ehcache3}</version>
     </dependency>
     <dependency>
       <groupId>org.ehcache</groupId>
       <artifactId>ehcache-transactions</artifactId>
-      <version>3.1.3</version>
+      <version>${cia.project.versions.ehcache3}</version>
     </dependency>
     <dependency>
       <groupId>org.ehcache</groupId>
       <artifactId>ehcache-clustered</artifactId>
-      <version>3.1.3</version>
+      <version>${cia.project.versions.ehcache3}</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
@@ -486,7 +486,7 @@
           <dependency>
             <groupId>org.apache.ant</groupId>
             <artifactId>ant</artifactId>
-            <version>1.9.7</version>
+            <version>${cia.project.versions.ant}</version>
           </dependency>
           <dependency>
             <groupId>org.hibernate</groupId>

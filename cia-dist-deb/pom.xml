@@ -16,14 +16,11 @@
     <tag>cia-all-2016.3.6</tag>
     <url>https://github.com/Hack23/cia/tree/master/cia-dist-deb</url>
   </scm>
-  <properties>
-    <cia.project.versions.jetty>9.4.0.RC1</cia.project.versions.jetty>
-  </properties>
   <dependencies>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-distribution</artifactId>
-      <version>9.4.0.RC1</version>
+      <version>${cia.project.versions.jetty}</version>
       <type>zip</type>
       <exclusions>
         <exclusion>
@@ -41,12 +38,12 @@
     <dependency>
       <groupId>org.ow2.asm</groupId>
       <artifactId>asm-commons</artifactId>
-      <version>5.1</version>
+      <version>${cia.project.versions.asm}</version>
     </dependency>
     <dependency>
       <groupId>org.ow2.asm</groupId>
       <artifactId>asm</artifactId>
-      <version>5.1</version>
+      <version>${cia.project.versions.asm}</version>
     </dependency>
   </dependencies>
   <build>
@@ -54,7 +51,6 @@
       <plugin>
         <groupId>com.stratio.mojo.unix</groupId>
         <artifactId>unix-maven-plugin</artifactId>
-        <version>1.2.0</version>
         <extensions>true</extensions>
         <configuration>
           <contact>cia</contact>
@@ -140,7 +136,7 @@
             <configuration combine.self="override">
               <rules>
                 <requireMavenVersion>
-                  <version>3.3.9</version>
+                  <version>${cia.project.versions.maven}</version>
                 </requireMavenVersion>
                 <requireJavaVersion>
                   <version>${jdk.src.version}</version>

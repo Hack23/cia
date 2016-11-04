@@ -49,7 +49,7 @@
   </contributors>
   <mailingLists></mailingLists>
   <prerequisites>
-    <maven>3.2.3</maven>
+    <maven>3.3.9</maven>
   </prerequisites>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
@@ -98,28 +98,32 @@
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <!-- <cia.project.versions.spring>4.3.3.RELEASE/5.0.0.M2/5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring> -->
-    <cia.project.versions.spring>5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring>
+    <cia.project.versions.spring>4.3.3.RELEASE</cia.project.versions.spring>
     <!-- <cia.project.versions.spring.security>4.2.0.M1</cia.project.versions.spring.security>-->
-    <cia.project.versions.spring.security>4.2.0.BUILD-SNAPSHOT</cia.project.versions.spring.security>
+    <cia.project.versions.spring.security>4.2.0.RC1</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.0.BETA-4</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.22.0-CR1</cia.project.versions.javassist>
     <cia.project.versions.asm>5.1</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.4</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
+    <cia.project.versions.commons.lang3>2.6</cia.project.versions.commons.lang3>
     <cia.project.versions.slf4j>1.7.21</cia.project.versions.slf4j>
     <cia.project.versions.logback>1.1.7</cia.project.versions.logback>
     <cia.project.versions.mysql>5.1.34</cia.project.versions.mysql>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <cia.project.versions.hibernate>5.2.4.Final</cia.project.versions.hibernate>
+    <cia.project.versions.hibernate.jpamodelgen>5.2.4.Final</cia.project.versions.hibernate.jpamodelgen>
     <cia.project.versions.hibernate.build>5.2.4.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.2.0.CR1</cia.project.versions.hibernate.tools>
+    <cia.project.versions.hibernate.jpa2>1.0.0.Final</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>5.3.1.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>5.3.1.Final</cia.project.versions.hibernate.build.validator>
     <cia.project.versions.h2>1.4.193</cia.project.versions.h2>
     <cia.project.versions.postgresql>9.4.1212</cia.project.versions.postgresql>
     <cia.project.versions.atomikos>4.0.4</cia.project.versions.atomikos>
     <cia.project.versions.ehcache>2.10.3</cia.project.versions.ehcache>
+    <cia.project.versions.ehcache3>3.1.3</cia.project.versions.ehcache3>
     <cia.project.versions.poi>3.15</cia.project.versions.poi>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.ant>1.9.7</cia.project.versions.ant>
@@ -134,16 +138,27 @@
     <cia.project.versions.jaxb2.commons>0.11.1</cia.project.versions.jaxb2.commons>
     <cia.project.versions.hyperjaxb3>0.6.1</cia.project.versions.hyperjaxb3>
     <cia.project.versions.jaxb>2.2.11</cia.project.versions.jaxb>
+    <cia.project.versions.jaxb2.plugin>0.13.1</cia.project.versions.jaxb2.plugin>
+    <cia.project.versions.jaxb2.fluent.api>3.0</cia.project.versions.jaxb2.fluent.api>
+    <cia.project.versions.maven>3.3.9</cia.project.versions.maven>
     <cia.project.versions.jaxb.impl>2.2.11</cia.project.versions.jaxb.impl>
     <cia.project.versions.jaxb.xjc>2.2.11</cia.project.versions.jaxb.xjc>
+    <cia.project.versions.activemq>5.14.1</cia.project.versions.activemq>
+    <cia.project.versions.httpclient>4.5.2</cia.project.versions.httpclient>
+    <cia.project.versions.guava>20.0</cia.project.versions.guava>
+    <cia.project.versions.jackson>2.8.4</cia.project.versions.jackson>
+    <cia.project.versions.xerces>2.11.0.SP5</cia.project.versions.xerces>
+    <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
+    <cia.project.versions.jetty>9.4.0.RC1</cia.project.versions.jetty>
+    <cia.project.versions.javamelody>1.62.0</cia.project.versions.javamelody>
+    <cia.project.versions.vaadin>7.7.3</cia.project.versions.vaadin>
+    <cia.project.versions.vaadin.gwt.user>2.8.0</cia.project.versions.vaadin.gwt.user>
+    <cia.project.versions.vaadin.cssparser>0.9.20</cia.project.versions.vaadin.cssparser>
+    <cia.project.versions.servlet.api>3.1.0</cia.project.versions.servlet.api>
+    <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
   </properties>
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>com.vaadin</groupId>
-        <artifactId>vaadin-themes</artifactId>
-        <version>7.7.3</version>
-      </dependency>
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit-dep</artifactId>
@@ -157,7 +172,7 @@
       <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
-        <version>2.6-SNAPSHOT</version>
+        <version>2.5</version>
       </dependency>
       <dependency>
         <groupId>commons-codec</groupId>
@@ -167,7 +182,7 @@
       <dependency>
         <groupId>org.apache.httpcomponents</groupId>
         <artifactId>httpclient</artifactId>
-        <version>4.5.3-SNAPSHOT</version>
+        <version>${cia.project.versions.httpclient}</version>
       </dependency>
       <dependency>
         <groupId>org.codehaus.jackson</groupId>
@@ -182,7 +197,7 @@
       <dependency>
         <groupId>commons-net</groupId>
         <artifactId>commons-net</artifactId>
-        <version>3.6-SNAPSHOT</version>
+        <version>3.5</version>
       </dependency>
       <dependency>
         <groupId>org.json</groupId>
@@ -473,17 +488,17 @@
       <dependency>
         <groupId>org.ehcache</groupId>
         <artifactId>ehcache</artifactId>
-        <version>3.1.3</version>
+        <version>${cia.project.versions.ehcache3}</version>
       </dependency>
       <dependency>
         <groupId>org.ehcache</groupId>
         <artifactId>ehcache-transactions</artifactId>
-        <version>3.1.3</version>
+        <version>${cia.project.versions.ehcache3}</version>
       </dependency>
       <dependency>
         <groupId>org.ehcache</groupId>
         <artifactId>ehcache-clustered</artifactId>
-        <version>3.1.3</version>
+        <version>${cia.project.versions.ehcache3}</version>
       </dependency>
       <dependency>
         <groupId>cglib</groupId>
@@ -612,6 +627,11 @@
           </dependencies>
         </plugin>
         <plugin>
+          <groupId>com.stratio.mojo.unix</groupId>
+          <artifactId>unix-maven-plugin</artifactId>
+          <version>1.2.0</version>
+        </plugin>
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
           <version>3.6-SNAPSHOT</version>
@@ -625,7 +645,7 @@
             <dependency>
               <groupId>xml-apis</groupId>
               <artifactId>xml-apis</artifactId>
-              <version>1.4.01</version>
+              <version>${cia.project.versions.xmlapis}</version>
             </dependency>
             <dependency>
               <groupId>org.apache.velocity</groupId>
@@ -764,15 +784,13 @@
             <dependency>
               <groupId>org.apache.ant</groupId>
               <artifactId>ant</artifactId>
-              <version>1.9.7</version>
+              <version>${cia.project.versions.ant}</version>
             </dependency>
             <dependency>
               <groupId>org.hibernate</groupId>
               <artifactId>hibernate-entitymanager</artifactId>
               <version>${cia.project.versions.hibernate.build}</version>
             </dependency>
-            <!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-commons-annotations</artifactId>
-							<version>3.3.0.ga</version> </dependency> -->
             <dependency>
               <groupId>org.hibernate</groupId>
               <artifactId>hibernate-entitymanager</artifactId>
@@ -810,13 +828,6 @@
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.0.2</version>
         </plugin>
-        <!--
-        <plugin>
-          <groupId>ch.elca.el4j.maven.plugins</groupId>
-          <artifactId>maven-depgraph-plugin</artifactId>
-          <version>3.1</version>
-        </plugin>
-        -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-pmd-plugin</artifactId>
@@ -911,7 +922,7 @@
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <version>3.3.9</version>
+                  <version>cia.project.versions.maven</version>
                 </requireMavenVersion>
                 <requireJavaVersion>
                   <version>${jdk.src.version}</version>
@@ -1140,123 +1151,13 @@
             <enabled>true</enabled>
           </releases>
           <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>restlet</id>
-          <url>http://maven.restlet.com/</url>
-        </repository>
-        <repository>
-          <releases>
             <enabled>true</enabled>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
           </snapshots>
-          <id>jbosss.public</id>
-          <url>http://repository.jboss.org/nexus/content/repositories/public/</url>
-        </repository>
-        <repository>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>opennms</id>
-          <url>http://repo.opennms.org:8080/maven2/</url>
-        </repository>
-        <repository>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>vaadin-addons</id>
-          <url>http://maven.vaadin.com/vaadin-addons</url>
-        </repository>
-        <repository>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>alfresco-thd-party</id>
-          <url>http://maven.alfresco.com/nexus/content/repositories/activiti-thirdparty/</url>
-        </repository>
-        <repository>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>spring.external</id>
-          <url>http://repo.springsource.org/ext-release-local/</url>
-        </repository>
-        <!-- <repository> <releases> <enabled>true</enabled> </releases> <snapshots>
-					<enabled>false</enabled> </snapshots> <id>m.g.o-public</id> <url>http://maven.glassfish.org/content/groups/public/</url>
-					</repository> -->
-        <!--
-        <repository>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>atomikos</id>
-          <name>atomikos</name>
-          <url>http://repo.atomikos.com</url>
-        </repository> -->
-        <!--
-        <repository>
-          <id>highsource.repository</id>
-          <url>http://repository.highsource.org/maven2/releases</url>
-        </repository> -->
-        <repository>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>edemocrazy.repository</id>
-          <url>http://edemocrazy.svn.sourceforge.net/svnroot/edemocrazy/repository/trunk/</url>
-        </repository>
-        <repository>
-          <id>springsource.releases</id>
-          <url>http://repo.springsource.org/release/</url>
-        </repository>
-        <repository>
-          <id>springsource.milestones</id>
-          <url>http://repo.springsource.org/milestone/</url>
-        </repository>
-        <repository>
-          <releases>
-            <enabled>false</enabled>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>maven-repository.dev.java.net</id>
-          <name>maven-repository.dev.java.net</name>
-          <url>http://dontusethislegacy1maven</url>
+          <id>hack23nexus</id>
+          <url>https://www.hack23.com/nexus/repository/maven-public/</url>
         </repository>
       </repositories>
       <pluginRepositories>
-        <!--
-        <pluginRepository>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>atlassian.public</id>
-          <url>http://maven.atlassian.com/repository/public/</url>
-        </pluginRepository>-->
         <pluginRepository>
           <releases>
             <enabled>true</enabled>
@@ -1264,36 +1165,8 @@
           <snapshots>
             <enabled>true</enabled>
           </snapshots>
-          <id>edemocrazy.repository</id>
-          <url>http://edemocrazy.svn.sourceforge.net/svnroot/edemocrazy/repository/trunk/</url>
-        </pluginRepository>
-        <pluginRepository>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>jbosss.public</id>
-          <url>http://repository.jboss.org/nexus/content/repositories/public/</url>
-        </pluginRepository>
-        <pluginRepository>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <id>elca-services</id>
-          <url>http://public-el4.elca-services.ch/el4j/maven2repository/</url>
-        </pluginRepository>
-        <pluginRepository>
-          <releases>
-            <enabled>false</enabled>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>maven-repository.dev.java.net</id>
-          <name>maven-repository.dev.java.net</name>
-          <url>http://dontusethislegacy1maven</url>
+          <id>hack23nexus</id>
+          <url>https://www.hack23.com/nexus/repository/maven-public/</url>
         </pluginRepository>
       </pluginRepositories>
     </profile>

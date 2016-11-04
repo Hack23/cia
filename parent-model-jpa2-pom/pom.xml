@@ -40,10 +40,6 @@
       <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/parent-model-jpa2-pom</url>
     </site>
   </distributionManagement>
-  <properties>
-    <cia.project.versions.hibernate.jpamodelgen>5.2.4.Final</cia.project.versions.hibernate.jpamodelgen>
-    <cia.project.versions.hibernate.jpa2>1.0.0.Final</cia.project.versions.hibernate.jpa2>
-  </properties>
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -137,45 +133,6 @@
           <compilerArgument>-proc:none</compilerArgument>
         </configuration>
       </plugin>
-      <!--
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <dependencies>
-          <dependency>
-            <groupId>xsddoc</groupId>
-            <artifactId>maven-xsddoc-plugin</artifactId>
-            <version>1.0</version>
-          </dependency>
-          <dependency>
-            <groupId>ant</groupId>
-            <artifactId>ant</artifactId>
-            <version>1.6.5</version>
-          </dependency>
-        </dependencies>
-        <executions>
-          <execution>
-            <id>site</id>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <phase>site</phase>
-            <configuration>
-              <target>
-                <echo>Running the XSDDoc task</echo>
-                <taskdef classname="net.sf.xframe.xsddoc.Task" name="xsddoc"></taskdef>
-                <mkdir dir="${basedir}/target/site/xsddoc"></mkdir>
-                <xsddoc doctitle="CIA XML Schema Reference" file="${basedir}/target/classes/activemq.xsd" footer="Copyright 2010 (c) the &lt;a href='http://cia.sourceforge.net'&gt;Citizen Intelligence Agency&lt;/a&gt;" header="&lt;a href='http://cia.sourceforge.net'&gt;CIA&lt;/a&gt;" out="${basedir}/target/site/xsddoc" verbose="false">
-                  <fileset dir="${basedir}/target/classes">
-                    <include name="*.xsd"></include>
-                  </fileset>
-                </xsddoc>
-              </target>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-	-->
     </plugins>
   </build>
 </project>

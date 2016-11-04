@@ -69,7 +69,7 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
-      <version>2.9.0-SNAPSHOT</version>
+      <version>${cia.project.versions.jackson}</version>
     </dependency>
     <!-- Testing -->
     <dependency>

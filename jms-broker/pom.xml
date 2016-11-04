@@ -35,7 +35,7 @@
     <dependency>
       <groupId>org.apache.activemq</groupId>
       <artifactId>activemq-spring</artifactId>
-      <version>5.15.0-SNAPSHOT</version>
+      <version>${cia.project.versions.activemq}</version>
       <exclusions>
         <exclusion>
           <artifactId>xbean-spring</artifactId>
@@ -110,17 +110,17 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>20.0</version>
+      <version>${cia.project.versions.guava}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.9.0-SNAPSHOT</version>
+      <version>${cia.project.versions.jackson}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.activemq</groupId>
       <artifactId>activemq-web</artifactId>
-      <version>5.15.0-SNAPSHOT</version>
+      <version>${cia.project.versions.activemq}</version>
       <exclusions>
         <exclusion>
           <artifactId>websocket-server</artifactId>
@@ -235,7 +235,7 @@
     <dependency>
       <groupId>org.apache.activemq</groupId>
       <artifactId>activemq-kahadb-store</artifactId>
-      <version>5.15.0-SNAPSHOT</version>
+      <version>${cia.project.versions.activemq}</version>
       <exclusions>
         <exclusion>
           <artifactId>xbean-spring</artifactId>
