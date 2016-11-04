@@ -74,16 +74,16 @@
     </repository>
     <snapshotRepository>
       <uniqueVersion>false</uniqueVersion>
-      <id>cia-snapshots</id>
-      <name>CIA Snapshot Repository</name>
-      <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+      <id>hack23nexus</id>
+      <name>CIA hack23 Snapshot Repository</name>
+      <url>https://www.hack23.com/nexus/repository/maven-snapshots/</url>
     </snapshotRepository>
     <!-- http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->
     <site>
       <id>cia.sf.net</id>
       <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/parent-pom</url>
     </site>
-  </distributionManagement>
+  </distributionManagement>	  
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -576,7 +576,7 @@
         <enabled>true</enabled>
       </releases>
       <snapshots>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
       </snapshots>
       <id>hack23.public</id>
       <url>https://www.hack23.com/nexus/content/groups/public/</url>
@@ -1052,7 +1052,7 @@
         </configuration>
       </plugin>
     </plugins>
-  </build>
+  </build>  
   <profiles>
     <profile>
       <id>java9</id>
@@ -1142,33 +1142,6 @@
       <properties>
         <cia.project.phase.site>true</cia.project.phase.site>
       </properties>
-    </profile>
-    <profile>
-      <id>download-repositories</id>
-      <repositories>
-        <repository>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <snapshots>
-            <enabled>true</enabled>
-          </snapshots>
-          <id>hack23nexus</id>
-          <url>https://www.hack23.com/nexus/repository/maven-public/</url>
-        </repository>
-      </repositories>
-      <pluginRepositories>
-        <pluginRepository>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <snapshots>
-            <enabled>true</enabled>
-          </snapshots>
-          <id>hack23nexus</id>
-          <url>https://www.hack23.com/nexus/repository/maven-public/</url>
-        </pluginRepository>
-      </pluginRepositories>
     </profile>
     <profile>
       <id>cia-dev-windows</id>
