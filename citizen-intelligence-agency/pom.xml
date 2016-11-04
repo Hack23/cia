@@ -349,13 +349,6 @@
       <version>4.1.6.Final</version>
       <scope>test</scope>
     </dependency>
-    <!--
-    <dependency>
-      <groupId>io.apigee</groupId>
-      <artifactId>rhino</artifactId>
-      <version>1.7R5pre4</version>
-      <scope>test</scope>
-    </dependency>-->
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-webapp</artifactId>
@@ -364,19 +357,19 @@
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-jmx</artifactId>
-      <version>9.4.0.RC1</version>
+      <version>${cia.project.versions.jetty}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-plus</artifactId>
-      <version>9.4.0.RC1</version>
+      <version>${cia.project.versions.jetty}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-annotations</artifactId>
-      <version>9.4.0.RC1</version>
+      <version>${cia.project.versions.jetty}</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -398,13 +391,13 @@
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-continuation</artifactId>
-      <version>9.4.0.RC1</version>
+      <version>${cia.project.versions.jetty}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty.websocket</groupId>
       <artifactId>websocket-server</artifactId>
-      <version>9.4.0.RC1</version>
+      <version>${cia.project.versions.jetty}</version>
       <scope>test</scope>
     </dependency>
     <!--
@@ -422,7 +415,7 @@
     <dependency>
       <groupId>xerces</groupId>
       <artifactId>xercesImpl</artifactId>
-      <version>2.11.0.SP5</version>
+      <version>${cia.project.versions.xerces}</version>
       <exclusions>
         <exclusion>
           <artifactId>xml-apis</artifactId>
@@ -433,7 +426,7 @@
     <dependency>
       <groupId>xml-apis</groupId>
       <artifactId>xml-apis</artifactId>
-      <version>1.4.01</version>
+      <version>${cia.project.versions.xmlapis}</version>
     </dependency>
     <!-- Monitoring -->
     <dependency>
@@ -1013,7 +1006,7 @@
                 <artifactItem>
                   <groupId>com.vaadin</groupId>
                   <artifactId>vaadin-themes</artifactId>
-                  <version>7.7.3</version>
+                  <version>${cia.project.versions.vaadin}</version>
                   <type>jar</type>
                   <overWrite>false</overWrite>
                   <outputDirectory>${basedir}/src/main/webapp/</outputDirectory>

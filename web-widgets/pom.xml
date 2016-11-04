@@ -18,7 +18,7 @@
   </scm>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <vaadin.version>7.7.3</vaadin.version>
+    <vaadin.version>${cia.project.versions.vaadin}</vaadin.version>
     <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
   </properties>
   <dependencies>
@@ -51,7 +51,7 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.9.0-SNAPSHOT</version>
+      <version>${cia.project.versions.jackson}</version>
     </dependency>
     <dependency>
       <groupId>org.vaadin</groupId>
@@ -266,17 +266,17 @@
     <dependency>
       <groupId>org.ow2.asm</groupId>
       <artifactId>asm</artifactId>
-      <version>5.1</version>
+      <version>${cia.project.versions.asm}</version>
     </dependency>
     <dependency>
       <groupId>org.ow2.asm</groupId>
       <artifactId>asm-util</artifactId>
-      <version>5.1</version>
+      <version>${cia.project.versions.asm}</version>
     </dependency>
     <dependency>
       <groupId>org.ow2.asm</groupId>
       <artifactId>asm-commons</artifactId>
-      <version>5.1</version>
+      <version>${cia.project.versions.asm}</version>
     </dependency>
     <dependency>
       <groupId>com.vaadin</groupId>
@@ -485,7 +485,7 @@
       <plugin>
         <groupId>org.eclipse.jettys</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
-        <version>9.4.0.RC1</version>
+        <version>${cia.project.versions.jetty}</version>
       </plugin>
       -->
     </plugins>

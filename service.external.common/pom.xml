@@ -40,7 +40,7 @@
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>fluent-hc</artifactId>
-      <version>4.5.3-SNAPSHOT</version>
+      <version>${cia.project.versions.httpclient}</version>
       <exclusions>
         <exclusion>
           <artifactId>commons-logging</artifactId>
@@ -83,28 +83,11 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
     </dependency>
-    <!--  <dependency>
-      <groupId>org.jdom</groupId>
-      <artifactId>jdom</artifactId>
-      <version>${cia.project.versions.jdom}</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>jaxen</artifactId>
-          <groupId>jaxen</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>-->
     <dependency>
       <groupId>org.jdom</groupId>
       <artifactId>jdom2</artifactId>
       <version>2.0.6</version>
     </dependency>
-    <!--
-    <dependency>
-      <groupId>jaxen</groupId>
-      <artifactId>jaxen</artifactId>
-      <version>1.1.6</version>
-    </dependency>-->
   </dependencies>
   <reporting></reporting>
 </project>
