@@ -18,10 +18,14 @@
 */
 package com.hack23.cia.service.external.esv.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.service.external.esv.api.EsvApi;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 
 /**
  * The Class EsvApiTest.
@@ -39,7 +43,15 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	 */
 	@Test
 	public void getGovernmentBodyAnnualSummaryDataSuccessTest() {
-		assertNotNull(esvApi.getGovernmentBodyAnnualSummaryData());
+		Map<Integer, List<GovernmentBodyAnnualSummary>> governmentBodyAnnualSummaryData = esvApi.getGovernmentBodyAnnualSummaryData();
+		assertNotNull(governmentBodyAnnualSummaryData);
+		assertEquals(18, governmentBodyAnnualSummaryData.size());
+		for (List<GovernmentBodyAnnualSummary> list : governmentBodyAnnualSummaryData.values()) {
+			assertTrue(list.size() > 200);			
+			for (GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
+				assertNotNull(governmentBodyAnnualSummary);
+			}			
+		}
 	}
 
 }

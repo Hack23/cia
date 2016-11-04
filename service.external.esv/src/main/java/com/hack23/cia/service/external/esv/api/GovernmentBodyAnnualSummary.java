@@ -18,6 +18,11 @@
 */
 package com.hack23.cia.service.external.esv.api;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 /**
  * The Class GovernmentBodyAnnualSummary.
  */
@@ -198,4 +203,19 @@ public class GovernmentBodyAnnualSummary {
 		return comment;
 	}
 	
+	@Override
+	public final boolean equals(Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
+
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
+
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
+
 }
