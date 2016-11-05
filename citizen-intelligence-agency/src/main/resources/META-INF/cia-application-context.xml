@@ -34,6 +34,7 @@
 	<import resource="classpath:META-INF/cia-service-external-worldbank.xml"/>
 	<import resource="classpath:META-INF/cia-service-external-vdem.xml"/>
 	<import resource="classpath:META-INF/cia-service-external-val.xml"/>
+	<import resource="classpath:META-INF/cia-service-external-esv.xml"/>	
 	<import resource="classpath:META-INF/cia-service-component-agent.xml"/>
 	<import resource="classpath:META-INF/application-context-service.xml"/>
 
