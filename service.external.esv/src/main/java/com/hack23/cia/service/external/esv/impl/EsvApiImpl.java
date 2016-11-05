@@ -27,7 +27,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
@@ -168,6 +167,54 @@ public final class EsvApiImpl implements EsvApi {
 			}
 		}
 		return new ArrayList<>(ministryNameSet);
+	}
+
+	@Override
+	public Map<Integer, GovernmentBodyAnnualSummary> getDataPerGovernmentBody(String name) {
+		final Map<Integer, GovernmentBodyAnnualSummary> map = new TreeMap<>();
+		try {
+			final HSSFWorkbook myWorkBook = new HSSFWorkbook(
+					EsvApiImpl.class.getResourceAsStream("/Myndighetsinformation.xls"));
+
+			for (int sheetNr = 0; sheetNr < myWorkBook.getNumberOfSheets(); sheetNr++) {
+				final HSSFSheet mySheet = myWorkBook.getSheetAt(sheetNr);
+
+				if (mySheet.getSheetName().chars().allMatch(Character::isDigit)) {
+
+					final int year = Integer.valueOf(mySheet.getSheetName());
+
+					final Iterator<Row> rowIterator = mySheet.iterator();
+
+					rowIterator.next();
+
+					while (rowIterator.hasNext()) {
+						final Row row = rowIterator.next();
+						final short maxColIx = row.getLastCellNum();
+
+						
+						if (maxColIx == 10) {
+							final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = new GovernmentBodyAnnualSummary(
+									year, row.getCell(0).toString(), getInteger(row.getCell(1).toString()),
+									row.getCell(2).toString(), row.getCell(3).toString(), row.getCell(4).toString(),
+									row.getCell(5).toString(), getInteger(row.getCell(6).toString()), getInteger(row.getCell(7).toString()),
+									row.getCell(8).toString(), row.getCell(9).toString());
+							row.getCell(9).toString();
+
+							if (name == null || name.equalsIgnoreCase(governmentBodyAnnualSummary.getName())) {
+								map.put(year, governmentBodyAnnualSummary);
+							}
+						}
+					}
+				}
+			}
+			myWorkBook.close();
+		} catch (
+
+		final IOException e) {
+			LOGGER.warn("Problem loading", e);
+		}
+
+		return map;
 	}
 
 }

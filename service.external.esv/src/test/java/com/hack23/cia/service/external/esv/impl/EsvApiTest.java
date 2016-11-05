@@ -44,6 +44,11 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	@Rule
 	public ContiPerfRule i = new ContiPerfRule();
 
+	/**
+	 * Gets the data defence ministry success test.
+	 *
+	 * @return the data defence ministry success test
+	 */
 	@Test
 	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
 	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
@@ -59,6 +64,11 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 		}
 	}
 
+	/**
+	 * Gets the data finance ministry 1900 failure test.
+	 *
+	 * @return the data finance ministry 1900 failure test
+	 */
 	@Test
 	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
 	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
@@ -68,6 +78,11 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 		assertEquals(0, list.size());
 	}
 
+	/**
+	 * Gets the data finance ministry 1999 success test.
+	 *
+	 * @return the data finance ministry 1999 success test
+	 */
 	@Test
 	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
 	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
@@ -80,6 +95,11 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 		}
 	}
 
+	/**
+	 * Gets the data finance ministry 2016 success test.
+	 *
+	 * @return the data finance ministry 2016 success test
+	 */
 	@Test
 	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
 	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
@@ -92,6 +112,11 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 		}
 	}
 
+	/**
+	 * Gets the data finance ministry success test.
+	 *
+	 * @return the data finance ministry success test
+	 */
 	@Test
 	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
 	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
@@ -107,6 +132,11 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 		}
 	}
 
+	/**
+	 * Gets the data foreign ministry success test.
+	 *
+	 * @return the data foreign ministry success test
+	 */
 	@Test
 	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
 	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
@@ -122,6 +152,29 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 		}
 	}
 
+	/**
+	 * Gets the data per government body success test.
+	 *
+	 * @return the data per government body success test
+	 */
+	@Test
+	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
+	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
+	public void getDataPerGovernmentBodySuccessTest() {
+		final Map<Integer, GovernmentBodyAnnualSummary> governmentBodyAnnualSummaryData = esvApi
+				.getDataPerGovernmentBody("Exportkreditnämnden");
+		assertNotNull(governmentBodyAnnualSummaryData);
+		assertEquals(18, governmentBodyAnnualSummaryData.size());
+		for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : governmentBodyAnnualSummaryData.values()) {
+			assertNotNull(governmentBodyAnnualSummary);
+		}
+	}
+
+	/**
+	 * Gets the data success test.
+	 *
+	 * @return the data success test
+	 */
 	@Test
 	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
 	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
@@ -137,6 +190,11 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 		}
 	}
 
+	/**
+	 * Gets the government body names success test.
+	 *
+	 * @return the government body names success test
+	 */
 	@Test
 	@PerfTest(threads = 2, duration = 3000, warmUp = 1500)
 	@Required(max = 1000, average = 20, percentile95 = 50, throughput = 50)
@@ -146,6 +204,11 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 		assertEquals(452, list.size());
 	}
 
+	/**
+	 * Gets the ministry names success test.
+	 *
+	 * @return the ministry names success test
+	 */
 	@Test
 	@PerfTest(threads = 2, duration = 3000, warmUp = 1500)
 	@Required(max = 1000, average = 20, percentile95 = 50, throughput = 50)

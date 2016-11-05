@@ -32,7 +32,7 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.MinistryDataSeriesFactory;
 
 /**
- * The Class DataSeriesFactoryImpl.
+ * The Class MinistryDataSeriesFactoryImpl.
  */
 @Service
 @Transactional(propagation=Propagation.REQUIRED)
