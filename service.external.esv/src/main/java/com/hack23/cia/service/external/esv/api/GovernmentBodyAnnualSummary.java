@@ -29,19 +29,19 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class GovernmentBodyAnnualSummary {
 
 	/** The annual work head count. */
-	private final String annualWorkHeadCount;
+	private final int annualWorkHeadCount;
 
 	/** The comment. */
 	private final String comment;
 
 	/** The consecutive number. */
-	private final String consecutiveNumber;
+	private final int consecutiveNumber;
 
 	/** The goverment body id. */
 	private final String govermentBodyId;
 
 	/** The head count. */
-	private final String headCount;
+	private final int headCount;
 
 	/** The m code. */
 	private final String mCode;
@@ -87,8 +87,8 @@ public class GovernmentBodyAnnualSummary {
 	 * @param comment
 	 *            the comment
 	 */
-	public GovernmentBodyAnnualSummary(final int year, final String name, final String consecutiveNumber, final String govermentBodyId,
-			final String mCode, final String ministry, final String orgNumber, final String headCount, final String annualWorkHeadCount, final String vat,
+	public GovernmentBodyAnnualSummary(final int year, final String name, final int consecutiveNumber, final String govermentBodyId,
+			final String mCode, final String ministry, final String orgNumber, final int headCount, final int annualWorkHeadCount, final String vat,
 			final String comment) {
 		super();
 		this.year = year;
@@ -114,7 +114,7 @@ public class GovernmentBodyAnnualSummary {
 	 *
 	 * @return the annual work head count
 	 */
-	public String getAnnualWorkHeadCount() {
+	public int getAnnualWorkHeadCount() {
 		return annualWorkHeadCount;
 	}
 
@@ -132,7 +132,7 @@ public class GovernmentBodyAnnualSummary {
 	 *
 	 * @return the consecutive number
 	 */
-	public String getConsecutiveNumber() {
+	public int getConsecutiveNumber() {
 		return consecutiveNumber;
 	}
 
@@ -150,7 +150,7 @@ public class GovernmentBodyAnnualSummary {
 	 *
 	 * @return the head count
 	 */
-	public String getHeadCount() {
+	public int getHeadCount() {
 		return headCount;
 	}
 

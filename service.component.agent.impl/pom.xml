@@ -133,6 +133,11 @@
     </dependency>
     <dependency>
       <groupId>com.hack23.cia</groupId>
+      <artifactId>service.external.esv</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.hack23.cia</groupId>
       <artifactId>service.external.worldbank</artifactId>
       <version>${project.version}</version>
       <exclusions>

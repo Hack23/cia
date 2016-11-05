@@ -27,6 +27,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
@@ -87,11 +88,12 @@ public final class EsvApiImpl implements EsvApi {
 						final Row row = rowIterator.next();
 						final short maxColIx = row.getLastCellNum();
 
+						
 						if (maxColIx == 10) {
 							final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = new GovernmentBodyAnnualSummary(
-									year, row.getCell(0).toString(), row.getCell(1).toString(),
+									year, row.getCell(0).toString(), getInteger(row.getCell(1).toString()),
 									row.getCell(2).toString(), row.getCell(3).toString(), row.getCell(4).toString(),
-									row.getCell(5).toString(), row.getCell(6).toString(), row.getCell(7).toString(),
+									row.getCell(5).toString(), getInteger(row.getCell(6).toString()), getInteger(row.getCell(7).toString()),
 									row.getCell(8).toString(), row.getCell(9).toString());
 							row.getCell(9).toString();
 
@@ -114,6 +116,14 @@ public final class EsvApiImpl implements EsvApi {
 		}
 
 		return map;
+	}
+	
+	private static Integer getInteger(String str) {
+	    if (str == null || str.trim().length() == 0) {
+	        return new Integer(0);
+	    } else {
+	        return Integer.parseInt(str);
+	    }
 	}
 
 	@Override
