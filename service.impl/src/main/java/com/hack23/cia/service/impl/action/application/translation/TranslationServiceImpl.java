@@ -92,7 +92,7 @@ public final class TranslationServiceImpl implements TranslationService {
 				return response.getTranslations().listIterator().next().getTranslatedText();
 
 			} catch (GeneralSecurityException | IOException e) {
-				StringBuilder stringBuilder = new StringBuilder();
+				final StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.append("Problem translation text:");
 				stringBuilder.append(translateText);
 				stringBuilder.append("to language:");

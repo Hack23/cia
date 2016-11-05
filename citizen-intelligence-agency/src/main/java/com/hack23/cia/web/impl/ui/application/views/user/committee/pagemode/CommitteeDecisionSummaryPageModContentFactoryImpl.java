@@ -83,7 +83,7 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,DECISION_SUMMARY);
-			
+
 
 			final DataContainer<ViewRiksdagenCommitteeDecisions, ViewRiksdagenCommitteeDecisionsEmbeddedId> committeeDecisionDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenCommitteeDecisions.class);

@@ -34,7 +34,7 @@ public class TranslationException extends Exception {
 	 * @param e
 	 *            the e
 	 */
-	public TranslationException(String string, Exception e) {
+	public TranslationException(final String string, final Exception e) {
 		super(string, e);
 	}
 

@@ -82,7 +82,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
 				LabelFactory.createHeader2Label(panelContent,OVERVIEW);
-				
+
 				final Link addCommitteePageLink = getPageLinkFactory().addCommitteePageLink(viewRiksdagenCommittee);
 				panelContent.addComponent(addCommitteePageLink);
 
@@ -92,7 +92,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 								"lastAssignmentDate", "totalAssignments", "totalDaysServed",
 								"currentMemberSize" }));
 
-				
+
 				panelContent.setExpandRatio(addCommitteePageLink,ContentRatio.SMALL);
 
 				panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());

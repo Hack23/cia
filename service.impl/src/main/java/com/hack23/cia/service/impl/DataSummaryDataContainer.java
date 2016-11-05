@@ -152,13 +152,13 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 	}
 
 	@Override
-	public List<DataSummary> getPage(int pageNr, int resultPerPage) {
+	public List<DataSummary> getPage(final int pageNr, final int resultPerPage) {
 		return new ArrayList<>();
 	}
 
 	@Override
-	public List<DataSummary> getPageOrderBy(int pageNr, int resultPerPage,
-			SingularAttribute<DataSummary, ? extends Object> orderBy) {
+	public List<DataSummary> getPageOrderBy(final int pageNr, final int resultPerPage,
+			final SingularAttribute<DataSummary, ? extends Object> orderBy) {
 		return new ArrayList<>();
 	}
 

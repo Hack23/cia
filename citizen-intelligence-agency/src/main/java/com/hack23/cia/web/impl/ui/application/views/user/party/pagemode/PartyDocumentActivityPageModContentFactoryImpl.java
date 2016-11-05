@@ -74,7 +74,7 @@ public final class PartyDocumentActivityPageModContentFactoryImpl extends Abstra
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,DOCUMENT_ACTIVITY);
-			
+
 			documentChartDataManager.createDocumentHistoryPartyChart(panelContent,pageId);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);

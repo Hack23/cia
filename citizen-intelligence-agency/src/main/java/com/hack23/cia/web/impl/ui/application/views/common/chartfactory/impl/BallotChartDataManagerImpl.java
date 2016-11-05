@@ -63,7 +63,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 		dataSeries.newSeries().add("Abstain", viewRiksdagenVoteDataBallotSummary.getAbstainVotes());
 		dataSeries.newSeries().add("Absent", viewRiksdagenVoteDataBallotSummary.getAbsentVotes());
 
-		final String caption = viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getIssue() + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern(); 
+		final String caption = viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getIssue() + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern();
 
 		final SeriesDefaults seriesDefaults = new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
 				.setRendererOptions(new DonutRenderer().setSliceMargin(3).setStartAngle(-90).setShowDataLabels(true)
@@ -77,7 +77,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 				.setShowTooltip(true)
 				.setTooltipAlwaysVisible(true)
 				.setKeepTooltipInsideChart(true);
-		
+
 		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend).setHighlighter(highlighter);
 
 		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(options).show());
@@ -93,19 +93,19 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 		series.addSeries(new XYseries().setLabel("No"));
 		series.addSeries(new XYseries().setLabel("Abstain"));
 		series.addSeries(new XYseries().setLabel("Absent"));
-		
+
 		String caption=null;
 		for (final ViewRiksdagenVoteDataBallotPartySummary viewRiksdagenVoteDataBallotPartySummary : partyList) {
 			if (caption == null) {
-				caption = viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getIssue() + viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getConcern(); 
+				caption = viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getIssue() + viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getConcern();
 			}
-			
+
 			dataSeries.newSeries()
 			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()), viewRiksdagenVoteDataBallotPartySummary.getPartyYesVotes())
 			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()),viewRiksdagenVoteDataBallotPartySummary.getPartyNoVotes())
 			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()),viewRiksdagenVoteDataBallotPartySummary.getPartyAbstainVotes())
-			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()),viewRiksdagenVoteDataBallotPartySummary.getPartyAbsentVotes());			
-		}	
+			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()),viewRiksdagenVoteDataBallotPartySummary.getPartyAbsentVotes());
+		}
 
 		final SeriesDefaults seriesDefaults = new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
 				.setRendererOptions(new DonutRenderer().setSliceMargin(3).setStartAngle(-90).setShowDataLabels(true)
@@ -119,7 +119,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 				.setShowTooltip(true)
 				.setTooltipAlwaysVisible(true)
 				.setKeepTooltipInsideChart(true);
-		
+
 		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend).setHighlighter(highlighter).addOption(series);
 
 		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(options).show());

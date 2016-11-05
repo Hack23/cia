@@ -80,7 +80,7 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,DOCUMENT_HISTORY);
-			
+
 
 			final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenPoliticianDocument.class);

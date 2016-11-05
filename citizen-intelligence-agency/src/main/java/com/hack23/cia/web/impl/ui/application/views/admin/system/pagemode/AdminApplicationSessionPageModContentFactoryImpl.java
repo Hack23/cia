@@ -74,7 +74,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 
 		final String pageId = getPageId(parameters);
 		final int pageNr= getPageNr(parameters);
-	
+
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
 		LabelFactory.createHeader2Label(content,ADMIN_APPLICATION_SESSION);
@@ -82,12 +82,12 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 		final DataContainer<ApplicationSession, Long> dataContainer = getApplicationManager()
 				.getDataContainer(ApplicationSession.class);
 
-	
+
 		final BeanItemContainer<ApplicationSession> politicianDocumentDataSource = new BeanItemContainer<>(
 				ApplicationSession.class, dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,ApplicationSession_.createdDate));
-		
-		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);		
-		
+
+		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+
 		getGridFactory().createBasicBeanItemGrid(content, politicianDocumentDataSource,
 				"ApplicationSession",
 				new String[] { "hjid", "createdDate", "sessionType", "sessionId", "operatingSystem", "locale",
@@ -114,7 +114,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 								"ipInformation", "userAgentInformation", "modelObjectVersion" }));
 
 				horizontalLayout.addComponent(rightLayout);
-				
+
 				final BeanItemContainer<ApplicationActionEvent> eventsItemContainer = new BeanItemContainer<>(
 						ApplicationActionEvent.class, applicationSession.getEvents());
 

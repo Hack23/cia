@@ -47,8 +47,6 @@ import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 /**
  * The Class SetGoogleAuthenticatorCredentialServiceITest.
  */
-@PerfTest(threads = 10, duration = 3000, warmUp = 1500)
-@Required(max = 200, average = 10, percentile95 = 15, throughput = 50000)
 public final class SetGoogleAuthenticatorCredentialServiceITest extends AbstractServiceFunctionalIntegrationTest {
 
 	/** The i. */
@@ -67,7 +65,7 @@ public final class SetGoogleAuthenticatorCredentialServiceITest extends Abstract
 	 */
 	@Test
 	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
-	@Required(max = 1200, average = 750, percentile95 = 800, throughput = 6)
+	@Required(max = 1500, average = 1000, percentile95 = 1200, throughput = 4)
 	public void servicesetGoogleAuthenticatorCredentialRequestSuccessTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
 

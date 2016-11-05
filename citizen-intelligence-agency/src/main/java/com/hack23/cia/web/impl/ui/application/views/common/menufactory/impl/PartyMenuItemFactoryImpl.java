@@ -95,11 +95,11 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
-	
+
 	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
-	
+
 	/** The party ranking menu item factory. */
 	@Autowired
 	private PartyRankingMenuItemFactory partyRankingMenuItemFactory;
@@ -116,11 +116,11 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 		initApplicationMenuBar(menuBar);
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
-		
+
 		partyRankingMenuItemFactory.createPartyRankingTopics(menuBar.addItem(PARTY_RANKING, FontAwesome.GROUP,null));
 
 		final MenuItem partyItem = menuBar.addItem("Party "+ pageId, FontAwesome.GROUP,null);
-		
+
 		partyItem.addItem(OVERVIEW_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.OVERVIEW, pageId));
 		partyItem.addItem(CHARTS_TEXT, null, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.CHARTS, pageId));

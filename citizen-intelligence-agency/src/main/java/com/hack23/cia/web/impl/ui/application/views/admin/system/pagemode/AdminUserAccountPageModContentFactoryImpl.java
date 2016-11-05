@@ -79,8 +79,8 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 
 		final BeanItemContainer<UserAccount> politicianDocumentDataSource = new BeanItemContainer<>(UserAccount.class,
 				dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,UserAccount_.createdDate));
-		
-		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);		
+
+		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(content,
 				politicianDocumentDataSource,
@@ -89,13 +89,13 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 						"userType", "userRole", "userpassword", "email", "country", "numberOfVisits" }, new String[] { "modelObjectId" },
 				"hjid", new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, "hjid"), null);
 
-		
+
 		if (pageId != null && !pageId.isEmpty()) {
 
 			final UserAccount userAccount = dataContainer.load(Long.valueOf(pageId));
 
 			if (userAccount != null) {
-				
+
 				getFormFactory()
 						.addFormPanelTextFields(content, new BeanItem<>(userAccount), UserAccount.class,
 								Arrays.asList(new String[] { "hjid", "modelObjectId", "modelObjectVersion", "userId",

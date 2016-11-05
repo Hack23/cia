@@ -82,7 +82,7 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,DOCUMENT_HISTORY);
-			
+
 
 			final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenPoliticianDocument.class);

@@ -89,7 +89,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	protected final String getPageId(final String parameters) {
 		final int pageNr = getPageNr(parameters);
 		final String cleanedString = parameters.replace("["+ pageNr +"]","");
-		
+
 		return cleanedString.substring(cleanedString.lastIndexOf('/') + "/".length(), cleanedString.length());
 	}
 
@@ -102,14 +102,14 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 */
 	protected final int getPageNr(final String parameters) {
 		String pageNrValue;
-		if (parameters != null && parameters.contains("[") && parameters.contains("]")) {			
+		if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
 			pageNrValue= parameters.substring(parameters.indexOf('[')+1, parameters.lastIndexOf(']'));
 		} else {
-			pageNrValue=""; 
-		}		
-		
+			pageNrValue="";
+		}
+
 		int pageNr=1;
-		
+
 		if (pageNrValue.length() > 0) {
 			pageNr = Integer.parseInt(pageNrValue);
 		}
@@ -197,7 +197,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 */
 	protected final void createPageVisitHistory(final String pageName, final String pageId,
 			final VerticalLayout panelContent) {
-		LabelFactory.createHeader2Label(panelContent,CURRENT_PAGE_VISIT_HISTORY);		
+		LabelFactory.createHeader2Label(panelContent,CURRENT_PAGE_VISIT_HISTORY);
 		adminChartDataManager
 				.createApplicationActionEventPageElementDailySummaryChart(panelContent,pageName, pageId);
 

@@ -77,7 +77,7 @@ public final class PartyWonDailySummaryChartPageModContentFactoryImpl extends Ab
 
 
 			LabelFactory.createHeader2Label(panelContent,PARTY_WON_DAILY_SUMMARY_CHART);
-			
+
 			chartDataManager.createPartyLineChart(panelContent,pageId);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);

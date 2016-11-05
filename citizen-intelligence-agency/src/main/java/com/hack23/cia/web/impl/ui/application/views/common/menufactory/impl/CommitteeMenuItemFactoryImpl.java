@@ -89,12 +89,12 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 	/** The committee ranking menu item factory. */
 	@Autowired
 	private CommitteeRankingMenuItemFactory committeeRankingMenuItemFactory;
-	
+
 	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
 
-	
+
 	/**
 	 * Instantiates a new committee menu item factory impl.
 	 */
@@ -105,7 +105,7 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 	@Override
 	public void createCommitteeeMenuBar(final MenuBar menuBar, final String pageId) {
 		initApplicationMenuBar(menuBar);
-		
+
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
 		committeeRankingMenuItemFactory.createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, FontAwesome.GROUP, null));

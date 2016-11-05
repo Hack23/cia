@@ -42,8 +42,6 @@ import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 /**
  * The Class RegisterUserServiceITest.
  */
-@PerfTest(threads = 10, duration = 3000, warmUp = 1500)
-@Required(max = 200, average = 10, percentile95 = 15, throughput = 50000)
 public final class RegisterUserServiceITest extends AbstractServiceFunctionalIntegrationTest {
 
 	/** The i. */
@@ -62,7 +60,7 @@ public final class RegisterUserServiceITest extends AbstractServiceFunctionalInt
 	 */
 	@Test
 	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
-	@Required(max = 1200, average = 500, percentile95 = 550, throughput = 12)
+	@Required(max = 1500, average = 700, percentile95 = 750, throughput = 8)
 	public void serviceRegisterUserRequestSuccessTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
 

@@ -46,10 +46,10 @@ public final class LabelFactory {
 	public static void createHeader2Label(final AbstractOrderedLayout panel,final String content) {
 		final Label label = new Label(content);
 		label.setStyleName("Level2Header");
-		
+
 		panel.addComponent(label);
 		panel.setExpandRatio(label,ContentRatio.SMALL);
 	}
-	
-	
+
+
 }

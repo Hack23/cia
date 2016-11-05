@@ -76,7 +76,7 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl extends Ab
 			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,PoliticianPageMode.DOCUMENTHISTORY.toString());
-			
+
 
 			final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenPoliticianDocument.class);

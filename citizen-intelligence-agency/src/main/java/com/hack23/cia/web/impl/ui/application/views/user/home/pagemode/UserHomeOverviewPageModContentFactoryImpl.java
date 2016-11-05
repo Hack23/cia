@@ -96,7 +96,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 		userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
 
 		LabelFactory.createHeader2Label(panelContent,OVERVIEW);
-		
+
 
 		final Button logoutButton = new Button(LOGOUT,FontAwesome.SIGN_OUT);
 
@@ -134,7 +134,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 						"ApplicationActionEvent",
 						new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" }, new String[] { "modelObjectId" },
 						"hjid", new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null);
-			
+
 				panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);
 
 			}

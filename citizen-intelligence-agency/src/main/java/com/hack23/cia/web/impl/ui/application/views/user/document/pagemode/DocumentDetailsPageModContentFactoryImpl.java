@@ -88,7 +88,7 @@ public final class DocumentDetailsPageModContentFactoryImpl extends AbstractDocu
 							DocumentData.class, DocumentData_.id, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,DOCUMENT_DETAILS);
-			
+
 
 			if (documentStatusContainer != null && documentStatusContainer.getDocumentDetailContainer() != null
 					&& documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList() != null) {

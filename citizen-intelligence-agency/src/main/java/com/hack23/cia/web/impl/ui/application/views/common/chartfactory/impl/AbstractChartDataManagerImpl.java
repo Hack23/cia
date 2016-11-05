@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -34,7 +34,7 @@ import com.vaadin.ui.AbstractOrderedLayout;
  */
 public abstract class AbstractChartDataManagerImpl {
 
-	
+
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
@@ -45,7 +45,7 @@ public abstract class AbstractChartDataManagerImpl {
 	public AbstractChartDataManagerImpl() {
 		super();
 	}
-	
+
 	/**
 	 * Adds the chart.
 	 *
@@ -59,7 +59,7 @@ public abstract class AbstractChartDataManagerImpl {
 	protected final void addChart(final AbstractOrderedLayout content,final String caption, final DCharts chart) {
 		content.addComponent(chart);
 		chart.setCaption(caption);
-		content.setExpandRatio(chart, ContentRatio.GRID);		
+		content.setExpandRatio(chart, ContentRatio.GRID);
 	}
 
 	/**
@@ -72,18 +72,18 @@ public abstract class AbstractChartDataManagerImpl {
 	protected final String getPartyName(final String party) {
 		final DataContainer<ViewRiksdagenParty, String> dataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenParty.class);
-		
+
 		final Optional<ViewRiksdagenParty> matchingObjects =dataContainer.getAll().stream().
 			    filter(p -> p.getPartyId().equalsIgnoreCase(party)).
 			    findFirst();
-		
+
 		if (matchingObjects.isPresent()) {
 			return matchingObjects.get().getPartyName();
-		
+
 		} else {
 			return party;
 		}
 	}
-	
+
 
 }

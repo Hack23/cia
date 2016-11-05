@@ -100,16 +100,16 @@ public final class MainViewOverviewPageModContentFactoryImpl extends AbstractPag
 		totalpartytoplistLabel.setStyleName("Level2Header");
 		content.addComponent(totalpartytoplistLabel);
 
-		
-		
+
+
 		final FormLayout formLayout = new FormLayout();
-		
+
 		content.addComponent(formLayout);
 
 		formLayout.addComponent(getPageLinkFactory().createCountryRankingViewPageLink());
-		
+
 		formLayout.addComponent(getPageLinkFactory().createParliamentViewPageLink());
-		
+
 		formLayout.addComponent(getPageLinkFactory().createPoliticianRankingViewPageLink());
 
 		formLayout.addComponent(getPageLinkFactory().createPartyRankingViewPageLink());
@@ -120,7 +120,7 @@ public final class MainViewOverviewPageModContentFactoryImpl extends AbstractPag
 
 		formLayout.addComponent(getPageLinkFactory().createSearchDocumentViewPageLink());
 
-		
+
 		panel.setCaption(CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);

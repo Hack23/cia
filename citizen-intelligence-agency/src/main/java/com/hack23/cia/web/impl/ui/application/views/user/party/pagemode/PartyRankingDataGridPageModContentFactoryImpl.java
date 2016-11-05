@@ -80,7 +80,7 @@ public final class PartyRankingDataGridPageModContentFactoryImpl extends Abstrac
 						"totalActiveCommittee", "totalDaysServedCommittee", "activeParliament", "totalActiveParliament",
 						"totalDaysServedParliament" }, null, "party", new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "party"), null);
 
-		
+
 		panel.setCaption(DATAGRID + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER,

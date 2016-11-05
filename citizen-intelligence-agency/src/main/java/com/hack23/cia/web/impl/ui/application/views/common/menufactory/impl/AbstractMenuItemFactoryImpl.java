@@ -161,7 +161,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 
 	/** The Constant ADMIN_TEXT. */
 	private static final String ADMIN_TEXT = "Admin";
-	
+
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
@@ -185,9 +185,9 @@ public abstract class AbstractMenuItemFactoryImpl {
 		menuBar.setWidth("80%");
 		menuBar.setStyleName("Header");
 		final MenuItem mainViewItem = menuBar.addItem("Application", FontAwesome.SERVER, null);
-		
+
 		mainViewItem.addItem(START_TEXT, FontAwesome.STAR, COMMAND);
-		
+
 		final MenuItem mainItem = mainViewItem.addItem("Main", FontAwesome.STAR, null);
 
 		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.AREA_CHART, COMMAND18);

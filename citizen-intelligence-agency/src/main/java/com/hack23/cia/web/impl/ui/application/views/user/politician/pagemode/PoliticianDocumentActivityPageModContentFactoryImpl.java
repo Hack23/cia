@@ -77,7 +77,7 @@ public final class PoliticianDocumentActivityPageModContentFactoryImpl extends A
 			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,PoliticianPageMode.DOCUMENTACTIVITY.toString());
-			
+
 
 			documentChartDataManager
 					.createPersonDocumentHistoryChart(panelContent,personData.getId());

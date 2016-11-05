@@ -357,7 +357,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES.toString(), "N%C3%A4ringsdepartementet"));
 	}
 
-	
+
 	/**
 	 * Site ministry page visit history test.
 	 *
@@ -605,7 +605,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
-	
+
 	/**
 	 * Site login user enable google authenticator test.
 	 *
@@ -639,19 +639,19 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 
 		userLoginPageVisit.loginUser(username + "@test.com", password);
-		
+
 		final WebElement securitySettingMenuItem = userLoginPageVisit.getMenuItem("Security settings");
 		assertNotNull(securitySettingMenuItem);
 		userLoginPageVisit.performClickAction(securitySettingMenuItem);
 
 
 		userLoginPageVisit.enableGoogleAuthenticator();
-		
+
 		userLoginPageVisit.logoutUser();
 
 	}
 
-	
+
 	/**
 	 * Site committee document history test.
 	 *
@@ -809,8 +809,8 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 	}
-	
-	
+
+
 
 	/**
 	 * Site country ranking view indicators test.
@@ -955,7 +955,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
-	
+
 	/**
 	 * Site ministry ranking page visit history test.
 	 *
@@ -1030,8 +1030,8 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
-	
-	
+
+
 	/**
 	 * Site ballot overview test.
 	 *
@@ -1109,7 +1109,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
-	
+
 	/**
 	 * Site document details test.
 	 *
@@ -1374,7 +1374,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.CHARTS.toString(), "S"));
 	}
 
-	
+
 	/**
 	 * Site party indicators test.
 	 *
@@ -1392,7 +1392,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.INDICATORS.toString(), "S"));
 	}
 
-	
+
 	/**
 	 * Site party current members test.
 	 *

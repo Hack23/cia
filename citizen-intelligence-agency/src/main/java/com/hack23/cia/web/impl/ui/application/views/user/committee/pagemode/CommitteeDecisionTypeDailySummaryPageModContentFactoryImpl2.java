@@ -83,7 +83,7 @@ public final class CommitteeDecisionTypeDailySummaryPageModContentFactoryImpl2
 			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,DECISION_TYPE_DAILY_SUMMARY);
-			
+
 			chartDataManager
 					.createDecisionTypeChart(panelContent,viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
 

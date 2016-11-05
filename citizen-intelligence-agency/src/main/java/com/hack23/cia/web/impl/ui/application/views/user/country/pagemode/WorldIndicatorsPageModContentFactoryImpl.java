@@ -110,8 +110,8 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 
 		ViewWorldbankIndicatorDataCountrySummary indicatorSummaryValue = null;
 		if (indicatorSummary.isPresent()) {
-			indicatorSummaryValue = indicatorSummary.get();			
-			
+			indicatorSummaryValue = indicatorSummary.get();
+
 			getFormFactory().addFormPanelTextFields(verticalLayout,
 					new BeanItem<>(
 							indicatorSummaryValue),

@@ -76,7 +76,7 @@ public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractP
 
 
 			LabelFactory.createHeader2Label(panelContent,LEADER_HISTORY);
-			
+
 
 			final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenPartyRoleMember.class);
@@ -91,7 +91,7 @@ public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractP
 					new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
 							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "roleId", "personId", "party", "detail" },
 					null, new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
-			
+
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}

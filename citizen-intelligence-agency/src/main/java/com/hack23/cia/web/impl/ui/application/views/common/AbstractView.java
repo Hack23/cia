@@ -65,11 +65,11 @@ public abstract class AbstractView extends Panel implements View {
 
 	/** The Constant ROLE_ADMIN. */
 	private static final String ROLE_ADMIN = "ROLE_ADMIN";
-	
+
 	/** The application manager. */
 	@Autowired
 	private transient ApplicationManager applicationManager;
-	
+
 	/** The page mode content factory map. */
 	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
@@ -157,36 +157,36 @@ public abstract class AbstractView extends Panel implements View {
 		layout.addComponent(pageModeContent);
 
 		final ThemeResource ciaLogoResource = new ThemeResource("cia-logo.png");
-		
+
 		final Image ciaLogoImage = new Image(null,ciaLogoResource);
-		
+
 		final HorizontalLayout topHeader = new HorizontalLayout();
-		
+
 		topHeader.addComponent(ciaLogoImage);
 		ciaLogoImage.setWidth("75px");
 		ciaLogoImage.setHeight("75px");
 		topHeader.setComponentAlignment(ciaLogoImage, Alignment.MIDDLE_LEFT);
-		
+
 		final Label sloganLabel = new Label("Citizen Intelligence Agency :: Tracking politicians like bugs!");
 		sloganLabel.setStyleName("Header");
 		topHeader.addComponent(sloganLabel);
 		topHeader.setComponentAlignment(sloganLabel, Alignment.MIDDLE_CENTER);
-		
-		
+
+
 		topHeaderRightPanel.removeAllComponents();
 		topHeader.addComponent(topHeaderRightPanel);
 		topHeader.setComponentAlignment(topHeaderRightPanel, Alignment.MIDDLE_RIGHT);
 
-		
-		
+
+
 		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {
 
-			
-			final Link userHomePageLink = pageLinkFactory.createUserHomeViewPageLink();	
+
+			final Link userHomePageLink = pageLinkFactory.createUserHomeViewPageLink();
 			topHeaderRightPanel.addComponent(userHomePageLink);
 			topHeaderRightPanel.setComponentAlignment(userHomePageLink, Alignment.MIDDLE_RIGHT);
 
-			
+
 			final Button logoutButton = new Button(LOGOUT,FontAwesome.SIGN_OUT);
 
 			final LogoutRequest logoutRequest = new LogoutRequest();
@@ -197,26 +197,26 @@ public abstract class AbstractView extends Panel implements View {
 			topHeaderRightPanel.setComponentAlignment(logoutButton, Alignment.MIDDLE_RIGHT);
 
 		} else {
-			final Link createRegisterPageLink = pageLinkFactory.createRegisterPageLink();	
+			final Link createRegisterPageLink = pageLinkFactory.createRegisterPageLink();
 			topHeaderRightPanel.addComponent(createRegisterPageLink);
 			topHeaderRightPanel.setComponentAlignment(createRegisterPageLink, Alignment.MIDDLE_RIGHT);
 
-			final Link createLoginPageLink = pageLinkFactory.createLoginPageLink();	
+			final Link createLoginPageLink = pageLinkFactory.createLoginPageLink();
 			topHeaderRightPanel.addComponent(createLoginPageLink);
 			topHeaderRightPanel.setComponentAlignment(createLoginPageLink, Alignment.MIDDLE_RIGHT);
 		}
-		
-				
+
+
 		topHeaderRightPanel.setWidth("100%");
 		topHeaderRightPanel.setHeight("60px");
-		
+
 		topHeader.setWidth("100%");
 		topHeader.setHeight("60px");
-		
+
 		pageModeContent.addComponent(topHeader);
 		pageModeContent.setComponentAlignment(topHeader, Alignment.TOP_CENTER);
-		
-		
+
+
 		pageModeContent.addComponent(getBarmenu());
 		pageModeContent.setComponentAlignment(getBarmenu(), Alignment.TOP_CENTER);
 

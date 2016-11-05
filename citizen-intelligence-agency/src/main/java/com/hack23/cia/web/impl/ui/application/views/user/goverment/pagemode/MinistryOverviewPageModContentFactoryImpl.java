@@ -81,7 +81,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
-			
+
 
 			final Link addMinistryPageLink = getPageLinkFactory().addMinistryPageLink(viewRiksdagenMinistry);
 			panelContent.addComponent(addMinistryPageLink);
@@ -89,7 +89,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 			getFormFactory().addFormPanelTextFields(panelContent, new BeanItem<>(viewRiksdagenMinistry),
 					ViewRiksdagenMinistry.class, Arrays.asList(new String[] { "nameId", "active", "firstAssignmentDate",
 							"lastAssignmentDate", "totalAssignments", "totalDaysServed", "currentMemberSize" }));
-			
+
 			panelContent.setExpandRatio(addMinistryPageLink, ContentRatio.SMALL);
 
 			panel.setCaption(MINISTRY + viewRiksdagenMinistry.getNameId());

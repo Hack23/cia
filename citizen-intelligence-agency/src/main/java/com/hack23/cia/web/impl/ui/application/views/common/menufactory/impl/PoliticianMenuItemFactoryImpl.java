@@ -76,7 +76,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 	/** The Constant DOCUMENT_ACTIVITY_TEXT. */
 	private static final String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
-	
+
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = "Overview";
 
@@ -86,7 +86,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 	/** The politician ranking menu item factory. */
 	@Autowired
 	private PoliticianRankingMenuItemFactory politicianRankingMenuItemFactory;
-	
+
 	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
@@ -102,11 +102,11 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 	@Override
 	public void createPoliticianMenuBar(final MenuBar menuBar, final String pageId) {
 			initApplicationMenuBar(menuBar);
-			
+
 			applicationMenuItemFactory.addRankingMenu(menuBar);
-			
+
 			politicianRankingMenuItemFactory.createPoliticianRankingTopics(menuBar.addItem(POLITICIAN_RANKING, FontAwesome.BUG, null));
-			
+
 			final MenuItem politicanItem = menuBar.addItem("Politician "+ pageId, FontAwesome.BUG,null);
 
 

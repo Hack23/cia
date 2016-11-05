@@ -20,9 +20,11 @@ package com.hack23.cia.service.external.esv.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -41,8 +43,14 @@ import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 @Component
 public final class EsvApiImpl implements EsvApi {
 
+	/** The government body name set. */
+	private static final Set<String> governmentBodyNameSet = new HashSet<>();
+
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(EsvApiImpl.class);
+
+	/** The ministry name set. */
+	private static final Set<String> ministryNameSet = new HashSet<>();
 
 	/**
 	 * Instantiates a new val api impl.
@@ -52,9 +60,13 @@ public final class EsvApiImpl implements EsvApi {
 	}
 
 	@Override
-	public Map<Integer,List<GovernmentBodyAnnualSummary>> getGovernmentBodyAnnualSummaryData() {
+	public Map<Integer, List<GovernmentBodyAnnualSummary>> getData() {
+		return getDataPerMinistry(null);
+	}
 
-		final Map<Integer,List<GovernmentBodyAnnualSummary>> map = new TreeMap<>();
+	@Override
+	public Map<Integer, List<GovernmentBodyAnnualSummary>> getDataPerMinistry(final String name) {
+		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = new TreeMap<>();
 		try {
 			final HSSFWorkbook myWorkBook = new HSSFWorkbook(
 					EsvApiImpl.class.getResourceAsStream("/Myndighetsinformation.xls"));
@@ -64,7 +76,7 @@ public final class EsvApiImpl implements EsvApi {
 
 				if (mySheet.getSheetName().chars().allMatch(Character::isDigit)) {
 
-					int year = Integer.valueOf(mySheet.getSheetName());
+					final int year = Integer.valueOf(mySheet.getSheetName());
 
 					final List<GovernmentBodyAnnualSummary> yearList = new ArrayList<>();
 					final Iterator<Row> rowIterator = mySheet.iterator();
@@ -76,18 +88,21 @@ public final class EsvApiImpl implements EsvApi {
 						final short maxColIx = row.getLastCellNum();
 
 						if (maxColIx == 10) {
-							GovernmentBodyAnnualSummary governmentBodyAnnualSummary = new GovernmentBodyAnnualSummary(
+							final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = new GovernmentBodyAnnualSummary(
 									year, row.getCell(0).toString(), row.getCell(1).toString(),
 									row.getCell(2).toString(), row.getCell(3).toString(), row.getCell(4).toString(),
 									row.getCell(5).toString(), row.getCell(6).toString(), row.getCell(7).toString(),
 									row.getCell(8).toString(), row.getCell(9).toString());
 							row.getCell(9).toString();
 
-							yearList.add(governmentBodyAnnualSummary);
+							if (name == null || name.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())) {
+								yearList.add(governmentBodyAnnualSummary);
+							}
+
 						}
 
 					}
-					map.put(year,yearList);
+					map.put(year, yearList);
 				}
 			}
 
@@ -99,6 +114,50 @@ public final class EsvApiImpl implements EsvApi {
 		}
 
 		return map;
+	}
+
+	@Override
+	public List<GovernmentBodyAnnualSummary> getDataPerMinistryAndYear(final String name, final int year) {
+		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = getDataPerMinistry(name);
+
+		if (map.containsKey(year)) {
+			return map.get(year);
+		} else {
+			return new ArrayList<>();
+		}
+	}
+
+	@Override
+	public List<String> getGovernmentBodyNames() {
+		if (governmentBodyNameSet.isEmpty()) {
+
+			final Map<Integer, List<GovernmentBodyAnnualSummary>> data = getData();
+
+			for (final List<GovernmentBodyAnnualSummary> list : data.values()) {
+				for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
+					if (!governmentBodyNameSet.contains(governmentBodyAnnualSummary.getName())) {
+						governmentBodyNameSet.add(governmentBodyAnnualSummary.getName());
+					}
+				}
+			}
+		}
+		return new ArrayList<>(governmentBodyNameSet);
+	}
+
+	@Override
+	public List<String> getMinistryNames() {
+		if (ministryNameSet.isEmpty()) {
+			final Map<Integer, List<GovernmentBodyAnnualSummary>> data = getData();
+
+			for (final List<GovernmentBodyAnnualSummary> list : data.values()) {
+				for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
+					if (!ministryNameSet.contains(governmentBodyAnnualSummary.getMinistry())) {
+						ministryNameSet.add(governmentBodyAnnualSummary.getMinistry());
+					}
+				}
+			}
+		}
+		return new ArrayList<>(ministryNameSet);
 	}
 
 }

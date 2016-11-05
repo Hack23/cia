@@ -92,7 +92,7 @@ public final class DocumentPersonReferencesPageModContentFactoryImpl extends Abs
 
 
 			LabelFactory.createHeader2Label(panelContent,PERSON_REFERENCES);
-			
+
 
 			if (documentStatusContainer != null
 					&& documentStatusContainer.getDocumentPersonReferenceContainer() != null

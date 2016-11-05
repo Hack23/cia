@@ -111,7 +111,7 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 		if ("firefox".equals(browser)) {
 			final DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 			capabilities.setCapability("marionette", true);
-			driver = new FirefoxDriver(capabilities);			
+			driver = new FirefoxDriver(capabilities);
 		} else if ("chrome".equals(browser)) {
 			driver = new ChromeDriver();
 		} else if ("htmlunit-firefox".equals(browser)) {
@@ -136,7 +136,7 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 	    driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
-	    
+
 		webDriverMap.put(browser, driver);
 		return driver;
 	}

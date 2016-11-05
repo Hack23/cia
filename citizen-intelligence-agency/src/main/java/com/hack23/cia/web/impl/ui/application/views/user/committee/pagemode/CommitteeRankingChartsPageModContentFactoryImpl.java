@@ -120,7 +120,7 @@ public final class CommitteeRankingChartsPageModContentFactoryImpl extends Abstr
 	private void createExtraChartLayout(final VerticalLayout panelContent) {
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
-		
+
 		panelContent.addComponent(chartLayout);
 
 		chartDataManager.createChartPanel(chartLayout,

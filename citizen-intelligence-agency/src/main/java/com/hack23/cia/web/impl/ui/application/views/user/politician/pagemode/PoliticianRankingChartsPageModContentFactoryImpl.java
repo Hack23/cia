@@ -87,7 +87,7 @@ public final class PoliticianRankingChartsPageModContentFactoryImpl
 
 		chartDataManager
 				.createChartPanel(chartLayout,dataSeriesFactory.createPartyChartTimeSeriesCurrent(), "Current");
-		
+
 		panelContent.addComponent(chartLayout);
 
 		panel.setCaption(CHARTS + parameters);

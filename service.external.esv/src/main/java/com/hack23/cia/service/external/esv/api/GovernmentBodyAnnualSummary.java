@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,38 +28,38 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class GovernmentBodyAnnualSummary {
 
-	/** The year. */
-	private final int year;
-	
-	/** The name. */
-	private final String name;
-	
-	/** The consecutive number. */
-	private final String consecutiveNumber;
-	
-	/** The goverment body id. */
-	private final String govermentBodyId;
-	
-	/** The m code. */
-	private final String mCode;
-	
-	/** The ministry. */
-	private final String ministry;
-	
-	/** The org number. */
-	private final String orgNumber;
-	
-	/** The head count. */
-	private final String headCount;
-	
 	/** The annual work head count. */
 	private final String annualWorkHeadCount;
-	
-	/** The vat. */
-	private final String vat;
-	
+
 	/** The comment. */
 	private final String comment;
+
+	/** The consecutive number. */
+	private final String consecutiveNumber;
+
+	/** The goverment body id. */
+	private final String govermentBodyId;
+
+	/** The head count. */
+	private final String headCount;
+
+	/** The m code. */
+	private final String mCode;
+
+	/** The ministry. */
+	private final String ministry;
+
+	/** The name. */
+	private final String name;
+
+	/** The org number. */
+	private final String orgNumber;
+
+	/** The vat. */
+	private final String vat;
+
+	/** The year. */
+	private final int year;
 
 	/**
 	 * Instantiates a new government body annual summary.
@@ -104,22 +104,27 @@ public class GovernmentBodyAnnualSummary {
 		this.comment = comment;
 	}
 
-	/**
-	 * Gets the year.
-	 *
-	 * @return the year
-	 */
-	public int getYear() {
-		return year;
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
 	/**
-	 * Gets the name.
+	 * Gets the annual work head count.
 	 *
-	 * @return the name
+	 * @return the annual work head count
 	 */
-	public String getName() {
-		return name;
+	public String getAnnualWorkHeadCount() {
+		return annualWorkHeadCount;
+	}
+
+	/**
+	 * Gets the comment.
+	 *
+	 * @return the comment
+	 */
+	public String getComment() {
+		return comment;
 	}
 
 	/**
@@ -141,6 +146,15 @@ public class GovernmentBodyAnnualSummary {
 	}
 
 	/**
+	 * Gets the head count.
+	 *
+	 * @return the head count
+	 */
+	public String getHeadCount() {
+		return headCount;
+	}
+
+	/**
 	 * Gets the m code.
 	 *
 	 * @return the m code
@@ -159,30 +173,21 @@ public class GovernmentBodyAnnualSummary {
 	}
 
 	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
 	 * Gets the org number.
 	 *
 	 * @return the org number
 	 */
 	public String getOrgNumber() {
 		return orgNumber;
-	}
-
-	/**
-	 * Gets the head count.
-	 *
-	 * @return the head count
-	 */
-	public String getHeadCount() {
-		return headCount;
-	}
-
-	/**
-	 * Gets the annual work head count.
-	 *
-	 * @return the annual work head count
-	 */
-	public String getAnnualWorkHeadCount() {
-		return annualWorkHeadCount;
 	}
 
 	/**
@@ -195,27 +200,22 @@ public class GovernmentBodyAnnualSummary {
 	}
 
 	/**
-	 * Gets the comment.
+	 * Gets the year.
 	 *
-	 * @return the comment
+	 * @return the year
 	 */
-	public String getComment() {
-		return comment;
-	}
-	
-	@Override
-	public final boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj);
-	}
-
-	@Override
-	public final String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	public int getYear() {
+		return year;
 	}
 
 	@Override
 	public final int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);
+	}
+
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 }
