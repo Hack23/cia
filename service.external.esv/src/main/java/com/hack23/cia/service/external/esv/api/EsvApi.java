@@ -43,6 +43,15 @@ public interface EsvApi {
 	Map<Integer, List<GovernmentBodyAnnualSummary>> getDataPerMinistry(String name);
 
 	/**
+	 * Gets the data per government body.
+	 *
+	 * @param name
+	 *            the name
+	 * @return the data per government body
+	 */
+	Map<Integer, GovernmentBodyAnnualSummary> getDataPerGovernmentBody(String name);
+	
+	/**
 	 * Gets the data per ministry and year.
 	 *
 	 * @param name
