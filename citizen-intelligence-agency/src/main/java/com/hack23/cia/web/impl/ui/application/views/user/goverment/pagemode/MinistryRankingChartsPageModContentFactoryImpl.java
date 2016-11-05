@@ -29,7 +29,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Char
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.MinistryDataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -41,9 +40,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Service
 public final class MinistryRankingChartsPageModContentFactoryImpl extends AbstractMinistryRankingPageModContentFactoryImpl {
-
-	/** The Constant NAME. */
-	public static final String NAME = UserViews.MINISTRY_RANKING_VIEW_NAME;
 
 	/** The Constant CHARTS. */
 	private static final String CHARTS = "Charts:";

@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
@@ -48,6 +49,11 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 	/** The Constant COMMAND18. */
 	private static final PageModeMenuCommand COMMAND18 = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
 
+	private static final PageModeMenuCommand COMMAND22 = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES.toString());
+
+	/** The Constant GOVERNMENT_BODIES. */
+	private static final String GOVERNMENT_BODIES = "Government bodies";
+	
 	/** The Constant MINISTRY_RANKING. */
 	private static final String MINISTRY_RANKING = "Ministry Ranking";
 
@@ -130,6 +136,10 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 		chartByTopic.addItem(ALL_MINISTRIES_TOTAL_MEMBERS_TEXT,FontAwesome.GROUP,
 				COMMAND20);
 
+		chartByTopic.addItem(GOVERNMENT_BODIES,FontAwesome.GROUP,
+				COMMAND22);
+
+		
 		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
 				COMMAND21);
 

@@ -19,44 +19,38 @@
 package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class MinistryRankingPageVisitHistoryPageModContentFactoryImpl.
+ * The Class MinistryRankingGovernmentBodiesPageModContentFactoryImpl.
  */
 @Component
-public final class MinistryRankingPageVisitHistoryPageModContentFactoryImpl
-		extends AbstractMinistryRankingPageModContentFactoryImpl {
+public final class MinistryRankingGovernmentBodiesPageModContentFactoryImpl extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The Constant PAGE_VISIT_HISTORY. */
-	private static final String PAGE_VISIT_HISTORY = "Page Visit History:";
+	/** The Constant OVERVIEW. */
+	private static final String GOVERNMENT_BODIES = "Government body";
 
-	/** The admin chart data manager. */
-	@Autowired
-	private AdminChartDataManager adminChartDataManager;
 
 	/**
-	 * Instantiates a new ministry ranking page visit history page mod content
+	 * Instantiates a new ministry ranking government bodies page mod content
 	 * factory impl.
 	 */
-	public MinistryRankingPageVisitHistoryPageModContentFactoryImpl() {
+	public MinistryRankingGovernmentBodiesPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (!StringUtils.isEmpty(parameters) && parameters.contains(PageMode.PAGEVISITHISTORY.toString()));
+		return NAME.equals(page) && (!StringUtils.isEmpty(parameters) && parameters.contains(MinistryPageMode.GOVERNMENT_BODIES.toString()));
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -68,15 +62,17 @@ public final class MinistryRankingPageVisitHistoryPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
 
-		panel.setCaption(PAGE_VISIT_HISTORY + parameters);
+		panel.setCaption(GOVERNMENT_BODIES + parameters);
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,
-				NAME, parameters, pageId);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 
 		return panelContent;
 
 	}
+
+
+
 
 }

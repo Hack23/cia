@@ -22,12 +22,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 /**
  * The Class AbstractMinistryRankingPageModContentFactoryImpl.
  */
 public abstract class AbstractMinistryRankingPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
+	/** The Constant NAME. */
+	public static final String NAME = UserViews.MINISTRY_RANKING_VIEW_NAME;
 
 	/** The ministry ranking menu item factory. */
 	@Autowired
