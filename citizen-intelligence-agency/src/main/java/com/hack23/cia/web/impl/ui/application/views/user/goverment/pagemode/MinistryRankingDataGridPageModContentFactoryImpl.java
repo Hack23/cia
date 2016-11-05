@@ -43,9 +43,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class MinistryRankingDataGridPageModContentFactoryImpl
 		extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The Constant NAME. */
-	public static final String NAME = UserViews.MINISTRY_RANKING_VIEW_NAME;
-
 	/** The Constant DATAGRID. */
 	private static final String DATAGRID = "Datagrid:";
 

@@ -38,6 +38,9 @@ import com.vaadin.ui.MenuBar.MenuItem;
 @Service
 public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements MinistryMenuItemFactory {
 
+	/** The Constant GOVERNMENT_BODIES. */
+	private static final String GOVERNMENT_BODIES = "Government bodies";
+
 	/** The Constant MINISTRY_RANKING. */
 	private static final String MINISTRY_RANKING = "Ministry Ranking";
 	
@@ -118,6 +121,11 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		rolesItem.addItem(ROLE_GHANT_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString(), pageId));
 
+		rolesItem.addItem(GOVERNMENT_BODIES, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES.toString(), pageId));
+
+
+		
 		final MenuItem documentItem = ministryItem.addItem(DOCUMENTS_TEXT, FontAwesome.GROUP, null);
 
 		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,

@@ -19,44 +19,41 @@
 package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
+import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class MinistryRankingPageVisitHistoryPageModContentFactoryImpl.
+ * The Class MinistryGovernmentBodiesModContentFactoryImpl.
  */
 @Component
-public final class MinistryRankingPageVisitHistoryPageModContentFactoryImpl
-		extends AbstractMinistryRankingPageModContentFactoryImpl {
+public final class MinistryGovernmentBodiesModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	/** The Constant PAGE_VISIT_HISTORY. */
-	private static final String PAGE_VISIT_HISTORY = "Page Visit History:";
+	private static final String GOVERNMENT_BODIES = "Government bodies";
 
-	/** The admin chart data manager. */
-	@Autowired
-	private AdminChartDataManager adminChartDataManager;
+	/** The Constant MINISTRY. */
+	private static final String MINISTRY = "Ministry:";
 
 	/**
-	 * Instantiates a new ministry ranking page visit history page mod content
-	 * factory impl.
+	 * Instantiates a new ministry government bodies mod content factory impl.
 	 */
-	public MinistryRankingPageVisitHistoryPageModContentFactoryImpl() {
+	public MinistryGovernmentBodiesModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (!StringUtils.isEmpty(parameters) && parameters.contains(PageMode.PAGEVISITHISTORY.toString()));
+		return NAME.equals(page) && (!StringUtils.isEmpty(parameters) && parameters.contains(MinistryPageMode.GOVERNMENT_BODIES.toString()));
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -64,16 +61,24 @@ public final class MinistryRankingPageVisitHistoryPageModContentFactoryImpl
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 
-		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
-
 		final String pageId = getPageId(parameters);
 
-		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
+		final DataContainer<ViewRiksdagenMinistry, String> dataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenMinistry.class);
 
-		panel.setCaption(PAGE_VISIT_HISTORY + parameters);
+		final ViewRiksdagenMinistry viewRiksdagenMinistry = dataContainer.load(pageId);
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,
-				NAME, parameters, pageId);
+		if (viewRiksdagenMinistry != null) {
+
+			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
+
+			LabelFactory.createHeader2Label(panelContent,GOVERNMENT_BODIES);
+
+			panel.setCaption(MINISTRY + viewRiksdagenMinistry.getNameId());
+			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
+					parameters, pageId);
+
+		}
 
 		return panelContent;
 

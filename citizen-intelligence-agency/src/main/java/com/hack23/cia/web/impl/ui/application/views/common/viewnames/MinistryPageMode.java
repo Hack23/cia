@@ -36,5 +36,5 @@ public enum MinistryPageMode {
 	MEMBERHISTORY,
 
  /** The roleghant. */
- ROLEGHANT
+ ROLEGHANT, GOVERNMENT_BODIES
 }
