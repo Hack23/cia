@@ -83,7 +83,7 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractPag
 
 		final FormLayout formContent = new FormLayout();
 		formPanel.setContent(formContent);
-		
+
 		final RegisterUserRequest reqisterRequest = new RegisterUserRequest();
 		reqisterRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 		reqisterRequest.setUsername("");

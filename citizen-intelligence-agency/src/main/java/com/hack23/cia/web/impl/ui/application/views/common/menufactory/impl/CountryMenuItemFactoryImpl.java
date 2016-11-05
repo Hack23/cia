@@ -134,8 +134,8 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 	@Override
 	public void createCountryTopicMenu(final MenuItem charts) {
-		
-		
+
+
 		charts.addItem(OVERVIEW_TEXT, FontAwesome.LINE_CHART,
 				COMMAND18);
 
@@ -169,6 +169,6 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 		charts.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.LINE_CHART,
 				COMMAND22);
-		
+
 	}
 }

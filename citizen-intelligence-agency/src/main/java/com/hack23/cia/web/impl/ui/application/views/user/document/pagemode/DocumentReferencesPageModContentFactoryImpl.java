@@ -93,7 +93,7 @@ public final class DocumentReferencesPageModContentFactoryImpl extends AbstractD
 
 
 			LabelFactory.createHeader2Label(panelContent,DOCUMENT_REFERENCES);
-			
+
 
 			if (documentStatusContainer != null
 					&& documentStatusContainer.getDocumentReferenceContainer() != null

@@ -84,7 +84,7 @@ public final class PoliticianVotesHistoryPageModContentFactoryImpl extends Abstr
 			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,PoliticianPageMode.VOTEHISTORY.toString());
-			
+
 
 			final BeanItemContainer<ViewRiksdagenVoteDataBallotPoliticianSummary> politicianBallotDataSource = new BeanItemContainer<>(
 					ViewRiksdagenVoteDataBallotPoliticianSummary.class,

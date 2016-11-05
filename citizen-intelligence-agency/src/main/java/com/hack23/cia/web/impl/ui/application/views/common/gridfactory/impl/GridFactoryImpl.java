@@ -44,7 +44,7 @@ public final class GridFactoryImpl implements GridFactory {
 			final String caption, final Object[] columnOrder, final Object[] hideColumns,
 			final String idProprty, final AbstractPageItemRendererClickListener<?> listener, final String actionId) {
 		createBasicBeanItemNestedPropertiesGrid(panelContent,datasource, caption, null, columnOrder, hideColumns, idProprty, listener, actionId);
-		
+
 
 	}
 

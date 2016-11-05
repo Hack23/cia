@@ -85,7 +85,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 
 	/** The Constant PARLIAMENT_RANKING_LINK_TEXT. */
 	private static final String PARLIAMENT_RANKING_LINK_TEXT = "Parliament Ranking";
-	
+
 	/** The Constant LINK_SEPARATOR. */
 	private static final String LINK_SEPARATOR = PAGE_PREFIX;
 
@@ -119,7 +119,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	
+
 	@Override
 	public Link createCountryRankingViewPageLink() {
 		final Link pageLink = new Link(COUNTRY_RANKING_LINK_TEXT,
@@ -137,7 +137,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		pageLink.setIcon(FontAwesome.INSTITUTION);
 		return pageLink;
 	}
-	
+
 
 	@Override
 	public Link createMinistryRankingViewPageLink() {

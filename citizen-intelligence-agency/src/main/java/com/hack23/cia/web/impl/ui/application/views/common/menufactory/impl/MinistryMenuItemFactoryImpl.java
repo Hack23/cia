@@ -43,7 +43,7 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 	/** The Constant MINISTRY_RANKING. */
 	private static final String MINISTRY_RANKING = "Ministry Ranking";
-	
+
 	/** The Constant DOCUMENT_HISTORY_TEXT. */
 	private static final String DOCUMENT_HISTORY_TEXT = "Document history";
 
@@ -76,7 +76,7 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
-	
+
 	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
@@ -84,7 +84,7 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	/** The ministry ranking menu item factory. */
 	@Autowired
 	private MinistryRankingMenuItemFactory ministryRankingMenuItemFactory;
-	
+
 	/**
 	 * Instantiates a new ministry menu item factory impl.
 	 */
@@ -95,9 +95,9 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	@Override
 	public void createMinistryMenuBar(final MenuBar menuBar, final String pageId) {
 		initApplicationMenuBar(menuBar);
-		
+
 		applicationMenuItemFactory.addRankingMenu(menuBar);
-		
+
 		ministryRankingMenuItemFactory.createMinistryRankingTopics(menuBar.addItem(MINISTRY_RANKING, FontAwesome.GROUP,null));
 
 		final MenuItem ministryItem = menuBar.addItem("Ministry "+ pageId, FontAwesome.GROUP,null);
@@ -125,7 +125,7 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES.toString(), pageId));
 
 
-		
+
 		final MenuItem documentItem = ministryItem.addItem(DOCUMENTS_TEXT, FontAwesome.GROUP, null);
 
 		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,

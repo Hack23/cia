@@ -73,7 +73,7 @@ public final class PartyCurrentLeadersPageModContentFactoryImpl extends Abstract
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,CURRENT_LEADERS);
-			
+
 
 			final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenPartyRoleMember.class);

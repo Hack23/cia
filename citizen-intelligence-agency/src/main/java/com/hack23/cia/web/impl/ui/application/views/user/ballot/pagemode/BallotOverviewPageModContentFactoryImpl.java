@@ -109,8 +109,8 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
-			
-			
+
+
 
 			for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
 
@@ -134,7 +134,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 				}
 
 			}
-			
+
 
 			final BeanItemContainer<ViewRiksdagenVoteDataBallotPartySummary> partyBallotDataSource = new BeanItemContainer<>(
 					ViewRiksdagenVoteDataBallotPartySummary.class, partyBallotList);

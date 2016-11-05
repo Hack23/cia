@@ -83,7 +83,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl 
 
 
 			LabelFactory.createHeader2Label(panelContent,COMMITTEE_BALLOT_DECISION_SUMMARY);
-			
+
 
 			final DataContainer<ViewRiksdagenCommitteeBallotDecisionPartySummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPartySummary.class);
@@ -144,7 +144,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl 
 						    "partyPercentageAbstain",
 						    "partyPercentageMale"
 					}, new String[] { "embeddedId"}, "ballotId", new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "ballotId"), "ballotId");
-			
+
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}
 		return panelContent;

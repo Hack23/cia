@@ -92,7 +92,7 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 							DocumentData.class, DocumentData_.id, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,DOCUMENT_ATTACHMENTS);
-			
+
 
 			if (documentStatusContainer != null && documentStatusContainer.getDocumentAttachmentContainer() != null
 					&& documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList() != null) {
@@ -106,11 +106,11 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 						null, null, null);
 
 				final List<DocumentAttachment> documentAttachmentList = documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList();
-		
+
 				final VerticalLayout verticalLayout = new VerticalLayout();
 				panelContent.addComponent(verticalLayout);
 				panelContent.setExpandRatio(verticalLayout,ContentRatio.SMALL);
-				
+
 				for (final DocumentAttachment documentAttachment : documentAttachmentList) {
 					final ExternalAttachmentDownloadLink link = new ExternalAttachmentDownloadLink(documentAttachment.getFileName(), documentAttachment.getFileType(), documentAttachment.getFileUrl());
 					verticalLayout.addComponent(link);

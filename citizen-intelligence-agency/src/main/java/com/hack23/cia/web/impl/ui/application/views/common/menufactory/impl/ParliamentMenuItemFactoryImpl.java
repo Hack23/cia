@@ -105,7 +105,7 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
-	
+
 	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
@@ -120,7 +120,7 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 	@Override
 	public void createParliamentTopicMenu(final MenuBar menuBar) {
 		initApplicationMenuBar(menuBar);
-		
+
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
 		createParliamentTopicMenu(menuBar.addItem(PARLIAMENT_RANKING_TEXT, FontAwesome.INSTITUTION, null));
@@ -153,7 +153,7 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 		charts.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.INSTITUTION,
 				COMMAND22);
-		
+
 	}
 
 }

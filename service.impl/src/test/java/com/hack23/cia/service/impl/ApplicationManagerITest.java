@@ -37,7 +37,7 @@ import com.hack23.cia.service.api.DataSummary;
  * The Class ApplicationManagerITest.
  */
 @PerfTest(threads = 10, duration = 3000, warmUp = 1500)
-@Required(max = 300, average = 15, percentile95 = 20, throughput = 4000)
+@Required(max = 400, average = 25, percentile95 = 30, throughput = 2000)
 public final class ApplicationManagerITest extends AbstractServiceFunctionalIntegrationTest {
 
 	/** The i. */

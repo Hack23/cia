@@ -247,7 +247,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 		createPartyBallotChart(content,viewRiksdagenVoteDataBallotPartySummaryDaily -> (DateUtils.toCalendar(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()).get(Calendar.YEAR)) - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgBornYear().intValue());
 	}
 
-	
+
 
 	/**
 	 * Creates the party ballot chart.

@@ -25,7 +25,7 @@ public final class UserViews {
 
 	/** The Constant BALLOT_VIEW_NAME. */
 	public static final String BALLOT_VIEW_NAME = "ballot";
-	
+
 	/** The Constant COMMITTEE_RANKING_VIEW_NAME. */
 	public static final String COMMITTEE_RANKING_VIEW_NAME = "committeeranking";
 

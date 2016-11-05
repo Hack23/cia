@@ -38,8 +38,6 @@ import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 /**
  * The Class DestroyApplicationSessionServiceITest.
  */
-@PerfTest(threads = 10, duration = 3000, warmUp = 1500)
-@Required(max = 200, average = 10, percentile95 = 15, throughput = 50000)
 public final class DestroyApplicationSessionServiceITest extends AbstractServiceFunctionalIntegrationTest {
 
 
@@ -63,7 +61,7 @@ public final class DestroyApplicationSessionServiceITest extends AbstractService
 	 */
 	@Test
 	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 400, percentile95 = 450, throughput = 20)
+	@Required(max = 1000, average = 600, percentile95 = 850, throughput = 10)
 	public void serviceDestroyApplicationSessionRequestSuccessTest() throws Exception {
 
 		setAuthenticatedAnonymousUser();

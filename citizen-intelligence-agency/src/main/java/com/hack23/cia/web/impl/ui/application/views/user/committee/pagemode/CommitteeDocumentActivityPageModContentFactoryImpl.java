@@ -83,7 +83,7 @@ public final class CommitteeDocumentActivityPageModContentFactoryImpl extends Ab
 			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
 				LabelFactory.createHeader2Label(panelContent,DOCUMENT_ACTIVITY);
-				
+
 				chartDataManager
 						.createDocumentHistoryChartByOrg(panelContent,viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
 

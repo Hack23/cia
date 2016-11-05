@@ -73,7 +73,7 @@ public final class PartyDocumentHistoryPageModContentFactoryImpl extends Abstrac
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,DOCUMENT_HISTORY);
-			
+
 
 			final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenPoliticianDocument.class);

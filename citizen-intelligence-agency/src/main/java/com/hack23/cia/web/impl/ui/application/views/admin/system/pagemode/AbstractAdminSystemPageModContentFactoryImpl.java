@@ -38,31 +38,31 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 
 	/** The Constant PAGE_SEPARATOR. */
 	private static final String PAGE_SEPARATOR = "/";
-	
+
 	/** The Constant SHOW. */
 	private static final String SHOW = " :: Show ";
-	
+
 	/** The Constant RESULTS_PER_PAGE. */
 	private static final String RESULTS_PER_PAGE = " results per page:";
-	
+
 	/** The Constant PAGES_TOTAL_RESULTS. */
 	private static final String PAGES_TOTAL_RESULTS = " pages. Total results:";
-	
+
 	/** The Constant PAGE_HEADER. */
 	private static final String PAGE_HEADER = "Page: ";
-	
+
 	/** The Constant NEXT_PAGE. */
 	private static final String NEXT_PAGE = "next page";
-	
+
 	/** The Constant FIRST_PAGE. */
 	private static final String FIRST_PAGE = "first page";
-	
+
 	/** The Constant LAST_PAGE. */
 	private static final String LAST_PAGE = "last page";
-	
+
 	/** The Constant PREVIOUS_PAGE. */
 	private static final String PREVIOUS_PAGE = "previous page";
-	
+
 	/** The Constant DEFAULT_RESULTS_PER_PAGE. */
 	public static final int DEFAULT_RESULTS_PER_PAGE=250;
 
@@ -92,9 +92,9 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 		final HorizontalLayout pagingControls = new HorizontalLayout();
 		pagingControls.setSpacing(true);
 		pagingControls.setMargin(true);
-		
+
 		final int maxPages = (int) ((size +(resultPerPage-1)) / resultPerPage);
-		
+
 		final StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(PAGE_HEADER)
 		.append(pageNr)
@@ -109,29 +109,29 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 		pagingControls.addComponent(pageInfo);
 		pagingControls.setExpandRatio(pageInfo, ContentRatio.SMALL);
 
-		
-		if (pageNr > PAGE_ONE) {		
-			addPagingLink(PREVIOUS_PAGE,name, pageId, pageNr -1,pagingControls);			
+
+		if (pageNr > PAGE_ONE) {
+			addPagingLink(PREVIOUS_PAGE,name, pageId, pageNr -1,pagingControls);
 		}
 
-		if (maxPages > PAGE_ONE && pageNr < maxPages) {		
-			addPagingLink(NEXT_PAGE,name, pageId, pageNr +1,pagingControls);			
+		if (maxPages > PAGE_ONE && pageNr < maxPages) {
+			addPagingLink(NEXT_PAGE,name, pageId, pageNr +1,pagingControls);
 		}
 
 		if (maxPages > LIMIT_FOR_DISPLAYING_START_END_LINKS && pageNr > PAGE_ONE) {
-			addPagingLink(FIRST_PAGE,name, pageId, 1,pagingControls);			
+			addPagingLink(FIRST_PAGE,name, pageId, 1,pagingControls);
 		}
 
-		if (maxPages > LIMIT_FOR_DISPLAYING_START_END_LINKS && pageNr < maxPages) {			
-			addPagingLink(LAST_PAGE,name, pageId, maxPages,pagingControls);			
+		if (maxPages > LIMIT_FOR_DISPLAYING_START_END_LINKS && pageNr < maxPages) {
+			addPagingLink(LAST_PAGE,name, pageId, maxPages,pagingControls);
 		}
-		
+
 		content.addComponent(pagingControls);
-		content.setExpandRatio(pagingControls, ContentRatio.SMALL);		
+		content.setExpandRatio(pagingControls, ContentRatio.SMALL);
 
 	}
 
-	
+
 	/**
 	 * Adds the paging link.
 	 *
@@ -151,5 +151,5 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 		pagingControls.addComponent(previousPageLink);
 		pagingControls.setExpandRatio(previousPageLink, ContentRatio.SMALL);
 	}
-	
+
 }

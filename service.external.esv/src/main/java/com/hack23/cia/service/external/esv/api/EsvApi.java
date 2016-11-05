@@ -24,14 +24,47 @@ import java.util.Map;
 /**
  * The Interface EsvApi.
  */
-@FunctionalInterface
 public interface EsvApi {
 
 	/**
-	 * Gets the government body annual summary data.
+	 * Gets the data.
 	 *
-	 * @return the government body annual summary data
+	 * @return the data
 	 */
-	Map<Integer, List<GovernmentBodyAnnualSummary>> getGovernmentBodyAnnualSummaryData();
+	Map<Integer, List<GovernmentBodyAnnualSummary>> getData();
+
+	/**
+	 * Gets the data per ministry.
+	 *
+	 * @param name
+	 *            the name
+	 * @return the data per ministry
+	 */
+	Map<Integer, List<GovernmentBodyAnnualSummary>> getDataPerMinistry(String name);
+
+	/**
+	 * Gets the data per ministry and year.
+	 *
+	 * @param name
+	 *            the name
+	 * @param year
+	 *            the year
+	 * @return the data per ministry and year
+	 */
+	List<GovernmentBodyAnnualSummary> getDataPerMinistryAndYear(String name, int year);
+
+	/**
+	 * Gets the government body names.
+	 *
+	 * @return the government body names
+	 */
+	List<String> getGovernmentBodyNames();
+
+	/**
+	 * Gets the ministry names.
+	 *
+	 * @return the ministry names
+	 */
+	List<String> getMinistryNames();
 
 }

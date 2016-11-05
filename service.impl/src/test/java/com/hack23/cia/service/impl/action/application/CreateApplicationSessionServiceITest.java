@@ -41,8 +41,6 @@ import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 /**
  * The Class CreateApplicationSessionServiceITest.
  */
-@PerfTest(threads = 10, duration = 3000, warmUp = 1500)
-@Required(max = 200, average = 10, percentile95 = 15, throughput = 50000)
 public final class CreateApplicationSessionServiceITest extends AbstractServiceFunctionalIntegrationTest {
 
 	/** The i. */

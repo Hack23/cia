@@ -79,9 +79,9 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 
 		final BeanItemContainer<CountryElement> politicianDocumentDataSource = new BeanItemContainer<>(
 				CountryElement.class, dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,CountryElement_.countryName));
-		
-		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);		
-		
+
+		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+
 		getGridFactory()
 				.createBasicBeanItemGrid(content, politicianDocumentDataSource,
 						"Country",
@@ -93,7 +93,7 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 
 			final CountryElement country = dataContainer.load(Long.valueOf(pageId));
 			if (country != null) {
-				
+
 				getFormFactory().addFormPanelTextFields(content, new BeanItem<>(country), CountryElement.class,
 						Arrays.asList(new String[] { "hjid", "id", "countryName", "iso2Code", "capitalCity",
 								"longitude", "latitude" }));

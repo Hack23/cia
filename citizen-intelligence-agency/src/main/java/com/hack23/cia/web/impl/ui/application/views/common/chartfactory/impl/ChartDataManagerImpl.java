@@ -51,7 +51,7 @@ public final class ChartDataManagerImpl extends AbstractChartDataManagerImpl imp
 
 		chart.show();
 		chart.setSizeFull();
-		
+
 		addChart(content,caption, chart);
 
 	}

@@ -101,17 +101,17 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 
 		if (getSession().getUIs().isEmpty()) {
 			final WebBrowser webBrowser = currentPage.getWebBrowser();
-	
+
 			final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
 			serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-	
+
 			final String ipInformation = WebBrowserUtil.getIpInformation(webBrowser);
 			serviceRequest.setIpInformation(ipInformation);
 			serviceRequest.setUserAgentInformation(webBrowser.getBrowserApplication());
 			serviceRequest.setLocale(webBrowser.getLocale().toString());
 			serviceRequest.setOperatingSystem(WebBrowserUtil.getOperatingSystem(webBrowser));
 			serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
-	
+
 			final ServiceResponse serviceResponse = applicationManager.service(serviceRequest);
 			LOGGER.info(LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT,requestUrl,language,ipInformation,webBrowser.getBrowserApplication(),serviceRequest.getSessionId(),serviceResponse.getResult().toString());
 		}

@@ -153,20 +153,20 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 	@Override
-	public <T> List<T> getPage(Class<T> clazz, int pageNr, int resultPerPage) {
+	public <T> List<T> getPage(final Class<T> clazz, final int pageNr, final int resultPerPage) {
 		return dataViewer.getPage(clazz, pageNr, resultPerPage);
 	}
 
 
 	@Override
-	public <T> List<T> getPageOrderBy(Class<T> clazz, int pageNr, int resultPerPage,
-			SingularAttribute<T, ? extends Object> property) {
+	public <T> List<T> getPageOrderBy(final Class<T> clazz, final int pageNr, final int resultPerPage,
+			final SingularAttribute<T, ? extends Object> property) {
 		return dataViewer.getPageOrderBy(clazz, pageNr, resultPerPage, property);
 	}
 
 
 	@Override
-	public <T> Long getSize(Class<T> clazz) {
+	public <T> Long getSize(final Class<T> clazz) {
 		return dataViewer.getSize(clazz);
 	}
 

@@ -78,9 +78,9 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 
 		final BeanItemContainer<Portal> politicianDocumentDataSource = new BeanItemContainer<>(Portal.class,
 				dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,Portal_.portalName));
-		
-		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);		
-		
+
+		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+
 
 		getGridFactory().createBasicBeanItemGrid(content,
 				politicianDocumentDataSource,
@@ -94,7 +94,7 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 			final Portal portal = dataContainer.load(Long.valueOf(pageId));
 
 			if (portal != null) {
-				
+
 				getFormFactory().addFormPanelTextFields(content, new BeanItem<>(portal), Portal.class,
 						Arrays.asList(new String[] { "hjid", "portalName", "description", "portalType",
 								"googleMapApiKey", "modelObjectVersion" }));

@@ -98,8 +98,8 @@ public final class PoliticianRoleGhantPageModContentFactoryImpl extends Abstract
 			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,PoliticianPageMode.ROLEGHANT.toString());
-			
-			
+
+
 
 			final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()
 					.getAssignmentList();

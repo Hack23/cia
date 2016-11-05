@@ -53,7 +53,7 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 
 	/** The Constant GOVERNMENT_BODIES. */
 	private static final String GOVERNMENT_BODIES = "Government bodies";
-	
+
 	/** The Constant MINISTRY_RANKING. */
 	private static final String MINISTRY_RANKING = "Ministry Ranking";
 
@@ -89,7 +89,7 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
-	
+
 	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
@@ -105,7 +105,7 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 	@Override
 	public void createMinistryRankingMenuBar(final MenuBar menuBar) {
 		initApplicationMenuBar(menuBar);
-		
+
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
 		createMinistryRankingTopics(menuBar.addItem(MINISTRY_RANKING, null,null));
@@ -139,7 +139,7 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 		chartByTopic.addItem(GOVERNMENT_BODIES,FontAwesome.GROUP,
 				COMMAND22);
 
-		
+
 		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
 				COMMAND21);
 

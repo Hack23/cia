@@ -93,10 +93,10 @@ public final class FormFactoryImpl implements FormFactory {
 		button.setId(buttonLabel);
 		button.setWidth("25%");
 		button.setIcon(FontAwesome.PAW);
-		
-		verticalLayout.addComponent(button);		
+
+		verticalLayout.addComponent(button);
 		verticalLayout.setComponentAlignment(button, Alignment.MIDDLE_RIGHT);
-		
+
 		panelContent.addComponent(verticalLayout);
 	}
 
@@ -104,7 +104,7 @@ public final class FormFactoryImpl implements FormFactory {
 	public <T extends Serializable> void addFormPanelTextFields(final AbstractOrderedLayout panelContent, final BeanItem<T> item,
 			final Class<T> beanType, final List<String> displayProperties) {
 
-		
+
 		final Panel formPanel = new Panel();
 		formPanel.setSizeFull();
 
@@ -113,8 +113,8 @@ public final class FormFactoryImpl implements FormFactory {
 
 		final FormLayout formContent = new FormLayout();
 		formPanel.setContent(formContent);
-		
-		
+
+
 		final BeanFieldGroup<T> fieldGroup = new BeanFieldGroup<>(beanType);
 		fieldGroup.setItemDataSource(item);
 		fieldGroup.setReadOnly(true);

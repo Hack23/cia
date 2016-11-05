@@ -82,7 +82,7 @@ public final class CommitteeCurrentMembersHistoryPageModContentFactoryImpl
 			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,CURRENT_MEMBERS);
-			
+
 
 			final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);

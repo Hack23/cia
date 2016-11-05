@@ -58,10 +58,10 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 		menuBar.addItem(OVERVIEW_TEXT, FontAwesome.USER,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.OVERVIEW, pageId));
-		
+
 		menuBar.addItem(SECURITY_SETTING_TEXT, FontAwesome.USER,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString(), pageId));
-		
+
 
 		menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.LINE_CHART,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));

@@ -90,14 +90,14 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 							DocumentData.class, DocumentData_.id, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
-			
-		
+
+
 			getFormFactory().addFormPanelTextFields(panelContent, new BeanItem<>(documentElement), DocumentElement.class,
 					Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status", "title",
 							"subTitle", "madePublicDate", "createdDate", "systemDate", "relatedId", "label",
 							"tempLabel", "numberValue", "kallId", "documentFormat" }));
 
-			
+
 			if (documentStatusContainer != null) {
 				getFormFactory().addFormPanelTextFields(panelContent, new BeanItem<>(documentStatusContainer),
 						DocumentStatusContainer.class, Arrays.asList(new String[] { "documentCategory" }));
@@ -109,7 +109,7 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 										"title", "subTitle", "madePublicDate", "label", "tempLabel", "numberValue",
 										"hangarId", }));
 			}
-			
+
 			panel.setContent(panelContent);
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);

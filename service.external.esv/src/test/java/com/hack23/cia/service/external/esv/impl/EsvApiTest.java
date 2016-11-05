@@ -21,6 +21,10 @@ package com.hack23.cia.service.external.esv.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.databene.contiperf.PerfTest;
+import org.databene.contiperf.Required;
+import org.databene.contiperf.junit.ContiPerfRule;
+import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,22 +40,119 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	@Autowired
 	private EsvApi esvApi;
 
-	/**
-	 * Gets the government body annual summary data success test.
-	 *
-	 * @return the government body annual summary data success test
-	 */
+	/** The i. */
+	@Rule
+	public ContiPerfRule i = new ContiPerfRule();
+
 	@Test
-	public void getGovernmentBodyAnnualSummaryDataSuccessTest() {
-		Map<Integer, List<GovernmentBodyAnnualSummary>> governmentBodyAnnualSummaryData = esvApi.getGovernmentBodyAnnualSummaryData();
+	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
+	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
+	public void getDataDefenceMinistrySuccessTest() {
+		final Map<Integer, List<GovernmentBodyAnnualSummary>> governmentBodyAnnualSummaryData = esvApi
+				.getDataPerMinistry("Försvarsdepartementet");
 		assertNotNull(governmentBodyAnnualSummaryData);
 		assertEquals(18, governmentBodyAnnualSummaryData.size());
-		for (List<GovernmentBodyAnnualSummary> list : governmentBodyAnnualSummaryData.values()) {
-			assertTrue(list.size() > 200);			
-			for (GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
+		for (final List<GovernmentBodyAnnualSummary> list : governmentBodyAnnualSummaryData.values()) {
+			for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
 				assertNotNull(governmentBodyAnnualSummary);
-			}			
+			}
 		}
+	}
+
+	@Test
+	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
+	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
+	public void getDataFinanceMinistry1900FailureTest() {
+		final List<GovernmentBodyAnnualSummary> list = esvApi.getDataPerMinistryAndYear("Finansdepartementet", 1900);
+		assertNotNull(list);
+		assertEquals(0, list.size());
+	}
+
+	@Test
+	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
+	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
+	public void getDataFinanceMinistry1999SuccessTest() {
+		final List<GovernmentBodyAnnualSummary> list = esvApi.getDataPerMinistryAndYear("Finansdepartementet", 1999);
+		assertNotNull(list);
+		assertEquals(42, list.size());
+		for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
+			assertNotNull(governmentBodyAnnualSummary);
+		}
+	}
+
+	@Test
+	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
+	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
+	public void getDataFinanceMinistry2016SuccessTest() {
+		final List<GovernmentBodyAnnualSummary> list = esvApi.getDataPerMinistryAndYear("Finansdepartementet", 2016);
+		assertNotNull(list);
+		assertEquals(45, list.size());
+		for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
+			assertNotNull(governmentBodyAnnualSummary);
+		}
+	}
+
+	@Test
+	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
+	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
+	public void getDataFinanceMinistrySuccessTest() {
+		final Map<Integer, List<GovernmentBodyAnnualSummary>> governmentBodyAnnualSummaryData = esvApi
+				.getDataPerMinistry("Finansdepartementet");
+		assertNotNull(governmentBodyAnnualSummaryData);
+		assertEquals(18, governmentBodyAnnualSummaryData.size());
+		for (final List<GovernmentBodyAnnualSummary> list : governmentBodyAnnualSummaryData.values()) {
+			for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
+				assertNotNull(governmentBodyAnnualSummary);
+			}
+		}
+	}
+
+	@Test
+	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
+	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
+	public void getDataForeignMinistrySuccessTest() {
+		final Map<Integer, List<GovernmentBodyAnnualSummary>> governmentBodyAnnualSummaryData = esvApi
+				.getDataPerMinistry("Utrikesdepartementet");
+		assertNotNull(governmentBodyAnnualSummaryData);
+		assertEquals(18, governmentBodyAnnualSummaryData.size());
+		for (final List<GovernmentBodyAnnualSummary> list : governmentBodyAnnualSummaryData.values()) {
+			for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
+				assertNotNull(governmentBodyAnnualSummary);
+			}
+		}
+	}
+
+	@Test
+	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
+	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
+	public void getDataSuccessTest() {
+		final Map<Integer, List<GovernmentBodyAnnualSummary>> governmentBodyAnnualSummaryData = esvApi.getData();
+		assertNotNull(governmentBodyAnnualSummaryData);
+		assertEquals(18, governmentBodyAnnualSummaryData.size());
+		for (final List<GovernmentBodyAnnualSummary> list : governmentBodyAnnualSummaryData.values()) {
+			assertTrue(list.size() > 200);
+			for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
+				assertNotNull(governmentBodyAnnualSummary);
+			}
+		}
+	}
+
+	@Test
+	@PerfTest(threads = 2, duration = 3000, warmUp = 1500)
+	@Required(max = 1000, average = 20, percentile95 = 50, throughput = 50)
+	public void getGovernmentBodyNamesSuccessTest() {
+		final List<String> list = esvApi.getGovernmentBodyNames();
+		assertNotNull(list);
+		assertEquals(452, list.size());
+	}
+
+	@Test
+	@PerfTest(threads = 2, duration = 3000, warmUp = 1500)
+	@Required(max = 1000, average = 20, percentile95 = 50, throughput = 50)
+	public void getMinistryNamesSuccessTest() {
+		final List<String> list = esvApi.getMinistryNames();
+		assertNotNull(list);
+		assertEquals(17, list.size());
 	}
 
 }

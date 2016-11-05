@@ -101,9 +101,9 @@ public final class PartyRankingChartsPageModContentFactoryImpl extends AbstractP
 
 
 		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createChartTimeSeriesCurrentGovernmentByParty(),"Current Government");
-	
+
 		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createChartTimeSeriesCurrentCommitteeByParty(),"Current Committee");
-	
+
 		return chartLayout;
 	}
 

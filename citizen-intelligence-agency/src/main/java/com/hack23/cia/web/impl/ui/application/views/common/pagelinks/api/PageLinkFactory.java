@@ -42,7 +42,7 @@ public interface PageLinkFactory {
 	 * @return the link
 	 */
 	Link createUserHomeViewPageLink();
-	
+
 	/**
 	 * Creates a new PageLink object.
 	 *
@@ -111,7 +111,7 @@ public interface PageLinkFactory {
 	 * @return the link
 	 */
 	Link addPartyPageLink(ViewRiksdagenParty data);
-	
+
 	/**
 	 * Creates a new PageLink object.
 	 *

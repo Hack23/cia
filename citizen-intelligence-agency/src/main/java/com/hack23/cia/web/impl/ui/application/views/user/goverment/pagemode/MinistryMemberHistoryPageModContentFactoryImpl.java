@@ -79,7 +79,7 @@ public final class MinistryMemberHistoryPageModContentFactoryImpl extends Abstra
 			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,MEMBER_HISTORY);
-			
+
 
 			final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenGovermentRoleMember.class);

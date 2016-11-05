@@ -80,7 +80,7 @@ public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl exte
 			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,PoliticianPageMode.BALLOTDECISIONSUMMARY.toString());
-			
+
 
 			final DataContainer<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class);

@@ -81,7 +81,7 @@ public final class CommitteeMemberHistoryPageModContentFactoryImpl extends Abstr
 			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,MEMBER_HISTORY);
-			
+
 
 			final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);

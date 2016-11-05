@@ -47,7 +47,7 @@ public interface FormFactory {
 	 */
 	<T extends Serializable> void addFormPanelTextFields(AbstractOrderedLayout panelContent, BeanItem<T> item, Class<T> beanType, List<String> displayProperties);
 
-	
+
 	/**
 	 * Adds the request input form fields.
 	 *

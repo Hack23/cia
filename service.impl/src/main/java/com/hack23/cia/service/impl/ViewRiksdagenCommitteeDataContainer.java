@@ -132,13 +132,13 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 	}
 
 	@Override
-	public List<ViewRiksdagenCommittee> getPage(int pageNr, int resultPerPage) {
+	public List<ViewRiksdagenCommittee> getPage(final int pageNr, final int resultPerPage) {
 		return viewRiksdagenCommitteeDAO.getPage(pageNr, resultPerPage);
 	}
 
 	@Override
-	public List<ViewRiksdagenCommittee> getPageOrderBy(int pageNr, int resultPerPage,
-			SingularAttribute<ViewRiksdagenCommittee, ? extends Object> orderBy) {
+	public List<ViewRiksdagenCommittee> getPageOrderBy(final int pageNr, final int resultPerPage,
+			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> orderBy) {
 		return viewRiksdagenCommitteeDAO.getPageOrderBy(pageNr, resultPerPage, orderBy);
 	}
 

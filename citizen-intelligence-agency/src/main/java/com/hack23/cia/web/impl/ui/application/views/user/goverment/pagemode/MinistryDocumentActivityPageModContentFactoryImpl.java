@@ -82,7 +82,7 @@ public final class MinistryDocumentActivityPageModContentFactoryImpl extends Abs
 			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,DOCUMENT_ACTIVITY);
-			
+
 
 			chartDataManager
 					.createDocumentHistoryChartByOrg(panelContent,viewRiksdagenMinistry.getNameId());

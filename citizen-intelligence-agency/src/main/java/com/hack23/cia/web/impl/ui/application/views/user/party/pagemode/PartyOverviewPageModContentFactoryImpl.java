@@ -83,12 +83,12 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 
 			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
-			
+
 			final Link addPartyPageLink = getPageLinkFactory().addPartyPageLink(viewRiksdagenParty);
 			panelContent.addComponent(addPartyPageLink);
 
 			panelContent.setExpandRatio(addPartyPageLink, ContentRatio.SMALL);
-			
+
 			getFormFactory().addFormPanelTextFields(
 					panelContent,
 					new BeanItem<>(viewRiksdagenParty),
@@ -102,8 +102,8 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 			if (viewRiksdagenPartySummary != null) {
 
-	
-				
+
+
 				getFormFactory().addFormPanelTextFields(panelContent,
 						new BeanItem<>(
 								viewRiksdagenPartySummary),

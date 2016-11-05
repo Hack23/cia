@@ -39,7 +39,7 @@ public interface BallotChartDataManager {
 	 *            the view riksdagen vote data ballot summary
 	 */
 	void createChart(AbstractOrderedLayout content,ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary);
-	
+
 	/**
 	 * Creates the chart.
 	 *

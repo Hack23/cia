@@ -81,7 +81,7 @@ public final class MinistryCurrentMembersPageModContentFactoryImpl extends Abstr
 			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,CURRENT_MEMBERS);
-			
+
 
 			final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenGovermentRoleMember.class);

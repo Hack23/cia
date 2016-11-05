@@ -132,11 +132,11 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit
 				.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, pageId));
-		
+
 		userPageVisit.updateConfigurationProperty("Update Configuration.propertyValue", String.valueOf(false));
-		
+
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, pageId));
-		
+
 	}
 
 	/**
@@ -321,7 +321,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 				userPageVisit.getIframesHtmlBodyAsText().contains("Login with Username and Password"));
 	}
 
-	
+
 	/**
 	 * Visit admin data summary view.
 	 *
@@ -339,7 +339,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
 	}
-	
+
 	/**
 	 * Site admin test.
 	 *
@@ -357,17 +357,17 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, ""));
 
-		
+
 		userPageVisit.verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW,ViewAction.START_AGENT_BUTTON });
 
 		final List<String> actionIdsBy = userPageVisit.getActionIdsBy(ViewAction.START_AGENT_BUTTON);
 		assertTrue(actionIdsBy.size() > 0);
 
-		
+
 		userPageVisit.performAdminAgentOperation(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN, DataAgentOperation.IMPORT);
 
 	}
 
 
-	
+
 }

@@ -47,7 +47,7 @@ public final class UserPageVisit extends Assert {
 
 	/** The Constant WAIT_FOR_PAGE_DELAY. */
 	private static final int WAIT_FOR_PAGE_DELAY = 2500;
-	
+
 	private static final int WAIT_FOR_TEXT = 5000;
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
@@ -323,11 +323,11 @@ public final class UserPageVisit extends Assert {
 		final List<WebElement> nativeButtons = driver.findElements(By.className("v-nativebutton"));
 		final List<WebElement> buttons = driver.findElements(By.className("v-button"));
 		final List<WebElement> buttonsCaption = driver.findElements(By.className("v-button-caption"));
-		
+
 		result.addAll(nativeButtons);
 		result.addAll(buttons);
 		result.addAll(buttonsCaption);
-		
+
 		return result;
 	}
 
@@ -850,7 +850,7 @@ public final class UserPageVisit extends Assert {
 		findElement.clear();
 		findElement.sendKeys(value);
 	}
-	
+
 	/**
 	 * Update configuration property.
 	 *
@@ -867,23 +867,23 @@ public final class UserPageVisit extends Assert {
 		assertNotNull("Expect to find a Update Config Button",updateConfigButton);
 
 		performClickAction(updateConfigButton);
-		
+
 	}
 
 	public void enableGoogleAuthenticator() throws Exception {
-				
+
 		final WebElement enableGoogleAuthButton = findButton("Enable Google Authenticator");
 		assertNotNull("Expect to find a Enable Google Authenticator Button",enableGoogleAuthButton);
 
 		performClickAction(enableGoogleAuthButton);
-	
+
 		closeModal();
 	}
-	
+
 	public void closeModal() throws Exception {
 		final WebElement closeModalWindow = driver.findElement(By.className("v-window-closebox"));
 		assertNotNull("Expect to find a Window close Box",closeModalWindow);
-		
+
 		performClickAction(closeModalWindow);
 
 	}

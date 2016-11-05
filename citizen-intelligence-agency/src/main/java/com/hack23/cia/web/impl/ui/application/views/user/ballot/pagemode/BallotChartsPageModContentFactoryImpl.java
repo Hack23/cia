@@ -62,7 +62,7 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 
 	/** The Constant OVERVIEW. */
 	private static final String CHARTS = "Charts";
-	
+
 	@Autowired
 	private BallotChartDataManager ballotChartDataManager;
 
@@ -92,40 +92,40 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 		final DataContainer<ViewRiksdagenVoteDataBallotPartySummary, RiksdagenVoteDataBallotPartyEmbeddedId> dataPartyContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenVoteDataBallotPartySummary.class);
 
-		
+
 		final List<ViewRiksdagenVoteDataBallotSummary> ballots = dataContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotSummary.class, ViewRiksdagenVoteDataBallotSummary_.embeddedId, RiksdagenVoteDataBallotEmbeddedId.class, RiksdagenVoteDataBallotEmbeddedId_.ballotId, pageId);
 
 		final List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList = dataPartyContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotPartySummary.class, ViewRiksdagenVoteDataBallotPartySummary_.embeddedId, RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.ballotId, pageId);
-		
+
 		if (!ballots.isEmpty()) {
 			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);
 
-		
-				
-			
+
+
+
 				LabelFactory.createHeader2Label(panelContent,CHARTS);
-				
-				
+
+
 				final HorizontalLayout horizontalLayout = new HorizontalLayout();
 				horizontalLayout.setMargin(true);
 				horizontalLayout.setWidth(100, Unit.PERCENTAGE);
 				horizontalLayout.setHeight(100, Unit.PERCENTAGE);
-				
+
 				panelContent.addComponent(horizontalLayout);
 				panelContent.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
-				
+
 				Collections.sort(ballots, (Comparator<ViewRiksdagenVoteDataBallotSummary>) (o1, o2) -> (o1.getEmbeddedId().getIssue() + o2.getEmbeddedId().getConcern()).compareTo(o1.getEmbeddedId().getIssue() + o2.getEmbeddedId().getConcern()));
-				
+
 				for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
 					ballotChartDataManager.createChart(horizontalLayout,viewRiksdagenVoteDataBallotSummary);
 				}
 
 				final Map<String, List<ViewRiksdagenVoteDataBallotPartySummary>> concernIssuePartyBallotSummaryMap = createIssueConcernMap(partyBallotList);
-				
-				for (List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotSummaryList : concernIssuePartyBallotSummaryMap.values()) {					
+
+				for (final List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotSummaryList : concernIssuePartyBallotSummaryMap.values()) {
 					ballotChartDataManager.createChart(horizontalLayout,partyBallotSummaryList);
 				}
-				
+
 
 				panel.setCaption(BALLOT + pageId);
 				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
@@ -141,19 +141,19 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 	 *            the party ballot list
 	 * @return the map
 	 */
-	private static Map<String,List<ViewRiksdagenVoteDataBallotPartySummary>> createIssueConcernMap(List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList) {
+	private static Map<String,List<ViewRiksdagenVoteDataBallotPartySummary>> createIssueConcernMap(final List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotList) {
 		final Map<String,List<ViewRiksdagenVoteDataBallotPartySummary>> concernIssuePartyBallotSummaryMap = new HashMap<>();
-		for (ViewRiksdagenVoteDataBallotPartySummary partySummary: partyBallotList) {
-			
+		for (final ViewRiksdagenVoteDataBallotPartySummary partySummary: partyBallotList) {
+
 			if (partySummary.getEmbeddedId().getIssue() !=null || partySummary.getEmbeddedId().getConcern() != null ) {
 				final String key = partySummary.getEmbeddedId().getIssue() + partySummary.getEmbeddedId().getConcern();
 				if (concernIssuePartyBallotSummaryMap.get(key) == null) {
-					concernIssuePartyBallotSummaryMap.put(key, new ArrayList<>());				
+					concernIssuePartyBallotSummaryMap.put(key, new ArrayList<>());
 				}
-				concernIssuePartyBallotSummaryMap.get(key).add(partySummary);				
+				concernIssuePartyBallotSummaryMap.get(key).add(partySummary);
 			}
 		}
-		
+
 		return concernIssuePartyBallotSummaryMap;
 	}
 

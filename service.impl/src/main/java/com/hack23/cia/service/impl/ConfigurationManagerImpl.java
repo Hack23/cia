@@ -87,7 +87,7 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 	 * @return the language data
 	 */
 	private LanguageData findLanguage(final String locale) {
-		for (LanguageData languageData : languageDataDAO.getAll()) {
+		for (final LanguageData languageData : languageDataDAO.getAll()) {
 			if (languageData.getLanguageCode().equalsIgnoreCase(locale)) {
 				return languageData;
 			}
@@ -132,7 +132,7 @@ public final class ConfigurationManagerImpl implements ConfigurationManager {
 	private static List<LanguageData> getSupportedLocalesLanguageData() {
 		final List<LanguageData> languages = new ArrayList<>();
 
-		for (Locale locale : SimpleDateFormat.getAvailableLocales()) {
+		for (final Locale locale : SimpleDateFormat.getAvailableLocales()) {
 			if (locale.getDisplayCountry(Locale.ENGLISH).length() == 0 && !StringUtils.isEmpty(locale.toString())
 					&& locale.toString().trim().length() == EXPECTED_LOCALE_LENGTH) {
 				languages.add(new LanguageData().withCreatedDate(new Date()).withLanguageCode(locale.toString())
