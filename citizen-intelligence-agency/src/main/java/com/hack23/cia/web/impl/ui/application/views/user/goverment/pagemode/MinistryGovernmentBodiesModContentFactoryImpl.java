@@ -31,6 +31,7 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.vaadin.data.util.BeanItemContainer;
@@ -52,6 +53,9 @@ public final class MinistryGovernmentBodiesModContentFactoryImpl extends Abstrac
 	
 	@Autowired
 	private EsvApi esvApi;
+	
+	@Autowired
+	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
 
 	/**
 	 * Instantiates a new ministry government bodies mod content factory impl.
@@ -93,6 +97,11 @@ public final class MinistryGovernmentBodiesModContentFactoryImpl extends Abstrac
 					new String[] { "name", "headCount", "annualWorkHeadCount", "orgNumber",
 							"govermentBodyId", "mCode", "consecutiveNumber","comment","ministry" }, new String[] { "vat","comment","year"} , null, null, null);
 
+			
+			governmentBodyChartDataManager.createMinistryGovernmentBodyHeadcountSummaryChart(panelContent, viewRiksdagenMinistry.getNameId());
+			
+			governmentBodyChartDataManager.createMinistryGovernmentBodyHeadcountSummaryChart(panelContent);
+			
 			panel.setCaption(MINISTRY + viewRiksdagenMinistry.getNameId());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);
