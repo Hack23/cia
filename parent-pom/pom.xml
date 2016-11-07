@@ -123,7 +123,7 @@
     <cia.project.versions.postgresql>9.4.1212</cia.project.versions.postgresql>
     <cia.project.versions.atomikos>4.0.4</cia.project.versions.atomikos>
     <cia.project.versions.ehcache>2.10.3</cia.project.versions.ehcache>
-    <cia.project.versions.ehcache3>3.1.3</cia.project.versions.ehcache3>
+    <cia.project.versions.ehcache3>3.2.0.beta1</cia.project.versions.ehcache3>
     <cia.project.versions.poi>3.15</cia.project.versions.poi>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.ant>1.9.7</cia.project.versions.ant>
