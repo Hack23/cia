@@ -68,7 +68,17 @@ public interface EsvApi {
 	 * @return the government body names
 	 */
 	List<String> getGovernmentBodyNames();
+	
+	/**
+	 * Gets the government body names.
+	 *
+	 * @param ministry
+	 *            the ministry
+	 * @return the government body names
+	 */
+	List<String> getGovernmentBodyNames(String ministry);
 
+	
 	/**
 	 * Gets the ministry names.
 	 *

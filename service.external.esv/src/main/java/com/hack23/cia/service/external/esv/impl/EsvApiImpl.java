@@ -20,6 +20,7 @@ package com.hack23.cia.service.external.esv.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -43,27 +44,36 @@ import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 @Component
 public final class EsvApiImpl implements EsvApi {
 
-	/** The government body name set. */
-	private static final Set<String> governmentBodyNameSet = new HashSet<>();
-
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(EsvApiImpl.class);
 
-	/** The ministry name set. */
+	/** The Constant ministryNameSet. */
 	private static final Set<String> ministryNameSet = new HashSet<>();
 
+	/** The Constant governmentBodyNameSet. */
+	private static final Set<String> governmentBodyNameSet = new HashSet<>();
+
+	/** The Constant governmentBodyNameSetMinistryMap. */
+	private static final Map<String,Set<String>> governmentBodyNameSetMinistryMap = new HashMap<>();
+	
 	/**
-	 * Instantiates a new val api impl.
+	 * Instantiates a new esv api impl.
 	 */
 	public EsvApiImpl() {
 		super();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.esv.api.EsvApi#getData()
+	 */
 	@Override
 	public Map<Integer, List<GovernmentBodyAnnualSummary>> getData() {
 		return getDataPerMinistry(null);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.esv.api.EsvApi#getDataPerMinistry(java.lang.String)
+	 */
 	@Override
 	public Map<Integer, List<GovernmentBodyAnnualSummary>> getDataPerMinistry(final String name) {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = new TreeMap<>();
@@ -117,6 +127,13 @@ public final class EsvApiImpl implements EsvApi {
 		return map;
 	}
 	
+	/**
+	 * Gets the integer.
+	 *
+	 * @param str
+	 *            the str
+	 * @return the integer
+	 */
 	private static Integer getInteger(String str) {
 	    if (str == null || str.trim().length() == 0) {
 	        return new Integer(0);
@@ -125,6 +142,9 @@ public final class EsvApiImpl implements EsvApi {
 	    }
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.esv.api.EsvApi#getDataPerMinistryAndYear(java.lang.String, int)
+	 */
 	@Override
 	public List<GovernmentBodyAnnualSummary> getDataPerMinistryAndYear(final String name, final int year) {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = getDataPerMinistry(name);
@@ -136,6 +156,9 @@ public final class EsvApiImpl implements EsvApi {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.esv.api.EsvApi#getGovernmentBodyNames()
+	 */
 	@Override
 	public List<String> getGovernmentBodyNames() {
 		if (governmentBodyNameSet.isEmpty()) {
@@ -153,6 +176,9 @@ public final class EsvApiImpl implements EsvApi {
 		return new ArrayList<>(governmentBodyNameSet);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.esv.api.EsvApi#getMinistryNames()
+	 */
 	@Override
 	public List<String> getMinistryNames() {
 		if (ministryNameSet.isEmpty()) {
@@ -169,6 +195,9 @@ public final class EsvApiImpl implements EsvApi {
 		return new ArrayList<>(ministryNameSet);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.esv.api.EsvApi#getDataPerGovernmentBody(java.lang.String)
+	 */
 	@Override
 	public Map<Integer, GovernmentBodyAnnualSummary> getDataPerGovernmentBody(String name) {
 		final Map<Integer, GovernmentBodyAnnualSummary> map = new TreeMap<>();
@@ -215,6 +244,29 @@ public final class EsvApiImpl implements EsvApi {
 		}
 
 		return map;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.esv.api.EsvApi#getGovernmentBodyNames(java.lang.String)
+	 */
+	@Override
+	public List<String> getGovernmentBodyNames(String ministry) {
+		if (!governmentBodyNameSetMinistryMap.containsKey(ministry)) {
+			
+			final Set<String> governmentBodyNameSetMapEntry = new HashSet<>();
+			governmentBodyNameSetMinistryMap.put(ministry, governmentBodyNameSetMapEntry);
+			
+			final Map<Integer, List<GovernmentBodyAnnualSummary>> data = getData();
+
+			for (final List<GovernmentBodyAnnualSummary> list : data.values()) {
+				for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
+					if (ministry.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry()) && !governmentBodyNameSetMapEntry.contains(governmentBodyAnnualSummary.getName())) {
+						governmentBodyNameSetMapEntry.add(governmentBodyAnnualSummary.getName());
+					}
+				}
+			}
+		}
+		return new ArrayList<>(governmentBodyNameSetMinistryMap.get(ministry));
 	}
 
 }
