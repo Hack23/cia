@@ -19,11 +19,13 @@
 package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -39,6 +41,8 @@ public final class MinistryRankingGovernmentBodiesPageModContentFactoryImpl exte
 	/** The Constant OVERVIEW. */
 	private static final String GOVERNMENT_BODIES = "Government body";
 
+	@Autowired
+	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
 
 	/**
 	 * Instantiates a new ministry ranking government bodies page mod content
@@ -64,6 +68,8 @@ public final class MinistryRankingGovernmentBodiesPageModContentFactoryImpl exte
 
 
 		panel.setCaption(GOVERNMENT_BODIES + parameters);
+		
+		governmentBodyChartDataManager.createMinistryGovernmentBodyHeadcountSummaryChart(panelContent);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

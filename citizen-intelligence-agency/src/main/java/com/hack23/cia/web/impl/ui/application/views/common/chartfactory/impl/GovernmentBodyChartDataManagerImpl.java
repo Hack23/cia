@@ -72,8 +72,9 @@ public class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManager
 				}
 			}
 		}
-				
-		addChart(content,name + " Annual headcount summary", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());		
+
+		addChart(content, name + " Annual headcount summary", new DCharts().setDataSeries(dataSeries)
+				.setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 	@Override
@@ -92,7 +93,7 @@ public class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManager
 
 			List<GovernmentBodyAnnualSummary> item = entry.getValue();
 			Integer totalHeadcount = item.stream().collect(Collectors.summingInt(p -> p.getHeadCount()));
-			
+
 			if (entry.getKey() != null) {
 				if (item != null && totalHeadcount > 0) {
 					dataSeries.add("01-JAN-" + entry.getKey(), totalHeadcount);
@@ -101,37 +102,44 @@ public class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManager
 			}
 		}
 
-		addChart(content, name + " Annual headcount summary, all government bodies", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());		
-		
+		addChart(content, name + " Annual headcount summary, all government bodies",
+				new DCharts().setDataSeries(dataSeries)
+						.setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+
 	}
 
 	@Override
 	public void createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout content) {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getData();
+		List<String> ministryNames = esvApi.getMinistryNames();
 
 		final DataSeries dataSeries = new DataSeries();
 
 		final Series series = new Series();
 
-		series.addSeries(new XYseries().setLabel("All Ministries"));
+		for (String ministryName : ministryNames) {
 
-		dataSeries.newSeries();
+			series.addSeries(new XYseries().setLabel(ministryName));
 
-		for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
+			dataSeries.newSeries();
 
-			List<GovernmentBodyAnnualSummary> item = entry.getValue();
-			Integer totalHeadcount = item.stream().collect(Collectors.summingInt(p -> p.getHeadCount()));
-			
-			if (entry.getKey() != null) {
-				if (item != null && totalHeadcount > 0) {
-					dataSeries.add("01-JAN-" + entry.getKey(), totalHeadcount);
+			for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
+
+				List<GovernmentBodyAnnualSummary> item = entry.getValue();
+				Integer totalHeadcount = item.stream().filter(p -> p.getMinistry().equalsIgnoreCase(ministryName)).collect(Collectors.summingInt(p -> p.getHeadCount()));
+
+				if (entry.getKey() != null) {
+					if (item != null && totalHeadcount > 0) {
+						dataSeries.add("01-JAN-" + entry.getKey(), totalHeadcount);
+					}
+
 				}
-
 			}
 		}
 
-		addChart(content, "Annual headcount summary, all ministries", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());		
+		addChart(content, "Annual headcount, all ministries", new DCharts().setDataSeries(dataSeries)
+				.setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 
 	}
-	
+
 }
