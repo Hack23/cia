@@ -225,8 +225,8 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	 * @return the government body names foreign ministry success test
 	 */
 	@Test
-	@PerfTest(threads = 2, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 20, percentile95 = 50, throughput = 50)
+	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
+	@Required(max = 1000, average = 40, percentile95 = 50, throughput = 50)
 	public void getGovernmentBodyNamesForeignMinistrySuccessTest() {
 		final List<String> list = esvApi.getGovernmentBodyNames("Utrikesdepartementet");
 		assertNotNull(list);
