@@ -1618,7 +1618,7 @@
               </execution>
             </executions>
             <configuration>
-              <excludeProperties>cia.project.versions.spring</excludeProperties>
+              <excludeProperties>cia.project.versions.spring,cia.project.versions.spring.security</excludeProperties>
               <properties>
                 <!-- 
                 <property>
