@@ -201,7 +201,7 @@
             <groupId>commons-logging</groupId>
           </exclusion>
         </exclusions>
-      </dependency>      
+      </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-webapp</artifactId>
