@@ -62,6 +62,18 @@ public final class UserPageVisit extends Assert {
 	/** The action. */
 	private final Actions action;
 
+	/** The Constant systemTestTargetUrl. */
+	private static final String systemTestTargetUrl;
+	
+	static {
+		 String systemTestTargetUrlProperty = System.getProperty("system.test.target.url");
+		 if (systemTestTargetUrlProperty != null && systemTestTargetUrlProperty.trim().length() > 0) {
+			systemTestTargetUrl = systemTestTargetUrlProperty; 
+		 } else {
+			 systemTestTargetUrl = CitizenIntelligenceAgencyServer.ACCESS_URL;
+		 }	
+	}
+
 
 	/**
 	 * Instantiates a new user page visit.
@@ -102,11 +114,11 @@ public final class UserPageVisit extends Assert {
 	 *             the exception
 	 */
 	public void visitStartPage() throws Exception {
-		driver.get(CitizenIntelligenceAgencyServer.ACCESS_URL);
+		driver.get(systemTestTargetUrl);
 
 		waitForBrowser(WAIT_FOR_PAGE_DELAY);
 
-		assertEquals(browser, CitizenIntelligenceAgencyServer.ACCESS_URL,
+		assertEquals(browser, systemTestTargetUrl,
 				driver.getCurrentUrl());
 		assertEquals(browser, "Citizen Intelligence Agency", driver.getTitle());
 		assertNotNull(browser, driver.getWindowHandle());
@@ -143,7 +155,7 @@ public final class UserPageVisit extends Assert {
 	 *             the exception
 	 */
 	public void visitDirectPage(final PageModeMenuCommand page) throws Exception {
-		final String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + page.getPagePath();
+		final String url = systemTestTargetUrl  +"#!" + page.getPagePath();
 		driver.get(url);
 
 		waitForBrowser(WAIT_FOR_PAGE_DELAY);
@@ -185,7 +197,7 @@ public final class UserPageVisit extends Assert {
 	 *             the exception
 	 */
 	public void validatePage(final PageModeMenuCommand page) throws Exception {
-		final String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + page.getPagePath();
+		final String url = systemTestTargetUrl  +"#!" + page.getPagePath();
 
 
 		final long end = System.currentTimeMillis() + WAIT_FOR_PAGE_ELEMENT;
@@ -721,7 +733,7 @@ public final class UserPageVisit extends Assert {
 		final WebElement registerButton = driver.findElement(By.id("Register"));
 		performClickAction(registerButton);
 
-		final String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + UserViews.USERHOME_VIEW_NAME;
+		final String url = systemTestTargetUrl  +"#!" + UserViews.USERHOME_VIEW_NAME;
 
 		assertEquals(browser, url,
 				driver.getCurrentUrl());
@@ -743,7 +755,7 @@ public final class UserPageVisit extends Assert {
 		final WebElement searchButton = driver.findElement(By.id("Search"));
 		performClickAction(searchButton);
 
-		final String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + UserViews.SEARCH_DOCUMENT_VIEW_NAME;
+		final String url = systemTestTargetUrl  +"#!" + UserViews.SEARCH_DOCUMENT_VIEW_NAME;
 
 		assertEquals(browser, url,
 				driver.getCurrentUrl());
@@ -771,7 +783,7 @@ public final class UserPageVisit extends Assert {
 
 		performClickAction(loginButton);
 
-		final String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + UserViews.USERHOME_VIEW_NAME;
+		final String url = systemTestTargetUrl  +"#!" + UserViews.USERHOME_VIEW_NAME;
 
 		assertEquals(browser, url,
 				driver.getCurrentUrl());
@@ -810,7 +822,7 @@ public final class UserPageVisit extends Assert {
 
 		assertNotEquals(sessionId,newSessionId);
 
-		final String url = CitizenIntelligenceAgencyServer.ACCESS_URL  +"#!" + CommonsViews.MAIN_VIEW_NAME;
+		final String url = systemTestTargetUrl  +"#!" + CommonsViews.MAIN_VIEW_NAME;
 
 		assertEquals(browser, url,
 				driver.getCurrentUrl());
