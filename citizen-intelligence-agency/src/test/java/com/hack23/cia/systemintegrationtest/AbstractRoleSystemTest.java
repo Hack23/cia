@@ -57,6 +57,18 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 	/** The Constant webDriverMap. */
 	private static final Map<String, WebDriver> webDriverMap = new ConcurrentHashMap<>();
 
+	/** The Constant usingExternalServer. */
+	private static final boolean usingExternalServer;
+		
+	static {
+		 String systemTestTargetUrlProperty = System.getProperty("system.test.target.url");
+		 if (systemTestTargetUrlProperty != null && systemTestTargetUrlProperty.trim().length() > 0) {
+			 usingExternalServer=true;
+		 } else {
+			 usingExternalServer=false;
+		 }	
+	}
+	
 	/**
 	 * Instantiates a new abstract role system test.
 	 *
@@ -66,6 +78,8 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 	public AbstractRoleSystemTest(final String browser) {
 		super();
 		this.browser = browser;
+		
+		
 	}
 
 
@@ -78,7 +92,9 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 	@BeforeClass
 	static final synchronized public void startServer() throws Exception {
 		System.setProperty("webdriver.gecko.driver", "/usr/bin/geckodriver-0.8.0-linux64");
-		CitizenIntelligenceAgencyServer.startTestServer();
+		if (!usingExternalServer) {
+			CitizenIntelligenceAgencyServer.startTestServer();
+		}
 	}
 
 	/**
@@ -89,7 +105,9 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 	 */
 	@AfterClass
 	static final synchronized public void stopServer() throws Exception {
-		CitizenIntelligenceAgencyServer.stopTestServer();
+		if (!usingExternalServer) {
+			CitizenIntelligenceAgencyServer.stopTestServer();
+		}
 	}
 
 	/**
@@ -183,6 +201,5 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 		userPageVisit.loginUser("admin@admin.com", "admin");
 	}
-
 
 }
