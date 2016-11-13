@@ -97,7 +97,7 @@ Israel
 
 # Installing Debian/Ubuntu package
 
- Currently only build a debian package, works with debian and ubuntu 14.04,14.10,15.04,15.10,16.04
+ Currently only build a debian package, works with debian and ubuntu 14.04,16.04,16.10
 
 
 1. Installing database(postgres) and openjdk
@@ -131,7 +131,7 @@ postgres=# GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;
 
 4. Modify postgres setting, enable prepared transactions
 
-Edit file "/etc/postgresql/9.5/main/postgresql.conf" set
+Edit file "/etc/postgresql/9.6/main/postgresql.conf" set
 
 ```
 max_prepared_transactions = 100
@@ -139,7 +139,7 @@ max_prepared_transactions = 100
 
 
 5. Modify postgres setting
-Edit file "/etc/postgresql/9.5/main/pg_hba.conf" add line
+Edit file "/etc/postgresql/9.6/main/pg_hba.conf" add line
 
 ```
 host all all ::1/128 md5
@@ -156,14 +156,14 @@ $ service postgresql restart
 
 
 ```
-$ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2016.10.2/cia-dist-deb-2016.10.2.deb
+$ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2016.11.13/cia-dist-deb-2016.11.13.deb
 ```
 
 
 8. Install debian package
 
 ```
-$ sudo dpkg -i cia-dist-deb-2016.9.17.deb
+$ sudo dpkg -i cia-dist-deb-2016.11.13.deb
 ```
 
 

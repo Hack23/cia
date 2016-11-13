@@ -1,30 +1,41 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
-    @author Pether Sorling
--->
-<project xmlns="http://maven.apache.org/DECORATION/1.4.0" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.4.0 http://maven.apache.org/xsd/decoration-1.4.0.xsd"
+<project xmlns="http://maven.apache.org/DECORATION/1.7.0" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.7.0 http://maven.apache.org/xsd/decoration-1.7.0.xsd"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  name="${project.name}" >
-  
-  <skin>
-    <groupId>com.hack23.cia</groupId>
-  <artifactId>maven-cia-skin</artifactId>
-<version>1.0.0-beta-1</version>
-  </skin>
-  
-    <bannerLeft>
-        <name>Citizen Intelligence Agency</name>
-        <src>
-            http://cia.sourceforge.net/cia-logo.png
+	<skin>
+		<groupId>org.apache.maven.skins</groupId>
+		<artifactId>maven-fluido-skin</artifactId>
+		<version>1.6</version>
+	</skin>
+
+  <custom>
+    <fluidoSkin>
+      <sideBarEnabled>true</sideBarEnabled>    
+      <topBarEnabled>true</topBarEnabled>
+      <topBarIcon>
+        <name>Maven Fluido Skin</name>
+        <alt>Maven Fluido Skin</alt>
+        <src>http://cia.sourceforge.net/cia-logo.png</src>
+        <href>/index.html</href>
+      </topBarIcon>
+      
+      <googleSearch>
+        <sitesearch/>
+      </googleSearch>
+            
+      <ohloh>
+        <projectId>citizenIntelligenceagency</projectId>
+        <widget>stats</widget>
+      </ohloh>      
+   </fluidoSkin>
+   </custom>
+
+	<bannerRight>
+		<name>SourceForge</name>
+		<src>
+			http://sourceforge.net/sflogo.php?group_id=115046&amp;type=2
         </src>
-        <href>http://cia.sourceforge.net/</href>
-    </bannerLeft>
-    <bannerRight>
-        <name>SourceForge</name>
-        <src>
-            http://sourceforge.net/sflogo.php?group_id=115046&amp;type=2
-        </src>
-        <href>http://sourceforge.net</href>
-    </bannerRight>
+		<href>http://sourceforge.net</href>
+	</bannerRight>
     <body>
         <links>
 			<item name="Ubuntu Linux" href="http://www.ubuntu.com/download" />
