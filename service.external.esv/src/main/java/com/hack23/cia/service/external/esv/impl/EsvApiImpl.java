@@ -167,7 +167,7 @@ public final class EsvApiImpl implements EsvApi {
 
 			for (final List<GovernmentBodyAnnualSummary> list : data.values()) {
 				for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
-					if (!governmentBodyNameSet.contains(governmentBodyAnnualSummary.getName())) {
+					if (!governmentBodyNameSet.contains(governmentBodyAnnualSummary.getName()) && governmentBodyAnnualSummary.getHeadCount() > 0) {
 						governmentBodyNameSet.add(governmentBodyAnnualSummary.getName());
 					}
 				}
@@ -186,7 +186,7 @@ public final class EsvApiImpl implements EsvApi {
 
 			for (final List<GovernmentBodyAnnualSummary> list : data.values()) {
 				for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
-					if (!ministryNameSet.contains(governmentBodyAnnualSummary.getMinistry())) {
+					if (!ministryNameSet.contains(governmentBodyAnnualSummary.getMinistry()) && governmentBodyAnnualSummary.getHeadCount() > 0 && !governmentBodyAnnualSummary.getMinistry().equalsIgnoreCase("Inget departement")) {
 						ministryNameSet.add(governmentBodyAnnualSummary.getMinistry());
 					}
 				}
@@ -260,7 +260,7 @@ public final class EsvApiImpl implements EsvApi {
 
 			for (final List<GovernmentBodyAnnualSummary> list : data.values()) {
 				for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
-					if (ministry.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry()) && !governmentBodyNameSetMapEntry.contains(governmentBodyAnnualSummary.getName())) {
+					if (ministry.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry()) && !governmentBodyNameSetMapEntry.contains(governmentBodyAnnualSummary.getName()) && governmentBodyAnnualSummary.getHeadCount() > 0) {
 						governmentBodyNameSetMapEntry.add(governmentBodyAnnualSummary.getName());
 					}
 				}
