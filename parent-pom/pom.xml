@@ -48,9 +48,6 @@
     </contributor>
   </contributors>
   <mailingLists></mailingLists>
-  <prerequisites>
-    <maven>3.3.9</maven>
-  </prerequisites>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
@@ -634,7 +631,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.5</version>
+          <version>3.6-SNAPSHOT</version>
           <dependencies>
             <dependency>
               <!-- add support for ssh/scp -->
@@ -647,11 +644,11 @@
               <artifactId>xml-apis</artifactId>
               <version>${cia.project.versions.xmlapis}</version>
             </dependency>
-            <dependency>
+            <!--             <dependency>
               <groupId>org.apache.velocity</groupId>
               <artifactId>velocity</artifactId>
-              <version>1.5</version>
-            </dependency>
+              <version>1.7.1</version>
+            </dependency>-->
           </dependencies>
         </plugin>
         <!-- 
@@ -1088,7 +1085,6 @@
         <jdk>(,1.8],[9,)</jdk>
       </activation>
       <modules>
-        <module>../maven-cia-skin</module>
         <module>../testfoundation</module>
         <module>../parent-model-pom</module>
         <module>../parent-service-pom</module>
@@ -1335,6 +1331,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-site-plugin</artifactId>
+            <version>3.6-SNAPSHOT</version>
             <inherited>true</inherited>
             <configuration>
               <inputEncoding>UTF-8</inputEncoding>
