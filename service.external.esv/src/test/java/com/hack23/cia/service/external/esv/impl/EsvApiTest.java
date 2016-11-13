@@ -20,6 +20,8 @@ package com.hack23.cia.service.external.esv.impl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import org.databene.contiperf.PerfTest;
 import org.databene.contiperf.Required;
@@ -201,7 +203,7 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	public void getGovernmentBodyNamesSuccessTest() {
 		final List<String> list = esvApi.getGovernmentBodyNames();
 		assertNotNull(list);
-		assertEquals(452, list.size());
+		assertEquals(326, list.size());
 	}
 
 	/**
@@ -215,10 +217,9 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	public void getMinistryNamesSuccessTest() {
 		final List<String> list = esvApi.getMinistryNames();
 		assertNotNull(list);
-		assertEquals(17, list.size());
+		assertEquals(16, list.size());
 	}
 
-	
 	/**
 	 * Gets the government body names foreign ministry success test.
 	 *
@@ -230,7 +231,82 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	public void getGovernmentBodyNamesForeignMinistrySuccessTest() {
 		final List<String> list = esvApi.getGovernmentBodyNames("Utrikesdepartementet");
 		assertNotNull(list);
-		assertEquals(21, list.size());
+		assertEquals(14, list.size());
+	}
+
+	/**
+	 * Prints the ministry annual summary test.
+	 */
+	@Test
+	public void printMinistryAnnualSummaryTest() {
+		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi
+				.getDataPerMinistry("Landsbygdsdepartementet");
+
+		for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
+
+			List<GovernmentBodyAnnualSummary> item = entry.getValue();
+			Integer totalHeadcount = item.stream().collect(Collectors.summingInt(p -> p.getHeadCount()));
+
+			if (entry.getKey() != null) {
+				if (item != null && totalHeadcount > 0) {
+					System.out.println("year:" + entry.getKey() + "" + totalHeadcount);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Prints the ministry government body annual summary test.
+	 */
+	@Test
+	public void printMinistryGovernmentBodyAnnualSummaryTest() {
+		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getDataPerMinistry("Försvarsdepartementet");
+
+		List<String> govBodyNames = esvApi.getGovernmentBodyNames("Försvarsdepartementet");
+
+		for (String govBodyName : govBodyNames) {
+			System.out.println(govBodyName);
+			
+			for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
+
+				List<GovernmentBodyAnnualSummary> item = entry.getValue();
+				Integer totalHeadcount = item.stream().filter(p -> p.getName().equalsIgnoreCase(govBodyName)).collect(Collectors.summingInt(p -> p.getHeadCount()));
+
+				if (entry.getKey() != null) {
+					if (item != null && totalHeadcount > 0) {
+						System.out.println("year:" + entry.getKey() + "" + totalHeadcount);
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Prints the all ministry annual summary test.
+	 */
+	@Test
+	public void printAllMinistryAnnualSummaryTest() {
+		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getData();
+		List<String> ministryNames = esvApi.getMinistryNames();
+
+		for (String ministryName : ministryNames) {
+
+			System.out.println(ministryName);
+			for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
+
+				List<GovernmentBodyAnnualSummary> item = entry.getValue();
+				Integer totalHeadcount = item.stream().filter(p -> p.getMinistry().equalsIgnoreCase(ministryName))
+						.collect(Collectors.summingInt(p -> p.getHeadCount()));
+
+				if (entry.getKey() != null) {
+					if (item != null && totalHeadcount > 0) {
+						System.out.println("year:" + entry.getKey() + "" + totalHeadcount);
+					}
+
+				}
+			}
+		}
+
 	}
 
 }
