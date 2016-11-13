@@ -1310,7 +1310,8 @@
         </plugins>
       </build>
       <properties>
-        <dependency.plugin.unpack.phase>package</dependency.plugin.unpack.phase>
+        <!-- <dependency.plugin.unpack.phase>package</dependency.plugin.unpack.phase> -->
+        <dependency.plugin.unpack.phase>test-compile</dependency.plugin.unpack.phase>
       </properties>
     </profile>
     <profile>
