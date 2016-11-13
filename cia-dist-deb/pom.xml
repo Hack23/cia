@@ -13,7 +13,7 @@
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
-    <tag>cia-all-2016.3.6</tag>
+    <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/cia-dist-deb</url>
   </scm>
   <dependencies>
