@@ -48,6 +48,9 @@
     </contributor>
   </contributors>
   <mailingLists></mailingLists>
+  <prerequisites>
+    <maven>3.3.9</maven>
+  </prerequisites>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
