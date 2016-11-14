@@ -975,7 +975,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "7.7.3";
+	content: "7.7.4";
 }
 
 .v-widget {
@@ -13662,7 +13662,7 @@ div.v-layout.v-horizontal.v-widget {
 	transition: all 300ms;
 }
 
-.cia .valo-menu-responsive[width-range~="0-800px"] .valo-menu-visible .valo-menuitems {
+.cia .valo-menu-responsive[width-range~="0-800px"] .valo-menu-visible .valo-menuitems, .cia .valo-menu-responsive[width-range~="0-800px"] .valo-menu-hover:hover .valo-menuitems {
 	-webkit-transform: translatex(0%);
 	-moz-transform: translatex(0%);
 	-ms-transform: translatex(0%);

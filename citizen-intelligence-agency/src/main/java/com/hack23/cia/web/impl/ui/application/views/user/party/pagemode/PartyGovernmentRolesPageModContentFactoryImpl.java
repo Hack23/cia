@@ -87,7 +87,7 @@ public final class PartyGovernmentRolesPageModContentFactoryImpl extends Abstrac
 			getGridFactory().createBasicBeanItemGrid(
 					panelContent, currentGovermentMemberDataSource,
 					GOVERNMENT_ROLES,
-					new String[] { "roleId", "personId", "firstName", "lastName", "detail", "active", "detail",
+					new String[] { "roleId", "personId", "firstName", "lastName", "active", "detail",
 							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "roleId", "personId", "party" },
 					null, new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
 

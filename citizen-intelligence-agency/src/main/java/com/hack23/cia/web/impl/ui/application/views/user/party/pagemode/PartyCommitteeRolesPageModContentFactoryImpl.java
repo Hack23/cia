@@ -87,7 +87,7 @@ public final class PartyCommitteeRolesPageModContentFactoryImpl extends Abstract
 			getGridFactory().createBasicBeanItemGrid(panelContent,
 					committeeMemberDataSource,
 					COMMITTEE_ROLES,
-					new String[] { "roleId", "personId", "firstName", "lastName", "detail", "active", "detail",
+					new String[] { "roleId", "personId", "firstName", "lastName", "detail", "active",
 							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "roleId", "personId", "party" },
 					null, new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
 
