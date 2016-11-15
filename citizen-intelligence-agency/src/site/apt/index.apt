@@ -4,6 +4,19 @@
 Citizen Intelligence Agency
 
  Tracking politicians like bugs. Citizen Intelligence Agency is independent and non-partisan voluntary project.
+ 
+ [https://img.shields.io/github/license/Hack23/cia.svg] A {{{https://raw.githubusercontent.com/Hack23/cia/master/citizen-intelligence-agency/LICENSE.txt}License}}
+ [https://img.shields.io/maven-central/v/com.hack23.cia/cia-dist-deb.svg] B	Maven central {{{http://mvnrepository.com/artifact/com.hack23.cia/cia-dist-deb) 
+ [https://img.shields.io/jenkins/s/https/www.hack23.com/jenkins/Citizen-Intelligence-Agency-Complete-site-sonar-report.svg] C {{{https://www.hack23.com/jenkins/}Jenkins}}
+ [https://img.shields.io/jenkins/t/https/www.hack23.com/jenkins/Citizen-Intelligence-Agency-Complete-site-sonar-report.svg] D {{{https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency/lastCompletedBuild/testReport/}Jenkins Test}}
+ [https://img.shields.io/sonar/https/www.hack23.com/sonar/com.hack23.cia:parent-pom/coverage.svg] E {{{https://www.hack23.com/sonar/component_measures/domain/Coverage?id=com.hack23.cia%3Aparent-pom}Sonarqube coverage}}
+ [https://img.shields.io/sonar/https/www.hack23.com/sonar/com.hack23.cia:parent-pom/tech_debt.svg] F {{{https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Aparent-pom&did=1}Sonarqube debt}}
+ 
+
+
+Demo
+
+ * Citizen Intelligence Agency Demo {{{https://www.hack23.com/cia/}https://www.hack23.com/cia/}}
 
 
 Resources
@@ -12,6 +25,12 @@ Resources
 
  * Github source code location {{{https://github.com/Hack23/cia}https://github.com/Hack23/cia}}
 
+ * Build server, jenkins: {{{https://www.hack23.com/jenkins/}https://www.hack23.com/jenkins/}}
+ 
+ * QA report, sonarqube: {{{https://www.hack23.com/sonar/}https://www.hack23.com/sonar/}}
+ 
+ * Repository manager, nexus: {{{https://www.hack23.com/nexus/}https://www.hack23.com/nexus/}}
+
  * Ohloh Project Summary {{{http://www.ohloh.net/p/citizenIntelligenceagency}Ohloh}}.
 
  * Principia Discordia {{{http://www.principiadiscordia.com/book/1.php} Read the book!}}
@@ -19,7 +38,7 @@ Resources
 
 Project Documentation
 
- * Source Code {{{http://cia.sourceforge.net/jxr.html}Cross-reference Java source code}}.
+ * Source Code {{{http://cia.sourceforge.net/xref/index.html}Cross-reference Java source code}}.
 
  * Javadoc & UML {{{http://cia.sourceforge.net/apidocs/index.html}Generated javadoc with UML diagrams}}.
 
@@ -29,3 +48,58 @@ Project Documentation
 
  * Jar Usage Validation {{{http://cia.sourceforge.net/tattleTaleReport/index.html}Tattletale report}}.
 
+
+Installing Debian/Ubuntu package
+
+ Currently only build a debian package, works with debian and ubuntu 14.04,16.04,16.10
+
+
+ Installing database(postgres) and openjdk
+
+ $ sudo apt-get install openjdk-8-jdk postgresql pgadmin3
+
+ 2. Installing Oracle JDK 8 on Ubuntu
+
+ First you need to add webupd8team Java PPA repository in your system and install Oracle Java 8 using following set of commands.
+
+ $ sudo add-apt-repository ppa:webupd8team/java
+ $ sudo apt-get update
+ $ sudo apt-get install oracle-java8-installer oracle-java8-unlimited-jce-policy
+
+ 3. Create empty database
+
+ Below description set the default username/password and database name used for development, recommend using custom credentials and update the configuration at /opt/cia/webapps/cia/WEB-INF/database.properties to define your own username/password and database name.
+
+ $ sudo su - postgres
+ $ psql
+ postgres=# CREATE USER eris WITH password 'discord';
+ postgres=# CREATE DATABASE cia_dev;
+ postgres=# GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;
+
+ 4. Modify postgres setting, enable prepared transactions
+
+ Edit file "/etc/postgresql/9.6/main/postgresql.conf" set
+
+ max_prepared_transactions = 100
+
+
+ 5. Modify postgres setting
+ Edit file "/etc/postgresql/9.6/main/pg_hba.conf" add line
+
+ host all all ::1/128 md5
+
+
+ 6. Restart postgres
+
+ $ service postgresql restart
+
+ 7. Get cia debian package and
+
+ $ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2016.11.15/cia-dist-deb-2016.11.15.deb
+
+ 8. Install debian package
+
+ $ sudo dpkg -i cia-dist-deb-2016.11.15.deb
+
+
+ 9. Access the server at {{{http://localhost:2323/cia/}http://localhost:2323/cia/}}

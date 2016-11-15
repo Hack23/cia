@@ -31,7 +31,6 @@ Limited functionality proper navigation, descriptions,content, ui and styling ar
 Plan to make it public some time after 2018.04, running Ubuntu 18.04, Postgresql 9.6+, JDK9, Spring framework 5.x , Hibernate 6.x, Vaadin 8.x.
 
 
-
 #Resources
 
 Project documentation [http://cia.sourceforge.net/](http://cia.sourceforge.net/)
@@ -156,14 +155,14 @@ $ service postgresql restart
 
 
 ```
-$ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2016.11.13/cia-dist-deb-2016.11.13.deb
+$ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2016.11.15/cia-dist-deb-2016.11.15.deb
 ```
 
 
 8. Install debian package
 
 ```
-$ sudo dpkg -i cia-dist-deb-2016.11.13.deb
+$ sudo dpkg -i cia-dist-deb-2016.11.15.deb
 ```
 
 
@@ -172,4 +171,5 @@ $ sudo dpkg -i cia-dist-deb-2016.11.13.deb
 
 # Application package diagram overview
 
-[![SonarQube Tech Debt](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-Complete-Javadoc/lastSuccessfulBuild/artifact/citizen-intelligence-agency/target/apidocs/overview-summary.png)](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-Complete-Javadoc/lastSuccessfulBuild/artifact/citizen-intelligence-agency/target/apidocs/index.html)
+![Package overview diagram](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-Complete-Javadoc/lastSuccessfulBuild/artifact/citizen-intelligence-agency/target/apidocs/overview-summary.png)
+[Api docs](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-Complete-Javadoc/lastSuccessfulBuild/artifact/citizen-intelligence-agency/target/apidocs/index.html)
