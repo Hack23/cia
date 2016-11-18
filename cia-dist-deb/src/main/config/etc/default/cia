@@ -12,4 +12,4 @@ JETTY_HOME=/opt/cia
 JETTY_USER=cia
 JETTY_LOGS=/opt/cia/logs/
 JETTY_ARGS="-Djetty.http.port=2323 -Djetty.http.host=0.0.0.0 -Djavamelody.system-actions-enabled=true -Djava.awt.headless=true -Djavamelody.storage-directory=/opt/cia/javamelody/ -Dorg.apache.activemq.SERIALIZABLE_PACKAGES=com.hack23.cia,java.util,java.lang,java.math,org.apache "
-JAVA_OPTIONS="-server -Xmx4096m -Xms4096m -XX:+UseTLAB -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+AggressiveOpts -XX:+DoEscapeAnalysis -XX:+UseBiasedLocking -XX:+EliminateLocks"
+JAVA_OPTIONS="-server -Xmx2048m -Xms2048m -XX:+UseTLAB -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+AggressiveOpts -XX:+DoEscapeAnalysis -XX:+UseBiasedLocking -XX:+EliminateLocks"

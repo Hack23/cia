@@ -110,6 +110,10 @@
               <to>/opt/cia/webapps/cia</to>
             </extract-artifact>
             <copyFile>
+              <path>src/main/config/jetty/webapps/cia.xml</path>
+              <toFile>/opt/cia/webapps/cia.xml</toFile>
+            </copyFile>
+            <copyFile>
               <path>src/main/config/etc/default/cia</path>
               <toFile>/etc/default/cia</toFile>
             </copyFile>
