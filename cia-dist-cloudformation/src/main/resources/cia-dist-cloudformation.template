@@ -313,7 +313,7 @@
         "RuleAction" : "allow",
         "Egress" : "true",
         "CidrBlock" : "0.0.0.0/0",
-        "PortRange" : { "From" : "5432", "To" : "5432" }
+        "PortRange" : { "From" : "1", "To" : "65535" }
       }
     },
     
@@ -593,6 +593,12 @@
 
           "wget https://oss.sonatype.org/service/local/repositories/releases/content/com/hack23/cia/cia-dist-deb/2016.11.15/cia-dist-deb-2016.11.15.deb \n",
           "dpkg -i --force all cia-dist-deb-2016.11.15.deb \n",
+
+          "echo 'database.username=", { "Ref" : "DBUsername" }, "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",
+          "echo 'database.password=", { "Ref" : "DBPassword" }, "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",
+          "echo 'database.hostname=", { "Fn::GetAtt": [ "pgDB", "Endpoint.Address" ] }, "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",
+          
+          "/etc/init.d/cia restart\n",          
 
           "# Signal completion\n",
           "cfn-signal -e $? ",
