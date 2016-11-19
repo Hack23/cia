@@ -1215,7 +1215,7 @@
                 </goals>
                 <configuration>
                   <includeGroupIds>com.hack23.cia</includeGroupIds>
-                  <excludeArtifactIds>transactions</excludeArtifactIds>
+                  <excludeArtifactIds>transactions,cia-dist-cloudformation,cia-dist-deb</excludeArtifactIds>
                 </configuration>
               </execution>
             </executions>
