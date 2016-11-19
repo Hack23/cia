@@ -59,8 +59,6 @@
 			<item name="Parent Model External Pom"
 				href="http://cia.sourceforge.net/parent-model-external-pom/" />
 			<item name="Parent Service Pom" href="http://cia.sourceforge.net/parent-service-pom/" />
-			<item name="template-component-service"
-				href="http://cia.sourceforge.net/template-component-service/" />
 			<item name="Parent Web Pom" href="http://cia.sourceforge.net/parent-web-pom/" />
 
 			<item name="Build Modules" href="http://cia.sourceforge.net/build-modules/" />
