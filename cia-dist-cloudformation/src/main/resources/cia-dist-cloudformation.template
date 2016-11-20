@@ -459,19 +459,29 @@
       "Type" : "AWS::RDS::DBInstance",
       "Condition" : "noDBSnapshot",
       "Properties" : {
-        "DBName" : { "Ref" : "DBName" },
+        "DBName" : {
+          "Fn::If" : [
+            "noDBSnapshot",{ "Ref" : "DBName" },
+            {"Ref" : "AWS::NoValue"}            
+          ]
+        } ,
         "AllocatedStorage" : { "Ref" : "DBAllocatedStorage" },
         "DBInstanceClass" : { "Ref" : "DBClass" },
         "Engine" : "postgres",
         "EngineVersion" : "9.6.1",
         "MultiAZ" : "false",
-        "StorageType" : "gp2",
+        "StorageType" : {
+          "Fn::If" : [
+            "noDBSnapshot","gp2",
+            {"Ref" : "AWS::NoValue"}            
+          ]
+        },
         "MasterUsername" : {
           "Fn::If" : [
             "noDBSnapshot",{ "Ref" : "DBUsername" },
             {"Ref" : "AWS::NoValue"}            
           ]
-        } ,
+        },
         "MasterUserPassword" : {
           "Fn::If" : [
             "noDBSnapshot",
