@@ -180,6 +180,10 @@
     
 
   },
+  
+   "Conditions" : {
+    	"noDBSnapshot" : {"Fn::Equals" : [{"Ref": "DBSnapshotName"}, ""]}
+  	},
 
   "Resources" : {
 
@@ -453,6 +457,7 @@
 
     "pgDB" : {
       "Type" : "AWS::RDS::DBInstance",
+      "Condition" : "noDBSnapshot",
       "Properties" : {
         "DBName" : { "Ref" : "DBName" },
         "AllocatedStorage" : { "Ref" : "DBAllocatedStorage" },
@@ -464,9 +469,9 @@
         "MasterUserPassword" : { "Ref" : "DBPassword" },
         "DBSnapshotIdentifier" : {
           "Fn::If" : [
-            "UseDBSnapshot",
-            {"Ref" : "DBSnapshotName"},
-            {"Ref" : "AWS::NoValue"}
+            "noDBSnapshot",
+            {"Ref" : "AWS::NoValue"},
+            {"Ref" : "DBSnapshotName"}
           ]
         },
         "DBSubnetGroupName" : { "Ref" : "myDBSubnetGroup" },
