@@ -67,7 +67,7 @@
     
     "DBSnapshotName": {
       "Description": "The name of a DB snapshot (optional)",
-      "Default": "",
+      "Default": "arn:aws:rds:eu-west-1:172017021075:snapshot:cia-demo-20161120",
       "Type": "String"      
     },
     
@@ -87,10 +87,10 @@
     },
 
     "DBAllocatedStorage" : {
-      "Default": "10",
+      "Default": "100",
       "Description" : "The size of the database (Gb)",
       "Type": "Number",
-      "MinValue": "10",
+      "MinValue": "100",
       "MaxValue": "6144",
       "ConstraintDescription" : "must be between 10+"
     }
@@ -465,8 +465,20 @@
         "Engine" : "postgres",
         "EngineVersion" : "9.6.1",
         "MultiAZ" : "false",
-        "MasterUsername" : { "Ref" : "DBUsername" } ,
-        "MasterUserPassword" : { "Ref" : "DBPassword" },
+        "StorageType" : "gp2",
+        "MasterUsername" : {
+          "Fn::If" : [
+            "noDBSnapshot",{ "Ref" : "DBUsername" },
+            {"Ref" : "AWS::NoValue"}            
+          ]
+        } ,
+        "MasterUserPassword" : {
+          "Fn::If" : [
+            "noDBSnapshot",
+            { "Ref" : "DBPassword" },
+            {"Ref" : "AWS::NoValue"}           
+          ]
+        },
         "DBSnapshotIdentifier" : {
           "Fn::If" : [
             "noDBSnapshot",
