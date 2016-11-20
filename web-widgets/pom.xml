@@ -16,6 +16,13 @@
     <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/web-widgets</url>
   </scm>
+  <distributionManagement>
+      <site>
+      <id>cia.sf.net</id>
+      <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/web-widgets</url>
+    </site>
+  </distributionManagement>
+  
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <vaadin.version>${cia.project.versions.vaadin}</vaadin.version>
