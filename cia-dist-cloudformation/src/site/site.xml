@@ -49,6 +49,7 @@
 		</links>
 
 		<menu ref="reports" />
+		<menu ref="modules" />
 
 	</body>
 

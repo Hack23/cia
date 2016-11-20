@@ -51,6 +51,8 @@
 		<menu ref="reports" />
 
 		<menu name="Project Modules">
+			<item name="cia-dist-deb" href="http://cia.sourceforge.net/cia-dist-deb/" />
+			<item name="cia-dist-cloudformation" href="http://cia.sourceforge.net/cia-dist-cloudformation/" />					
 			<item name="Parent Pom" href="http://cia.sourceforge.net/parent-pom/" />
 			<item name="Parent Model Pom" href="http://cia.sourceforge.net/parent-model-pom/" />
 			<item name="Parent Model JPA2 Pom" href="http://cia.sourceforge.net/parent-model-jpa2-pom/" />
@@ -60,8 +62,6 @@
 				href="http://cia.sourceforge.net/parent-model-external-pom/" />
 			<item name="Parent Service Pom" href="http://cia.sourceforge.net/parent-service-pom/" />
 			<item name="Parent Web Pom" href="http://cia.sourceforge.net/parent-web-pom/" />
-
-			<item name="Build Modules" href="http://cia.sourceforge.net/build-modules/" />
 
 			<item name="Web Widgets" href="http://cia.sourceforge.net/web-widgets/" />
 
