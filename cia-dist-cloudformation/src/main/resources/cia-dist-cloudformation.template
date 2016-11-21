@@ -507,8 +507,8 @@
           "Target" : "HTTP:80/",
           "HealthyThreshold" : "3",
           "UnhealthyThreshold" : "5",
-          "Interval" : "90",
-          "Timeout" : "60"
+          "Interval" : "5",
+          "Timeout" : "2"
         }
       }
     },
