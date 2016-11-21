@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion" : "2010-09-09",
 
-  "Description" : "CIA CloudFormation demo runtime template. Create a HA solution using a load balanced, auto scaled group in a VPC with where the EC2 instances can directly access the internet and data stored in postgres RDS. **WARNING** This template creates Elastic Load Balancers and Amazon EC2 instances. You will be billed for the AWS resources used if you create a stack from this template.",
+  "Description" : "CIA CloudFormation demo runtime template. Create a HA(3 az LB,3 az servers,MultiAZ RDS) solution using a load balanced, auto scaled group in a VPC with where the EC2 instances can directly access the internet and data stored in postgres RDS. **WARNING** This template creates Elastic Load Balancers and Amazon EC2 instances. You will be billed for the AWS resources used if you create a stack from this template.",
 
   "Parameters" : {
 
