@@ -112,13 +112,13 @@
     <cia.project.versions.logback>1.1.7</cia.project.versions.logback>
     <cia.project.versions.mysql>5.1.34</cia.project.versions.mysql>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
-    <cia.project.versions.hibernate>5.2.4.Final</cia.project.versions.hibernate>
-    <cia.project.versions.hibernate.jpamodelgen>5.2.4.Final</cia.project.versions.hibernate.jpamodelgen>
-    <cia.project.versions.hibernate.build>5.2.4.Final</cia.project.versions.hibernate.build>
+    <cia.project.versions.hibernate>5.2.5-SNAPSHOT</cia.project.versions.hibernate>
+    <cia.project.versions.hibernate.jpamodelgen>5.2.5-SNAPSHOT</cia.project.versions.hibernate.jpamodelgen>
+    <cia.project.versions.hibernate.build>5.2.5-SNAPSHOT</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.2.0.CR1</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.0.Final</cia.project.versions.hibernate.jpa2>
-    <cia.project.versions.hibernate.validator>5.3.2.Final</cia.project.versions.hibernate.validator>
-    <cia.project.versions.hibernate.build.validator>5.3.2.Final</cia.project.versions.hibernate.build.validator>
+    <cia.project.versions.hibernate.validator>5.3.3.Final</cia.project.versions.hibernate.validator>
+    <cia.project.versions.hibernate.build.validator>5.3.3.Final</cia.project.versions.hibernate.build.validator>
     <cia.project.versions.h2>1.4.193</cia.project.versions.h2>
     <cia.project.versions.postgresql>9.4.1212</cia.project.versions.postgresql>
     <cia.project.versions.atomikos>4.0.4</cia.project.versions.atomikos>
@@ -151,7 +151,7 @@
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>9.4.0.RC2</cia.project.versions.jetty>
     <cia.project.versions.javamelody>1.62.0</cia.project.versions.javamelody>
-    <cia.project.versions.vaadin>7.7.4</cia.project.versions.vaadin>
+    <cia.project.versions.vaadin>7.7.5</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.8.0</cia.project.versions.vaadin.gwt.user>
     <cia.project.versions.vaadin.cssparser>0.9.20</cia.project.versions.vaadin.cssparser>
     <cia.project.versions.servlet.api>3.1.0</cia.project.versions.servlet.api>
