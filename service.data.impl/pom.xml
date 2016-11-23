@@ -293,7 +293,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jcache</artifactId>
-      <version>5.2.4.Final</version>
+      <version>5.2.5-SNAPSHOT</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-core</artifactId>
@@ -332,7 +332,16 @@
           <artifactId>jandex</artifactId>
           <groupId>org.jboss</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>byte-buddy</artifactId>
+          <groupId>net.bytebuddy</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>net.bytebuddy</groupId>
+      <artifactId>byte-buddy</artifactId>
+      <version>1.5.5</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
