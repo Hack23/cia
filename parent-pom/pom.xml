@@ -98,7 +98,7 @@
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <!-- <cia.project.versions.spring>4.3.4.RELEASE/5.0.0.M3/5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring> -->
-    <cia.project.versions.spring>5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring>
+    <cia.project.versions.spring>4.3.4.RELEASE</cia.project.versions.spring>
     <!-- <cia.project.versions.spring.security>4.2.0.M1</cia.project.versions.spring.security>-->
     <cia.project.versions.spring.security>4.2.0.RELEASE</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.0.BETA-4</cia.project.versions.aspectj>
@@ -143,7 +143,7 @@
     <cia.project.versions.maven>3.3.9</cia.project.versions.maven>
     <cia.project.versions.jaxb.impl>2.2.11</cia.project.versions.jaxb.impl>
     <cia.project.versions.jaxb.xjc>2.2.11</cia.project.versions.jaxb.xjc>
-    <cia.project.versions.activemq>5.15.0-SNAPSHOT</cia.project.versions.activemq>
+    <cia.project.versions.activemq>5.14.1</cia.project.versions.activemq>
     <cia.project.versions.httpclient>4.5.2</cia.project.versions.httpclient>
     <cia.project.versions.guava>20.0</cia.project.versions.guava>
     <cia.project.versions.jackson>2.8.5</cia.project.versions.jackson>
