@@ -124,7 +124,7 @@
                 <prop key="hibernate.order_inserts">true</prop>
                 <prop key="hibernate.order_updates">true</prop>
                 <prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
-                <prop key="hibernate.bytecode.provider">javassist</prop>
+                <prop key="hibernate.bytecode.provider">bytebuddy</prop>
                 <!--<prop key="hibernate.bytecode.provider">cglib</prop> -->
                 <prop key="hibernate.jdbc.use_streams_for_binary">true</prop>
                 <prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
