@@ -41,6 +41,12 @@
       "Type" : "String",
       "Default" : "10.40"
     },
+
+    "DBEncryptionKmsAlias" : {
+      "Description" : "The alias for Key Management Service encryption key alias",
+      "Type" : "String",
+      "Default" : ""
+    },
     
     "DBName": {
       "Default": "pgdb",
