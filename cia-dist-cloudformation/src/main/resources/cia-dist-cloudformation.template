@@ -35,6 +35,12 @@
       "Type" : "Number",
       "Default" : "1"
     },
+
+    "SubNetPrefix" : {
+      "Description" : "The prefix for all subnets, only change if you need vpn connection and prefer other prefix.",
+      "Type" : "String",
+      "Default" : "10.40"
+    },
     
     "DBName": {
       "Default": "pgdb",
