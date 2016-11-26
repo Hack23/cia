@@ -107,6 +107,20 @@
       "Private2"  : { "CIDR" : "10.40.21.0/24"},
       "Private3"  : { "CIDR" : "10.40.22.0/24"}                 
     },
+    
+    "QuickSightRegionSubnet" : {
+      "us-east-1"        : { "CIDR" : "52.23.63.224/27"},
+      "us-west-2"        : { "CIDR" : "NOT_SUPPORTED"},
+      "us-west-1"        : { "CIDR" : "54.70.204.128/27"},
+      "eu-west-1"        : { "CIDR" : "52.210.255.224/27" },
+      "eu-central-1"     : { "CIDR" : "NOT_SUPPORTED"},      
+      "ap-northeast-1"   : { "CIDR" : "NOT_SUPPORTED"},
+      "ap-southeast-1"   : { "CIDR" : "NOT_SUPPORTED"},
+      "ap-southeast-2"   : { "CIDR" : "NOT_SUPPORTED"},
+      "sa-east-1"        : { "CIDR" : "NOT_SUPPORTED"},
+      "cn-north-1"       : { "CIDR" : "NOT_SUPPORTED"}
+    },
+    
     "AWSInstanceType2Arch" : {
       "t2.micro"    : { "Arch" : "HVM64"  },
       "t2.small"    : { "Arch" : "HVM64"  },
