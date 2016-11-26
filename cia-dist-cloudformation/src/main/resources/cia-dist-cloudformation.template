@@ -387,7 +387,51 @@
         "RouteTableId" : { "Ref" : "PublicRouteTable" }
       }
     },
+
+    "PrivateRouteTable" : {
+      "Type" : "AWS::EC2::RouteTable",
+      "Properties" : {
+        "VpcId" : { "Ref" : "VPC" },
+        "Tags" : [
+          { "Key" : "Application", "Value" : { "Ref" : "AWS::StackId" } },
+          { "Key" : "Network", "Value" : "Public" }
+        ]
+      }
+    },
+
+    "PrivateRoute" : {
+      "Type" : "AWS::EC2::Route",
+      "DependsOn" : "GatewayToInternet",
+      "Properties" : {
+        "RouteTableId" : { "Ref" : "PrivateRouteTable" },
+        "DestinationCidrBlock" : { "Fn::FindInMap" : [ "QuickSightRegionSubnet", { "Ref" : "AWS::Region" }, "CIDR" ] },
+        "GatewayId" : { "Ref" : "InternetGateway" }
+      }
+    },
+
+    "PrivateSubnetRouteTableAssociation" : {
+      "Type" : "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties" : {
+        "SubnetId" : { "Ref" : "PrivateSubnet" },
+        "RouteTableId" : { "Ref" : "PrivateRouteTable" }
+      }
+    },
+
+    "Private2SubnetRouteTableAssociation" : {
+      "Type" : "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties" : {
+        "SubnetId" : { "Ref" : "PrivateSubnet2" },
+        "RouteTableId" : { "Ref" : "PrivateRouteTable" }
+      }
+    },
     
+    "Private3SubnetRouteTableAssociation" : {
+      "Type" : "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties" : {
+        "SubnetId" : { "Ref" : "PrivateSubnet3" },
+        "RouteTableId" : { "Ref" : "PrivateRouteTable" }
+      }
+    },   
 
     "PublicNetworkAcl" : {
       "Type" : "AWS::EC2::NetworkAcl",
@@ -620,6 +664,7 @@
 
     "pgDB" : {
       "Type" : "AWS::RDS::DBInstance",
+      "DependsOn" : "GatewayToInternet",
       "Properties" : {
         "DBName" : {
           "Fn::If" : [
@@ -632,6 +677,7 @@
         "Engine" : "postgres",
         "EngineVersion" : "9.6.1",
         "MultiAZ" : "false",
+        "PubliclyAccessible" : "true",
         "StorageType" : "gp2",
         "MasterUsername" : {
           "Fn::If" : [
