@@ -101,9 +101,11 @@
     "SubnetConfig" : {
       "VPC"     : { "CIDR" : "10.40.0.0/16" },
       "Public"  : { "CIDR" : "10.40.10.0/24" },
+      "Public2"  : { "CIDR" : "10.40.11.0/24" },
+      "Public3"  : { "CIDR" : "10.40.12.0/24" },     
       "Private"  : { "CIDR" : "10.40.20.0/24"},
-      "Private2"  : { "CIDR" : "10.40.21.0/24"}
-           
+      "Private2"  : { "CIDR" : "10.40.21.0/24"},
+      "Private3"  : { "CIDR" : "10.40.22.0/24"}                 
     },
     "AWSInstanceType2Arch" : {
       "t2.micro"    : { "Arch" : "HVM64"  },
@@ -204,6 +206,7 @@
       "Type" : "AWS::EC2::Subnet",
       "Properties" : {
         "VpcId" : { "Ref" : "VPC" },
+        "AvailabilityZone" : { "Fn::FindInMap" : [ "AWSRegionAvailabilityZone", { "Ref" : "AWS::Region" }, "FIRST" ] },
         "CidrBlock" : { "Fn::FindInMap" : [ "SubnetConfig", "Public", "CIDR" ]},
         "Tags" : [
           { "Key" : "Application", "Value" : { "Ref" : "AWS::StackId" } },
@@ -211,6 +214,33 @@
         ]
       }
     },
+
+    "PublicSubnet2" : {
+      "Type" : "AWS::EC2::Subnet",
+      "Properties" : {
+        "VpcId" : { "Ref" : "VPC" },
+        "AvailabilityZone" : { "Fn::FindInMap" : [ "AWSRegionAvailabilityZone", { "Ref" : "AWS::Region" }, "SECOND" ] },
+        "CidrBlock" : { "Fn::FindInMap" : [ "SubnetConfig", "Public2", "CIDR" ]},
+        "Tags" : [
+          { "Key" : "Application", "Value" : { "Ref" : "AWS::StackId" } },
+          { "Key" : "Network", "Value" : "Public" }
+        ]
+      }
+    },
+
+    "PublicSubnet3" : {
+      "Type" : "AWS::EC2::Subnet",
+      "Properties" : {
+        "VpcId" : { "Ref" : "VPC" },
+        "AvailabilityZone" : { "Fn::FindInMap" : [ "AWSRegionAvailabilityZone", { "Ref" : "AWS::Region" }, "THIRD" ] },
+        "CidrBlock" : { "Fn::FindInMap" : [ "SubnetConfig", "Public3", "CIDR" ]},
+        "Tags" : [
+          { "Key" : "Application", "Value" : { "Ref" : "AWS::StackId" } },
+          { "Key" : "Network", "Value" : "Public" }
+        ]
+      }
+    },
+
 
     "PrivateSubnet" : {
       "Type" : "AWS::EC2::Subnet",
@@ -238,6 +268,18 @@
       }
     },
 
+    "PrivateSubnet3" : {
+      "Type" : "AWS::EC2::Subnet",
+      "Properties" : {
+        "VpcId" : { "Ref" : "VPC" },
+        "AvailabilityZone" : { "Fn::FindInMap" : [ "AWSRegionAvailabilityZone", { "Ref" : "AWS::Region" }, "THIRD" ] },
+        "CidrBlock" : { "Fn::FindInMap" : [ "SubnetConfig", "Private3", "CIDR" ]},
+        "Tags" : [
+          { "Key" : "Application", "Value" : { "Ref" : "AWS::StackId" } },
+          { "Key" : "Network", "Value" : "Private" }
+        ]
+      }
+    },
 
     "InternetGateway" : {
       "Type" : "AWS::EC2::InternetGateway",
@@ -285,6 +327,23 @@
         "RouteTableId" : { "Ref" : "PublicRouteTable" }
       }
     },
+
+    "Public2SubnetRouteTableAssociation" : {
+      "Type" : "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties" : {
+        "SubnetId" : { "Ref" : "PublicSubnet2" },
+        "RouteTableId" : { "Ref" : "PublicRouteTable" }
+      }
+    },
+    
+    "Public3SubnetRouteTableAssociation" : {
+      "Type" : "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties" : {
+        "SubnetId" : { "Ref" : "PublicSubnet3" },
+        "RouteTableId" : { "Ref" : "PublicRouteTable" }
+      }
+    },
+    
 
     "PublicNetworkAcl" : {
       "Type" : "AWS::EC2::NetworkAcl",
@@ -408,6 +467,22 @@
         "NetworkAclId" : { "Ref" : "PublicNetworkAcl" }
       }
     },
+
+    "Public2SubnetNetworkAclAssociation" : {
+      "Type" : "AWS::EC2::SubnetNetworkAclAssociation",
+      "Properties" : {
+        "SubnetId" : { "Ref" : "PublicSubnet2" },
+        "NetworkAclId" : { "Ref" : "PublicNetworkAcl" }
+      }
+    },
+    
+    "Public3SubnetNetworkAclAssociation" : {
+      "Type" : "AWS::EC2::SubnetNetworkAclAssociation",
+      "Properties" : {
+        "SubnetId" : { "Ref" : "PublicSubnet3" },
+        "NetworkAclId" : { "Ref" : "PublicNetworkAcl" }
+      }
+    },
     
     "PrivateSubnetNetworkAclAssociation" : {
       "Type" : "AWS::EC2::SubnetNetworkAclAssociation",
@@ -416,6 +491,23 @@
         "NetworkAclId" : { "Ref" : "PrivateNetworkAcl" }
       }
     },
+
+    "Private2SubnetNetworkAclAssociation" : {
+      "Type" : "AWS::EC2::SubnetNetworkAclAssociation",
+      "Properties" : {
+        "SubnetId" : { "Ref" : "PrivateSubnet2" },
+        "NetworkAclId" : { "Ref" : "PrivateNetworkAcl" }
+      }
+    },
+
+    "Private3SubnetNetworkAclAssociation" : {
+      "Type" : "AWS::EC2::SubnetNetworkAclAssociation",
+      "Properties" : {
+        "SubnetId" : { "Ref" : "PrivateSubnet3" },
+        "NetworkAclId" : { "Ref" : "PrivateNetworkAcl" }
+      }
+    },
+
         
     "myDBEC2SecurityGroup": {
       "Type": "AWS::EC2::SecurityGroup",
@@ -450,7 +542,7 @@
       "Properties" : {
          "DBSubnetGroupDescription" : "DB Private Subnet",
          "SubnetIds" : [
-          { "Ref" : "PrivateSubnet" }, { "Ref" : "PrivateSubnet2" }
+          { "Ref" : "PrivateSubnet" }, { "Ref" : "PrivateSubnet2" },{ "Ref" : "PrivateSubnet3" }
          ]
       }
     },
