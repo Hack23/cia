@@ -18,15 +18,20 @@
 */
 package com.hack23.cia.systemintegrationtest;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -48,10 +53,14 @@ public final class UserPageVisit extends Assert {
 	/** The Constant WAIT_FOR_PAGE_DELAY. */
 	private static final int WAIT_FOR_PAGE_DELAY = 2500;
 
+	/** The Constant WAIT_FOR_TEXT. */
 	private static final int WAIT_FOR_TEXT = 5000;
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
 	private static final int WAIT_FOR_PAGE_ELEMENT = 25000;
+	
+	/** The screen shot number. */
+	private static int screenShotNumber;
 
 	/** The driver. */
 	private final WebDriver driver;
@@ -122,6 +131,7 @@ public final class UserPageVisit extends Assert {
 				driver.getCurrentUrl());
 		assertEquals(browser, "Citizen Intelligence Agency", driver.getTitle());
 		assertNotNull(browser, driver.getWindowHandle());
+		grabScreenshot(driver);
 
 		verifyViewActions(new ViewAction[] {
 				ViewAction.VISIT_ADMIN_AGENT_OPERATION_VIEW,
@@ -174,6 +184,7 @@ public final class UserPageVisit extends Assert {
 			;
 		}
 
+		grabScreenshot(driver);
 		assertTrue("Each page should contain a MainMenu link",getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW));
 
 
@@ -239,10 +250,11 @@ public final class UserPageVisit extends Assert {
 	}
 
 	/**
-	 * Assert html body contains text.
+	 * Check html body contains text.
 	 *
 	 * @param text
 	 *            the text
+	 * @return true, if successful
 	 * @throws Exception
 	 *             the exception
 	 */
@@ -279,6 +291,15 @@ public final class UserPageVisit extends Assert {
 		return getMenuItem(getMenuBar(), 1,caption);
 	}
 
+	/**
+	 * Gets the menu item.
+	 *
+	 * @param element
+	 *            the element
+	 * @param caption
+	 *            the caption
+	 * @return the menu item
+	 */
 	public WebElement getMenuItem(final WebElement element,final String... caption) {
 		return getMenuItem(element, 1,caption);
 	}
@@ -677,6 +698,8 @@ public final class UserPageVisit extends Assert {
 
 		}
 		waitForBrowser(waitDelay);
+		grabScreenshot(driver);
+		
 	}
 
 	/**
@@ -882,6 +905,12 @@ public final class UserPageVisit extends Assert {
 
 	}
 
+	/**
+	 * Enable google authenticator.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	public void enableGoogleAuthenticator() throws Exception {
 
 		final WebElement enableGoogleAuthButton = findButton("Enable Google Authenticator");
@@ -892,6 +921,12 @@ public final class UserPageVisit extends Assert {
 		closeModal();
 	}
 
+	/**
+	 * Close modal.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	public void closeModal() throws Exception {
 		final WebElement closeModalWindow = driver.findElement(By.className("v-window-closebox"));
 		assertNotNull("Expect to find a Window close Box",closeModalWindow);
@@ -900,4 +935,22 @@ public final class UserPageVisit extends Assert {
 
 	}
 
+	
+	/**
+	 * Grab screenshot.
+	 *
+	 * @param webDriver
+	 *            the web driver
+	 */
+	private static void grabScreenshot(final WebDriver webDriver) 
+	{
+	    final File scrFile = ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);
+	    try {
+	    	screenShotNumber = screenShotNumber +1;	    	
+	    	final String screenShotName = webDriver.getCurrentUrl().replace(systemTestTargetUrl, "").replaceAll("#", "-").replaceAll("!", "-").replaceAll("/", "-").replaceAll("--", "-");
+	        FileUtils.copyFile(scrFile, new File("target/site/screenshots/Page"+screenShotName+ "-" + screenShotNumber+ ".png"));
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
 }

@@ -156,6 +156,7 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 	    driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
 
 		webDriverMap.put(browser, driver);
+		driver.manage().window().maximize();
 		return driver;
 	}
 
