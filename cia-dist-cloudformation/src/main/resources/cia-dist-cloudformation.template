@@ -36,6 +36,24 @@
       "Default" : "1"
     },
 
+    "DomainNamePrefix" : {
+      "Description" : "Domain name prefix (optional), used to setup route53 dns",
+      "Type" : "String",
+      "Default" : ""
+    },
+
+    "DomainName" : {
+      "Description" : "Domain name (optional), used to setup route53 dns",
+      "Type" : "String",
+      "Default" : ""
+    },
+
+    "CertificateManager" : {
+      "Description" : "Certificate (optional) used to configure loadbalancer if DomainNamePrefix and DomainName is also included ",
+      "Type" : "String",
+      "Default" : ""
+    },
+
     "SubNetPrefix" : {
       "Description" : "The prefix for all subnets, only change if you need vpn connection and prefer other prefix.",
       "Type" : "String",
