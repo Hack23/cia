@@ -394,7 +394,7 @@
         "VpcId" : { "Ref" : "VPC" },
         "Tags" : [
           { "Key" : "Application", "Value" : { "Ref" : "AWS::StackId" } },
-          { "Key" : "Network", "Value" : "Public" }
+          { "Key" : "Network", "Value" : "Private" }
         ]
       }
     },
@@ -664,7 +664,7 @@
 
     "pgDB" : {
       "Type" : "AWS::RDS::DBInstance",
-      "DependsOn" : "GatewayToInternet",
+      "DependsOn" : "PrivateRoute",
       "Properties" : {
         "DBName" : {
           "Fn::If" : [
