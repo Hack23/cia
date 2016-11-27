@@ -818,6 +818,7 @@
       },
       "Properties" : {
         "ImageId"        : { "Fn::FindInMap" : [ "AWSRegionArch2AMI", { "Ref" : "AWS::Region" }, { "Fn::FindInMap" : [ "AWSInstanceType2Arch", { "Ref" : "WebServerInstanceType" }, "Arch" ] } ] },
+        "EbsOptimized"   : "true",
         "SecurityGroups" : [ { "Ref" : "WebServerSecurityGroup" } ],
         "InstanceType"   : { "Ref" : "WebServerInstanceType" },
         "KeyName"        : { "Ref" : "KeyName" },
