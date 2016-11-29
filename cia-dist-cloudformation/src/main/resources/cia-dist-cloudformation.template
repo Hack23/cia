@@ -714,6 +714,20 @@
 	    ]
 	  }
 	},
+	    
+    "DNSRecordCNAME2PublicElasticLoadBalancerV2" : {
+      "Type" : "AWS::Route53::RecordSet",
+      "DependsOn": "PublicElasticLoadBalancerV2",            
+       "Properties" : {
+        "HostedZoneName" : { "Fn::Join" : [ "", [{"Ref" : "DomainName"}, "." ]]},
+        "Comment" : { "Fn::Join" : [ "", [{"Ref" : "DomainNamePrefix"}, ".", {"Ref" : "DomainName"}, "."]]},
+        "Name" : { "Fn::Join" : [ "", [{"Ref" : "DomainNamePrefix"}, ".", {"Ref" : "DomainName"}, "."]]},
+        "Type" : "CNAME",
+        "TTL" : "900",
+        "ResourceRecords" : [ { "Fn::GetAtt" : [ "PublicElasticLoadBalancerV2", "DNSName" ]} ]
+      }
+    },
+	
 	"LoadBalancerListenerV2": {
 	  "Type": "AWS::ElasticLoadBalancingV2::Listener",
 	  "Properties": {
