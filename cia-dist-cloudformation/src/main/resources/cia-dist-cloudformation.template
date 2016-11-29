@@ -762,7 +762,7 @@
 	    "Port": 80,
 	    "Protocol": "HTTP",
 	    "VpcId": { "Ref" : "VPC" },
-	    "HealthCheckPort" : 80,
+	    "HealthCheckPort" : 2323,
 	    "HealthCheckIntervalSeconds": 5,
 	    "HealthCheckProtocol": "HTTP",
 	    "HealthCheckTimeoutSeconds": 4,
@@ -781,7 +781,7 @@
 	    "Port": 2323,
 	    "Protocol": "HTTP",
 	    "VpcId": { "Ref" : "VPC" },
-	    "HealthCheckPort" : 80,
+	    "HealthCheckPort" : 2323,
 	    "HealthCheckIntervalSeconds": 5,
 	    "HealthCheckProtocol": "HTTP",
 	    "HealthCheckTimeoutSeconds": 4,
@@ -841,7 +841,7 @@
               "apt" : {
                 "apache2" : [],
                 "openjdk-8-jdk" : [],
-                "postgresql-9.5" : [],
+                "postgresql-client-9.5" : [],
                 "ntp" : [],
                 "ntpdate" : [],
                 "ufw" : []
@@ -857,6 +857,28 @@
                 "owner"   : "root",
                 "group"   : "root"
               },
+
+              "/etc/apache2/sites-available/redirect-https.conf" : {
+                "content" : { "Fn::Join" : ["\n", [                  
+				"<VirtualHost *:80>",
+				    "RequestHeader unset Range",
+				    "RequestHeader unset If-Range",
+				    "RewriteEngine On",
+				    "RewriteCond %{HTTPS} !=on",
+				    "RewriteRule ^/(.*) https://%{SERVER_NAME}%{REQUEST_URI} [R]",
+				    "Header unset Accept-Ranges",
+				    "Header set Accept-Ranges none",
+				    "Header always set Strict-Transport-Security \"max-age=500; includeSubDomains\"",
+				    "Header set X-XSS-Protection \"1; mode=block\"",
+				    "Header set Cache-Control \"max-age=172800, public\"",
+				    "Header set Server \"Server\"",
+				"</VirtualHost>"
+                ]]},
+                "mode"    : "000644",
+                "owner"   : "root",
+                "group"   : "root"
+              },              
+              
               "/etc/cfn/cfn-hup.conf" : {
                 "content" : { "Fn::Join" : ["", [
                   "[main]\n",
@@ -936,7 +958,17 @@
           "echo 'database.password=", { "Ref" : "DBPassword" }, "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",
           "echo 'database.hostname=", { "Fn::GetAtt": [ "pgDB", "Endpoint.Address" ] }, "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",
           
+          "sed -i -e 's#contextPath\">\\cia#contextPath\">\\#g' /opt/cia/webapps/cia.xml \n",
+          
           "/etc/init.d/cia restart\n",          
+
+		  "a2enmod rewrite\n",
+   		  "a2enmod headers\n",
+          "a2enmod status\n",
+		  
+		  "a2dissite 000-default.conf\n",
+		  "a2ensite redirect-https\n",
+		  "service apache2 restart\n",
 
 		  "ufw default allow outgoing\n",
 		  "ufw default deny incoming\n",
