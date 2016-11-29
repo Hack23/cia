@@ -8,3 +8,4 @@ http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL.Procedural.Impo
 
 https://www.cloudconformity.com/conformity-rules/RDS/rds-encryption-enabled.html
 
+sed -i -e 's_\">/cia<_\">/<_' /opt/cia/webapps/cia.xml 

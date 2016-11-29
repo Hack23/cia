@@ -506,9 +506,7 @@
         "PortRange" : { "From" : "1", "To" : "65535" }
       }
     },
-
     
-
     "InboundHTTPPublicNetworkAclEntry" : {
       "Type" : "AWS::EC2::NetworkAclEntry",
       "Properties" : {
@@ -549,6 +547,19 @@
       }
     },
 
+    "InboundDynamicPortNtpPublicNetworkAclEntry" : {
+      "Type" : "AWS::EC2::NetworkAclEntry",
+      "Properties" : {
+        "NetworkAclId" : { "Ref" : "PublicNetworkAcl" },
+        "RuleNumber" : "301",
+        "Protocol" : "17",
+        "RuleAction" : "allow",
+        "Egress" : "false",
+        "CidrBlock" : "0.0.0.0/0",
+        "PortRange" : { "From" : "1024", "To" : "65535" }
+      }
+    },
+
     "InboundSSHPublicNetworkAclEntry" : {
       "Type" : "AWS::EC2::NetworkAclEntry",
       "Properties" : {
@@ -574,6 +585,20 @@
         "PortRange" : { "From" : "0", "To" : "65535" }
       }
     },
+
+    "OutboundNtpPublicNetworkAclEntry" : {
+      "Type" : "AWS::EC2::NetworkAclEntry",
+      "Properties" : {
+        "NetworkAclId" : { "Ref" : "PublicNetworkAcl" },
+        "RuleNumber" : "300",
+        "Protocol" : "17",
+        "RuleAction" : "allow",
+        "Egress" : "true",
+        "CidrBlock" : "0.0.0.0/0",
+        "PortRange" : { "From" : "123", "To" : "123" }
+      }
+    },
+
 
     "PublicSubnetNetworkAclAssociation" : {
       "Type" : "AWS::EC2::SubnetNetworkAclAssociation",
@@ -844,7 +869,8 @@
                 "postgresql-client-9.5" : [],
                 "ntp" : [],
                 "ntpdate" : [],
-                "ufw" : []
+                "ufw" : [],
+                "language-pack-en" : []
               }
             },
 
@@ -919,7 +945,7 @@
         "AssociatePublicIpAddress" : "true",
         "UserData"       : { "Fn::Base64" : { "Fn::Join" : ["", [
           "#!/bin/bash -xe\n",
-
+          "exec > >(tee /var/log/user-data.log) 2>&1 \n",
           "export DEBIAN_FRONTEND=noninteractive\n",
 		  "apt_get_install()\n",
 		  "{\n",
@@ -928,8 +954,16 @@
 			"install $@\n",
 		  "}\n",
 
+		  "timedatectl set-timezone Europe/Stockholm \n",
+		  "dpkg-reconfigure -f noninteractive tzdata \n",
+		  
+		  "echo 'LANG=\"en_US.UTF-8\"'> /etc/default/locale\n",
+		  "locale-gen en_US.UTF-8 en_GB.UTF-8 sv_SE.UTF-8 \n",
+		  "dpkg-reconfigure --frontend=noninteractive locales \n",
+
           "apt-get update\n",
           "apt-get -y install python-pip\n",
+          "pip install --upgrade pip\n",
           "pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz\n",
           "cp /usr/local/init/ubuntu/cfn-hup /etc/init.d/cfn-hup \n",
           "chmod +x /etc/init.d/cfn-hup \n",
@@ -941,6 +975,14 @@
           "    --stack ", { "Ref" : "AWS::StackId" },
           "    --resource WebServerLaunchConfig ",
           "    --region ", { "Ref" : "AWS::Region" }, "\n",
+
+		  "a2enmod rewrite\n",
+   		  "a2enmod headers\n",
+          "a2enmod status\n",
+		  
+		  "a2dissite 000-default.conf\n",
+		  "a2ensite redirect-https\n",
+		  "service apache2 restart\n",
 
 		  "# INSTALL ORACLE JDK\n",
           "sudo add-apt-repository ppa:webupd8team/java \n",
@@ -958,17 +1000,9 @@
           "echo 'database.password=", { "Ref" : "DBPassword" }, "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",
           "echo 'database.hostname=", { "Fn::GetAtt": [ "pgDB", "Endpoint.Address" ] }, "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n",
           
-          "sed -i -e 's#contextPath\">\\cia#contextPath\">\\#g' /opt/cia/webapps/cia.xml \n",
+          "sed -i -e 's_\">/cia<_\">/<_' /opt/cia/webapps/cia.xml\n",
           
           "/etc/init.d/cia restart\n",          
-
-		  "a2enmod rewrite\n",
-   		  "a2enmod headers\n",
-          "a2enmod status\n",
-		  
-		  "a2dissite 000-default.conf\n",
-		  "a2ensite redirect-https\n",
-		  "service apache2 restart\n",
 
 		  "ufw default allow outgoing\n",
 		  "ufw default deny incoming\n",
