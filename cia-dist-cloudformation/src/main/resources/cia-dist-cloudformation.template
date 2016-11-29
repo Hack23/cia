@@ -704,8 +704,7 @@
         "VPCSecurityGroups" : [ { "Fn::GetAtt" : [ "myDBEC2SecurityGroup", "GroupId" ] } ]
       }
     },
-    
-    
+        
     "PublicElasticLoadBalancerV2" : {
 	  "Type" : "AWS::ElasticLoadBalancingV2::LoadBalancer",
 	  "Properties" : {
@@ -741,15 +740,22 @@
 	    "Protocol": "HTTPS"
 	  }
 	},
-	
-	
+		
 	"TargetGroup": {
 	  "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
 	  "Properties": {
 	    "Name": { "Fn::Join": [ "-", [ { "Ref": "AWS::StackName" }, "TargetGroup" ] ] },
 	    "Port": 80,
 	    "Protocol": "HTTP",
-	    "VpcId": { "Ref" : "VPC" }
+	    "VpcId": { "Ref" : "VPC" },
+	    "HealthCheckPort" : 80,
+	    "HealthCheckIntervalSeconds": 5,
+	    "HealthCheckProtocol": "HTTP",
+	    "HealthCheckTimeoutSeconds": 4,
+	    "HealthyThresholdCount": 4,
+	    "Matcher" : {
+	      "HttpCode" : "200"
+	    }
 	  },
 	  "DependsOn": [ "PublicElasticLoadBalancerV2" ]
 	},
@@ -760,31 +766,19 @@
 	    "Name": { "Fn::Join": [ "-", [ { "Ref": "AWS::StackName" }, "TargetGroupHttps" ] ] },
 	    "Port": 2323,
 	    "Protocol": "HTTP",
-	    "VpcId": { "Ref" : "VPC" }
+	    "VpcId": { "Ref" : "VPC" },
+	    "HealthCheckPort" : 80,
+	    "HealthCheckIntervalSeconds": 5,
+	    "HealthCheckProtocol": "HTTP",
+	    "HealthCheckTimeoutSeconds": 4,
+	    "HealthyThresholdCount": 4,
+	    "Matcher" : {
+	      "HttpCode" : "200"
+	    }	    
 	  },
 	  "DependsOn": [ "PublicElasticLoadBalancerV2" ]
 	},
-    
-    
-    
-    
-    "PublicElasticLoadBalancer" : {
-      "Type" : "AWS::ElasticLoadBalancing::LoadBalancer",
-      "Properties" : {
-        "CrossZone" : "true",
-        "SecurityGroups" : [ { "Ref" : "PublicLoadBalancerSecurityGroup" } ],
-        "Subnets" : [ { "Ref" : "PublicSubnet" }, { "Ref" : "PublicSubnet2" }, { "Ref" : "PublicSubnet3" } ],
-        "Listeners" : [ { "LoadBalancerPort" : "80", "InstancePort" : "2323", "Protocol" : "HTTP" } ],
-        "HealthCheck" : {
-          "Target" : "HTTP:80/",
-          "HealthyThreshold" : "3",
-          "UnhealthyThreshold" : "5",
-          "Interval" : "5",
-          "Timeout" : "2"
-        }
-      }
-    },
-
+        
     "PublicLoadBalancerSecurityGroup" : {
       "Type" : "AWS::EC2::SecurityGroup",
       "Properties" : {
@@ -969,11 +963,6 @@
   "Outputs" : {
     
     "WebSite" : {
-      "Description" : "URL of the website",
-      "Value" :  { "Fn::Join" : [ "", [ "http://", { "Fn::GetAtt" : [ "PublicElasticLoadBalancer", "DNSName" ]}]]}
-    },
-   
-    "WebSiteV2" : {
       "Description" : "URL of the website",
       "Value" :  { "Fn::Join" : [ "", [ "http://", { "Fn::GetAtt" : [ "PublicElasticLoadBalancerV2", "DNSName" ]}]]}
     },
