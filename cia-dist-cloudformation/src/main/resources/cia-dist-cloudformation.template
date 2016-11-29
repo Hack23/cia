@@ -39,19 +39,19 @@
     "DomainNamePrefix" : {
       "Description" : "Domain name prefix (optional), used to setup route53 dns",
       "Type" : "String",
-      "Default" : ""
+      "Default" : "cia"
     },
 
     "DomainName" : {
       "Description" : "Domain name (optional), used to setup route53 dns",
       "Type" : "String",
-      "Default" : ""
+      "Default" : "hack23.com"
     },
 
-    "CertificateManager" : {
+    "CertificateArn" : {
       "Description" : "Certificate (optional) used to configure loadbalancer if DomainNamePrefix and DomainName is also included ",
       "Type" : "String",
-      "Default" : ""
+      "Default" : "arn:aws:acm:eu-west-1:172017021075:certificate/df6bef02-77fb-4d19-abd7-23bb067be865"
     },
 
     "SubNetPrefix" : {
@@ -705,12 +705,75 @@
       }
     },
     
+    
+    "PublicElasticLoadBalancerV2" : {
+	  "Type" : "AWS::ElasticLoadBalancingV2::LoadBalancer",
+	  "Properties" : {
+	    "Subnets" : [ { "Ref" : "PublicSubnet" }, { "Ref" : "PublicSubnet2" }, { "Ref" : "PublicSubnet3" }],
+	    "SecurityGroups": [
+	      { "Ref": "PublicLoadBalancerSecurityGroup" }
+	    ]
+	  }
+	},
+	"LoadBalancerListenerV2": {
+	  "Type": "AWS::ElasticLoadBalancingV2::Listener",
+	  "Properties": {
+	    "DefaultActions": [{
+	      "Type": "forward",
+	      "TargetGroupArn": { "Ref": "TargetGroup" }
+	    }],
+	    "LoadBalancerArn": { "Ref": "PublicElasticLoadBalancerV2" },
+	    "Port": 80,
+	    "Protocol": "HTTP"
+	  }
+	},
+
+	"LoadBalancerListenerHttpsV2": {
+	  "Type": "AWS::ElasticLoadBalancingV2::Listener",
+	  "Properties": {
+	    "DefaultActions": [{
+	      "Type": "forward",
+	      "TargetGroupArn": { "Ref": "TargetGroupHttps" }
+	    }],
+	    "LoadBalancerArn": { "Ref": "PublicElasticLoadBalancerV2" },
+	    "Certificates" : [{ "CertificateArn": {"Ref" : "CertificateArn"}}],
+	    "Port": 443,
+	    "Protocol": "HTTPS"
+	  }
+	},
+	
+	
+	"TargetGroup": {
+	  "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+	  "Properties": {
+	    "Name": { "Fn::Join": [ "-", [ { "Ref": "AWS::StackName" }, "TargetGroup" ] ] },
+	    "Port": 80,
+	    "Protocol": "HTTP",
+	    "VpcId": { "Ref" : "VPC" }
+	  },
+	  "DependsOn": [ "PublicElasticLoadBalancerV2" ]
+	},
+
+	"TargetGroupHttps": {
+	  "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+	  "Properties": {
+	    "Name": { "Fn::Join": [ "-", [ { "Ref": "AWS::StackName" }, "TargetGroupHttps" ] ] },
+	    "Port": 2323,
+	    "Protocol": "HTTP",
+	    "VpcId": { "Ref" : "VPC" }
+	  },
+	  "DependsOn": [ "PublicElasticLoadBalancerV2" ]
+	},
+    
+    
+    
+    
     "PublicElasticLoadBalancer" : {
       "Type" : "AWS::ElasticLoadBalancing::LoadBalancer",
       "Properties" : {
         "CrossZone" : "true",
         "SecurityGroups" : [ { "Ref" : "PublicLoadBalancerSecurityGroup" } ],
-        "Subnets" : [ { "Ref" : "PublicSubnet" } ],
+        "Subnets" : [ { "Ref" : "PublicSubnet" }, { "Ref" : "PublicSubnet2" }, { "Ref" : "PublicSubnet3" } ],
         "Listeners" : [ { "LoadBalancerPort" : "80", "InstancePort" : "2323", "Protocol" : "HTTP" } ],
         "HealthCheck" : {
           "Target" : "HTTP:80/",
@@ -736,13 +799,13 @@
       "Type" : "AWS::AutoScaling::AutoScalingGroup",
       "DependsOn" : ["PublicRoute", "pgDB"],
       "Properties" : {
-        "AvailabilityZones" : [{ "Fn::GetAtt" : [ "PublicSubnet", "AvailabilityZone" ] }],
-        "VPCZoneIdentifier" : [{ "Ref" : "PublicSubnet" }],
+        "AvailabilityZones" : [{ "Fn::GetAtt" : [ "PublicSubnet", "AvailabilityZone" ] },{ "Fn::GetAtt" : [ "PublicSubnet2", "AvailabilityZone" ] }, { "Fn::GetAtt" : [ "PublicSubnet3", "AvailabilityZone" ] }],
+        "VPCZoneIdentifier" : [{ "Ref" : "PublicSubnet" }, { "Ref" : "PublicSubnet2" }, { "Ref" : "PublicSubnet3" }],
         "LaunchConfigurationName" : { "Ref" : "WebServerLaunchConfig"  },
         "MinSize" : "1",
         "MaxSize" : "10",
         "DesiredCapacity" : { "Ref" : "WebServerCount" },
-        "LoadBalancerNames" : [ { "Ref" : "PublicElasticLoadBalancer" } ],
+        "TargetGroupARNs" : [ { "Ref" : "TargetGroup" },  { "Ref" : "TargetGroupHttps" } ],        
         "Tags" : [ { "Key" : "Network", "Value" : "Public", "PropagateAtLaunch" : "true" } ]
       },
       "CreationPolicy" : {
@@ -772,7 +835,8 @@
                 "openjdk-8-jdk" : [],
                 "postgresql-9.5" : [],
                 "ntp" : [],
-                "ntpdate" : []
+                "ntpdate" : [],
+                "ufw" : []
               }
             },
 
@@ -818,7 +882,7 @@
       },
       "Properties" : {
         "ImageId"        : { "Fn::FindInMap" : [ "AWSRegionArch2AMI", { "Ref" : "AWS::Region" }, { "Fn::FindInMap" : [ "AWSInstanceType2Arch", { "Ref" : "WebServerInstanceType" }, "Arch" ] } ] },
-        "EbsOptimized"   : "true",
+        "EbsOptimized"   : "false",
         "SecurityGroups" : [ { "Ref" : "WebServerSecurityGroup" } ],
         "InstanceType"   : { "Ref" : "WebServerInstanceType" },
         "KeyName"        : { "Ref" : "KeyName" },
@@ -866,6 +930,19 @@
           
           "/etc/init.d/cia restart\n",          
 
+		  "ufw default allow outgoing\n",
+		  "ufw default deny incoming\n",
+		  "ufw allow 22/tcp\n",
+		  "ufw allow 2323/tcp\n",
+		  "ufw allow 80/tcp\n",
+		  "ufw allow 443/tcp\n",		  
+		  "ufw allow 53\n",
+		  "ufw allow ntp\n",
+		  
+		  "ufw enable\n",
+		  "ufw status verbose\n",
+	
+
           "# Signal completion\n",
           "cfn-signal -e $? ",
           "    --stack ", { "Ref" : "AWS::StackId" },
@@ -894,6 +971,11 @@
     "WebSite" : {
       "Description" : "URL of the website",
       "Value" :  { "Fn::Join" : [ "", [ "http://", { "Fn::GetAtt" : [ "PublicElasticLoadBalancer", "DNSName" ]}]]}
+    },
+   
+    "WebSiteV2" : {
+      "Description" : "URL of the website",
+      "Value" :  { "Fn::Join" : [ "", [ "http://", { "Fn::GetAtt" : [ "PublicElasticLoadBalancerV2", "DNSName" ]}]]}
     },
     
     "JDBCConnectionString": {
