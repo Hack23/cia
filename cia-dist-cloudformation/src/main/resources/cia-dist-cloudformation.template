@@ -218,7 +218,7 @@
       "eu-west-1"        : {"FIRST" : "eu-west-1a",    	"SECOND" : "eu-west-1b",    	"THIRD" : "eu-west-1c"},
       "eu-central-1"     : {"FIRST" : "eu-central-1a", 	"SECOND" : "eu-central-1b", 	"THIRD" : "eu-central-1c"},      
       "ap-northeast-1"   : {"FIRST" : "ap-northeast-1a","SECOND" : "ap-northeast-1b", 	"THIRD" : "ap-northeast-1c"},
-      "ap-southeast-1"   : {"FIRST" : "ap-southeast-1a","SECOND" : "ap-southeast-1b", 	"THIRD" : "ap-southeast-1c},
+      "ap-southeast-1"   : {"FIRST" : "ap-southeast-1a","SECOND" : "ap-southeast-1b", 	"THIRD" : "ap-southeast-1c"},
       "ap-southeast-2"   : {"FIRST" : "ap-southeast-2a","SECOND" : "ap-southeast-2b", 	"THIRD" : "ap-southeast-2c"},
       "sa-east-1"        : {"FIRST" : "sa-east-1a", 	"SECOND" : "sa-east-1b", 		"THIRD" : "sa-east-1c"},
       "cn-north-1"       : {"FIRST" : "cn-north-1a", 	"SECOND" : "cn-north-1b", 		"THIRD" : "cn-north-1c"}
