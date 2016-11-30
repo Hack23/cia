@@ -140,15 +140,15 @@
     
     "QuickSightRegionSubnet" : {
       "us-east-1"        : { "CIDR" : "52.23.63.224/27"},
-      "us-west-2"        : { "CIDR" : "NOT_SUPPORTED"},
+      "us-west-2"        : { "CIDR" : "0.0.0.0/0"},
       "us-west-1"        : { "CIDR" : "54.70.204.128/27"},
       "eu-west-1"        : { "CIDR" : "52.210.255.224/27" },
-      "eu-central-1"     : { "CIDR" : "NOT_SUPPORTED"},      
-      "ap-northeast-1"   : { "CIDR" : "NOT_SUPPORTED"},
-      "ap-southeast-1"   : { "CIDR" : "NOT_SUPPORTED"},
-      "ap-southeast-2"   : { "CIDR" : "NOT_SUPPORTED"},
-      "sa-east-1"        : { "CIDR" : "NOT_SUPPORTED"},
-      "cn-north-1"       : { "CIDR" : "NOT_SUPPORTED"}
+      "eu-central-1"     : { "CIDR" : "0.0.0.0/0"},      
+      "ap-northeast-1"   : { "CIDR" : "0.0.0.0/0"},
+      "ap-southeast-1"   : { "CIDR" : "0.0.0.0/0"},
+      "ap-southeast-2"   : { "CIDR" : "0.0.0.0/0"},
+      "sa-east-1"        : { "CIDR" : "0.0.0.0/0"},
+      "cn-north-1"       : { "CIDR" : "0.0.0.0/0"}
     },  
     
     "AWSInstanceType2Arch" : {
