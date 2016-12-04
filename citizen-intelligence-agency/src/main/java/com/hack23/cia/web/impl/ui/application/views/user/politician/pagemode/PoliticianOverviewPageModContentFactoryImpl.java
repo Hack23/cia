@@ -136,7 +136,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 
 		getGridFactory().createBasicBeanItemGrid(
 				panelContent, new BeanItemContainer<>(DetailData.class, personData.getPersonDetailData().getDetailList()),
-				"Detail", new String[] { "detailType", "detail", "code" }, new String[] { "hjid", "intressentId" }, null,
+				"Detail", new String[] {"code", "detail" }, new String[] { "hjid", "intressentId","detailType" }, null,
 				null, null);
 
 		panelContent.setExpandRatio(createPoliticianPageLink, ContentRatio.SMALL);
