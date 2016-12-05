@@ -67,7 +67,7 @@ public final class DestroyApplicationSessionService
 	public DestroyApplicationSessionResponse processService(final DestroyApplicationSessionRequest serviceRequest) {
 		final ApplicationSession applicationSession = applicationSessionDAO.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
 
-		if (applicationSession != null)  {
+		if (applicationSession != null) {
 			LOGGER.info("Destroy Application session: {}",applicationSession.getSessionId());
 			applicationSession.setDestroyedDate(new Date());
 			applicationSessionDAO.persist(applicationSession);

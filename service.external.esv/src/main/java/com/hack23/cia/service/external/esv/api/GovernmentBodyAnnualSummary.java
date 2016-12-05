@@ -26,7 +26,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * The Class GovernmentBodyAnnualSummary.
  */
-public class GovernmentBodyAnnualSummary {
+public final class GovernmentBodyAnnualSummary {
 
 	/** The annual work head count. */
 	private final int annualWorkHeadCount;

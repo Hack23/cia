@@ -39,9 +39,9 @@ public interface DataViewer {
 	 * @param property
 	 *            the property
 	 * @param clazz2
-	 *            the clazz2
+	 *            the clazz 2
 	 * @param property2
-	 *            the property2
+	 *            the property 2
 	 * @param value
 	 *            the value
 	 * @return the t
@@ -79,9 +79,9 @@ public interface DataViewer {
 	 * @param property
 	 *            the property
 	 * @param clazz2
-	 *            the clazz2
+	 *            the clazz 2
 	 * @param property2
-	 *            the property2
+	 *            the property 2
 	 * @param value
 	 *            the value
 	 * @return the list
@@ -136,9 +136,9 @@ public interface DataViewer {
 	 * @param property
 	 *            the property
 	 * @param clazz2
-	 *            the clazz2
+	 *            the clazz 2
 	 * @param property2
-	 *            the property2
+	 *            the property 2
 	 * @param value
 	 *            the value
 	 * @param orderByProperty
@@ -161,9 +161,9 @@ public interface DataViewer {
 	 * @param property
 	 *            the property
 	 * @param clazz2
-	 *            the clazz2
+	 *            the clazz 2
 	 * @param property2
-	 *            the property2
+	 *            the property 2
 	 * @param value
 	 *            the value
 	 * @param orderByProperty
@@ -275,6 +275,10 @@ public interface DataViewer {
 	/**
 	 * Gets the size.
 	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param clazz
+	 *            the clazz
 	 * @return the size
 	 */
 	<T> Long getSize(final Class<T> clazz);

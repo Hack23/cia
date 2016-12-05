@@ -39,5 +39,5 @@ public interface ViewDataDataContainerFactory {
 	 *            the clazz
 	 * @return the data container< t, i d>
 	 */
-	<T extends Serializable,I  extends Serializable> DataContainer<T,I> createDataContainer(Class<T> clazz);
+	<T extends Serializable,I extends Serializable> DataContainer<T,I> createDataContainer(Class<T> clazz);
 }

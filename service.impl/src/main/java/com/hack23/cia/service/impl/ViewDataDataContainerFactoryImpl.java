@@ -56,7 +56,7 @@ public final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDa
 
 
 	@Override
-	public <T extends Serializable,I  extends Serializable> DataContainer<T,I> createDataContainer(final Class<T> clazz) {
+	public <T extends Serializable,I extends Serializable> DataContainer<T,I> createDataContainer(final Class<T> clazz) {
 		return new GenericDataContainer<>(clazz,this);
 	}
 

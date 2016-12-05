@@ -24,7 +24,7 @@ import org.junit.Assert;
 /**
  * The Class AbstractTest.
  */
-public abstract class AbstractTest extends Assert  {
+public abstract class AbstractTest extends Assert {
 
 	/**
 	 * Instantiates a new abstract test.

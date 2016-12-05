@@ -58,16 +58,12 @@ public final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Lon
 		criteria.select(getCriteriaBuilder().array(countryPath, indicatorPath));
 		criteria.distinct(true);
 		final List<Object[]> valueArray = getEntityManager().createQuery(criteria).getResultList();
-		final List<String> resultList= new ArrayList<>();
+		final List<String> resultList = new ArrayList<>();
 
-		for (final Object[]  objects : valueArray) {
+		for (final Object[] objects : valueArray) {
 			if (objects.length == EXPECTED_NR_ELEMENTS) {
-				int index=0;
-				final StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append(((Country)  objects[index]).getId());
-				index = index +1;
-				stringBuilder.append('.');
-				stringBuilder.append(((Indicator)  objects[index]).getId());
+				final StringBuilder stringBuilder = new StringBuilder().append(((Country) objects[0]).getId())
+						.append('.').append(((Indicator) objects[1]).getId());
 				resultList.add(stringBuilder.toString());
 			}
 		}
