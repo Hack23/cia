@@ -22,9 +22,9 @@ package com.hack23.cia.testfoundation;
 import org.junit.Assert;
 
 /**
- * The Class TestInstance.
+ * The Class AbstractTestInstance.
  */
-public abstract class TestInstance extends Assert {
+public abstract class AbstractTestInstance extends Assert {
 
 	/**
 	 * Assert postcondition.

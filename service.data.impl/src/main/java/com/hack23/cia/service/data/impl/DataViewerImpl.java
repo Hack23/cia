@@ -47,20 +47,6 @@ import com.hack23.cia.service.data.impl.util.LoadHelper;
 @Repository("DataViewer")
 public final class DataViewerImpl implements DataViewer {
 
-	/**
-	 * Adds the cache hints.
-	 *
-	 * @param typedQuery
-	 *            the typed query
-	 * @param comment
-	 *            the comment
-	 */
-	private static void addCacheHints(final TypedQuery<?> typedQuery, final String comment) {
-		typedQuery.setHint("org.hibernate.cacheMode", CacheMode.NORMAL);
-		typedQuery.setHint("org.hibernate.cacheable", Boolean.TRUE);
-		typedQuery.setHint("org.hibernate.comment", comment);
-	}
-
 	/** The entity manager. */
 	@PersistenceContext(name = "ciaPersistenceUnit")
 	private EntityManager entityManager;
@@ -73,6 +59,20 @@ public final class DataViewerImpl implements DataViewer {
 	 */
 	public DataViewerImpl() {
 		super();
+	}
+
+	/**
+	 * Adds the cache hints.
+	 *
+	 * @param typedQuery
+	 *            the typed query
+	 * @param comment
+	 *            the comment
+	 */
+	private static void addCacheHints(final TypedQuery<?> typedQuery, final String comment) {
+		typedQuery.setHint("org.hibernate.cacheMode", CacheMode.NORMAL);
+		typedQuery.setHint("org.hibernate.cacheable", Boolean.TRUE);
+		typedQuery.setHint("org.hibernate.comment", comment);
 	}
 
 	@Override
@@ -328,10 +328,11 @@ public final class DataViewerImpl implements DataViewer {
 	}
 
 	@Override
-	public final <T> Long getSize(final Class<T> clazz) {
+	public <T> Long getSize(final Class<T> clazz) {
 		CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
 		countQuery.select(criteriaBuilder.count(countQuery.from(clazz)));
-		return entityManager.createQuery(countQuery).getSingleResult();	}
+		return entityManager.createQuery(countQuery).getSingleResult();
+	}
 
 	/**
 	 * Inits the.

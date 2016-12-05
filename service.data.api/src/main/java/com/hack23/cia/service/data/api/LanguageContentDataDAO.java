@@ -23,7 +23,7 @@ import com.hack23.cia.model.internal.application.system.impl.LanguageContentData
 /**
  * The Interface LanguageContentDataDAO.
  */
-public interface LanguageContentDataDAO  extends AbstractGenericDAO<LanguageContentData, Long> {
+public interface LanguageContentDataDAO extends AbstractGenericDAO<LanguageContentData, Long> {
 
 	/**
 	 * Find translation.

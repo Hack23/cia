@@ -33,7 +33,7 @@ public final class TestInstanceTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void testInstanceExampleTest() {
-		new TestInstance() {
+		new AbstractTestInstance() {
 
 			@Override
 			protected void setupExpectations() {

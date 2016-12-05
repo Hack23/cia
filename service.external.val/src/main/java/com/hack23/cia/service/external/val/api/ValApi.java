@@ -48,7 +48,7 @@ public interface ValApi {
 	 * @throws Exception
 	 *             the exception
 	 */
-	List<SwedenParliamentElectoralRegion>  getParliamentElectoralRegions() throws Exception;
+	List<SwedenParliamentElectoralRegion> getParliamentElectoralRegions() throws Exception;
 
 	/**
 	 * Gets the county electoral regions.

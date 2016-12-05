@@ -24,7 +24,7 @@ import com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder;
  * The Interface AgentContainer.
  */
 @FunctionalInterface
-public interface AgentContainer  {
+public interface AgentContainer {
 
 	/**
 	 * Execute.

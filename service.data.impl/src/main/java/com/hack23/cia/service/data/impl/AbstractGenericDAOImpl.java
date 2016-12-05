@@ -204,12 +204,12 @@ public abstract class AbstractGenericDAOImpl<T extends Serializable, I extends S
 	}
 
 	@Override
-	public List<T> getPage(int pageNr, int resultPerPage) {
+	public final List<T> getPage(int pageNr, int resultPerPage) {
 		return getPageOrderBy(pageNr, resultPerPage, null);
 	}
 
 	@Override
-	public List<T> getPageOrderBy(int pageNr, int resultPerPage, final SingularAttribute<T, ? extends Object> orderBy) {
+	public final List<T> getPageOrderBy(int pageNr, int resultPerPage, final SingularAttribute<T, ? extends Object> orderBy) {
 		return getPageOrderBy(pageNr, resultPerPage, orderBy);
 	}
 
@@ -248,7 +248,7 @@ public abstract class AbstractGenericDAOImpl<T extends Serializable, I extends S
 
 	@Override
 	public final Long getSize() {
-		CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
+		final CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
 		countQuery.select(criteriaBuilder.count(countQuery.from(persistentClass)));
 		return getEntityManager().createQuery(countQuery).getSingleResult();
 	}

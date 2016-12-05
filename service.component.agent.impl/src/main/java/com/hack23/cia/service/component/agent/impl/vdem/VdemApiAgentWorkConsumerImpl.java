@@ -58,7 +58,7 @@ public final class VdemApiAgentWorkConsumerImpl extends AbstractAgentWorkConsume
 		final ObjectMessage msg = (ObjectMessage) message;
 
 		try {
-			final VdemDataSources source =  (VdemDataSources) msg.getObject();
+			final VdemDataSources source = (VdemDataSources) msg.getObject();
 			LOGGER.info("Consumed message:{}", source);
 
 			switch (source) {

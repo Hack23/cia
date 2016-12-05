@@ -47,7 +47,6 @@ public final class TranslationServiceImpl implements TranslationService {
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(TranslationServiceImpl.class);
 
-
 	/** The application configuration service. */
 	@Autowired
 	private ApplicationConfigurationService applicationConfigurationService;
@@ -92,12 +91,9 @@ public final class TranslationServiceImpl implements TranslationService {
 				return response.getTranslations().listIterator().next().getTranslatedText();
 
 			} catch (GeneralSecurityException | IOException e) {
-				final StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append("Problem translation text:");
-				stringBuilder.append(translateText);
-				stringBuilder.append("to language:");
-				stringBuilder.append(targetLanguage);
-				LOGGER.warn(stringBuilder.toString(),e);
+				final StringBuilder stringBuilder = new StringBuilder().append("Problem translation text:")
+						.append(translateText).append("to language:").append(targetLanguage);
+				LOGGER.warn(stringBuilder.toString(), e);
 				throw new TranslationException(stringBuilder.toString(), e);
 			}
 		}
