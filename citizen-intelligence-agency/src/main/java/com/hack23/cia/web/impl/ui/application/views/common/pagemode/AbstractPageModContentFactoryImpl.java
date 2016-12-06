@@ -66,7 +66,6 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	@Autowired
 	private PageActionEventHelper pageActionEventHelper;
 
-
 	/** The admin chart data manager. */
 	@Autowired
 	private AdminChartDataManager adminChartDataManager;
@@ -78,7 +77,6 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 		super();
 	}
 
-
 	/**
 	 * Gets the page id.
 	 *
@@ -87,10 +85,14 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the page id
 	 */
 	protected final String getPageId(final String parameters) {
-		final int pageNr = getPageNr(parameters);
-		final String cleanedString = parameters.replace("["+ pageNr +"]","");
+		if (parameters != null) {
+			final int pageNr = getPageNr(parameters);
+			final String cleanedString = parameters.replace("[" + pageNr + "]", "");
 
-		return cleanedString.substring(cleanedString.lastIndexOf('/') + "/".length(), cleanedString.length());
+			return cleanedString.substring(cleanedString.lastIndexOf('/') + "/".length(), cleanedString.length());
+		} else {
+			return "";
+		}
 	}
 
 	/**
@@ -103,12 +105,12 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	protected final int getPageNr(final String parameters) {
 		String pageNrValue;
 		if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
-			pageNrValue= parameters.substring(parameters.indexOf('[')+1, parameters.lastIndexOf(']'));
+			pageNrValue = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));
 		} else {
-			pageNrValue="";
+			pageNrValue = "";
 		}
 
-		int pageNr=1;
+		int pageNr = 1;
 
 		if (pageNrValue.length() > 0) {
 			pageNr = Integer.parseInt(pageNrValue);
@@ -184,7 +186,6 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 		return panelContent;
 	}
 
-
 	/**
 	 * Creates the page visit history.
 	 *
@@ -197,14 +198,11 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 */
 	protected final void createPageVisitHistory(final String pageName, final String pageId,
 			final VerticalLayout panelContent) {
-		LabelFactory.createHeader2Label(panelContent,CURRENT_PAGE_VISIT_HISTORY);
-		adminChartDataManager
-				.createApplicationActionEventPageElementDailySummaryChart(panelContent,pageName, pageId);
+		LabelFactory.createHeader2Label(panelContent, CURRENT_PAGE_VISIT_HISTORY);
+		adminChartDataManager.createApplicationActionEventPageElementDailySummaryChart(panelContent, pageName, pageId);
 
-		LabelFactory.createHeader2Label(panelContent,GENERAL_PAGE_MODE_PAGE_VISIT);
-		adminChartDataManager
-				.createApplicationActionEventPageModeDailySummaryChart(panelContent,pageName);
+		LabelFactory.createHeader2Label(panelContent, GENERAL_PAGE_MODE_PAGE_VISIT);
+		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(panelContent, pageName);
 	}
-
 
 }

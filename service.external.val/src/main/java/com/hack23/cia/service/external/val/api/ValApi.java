@@ -39,7 +39,7 @@ public interface ValApi {
 	 * @throws Exception
 	 *             the exception
 	 */
-	List<SwedenElectionType> getElectionTypes() throws Exception;
+	List<SwedenElectionType> getElectionTypes() throws ValApiException;
 
 	/**
 	 * Gets the parliament electoral regions.
@@ -48,7 +48,7 @@ public interface ValApi {
 	 * @throws Exception
 	 *             the exception
 	 */
-	List<SwedenParliamentElectoralRegion> getParliamentElectoralRegions() throws Exception;
+	List<SwedenParliamentElectoralRegion> getParliamentElectoralRegions() throws ValApiException;
 
 	/**
 	 * Gets the county electoral regions.
@@ -57,7 +57,7 @@ public interface ValApi {
 	 * @throws Exception
 	 *             the exception
 	 */
-	List<SwedenCountyElectoralRegion> getCountyElectoralRegions() throws Exception;
+	List<SwedenCountyElectoralRegion> getCountyElectoralRegions() throws ValApiException;
 
 	/**
 	 * Gets the county regions.
@@ -66,20 +66,20 @@ public interface ValApi {
 	 * @throws Exception
 	 *             the exception
 	 */
-	List<SwedenCountyData> getCountyRegions() throws Exception;
+	List<SwedenCountyData> getCountyRegions() throws ValApiException;
 
 	/**
 	 * Gets the sweden election region.
 	 *
 	 * @return the sweden election region
 	 */
-	SwedenElectionRegion getSwedenElectionRegion();
+	SwedenElectionRegion getSwedenElectionRegion() throws ValApiException;
 
 	/**
 	 * Gets the sweden political parties.
 	 *
 	 * @return the sweden political parties
 	 */
-	List<SwedenPoliticalParty> getSwedenPoliticalParties();
+	List<SwedenPoliticalParty> getSwedenPoliticalParties() throws ValApiException;
 
 }

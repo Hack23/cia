@@ -27,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.service.data.api.SwedenPoliticalPartyDAO;
 import com.hack23.cia.service.external.val.api.ValApi;
+import com.hack23.cia.service.external.val.api.ValApiException;
 
 /**
  * The Class ValImportServiceImpl.
@@ -58,8 +59,12 @@ public final class ValImportServiceImpl implements ValImportService {
 
 	@Override
 	public void loadPoliticalParties() {
-		if (swedenPoliticalPartyDAO.getSize() ==0) {
-			swedenPoliticalPartyDAO.persist(valApi.getSwedenPoliticalParties());
+		if (swedenPoliticalPartyDAO.getSize() ==0) {			
+			try {
+				swedenPoliticalPartyDAO.persist(valApi.getSwedenPoliticalParties());
+			} catch (ValApiException e) {
+				LOGGER.warn("Problem loading Sweden political parties",e);
+			}
 			LOGGER.info("Sweden political persisted to database");
 		} else {
 			LOGGER.info("Sweden political parties already in database");
