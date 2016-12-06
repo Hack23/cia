@@ -42,6 +42,7 @@ import com.hack23.cia.model.external.val.riksdagsvalkrets.impl.SwedenParliamentE
 import com.hack23.cia.model.external.val.riksdagsvalkrets.impl.SwedenParliamentElectoralRegionContainer;
 import com.hack23.cia.service.external.common.api.XmlAgent;
 import com.hack23.cia.service.external.val.api.ValApi;
+import com.hack23.cia.service.external.val.api.ValApiException;
 
 /**
  * The Class ValApiImpl.
@@ -50,8 +51,7 @@ import com.hack23.cia.service.external.val.api.ValApi;
 public final class ValApiImpl implements ValApi {
 
 	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(ValApiImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ValApiImpl.class);
 
 	/** The xml agent. */
 	@Autowired
@@ -85,77 +85,78 @@ public final class ValApiImpl implements ValApi {
 	}
 
 	@Override
-	public List<SwedenElectionType> getElectionTypes() throws Exception {
-		final URL resource = ValApiImpl.class.getResource("/partier20151217.xml");
-
-		return ((JAXBElement<SwedenElectionTypeContainerElement>) xmlAgent
-				.unmarshallXml(
-						valPartierMarshaller,
-						resource.toString(),
-						"http://partier.val.external.model.cia.hack23.com/impl",
-						null, null)).getValue().getElectionTypes();
-	}
-
-	@Override
-	public List<SwedenParliamentElectoralRegion> getParliamentElectoralRegions()
-			throws Exception {
-		final URL resource = ValApiImpl.class
-				.getResource("/riksdagsvalkrets.xml");
-
-		return ((JAXBElement<SwedenParliamentElectoralRegionContainer>) xmlAgent
-				.unmarshallXml(
-						valRiksdagMarshaller,
-						resource.toString(),
-						"http://riksdagsvalkrets.val.external.model.cia.hack23.com/impl",
-						null, null)).getValue().getParliamentElectoralRegions();
-	}
-
-	@Override
-	public List<SwedenCountyElectoralRegion> getCountyElectoralRegions()
-			throws Exception {
-		final URL resource = ValApiImpl.class
-				.getResource("/landstingvalkrets.xml");
-
-		return ((JAXBElement<SwedenCountyElectoralRegionContainer>) xmlAgent
-				.unmarshallXml(
-						valLandstingMarshaller,
-						resource.toString(),
-						"http://landstingvalkrets.val.external.model.cia.hack23.com/impl",
-						null, null)).getValue().getCountyElectoralRegions();
-	}
-
-	@Override
-	public List<SwedenCountyData> getCountyRegions() throws Exception {
-		final URL resource = ValApiImpl.class
-				.getResource("/kommunvalkrets.xml");
-
-		return ((JAXBElement<SwedenCountyDataContainer>) xmlAgent.unmarshallXml(
-				valKommunMarshaller, resource.toString(),
-				"http://kommunvalkrets.val.external.model.cia.hack23.com/impl",
-				null, null)).getValue().getCountyRegions();
-	}
-
-	@Override
-	public SwedenElectionRegion getSwedenElectionRegion() {
+	public List<SwedenElectionType> getElectionTypes() throws ValApiException {
 		final URL resource = ValApiImpl.class.getResource("/partier20151217.xml");
 
 		try {
-			return ((JAXBElement<SwedenElectionTypeContainerElement>) xmlAgent
-					.unmarshallXml(
-							valPartierMarshaller,
-							resource.toString(),
-							"http://partier.val.external.model.cia.hack23.com/impl",
-							null, null)).getValue().getElectionTypes().get(0)
-							.getRegion();
+			return ((JAXBElement<SwedenElectionTypeContainerElement>) xmlAgent.unmarshallXml(valPartierMarshaller,
+					resource.toString(), "http://partier.val.external.model.cia.hack23.com/impl", null, null))
+							.getValue().getElectionTypes();
+		} catch (Exception e) {
+			throw new ValApiException(e);
+		}
+	}
+
+	@Override
+	public List<SwedenParliamentElectoralRegion> getParliamentElectoralRegions() throws ValApiException {
+		try {
+			final URL resource = ValApiImpl.class.getResource("/riksdagsvalkrets.xml");
+
+			return ((JAXBElement<SwedenParliamentElectoralRegionContainer>) xmlAgent.unmarshallXml(valRiksdagMarshaller,
+					resource.toString(), "http://riksdagsvalkrets.val.external.model.cia.hack23.com/impl", null, null))
+							.getValue().getParliamentElectoralRegions();
+		} catch (Exception e) {
+			throw new ValApiException(e);
+		}
+
+	}
+
+	@Override
+	public List<SwedenCountyElectoralRegion> getCountyElectoralRegions() throws ValApiException {
+		try {
+			final URL resource = ValApiImpl.class.getResource("/landstingvalkrets.xml");
+
+			return ((JAXBElement<SwedenCountyElectoralRegionContainer>) xmlAgent.unmarshallXml(valLandstingMarshaller,
+					resource.toString(), "http://landstingvalkrets.val.external.model.cia.hack23.com/impl", null, null))
+							.getValue().getCountyElectoralRegions();
+		} catch (
+
+		Exception e) {
+			throw new ValApiException(e);
+		}
+
+	}
+
+	@Override
+	public List<SwedenCountyData> getCountyRegions() throws ValApiException {
+		try {
+			final URL resource = ValApiImpl.class.getResource("/kommunvalkrets.xml");
+
+			return ((JAXBElement<SwedenCountyDataContainer>) xmlAgent.unmarshallXml(valKommunMarshaller,
+					resource.toString(), "http://kommunvalkrets.val.external.model.cia.hack23.com/impl", null, null))
+							.getValue().getCountyRegions();
+		} catch (Exception e) {
+			throw new ValApiException(e);
+		}
+	}
+
+	@Override
+	public SwedenElectionRegion getSwedenElectionRegion() throws ValApiException {
+		final URL resource = ValApiImpl.class.getResource("/partier20151217.xml");
+
+		try {
+			return ((JAXBElement<SwedenElectionTypeContainerElement>) xmlAgent.unmarshallXml(valPartierMarshaller,
+					resource.toString(), "http://partier.val.external.model.cia.hack23.com/impl", null, null))
+							.getValue().getElectionTypes().get(0).getRegion();
 		} catch (final Exception e) {
-			LOGGER.warn("Problem reading election region",e);
+			LOGGER.warn("Problem reading election region", e);
 			return null;
 		}
 
 	}
 
 	@Override
-	public List<SwedenPoliticalParty> getSwedenPoliticalParties() {
+	public List<SwedenPoliticalParty> getSwedenPoliticalParties() throws ValApiException {
 		return getSwedenElectionRegion().getParties();
 	}
 
