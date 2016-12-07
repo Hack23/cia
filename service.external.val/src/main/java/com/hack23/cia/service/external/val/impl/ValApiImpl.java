@@ -93,6 +93,7 @@ public final class ValApiImpl implements ValApi {
 					resource.toString(), "http://partier.val.external.model.cia.hack23.com/impl", null, null))
 							.getValue().getElectionTypes();
 		} catch (Exception e) {
+			LOGGER.warn("Problem getElectionTypes", e);
 			throw new ValApiException(e);
 		}
 	}
@@ -106,6 +107,7 @@ public final class ValApiImpl implements ValApi {
 					resource.toString(), "http://riksdagsvalkrets.val.external.model.cia.hack23.com/impl", null, null))
 							.getValue().getParliamentElectoralRegions();
 		} catch (Exception e) {
+			LOGGER.warn("Problem getParliamentElectoralRegions", e);
 			throw new ValApiException(e);
 		}
 
@@ -119,9 +121,8 @@ public final class ValApiImpl implements ValApi {
 			return ((JAXBElement<SwedenCountyElectoralRegionContainer>) xmlAgent.unmarshallXml(valLandstingMarshaller,
 					resource.toString(), "http://landstingvalkrets.val.external.model.cia.hack23.com/impl", null, null))
 							.getValue().getCountyElectoralRegions();
-		} catch (
-
-		Exception e) {
+		} catch (Exception e) {
+			LOGGER.warn("Problem getCountyElectoralRegions", e);
 			throw new ValApiException(e);
 		}
 
@@ -136,6 +137,7 @@ public final class ValApiImpl implements ValApi {
 					resource.toString(), "http://kommunvalkrets.val.external.model.cia.hack23.com/impl", null, null))
 							.getValue().getCountyRegions();
 		} catch (Exception e) {
+			LOGGER.warn("Problem getCountyRegions", e);
 			throw new ValApiException(e);
 		}
 	}
@@ -149,8 +151,8 @@ public final class ValApiImpl implements ValApi {
 					resource.toString(), "http://partier.val.external.model.cia.hack23.com/impl", null, null))
 							.getValue().getElectionTypes().get(0).getRegion();
 		} catch (final Exception e) {
-			LOGGER.warn("Problem reading election region", e);
-			return null;
+			LOGGER.warn("Problem getSwedenElectionRegion", e);
+			throw new ValApiException(e);
 		}
 
 	}
