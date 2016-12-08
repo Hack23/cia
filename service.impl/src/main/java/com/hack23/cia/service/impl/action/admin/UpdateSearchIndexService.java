@@ -87,11 +87,14 @@ public final class UpdateSearchIndexService extends
 			eventRequest.setUserId(userAccount.getUserId());
 		}
 
-		final UpdateSearchIndexResponse response = new UpdateSearchIndexResponse(ServiceResult.SUCCESS);
+		UpdateSearchIndexResponse response;
 		try {
 			searchIndexer.updateSearchIndex();
+			response = new UpdateSearchIndexResponse(ServiceResult.SUCCESS);
 		} catch (final InterruptedException e) {
 			LOGGER.warn("Update Index failed",e);
+		    Thread.currentThread().interrupt();
+		    response = new UpdateSearchIndexResponse(ServiceResult.FAILURE);
 		}
 
 		eventRequest.setApplicationMessage(response.getResult().toString());

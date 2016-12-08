@@ -55,14 +55,11 @@ import com.warrenstrange.googleauth.GoogleAuthenticator;
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public final class LoginService extends
-		AbstractBusinessServiceImpl<LoginRequest, LoginResponse>
+public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest, LoginResponse>
 		implements BusinessService<LoginRequest, LoginResponse> {
 
 	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(LoginService.class);
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoginService.class);
 
 	/** The user dao. */
 	@Autowired
@@ -75,7 +72,6 @@ public final class LoginService extends
 	/** The password encoder. */
 	private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-
 	/**
 	 * Instantiates a new login service.
 	 */
@@ -83,10 +79,9 @@ public final class LoginService extends
 		super(LoginRequest.class);
 	}
 
-	@Secured({"ROLE_ANONYMOUS","ROLE_USER","ROLE_ADMIN"})
+	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
-	public LoginResponse processService(
-			final LoginRequest serviceRequest) {
+	public LoginResponse processService(final LoginRequest serviceRequest) {
 
 		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.USER);
@@ -98,40 +93,25 @@ public final class LoginService extends
 		final UserAccount userExist = userDAO.findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
 
 		LoginResponse response;
-		if (userExist != null) {
+		if (userExist != null && verifyOtp(serviceRequest, userExist) && passwordEncoder.matches(
+				userExist.getUserId() + ".uuid" + serviceRequest.getUserpassword(), userExist.getUserpassword())) {
 
-			boolean authorizedOtp=true;
-			if (userExist.getGoogleAuthKey() != null) {
-				final GoogleAuthenticator gAuth = new GoogleAuthenticator();
+			final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
-				if (!StringUtils.isBlank(serviceRequest.getOtpCode()) && StringUtils.isNumeric(serviceRequest.getOtpCode())) {
-					authorizedOtp = gAuth.authorize(userExist.getGoogleAuthKey(), Integer.parseInt(serviceRequest.getOtpCode()));
-				} else {
-					authorizedOtp = false;
-				}
+			if (UserRole.ADMIN == userExist.getUserRole()) {
+				authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+			} else if (UserRole.USER == userExist.getUserRole()) {
+				authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 			}
 
-			if (authorizedOtp && passwordEncoder.matches(userExist.getUserId()+".uuid"+ serviceRequest.getUserpassword(), userExist.getUserpassword())) {
+			eventRequest.setUserId(userExist.getUserId());
 
-				final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+			SecurityContextHolder.getContext().setAuthentication(
+					new UsernamePasswordAuthenticationToken(userExist, userExist.getUserpassword(), authorities));
 
-				if (UserRole.ADMIN == userExist.getUserRole()) {
-					authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-				} else if (UserRole.USER == userExist.getUserRole()) {
-					authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-				}
-
-				eventRequest.setUserId(userExist.getUserId());
-
-				SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(userExist, userExist.getUserpassword(), authorities));
-
-				userExist.setNumberOfVisits(userExist.getNumberOfVisits() + 1);
-				userDAO.persist(userExist);
-				response = new LoginResponse(ServiceResult.SUCCESS);
-
-			} else {
-				response = new LoginResponse(ServiceResult.FAILURE);
-			}
+			userExist.setNumberOfVisits(userExist.getNumberOfVisits() + 1);
+			userDAO.persist(userExist);
+			response = new LoginResponse(ServiceResult.SUCCESS);
 
 		} else {
 			response = new LoginResponse(ServiceResult.FAILURE);
@@ -139,10 +119,26 @@ public final class LoginService extends
 		eventRequest.setApplicationMessage(response.getResult().toString());
 
 		createApplicationEventService.processService(eventRequest);
-		LOGGER.info("Event: {}",eventRequest);
-
+		LOGGER.info("Event: {}", eventRequest);
 
 		return response;
+	}
+
+	private static boolean verifyOtp(final LoginRequest serviceRequest, final UserAccount userExist) {
+		boolean authorizedOtp = true;
+
+		if (userExist.getGoogleAuthKey() != null) {
+			final GoogleAuthenticator gAuth = new GoogleAuthenticator();
+
+			if (!StringUtils.isBlank(serviceRequest.getOtpCode())
+					&& StringUtils.isNumeric(serviceRequest.getOtpCode())) {
+				authorizedOtp = gAuth.authorize(userExist.getGoogleAuthKey(),
+						Integer.parseInt(serviceRequest.getOtpCode()));
+			} else {
+				authorizedOtp = false;
+			}
+		}
+		return authorizedOtp;
 	}
 
 }
