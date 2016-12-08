@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.component.agent.impl.riksdagen.workers;
 
+import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
@@ -28,6 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement;
+import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
 
 /**
@@ -61,8 +63,8 @@ public final class RiksdagenPersonElementWorkConsumerImpl implements MessageList
 			updateService.update(riksdagenApi
 					.getPerson(((PersonElement) ((ObjectMessage) message)
 							.getObject()).getId()));
-		} catch (final Exception e2) {
-			LOGGER.warn("Error loading PersonElement",e2);
+		} catch (final DataFailureException | RuntimeException | JMSException e) {
+			LOGGER.warn("Error loading PersonElement",e);
 		}
 	}
 }
