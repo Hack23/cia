@@ -109,7 +109,7 @@ public abstract class AbstractGenericDAOImpl<T extends Serializable, I extends S
 		if (resultList.isEmpty()) {
 			return null;
 		} else {
-			return LoadHelper.recursiveInitliaze(resultList.get(0));
+			return LoadHelper.recursiveInitialize(resultList.get(0));
 		}
 	}
 
@@ -210,7 +210,7 @@ public abstract class AbstractGenericDAOImpl<T extends Serializable, I extends S
 
 	@Override
 	public final List<T> getPageOrderBy(int pageNr, int resultPerPage, final SingularAttribute<T, ? extends Object> orderBy) {
-		return getPageOrderBy(pageNr, resultPerPage, orderBy);
+		return getPageOrderBy(Integer.valueOf(pageNr), Integer.valueOf(resultPerPage), orderBy);
 	}
 
 	private List<T> getPageOrderBy(Integer pageNr, Integer resultPerPage,
@@ -264,7 +264,7 @@ public abstract class AbstractGenericDAOImpl<T extends Serializable, I extends S
 
 	@Override
 	public final T load(final I id) {
-		return LoadHelper.recursiveInitliaze(getEntityManager().find(getPersistentClass(), id));
+		return LoadHelper.recursiveInitialize(getEntityManager().find(getPersistentClass(), id));
 	}
 
 	@Override
