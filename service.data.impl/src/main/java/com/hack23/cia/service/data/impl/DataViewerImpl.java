@@ -105,7 +105,7 @@ public final class DataViewerImpl implements DataViewer {
 		if (!resultList.isEmpty()) {
 			final List<T> findListByProperty = findListByProperty(clazz,property,resultList.get(0));
 			if (!findListByProperty.isEmpty()) {
-				return LoadHelper.recursiveInitliaze(findListByProperty.get(0));
+				return LoadHelper.recursiveInitialize(findListByProperty.get(0));
 			}
 		}
 
@@ -121,7 +121,7 @@ public final class DataViewerImpl implements DataViewer {
 		if (resultList.isEmpty()) {
 			return null;
 		} else {
-			return LoadHelper.recursiveInitliaze(resultList.get(0));
+			return LoadHelper.recursiveInitialize(resultList.get(0));
 		}
 	}
 
@@ -344,7 +344,7 @@ public final class DataViewerImpl implements DataViewer {
 
 	@Override
 	public <T> T load(final Class<T> clazz,final Object id) {
-		return LoadHelper.recursiveInitliaze(entityManager.find(clazz, id));
+		return LoadHelper.recursiveInitialize(entityManager.find(clazz, id));
 	}
 
 

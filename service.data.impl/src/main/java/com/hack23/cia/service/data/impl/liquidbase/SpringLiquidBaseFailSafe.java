@@ -39,7 +39,7 @@ public final class SpringLiquidBaseFailSafe extends SpringLiquibase {
 	public void afterPropertiesSet() throws LiquibaseException {
 		try {
 			super.afterPropertiesSet();
-		} catch (final Exception e) {
+		} catch (final LiquibaseException | RuntimeException e) {
 			final String stackTrace = ExceptionUtils.getStackTrace(e);
 			if(stackTrace.contains("Connection was already closed - calling hashCode is no longer allowed")) {
 				LOGGER.warn("Problem after executing liquidbase, failed removing closed atomikos connection");

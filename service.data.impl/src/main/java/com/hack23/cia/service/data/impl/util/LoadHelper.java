@@ -76,7 +76,8 @@ public final class LoadHelper {
 	 * @throws NoSuchMethodException
 	 *             the no such method exception
 	 */
-	private static void recursiveInitliaze(final Object obj, final Set<Object> dejaVu) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+	private static void recursiveInitialize(final Object obj, final Set<Object> dejaVu)
+			throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
 		if (dejaVu.contains(obj)) {
 			return;
 		} else {
@@ -88,22 +89,41 @@ public final class LoadHelper {
 
 			if (obj instanceof HibernateProxy || obj instanceof PersistentCollection) {
 
-				final PropertyDescriptor[] properties = PropertyUtils.getPropertyDescriptors(obj);
-				for (final PropertyDescriptor propertyDescriptor : properties) {
+				initProxyAndCollections(obj, PropertyUtils.getPropertyDescriptors(obj), dejaVu);
+			}
+		}
+	}
 
-					if (PropertyUtils.getReadMethod(propertyDescriptor) != null) {
+	/**
+	 * Inits the proxy and collections.
+	 *
+	 * @param obj
+	 *            the obj
+	 * @param properties
+	 *            the properties
+	 * @param dejaVu
+	 *            the deja vu
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
+	 * @throws InvocationTargetException
+	 *             the invocation target exception
+	 * @throws NoSuchMethodException
+	 *             the no such method exception
+	 */
+	private static void initProxyAndCollections(final Object obj, final PropertyDescriptor[] properties,
+			final Set<Object> dejaVu) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+		for (final PropertyDescriptor propertyDescriptor : properties) {
 
-						final Object origProp = PropertyUtils.getProperty(obj, propertyDescriptor.getName());
+			if (PropertyUtils.getReadMethod(propertyDescriptor) != null) {
 
+				final Object origProp = PropertyUtils.getProperty(obj, propertyDescriptor.getName());
 
-						if (origProp != null) {
-							recursiveInitliaze(origProp, dejaVu);
-						}
-						if (origProp instanceof Collection) {
-							for (final Object item : (Collection<?>) origProp) {
-								recursiveInitliaze(item, dejaVu);
-							}
-						}
+				if (origProp != null) {
+					recursiveInitialize(origProp, dejaVu);
+				}
+				if (origProp instanceof Collection) {
+					for (final Object item : (Collection<?>) origProp) {
+						recursiveInitialize(item, dejaVu);
 					}
 				}
 			}
@@ -119,18 +139,17 @@ public final class LoadHelper {
 	 *            the obj
 	 * @return the t
 	 */
-	public static <T> T recursiveInitliaze(final T obj) {
+	public static <T> T recursiveInitialize(final T obj) {
 		if (obj != null) {
 
 			final Set<Object> dejaVu = Collections.newSetFromMap(new IdentityHashMap<Object, Boolean>());
 			try {
-				recursiveInitliaze(obj, dejaVu);
+				recursiveInitialize(obj, dejaVu);
 			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
 				handleReflectionException(e);
 			}
 		}
 		return obj;
 	}
-
 
 }
