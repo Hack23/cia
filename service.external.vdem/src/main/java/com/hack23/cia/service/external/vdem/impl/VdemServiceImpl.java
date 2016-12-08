@@ -120,39 +120,8 @@ public final class VdemServiceImpl implements VdemService {
 				LOGGER.info("Loading vdem data for country:{} year {} ",countryName,year);
 
 				for (final Question question : questions) {
-					if (question.getQuestionId() != null) {
-
-						if (record.isMapped(question.getTag())) {
-
-							try {
-								final String questionValue = record.get(question.getTag());
-
-								if (questionValue != null && StringUtils.hasText(questionValue)) {
-									final CountryQuestionData countryQuestionData = new CountryQuestionData();
-									final CountryQuestionDataEmbeddedId embeddedId = new CountryQuestionDataEmbeddedId();
-
-									embeddedId.setCountryName(countryName);
-									embeddedId.setCountryId(countryId);
-									embeddedId.setIndicatorId(question.getTag());
-									embeddedId.setYear(Integer.parseInt(year));
-									embeddedId.setCountryId(countryId);
-
-									countryQuestionData.setEmbeddedId(embeddedId);
-
-									countryQuestionData.setCountryTextId(countryTextId);
-									countryQuestionData.setGapstart(gapStart);
-									countryQuestionData.setGapend(gapEnd);
-									countryQuestionData.setCodingend(codingEnd);
-									countryQuestionData.setCowCode(cowCode);
-									countryQuestionData.setQuestionValue(questionValue.trim());
-
-									list.add(countryQuestionData);
-								}
-							} catch (final Exception e) {
-								LOGGER.info("Missing value for:{}", question.getTag());
-							}
-						}
-					}
+					addQuestionDataToList(list, record, countryName, countryId, countryTextId, year, gapStart, gapEnd,
+							codingEnd, cowCode, question);
 				}
 
 				final int afterSize = list.size();
@@ -167,6 +136,71 @@ public final class VdemServiceImpl implements VdemService {
 		}
 
 		return list;
+	}
+
+	/**
+	 * Adds the question data to list.
+	 *
+	 * @param list
+	 *            the list
+	 * @param record
+	 *            the record
+	 * @param countryName
+	 *            the country name
+	 * @param countryId
+	 *            the country id
+	 * @param countryTextId
+	 *            the country text id
+	 * @param year
+	 *            the year
+	 * @param gapStart
+	 *            the gap start
+	 * @param gapEnd
+	 *            the gap end
+	 * @param codingEnd
+	 *            the coding end
+	 * @param cowCode
+	 *            the cow code
+	 * @param question
+	 *            the question
+	 */
+	private static void addQuestionDataToList(final List<CountryQuestionData> list, final CSVRecord record,
+			final String countryName, final String countryId, final String countryTextId, final String year,
+			final String gapStart, final String gapEnd, final String codingEnd, final String cowCode,
+			final Question question) {
+		if (question.getQuestionId() != null) {
+
+			if (record.isMapped(question.getTag())) {
+
+				try {
+					final String questionValue = record.get(question.getTag());
+
+					if (questionValue != null && StringUtils.hasText(questionValue)) {
+						final CountryQuestionData countryQuestionData = new CountryQuestionData();
+						final CountryQuestionDataEmbeddedId embeddedId = new CountryQuestionDataEmbeddedId();
+
+						embeddedId.setCountryName(countryName);
+						embeddedId.setCountryId(countryId);
+						embeddedId.setIndicatorId(question.getTag());
+						embeddedId.setYear(Integer.parseInt(year));
+						embeddedId.setCountryId(countryId);
+
+						countryQuestionData.setEmbeddedId(embeddedId);
+
+						countryQuestionData.setCountryTextId(countryTextId);
+						countryQuestionData.setGapstart(gapStart);
+						countryQuestionData.setGapend(gapEnd);
+						countryQuestionData.setCodingend(codingEnd);
+						countryQuestionData.setCowCode(cowCode);
+						countryQuestionData.setQuestionValue(questionValue.trim());
+
+						list.add(countryQuestionData);
+					}
+				} catch (final RuntimeException e) {
+					LOGGER.warn("Missing value for:"+ question.getTag(), e);
+				}
+			}
+		}
 	}
 
 }
