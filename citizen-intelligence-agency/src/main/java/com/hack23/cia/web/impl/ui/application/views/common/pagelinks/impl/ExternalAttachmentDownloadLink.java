@@ -23,6 +23,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.vaadin.server.StreamResource;
 import com.vaadin.ui.Link;
 
@@ -30,10 +33,13 @@ import com.vaadin.ui.Link;
  * The Class ExternalAttachmentDownloadLink.
  */
 public final class ExternalAttachmentDownloadLink extends Link {
-
+	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory.getLogger(ExternalAttachmentDownloadLink.class);
+	
 	/** The file name. */
 	private final String fileName;
 
@@ -79,6 +85,7 @@ public final class ExternalAttachmentDownloadLink extends Link {
 				try {
 					return new URL(fileUrl).openStream();
 				} catch (final IOException e) {
+					LOGGER.warn("Problem opening url:"+ fileUrl,e);
 					return new ByteArrayInputStream(new byte[0]);
 				}
 			}
