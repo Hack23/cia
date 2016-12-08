@@ -38,6 +38,13 @@ import com.vaadin.ui.renderers.ButtonRenderer;
  */
 @Service
 public final class GridFactoryImpl implements GridFactory {
+	
+	/**
+	 * Instantiates a new grid factory impl.
+	 */
+	public GridFactoryImpl() {
+		super();
+	}
 
 	@Override
 	public void createBasicBeanItemGrid(final AbstractOrderedLayout panelContent, final Container.Indexed datasource,
@@ -57,13 +64,37 @@ public final class GridFactoryImpl implements GridFactory {
 		grid.setCaption(caption);
 		grid.setSelectionMode(SelectionMode.SINGLE);
 
-		if (nestedProperties != null) {
-			for (final String nestedProperty : nestedProperties) {
-				final BeanItemContainer<?> dataContainer = (BeanItemContainer<?>) datasource;
-				dataContainer.addNestedContainerProperty(nestedProperty);
-			}
-		}
+		createNestedProperties(datasource, nestedProperties);
 
+		configureColumnOrdersAndHiddenFields(columnOrder, hideColumns, grid);
+
+		configureListeners(idProprty, listener, grid);
+
+		grid.setSizeFull();
+
+		grid.setStyleName("Level2Header");
+
+		grid.setImmediate(true);
+		grid.setReadOnly(true);
+
+		createGridCellFilter(columnOrder, grid);
+
+		panelContent.addComponent(grid);
+		panelContent.setExpandRatio(grid, ContentRatio.GRID);
+	}
+
+	/**
+	 * Configure column orders and hidden fields.
+	 *
+	 * @param columnOrder
+	 *            the column order
+	 * @param hideColumns
+	 *            the hide columns
+	 * @param grid
+	 *            the grid
+	 */
+	private static void configureColumnOrdersAndHiddenFields(final Object[] columnOrder, final Object[] hideColumns,
+			final Grid grid) {
 		if (columnOrder != null) {
 			grid.setColumnOrder(columnOrder);
 		}
@@ -73,7 +104,37 @@ public final class GridFactoryImpl implements GridFactory {
 				grid.removeColumn(o);
 			}
 		}
+	}
 
+	/**
+	 * Creates the nested properties.
+	 *
+	 * @param datasource
+	 *            the datasource
+	 * @param nestedProperties
+	 *            the nested properties
+	 */
+	private static void createNestedProperties(final Indexed datasource, final String[] nestedProperties) {
+		if (nestedProperties != null) {
+			for (final String nestedProperty : nestedProperties) {
+				final BeanItemContainer<?> dataContainer = (BeanItemContainer<?>) datasource;
+				dataContainer.addNestedContainerProperty(nestedProperty);
+			}
+		}
+	}
+
+	/**
+	 * Configure listeners.
+	 *
+	 * @param idProprty
+	 *            the id proprty
+	 * @param listener
+	 *            the listener
+	 * @param grid
+	 *            the grid
+	 */
+	private static void configureListeners(final String idProprty, final AbstractPageItemRendererClickListener<?> listener,
+			final Grid grid) {
 		if (idProprty != null && listener != null) {
 			final Column column = grid.getColumn(idProprty);
 
@@ -84,14 +145,18 @@ public final class GridFactoryImpl implements GridFactory {
 		if (listener != null) {
 			grid.addSelectionListener(listener);
 		}
+	}
 
-		grid.setSizeFull();
-
-		grid.setStyleName("Level2Header");
-
-		grid.setImmediate(true);
-		grid.setReadOnly(true);
-
+	
+	/**
+	 * Creates the grid cell filter.
+	 *
+	 * @param columnOrder
+	 *            the column order
+	 * @param grid
+	 *            the grid
+	 */
+	private static void createGridCellFilter(final Object[] columnOrder, final Grid grid) {
 		if (columnOrder != null) {
 			final GridCellFilter gridCellFilter = new GridCellFilter(grid);
 
@@ -102,9 +167,6 @@ public final class GridFactoryImpl implements GridFactory {
 			}
 
 		}
-
-		panelContent.addComponent(grid);
-		panelContent.setExpandRatio(grid, ContentRatio.GRID);
 	}
 
 }

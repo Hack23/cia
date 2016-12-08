@@ -176,29 +176,45 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 
 		if (itemList != null) {
 
-			final Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> map = itemList.parallelStream()
-					.filter(t -> t != null)
-					.collect(Collectors.groupingBy(t -> StringUtils.defaultIfBlank(t.getDocumentType(), NO_INFO)));
-
-			for (final Entry<String, List<ViewRiksdagenOrgDocumentDailySummary>> entry : map.entrySet()) {
-
-				series.addSeries(new XYseries().setLabel(entry.getKey()));
-
-				dataSeries.newSeries();
-				if (entry.getValue() != null) {
-					for (final ViewRiksdagenOrgDocumentDailySummary item : entry.getValue()) {
-						if (item != null) {
-							dataSeries.add(item.getEmbeddedId().getPublicDate(), item.getTotal());
-						}
-					}
-				} else {
-					LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
-				}
-
-			}
+			addDocumentHistoryByOrgData(dataSeries, series, itemList);
 		}
 
 		addChart(content,"Document History by Org", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+	}
+
+
+	/**
+	 * Adds the document history by org data.
+	 *
+	 * @param dataSeries
+	 *            the data series
+	 * @param series
+	 *            the series
+	 * @param itemList
+	 *            the item list
+	 */
+	private static void addDocumentHistoryByOrgData(final DataSeries dataSeries, final Series series,
+			final List<ViewRiksdagenOrgDocumentDailySummary> itemList) {
+		final Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> map = itemList.parallelStream()
+				.filter(t -> t != null)
+				.collect(Collectors.groupingBy(t -> StringUtils.defaultIfBlank(t.getDocumentType(), NO_INFO)));
+
+		for (final Entry<String, List<ViewRiksdagenOrgDocumentDailySummary>> entry : map.entrySet()) {
+
+			series.addSeries(new XYseries().setLabel(entry.getKey()));
+
+			dataSeries.newSeries();
+			if (entry.getValue() != null) {
+				for (final ViewRiksdagenOrgDocumentDailySummary item : entry.getValue()) {
+					if (item != null) {
+						dataSeries.add(item.getEmbeddedId().getPublicDate(), item.getTotal());
+					}
+				}
+			} else {
+				LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
+			}
+
+		}
 	}
 
 	@Override
@@ -217,27 +233,43 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 					.filter(t -> t != null).collect(Collectors.groupingBy(
 							t -> StringUtils.defaultIfBlank(t.getEmbeddedId().getDocumentType(), NO_INFO)));
 
-			final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
-
-			for (final Entry<String, List<ViewRiksdagenPartyDocumentDailySummary>> entry : map.entrySet()) {
-
-				series.addSeries(new XYseries().setLabel(entry.getKey()));
-
-				dataSeries.newSeries();
-				if (entry.getValue() != null) {
-					for (final ViewRiksdagenPartyDocumentDailySummary item : entry.getValue()) {
-						if (item != null) {
-							dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getPublicDate()), item.getTotal());
-						}
-					}
-				} else {
-					LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
-				}
-
-			}
+			addDocumentHistoryByPartyData(dataSeries, series, map);
 		}
 
 		addChart(content, "Document history party",new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+	}
+
+
+	/**
+	 * Adds the document history by party data.
+	 *
+	 * @param dataSeries
+	 *            the data series
+	 * @param series
+	 *            the series
+	 * @param map
+	 *            the map
+	 */
+	private static void addDocumentHistoryByPartyData(final DataSeries dataSeries, final Series series,
+			final Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> map) {
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
+
+		for (final Entry<String, List<ViewRiksdagenPartyDocumentDailySummary>> entry : map.entrySet()) {
+
+			series.addSeries(new XYseries().setLabel(entry.getKey()));
+
+			dataSeries.newSeries();
+			if (entry.getValue() != null) {
+				for (final ViewRiksdagenPartyDocumentDailySummary item : entry.getValue()) {
+					if (item != null) {
+						dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getPublicDate()), item.getTotal());
+					}
+				}
+			} else {
+				LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
+			}
+
+		}
 	}
 
 
@@ -262,29 +294,45 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 					.filter(t -> t != null).collect(Collectors.groupingBy(
 							t -> StringUtils.defaultIfBlank(t.getEmbeddedId().getDocumentType(), NO_INFO)));
 
-			for (final Entry<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> entry : map.entrySet()) {
-
-				series.addSeries(new XYseries().setLabel(entry.getKey()));
-
-				dataSeries.newSeries();
-				if (entry.getValue() != null) {
-					for (final ViewRiksdagenPoliticianDocumentDailySummary item : entry.getValue()) {
-						if (item != null) {
-							dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getPublicDate()),
-									item.getTotal());
-						}
-					}
-				} else {
-					LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
-				}
-
-			}
+			addDocumentHistoryByPersonData(simpleDateFormat, dataSeries, series, map);
 		}
 
 		addChart(content,"Document history ", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 
+	/**
+	 * Adds the document history by person data.
+	 *
+	 * @param simpleDateFormat
+	 *            the simple date format
+	 * @param dataSeries
+	 *            the data series
+	 * @param series
+	 *            the series
+	 * @param map
+	 *            the map
+	 */
+	private static void addDocumentHistoryByPersonData(final SimpleDateFormat simpleDateFormat, final DataSeries dataSeries,
+			final Series series, final Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> map) {
+		for (final Entry<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> entry : map.entrySet()) {
+
+			series.addSeries(new XYseries().setLabel(entry.getKey()));
+
+			dataSeries.newSeries();
+			if (entry.getValue() != null) {
+				for (final ViewRiksdagenPoliticianDocumentDailySummary item : entry.getValue()) {
+					if (item != null) {
+						dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getPublicDate()),
+								item.getTotal());
+					}
+				}
+			} else {
+				LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
+			}
+
+		}
+	}
 
 
 
@@ -317,6 +365,5 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 
 		addChart(content,"Document type", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
-
 
 }

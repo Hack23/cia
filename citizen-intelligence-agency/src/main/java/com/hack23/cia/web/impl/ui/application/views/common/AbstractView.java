@@ -22,6 +22,8 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -56,6 +58,9 @@ public abstract class AbstractView extends Panel implements View {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractView.class);
 
 	/** The Constant LOGOUT. */
 	private static final String LOGOUT = "Logout";
@@ -124,6 +129,7 @@ public abstract class AbstractView extends Panel implements View {
 				}
 			}
 		} catch (final AccessDeniedException e ) {
+			LOGGER.warn("Access denided:" +pageName,e);
 			final VerticalLayout panelContent = new VerticalLayout();
 			panelContent.setMargin(true);
 			panelContent.setWidth(100, Unit.PERCENTAGE);

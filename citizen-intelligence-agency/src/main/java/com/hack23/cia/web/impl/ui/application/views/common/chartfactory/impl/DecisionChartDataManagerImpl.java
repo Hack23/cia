@@ -154,26 +154,44 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 					.filter(t -> t != null && t.getEmbeddedId().getDecisionDate() != null)
 					.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDecisionType()));
 
-			for (final Entry<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> entry : map.entrySet()) {
-				if (!EMPTY_STRING.equals(entry.getKey())) {
+			addDecisionTypeByOrgData(simpleDateFormat, dataSeries, series, map);
+		}
 
-					final XYseries label = new XYseries();
-					label.setLabel(entry.getKey());
+		addChart(content,"Org Decision type daily summary", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+	}
 
-					series.addSeries(label);
 
-					dataSeries.newSeries();
-					for (final ViewRiksdagenCommitteeDecisionTypeOrgDailySummary item : entry.getValue()) {
-						if (item != null) {
-							dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getDecisionDate()),
-									item.getTotal());
-						}
+	/**
+	 * Adds the decision type by org data.
+	 *
+	 * @param simpleDateFormat
+	 *            the simple date format
+	 * @param dataSeries
+	 *            the data series
+	 * @param series
+	 *            the series
+	 * @param map
+	 *            the map
+	 */
+	private static void addDecisionTypeByOrgData(final SimpleDateFormat simpleDateFormat, final DataSeries dataSeries,
+			final Series series, final Map<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> map) {
+		for (final Entry<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> entry : map.entrySet()) {
+			if (!EMPTY_STRING.equals(entry.getKey())) {
+
+				final XYseries label = new XYseries();
+				label.setLabel(entry.getKey());
+
+				series.addSeries(label);
+
+				dataSeries.newSeries();
+				for (final ViewRiksdagenCommitteeDecisionTypeOrgDailySummary item : entry.getValue()) {
+					if (item != null) {
+						dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getDecisionDate()),
+								item.getTotal());
 					}
 				}
 			}
 		}
-
-		addChart(content,"Org Decision type daily summary", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 }

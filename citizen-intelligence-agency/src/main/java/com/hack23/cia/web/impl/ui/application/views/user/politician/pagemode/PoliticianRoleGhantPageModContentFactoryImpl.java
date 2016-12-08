@@ -211,44 +211,60 @@ public final class PoliticianRoleGhantPageModContentFactoryImpl extends Abstract
 
 				Collections.sort(assignments, compare);
 
-				final String parliamentType = KAMMARUPPDRAG;
-				for (final AssignmentData assignmentData : assignments) {
-
-					String subStepName = "";
-
-					if (assignmentData.getStatus() != null) {
-						subStepName = assignmentData.getStatus();
-
-					} else if (assignmentData.getRoleCode() != null) {
-						subStepName = assignmentData.getRoleCode();
-					}
-
-					final SubStep sameRoleSubStep = new SubStep(stepName + '.' + subStepName);
-
-					sameRoleSubStep.setBackgroundColor("A8D999");
-
-					if (LEDIG.equalsIgnoreCase(assignmentData.getStatus())) {
-						sameRoleSubStep.setBackgroundColor("e3e3e3");
-					} else if (parliamentType.equalsIgnoreCase(assignmentData.getAssignmentType())) {
-						sameRoleSubStep.setBackgroundColor("0eab76");
-					} else if (DEPARTEMENT.equalsIgnoreCase(assignmentData.getAssignmentType())) {
-
-						sameRoleSubStep.setBackgroundColor("ded858");
-					} else {
-						sameRoleSubStep.setBackgroundColor("3271c8");
-					}
-
-					sameRoleSubStep.setStartDate(assignmentData.getFromDate().getTime());
-					sameRoleSubStep.setEndDate(assignmentData.getToDate().getTime());
-
-					step.addSubStep(sameRoleSubStep);
-				}
+				addAssignmentDataToStep(stepName, step, assignments);
 
 				gantt.addStep(step);
 			}
 		}
 
 		return gantt;
+	}
+
+
+	/**
+	 * Adds the assignment data to step.
+	 *
+	 * @param stepName
+	 *            the step name
+	 * @param step
+	 *            the step
+	 * @param assignments
+	 *            the assignments
+	 */
+	private static void addAssignmentDataToStep(final String stepName, final Step step,
+			final List<AssignmentData> assignments) {
+		final String parliamentType = KAMMARUPPDRAG;
+		for (final AssignmentData assignmentData : assignments) {
+
+			String subStepName = "";
+
+			if (assignmentData.getStatus() != null) {
+				subStepName = assignmentData.getStatus();
+
+			} else if (assignmentData.getRoleCode() != null) {
+				subStepName = assignmentData.getRoleCode();
+			}
+
+			final SubStep sameRoleSubStep = new SubStep(stepName + '.' + subStepName);
+
+			sameRoleSubStep.setBackgroundColor("A8D999");
+
+			if (LEDIG.equalsIgnoreCase(assignmentData.getStatus())) {
+				sameRoleSubStep.setBackgroundColor("e3e3e3");
+			} else if (parliamentType.equalsIgnoreCase(assignmentData.getAssignmentType())) {
+				sameRoleSubStep.setBackgroundColor("0eab76");
+			} else if (DEPARTEMENT.equalsIgnoreCase(assignmentData.getAssignmentType())) {
+
+				sameRoleSubStep.setBackgroundColor("ded858");
+			} else {
+				sameRoleSubStep.setBackgroundColor("3271c8");
+			}
+
+			sameRoleSubStep.setStartDate(assignmentData.getFromDate().getTime());
+			sameRoleSubStep.setEndDate(assignmentData.getToDate().getTime());
+
+			step.addSubStep(sameRoleSubStep);
+		}
 	}
 
 	/**

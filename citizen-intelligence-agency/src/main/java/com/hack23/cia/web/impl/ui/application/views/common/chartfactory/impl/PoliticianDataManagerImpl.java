@@ -87,45 +87,7 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 
 		if (list != null) {
 
-			for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {
-				if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {
-					dataSeries.add(
-							simpleDateFormat.format(
-									viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),
-							viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getWonPercentage());
-				}
-			}
-
-			dataSeries.newSeries();
-
-			for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {
-				if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {
-					dataSeries.add(
-							simpleDateFormat.format(
-									viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),
-							viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getRebelPercentage());
-				}
-			}
-
-			dataSeries.newSeries();
-			for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {
-				if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {
-					dataSeries.add(
-							simpleDateFormat.format(
-									viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),
-							viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getPoliticianPercentageAbsent());
-				}
-			}
-
-			dataSeries.newSeries();
-			for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {
-				if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {
-					dataSeries.add(
-							simpleDateFormat.format(
-									viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),
-							viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getNumberBallots());
-				}
-			}
+			addPoliticianIndicatorData(list, dataSeries, simpleDateFormat);
 
 		}
 
@@ -136,6 +98,62 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 				.addOption(ChartOptionsImpl.INSTANCE.createLegendOutside());
 
 		addChart(content,"Ballot indicators", new DCharts().setDataSeries(dataSeries).setOptions(options).show());
+	}
+
+
+
+	/**
+	 * Adds the politician indicator data.
+	 *
+	 * @param list
+	 *            the list
+	 * @param dataSeries
+	 *            the data series
+	 * @param simpleDateFormat
+	 *            the simple date format
+	 */
+	private static void addPoliticianIndicatorData(final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> list,
+			final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat) {
+		
+		for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {
+			if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {
+				dataSeries.add(
+						simpleDateFormat.format(
+								viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),
+						viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getWonPercentage());
+			}
+		}
+
+		dataSeries.newSeries();
+
+		for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {
+			if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {
+				dataSeries.add(
+						simpleDateFormat.format(
+								viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),
+						viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getRebelPercentage());
+			}
+		}
+
+		dataSeries.newSeries();
+		for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {
+			if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {
+				dataSeries.add(
+						simpleDateFormat.format(
+								viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),
+						viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getPoliticianPercentageAbsent());
+			}
+		}
+
+		dataSeries.newSeries();
+		for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {
+			if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {
+				dataSeries.add(
+						simpleDateFormat.format(
+								viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),
+						viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getNumberBallots());
+			}
+		}
 	}
 
 
