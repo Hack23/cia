@@ -84,37 +84,7 @@ public final class EsvApiImpl implements EsvApi {
 			for (int sheetNr = 0; sheetNr < myWorkBook.getNumberOfSheets(); sheetNr++) {
 				final HSSFSheet mySheet = myWorkBook.getSheetAt(sheetNr);
 
-				if (mySheet.getSheetName().chars().allMatch(Character::isDigit)) {
-
-					final int year = Integer.valueOf(mySheet.getSheetName());
-
-					final List<GovernmentBodyAnnualSummary> yearList = new ArrayList<>();
-					final Iterator<Row> rowIterator = mySheet.iterator();
-
-					rowIterator.next();
-
-					while (rowIterator.hasNext()) {
-						final Row row = rowIterator.next();
-						final short maxColIx = row.getLastCellNum();
-
-						
-						if (maxColIx == 10) {
-							final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = new GovernmentBodyAnnualSummary(
-									year, row.getCell(0).toString(), getInteger(row.getCell(1).toString()),
-									row.getCell(2).toString(), row.getCell(3).toString(), row.getCell(4).toString(),
-									row.getCell(5).toString(), getInteger(row.getCell(6).toString()), getInteger(row.getCell(7).toString()),
-									row.getCell(8).toString(), row.getCell(9).toString());
-							row.getCell(9).toString();
-
-							if (name == null || name.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())) {
-								yearList.add(governmentBodyAnnualSummary);
-							}
-
-						}
-
-					}
-					map.put(year, yearList);
-				}
+				addMinistryPerYearToMap(name, map, mySheet);
 			}
 
 			myWorkBook.close();
@@ -126,6 +96,51 @@ public final class EsvApiImpl implements EsvApi {
 
 		return map;
 	}
+
+	/**
+	 * Adds the ministry per year to map.
+	 *
+	 * @param name
+	 *            the name
+	 * @param map
+	 *            the map
+	 * @param mySheet
+	 *            the my sheet
+	 */
+	private static void addMinistryPerYearToMap(final String name, final Map<Integer, List<GovernmentBodyAnnualSummary>> map,
+			final HSSFSheet mySheet) {
+		if (mySheet.getSheetName().chars().allMatch(Character::isDigit)) {
+
+			final int year = Integer.valueOf(mySheet.getSheetName());
+
+			final List<GovernmentBodyAnnualSummary> yearList = new ArrayList<>();
+			final Iterator<Row> rowIterator = mySheet.iterator();
+
+			rowIterator.next();
+
+			while (rowIterator.hasNext()) {
+				final Row row = rowIterator.next();
+				final short maxColIx = row.getLastCellNum();
+
+				
+				if (maxColIx == 10) {
+					final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = new GovernmentBodyAnnualSummary(
+							year, row.getCell(0).toString(), getInteger(row.getCell(1).toString()),
+							row.getCell(2).toString(), row.getCell(3).toString(), row.getCell(4).toString(),
+							row.getCell(5).toString(), getInteger(row.getCell(6).toString()), getInteger(row.getCell(7).toString()),
+							row.getCell(8).toString(), row.getCell(9).toString());
+					row.getCell(9).toString();
+
+					if (name == null || name.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())) {
+						yearList.add(governmentBodyAnnualSummary);
+					}
+
+				}
+
+			}
+			map.put(year, yearList);
+		}
+	}
 	
 	/**
 	 * Gets the integer.
@@ -136,7 +151,7 @@ public final class EsvApiImpl implements EsvApi {
 	 */
 	private static Integer getInteger(String str) {
 	    if (str == null || str.trim().length() == 0) {
-	        return new Integer(0);
+	        return Integer.valueOf(0);
 	    } else {
 	        return Integer.parseInt(str);
 	    }
@@ -208,33 +223,7 @@ public final class EsvApiImpl implements EsvApi {
 			for (int sheetNr = 0; sheetNr < myWorkBook.getNumberOfSheets(); sheetNr++) {
 				final HSSFSheet mySheet = myWorkBook.getSheetAt(sheetNr);
 
-				if (mySheet.getSheetName().chars().allMatch(Character::isDigit)) {
-
-					final int year = Integer.valueOf(mySheet.getSheetName());
-
-					final Iterator<Row> rowIterator = mySheet.iterator();
-
-					rowIterator.next();
-
-					while (rowIterator.hasNext()) {
-						final Row row = rowIterator.next();
-						final short maxColIx = row.getLastCellNum();
-
-						
-						if (maxColIx == 10) {
-							final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = new GovernmentBodyAnnualSummary(
-									year, row.getCell(0).toString(), getInteger(row.getCell(1).toString()),
-									row.getCell(2).toString(), row.getCell(3).toString(), row.getCell(4).toString(),
-									row.getCell(5).toString(), getInteger(row.getCell(6).toString()), getInteger(row.getCell(7).toString()),
-									row.getCell(8).toString(), row.getCell(9).toString());
-							row.getCell(9).toString();
-
-							if (name == null || name.equalsIgnoreCase(governmentBodyAnnualSummary.getName())) {
-								map.put(year, governmentBodyAnnualSummary);
-							}
-						}
-					}
-				}
+				addDataForYearToMap(name, map, mySheet);
 			}
 			myWorkBook.close();
 		} catch (
@@ -244,6 +233,47 @@ public final class EsvApiImpl implements EsvApi {
 		}
 
 		return map;
+	}
+
+	/**
+	 * Adds the data for year to map.
+	 *
+	 * @param name
+	 *            the name
+	 * @param map
+	 *            the map
+	 * @param mySheet
+	 *            the my sheet
+	 */
+	private static void addDataForYearToMap(String name, final Map<Integer, GovernmentBodyAnnualSummary> map,
+			final HSSFSheet mySheet) {
+		if (mySheet.getSheetName().chars().allMatch(Character::isDigit)) {
+
+			final int year = Integer.valueOf(mySheet.getSheetName());
+
+			final Iterator<Row> rowIterator = mySheet.iterator();
+
+			rowIterator.next();
+
+			while (rowIterator.hasNext()) {
+				final Row row = rowIterator.next();
+				final short maxColIx = row.getLastCellNum();
+
+				
+				if (maxColIx == 10) {
+					final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = new GovernmentBodyAnnualSummary(
+							year, row.getCell(0).toString(), getInteger(row.getCell(1).toString()),
+							row.getCell(2).toString(), row.getCell(3).toString(), row.getCell(4).toString(),
+							row.getCell(5).toString(), getInteger(row.getCell(6).toString()), getInteger(row.getCell(7).toString()),
+							row.getCell(8).toString(), row.getCell(9).toString());
+					row.getCell(9).toString();
+
+					if (name == null || name.equalsIgnoreCase(governmentBodyAnnualSummary.getName())) {
+						map.put(year, governmentBodyAnnualSummary);
+					}
+				}
+			}
+		}
 	}
 
 	/* (non-Javadoc)
