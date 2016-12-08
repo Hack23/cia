@@ -135,7 +135,7 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 			final String requestUrl = UserContextUtil.getRequestUrl(currentPageIfAny);
 			final UI currentUiIfAny = UI.getCurrent();
 
-			if (currentPageIfAny != null && currentUiIfAny != null) {
+			if (currentPageIfAny != null && currentUiIfAny != null && currentUiIfAny.getNavigator() != null && currentUiIfAny.getNavigator().getCurrentView() != null) {
 				serviceRequest.setPage(currentUiIfAny.getNavigator().getCurrentView().getClass().getSimpleName());
 				serviceRequest.setPageMode(currentPageIfAny.getUriFragment());
 			}
