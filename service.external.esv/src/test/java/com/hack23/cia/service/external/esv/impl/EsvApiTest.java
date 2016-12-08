@@ -241,7 +241,7 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	public void printMinistryAnnualSummaryTest() {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi
 				.getDataPerMinistry("Landsbygdsdepartementet");
-
+		assertNotNull(map);
 		for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
 
 			List<GovernmentBodyAnnualSummary> item = entry.getValue();
@@ -263,6 +263,7 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getDataPerMinistry("Försvarsdepartementet");
 
 		List<String> govBodyNames = esvApi.getGovernmentBodyNames("Försvarsdepartementet");
+		assertNotNull(govBodyNames);
 
 		for (String govBodyName : govBodyNames) {
 			System.out.println(govBodyName);
@@ -288,7 +289,7 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	public void printAllMinistryAnnualSummaryTest() {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getData();
 		List<String> ministryNames = esvApi.getMinistryNames();
-
+		assertNotNull(ministryNames);
 		for (String ministryName : ministryNames) {
 
 			System.out.println(ministryName);
