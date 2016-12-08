@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.component.agent.impl.riksdagen.workers;
 
+import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
@@ -28,6 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
 
 /**
@@ -65,8 +67,8 @@ MessageListener {
 			updateService.updateDocumentContentData(riksdagenApi
 					.getDocumentContent((String) ((ObjectMessage) message)
 							.getObject()));
-		} catch (final Exception e2) {
-			LOGGER.warn("Error loading DocumentContent:", e2);
+		} catch (final DataFailureException | RuntimeException | JMSException e) {
+			LOGGER.warn("Error loading DocumentContent:", e);
 		}
 	}
 }

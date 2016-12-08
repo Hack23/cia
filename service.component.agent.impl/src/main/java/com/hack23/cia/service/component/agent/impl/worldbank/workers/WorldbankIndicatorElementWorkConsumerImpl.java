@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.component.agent.impl.worldbank.workers;
 
+import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
@@ -57,8 +58,8 @@ MessageListener {
 	public void onMessage(final Message message) {
 		try {
 			updateService.updateIndicatorElement((IndicatorElement)((ObjectMessage) message).getObject());
-		} catch (final Exception e2) {
-			LOGGER.warn("Error loading worldbank indicator :" , e2);
+		} catch (final RuntimeException | JMSException e) {
+			LOGGER.warn("Error loading worldbank indicator :" , e);
 		}
 	}
 }

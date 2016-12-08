@@ -29,6 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi;
 
 /**
@@ -36,12 +37,10 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi;
  */
 @Service("riksdagenVoteDataWorkConsumerImpl")
 @Transactional
-public final class RiksdagenVoteDataWorkConsumerImpl implements
-MessageListener {
+public final class RiksdagenVoteDataWorkConsumerImpl implements MessageListener {
 
 	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(RiksdagenVoteDataWorkConsumerImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenVoteDataWorkConsumerImpl.class);
 
 	/** The import service. */
 	@Autowired
@@ -64,13 +63,12 @@ MessageListener {
 		try {
 			ballotId = (String) ((ObjectMessage) message).getObject();
 			try {
-				updateService.updateVoteDataData(riksdagenApi
-						.getBallot(ballotId));
-			} catch (final Exception e2) {
-				LOGGER.warn("Eror loading riksdagen voteData:" + ballotId + " errorMessage:" ,e2);
+				updateService.updateVoteDataData(riksdagenApi.getBallot(ballotId));
+			} catch (final DataFailureException | RuntimeException e) {
+				LOGGER.warn("Eror loading riksdagen voteData:" + ballotId + " errorMessage:", e);
 			}
 		} catch (final JMSException e) {
-			LOGGER.warn("No Valid input",e);
+			LOGGER.warn("No Valid input", e);
 		}
 	}
 }

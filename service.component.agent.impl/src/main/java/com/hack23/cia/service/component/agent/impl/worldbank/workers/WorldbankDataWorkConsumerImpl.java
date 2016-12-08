@@ -20,6 +20,7 @@ package com.hack23.cia.service.component.agent.impl.worldbank.workers;
 
 import java.util.List;
 
+import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
@@ -30,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankDataApi;
 
 /**
@@ -64,8 +66,8 @@ MessageListener {
 		try {
 			final List<String>  countryIndicator= (List<String>) ((ObjectMessage) message).getObject();
 			updateService.updateData(worldbankDataApi.getData(countryIndicator.get(0), countryIndicator.get(1)));
-		} catch (final Exception e2) {
-			LOGGER.warn("Error loading worldbank data:" , e2);
+		} catch (final DataFailureException | RuntimeException | JMSException e) {
+			LOGGER.warn("Error loading worldbank data:" , e);
 		}
 	}
 }
