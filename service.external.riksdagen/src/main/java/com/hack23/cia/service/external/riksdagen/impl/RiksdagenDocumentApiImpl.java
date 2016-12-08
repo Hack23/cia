@@ -189,7 +189,7 @@ public final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 
 			try {
 				processStrategy.process(documentElement);
-			} catch (final Exception e) {
+			} catch (final RuntimeException e) {
 				LOGGER.warn(ERROR_PROCESSING_DOCUMENT, documentElement.getId(), e);
 			}
 		}
