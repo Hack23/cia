@@ -279,6 +279,12 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>com.github.kirviq</groupId>
+      <artifactId>dumbster</artifactId>
+      <version>1.7.1</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <extensions></extensions>

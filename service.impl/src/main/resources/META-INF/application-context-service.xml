@@ -80,19 +80,5 @@
 		<constructor-arg index="6" value="true" />
 	</bean>
 
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="${smtp.host}" />
-		<property name="port" value="${smtp.port}" />
-		<property name="username" value="${smtp.username}" />
-		<property name="password" value="${smtp.password}" />
-
-		<property name="javaMailProperties">
-			<props>
-				<prop key="mail.smtp.auth">${smtp.auth}</prop>
-				<prop key="mail.smtp.starttls.enable">${smtp.starttls.enable}</prop>
-			</props>
-		</property>
-	</bean>
-
 
 </beans>
