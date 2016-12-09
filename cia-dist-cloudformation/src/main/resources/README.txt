@@ -10,3 +10,8 @@ https://www.cloudconformity.com/conformity-rules/RDS/rds-encryption-enabled.html
 
  "AvailabilityZone" : { "Fn::Select" : [ "0", { "Fn::GetAZs" : { "Ref" : "AWS::Region" } } ] }
  
+add java memory size map per instance type.
+
+improve postgres rds config.
+
+why no materialized views in quicksight. 

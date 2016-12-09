@@ -16,11 +16,13 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.properties.encryption;
+package com.hack23.cia.encryption.properties;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+import com.hack23.cia.encryption.properties.EncryptProperty;
 
 /**
  * The Class EncryptPropertyTest.
@@ -43,7 +45,7 @@ public class EncryptPropertyTest {
 	 */
 	@Test
 	public void encryptDemoDefaultTestValues() {
-		EncryptProperty.main(new String[]{"app","allhaildiscordia","eris"});
-		EncryptProperty.main(new String[]{"app","allhaildiscordia","discord"});		
+		EncryptProperty.main(new String[]{"allhaildiscordia","eris"});
+		EncryptProperty.main(new String[]{"allhaildiscordia","discord"});		
 	}
 }
