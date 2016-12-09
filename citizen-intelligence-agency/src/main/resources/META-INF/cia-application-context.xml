@@ -6,8 +6,22 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
+	<bean id="environmentVariablesConfiguration"
+		class="org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig">
+		<property name="algorithm" value="PBEWITHSHA256AND128BITAES-CBC-BC" />
+		<property name="passwordEnvName" value="CIA_APP_ENCRYPTION_PASSWORD" />
+		<property name="provider" ref="bouncyCastleProvider" />
+	</bean>
 
-	<bean id="propertyOverRideConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<bean id="bouncyCastleProvider" class="org.bouncycastle.jce.provider.BouncyCastleProvider" />
+
+	<bean id="configurationEncryptor" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
+		<property name="config" ref="environmentVariablesConfiguration" />
+	</bean>
+
+	<bean id="propertyOverRideConfigurer"
+		class="org.jasypt.spring31.properties.EncryptablePropertyPlaceholderConfigurer">
+		<constructor-arg ref="configurationEncryptor" />
 		<property name="ignoreResourceNotFound" value="true" />
 		<property name="locations">
 			<list>
@@ -26,53 +40,55 @@
 		</property>
 	</bean>
 
-	<import resource="classpath:net/bull/javamelody/monitoring-spring.xml"/>
-	<import resource="classpath:META-INF/security-settings.xml"/>
-	<import resource="classpath:META-INF/application-context-service-data.xml"/>
-	<import resource="classpath:META-INF/cia-service-external-common.xml"/>
-	<import resource="classpath:META-INF/cia-service-external-riksdagen.xml"/>
-	<import resource="classpath:META-INF/cia-service-external-worldbank.xml"/>
-	<import resource="classpath:META-INF/cia-service-external-vdem.xml"/>
-	<import resource="classpath:META-INF/cia-service-external-val.xml"/>
-	<import resource="classpath:META-INF/cia-service-external-esv.xml"/>	
-	<import resource="classpath:META-INF/cia-service-component-agent.xml"/>
-	<import resource="classpath:META-INF/application-context-service.xml"/>
+	<import resource="classpath:net/bull/javamelody/monitoring-spring.xml" />
+	<import resource="classpath:META-INF/security-settings.xml" />
+	<import resource="classpath:META-INF/application-context-service-data.xml" />
+	<import resource="classpath:META-INF/cia-service-external-common.xml" />
+	<import resource="classpath:META-INF/cia-service-external-riksdagen.xml" />
+	<import resource="classpath:META-INF/cia-service-external-worldbank.xml" />
+	<import resource="classpath:META-INF/cia-service-external-vdem.xml" />
+	<import resource="classpath:META-INF/cia-service-external-val.xml" />
+	<import resource="classpath:META-INF/cia-service-external-esv.xml" />
+	<import resource="classpath:META-INF/cia-service-component-agent.xml" />
+	<import resource="classpath:META-INF/application-context-service.xml" />
 
 
 
 	<!-- Declare the Resolver -->
-	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver"/>
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver" />
 
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="IAResources" />
 	</bean>
 
-  	<aop:aspectj-autoproxy proxy-target-class="false"/>
+	<aop:aspectj-autoproxy proxy-target-class="false" />
 
 	<context:annotation-config />
 	<context:spring-configured />
- 	<context:mbean-export />
+	<context:mbean-export />
 
 	<context:component-scan base-package="com.hack23.cia.web" />
 
-  	<bean id="monitoringAdvice" class="net.bull.javamelody.MonitoringSpringInterceptor" />
+	<bean id="monitoringAdvice" class="net.bull.javamelody.MonitoringSpringInterceptor" />
 
-   <bean id="jmsMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor">
-                <property name="pointcut">
-                        <bean class="net.bull.javamelody.MonitoredWithInterfacePointcut">
-                                <property name="interfaceName" value="javax.jms.MessageListener" />
-                        </bean>
-                </property>
-    </bean>
+	<bean id="jmsMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor">
+		<property name="pointcut">
+			<bean class="net.bull.javamelody.MonitoredWithInterfacePointcut">
+				<property name="interfaceName" value="javax.jms.MessageListener" />
+			</bean>
+		</property>
+	</bean>
 
-  	<bean id="applicationMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor">
-                <property name="pointcut">
-                        <bean class="net.bull.javamelody.MonitoredWithInterfacePointcut">
-                                <property name="interfaceName" value="com.hack23.cia.service.api.ApplicationManager" />
-                        </bean>
-                </property>
-    </bean>
+	<bean id="applicationMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor">
+		<property name="pointcut">
+			<bean class="net.bull.javamelody.MonitoredWithInterfacePointcut">
+				<property name="interfaceName"
+					value="com.hack23.cia.service.api.ApplicationManager" />
+			</bean>
+		</property>
+	</bean>
 
 	<bean id="webCacheManager" depends-on="serviceCacheManager"
 		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
