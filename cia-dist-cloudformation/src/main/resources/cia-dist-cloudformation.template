@@ -227,8 +227,11 @@
   },
   
    "Conditions" : {
-    	"noDBSnapshot" : {"Fn::Equals" : [{"Ref": "DBSnapshotName"}, ""]}
-  	},
+
+ 	"useDBSnapshot" : { "Fn::Not" : [{ "Fn::Equals" : [ {"Ref" : "DBSnapshotName"}, "" ] }] },
+ 	"useCertificate" : { "Fn::Not" : [{ "Fn::Equals" : [ {"Ref" : "CertificateArn"}, "" ] }] },
+ 	"useDomainName" : { "Fn::Not" : [{ "Fn::Equals" : [ {"Ref" : "DomainName"}, "" ] }] }
+  },
 
   "Resources" : {
 
@@ -692,7 +695,7 @@
       "Properties" : {
         "DBName" : {
           "Fn::If" : [
-            "noDBSnapshot",{ "Ref" : "DBName" },
+            "useDBSnapshot",{ "Ref" : "DBName" },
             {"Ref" : "AWS::NoValue"}            
           ]
         } ,
@@ -705,20 +708,20 @@
         "StorageType" : "gp2",
         "MasterUsername" : {
           "Fn::If" : [
-            "noDBSnapshot",{ "Ref" : "DBUsername" },
+            "useDBSnapshot",{ "Ref" : "DBUsername" },
             {"Ref" : "AWS::NoValue"}            
           ]
         },
         "MasterUserPassword" : {
           "Fn::If" : [
-            "noDBSnapshot",
+            "useDBSnapshot",
             { "Ref" : "DBPassword" },
             {"Ref" : "AWS::NoValue"}           
           ]
         },
         "DBSnapshotIdentifier" : {
           "Fn::If" : [
-            "noDBSnapshot",
+            "useDBSnapshot",
             {"Ref" : "AWS::NoValue"},
             {"Ref" : "DBSnapshotName"}
           ]
@@ -741,6 +744,7 @@
 	    
     "DNSRecordCNAME2PublicElasticLoadBalancerV2" : {
       "Type" : "AWS::Route53::RecordSet",
+      "Condition" : "useDomainName",
       "DependsOn": "PublicElasticLoadBalancerV2",            
        "Properties" : {
         "HostedZoneName" : { "Fn::Join" : [ "", [{"Ref" : "DomainName"}, "." ]]},
@@ -767,6 +771,7 @@
 
 	"LoadBalancerListenerHttpsV2": {
 	  "Type": "AWS::ElasticLoadBalancingV2::Listener",
+	  "Condition" : "useCertificate",	  
 	  "Properties": {
 	    "DefaultActions": [{
 	      "Type": "forward",
@@ -800,6 +805,7 @@
 
 	"TargetGroupHttps": {
 	  "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+	  "Condition" : "useCertificate",	  
 	  "Properties": {
 	    "Name": { "Fn::Join": [ "-", [ { "Ref": "AWS::StackName" }, "TargetGroupHttps" ] ] },
 	    "Port": 2323,
