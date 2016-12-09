@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,25 +16,24 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.api;
+package com.hack23.cia.service.impl.email;
 
 /**
- * The Interface MailService.
+ * The Interface EmailService.
  */
 @FunctionalInterface
-public interface MailService {
+public interface EmailService {
 
 	/**
-	 * Send mail.
+	 * Send email.
 	 *
-	 * @param from
-	 *            the from
-	 * @param to
-	 *            the to
+	 * @param toEmail
+	 *            the to email
 	 * @param subject
 	 *            the subject
-	 * @param msg
-	 *            the msg
+	 * @param content
+	 *            the content
 	 */
-	void sendMail(String from, String to, String subject, String msg);
+	void sendEmail(String toEmail, String subject, String content);
+
 }
