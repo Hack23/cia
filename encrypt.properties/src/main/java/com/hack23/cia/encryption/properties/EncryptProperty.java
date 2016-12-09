@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.properties.encryption;
+package com.hack23.cia.encryption.properties;
 
 import java.security.Security;
 
@@ -51,9 +51,13 @@ public class EncryptProperty {
 	 *            the arguments
 	 */
 	public static void main(String[] args) {
-		String encryptValue = new EncryptProperty().encryptValue(args[1], args[2]);
-		System.out.println(ENCRYPTED_VALUE +encryptValue);
-		System.out.println(ENCRYPTED_PROPERTY_VALUE + ENC_CONTENT_PREFIX +encryptValue +ENC_CONTENT_SUFFIX);		
+		if (args.length ==2) {
+			String encryptValue = new EncryptProperty().encryptValue(args[0], args[1]);
+			System.out.println(ENCRYPTED_VALUE +encryptValue);
+			System.out.println(ENCRYPTED_PROPERTY_VALUE + ENC_CONTENT_PREFIX +encryptValue +ENC_CONTENT_SUFFIX);
+		} else {
+			System.out.println("Encrypt property value with PBEWITHSHA256AND128BITAES_CBC_BC, using symmetric key and value as arguments. ./encryptProperty [key] [value]");
+		}
 	}
 	
 	/**
