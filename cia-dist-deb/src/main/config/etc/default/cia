@@ -8,6 +8,7 @@ JAVA_HOME=/usr/lib/jvm/java-8-oracle
 #JAVA_HOME=/usr/lib/jvm/java-9-openjdk-amd64
 
 CIA_APP_ENCRYPTION_PASSWORD="allhaildiscordia"
+export CIA_APP_ENCRYPTION_PASSWORD
 
 JAVA=$JAVA_HOME/bin/java
 JETTY_HOME=/opt/cia
