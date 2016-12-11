@@ -695,8 +695,8 @@
       "Properties" : {
         "DBName" : {
           "Fn::If" : [
-            "useDBSnapshot",{ "Ref" : "DBName" },
-            {"Ref" : "AWS::NoValue"}            
+            "useDBSnapshot",{ "Ref" : "AWS::NoValue" },
+            { "Ref" : "DBName" }            
           ]
         } ,
         "AllocatedStorage" : { "Ref" : "DBAllocatedStorage" },
@@ -708,22 +708,22 @@
         "StorageType" : "gp2",
         "MasterUsername" : {
           "Fn::If" : [
-            "useDBSnapshot",{ "Ref" : "DBUsername" },
-            {"Ref" : "AWS::NoValue"}            
+            "useDBSnapshot",{ "Ref" : "AWS::NoValue" },
+            {"Ref" : "DBUsername"}            
           ]
         },
         "MasterUserPassword" : {
           "Fn::If" : [
             "useDBSnapshot",
-            { "Ref" : "DBPassword" },
-            {"Ref" : "AWS::NoValue"}           
+            { "Ref" : "AWS::NoValue" },
+            { "Ref" : "DBPassword" }           
           ]
         },
         "DBSnapshotIdentifier" : {
           "Fn::If" : [
             "useDBSnapshot",
-            {"Ref" : "AWS::NoValue"},
-            {"Ref" : "DBSnapshotName"}
+            {"Ref" : "DBSnapshotName"},
+            {"Ref" : "AWS::NoValue"}            
           ]
         },
         "DBSubnetGroupName" : { "Ref" : "myDBSubnetGroup" },
