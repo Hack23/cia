@@ -163,6 +163,26 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	}
 
 	/**
+	 * Site admin email test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteAdminEmailTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME, ""));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("email"));
+
+	}
+
+	
+	/**
 	 * Site admin useraccount test.
 	 *
 	 * @throws Exception
