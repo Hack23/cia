@@ -34,13 +34,16 @@ import com.vaadin.ui.MenuBar.MenuItem;
  */
 public abstract class AbstractMenuItemFactoryImpl {
 
+	private static final PageModeMenuCommand COMMAND19 = new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME,
+			"");
+
 	/** The Constant COMMAND18. */
 	private static final PageModeMenuCommand COMMAND18 = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
 			PageMode.PAGEVISITHISTORY);
 
 	/** The Constant COMMAND17. */
 	private static final PageModeMenuCommand COMMAND17 = new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME,
-			"");
+			"");	
 
 	/** The Constant COMMAND16. */
 	private static final PageModeMenuCommand COMMAND16 = new PageModeMenuCommand(
@@ -226,8 +229,12 @@ public abstract class AbstractMenuItemFactoryImpl {
 			final MenuItem managementMenuItem = adminMenuItem.addItem(MANAGEMENT, FontAwesome.SERVER, null);
 
 			managementMenuItem.addItem(AGENT_OPERATIONS_TEXT,FontAwesome.USER_SECRET, COMMAND12);
+			
 			managementMenuItem.addItem(DATA_SUMMARY_TEXT,FontAwesome.DATABASE, COMMAND13);
 
+			managementMenuItem.addItem("Email",FontAwesome.MAIL_FORWARD, COMMAND19);
+
+			
 			managementMenuItem.addItem(SYSTEM_PERFORMANCE,FontAwesome.DASHBOARD, COMMAND14);
 
 			final MenuItem userActivityMenuItem = adminMenuItem.addItem(USER_ACTIVITY, FontAwesome.DATABASE, null);

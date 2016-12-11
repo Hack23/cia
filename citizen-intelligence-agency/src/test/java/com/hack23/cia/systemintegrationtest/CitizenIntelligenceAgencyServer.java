@@ -20,6 +20,8 @@
 package com.hack23.cia.systemintegrationtest;
 
 import java.lang.management.ManagementFactory;
+import java.lang.reflect.Field;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 
@@ -55,6 +57,19 @@ public final class CitizenIntelligenceAgencyServer {
 	/** The server started. */
 	private static int serverStarted = 0;
 
+	/** The initialised. */
+	private boolean initialised;
+
+	/** The server. */
+	private Server server;
+
+	/**
+	 * Instantiates a new citizen intelligence agency server.
+	 */
+	public CitizenIntelligenceAgencyServer() {
+		super();
+		initLogger();
+	}
 	
 	
 	/**
@@ -64,14 +79,35 @@ public final class CitizenIntelligenceAgencyServer {
 	 *            the arguments
 	 */
 	public static void main(final String[] args) {
-
+		CitizenIntelligenceAgencyServer.setEnv("CIA_APP_ENCRYPTION_PASSWORD", "allhaildiscordia");
+		
 		final CitizenIntelligenceAgencyServer testServer = new CitizenIntelligenceAgencyServer();
 		testServer.startServer();
 	}
 
+	/**
+	 * Sets the env.
+	 *
+	 * @param key
+	 *            the key
+	 * @param value
+	 *            the value
+	 */
+	public static void setEnv(String key, String value) {
+	    try {
+	        Map<String, String> env = System.getenv();
+	        Class<?> cl = env.getClass();
+	        Field field = cl.getDeclaredField("m");
+	        field.setAccessible(true);
+	        Map<String, String> writableEnv = (Map<String, String>) field.get(env);
+	        writableEnv.put(key, value);
+	    } catch (Exception e) {
+	        throw new IllegalStateException("Failed to set environment variable", e);
+	    }
+	}
 
 	/**
-	 * Start server.
+	 * Start test server.
 	 *
 	 * @throws Exception
 	 *             the exception
@@ -85,7 +121,7 @@ public final class CitizenIntelligenceAgencyServer {
 	}
 
 	/**
-	 * Stop server.
+	 * Stop test server.
 	 *
 	 * @throws Exception
 	 *             the exception
@@ -129,20 +165,6 @@ public final class CitizenIntelligenceAgencyServer {
 		SLF4JBridgeHandler.install();
 		java.util.logging.Logger.getLogger("global").setLevel(Level.FINEST);
 	}
-
-	/**
-	 * Instantiates a new citizen intelligence agency server.
-	 */
-	public CitizenIntelligenceAgencyServer() {
-		super();
-		initLogger();
-	}
-
-	/** The initialised. */
-	private boolean initialised;
-
-	/** The server. */
-	private Server server;
 
 	/**
 	 * Inits the.

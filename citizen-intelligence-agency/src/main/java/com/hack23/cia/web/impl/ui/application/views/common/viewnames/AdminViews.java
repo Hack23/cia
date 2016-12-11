@@ -60,6 +60,9 @@ public final class AdminViews {
 	/** The Constant ADMIN_USERACCOUNT_VIEW_NAME. */
 	public static final String ADMIN_USERACCOUNT_VIEW_NAME = "adminuseraccount";
 
+	/** The Constant ADMIN_EMAIL_VIEW_NAME. */
+	public static final String ADMIN_EMAIL_VIEW_NAME = "adminemail";
+
 	/**
 	 * Instantiates a new admin views.
 	 */
