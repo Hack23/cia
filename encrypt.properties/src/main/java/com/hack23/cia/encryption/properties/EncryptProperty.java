@@ -47,7 +47,7 @@ public final class EncryptProperty {
 	private static final String ENCRYPTED_VALUE = "Encrypted value:";
 	
 	/** The Constant HELP_MESSAGE. */
-	private static final String HELP_MESSAGE = "Encrypt property value with PBEWITHSHA256AND128BITAES_CBC_BC, using symmetric key and value as arguments. ./encryptProperty [key] [value]"
+	private static final String HELP_MESSAGE = "Encrypt property value with PBEWITHSHA256AND128BITAES_CBC_BC, using symmetric key and value as arguments. ./encryptProperty [key] [value]";
 	
 	
 	/**
