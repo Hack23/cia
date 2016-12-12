@@ -26,15 +26,28 @@ import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 /**
  * The Class EncryptProperty.
  */
-public class EncryptProperty {
+public final class EncryptProperty {
 
+	/** The Constant PBEWITHSHA256AND128BITAES_CBC_BC. */
 	private static final String PBEWITHSHA256AND128BITAES_CBC_BC = "PBEWITHSHA256AND128BITAES-CBC-BC";
+	
+	/** The Constant BC_PROVIDER_NAME. */
 	private static final String BC_PROVIDER_NAME = "BC";
+	
+	/** The Constant ENC_CONTENT_SUFFIX. */
 	private static final String ENC_CONTENT_SUFFIX = ")";
+	
+	/** The Constant ENC_CONTENT_PREFIX. */
 	private static final String ENC_CONTENT_PREFIX = "ENC(";
+	
+	/** The Constant ENCRYPTED_PROPERTY_VALUE. */
 	private static final String ENCRYPTED_PROPERTY_VALUE = "Encrypted property value:";
+	
+	/** The Constant ENCRYPTED_VALUE. */
 	private static final String ENCRYPTED_VALUE = "Encrypted value:";
-
+	
+	/** The Constant HELP_MESSAGE. */
+	private static final String HELP_MESSAGE = "Encrypt property value with PBEWITHSHA256AND128BITAES_CBC_BC, using symmetric key and value as arguments. ./encryptProperty [key] [value]"
 	
 	
 	/**
@@ -51,12 +64,12 @@ public class EncryptProperty {
 	 *            the arguments
 	 */
 	public static void main(String[] args) {
-		if (args.length ==2) {
-			String encryptValue = new EncryptProperty().encryptValue(args[0], args[1]);
+		if (args.length == 2) {
+			final String encryptValue = new EncryptProperty().encryptValue(args[0], args[1]);
 			System.out.println(ENCRYPTED_VALUE +encryptValue);
 			System.out.println(ENCRYPTED_PROPERTY_VALUE + ENC_CONTENT_PREFIX +encryptValue +ENC_CONTENT_SUFFIX);
 		} else {
-			System.out.println("Encrypt property value with PBEWITHSHA256AND128BITAES_CBC_BC, using symmetric key and value as arguments. ./encryptProperty [key] [value]");
+			System.out.println(HELP_MESSAGE);
 		}
 	}
 	
