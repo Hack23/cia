@@ -19,10 +19,18 @@
 package com.hack23.cia.encryption.properties;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
+import java.io.PrintStream;
+import java.util.List;
 
 import org.junit.Test;
-
-import com.hack23.cia.encryption.properties.EncryptProperty;
+import org.mockito.ArgumentCaptor;
+import org.mockito.ArgumentMatchers;
 
 /**
  * The Class EncryptPropertyTest.
@@ -36,16 +44,46 @@ public class EncryptPropertyTest {
 	public void encryptPasswordSuccessTest() {
 		String symmetricKey = "password";
 		String value = "property";
-		String encryptValue = new EncryptProperty().encryptValue(symmetricKey,value);
+		String encryptValue = new EncryptProperty().encryptValue(symmetricKey, value);
 		assertEquals(value, new EncryptProperty().decryptValue(symmetricKey, encryptValue));
 	}
-	
+
 	/**
 	 * Encrypt demo default test values.
 	 */
 	@Test
 	public void encryptDemoDefaultTestValues() {
-		EncryptProperty.main(new String[]{"allhaildiscordia","eris"});
-		EncryptProperty.main(new String[]{"allhaildiscordia","discord"});		
+		PrintStream out = mock(PrintStream.class);
+		System.setOut(out);
+
+		EncryptProperty.main(new String[] { "allhaildiscordia", "eris" });
+		EncryptProperty.main(new String[] { "allhaildiscordia", "discord" });
+
+		ArgumentCaptor<String> StringCaptor = ArgumentCaptor.forClass(String.class);
+
+		verify(out, times(4)).println(StringCaptor.capture());
+
+		List<String> capturedStrings = StringCaptor.getAllValues();
+
+		assertTrue(capturedStrings.get(0).startsWith("Encrypted value:"));
+		assertTrue(capturedStrings.get(1).startsWith("Encrypted property value:"));
+		assertTrue(capturedStrings.get(2).startsWith("Encrypted value:"));
+		assertTrue(capturedStrings.get(3).startsWith("Encrypted property value:"));
+
 	}
+
+	/**
+	 * Encrypt property main no args.
+	 */
+	@Test
+	public void encryptPropertyMainNoArgs() {
+		PrintStream out = mock(PrintStream.class);
+		assertNotNull(out);
+		System.setOut(out);
+
+		EncryptProperty.main(new String[] {});
+		verify(out).println(ArgumentMatchers.eq(
+				"Encrypt property value with PBEWITHSHA256AND128BITAES_CBC_BC, using symmetric key and value as arguments. ./encryptProperty [key] [value]"));
+	}
+
 }
