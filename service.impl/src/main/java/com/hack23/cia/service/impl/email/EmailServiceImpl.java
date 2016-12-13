@@ -88,7 +88,7 @@ public class EmailServiceImpl implements EmailService {
         emailMessage.setText(content);
 		emailMessage.setSubject(subject);
 		
-		if(sendEmail.getPropertyValue().equalsIgnoreCase("true")) {
+		if("true".equalsIgnoreCase(sendEmail.getPropertyValue())) {
 			LOGGER.info("Sending email:{}",emailMessage);
 			javaMailSender.send(emailMessage);			
 		} else {
