@@ -660,7 +660,7 @@
          "c4.xlarge":{
             "JavaMemorySize":"4096m"
          },
-         "c4.2xlarge":{P
+         "c4.2xlarge":{
             "JavaMemorySize":"12384m"
          },
          "c4.4xlarge":{
