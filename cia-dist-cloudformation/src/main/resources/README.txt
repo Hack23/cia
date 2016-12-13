@@ -16,6 +16,7 @@ improve postgres rds config.
 
 why no materialized views in quicksight. 
 
+http://www.ec2instances.info/
 
 http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-cloudwatchlogs.html
 
