@@ -108,7 +108,7 @@
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
     <cia.project.versions.commons.lang3>2.6</cia.project.versions.commons.lang3>
-    <cia.project.versions.slf4j>1.7.21</cia.project.versions.slf4j>
+    <cia.project.versions.slf4j>1.7.22</cia.project.versions.slf4j>
     <cia.project.versions.logback>1.1.8</cia.project.versions.logback>
     <cia.project.versions.mysql>5.1.34</cia.project.versions.mysql>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
@@ -124,7 +124,7 @@
     <cia.project.versions.postgresql>9.4.1212</cia.project.versions.postgresql>
     <cia.project.versions.atomikos>4.0.4</cia.project.versions.atomikos>
     <cia.project.versions.ehcache>2.10.3</cia.project.versions.ehcache>
-    <cia.project.versions.ehcache3>3.2.0.beta1</cia.project.versions.ehcache3>
+    <cia.project.versions.ehcache3>3.2.0</cia.project.versions.ehcache3>
     <cia.project.versions.poi>3.16-beta1</cia.project.versions.poi>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.ant>1.9.7</cia.project.versions.ant>
