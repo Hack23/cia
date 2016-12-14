@@ -13696,3 +13696,39 @@ div.v-layout.v-horizontal.v-widget {
 	color: #2deff9;
 	border-radius: 6px;
 }
+
+.cia .v-label-Level2Header {
+	font-size: 18px;
+	border-radius: 6px;
+}
+
+.cia .v-panel-caption {
+	background-image: none;
+	font-size: 18px;
+	border-radius: 6px;
+}
+
+.cia .v-caption-Level2Header {
+	font-size: 18px;
+	border-radius: 6px;
+}
+
+.cia .v-menubar-Header {
+	font-size: 18px;
+}
+
+.cia .v-menubar-menuitem-Header {
+	font-size: 14px;
+}
+
+.cia .v-menubar-menuitem-caption-Header {
+	font-size: 14px;
+}
+
+.cia .v-menubar-submenu-Header {
+	font-size: 14px;
+}
+
+.cia .v-menubar-selected-Header {
+	font-size: 14px;
+}
