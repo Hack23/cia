@@ -53,7 +53,7 @@ import ru.xpoft.vaadin.DiscoveryNavigator;
 @Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @Theme("cia")
 @Push(transport = Transport.WEBSOCKET_XHR)
-@StyleSheet({"http://fonts.googleapis.com/css?family=Inconsolata"})
+@StyleSheet({"https://fonts.googleapis.com/css?family=Inconsolata"})
 public final class CitizenIntelligenceAgencyUI extends UI {
 
 	/** The Constant serialVersionUID. */
