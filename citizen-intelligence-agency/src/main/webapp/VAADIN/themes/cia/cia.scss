@@ -31,10 +31,18 @@
 	
 	.v-label-Header {
 	 font-size: 18px;
-	 color: #003cf0;	 
+	 color: #fed552;	 
 	 border-radius: $headerBorderRadius;	 
-	}	
+	}
 
+	.v-label-HeaderSlogan {
+	 font-size: 18px;
+	 color: #2deff9;	 
+	 border-radius: $headerBorderRadius;	 
+	}
+		
+
+/*
 	.v-label-Level2Header {
 	 color: #40b527;
 	 background-color: #deffd7;
@@ -77,6 +85,6 @@
 	.v-menubar-selected-Header {
 	 font-size: 14px;
 	}
-
+*/
 	
 }
