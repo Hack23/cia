@@ -35,6 +35,7 @@ import com.hack23.cia.service.api.action.common.ServiceResponse;
 import com.hack23.cia.web.impl.ui.application.util.WebBrowserUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.MainView;
 import com.vaadin.annotations.Push;
+import com.vaadin.annotations.StyleSheet;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
@@ -52,6 +53,7 @@ import ru.xpoft.vaadin.DiscoveryNavigator;
 @Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @Theme("cia")
 @Push(transport = Transport.WEBSOCKET_XHR)
+@StyleSheet({"http://fonts.googleapis.com/css?family=Inconsolata"})
 public final class CitizenIntelligenceAgencyUI extends UI {
 
 	/** The Constant serialVersionUID. */

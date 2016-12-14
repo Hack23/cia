@@ -172,16 +172,31 @@ public abstract class AbstractView extends Panel implements View {
 		ciaLogoImage.setWidth("75px");
 		ciaLogoImage.setHeight("75px");
 		topHeader.setComponentAlignment(ciaLogoImage, Alignment.MIDDLE_LEFT);
+		topHeader.setExpandRatio(ciaLogoImage, ContentRatio.SMALL);
 
-		final Label sloganLabel = new Label("Citizen Intelligence Agency :: Tracking politicians like bugs!");
-		sloganLabel.setStyleName("Header");
-		topHeader.addComponent(sloganLabel);
-		topHeader.setComponentAlignment(sloganLabel, Alignment.MIDDLE_CENTER);
+		
+		final HorizontalLayout topTitleHeadertPanel = new HorizontalLayout();
+		
+		
+		final Label titleLabel = new Label("Citizen Intelligence Agency");
+		titleLabel.setStyleName("Header");
+		topTitleHeadertPanel.addComponent(titleLabel);
+		topTitleHeadertPanel.setComponentAlignment(titleLabel, Alignment.MIDDLE_LEFT);
 
+		final Label sloganLabel = new Label("// Tracking politicians like bugs!");
+		sloganLabel.setStyleName("HeaderSlogan");
+		topTitleHeadertPanel.addComponent(sloganLabel);
+		topTitleHeadertPanel.setComponentAlignment(sloganLabel, Alignment.MIDDLE_RIGHT);
 
+		topHeader.addComponent(topTitleHeadertPanel);
+		topHeader.setComponentAlignment(topTitleHeadertPanel, Alignment.MIDDLE_LEFT);
+		topHeader.setExpandRatio(topTitleHeadertPanel, ContentRatio.GRID);
+
+		
 		topHeaderRightPanel.removeAllComponents();
 		topHeader.addComponent(topHeaderRightPanel);
 		topHeader.setComponentAlignment(topHeaderRightPanel, Alignment.MIDDLE_RIGHT);
+		topHeader.setExpandRatio(topHeaderRightPanel, ContentRatio.LARGE);
 
 
 
