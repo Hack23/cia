@@ -81,4 +81,16 @@ public interface ChartOptions {
 	 */
 	Axes createAxesXYDateFloat();
 
+	Options createOptions2(SeriesDefaults seriesDefaults);
+
+	Options createOptions(Series series, SeriesDefaults seriesDefaults);
+
+	Options createOptions3();
+
+	Options createOptions4(Series series);
+
+	Options createOptions5(Series series);
+
+	Options createOptions6(String label, Series series);
+
 }

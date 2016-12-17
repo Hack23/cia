@@ -25,10 +25,7 @@ import java.util.Locale;
 import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
 import org.dussan.vaadin.dcharts.data.DataSeries;
-import org.dussan.vaadin.dcharts.options.Cursor;
-import org.dussan.vaadin.dcharts.options.Options;
 import org.dussan.vaadin.dcharts.options.Series;
-import org.dussan.vaadin.dcharts.options.SeriesDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -91,13 +88,7 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 
 		}
 
-		final Cursor cursor = new Cursor().setShow(true);
-
-		final Options options = new Options().addOption(new SeriesDefaults()).addOption(ChartOptionsImpl.INSTANCE.createAxesXYDateFloat())
-				.addOption(ChartOptionsImpl.INSTANCE.createHighLighterNorth()).addOption(cursor).addOption(series)
-				.addOption(ChartOptionsImpl.INSTANCE.createLegendOutside());
-
-		addChart(content,"Ballot indicators", new DCharts().setDataSeries(dataSeries).setOptions(options).show());
+		addChart(content,"Ballot indicators", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptions5(series)).show());
 	}
 
 

@@ -29,6 +29,8 @@ import org.dussan.vaadin.dcharts.metadata.renderers.AxisRenderers;
 import org.dussan.vaadin.dcharts.metadata.renderers.LegendRenderers;
 import org.dussan.vaadin.dcharts.metadata.renderers.SeriesRenderers;
 import org.dussan.vaadin.dcharts.options.Axes;
+import org.dussan.vaadin.dcharts.options.Cursor;
+import org.dussan.vaadin.dcharts.options.Grid;
 import org.dussan.vaadin.dcharts.options.Highlighter;
 import org.dussan.vaadin.dcharts.options.Legend;
 import org.dussan.vaadin.dcharts.options.Options;
@@ -72,8 +74,20 @@ public final class ChartOptionsImpl implements ChartOptions {
 
 	@Override
 	public Options createOptionsXYDateFloatLegendOutside(final Series series) {
+
+		// grid.set
+
 		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
-				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside());
+				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside())
+				.addOption(createDefaultGird());
+	}
+
+	private Grid createDefaultGird() {
+		Grid grid = new Grid();
+		grid.setBackground("#13303f");
+		grid.setGridLineColor("#213f49");
+		grid.setBorderColor("#2deff9");
+		return grid;
 	}
 
 	@Override
@@ -98,8 +112,10 @@ public final class ChartOptionsImpl implements ChartOptions {
 	@Override
 	public Legend createdLegendEnhancedInsideWest() {
 		return new Legend().setShow(true).setPlacement(LegendPlacements.INSIDE_GRID).setLocation(LegendLocations.WEST)
-				.setRenderer(LegendRenderers.ENHANCED).setRendererOptions(
-						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true));
+				.setRenderer(LegendRenderers.ENHANCED)
+				.setRendererOptions(
+						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true))
+				.setBackground("#13303f").setFontFamily("Inconsolata").setTextColor("2debf5");
 	}
 
 	@Override
@@ -107,7 +123,75 @@ public final class ChartOptionsImpl implements ChartOptions {
 		return new Legend().setShow(true)
 				.setRendererOptions(
 						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true))
-				.setPlacement(LegendPlacements.OUTSIDE_GRID);
+				.setPlacement(LegendPlacements.OUTSIDE_GRID).setBackground("#13303f").setFontFamily("Inconsolata")
+				.setTextColor("2debf5");
+	}
+
+	@Override
+	public Options createOptions2(final SeriesDefaults seriesDefaults) {
+		final Legend legend = new Legend().setShow(true).setPlacement(LegendPlacements.INSIDE_GRID)
+				.setLocation(LegendLocations.NORTH_WEST).setBackground("#13303f").setFontFamily("Inconsolata")
+				.setTextColor("2debf5");
+
+		final Highlighter highlighter = new Highlighter().setShow(true).setShowTooltip(true)
+				.setTooltipAlwaysVisible(true).setKeepTooltipInsideChart(true);
+
+		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend)
+				.setHighlighter(highlighter).addOption(createDefaultGird());
+		return options;
+	}
+
+	@Override
+	public Options createOptions(final Series series, final SeriesDefaults seriesDefaults) {
+		final Legend legend = new Legend().setShow(true).setPlacement(LegendPlacements.INSIDE_GRID)
+				.setLocation(LegendLocations.NORTH_WEST).setBackground("#13303f").setFontFamily("Inconsolata")
+				.setTextColor("2debf5");
+
+		final Highlighter highlighter = new Highlighter().setShow(true).setShowTooltip(true)
+				.setTooltipAlwaysVisible(true).setKeepTooltipInsideChart(true);
+
+		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend)
+				.setHighlighter(highlighter).addOption(series).addOption(createDefaultGird());
+		return options;
+	}
+
+	@Override
+	public Options createOptions3() {
+		final Options options = new Options().setSeriesDefaults(createSeriesDefaultPieChart())
+				.setLegend(createdLegendEnhancedInsideWest()).setHighlighter(createHighLighter())
+				.addOption(createDefaultGird());
+		return options;
+	}
+
+	@Override
+	public Options createOptions4(final Series series) {
+		final Cursor cursor = new Cursor().setShow(true);
+
+		final Options options = new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
+				.addOption(createHighLighterNorth()).addOption(cursor).addOption(series)
+				.addOption(createLegendOutside()).addOption(createDefaultGird());
+		return options;
+	}
+
+	@Override
+	public Options createOptions5(final Series series) {
+		final Cursor cursor = new Cursor().setShow(true);
+		final Options options = new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
+				.addOption(createHighLighterNorth()).addOption(cursor).addOption(series)
+				.addOption(createLegendOutside()).addOption(createDefaultGird());
+		return options;
+	}
+
+	@Override
+	public Options createOptions6(final String label, final Series series) {
+		final Axes axes = new Axes().addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
+				.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT))
+				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(new XYaxis(XYaxes.Y).setLabel(label));
+
+		final Options options = new Options().addOption(new SeriesDefaults()).addOption(axes)
+				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside())
+				.addOption(createDefaultGird());
+		return options;
 	}
 
 }

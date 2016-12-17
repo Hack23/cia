@@ -21,16 +21,9 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 import java.util.List;
 
 import org.dussan.vaadin.dcharts.DCharts;
-import org.dussan.vaadin.dcharts.base.elements.XYaxis;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
 import org.dussan.vaadin.dcharts.data.DataSeries;
-import org.dussan.vaadin.dcharts.metadata.XYaxes;
-import org.dussan.vaadin.dcharts.metadata.renderers.AxisRenderers;
-import org.dussan.vaadin.dcharts.options.Axes;
-import org.dussan.vaadin.dcharts.options.Options;
 import org.dussan.vaadin.dcharts.options.Series;
-import org.dussan.vaadin.dcharts.options.SeriesDefaults;
-import org.dussan.vaadin.dcharts.renderers.tick.AxisTickRenderer;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
@@ -44,11 +37,6 @@ import com.vaadin.ui.AbstractOrderedLayout;
 @Service
 public final class WorldIndicatorChartDataManagerImpl extends AbstractChartDataManagerImpl implements WorldIndicatorChartDataManager {
 
-	/** The Constant YEAR_MONTH_DAY_FORMAT. */
-	private static final String YEAR_MONTH_DAY_FORMAT = "%Y-%#m-%#d";
-
-	/** The Constant NUMBER_TICKS_DATE. */
-	private static final int NUMBER_TICKS_DATE = 8;
 
 
 	/**
@@ -77,16 +65,8 @@ public final class WorldIndicatorChartDataManagerImpl extends AbstractChartDataM
 			}
 		}
 
-		final Axes axes = new Axes()
-				.addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
-						.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT))
-						.setNumberTicks(NUMBER_TICKS_DATE))
-				.addAxis(new XYaxis(XYaxes.Y).setLabel(summary.getIndicatorName()));
-
-		final Options options = new Options().addOption(new SeriesDefaults()).addOption(axes)
-				.addOption(ChartOptionsImpl.INSTANCE.createHighLighterNorth()).addOption(series).addOption(ChartOptionsImpl.INSTANCE.createLegendOutside());
-
-		addChart(content,"Country indicator" +summary.getIndicatorName(), new DCharts().setDataSeries(dataSeries).setOptions(options).show());
+		addChart(content,"Country indicator" +summary.getIndicatorName(), new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptions6(summary.getIndicatorName(), series)).show());
 	}
+
 
 }
