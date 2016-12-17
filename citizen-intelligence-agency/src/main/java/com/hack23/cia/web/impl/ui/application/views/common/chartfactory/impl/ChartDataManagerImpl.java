@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
 import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.data.DataSeries;
-import org.dussan.vaadin.dcharts.options.Options;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
@@ -44,10 +43,7 @@ public final class ChartDataManagerImpl extends AbstractChartDataManagerImpl imp
 	@Override
 	public void createChartPanel(final AbstractOrderedLayout content,final DataSeries dataSeries, final String caption) {
 
-		final Options options = new Options().setSeriesDefaults(ChartOptionsImpl.INSTANCE.createSeriesDefaultPieChart())
-				.setLegend(ChartOptionsImpl.INSTANCE.createdLegendEnhancedInsideWest()).setHighlighter(ChartOptionsImpl.INSTANCE.createHighLighter());
-
-		final DCharts chart = new DCharts().setDataSeries(dataSeries).setOptions(options);
+		final DCharts chart = new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptions3());
 
 		chart.show();
 		chart.setSizeFull();
@@ -55,5 +51,6 @@ public final class ChartDataManagerImpl extends AbstractChartDataManagerImpl imp
 		addChart(content,caption, chart);
 
 	}
+
 
 }

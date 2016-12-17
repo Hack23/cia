@@ -24,12 +24,7 @@ import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
 import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.dussan.vaadin.dcharts.metadata.DataLabels;
-import org.dussan.vaadin.dcharts.metadata.LegendPlacements;
-import org.dussan.vaadin.dcharts.metadata.locations.LegendLocations;
 import org.dussan.vaadin.dcharts.metadata.renderers.SeriesRenderers;
-import org.dussan.vaadin.dcharts.options.Highlighter;
-import org.dussan.vaadin.dcharts.options.Legend;
-import org.dussan.vaadin.dcharts.options.Options;
 import org.dussan.vaadin.dcharts.options.Series;
 import org.dussan.vaadin.dcharts.options.SeriesDefaults;
 import org.dussan.vaadin.dcharts.renderers.series.DonutRenderer;
@@ -69,19 +64,10 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 				.setRendererOptions(new DonutRenderer().setSliceMargin(3).setStartAngle(-90).setShowDataLabels(true)
 						.setDataLabels(DataLabels.VALUE));
 
-		final Legend legend = new Legend().setShow(true).setPlacement(LegendPlacements.INSIDE_GRID)
-				.setLocation(LegendLocations.NORTH_WEST);
-
-		final Highlighter highlighter = new Highlighter()
-				.setShow(true)
-				.setShowTooltip(true)
-				.setTooltipAlwaysVisible(true)
-				.setKeepTooltipInsideChart(true);
-
-		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend).setHighlighter(highlighter);
-
-		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(options).show());
+		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptions2(seriesDefaults)).show());
 	}
+
+
 
 	@Override
 	public void createChart(final AbstractOrderedLayout content,final List<ViewRiksdagenVoteDataBallotPartySummary> partyList) {
@@ -111,18 +97,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 				.setRendererOptions(new DonutRenderer().setSliceMargin(3).setStartAngle(-90).setShowDataLabels(true)
 						.setDataLabels(DataLabels.VALUE));
 
-		final Legend legend = new Legend().setShow(true).setPlacement(LegendPlacements.INSIDE_GRID)
-				.setLocation(LegendLocations.NORTH_WEST);
-
-		final Highlighter highlighter = new Highlighter()
-				.setShow(true)
-				.setShowTooltip(true)
-				.setTooltipAlwaysVisible(true)
-				.setKeepTooltipInsideChart(true);
-
-		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend).setHighlighter(highlighter).addOption(series);
-
-		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(options).show());
+		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptions(series, seriesDefaults)).show());
 	}
 
 }
