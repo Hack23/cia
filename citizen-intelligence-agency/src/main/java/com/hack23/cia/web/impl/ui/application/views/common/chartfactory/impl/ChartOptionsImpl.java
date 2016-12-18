@@ -39,12 +39,14 @@ import org.dussan.vaadin.dcharts.options.SeriesDefaults;
 import org.dussan.vaadin.dcharts.renderers.legend.EnhancedLegendRenderer;
 import org.dussan.vaadin.dcharts.renderers.series.PieRenderer;
 import org.dussan.vaadin.dcharts.renderers.tick.AxisTickRenderer;
+import org.springframework.stereotype.Component;
 
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 
 /**
  * The Class ChartOptionsImpl.
  */
+@Component
 public final class ChartOptionsImpl implements ChartOptions {
 
 	/** The Constant NUMBER_TICKS_DATE. */
@@ -52,9 +54,6 @@ public final class ChartOptionsImpl implements ChartOptions {
 
 	/** The Constant YEAR_MONTH_DAY_FORMAT. */
 	public static final String YEAR_MONTH_DAY_FORMAT = "%Y-%#m-%#d";
-
-	/** The Constant INSTANCE. */
-	public static final ChartOptions INSTANCE = new ChartOptionsImpl();
 
 	/**
 	 * Instantiates a new chart options impl.
@@ -155,19 +154,21 @@ public final class ChartOptionsImpl implements ChartOptions {
 
 	@Override
 	public Options createOptions4(final Series series) {
-		final Cursor cursor = new Cursor().setShow(true);
-
 		final Options options = new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
-				.addOption(createHighLighterNorth()).addOption(cursor).addOption(series)
+				.addOption(createHighLighterNorth()).addOption(createCursor()).addOption(series)
 				.addOption(createLegendOutside()).addOption(createDefaultGrid());
 		return options;
 	}
 
+	private Cursor createCursor() {
+		final Cursor cursor = new Cursor().setShow(true);
+		return cursor;
+	}
+
 	@Override
 	public Options createOptions5(final Series series) {
-		final Cursor cursor = new Cursor().setShow(true);
 		final Options options = new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
-				.addOption(createHighLighterNorth()).addOption(cursor).addOption(series)
+				.addOption(createHighLighterNorth()).addOption(createCursor()).addOption(series)
 				.addOption(createLegendOutside()).addOption(createDefaultGrid());
 		return options;
 	}

@@ -46,6 +46,7 @@ import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DocumentChartDataManager;
 import com.vaadin.ui.AbstractOrderedLayout;
 
@@ -88,6 +89,11 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
+	
+	/** The chart options. */
+	@Autowired
+	private static ChartOptions chartOptions;
+
 
 	/**
 	 * Instantiates a new document chart data manager impl.
@@ -179,7 +185,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 			addDocumentHistoryByOrgData(dataSeries, series, itemList);
 		}
 
-		addChart(content,"Document History by Org", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,"Document History by Org", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 
@@ -236,7 +242,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 			addDocumentHistoryByPartyData(dataSeries, series, map);
 		}
 
-		addChart(content, "Document history party",new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content, "Document history party",new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 
@@ -297,7 +303,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 			addDocumentHistoryByPersonData(simpleDateFormat, dataSeries, series, map);
 		}
 
-		addChart(content,"Document history ", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,"Document history ", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 
@@ -363,7 +369,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 
 		}
 
-		addChart(content,"Document type", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,"Document type", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 }

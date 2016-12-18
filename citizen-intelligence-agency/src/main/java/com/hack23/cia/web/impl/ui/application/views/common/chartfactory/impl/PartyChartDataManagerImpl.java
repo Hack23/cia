@@ -40,6 +40,7 @@ import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVo
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyChartDataManager;
 import com.vaadin.ui.AbstractOrderedLayout;
 
@@ -65,6 +66,10 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
+	
+	/** The chart options. */
+	@Autowired
+	private static ChartOptions chartOptions;
 
 
 	/** The party map. */
@@ -168,7 +173,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 			}
 		}
 
-		addChart(content,"Party winner by daily ballot average", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,"Party winner by daily ballot average", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 	/**
@@ -222,7 +227,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 			}
 		}
 
-		addChart(content,"Party result by", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptions4(series)).show());
+		addChart(content,"Party result by", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptions4(series)).show());
 	}
 
 
@@ -275,7 +280,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 			}
 		}
 
-		addChart(content,"Party ballot chart", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,"Party ballot chart", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 	/**

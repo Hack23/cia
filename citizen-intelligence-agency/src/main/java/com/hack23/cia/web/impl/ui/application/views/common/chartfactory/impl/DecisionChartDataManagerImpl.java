@@ -41,6 +41,7 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeOrgDailySummary;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionChartDataManager;
 import com.vaadin.ui.AbstractOrderedLayout;
 
@@ -62,6 +63,11 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
+	
+	/** The chart options. */
+	@Autowired
+	private static ChartOptions chartOptions;
+
 
 	/**
 	 * Instantiates a new decision chart data manager impl.
@@ -131,7 +137,7 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 
 		}
 
-		addChart(content,"Decision type daily summary", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,"Decision type daily summary", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 
@@ -157,7 +163,7 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 			addDecisionTypeByOrgData(simpleDateFormat, dataSeries, series, map);
 		}
 
-		addChart(content,"Org Decision type daily summary", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,"Org Decision type daily summary", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 

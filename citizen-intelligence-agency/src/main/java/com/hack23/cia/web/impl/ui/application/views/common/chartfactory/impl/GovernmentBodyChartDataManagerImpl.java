@@ -32,6 +32,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
 import com.vaadin.ui.AbstractOrderedLayout;
 
@@ -44,6 +45,11 @@ public class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManager
 
 	@Autowired
 	private EsvApi esvApi;
+	
+	/** The chart options. */
+	@Autowired
+	private static ChartOptions chartOptions;
+
 
 	/**
 	 * Instantiates a new government body chart data manager impl.
@@ -74,7 +80,7 @@ public class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManager
 		}
 
 		addChart(content, name + " Annual headcount summary", new DCharts().setDataSeries(dataSeries)
-				.setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+				.setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 	@Override
@@ -107,7 +113,7 @@ public class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManager
 
 		addChart(content, name + " Annual headcount summary, all government bodies",
 				new DCharts().setDataSeries(dataSeries)
-						.setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+						.setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
 
 	}
 
@@ -141,7 +147,7 @@ public class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManager
 		}
 
 		addChart(content, "Annual headcount, all ministries", new DCharts().setDataSeries(dataSeries)
-				.setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+				.setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
 
 	}
 
