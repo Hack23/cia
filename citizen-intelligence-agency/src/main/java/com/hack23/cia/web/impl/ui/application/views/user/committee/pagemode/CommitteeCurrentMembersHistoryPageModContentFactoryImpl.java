@@ -97,7 +97,7 @@ public final class CommitteeCurrentMembersHistoryPageModContentFactoryImpl
 					panelContent, currentMembersMemberDataSource,
 					CURRENT_MEMBERS,
 					new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
-							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "personId", "roleId", "personId", "detail" },
+							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "roleId", "personId", "detail" },
 					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
 
 			panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
