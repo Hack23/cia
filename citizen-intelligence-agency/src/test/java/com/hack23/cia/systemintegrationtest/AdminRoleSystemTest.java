@@ -81,9 +81,9 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Agency"));
 
-		final String pageId = clickFirstRowInGrid(userPageVisit);
+		clickFirstRowInGrid(userPageVisit);
 
-		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, pageId));
+		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, ""));
 
 	}
 
@@ -104,9 +104,9 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Portal"));
 
-		final String pageId = clickFirstRowInGrid(userPageVisit);
+		clickFirstRowInGrid(userPageVisit);
 
-		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, pageId));
+		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, ""));
 
 	}
 
@@ -128,14 +128,14 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 				.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Configuration"));
 
-		final String pageId = clickFirstRowInGrid(userPageVisit);
+		clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit
-				.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, pageId));
+				.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, ""));
 
 		userPageVisit.updateConfigurationProperty("Update Configuration.propertyValue", String.valueOf(false));
 
-		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, pageId));
+		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, ""));
 
 	}
 
@@ -156,9 +156,9 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Country"));
 
-		final String pageId = clickFirstRowInGrid(userPageVisit);
+		clickFirstRowInGrid(userPageVisit);
 
-		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, pageId));
+		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, ""));
 
 	}
 
@@ -199,9 +199,9 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Useraccount"));
 
-		final String pageId = clickFirstRowInGrid(userPageVisit);
+		clickFirstRowInGrid(userPageVisit);
 
-		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, pageId));
+		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
 
 	}
 
@@ -222,9 +222,9 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Language"));
 
-		final String pageId = clickFirstRowInGrid(userPageVisit);
+		clickFirstRowInGrid(userPageVisit);
 		userPageVisit.validatePage(new
-		PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, pageId));
+		PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
 
 	}
 
@@ -245,10 +245,10 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Language Content"));
 
-		final String pageId = clickFirstRowInGrid(userPageVisit);
+		clickFirstRowInGrid(userPageVisit);
 		userPageVisit.validatePage(new
 		PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME,
-		pageId));
+		""));
 
 	}
 
@@ -269,9 +269,9 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Session"));
 
-		final String pageId = clickFirstRowInGrid(userPageVisit);
+		clickFirstRowInGrid(userPageVisit);
 
-		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, pageId));
+		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
 
 	}
 
@@ -292,9 +292,9 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Action Event"));
 
-		final String pageId = clickFirstRowInGrid(userPageVisit);
+		clickFirstRowInGrid(userPageVisit);
 
-		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, pageId));
+		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, ""));
 
 	}
 

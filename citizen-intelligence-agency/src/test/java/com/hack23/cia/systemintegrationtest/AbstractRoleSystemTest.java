@@ -171,7 +171,7 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 	 * @throws InterruptedException
 	 *             the interrupted exception
 	 */
-	protected final  String clickFirstRowInGrid(final UserPageVisit userPageVisit) throws InterruptedException {
+	protected final  void clickFirstRowInGrid(final UserPageVisit userPageVisit) throws InterruptedException {
 		final List<WebElement> gridRows = userPageVisit.getGridRows();
 		assertFalse(gridRows.isEmpty());
 
@@ -181,14 +181,8 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 
 		final WebElement choosenCell = cells.iterator().next();
 
-		String pageId = choosenCell.getText();
 		userPageVisit.performClickAction(choosenCell);
 
-		if (pageId != null) {
-			pageId = pageId.replace(",", "");
-		}
-
-		return pageId;
 	}
 
 	/**

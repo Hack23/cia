@@ -226,11 +226,11 @@ public final class UserPageVisit extends Assert {
 
 
 		int waitTimeForPageLoad=0;
-	    while(!url.equals(driver.getCurrentUrl())) {
+	    while(!url.equals(driver.getCurrentUrl()) && !driver.getCurrentUrl().contains(url)) {
 			waitForBrowser(10);
 			waitTimeForPageLoad=waitTimeForPageLoad + 10;
 			if (waitTimeForPageLoad > WAIT_FOR_PAGE_ELEMENT) {
-				assertEquals("Exceeded timeout:" + WAIT_FOR_PAGE_ELEMENT +" to match url:" + url + " browser:" +browser, url,
+				assertEquals("Exceeded timeout:" + WAIT_FOR_PAGE_ELEMENT +" to match or contains url:" + url + " browser:" +browser, url,
 						driver.getCurrentUrl());
 			}
 	    }
