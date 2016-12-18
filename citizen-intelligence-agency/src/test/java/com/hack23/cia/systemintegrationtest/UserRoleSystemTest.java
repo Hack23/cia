@@ -300,9 +300,9 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DATAGRID));
-		final String pageId = clickFirstRowInGrid(userPageVisit);
+		clickFirstRowInGrid(userPageVisit);
 
-		userPageVisit.validatePage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, pageId));
+		userPageVisit.validatePage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, ""));
 
 	}
 
