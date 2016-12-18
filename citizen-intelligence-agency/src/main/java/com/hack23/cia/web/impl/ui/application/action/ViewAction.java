@@ -103,7 +103,7 @@ public enum ViewAction {
 
 	/** The visit admin application configuration view. */
 	VISIT_ADMIN_APPLICATION_CONFIGURATION_VIEW, VISIT_REGISTER, VISIT_LOGIN,
-	
+
 	/** The visit admin email view. */
 	VISIT_ADMIN_EMAIL_VIEW;
 }

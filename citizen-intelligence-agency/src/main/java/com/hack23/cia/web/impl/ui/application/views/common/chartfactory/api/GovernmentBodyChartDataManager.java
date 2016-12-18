@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -34,7 +34,7 @@ public interface GovernmentBodyChartDataManager {
 	 *            the name
 	 */
 	void createGovernmentBodyHeadcountChart(AbstractOrderedLayout content,String name);
-	
+
 	/**
 	 * Creates the ministry government body headcount summary chart.
 	 *

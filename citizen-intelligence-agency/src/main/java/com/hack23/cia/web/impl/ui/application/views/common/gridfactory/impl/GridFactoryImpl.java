@@ -38,7 +38,7 @@ import com.vaadin.ui.renderers.ButtonRenderer;
  */
 @Service
 public final class GridFactoryImpl implements GridFactory {
-	
+
 	/**
 	 * Instantiates a new grid factory impl.
 	 */
@@ -147,7 +147,7 @@ public final class GridFactoryImpl implements GridFactory {
 		}
 	}
 
-	
+
 	/**
 	 * Creates the grid cell filter.
 	 *

@@ -58,7 +58,7 @@ public final class UserPageVisit extends Assert {
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
 	private static final int WAIT_FOR_PAGE_ELEMENT = 25000;
-	
+
 	/** The screen shot number. */
 	private static int screenShotNumber;
 
@@ -73,14 +73,14 @@ public final class UserPageVisit extends Assert {
 
 	/** The Constant systemTestTargetUrl. */
 	private static final String systemTestTargetUrl;
-	
+
 	static {
-		 String systemTestTargetUrlProperty = System.getProperty("system.test.target.url");
+		 final String systemTestTargetUrlProperty = System.getProperty("system.test.target.url");
 		 if (systemTestTargetUrlProperty != null && systemTestTargetUrlProperty.trim().length() > 0) {
-			systemTestTargetUrl = systemTestTargetUrlProperty; 
+			systemTestTargetUrl = systemTestTargetUrlProperty;
 		 } else {
 			 systemTestTargetUrl = CitizenIntelligenceAgencyServer.ACCESS_URL;
-		 }	
+		 }
 	}
 
 
@@ -699,7 +699,7 @@ public final class UserPageVisit extends Assert {
 		}
 		waitForBrowser(waitDelay);
 		grabScreenshot(driver);
-		
+
 	}
 
 	/**
@@ -935,21 +935,21 @@ public final class UserPageVisit extends Assert {
 
 	}
 
-	
+
 	/**
 	 * Grab screenshot.
 	 *
 	 * @param webDriver
 	 *            the web driver
 	 */
-	private static void grabScreenshot(final WebDriver webDriver) 
+	private static void grabScreenshot(final WebDriver webDriver)
 	{
 	    final File scrFile = ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);
 	    try {
-	    	screenShotNumber = screenShotNumber +1;	    	
+	    	screenShotNumber = screenShotNumber +1;
 	    	final String screenShotName = webDriver.getCurrentUrl().replace(systemTestTargetUrl, "").replaceAll("#", "-").replaceAll("!", "-").replaceAll("/", "-").replaceAll("--", "-");
 	        FileUtils.copyFile(scrFile, new File("target/site/screenshots/Page"+screenShotName+ "-" + screenShotNumber+ ".png"));
-	    } catch (IOException e) {
+	    } catch (final IOException e) {
 	        e.printStackTrace();
 	    }
 	}

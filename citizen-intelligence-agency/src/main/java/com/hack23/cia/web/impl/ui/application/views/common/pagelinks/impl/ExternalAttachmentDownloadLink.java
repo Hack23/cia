@@ -33,13 +33,13 @@ import com.vaadin.ui.Link;
  * The Class ExternalAttachmentDownloadLink.
  */
 public final class ExternalAttachmentDownloadLink extends Link {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ExternalAttachmentDownloadLink.class);
-	
+
 	/** The file name. */
 	private final String fileName;
 

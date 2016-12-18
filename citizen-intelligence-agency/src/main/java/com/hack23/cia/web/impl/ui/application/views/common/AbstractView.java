@@ -174,10 +174,10 @@ public abstract class AbstractView extends Panel implements View {
 		topHeader.setComponentAlignment(ciaLogoImage, Alignment.MIDDLE_LEFT);
 		topHeader.setExpandRatio(ciaLogoImage, ContentRatio.SMALL);
 
-		
+
 		final HorizontalLayout topTitleHeadertPanel = new HorizontalLayout();
-		
-		
+
+
 		final Label titleLabel = new Label("Citizen Intelligence Agency");
 		titleLabel.setStyleName("Header");
 		topTitleHeadertPanel.addComponent(titleLabel);
@@ -192,7 +192,7 @@ public abstract class AbstractView extends Panel implements View {
 		topHeader.setComponentAlignment(topTitleHeadertPanel, Alignment.MIDDLE_LEFT);
 		topHeader.setExpandRatio(topTitleHeadertPanel, ContentRatio.GRID);
 
-		
+
 		topHeaderRightPanel.removeAllComponents();
 		topHeader.addComponent(topHeaderRightPanel);
 		topHeader.setComponentAlignment(topHeaderRightPanel, Alignment.MIDDLE_RIGHT);

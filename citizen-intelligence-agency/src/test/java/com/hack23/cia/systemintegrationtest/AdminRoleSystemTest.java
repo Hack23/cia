@@ -181,7 +181,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
-	
+
 	/**
 	 * Site admin useraccount test.
 	 *

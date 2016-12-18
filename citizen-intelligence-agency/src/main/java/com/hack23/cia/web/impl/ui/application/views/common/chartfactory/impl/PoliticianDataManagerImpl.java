@@ -110,7 +110,7 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 	 */
 	private static void addPoliticianIndicatorData(final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> list,
 			final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat) {
-		
+
 		for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {
 			if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {
 				dataSeries.add(
