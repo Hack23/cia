@@ -51,6 +51,20 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Char
 @Component
 public final class ChartOptionsImpl implements ChartOptions {
 
+	private static final String LEGEND_FONT_SIZE = "14px";
+
+	private static final String BORDER_COLOR = "#2deff9";
+
+	private static final String GRIDLINE_COLOR = "#213f49";
+
+	private static final String BACKGROUND_COLOR = "#13303f";
+
+	private static final String TEXT_COLOR = "#2debf5";
+
+	private static final String FONT_SIZE = "12px";
+
+	private static final String FONT_FAMILY = "Inconsolata";
+
 	/** The Constant NUMBER_TICKS_DATE. */
 	public static final int NUMBER_TICKS_DATE = 8;
 
@@ -67,16 +81,16 @@ public final class ChartOptionsImpl implements ChartOptions {
 	private static Axes createAxesXYDateFloat() {
 		return new Axes()
 				.addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
-						.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily("Inconsolata").setTextColor("#2debf5").setFontSize("14px"))
+						.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE))
 						.setNumberTicks(NUMBER_TICKS_DATE))
-				.addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFormatString("%.2f").setFontFamily("Inconsolata").setTextColor("#2debf5").setFontSize("14px")).setMin(0f).setMax(100f).setNumberTicks(5));
+				.addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFormatString("%.2f").setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setMin(0f).setMax(100f).setNumberTicks(5));
 	}
 
 	private static Grid createDefaultGrid() {
 		final Grid grid = new Grid();
-		grid.setBackground("#13303f");
-		grid.setGridLineColor("#213f49");
-		grid.setBorderColor("#2deff9");
+		grid.setBackground(BACKGROUND_COLOR);
+		grid.setGridLineColor(GRIDLINE_COLOR);
+		grid.setBorderColor(BORDER_COLOR);
 		return grid;
 	}
 
@@ -118,7 +132,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 	}
 
 	private static Legend setLegendStyling(final Legend legend) {
-		legend.setBackground("#13303f").setFontFamily("Inconsolata").setTextColor("#2debf5").setFontSize("22px");
+		legend.setBackground(BACKGROUND_COLOR).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(LEGEND_FONT_SIZE);
 		return legend;
 	}
 
@@ -130,8 +144,8 @@ public final class ChartOptionsImpl implements ChartOptions {
 	@Override
 	public Options createOptionsCountryLineChart(final String label, final Series series) {
 		final Axes axes = new Axes().addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
-				.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily("Inconsolata").setTextColor("#2debf5").setFontSize("14px"))
-				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(new XYaxis(XYaxes.Y).setLabel(label).setTickOptions(new AxisTickRenderer().setFontFamily("Inconsolata").setTextColor("#2debf5").setFontSize("14px")).setMin(0f).setMax(100f).setNumberTicks(5));
+				.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE))
+				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(new XYaxis(XYaxes.Y).setLabel(label).setTickOptions(new AxisTickRenderer().setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setMin(0f).setMax(100f).setNumberTicks(5));
 
 		final Options options = new Options().addOption(new SeriesDefaults()).addOption(axes)
 				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside())
