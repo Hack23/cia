@@ -59,7 +59,7 @@ public final class WorldIndicatorChartDataManagerImpl extends AbstractChartDataM
 
 		final Series series = new Series();
 
-		series.addSeries(new XYseries().setLabel(summary.getIndicatorName()));
+		series.addSeries(new XYseries().setLabel("Sweden"));
 
 		dataSeries.newSeries();
 
@@ -70,7 +70,7 @@ public final class WorldIndicatorChartDataManagerImpl extends AbstractChartDataM
 			}
 		}
 
-		addChart(content,"Country indicator" +summary.getIndicatorName(), new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsCountryLineChart(summary.getIndicatorName(), series)).show());
+		addChart(content,"Country indicator" +summary.getIndicatorName(), new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsCountryLineChart(series)).show());
 	}
 
 

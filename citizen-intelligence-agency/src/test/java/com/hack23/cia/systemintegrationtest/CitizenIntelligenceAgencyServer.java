@@ -46,7 +46,7 @@ public final class CitizenIntelligenceAgencyServer {
 			.getLogger(CitizenIntelligenceAgencyServer.class);
 
 	/** The Constant PORT. */
-	public static final int PORT = 8080;
+	public static final int PORT = 8090;
 
 	/** The Constant ACCESS_URL. */
 	public static final String ACCESS_URL = "http://localhost:" + PORT + "/";
