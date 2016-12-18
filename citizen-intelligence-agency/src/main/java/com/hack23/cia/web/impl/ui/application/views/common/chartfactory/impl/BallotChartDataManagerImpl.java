@@ -23,11 +23,7 @@ import java.util.List;
 import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
 import org.dussan.vaadin.dcharts.data.DataSeries;
-import org.dussan.vaadin.dcharts.metadata.DataLabels;
-import org.dussan.vaadin.dcharts.metadata.renderers.SeriesRenderers;
 import org.dussan.vaadin.dcharts.options.Series;
-import org.dussan.vaadin.dcharts.options.SeriesDefaults;
-import org.dussan.vaadin.dcharts.renderers.series.DonutRenderer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,11 +62,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 
 		final String caption = viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getIssue() + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern();
 
-		final SeriesDefaults seriesDefaults = new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
-				.setRendererOptions(new DonutRenderer().setSliceMargin(3).setStartAngle(-90).setShowDataLabels(true)
-						.setDataLabels(DataLabels.VALUE));
-
-		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptions2(seriesDefaults)).show());
+		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsDonoutChart()).show());
 	}
 
 
@@ -99,11 +91,8 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()),viewRiksdagenVoteDataBallotPartySummary.getPartyAbsentVotes());
 		}
 
-		final SeriesDefaults seriesDefaults = new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
-				.setRendererOptions(new DonutRenderer().setSliceMargin(3).setStartAngle(-90).setShowDataLabels(true)
-						.setDataLabels(DataLabels.VALUE));
 
-		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptions(series, seriesDefaults)).show());
+		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsDonoutChartWithSeries(series)).show());
 	}
 
 }

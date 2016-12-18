@@ -227,7 +227,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 			}
 		}
 
-		addChart(content,"Party result by", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptions4(series)).show());
+		addChart(content,"Party result by", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsPartyLineChart(series)).show());
 	}
 
 

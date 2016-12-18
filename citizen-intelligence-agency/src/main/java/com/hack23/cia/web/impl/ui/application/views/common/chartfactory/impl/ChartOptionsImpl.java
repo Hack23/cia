@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
 import org.dussan.vaadin.dcharts.base.elements.XYaxis;
+import org.dussan.vaadin.dcharts.metadata.DataLabels;
 import org.dussan.vaadin.dcharts.metadata.LegendPlacements;
 import org.dussan.vaadin.dcharts.metadata.SeriesToggles;
 import org.dussan.vaadin.dcharts.metadata.TooltipAxes;
@@ -37,6 +38,7 @@ import org.dussan.vaadin.dcharts.options.Options;
 import org.dussan.vaadin.dcharts.options.Series;
 import org.dussan.vaadin.dcharts.options.SeriesDefaults;
 import org.dussan.vaadin.dcharts.renderers.legend.EnhancedLegendRenderer;
+import org.dussan.vaadin.dcharts.renderers.series.DonutRenderer;
 import org.dussan.vaadin.dcharts.renderers.series.PieRenderer;
 import org.dussan.vaadin.dcharts.renderers.tick.AxisTickRenderer;
 import org.springframework.stereotype.Component;
@@ -78,9 +80,18 @@ public final class ChartOptionsImpl implements ChartOptions {
 		return grid;
 	}
 
-	private static SeriesDefaults createSeriesDefaultPieChart() {
-		return new SeriesDefaults().setRenderer(SeriesRenderers.PIE)
-				.setRendererOptions(new PieRenderer().setShowDataLabels(true)).setShadow(true);
+	private static Legend createdLegendEnhancedInsideNorthWest() {
+		return setLegendStyling(new Legend().setShow(true)
+				.setRendererOptions(
+						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true))
+				.setPlacement(LegendPlacements.INSIDE_GRID).setLocation(LegendLocations.NORTH_WEST));
+	}
+
+	private static Legend createdLegendEnhancedInsideWest() {
+		return setLegendStyling(
+				new Legend().setShow(true).setPlacement(LegendPlacements.INSIDE_GRID).setLocation(LegendLocations.WEST)
+						.setRenderer(LegendRenderers.ENHANCED).setRendererOptions(new EnhancedLegendRenderer()
+								.setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true)));
 	}
 
 	private static Highlighter createHighLighter() {
@@ -94,13 +105,6 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.setTooltipAxes(TooltipAxes.XY_BAR);
 	}
 
-	private static Legend createdLegendEnhancedInsideWest() {
-		return setLegendStyling(
-				new Legend().setShow(true).setPlacement(LegendPlacements.INSIDE_GRID).setLocation(LegendLocations.WEST)
-						.setRenderer(LegendRenderers.ENHANCED).setRendererOptions(new EnhancedLegendRenderer()
-								.setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true)));
-	}
-
 	private static Legend createLegendOutside() {
 		return setLegendStyling(new Legend().setShow(true)
 				.setRendererOptions(
@@ -108,56 +112,14 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.setPlacement(LegendPlacements.OUTSIDE_GRID));
 	}
 
-	private static Legend createdLegendEnhancedInsideNorthWest() {
-		return setLegendStyling(new Legend().setShow(true)
-				.setRendererOptions(
-						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true))
-				.setPlacement(LegendPlacements.INSIDE_GRID).setLocation(LegendLocations.NORTH_WEST));
+	private static SeriesDefaults createSeriesDefaultPieChart() {
+		return new SeriesDefaults().setRenderer(SeriesRenderers.PIE)
+				.setRendererOptions(new PieRenderer().setShowDataLabels(true)).setShadow(true);
 	}
 
 	private static Legend setLegendStyling(final Legend legend) {
 		legend.setBackground("#13303f").setFontFamily("Inconsolata").setTextColor("#2debf5").setFontSize("22px");
 		return legend;
-	}
-
-	@Override
-	public Options createOptions2(final SeriesDefaults seriesDefaults) {
-		final Legend legend = createdLegendEnhancedInsideNorthWest();
-
-		final Highlighter highlighter = new Highlighter().setShow(true).setShowTooltip(true)
-				.setTooltipAlwaysVisible(true).setKeepTooltipInsideChart(true);
-
-		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend)
-				.setHighlighter(highlighter).addOption(createDefaultGrid());
-		return options;
-	}
-
-	@Override
-	public Options createOptions(final Series series, final SeriesDefaults seriesDefaults) {
-		final Legend legend = createdLegendEnhancedInsideNorthWest();
-
-		final Highlighter highlighter = new Highlighter().setShow(true).setShowTooltip(true)
-				.setTooltipAlwaysVisible(true).setKeepTooltipInsideChart(true);
-
-		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend)
-				.setHighlighter(highlighter).addOption(series).addOption(createDefaultGrid());
-		return options;
-	}
-
-	@Override
-	public Options createOptions3() {
-		final Options options = new Options().setSeriesDefaults(createSeriesDefaultPieChart())
-				.setLegend(createdLegendEnhancedInsideWest()).setHighlighter(createHighLighter())
-				.addOption(createDefaultGrid());
-		return options;
-	}
-
-	@Override
-	public Options createOptions4(final Series series) {
-		final Options options = new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
-				.addOption(createHighLighterNorth()).addOption(createCursor()).addOption(series)
-				.addOption(createLegendOutside()).addOption(createDefaultGrid());
-		return options;
 	}
 
 	private Cursor createCursor() {
@@ -166,7 +128,52 @@ public final class ChartOptionsImpl implements ChartOptions {
 	}
 
 	@Override
-	public Options createOptions5(final Series series) {
+	public Options createOptionsCountryLineChart(final String label, final Series series) {
+		final Axes axes = new Axes().addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
+				.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT))
+				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(new XYaxis(XYaxes.Y).setLabel(label));
+
+		final Options options = new Options().addOption(new SeriesDefaults()).addOption(axes)
+				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside())
+				.addOption(createDefaultGrid());
+		return options;
+	}
+
+	@Override
+	public Options createOptionsDonoutChart() {
+		final Legend legend = createdLegendEnhancedInsideNorthWest();
+
+		final Highlighter highlighter = new Highlighter().setShow(true).setShowTooltip(true)
+				.setTooltipAlwaysVisible(true).setKeepTooltipInsideChart(true);
+		
+		final SeriesDefaults seriesDefaults = new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
+				.setRendererOptions(new DonutRenderer().setSliceMargin(3).setStartAngle(-90).setShowDataLabels(true)
+						.setDataLabels(DataLabels.VALUE));
+
+
+		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend)
+				.setHighlighter(highlighter).addOption(createDefaultGrid());
+		return options;
+	}
+
+	@Override
+	public Options createOptionsDonoutChartWithSeries(final Series series) {
+		final Legend legend = createdLegendEnhancedInsideNorthWest();
+
+		final Highlighter highlighter = new Highlighter().setShow(true).setShowTooltip(true)
+				.setTooltipAlwaysVisible(true).setKeepTooltipInsideChart(true);
+
+		final SeriesDefaults seriesDefaults = new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
+				.setRendererOptions(new DonutRenderer().setSliceMargin(3).setStartAngle(-90).setShowDataLabels(true)
+						.setDataLabels(DataLabels.VALUE));
+
+		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend)
+				.setHighlighter(highlighter).addOption(series).addOption(createDefaultGrid());
+		return options;
+	}
+
+	@Override
+	public Options createOptionsPartyLineChart(final Series series) {
 		final Options options = new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
 				.addOption(createHighLighterNorth()).addOption(createCursor()).addOption(series)
 				.addOption(createLegendOutside()).addOption(createDefaultGrid());
@@ -174,13 +181,17 @@ public final class ChartOptionsImpl implements ChartOptions {
 	}
 
 	@Override
-	public Options createOptions6(final String label, final Series series) {
-		final Axes axes = new Axes().addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
-				.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT))
-				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(new XYaxis(XYaxes.Y).setLabel(label));
+	public Options createOptionsPersonLineChart(final Series series) {
+		final Options options = new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
+				.addOption(createHighLighterNorth()).addOption(createCursor()).addOption(series)
+				.addOption(createLegendOutside()).addOption(createDefaultGrid());
+		return options;
+	}
 
-		final Options options = new Options().addOption(new SeriesDefaults()).addOption(axes)
-				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside())
+	@Override
+	public Options createOptionsPieChart() {
+		final Options options = new Options().setSeriesDefaults(createSeriesDefaultPieChart())
+				.setLegend(createdLegendEnhancedInsideWest()).setHighlighter(createHighLighter())
 				.addOption(createDefaultGrid());
 		return options;
 	}
