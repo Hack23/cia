@@ -67,9 +67,9 @@ public final class ChartOptionsImpl implements ChartOptions {
 	private static Axes createAxesXYDateFloat() {
 		return new Axes()
 				.addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
-						.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT))
+						.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily("Inconsolata").setTextColor("#2debf5").setFontSize("14px"))
 						.setNumberTicks(NUMBER_TICKS_DATE))
-				.addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFormatString("%.2f")));
+				.addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFormatString("%.2f").setFontFamily("Inconsolata").setTextColor("#2debf5").setFontSize("14px")));
 	}
 
 	private static Grid createDefaultGrid() {
@@ -130,8 +130,8 @@ public final class ChartOptionsImpl implements ChartOptions {
 	@Override
 	public Options createOptionsCountryLineChart(final String label, final Series series) {
 		final Axes axes = new Axes().addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
-				.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT))
-				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(new XYaxis(XYaxes.Y).setLabel(label));
+				.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily("Inconsolata").setTextColor("#2debf5").setFontSize("14px"))
+				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(new XYaxis(XYaxes.Y).setLabel(label).setTickOptions(new AxisTickRenderer().setFontFamily("Inconsolata").setTextColor("#2debf5").setFontSize("14px")));
 
 		final Options options = new Options().addOption(new SeriesDefaults()).addOption(axes)
 				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside())
