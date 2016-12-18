@@ -29,13 +29,11 @@ public interface ChartOptions {
 	/**
 	 * Creates the options country line chart.
 	 *
-	 * @param label
-	 *            the label
 	 * @param series
 	 *            the series
 	 * @return the options
 	 */
-	Options createOptionsCountryLineChart(String label, Series series);
+	Options createOptionsCountryLineChart(Series series);
 
 	/**
 	 * Creates the options donout chart.

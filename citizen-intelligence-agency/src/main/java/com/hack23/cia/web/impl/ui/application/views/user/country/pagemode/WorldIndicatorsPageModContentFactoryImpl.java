@@ -133,6 +133,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 		final List<WorldBankData> dataList = dataContainer.findListByEmbeddedProperty(WorldBankData.class, WorldBankData_.indicator, Indicator.class, Indicator_.id, indicator);
 
 		chartDataManager.createIndicatorChart(verticalLayout,dataList,indicatorSummaryValue);
+
 	}
 
 }

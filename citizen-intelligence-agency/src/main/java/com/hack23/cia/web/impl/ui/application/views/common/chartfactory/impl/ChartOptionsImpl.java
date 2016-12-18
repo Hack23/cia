@@ -51,7 +51,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Char
 @Component
 public final class ChartOptionsImpl implements ChartOptions {
 
-	private static final String LEGEND_FONT_SIZE = "14px";
+	private static final String LEGEND_FONT_SIZE = "10px";
 
 	private static final String BORDER_COLOR = "#2deff9";
 
@@ -61,7 +61,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 
 	private static final String TEXT_COLOR = "#2debf5";
 
-	private static final String FONT_SIZE = "12px";
+	private static final String FONT_SIZE = "8px";
 
 	private static final String FONT_FAMILY = "Inconsolata";
 
@@ -83,7 +83,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
 						.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE))
 						.setNumberTicks(NUMBER_TICKS_DATE))
-				.addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFormatString("%.2f").setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setMin(0f).setMax(100f).setNumberTicks(5));
+				.addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFormatString("%.2f").setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(5));
 	}
 
 	private static Grid createDefaultGrid() {
@@ -142,10 +142,10 @@ public final class ChartOptionsImpl implements ChartOptions {
 	}
 
 	@Override
-	public Options createOptionsCountryLineChart(final String label, final Series series) {
+	public Options createOptionsCountryLineChart(final Series series) {
 		final Axes axes = new Axes().addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
 				.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE))
-				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(new XYaxis(XYaxes.Y).setLabel(label).setTickOptions(new AxisTickRenderer().setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setMin(0f).setMax(100f).setNumberTicks(5));
+				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(5));
 
 		final Options options = new Options().addOption(new SeriesDefaults()).addOption(axes)
 				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside())
