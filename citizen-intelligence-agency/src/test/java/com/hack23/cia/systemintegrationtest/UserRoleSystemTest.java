@@ -28,6 +28,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
@@ -158,12 +159,12 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DATAGRID));
+		
+		clickFirstRowInGrid(userPageVisit);
+		userPageVisit.validatePage(new
+		PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,""));
 
-		final WebElement button = userPageVisit.getButtons().iterator().next();
-		assertNotNull(button);
-
-		userPageVisit.performClickAction(button);
-
+		
 	}
 
 	/**
@@ -1023,10 +1024,9 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.DATAGRID));
 
-		final WebElement button = userPageVisit.getButtons().iterator().next();
-		assertNotNull(button);
-
-		userPageVisit.performClickAction(button);
+		clickFirstRowInGrid(userPageVisit);
+		userPageVisit.validatePage(new
+		PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,""));
 
 	}
 

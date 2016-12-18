@@ -92,7 +92,7 @@ public final class MinistryMemberHistoryPageModContentFactoryImpl extends Abstra
 					panelContent, govermentRoleMemberDataSource,
 					MEMBER_HISTORY,
 					new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
-							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "personId", "roleId", "personId", "detail" },
+							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "roleId", "personId", "detail" },
 					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null);
 
 			panel.setCaption(MINISTRY + viewRiksdagenMinistry.getNameId());
