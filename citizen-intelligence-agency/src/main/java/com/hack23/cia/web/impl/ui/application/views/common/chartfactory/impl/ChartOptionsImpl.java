@@ -117,7 +117,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 	}
 
 	private static Legend setLegendStyling(final Legend legend) {
-		legend.setBackground("#13303f").setFontFamily("Inconsolata").setTextColor("2debf5");
+		legend.setBackground("#13303f").setFontFamily("Inconsolata").setTextColor("#2debf5").setFontSize("22px");
 		return legend;
 	}
 
