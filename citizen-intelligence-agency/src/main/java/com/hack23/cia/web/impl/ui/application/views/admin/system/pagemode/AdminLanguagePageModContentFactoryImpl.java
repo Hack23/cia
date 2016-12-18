@@ -85,8 +85,8 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
 
 		getGridFactory().createBasicBeanItemGrid(content,
 				politicianDocumentDataSource, "LanguageData",
-				new String[] { "hjid", "languageName", "modelObjectVersion" }, new String[] { "modelObjectId" },
-				"hjid", new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, "hjid"), null);
+				new String[] { "hjid", "languageName", "modelObjectVersion" }, new String[] { "hjid", "modelObjectId" },
+				new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, "hjid"), null);
 
 		if (pageId != null && !pageId.isEmpty()) {
 

@@ -62,7 +62,7 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 
 	/** The chart options. */
 	@Autowired
-	private static ChartOptions chartOptions;
+	private ChartOptions chartOptions;
 
 
 	/**

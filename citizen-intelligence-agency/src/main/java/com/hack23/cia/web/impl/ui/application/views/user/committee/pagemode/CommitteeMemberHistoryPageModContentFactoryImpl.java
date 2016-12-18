@@ -95,8 +95,8 @@ public final class CommitteeMemberHistoryPageModContentFactoryImpl extends Abstr
 					panelContent, committeeRoleMemberDataSource,
 					MEMBER_HISTORY,
 					new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
-							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "roleId", "personId", "detail" },
-					null, new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
+							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "personId", "roleId", "personId", "detail" },
+					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
 
 			panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER,

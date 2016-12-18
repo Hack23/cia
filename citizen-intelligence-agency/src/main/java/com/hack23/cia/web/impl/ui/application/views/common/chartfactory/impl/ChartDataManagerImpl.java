@@ -35,7 +35,7 @@ public final class ChartDataManagerImpl extends AbstractChartDataManagerImpl imp
 
 	/** The chart options. */
 	@Autowired
-	private static ChartOptions chartOptions;
+	private ChartOptions chartOptions;
 
 	/**
 	 * Instantiates a new chart data manager impl.

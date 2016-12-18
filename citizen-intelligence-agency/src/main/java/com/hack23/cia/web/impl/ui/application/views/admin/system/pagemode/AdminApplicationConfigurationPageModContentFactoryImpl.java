@@ -97,8 +97,8 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 				politicianDocumentDataSource,
 				"ApplicationConfiguration",
 				new String[] { "hjid", "configTitle", "configDescription", "configurationGroup", "component",
-						"componentTitle", "componentDescription", "propertyId", "propertyValue" }, new String[] { "modelObjectId", "modelObjectVersion", "createdDate", "updatedDate" },
-				"hjid", new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, "hjid"), null);
+						"componentTitle", "componentDescription", "propertyId", "propertyValue" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "updatedDate" },
+				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, "hjid"), null);
 
 		if (pageId != null && !pageId.isEmpty()) {
 

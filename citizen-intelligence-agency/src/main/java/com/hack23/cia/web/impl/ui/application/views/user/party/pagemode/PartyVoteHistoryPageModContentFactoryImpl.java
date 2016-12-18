@@ -94,7 +94,6 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 					new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
 							"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
 							"percentageAbsent", "percentageAbstain" },
-					"embeddedId.ballotId",
 					new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "embeddedId.ballotId"),
 					"embeddedId.ballotId");
 

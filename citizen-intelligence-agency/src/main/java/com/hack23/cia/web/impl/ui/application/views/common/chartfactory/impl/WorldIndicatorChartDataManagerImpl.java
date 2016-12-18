@@ -41,7 +41,7 @@ public final class WorldIndicatorChartDataManagerImpl extends AbstractChartDataM
 
 	/** The chart options. */
 	@Autowired
-	private static ChartOptions chartOptions;
+	private ChartOptions chartOptions;
 
 
 	/**

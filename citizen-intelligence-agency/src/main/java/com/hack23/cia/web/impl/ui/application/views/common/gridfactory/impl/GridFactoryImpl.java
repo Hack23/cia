@@ -29,9 +29,7 @@ import com.vaadin.data.Container.Indexed;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Grid;
-import com.vaadin.ui.Grid.Column;
 import com.vaadin.ui.Grid.SelectionMode;
-import com.vaadin.ui.renderers.ButtonRenderer;
 
 /**
  * The Class GridFactoryImpl.
@@ -49,16 +47,16 @@ public final class GridFactoryImpl implements GridFactory {
 	@Override
 	public void createBasicBeanItemGrid(final AbstractOrderedLayout panelContent, final Container.Indexed datasource,
 			final String caption, final Object[] columnOrder, final Object[] hideColumns,
-			final String idProprty, final AbstractPageItemRendererClickListener<?> listener, final String actionId) {
-		createBasicBeanItemNestedPropertiesGrid(panelContent,datasource, caption, null, columnOrder, hideColumns, idProprty, listener, actionId);
+			final AbstractPageItemRendererClickListener<?> listener, final String actionId) {
+		createBasicBeanItemNestedPropertiesGrid(panelContent,datasource, caption, null, columnOrder, hideColumns, listener, actionId);
 
 
 	}
 
 	@Override
 	public void createBasicBeanItemNestedPropertiesGrid(final AbstractOrderedLayout panelContent,final Indexed datasource, final String caption, final String[] nestedProperties,
-			final Object[] columnOrder, final Object[] hideColumns, final String idProprty,
-			final AbstractPageItemRendererClickListener<?> listener, final String actionId) {
+			final Object[] columnOrder, final Object[] hideColumns, final AbstractPageItemRendererClickListener<?> listener,
+			final String actionId) {
 		final Grid grid = new Grid(datasource);
 
 		grid.setCaption(caption);
@@ -68,7 +66,7 @@ public final class GridFactoryImpl implements GridFactory {
 
 		configureColumnOrdersAndHiddenFields(columnOrder, hideColumns, grid);
 
-		configureListeners(idProprty, listener, grid);
+		configureListeners(listener, grid);
 
 		grid.setSizeFull();
 
@@ -133,14 +131,8 @@ public final class GridFactoryImpl implements GridFactory {
 	 * @param grid
 	 *            the grid
 	 */
-	private static void configureListeners(final String idProprty, final AbstractPageItemRendererClickListener<?> listener,
+	private static void configureListeners(final AbstractPageItemRendererClickListener<?> listener,
 			final Grid grid) {
-		if (idProprty != null && listener != null) {
-			final Column column = grid.getColumn(idProprty);
-
-			column.setRenderer(new ButtonRenderer(listener));
-
-		}
 
 		if (listener != null) {
 			grid.addSelectionListener(listener);

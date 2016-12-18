@@ -69,7 +69,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 
 	/** The chart options. */
 	@Autowired
-	private static ChartOptions chartOptions;
+	private ChartOptions chartOptions;
 
 	/**
 	 * Instantiates a new admin chart data manager impl.

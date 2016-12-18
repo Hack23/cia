@@ -107,8 +107,8 @@ public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl
 							"label", "voteDate", "avgBornYear", "totalVotes", "yesVotes", "noVotes", "abstainVotes",
 							"absentVotes", "approved", "noWinner", "percentageYes", "percentageNo", "percentageAbsent",
 							"percentageAbstain", "percentageMale" },
-					new String[] { "embeddedId" }, "ballotId",
-					new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "ballotId"), "ballotId");
+					new String[] { "embeddedId" }, new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "ballotId"),
+					"ballotId");
 
 			panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER,

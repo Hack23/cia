@@ -86,8 +86,8 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 				politicianDocumentDataSource,
 				"Portal",
 				new String[] { "hjid", "portalName", "description", "portalType", "googleMapApiKey",
-						"modelObjectVersion" }, new String[] { "modelObjectId" },
-				"hjid", new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid"), null);
+						"modelObjectVersion" }, new String[] { "hjid", "modelObjectId" },
+				new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid"), null);
 
 		if (pageId != null && !pageId.isEmpty()) {
 
