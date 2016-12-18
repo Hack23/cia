@@ -71,7 +71,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 	}
 
 	private static Grid createDefaultGrid() {
-		Grid grid = new Grid();
+		final Grid grid = new Grid();
 		grid.setBackground("#13303f");
 		grid.setGridLineColor("#213f49");
 		grid.setBorderColor("#2deff9");

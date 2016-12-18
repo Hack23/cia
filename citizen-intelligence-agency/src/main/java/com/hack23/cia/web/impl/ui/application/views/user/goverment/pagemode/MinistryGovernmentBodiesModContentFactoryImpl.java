@@ -45,7 +45,7 @@ public final class MinistryGovernmentBodiesModContentFactoryImpl extends Abstrac
 
 	/** The Constant MINISTRY. */
 	private static final String MINISTRY = "Ministry:";
-	
+
 	@Autowired
 	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
 
@@ -78,9 +78,9 @@ public final class MinistryGovernmentBodiesModContentFactoryImpl extends Abstrac
 			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,GOVERNMENT_BODIES);
-						
+
 			governmentBodyChartDataManager.createMinistryGovernmentBodyHeadcountSummaryChart(panelContent, viewRiksdagenMinistry.getNameId());
-						
+
 			panel.setCaption(MINISTRY + viewRiksdagenMinistry.getNameId());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);

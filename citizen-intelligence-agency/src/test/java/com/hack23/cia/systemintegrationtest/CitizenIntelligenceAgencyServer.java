@@ -70,8 +70,8 @@ public final class CitizenIntelligenceAgencyServer {
 		super();
 		initLogger();
 	}
-	
-	
+
+
 	/**
 	 * The main method.
 	 *
@@ -80,7 +80,7 @@ public final class CitizenIntelligenceAgencyServer {
 	 */
 	public static void main(final String[] args) {
 		CitizenIntelligenceAgencyServer.setEnv("CIA_APP_ENCRYPTION_PASSWORD", "allhaildiscordia");
-		
+
 		final CitizenIntelligenceAgencyServer testServer = new CitizenIntelligenceAgencyServer();
 		testServer.startServer();
 	}
@@ -93,15 +93,15 @@ public final class CitizenIntelligenceAgencyServer {
 	 * @param value
 	 *            the value
 	 */
-	public static void setEnv(String key, String value) {
+	public static void setEnv(final String key, final String value) {
 	    try {
-	        Map<String, String> env = System.getenv();
-	        Class<?> cl = env.getClass();
-	        Field field = cl.getDeclaredField("m");
+	        final Map<String, String> env = System.getenv();
+	        final Class<?> cl = env.getClass();
+	        final Field field = cl.getDeclaredField("m");
 	        field.setAccessible(true);
-	        Map<String, String> writableEnv = (Map<String, String>) field.get(env);
+	        final Map<String, String> writableEnv = (Map<String, String>) field.get(env);
 	        writableEnv.put(key, value);
-	    } catch (Exception e) {
+	    } catch (final Exception e) {
 	        throw new IllegalStateException("Failed to set environment variable", e);
 	    }
 	}

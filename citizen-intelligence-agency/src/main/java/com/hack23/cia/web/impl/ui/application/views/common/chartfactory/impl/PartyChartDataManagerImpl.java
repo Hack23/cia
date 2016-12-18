@@ -66,7 +66,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
-	
+
 	/** The chart options. */
 	@Autowired
 	private static ChartOptions chartOptions;

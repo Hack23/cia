@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -45,7 +45,7 @@ public class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManager
 
 	@Autowired
 	private EsvApi esvApi;
-	
+
 	/** The chart options. */
 	@Autowired
 	private static ChartOptions chartOptions;
@@ -59,7 +59,7 @@ public class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManager
 	}
 
 	@Override
-	public void createGovernmentBodyHeadcountChart(AbstractOrderedLayout content, String name) {
+	public void createGovernmentBodyHeadcountChart(final AbstractOrderedLayout content, final String name) {
 		final Map<Integer, GovernmentBodyAnnualSummary> map = esvApi.getDataPerGovernmentBody(name);
 
 		final DataSeries dataSeries = new DataSeries();
@@ -71,7 +71,7 @@ public class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManager
 		dataSeries.newSeries();
 
 		for (final Entry<Integer, GovernmentBodyAnnualSummary> entry : map.entrySet()) {
-			GovernmentBodyAnnualSummary item = entry.getValue();
+			final GovernmentBodyAnnualSummary item = entry.getValue();
 			if (entry.getKey() != null) {
 				if (item != null && item.getHeadCount() > 0) {
 					dataSeries.add("01-JAN-" + item.getYear(), item.getHeadCount());
@@ -84,29 +84,29 @@ public class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManager
 	}
 
 	@Override
-	public void createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout content, String name) {
+	public void createMinistryGovernmentBodyHeadcountSummaryChart(final AbstractOrderedLayout content, final String name) {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getDataPerMinistry(name);
 		final List<String> governmentBodyNames = esvApi.getGovernmentBodyNames(name);
-		
+
 		final DataSeries dataSeries = new DataSeries();
 		final Series series = new Series();
 
-		for (String govBodyName : governmentBodyNames) {
-					
+		for (final String govBodyName : governmentBodyNames) {
+
 			series.addSeries(new XYseries().setLabel(govBodyName));
-	
+
 			dataSeries.newSeries();
 
 			for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
-	
-				List<GovernmentBodyAnnualSummary> item = entry.getValue();
-				Integer totalHeadcount = item.stream().filter(p -> p.getName().equalsIgnoreCase(govBodyName)).collect(Collectors.summingInt(p -> p.getHeadCount()));
-	
+
+				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
+				final Integer totalHeadcount = item.stream().filter(p -> p.getName().equalsIgnoreCase(govBodyName)).collect(Collectors.summingInt(p -> p.getHeadCount()));
+
 				if (entry.getKey() != null) {
 					if (item != null && totalHeadcount > 0) {
 						dataSeries.add("01-JAN-" + entry.getKey(), totalHeadcount);
 					}
-	
+
 				}
 			}
 		}
@@ -118,15 +118,15 @@ public class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManager
 	}
 
 	@Override
-	public void createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout content) {
+	public void createMinistryGovernmentBodyHeadcountSummaryChart(final AbstractOrderedLayout content) {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getData();
-		List<String> ministryNames = esvApi.getMinistryNames();
+		final List<String> ministryNames = esvApi.getMinistryNames();
 
 		final DataSeries dataSeries = new DataSeries();
 
 		final Series series = new Series();
 
-		for (String ministryName : ministryNames) {
+		for (final String ministryName : ministryNames) {
 
 			series.addSeries(new XYseries().setLabel(ministryName));
 
@@ -134,8 +134,8 @@ public class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManager
 
 			for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
 
-				List<GovernmentBodyAnnualSummary> item = entry.getValue();
-				Integer totalHeadcount = item.stream().filter(p -> p.getMinistry().equalsIgnoreCase(ministryName)).collect(Collectors.summingInt(p -> p.getHeadCount()));
+				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
+				final Integer totalHeadcount = item.stream().filter(p -> p.getMinistry().equalsIgnoreCase(ministryName)).collect(Collectors.summingInt(p -> p.getHeadCount()));
 
 				if (entry.getKey() != null) {
 					if (item != null && totalHeadcount > 0) {

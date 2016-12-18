@@ -59,17 +59,17 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 
 	/** The Constant usingExternalServer. */
 	private static final boolean usingExternalServer;
-		
+
 	static {
-		 String systemTestTargetUrlProperty = System.getProperty("system.test.target.url");
+		 final String systemTestTargetUrlProperty = System.getProperty("system.test.target.url");
 		 if (systemTestTargetUrlProperty != null && systemTestTargetUrlProperty.trim().length() > 0) {
 			 usingExternalServer=true;
 		 } else {
 			 usingExternalServer=false;
-		 }	
+		 }
 		CitizenIntelligenceAgencyServer.setEnv("CIA_APP_ENCRYPTION_PASSWORD", "allhaildiscordia");
 	}
-		
+
 	/**
 	 * Instantiates a new abstract role system test.
 	 *
@@ -79,8 +79,8 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 	public AbstractRoleSystemTest(final String browser) {
 		super();
 		this.browser = browser;
-		
-		
+
+
 	}
 
 

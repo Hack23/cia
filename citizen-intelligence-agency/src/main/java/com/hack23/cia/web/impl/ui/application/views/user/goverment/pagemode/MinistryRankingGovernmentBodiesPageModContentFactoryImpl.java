@@ -68,7 +68,7 @@ public final class MinistryRankingGovernmentBodiesPageModContentFactoryImpl exte
 
 
 		panel.setCaption(GOVERNMENT_BODIES + parameters);
-		
+
 		governmentBodyChartDataManager.createMinistryGovernmentBodyHeadcountSummaryChart(panelContent);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
