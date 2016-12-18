@@ -90,7 +90,7 @@ public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractP
 					"Leader History",
 					new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
 							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "roleId", "personId", "party", "detail" },
-					null, new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
+					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
 
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);

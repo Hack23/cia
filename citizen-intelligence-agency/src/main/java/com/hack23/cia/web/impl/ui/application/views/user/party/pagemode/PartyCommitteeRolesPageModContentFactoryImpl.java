@@ -89,7 +89,7 @@ public final class PartyCommitteeRolesPageModContentFactoryImpl extends Abstract
 					COMMITTEE_ROLES,
 					new String[] { "roleId", "personId", "firstName", "lastName", "detail", "active",
 							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "roleId", "personId", "party" },
-					null, new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
+					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
 
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);

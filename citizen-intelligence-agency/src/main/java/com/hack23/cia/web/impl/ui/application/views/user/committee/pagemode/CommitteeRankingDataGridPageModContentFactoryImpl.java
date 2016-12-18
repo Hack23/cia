@@ -84,7 +84,7 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 				"Committees",
 				new String[] { "embeddedId.orgCode", "embeddedId.detail", "totalDaysServed", "currentMemberSize",
 						"totalAssignments", "firstAssignmentDate", "active", "lastAssignmentDate" }, new String[] { "embeddedId" },
-				"embeddedId.orgCode", new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, "embeddedId.orgCode"), null);
+				new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, "embeddedId.orgCode"), null);
 
 		panel.setCaption(DATAGRID + parameters);
 

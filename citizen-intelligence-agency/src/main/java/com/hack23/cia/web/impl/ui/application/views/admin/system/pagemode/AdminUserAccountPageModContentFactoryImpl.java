@@ -86,8 +86,8 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 				politicianDocumentDataSource,
 				"UserAccount",
 				new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "userId", "username",
-						"userType", "userRole", "userpassword", "email", "country", "numberOfVisits" }, new String[] { "modelObjectId" },
-				"hjid", new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, "hjid"), null);
+						"userType", "userRole", "userpassword", "email", "country", "numberOfVisits" }, new String[] { "hjid", "modelObjectId" },
+				new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, "hjid"), null);
 
 
 		if (pageId != null && !pageId.isEmpty()) {

@@ -106,7 +106,7 @@ public final class DocumentReferencesPageModContentFactoryImpl extends AbstractD
 				getGridFactory().createBasicBeanItemGrid(
 						panelContent, documentReferenceDataDataSource,
 						"Document references",
-						new String[] { "referenceType", "referenceDocumentId", "detail" }, new String[] { "hjid" }, null, null, null);
+						new String[] { "referenceType", "referenceDocumentId", "detail" }, new String[] { "hjid" }, null, null);
 			}
 
 

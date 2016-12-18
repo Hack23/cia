@@ -91,8 +91,8 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 		getGridFactory().createBasicBeanItemGrid(content, politicianDocumentDataSource,
 				"ApplicationSession",
 				new String[] { "hjid", "createdDate", "sessionType", "sessionId", "operatingSystem", "locale",
-						"ipInformation", "userAgentInformation", "events" }, new String[] { "modelObjectId", "modelObjectVersion" },
-				"hjid", new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid"), null);
+						"ipInformation", "userAgentInformation", "events" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion" },
+				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid"), null);
 
 		if (pageId != null && !pageId.isEmpty()) {
 
@@ -123,9 +123,9 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 						"ApplicationActionEvent",
 						new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation", "page", "pageMode",
 								"elementId", "actionName", "userId", "sessionId", "errorMessage", "applicationMessage",
-								"modelObjectVersion" }, new String[] { "modelObjectId" },
-						"hjid",
-						new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null);
+								"modelObjectVersion" }, new String[] { "hjid", "modelObjectId" },
+						new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"),
+						null);
 			}
 
 		}

@@ -86,8 +86,8 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 				.createBasicBeanItemGrid(content, politicianDocumentDataSource,
 						"Country",
 						new String[] { "hjid", "id", "countryName", "iso2Code", "capitalCity", "longitude",
-								"latitude" }, new String[] { "region", "adminregion" },
-						"hjid", new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "hjid"), null);
+								"latitude" }, new String[] { "hjid", "region", "adminregion" },
+						new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "hjid"), null);
 
 		if (pageId != null && !pageId.isEmpty()) {
 

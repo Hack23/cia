@@ -48,7 +48,7 @@ public class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManager
 
 	/** The chart options. */
 	@Autowired
-	private static ChartOptions chartOptions;
+	private ChartOptions chartOptions;
 
 
 	/**

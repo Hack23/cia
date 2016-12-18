@@ -96,7 +96,7 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 					ViewRiksdagenCommitteeDecisions.class, decisionPartySummaryList);
 
 			getGridFactory().createBasicBeanItemGrid(
-					panelContent, committeeDecisionDataSource, DECISION_SUMMARY, null, null, null, null, null);
+					panelContent, committeeDecisionDataSource, DECISION_SUMMARY, null, null, null, null);
 
 			panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER,

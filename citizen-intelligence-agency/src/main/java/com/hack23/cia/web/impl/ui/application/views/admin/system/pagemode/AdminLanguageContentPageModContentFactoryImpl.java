@@ -86,8 +86,8 @@ public final class AdminLanguageContentPageModContentFactoryImpl extends Abstrac
 				politicianDocumentDataSource,
 				"LanguageContentData",
 				new String[] { "hjid", "languageContentType", "refKey", "fromLanguage", "toLanguage", "createdDate",
-						"languageValue", "modelObjectVersion" }, new String[] { "modelObjectId" },
-				"hjid", new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, "hjid"), null);
+						"languageValue", "modelObjectVersion" }, new String[] { "hjid", "modelObjectId" },
+				new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, "hjid"), null);
 
 		if (pageId != null && !pageId.isEmpty()) {
 

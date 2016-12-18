@@ -45,7 +45,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 
 	/** The chart options. */
 	@Autowired
-	private static ChartOptions chartOptions;
+	private ChartOptions chartOptions;
 
 	/**
 	 * Instantiates a new ballot chart data manager impl.

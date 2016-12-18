@@ -40,15 +40,13 @@ public interface GridFactory {
 	 *            the column order
 	 * @param hideColumns
 	 *            the hide columns
-	 * @param idProprty
-	 *            the id proprty
 	 * @param listener
 	 *            the listener
 	 * @param actionId
 	 *            the action id
 	 */
 	void createBasicBeanItemGrid(AbstractOrderedLayout panelContent, Indexed datasource, String caption, Object[] columnOrder,
-			Object[] hideColumns, String idProprty, AbstractPageItemRendererClickListener<?> listener, String actionId);
+			Object[] hideColumns, AbstractPageItemRendererClickListener<?> listener, String actionId);
 
 	/**
 	 * Creates a new Grid object.
@@ -65,14 +63,12 @@ public interface GridFactory {
 	 *            the column order
 	 * @param hideColumns
 	 *            the hide columns
-	 * @param idProprty
-	 *            the id proprty
 	 * @param listener
 	 *            the listener
 	 * @param actionId
 	 *            the action id
 	 */
 	void createBasicBeanItemNestedPropertiesGrid(AbstractOrderedLayout panelContent,Indexed datasource, String caption, String[] nestedProperties,Object[] columnOrder, Object[] hideColumns,
-			String idProprty, AbstractPageItemRendererClickListener<?> listener, String actionId);
+			AbstractPageItemRendererClickListener<?> listener, String actionId);
 
 }

@@ -92,7 +92,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 
 	/** The chart options. */
 	@Autowired
-	private static ChartOptions chartOptions;
+	private ChartOptions chartOptions;
 
 
 	/**

@@ -115,7 +115,7 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractPageM
 								"subTitle", "status" },
 						new String[] { "label", "id", "hit", "relatedId", "org", "tempLabel", "numberValue",
 								"systemDate", "kallId", "documentFormat", "documentUrlText", "documentUrlHtml",
-								"documentStatusUrlXml", "committeeReportUrlXml" }, null, null, null);
+								"documentStatusUrlXml", "committeeReportUrlXml" }, null, null);
 
 			}
 		};
