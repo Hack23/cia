@@ -18,9 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
 
-import org.dussan.vaadin.dcharts.options.Axes;
-import org.dussan.vaadin.dcharts.options.Highlighter;
-import org.dussan.vaadin.dcharts.options.Legend;
 import org.dussan.vaadin.dcharts.options.Options;
 import org.dussan.vaadin.dcharts.options.Series;
 import org.dussan.vaadin.dcharts.options.SeriesDefaults;
@@ -31,41 +28,6 @@ import org.dussan.vaadin.dcharts.options.SeriesDefaults;
 public interface ChartOptions {
 
 	/**
-	 * Creates the legend outside.
-	 *
-	 * @return the legend
-	 */
-	Legend createLegendOutside();
-
-	/**
-	 * Created legend enhanced inside west.
-	 *
-	 * @return the legend
-	 */
-	Legend createdLegendEnhancedInsideWest();
-
-	/**
-	 * Creates the high lighter north.
-	 *
-	 * @return the highlighter
-	 */
-	Highlighter createHighLighterNorth();
-
-	/**
-	 * Creates the high lighter.
-	 *
-	 * @return the highlighter
-	 */
-	Highlighter createHighLighter();
-
-	/**
-	 * Creates the series default pie chart.
-	 *
-	 * @return the series defaults
-	 */
-	SeriesDefaults createSeriesDefaultPieChart();
-
-	/**
 	 * Creates the options xy date float legend outside.
 	 *
 	 * @param series
@@ -73,13 +35,6 @@ public interface ChartOptions {
 	 * @return the options
 	 */
 	Options createOptionsXYDateFloatLegendOutside(Series series);
-
-	/**
-	 * Creates the axes xy date float.
-	 *
-	 * @return the axes
-	 */
-	Axes createAxesXYDateFloat();
 
 	Options createOptions2(SeriesDefaults seriesDefaults);
 
