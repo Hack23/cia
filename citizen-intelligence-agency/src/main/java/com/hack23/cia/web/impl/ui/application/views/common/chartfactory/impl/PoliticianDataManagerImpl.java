@@ -30,6 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PoliticianChartDataManager;
 import com.vaadin.ui.AbstractOrderedLayout;
@@ -58,6 +59,10 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 	/** The data chart manager. */
 	@Autowired
 	private GenericChartDataManager<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dataChartManager;
+
+	/** The chart options. */
+	@Autowired
+	private static ChartOptions chartOptions;
 
 
 	/**
@@ -88,7 +93,7 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 
 		}
 
-		addChart(content,"Ballot indicators", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptions5(series)).show());
+		addChart(content,"Ballot indicators", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptions5(series)).show());
 	}
 
 

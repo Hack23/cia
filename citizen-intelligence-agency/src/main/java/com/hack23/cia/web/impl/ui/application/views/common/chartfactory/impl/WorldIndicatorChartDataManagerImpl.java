@@ -24,10 +24,12 @@ import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
 import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.dussan.vaadin.dcharts.options.Series;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
 import com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.WorldIndicatorChartDataManager;
 import com.vaadin.ui.AbstractOrderedLayout;
 
@@ -37,6 +39,9 @@ import com.vaadin.ui.AbstractOrderedLayout;
 @Service
 public final class WorldIndicatorChartDataManagerImpl extends AbstractChartDataManagerImpl implements WorldIndicatorChartDataManager {
 
+	/** The chart options. */
+	@Autowired
+	private static ChartOptions chartOptions;
 
 
 	/**
@@ -65,7 +70,7 @@ public final class WorldIndicatorChartDataManagerImpl extends AbstractChartDataM
 			}
 		}
 
-		addChart(content,"Country indicator" +summary.getIndicatorName(), new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptions6(summary.getIndicatorName(), series)).show());
+		addChart(content,"Country indicator" +summary.getIndicatorName(), new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptions6(summary.getIndicatorName(), series)).show());
 	}
 
 

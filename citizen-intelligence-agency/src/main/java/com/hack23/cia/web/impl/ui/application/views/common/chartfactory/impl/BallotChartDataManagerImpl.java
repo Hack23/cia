@@ -28,11 +28,13 @@ import org.dussan.vaadin.dcharts.metadata.renderers.SeriesRenderers;
 import org.dussan.vaadin.dcharts.options.Series;
 import org.dussan.vaadin.dcharts.options.SeriesDefaults;
 import org.dussan.vaadin.dcharts.renderers.series.DonutRenderer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.BallotChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
@@ -40,6 +42,10 @@ import com.vaadin.ui.AbstractOrderedLayout;
  */
 @Service
 public final class BallotChartDataManagerImpl extends AbstractChartDataManagerImpl implements BallotChartDataManager {
+
+	/** The chart options. */
+	@Autowired
+	private static ChartOptions chartOptions;
 
 	/**
 	 * Instantiates a new ballot chart data manager impl.
@@ -64,7 +70,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 				.setRendererOptions(new DonutRenderer().setSliceMargin(3).setStartAngle(-90).setShowDataLabels(true)
 						.setDataLabels(DataLabels.VALUE));
 
-		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptions2(seriesDefaults)).show());
+		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptions2(seriesDefaults)).show());
 	}
 
 
@@ -97,7 +103,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 				.setRendererOptions(new DonutRenderer().setSliceMargin(3).setStartAngle(-90).setShowDataLabels(true)
 						.setDataLabels(DataLabels.VALUE));
 
-		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptions(series, seriesDefaults)).show());
+		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptions(series, seriesDefaults)).show());
 	}
 
 }

@@ -45,6 +45,7 @@ import com.hack23.cia.model.internal.application.data.impl.ViewApplicationAction
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
@@ -66,6 +67,10 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	@Autowired
 	private ApplicationManager applicationManager;
 
+	/** The chart options. */
+	@Autowired
+	private static ChartOptions chartOptions;
+	
 	/**
 	 * Instantiates a new admin chart data manager impl.
 	 */
@@ -117,7 +122,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 
 		}
 
-		addChart(content,"Application Action Events daily Summary", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,"Application Action Events daily Summary", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 
@@ -170,7 +175,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 
 		}
 
-		addChart(content,"Page Action Events daily Summary", new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,"Page Action Events daily Summary", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 
@@ -224,7 +229,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 			}
 		}
 
-		addChart(content, "Page element Action Events daily Summary",new DCharts().setDataSeries(dataSeries).setOptions(ChartOptionsImpl.INSTANCE.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content, "Page element Action Events daily Summary",new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
 	}
 
 
