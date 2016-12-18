@@ -51,7 +51,6 @@ public final class ChartDataManagerImpl extends AbstractChartDataManagerImpl imp
 		final DCharts chart = new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsPieChart());
 
 		chart.show();
-		chart.setSizeFull();
 
 		addChart(content,caption, chart);
 

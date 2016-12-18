@@ -59,7 +59,7 @@ public abstract class AbstractChartDataManagerImpl {
 	protected final void addChart(final AbstractOrderedLayout content,final String caption, final DCharts chart) {
 		content.addComponent(chart);
 		chart.setCaption(caption);
-		content.setExpandRatio(chart, ContentRatio.GRID);
+		content.setExpandRatio(chart, ContentRatio.CHART);
 	}
 
 	/**
