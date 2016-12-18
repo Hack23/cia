@@ -48,7 +48,7 @@ public final class ChartDataManagerImpl extends AbstractChartDataManagerImpl imp
 	@Override
 	public void createChartPanel(final AbstractOrderedLayout content,final DataSeries dataSeries, final String caption) {
 
-		final DCharts chart = new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptions3());
+		final DCharts chart = new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsPieChart());
 
 		chart.show();
 		chart.setSizeFull();

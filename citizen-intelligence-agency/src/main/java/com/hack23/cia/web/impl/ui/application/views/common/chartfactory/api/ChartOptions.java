@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
 
 import org.dussan.vaadin.dcharts.options.Options;
 import org.dussan.vaadin.dcharts.options.Series;
-import org.dussan.vaadin.dcharts.options.SeriesDefaults;
 
 /**
  * The Interface ChartOptions.
@@ -28,24 +27,64 @@ import org.dussan.vaadin.dcharts.options.SeriesDefaults;
 public interface ChartOptions {
 
 	/**
-	 * Creates the options xy date float legend outside.
+	 * Creates the options country line chart.
+	 *
+	 * @param label
+	 *            the label
+	 * @param series
+	 *            the series
+	 * @return the options
+	 */
+	Options createOptionsCountryLineChart(String label, Series series);
+
+	/**
+	 * Creates the options donout chart.
+	 *
+	 * @return the options
+	 */
+	Options createOptionsDonoutChart();
+
+	/**
+	 * Creates the options donout chart with series.
+	 *
+	 * @param series
+	 *            the series
+	 * @return the options
+	 */
+	Options createOptionsDonoutChartWithSeries(Series series);
+
+	/**
+	 * Creates the options party line chart.
+	 *
+	 * @param series
+	 *            the series
+	 * @return the options
+	 */
+	Options createOptionsPartyLineChart(Series series);
+
+	/**
+	 * Creates the options person line chart.
+	 *
+	 * @param series
+	 *            the series
+	 * @return the options
+	 */
+	Options createOptionsPersonLineChart(Series series);
+
+	/**
+	 * Creates the options pie chart.
+	 *
+	 * @return the options
+	 */
+	Options createOptionsPieChart();
+
+	/**
+	 * Creates the options XY date float legend outside.
 	 *
 	 * @param series
 	 *            the series
 	 * @return the options
 	 */
 	Options createOptionsXYDateFloatLegendOutside(Series series);
-
-	Options createOptions2(SeriesDefaults seriesDefaults);
-
-	Options createOptions(Series series, SeriesDefaults seriesDefaults);
-
-	Options createOptions3();
-
-	Options createOptions4(Series series);
-
-	Options createOptions5(Series series);
-
-	Options createOptions6(String label, Series series);
 
 }
