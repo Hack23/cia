@@ -105,7 +105,16 @@
           <artifactId>all</artifactId>
           <groupId>com.github.fommil.netlib</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>core</artifactId>
+          <groupId>com.github.fommil.netlib</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.github.fommil.netlib</groupId>
+      <artifactId>core</artifactId>
+      <version>1.1.2</version>
     </dependency>
     <dependency>
       <groupId>net.sf.meka</groupId>
