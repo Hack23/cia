@@ -27,16 +27,15 @@
 			<xsd:element minOccurs="0" name="userId" type="xsd:string" />
 			<xsd:element minOccurs="0" name="userpassword" type="xsd:string" />
 			<xsd:element minOccurs="0" name="numberOfVisits" type="xsd:int" />
-<!-- 			<xsd:element maxOccurs="unbounded" minOccurs="0" name="address"
-				nillable="true" type="xsd:string" />-->
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="address"
+				nillable="true" type="xsd:string" />
 			<xsd:element minOccurs="0" name="userType" type="user:UserType" />
 			<xsd:element minOccurs="0" name="userRole" type="user:UserRole" />
 			<xsd:element minOccurs="0" name="createdDate" type="xsd:dateTime" />
 
 			<xsd:element minOccurs="0" name="googleAuthKey" type="xsd:string" />
 			<xsd:element minOccurs="0" name="googleAuthVerificationCode" type="xsd:int" />
-<!-- 			
-			<xsd:element maxOccurs="unbounded" minOccurs="0" name="googleAuthScratchCodes" nillable="true" type="xsd:int" />-->
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="googleAuthScratchCodes" nillable="true" type="xsd:int" />
 		</xsd:sequence>
 	</xsd:complexType>
 
