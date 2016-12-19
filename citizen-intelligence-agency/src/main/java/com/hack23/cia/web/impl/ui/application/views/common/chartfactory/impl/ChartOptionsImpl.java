@@ -53,13 +53,13 @@ public final class ChartOptionsImpl implements ChartOptions {
 
 	private static final String LEGEND_FONT_SIZE = "10px";
 
-	private static final String BORDER_COLOR = "#2deff9";
+	private static final String BORDER_COLOR = "#83898c";
 
 	private static final String GRIDLINE_COLOR = "#213f49";
 
 	private static final String BACKGROUND_COLOR = "#13303f";
 
-	private static final String TEXT_COLOR = "#2debf5";
+	private static final String TEXT_COLOR = "#ffffff";
 
 	private static final String FONT_SIZE = "8px";
 
