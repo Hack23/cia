@@ -54,7 +54,7 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 	/** The Constant COMMAND21. */
 	private static final PageModeMenuCommand COMMAND21 = new PageModeMenuCommand(
-			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DECSIONACTIVITYBYTYPE.toString());
+			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DECISIONACTIVITYBYTYPE.toString());
 
 	/** The Constant COMMAND20. */
 	private static final PageModeMenuCommand COMMAND20 = new PageModeMenuCommand(

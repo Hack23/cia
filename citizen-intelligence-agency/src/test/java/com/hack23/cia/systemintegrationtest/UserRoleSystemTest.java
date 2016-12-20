@@ -899,7 +899,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS,
-				ChartIndicators.DECSIONACTIVITYBYTYPE.toString()));
+				ChartIndicators.DECISIONACTIVITYBYTYPE.toString()));
 
 	}
 
@@ -991,23 +991,52 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
-	/**
-	 * Site ministry ranking charts test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
 	@Test
-	public void siteMinistryRankingChartsTest() throws Exception {
+	public void siteMinistryRankingAllMinistriesChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.ALLMINISTRIESBYHEADCOUNT.toString()));
 
-	}
+	}	
+	
+	@Test
+	public void siteMinistryRankingAllMinistriesByPartyChartsTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.ALLMINISTRIESPARTYBYTOTALDAYS.toString()));
+
+	}	
+	
+
+	@Test
+	public void siteMinistryRankingCurrentPartiesChartsTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTPARTIESBYHEADCOUNT.toString()));
+
+	}	
+
+	@Test
+	public void siteMinistryRankingCurrentMinistriesChartsTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTMINISTRIESBYHEADCOUNT.toString()));
+
+	}	
+
+	
 	/**
 	 * Site ministry ranking navigation test.
 	 *
