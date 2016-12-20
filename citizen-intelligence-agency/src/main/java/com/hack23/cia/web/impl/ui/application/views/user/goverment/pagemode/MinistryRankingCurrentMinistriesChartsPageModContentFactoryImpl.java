@@ -16,48 +16,54 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.MinistryDataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class TestChartsDecisionActivityByTypePageModContentFactoryImpl.
+ * The Class MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl.
  */
-@Component
-public final class ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
+@Service
+public final class MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The Constant PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS. */
-	private static final String PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS = "Party Winner, daily average for all ballots";
+	/** The Constant CHARTS. */
+	private static final String CHARTS = "Charts: Current Ministies, by headcount";
 
-	/** The decision chart data manager. */
+	/** The chart data manager. */
 	@Autowired
-	private DecisionChartDataManager decisionChartDataManager;
+	private ChartDataManager chartDataManager;
+
+	/** The data series factory. */
+	@Autowired
+	private MinistryDataSeriesFactory dataSeriesFactory;
 
 	/**
-	 * Instantiates a new test charts decision activity by type page mod content
-	 * factory impl.
+	 * Instantiates a new ministry ranking current ministries charts page mod
+	 * content factory impl.
 	 */
-	public ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl() {
+	public MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(PageMode.CHARTS.toString())
-				&& parameters.contains(ChartIndicators.DECISIONACTIVITYBYTYPE.toString());
+				&& parameters.contains(ChartIndicators.CURRENTMINISTRIESBYHEADCOUNT.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -65,18 +71,28 @@ public final class ParliamentChartsDecisionActivityByTypePageModContentFactoryIm
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 
+		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
+
 		final String pageId = getPageId(parameters);
 
-		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 
-		decisionChartDataManager.createDecisionTypeChart(panelContent);
+		final HorizontalLayout chartLayout = new HorizontalLayout();
+		chartLayout.setSizeFull();
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME,
+		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createMinistryChartTimeSeriesCurrent(),
+				"Current Ministies, by headcount");
+		panelContent.addComponent(chartLayout);
+
+		panel.setCaption(CHARTS + parameters);
+
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
-		panel.setCaption(PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS);
 
 		return panelContent;
 
 	}
+
+
+
 
 }

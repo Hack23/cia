@@ -27,7 +27,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.MinistryDataSeriesFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
@@ -36,13 +36,14 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class MinistryRankingChartsPageModContentFactoryImpl.
+ * The Class MinistryRankingAllMinistriesChartsPageModContentFactoryImpl.
  */
 @Service
-public final class MinistryRankingChartsPageModContentFactoryImpl extends AbstractMinistryRankingPageModContentFactoryImpl {
+public final class MinistryRankingAllMinistriesChartsPageModContentFactoryImpl
+		extends AbstractMinistryRankingPageModContentFactoryImpl {
 
 	/** The Constant CHARTS. */
-	private static final String CHARTS = "Charts:";
+	private static final String CHARTS = "Chart: All ministries, total headcount all members";
 
 	/** The chart data manager. */
 	@Autowired
@@ -52,20 +53,18 @@ public final class MinistryRankingChartsPageModContentFactoryImpl extends Abstra
 	@Autowired
 	private MinistryDataSeriesFactory dataSeriesFactory;
 
-	/** The data series factory2. */
-	@Autowired
-	private PartyDataSeriesFactory dataSeriesFactory2;
-
 	/**
-	 * Instantiates a new ministry ranking charts page mod content factory impl.
+	 * Instantiates a new ministry ranking all ministries charts page mod
+	 * content factory impl.
 	 */
-	public MinistryRankingChartsPageModContentFactoryImpl() {
+	public MinistryRankingAllMinistriesChartsPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (!StringUtils.isEmpty(parameters) && parameters.contains(PageMode.CHARTS.toString()));
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(PageMode.CHARTS.toString())
+				&& parameters.contains(ChartIndicators.ALLMINISTRIESBYHEADCOUNT.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -77,49 +76,18 @@ public final class MinistryRankingChartsPageModContentFactoryImpl extends Abstra
 
 		final String pageId = getPageId(parameters);
 
-
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createMinistryChartTimeSeriesAll(), "All");
-
-		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createMinistryChartTimeSeriesCurrent(),
-				"Current");
-		panelContent.addComponent(chartLayout);
-
-		createExtraChartLayout(panelContent);
-
+		chartDataManager.createChartPanel(chartLayout, dataSeriesFactory.createMinistryChartTimeSeriesAll(), "All");
 
 		panel.setCaption(CHARTS + parameters);
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
-				parameters, pageId);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,
+				NAME, parameters, pageId);
 
 		return panelContent;
 
 	}
-
-	/**
-	 * Creates the extra chart layout.
-	 *
-	 * @return the layout
-	 */
-	private void createExtraChartLayout(final VerticalLayout panelContent) {
-		final HorizontalLayout chartLayout = new HorizontalLayout();
-		chartLayout.setSizeFull();
-
-		chartDataManager.createChartPanel(chartLayout,
-				dataSeriesFactory.createChartTimeSeriesTotalDaysServedGovernmentByParty(),
-				"All Parties, total days served");
-
-		chartDataManager.createChartPanel(chartLayout,
-				dataSeriesFactory2.createChartTimeSeriesCurrentGovernmentByParty(), "Current Parties, headcount");
-
-		panelContent.addComponent(chartLayout);
-	}
-
-
-
-
 
 }
