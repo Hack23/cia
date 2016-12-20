@@ -35,7 +35,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-search-orm</artifactId>
-      <version>5.7.0.Beta1</version>
+      <version>5.7.0.Beta2</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -293,7 +293,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jcache</artifactId>
-      <version>5.2.6-SNAPSHOT</version>
+      <version>5.2.6.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-core</artifactId>
