@@ -76,12 +76,13 @@
 		<listener-class>net.bull.javamelody.SessionListener</listener-class>
 	</listener>
 
+
    <filter>
        <filter-name>customResourceFilter</filter-name>
-       <filter-class>net.bull.javamelody.CustomResourceFilter</filter-class>
+       <filter-class>com.hack23.cia.web.impl.ui.application.web.filter.CustomResourceFilterForward</filter-class>
        <init-param>
            <param-name>customizableMonitoring.css</param-name>
-           <param-value>/customizableMonitoring.css</param-value>
+           <param-value>/VAADIN/themes/cia/customizedMonitoring.css</param-value>
        </init-param>
    </filter>
    <filter-mapping>
@@ -89,7 +90,7 @@
        <url-pattern>/monitoring</url-pattern>
    </filter-mapping>
    
-
+   
 	<filter>
 		<filter-name>monitoring</filter-name>
 		<filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
@@ -128,6 +129,8 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+
+
 	<filter>
 		<filter-name>SimplePageCachingFilter</filter-name>
 		<filter-class>com.hack23.cia.web.impl.ui.application.web.filter.CustomSimpleCachingHeadersPageCachingFilter
@@ -138,6 +141,7 @@
 			<param-value>SimplePageCachingFilter</param-value>
 		</init-param>
 	</filter>
+	 
 	<filter-mapping>
 		<filter-name>SimplePageCachingFilter</filter-name>
 		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/dchart/*</url-pattern>
@@ -229,7 +233,6 @@
 		<dispatcher>INCLUDE</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
-
 
 	<filter>
         <filter-name>hibernateFilter</filter-name>

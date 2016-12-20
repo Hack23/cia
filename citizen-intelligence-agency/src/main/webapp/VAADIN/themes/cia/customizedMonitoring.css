@@ -1,7 +1,7 @@
-body {
+	body {
 	background-color: #13303f;
-	background: url(?resource=backgroundGradient.png) bottom left fixed
-		repeat-x;
+	background: #13303f bottom left fixed repeat-x;
+	color: #FFFFFF;	
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 15px;
 }
