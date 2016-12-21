@@ -244,6 +244,11 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>com.github.stefanbirkner</groupId>
+      <artifactId>system-rules</artifactId>
+      <version>1.16.1</version>
+    </dependency>
+    <dependency>
       <groupId>com.tocea.easycoverage</groupId>
       <artifactId>easyCoverage4J-junit</artifactId>
       <version>2.3.1</version>
