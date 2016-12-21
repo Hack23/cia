@@ -127,22 +127,74 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 
 	/**
-	 * Site committee ranking view charts test.
+	 * Site committee ranking view all committees charts test.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void siteCommitteeRankingViewChartsTest() throws Exception {
+	public void siteCommitteeRankingViewAllCommitteesChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.ALLCOMMITTEESBYHEADCOUNT.toString()));
 
 	}
 
+	/**
+	 * Site committee ranking view committee by party charts test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteCommitteeRankingViewCommitteeByPartyChartsTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.COMMITTEESBYPARTY.toString()));
+
+	}
+
+	/**
+	 * Site committee ranking view current committee parties charts test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteCommitteeRankingViewCurrentCommitteePartiesChartsTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEESBYPARTYHEADCOUNT.toString()));
+
+	}
+
+	/**
+	 * Site committee ranking view current committees charts test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteCommitteeRankingViewCurrentCommitteesChartsTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEESBYHEADCOUNT.toString()));
+
+	}
+
+	
 	/**
 	 * Site committee ranking view grid navigation test.
 	 *
@@ -217,19 +269,70 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	}
 
 	/**
-	 * Site party ranking view charts test.
+	 * Site party ranking view all parties charts test.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void sitePartyRankingViewChartsTest() throws Exception {
+	public void sitePartyRankingViewAllPartiesChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.ALLPARTIES.toString()));
+
+	}
+
+	/**
+	 * Site party ranking view current committee charts test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void sitePartyRankingViewCurrentCommitteeChartsTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEES.toString()));
+
+	}
+
+	/**
+	 * Site party ranking view current government charts test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void sitePartyRankingViewCurrentGovernmentChartsTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTGOVERMENTPARTIES.toString()));
+
+	}
+
+	/**
+	 * Site party ranking view current parties charts test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void sitePartyRankingViewCurrentPartiesChartsTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTPARTIES.toString()));
 
 	}
 
@@ -991,6 +1094,12 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
+	/**
+	 * Site ministry ranking all ministries charts test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public void siteMinistryRankingAllMinistriesChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
@@ -1002,6 +1111,12 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}	
 	
+	/**
+	 * Site ministry ranking all ministries by party charts test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public void siteMinistryRankingAllMinistriesByPartyChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
@@ -1014,6 +1129,12 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	}	
 	
 
+	/**
+	 * Site ministry ranking current parties charts test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public void siteMinistryRankingCurrentPartiesChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
@@ -1025,6 +1146,12 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}	
 
+	/**
+	 * Site ministry ranking current ministries charts test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public void siteMinistryRankingCurrentMinistriesChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
