@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
@@ -41,9 +42,22 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	private static final PageModeMenuCommand COMMAND21 = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
 			PageMode.PAGEVISITHISTORY);
 
-	/** The Constant COMMAND20. */
-	private static final PageModeMenuCommand COMMAND20 = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
-			PageMode.CHARTS);
+	/** The Constant COMMAND22. */
+	private static final PageModeMenuCommand COMMAND22 = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
+			PageMode.CHARTS,ChartIndicators.ALLCOMMITTEESBYHEADCOUNT.toString());
+	
+	/** The Constant COMMAND23. */
+	private static final PageModeMenuCommand COMMAND23 = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
+			PageMode.CHARTS,ChartIndicators.COMMITTEESBYPARTY.toString());
+	
+	/** The Constant COMMAND24. */
+	private static final PageModeMenuCommand COMMAND24 = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
+			PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEESBYHEADCOUNT.toString());
+	
+	/** The Constant COMMAND25. */
+	private static final PageModeMenuCommand COMMAND25 = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
+			PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEESBYPARTYHEADCOUNT.toString());
+	
 
 	/** The Constant COMMAND19. */
 	private static final PageModeMenuCommand COMMAND19 = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
@@ -133,17 +147,18 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 		listItem.setDescription(CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS);
 
 		final MenuItem chartByTopic = committeeMenuItem.addItem(CHART_BY_TOPIC_TEXT, FontAwesome.GROUP, null);
+		
+		
+		chartByTopic.addItem(CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,FontAwesome.GROUP, COMMAND24);
+		//chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,FontAwesome.GROUP, COMMAND20);
+		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,FontAwesome.GROUP, COMMAND23);
+		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND25);
 
-		chartByTopic.addItem(CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,FontAwesome.GROUP, COMMAND20);
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,FontAwesome.GROUP, COMMAND20);
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,FontAwesome.GROUP, COMMAND20);
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND20);
+		//chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND20);
+		//chartByTopic.addItem(ALL_PARTIES_TOTAL_ASSIGNMENTS,FontAwesome.GROUP, COMMAND20);
 
-		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND20);
-		chartByTopic.addItem(ALL_PARTIES_TOTAL_ASSIGNMENTS,FontAwesome.GROUP, COMMAND20);
-
-		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_MEMBERS,FontAwesome.GROUP, COMMAND20);
-		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND20);
+		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_MEMBERS,FontAwesome.GROUP, COMMAND22);
+		//chartByTopic.addItem(ALL_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND20);
 
 		committeeMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP, COMMAND21);
 
