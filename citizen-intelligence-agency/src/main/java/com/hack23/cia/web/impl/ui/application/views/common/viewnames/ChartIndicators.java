@@ -23,20 +23,55 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public enum ChartIndicators {
 
-/** The partywinner. */
-PARTYWINNER,
-PARTYGENDER,
-PARTYAGE,
+	/** The partywinner. */
+	PARTYWINNER,
 
-/** The documentactivitybytype. */
-DOCUMENTACTIVITYBYTYPE,
+	/** The partygender. */
+	PARTYGENDER,
 
-/** The decsionactivitybytype. */
-DECISIONACTIVITYBYTYPE,
+	/** The partyage. */
+	PARTYAGE,
 
-ALLMINISTRIESBYHEADCOUNT,
-CURRENTMINISTRIESBYHEADCOUNT,
-ALLMINISTRIESPARTYBYTOTALDAYS,
-CURRENTPARTIESBYHEADCOUNT;
+	/** The documentactivitybytype. */
+	DOCUMENTACTIVITYBYTYPE,
+
+	/** The decisionactivitybytype. */
+	DECISIONACTIVITYBYTYPE,
+
+	/** The allministriesbyheadcount. */
+	ALLMINISTRIESBYHEADCOUNT,
+
+	/** The currentministriesbyheadcount. */
+	CURRENTMINISTRIESBYHEADCOUNT,
+
+	/** The allministriespartybytotaldays. */
+	ALLMINISTRIESPARTYBYTOTALDAYS,
+
+	/** The currentpartiesbyheadcount. */
+	CURRENTPARTIESBYHEADCOUNT,
+
+	/** The allcommitteesbyheadcount. */
+	ALLCOMMITTEESBYHEADCOUNT,
+
+	/** The committeesbyparty. */
+	COMMITTEESBYPARTY,
+
+	/** The currentcommitteesbyheadcount. */
+	CURRENTCOMMITTEESBYHEADCOUNT,
+
+	/** The currentcommitteesbypartyheadcount. */
+	CURRENTCOMMITTEESBYPARTYHEADCOUNT,
+
+	/** The allparties. */
+	ALLPARTIES,
+
+	/** The currentcommittees. */
+	CURRENTCOMMITTEES,
+
+	/** The currentgovermentparties. */
+	CURRENTGOVERMENTPARTIES,
+
+	/** The currentparties. */
+	CURRENTPARTIES;
 
 }
