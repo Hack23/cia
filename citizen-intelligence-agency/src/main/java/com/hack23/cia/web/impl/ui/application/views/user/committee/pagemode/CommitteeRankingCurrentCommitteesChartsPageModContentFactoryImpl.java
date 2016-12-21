@@ -27,7 +27,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.CommitteeDataSeriesFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.HorizontalLayout;
@@ -37,24 +37,17 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class CommitteeRankingChartsPageModContentFactoryImpl.
+ * The Class CommitteeRankingCurrentCommitteesChartsPageModContentFactoryImpl.
  */
 @Service
-public final class CommitteeRankingChartsPageModContentFactoryImpl extends AbstractCommitteeRankingPageModContentFactoryImpl {
+public final class CommitteeRankingCurrentCommitteesChartsPageModContentFactoryImpl
+		extends AbstractCommitteeRankingPageModContentFactoryImpl {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
 
-	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED. */
-	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED = "All Parties, total days served";
-
 	/** The Constant CHARTS. */
 	private static final String CHARTS = "Charts:";
-
-
-	/** The Constant CURRENT_PARTIES_HEADCOUNT. */
-	private static final String CURRENT_PARTIES_HEADCOUNT = "Current Parties, headcount";
-
 
 	/** The chart data manager. */
 	@Autowired
@@ -64,21 +57,18 @@ public final class CommitteeRankingChartsPageModContentFactoryImpl extends Abstr
 	@Autowired
 	private CommitteeDataSeriesFactory dataSeriesFactory;
 
-	/** The data series factory2. */
-	@Autowired
-	private PartyDataSeriesFactory dataSeriesFactory2;
-
 	/**
-	 * Instantiates a new committee ranking charts page mod content factory
-	 * impl.
+	 * Instantiates a new committee ranking current committees charts page mod
+	 * content factory impl.
 	 */
-	public CommitteeRankingChartsPageModContentFactoryImpl() {
+	public CommitteeRankingCurrentCommitteesChartsPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (!StringUtils.isEmpty(parameters) && parameters.contains(PageMode.CHARTS.toString()));
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(PageMode.CHARTS.toString())
+				&& parameters.contains(ChartIndicators.CURRENTCOMMITTEESBYHEADCOUNT.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -93,45 +83,18 @@ public final class CommitteeRankingChartsPageModContentFactoryImpl extends Abstr
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-
-		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createCommitteeChartTimeSeriesAll(),"All");
-
-		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createCommitteeChartTimeSeriesCurrent(),"Current");
+		chartDataManager.createChartPanel(chartLayout, dataSeriesFactory.createCommitteeChartTimeSeriesCurrent(),
+				"Current");
 
 		panelContent.addComponent(chartLayout);
 
-		createExtraChartLayout(panelContent);
-
 		panel.setCaption(CHARTS + parameters);
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
-				parameters, pageId);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER,
+				NAME, parameters, pageId);
 
 		return panelContent;
 
 	}
-
-
-	/**
-	 * Creates the extra chart layout.
-	 *
-	 * @return the layout
-	 */
-	private void createExtraChartLayout(final VerticalLayout panelContent) {
-		final HorizontalLayout chartLayout = new HorizontalLayout();
-		chartLayout.setSizeFull();
-
-		panelContent.addComponent(chartLayout);
-
-		chartDataManager.createChartPanel(chartLayout,
-				dataSeriesFactory.createChartTimeSeriesTotalDaysServedCommitteeByParty(),
-				ALL_PARTIES_TOTAL_DAYS_SERVED);
-
-		chartDataManager.createChartPanel(chartLayout,
-				dataSeriesFactory2.createChartTimeSeriesCurrentCommitteeByParty(), CURRENT_PARTIES_HEADCOUNT);
-
-	}
-
-
 
 }

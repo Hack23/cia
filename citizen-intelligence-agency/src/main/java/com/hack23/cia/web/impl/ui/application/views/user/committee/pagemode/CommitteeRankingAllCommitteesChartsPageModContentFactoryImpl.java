@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,8 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.CommitteeDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.HorizontalLayout;
@@ -36,16 +37,17 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class PartyRankingChartsPageModContentFactoryImpl.
+ * The Class CommitteeRankingAllCommitteesChartsPageModContentFactoryImpl.
  */
 @Service
-public final class PartyRankingChartsPageModContentFactoryImpl extends AbstractPartyRankingPageModContentFactoryImpl {
+public final class CommitteeRankingAllCommitteesChartsPageModContentFactoryImpl
+		extends AbstractCommitteeRankingPageModContentFactoryImpl {
+
+	/** The Constant NAME. */
+	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
 
 	/** The Constant CHARTS. */
 	private static final String CHARTS = "Charts:";
-
-	/** The Constant NAME. */
-	public static final String NAME = UserViews.PARTY_RANKING_VIEW_NAME;
 
 	/** The chart data manager. */
 	@Autowired
@@ -53,13 +55,20 @@ public final class PartyRankingChartsPageModContentFactoryImpl extends AbstractP
 
 	/** The data series factory. */
 	@Autowired
-	private PartyDataSeriesFactory dataSeriesFactory;
+	private CommitteeDataSeriesFactory dataSeriesFactory;
 
 	/**
-	 * Instantiates a new party ranking charts page mod content factory impl.
+	 * Instantiates a new committee ranking all committees charts page mod
+	 * content factory impl.
 	 */
-	public PartyRankingChartsPageModContentFactoryImpl() {
+	public CommitteeRankingAllCommitteesChartsPageModContentFactoryImpl() {
 		super();
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(PageMode.CHARTS.toString())
+				&& parameters.contains(ChartIndicators.ALLCOMMITTEESBYHEADCOUNT.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -67,50 +76,24 @@ public final class PartyRankingChartsPageModContentFactoryImpl extends AbstractP
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 
+		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);
+
 		final String pageId = getPageId(parameters);
 
-
-		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createPartyChartTimeSeriesAll(),"All");
-		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createPartyChartTimeSeriesCurrent(),"Current");
+		chartDataManager.createChartPanel(chartLayout, dataSeriesFactory.createCommitteeChartTimeSeriesAll(), "All");
 
 		panelContent.addComponent(chartLayout);
 
-		panelContent.addComponent(createExtraChartLayout());
-
 		panel.setCaption(CHARTS + parameters);
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
-				parameters, pageId);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER,
+				NAME, parameters, pageId);
 
 		return panelContent;
 
 	}
-
-	/**
-	 * Creates the extra chart layout.
-	 *
-	 * @return the layout
-	 */
-	private Layout createExtraChartLayout() {
-		final HorizontalLayout chartLayout = new HorizontalLayout();
-		chartLayout.setSizeFull();
-
-
-		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createChartTimeSeriesCurrentGovernmentByParty(),"Current Government");
-
-		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createChartTimeSeriesCurrentCommitteeByParty(),"Current Committee");
-
-		return chartLayout;
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (!StringUtils.isEmpty(parameters) && parameters.contains(PageMode.CHARTS.toString()));
-	}
-
 
 }
