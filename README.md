@@ -33,7 +33,7 @@ Plan to make it public some time after 2018.04, running Ubuntu 18.04, Postgresql
 
 #Resources
 
-Project documentation [http://cia.sourceforge.net/](http://cia.sourceforge.net/)
+Project documentation [https://cia.sourceforge.io/](https://cia.sourceforge.io/)
 
 Github source code location [https://github.com/Hack23/cia](https://github.com/Hack23/cia)
 

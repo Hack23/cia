@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>testfoundation</name>
   <description>Testfoundation</description>
-  <url>http://cia.sourceforge.net/testfoundation/</url>
+  <url>https://cia.sourceforge.io/testfoundation/</url>
   <inceptionYear>2010</inceptionYear>
   <licenses>
     <license>

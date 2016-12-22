@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>service.external.riksdagen</name>
   <description>service.external.riksdagen</description>
-  <url>http://cia.sourceforge.net/service.external.riksdagen/</url>
+  <url>https://cia.sourceforge.io/service.external.riksdagen/</url>
   <inceptionYear>2010</inceptionYear>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>

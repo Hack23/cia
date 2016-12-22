@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>service.impl</name>
   <description>service.impl</description>
-  <url>http://cia.sourceforge.net/service.impl/</url>
+  <url>https://cia.sourceforge.io/service.impl/</url>
   <inceptionYear>2010</inceptionYear>
   <licenses>
     <license>

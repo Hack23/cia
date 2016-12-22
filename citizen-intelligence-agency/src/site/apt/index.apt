@@ -47,15 +47,15 @@ Resources
 
 Project Documentation
 
- * Source Code {{{http://cia.sourceforge.net/xref/index.html}Cross-reference Java source code}}.
+ * Source Code {{{https://cia.sourceforge.io/xref/index.html}Cross-reference Java source code}}.
 
- * Javadoc & UML {{{http://cia.sourceforge.net/apidocs/index.html}Generated javadoc with UML diagrams}}.
+ * Javadoc & UML {{{https://cia.sourceforge.io/apidocs/index.html}Generated javadoc with UML diagrams}}.
 
  * Entity Model {{{.//service.data.impl/hbm2doc/entities/index.html}Hibernate Mapping Documentation}}.
 
- * Test Result {{{http://cia.sourceforge.net/surefire-report.html}Surefire test report}}.
+ * Test Result {{{https://cia.sourceforge.io/surefire-report.html}Surefire test report}}.
 
- * Jar Usage Validation {{{http://cia.sourceforge.net/tattleTaleReport/index.html}Tattletale report}}.
+ * Jar Usage Validation {{{https://cia.sourceforge.io/tattleTaleReport/index.html}Tattletale report}}.
 
 
 Installing Debian/Ubuntu package

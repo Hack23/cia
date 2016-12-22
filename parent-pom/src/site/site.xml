@@ -14,8 +14,8 @@
 			<topBarEnabled>true</topBarEnabled>
 			<topBarIcon>
 				<name>Citizen Intelligence Agency</name>
-				<src>http://cia.sourceforge.net/cia-logo.png</src>
-				<href>http://cia.sourceforge.net/</href>
+				<src>https://cia.sourceforge.io/cia-logo.png</src>
+				<href>https://cia.sourceforge.io/</href>
 			</topBarIcon>
 
 			<googleSearch>

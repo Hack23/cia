@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>service.component.agent.api</name>
   <description>service.component.agent.api</description>
-  <url>http://cia.sourceforge.net/service.component.agent.api</url>
+  <url>https://cia.sourceforge.io/service.component.agent.api</url>
   <inceptionYear>2010</inceptionYear>
   <licenses>
     <license>

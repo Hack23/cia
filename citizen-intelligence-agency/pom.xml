@@ -11,7 +11,7 @@
   <packaging>war</packaging>
   <name>Citizen Intelligence Agency</name>
   <description>Tracking Politicians Like Bugs!</description>
-  <url>http://cia.sourceforge.net</url>
+  <url>https://cia.sourceforge.io</url>
   <inceptionYear>2008</inceptionYear>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>

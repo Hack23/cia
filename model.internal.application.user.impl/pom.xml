@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>model.internal.application.user.impl</name>
   <description>model.internal.application.user.impl</description>
-  <url>http://cia.sourceforge.net/model.internal.application.user.impl</url>
+  <url>https://cia.sourceforge.io/model.internal.application.user.impl</url>
   <inceptionYear>2010</inceptionYear>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>

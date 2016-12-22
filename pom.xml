@@ -10,7 +10,7 @@
   <artifactId>cia-all</artifactId>
   <packaging>pom</packaging>
   <name>cia-all</name>
-  <url>http://cia.sourceforge.net/</url>
+  <url>https://cia.sourceforge.io/</url>
   <modules>
     <module>parent-pom</module>
   </modules>
