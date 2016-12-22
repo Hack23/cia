@@ -14,7 +14,7 @@
       <topBarIcon>
         <name>Maven Fluido Skin</name>
         <alt>Maven Fluido Skin</alt>
-        <src>http://cia.sourceforge.net/cia-logo.png</src>
+        <src>https://cia.sourceforge.io/cia-logo.png</src>
         <href>/index.html</href>
       </topBarIcon>
       

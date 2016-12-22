@@ -11,7 +11,7 @@
   <packaging>pom</packaging>
   <name>model.external.riksdagen</name>
   <description>model.external.riksdagen</description>
-  <url>http://cia.sourceforge.net/model.external.riksdagen/</url>
+  <url>https://cia.sourceforge.io/model.external.riksdagen/</url>
   <inceptionYear>2008</inceptionYear>
   <modules>
     <module>../model.external.riksdagen.person.impl</module>

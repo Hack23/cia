@@ -11,7 +11,7 @@
   <packaging>pom</packaging>
   <name>model.external.worldbank</name>
   <description>model.external.worldbank</description>
-  <url>http://cia.sourceforge.net/model.external.worldbank/</url>
+  <url>https://cia.sourceforge.io/model.external.worldbank/</url>
   <inceptionYear>2008</inceptionYear>
   <modules>
     <module>../model.external.worldbank.countries.impl</module>

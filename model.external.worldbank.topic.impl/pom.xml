@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>model.external.worldbank.topic.impl</name>
   <description>model.external.worldbank.topic.impl</description>
-  <url>http://cia.sourceforge.net/model.external.worldbank.topic.impl</url>
+  <url>https://cia.sourceforge.io/model.external.worldbank.topic.impl</url>
   <inceptionYear>2010</inceptionYear>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>

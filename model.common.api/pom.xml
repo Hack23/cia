@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>model.common.api</name>
   <description>model.common.api</description>
-  <url>http://cia.sourceforge.net/model.common.api</url>
+  <url>https://cia.sourceforge.io/model.common.api</url>
   <inceptionYear>2010</inceptionYear>
   <licenses>
     <license>

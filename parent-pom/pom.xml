@@ -7,7 +7,7 @@
   <packaging>pom</packaging>
   <name>CIA Project</name>
   <description>CIA Parent pom</description>
-  <url>http://cia.sourceforge.net/</url>
+  <url>https://cia.sourceforge.io/</url>
   <inceptionYear>2008</inceptionYear>
   <organization>
     <name>www.hack23.com</name>

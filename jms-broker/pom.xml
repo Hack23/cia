@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>jms-broker</name>
   <description>jms-broker</description>
-  <url>http://cia.sourceforge.net/jms-broker</url>
+  <url>https://cia.sourceforge.io/jms-broker</url>
   <inceptionYear>2010</inceptionYear>
   <licenses>
     <license>

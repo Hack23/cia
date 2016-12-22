@@ -11,7 +11,7 @@
   <packaging>pom</packaging>
   <name>parent-model-internal-pom</name>
   <description>parent-model-internal-pom</description>
-  <url>http://cia.sourceforge.net/</url>
+  <url>https://cia.sourceforge.io/</url>
   <inceptionYear>2008</inceptionYear>
   <organization>
     <name>www.hack23.com</name>

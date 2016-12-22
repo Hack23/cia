@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>service.data.api</name>
   <description>service.data.api</description>
-  <url>http://cia.sourceforge.net/service.data.api</url>
+  <url>https://cia.sourceforge.io/service.data.api</url>
   <inceptionYear>2010</inceptionYear>
   <licenses>
     <license>
