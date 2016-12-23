@@ -18,11 +18,14 @@
 */
 package com.hack23.cia.service.impl;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -31,11 +34,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.dumbster.smtp.SimpleSmtpServer;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
+import com.hack23.cia.model.internal.application.system.impl.ConfigurationGroup;
 import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationRequest;
+import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
+import com.hack23.cia.service.data.api.ApplicationConfigurationService;
+import com.hack23.cia.service.impl.email.EmailServiceImpl;
 import com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest;
 
 /**
@@ -73,11 +83,13 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 	/** The Constant ROLE_ADMIN. */
 	private static final String ROLE_ADMIN = "ROLE_ADMIN";
 
+	/** The application configuration service. */
+	@Autowired
+	private ApplicationConfigurationService applicationConfigurationService;
 
 	/** The application manager. */
 	@Autowired
 	protected ApplicationManager applicationManager;
-
 
 	/**
 	 * Instantiates a new abstract service functional integration test.
@@ -86,9 +98,38 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 		super();
 	}
 
-	@Override
-	protected Connection getDatabaseConnection() throws Exception {
-		return null;
+	protected final SimpleSmtpServer configureMailServer(CreateApplicationSessionRequest createTestApplicationSession) throws IOException {
+		final SimpleSmtpServer dumbster = SimpleSmtpServer.start(SimpleSmtpServer.AUTO_SMTP_PORT);
+		
+		setAuthenticatedAdminuser();
+
+		createTestApplicationSession = createTestApplicationSession();
+
+		final ApplicationConfiguration sendEmail = applicationConfigurationService.checkValueOrLoadDefault(
+				"Email configuration send emails", "Send email", ConfigurationGroup.EXTERNAL_SERVICES,
+				EmailServiceImpl.class.getSimpleName(), "Send email", "Responsible for sending email",
+				"application.email.send.email", "false");
+
+		final ApplicationConfiguration smtpPort = applicationConfigurationService.checkValueOrLoadDefault(
+				"Email configuration smtp port", "Smtp port", ConfigurationGroup.EXTERNAL_SERVICES,
+				EmailServiceImpl.class.getSimpleName(), "Smtp port", "Responsible for sending email",
+				"application.email.smtp.port", "587");
+
+		updateApplicationConfiguration(createTestApplicationSession, sendEmail, "true");
+		updateApplicationConfiguration(createTestApplicationSession, smtpPort,
+				Integer.toString(dumbster.getPort()));
+
+		return dumbster;
+	}
+
+	/**
+	 * Creates the application sesstion with role anonymous.
+	 *
+	 * @return the creates the application session request
+	 */
+	protected final CreateApplicationSessionRequest createApplicationSesstionWithRoleAnonymous() {
+		setAuthenticatedAnonymousUser();
+		return createTestApplicationSession();
 	}
 
 	/**
@@ -113,25 +154,27 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 		return serviceRequest;
 	}
 
-	/**
-	 * Creates the application sesstion with role anonymous.
-	 *
-	 * @return the creates the application session request
-	 */
-	protected final CreateApplicationSessionRequest createApplicationSesstionWithRoleAnonymous() {
-		setAuthenticatedAnonymousUser();
-		return createTestApplicationSession();
+
+	@Override
+	protected Connection getDatabaseConnection() throws Exception {
+		return null;
 	}
 
+	protected final void restoreMailConfiguration(CreateApplicationSessionRequest createTestApplicationSession,final SimpleSmtpServer dumbster) {
+		final ApplicationConfiguration sendEmail = applicationConfigurationService.checkValueOrLoadDefault(
+				"Email configuration send emails", "Send email", ConfigurationGroup.EXTERNAL_SERVICES,
+				EmailServiceImpl.class.getSimpleName(), "Send email", "Responsible for sending email",
+				"application.email.send.email", "false");
 
-	/**
-	 * Sets the authenticated anonymous user.
-	 */
-	protected final void setAuthenticatedAnonymousUser() {
-		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority(ROLE_ANONYMOUS));
-		SecurityContextHolder.getContext()
-				.setAuthentication(new AnonymousAuthenticationToken(KEY, PRINCIPAL, authorities));
+		final ApplicationConfiguration smtpPort = applicationConfigurationService.checkValueOrLoadDefault(
+				"Email configuration smtp port", "Smtp port", ConfigurationGroup.EXTERNAL_SERVICES,
+				EmailServiceImpl.class.getSimpleName(), "Smtp port", "Responsible for sending email",
+				"application.email.smtp.port", "587");
+
+		updateApplicationConfiguration(createTestApplicationSession, sendEmail, "false");
+		updateApplicationConfiguration(createTestApplicationSession, smtpPort,"587");
+		dumbster.stop();
+		
 	}
 
 	/**
@@ -144,6 +187,44 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 
 		SecurityContextHolder.getContext()
 				.setAuthentication(new AnonymousAuthenticationToken(KEY, PRINCIPAL, authorities));
+	}
+		
+	/**
+	 * Sets the authenticated anonymous user.
+	 */
+	protected final void setAuthenticatedAnonymousUser() {
+		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority(ROLE_ANONYMOUS));
+		SecurityContextHolder.getContext()
+				.setAuthentication(new AnonymousAuthenticationToken(KEY, PRINCIPAL, authorities));
+	}
+
+	/**
+	 * Update application configuration.
+	 *
+	 * @param createTestApplicationSession
+	 *            the create test application session
+	 * @param applicationConfiguration
+	 *            the application configuration
+	 * @param propertyValue
+	 *            the property value
+	 */
+	private void updateApplicationConfiguration(final CreateApplicationSessionRequest createTestApplicationSession,
+			final ApplicationConfiguration applicationConfiguration, final String propertyValue) {
+
+		final UpdateApplicationConfigurationRequest serviceRequest = new UpdateApplicationConfigurationRequest();
+		serviceRequest.setApplicationConfigurationId(applicationConfiguration.getHjid());
+		serviceRequest.setSessionId(createTestApplicationSession.getSessionId());
+
+		serviceRequest.setComponentDescription(applicationConfiguration.getComponentDescription());
+		serviceRequest.setConfigDescription(applicationConfiguration.getConfigDescription());
+		serviceRequest.setConfigTitle(applicationConfiguration.getConfigTitle());
+		serviceRequest.setComponentTitle(applicationConfiguration.getComponentTitle());
+		serviceRequest.setPropertyValue(propertyValue);
+
+		final UpdateApplicationConfigurationResponse response = (UpdateApplicationConfigurationResponse) applicationManager
+				.service(serviceRequest);
+		assertEquals(EXPECT_SUCCESS, ServiceResult.SUCCESS, response.getResult());
 	}
 
 

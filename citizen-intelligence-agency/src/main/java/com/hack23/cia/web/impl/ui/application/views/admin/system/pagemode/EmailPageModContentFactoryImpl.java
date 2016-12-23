@@ -28,6 +28,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.action.admin.SendEmailRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SendEmailClickListener;
 import com.vaadin.data.util.BeanItem;
@@ -73,13 +74,13 @@ public final class EmailPageModContentFactoryImpl extends AbstractAdminSystemPag
 
 		LabelFactory.createHeader2Label(content, ADMIN_EMAIL);
 
-		final VerticalLayout sendEmailLayout = new VerticalLayout();
-		sendEmailLayout.setSizeFull();
+		final VerticalLayout emailLayout = new VerticalLayout();
+		emailLayout.setSizeFull();
 
 		final Panel formPanel = new Panel();
 		formPanel.setSizeFull();
 
-		sendEmailLayout.addComponent(formPanel);
+		emailLayout.addComponent(formPanel);
 
 		final FormLayout formContent = new FormLayout();
 		formPanel.setContent(formContent);
@@ -91,11 +92,11 @@ public final class EmailPageModContentFactoryImpl extends AbstractAdminSystemPag
 		sendEmailRequest.setContent("");
 		final ClickListener sendEmailListener = new SendEmailClickListener(sendEmailRequest, getApplicationManager());
 		getFormFactory().addRequestInputFormFields(formContent, new BeanItem<>(sendEmailRequest),
-				SendEmailRequest.class,
-				Arrays.asList(new String[] { "email", "subject", "content" }), "Email",
+				SendEmailRequest.class, Arrays.asList(new String[] { "email", "subject", "content" }), "Email",
 				sendEmailListener);
 
-		content.addComponent(sendEmailLayout);
+		content.addComponent(emailLayout);
+		content.setExpandRatio(emailLayout, ContentRatio.LARGE_FORM);
 
 		panel.setCaption("Admin email");
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_EMAIL_VIEW, ApplicationEventGroup.ADMIN, NAME,
