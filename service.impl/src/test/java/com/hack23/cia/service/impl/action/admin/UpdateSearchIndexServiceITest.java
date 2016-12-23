@@ -45,7 +45,7 @@ public final class UpdateSearchIndexServiceITest extends AbstractServiceFunction
 		serviceRequest.setSessionId(createSessionRequest.getSessionId());
 
 		final UpdateSearchIndexResponse response = (UpdateSearchIndexResponse) applicationManager
-				.service(new UpdateSearchIndexRequest());
+				.service(serviceRequest);
 		assertNotNull(EXPECT_A_RESULT, response);
 	}
 

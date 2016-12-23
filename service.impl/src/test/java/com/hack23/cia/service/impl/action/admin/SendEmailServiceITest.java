@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.impl.email;
+package com.hack23.cia.service.impl.action.admin;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,21 +24,18 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.dumbster.smtp.SimpleSmtpServer;
 import com.dumbster.smtp.SmtpMessage;
+import com.hack23.cia.service.api.action.admin.SendEmailRequest;
+import com.hack23.cia.service.api.action.admin.SendEmailResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 
 /**
- * The Class EmailServiceITest.
+ * The Class SendEmailServiceITest.
  */
-public final class EmailServiceITest extends AbstractServiceFunctionalIntegrationTest {
-
-	/** The email service. */
-	@Autowired
-	private EmailService emailService;
+public final class SendEmailServiceITest extends AbstractServiceFunctionalIntegrationTest {
 
 	private CreateApplicationSessionRequest createTestApplicationSession;
 
@@ -56,22 +53,34 @@ public final class EmailServiceITest extends AbstractServiceFunctionalIntegratio
 		restoreMailConfiguration(createTestApplicationSession,dumbster);
 	}
 
+	
 	/**
-	 * Send email success test.
+	 * Test.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
 	public void sendEmailSuccessTest() throws Exception {
-		emailService.sendEmail("test@email.com", "subject", "content");
+		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
 
+		final SendEmailRequest serviceRequest = new SendEmailRequest();
+		serviceRequest.setSessionId(createSessionRequest.getSessionId());
+		serviceRequest.setEmail("info@hack23.com");
+		serviceRequest.setSubject("Test Email SendEmailServiceITest");
+		serviceRequest.setContent("Test content");
+		
+		final SendEmailResponse response = (SendEmailResponse) applicationManager
+				.service(serviceRequest);
+		assertNotNull(EXPECT_A_RESULT, response);
+		
 		List<SmtpMessage> emails = dumbster.getReceivedEmails();
 		assertEquals(emails.size(), 1);
 		SmtpMessage email = emails.get(0);
-		assertEquals(email.getHeaderValue("Subject"), "subject");
-		assertEquals(email.getBody(), "content");
-		assertEquals(email.getHeaderValue("To"), "test@email.com");
+		assertEquals(email.getHeaderValue("Subject"), serviceRequest.getSubject());
+		assertEquals(email.getBody(), serviceRequest.getContent());
+		assertEquals(email.getHeaderValue("To"), serviceRequest.getEmail());
+
 	}
 
 }
