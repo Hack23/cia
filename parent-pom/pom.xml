@@ -144,7 +144,7 @@
     <cia.project.versions.maven>3.3.9</cia.project.versions.maven>
     <cia.project.versions.jaxb.impl>2.2.11</cia.project.versions.jaxb.impl>
     <cia.project.versions.jaxb.xjc>2.2.11</cia.project.versions.jaxb.xjc>
-    <cia.project.versions.activemq>5.14.2</cia.project.versions.activemq>
+    <cia.project.versions.activemq>5.14.3</cia.project.versions.activemq>
     <cia.project.versions.httpclient>4.5.2</cia.project.versions.httpclient>
     <cia.project.versions.guava>21.0-rc1</cia.project.versions.guava>
     <cia.project.versions.jackson>2.8.5</cia.project.versions.jackson>
