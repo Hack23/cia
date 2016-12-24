@@ -78,7 +78,7 @@ public final class MinistryRankingDataGridPageModContentFactoryImpl
 		getGridFactory().createBasicBeanItemGrid(panelContent, dataSource,
 				"Ministries",
 				new String[] { "nameId", "totalDaysServed", "currentMemberSize", "totalAssignments",
-						"firstAssignmentDate", "lastAssignmentDate", "active" }, null, new PageItemPropertyClickListener(UserViews.MINISTRY_VIEW_NAME, "nameId"), null, null);
+						"firstAssignmentDate", "lastAssignmentDate", "active" }, new String[] {"active"}, new PageItemPropertyClickListener(UserViews.MINISTRY_VIEW_NAME, "nameId"), null, null);
 
 		panel.setCaption(DATAGRID + parameters);
 
