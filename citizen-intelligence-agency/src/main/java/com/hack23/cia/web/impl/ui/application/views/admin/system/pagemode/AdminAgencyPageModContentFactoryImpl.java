@@ -21,6 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.Agency;
@@ -66,7 +67,7 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 		return NAME.equals(page);
 	}
 
-	//@Secured({ "ROLE_ADMIN" })
+	@Secured({ "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout content = createPanelContent();
