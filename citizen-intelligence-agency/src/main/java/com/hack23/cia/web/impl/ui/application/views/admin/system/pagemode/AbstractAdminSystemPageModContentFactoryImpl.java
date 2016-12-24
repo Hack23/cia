@@ -127,7 +127,7 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 		}
 
 		content.addComponent(pagingControls);
-		content.setExpandRatio(pagingControls, ContentRatio.SMALL);
+		content.setExpandRatio(pagingControls, ContentRatio.SMALL2);
 
 	}
 
