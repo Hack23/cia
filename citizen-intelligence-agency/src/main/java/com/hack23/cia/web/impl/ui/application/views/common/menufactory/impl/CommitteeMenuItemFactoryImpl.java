@@ -31,6 +31,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class CommitteeMenuItemFactoryImpl.
@@ -154,5 +155,11 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
 	}
+	
+	@Override
+	public void createOverviewPage(VerticalLayout panelContent, String pageId) {
+				
+	}
+
 
 }

@@ -19,6 +19,8 @@
 package com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api;
 
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.UI;
@@ -26,7 +28,7 @@ import com.vaadin.ui.UI;
 /**
  * The Class PageModeMenuCommand.
  */
-public final class PageModeMenuCommand implements Command {
+public final class PageModeMenuCommand implements Command, ClickListener {
 
 	/** The Constant PAGE_SEPARATOR. */
 	private static final Character PAGE_SEPARATOR = '/';
@@ -119,6 +121,11 @@ public final class PageModeMenuCommand implements Command {
 	@Override
 	public void menuSelected(final MenuItem selectedItem) {
 		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + pageReference);
+	}
+
+	@Override
+	public void buttonClick(ClickEvent event) {
+		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + pageReference);		
 	}
 
 }

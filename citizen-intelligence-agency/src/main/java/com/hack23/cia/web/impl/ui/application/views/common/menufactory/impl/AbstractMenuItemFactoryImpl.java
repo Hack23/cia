@@ -26,8 +26,12 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsView
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.server.Resource;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class AbstractMenuItemFactoryImpl.
@@ -243,6 +247,15 @@ public abstract class AbstractMenuItemFactoryImpl {
 			userActivityMenuItem.addItem(USERACCOUNT,FontAwesome.GROUP, COMMAND17);
 
 		}
+	}
+
+	protected final void createButtonLink(final VerticalLayout panelContent,final String linkText,final Resource icon, final ClickListener command) {
+		Button b = new Button(linkText);
+		b.setStyleName("link"); 
+		b.addClickListener(command);
+		b.setSizeFull();
+		b.setIcon(icon);
+		panelContent.addComponent(b);
 	}
 
 }

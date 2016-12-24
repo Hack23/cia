@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api;
 
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * A factory for creating TestMenuItem objects.
@@ -41,5 +42,13 @@ public interface CountryMenuItemFactory {
 	 *            the country menu item
 	 */
 	void createCountryTopicMenu(MenuItem countryMenuItem);
+	
+	/**
+	 * Creates a new CountryMenuItem object.
+	 *
+	 * @param panelContent
+	 *            the panel content
+	 */
+	void createOverviewPage(VerticalLayout panelContent);
 
 }

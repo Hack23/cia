@@ -26,6 +26,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class BallotMenuItemFactoryImpl.
@@ -62,6 +63,17 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		menuBar.addItem(INDICATORS_TEXT, FontAwesome.PIE_CHART,
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.INDICATORS, pageId));
 
+	}
+
+	@Override
+	public void createOverviewPage(VerticalLayout panelContent, String pageId) {
+
+		createButtonLink(panelContent,INDICATORS_TEXT, FontAwesome.PIE_CHART,
+				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.INDICATORS, pageId));
+
+		createButtonLink(panelContent,INDICATORS_TEXT, FontAwesome.PIE_CHART,
+				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.INDICATORS, pageId));
+				
 	}
 
 }

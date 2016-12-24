@@ -64,6 +64,8 @@ public final class ParliamentOverviewPageModContentFactoryImpl extends AbstractP
 
 		panelContent.addComponent(new Label(OVERVIEW));
 
+		getParliamentMenuItemFactory().createOverviewPage(panelContent);
+		
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
 		panel.setCaption(OVERVIEW);
 
