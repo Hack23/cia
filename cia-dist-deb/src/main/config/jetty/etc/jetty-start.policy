@@ -1,12 +1,72 @@
 
-// Standard extensions get all permissions by default
+// These permissions apply to javac
+grant codeBase "file:${java.home}/lib/-" {
+        permission java.security.AllPermission;
+};
+
+// These permissions apply to all shared system extensions
+grant codeBase "file:${java.home}/jre/lib/ext/-" {
+        permission java.security.AllPermission;
+};
+
+// These permissions apply to javac when ${java.home] points at $JAVA_HOME/jre
+grant codeBase "file:${java.home}/../lib/-" {
+        permission java.security.AllPermission;
+};
 
 grant codeBase "file:${{java.ext.dirs}}/*" {
         permission java.security.AllPermission;
 };
 
-// default permissions granted to all domains
+grant codeBase "file:${/}opt${/}cia${/}start.jar" {
+        permission java.security.AllPermission;
+};
+
+grant codeBase "file:${/}opt${/}cia${/}lib${/}*" {
+        permission java.security.AllPermission;
+};
+
+grant codeBase "file:${/}opt${/}cia${/}lib${/}apache-jsp${/}*" {
+        permission java.security.AllPermission;
+};
+
+grant codeBase "file:${/}opt${/}cia${/}lib${/}apache-jstl${/}*" {
+        permission java.security.AllPermission;
+};
+
+grant codeBase "file:${/}opt${/}cia${/}lib${/}ext${/}*" {
+        permission java.security.AllPermission;
+};
+
+grant codeBase "file:${/}opt${/}cia${/}lib${/}fcgi${/}*" {
+        permission java.security.AllPermission;
+};
+
+grant codeBase "file:${/}opt${/}cia${/}lib${/}http2${/}*" {
+        permission java.security.AllPermission;
+};
+
+grant codeBase "file:${/}opt${/}cia${/}lib${/}jaspi${/}*" {
+        permission java.security.AllPermission;
+};
+
+grant codeBase "file:${/}opt${/}cia${/}lib${/}jndi${/}*" {
+        permission java.security.AllPermission;
+};
+
+grant codeBase "file:${/}opt${/}cia${/}lib${/}setuid${/}*" {
+        permission java.security.AllPermission;
+};
+
+grant codeBase "file:${/}opt${/}cia${/}lib${/}spring${/}*" {
+        permission java.security.AllPermission;
+};
+
+grant codeBase "file:${/}opt${/}cia${/}lib${/}websocket${/}*" {
+        permission java.security.AllPermission;
+};
 
 grant {
-		permission java.security.AllPermission;
+     permission java.security.AllPermission;
 };
+
