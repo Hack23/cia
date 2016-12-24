@@ -101,7 +101,7 @@
           <deb>
             <section>devel</section>
             <!-- <depends>zip</depends> -->
-            <preDepends>openjdk-8-jdk</preDepends>
+            <preDepends>openjdk-8-jdk, ca-certificates-java</preDepends>
             <suggests>postgresql</suggests>
             <!-- <priority></priority> <provides></provides> <recommends></recommends>
 							<replaces></replaces> <suggests></suggests> -->
@@ -162,6 +162,10 @@
             <copyFile>
               <path>src/main/config/jetty/start.ini</path>
               <toFile>/opt/cia/start.ini</toFile>
+            </copyFile>
+            <copyFile>
+              <path>${project.build.directory}/keystore.jceks</path>
+              <toFile>/opt/cia/etc/keystore.jceks</toFile>
             </copyFile>
             <copyFile>
               <path>src/main/config/jetty/etc/jetty-gzip.xml</path>
