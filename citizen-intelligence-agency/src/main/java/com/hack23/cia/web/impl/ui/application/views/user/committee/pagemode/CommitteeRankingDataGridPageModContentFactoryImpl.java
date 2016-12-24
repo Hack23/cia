@@ -83,7 +83,7 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 		getGridFactory().createBasicBeanItemGrid(panelContent, politicianDocumentDataSource,
 				"Committees",
 				new String[] { "embeddedId.orgCode", "embeddedId.detail", "totalDaysServed", "currentMemberSize",
-						"totalAssignments", "firstAssignmentDate", "active", "lastAssignmentDate" }, new String[] { "embeddedId" },
+						"totalAssignments", "firstAssignmentDate", "active", "lastAssignmentDate" }, new String[] { "embeddedId","embeddedId.orgCode" , "active" },
 				new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, "embeddedId.orgCode"), null, null);
 
 		panel.setCaption(DATAGRID + parameters);
