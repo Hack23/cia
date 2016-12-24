@@ -96,8 +96,8 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 		getGridFactory().createBasicBeanItemGrid(content,
 				politicianDocumentDataSource,
 				"ApplicationConfiguration",
-				new String[] { "hjid", "configTitle", "configDescription", "configurationGroup", "component",
-						"componentTitle", "componentDescription", "propertyId", "propertyValue" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "updatedDate" },
+				new String[] { "hjid", "configurationGroup", "component", "componentTitle", "configTitle", "configDescription",   
+						 "componentDescription", "propertyId", "propertyValue" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "updatedDate","propertyId" ,"componentDescription", "componentTitle"},
 				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, "hjid"), null, null);
 
 		if (pageId != null && !pageId.isEmpty()) {
@@ -119,8 +119,8 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 
 				getFormFactory().addFormPanelTextFields(leftLayout, new BeanItem<>(applicationConfiguration),
 						ApplicationConfiguration.class,
-						Arrays.asList(new String[] { "hjid", "configTitle", "configDescription", "component",
-								"componentTitle", "componentDescription", "propertyId", "propertyValue", "createdDate",
+						Arrays.asList(new String[] { "configurationGroup", "component","configTitle" ,"configDescription",
+								"propertyValue", "createdDate",
 								"updatedDate" }));
 
 				final UpdateApplicationConfigurationRequest request = new UpdateApplicationConfigurationRequest();
