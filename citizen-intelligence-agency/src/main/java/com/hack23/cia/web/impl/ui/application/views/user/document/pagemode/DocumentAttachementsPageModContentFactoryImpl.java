@@ -103,7 +103,7 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 				getGridFactory().createBasicBeanItemGrid(
 						panelContent, documentAttachmentDataSource,
 						"Document attachements", new String[] { "fileName", "fileSize", "fileType", "fileUrl" }, new String[] { "hjid" },
-						null, null);
+						null, null, null);
 
 				final List<DocumentAttachment> documentAttachmentList = documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList();
 

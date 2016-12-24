@@ -99,7 +99,7 @@ public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractP
 
 							"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
 							"currentSpeakerAssignments" }, null, new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"),
-					null);
+					null, null);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}

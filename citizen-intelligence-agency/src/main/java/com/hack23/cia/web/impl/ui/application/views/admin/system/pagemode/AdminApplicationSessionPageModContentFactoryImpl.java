@@ -92,7 +92,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 				"ApplicationSession",
 				new String[] { "hjid", "createdDate", "sessionType", "sessionId", "operatingSystem", "locale",
 						"ipInformation", "userAgentInformation", "events" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion" },
-				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid"), null);
+				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid"), null, null);
 
 		if (pageId != null && !pageId.isEmpty()) {
 
@@ -125,7 +125,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 								"elementId", "actionName", "userId", "sessionId", "errorMessage", "applicationMessage",
 								"modelObjectVersion" }, new String[] { "hjid", "modelObjectId" },
 						new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"),
-						null);
+						null, null);
 			}
 
 		}

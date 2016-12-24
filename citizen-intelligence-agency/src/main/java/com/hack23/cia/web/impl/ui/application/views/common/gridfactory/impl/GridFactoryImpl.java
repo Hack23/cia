@@ -21,6 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl;
 import org.springframework.stereotype.Service;
 import org.vaadin.gridutil.cell.GridCellFilter;
 
+import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.ListPropertyConverter;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener;
@@ -29,6 +30,7 @@ import com.vaadin.data.Container.Indexed;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Grid;
+import com.vaadin.ui.Grid.Column;
 import com.vaadin.ui.Grid.SelectionMode;
 
 /**
@@ -47,8 +49,8 @@ public final class GridFactoryImpl implements GridFactory {
 	@Override
 	public void createBasicBeanItemGrid(final AbstractOrderedLayout panelContent, final Container.Indexed datasource,
 			final String caption, final Object[] columnOrder, final Object[] hideColumns,
-			final AbstractPageItemRendererClickListener<?> listener, final String actionId) {
-		createBasicBeanItemNestedPropertiesGrid(panelContent,datasource, caption, null, columnOrder, hideColumns, listener, actionId);
+			final AbstractPageItemRendererClickListener<?> listener, final String actionId, ListPropertyConverter[] collectionPropertyConverters) {
+		createBasicBeanItemNestedPropertiesGrid(panelContent,datasource, caption, null, columnOrder, hideColumns, listener, actionId, collectionPropertyConverters);
 
 
 	}
@@ -56,7 +58,7 @@ public final class GridFactoryImpl implements GridFactory {
 	@Override
 	public void createBasicBeanItemNestedPropertiesGrid(final AbstractOrderedLayout panelContent,final Indexed datasource, final String caption, final String[] nestedProperties,
 			final Object[] columnOrder, final Object[] hideColumns, final AbstractPageItemRendererClickListener<?> listener,
-			final String actionId) {
+			final String actionId, ListPropertyConverter[] collectionPropertyConverters) {
 		final Grid grid = new Grid(datasource);
 
 		grid.setCaption(caption);
@@ -67,6 +69,8 @@ public final class GridFactoryImpl implements GridFactory {
 		configureColumnOrdersAndHiddenFields(columnOrder, hideColumns, grid);
 
 		configureListeners(listener, grid);
+		
+		setColumnConverters(collectionPropertyConverters, grid);
 
 		grid.setSizeFull();
 
@@ -124,8 +128,6 @@ public final class GridFactoryImpl implements GridFactory {
 	/**
 	 * Configure listeners.
 	 *
-	 * @param idProprty
-	 *            the id proprty
 	 * @param listener
 	 *            the listener
 	 * @param grid
@@ -161,4 +163,23 @@ public final class GridFactoryImpl implements GridFactory {
 		}
 	}
 
+	
+	/**
+	 * Sets the column converters.
+	 *
+	 * @param collectionPropertyConverter
+	 *            the collection property converter
+	 * @param grid
+	 *            the grid
+	 */
+	private static void setColumnConverters(final ListPropertyConverter[] collectionPropertyConverter, final Grid grid) {
+		if (collectionPropertyConverter != null) {	
+			for (ListPropertyConverter converter : collectionPropertyConverter) {
+				Column column = grid.getColumn(converter.getColumn());
+				column.setConverter(converter);
+			}			
+		}
+	}
+
+	
 }

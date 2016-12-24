@@ -98,7 +98,7 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 				"ApplicationConfiguration",
 				new String[] { "hjid", "configTitle", "configDescription", "configurationGroup", "component",
 						"componentTitle", "componentDescription", "propertyId", "propertyValue" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "updatedDate" },
-				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, "hjid"), null);
+				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, "hjid"), null, null);
 
 		if (pageId != null && !pageId.isEmpty()) {
 

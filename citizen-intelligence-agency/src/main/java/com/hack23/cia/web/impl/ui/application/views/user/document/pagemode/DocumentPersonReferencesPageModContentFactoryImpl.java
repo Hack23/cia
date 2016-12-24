@@ -107,7 +107,7 @@ public final class DocumentPersonReferencesPageModContentFactoryImpl extends Abs
 						"Document person references",
 						new String[] { "personReferenceId", "referenceName", "partyShortCode", "orderNumber",
 								"roleDescription" }, new String[] { "personReferenceId", "hjid" },
-						new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personReferenceId"), null);
+						new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personReferenceId"), null, null);
 
 			}
 

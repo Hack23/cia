@@ -109,7 +109,7 @@ public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractP
 				.createBasicBeanItemGrid(roleSummaryLayoutTabsheet, new BeanItemContainer<>(AssignmentData.class, assignmentList),
 						"Assignments",
 						new String[] { "roleCode", "assignmentType", "status", "detail", "orgCode", "fromDate",
-								"toDate" }, new String[] { "hjid", "intressentId", "orderNumber", "orgCode" }, null, null);
+								"toDate" }, new String[] { "hjid", "intressentId", "orderNumber", "orgCode" }, null, null, null);
 
 	}
 

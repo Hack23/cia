@@ -18,7 +18,9 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -29,6 +31,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.model.internal.application.system.impl.Portal;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.ListPropertyConverter;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
@@ -65,7 +68,7 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 		return NAME.equals(page);
 	}
 
-	@Secured({ "ROLE_ADMIN" })
+	//@Secured({ "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout content = createPanelContent();
@@ -87,8 +90,8 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 
 		getGridFactory().createBasicBeanItemGrid(content,
 				politicianDocumentDataSource, "Agency",
-				new String[] { "hjid", "agencyName", "description", "portals", "modelObjectVersion" }, new String[] { "hjid","modelObjectId" },
-				new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid"), null);
+				new String[] { "hjid", "agencyName", "description", "portals", "modelObjectVersion" }, new String[] { "hjid","modelObjectId", "modelObjectVersion" },
+				new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid"), null, new ListPropertyConverter[] { new ListPropertyConverter(List.class, "portalName", "portals")});
 
 		if (pageId != null && !pageId.isEmpty()) {
 
@@ -103,7 +106,7 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 			horizontalLayout.addComponent(rightLayout);
 
 			final Agency agency = dataContainer.load(Long.valueOf(pageId));
-
+			agency.getPortals().getClass();
 			if (agency != null) {
 
 				getFormFactory().addFormPanelTextFields(leftLayout, new BeanItem<>(agency), Agency.class,
@@ -116,7 +119,7 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 						"Portal",
 						new String[] { "hjid", "portalName", "description", "portalType", "googleMapApiKey",
 								"modelObjectVersion" }, new String[] { "hjid","modelObjectId" },
-						new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid"), null);
+						new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid"), null, null);
 			}
 
 		}

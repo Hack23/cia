@@ -98,7 +98,7 @@ public final class DocumentDetailsPageModContentFactoryImpl extends AbstractDocu
 
 				getGridFactory().createBasicBeanItemGrid(
 						panelContent, documentDetailDataDataDataSource,
-						"Document details", new String[] { "code", "detailName", "text" }, new String[] { "hjid" }, null, null);
+						"Document details", new String[] { "code", "detailName", "text" }, new String[] { "hjid" }, null, null, null);
 			}
 
 			panel.setContent(panelContent);

@@ -153,7 +153,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 							"percentageAbsent", "percentageAbstain", "voteDate", "rm", "label", "embeddedId.concern",
 							"totalVotes", "approved", "yesVotes", "noVotes", "ballotType",
 							"abstainVotes", "absentVotes", "embeddedId.ballotId", "noWinner" },
-					new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "embeddedId.party"), "embeddedId.party");
+					new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "embeddedId.party"), "embeddedId.party", null);
 
 			panel.setCaption(BALLOT + pageId);
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME,
