@@ -18,7 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api;
 
-import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -42,6 +42,8 @@ public final class ListPropertyConverter implements Converter<String, List> {
 
 	/** The column. */
 	private final String column;
+	
+	private final String fallbackColumn;
 
 	/**
 	 * Instantiates a new collection property converter.
@@ -58,8 +60,18 @@ public final class ListPropertyConverter implements Converter<String, List> {
 		this.modelType = modelType;
 		this.property = property;
 		this.column = column;
+		this.fallbackColumn = null;
 	}
 
+	public ListPropertyConverter(final Class<List> modelType, final String property, final String column,final String fallbackColumn) {
+		super();
+		this.modelType = modelType;
+		this.property = property;
+		this.column = column;
+		this.fallbackColumn = fallbackColumn;
+	}
+
+	
 	/**
 	 * Gets the presentation type.
 	 *
@@ -82,7 +94,7 @@ public final class ListPropertyConverter implements Converter<String, List> {
 	@Override
 	public List convertToModel(String value, Class<? extends List> targetType, Locale locale)
 			throws com.vaadin.data.util.converter.Converter.ConversionException {
-		return null;
+		return new ArrayList<>();
 	}
 
 	@Override
@@ -90,13 +102,29 @@ public final class ListPropertyConverter implements Converter<String, List> {
 			throws com.vaadin.data.util.converter.Converter.ConversionException {
 		StringBuilder stringBuilder = new StringBuilder().append("[ ");
 
-		for (Object object : value) {
-			try {
-				stringBuilder.append(BeanUtils.getProperty(object, property));
-			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-				throw new ConversionException(e);
+		if (value != null) {
+			for (Object object : value) {
+				try {
+					String beanProperty = BeanUtils.getProperty(object, property);
+					
+					if (beanProperty != null) {
+						stringBuilder.append(beanProperty);
+					} else {
+						if (fallbackColumn != null) {
+							String beanPropertyFallBack = BeanUtils.getProperty(object, fallbackColumn);
+							if (beanPropertyFallBack != null) {
+								stringBuilder.append(beanPropertyFallBack);
+							}
+						}
+							
+						
+					}
+					
+				} catch (Exception e) {
+					stringBuilder.append(" ");
+				}
+				stringBuilder.append(" ");
 			}
-			stringBuilder.append(" ");
 		}
 
 		stringBuilder.append("]");

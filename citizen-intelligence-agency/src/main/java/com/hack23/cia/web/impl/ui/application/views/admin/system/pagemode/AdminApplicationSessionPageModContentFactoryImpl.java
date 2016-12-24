@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -29,6 +30,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.ListPropertyConverter;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
@@ -67,7 +69,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 		return NAME.equals(page);
 	}
 
-	@Secured({ "ROLE_ADMIN" })
+	//@Secured({ "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout content = createPanelContent();
@@ -90,9 +92,9 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 
 		getGridFactory().createBasicBeanItemGrid(content, politicianDocumentDataSource,
 				"ApplicationSession",
-				new String[] { "hjid", "createdDate", "sessionType", "sessionId", "operatingSystem", "locale",
-						"ipInformation", "userAgentInformation", "events" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion" },
-				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid"), null, null);
+				new String[] { "hjid", "createdDate", "sessionType", "userId", "events", "operatingSystem", "locale",
+						"ipInformation", "userAgentInformation", "sessionId" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion" ,"userAgentInformation", "sessionId","ipInformation"},
+				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid"), null, new ListPropertyConverter[] { new ListPropertyConverter(List.class, "page", "events","actionName")});
 
 		if (pageId != null && !pageId.isEmpty()) {
 
