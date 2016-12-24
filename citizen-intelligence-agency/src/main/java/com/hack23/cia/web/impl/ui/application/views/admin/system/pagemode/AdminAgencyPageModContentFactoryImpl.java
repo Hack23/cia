@@ -18,11 +18,9 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.Agency;

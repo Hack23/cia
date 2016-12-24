@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Locale;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.poi.ss.formula.eval.NotImplementedException;
 
 import com.vaadin.data.util.converter.Converter;
 
