@@ -8,6 +8,8 @@ mv /opt/cia/bin/jetty.sh /opt/cia/bin/cia.sh
 chmod a+x /opt/cia/bin/*.sh
 ln -s /opt/cia/bin/cia.sh /etc/init.d/cia
 
+ln -s /etc/ssl/certs/java/cacerts /opt/cia/etc/cacerts
+
 /etc/init.d/cia start
 
 exit 0
