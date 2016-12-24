@@ -86,7 +86,7 @@ public final class AdminLanguageContentPageModContentFactoryImpl extends Abstrac
 				politicianDocumentDataSource,
 				"LanguageContentData",
 				new String[] { "hjid", "languageContentType", "refKey", "fromLanguage", "toLanguage", "createdDate",
-						"languageValue", "modelObjectVersion" }, new String[] { "hjid", "modelObjectId" },
+						"languageValue" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion" },
 				new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, "hjid"), null, null);
 
 		if (pageId != null && !pageId.isEmpty()) {
@@ -96,8 +96,8 @@ public final class AdminLanguageContentPageModContentFactoryImpl extends Abstrac
 			if (languageContentData != null) {
 
 				getFormFactory().addFormPanelTextFields(content, new BeanItem<>(languageContentData), LanguageContentData.class,
-						Arrays.asList(new String[] { "hjid", "refKey", "fromLanguage", "toLanguage", "createdDate",
-								"languageValue", "modelObjectVersion" }));
+						Arrays.asList(new String[] { "refKey", "fromLanguage", "toLanguage", "createdDate",
+								"languageValue"}));
 			}
 		}
 
