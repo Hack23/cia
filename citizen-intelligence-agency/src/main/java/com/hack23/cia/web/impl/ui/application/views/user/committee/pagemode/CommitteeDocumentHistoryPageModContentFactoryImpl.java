@@ -100,7 +100,7 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 					new String[] { "id", "docId", "referenceName", "partyShortCode", "personReferenceId",
 							"roleDescription", "documentType", "subType", "org", "label", "rm", "madePublicDate",
 							"numberValue", "status", "title", "subTitle", "tempLabel", "orderNumber" },
-					new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId", "org" }, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null);
+					new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId", "org" }, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null, null);
 
 
 			panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());

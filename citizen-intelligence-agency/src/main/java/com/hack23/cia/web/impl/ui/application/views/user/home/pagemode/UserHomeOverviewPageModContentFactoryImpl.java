@@ -133,7 +133,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 				getGridFactory().createBasicBeanItemGrid(panelContent, politicianDocumentDataSource,
 						"ApplicationActionEvent",
 						new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" }, new String[] { "hjid", "modelObjectId" },
-						new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null);
+						new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null, null);
 
 				panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);
 

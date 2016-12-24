@@ -87,7 +87,7 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 						"Country",
 						new String[] { "hjid", "id", "countryName", "iso2Code", "capitalCity", "longitude",
 								"latitude" }, new String[] { "hjid", "region", "adminregion" },
-						new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "hjid"), null);
+						new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "hjid"), null, null);
 
 		if (pageId != null && !pageId.isEmpty()) {
 

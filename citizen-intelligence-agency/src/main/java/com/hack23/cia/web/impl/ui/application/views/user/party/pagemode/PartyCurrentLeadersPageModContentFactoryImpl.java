@@ -89,7 +89,7 @@ public final class PartyCurrentLeadersPageModContentFactoryImpl extends Abstract
 					CURRENT_LEADERS,
 					new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
 							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "roleId", "personId", "detail" },
-					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
+					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null, null);
 
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);

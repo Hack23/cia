@@ -97,7 +97,7 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 							"madePublicDate", "numberValue", "status", "title", "subTitle", "tempLabel",
 							"orderNumber" },
 					new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId",
-							"org" }, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME,"docId"), null);
+							"org" }, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME,"docId"), null, null);
 
 			panel.setCaption(MINISTRY + viewRiksdagenMinistry.getNameId());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,

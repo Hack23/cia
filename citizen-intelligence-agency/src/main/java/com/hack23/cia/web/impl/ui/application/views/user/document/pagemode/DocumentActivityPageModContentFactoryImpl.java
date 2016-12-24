@@ -100,7 +100,7 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractDoc
 						.createBasicBeanItemGrid(panelContent,
 								documentActivityDataDataDataSource, "Document activities",
 								new String[] { "createdDate", "code", "activityName",
-										"orderNumber", "process", "status" }, new String[] { "hjid" }, null, null);
+										"orderNumber", "process", "status" }, new String[] { "hjid" }, null, null, null);
 
 			}
 

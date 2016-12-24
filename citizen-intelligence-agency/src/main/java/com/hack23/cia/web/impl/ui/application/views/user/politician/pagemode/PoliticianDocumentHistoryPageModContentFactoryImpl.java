@@ -94,7 +94,7 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl extends Ab
 							"documentType", "subType", "title", "subTitle", "org", "rm", "madePublicDate", "id",
 							"docId", "tempLabel", "label", "numberValue", "orderNumber", "status" },
 					new String[] { "id", "partyShortCode", "personReferenceId", "numberValue", "orderNumber",
-							"tempLabel", "referenceName" }, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null);
+							"tempLabel", "referenceName" }, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null, null);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 

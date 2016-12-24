@@ -89,7 +89,7 @@ public final class PartyGovernmentRolesPageModContentFactoryImpl extends Abstrac
 					GOVERNMENT_ROLES,
 					new String[] { "roleId", "personId", "firstName", "lastName", "active", "detail",
 							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "roleId", "personId", "party" },
-					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null);
+					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null, null);
 
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);

@@ -95,7 +95,7 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 							"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
 							"percentageAbsent", "percentageAbstain" },
 					new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "embeddedId.ballotId"),
-					"embeddedId.ballotId");
+					"embeddedId.ballotId", null);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}
