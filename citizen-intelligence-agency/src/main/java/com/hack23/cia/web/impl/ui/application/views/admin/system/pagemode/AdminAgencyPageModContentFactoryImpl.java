@@ -32,6 +32,7 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.ListPropertyConverter;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -101,6 +102,10 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 			final HorizontalLayout horizontalLayout = new HorizontalLayout();
 			horizontalLayout.setWidth(ContentSize.FULL_SIZE);
 			content.addComponent(horizontalLayout);
+			
+			content.setExpandRatio(horizontalLayout, ContentRatio.LARGE_FORM);
+
+			
 			horizontalLayout.addComponent(leftLayout);
 			horizontalLayout.addComponent(rightLayout);
 
@@ -109,7 +114,7 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 			if (agency != null) {
 
 				getFormFactory().addFormPanelTextFields(leftLayout, new BeanItem<>(agency), Agency.class,
-						Arrays.asList(new String[] { "hjid", "agencyName", "description", "modelObjectVersion" }));
+						Arrays.asList(new String[] { "agencyName", "description"}));
 
 				final BeanItemContainer<Portal> portalItemContainer = new BeanItemContainer<>(Portal.class,
 						agency.getPortals());
@@ -117,7 +122,7 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 				getGridFactory().createBasicBeanItemGrid(rightLayout, portalItemContainer,
 						"Portal",
 						new String[] { "hjid", "portalName", "description", "portalType", "googleMapApiKey",
-								"modelObjectVersion" }, new String[] { "hjid","modelObjectId" },
+								"modelObjectVersion" }, new String[] { "hjid","modelObjectId", "modelObjectVersion", "googleMapApiKey" },
 						new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid"), null, null);
 			}
 

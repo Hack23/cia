@@ -86,7 +86,7 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 				politicianDocumentDataSource,
 				"Portal",
 				new String[] { "hjid", "portalName", "description", "portalType", "googleMapApiKey",
-						"modelObjectVersion" }, new String[] { "hjid", "modelObjectId" },
+						"modelObjectVersion" }, new String[] { "hjid", "modelObjectId", "googleMapApiKey", "modelObjectVersion" },
 				new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid"), null, null);
 
 		if (pageId != null && !pageId.isEmpty()) {
@@ -96,8 +96,8 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 			if (portal != null) {
 
 				getFormFactory().addFormPanelTextFields(content, new BeanItem<>(portal), Portal.class,
-						Arrays.asList(new String[] { "hjid", "portalName", "description", "portalType",
-								"googleMapApiKey", "modelObjectVersion" }));
+						Arrays.asList(new String[] {"portalName", "description", "portalType",
+								"googleMapApiKey"}));
 			}
 		}
 
