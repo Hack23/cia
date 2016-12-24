@@ -86,7 +86,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 				politicianDocumentDataSource,
 				"UserAccount",
 				new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "userId", "username",
-						"userType", "userRole", "userpassword", "email", "country", "numberOfVisits" }, new String[] { "hjid", "modelObjectId" },
+						"userType", "userRole", "userpassword", "email", "country", "numberOfVisits" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion" },
 				new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, "hjid"), null, null);
 
 
@@ -98,7 +98,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 
 				getFormFactory()
 						.addFormPanelTextFields(content, new BeanItem<>(userAccount), UserAccount.class,
-								Arrays.asList(new String[] { "hjid", "modelObjectId", "modelObjectVersion", "userId",
+								Arrays.asList(new String[] {"userId",
 										"username", "createdDate", "userpassword", "email", "country",
 										"numberOfVisits" }));
 			}
