@@ -28,6 +28,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class DocumentMenuItemFactoryImpl.
@@ -121,6 +122,12 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 			menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
 					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
 
+	}
+
+
+	@Override
+	public void createOverviewPage(VerticalLayout panelContent, String pageId) {
+		
 	}
 
 }

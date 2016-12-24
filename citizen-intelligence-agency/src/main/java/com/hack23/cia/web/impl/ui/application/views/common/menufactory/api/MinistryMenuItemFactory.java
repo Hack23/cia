@@ -19,11 +19,11 @@
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api;
 
 import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * A factory for creating MenuItem objects.
  */
-@FunctionalInterface
 public interface MinistryMenuItemFactory {
 
 	/**
@@ -35,5 +35,15 @@ public interface MinistryMenuItemFactory {
 	 *            the page id
 	 */
 	void createMinistryMenuBar(MenuBar menuBar, String pageId);
+	
+	/**
+	 * Creates a new MinistryMenuItem object.
+	 *
+	 * @param panelContent
+	 *            the panel content
+	 * @param pageId
+	 *            the page id
+	 */
+	void createOverviewPage(VerticalLayout panelContent,  String pageId);
 
 }

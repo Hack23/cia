@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api;
 
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * A factory for creating PoliticianRankingMenuItem objects.
@@ -28,7 +29,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
 public interface PoliticianRankingMenuItemFactory {
 
 	/**
-	 * Creates a new MenuItem object.
+	 * Creates a new PoliticianRankingMenuItem object.
 	 *
 	 * @param menuBar
 	 *            the menu bar
@@ -42,5 +43,14 @@ public interface PoliticianRankingMenuItemFactory {
 	 *            the politician menu item
 	 */
 	void createPoliticianRankingTopics(MenuItem politicianMenuItem);
+	
+	/**
+	 * Creates a new PoliticianRankingMenuItem object.
+	 *
+	 * @param panelContent
+	 *            the panel content
+	 */
+	void createOverviewPage(VerticalLayout panelContent);
+
 
 }

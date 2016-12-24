@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api;
 
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * A factory for creating MinistryRankingMenuItem objects.
@@ -41,5 +42,14 @@ public interface MinistryRankingMenuItemFactory {
 	 *            the ministry menu item
 	 */
 	void createMinistryRankingTopics(MenuItem ministryMenuItem);
+	
+	/**
+	 * Creates a new MinistryRankingMenuItem object.
+	 *
+	 * @param panelContent
+	 *            the panel content
+	 */
+	void createOverviewPage(VerticalLayout panelContent);
+
 
 }

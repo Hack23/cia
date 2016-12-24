@@ -91,6 +91,7 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 
 			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
 
+			getDocumentMenuItemFactory().createOverviewPage(panelContent, pageId);
 
 			getFormFactory().addFormPanelTextFields(panelContent, new BeanItem<>(documentElement), DocumentElement.class,
 					Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status", "title",

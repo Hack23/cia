@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api;
 
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * A factory for creating PartyRankingMenuItem objects.
@@ -41,5 +42,14 @@ public interface PartyRankingMenuItemFactory {
 	 *            the partyn menu item
 	 */
 	void createPartyRankingTopics(MenuItem partynMenuItem);
+	
+	/**
+	 * Creates a new PartyRankingMenuItem object.
+	 *
+	 * @param panelContent
+	 *            the panel content
+	 */
+	void createOverviewPage(VerticalLayout panelContent);
+
 
 }

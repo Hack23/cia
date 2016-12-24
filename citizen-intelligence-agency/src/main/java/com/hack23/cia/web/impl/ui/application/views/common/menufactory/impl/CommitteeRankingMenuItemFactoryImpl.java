@@ -30,6 +30,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class CommitteeRankingMenuItemFactoryImpl.
@@ -163,5 +164,20 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 		committeeMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP, COMMAND21);
 
 	}
+	
+	@Override
+	public void createOverviewPage(final VerticalLayout panelContent) {
+		
+		createButtonLink(panelContent,POLITICAL_WORK_SUMMARY_TEXT,FontAwesome.GROUP, COMMAND18);
+		createButtonLink(panelContent,CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,FontAwesome.GROUP, COMMAND24);
+
+		createButtonLink(panelContent,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,FontAwesome.GROUP, COMMAND23);
+		createButtonLink(panelContent,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND25);
+		createButtonLink(panelContent,ALL_COMMITTEES_TOTAL_MEMBERS,FontAwesome.GROUP, COMMAND22);
+		
+		createButtonLink(panelContent,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP, COMMAND21);
+		
+	}
+	
 
 }

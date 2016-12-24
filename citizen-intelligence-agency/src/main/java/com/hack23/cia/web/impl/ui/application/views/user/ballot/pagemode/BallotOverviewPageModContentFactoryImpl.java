@@ -110,7 +110,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
 
-
+			getBallotMenuItemFactory().createOverviewPage(panelContent, pageId);
 
 			for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
 
@@ -154,6 +154,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 							"totalVotes", "approved", "yesVotes", "noVotes", "ballotType",
 							"abstainVotes", "absentVotes", "embeddedId.ballotId", "noWinner" },
 					new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "embeddedId.party"), "embeddedId.party", null);
+			
 
 			panel.setCaption(BALLOT + pageId);
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME,

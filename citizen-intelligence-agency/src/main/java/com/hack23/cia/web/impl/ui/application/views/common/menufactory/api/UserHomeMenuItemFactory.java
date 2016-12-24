@@ -27,7 +27,7 @@ import com.vaadin.ui.MenuBar;
 public interface UserHomeMenuItemFactory {
 
 	/**
-	 * Creates a new MenuItem object.
+	 * Creates a new UserHomeMenuItem object.
 	 *
 	 * @param barmenu
 	 *            the barmenu

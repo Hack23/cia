@@ -81,7 +81,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
-
+			getMinistryMenuItemFactory().createOverviewPage(panelContent, pageId);
 
 			final Link addMinistryPageLink = getPageLinkFactory().addMinistryPageLink(viewRiksdagenMinistry);
 			panelContent.addComponent(addMinistryPageLink);

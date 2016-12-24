@@ -19,11 +19,11 @@
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api;
 
 import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * A factory for creating BallotMenuItem objects.
  */
-@FunctionalInterface
 public interface BallotMenuItemFactory {
 
 	/**
@@ -35,5 +35,16 @@ public interface BallotMenuItemFactory {
 	 *            the page id
 	 */
 	void createBallotMenuBar(MenuBar menuBar, String pageId);
+	
+	/**
+	 * Creates a new BallotMenuItem object.
+	 *
+	 * @param panelContent
+	 *            the panel content
+	 * @param pageId
+	 *            the page id
+	 */
+	void createOverviewPage(VerticalLayout panelContent,  String pageId);
+
 
 }

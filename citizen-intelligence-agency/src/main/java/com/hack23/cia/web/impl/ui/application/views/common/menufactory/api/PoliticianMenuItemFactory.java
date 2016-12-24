@@ -19,15 +19,15 @@
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api;
 
 import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * A factory for creating PoliticianMenuItem objects.
  */
-@FunctionalInterface
 public interface PoliticianMenuItemFactory {
 
 	/**
-	 * Creates a new MenuItem object.
+	 * Creates a new PoliticianMenuItem object.
 	 *
 	 * @param menuBar
 	 *            the menu bar
@@ -35,5 +35,15 @@ public interface PoliticianMenuItemFactory {
 	 *            the page id
 	 */
 	void createPoliticianMenuBar(MenuBar menuBar, String pageId);
+
+	/**
+	 * Creates a new PoliticianMenuItem object.
+	 *
+	 * @param panelContent
+	 *            the panel content
+	 * @param pageId
+	 *            the page id
+	 */
+	void createOverviewPage(VerticalLayout panelContent,  String pageId);
 
 }

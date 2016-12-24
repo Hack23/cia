@@ -29,6 +29,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class PoliticianRankingMenuItemFactoryImpl.
@@ -107,5 +108,15 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 		politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG, COMMAND20);
 
 	}
+	
+	@Override
+	public void createOverviewPage(final VerticalLayout panelContent) {
+		
+		createButtonLink(panelContent,POLITICAL_EXPERIENCE_SUMMARY,FontAwesome.BUG, COMMAND19);
+		
+		createButtonLink(panelContent,PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG, COMMAND20);
+				
+	}
+
 
 }
