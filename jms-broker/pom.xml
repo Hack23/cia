@@ -105,6 +105,10 @@
           <artifactId>fusemq-leveldb</artifactId>
           <groupId>org.fusesource.fuse-extra</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>log4j</artifactId>
+          <groupId>log4j</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -214,6 +218,10 @@
           <artifactId>xpp3</artifactId>
           <groupId>xpp3</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>log4j</artifactId>
+          <groupId>log4j</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -296,6 +304,10 @@
         <exclusion>
           <artifactId>fusemq-leveldb</artifactId>
           <groupId>org.fusesource.fuse-extra</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>log4j</artifactId>
+          <groupId>log4j</groupId>
         </exclusion>
       </exclusions>
     </dependency>
