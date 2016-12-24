@@ -69,7 +69,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 		return NAME.equals(page);
 	}
 
-	//@Secured({ "ROLE_ADMIN" })
+	@Secured({ "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout content = createPanelContent();
@@ -112,10 +112,11 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 
 				getFormFactory().addFormPanelTextFields(horizontalLayout, new BeanItem<>(applicationSession),
 						ApplicationSession.class,
-						Arrays.asList(new String[] { "hjid", "createdDate", "sessionId", "operatingSystem", "locale",
-								"ipInformation", "userAgentInformation", "modelObjectVersion" }));
+						Arrays.asList(new String[] { "createdDate","sessionType", "userId", "sessionId", "operatingSystem", "locale",
+								"ipInformation", "userAgentInformation"}));
 
 				horizontalLayout.addComponent(rightLayout);
+				horizontalLayout.setExpandRatio(rightLayout, ContentRatio.GRID);
 
 				final BeanItemContainer<ApplicationActionEvent> eventsItemContainer = new BeanItemContainer<>(
 						ApplicationActionEvent.class, applicationSession.getEvents());
@@ -123,9 +124,9 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 				getGridFactory().createBasicBeanItemGrid(rightLayout,
 						eventsItemContainer,
 						"ApplicationActionEvent",
-						new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation", "page", "pageMode",
-								"elementId", "actionName", "userId", "sessionId", "errorMessage", "applicationMessage",
-								"modelObjectVersion" }, new String[] { "hjid", "modelObjectId" },
+						new String[] { "hjid", "createdDate", "eventGroup", "actionName", "applicationOperation", "page", "pageMode",
+								"elementId", "errorMessage", "applicationMessage",
+								"modelObjectVersion" }, new String[] { "hjid", "modelObjectId","modelObjectVersion","userId", "sessionId"  },
 						new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"),
 						null, null);
 			}
