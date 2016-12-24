@@ -91,7 +91,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 
 		getGridFactory().createBasicBeanItemGrid(content, politicianDocumentDataSource,
 				"ApplicationActionEvent",
-				new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" }, new String[] { "hjid", "modelObjectId" },
+				new String[] { "hjid", "createdDate", "userId","actionName","errorMessage","applicationMessage", "page","pageMode","elementId", "modelObjectVersion" }, new String[] { "hjid", "modelObjectId","modelObjectVersion","sessionId", "eventGroup", "applicationOperation"  },
 				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null, null);
 
 		if (pageId != null && !pageId.isEmpty()) {
@@ -101,7 +101,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 			if (applicationActionEvent != null) {
 
 				getFormFactory().addFormPanelTextFields(content, new BeanItem<>(applicationActionEvent), ApplicationActionEvent.class,
-					Arrays.asList(new String[] { "hjid","createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage", "modelObjectVersion" }));
+					Arrays.asList(new String[] { "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage"}));
 			}
 
 
