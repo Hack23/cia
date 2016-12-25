@@ -33,9 +33,9 @@
 	<bannerRight>
 		<name>SourceForge</name>
 		<src>
-            http://sourceforge.net/sflogo.php?group_id=115046&amp;type=2
+            https://sourceforge.net/sflogo.php?group_id=115046&amp;type=2
         </src>
-		<href>http://sourceforge.net</href>
+		<href>https://sourceforge.net</href>
 	</bannerRight>
 	<body>
 		<links>

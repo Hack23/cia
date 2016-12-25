@@ -12,8 +12,8 @@
       <sideBarEnabled>true</sideBarEnabled>    
       <topBarEnabled>true</topBarEnabled>
       <topBarIcon>
-        <name>Maven Fluido Skin</name>
-        <alt>Maven Fluido Skin</alt>
+        <name>cia sourceforge</name>
+        <alt>cia sourceforge</alt>
         <src>https://cia.sourceforge.io/cia-logo.png</src>
         <href>/index.html</href>
       </topBarIcon>
@@ -32,9 +32,9 @@
 	<bannerRight>
 		<name>SourceForge</name>
 		<src>
-			http://sourceforge.net/sflogo.php?group_id=115046&amp;type=2
+			https://sourceforge.net/sflogo.php?group_id=115046&amp;type=2
         </src>
-		<href>http://sourceforge.net</href>
+		<href>https://sourceforge.net</href>
 	</bannerRight>
 	<body>
         <links>
