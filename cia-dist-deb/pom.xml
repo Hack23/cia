@@ -88,6 +88,7 @@
           <storepass>changeit</storepass>
           <storetype>JCEKS</storetype>
           <keypass>changeit</keypass>
+          <skipIfExist>true</skipIfExist>
         </configuration>
       </plugin>
       <plugin>
