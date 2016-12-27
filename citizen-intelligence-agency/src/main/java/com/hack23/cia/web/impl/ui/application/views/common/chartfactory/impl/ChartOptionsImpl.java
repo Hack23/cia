@@ -137,7 +137,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 	}
 
 	private Cursor createCursor() {
-		final Cursor cursor = new Cursor().setShow(true);
+		final Cursor cursor = new Cursor().setZoom(true).setShow(true);
 		return cursor;
 	}
 
@@ -149,7 +149,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 
 		final Options options = new Options().addOption(new SeriesDefaults()).addOption(axes)
 				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside())
-				.addOption(createDefaultGrid());
+				.addOption(createDefaultGrid()).addOption(createCursor());
 		return options;
 	}
 
@@ -166,7 +166,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 
 
 		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend)
-				.setHighlighter(highlighter).addOption(createDefaultGrid());
+				.setHighlighter(highlighter).addOption(createDefaultGrid()).addOption(createCursor());
 		return options;
 	}
 
@@ -182,7 +182,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 						.setDataLabels(DataLabels.VALUE));
 
 		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend)
-				.setHighlighter(highlighter).addOption(series).addOption(createDefaultGrid());
+				.setHighlighter(highlighter).addOption(series).addOption(createDefaultGrid()).addOption(createCursor());
 		return options;
 	}
 
@@ -206,7 +206,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 	public Options createOptionsPieChart() {
 		final Options options = new Options().setSeriesDefaults(createSeriesDefaultPieChart())
 				.setLegend(createdLegendEnhancedInsideWest()).setHighlighter(createHighLighter())
-				.addOption(createDefaultGrid());
+				.addOption(createDefaultGrid()).addOption(createCursor());
 		return options;
 	}
 
@@ -214,7 +214,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 	public Options createOptionsXYDateFloatLegendOutside(final Series series) {
 		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
 				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside())
-				.addOption(createDefaultGrid());
+				.addOption(createDefaultGrid()).addOption(createCursor());
 	}
 
 }
