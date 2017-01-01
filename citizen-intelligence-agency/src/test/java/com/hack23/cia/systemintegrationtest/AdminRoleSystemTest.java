@@ -31,6 +31,7 @@ import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 
 /**
  * The Class AdminRoleSystemTest.
@@ -298,6 +299,29 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
+	
+	/**
+	 * Site admin application event charts test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteAdminApplicationEventChartsTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Action Event chart"));
+
+		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS));
+
+	}
+
+	
 	/**
 	 * Site admin monitoring failed access test.
 	 *
