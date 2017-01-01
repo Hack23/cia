@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
 import java.util.Arrays;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
@@ -29,9 +28,9 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEv
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
@@ -52,10 +51,6 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME;
 
-	/** The chart data manager. */
-	@Autowired
-	private AdminChartDataManager chartDataManager;
-
 	/**
 	 * Instantiates a new admin application events page mod content factory
 	 * impl.
@@ -66,7 +61,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page);
+		return NAME.equals(page) && (parameters == null || !parameters.contains(PageMode.CHARTS.toString()));
 	}
 
 	@Secured({ "ROLE_ADMIN" })
@@ -103,11 +98,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 				getFormFactory().addFormPanelTextFields(content, new BeanItem<>(applicationActionEvent), ApplicationActionEvent.class,
 					Arrays.asList(new String[] { "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage"}));
 			}
-
-
-		} else {
-			chartDataManager.createApplicationActionEventPageDailySummaryChart(content);
-		}
+		} 
 
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_EVENTS_VIEW, ApplicationEventGroup.ADMIN,

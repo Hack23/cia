@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api;
+package com.hack23.cia.web.impl.ui.application.views.common.converters;
 
 import java.util.ArrayList;
 import java.util.List;

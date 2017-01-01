@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api;
 
+import com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener;
 import com.vaadin.data.Container.Indexed;
 import com.vaadin.ui.AbstractOrderedLayout;

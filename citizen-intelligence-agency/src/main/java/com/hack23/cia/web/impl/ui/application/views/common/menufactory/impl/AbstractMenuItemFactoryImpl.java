@@ -38,6 +38,8 @@ import com.vaadin.ui.VerticalLayout;
  */
 public abstract class AbstractMenuItemFactoryImpl {
 
+	private static final PageModeMenuCommand COMMAND20 = new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS);
+
 	private static final PageModeMenuCommand COMMAND19 = new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME,
 			"");
 
@@ -172,6 +174,9 @@ public abstract class AbstractMenuItemFactoryImpl {
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
+	private static final String APPLICATION_EVENT_CHARTS = "Application Event charts";
+
+
 
 
 	/**
@@ -244,6 +249,8 @@ public abstract class AbstractMenuItemFactoryImpl {
 			final MenuItem userActivityMenuItem = adminMenuItem.addItem(USER_ACTIVITY, FontAwesome.DATABASE, null);
 			userActivityMenuItem.addItem(APPLICATION_SESSION,FontAwesome.LAPTOP, COMMAND15);
 			userActivityMenuItem.addItem(APPLICATION_EVENT,FontAwesome.ARROWS, COMMAND16);
+			userActivityMenuItem.addItem(APPLICATION_EVENT_CHARTS,FontAwesome.ARROWS, COMMAND20);
+			
 			userActivityMenuItem.addItem(USERACCOUNT,FontAwesome.GROUP, COMMAND17);
 
 		}

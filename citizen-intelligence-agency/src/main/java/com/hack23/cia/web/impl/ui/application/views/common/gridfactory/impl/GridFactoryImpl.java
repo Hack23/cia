@@ -21,8 +21,8 @@ package com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl;
 import org.springframework.stereotype.Service;
 import org.vaadin.gridutil.cell.GridCellFilter;
 
+import com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.ListPropertyConverter;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener;
 import com.vaadin.data.Container;
