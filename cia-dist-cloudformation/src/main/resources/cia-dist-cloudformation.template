@@ -417,7 +417,7 @@
          },
          "eu-west-1":{
             "PV64":"NOT_SUPPORTED",
-            "HVM64":"ami-21abf052",
+            "HVM64":"ami-ca80a0b9",
             "HVMG2":"NOT_SUPPORTED"
          },
          "eu-central-1":{
