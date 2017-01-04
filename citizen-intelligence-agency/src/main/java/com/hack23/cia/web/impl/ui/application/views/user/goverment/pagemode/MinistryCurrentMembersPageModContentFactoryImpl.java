@@ -95,8 +95,8 @@ public final class MinistryCurrentMembersPageModContentFactoryImpl extends Abstr
 			getGridFactory().createBasicBeanItemGrid(
 					panelContent, currentMembersMemberDataSource,
 					CURRENT_MEMBERS,
-					new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
-							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "roleId", "personId", "detail" },
+					new String[] { "roleCode", "roleId", "personId", "firstName", "lastName", "party", "active", "totalDaysServed", "detail",
+							"fromDate", "toDate" }, new String[] { "roleId", "personId", "detail", "active" },
 					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null, null);
 
 			panel.setCaption(MINISTRY + viewRiksdagenMinistry.getNameId());

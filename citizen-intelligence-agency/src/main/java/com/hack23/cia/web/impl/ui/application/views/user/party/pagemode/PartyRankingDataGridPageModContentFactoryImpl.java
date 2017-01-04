@@ -74,11 +74,11 @@ public final class PartyRankingDataGridPageModContentFactoryImpl extends Abstrac
 
 		getGridFactory().createBasicBeanItemGrid(panelContent, politicianDocumentDataSource,
 				"Parties",
-				new String[] { "party", "totalDaysServed", "currentAssignments", "totalAssignments","totalActiveParliament", "totalActiveCommittee", "totalActiveGovernment", "totalActiveEu", "active", "firstAssignmentDate", "lastAssignmentDate", 
-						"activeEu", "totalDaysServedEu",
-						"activeGovernment", "totalDaysServedGovernment", "activeCommittee",
-						"totalDaysServedCommittee", "activeParliament",
-						"totalDaysServedParliament" }, new String[] {"active","activeParliament","activeGovernment","activeCommittee", "activeEu"}, new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "party"), null, null);
+				new String[] { "party", "currentAssignments", "totalActiveGovernment", "totalActiveCommittee", "totalActiveParliament", "totalActiveEu", "active", "firstAssignmentDate", "lastAssignmentDate", 
+						"activeEu",
+						"activeGovernment", "activeCommittee",
+						"totalAssignments","totalDaysServed", "totalDaysServedGovernment", "totalDaysServedCommittee", "activeParliament",
+						"totalDaysServedParliament", "totalDaysServedEu" }, new String[] {"active","activeParliament","activeGovernment","activeCommittee", "activeEu", "activeParty", "activeSpeaker"}, new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "party"), null, null);
 
 
 		panel.setCaption(DATAGRID + parameters);
