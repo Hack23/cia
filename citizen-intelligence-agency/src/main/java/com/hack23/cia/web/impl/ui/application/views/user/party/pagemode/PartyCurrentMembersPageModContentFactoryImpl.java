@@ -87,10 +87,10 @@ public final class PartyCurrentMembersPageModContentFactoryImpl extends Abstract
 			getGridFactory().createBasicBeanItemGrid(panelContent,
 					politicianDataSource,
 					"Politicians",
-					new String[] { "personId", "firstName", "lastName", "party", "gender", "bornYear",
-							"totalAssignments", "currentAssignments", "firstAssignmentDate", "lastAssignmentDate",
-							"totalDaysServed", "totalDaysServedParliament", "totalDaysServedCommittee",
-							"totalDaysServedGovernment", "totalDaysServedEu",
+					new String[] { "personId", "firstName", "lastName", "party", "bornYear", "totalDaysServed", 
+							"currentAssignments", "totalAssignments", "firstAssignmentDate", "lastAssignmentDate", 
+							"totalDaysServedParliament", "totalDaysServedCommittee", "totalDaysServedGovernment",
+							"totalDaysServedEu",
 
 							"active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament",
 
@@ -100,8 +100,7 @@ public final class PartyCurrentMembersPageModContentFactoryImpl extends Abstract
 							"totalSpeakerAssignments",
 
 							"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
-							"currentSpeakerAssignments" }, null, new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"),
-					null, null);
+							"currentSpeakerAssignments", "gender" }, new String[] { "personId", "active", "activeEu", "party", "activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker","bornYear" }, new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null, null);
 
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);

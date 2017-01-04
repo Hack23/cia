@@ -88,8 +88,8 @@ public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractP
 			getGridFactory().createBasicBeanItemGrid(
 					panelContent, partyRoleMemberDataSource,
 					"Leader History",
-					new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
-							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "roleId", "personId", "party", "detail" },
+					new String[] { "roleId", "roleCode", "personId", "firstName", "lastName", "party", "totalDaysServed", "active", "detail",
+							"fromDate", "toDate" }, new String[] { "roleId", "personId", "party", "detail" },
 					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null, null);
 
 

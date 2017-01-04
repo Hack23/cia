@@ -91,8 +91,8 @@ public final class MinistryMemberHistoryPageModContentFactoryImpl extends Abstra
 			getGridFactory().createBasicBeanItemGrid(
 					panelContent, govermentRoleMemberDataSource,
 					MEMBER_HISTORY,
-					new String[] { "roleId", "personId", "firstName", "lastName", "party", "active", "detail",
-							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "roleId", "personId", "detail" },
+					new String[] { "roleCode", "roleId", "personId", "firstName", "lastName", "party", "active","totalDaysServed", "detail",
+							"fromDate", "toDate" }, new String[] { "roleId", "personId", "detail" },
 					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId"), null, null);
 
 			panel.setCaption(MINISTRY + viewRiksdagenMinistry.getNameId());
