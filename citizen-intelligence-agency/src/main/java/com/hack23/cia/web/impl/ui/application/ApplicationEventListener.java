@@ -129,7 +129,7 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 			serviceRequest.setApplicationOperation(ApplicationOperationType.AUTHORIZATION);
 
 			serviceRequest.setUserId(UserContextUtil.getUserIdFromSecurityContext());
-
+			
 
 			final Page currentPageIfAny = Page.getCurrent();
 			final String requestUrl = UserContextUtil.getRequestUrl(currentPageIfAny);
@@ -140,7 +140,7 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 				serviceRequest.setPageMode(currentPageIfAny.getUriFragment());
 			}
 
-			serviceRequest.setErrorMessage("Url:" + requestUrl +" ," + AUTHORITIES + authorizationFailureEvent.getAuthentication().getAuthorities() + REQUIRED_AUTHORITIES + authorizationFailureEvent.getConfigAttributes());
+			serviceRequest.setErrorMessage("Url:" + requestUrl +" ," + AUTHORITIES + authorizationFailureEvent.getAuthentication().getAuthorities() + REQUIRED_AUTHORITIES + authorizationFailureEvent.getConfigAttributes() + " source:" + authorizationFailureEvent.getSource());
 			serviceRequest.setApplicationMessage(ACCESS_DENIED);
 
 			applicationManager
