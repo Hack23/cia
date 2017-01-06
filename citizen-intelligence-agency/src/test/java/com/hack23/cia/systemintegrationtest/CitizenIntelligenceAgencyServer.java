@@ -25,8 +25,11 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 
+import org.eclipse.jetty.http2.server.HTTP2CServerConnectionFactory;
 import org.eclipse.jetty.jmx.MBeanContainer;
 import org.eclipse.jetty.server.Handler;
+import org.eclipse.jetty.server.HttpConfiguration;
+import org.eclipse.jetty.server.HttpConnectionFactory;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.handler.DefaultHandler;
@@ -42,8 +45,7 @@ import org.slf4j.bridge.SLF4JBridgeHandler;
 public final class CitizenIntelligenceAgencyServer {
 
 	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(CitizenIntelligenceAgencyServer.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CitizenIntelligenceAgencyServer.class);
 
 	/** The Constant PORT. */
 	public static final int PORT = 8080;
@@ -71,7 +73,6 @@ public final class CitizenIntelligenceAgencyServer {
 		initLogger();
 	}
 
-
 	/**
 	 * The main method.
 	 *
@@ -94,16 +95,16 @@ public final class CitizenIntelligenceAgencyServer {
 	 *            the value
 	 */
 	public static void setEnv(final String key, final String value) {
-	    try {
-	        final Map<String, String> env = System.getenv();
-	        final Class<?> cl = env.getClass();
-	        final Field field = cl.getDeclaredField("m");
-	        field.setAccessible(true);
-	        final Map<String, String> writableEnv = (Map<String, String>) field.get(env);
-	        writableEnv.put(key, value);
-	    } catch (final Exception e) {
-	        throw new IllegalStateException("Failed to set environment variable", e);
-	    }
+		try {
+			final Map<String, String> env = System.getenv();
+			final Class<?> cl = env.getClass();
+			final Field field = cl.getDeclaredField("m");
+			field.setAccessible(true);
+			final Map<String, String> writableEnv = (Map<String, String>) field.get(env);
+			writableEnv.put(key, value);
+		} catch (final Exception e) {
+			throw new IllegalStateException("Failed to set environment variable", e);
+		}
 	}
 
 	/**
@@ -129,11 +130,10 @@ public final class CitizenIntelligenceAgencyServer {
 	public static final synchronized void stopTestServer() throws Exception {
 		serverStarted--;
 		if (serverStarted == 0 && testServer != null) {
-//			testServer.stop();
-//			testServer = null;
+			// testServer.stop();
+			// testServer = null;
 		}
 	}
-
 
 	/**
 	 * Start server.
@@ -143,7 +143,8 @@ public final class CitizenIntelligenceAgencyServer {
 			initLogger();
 			init();
 			start();
-			while (!server.isStarted());
+			while (!server.isStarted())
+				;
 
 		} catch (final Exception e) {
 			LOGGER.error("Application Exception", e);
@@ -154,12 +155,9 @@ public final class CitizenIntelligenceAgencyServer {
 	 * Inits the logger.
 	 */
 	private static void initLogger() {
-		System.setProperty("logback.configurationFile",
-				"src/main/resources/logback.xml");
+		System.setProperty("logback.configurationFile", "src/main/resources/logback.xml");
 		System.setProperty("slf4j", "true");
-		System.setProperty("org.eclipse.jetty.util.log.class",
-				"org.eclipse.jetty.util.log.Slf4jLog");
-
+		System.setProperty("org.eclipse.jetty.util.log.class", "org.eclipse.jetty.util.log.Slf4jLog");
 
 		LogManager.getLogManager().reset();
 		SLF4JBridgeHandler.install();
@@ -176,21 +174,22 @@ public final class CitizenIntelligenceAgencyServer {
 		initialised = true;
 		server = new Server();
 		// Setup JMX
-		final MBeanContainer mbContainer = new MBeanContainer(
-				ManagementFactory.getPlatformMBeanServer());
+		final MBeanContainer mbContainer = new MBeanContainer(ManagementFactory.getPlatformMBeanServer());
 		server.addBean(mbContainer);
 
 		// Enable parsing of jndi-related parts of web.xml and jetty-env.xml
 		final org.eclipse.jetty.webapp.Configuration.ClassList classlist = org.eclipse.jetty.webapp.Configuration.ClassList
 				.setServerDefault(server);
 		classlist.addAfter("org.eclipse.jetty.webapp.FragmentConfiguration",
-				"org.eclipse.jetty.plus.webapp.EnvConfiguration",
-				"org.eclipse.jetty.plus.webapp.PlusConfiguration");
-		classlist.addBefore(
-				"org.eclipse.jetty.webapp.JettyWebXmlConfiguration",
+				"org.eclipse.jetty.plus.webapp.EnvConfiguration", "org.eclipse.jetty.plus.webapp.PlusConfiguration");
+		classlist.addBefore("org.eclipse.jetty.webapp.JettyWebXmlConfiguration",
 				"org.eclipse.jetty.annotations.AnnotationConfiguration");
 
-		final ServerConnector connector = new ServerConnector(server);
+		HttpConfiguration config = new HttpConfiguration();
+		HttpConnectionFactory http1 = new HttpConnectionFactory(config);
+		HTTP2CServerConnectionFactory http2c = new HTTP2CServerConnectionFactory(config);
+
+		final ServerConnector connector = new ServerConnector(server, http1,http2c);
 		connector.setPort(PORT);
 		server.setConnectors(new ServerConnector[] { connector });
 		final WebAppContext handler = new WebAppContext("src/main/webapp", "/");
@@ -234,7 +233,8 @@ public final class CitizenIntelligenceAgencyServer {
 	public final void stop() throws Exception {
 		Thread.sleep(8000);
 		server.stop();
-		while (!server.isStopped());
+		while (!server.isStopped())
+			;
 
 	}
 }
