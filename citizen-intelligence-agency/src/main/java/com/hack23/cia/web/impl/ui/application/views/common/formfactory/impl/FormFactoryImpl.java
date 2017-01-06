@@ -26,12 +26,12 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.vaadin.viritin.MBeanFieldGroup;
 
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.api.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.CommitFormWrapperClickListener;
+import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.AbstractOrderedLayout;
@@ -62,7 +62,7 @@ public final class FormFactoryImpl implements FormFactory {
 	@Override
 	public <T extends Serializable> void addRequestInputFormFields(final FormLayout panelContent, final BeanItem<T> item,
 			final Class<T> beanType, final List<String> displayProperties,final String buttonLabel,final ClickListener buttonListener) {
-		final MBeanFieldGroup<T> fieldGroup = new MBeanFieldGroup<>(beanType);
+		final BeanFieldGroup<T> fieldGroup = new BeanFieldGroup<>(beanType);
 		fieldGroup.setItemDataSource(item);
 		fieldGroup.setReadOnly(true);
 
@@ -115,7 +115,7 @@ public final class FormFactoryImpl implements FormFactory {
 		formPanel.setContent(formContent);
 
 
-		final MBeanFieldGroup<T> fieldGroup = new MBeanFieldGroup<>(beanType);
+		final BeanFieldGroup<T> fieldGroup = new BeanFieldGroup<>(beanType);
 		fieldGroup.setItemDataSource(item);
 		fieldGroup.setReadOnly(true);
 

@@ -3,6 +3,9 @@ Will use latest hvm-ssd ubuntu image:Current: ubuntu/images/hvm-ssd/ubuntu-xenia
 16.10
 ubuntu/images/hvm-ssd/ubuntu-yakkety-16.10-amd64-server-20161020.1 : ami-3e713f4d
 
+Add optional AWS::Elasticsearch::Domain alt specify elasticsearch url 
+http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html
+
 
 http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL.Procedural.Importing.html
 
