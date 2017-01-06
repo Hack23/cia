@@ -25,6 +25,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.aop.framework.ReflectiveMethodInvocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
@@ -80,7 +81,7 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 	 * The Constant
 	 * LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES.
 	 */
-	private static final String LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES = "Authorization Failure:: url : {} SessionId :{} , Authorities : {} , RequiredAuthorities : {}";
+	private static final String LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES = "Authorization Failure:: url : {} Method : {} SessionId :{} , Authorities : {} , RequiredAuthorities : {}";
 
 	/** The Constant LOG_MSG_APPLICATION_EVENT. */
 	private static final String LOG_MSG_APPLICATION_EVENT = "ApplicationEvent :{}";
@@ -134,19 +135,27 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 			final Page currentPageIfAny = Page.getCurrent();
 			final String requestUrl = UserContextUtil.getRequestUrl(currentPageIfAny);
 			final UI currentUiIfAny = UI.getCurrent();
-
+			String methodInfo = "";
+			
 			if (currentPageIfAny != null && currentUiIfAny != null && currentUiIfAny.getNavigator() != null && currentUiIfAny.getNavigator().getCurrentView() != null) {
 				serviceRequest.setPage(currentUiIfAny.getNavigator().getCurrentView().getClass().getSimpleName());
 				serviceRequest.setPageMode(currentPageIfAny.getUriFragment());
 			}
 
-			serviceRequest.setErrorMessage("Url:" + requestUrl +" ," + AUTHORITIES + authorizationFailureEvent.getAuthentication().getAuthorities() + REQUIRED_AUTHORITIES + authorizationFailureEvent.getConfigAttributes() + " source:" + authorizationFailureEvent.getSource());
-			serviceRequest.setApplicationMessage(ACCESS_DENIED);
+			if (authorizationFailureEvent.getSource() instanceof ReflectiveMethodInvocation) {
+				ReflectiveMethodInvocation methodInvocation = (ReflectiveMethodInvocation) authorizationFailureEvent.getSource();
+				if (methodInvocation.getMethod() != null && methodInvocation.getThis() != null) {
+					methodInfo = methodInvocation.getThis().getClass().getSimpleName() +"." + methodInvocation.getMethod().getName();
+				}		
+			}
 
+			serviceRequest.setErrorMessage("Url:" + requestUrl +" , Method" + methodInfo +" ,"  + AUTHORITIES + authorizationFailureEvent.getAuthentication().getAuthorities() + REQUIRED_AUTHORITIES + authorizationFailureEvent.getConfigAttributes() + " source:" + authorizationFailureEvent.getSource());
+			serviceRequest.setApplicationMessage(ACCESS_DENIED);
+			
 			applicationManager
 					.service(serviceRequest);
 
-			LOGGER.info(LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES,requestUrl, sessionId,authorizationFailureEvent.getAuthentication().getAuthorities().toString(),authorizationFailureEvent.getConfigAttributes().toString());
+			LOGGER.info(LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES,requestUrl,methodInfo, sessionId,authorizationFailureEvent.getAuthentication().getAuthorities().toString(),authorizationFailureEvent.getConfigAttributes().toString());
 		} else {
 			LOGGER.debug(LOG_MSG_APPLICATION_EVENT, applicationEvent.toString());
 		}
