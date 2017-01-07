@@ -200,7 +200,9 @@ public final class CitizenIntelligenceAgencyServer {
 		final HandlerList handlers = new HandlerList();
 
 		handlers.setHandlers(new Handler[] { handler, new DefaultHandler() });
+		
 		server.setHandler(handlers);
+		
 
 	}
 
