@@ -417,7 +417,13 @@
       <artifactId>websocket-server</artifactId>
       <version>${cia.project.versions.jetty}</version>
       <scope>test</scope>
-    </dependency>
+    </dependency>  
+	<dependency>
+	    <groupId>org.eclipse.jetty.websocket</groupId>
+	    <artifactId>javax-websocket-server-impl</artifactId>
+        <version>${cia.project.versions.jetty}</version>
+        <scope>test</scope>
+	</dependency>    
     <!--
     <dependency>
       <groupId>com.sun</groupId>
