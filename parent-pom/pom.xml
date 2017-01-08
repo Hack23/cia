@@ -862,6 +862,13 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
           <version>1.4.1</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>extra-enforcer-rules</artifactId>
+              <version>1.0-beta-6</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.liquibase</groupId>
@@ -936,6 +943,27 @@
                     <exclude>stax:stax-api</exclude>
                   </excludes>
                 </bannedDependencies>
+                <banDuplicateClasses>
+                  <findAllDuplicates>true</findAllDuplicates>
+                  <ignoreClasses>
+                    <ignoreClass>org.xmlpull.v1.*</ignoreClass>
+                    <ignoreClass>org.w3c.dom.ElementTraversal</ignoreClass>
+                    <ignoreClass>org.apache.xmlbeans.xml.stream.*</ignoreClass>
+                    <ignoreClass>org.apache.commons.io.*</ignoreClass>
+                    <ignoreClass>org.apache.commons.lang3.*</ignoreClass>
+                    <ignoreClass>org.apache.commons.codec.*</ignoreClass>
+                    <ignoreClass>org.apache.commons.collections.*</ignoreClass>
+                    <ignoreClass>org.apache.commons.logging.*</ignoreClass>
+                    <ignoreClass>javax.servlet.*</ignoreClass>
+                    <ignoreClass>org.w3c.css.sac.*</ignoreClass>
+                    <ignoreClass>elemental.*</ignoreClass>
+                    <ignoreClass>org.w3c.flute.*</ignoreClass>
+                  </ignoreClasses>
+                </banDuplicateClasses>
+                <!-- <requireEncoding>
+                  <encoding>UTF-8</encoding>
+                  <includes>src/main/resources/**,src/test/resources/**</includes>
+                </requireEncoding>-->
               </rules>
             </configuration>
           </execution>
