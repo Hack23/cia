@@ -145,7 +145,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 
 		for (final Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> entry : map.entrySet()) {
 
-			series.addSeries(new XYseries().setLabel(entry.getKey()));
+			series.addSeries(new XYseries().setLabel(getPartyName(entry.getKey())));
 
 			dataSeries.newSeries();
 			final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> list = entry.getValue();
@@ -265,7 +265,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 		for (final Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> entry : map.entrySet()) {
 
 			if (!"-".equals(entry.getKey())) {
-				series.addSeries(new XYseries().setLabel(entry.getKey()));
+				series.addSeries(new XYseries().setLabel(getPartyName(entry.getKey())));
 
 				dataSeries.newSeries();
 				final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> list = entry.getValue();

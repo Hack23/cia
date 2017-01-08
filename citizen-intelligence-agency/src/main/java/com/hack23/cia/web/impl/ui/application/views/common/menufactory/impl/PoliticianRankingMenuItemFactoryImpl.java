@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
@@ -38,6 +39,12 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		implements PoliticianRankingMenuItemFactory {
 
+	/** The Constant CURRENT_PARTIES. */
+	private static final String CURRENT_PARTIES = "Current parties";
+
+	/** The Constant ALL_PARTIES. */
+	private static final String ALL_PARTIES = "All parties";
+
 	/** The Constant COMMAND20. */
 	private static final PageModeMenuCommand COMMAND20 = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
 			PageMode.PAGEVISITHISTORY);
@@ -49,6 +56,14 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 	/** The Constant COMMAND18. */
 	private static final PageModeMenuCommand COMMAND18 = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
+
+	/** The Constant COMMAND21. */
+	private static final PageModeMenuCommand COMMAND21 = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
+			PageMode.CHARTS, ChartIndicators.ALLPARTIES.toString());
+
+	/** The Constant COMMAND22. */
+	private static final PageModeMenuCommand COMMAND22 = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
+			PageMode.CHARTS, ChartIndicators.CURRENTPARTIES.toString());
 
 	/** The Constant POLITICIAN_RANKING. */
 	private static final String POLITICIAN_RANKING = "Politician Ranking";
@@ -77,7 +92,6 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
 
-
 	/**
 	 * Instantiates a new politician ranking menu item factory impl.
 	 */
@@ -100,23 +114,26 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 
 		final MenuItem listByTopic = politicianMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, FontAwesome.BUG, null);
 
-		final MenuItem listItem = listByTopic.addItem(POLITICAL_EXPERIENCE_SUMMARY,FontAwesome.BUG, COMMAND19);
+		final MenuItem listItem = listByTopic.addItem(POLITICAL_EXPERIENCE_SUMMARY, FontAwesome.BUG, COMMAND19);
 		listItem.setDescription(CURRENT_AND_PAST_ASSIGNMENTS_AND_SUMMARY_EXPERIENCE_IN_DAYS);
 
-		politicianMenuItem.addItem(CHART_BY_TOPIC_TEXT, FontAwesome.BUG, null);
+		final MenuItem chartByTopic = politicianMenuItem.addItem(CHART_BY_TOPIC_TEXT, FontAwesome.BUG, null);
+
+		chartByTopic.addItem(ALL_PARTIES, FontAwesome.GROUP, COMMAND21);
+
+		chartByTopic.addItem(CURRENT_PARTIES, FontAwesome.GROUP, COMMAND22);
 
 		politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG, COMMAND20);
 
 	}
-	
+
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent) {
-		
-		createButtonLink(panelContent,POLITICAL_EXPERIENCE_SUMMARY,FontAwesome.BUG, COMMAND19);
-		
-		createButtonLink(panelContent,PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG, COMMAND20);
-				
-	}
 
+		createButtonLink(panelContent, POLITICAL_EXPERIENCE_SUMMARY, FontAwesome.BUG, COMMAND19);
+
+		createButtonLink(panelContent, PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG, COMMAND20);
+
+	}
 
 }

@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl;
 
+import java.util.Optional;
+
 import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,7 +75,7 @@ public final class PartyDataSeriesFactoryImpl implements PartyDataSeriesFactory 
 		for (final ViewRiksdagenPartySummary data : dataContainer.getAllOrderBy(ViewRiksdagenPartySummary_.currentAssignments)) {
 			if (data != null && data.isActiveParliament()) {
 
-				dataSeries = dataSeries.newSeries().add(data.getParty(),
+				dataSeries = dataSeries.newSeries().add(getPartyName(data.getParty()),
 						data.getTotalActiveParliament());
 			}
 		}
@@ -123,6 +125,29 @@ public final class PartyDataSeriesFactoryImpl implements PartyDataSeriesFactory 
 			}
 		}
 		return dataSeries;
+	}
+
+	/**
+	 * Gets the party name.
+	 *
+	 * @param party
+	 *            the party
+	 * @return the party name
+	 */
+	private final String getPartyName(final String party) {
+		final DataContainer<ViewRiksdagenParty, String> dataContainer = applicationManager
+				.getDataContainer(ViewRiksdagenParty.class);
+
+		final Optional<ViewRiksdagenParty> matchingObjects =dataContainer.getAll().stream().
+			    filter(p -> p.getPartyId().equalsIgnoreCase(party)).
+			    findFirst();
+
+		if (matchingObjects.isPresent()) {
+			return matchingObjects.get().getPartyName();
+
+		} else {
+			return party;
+		}
 	}
 
 }

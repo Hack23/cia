@@ -410,22 +410,40 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	}
 
 	/**
-	 * Site politician ranking view charts test.
+	 * Site politician ranking view charts all parties test.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void sitePoliticianRankingViewChartsTest() throws Exception {
+	public void sitePoliticianRankingViewChartsAllPartiesTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.CHARTS));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.ALLPARTIES.toString()));
 
 	}
 
+	/**
+	 * Site politician ranking view charts current parties test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void sitePoliticianRankingViewChartsCurrentPartiesTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTPARTIES.toString()));
+
+	}
+
+	
 	/**
 	 * Site ministry overview test.
 	 *

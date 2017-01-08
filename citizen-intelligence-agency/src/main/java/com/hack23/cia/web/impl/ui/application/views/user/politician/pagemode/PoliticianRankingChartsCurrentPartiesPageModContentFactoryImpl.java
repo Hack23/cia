@@ -27,26 +27,26 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class PoliticianRankingChartsPageModContentFactoryImpl.
+ * The Class PoliticianRankingChartsCurrentPartiesPageModContentFactoryImpl.
  */
 @Service
-public final class PoliticianRankingChartsPageModContentFactoryImpl
+public final class PoliticianRankingChartsCurrentPartiesPageModContentFactoryImpl
 		extends AbstractPoliticianRankingPageModContentFactoryImpl {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_RANKING_VIEW_NAME;
 
 	/** The Constant CHARTS. */
-	private static final String CHARTS = "Charts:";
+	private static final String CHARTS = "Charts:Current parties";
 
 	/** The chart data manager. */
 	@Autowired
@@ -57,17 +57,17 @@ public final class PoliticianRankingChartsPageModContentFactoryImpl
 	private PartyDataSeriesFactory dataSeriesFactory;
 
 	/**
-	 * Instantiates a new politician ranking charts page mod content factory
-	 * impl.
+	 * Instantiates a new politician ranking charts current parties page mod
+	 * content factory impl.
 	 */
-	public PoliticianRankingChartsPageModContentFactoryImpl() {
+	public PoliticianRankingChartsCurrentPartiesPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page)
-				&& (!StringUtils.isEmpty(parameters) && parameters.contains(PageMode.CHARTS.toString()));
+				&& (!StringUtils.isEmpty(parameters) && parameters.contains(PageMode.CHARTS.toString()) && parameters.contains(ChartIndicators.CURRENTPARTIES.toString()));
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -79,18 +79,10 @@ public final class PoliticianRankingChartsPageModContentFactoryImpl
 
 		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);
 
-		final HorizontalLayout chartLayout = new HorizontalLayout();
-		chartLayout.setSizeFull();
-
 		chartDataManager
-				.createChartPanel(chartLayout,dataSeriesFactory.createPartyChartTimeSeriesAll(), "All");
+				.createChartPanel(panelContent,dataSeriesFactory.createPartyChartTimeSeriesCurrent(), "Current");
 
-		chartDataManager
-				.createChartPanel(chartLayout,dataSeriesFactory.createPartyChartTimeSeriesCurrent(), "Current");
-
-		panelContent.addComponent(chartLayout);
-
-		panel.setCaption(CHARTS + parameters);
+		panel.setCaption(CHARTS);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);
