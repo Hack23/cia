@@ -23,6 +23,7 @@ import java.util.List;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary;
 import com.vaadin.ui.AbstractOrderedLayout;
+import com.vaadin.ui.TabSheet.Tab;
 
 /**
  * The Interface BallotChartDataManager.
@@ -33,20 +34,24 @@ public interface BallotChartDataManager {
 	/**
 	 * Creates the chart.
 	 *
+	 * @param tab
+	 *            the tab
 	 * @param content
 	 *            the content
 	 * @param viewRiksdagenVoteDataBallotSummary
 	 *            the view riksdagen vote data ballot summary
 	 */
-	void createChart(AbstractOrderedLayout content,ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary);
+	void createChart(Tab tab,AbstractOrderedLayout content,ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary);
 
 	/**
 	 * Creates the chart.
 	 *
+	 * @param tab
+	 *            the tab
 	 * @param content
 	 *            the content
 	 * @param partyList
 	 *            the party list
 	 */
-	void createChart(AbstractOrderedLayout content,List<ViewRiksdagenVoteDataBallotPartySummary> partyList);
+	void createChart(Tab tab,AbstractOrderedLayout content,List<ViewRiksdagenVoteDataBallotPartySummary> partyList);
 }
