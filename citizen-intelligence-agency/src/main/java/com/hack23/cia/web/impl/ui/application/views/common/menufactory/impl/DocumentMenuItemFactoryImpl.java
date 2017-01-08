@@ -126,7 +126,7 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 
 	@Override
-	public void createOverviewPage(VerticalLayout panelContent, String pageId) {
+	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 		createButtonLink(panelContent,OVERVIEW_TEXT, FontAwesome.FILE,
 				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, pageId));
 		createButtonLink(panelContent,CHARTS_TEXT, FontAwesome.FILE,
@@ -157,7 +157,7 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId));
 
 
-		
+
 	}
 
 }

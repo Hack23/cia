@@ -172,10 +172,10 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
 	}
-	
+
 	@Override
-	public void createOverviewPage(VerticalLayout panelContent, String pageId) {
-		
+	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
+
 		createButtonLink(panelContent,OVERVIEW_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.OVERVIEW, pageId));
 		createButtonLink(panelContent,CHARTS_TEXT, null, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.CHARTS, pageId));
@@ -183,7 +183,7 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 		createButtonLink(panelContent,INDICATORS_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.INDICATORS, pageId));
 
-		
+
 		createButtonLink(panelContent,CURRENT_LEADERS, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTLEADERS.toString(), pageId));
 
@@ -222,7 +222,7 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 		createButtonLink(panelContent,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
-				
+
 	}
 
 

@@ -34,6 +34,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.ui.Layout;
@@ -91,7 +92,13 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 
 			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
 
-			getDocumentMenuItemFactory().createOverviewPage(panelContent, pageId);
+			final VerticalLayout overviewLayout = new VerticalLayout();
+			overviewLayout.setSizeFull();
+
+			panelContent.addComponent(overviewLayout);
+			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
+
+			getDocumentMenuItemFactory().createOverviewPage(overviewLayout, pageId);
 
 			getFormFactory().addFormPanelTextFields(panelContent, new BeanItem<>(documentElement), DocumentElement.class,
 					Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status", "title",

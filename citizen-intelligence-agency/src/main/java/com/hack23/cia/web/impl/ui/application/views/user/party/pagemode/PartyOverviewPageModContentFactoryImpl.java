@@ -84,8 +84,14 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
 
-			getPartyMenuItemFactory().createOverviewPage(panelContent, pageId);
-			
+			final VerticalLayout overviewLayout = new VerticalLayout();
+			overviewLayout.setSizeFull();
+
+			panelContent.addComponent(overviewLayout);
+			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
+
+			getPartyMenuItemFactory().createOverviewPage(overviewLayout, pageId);
+
 			final Link addPartyPageLink = getPageLinkFactory().addPartyPageLink(viewRiksdagenParty);
 			panelContent.addComponent(addPartyPageLink);
 

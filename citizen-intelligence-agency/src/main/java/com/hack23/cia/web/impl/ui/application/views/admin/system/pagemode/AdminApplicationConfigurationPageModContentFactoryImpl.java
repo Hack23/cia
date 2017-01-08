@@ -96,7 +96,7 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 		getGridFactory().createBasicBeanItemGrid(content,
 				politicianDocumentDataSource,
 				"ApplicationConfiguration",
-				new String[] { "hjid", "configurationGroup", "component", "componentTitle", "configTitle", "configDescription",   
+				new String[] { "hjid", "configurationGroup", "component", "componentTitle", "configTitle", "configDescription",
 						 "componentDescription", "propertyId", "propertyValue" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "updatedDate","propertyId" ,"componentDescription", "componentTitle"},
 				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, "hjid"), null, null);
 

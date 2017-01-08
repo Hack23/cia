@@ -34,9 +34,9 @@ public final class ContentRatio {
 
 	/** The Constant GRID. */
 	public static final float GRID = 10;
-	
+
 	/** The Constant CHART. */
-	public static final float CHART = 8;	
+	public static final float CHART = 8;
 
 	/** The Constant LARGE_FORM. */
 	public static final float LARGE_FORM = 13;

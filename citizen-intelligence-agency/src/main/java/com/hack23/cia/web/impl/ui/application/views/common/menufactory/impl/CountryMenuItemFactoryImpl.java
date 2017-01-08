@@ -174,7 +174,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 	}
 
 	@Override
-	public void createOverviewPage(VerticalLayout panelContent) {
-		
+	public void createOverviewPage(final VerticalLayout panelContent) {
+
 	}
 }

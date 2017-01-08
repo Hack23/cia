@@ -102,10 +102,10 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 			final HorizontalLayout horizontalLayout = new HorizontalLayout();
 			horizontalLayout.setWidth(ContentSize.FULL_SIZE);
 			content.addComponent(horizontalLayout);
-			
+
 			content.setExpandRatio(horizontalLayout, ContentRatio.LARGE_FORM);
 
-			
+
 			horizontalLayout.addComponent(leftLayout);
 			horizontalLayout.addComponent(rightLayout);
 

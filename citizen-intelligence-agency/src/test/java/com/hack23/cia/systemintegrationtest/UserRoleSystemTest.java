@@ -194,7 +194,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
-	
+
 	/**
 	 * Site committee ranking view grid navigation test.
 	 *
@@ -210,12 +210,12 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit
 				.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DATAGRID));
-		
+
 		clickFirstRowInGrid(userPageVisit);
 		userPageVisit.validatePage(new
 		PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,""));
 
-		
+
 	}
 
 	/**
@@ -443,7 +443,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
-	
+
 	/**
 	 * Site ministry overview test.
 	 *
@@ -1127,8 +1127,8 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.ALLMINISTRIESBYHEADCOUNT.toString()));
 
-	}	
-	
+	}
+
 	/**
 	 * Site ministry ranking all ministries by party charts test.
 	 *
@@ -1144,8 +1144,8 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.ALLMINISTRIESPARTYBYTOTALDAYS.toString()));
 
-	}	
-	
+	}
+
 
 	/**
 	 * Site ministry ranking current parties charts test.
@@ -1162,7 +1162,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTPARTIESBYHEADCOUNT.toString()));
 
-	}	
+	}
 
 	/**
 	 * Site ministry ranking current ministries charts test.
@@ -1179,9 +1179,9 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTMINISTRIESBYHEADCOUNT.toString()));
 
-	}	
+	}
 
-	
+
 	/**
 	 * Site ministry ranking navigation test.
 	 *

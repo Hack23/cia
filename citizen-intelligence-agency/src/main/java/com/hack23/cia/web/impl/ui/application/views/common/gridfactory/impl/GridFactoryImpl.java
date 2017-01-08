@@ -49,7 +49,7 @@ public final class GridFactoryImpl implements GridFactory {
 	@Override
 	public void createBasicBeanItemGrid(final AbstractOrderedLayout panelContent, final Container.Indexed datasource,
 			final String caption, final Object[] columnOrder, final Object[] hideColumns,
-			final AbstractPageItemRendererClickListener<?> listener, final String actionId, ListPropertyConverter[] collectionPropertyConverters) {
+			final AbstractPageItemRendererClickListener<?> listener, final String actionId, final ListPropertyConverter[] collectionPropertyConverters) {
 		createBasicBeanItemNestedPropertiesGrid(panelContent,datasource, caption, null, columnOrder, hideColumns, listener, actionId, collectionPropertyConverters);
 
 
@@ -58,7 +58,7 @@ public final class GridFactoryImpl implements GridFactory {
 	@Override
 	public void createBasicBeanItemNestedPropertiesGrid(final AbstractOrderedLayout panelContent,final Indexed datasource, final String caption, final String[] nestedProperties,
 			final Object[] columnOrder, final Object[] hideColumns, final AbstractPageItemRendererClickListener<?> listener,
-			final String actionId, ListPropertyConverter[] collectionPropertyConverters) {
+			final String actionId, final ListPropertyConverter[] collectionPropertyConverters) {
 		final Grid grid = new Grid(datasource);
 
 		grid.setCaption(caption);
@@ -69,7 +69,7 @@ public final class GridFactoryImpl implements GridFactory {
 		configureColumnOrdersAndHiddenFields(columnOrder, hideColumns, grid);
 
 		configureListeners(listener, grid);
-		
+
 		setColumnConverters(collectionPropertyConverters, grid);
 
 		grid.setSizeFull();
@@ -163,7 +163,7 @@ public final class GridFactoryImpl implements GridFactory {
 		}
 	}
 
-	
+
 	/**
 	 * Sets the column converters.
 	 *
@@ -173,13 +173,13 @@ public final class GridFactoryImpl implements GridFactory {
 	 *            the grid
 	 */
 	private static void setColumnConverters(final ListPropertyConverter[] collectionPropertyConverter, final Grid grid) {
-		if (collectionPropertyConverter != null) {	
-			for (ListPropertyConverter converter : collectionPropertyConverter) {
-				Column column = grid.getColumn(converter.getColumn());
+		if (collectionPropertyConverter != null) {
+			for (final ListPropertyConverter converter : collectionPropertyConverter) {
+				final Column column = grid.getColumn(converter.getColumn());
 				column.setConverter(converter);
-			}			
+			}
 		}
 	}
 
-	
+
 }

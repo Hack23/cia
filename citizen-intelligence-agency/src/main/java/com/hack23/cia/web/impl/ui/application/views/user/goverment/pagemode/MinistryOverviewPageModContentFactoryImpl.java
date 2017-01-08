@@ -81,7 +81,14 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
-			getMinistryMenuItemFactory().createOverviewPage(panelContent, pageId);
+
+			final VerticalLayout overviewLayout = new VerticalLayout();
+			overviewLayout.setSizeFull();
+
+			panelContent.addComponent(overviewLayout);
+			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
+
+			getMinistryMenuItemFactory().createOverviewPage(overviewLayout, pageId);
 
 			final Link addMinistryPageLink = getPageLinkFactory().addMinistryPageLink(viewRiksdagenMinistry);
 			panelContent.addComponent(addMinistryPageLink);

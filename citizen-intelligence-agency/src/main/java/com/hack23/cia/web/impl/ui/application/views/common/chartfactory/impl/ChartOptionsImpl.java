@@ -159,7 +159,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 
 		final Highlighter highlighter = new Highlighter().setShow(true).setShowTooltip(true)
 				.setTooltipAlwaysVisible(true).setKeepTooltipInsideChart(true);
-		
+
 		final SeriesDefaults seriesDefaults = new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
 				.setRendererOptions(new DonutRenderer().setSliceMargin(3).setStartAngle(-90).setShowDataLabels(true)
 						.setDataLabels(DataLabels.VALUE));

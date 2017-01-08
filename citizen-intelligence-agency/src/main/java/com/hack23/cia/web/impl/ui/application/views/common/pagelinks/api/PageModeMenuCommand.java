@@ -124,8 +124,8 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 	}
 
 	@Override
-	public void buttonClick(ClickEvent event) {
-		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + pageReference);		
+	public void buttonClick(final ClickEvent event) {
+		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + pageReference);
 	}
 
 }

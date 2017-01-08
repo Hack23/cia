@@ -155,23 +155,23 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 		charts.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.INSTITUTION,
 				COMMAND22);
 	}
-	
+
 	@Override
-	public void createOverviewPage(VerticalLayout panelContent) {
+	public void createOverviewPage(final VerticalLayout panelContent) {
 		createButtonLink(panelContent,PARTY_WINNER,FontAwesome.INSTITUTION, COMMAND19);
-	
+
 		createButtonLink(panelContent,PARTY_GENDER,FontAwesome.INSTITUTION, COMMAND23);
-	
+
 		createButtonLink(panelContent,PARTY_AGE, FontAwesome.INSTITUTION,COMMAND24);
-	
+
 
 		createButtonLink(panelContent,DOCUMENT_ACTIVITY_BY_TYPE,FontAwesome.INSTITUTION, COMMAND20);
 		createButtonLink(panelContent,DECISION_ACTIVITY_BY_TYPE, FontAwesome.INSTITUTION,COMMAND21);
-	
+
 
 		createButtonLink(panelContent,PAGE_VISIT_HISTORY_TEXT, FontAwesome.INSTITUTION,
 				COMMAND22);
-				
+
 	}
 
 

@@ -104,12 +104,19 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	 *            the person data
 	 * @param viewRiksdagenPolitician
 	 *            the view riksdagen politician
-	 * @param pageId 
+	 * @param pageId
 	 */
 	private void createOverviewContent(final VerticalLayout panelContent, final PersonData personData,
-			final ViewRiksdagenPolitician viewRiksdagenPolitician, String pageId) {
+			final ViewRiksdagenPolitician viewRiksdagenPolitician, final String pageId) {
 		LabelFactory.createHeader2Label(panelContent,OVERVIEW);
-		getPoliticianMenuItemFactory().createOverviewPage(panelContent, pageId);
+
+		final VerticalLayout overviewLayout = new VerticalLayout();
+		overviewLayout.setSizeFull();
+
+		panelContent.addComponent(overviewLayout);
+		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
+
+		getPoliticianMenuItemFactory().createOverviewPage(overviewLayout, pageId);
 
 		final Link createPoliticianPageLink = getPageLinkFactory().createPoliticianPageLink(personData);
 		panelContent.addComponent(createPoliticianPageLink);
@@ -121,6 +128,8 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		horizontalLayout.setSizeFull();
 
 		panelContent.addComponent(horizontalLayout);
+
+
 
 		horizontalLayout.addComponent(image);
 

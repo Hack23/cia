@@ -87,8 +87,8 @@ public final class PartyCurrentMembersPageModContentFactoryImpl extends Abstract
 			getGridFactory().createBasicBeanItemGrid(panelContent,
 					politicianDataSource,
 					"Politicians",
-					new String[] { "personId", "firstName", "lastName", "party", "bornYear", "totalDaysServed", 
-							"currentAssignments", "totalAssignments", "firstAssignmentDate", "lastAssignmentDate", 
+					new String[] { "personId", "firstName", "lastName", "party", "bornYear", "totalDaysServed",
+							"currentAssignments", "totalAssignments", "firstAssignmentDate", "lastAssignmentDate",
 							"totalDaysServedParliament", "totalDaysServedCommittee", "totalDaysServedGovernment",
 							"totalDaysServedEu",
 

@@ -57,7 +57,7 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 	/** The Constant COMMAND26. */
 	private static final PageModeMenuCommand COMMAND26 = new PageModeMenuCommand(
 			UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTPARTIESBYHEADCOUNT.toString());
-	
+
 	/** The Constant COMMAND19. */
 	private static final PageModeMenuCommand COMMAND19 = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.DATAGRID);
 
@@ -151,7 +151,7 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 				COMMAND24);
 		chartByTopic.addItem(ALL_MINISTRIES_TOTAL_MEMBERS_TEXT,FontAwesome.GROUP,
 				COMMAND23);
-		
+
 		chartByTopic.addItem(GOVERNMENT_BODIES,FontAwesome.GROUP,
 				COMMAND22);
 
@@ -160,14 +160,14 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 				COMMAND21);
 
 	}
-	
-	
+
+
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent) {
-		
+
 		createButtonLink(panelContent,POLITICAL_WORK_SUMMARY_TEXT,FontAwesome.GROUP,
 				COMMAND19);
-		
+
 		createButtonLink(panelContent,CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT,FontAwesome.GROUP,
 				COMMAND25);
 		createButtonLink(panelContent,CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,FontAwesome.GROUP,
@@ -179,10 +179,10 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 				COMMAND23);
 		createButtonLink(panelContent,GOVERNMENT_BODIES,FontAwesome.GROUP,
 				COMMAND22);
-		
+
 		createButtonLink(panelContent,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
 				COMMAND21);
-		
+
 	}
 
 

@@ -130,28 +130,28 @@ public final class ApplicationEventListener implements ApplicationListener<Appli
 			serviceRequest.setApplicationOperation(ApplicationOperationType.AUTHORIZATION);
 
 			serviceRequest.setUserId(UserContextUtil.getUserIdFromSecurityContext());
-			
+
 
 			final Page currentPageIfAny = Page.getCurrent();
 			final String requestUrl = UserContextUtil.getRequestUrl(currentPageIfAny);
 			final UI currentUiIfAny = UI.getCurrent();
 			String methodInfo = "";
-			
+
 			if (currentPageIfAny != null && currentUiIfAny != null && currentUiIfAny.getNavigator() != null && currentUiIfAny.getNavigator().getCurrentView() != null) {
 				serviceRequest.setPage(currentUiIfAny.getNavigator().getCurrentView().getClass().getSimpleName());
 				serviceRequest.setPageMode(currentPageIfAny.getUriFragment());
 			}
 
 			if (authorizationFailureEvent.getSource() instanceof ReflectiveMethodInvocation) {
-				ReflectiveMethodInvocation methodInvocation = (ReflectiveMethodInvocation) authorizationFailureEvent.getSource();
+				final ReflectiveMethodInvocation methodInvocation = (ReflectiveMethodInvocation) authorizationFailureEvent.getSource();
 				if (methodInvocation.getMethod() != null && methodInvocation.getThis() != null) {
 					methodInfo = methodInvocation.getThis().getClass().getSimpleName() +"." + methodInvocation.getMethod().getName();
-				}		
+				}
 			}
 
 			serviceRequest.setErrorMessage("Url:" + requestUrl +" , Method" + methodInfo +" ,"  + AUTHORITIES + authorizationFailureEvent.getAuthentication().getAuthorities() + REQUIRED_AUTHORITIES + authorizationFailureEvent.getConfigAttributes() + " source:" + authorizationFailureEvent.getSource());
 			serviceRequest.setApplicationMessage(ACCESS_DENIED);
-			
+
 			applicationManager
 					.service(serviceRequest);
 

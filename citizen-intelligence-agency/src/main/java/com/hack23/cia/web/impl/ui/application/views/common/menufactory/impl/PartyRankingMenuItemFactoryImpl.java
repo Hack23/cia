@@ -43,15 +43,15 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 
 	/** The Constant COMMAND22. */
 	private static final PageModeMenuCommand COMMAND22 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.ALLPARTIES.toString());
-	
+
 	/** The Constant COMMAND23. */
 	private static final PageModeMenuCommand COMMAND23 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEES.toString());
-	
+
 	/** The Constant COMMAND24. */
 	private static final PageModeMenuCommand COMMAND24 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTGOVERMENTPARTIES.toString());
-	
+
 	/** The Constant COMMAND25. */
-	private static final PageModeMenuCommand COMMAND25 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTPARTIES.toString());	
+	private static final PageModeMenuCommand COMMAND25 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTPARTIES.toString());
 
 	/** The Constant COMMAND19. */
 	private static final PageModeMenuCommand COMMAND19 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.DATAGRID);
@@ -162,7 +162,7 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 
 		final MenuItem chartByTopic = partynMenuItem.addItem(CHART_BY_TOPIC_TEXT, FontAwesome.GROUP, null);
 
-				
+
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,FontAwesome.GROUP,
 				COMMAND24);
 //		chartByTopic.addItem(CURRENT_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES,FontAwesome.GROUP,
@@ -195,11 +195,11 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 		partynMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
 				COMMAND21);
 	}
-	
-	
+
+
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent) {
-		
+
 		createButtonLink(panelContent,TOTAL_MEMBERS,FontAwesome.GROUP,
 				COMMAND19);
 		createButtonLink(panelContent,CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,FontAwesome.GROUP,
@@ -211,10 +211,10 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 				COMMAND25);
 		createButtonLink(panelContent,ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,FontAwesome.GROUP,
 				COMMAND22);
-		
+
 		createButtonLink(panelContent,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
 				COMMAND21);
-		
+
 	}
 
 

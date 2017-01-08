@@ -81,7 +81,7 @@ public final class MinistryRankingOverviewPageModContentFactoryImpl extends Abst
 		panelContent.addComponent(createDescription());
 
 		getMinistryRankingMenuItemFactory().createOverviewPage(panelContent);
-		
+
 		panel.setCaption(OVERVIEW + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,

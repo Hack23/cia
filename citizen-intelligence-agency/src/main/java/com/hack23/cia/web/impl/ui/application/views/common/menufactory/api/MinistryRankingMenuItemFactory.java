@@ -42,7 +42,7 @@ public interface MinistryRankingMenuItemFactory {
 	 *            the ministry menu item
 	 */
 	void createMinistryRankingTopics(MenuItem ministryMenuItem);
-	
+
 	/**
 	 * Creates a new MinistryRankingMenuItem object.
 	 *

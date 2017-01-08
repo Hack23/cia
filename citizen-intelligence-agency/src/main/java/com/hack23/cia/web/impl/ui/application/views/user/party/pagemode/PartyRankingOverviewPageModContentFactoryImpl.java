@@ -64,7 +64,7 @@ public final class PartyRankingOverviewPageModContentFactoryImpl extends Abstrac
 		panelContent.addComponent(createDescription());
 
 		getPartyRankingMenuItemFactory().createOverviewPage(panelContent);
-		
+
 		panel.setCaption(OVERVIEW + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,

@@ -29,7 +29,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet filter to customize resources in html reports, such as css file.<br/>
@@ -64,7 +63,7 @@ public class CustomResourceFilterForward implements Filter {
 
 	/** {@inheritDoc} */
 	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
+	public void init(final FilterConfig filterConfig) throws ServletException {
 		final List<String> parameterNames = Collections.list(filterConfig.getInitParameterNames());
 		for (final String parameterName : parameterNames) {
 			customResources.put(parameterName, filterConfig.getInitParameter(parameterName));
@@ -73,13 +72,11 @@ public class CustomResourceFilterForward implements Filter {
 
 	/** {@inheritDoc} */
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+	public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain)
 			throws IOException, ServletException {
 		final String resource = request.getParameter("resource");
 		if (resource != null && customResources.get(resource) != null) {
 			final String customResource = customResources.get(resource);
-
-			final HttpServletResponse httpResponse = (HttpServletResponse) response;
 
 			request.getRequestDispatcher(customResource).forward(request, response);
 		} else {

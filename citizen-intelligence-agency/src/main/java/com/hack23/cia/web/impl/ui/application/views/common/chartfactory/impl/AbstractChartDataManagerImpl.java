@@ -64,31 +64,31 @@ public abstract class AbstractChartDataManagerImpl {
 	protected final void addChart(final AbstractOrderedLayout content,final String caption, final DCharts chart) {
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 
-		int browserWindowWidth = Page.getCurrent().getBrowserWindowWidth() -50;
-		int browserWindowHeight = Page.getCurrent().getBrowserWindowHeight() -200;
+		final int browserWindowWidth = Page.getCurrent().getBrowserWindowWidth() -50;
+		final int browserWindowHeight = Page.getCurrent().getBrowserWindowHeight() -200;
 
 		horizontalLayout.setWidth(browserWindowWidth, Unit.PIXELS);
 		horizontalLayout.setHeight(browserWindowHeight, Unit.PIXELS);
 
-		
+
 		final Panel formPanel = new Panel();
 		formPanel.setSizeFull();
 		formPanel.setContent(horizontalLayout);
-		
+
 		content.addComponent(formPanel);
 		content.setExpandRatio(formPanel, ContentRatio.LARGE);
 
-		
+
 		chart.setWidth(browserWindowWidth-50, Unit.PIXELS);
 		chart.setHeight(browserWindowHeight-100, Unit.PIXELS);
 		chart.setMarginRight(5);
 		chart.setMarginLeft(5);
 		chart.setMarginBottom(5);
 		chart.setMarginTop(5);
-		
+
 		chart.setEnableDownload(true);
 		chart.setChartImageFormat(ChartImageFormat.PNG);
-		
+
 		horizontalLayout.addComponent(chart);
 		chart.setCaption(caption);
 	}
