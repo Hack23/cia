@@ -158,7 +158,46 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 	
 	@Override
 	public void createOverviewPage(VerticalLayout panelContent, String pageId) {
-				
+
+		
+		createButtonLink(panelContent,OVERVIEW_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, pageId));
+		createButtonLink(panelContent,CHARTS_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS, pageId));
+		createButtonLink(panelContent,INDICATORS_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.INDICATORS, pageId));
+
+
+		createButtonLink(panelContent,CURRENT_MEMBERS_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+				CommitteePageMode.CURRENT_MEMBERS.toString(), pageId));
+
+		createButtonLink(panelContent,MEMBER_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+				CommitteePageMode.MEMBERHISTORY.toString(), pageId));
+
+		createButtonLink(panelContent,ROLE_GHANT_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), pageId));
+
+
+		createButtonLink(panelContent,DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+				CommitteePageMode.DOCUMENTACTIVITY.toString(), pageId));
+
+		createButtonLink(panelContent,DOCUMENT_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+				CommitteePageMode.DOCUMENT_HISTORY.toString(), pageId));
+
+
+		createButtonLink(panelContent,BALLOT_DECISION_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+				CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), pageId));
+
+		createButtonLink(panelContent,DECISION_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+				CommitteePageMode.DECISIONSUMMARY.toString(), pageId));
+
+		createButtonLink(panelContent,DECISION_TYPE_DAILY_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(
+				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId));
+
+		createButtonLink(panelContent,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
+
+		
 	}
 
 

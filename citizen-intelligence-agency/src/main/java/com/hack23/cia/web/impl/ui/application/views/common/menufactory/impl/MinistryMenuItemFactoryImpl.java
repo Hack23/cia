@@ -143,6 +143,36 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	@Override
 	public void createOverviewPage(VerticalLayout panelContent, String pageId) {
 		
+		createButtonLink(panelContent,OVERVIEW_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW, pageId));
+		createButtonLink(panelContent,CHARTS_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.CHARTS, pageId));
+		createButtonLink(panelContent,INDICATORS_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.INDICATORS, pageId));
+
+		createButtonLink(panelContent,CURRENT_MEMBERS_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+				MinistryPageMode.CURRENTMEMBERS.toString(), pageId));
+
+		createButtonLink(panelContent,MEMBER_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+				MinistryPageMode.MEMBERHISTORY.toString(), pageId));
+
+		createButtonLink(panelContent,ROLE_GHANT_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString(), pageId));
+
+		createButtonLink(panelContent,GOVERNMENT_BODIES, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES.toString(), pageId));
+
+
+		createButtonLink(panelContent,DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+				MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId));
+
+		createButtonLink(panelContent,DOCUMENT_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+				MinistryPageMode.DOCUMENTHISTORY.toString(), pageId));
+
+		createButtonLink(panelContent,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
+
+		
 	}
 
 }

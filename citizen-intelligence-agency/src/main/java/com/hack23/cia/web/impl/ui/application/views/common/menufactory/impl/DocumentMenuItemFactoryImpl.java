@@ -127,6 +127,36 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 	@Override
 	public void createOverviewPage(VerticalLayout panelContent, String pageId) {
+		createButtonLink(panelContent,OVERVIEW_TEXT, FontAwesome.FILE,
+				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, pageId));
+		createButtonLink(panelContent,CHARTS_TEXT, FontAwesome.FILE,
+				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.CHARTS, pageId));
+		createButtonLink(panelContent,INDICATORS_TEXT, FontAwesome.FILE,
+				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.INDICATORS, pageId));
+
+
+		createButtonLink(panelContent,DOCUMENT_ACTIVITY_TEXT, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId));
+
+		createButtonLink(panelContent,PERSON_REFERENCES, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.PERSONREFERENCES.toString(), pageId));
+
+		createButtonLink(panelContent,DOCUMENT_DETAILS, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENTDETAILS.toString(), pageId));
+
+		createButtonLink(panelContent,DOCUMENT_DATA, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENTDATA.toString(), pageId));
+
+		createButtonLink(panelContent,DOCUMENT_REFERENCES, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId));
+
+		createButtonLink(panelContent,DOCUMENT_DECISION, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENTDECISION.toString(), pageId));
+
+		createButtonLink(panelContent,DOCUMENT_ATTACHEMENTS, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId));
+
+
 		
 	}
 

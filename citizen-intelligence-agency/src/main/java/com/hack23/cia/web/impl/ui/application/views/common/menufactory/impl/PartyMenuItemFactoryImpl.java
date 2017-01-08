@@ -175,6 +175,53 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 	
 	@Override
 	public void createOverviewPage(VerticalLayout panelContent, String pageId) {
+		
+		createButtonLink(panelContent,OVERVIEW_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.OVERVIEW, pageId));
+		createButtonLink(panelContent,CHARTS_TEXT, null, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.CHARTS, pageId));
+
+		createButtonLink(panelContent,INDICATORS_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.INDICATORS, pageId));
+
+		
+		createButtonLink(panelContent,CURRENT_LEADERS, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTLEADERS.toString(), pageId));
+
+		createButtonLink(panelContent,LEADER_HISTORY, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.LEADERHISTORY.toString(), pageId));
+
+		createButtonLink(panelContent,CURRENT_MEMBERS_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTMEMBERS.toString(), pageId));
+
+		createButtonLink(panelContent,MEMBER_HISTORY_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.MEMBERHISTORY.toString(), pageId));
+
+		createButtonLink(panelContent,GOVERMENT_ROLES, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.GOVERNMENTROLES.toString(), pageId));
+
+		createButtonLink(panelContent,COMMITTEE_ROLES, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEROLES.toString(), pageId));
+
+
+		createButtonLink(panelContent,DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTACTIVITY.toString(), pageId));
+
+		createButtonLink(panelContent,DOCUMENT_HISTORY_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTHISTORY.toString(), pageId));
+
+
+		createButtonLink(panelContent,VOTE_HISTORY, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), pageId));
+
+		createButtonLink(panelContent,BALLOT_DECISION_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
+				PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString(), pageId));
+
+		createButtonLink(panelContent,PARTY_WON_DAILY_SUMMARY_CHART, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
+				PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), pageId));
+
+		createButtonLink(panelContent,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
+
 				
 	}
 
