@@ -49,6 +49,8 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.TabSheet;
+import com.vaadin.ui.TabSheet.Tab;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -104,26 +106,34 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 
 
 				LabelFactory.createHeader2Label(panelContent,CHARTS);
-
-
-				final HorizontalLayout horizontalLayout = new HorizontalLayout();
-				horizontalLayout.setMargin(true);
-				horizontalLayout.setWidth(100, Unit.PERCENTAGE);
-				horizontalLayout.setHeight(100, Unit.PERCENTAGE);
-
-				panelContent.addComponent(horizontalLayout);
-				panelContent.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
+				
+				TabSheet tabsheet = new TabSheet();
+				tabsheet.setWidth(100, Unit.PERCENTAGE);
+				tabsheet.setHeight(100, Unit.PERCENTAGE);
+				
+				panelContent.addComponent(tabsheet);
+				panelContent.setExpandRatio(tabsheet, ContentRatio.LARGE);
 
 				Collections.sort(ballots, (Comparator<ViewRiksdagenVoteDataBallotSummary>) (o1, o2) -> (o1.getEmbeddedId().getIssue() + o2.getEmbeddedId().getConcern()).compareTo(o1.getEmbeddedId().getIssue() + o2.getEmbeddedId().getConcern()));
 
 				for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
-					ballotChartDataManager.createChart(horizontalLayout,viewRiksdagenVoteDataBallotSummary);
+					final HorizontalLayout tabContent = new HorizontalLayout();
+					tabContent.setWidth(100, Unit.PERCENTAGE);
+					tabContent.setHeight(100, Unit.PERCENTAGE);					
+					Tab tab = tabsheet.addTab(tabContent);
+					
+					ballotChartDataManager.createChart(tab,tabContent,viewRiksdagenVoteDataBallotSummary);
 				}
 
 				final Map<String, List<ViewRiksdagenVoteDataBallotPartySummary>> concernIssuePartyBallotSummaryMap = createIssueConcernMap(partyBallotList);
 
 				for (final List<ViewRiksdagenVoteDataBallotPartySummary> partyBallotSummaryList : concernIssuePartyBallotSummaryMap.values()) {
-					ballotChartDataManager.createChart(horizontalLayout,partyBallotSummaryList);
+					final HorizontalLayout tabContent = new HorizontalLayout();
+					tabContent.setWidth(100, Unit.PERCENTAGE);
+					tabContent.setHeight(100, Unit.PERCENTAGE);
+					Tab tab = tabsheet.addTab(tabContent);
+
+					ballotChartDataManager.createChart(tab,tabContent,partyBallotSummaryList);
 				}
 
 

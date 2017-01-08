@@ -32,6 +32,7 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.BallotChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.vaadin.ui.AbstractOrderedLayout;
+import com.vaadin.ui.TabSheet.Tab;
 
 /**
  * The Class BallotChartDataManagerImpl.
@@ -52,7 +53,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 
 
 	@Override
-	public void createChart(final AbstractOrderedLayout content,final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary) {
+	public void createChart(final Tab tab,final AbstractOrderedLayout content,final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary) {
 		final DataSeries dataSeries = new DataSeries();
 
 		dataSeries.newSeries().add("Yes", viewRiksdagenVoteDataBallotSummary.getYesVotes());
@@ -60,7 +61,8 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 		dataSeries.newSeries().add("Abstain", viewRiksdagenVoteDataBallotSummary.getAbstainVotes());
 		dataSeries.newSeries().add("Absent", viewRiksdagenVoteDataBallotSummary.getAbsentVotes());
 
-		final String caption = viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getIssue() + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern();
+		final String caption = "Summary : " +viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getIssue() + " "+  viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern();
+		tab.setCaption(caption);
 
 		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsDonoutChart()).show());
 	}
@@ -68,7 +70,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 
 
 	@Override
-	public void createChart(final AbstractOrderedLayout content,final List<ViewRiksdagenVoteDataBallotPartySummary> partyList) {
+	public void createChart(final Tab tab,final AbstractOrderedLayout content,final List<ViewRiksdagenVoteDataBallotPartySummary> partyList) {
 		final DataSeries dataSeries = new DataSeries();
 
 		final Series series = new Series();
@@ -81,7 +83,9 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 		String caption=null;
 		for (final ViewRiksdagenVoteDataBallotPartySummary viewRiksdagenVoteDataBallotPartySummary : partyList) {
 			if (caption == null) {
-				caption = viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getIssue() + viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getConcern();
+				caption = "Party Summary : " + viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getIssue() + " " + viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getConcern();
+				content.setCaption(caption);
+				tab.setCaption(caption);
 			}
 
 			dataSeries.newSeries()
@@ -92,7 +96,8 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 		}
 
 
-		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsDonoutChartWithSeries(series)).show());
+		addChart(content,caption + " ( 4 circles Yes/No/Abstain/Absent votes by party )", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsDonoutChartWithSeries(series)).show());
 	}
 
+	
 }
