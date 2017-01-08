@@ -152,6 +152,40 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 	@Override
 	public void createOverviewPage(VerticalLayout panelContent, String pageId) {
+
+		createButtonLink(panelContent,OVERVIEW_TEXT, FontAwesome.BUG,
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, pageId));
+		createButtonLink(panelContent,CHARTS_TEXT, FontAwesome.BUG,
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.CHARTS, pageId));
+		createButtonLink(panelContent,INDICATORS_TEXT, FontAwesome.BUG,
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId));
+
+
+		createButtonLink(panelContent,TOTAL_EXPERIENCE, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.ROLESUMMARY.toString(), pageId));
+
+		createButtonLink(panelContent,ROLE_LIST, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.ROLELIST.toString(), pageId));
+
+		createButtonLink(panelContent,ROLE_GHANT_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.ROLEGHANT.toString(), pageId));
+
+
+		createButtonLink(panelContent,DOCUMENT_ACTIVITY_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId));
+
+		createButtonLink(panelContent,DOCUMENT_HISTORY_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId));
+
+
+		createButtonLink(panelContent,VOTE_HISTORY, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.VOTEHISTORY.toString(), pageId));
+
+		createButtonLink(panelContent,BALLOT_DECISION_SUMMARY_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId));
+
+		createButtonLink(panelContent,PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG,
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
 				
 	}
 
