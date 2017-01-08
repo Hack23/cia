@@ -958,6 +958,15 @@
                     <ignoreClass>org.w3c.css.sac.*</ignoreClass>
                     <ignoreClass>elemental.*</ignoreClass>
                     <ignoreClass>org.w3c.flute.*</ignoreClass>
+                    <ignoreClass>javax.transaction.*</ignoreClass>
+                    <ignoreClass>org.w3._2001.xmlschema.*</ignoreClass>
+                    <ignoreClass>org.terracotta.*</ignoreClass>
+                    <ignoreClass>javax.el.*</ignoreClass>
+                    <ignoreClass>javax.xml.namespace.QName</ignoreClass>
+                    <ignoreClass>org.apache.regexp.*</ignoreClass>
+                    <!-- <ignoreClass>org.mozilla.javascript.*</ignoreClass> -->
+                    <ignoreClass>javax.annotation.*</ignoreClass>
+                    <ignoreClass>org.mozilla.classfile.*</ignoreClass>
                   </ignoreClasses>
                 </banDuplicateClasses>
                 <!-- <requireEncoding>

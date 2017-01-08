@@ -249,6 +249,10 @@
           <artifactId>com.springsource.javax.persistence</artifactId>
           <groupId>javax.persistence</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>jboss-interceptors-api_1.1_spec</artifactId>
+          <groupId>org.jboss.spec.javax.interceptor</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
