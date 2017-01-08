@@ -50,6 +50,12 @@
       <artifactId>vaadin-sass-compiler</artifactId>
       <version>0.9.13</version>
       <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>js</artifactId>
+          <groupId>rhino</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.vaadin</groupId>
