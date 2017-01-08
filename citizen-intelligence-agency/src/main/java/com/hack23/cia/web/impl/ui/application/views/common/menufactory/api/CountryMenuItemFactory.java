@@ -42,7 +42,7 @@ public interface CountryMenuItemFactory {
 	 *            the country menu item
 	 */
 	void createCountryTopicMenu(MenuItem countryMenuItem);
-	
+
 	/**
 	 * Creates a new CountryMenuItem object.
 	 *

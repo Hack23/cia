@@ -42,7 +42,7 @@ public interface ParliamentMenuItemFactory {
 	 *            the parliament menu item
 	 */
 	void createParliamentTopicMenu(MenuItem parliamentMenuItem);
-	
+
 	void createOverviewPage(VerticalLayout panelContent);
 
 

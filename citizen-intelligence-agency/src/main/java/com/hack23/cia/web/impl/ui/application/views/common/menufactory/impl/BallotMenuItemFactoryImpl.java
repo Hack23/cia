@@ -66,14 +66,14 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 	}
 
 	@Override
-	public void createOverviewPage(VerticalLayout panelContent, String pageId) {
+	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
+
+		createButtonLink(panelContent,CHARTS_TEXT, FontAwesome.PIE_CHART,
+				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId));
 
 		createButtonLink(panelContent,INDICATORS_TEXT, FontAwesome.PIE_CHART,
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.INDICATORS, pageId));
 
-		createButtonLink(panelContent,INDICATORS_TEXT, FontAwesome.PIE_CHART,
-				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.INDICATORS, pageId));
-				
 	}
 
 }

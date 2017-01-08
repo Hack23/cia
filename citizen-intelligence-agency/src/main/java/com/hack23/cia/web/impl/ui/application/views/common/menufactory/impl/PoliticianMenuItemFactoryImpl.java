@@ -151,7 +151,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 	}
 
 	@Override
-	public void createOverviewPage(VerticalLayout panelContent, String pageId) {
+	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 
 		createButtonLink(panelContent,OVERVIEW_TEXT, FontAwesome.BUG,
 				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, pageId));
@@ -186,7 +186,7 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 		createButtonLink(panelContent,PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG,
 				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
-				
+
 	}
 
 }

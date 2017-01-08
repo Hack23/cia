@@ -98,7 +98,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 				getFormFactory().addFormPanelTextFields(content, new BeanItem<>(applicationActionEvent), ApplicationActionEvent.class,
 					Arrays.asList(new String[] { "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage"}));
 			}
-		} 
+		}
 
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_EVENTS_VIEW, ApplicationEventGroup.ADMIN,

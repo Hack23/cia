@@ -99,5 +99,5 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 		addChart(content,caption + " ( 4 circles Yes/No/Abstain/Absent votes by party )", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsDonoutChartWithSeries(series)).show());
 	}
 
-	
+
 }

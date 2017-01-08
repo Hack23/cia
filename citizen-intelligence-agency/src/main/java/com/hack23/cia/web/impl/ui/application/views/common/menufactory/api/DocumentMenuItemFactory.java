@@ -35,7 +35,7 @@ public interface DocumentMenuItemFactory {
 	 *            the page id
 	 */
 	void createDocumentMenuBar(MenuBar menuBar, String pageId);
-	
+
 	/**
 	 * Creates a new DocumentMenuItem object.
 	 *

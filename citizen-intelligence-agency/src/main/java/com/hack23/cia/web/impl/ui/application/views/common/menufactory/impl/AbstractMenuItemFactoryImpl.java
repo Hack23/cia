@@ -250,15 +250,15 @@ public abstract class AbstractMenuItemFactoryImpl {
 			userActivityMenuItem.addItem(APPLICATION_SESSION,FontAwesome.LAPTOP, COMMAND15);
 			userActivityMenuItem.addItem(APPLICATION_EVENT,FontAwesome.ARROWS, COMMAND16);
 			userActivityMenuItem.addItem(APPLICATION_EVENT_CHARTS,FontAwesome.ARROWS, COMMAND20);
-			
+
 			userActivityMenuItem.addItem(USERACCOUNT,FontAwesome.GROUP, COMMAND17);
 
 		}
 	}
 
 	protected final void createButtonLink(final VerticalLayout panelContent,final String linkText,final Resource icon, final ClickListener command) {
-		Button b = new Button(linkText);
-		b.setStyleName("link"); 
+		final Button b = new Button(linkText);
+		b.setStyleName("link");
 		b.addClickListener(command);
 		b.setSizeFull();
 		b.setIcon(icon);

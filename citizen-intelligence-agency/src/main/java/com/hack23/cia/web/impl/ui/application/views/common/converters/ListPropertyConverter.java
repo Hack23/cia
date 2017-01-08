@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -42,7 +42,7 @@ public final class ListPropertyConverter implements Converter<String, List> {
 
 	/** The column. */
 	private final String column;
-	
+
 	private final String fallbackColumn;
 
 	/**
@@ -71,7 +71,7 @@ public final class ListPropertyConverter implements Converter<String, List> {
 		this.fallbackColumn = fallbackColumn;
 	}
 
-	
+
 	/**
 	 * Gets the presentation type.
 	 *
@@ -92,35 +92,35 @@ public final class ListPropertyConverter implements Converter<String, List> {
 	}
 
 	@Override
-	public List convertToModel(String value, Class<? extends List> targetType, Locale locale)
+	public List convertToModel(final String value, final Class<? extends List> targetType, final Locale locale)
 			throws com.vaadin.data.util.converter.Converter.ConversionException {
 		return new ArrayList<>();
 	}
 
 	@Override
-	public String convertToPresentation(List value, Class<? extends String> targetType, Locale locale)
+	public String convertToPresentation(final List value, final Class<? extends String> targetType, final Locale locale)
 			throws com.vaadin.data.util.converter.Converter.ConversionException {
-		StringBuilder stringBuilder = new StringBuilder().append("[ ");
+		final StringBuilder stringBuilder = new StringBuilder().append("[ ");
 
 		if (value != null) {
-			for (Object object : value) {
+			for (final Object object : value) {
 				try {
-					String beanProperty = BeanUtils.getProperty(object, property);
-					
+					final String beanProperty = BeanUtils.getProperty(object, property);
+
 					if (beanProperty != null) {
 						stringBuilder.append(beanProperty);
 					} else {
 						if (fallbackColumn != null) {
-							String beanPropertyFallBack = BeanUtils.getProperty(object, fallbackColumn);
+							final String beanPropertyFallBack = BeanUtils.getProperty(object, fallbackColumn);
 							if (beanPropertyFallBack != null) {
 								stringBuilder.append(beanPropertyFallBack);
 							}
 						}
-							
-						
+
+
 					}
-					
-				} catch (Exception e) {
+
+				} catch (final Exception e) {
 					stringBuilder.append(" ");
 				}
 				stringBuilder.append(" ");

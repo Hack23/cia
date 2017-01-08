@@ -155,11 +155,11 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
 	}
-	
-	@Override
-	public void createOverviewPage(VerticalLayout panelContent, String pageId) {
 
-		
+	@Override
+	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
+
+
 		createButtonLink(panelContent,OVERVIEW_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, pageId));
 		createButtonLink(panelContent,CHARTS_TEXT, FontAwesome.GROUP,
@@ -197,7 +197,7 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 		createButtonLink(panelContent,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
-		
+
 	}
 
 

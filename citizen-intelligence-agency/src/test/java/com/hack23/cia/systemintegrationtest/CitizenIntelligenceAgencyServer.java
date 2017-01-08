@@ -185,9 +185,9 @@ public final class CitizenIntelligenceAgencyServer {
 		classlist.addBefore("org.eclipse.jetty.webapp.JettyWebXmlConfiguration",
 				"org.eclipse.jetty.annotations.AnnotationConfiguration");
 
-		HttpConfiguration config = new HttpConfiguration();
-		HttpConnectionFactory http1 = new HttpConnectionFactory(config);
-		HTTP2CServerConnectionFactory http2c = new HTTP2CServerConnectionFactory(config);
+		final HttpConfiguration config = new HttpConfiguration();
+		final HttpConnectionFactory http1 = new HttpConnectionFactory(config);
+		final HTTP2CServerConnectionFactory http2c = new HTTP2CServerConnectionFactory(config);
 
 		final ServerConnector connector = new ServerConnector(server, http1,http2c);
 		connector.setPort(PORT);
@@ -200,9 +200,9 @@ public final class CitizenIntelligenceAgencyServer {
 		final HandlerList handlers = new HandlerList();
 
 		handlers.setHandlers(new Handler[] { handler, new DefaultHandler() });
-		
+
 		server.setHandler(handlers);
-		
+
 
 	}
 

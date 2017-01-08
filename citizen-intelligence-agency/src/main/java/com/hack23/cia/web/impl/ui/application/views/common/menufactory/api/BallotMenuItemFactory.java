@@ -35,7 +35,7 @@ public interface BallotMenuItemFactory {
 	 *            the page id
 	 */
 	void createBallotMenuBar(MenuBar menuBar, String pageId);
-	
+
 	/**
 	 * Creates a new BallotMenuItem object.
 	 *

@@ -43,7 +43,7 @@ public interface PoliticianRankingMenuItemFactory {
 	 *            the politician menu item
 	 */
 	void createPoliticianRankingTopics(MenuItem politicianMenuItem);
-	
+
 	/**
 	 * Creates a new PoliticianRankingMenuItem object.
 	 *

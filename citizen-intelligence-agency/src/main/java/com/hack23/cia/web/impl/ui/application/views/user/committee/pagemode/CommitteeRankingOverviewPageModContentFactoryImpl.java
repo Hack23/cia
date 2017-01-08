@@ -82,7 +82,7 @@ public final class CommitteeRankingOverviewPageModContentFactoryImpl extends Abs
 		final String pageId = getPageId(parameters);
 
 		panelContent.addComponent(createDescription());
-		
+
 		getCommitteeRankingMenuItemFactory().createOverviewPage(panelContent);
 
 		panel.setCaption(OVERVIEW + parameters);

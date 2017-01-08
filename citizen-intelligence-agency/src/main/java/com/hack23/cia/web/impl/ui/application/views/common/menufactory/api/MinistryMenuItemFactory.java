@@ -35,7 +35,7 @@ public interface MinistryMenuItemFactory {
 	 *            the page id
 	 */
 	void createMinistryMenuBar(MenuBar menuBar, String pageId);
-	
+
 	/**
 	 * Creates a new MinistryMenuItem object.
 	 *

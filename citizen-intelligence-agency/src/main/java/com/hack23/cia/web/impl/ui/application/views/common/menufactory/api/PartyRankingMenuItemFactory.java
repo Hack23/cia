@@ -42,7 +42,7 @@ public interface PartyRankingMenuItemFactory {
 	 *            the partyn menu item
 	 */
 	void createPartyRankingTopics(MenuItem partynMenuItem);
-	
+
 	/**
 	 * Creates a new PartyRankingMenuItem object.
 	 *

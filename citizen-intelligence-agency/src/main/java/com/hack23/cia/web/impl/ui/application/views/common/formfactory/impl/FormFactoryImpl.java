@@ -122,8 +122,8 @@ public final class FormFactoryImpl implements FormFactory {
 		for (final String property : displayProperties) {
 
 			final Field<?> buildAndBind = fieldGroup.buildAndBind(property);
-			buildAndBind.setWidth(ContentSize.FULL_SIZE);			
-						
+			buildAndBind.setWidth(ContentSize.FULL_SIZE);
+
 			formContent.addComponent(buildAndBind);
 		}
 		final Collection<Object> unboundPropertyIds = fieldGroup.getUnboundPropertyIds();

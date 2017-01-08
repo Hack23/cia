@@ -106,11 +106,11 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 
 
 				LabelFactory.createHeader2Label(panelContent,CHARTS);
-				
-				TabSheet tabsheet = new TabSheet();
+
+				final TabSheet tabsheet = new TabSheet();
 				tabsheet.setWidth(100, Unit.PERCENTAGE);
 				tabsheet.setHeight(100, Unit.PERCENTAGE);
-				
+
 				panelContent.addComponent(tabsheet);
 				panelContent.setExpandRatio(tabsheet, ContentRatio.LARGE);
 
@@ -119,9 +119,9 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 				for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
 					final HorizontalLayout tabContent = new HorizontalLayout();
 					tabContent.setWidth(100, Unit.PERCENTAGE);
-					tabContent.setHeight(100, Unit.PERCENTAGE);					
-					Tab tab = tabsheet.addTab(tabContent);
-					
+					tabContent.setHeight(100, Unit.PERCENTAGE);
+					final Tab tab = tabsheet.addTab(tabContent);
+
 					ballotChartDataManager.createChart(tab,tabContent,viewRiksdagenVoteDataBallotSummary);
 				}
 
@@ -131,7 +131,7 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 					final HorizontalLayout tabContent = new HorizontalLayout();
 					tabContent.setWidth(100, Unit.PERCENTAGE);
 					tabContent.setHeight(100, Unit.PERCENTAGE);
-					Tab tab = tabsheet.addTab(tabContent);
+					final Tab tab = tabsheet.addTab(tabContent);
 
 					ballotChartDataManager.createChart(tab,tabContent,partyBallotSummaryList);
 				}

@@ -299,7 +299,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
-	
+
 	/**
 	 * Site admin application event charts test.
 	 *
@@ -321,7 +321,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
-	
+
 	/**
 	 * Site admin monitoring failed access test.
 	 *
