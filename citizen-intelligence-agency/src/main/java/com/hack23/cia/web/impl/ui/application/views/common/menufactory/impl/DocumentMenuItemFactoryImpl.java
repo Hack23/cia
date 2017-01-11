@@ -22,10 +22,13 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.DocumentMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
@@ -127,34 +130,43 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
-		createButtonLink(panelContent,OVERVIEW_TEXT, FontAwesome.FILE,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, pageId));
-		createButtonLink(panelContent,CHARTS_TEXT, FontAwesome.FILE,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.CHARTS, pageId));
-		createButtonLink(panelContent,INDICATORS_TEXT, FontAwesome.FILE,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.INDICATORS, pageId));
+		
+		final GridLayout grid = new GridLayout(2, 1);
+		grid.setWidth(100, Unit.PERCENTAGE);
+		grid.setHeight(100, Unit.PERCENTAGE);
+		grid.setColumnExpandRatio(0, 1);
+		grid.setColumnExpandRatio(1, 1);		
+		panelContent.addComponent(grid);
+		panelContent.setExpandRatio(grid, ContentRatio.LARGE);
+
+		createButtonLink(grid,OVERVIEW_TEXT, FontAwesome.FILE,
+				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, pageId), "Default description");
+		createButtonLink(grid,CHARTS_TEXT, FontAwesome.FILE,
+				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.CHARTS, pageId), "Default description");
+		createButtonLink(grid,INDICATORS_TEXT, FontAwesome.FILE,
+				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.INDICATORS, pageId), "Default description");
 
 
-		createButtonLink(panelContent,DOCUMENT_ACTIVITY_TEXT, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId));
+		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId), "Default description");
 
-		createButtonLink(panelContent,PERSON_REFERENCES, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.PERSONREFERENCES.toString(), pageId));
+		createButtonLink(grid,PERSON_REFERENCES, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.PERSONREFERENCES.toString(), pageId), "Default description");
 
-		createButtonLink(panelContent,DOCUMENT_DETAILS, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTDETAILS.toString(), pageId));
+		createButtonLink(grid,DOCUMENT_DETAILS, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENTDETAILS.toString(), pageId), "Default description");
 
-		createButtonLink(panelContent,DOCUMENT_DATA, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTDATA.toString(), pageId));
+		createButtonLink(grid,DOCUMENT_DATA, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENTDATA.toString(), pageId), "Default description");
 
-		createButtonLink(panelContent,DOCUMENT_REFERENCES, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId));
+		createButtonLink(grid,DOCUMENT_REFERENCES, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId), "Default description");
 
-		createButtonLink(panelContent,DOCUMENT_DECISION, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTDECISION.toString(), pageId));
+		createButtonLink(grid,DOCUMENT_DECISION, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENTDECISION.toString(), pageId), "Default description");
 
-		createButtonLink(panelContent,DOCUMENT_ATTACHEMENTS, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId));
+		createButtonLink(grid,DOCUMENT_ATTACHEMENTS, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId), "Default description");
 
 
 

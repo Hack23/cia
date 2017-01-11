@@ -25,10 +25,13 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Appli
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
@@ -158,44 +161,51 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
+		final GridLayout grid = new GridLayout(2, 1);
+		grid.setWidth(100, Unit.PERCENTAGE);
+		grid.setHeight(100, Unit.PERCENTAGE);
+		grid.setColumnExpandRatio(0, 1);
+		grid.setColumnExpandRatio(1, 1);		
+		panelContent.addComponent(grid);
+		panelContent.setExpandRatio(grid, ContentRatio.LARGE);
 
 
-		createButtonLink(panelContent,OVERVIEW_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, pageId));
-		createButtonLink(panelContent,CHARTS_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS, pageId));
-		createButtonLink(panelContent,INDICATORS_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.INDICATORS, pageId));
+		createButtonLink(grid,OVERVIEW_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, pageId), "Default description");
+		createButtonLink(grid,CHARTS_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS, pageId), "Default description");
+		createButtonLink(grid,INDICATORS_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.INDICATORS, pageId), "Default description");
 
 
-		createButtonLink(panelContent,CURRENT_MEMBERS_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.CURRENT_MEMBERS.toString(), pageId));
+		createButtonLink(grid,CURRENT_MEMBERS_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+				CommitteePageMode.CURRENT_MEMBERS.toString(), pageId), "Default description");
 
-		createButtonLink(panelContent,MEMBER_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.MEMBERHISTORY.toString(), pageId));
+		createButtonLink(grid,MEMBER_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+				CommitteePageMode.MEMBERHISTORY.toString(), pageId), "Default description");
 
-		createButtonLink(panelContent,ROLE_GHANT_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), pageId));
-
-
-		createButtonLink(panelContent,DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.DOCUMENTACTIVITY.toString(), pageId));
-
-		createButtonLink(panelContent,DOCUMENT_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.DOCUMENT_HISTORY.toString(), pageId));
+		createButtonLink(grid,ROLE_GHANT_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), pageId), "Default description");
 
 
-		createButtonLink(panelContent,BALLOT_DECISION_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), pageId));
+		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+				CommitteePageMode.DOCUMENTACTIVITY.toString(), pageId), "Default description");
 
-		createButtonLink(panelContent,DECISION_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.DECISIONSUMMARY.toString(), pageId));
+		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+				CommitteePageMode.DOCUMENT_HISTORY.toString(), pageId), "Default description");
 
-		createButtonLink(panelContent,DECISION_TYPE_DAILY_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(
-				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId));
 
-		createButtonLink(panelContent,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
+		createButtonLink(grid,BALLOT_DECISION_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+				CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), pageId), "Default description");
+
+		createButtonLink(grid,DECISION_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+				CommitteePageMode.DECISIONSUMMARY.toString(), pageId), "Default description");
+
+		createButtonLink(grid,DECISION_TYPE_DAILY_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(
+				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId), "Default description");
+
+		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), "Default description");
 
 
 	}
