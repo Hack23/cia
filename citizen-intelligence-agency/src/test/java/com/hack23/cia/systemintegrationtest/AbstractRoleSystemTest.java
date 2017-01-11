@@ -92,7 +92,7 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 	 */
 	@BeforeClass
 	static final synchronized public void startServer() throws Exception {
-		System.setProperty("webdriver.gecko.driver", "/usr/bin/geckodriver-0.8.0-linux64");
+		System.setProperty("webdriver.gecko.driver", "/usr/bin/geckodriver-0.13.0-linux64");
 		if (!usingExternalServer) {
 			CitizenIntelligenceAgencyServer.startTestServer();
 		}
@@ -155,7 +155,9 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 	    driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
-
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	    
+	    
 		webDriverMap.put(browser, driver);
 		driver.manage().window().maximize();
 		return driver;
