@@ -25,10 +25,13 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Appli
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
@@ -142,35 +145,43 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
+		final GridLayout grid = new GridLayout(2, 1);
+		grid.setWidth(100, Unit.PERCENTAGE);
+		grid.setHeight(100, Unit.PERCENTAGE);
+		grid.setColumnExpandRatio(0, 1);
+		grid.setColumnExpandRatio(1, 1);		
+		panelContent.addComponent(grid);
+		panelContent.setExpandRatio(grid, ContentRatio.LARGE);
 
-		createButtonLink(panelContent,OVERVIEW_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW, pageId));
-		createButtonLink(panelContent,CHARTS_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.CHARTS, pageId));
-		createButtonLink(panelContent,INDICATORS_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.INDICATORS, pageId));
+		
+		createButtonLink(grid,OVERVIEW_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW, pageId), "Default description");
+		createButtonLink(grid,CHARTS_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.CHARTS, pageId), "Default description");
+		createButtonLink(grid,INDICATORS_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.INDICATORS, pageId), "Default description");
 
-		createButtonLink(panelContent,CURRENT_MEMBERS_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.CURRENTMEMBERS.toString(), pageId));
+		createButtonLink(grid,CURRENT_MEMBERS_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+				MinistryPageMode.CURRENTMEMBERS.toString(), pageId), "Default description");
 
-		createButtonLink(panelContent,MEMBER_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.MEMBERHISTORY.toString(), pageId));
+		createButtonLink(grid,MEMBER_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+				MinistryPageMode.MEMBERHISTORY.toString(), pageId), "Default description");
 
-		createButtonLink(panelContent,ROLE_GHANT_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString(), pageId));
+		createButtonLink(grid,ROLE_GHANT_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString(), pageId), "Default description");
 
-		createButtonLink(panelContent,GOVERNMENT_BODIES, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES.toString(), pageId));
+		createButtonLink(grid,GOVERNMENT_BODIES, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES.toString(), pageId), "Default description");
 
 
-		createButtonLink(panelContent,DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId));
+		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+				MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId), "Default description");
 
-		createButtonLink(panelContent,DOCUMENT_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.DOCUMENTHISTORY.toString(), pageId));
+		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+				MinistryPageMode.DOCUMENTHISTORY.toString(), pageId), "Default description");
 
-		createButtonLink(panelContent,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
+		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), "Default description");
 
 
 	}

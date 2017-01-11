@@ -25,10 +25,13 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Appli
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
@@ -152,40 +155,49 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
-
-		createButtonLink(panelContent,OVERVIEW_TEXT, FontAwesome.BUG,
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, pageId));
-		createButtonLink(panelContent,CHARTS_TEXT, FontAwesome.BUG,
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.CHARTS, pageId));
-		createButtonLink(panelContent,INDICATORS_TEXT, FontAwesome.BUG,
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId));
-
-
-		createButtonLink(panelContent,TOTAL_EXPERIENCE, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.ROLESUMMARY.toString(), pageId));
-
-		createButtonLink(panelContent,ROLE_LIST, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.ROLELIST.toString(), pageId));
-
-		createButtonLink(panelContent,ROLE_GHANT_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.ROLEGHANT.toString(), pageId));
+		
+		final GridLayout grid = new GridLayout(2, 1);
+		grid.setWidth(100, Unit.PERCENTAGE);
+		grid.setHeight(100, Unit.PERCENTAGE);
+		grid.setColumnExpandRatio(0, 1);
+		grid.setColumnExpandRatio(1, 1);		
+		panelContent.addComponent(grid);
+		panelContent.setExpandRatio(grid, ContentRatio.LARGE);
 
 
-		createButtonLink(panelContent,DOCUMENT_ACTIVITY_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId));
+		createButtonLink(grid,OVERVIEW_TEXT, FontAwesome.BUG,
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, pageId), "Default description");
+		createButtonLink(grid,CHARTS_TEXT, FontAwesome.BUG,
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.CHARTS, pageId), "Default description");
+		createButtonLink(grid,INDICATORS_TEXT, FontAwesome.BUG,
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId), "Default description");
 
-		createButtonLink(panelContent,DOCUMENT_HISTORY_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId));
+
+		createButtonLink(grid,TOTAL_EXPERIENCE, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.ROLESUMMARY.toString(), pageId), "Default description");
+
+		createButtonLink(grid,ROLE_LIST, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.ROLELIST.toString(), pageId), "Default description");
+
+		createButtonLink(grid,ROLE_GHANT_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.ROLEGHANT.toString(), pageId), "Default description");
 
 
-		createButtonLink(panelContent,VOTE_HISTORY, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.VOTEHISTORY.toString(), pageId));
+		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId), "Default description");
 
-		createButtonLink(panelContent,BALLOT_DECISION_SUMMARY_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId));
+		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId), "Default description");
 
-		createButtonLink(panelContent,PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG,
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
+
+		createButtonLink(grid,VOTE_HISTORY, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.VOTEHISTORY.toString(), pageId), "Default description");
+
+		createButtonLink(grid,BALLOT_DECISION_SUMMARY_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+				PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId), "Default description");
+
+		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG,
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId), "Default description");
 
 	}
 

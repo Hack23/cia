@@ -24,10 +24,13 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
@@ -130,9 +133,18 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent) {
 
-		createButtonLink(panelContent, POLITICAL_EXPERIENCE_SUMMARY, FontAwesome.BUG, COMMAND19);
+		final GridLayout grid = new GridLayout(2, 1);
+		grid.setWidth(100, Unit.PERCENTAGE);
+		grid.setHeight(100, Unit.PERCENTAGE);
+		grid.setColumnExpandRatio(0, 1);
+		grid.setColumnExpandRatio(1, 1);		
+		panelContent.addComponent(grid);
+		panelContent.setExpandRatio(grid, ContentRatio.LARGE);
 
-		createButtonLink(panelContent, PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG, COMMAND20);
+		
+		createButtonLink(grid, POLITICAL_EXPERIENCE_SUMMARY, FontAwesome.BUG, COMMAND19, "Default description");
+
+		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG, COMMAND20, "Default description");
 
 	}
 

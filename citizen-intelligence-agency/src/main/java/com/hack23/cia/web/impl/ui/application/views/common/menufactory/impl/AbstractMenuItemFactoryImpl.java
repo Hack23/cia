@@ -27,11 +27,14 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Resource;
+import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.GridLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class AbstractMenuItemFactoryImpl.
@@ -256,13 +259,34 @@ public abstract class AbstractMenuItemFactoryImpl {
 		}
 	}
 
-	protected final void createButtonLink(final VerticalLayout panelContent,final String linkText,final Resource icon, final ClickListener command) {
+	protected final void createButtonLink(final GridLayout panelContent,final String linkText,final Resource icon, final ClickListener command, final String description) {
+		final GridLayout grid = new GridLayout(2, 1);
+		grid.setWidth(100, Unit.PERCENTAGE);
+		grid.setHeight(100, Unit.PERCENTAGE);
+		grid.setColumnExpandRatio(0, 1);
+		grid.setColumnExpandRatio(1, 2);		
+		
 		final Button b = new Button(linkText);
 		b.setStyleName("link");
 		b.addClickListener(command);
-		b.setSizeFull();
+		//b.setSizeFull();
+		b.setWidth(100, Unit.PERCENTAGE);
+
 		b.setIcon(icon);
-		panelContent.addComponent(b);
+		b.setWidth(100, Unit.PERCENTAGE);
+
+		
+		grid.addComponent(b, 0, 0);
+		grid.setComponentAlignment(b, Alignment.MIDDLE_LEFT);
+		
+		Label descriptionLabel = new Label(description);
+		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
+		grid.addComponent(descriptionLabel,1,0);
+		grid.setComponentAlignment(descriptionLabel, Alignment.MIDDLE_LEFT);
+		
+		
+		panelContent.addComponent(grid);
+		panelContent.setComponentAlignment(grid, Alignment.MIDDLE_LEFT);
 	}
 
 }
