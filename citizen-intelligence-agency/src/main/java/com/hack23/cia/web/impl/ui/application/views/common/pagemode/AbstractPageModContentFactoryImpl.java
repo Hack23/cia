@@ -25,10 +25,13 @@ import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.api.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.TabSheet;
+import com.vaadin.ui.TabSheet.Tab;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -198,11 +201,32 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 */
 	protected final void createPageVisitHistory(final String pageName, final String pageId,
 			final VerticalLayout panelContent) {
-		LabelFactory.createHeader2Label(panelContent, CURRENT_PAGE_VISIT_HISTORY);
-		adminChartDataManager.createApplicationActionEventPageElementDailySummaryChart(panelContent, pageName, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, GENERAL_PAGE_MODE_PAGE_VISIT);
-		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(panelContent, pageName);
+		final TabSheet tabsheet = new TabSheet();
+		tabsheet.setWidth(100, Unit.PERCENTAGE);
+		tabsheet.setHeight(100, Unit.PERCENTAGE);
+
+		panelContent.addComponent(tabsheet);
+		panelContent.setExpandRatio(tabsheet, ContentRatio.LARGE);
+
+		final HorizontalLayout tabContentPageItemRankHistory = new HorizontalLayout();
+		tabContentPageItemRankHistory.setWidth(100, Unit.PERCENTAGE);
+		tabContentPageItemRankHistory.setHeight(100, Unit.PERCENTAGE);
+		final Tab tabPageItemRankHistory = tabsheet.addTab(tabContentPageItemRankHistory);
+
+		tabPageItemRankHistory.setCaption(CURRENT_PAGE_VISIT_HISTORY);
+		adminChartDataManager.createApplicationActionEventPageElementDailySummaryChart(tabContentPageItemRankHistory,
+				pageName, pageId);
+
+		final HorizontalLayout tabContentPageModeSummary = new HorizontalLayout();
+		tabContentPageModeSummary.setWidth(100, Unit.PERCENTAGE);
+		tabContentPageModeSummary.setHeight(100, Unit.PERCENTAGE);
+		final Tab tabPageModeSummary = tabsheet.addTab(tabContentPageModeSummary);
+		tabPageModeSummary.setCaption(GENERAL_PAGE_MODE_PAGE_VISIT);
+
+		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(tabContentPageModeSummary,
+				pageName);
+
 	}
 
 }
