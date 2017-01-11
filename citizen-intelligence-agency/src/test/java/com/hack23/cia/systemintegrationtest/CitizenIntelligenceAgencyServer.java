@@ -220,7 +220,6 @@ public final class CitizenIntelligenceAgencyServer {
 
 		try {
 			server.start();
-			// server.join();
 		} catch (final Exception e) {
 			LOGGER.error("Problem starting server", e);
 		}
