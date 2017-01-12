@@ -81,6 +81,8 @@ public final class MinistryRankingAllMinistriesChartsPageModContentFactoryImpl
 
 		chartDataManager.createChartPanel(chartLayout, dataSeriesFactory.createMinistryChartTimeSeriesAll(), "All");
 
+		panelContent.addComponent(chartLayout);
+
 		panel.setCaption(CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,
