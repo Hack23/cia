@@ -3,6 +3,9 @@ Will use latest hvm-ssd ubuntu image:Current: ubuntu/images/hvm-ssd/ubuntu-xenia
 16.10
 ubuntu/images/hvm-ssd/ubuntu-yakkety-16.10-amd64-server-20161020.1 : ami-3e713f4d
 
+17.04
+ubuntu/images-testing/hvm-ssd/ubuntu-zesty-daily-amd64-server-20170111 : ami-af98b0dc
+
 Add optional AWS::Elasticsearch::Domain alt specify elasticsearch url 
 http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html
 
