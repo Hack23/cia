@@ -87,11 +87,11 @@ public final class PartyDocumentHistoryPageModContentFactoryImpl extends Abstrac
 			getGridFactory().createBasicBeanItemGrid(
 					panelContent, politicianDocumentDataSource,
 					"Member Document history",
-					new String[] { "id", "docId", "referenceName", "partyShortCode", "personReferenceId",
-							"roleDescription", "documentType", "subType", "org", "label", "rm", "madePublicDate",
-							"numberValue", "status", "title", "subTitle", "tempLabel", "orderNumber" },
+					new String[] { "rm", "madePublicDate", "title", "subTitle","id", "docId", "referenceName", "partyShortCode", "personReferenceId",
+							"roleDescription", "documentType", "subType", "org", "label", 
+							"numberValue", "status", "tempLabel", "orderNumber" },
 					new String[] { "id", "partyShortCode", "personReferenceId", "numberValue", "orderNumber",
-							"tempLabel" }, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null, null);
+							"tempLabel", "label", "docId" ,"roleDescription"}, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null, null);
 
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
