@@ -92,12 +92,12 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 			getGridFactory().createBasicBeanItemGrid(
 					panelContent, politicianDocumentDataSource,
 					"Documents",
-					new String[] { "id", "docId", "referenceName", "partyShortCode", "personReferenceId",
-							"roleDescription", "documentType", "subType", "org", "label", "rm",
-							"madePublicDate", "numberValue", "status", "title", "subTitle", "tempLabel",
-							"orderNumber" },
+					new String[] { "id", "docId", "personReferenceId",
+							"roleDescription", "org", "label", "rm",
+							"madePublicDate", "numberValue", "title", "subTitle", "tempLabel",
+							"orderNumber" , "documentType", "subType","status", "partyShortCode", "referenceName"},
 					new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId",
-							"org" }, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME,"docId"), null, null);
+							"org","roleDescription", "label","subTitle","docId" }, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME,"docId"), null, null);
 
 			panel.setCaption(MINISTRY + viewRiksdagenMinistry.getNameId());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,

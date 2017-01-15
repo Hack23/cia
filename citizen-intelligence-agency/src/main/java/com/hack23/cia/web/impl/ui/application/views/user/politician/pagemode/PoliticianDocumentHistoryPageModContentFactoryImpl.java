@@ -90,11 +90,11 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl extends Ab
 			getGridFactory().createBasicBeanItemGrid(
 					panelContent, politicianDocumentDataSource,
 					"Documents",
-					new String[] { "referenceName", "partyShortCode", "personReferenceId", "roleDescription",
-							"documentType", "subType", "title", "subTitle", "org", "rm", "madePublicDate", "id",
+					new String[] { "rm", "madePublicDate","documentType", "subType", "title", "subTitle", "referenceName", "partyShortCode", "personReferenceId", "roleDescription",
+							"org", "id",
 							"docId", "tempLabel", "label", "numberValue", "orderNumber", "status" },
 					new String[] { "id", "partyShortCode", "personReferenceId", "numberValue", "orderNumber",
-							"tempLabel", "referenceName" }, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null, null);
+							"tempLabel", "referenceName" , "docId", "label","roleDescription"}, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null, null);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 

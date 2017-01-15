@@ -97,10 +97,10 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 			getGridFactory().createBasicBeanItemGrid(
 					panelContent, politicianDocumentDataSource,
 					"Documents",
-					new String[] { "id", "docId", "referenceName", "partyShortCode", "personReferenceId",
-							"roleDescription", "documentType", "subType", "org", "label", "rm", "madePublicDate",
-							"numberValue", "status", "title", "subTitle", "tempLabel", "orderNumber" },
-					new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId", "org" }, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null, null);
+					new String[] { "rm", "madePublicDate","id", "docId", "personReferenceId",
+							"roleDescription", "title", "subTitle", "documentType", "subType", "org", "label", 
+							"numberValue", "status", "tempLabel", "orderNumber","referenceName", "partyShortCode" },
+					new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId", "org", "docId", "label","roleDescription" }, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null, null);
 
 
 			panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
