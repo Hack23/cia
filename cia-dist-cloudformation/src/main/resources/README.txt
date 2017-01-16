@@ -1,4 +1,4 @@
-Will use latest hvm-ssd ubuntu image:Current: ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20161205
+Will use latest hvm-ssd ubuntu image:Current: ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20170113
 
 16.10
 ubuntu/images/hvm-ssd/ubuntu-yakkety-16.10-amd64-server-20161020.1 : ami-3e713f4d

@@ -412,7 +412,7 @@
          },
          "us-west-1":{
             "PV64":"NOT_SUPPORTED",
-            "HVM64":"ami-d5ea86b5",
+            "HVM64":"ami-d8f4deab",
             "HVMG2":"NOT_SUPPORTED"
          },
          "eu-west-1":{
