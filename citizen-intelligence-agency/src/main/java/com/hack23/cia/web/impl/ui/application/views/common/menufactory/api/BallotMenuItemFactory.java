@@ -44,7 +44,7 @@ public interface BallotMenuItemFactory {
 	 * @param pageId
 	 *            the page id
 	 */
-	void createOverviewPage(VerticalLayout panelContent,  String pageId);
+	void createOverviewPage(VerticalLayout panelContent, String pageId);
 
 
 }

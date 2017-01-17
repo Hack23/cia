@@ -63,6 +63,18 @@ public final class ListPropertyConverter implements Converter<String, List> {
 		this.fallbackColumn = null;
 	}
 
+	/**
+	 * Instantiates a new list property converter.
+	 *
+	 * @param modelType
+	 *            the model type
+	 * @param property
+	 *            the property
+	 * @param column
+	 *            the column
+	 * @param fallbackColumn
+	 *            the fallback column
+	 */
 	public ListPropertyConverter(final Class<List> modelType, final String property, final String column,final String fallbackColumn) {
 		super();
 		this.modelType = modelType;
@@ -93,13 +105,13 @@ public final class ListPropertyConverter implements Converter<String, List> {
 
 	@Override
 	public List convertToModel(final String value, final Class<? extends List> targetType, final Locale locale)
-			throws com.vaadin.data.util.converter.Converter.ConversionException {
+			throws ConversionException {
 		return new ArrayList<>();
 	}
 
 	@Override
 	public String convertToPresentation(final List value, final Class<? extends String> targetType, final Locale locale)
-			throws com.vaadin.data.util.converter.Converter.ConversionException {
+			throws ConversionException {
 		final StringBuilder stringBuilder = new StringBuilder().append("[ ");
 
 		if (value != null) {

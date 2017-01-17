@@ -44,6 +44,6 @@ public interface PartyMenuItemFactory {
 	 * @param pageId
 	 *            the page id
 	 */
-	void createOverviewPage(VerticalLayout panelContent,  String pageId);
+	void createOverviewPage(VerticalLayout panelContent, String pageId);
 
 }

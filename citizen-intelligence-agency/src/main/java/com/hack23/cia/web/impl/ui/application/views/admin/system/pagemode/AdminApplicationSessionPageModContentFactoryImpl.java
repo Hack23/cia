@@ -86,7 +86,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 
 
 		final BeanItemContainer<ApplicationSession> politicianDocumentDataSource = new BeanItemContainer<>(
-				ApplicationSession.class, dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,ApplicationSession_.createdDate));
+				ApplicationSession.class, dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationSession_.createdDate));
 
 		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 

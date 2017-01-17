@@ -28,6 +28,7 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPa
 import com.vaadin.data.Container;
 import com.vaadin.data.Container.Indexed;
 import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.event.SelectionEvent.SelectionListener;
 import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Grid.Column;
@@ -133,7 +134,7 @@ public final class GridFactoryImpl implements GridFactory {
 	 * @param grid
 	 *            the grid
 	 */
-	private static void configureListeners(final AbstractPageItemRendererClickListener<?> listener,
+	private static void configureListeners(final SelectionListener listener,
 			final Grid grid) {
 
 		if (listener != null) {

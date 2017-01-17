@@ -136,9 +136,8 @@ public final class ChartOptionsImpl implements ChartOptions {
 		return legend;
 	}
 
-	private Cursor createCursor() {
-		final Cursor cursor = new Cursor().setZoom(true).setShow(true);
-		return cursor;
+	private static Cursor createCursor() {
+		return new Cursor().setZoom(true).setShow(true);
 	}
 
 	@Override
@@ -147,10 +146,9 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE))
 				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(5));
 
-		final Options options = new Options().addOption(new SeriesDefaults()).addOption(axes)
+		return new Options().addOption(new SeriesDefaults()).addOption(axes)
 				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside())
 				.addOption(createDefaultGrid()).addOption(createCursor());
-		return options;
 	}
 
 	@Override
@@ -165,9 +163,8 @@ public final class ChartOptionsImpl implements ChartOptions {
 						.setDataLabels(DataLabels.VALUE));
 
 
-		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend)
+		return new Options().setSeriesDefaults(seriesDefaults).setLegend(legend)
 				.setHighlighter(highlighter).addOption(createDefaultGrid()).addOption(createCursor());
-		return options;
 	}
 
 	@Override
@@ -181,33 +178,29 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.setRendererOptions(new DonutRenderer().setSliceMargin(3).setStartAngle(-90).setShowDataLabels(true)
 						.setDataLabels(DataLabels.VALUE));
 
-		final Options options = new Options().setSeriesDefaults(seriesDefaults).setLegend(legend)
+		return new Options().setSeriesDefaults(seriesDefaults).setLegend(legend)
 				.setHighlighter(highlighter).addOption(series).addOption(createDefaultGrid()).addOption(createCursor());
-		return options;
 	}
 
 	@Override
 	public Options createOptionsPartyLineChart(final Series series) {
-		final Options options = new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
+		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
 				.addOption(createHighLighterNorth()).addOption(createCursor()).addOption(series)
 				.addOption(createLegendOutside()).addOption(createDefaultGrid());
-		return options;
 	}
 
 	@Override
 	public Options createOptionsPersonLineChart(final Series series) {
-		final Options options = new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
+		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
 				.addOption(createHighLighterNorth()).addOption(createCursor()).addOption(series)
 				.addOption(createLegendOutside()).addOption(createDefaultGrid());
-		return options;
 	}
 
 	@Override
 	public Options createOptionsPieChart() {
-		final Options options = new Options().setSeriesDefaults(createSeriesDefaultPieChart())
+		return new Options().setSeriesDefaults(createSeriesDefaultPieChart())
 				.setLegend(createdLegendEnhancedInsideWest()).setHighlighter(createHighLighter())
 				.addOption(createDefaultGrid()).addOption(createCursor());
-		return options;
 	}
 
 	@Override

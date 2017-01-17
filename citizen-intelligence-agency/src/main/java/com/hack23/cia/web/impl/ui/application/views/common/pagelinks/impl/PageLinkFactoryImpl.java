@@ -104,7 +104,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	@Override
 	public Link createRegisterPageLink() {
 		final Link pageLink = new Link("Register", new ExternalResource(
-				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + PAGE_SEPARATOR + ApplicationPageMode.REGISTER.toString()));
+				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + PAGE_SEPARATOR + ApplicationPageMode.REGISTER));
 		pageLink.setId(ViewAction.VISIT_REGISTER.name());
 		pageLink.setIcon(FontAwesome.USER_PLUS);
 		return pageLink;
@@ -113,7 +113,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	@Override
 	public Link createLoginPageLink() {
 		final Link pageLink = new Link("Login", new ExternalResource(
-				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + PAGE_SEPARATOR + ApplicationPageMode.LOGIN.toString()));
+				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + PAGE_SEPARATOR + ApplicationPageMode.LOGIN));
 		pageLink.setId(ViewAction.VISIT_LOGIN.name());
 		pageLink.setIcon(FontAwesome.SIGN_IN);
 		return pageLink;

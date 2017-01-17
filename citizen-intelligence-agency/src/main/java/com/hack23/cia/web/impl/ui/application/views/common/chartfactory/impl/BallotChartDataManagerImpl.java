@@ -61,7 +61,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 		dataSeries.newSeries().add("Abstain", viewRiksdagenVoteDataBallotSummary.getAbstainVotes());
 		dataSeries.newSeries().add("Absent", viewRiksdagenVoteDataBallotSummary.getAbsentVotes());
 
-		final String caption = "Summary : " +viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getIssue() + " "+  viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern();
+		final String caption = "Summary : " +viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getIssue() + " " + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern();
 		tab.setCaption(caption);
 
 		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsDonoutChart()).show());
