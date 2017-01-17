@@ -88,7 +88,7 @@ public final class PartyDocumentHistoryPageModContentFactoryImpl extends Abstrac
 					panelContent, politicianDocumentDataSource,
 					"Member Document history",
 					new String[] { "rm", "madePublicDate", "title", "subTitle","id", "docId", "referenceName", "partyShortCode", "personReferenceId",
-							"roleDescription", "documentType", "subType", "org", "label", 
+							"roleDescription", "documentType", "subType", "org", "label",
 							"numberValue", "status", "tempLabel", "orderNumber" },
 					new String[] { "id", "partyShortCode", "personReferenceId", "numberValue", "orderNumber",
 							"tempLabel", "label", "docId" ,"roleDescription"}, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null, null);

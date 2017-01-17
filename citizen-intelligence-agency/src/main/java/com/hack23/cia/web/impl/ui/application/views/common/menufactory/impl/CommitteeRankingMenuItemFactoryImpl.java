@@ -174,11 +174,11 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 		grid.setWidth(100, Unit.PERCENTAGE);
 		grid.setHeight(100, Unit.PERCENTAGE);
 		grid.setColumnExpandRatio(0, 1);
-		grid.setColumnExpandRatio(1, 1);		
+		grid.setColumnExpandRatio(1, 1);
 		panelContent.addComponent(grid);
 		panelContent.setExpandRatio(grid, ContentRatio.LARGE);
 
-		
+
 		createButtonLink(grid,POLITICAL_WORK_SUMMARY_TEXT,FontAwesome.GROUP, COMMAND18, "Default description");
 		createButtonLink(grid,CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,FontAwesome.GROUP, COMMAND24, "Default description");
 

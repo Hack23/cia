@@ -149,11 +149,11 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		grid.setWidth(100, Unit.PERCENTAGE);
 		grid.setHeight(100, Unit.PERCENTAGE);
 		grid.setColumnExpandRatio(0, 1);
-		grid.setColumnExpandRatio(1, 1);		
+		grid.setColumnExpandRatio(1, 1);
 		panelContent.addComponent(grid);
 		panelContent.setExpandRatio(grid, ContentRatio.LARGE);
 
-		
+
 		createButtonLink(grid,OVERVIEW_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW, pageId), "Default description");
 		createButtonLink(grid,CHARTS_TEXT, FontAwesome.GROUP,

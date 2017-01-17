@@ -74,10 +74,10 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		grid.setWidth(100, Unit.PERCENTAGE);
 		grid.setHeight(100, Unit.PERCENTAGE);
 		grid.setColumnExpandRatio(0, 1);
-		grid.setColumnExpandRatio(1, 1);		
+		grid.setColumnExpandRatio(1, 1);
 		panelContent.addComponent(grid);
 		panelContent.setExpandRatio(grid, ContentRatio.LARGE);
-		
+
 		createButtonLink(grid,CHARTS_TEXT, FontAwesome.PIE_CHART,
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId), "Default description");
 

@@ -264,8 +264,8 @@ public abstract class AbstractMenuItemFactoryImpl {
 		grid.setWidth(100, Unit.PERCENTAGE);
 		grid.setHeight(100, Unit.PERCENTAGE);
 		grid.setColumnExpandRatio(0, 1);
-		grid.setColumnExpandRatio(1, 2);		
-		
+		grid.setColumnExpandRatio(1, 2);
+
 		final Button b = new Button(linkText);
 		b.setStyleName("link");
 		b.addClickListener(command);
@@ -275,16 +275,16 @@ public abstract class AbstractMenuItemFactoryImpl {
 		b.setIcon(icon);
 		b.setWidth(100, Unit.PERCENTAGE);
 
-		
+
 		grid.addComponent(b, 0, 0);
 		grid.setComponentAlignment(b, Alignment.MIDDLE_LEFT);
-		
-		Label descriptionLabel = new Label(description);
+
+		final Label descriptionLabel = new Label(description);
 		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
 		grid.addComponent(descriptionLabel,1,0);
 		grid.setComponentAlignment(descriptionLabel, Alignment.MIDDLE_LEFT);
-		
-		
+
+
 		panelContent.addComponent(grid);
 		panelContent.setComponentAlignment(grid, Alignment.MIDDLE_LEFT);
 	}
