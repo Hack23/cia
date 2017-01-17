@@ -40,7 +40,7 @@ import com.vaadin.ui.AbstractOrderedLayout;
  * The Class GovernmentBodyChartDataManagerImpl.
  */
 @Service
-public class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManagerImpl
+public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManagerImpl
 		implements GovernmentBodyChartDataManager {
 
 	@Autowired

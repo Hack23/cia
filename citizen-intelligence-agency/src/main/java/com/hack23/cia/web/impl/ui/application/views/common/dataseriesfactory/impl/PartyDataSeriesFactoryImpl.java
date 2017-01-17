@@ -134,7 +134,7 @@ public final class PartyDataSeriesFactoryImpl implements PartyDataSeriesFactory 
 	 *            the party
 	 * @return the party name
 	 */
-	private final String getPartyName(final String party) {
+	private String getPartyName(final String party) {
 		final DataContainer<ViewRiksdagenParty, String> dataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenParty.class);
 

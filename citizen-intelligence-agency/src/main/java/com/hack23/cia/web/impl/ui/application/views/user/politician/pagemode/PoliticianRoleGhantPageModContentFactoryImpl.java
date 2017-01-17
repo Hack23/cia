@@ -122,7 +122,7 @@ public final class PoliticianRoleGhantPageModContentFactoryImpl extends Abstract
 	 * @param assignmentList
 	 *            the assignment list
 	 */
-	private void createRoleGhant(final VerticalLayout roleSummaryLayoutTabsheet,
+	private static void createRoleGhant(final VerticalLayout roleSummaryLayoutTabsheet,
 			final List<AssignmentData> assignmentList) {
 
 		final Comparator<AssignmentData> compare = (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());

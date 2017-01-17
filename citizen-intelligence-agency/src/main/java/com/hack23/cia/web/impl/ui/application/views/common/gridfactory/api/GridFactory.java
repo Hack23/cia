@@ -45,7 +45,8 @@ public interface GridFactory {
 	 *            the listener
 	 * @param actionId
 	 *            the action id
-	 * @param collectionPropertyConverters TODO
+	 * @param collectionPropertyConverters
+	 *            the collection property converters
 	 */
 	void createBasicBeanItemGrid(AbstractOrderedLayout panelContent, Indexed datasource, String caption, Object[] columnOrder,
 			Object[] hideColumns, AbstractPageItemRendererClickListener<?> listener, String actionId, ListPropertyConverter[] collectionPropertyConverters);
@@ -69,7 +70,8 @@ public interface GridFactory {
 	 *            the listener
 	 * @param actionId
 	 *            the action id
-	 * @param collectionPropertyConverters TODO
+	 * @param collectionPropertyConverters
+	 *            the collection property converters
 	 */
 	void createBasicBeanItemNestedPropertiesGrid(AbstractOrderedLayout panelContent,Indexed datasource, String caption, String[] nestedProperties,Object[] columnOrder, Object[] hideColumns,
 			AbstractPageItemRendererClickListener<?> listener, String actionId, ListPropertyConverter[] collectionPropertyConverters);

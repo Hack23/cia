@@ -89,7 +89,7 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 
 		final BeanItemContainer<ApplicationConfiguration> politicianDocumentDataSource = new BeanItemContainer<>(
 				ApplicationConfiguration.class,
-		dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,ApplicationConfiguration_.configurationGroup));
+		dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationConfiguration_.configurationGroup));
 
 		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
