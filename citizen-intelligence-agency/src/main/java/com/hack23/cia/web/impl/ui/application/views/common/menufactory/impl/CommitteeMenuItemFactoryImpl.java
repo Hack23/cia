@@ -165,7 +165,7 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 		grid.setWidth(100, Unit.PERCENTAGE);
 		grid.setHeight(100, Unit.PERCENTAGE);
 		grid.setColumnExpandRatio(0, 1);
-		grid.setColumnExpandRatio(1, 1);		
+		grid.setColumnExpandRatio(1, 1);
 		panelContent.addComponent(grid);
 		panelContent.setExpandRatio(grid, ContentRatio.LARGE);
 

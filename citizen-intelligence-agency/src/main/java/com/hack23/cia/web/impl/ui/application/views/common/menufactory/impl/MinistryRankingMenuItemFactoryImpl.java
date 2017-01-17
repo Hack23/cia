@@ -172,11 +172,11 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 		grid.setWidth(100, Unit.PERCENTAGE);
 		grid.setHeight(100, Unit.PERCENTAGE);
 		grid.setColumnExpandRatio(0, 1);
-		grid.setColumnExpandRatio(1, 1);		
+		grid.setColumnExpandRatio(1, 1);
 		panelContent.addComponent(grid);
 		panelContent.setExpandRatio(grid, ContentRatio.LARGE);
 
-		
+
 		createButtonLink(grid,POLITICAL_WORK_SUMMARY_TEXT,FontAwesome.GROUP,
 				COMMAND19, "Default description");
 

@@ -155,12 +155,12 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
-		
+
 		final GridLayout grid = new GridLayout(2, 1);
 		grid.setWidth(100, Unit.PERCENTAGE);
 		grid.setHeight(100, Unit.PERCENTAGE);
 		grid.setColumnExpandRatio(0, 1);
-		grid.setColumnExpandRatio(1, 1);		
+		grid.setColumnExpandRatio(1, 1);
 		panelContent.addComponent(grid);
 		panelContent.setExpandRatio(grid, ContentRatio.LARGE);
 

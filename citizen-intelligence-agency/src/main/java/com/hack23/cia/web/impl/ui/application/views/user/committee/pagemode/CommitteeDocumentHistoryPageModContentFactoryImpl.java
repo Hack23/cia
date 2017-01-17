@@ -98,7 +98,7 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 					panelContent, politicianDocumentDataSource,
 					"Documents",
 					new String[] { "rm", "madePublicDate","id", "docId", "personReferenceId",
-							"roleDescription", "title", "subTitle", "documentType", "subType", "org", "label", 
+							"roleDescription", "title", "subTitle", "documentType", "subType", "org", "label",
 							"numberValue", "status", "tempLabel", "orderNumber","referenceName", "partyShortCode" },
 					new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId", "org", "docId", "label","roleDescription" }, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null, null);
 
