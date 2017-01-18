@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -149,7 +150,7 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 		if (!assignmentList.isEmpty()) {
 
 			gantt.setStartDate(assignmentList.get(0).getFromDate());
-			gantt.setEndDate(assignmentList.get(assignmentList.size() - 1).getToDate());
+			gantt.setEndDate(stripDatesAfterCurrentDate(assignmentList.get(assignmentList.size() - 1).getToDate()));
 
 			for (final Entry<String, List<ViewRiksdagenPartyRoleMember>> entry : entriesSortedByValues(
 					assignmentListMap)) {
@@ -252,7 +253,7 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 			}
 
 			sameRoleSubStep.setStartDate(assignmentData.getFromDate().getTime());
-			sameRoleSubStep.setEndDate(assignmentData.getToDate().getTime());
+			sameRoleSubStep.setEndDate(stripDatesAfterCurrentDate(assignmentData.getToDate()).getTime());
 
 			step.addSubStep(sameRoleSubStep);
 		}
