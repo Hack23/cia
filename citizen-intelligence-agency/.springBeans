@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beansProjectDescription>
 	<version>1</version>
-	<pluginVersion><![CDATA[3.8.1.201607290748-RELEASE]]></pluginVersion>
+	<pluginVersion><![CDATA[3.8.3.201612191259-RELEASE]]></pluginVersion>
 	<configSuffixes>
 		<configSuffix><![CDATA[xml]]></configSuffix>
 	</configSuffixes>
@@ -18,6 +18,7 @@
 	<autoconfigs>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.party.pagemode.PartyVoteHistoryPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.CommitteeBallotDecisionSummaryPageModContentFactoryImpl</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentChartsPartyWinnerPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.CommitteeDocumentActivityPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.party.pagemode.PartyWonDailySummaryChartPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode.PoliticianIndicatorsPageModContentFactoryImpl</config>
@@ -28,6 +29,7 @@
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode.PoliticianDocumentHistoryPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.AdminMonitoringPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode.PoliticianPageVisitHistoryPageModContentFactoryImpl</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl.ChartOptionsImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.CommitteeRankingPageVisitHistoryPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode.MinistryRoleGhantPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode.PoliticianRoleSummaryPageModContentFactoryImpl</config>
@@ -44,10 +46,13 @@
 		<config>java:com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.AdminApplicationEventsPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.document.pagemode.DocumentPersonReferencesPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.common.pagemode.MainViewPageVisitHistoryPageModContentFactoryImpl</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode.MinistryGovernmentBodiesModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode.PoliticianRankingOverviewPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.document.pagemode.DocumentOverviewPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.party.pagemode.PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.party.pagemode.PartyCommitteeRolesPageModContentFactoryImpl</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentChartsDocumentActivityByTypePageModContentFactoryImpl</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentOverviewPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.party.pagemode.PartyDocumentActivityPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode.PoliticianRoleGhantPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.AdminAgencyPageModContentFactoryImpl</config>
@@ -57,20 +62,26 @@
 		<config>java:com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.AdminLanguagePageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.home.pagemode.UserHomeOverviewPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.document.pagemode.DocumentDetailsPageModContentFactoryImpl</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.EmailPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.AdminUserAccountPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode.PoliticianDocumentActivityPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.party.pagemode.PartyMemberHistoryPageModContentFactoryImpl</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.user.country.pagemode.WorldIndicatorsPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.CommitteeRankingOverviewPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode.PoliticianOverviewPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.CommitteeDecisionTypeDailySummaryPageModContentFactoryImpl2</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentChartsPartyAgePageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.party.pagemode.PartyIndicatorsPageModContentFactoryImpl</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.party.pagemode.PartyOverviewPageModContentFactoryImpl</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode.MinistryRankingGovernmentBodiesPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.party.pagemode.PartyDocumentHistoryPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.document.pagemode.DocumentDecisionPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.party.pagemode.PartyRankingOverviewPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.CommitteeCurrentMembersHistoryPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode.MinistryRankingOverviewPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode.MinistryRankingPageVisitHistoryPageModContentFactoryImpl</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.user.country.pagemode.CountryRankingOverviewPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.admin.agentoperations.pagemode.AgentOperationsOverviewPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode.PoliticianRankingPageVisitHistoryPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode.DataSummaryOverviewPageModContentFactoryImpl</config>
@@ -79,8 +90,11 @@
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.party.pagemode.PartyLeaderHistoryPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.CommitteePageVisitHistoryPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.AdminCountryPageModContentFactoryImpl</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentChartsPartyGenderPageModContentFactoryImpl</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.user.home.pagemode.UserHomeSecuritySettingsPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode.MinistryDocumentActivityPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.party.pagemode.PartyRoleGhantPageModContentFactoryImpl</config>
+		<config>java:com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.AdminApplicationEventsChartsPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.common.pagemode.MainViewOverviewPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.document.pagemode.SearchDocumentPageModContentFactoryImpl</config>
 		<config>java:com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode.MinistryPageVisitHistoryPageModContentFactoryImpl</config>
