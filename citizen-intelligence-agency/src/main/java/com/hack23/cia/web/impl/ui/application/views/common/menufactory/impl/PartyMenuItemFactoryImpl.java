@@ -42,6 +42,9 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements PartyMenuItemFactory {
 
+	/** The Constant ROLE_CHART_PARTY_LEADERS. */
+	private static final String ROLE_CHART_PARTY_LEADERS = "Role chart, party leaders";
+
 	/** The Constant PARTY_RANKING. */
 	private static final String PARTY_RANKING = "Party Ranking";
 
@@ -152,6 +155,10 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 		rolesItem.addItem(COMMITTEE_ROLES, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEROLES.toString(), pageId));
 
+		rolesItem.addItem(ROLE_CHART_PARTY_LEADERS, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.ROLEGHANT.toString(), pageId));
+
+
 		final MenuItem documentItem = partyItem.addItem(DOCUMENTS_TEXT, FontAwesome.GROUP, null);
 
 		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP,
@@ -213,6 +220,9 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 
 		createButtonLink(grid,COMMITTEE_ROLES, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEROLES.toString(), pageId), "Default description");
+
+		createButtonLink(grid,ROLE_CHART_PARTY_LEADERS, FontAwesome.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.ROLEGHANT.toString(), pageId), "Default description");
 
 
 		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP,
