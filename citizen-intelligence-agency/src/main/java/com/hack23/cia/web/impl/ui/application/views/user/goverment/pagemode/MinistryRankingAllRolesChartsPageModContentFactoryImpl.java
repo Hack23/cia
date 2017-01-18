@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -29,45 +29,49 @@ import java.util.TreeSet;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.tltv.gantt.Gantt;
 import org.tltv.gantt.client.shared.Resolution;
 import org.tltv.gantt.client.shared.Step;
 import org.tltv.gantt.client.shared.SubStep;
 
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember;
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember_;
+import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class PartyRoleGhantPageModContentFactoryImpl.
+ * The Class MinistryRankingAllRolesChartsPageModContentFactoryImpl.
  */
-@Component
-public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
+@Service
+public final class MinistryRankingAllRolesChartsPageModContentFactoryImpl extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The Constant ROLE_GHANT. */
-	private static final String ROLE_GHANT = "Role chart";
+	/** The Constant CHARTS. */
+	private static final String CHARTS = "Charts: Current parties by headcount";
 
 	/**
-	 * Instantiates a new party role ghant page mod content factory impl.
+	 * Instantiates a new ministry ranking all roles charts page mod content
+	 * factory impl.
 	 */
-	public PartyRoleGhantPageModContentFactoryImpl() {
+	public MinistryRankingAllRolesChartsPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PartyPageMode.ROLEGHANT.toString());
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(PageMode.CHARTS.toString())
+				&& parameters.contains(ChartIndicators.ALL_GOVERNMENT_ROLE_CHART.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -75,32 +79,32 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 
+		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
+
 		final String pageId = getPageId(parameters);
 
-		final DataContainer<ViewRiksdagenParty, String> dataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenParty.class);
 
-		final ViewRiksdagenParty viewRiksdagenParty = dataContainer.load(pageId);
+		final HorizontalLayout chartLayout = new HorizontalLayout();
+		chartLayout.setSizeFull();
 
-		if (viewRiksdagenParty != null) {
+		
+		final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
 
-			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+		final List<ViewRiksdagenGovermentRoleMember> allMembers = govermentRoleMemberDataContainer.getAll();
 
-			LabelFactory.createHeader2Label(panelContent, ROLE_GHANT);
+		createRoleGhant(panelContent, allMembers);
 
-			final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenPartyRoleMember.class);
+		
+		panel.setCaption(CHARTS + parameters);
 
-			final List<ViewRiksdagenPartyRoleMember> allMembers = partyRoleMemberDataContainer
-					.getAllBy(ViewRiksdagenPartyRoleMember_.party, viewRiksdagenParty.getPartyId());
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 
-			createRoleGhant(panelContent, allMembers);
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
-		}
 		return panelContent;
 
 	}
+	
 
 	/**
 	 * Creates the role ghant.
@@ -111,10 +115,9 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 	 *            the assignment list
 	 */
 	private static void createRoleGhant(final VerticalLayout roleSummaryLayoutTabsheet,
-			final List<ViewRiksdagenPartyRoleMember> assignmentList) {
+			final List<ViewRiksdagenGovermentRoleMember> assignmentList) {
 
-		final Comparator<ViewRiksdagenPartyRoleMember> compare = (o1, o2) -> o1.getFromDate()
-				.compareTo(o2.getFromDate());
+		final Comparator<ViewRiksdagenGovermentRoleMember> compare = (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
 
 		Collections.sort(assignmentList, compare);
 
@@ -131,11 +134,11 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 	 *            the assignment list
 	 * @return the gantt
 	 */
-	private static Gantt createGantt(final List<ViewRiksdagenPartyRoleMember> assignmentList) {
+	private static Gantt createGantt(final List<ViewRiksdagenGovermentRoleMember> assignmentList) {
 
-		final Function<ViewRiksdagenPartyRoleMember, String> role = new RoleMapping();
+		final Function<ViewRiksdagenGovermentRoleMember, String> role = new RoleMapping();
 
-		final Map<String, List<ViewRiksdagenPartyRoleMember>> assignmentListMap = assignmentList.stream()
+		final Map<String, List<ViewRiksdagenGovermentRoleMember>> assignmentListMap = assignmentList.stream()
 				.collect(Collectors.groupingBy(role, TreeMap::new, Collectors.toList()));
 
 		final Gantt gantt = new Gantt();
@@ -151,22 +154,20 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 			gantt.setStartDate(assignmentList.get(0).getFromDate());
 			gantt.setEndDate(assignmentList.get(assignmentList.size() - 1).getToDate());
 
-			for (final Entry<String, List<ViewRiksdagenPartyRoleMember>> entry : entriesSortedByValues(
-					assignmentListMap)) {
+			for (final Entry<String, List<ViewRiksdagenGovermentRoleMember>> entry : entriesSortedByValues(assignmentListMap)) {
 
 				final String stepName = entry.getKey();
 
 				final Step step = new Step();
 				step.setDescription(stepName);
 
-				final List<ViewRiksdagenPartyRoleMember> assignments = entry.getValue();
+				final List<ViewRiksdagenGovermentRoleMember> assignments = entry.getValue();
 
-				final Comparator<ViewRiksdagenPartyRoleMember> compare = (o1, o2) -> o1.getFromDate()
-						.compareTo(o2.getFromDate());
+				final Comparator<ViewRiksdagenGovermentRoleMember> compare = (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
 
 				Collections.sort(assignments, compare);
 
-				addViewRiksdagenPartyRoleMemberToStep(stepName, step, assignments);
+				addViewRiksdagenGovermentRoleMemberToStep(stepName, step, assignments);
 
 				gantt.addStep(step);
 			}
@@ -182,11 +183,11 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 	 *            the map
 	 * @return the sorted set
 	 */
-	private static SortedSet<Map.Entry<String, List<ViewRiksdagenPartyRoleMember>>> entriesSortedByValues(
-			final Map<String, List<ViewRiksdagenPartyRoleMember>> map) {
-		final Comparator<? super Entry<String, List<ViewRiksdagenPartyRoleMember>>> compare = (o1, o2) -> {
+	private static SortedSet<Map.Entry<String, List<ViewRiksdagenGovermentRoleMember>>> entriesSortedByValues(
+			final Map<String, List<ViewRiksdagenGovermentRoleMember>> map) {
+		final Comparator<? super Entry<String, List<ViewRiksdagenGovermentRoleMember>>> compare = (o1, o2) -> {
 
-			final Comparator<ViewRiksdagenPartyRoleMember> compare1 = (o11, o21) -> {
+			final Comparator<ViewRiksdagenGovermentRoleMember> compare1 = (o11, o21) -> {
 				final int compareDate = o11.getFromDate().compareTo(o21.getFromDate());
 				if (compareDate == 0) {
 					final int compareType = o11.getRoleCode().compareTo(o21.getRoleCode());
@@ -206,13 +207,14 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 			return compare1.compare(o1.getValue().get(0), o2.getValue().get(0));
 		};
 
-		final SortedSet<Map.Entry<String, List<ViewRiksdagenPartyRoleMember>>> sortedEntries = new TreeSet<>(compare);
+		final SortedSet<Map.Entry<String, List<ViewRiksdagenGovermentRoleMember>>> sortedEntries = new TreeSet<>(compare);
 		sortedEntries.addAll(map.entrySet());
 		return sortedEntries;
 	}
 
+
 	/**
-	 * Adds the assignment data to step.
+	 * Adds the view riksdagen goverment role member to step.
 	 *
 	 * @param stepName
 	 *            the step name
@@ -221,10 +223,10 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 	 * @param assignments
 	 *            the assignments
 	 */
-	private static void addViewRiksdagenPartyRoleMemberToStep(final String stepName, final Step step,
-			final List<ViewRiksdagenPartyRoleMember> assignments) {
+	private static void addViewRiksdagenGovermentRoleMemberToStep(final String stepName, final Step step,
+			final List<ViewRiksdagenGovermentRoleMember> assignments) {
 
-		for (final ViewRiksdagenPartyRoleMember assignmentData : assignments) {
+		for (final ViewRiksdagenGovermentRoleMember assignmentData : assignments) {
 
 			String subStepName = "";
 
@@ -241,11 +243,9 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 
 			final SubStep sameRoleSubStep = new SubStep(stepName + '.' + subStepName);
 
-			if (assignmentData.getRoleCode().toLowerCase().contains("vice")) {
+			if (assignmentData.getRoleCode().toLowerCase().contains("statsråd")) {
 				sameRoleSubStep.setBackgroundColor("A8D999");
-			} else if (assignmentData.getRoleCode().toLowerCase().contains("partiledare")
-					|| assignmentData.getRoleCode().toLowerCase().contains("språkrör")
-					|| assignmentData.getRoleCode().toLowerCase().contains("partisekreterare")) {
+			} else if (assignmentData.getRoleCode().toLowerCase().contains("statsminister")) {
 				sameRoleSubStep.setBackgroundColor("3271c8");
 			} else {
 				sameRoleSubStep.setBackgroundColor("0eab76");
@@ -261,12 +261,13 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 	/**
 	 * The Class RoleMapping.
 	 */
-	private static final class RoleMapping implements Function<ViewRiksdagenPartyRoleMember, String> {
+	private static final class RoleMapping implements Function<ViewRiksdagenGovermentRoleMember, String> {
 
 		@Override
-		public String apply(final ViewRiksdagenPartyRoleMember t) {
-			return t.getRoleCode();
+		public String apply(final ViewRiksdagenGovermentRoleMember t) {
+			return t.getDetail() +"." +t.getRoleCode();
 		}
 	}
+
 
 }
