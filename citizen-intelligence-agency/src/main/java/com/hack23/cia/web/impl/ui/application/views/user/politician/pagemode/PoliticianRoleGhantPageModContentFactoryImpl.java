@@ -196,7 +196,7 @@ public final class PoliticianRoleGhantPageModContentFactoryImpl extends Abstract
 		if (!assignmentList.isEmpty()) {
 
 			gantt.setStartDate(assignmentList.get(0).getFromDate());
-			gantt.setEndDate(assignmentList.get(assignmentList.size() - 1).getToDate());
+			gantt.setEndDate(stripDatesAfterCurrentDate(assignmentList.get(assignmentList.size() - 1).getToDate()));
 
 			for (final Entry<String, List<AssignmentData>> entry : entriesSortedByValues(assignmentListMap)) {
 
@@ -261,7 +261,7 @@ public final class PoliticianRoleGhantPageModContentFactoryImpl extends Abstract
 			}
 
 			sameRoleSubStep.setStartDate(assignmentData.getFromDate().getTime());
-			sameRoleSubStep.setEndDate(assignmentData.getToDate().getTime());
+			sameRoleSubStep.setEndDate(stripDatesAfterCurrentDate(assignmentData.getToDate()).getTime());
 
 			step.addSubStep(sameRoleSubStep);
 		}

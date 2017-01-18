@@ -18,6 +18,9 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
 
+import java.util.Date;
+
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.service.api.ApplicationManager;
@@ -227,6 +230,23 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(tabContentPageModeSummary,
 				pageName);
 
+	}
+
+	/**
+	 * Strip dates after current date.
+	 *
+	 * @param toDate
+	 *            the to date
+	 * @return the date
+	 */
+	protected final static Date stripDatesAfterCurrentDate(final Date toDate) {
+		final DateTime currentTime = new DateTime();
+
+		if (currentTime.isBefore(toDate.getTime())) {
+			return currentTime.plusDays(1).toDate();
+		} else {
+			return toDate;
+		}
 	}
 
 }
