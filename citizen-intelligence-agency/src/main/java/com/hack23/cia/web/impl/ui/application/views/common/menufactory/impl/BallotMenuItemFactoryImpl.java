@@ -22,11 +22,9 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.BallotMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
-import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.VerticalLayout;
@@ -70,13 +68,7 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
-		final GridLayout grid = new GridLayout(2, 1);
-		grid.setWidth(100, Unit.PERCENTAGE);
-		grid.setHeight(100, Unit.PERCENTAGE);
-		grid.setColumnExpandRatio(0, 1);
-		grid.setColumnExpandRatio(1, 1);
-		panelContent.addComponent(grid);
-		panelContent.setExpandRatio(grid, ContentRatio.LARGE);
+		final GridLayout grid = createGridLayout(panelContent);
 
 		createButtonLink(grid,CHARTS_TEXT, FontAwesome.PIE_CHART,
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId), "Default description");

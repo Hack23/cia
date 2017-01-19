@@ -72,8 +72,8 @@ public enum ChartIndicators {
 	CURRENTGOVERMENTPARTIES,
 
 	/** The currentparties. */
-	CURRENTPARTIES, 
-	
+	CURRENTPARTIES,
+
 	/** The all government role chart. */
 	ALL_GOVERNMENT_ROLE_CHART;
 

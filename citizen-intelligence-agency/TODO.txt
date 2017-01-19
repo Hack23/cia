@@ -36,3 +36,37 @@ https://badgeville.com/
 Good Examples
 -------------
 finviz.com
+
+
+Old Roadmap
+
+//	final TextArea totalpoliticantoplistLabel = new TextArea("Politician Ranking by topic",
+//			"Time served in Parliament:ALL:CURRENT:*FILTER:Gender,Party,ElectionRegion"
+//					+ "\nTime served in Committees:ALL:CURRENT:*FILTER:Gender,Party,ElectionRegion"
+//					+ "\nTime served in Government:ALL:CURRENT:*FILTER:Gender,Party,ElectionRegion"
+//					+ "\nTop document author NR:ALL:YEAR:CURRENT:*FILTER:DocumnetType,Gender,Party,ElectionRegion"
+//					+ "\nTop document author SIZE:YEAR:ALL:CURRENT:*FILTER:DocumnetType,Gender,Party,ElectionRegion"
+//
+//					+ "\nTop votes:ALL:YEAR:CURRENT::*FILTER:Gender,Party,ElectionRegion"
+//					+ "\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::*FILTER:Gender,Party,ElectionRegion"
+//					+ "\nTop vote party rebel NR/PERCENTAGE :ALL:YEAR:CURRENT::*FILTER:Gender,Party,ElectionRegion"
+//					+ "\nTop vote presence NR/PERCENTAGE :ALL:YEAR:CURRENT::*FILTER:Gender,Party,ElectionRegion"
+//					+ "\nSearch by name");
+//	totalpoliticantoplistLabel.setStyleName("Level2Header");
+//	totalpoliticantoplistLabel.setSizeFull();
+//	panelContent.addComponent(totalpoliticantoplistLabel);
+//
+//	final TextArea totalpartytoplistLabel = new TextArea("Party Ranking by topic",
+//			"Time served in Parliament:ALL:CURRENT:" + "\nTime served in Committees:ALL:CURRENT:"
+//					+ "\nTime served in Government:ALL:CURRENT:"
+//					+ "\nTop document author NR:ALL:YEAR:CURRENT:*FILTER:DocumnetType"
+//					+ "\nTop document author SIZE:YEAR:ALL:CURRENT:*FILTER:DocumnetType"
+//
+//					+ "\nTop votes NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
+//					+ "\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
+//					+ "\nTop vote party rebel NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
+//					+ "\nTop vote presence NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
+//					+ "\nSearch by name");
+//	totalpartytoplistLabel.setSizeFull();
+//	totalpartytoplistLabel.setStyleName("Level2Header");
+//	panelContent.addComponent(totalpartytoplistLabel);

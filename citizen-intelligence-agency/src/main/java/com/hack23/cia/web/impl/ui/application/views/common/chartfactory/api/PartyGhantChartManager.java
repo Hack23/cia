@@ -16,35 +16,27 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api;
+package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
 
-import com.vaadin.ui.MenuBar;
+import java.util.List;
+
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * A factory for creating ApplicationMenuItem objects.
+ * The Interface PartyGhantChartManager.
  */
-public interface ApplicationMenuItemFactory {
+@FunctionalInterface
+public interface PartyGhantChartManager {
 
 	/**
-	 * Creates a new ApplicationMenuItem object.
+	 * Creates the role ghant.
 	 *
-	 * @param menuBar
-	 *            the menu bar
-	 * @return the menu bar
+	 * @param roleSummaryLayoutTabsheet
+	 *            the role summary layout tabsheet
+	 * @param assignmentList
+	 *            the assignment list
 	 */
-	MenuBar createMainPageMenuBar(MenuBar menuBar);
-
-	/**
-	 * Adds the ranking menu.
-	 *
-	 * @param menuBar
-	 *            the menu bar
-	 */
-	void addRankingMenu(MenuBar menuBar);
-
-
-	void createOverviewPage(VerticalLayout panelContent);
-
+	void createRoleGhant(VerticalLayout roleSummaryLayoutTabsheet, List<ViewRiksdagenPartyRoleMember> assignmentList);
 
 }
