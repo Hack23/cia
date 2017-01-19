@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 
 import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
@@ -35,6 +36,7 @@ import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class AbstractMenuItemFactoryImpl.
@@ -269,7 +271,6 @@ public abstract class AbstractMenuItemFactoryImpl {
 		final Button b = new Button(linkText);
 		b.setStyleName("link");
 		b.addClickListener(command);
-		//b.setSizeFull();
 		b.setWidth(100, Unit.PERCENTAGE);
 
 		b.setIcon(icon);
@@ -287,6 +288,18 @@ public abstract class AbstractMenuItemFactoryImpl {
 
 		panelContent.addComponent(grid);
 		panelContent.setComponentAlignment(grid, Alignment.MIDDLE_LEFT);
+	}
+
+	protected final GridLayout createGridLayout(final VerticalLayout panelContent) {
+		final GridLayout grid = new GridLayout(2, 1);
+		grid.setWidth(100, Unit.PERCENTAGE);
+		grid.setHeight(100, Unit.PERCENTAGE);
+		grid.setColumnExpandRatio(0, 1);
+		grid.setColumnExpandRatio(1, 1);
+		grid.setSpacing(true);
+		panelContent.addComponent(grid);
+		panelContent.setExpandRatio(grid, ContentRatio.LARGE);
+		return grid;
 	}
 
 }

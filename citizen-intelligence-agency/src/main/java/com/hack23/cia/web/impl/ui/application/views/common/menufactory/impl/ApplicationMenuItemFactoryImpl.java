@@ -32,8 +32,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageMod
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class MenuItemFactoryImpl.
@@ -167,6 +169,24 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 		final MenuItem ministryMenuItem = rankingsMenuItem.addItem(MINISTRY_RANKING_LINK_TEXT,FontAwesome.GROUP, COMMAND4);
 
 		ministryRankingMenuItemFactory.createMinistryRankingTopics(ministryMenuItem);
+
+	}
+
+	@Override
+	public void createOverviewPage(final VerticalLayout panelContent) {
+		final GridLayout grid = createGridLayout(panelContent);
+
+		createButtonLink(grid,COUNTRY_RANKING_LINK_TEXT,FontAwesome.FLAG, COMMAND7,"Description");
+
+		createButtonLink(grid,PARLIAMENT_RANKING_LINK_TEXT,FontAwesome.INSTITUTION, COMMAND5,"Description");
+
+		createButtonLink(grid,POLITICIAN_RANKING_LINK_TEXT,FontAwesome.USER, COMMAND,"Description");
+
+		createButtonLink(grid,PARTY_RANKING_LINK_TEXT, FontAwesome.GROUP,COMMAND2,"Description");
+
+		createButtonLink(grid,COMMITTEE_RANKING_LINK_TEXT,FontAwesome.GROUP, COMMAND3,"Description");
+
+		createButtonLink(grid,MINISTRY_RANKING_LINK_TEXT,FontAwesome.GROUP, COMMAND4,"Description");
 
 	}
 

@@ -1146,7 +1146,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
-	
+
 	/**
 	 * Site ministry ranking all roles charts charts test.
 	 *
@@ -1164,7 +1164,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
-	
+
 
 	/**
 	 * Site ministry ranking current parties charts test.

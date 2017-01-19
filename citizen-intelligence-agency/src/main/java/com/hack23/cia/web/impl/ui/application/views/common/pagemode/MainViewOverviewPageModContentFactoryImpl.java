@@ -24,13 +24,12 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -61,72 +60,22 @@ public final class MainViewOverviewPageModContentFactoryImpl extends AbstractPag
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-		final VerticalLayout content = createPanelContent();
+		final VerticalLayout panelContent = createPanelContent();
 		final String pageId = getPageId(parameters);
-
 
 		panel.setCaption(CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		final TextArea totalpoliticantoplistLabel = new TextArea("Politician Ranking by topic",
-				"Time served in Parliament:ALL:CURRENT:*FILTER:Gender,Party,ElectionRegion"
-						+ "\nTime served in Committees:ALL:CURRENT:*FILTER:Gender,Party,ElectionRegion"
-						+ "\nTime served in Government:ALL:CURRENT:*FILTER:Gender,Party,ElectionRegion"
-						+ "\nTop document author NR:ALL:YEAR:CURRENT:*FILTER:DocumnetType,Gender,Party,ElectionRegion"
-						+ "\nTop document author SIZE:YEAR:ALL:CURRENT:*FILTER:DocumnetType,Gender,Party,ElectionRegion"
+		LabelFactory.createHeader2Label(panelContent, "MainOverview");
 
-						+ "\nTop votes:ALL:YEAR:CURRENT::*FILTER:Gender,Party,ElectionRegion"
-						+ "\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::*FILTER:Gender,Party,ElectionRegion"
-						+ "\nTop vote party rebel NR/PERCENTAGE :ALL:YEAR:CURRENT::*FILTER:Gender,Party,ElectionRegion"
-						+ "\nTop vote presence NR/PERCENTAGE :ALL:YEAR:CURRENT::*FILTER:Gender,Party,ElectionRegion"
-						+ "\nSearch by name");
-		totalpoliticantoplistLabel.setStyleName("Level2Header");
-		totalpoliticantoplistLabel.setSizeFull();
-		content.addComponent(totalpoliticantoplistLabel);
-
-		final TextArea totalpartytoplistLabel = new TextArea("Party Ranking by topic",
-				"Time served in Parliament:ALL:CURRENT:" + "\nTime served in Committees:ALL:CURRENT:"
-						+ "\nTime served in Government:ALL:CURRENT:"
-						+ "\nTop document author NR:ALL:YEAR:CURRENT:*FILTER:DocumnetType"
-						+ "\nTop document author SIZE:YEAR:ALL:CURRENT:*FILTER:DocumnetType"
-
-						+ "\nTop votes NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-						+ "\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-						+ "\nTop vote party rebel NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-						+ "\nTop vote presence NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart"
-						+ "\nSearch by name");
-		totalpartytoplistLabel.setSizeFull();
-		totalpartytoplistLabel.setStyleName("Level2Header");
-		content.addComponent(totalpartytoplistLabel);
-
-
-
-		final FormLayout formLayout = new FormLayout();
-
-		content.addComponent(formLayout);
-
-		formLayout.addComponent(getPageLinkFactory().createCountryRankingViewPageLink());
-
-		formLayout.addComponent(getPageLinkFactory().createParliamentViewPageLink());
-
-		formLayout.addComponent(getPageLinkFactory().createPoliticianRankingViewPageLink());
-
-		formLayout.addComponent(getPageLinkFactory().createPartyRankingViewPageLink());
-
-		formLayout.addComponent(getPageLinkFactory().createCommitteeRankingViewPageLink());
-
-		formLayout.addComponent(getPageLinkFactory().createMinistryRankingViewPageLink());
-
-		formLayout.addComponent(getPageLinkFactory().createSearchDocumentViewPageLink());
-
+		getMenuItemFactory().createOverviewPage(panelContent);
 
 		panel.setCaption(CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);
 
-
-		return content;
+		return panelContent;
 
 	}
 
