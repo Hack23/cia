@@ -51,7 +51,7 @@
       <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/parent-service-pom</url>
     </site>
   </distributionManagement>
-  <properties />
+  <properties></properties>
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -263,10 +263,10 @@
     </dependencies>
   </dependencyManagement>
   <build>
-    <extensions />
+    <extensions></extensions>
     <pluginManagement>
-      <plugins />
+      <plugins></plugins>
     </pluginManagement>
-    <plugins />
+    <plugins></plugins>
   </build>
 </project>
