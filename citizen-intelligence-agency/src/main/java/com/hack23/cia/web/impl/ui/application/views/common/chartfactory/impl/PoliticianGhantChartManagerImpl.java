@@ -18,21 +18,11 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.SortedSet;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.Date;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
-import org.tltv.gantt.Gantt;
-import org.tltv.gantt.client.shared.Step;
-import org.tltv.gantt.client.shared.SubStep;
 
 import com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PoliticianGhantChartManager;
@@ -66,130 +56,6 @@ public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartMan
 		return (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
 	}
 
-	/**
-	 * Creates the gantt.
-	 *
-	 * @param assignmentList
-	 *            the assignment list
-	 * @return the gantt
-	 */
-	protected Gantt createGantt(final List<AssignmentData> assignmentList) {
-
-		final Function<AssignmentData, String> role = new RoleMapping();
-
-		final Map<String, List<AssignmentData>> assignmentListMap = assignmentList.stream()
-				.collect(Collectors.groupingBy(role, TreeMap::new, Collectors.toList()));
-
-		final Gantt gantt = createGantt();
-
-		if (!assignmentList.isEmpty()) {
-
-			gantt.setStartDate(assignmentList.get(0).getFromDate());
-			gantt.setEndDate(stripDatesAfterCurrentDate(assignmentList.get(assignmentList.size() - 1).getToDate()));
-
-			for (final Entry<String, List<AssignmentData>> entry : entriesSortedByValues(assignmentListMap)) {
-
-				final String stepName = entry.getKey();
-
-				final Step step = new Step();
-				step.setDescription(stepName);
-
-				final List<AssignmentData> assignments = entry.getValue();
-
-				Collections.sort(assignments, getComparator());
-
-				addAssignmentDataToStep(stepName, step, assignments);
-
-				gantt.addStep(step);
-			}
-		}
-
-		return gantt;
-	}
-
-
-	/**
-	 * Entries sorted by values.
-	 *
-	 * @param map
-	 *            the map
-	 * @return the sorted set
-	 */
-	private static SortedSet<Map.Entry<String, List<AssignmentData>>> entriesSortedByValues(
-			final Map<String, List<AssignmentData>> map) {
-		final Comparator<? super Entry<String, List<AssignmentData>>> compare = (o1, o2) -> {
-
-			final Comparator<AssignmentData> compare1 = (o11, o21) -> {
-				final int compareDate = o11.getFromDate().compareTo(o21.getFromDate());
-				if (compareDate == 0) {
-					final int compareType = o11.getAssignmentType().compareTo(o21.getAssignmentType());
-					if (compareType == 0) {
-						return o11.getDetail().compareTo(o21.getDetail());
-					} else {
-						return compareType;
-					}
-				}
-
-				return compareDate;
-			};
-
-			Collections.sort(o1.getValue(), compare1);
-			Collections.sort(o2.getValue(), compare1);
-
-			return compare1.compare(o1.getValue().get(0), o2.getValue().get(0));
-		};
-
-		final SortedSet<Map.Entry<String, List<AssignmentData>>> sortedEntries = new TreeSet<>(compare);
-		sortedEntries.addAll(map.entrySet());
-		return sortedEntries;
-	}
-
-
-	/**
-	 * Adds the assignment data to step.
-	 *
-	 * @param stepName
-	 *            the step name
-	 * @param step
-	 *            the step
-	 * @param assignments
-	 *            the assignments
-	 */
-	private static void addAssignmentDataToStep(final String stepName, final Step step,
-			final List<AssignmentData> assignments) {
-		final String parliamentType = KAMMARUPPDRAG;
-		for (final AssignmentData assignmentData : assignments) {
-
-			String subStepName = "";
-
-			if (assignmentData.getStatus() != null) {
-				subStepName = assignmentData.getStatus();
-
-			} else if (assignmentData.getRoleCode() != null) {
-				subStepName = assignmentData.getRoleCode();
-			}
-
-			final SubStep sameRoleSubStep = new SubStep(stepName + '.' + subStepName);
-
-			sameRoleSubStep.setBackgroundColor("A8D999");
-
-			if (LEDIG.equalsIgnoreCase(assignmentData.getStatus())) {
-				sameRoleSubStep.setBackgroundColor("e3e3e3");
-			} else if (parliamentType.equalsIgnoreCase(assignmentData.getAssignmentType())) {
-				sameRoleSubStep.setBackgroundColor("0eab76");
-			} else if (DEPARTEMENT.equalsIgnoreCase(assignmentData.getAssignmentType())) {
-
-				sameRoleSubStep.setBackgroundColor("ded858");
-			} else {
-				sameRoleSubStep.setBackgroundColor("3271c8");
-			}
-
-			sameRoleSubStep.setStartDate(assignmentData.getFromDate().getTime());
-			sameRoleSubStep.setEndDate(stripDatesAfterCurrentDate(assignmentData.getToDate()).getTime());
-
-			step.addSubStep(sameRoleSubStep);
-		}
-	}
 
 	/**
 	 * The Class RoleMapping.
@@ -208,6 +74,72 @@ public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartMan
 			}
 
 		}
+	}
+
+	@Override
+	protected Function<AssignmentData, String> getRoleMapping() {
+		return new RoleMapping();
+	}
+
+	@Override
+	protected StepMapping<AssignmentData> getStepMapping() {
+		return new StepMapping<AssignmentData>() {
+
+			@Override
+			public Date getFromDate(AssignmentData t) {
+				return t.getFromDate();
+			}
+
+			@Override
+			public Date getToDate(AssignmentData t) {
+				return t.getToDate();
+			}
+
+			@Override
+			public String getRoleCode(AssignmentData t) {
+				return t.getRoleCode();
+			}
+
+			@Override
+			public String getOrg(AssignmentData t) {
+				return t.getDetail();
+			}
+
+			@Override
+			public String getParty(AssignmentData t) {
+				return t.getOrgCode();
+			}
+
+			@Override
+			public String getBackgroundColor(AssignmentData t) {
+				String color = "A8D999";
+				final String parliamentType = KAMMARUPPDRAG;
+
+				if (LEDIG.equalsIgnoreCase(t.getStatus())) {
+					color="e3e3e3";
+				} else if (parliamentType.equalsIgnoreCase(t.getAssignmentType())) {
+					color="0eab76";
+				} else if (DEPARTEMENT.equalsIgnoreCase(t.getAssignmentType())) {
+
+					color="ded858";
+				} else {
+					color="3271c8";
+				}
+
+				return color;
+			}
+
+			@Override
+			public Object getFirstName(AssignmentData t) {
+				return "";
+			}
+
+			@Override
+			public Object getLastName(AssignmentData t) {
+				return "";
+			}
+
+		};
 	}
 
 }

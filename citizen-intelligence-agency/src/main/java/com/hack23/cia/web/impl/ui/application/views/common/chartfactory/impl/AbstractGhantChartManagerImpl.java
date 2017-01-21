@@ -22,10 +22,19 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.SortedSet;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.joda.time.DateTime;
 import org.tltv.gantt.Gantt;
 import org.tltv.gantt.client.shared.Resolution;
+import org.tltv.gantt.client.shared.Step;
+import org.tltv.gantt.client.shared.SubStep;
 
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.server.Sizeable.Unit;
@@ -60,16 +69,237 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 
 		Collections.sort(assignmentList, compare);
 
-		final Gantt createGantt = createGantt(assignmentList);
+		final Gantt createGantt = createGenericGantt(assignmentList,getRoleMapping(),getStepMapping());
 		roleSummaryLayoutTabsheet.addComponent(createGantt);
 		roleSummaryLayoutTabsheet.setExpandRatio(createGantt, ContentRatio.GRID);
 
 	}
 
-	protected abstract Gantt createGantt(List<T> assignmentList);
-
+	/**
+	 * Gets the comparator.
+	 *
+	 * @return the comparator
+	 */
 	protected abstract Comparator<T> getComparator();
 
+	/**
+	 * Gets the role mapping.
+	 *
+	 * @return the role mapping
+	 */
+	protected abstract Function<T, String> getRoleMapping();
+	
+	/**
+	 * Gets the step mapping.
+	 *
+	 * @return the step mapping
+	 */
+	protected abstract StepMapping<T> getStepMapping();
+	
+	/**
+	 * Creates the generic gantt.
+	 *
+	 * @param assignmentList
+	 *            the assignment list
+	 * @param roleMapping
+	 *            the role mapping
+	 * @param stepMapping
+	 *            the step mapping
+	 * @return the gantt
+	 */
+	protected Gantt createGenericGantt(final List<T> assignmentList,Function<T, String> roleMapping,StepMapping<T> stepMapping) {
+
+
+		final Map<String, List<T>> assignmentListMap = assignmentList.stream()
+				.collect(Collectors.groupingBy(roleMapping, TreeMap::new, Collectors.toList()));
+
+		final Gantt gantt = createGantt();
+
+		if (!assignmentList.isEmpty()) {
+
+			gantt.setStartDate(stepMapping.getFromDate(assignmentList.get(0)));
+			gantt.setEndDate(stripDatesAfterCurrentDate(stepMapping.getToDate(assignmentList.get(assignmentList.size() - 1))));
+
+			for (final Entry<String, List<T>> entry : entriesSortedByValues(
+					assignmentListMap,stepMapping)) {
+
+				final String stepName = entry.getKey();
+
+				final Step step = new Step();
+				step.setDescription(stepName);
+
+				final List<T> assignments = entry.getValue();
+
+				Collections.sort(assignments, getComparator());
+
+				addViewGenericRoleMemberToStep(stepName, step, assignments,stepMapping);
+
+				gantt.addStep(step);
+			}
+		}
+
+		return gantt;
+	}
+
+	public interface StepMapping<T> {
+
+		/**
+		 * Gets the from date.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the from date
+		 */
+		Date getFromDate(T t);
+		
+		/**
+		 * Gets the to date.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the to date
+		 */
+		Date getToDate(T t);
+		
+		/**
+		 * Gets the role code.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the role code
+		 */
+		String getRoleCode(T t);
+		
+		/**
+		 * Gets the org.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the org
+		 */
+		String getOrg(T t);	
+		
+		/**
+		 * Gets the party.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the party
+		 */
+		String getParty(T t);	
+		
+		/**
+		 * Gets the background color.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the background color
+		 */
+		String getBackgroundColor(T t);
+		
+		/**
+		 * Gets the first name.
+		 *
+		 * @param assignmentData
+		 *            the assignment data
+		 * @return the first name
+		 */
+		Object getFirstName(T assignmentData);
+		
+		/**
+		 * Gets the last name.
+		 *
+		 * @param assignmentData
+		 *            the assignment data
+		 * @return the last name
+		 */
+		Object getLastName(T assignmentData);
+		
+	}
+
+	/**
+	 * Entries sorted by values.
+	 *
+	 * @param map
+	 *            the map
+	 * @param stepMapping
+	 *            the step mapping
+	 * @return the sorted set
+	 */
+	private SortedSet<Map.Entry<String, List<T>>> entriesSortedByValues(
+			final Map<String, List<T>> map,StepMapping<T> stepMapping) {
+		final Comparator<? super Entry<String, List<T>>> compare = (o1, o2) -> {
+
+			final Comparator<T> compare1 = (o11, o21) -> {
+				final int compareDate = stepMapping.getFromDate(o11).compareTo(stepMapping.getFromDate(o21));
+				if (compareDate == 0) {
+					final int compareType = stepMapping.getRoleCode(o11).compareTo(stepMapping.getRoleCode(o21));
+					if (compareType == 0) {
+						return stepMapping.getOrg(o11).compareTo(stepMapping.getOrg(o21));
+					} else {
+						return compareType;
+					}
+				}
+
+				return compareDate;
+			};
+
+			Collections.sort(o1.getValue(), compare1);
+			Collections.sort(o2.getValue(), compare1);
+
+			return compare1.compare(o1.getValue().get(0), o2.getValue().get(0));
+		};
+
+		final SortedSet<Map.Entry<String, List<T>>> sortedEntries = new TreeSet<>(
+				compare);
+		sortedEntries.addAll(map.entrySet());
+		return sortedEntries;
+	}
+
+	
+	/**
+	 * Adds the view generic role member to step.
+	 *
+	 * @param stepName
+	 *            the step name
+	 * @param step
+	 *            the step
+	 * @param assignments
+	 *            the assignments
+	 * @param stepMapping
+	 *            the step mapping
+	 */
+	private void addViewGenericRoleMemberToStep(final String stepName, final Step step,
+			final List<T> assignments,StepMapping<T> stepMapping) {
+
+		for (final T assignmentData : assignments) {
+
+			String subStepName = "";
+
+			if (stepMapping.getRoleCode(assignmentData) != null) {
+				final StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder.append(stepMapping.getFirstName(assignmentData));
+				stringBuilder.append(" ");
+				stringBuilder.append(stepMapping.getLastName(assignmentData));
+				stringBuilder.append(" (");
+				stringBuilder.append(stepMapping.getParty(assignmentData));
+				stringBuilder.append(")");
+				subStepName = stringBuilder.toString();
+			}
+
+			final SubStep sameRoleSubStep = new SubStep(stepName + '.' + subStepName);
+
+			sameRoleSubStep.setBackgroundColor(stepMapping.getParty(assignmentData));
+
+			
+			sameRoleSubStep.setStartDate(stepMapping.getFromDate(assignmentData).getTime());
+			sameRoleSubStep.setEndDate(stripDatesAfterCurrentDate(stepMapping.getToDate(assignmentData)).getTime());
+
+			step.addSubStep(sameRoleSubStep);
+		}
+	}
+
+	
 	/**
 	 * Strip dates after current date.
 	 *
@@ -87,6 +317,11 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 		}
 	}
 
+	/**
+	 * Creates the gantt.
+	 *
+	 * @return the gantt
+	 */
 	protected static final Gantt createGantt() {
 		final Gantt gantt = new Gantt();
 		gantt.setSizeFull();
