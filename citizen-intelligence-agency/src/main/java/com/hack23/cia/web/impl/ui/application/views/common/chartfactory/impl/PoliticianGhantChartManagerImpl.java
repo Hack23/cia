@@ -86,32 +86,32 @@ public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartMan
 		return new StepMapping<AssignmentData>() {
 
 			@Override
-			public Date getFromDate(AssignmentData t) {
+			public Date getFromDate(final AssignmentData t) {
 				return t.getFromDate();
 			}
 
 			@Override
-			public Date getToDate(AssignmentData t) {
+			public Date getToDate(final AssignmentData t) {
 				return t.getToDate();
 			}
 
 			@Override
-			public String getRoleCode(AssignmentData t) {
+			public String getRoleCode(final AssignmentData t) {
 				return t.getRoleCode();
 			}
 
 			@Override
-			public String getOrg(AssignmentData t) {
+			public String getOrg(final AssignmentData t) {
 				return t.getDetail();
 			}
 
 			@Override
-			public String getParty(AssignmentData t) {
+			public String getParty(final AssignmentData t) {
 				return t.getOrgCode();
 			}
 
 			@Override
-			public String getBackgroundColor(AssignmentData t) {
+			public String getBackgroundColor(final AssignmentData t) {
 				String color = "A8D999";
 				final String parliamentType = KAMMARUPPDRAG;
 
@@ -130,12 +130,12 @@ public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartMan
 			}
 
 			@Override
-			public Object getFirstName(AssignmentData t) {
+			public Object getFirstName(final AssignmentData t) {
 				return "";
 			}
 
 			@Override
-			public Object getLastName(AssignmentData t) {
+			public Object getLastName(final AssignmentData t) {
 				return "";
 			}
 
