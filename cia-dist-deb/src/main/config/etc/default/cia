@@ -12,6 +12,7 @@ export CIA_APP_ENCRYPTION_PASSWORD
 
 JAVA=$JAVA_HOME/bin/java
 JETTY_HOME=/opt/cia
+JETTY_RUN=/opt/cia
 JETTY_USER=cia
 JETTY_LOGS=/opt/cia/logs/
 JETTY_ARGS="-Djetty.http.port=2323 -Djetty.http.host=0.0.0.0 -Djavamelody.system-actions-enabled=true -Djava.awt.headless=true -Djavamelody.storage-directory=/opt/cia/javamelody/ -Dorg.apache.activemq.SERIALIZABLE_PACKAGES=com.hack23.cia,java.util,java.lang,java.math,org.apache "
