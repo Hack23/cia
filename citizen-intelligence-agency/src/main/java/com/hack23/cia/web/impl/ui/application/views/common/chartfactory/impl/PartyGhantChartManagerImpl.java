@@ -67,32 +67,32 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 		return new StepMapping<ViewRiksdagenPartyRoleMember>() {
 
 			@Override
-			public Date getFromDate(ViewRiksdagenPartyRoleMember t) {
+			public Date getFromDate(final ViewRiksdagenPartyRoleMember t) {
 				return t.getFromDate();
 			}
 
 			@Override
-			public Date getToDate(ViewRiksdagenPartyRoleMember t) {
+			public Date getToDate(final ViewRiksdagenPartyRoleMember t) {
 				return t.getToDate();
 			}
 
 			@Override
-			public String getRoleCode(ViewRiksdagenPartyRoleMember t) {
+			public String getRoleCode(final ViewRiksdagenPartyRoleMember t) {
 				return t.getRoleCode();
 			}
 
 			@Override
-			public String getOrg(ViewRiksdagenPartyRoleMember t) {
+			public String getOrg(final ViewRiksdagenPartyRoleMember t) {
 				return t.getDetail();
 			}
 
 			@Override
-			public String getParty(ViewRiksdagenPartyRoleMember t) {
+			public String getParty(final ViewRiksdagenPartyRoleMember t) {
 				return t.getParty();
 			}
 
 			@Override
-			public String getBackgroundColor(ViewRiksdagenPartyRoleMember t) {
+			public String getBackgroundColor(final ViewRiksdagenPartyRoleMember t) {
 				String color = "A8D999";
 
 				if (t.getRoleCode().toLowerCase().contains("vice")) {
@@ -109,12 +109,12 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 			}
 
 			@Override
-			public Object getFirstName(ViewRiksdagenPartyRoleMember t) {
+			public Object getFirstName(final ViewRiksdagenPartyRoleMember t) {
 				return t.getFirstName();
 			}
 
 			@Override
-			public Object getLastName(ViewRiksdagenPartyRoleMember t) {
+			public Object getLastName(final ViewRiksdagenPartyRoleMember t) {
 				return t.getLastName();
 			}
 

@@ -67,32 +67,32 @@ public final class CommitteeGhantChartManagerImpl
 		return new StepMapping<ViewRiksdagenCommitteeRoleMember>() {
 
 			@Override
-			public Date getFromDate(ViewRiksdagenCommitteeRoleMember t) {
+			public Date getFromDate(final ViewRiksdagenCommitteeRoleMember t) {
 				return t.getFromDate();
 			}
 
 			@Override
-			public Date getToDate(ViewRiksdagenCommitteeRoleMember t) {
+			public Date getToDate(final ViewRiksdagenCommitteeRoleMember t) {
 				return t.getToDate();
 			}
 
 			@Override
-			public String getRoleCode(ViewRiksdagenCommitteeRoleMember t) {
+			public String getRoleCode(final ViewRiksdagenCommitteeRoleMember t) {
 				return t.getRoleCode();
 			}
 
 			@Override
-			public String getOrg(ViewRiksdagenCommitteeRoleMember t) {
+			public String getOrg(final ViewRiksdagenCommitteeRoleMember t) {
 				return t.getDetail();
 			}
 
 			@Override
-			public String getParty(ViewRiksdagenCommitteeRoleMember t) {
+			public String getParty(final ViewRiksdagenCommitteeRoleMember t) {
 				return t.getParty();
 			}
 
 			@Override
-			public String getBackgroundColor(ViewRiksdagenCommitteeRoleMember t) {
+			public String getBackgroundColor(final ViewRiksdagenCommitteeRoleMember t) {
 				String color = "A8D999";
 
 				if (t.getRoleCode().toLowerCase().contains("suppleant")) {
@@ -107,12 +107,12 @@ public final class CommitteeGhantChartManagerImpl
 			}
 
 			@Override
-			public Object getFirstName(ViewRiksdagenCommitteeRoleMember t) {
+			public Object getFirstName(final ViewRiksdagenCommitteeRoleMember t) {
 				return t.getFirstName();
 			}
 
 			@Override
-			public Object getLastName(ViewRiksdagenCommitteeRoleMember t) {
+			public Object getLastName(final ViewRiksdagenCommitteeRoleMember t) {
 				return t.getLastName();
 			}
 

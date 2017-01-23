@@ -68,32 +68,32 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 			return new StepMapping<ViewRiksdagenGovermentRoleMember>() {
 
 				@Override
-				public Date getFromDate(ViewRiksdagenGovermentRoleMember t) {
+				public Date getFromDate(final ViewRiksdagenGovermentRoleMember t) {
 					return t.getFromDate();
 				}
 
 				@Override
-				public Date getToDate(ViewRiksdagenGovermentRoleMember t) {
+				public Date getToDate(final ViewRiksdagenGovermentRoleMember t) {
 					return t.getToDate();
 				}
 
 				@Override
-				public String getRoleCode(ViewRiksdagenGovermentRoleMember t) {
+				public String getRoleCode(final ViewRiksdagenGovermentRoleMember t) {
 					return t.getRoleCode();
 				}
 
 				@Override
-				public String getOrg(ViewRiksdagenGovermentRoleMember t) {
+				public String getOrg(final ViewRiksdagenGovermentRoleMember t) {
 					return t.getDetail();
 				}
 
 				@Override
-				public String getParty(ViewRiksdagenGovermentRoleMember t) {
+				public String getParty(final ViewRiksdagenGovermentRoleMember t) {
 					return t.getParty();
 				}
 
 				@Override
-				public String getBackgroundColor(ViewRiksdagenGovermentRoleMember t) {
+				public String getBackgroundColor(final ViewRiksdagenGovermentRoleMember t) {
 					String color = "A8D999";
 
 					if (t.getRoleCode().toLowerCase().contains("statsråd")) {
@@ -108,12 +108,12 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 				}
 
 				@Override
-				public Object getFirstName(ViewRiksdagenGovermentRoleMember t) {
+				public Object getFirstName(final ViewRiksdagenGovermentRoleMember t) {
 					return t.getFirstName();
 				}
 
 				@Override
-				public Object getLastName(ViewRiksdagenGovermentRoleMember t) {
+				public Object getLastName(final ViewRiksdagenGovermentRoleMember t) {
 					return t.getLastName();
 				}
 
