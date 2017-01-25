@@ -43,7 +43,8 @@ import com.vaadin.ui.VerticalLayout;
  * The Class CommitteeBallotDecisionSummaryPageModContentFactoryImpl.
  */
 @Component
-public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
+public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
+		extends AbstractPartyPageModContentFactoryImpl {
 
 	/** The Constant COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY. */
 	private static final String COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY = "Committee Ballot Decision Party Summary";
@@ -74,16 +75,13 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl 
 		final DataContainer<ViewRiksdagenParty, String> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenParty.class);
 
-		final ViewRiksdagenParty viewRiksdagenParty = dataContainer
-				.load(pageId);
+		final ViewRiksdagenParty viewRiksdagenParty = dataContainer.load(pageId);
 
 		if (viewRiksdagenParty != null) {
 
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-
-			LabelFactory.createHeader2Label(panelContent,COMMITTEE_BALLOT_DECISION_SUMMARY);
-
+			LabelFactory.createHeader2Label(panelContent, COMMITTEE_BALLOT_DECISION_SUMMARY);
 
 			final DataContainer<ViewRiksdagenCommitteeBallotDecisionPartySummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPartySummary.class);
@@ -99,57 +97,29 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl 
 					ViewRiksdagenCommitteeBallotDecisionPartySummary.class, decisionPartySummaryList);
 
 			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
-					committeeBallotDecisionPartyDataSource, COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY, new String[] { "embeddedId.id", "embeddedId.concern", "embeddedId.issue", "embeddedId.party" },
-					new String[] { "embeddedId.id", "embeddedId.concern", "embeddedId.issue", "embeddedId.party",
-						    "committeeReport",
-						    "rm",
-						    "title",
-						    "subTitle",
-						    "endNumber",
-						    "org",
-						    "createdDate",
-						    "publicDate",
-						    "ballotId",
-						    "decisionType",
-						    "againstProposalParties",
-						    "againstProposalNumber",
-						    "winner",
-						    "ballotType",
-						    "label",
-						    "voteDate",
-						    "avgBornYear",
-						    "totalVotes",
-						    "yesVotes",
-						    "noVotes",
-						    "abstainVotes",
-						    "absentVotes",
-						    "approved",
-						    "noWinner",
-						    "percentageYes",
-						    "percentageNo",
-						    "percentageAbsent",
-						    "percentageAbstain",
-						    "percentageMale",
-						    "partyAvgBornYear",
-						    "partyTotalVotes",
-						    "partyYesVotes",
-						    "partyNoVotes",
-						    "partyAbstainVotes",
-						    "partyAbsentVotes",
-						    "partyApproved",
-						    "partyNoWinner",
-						    "partyPercentageYes",
-						    "partyPercentageNo",
-						    "partyPercentageAbsent",
-						    "partyPercentageAbstain",
-						    "partyPercentageMale"
-					}, new String[] { "embeddedId" , "ballotId", "decisionType", "ballotType", "againstProposalNumber"}, new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "ballotId"), "ballotId", null);
+					committeeBallotDecisionPartyDataSource, COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY,
+					new String[] { "embeddedId.id", "embeddedId.concern", "embeddedId.issue", "embeddedId.party" },
+					new String[] { "voteDate", "rm", "org", "embeddedId.id", "embeddedId.party", "committeeReport",
+							"title", "subTitle", "winner", "partyApproved", "againstProposalParties", "embeddedId.concern",
+							"embeddedId.issue", "endNumber", "createdDate", "publicDate", "ballotId", "decisionType",
+							"againstProposalNumber", "ballotType", "label", "avgBornYear", "totalVotes", "approved",
+							"noWinner", "percentageYes", "percentageNo", "percentageAbsent", "percentageAbstain",
+							"percentageMale", "partyAvgBornYear", "partyTotalVotes", "partyYesVotes", "partyNoVotes",
+							"partyAbstainVotes", "partyAbsentVotes", "yesVotes", "noVotes",
+							"abstainVotes", "absentVotes", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
+							"partyPercentageAbsent", "partyPercentageAbstain", "partyPercentageMale" },
+					new String[] { "embeddedId", "ballotId", "decisionType", "ballotType", "againstProposalNumber",
+							"embeddedId.id", "embeddedId.party", "createdDate", "publicDate", "label", "endNumber",
+							"org", "partyPercentageYes", "partyPercentageNo", "partyPercentageAbsent",
+							"partyPercentageAbstain", "partyPercentageMale", "partyAvgBornYear", "avgBornYear",
+							"percentageYes", "percentageNo", "percentageAbsent", "percentageAbstain", "percentageMale",
+							"approved", "noWinner" },
+					new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "ballotId"), "ballotId", null);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}
 		return panelContent;
 
 	}
-
 
 }

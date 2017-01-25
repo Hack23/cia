@@ -601,8 +601,8 @@
           <groupId>com.google.code.gson</groupId>
         </exclusion>
         <exclusion>
-        	<groupId>ant</groupId>
-        	<artifactId>ant</artifactId>
+          <artifactId>ant</artifactId>
+          <groupId>ant</groupId>
         </exclusion>
       </exclusions>
     </dependency>
