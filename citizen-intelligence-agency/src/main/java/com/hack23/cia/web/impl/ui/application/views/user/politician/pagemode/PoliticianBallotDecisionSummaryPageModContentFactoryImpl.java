@@ -112,7 +112,7 @@ public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl exte
 									"partyNoWinner", "partyPercentageYes", "partyPercentageNo",
 									"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes",
 									"percentageNo", "percentageAbsent", "percentageAbstain", "firstName",
-									"lastName", "party" },
+									"lastName", "party", "ballotId", "decisionType", "ballotType", "againstProposalNumber" },
 							new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "ballotId"), "ballotId", null);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);

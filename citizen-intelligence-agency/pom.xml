@@ -600,6 +600,10 @@
           <artifactId>gson</artifactId>
           <groupId>com.google.code.gson</groupId>
         </exclusion>
+        <exclusion>
+        	<groupId>ant</groupId>
+        	<artifactId>ant</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>

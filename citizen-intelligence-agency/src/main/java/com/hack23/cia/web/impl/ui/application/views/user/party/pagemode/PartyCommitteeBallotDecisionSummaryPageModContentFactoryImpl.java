@@ -143,7 +143,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl 
 						    "partyPercentageAbsent",
 						    "partyPercentageAbstain",
 						    "partyPercentageMale"
-					}, new String[] { "embeddedId"}, new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "ballotId"), "ballotId", null);
+					}, new String[] { "embeddedId" , "ballotId", "decisionType", "ballotType", "againstProposalNumber"}, new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "ballotId"), "ballotId", null);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}
