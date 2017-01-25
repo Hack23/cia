@@ -101,7 +101,7 @@ public final class PoliticianVotesHistoryPageModContentFactoryImpl extends Abstr
 							"percentageMale", "ballotType", "embeddedId.ballotId" },
 					new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
 							"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
-							"percentageAbsent", "percentageAbstain", "firstName", "lastName", "party" },
+							"percentageAbsent", "percentageAbstain", "firstName", "lastName", "party", "ballotId", "decisionType", "ballotType", "againstProposalNumber" },
 					new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "embeddedId.ballotId"), "embeddedId.ballotId", null);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);

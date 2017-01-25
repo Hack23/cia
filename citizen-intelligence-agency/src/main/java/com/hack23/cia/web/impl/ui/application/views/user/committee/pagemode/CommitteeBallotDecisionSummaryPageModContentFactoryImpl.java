@@ -101,14 +101,17 @@ public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl
 			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
 					committeeBallotDecisionPartyDataSource, "Committee Ballot Decision Summary",
 					new String[] { "embeddedId.concern", "embeddedId.issue", "embeddedId.id" },
-					new String[] { "embeddedId.concern", "embeddedId.issue", "embeddedId.id", "committeeReport", "rm",
-							"title", "subTitle", "endNumber", "org", "createdDate", "publicDate", "ballotId",
-							"decisionType", "againstProposalParties", "againstProposalNumber", "winner", "ballotType",
-							"label", "voteDate", "avgBornYear", "totalVotes", "yesVotes", "noVotes", "abstainVotes",
-							"absentVotes", "approved", "noWinner", "percentageYes", "percentageNo", "percentageAbsent",
-							"percentageAbstain", "percentageMale" },
-					new String[] { "embeddedId" }, new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "ballotId"),
-					"ballotId", null);
+					new String[] { "voteDate", "embeddedId.concern", "embeddedId.id", "committeeReport",
+							"embeddedId.issue", "rm", "title", "subTitle", "endNumber", "org", "createdDate",
+							"publicDate", "ballotId", "decisionType", "againstProposalParties", "againstProposalNumber",
+							"winner", "ballotType", "label", "avgBornYear", "totalVotes", "yesVotes", "noVotes",
+							"abstainVotes", "absentVotes", "approved", "noWinner", "percentageYes", "percentageNo",
+							"percentageAbsent", "percentageAbstain", "percentageMale" },
+					new String[] { "embeddedId", "embeddedId.id", "endNumber", "org", "createdDate", "publicDate",
+							"ballotId", "decisionType", "label", "againstProposalNumber", "avgBornYear",
+							"percentageMale", "approved", "noWinner", "ballotType", "percentageYes", "percentageNo",
+							"percentageAbsent", "percentageAbstain" },
+					new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "ballotId"), "ballotId", null);
 
 			panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER,
