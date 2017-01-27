@@ -119,7 +119,7 @@
     <cia.project.versions.hibernate.jpa2>1.0.0.Final</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>5.4.0.CR1</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>5.4.0.CR1</cia.project.versions.hibernate.build.validator>
-    <cia.project.versions.bytebuddy>1.6.6</cia.project.versions.bytebuddy>
+    <cia.project.versions.bytebuddy>1.6.7</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.193</cia.project.versions.h2>
     <cia.project.versions.postgresql>9.4.1212</cia.project.versions.postgresql>
     <cia.project.versions.atomikos>4.0.4</cia.project.versions.atomikos>
