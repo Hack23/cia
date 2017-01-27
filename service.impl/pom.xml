@@ -77,11 +77,11 @@
       <artifactId>antlr</artifactId>
       <version>2.7.7</version>
     </dependency>
-	<dependency>
-    	<groupId>org.apache.ant</groupId>
-    	<artifactId>ant</artifactId>
-    	<version>1.10.0</version>
-	</dependency>
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.10.0</version>
+    </dependency>
     <dependency>
       <groupId>com.hack23.cia</groupId>
       <artifactId>testfoundation</artifactId>
