@@ -19,7 +19,6 @@
 package com.hack23.cia.service.impl.action.user;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,16 +41,7 @@ import com.hack23.cia.service.api.action.user.DocumentWordCountResponse;
 import com.hack23.cia.service.data.api.DocumentContentDataDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
-
-import weka.core.Attribute;
-import weka.core.DenseInstance;
-import weka.core.FastVector;
-import weka.core.Instance;
-import weka.core.Instances;
-import weka.core.stopwords.StopwordsHandler;
-import weka.core.tokenizers.NGramTokenizer;
-import weka.filters.Filter;
-import weka.filters.unsupervised.attribute.StringToWordVector;
+import com.hack23.cia.service.impl.action.user.wordcount.WordCounter;
 
 /**
  * The Class DocumentWordCountService.
@@ -72,6 +62,9 @@ public final class DocumentWordCountService extends
 
 	@Autowired
 	private DocumentContentDataDAO documentContentDataDAO;
+
+	@Autowired
+	private WordCounter wordCounter;
 
 	/**
 	 * Instantiates a new search document service.
@@ -109,7 +102,7 @@ public final class DocumentWordCountService extends
 		if (documentContentData == null) {
 			response.setWordCountMap(new HashMap<>());
 		} else {
-				response.setWordCountMap(calculateWordCount(documentContentData,serviceRequest.getMaxResults()));
+				response.setWordCountMap(wordCounter.calculateWordCount(documentContentData,serviceRequest.getMaxResults()));
 		}
 
 		eventRequest.setApplicationMessage(response.getResult().toString());
@@ -118,71 +111,6 @@ public final class DocumentWordCountService extends
 		return response;
 	}
 
-
-	/**
-	 * Calculate word count.
-	 *
-	 * @param documentContentData
-	 *            the document content data
-	 * @param j
-	 * @return the map
-	 */
-	private static Map<String, Integer> calculateWordCount(final DocumentContentData documentContentData, final int maxResult) {
-
-		final String html = documentContentData.getContent();
-
-		final Attribute input = new Attribute("html", (FastVector<String>) null);
-
-		final FastVector inputVec = new FastVector();
-		inputVec.addElement(input);
-
-		final Instances htmlInst = new Instances("html", inputVec, 1);
-
-		htmlInst.add(new DenseInstance(1));
-		htmlInst.instance(0).setValue(0, html);
-
-
-		final StopwordsHandler StopwordsHandler = new StopwordsHandler() {
-
-			@Override
-			public boolean isStopword(final String word) {
-
-				return word.length() <5;
-			}
-		};
-
-		final NGramTokenizer tokenizer = new NGramTokenizer();
-		tokenizer.setNGramMinSize(1);
-		tokenizer.setNGramMaxSize(1);
-		tokenizer.setDelimiters(" \r\n\t.,;:'\"()?!'");
-
-		final StringToWordVector filter = new StringToWordVector();
-		filter.setTokenizer(tokenizer);
-		filter.setStopwordsHandler(StopwordsHandler);
-		filter.setLowerCaseTokens(true);
-		filter.setOutputWordCounts(true);
-		filter.setWordsToKeep(maxResult);
-
-		final Map<String,Integer> result = new HashMap<>();
-
-		try {
-			filter.setInputFormat(htmlInst);
-			final Instances dataFiltered = Filter.useFilter(htmlInst, filter);
-
-			final Instance last = dataFiltered.lastInstance();
-
-			final int numAttributes = last.numAttributes();
-
-			for (int i = 0; i < numAttributes; i++) {
-				result.put(last.attribute(i).name(), Integer.valueOf(last.toString(i)));
-			}
-		} catch (final Exception e) {
-			LOGGER.warn("Problem calculating wordcount for : {} , exception:{}",documentContentData.getId() ,e);
-		}
-
-
-		return result;
-	}
 
 
 

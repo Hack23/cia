@@ -66,9 +66,9 @@ public final class EmailServiceITest extends AbstractServiceFunctionalIntegratio
 	public void sendEmailSuccessTest() throws Exception {
 		emailService.sendEmail("test@email.com", "subject", "content");
 
-		List<SmtpMessage> emails = dumbster.getReceivedEmails();
+		final List<SmtpMessage> emails = dumbster.getReceivedEmails();
 		assertEquals(emails.size(), 1);
-		SmtpMessage email = emails.get(0);
+		final SmtpMessage email = emails.get(0);
 		assertEquals(email.getHeaderValue("Subject"), "subject");
 		assertEquals(email.getBody(), "content");
 		assertEquals(email.getHeaderValue("To"), "test@email.com");

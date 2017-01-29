@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -41,7 +41,7 @@ import com.hack23.cia.service.data.api.ApplicationConfigurationService;
 @Component("MailService")
 @Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 public class EmailServiceImpl implements EmailService {
-		
+
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmailServiceImpl.class);
 
@@ -49,7 +49,7 @@ public class EmailServiceImpl implements EmailService {
 	@Autowired
 	private ApplicationConfigurationService applicationConfigurationService;
 
-		
+
 	/**
 	 * Instantiates a new email service impl.
 	 */
@@ -64,33 +64,33 @@ public class EmailServiceImpl implements EmailService {
 	@PostConstruct
 	public void initSettings() {
 		LOGGER.info("Email settings:{}",applicationConfigurationService.checkValueOrLoadDefault("Email configuration send emails", "Send email", ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), "Send email", "Responsible for sending email", "application.email.send.email", "false"));
-		LOGGER.info("Email settings:{}",applicationConfigurationService.checkValueOrLoadDefault("Email configuration from email", "From email", ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), "Send email", "Responsible for sending email", "application.email.from.email", "admin@hack23.com"));		
+		LOGGER.info("Email settings:{}",applicationConfigurationService.checkValueOrLoadDefault("Email configuration from email", "From email", ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), "Send email", "Responsible for sending email", "application.email.from.email", "admin@hack23.com"));
 		LOGGER.info("Email settings:{}",applicationConfigurationService.checkValueOrLoadDefault("Email configuration smtp host", "Smtp Host", ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), "Smtp host", "Responsible for sending email", "application.email.smtp.host", "localhost"));
 		LOGGER.info("Email settings:{}",applicationConfigurationService.checkValueOrLoadDefault("Email configuration smtp port", "Smtp port", ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), "Smtp port", "Responsible for sending email", "application.email.smtp.port", "587"));
 		LOGGER.info("Email settings:{}",applicationConfigurationService.checkValueOrLoadDefault("Email configuration smtp username", "Smtp username", ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), "Smtp username", "Responsible for sending email", "application.email.smtp.username", "username"));
 		LOGGER.info("Email settings:{}",applicationConfigurationService.checkValueOrLoadDefault("Email configuration smtp password", "Smtp password", ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), "Smtp password", "Responsible for sending email", "application.email.smtp.password", "password"));
 		LOGGER.info("Email settings:{}",applicationConfigurationService.checkValueOrLoadDefault("Email configuration smtp auth", "Smtp auth", ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), "Smtp auth", "Responsible for sending email", "application.email.smtp.auth", "true"));
 		LOGGER.info("Email settings:{}",applicationConfigurationService.checkValueOrLoadDefault("Email configuration smtp starttls enable", "Smtp starttls enable", ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), "Smtp starttls enable", "Responsible for sending email", "application.email.smtp.starttls.enable", "true"));
-		
+
 	}
 
 
 	@Override
 	public void sendEmail(final String toEmail,final String subject, final String content) {
 		final ApplicationConfiguration sendEmail = applicationConfigurationService.checkValueOrLoadDefault("Email configuration send emails", "Send email", ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), "Send email", "Responsible for sending email", "application.email.send.email", "false");
-		final ApplicationConfiguration fromEmail = applicationConfigurationService.checkValueOrLoadDefault("Email configuration from email", "From email", ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), "Send email", "Responsible for sending email", "application.email.from.email", "admin@hack23.com");		
+		final ApplicationConfiguration fromEmail = applicationConfigurationService.checkValueOrLoadDefault("Email configuration from email", "From email", ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), "Send email", "Responsible for sending email", "application.email.from.email", "admin@hack23.com");
 
 		final JavaMailSender javaMailSender = getMailSender();
-		
-	    SimpleMailMessage emailMessage = new SimpleMailMessage();
+
+	    final SimpleMailMessage emailMessage = new SimpleMailMessage();
 	    emailMessage.setFrom(fromEmail.getPropertyValue());
         emailMessage.setTo(toEmail);
         emailMessage.setText(content);
 		emailMessage.setSubject(subject);
-		
+
 		if("true".equalsIgnoreCase(sendEmail.getPropertyValue())) {
 			LOGGER.info("Sending email:{}",emailMessage);
-			javaMailSender.send(emailMessage);			
+			javaMailSender.send(emailMessage);
 		} else {
 			LOGGER.info("Email sending disabled, do not send email:{}",emailMessage);
 		}
@@ -109,22 +109,22 @@ public class EmailServiceImpl implements EmailService {
 		final ApplicationConfiguration smtpUsername = applicationConfigurationService.checkValueOrLoadDefault("Email configuration smtp username", "Smtp username", ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), "Smtp username", "Responsible for sending email", "application.email.smtp.username", "username");
 		final ApplicationConfiguration smtpPassword = applicationConfigurationService.checkValueOrLoadDefault("Email configuration smtp password", "Smtp password", ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), "Smtp password", "Responsible for sending email", "application.email.smtp.password", "password");
 		final ApplicationConfiguration smtpAuth = applicationConfigurationService.checkValueOrLoadDefault("Email configuration smtp auth", "Smtp auth", ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), "Smtp auth", "Responsible for sending email", "application.email.smtp.auth", "true");
-		final ApplicationConfiguration smtpStartTlsEnable = applicationConfigurationService.checkValueOrLoadDefault("Email configuration smtp starttls enable", "Smtp starttls enable", ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), "Smtp starttls enable", "Responsible for sending email", "application.email.smtp.starttls.enable", "true");		
+		final ApplicationConfiguration smtpStartTlsEnable = applicationConfigurationService.checkValueOrLoadDefault("Email configuration smtp starttls enable", "Smtp starttls enable", ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), "Smtp starttls enable", "Responsible for sending email", "application.email.smtp.starttls.enable", "true");
 
-		
+
 		javaMailSender.setHost(smtpHostConfig.getPropertyValue());
 		javaMailSender.setPort(Integer.parseInt(smtpPort.getPropertyValue()));
 		javaMailSender.setUsername(smtpUsername.getPropertyValue());
 		javaMailSender.setPassword(smtpPassword.getPropertyValue());
-		
+
 		final Properties javaMailProperties = new Properties();
-		
+
 		javaMailProperties.setProperty("mail.smtp.auth", smtpAuth.getPropertyValue());
 		javaMailProperties.setProperty("mail.smtp.starttls.enable", smtpStartTlsEnable.getPropertyValue());
-		
+
 		javaMailSender.setJavaMailProperties(javaMailProperties);
-		
+
 		return javaMailSender;
 	}
-		
+
 }
