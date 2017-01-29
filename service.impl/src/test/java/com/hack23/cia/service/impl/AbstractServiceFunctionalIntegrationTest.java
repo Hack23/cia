@@ -24,8 +24,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -100,7 +98,7 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 
 	protected final SimpleSmtpServer configureMailServer(CreateApplicationSessionRequest createTestApplicationSession) throws IOException {
 		final SimpleSmtpServer dumbster = SimpleSmtpServer.start(SimpleSmtpServer.AUTO_SMTP_PORT);
-		
+
 		setAuthenticatedAdminuser();
 
 		createTestApplicationSession = createTestApplicationSession();
@@ -160,7 +158,7 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 		return null;
 	}
 
-	protected final void restoreMailConfiguration(CreateApplicationSessionRequest createTestApplicationSession,final SimpleSmtpServer dumbster) {
+	protected final void restoreMailConfiguration(final CreateApplicationSessionRequest createTestApplicationSession,final SimpleSmtpServer dumbster) {
 		final ApplicationConfiguration sendEmail = applicationConfigurationService.checkValueOrLoadDefault(
 				"Email configuration send emails", "Send email", ConfigurationGroup.EXTERNAL_SERVICES,
 				EmailServiceImpl.class.getSimpleName(), "Send email", "Responsible for sending email",
@@ -174,7 +172,7 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 		updateApplicationConfiguration(createTestApplicationSession, sendEmail, "false");
 		updateApplicationConfiguration(createTestApplicationSession, smtpPort,"587");
 		dumbster.stop();
-		
+
 	}
 
 	/**
@@ -188,7 +186,7 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 		SecurityContextHolder.getContext()
 				.setAuthentication(new AnonymousAuthenticationToken(KEY, PRINCIPAL, authorities));
 	}
-		
+
 	/**
 	 * Sets the authenticated anonymous user.
 	 */

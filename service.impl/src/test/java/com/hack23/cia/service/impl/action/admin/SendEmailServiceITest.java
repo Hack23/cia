@@ -53,7 +53,7 @@ public final class SendEmailServiceITest extends AbstractServiceFunctionalIntegr
 		restoreMailConfiguration(createTestApplicationSession,dumbster);
 	}
 
-	
+
 	/**
 	 * Test.
 	 *
@@ -69,14 +69,14 @@ public final class SendEmailServiceITest extends AbstractServiceFunctionalIntegr
 		serviceRequest.setEmail("info@hack23.com");
 		serviceRequest.setSubject("Test Email SendEmailServiceITest");
 		serviceRequest.setContent("Test content");
-		
+
 		final SendEmailResponse response = (SendEmailResponse) applicationManager
 				.service(serviceRequest);
 		assertNotNull(EXPECT_A_RESULT, response);
-		
-		List<SmtpMessage> emails = dumbster.getReceivedEmails();
+
+		final List<SmtpMessage> emails = dumbster.getReceivedEmails();
 		assertEquals(emails.size(), 1);
-		SmtpMessage email = emails.get(0);
+		final SmtpMessage email = emails.get(0);
 		assertEquals(email.getHeaderValue("Subject"), serviceRequest.getSubject());
 		assertEquals(email.getBody(), serviceRequest.getContent());
 		assertEquals(email.getHeaderValue("To"), serviceRequest.getEmail());

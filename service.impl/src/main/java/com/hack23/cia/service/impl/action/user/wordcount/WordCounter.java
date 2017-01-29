@@ -16,24 +16,26 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.impl.email;
+package com.hack23.cia.service.impl.action.user.wordcount;
+
+import java.util.Map;
+
+import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
 
 /**
- * The Interface EmailService.
+ * The Interface WordCounter.
  */
-@FunctionalInterface
-public interface EmailService {
+public interface WordCounter {
 
 	/**
-	 * Send email.
+	 * Calculate word count.
 	 *
-	 * @param toEmail
-	 *            the to email
-	 * @param subject
-	 *            the subject
-	 * @param content
-	 *            the content
+	 * @param documentContentData
+	 *            the document content data
+	 * @param maxResult
+	 *            the max result
+	 * @return the map
 	 */
-	void sendEmail(String toEmail, String subject, String content);
+	Map<String, Integer> calculateWordCount(DocumentContentData documentContentData, int maxResult);
 
 }
