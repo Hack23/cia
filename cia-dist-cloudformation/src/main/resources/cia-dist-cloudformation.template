@@ -2234,7 +2234,7 @@
           "VolumeSize": 50,
           "VolumeType": "gp2"
         },
-        "ElasticsearchVersion": "5.1",
+        "ElasticsearchVersion": "5.1.1",
         "ElasticsearchClusterConfig": {
           "InstanceType": {"Ref": "ElasticSearchInstanceType"},
           "InstanceCount": 1
