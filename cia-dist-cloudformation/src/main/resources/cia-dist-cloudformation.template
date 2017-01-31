@@ -191,9 +191,8 @@
             "r3.4xlarge.elasticsearch",
             "r3.8xlarge.elasticsearch"
          ],
-         "ConstraintDescription":"must select a valid database instance type."
-      },
-      
+         "ConstraintDescription":"must select a valid elastic search instance type."
+      }    
    },
    "Mappings":{
       "SubnetConfig":{
