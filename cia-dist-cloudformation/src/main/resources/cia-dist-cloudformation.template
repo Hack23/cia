@@ -2312,6 +2312,13 @@
         "https://", {"Fn::GetAtt": ["ElasticsearchDomain", "DomainEndpoint"]}
       ]]},
       "Description" : "Elasticsearch domain URL"
+    },
+    "KibanaURL" : {
+      "Value" : {"Fn::Join": ["", [
+        "https://", {"Fn::GetAtt": ["ElasticsearchDomain", "Kibana"]}
+      ]]},
+      "Description" : "Elasticsearch domain URL"
     }
+    
    }
 }
