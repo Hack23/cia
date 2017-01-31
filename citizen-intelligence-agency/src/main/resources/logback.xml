@@ -9,8 +9,8 @@
 	    </encoder>
 	</appender>
 
-    <appender name="ELASTIC" class="com.internetitem.logback.elasticsearch.ElasticsearchAppender">
-        <url>http://localhost:9200/_bulk</url>
+    <appender name="elasticsearch" class="com.internetitem.logback.elasticsearch.ElasticsearchAppender">
+        <url>${ELASTIC_SEARCH_URL:-http://localhost:9200/_bulk}</url>
         <index>logs-%date{yyyy-MM-dd}</index>
         <type>ciaruntime</type>
         <loggerName>es-logger</loggerName> <!-- optional -->
@@ -93,8 +93,7 @@
   <logger name="com.hack23.cia" level="info"/>
 
   <root level="info">
-    <appender-ref ref="console" />
-    <appender-ref ref="ELASTIC" />  
+    <appender-ref ref="${USE_LOG_APPENDER:-console}" />
   </root>  
 
 </configuration>
