@@ -14,6 +14,10 @@ http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL.Procedural.Impo
 
 https://www.cloudconformity.com/conformity-rules/RDS/rds-encryption-enabled.html
 
+Add elasticsearch
+
+https://github.com/alphagov/digitalmarketplace-aws/blob/master/cloudformation_templates/aws_kibana.json
+
  "AvailabilityZone" : { "Fn::Select" : [ "0", { "Fn::GetAZs" : { "Ref" : "AWS::Region" } } ] }
  
 add java memory size map per instance type.
