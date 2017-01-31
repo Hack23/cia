@@ -170,7 +170,30 @@
          "MinValue":"100",
          "MaxValue":"6144",
          "ConstraintDescription":"must be between 10+"
-      }
+      },
+      "ElasticSearchInstanceType":{
+         "Default":"t2.medium.elasticsearch",
+         "Description":"ElasticSearch instance type",
+         "Type":"String",
+         "AllowedValues":[
+            "t2.micro.elasticsearch",
+            "t2.small.elasticsearch",
+            "t2.medium.elasticsearch",
+            "t2.large.elasticsearch",
+            "m4.large.elasticsearch",
+            "m4.xlarge.elasticsearch",
+            "m4.2xlarge.elasticsearch",
+            "m4.4xlarge.elasticsearch",
+            "m4.10xlarge.elasticsearch",
+            "r3.large.elasticsearch",
+            "r3.xlarge.elasticsearch",
+            "r3.2xlarge.elasticsearch",
+            "r3.4xlarge.elasticsearch",
+            "r3.8xlarge.elasticsearch"
+         ],
+         "ConstraintDescription":"must select a valid database instance type."
+      },
+      
    },
    "Mappings":{
       "SubnetConfig":{
@@ -2201,7 +2224,34 @@
                }
             ]
          }
+      },
+    "ElasticsearchDomain": {
+      "Type": "AWS::Elasticsearch::Domain",
+      "Properties": {
+        "DomainName": {"Ref": "DomainName"},
+        "EBSOptions": {
+          "EBSEnabled": true,
+          "VolumeSize": 50,
+          "VolumeType": "gp2"
+        },
+        "ElasticsearchVersion": "5.1",
+        "ElasticsearchClusterConfig": {
+          "InstanceType": {"Ref": "ElasticSearchInstanceType"},
+          "InstanceCount": 1
+        },
+        "AccessPolicies": {
+          "Version": "2012-10-17",
+          "Statement": [{
+            "Sid": "",
+            "Effect": "Allow",
+            "Principal": {"AWS": "*"},
+            "Action": "es:*",
+            "Resource": "arn:aws:es:*"
+          }]
+        }
       }
+    }
+      
    },
    "Outputs":{
       "WebSite":{
@@ -2248,6 +2298,20 @@
                ]
             ]
          }
-      }
+      },
+    "ElasticSearchName": {
+      "Description": "Elasticsearch domain name",
+      "Value": {"Ref": "ElasticsearchDomain"}
+    },
+    "ElasticSearchDomain": {
+      "Description": "Elasticsearch domain endpoint",
+      "Value": {"Fn::GetAtt": ["ElasticsearchDomain", "DomainEndpoint"]}
+    },
+    "ElasticSearchURL" : {
+      "Value" : {"Fn::Join": ["", [
+        "https://", {"Fn::GetAtt": ["ElasticsearchDomain", "DomainEndpoint"]}
+      ]]},
+      "Description" : "Elasticsearch domain URL"
+    }
    }
 }
