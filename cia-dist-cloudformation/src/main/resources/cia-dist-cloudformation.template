@@ -171,6 +171,11 @@
          "MaxValue":"6144",
          "ConstraintDescription":"must be between 10+"
       },
+      "UseElasticSearch":{
+         "Default":"false",
+         "Description":"Set to true to enable",
+         "Type":"String"
+      },     
       "ElasticSearchInstanceType":{
          "Default":"t2.medium.elasticsearch",
          "Description":"ElasticSearch instance type",
@@ -748,7 +753,19 @@
                ]
             }
          ]
-      }
+      },
+      "useElasticSearch":{
+         "Fn::Not":[
+            {
+               "Fn::Equals":[
+                  {
+                     "Ref":"UseElasticSearch"
+                  },
+                  "false"
+               ]
+            }
+         ]
+      }      
    },
    "Resources":{
       "VPC":{
@@ -2227,6 +2244,7 @@
       },
     "ElasticsearchDomain": {
       "Type": "AWS::Elasticsearch::Domain",
+      "Condition":"useElasticsearc",     
       "Properties": {
         "DomainName": {"Ref": "DomainNamePrefix"},
         "EBSOptions": {
@@ -2301,23 +2319,27 @@
       },
     "ElasticSearchName": {
       "Description": "Elasticsearch domain name",
-      "Value": {"Ref": "ElasticsearchDomain"}
+      "Value": {"Ref": "ElasticsearchDomain"},
+      "Condition":"useElasticsearc"          
     },
     "ElasticSearchDomain": {
       "Description": "Elasticsearch domain endpoint",
-      "Value": {"Fn::GetAtt": ["ElasticsearchDomain", "DomainEndpoint"]}
+      "Value": {"Fn::GetAtt": ["ElasticsearchDomain", "DomainEndpoint"]},
+      "Condition":"useElasticsearc"
     },
     "ElasticSearchURL" : {
       "Value" : {"Fn::Join": ["", [
         "https://", {"Fn::GetAtt": ["ElasticsearchDomain", "DomainEndpoint"]}
       ]]},
-      "Description" : "Elasticsearch domain URL"
+      "Description" : "Elasticsearch domain URL",
+      "Condition":"useElasticsearc"
     },
     "KibanaURL" : {
       "Value" : {"Fn::Join": ["", [
         "https://", {"Fn::GetAtt": ["ElasticsearchDomain", "DomainEndpoint"]}, "_plugin/kibana/"
       ]]},
-      "Description" : "Elasticsearch domain URL"
+      "Description" : "Elasticsearch domain URL",
+      "Condition":"useElasticsearc"
     }
     
    }
