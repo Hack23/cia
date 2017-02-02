@@ -1847,8 +1847,7 @@
          "Type":"AWS::AutoScaling::AutoScalingGroup",
          "DependsOn":[
             "PublicRoute",
-            "pgDB",
-            "ElasticsearchDomain"
+            "pgDB"
          ],
          "Properties":{
             "AvailabilityZones":[
