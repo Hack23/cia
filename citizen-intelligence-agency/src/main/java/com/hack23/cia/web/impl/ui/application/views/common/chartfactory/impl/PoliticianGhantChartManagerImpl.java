@@ -43,7 +43,6 @@ public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartMan
 	/** The Constant KAMMARUPPDRAG. */
 	private static final String KAMMARUPPDRAG = "kammaruppdrag";
 
-
 	/**
 	 * Instantiates a new politician ghant chart manager impl.
 	 */
@@ -54,26 +53,6 @@ public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartMan
 	@Override
 	protected Comparator<AssignmentData> getComparator() {
 		return (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
-	}
-
-
-	/**
-	 * The Class RoleMapping.
-	 */
-	private static final class RoleMapping implements Function<AssignmentData, String> {
-
-		/** The Constant RIKSDAGSLEDAMOT. */
-		private static final String RIKSDAGSLEDAMOT = "Riksdagsledamot";
-
-		@Override
-		public String apply(final AssignmentData t) {
-			if (KAMMARUPPDRAG.equalsIgnoreCase(t.getAssignmentType())) {
-				return RIKSDAGSLEDAMOT;
-			} else {
-				return t.getAssignmentType() + '.' + t.getDetail() + ' ' + t.getRoleCode();
-			}
-
-		}
 	}
 
 	@Override
@@ -116,14 +95,14 @@ public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartMan
 				final String parliamentType = KAMMARUPPDRAG;
 
 				if (LEDIG.equalsIgnoreCase(t.getStatus())) {
-					color="e3e3e3";
+					color = "e3e3e3";
 				} else if (parliamentType.equalsIgnoreCase(t.getAssignmentType())) {
-					color="0eab76";
+					color = "0eab76";
 				} else if (DEPARTEMENT.equalsIgnoreCase(t.getAssignmentType())) {
 
-					color="ded858";
+					color = "ded858";
 				} else {
-					color="3271c8";
+					color = "3271c8";
 				}
 
 				return color;
@@ -140,6 +119,25 @@ public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartMan
 			}
 
 		};
+	}
+
+	/**
+	 * The Class RoleMapping.
+	 */
+	private static final class RoleMapping implements Function<AssignmentData, String> {
+
+		/** The Constant RIKSDAGSLEDAMOT. */
+		private static final String RIKSDAGSLEDAMOT = "Riksdagsledamot";
+
+		@Override
+		public String apply(final AssignmentData t) {
+			if (KAMMARUPPDRAG.equalsIgnoreCase(t.getAssignmentType())) {
+				return RIKSDAGSLEDAMOT;
+			} else {
+				return t.getAssignmentType() + '.' + t.getDetail() + ' ' + t.getRoleCode();
+			}
+
+		}
 	}
 
 }

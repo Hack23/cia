@@ -46,6 +46,67 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 		return (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
 	}
 
+	@Override
+	protected Function<ViewRiksdagenGovermentRoleMember, String> getRoleMapping() {
+		return new RoleMapping();
+	}
+
+	@Override
+	protected StepMapping<ViewRiksdagenGovermentRoleMember> getStepMapping() {
+		return new StepMapping<ViewRiksdagenGovermentRoleMember>() {
+
+			@Override
+			public Date getFromDate(final ViewRiksdagenGovermentRoleMember t) {
+				return t.getFromDate();
+			}
+
+			@Override
+			public Date getToDate(final ViewRiksdagenGovermentRoleMember t) {
+				return t.getToDate();
+			}
+
+			@Override
+			public String getRoleCode(final ViewRiksdagenGovermentRoleMember t) {
+				return t.getRoleCode();
+			}
+
+			@Override
+			public String getOrg(final ViewRiksdagenGovermentRoleMember t) {
+				return t.getDetail();
+			}
+
+			@Override
+			public String getParty(final ViewRiksdagenGovermentRoleMember t) {
+				return t.getParty();
+			}
+
+			@Override
+			public String getBackgroundColor(final ViewRiksdagenGovermentRoleMember t) {
+				String color = "A8D999";
+
+				if (t.getRoleCode().toLowerCase().contains("statsråd")) {
+					color = "ded858";
+				} else if (t.getRoleCode().toLowerCase().contains("statsminister")) {
+					color = "3271c8";
+				} else {
+					color = "0eab76";
+				}
+
+				return color;
+			}
+
+			@Override
+			public Object getFirstName(final ViewRiksdagenGovermentRoleMember t) {
+				return t.getFirstName();
+			}
+
+			@Override
+			public Object getLastName(final ViewRiksdagenGovermentRoleMember t) {
+				return t.getLastName();
+			}
+
+		};
+	}
 
 	/**
 	 * The Class RoleMapping.
@@ -56,68 +117,6 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 		public String apply(final ViewRiksdagenGovermentRoleMember t) {
 			return t.getRoleCode();
 		}
-	}
-
-	@Override
-	protected Function<ViewRiksdagenGovermentRoleMember, String> getRoleMapping() {
-		return new RoleMapping();
-	}
-
-	@Override
-	protected StepMapping<ViewRiksdagenGovermentRoleMember> getStepMapping() {
-			return new StepMapping<ViewRiksdagenGovermentRoleMember>() {
-
-				@Override
-				public Date getFromDate(final ViewRiksdagenGovermentRoleMember t) {
-					return t.getFromDate();
-				}
-
-				@Override
-				public Date getToDate(final ViewRiksdagenGovermentRoleMember t) {
-					return t.getToDate();
-				}
-
-				@Override
-				public String getRoleCode(final ViewRiksdagenGovermentRoleMember t) {
-					return t.getRoleCode();
-				}
-
-				@Override
-				public String getOrg(final ViewRiksdagenGovermentRoleMember t) {
-					return t.getDetail();
-				}
-
-				@Override
-				public String getParty(final ViewRiksdagenGovermentRoleMember t) {
-					return t.getParty();
-				}
-
-				@Override
-				public String getBackgroundColor(final ViewRiksdagenGovermentRoleMember t) {
-					String color = "A8D999";
-
-					if (t.getRoleCode().toLowerCase().contains("statsråd")) {
-						color = "ded858";
-					} else if (t.getRoleCode().toLowerCase().contains("statsminister")) {
-						color = "3271c8";
-					} else {
-						color = "0eab76";
-					}
-
-					return color;
-				}
-
-				@Override
-				public Object getFirstName(final ViewRiksdagenGovermentRoleMember t) {
-					return t.getFirstName();
-				}
-
-				@Override
-				public Object getLastName(final ViewRiksdagenGovermentRoleMember t) {
-					return t.getLastName();
-				}
-
-			};
 	}
 
 }

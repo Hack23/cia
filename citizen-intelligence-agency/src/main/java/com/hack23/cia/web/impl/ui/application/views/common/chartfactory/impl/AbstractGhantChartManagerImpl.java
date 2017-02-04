@@ -145,87 +145,6 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 		return gantt;
 	}
 
-	/**
-	 * The Interface StepMapping.
-	 *
-	 * @param <T>
-	 *            the generic type
-	 */
-	public interface StepMapping<T> {
-
-		/**
-		 * Gets the from date.
-		 *
-		 * @param t
-		 *            the t
-		 * @return the from date
-		 */
-		Date getFromDate(T t);
-
-		/**
-		 * Gets the to date.
-		 *
-		 * @param t
-		 *            the t
-		 * @return the to date
-		 */
-		Date getToDate(T t);
-
-		/**
-		 * Gets the role code.
-		 *
-		 * @param t
-		 *            the t
-		 * @return the role code
-		 */
-		String getRoleCode(T t);
-
-		/**
-		 * Gets the org.
-		 *
-		 * @param t
-		 *            the t
-		 * @return the org
-		 */
-		String getOrg(T t);
-
-		/**
-		 * Gets the party.
-		 *
-		 * @param t
-		 *            the t
-		 * @return the party
-		 */
-		String getParty(T t);
-
-		/**
-		 * Gets the background color.
-		 *
-		 * @param t
-		 *            the t
-		 * @return the background color
-		 */
-		String getBackgroundColor(T t);
-
-		/**
-		 * Gets the first name.
-		 *
-		 * @param assignmentData
-		 *            the assignment data
-		 * @return the first name
-		 */
-		Object getFirstName(T assignmentData);
-
-		/**
-		 * Gets the last name.
-		 *
-		 * @param assignmentData
-		 *            the assignment data
-		 * @return the last name
-		 */
-		Object getLastName(T assignmentData);
-
-	}
 
 	/**
 	 * Entries sorted by values.
@@ -341,6 +260,88 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 		gantt.setMovableSteps(false);
 		gantt.setResolution(Resolution.Week);
 		return gantt;
+	}
+
+	/**
+	 * The Interface StepMapping.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 */
+	public interface StepMapping<T> {
+
+		/**
+		 * Gets the from date.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the from date
+		 */
+		Date getFromDate(T t);
+
+		/**
+		 * Gets the to date.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the to date
+		 */
+		Date getToDate(T t);
+
+		/**
+		 * Gets the role code.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the role code
+		 */
+		String getRoleCode(T t);
+
+		/**
+		 * Gets the org.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the org
+		 */
+		String getOrg(T t);
+
+		/**
+		 * Gets the party.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the party
+		 */
+		String getParty(T t);
+
+		/**
+		 * Gets the background color.
+		 *
+		 * @param t
+		 *            the t
+		 * @return the background color
+		 */
+		String getBackgroundColor(T t);
+
+		/**
+		 * Gets the first name.
+		 *
+		 * @param assignmentData
+		 *            the assignment data
+		 * @return the first name
+		 */
+		Object getFirstName(T assignmentData);
+
+		/**
+		 * Gets the last name.
+		 *
+		 * @param assignmentData
+		 *            the assignment data
+		 * @return the last name
+		 */
+		Object getLastName(T assignmentData);
+
 	}
 
 }
