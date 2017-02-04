@@ -167,7 +167,7 @@ public final class XmlAgentImpl implements XmlAgent {
 
 
 		final BufferedReader inputStream = new BufferedReader(new InputStreamReader(
-				stream));
+				stream,StandardCharsets.UTF_8));
 
 		return readWithStringBuffer(inputStream);
 	}

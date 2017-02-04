@@ -19,7 +19,6 @@
 package com.hack23.cia.service.impl;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
@@ -96,6 +95,15 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 		super();
 	}
 
+	/**
+	 * Configure mail server.
+	 *
+	 * @param createTestApplicationSession
+	 *            the create test application session
+	 * @return the simple smtp server
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
 	protected final SimpleSmtpServer configureMailServer(CreateApplicationSessionRequest createTestApplicationSession) throws IOException {
 		final SimpleSmtpServer dumbster = SimpleSmtpServer.start(SimpleSmtpServer.AUTO_SMTP_PORT);
 
@@ -153,11 +161,14 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 	}
 
 
-	@Override
-	protected Connection getDatabaseConnection() throws Exception {
-		return null;
-	}
-
+	/**
+	 * Restore mail configuration.
+	 *
+	 * @param createTestApplicationSession
+	 *            the create test application session
+	 * @param dumbster
+	 *            the dumbster
+	 */
 	protected final void restoreMailConfiguration(final CreateApplicationSessionRequest createTestApplicationSession,final SimpleSmtpServer dumbster) {
 		final ApplicationConfiguration sendEmail = applicationConfigurationService.checkValueOrLoadDefault(
 				"Email configuration send emails", "Send email", ConfigurationGroup.EXTERNAL_SERVICES,

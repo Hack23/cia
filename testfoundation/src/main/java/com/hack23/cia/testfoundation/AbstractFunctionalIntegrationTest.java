@@ -19,15 +19,6 @@
 
 package com.hack23.cia.testfoundation;
 
-import java.sql.Connection;
-
-import org.dbunit.database.DatabaseConnection;
-import org.dbunit.database.DatabaseSequenceFilter;
-import org.dbunit.database.QueryDataSet;
-import org.dbunit.dataset.FilteredDataSet;
-import org.dbunit.dataset.IDataSet;
-import org.dbunit.dataset.filter.ITableFilter;
-
 /**
  * The Class AbstractFunctionalIntegrationTest.
  */
@@ -39,42 +30,6 @@ public abstract class AbstractFunctionalIntegrationTest extends AbstractTest {
 	protected AbstractFunctionalIntegrationTest() {
 		super();
 
-	}
-
-
-	/**
-	 * Gets the database connection.
-	 *
-	 * @return the database connection
-	 * @throws Exception
-	 *             the exception
-	 */
-	protected abstract Connection getDatabaseConnection() throws Exception;
-
-	/**
-	 * Gets the data set.
-	 *
-	 * @return the data set
-	 * @throws Exception
-	 *             the exception
-	 */
-	protected final IDataSet getDataSet() throws Exception {
-		final DatabaseConnection databaseConnection = new DatabaseConnection(
-				getDatabaseConnection());
-		final ITableFilter filter = new DatabaseSequenceFilter(
-				databaseConnection);
-		return new FilteredDataSet(filter, databaseConnection.createDataSet());
-	}
-
-	/**
-	 * Gets the query dataset.
-	 *
-	 * @return the query dataset
-	 * @throws Exception
-	 *             the exception
-	 */
-	protected final QueryDataSet getQueryDataset() throws Exception {
-		return new QueryDataSet(new DatabaseConnection(getDatabaseConnection()));
 	}
 
 }

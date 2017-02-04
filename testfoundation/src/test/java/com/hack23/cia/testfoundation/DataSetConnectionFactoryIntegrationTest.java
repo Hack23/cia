@@ -24,30 +24,47 @@ import org.h2.jdbcx.JdbcConnectionPool;
 import org.junit.Test;
 
 /**
- * The Class FunctionalIntegrationTest.
+ * The Class DataSetConnectionFactoryIntegrationTest.
  */
-public final class FunctionalIntegrationTest extends AbstractFunctionalIntegrationTest {
+public final class DataSetConnectionFactoryIntegrationTest extends AbstractFunctionalIntegrationTest {
 
-	@Override
-	protected Connection getDatabaseConnection() throws Exception {
+	/**
+	 * Gets the database connection.
+	 *
+	 * @return the database connection
+	 * @throws Exception
+	 *             the exception
+	 */
+	private static Connection getDatabaseConnection() throws Exception {
 		final JdbcConnectionPool cp = JdbcConnectionPool.
 			    create("jdbc:h2:mem:test", "sa", "sa");
 			return cp.getConnection();
-
 	}
 
 	/**
-	 * Gets the database connection test.
+	 * Gets the query dataset test.
 	 *
-	 * @return the database connection test
+	 * @return the query dataset test
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void getDatabaseConnectionTest() throws Exception {
+	public void getQueryDatasetTest() throws Exception {
 		assertNotNull(getDatabaseConnection());
-		assertNotNull(getDataSet());
-		assertNotNull(getQueryDataset());
+		assertNotNull(new DataSetConnectionFactory().getQueryDataset(getDatabaseConnection()));
+	}
+
+	/**
+	 * Gets the data set test.
+	 *
+	 * @return the data set test
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void getDataSetTest() throws Exception {
+		assertNotNull(getDatabaseConnection());
+		assertNotNull(new DataSetConnectionFactory().getQueryDataset(getDatabaseConnection()));
 	}
 
 }

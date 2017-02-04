@@ -40,7 +40,7 @@ import com.hack23.cia.service.data.api.ApplicationConfigurationService;
  */
 @Component("MailService")
 @Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
-public class EmailServiceImpl implements EmailService {
+public final class EmailServiceImpl implements EmailService {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmailServiceImpl.class);

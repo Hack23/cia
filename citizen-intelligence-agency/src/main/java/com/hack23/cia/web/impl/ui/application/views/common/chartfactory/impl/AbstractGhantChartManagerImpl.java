@@ -112,7 +112,7 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 	 *            the step mapping
 	 * @return the gantt
 	 */
-	protected Gantt createGenericGantt(final List<T> assignmentList,final Function<T, String> roleMapping,final StepMapping<T> stepMapping) {
+	private Gantt createGenericGantt(final List<T> assignmentList,final Function<T, String> roleMapping,final StepMapping<T> stepMapping) {
 
 
 		final Map<String, List<T>> assignmentListMap = assignmentList.stream().collect(Collectors.groupingBy(roleMapping, TreeMap::new, Collectors.toList()));
