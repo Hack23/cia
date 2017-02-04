@@ -2243,7 +2243,7 @@
       },
     "ElasticsearchDomain": {
       "Type": "AWS::Elasticsearch::Domain",
-      "Condition":"useElasticsearc",     
+      "Condition":"useElasticSearch",     
       "Properties": {
         "DomainName": {"Ref": "DomainNamePrefix"},
         "EBSOptions": {
@@ -2319,26 +2319,26 @@
     "ElasticSearchName": {
       "Description": "Elasticsearch domain name",
       "Value": {"Ref": "ElasticsearchDomain"},
-      "Condition":"useElasticsearc"          
+      "Condition":"useElasticSearch"          
     },
     "ElasticSearchDomain": {
       "Description": "Elasticsearch domain endpoint",
       "Value": {"Fn::GetAtt": ["ElasticsearchDomain", "DomainEndpoint"]},
-      "Condition":"useElasticsearc"
+      "Condition":"useElasticSearch"
     },
     "ElasticSearchURL" : {
       "Value" : {"Fn::Join": ["", [
         "https://", {"Fn::GetAtt": ["ElasticsearchDomain", "DomainEndpoint"]}
       ]]},
       "Description" : "Elasticsearch domain URL",
-      "Condition":"useElasticsearc"
+      "Condition":"useElasticSearch"
     },
     "KibanaURL" : {
       "Value" : {"Fn::Join": ["", [
         "https://", {"Fn::GetAtt": ["ElasticsearchDomain", "DomainEndpoint"]}, "_plugin/kibana/"
       ]]},
       "Description" : "Elasticsearch domain URL",
-      "Condition":"useElasticsearc"
+      "Condition":"useElasticSearch"
     }
     
    }
