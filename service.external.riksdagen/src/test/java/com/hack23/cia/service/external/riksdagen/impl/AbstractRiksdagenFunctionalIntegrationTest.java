@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.service.external.riksdagen.impl;
 
-import java.sql.Connection;
-
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -32,8 +30,7 @@ import com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 		"classpath:/META-INF/cia-service-external-riksdagen.xml",
-		"classpath:META-INF/cia-service-external-common.xml",
-"classpath:/META-INF/cia-test-context.xml" })
+		"classpath:META-INF/cia-service-external-common.xml", "classpath:/META-INF/cia-test-context.xml" })
 public abstract class AbstractRiksdagenFunctionalIntegrationTest extends AbstractFunctionalIntegrationTest {
 
 	/**
@@ -43,8 +40,4 @@ public abstract class AbstractRiksdagenFunctionalIntegrationTest extends Abstrac
 		super();
 	}
 
-	@Override
-	protected Connection getDatabaseConnection() throws Exception {
-		return null;
-	}
 }

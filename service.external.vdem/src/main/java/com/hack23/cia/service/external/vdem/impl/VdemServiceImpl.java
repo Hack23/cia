@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -102,7 +103,7 @@ public final class VdemServiceImpl implements VdemService {
 		final List<Question> questions = getQuestions();
 
 		try {
-			final Reader in = new InputStreamReader(new URL(VDEM_DATA_DOWNLOAD_URL).openStream());
+			final Reader in = new InputStreamReader(new URL(VDEM_DATA_DOWNLOAD_URL).openStream(),StandardCharsets.UTF_8);
 
 			final CSVParser parser = new CSVParser(in, CSVFormat.EXCEL.withHeader().withDelimiter(','));
 

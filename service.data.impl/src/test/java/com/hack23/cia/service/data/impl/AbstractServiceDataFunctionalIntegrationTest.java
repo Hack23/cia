@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.service.data.impl;
 
-import java.sql.Connection;
-
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -42,8 +40,4 @@ public abstract class AbstractServiceDataFunctionalIntegrationTest extends Abstr
 		super();
 	}
 
-	@Override
-	protected Connection getDatabaseConnection() throws Exception {
-		return null;
-	}
 }

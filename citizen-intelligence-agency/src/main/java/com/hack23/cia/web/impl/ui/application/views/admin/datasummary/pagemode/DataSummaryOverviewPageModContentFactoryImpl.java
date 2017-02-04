@@ -21,19 +21,17 @@ package com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
 
-import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
-import com.hack23.cia.service.api.action.admin.UpdateSearchIndexRequest;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.tablefactory.TableFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RefreshDataViewsClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.UpdateSearchIndexClickListener;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
@@ -47,14 +45,8 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME;
 
-	/** The Constant UPDATE_SEARCH_INDEX_STARTED. */
-	private static final String UPDATE_SEARCH_INDEX_STARTED = "Update Search Index Started";
-
 	/** The Constant UPDATE_SEARCH_INDEX. */
 	private static final String UPDATE_SEARCH_INDEX = "Update Search Index";
-
-	/** The Constant REFRESH_VIEWS_STARTED. */
-	private static final String REFRESH_VIEWS_STARTED = "Refresh Views Started";
 
 	/** The Constant REFRESH_VIEWS. */
 	private static final String REFRESH_VIEWS = "Refresh Views";
@@ -97,28 +89,14 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 		final Button refreshViewsButton = new Button(REFRESH_VIEWS,FontAwesome.REFRESH);
 
-		refreshViewsButton.addClickListener(event -> {
-
-			final RefreshDataViewsRequest serviceRequest = new RefreshDataViewsRequest();
-			serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-
-			getApplicationManager().asyncService(serviceRequest);
-			Notification.show(REFRESH_VIEWS_STARTED);
-		});
+		refreshViewsButton.addClickListener(new RefreshDataViewsClickListener(getApplicationManager()));
 
 		content.addComponent(refreshViewsButton);
 		content.setExpandRatio(refreshViewsButton, ContentRatio.SMALL);
 
 		final Button updateSearchIndexButton = new Button(UPDATE_SEARCH_INDEX,FontAwesome.REFRESH);
 
-		updateSearchIndexButton.addClickListener(event -> {
-
-			final UpdateSearchIndexRequest serviceRequest = new UpdateSearchIndexRequest();
-			serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-
-			getApplicationManager().asyncService(serviceRequest);
-			Notification.show(UPDATE_SEARCH_INDEX_STARTED);
-		});
+		updateSearchIndexButton.addClickListener(new UpdateSearchIndexClickListener(getApplicationManager()));
 
 		content.addComponent(updateSearchIndexButton);
 		content.setExpandRatio(updateSearchIndexButton, ContentRatio.SMALL);

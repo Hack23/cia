@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -91,7 +92,7 @@ public final class RiksdagenPersonsWorkGeneratorImpl extends AbstractRiksdagenDa
 	 */
 	private static String[] readMissingPersonList() {
 
-		final Scanner sc = new Scanner(RiksdagenPersonsWorkGeneratorImpl.class.getResourceAsStream("/personlist.txt"));
+		final Scanner sc = new Scanner(RiksdagenPersonsWorkGeneratorImpl.class.getResourceAsStream("/personlist.txt"),StandardCharsets.UTF_8.name());
 		final List<String> lines = new ArrayList<>();
 		while (sc.hasNextLine()) {
 			lines.add(sc.nextLine());

@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.service.external.worldbank.impl;
 
-import java.sql.Connection;
-
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -30,10 +28,8 @@ import com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest;
  * The Class AbstractWorldbankFunctionalIntegrationTest.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {
-		"classpath:/META-INF/cia-service-external-worldbank.xml",
-		"classpath:META-INF/cia-service-external-common.xml",
-"classpath:/META-INF/cia-test-context.xml" })
+@ContextConfiguration(locations = { "classpath:/META-INF/cia-service-external-worldbank.xml",
+		"classpath:META-INF/cia-service-external-common.xml", "classpath:/META-INF/cia-test-context.xml" })
 public abstract class AbstractWorldbankFunctionalIntegrationTest extends AbstractFunctionalIntegrationTest {
 
 	/**
@@ -43,8 +39,4 @@ public abstract class AbstractWorldbankFunctionalIntegrationTest extends Abstrac
 		super();
 	}
 
-	@Override
-	protected Connection getDatabaseConnection() throws Exception {
-		return null;
-	}
 }

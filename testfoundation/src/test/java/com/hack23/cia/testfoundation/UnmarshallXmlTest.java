@@ -40,8 +40,6 @@ public final class UnmarshallXmlTest extends AbstractUnmarshallXmlTest<String> {
 	 */
 	@Test
 	public void unmarshallTest() throws Exception {
-		assertNull(getDatabaseConnection());
-
 		final String content = "abcdefg";
 		final String xmlContent = "<string>" + content + "</string>";
 		File temp;
