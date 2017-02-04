@@ -21,7 +21,6 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.admin.SendEmailRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
@@ -63,25 +62,19 @@ public final class SendEmailClickListener implements ClickListener {
 	/** The reqister request. */
 	private final SendEmailRequest sendEmailRequest;
 
-	/** The application manager. */
-	private final transient ApplicationManager applicationManager;
-
 	/**
 	 * Instantiates a new register user click listener.
 	 *
 	 * @param sendEmailRequest
 	 *            the reqister request
-	 * @param applicationManager
-	 *            the application manager
 	 */
-	public SendEmailClickListener(final SendEmailRequest sendEmailRequest, final ApplicationManager applicationManager) {
+	public SendEmailClickListener(final SendEmailRequest sendEmailRequest) {
 		this.sendEmailRequest = sendEmailRequest;
-		this.applicationManager = applicationManager;
 	}
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-		final ServiceResponse response = applicationManager.service(sendEmailRequest);
+		final ServiceResponse response = ApplicationMangerAccess.getApplicationManager().service(sendEmailRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_MSG_SEND_EMAIL,sendEmailRequest.getEmail());
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);

@@ -108,25 +108,24 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractPageM
 				final BeanItemContainer<DocumentElement> documentActivityDataDataDataSource = new BeanItemContainer<>(
 						DocumentElement.class, response.getResultElement());
 
-				getGridFactory().createBasicBeanItemGrid(
-						searchresultLayout, documentActivityDataDataDataSource,
+				getGridFactory().createBasicBeanItemGrid(searchresultLayout, documentActivityDataDataDataSource,
 						"Document",
 						new String[] { "rm", "createdDate", "madePublicDate", "documentType", "subType", "title",
 								"subTitle", "status" },
 						new String[] { "label", "id", "hit", "relatedId", "org", "tempLabel", "numberValue",
 								"systemDate", "kallId", "documentFormat", "documentUrlText", "documentUrlHtml",
-								"documentStatusUrlXml", "committeeReportUrlXml" }, null, null, null);
+								"documentStatusUrlXml", "committeeReportUrlXml" },
+						null, null, null);
 
 			}
 		};
-		final ClickListener searchListener = new SearchDocumentClickListener(searchRequest, getApplicationManager(),
-				handler);
-		getFormFactory().addRequestInputFormFields(formContent, new BeanItem<>(searchRequest), SearchDocumentRequest.class,
-				Arrays.asList(new String[] { "searchExpression" }), "Search", searchListener);
+		final ClickListener searchListener = new SearchDocumentClickListener(searchRequest, handler);
+		getFormFactory().addRequestInputFormFields(formContent, new BeanItem<>(searchRequest),
+				SearchDocumentRequest.class, Arrays.asList(new String[] { "searchExpression" }), "Search",
+				searchListener);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
-
 
 		return panelContent;
 

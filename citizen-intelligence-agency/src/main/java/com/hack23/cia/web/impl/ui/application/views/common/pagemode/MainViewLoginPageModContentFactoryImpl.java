@@ -77,7 +77,7 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractPageMo
 		final DefaultVerticalLoginForm loginForm = new EmailPasswordLoginForm();
 		final LoginRequest loginRequest = new LoginRequest();
 		loginRequest.setOtpCode("");
-		loginForm.addLoginListener(new ApplicationLoginListener(getApplicationManager(), loginRequest));
+		loginForm.addLoginListener(new ApplicationLoginListener(loginRequest));
 		loginForm.setId(ApplicationAction.LOGIN.toString());
 		loginForm.setIcon(FontAwesome.SIGN_IN);
 

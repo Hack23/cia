@@ -24,7 +24,6 @@ import java.net.URISyntaxException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialResponse;
@@ -76,9 +75,6 @@ public final class SetGoogleAuthenticatorCredentialClickListener implements Clic
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(SetGoogleAuthenticatorCredentialClickListener.class);
 
-	/** The application manager. */
-	private final transient ApplicationManager applicationManager;
-
 	/** The google auth request. */
 	private final SetGoogleAuthenticatorCredentialRequest googleAuthRequest;
 
@@ -88,17 +84,14 @@ public final class SetGoogleAuthenticatorCredentialClickListener implements Clic
 	 *
 	 * @param googleAuthRequest
 	 *            the google auth request
-	 * @param applicationManager
-	 *            the application manager
 	 */
-	public SetGoogleAuthenticatorCredentialClickListener(final SetGoogleAuthenticatorCredentialRequest googleAuthRequest, final ApplicationManager applicationManager) {
+	public SetGoogleAuthenticatorCredentialClickListener(final SetGoogleAuthenticatorCredentialRequest googleAuthRequest) {
 		this.googleAuthRequest = googleAuthRequest;
-		this.applicationManager = applicationManager;
 	}
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-		final SetGoogleAuthenticatorCredentialResponse response = (SetGoogleAuthenticatorCredentialResponse) applicationManager.service(googleAuthRequest);
+		final SetGoogleAuthenticatorCredentialResponse response = (SetGoogleAuthenticatorCredentialResponse) ApplicationMangerAccess.getApplicationManager().service(googleAuthRequest);
 
 		if (ServiceResult.SUCCESS == response.getResult()) {
 

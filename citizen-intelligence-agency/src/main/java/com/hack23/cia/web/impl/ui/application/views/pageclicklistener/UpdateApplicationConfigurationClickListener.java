@@ -21,7 +21,6 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
@@ -58,25 +57,19 @@ public final class UpdateApplicationConfigurationClickListener implements ClickL
 	/** The request. */
 	private final UpdateApplicationConfigurationRequest request;
 
-	/** The application manager. */
-	private final transient ApplicationManager applicationManager;
-
 	/**
 	 * Instantiates a new update application configuration click listener.
 	 *
 	 * @param request
 	 *            the request
-	 * @param applicationManager
-	 *            the application manager
 	 */
-	public UpdateApplicationConfigurationClickListener(final UpdateApplicationConfigurationRequest request, final ApplicationManager applicationManager) {
+	public UpdateApplicationConfigurationClickListener(final UpdateApplicationConfigurationRequest request) {
 		this.request = request;
-		this.applicationManager = applicationManager;
 	}
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-		final ServiceResponse response = applicationManager.service(request);
+		final ServiceResponse response = ApplicationMangerAccess.getApplicationManager().service(request);
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_UPDATE_APPLICATION_CONFIGURATION,request.getApplicationConfigurationId());
 

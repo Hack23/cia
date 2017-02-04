@@ -21,7 +21,6 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.LogoutRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
@@ -52,9 +51,6 @@ public final class LogoutClickListener implements ClickListener {
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(LogoutClickListener.class);
 
-	/** The application manager. */
-	private final transient ApplicationManager applicationManager;
-
 	/** The logout request. */
 	private final LogoutRequest logoutRequest;
 
@@ -63,17 +59,14 @@ public final class LogoutClickListener implements ClickListener {
 	 *
 	 * @param logoutRequest
 	 *            the logout request
-	 * @param applicationManager
-	 *            the application manager
 	 */
-	public LogoutClickListener(final LogoutRequest logoutRequest, final ApplicationManager applicationManager) {
+	public LogoutClickListener(final LogoutRequest logoutRequest) {
 		this.logoutRequest = logoutRequest;
-		this.applicationManager = applicationManager;
 	}
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-		final ServiceResponse response = applicationManager.service(logoutRequest);
+		final ServiceResponse response = ApplicationMangerAccess.getApplicationManager().service(logoutRequest);
 
 
 		if (ServiceResult.SUCCESS == response.getResult()) {
