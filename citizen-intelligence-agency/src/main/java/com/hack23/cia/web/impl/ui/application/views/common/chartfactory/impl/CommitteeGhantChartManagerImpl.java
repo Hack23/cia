@@ -46,17 +46,6 @@ public final class CommitteeGhantChartManagerImpl
 		return (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
 	}
 
-	/**
-	 * The Class RoleMapping.
-	 */
-	private static final class RoleMapping implements Function<ViewRiksdagenCommitteeRoleMember, String> {
-
-		@Override
-		public String apply(final ViewRiksdagenCommitteeRoleMember t) {
-			return t.getRoleCode();
-		}
-	}
-
 	@Override
 	protected Function<ViewRiksdagenCommitteeRoleMember, String> getRoleMapping() {
 		return new RoleMapping();
@@ -117,6 +106,17 @@ public final class CommitteeGhantChartManagerImpl
 			}
 
 		};
+	}
+
+	/**
+	 * The Class RoleMapping.
+	 */
+	private static final class RoleMapping implements Function<ViewRiksdagenCommitteeRoleMember, String> {
+
+		@Override
+		public String apply(final ViewRiksdagenCommitteeRoleMember t) {
+			return t.getRoleCode();
+		}
 	}
 
 }

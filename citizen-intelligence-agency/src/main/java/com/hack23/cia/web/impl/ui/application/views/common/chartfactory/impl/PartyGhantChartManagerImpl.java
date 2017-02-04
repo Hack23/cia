@@ -46,17 +46,6 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 		return (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
 	}
 
-	/**
-	 * The Class RoleMapping.
-	 */
-	private static final class RoleMapping implements Function<ViewRiksdagenPartyRoleMember, String> {
-
-		@Override
-		public String apply(final ViewRiksdagenPartyRoleMember t) {
-			return t.getRoleCode();
-		}
-	}
-
 	@Override
 	protected Function<ViewRiksdagenPartyRoleMember, String> getRoleMapping() {
 		return new RoleMapping();
@@ -119,6 +108,17 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 			}
 
 		};
+	}
+
+	/**
+	 * The Class RoleMapping.
+	 */
+	private static final class RoleMapping implements Function<ViewRiksdagenPartyRoleMember, String> {
+
+		@Override
+		public String apply(final ViewRiksdagenPartyRoleMember t) {
+			return t.getRoleCode();
+		}
 	}
 
 }
