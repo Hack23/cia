@@ -90,7 +90,7 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractPag
 		reqisterRequest.setEmail("");
 		reqisterRequest.setCountry("");
 		reqisterRequest.setUserpassword("");
-		final ClickListener reqisterListener = new RegisterUserClickListener(reqisterRequest, getApplicationManager());
+		final ClickListener reqisterListener = new RegisterUserClickListener(reqisterRequest);
 		getFormFactory().addRequestInputFormFields(formContent, new BeanItem<>(reqisterRequest),
 				RegisterUserRequest.class,
 				Arrays.asList(new String[] { "username", "email", "country", "userpassword" }), "Register",

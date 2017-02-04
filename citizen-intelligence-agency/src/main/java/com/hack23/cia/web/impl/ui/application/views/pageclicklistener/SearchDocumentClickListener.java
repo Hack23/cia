@@ -21,7 +21,6 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.api.action.user.SearchDocumentRequest;
 import com.hack23.cia.service.api.action.user.SearchDocumentResponse;
@@ -58,9 +57,6 @@ public final class SearchDocumentClickListener implements ClickListener {
 	/** The reqister request. */
 	private final SearchDocumentRequest reqisterRequest;
 
-	/** The application manager. */
-	private final transient ApplicationManager applicationManager;
-
 	/** The response handler. */
 	private final SearchDocumentResponseHandler responseHandler;
 
@@ -69,20 +65,17 @@ public final class SearchDocumentClickListener implements ClickListener {
 	 *
 	 * @param reqisterRequest
 	 *            the reqister request
-	 * @param applicationManager
-	 *            the application manager
 	 * @param responseHandler
 	 *            the response handler
 	 */
-	public SearchDocumentClickListener(final SearchDocumentRequest reqisterRequest, final ApplicationManager applicationManager, final SearchDocumentResponseHandler responseHandler) {
+	public SearchDocumentClickListener(final SearchDocumentRequest reqisterRequest, final SearchDocumentResponseHandler responseHandler) {
 		this.reqisterRequest = reqisterRequest;
-		this.applicationManager = applicationManager;
 		this.responseHandler = responseHandler;
 	}
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-		final SearchDocumentResponse response = (SearchDocumentResponse) applicationManager.service(reqisterRequest);
+		final SearchDocumentResponse response = (SearchDocumentResponse) ApplicationMangerAccess.getApplicationManager().service(reqisterRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_MSG_SEARCH_DOCUMENT,reqisterRequest.getSearchExpression());
 			Notification.show(SEARCH_SUCCESS,

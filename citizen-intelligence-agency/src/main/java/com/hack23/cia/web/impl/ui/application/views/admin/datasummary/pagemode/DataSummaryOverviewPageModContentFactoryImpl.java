@@ -89,14 +89,14 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 		final Button refreshViewsButton = new Button(REFRESH_VIEWS,FontAwesome.REFRESH);
 
-		refreshViewsButton.addClickListener(new RefreshDataViewsClickListener(getApplicationManager()));
+		refreshViewsButton.addClickListener(new RefreshDataViewsClickListener());
 
 		content.addComponent(refreshViewsButton);
 		content.setExpandRatio(refreshViewsButton, ContentRatio.SMALL);
 
 		final Button updateSearchIndexButton = new Button(UPDATE_SEARCH_INDEX,FontAwesome.REFRESH);
 
-		updateSearchIndexButton.addClickListener(new UpdateSearchIndexClickListener(getApplicationManager()));
+		updateSearchIndexButton.addClickListener(new UpdateSearchIndexClickListener());
 
 		content.addComponent(updateSearchIndexButton);
 		content.setExpandRatio(updateSearchIndexButton, ContentRatio.SMALL);

@@ -21,7 +21,6 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.RegisterUserRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
@@ -57,25 +56,19 @@ public final class RegisterUserClickListener implements ClickListener {
 	/** The reqister request. */
 	private final RegisterUserRequest reqisterRequest;
 
-	/** The application manager. */
-	private final transient ApplicationManager applicationManager;
-
 	/**
 	 * Instantiates a new register user click listener.
 	 *
 	 * @param reqisterRequest
 	 *            the reqister request
-	 * @param applicationManager
-	 *            the application manager
 	 */
-	public RegisterUserClickListener(final RegisterUserRequest reqisterRequest, final ApplicationManager applicationManager) {
+	public RegisterUserClickListener(final RegisterUserRequest reqisterRequest) {
 		this.reqisterRequest = reqisterRequest;
-		this.applicationManager = applicationManager;
 	}
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-		final ServiceResponse response = applicationManager.service(reqisterRequest);
+		final ServiceResponse response = ApplicationMangerAccess.getApplicationManager().service(reqisterRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_MSG_REGISTER_USER,reqisterRequest.getUsername());
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);

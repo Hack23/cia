@@ -1,6 +1,6 @@
 /*
  * Copyright 2014 James Pether Sörling
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
 import org.springframework.web.context.request.RequestContextHolder;
 
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -30,26 +29,21 @@ import com.vaadin.ui.Notification;
  * The Class RefreshDataViewsClickListener.
  */
 public final class RefreshDataViewsClickListener implements ClickListener {
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
 	/** The Constant REFRESH_VIEWS_STARTED. */
 	private static final String REFRESH_VIEWS_STARTED = "Refresh Views Started";
-	
-	/** The application manager. */
-	private final ApplicationManager applicationManager;
 
 	/**
 	 * Instantiates a new refresh data views click listener.
 	 *
-	 * @param applicationManager
-	 *            the application manager
 	 */
-	public RefreshDataViewsClickListener(final ApplicationManager applicationManager) {
-		this.applicationManager = applicationManager;
+	public RefreshDataViewsClickListener() {
+		super();
 	}
 
 	@Override
@@ -58,7 +52,7 @@ public final class RefreshDataViewsClickListener implements ClickListener {
 		final RefreshDataViewsRequest serviceRequest = new RefreshDataViewsRequest();
 		serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 
-		applicationManager.asyncService(serviceRequest);
+		ApplicationMangerAccess.getApplicationManager().asyncService(serviceRequest);
 		Notification.show(REFRESH_VIEWS_STARTED);
 	}
 }

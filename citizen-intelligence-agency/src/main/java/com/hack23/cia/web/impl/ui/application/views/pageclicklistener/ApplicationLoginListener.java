@@ -24,7 +24,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import com.ejt.vaadin.loginform.LoginForm.LoginEvent;
 import com.ejt.vaadin.loginform.LoginForm.LoginListener;
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.LoginRequest;
 import com.hack23.cia.service.api.action.application.LoginResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
@@ -55,22 +54,16 @@ public final class ApplicationLoginListener implements LoginListener {
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationLoginListener.class);
 
-	/** The application manager. */
-	private final transient ApplicationManager applicationManager;
-
 	/** The login request. */
 	private final LoginRequest loginRequest;
 
 	/**
 	 * Instantiates a new application login listener.
 	 *
-	 * @param applicationManager
-	 *            the application manager
 	 * @param loginRequest
 	 *            the login request
 	 */
-	public ApplicationLoginListener(final ApplicationManager applicationManager,final LoginRequest loginRequest) {
-		this.applicationManager = applicationManager;
+	public ApplicationLoginListener(final LoginRequest loginRequest) {
 		this.loginRequest = loginRequest;
 	}
 
@@ -81,7 +74,7 @@ public final class ApplicationLoginListener implements LoginListener {
 		loginRequest.setUserpassword(event.getPassword());
 		loginRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 
-		final LoginResponse response = (LoginResponse) applicationManager.service(loginRequest);
+		final LoginResponse response = (LoginResponse) ApplicationMangerAccess.getApplicationManager().service(loginRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_MSG_LOGIN_REQUEST,event.getUserName());
 

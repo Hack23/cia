@@ -90,7 +90,7 @@ public final class EmailPageModContentFactoryImpl extends AbstractAdminSystemPag
 		sendEmailRequest.setEmail("");
 		sendEmailRequest.setSubject("");
 		sendEmailRequest.setContent("");
-		final ClickListener sendEmailListener = new SendEmailClickListener(sendEmailRequest, getApplicationManager());
+		final ClickListener sendEmailListener = new SendEmailClickListener(sendEmailRequest);
 		getFormFactory().addRequestInputFormFields(formContent, new BeanItem<>(sendEmailRequest),
 				SendEmailRequest.class, Arrays.asList(new String[] { "email", "subject", "content" }), "Email",
 				sendEmailListener);

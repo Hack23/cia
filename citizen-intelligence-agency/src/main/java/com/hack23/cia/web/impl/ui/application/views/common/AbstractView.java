@@ -28,7 +28,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.context.request.RequestContextHolder;
 
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.LogoutRequest;
 import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
 import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
@@ -70,10 +69,6 @@ public abstract class AbstractView extends Panel implements View {
 
 	/** The Constant ROLE_ADMIN. */
 	private static final String ROLE_ADMIN = "ROLE_ADMIN";
-
-	/** The application manager. */
-	@Autowired
-	private transient ApplicationManager applicationManager;
 
 	/** The page mode content factory map. */
 	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
@@ -212,7 +207,7 @@ public abstract class AbstractView extends Panel implements View {
 
 			final LogoutRequest logoutRequest = new LogoutRequest();
 			logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-			logoutButton.addClickListener(new LogoutClickListener(logoutRequest,applicationManager));
+			logoutButton.addClickListener(new LogoutClickListener(logoutRequest));
 
 			topHeaderRightPanel.addComponent(logoutButton);
 			topHeaderRightPanel.setComponentAlignment(logoutButton, Alignment.MIDDLE_RIGHT);

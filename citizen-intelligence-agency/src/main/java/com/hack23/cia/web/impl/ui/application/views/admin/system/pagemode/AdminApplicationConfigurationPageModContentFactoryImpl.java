@@ -135,8 +135,7 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 
 				request.setPropertyValue(applicationConfiguration.getPropertyValue());
 
-				final ClickListener buttonListener = new UpdateApplicationConfigurationClickListener(request,
-						getApplicationManager());
+				final ClickListener buttonListener = new UpdateApplicationConfigurationClickListener(request);
 
 				final Panel updateFormPanel = new Panel();
 				updateFormPanel.setSizeFull();

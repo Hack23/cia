@@ -102,7 +102,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 		final LogoutRequest logoutRequest = new LogoutRequest();
 		logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-		logoutButton.addClickListener(new LogoutClickListener(logoutRequest,getApplicationManager()));
+		logoutButton.addClickListener(new LogoutClickListener(logoutRequest));
 
 		panelContent.addComponent(logoutButton);
 

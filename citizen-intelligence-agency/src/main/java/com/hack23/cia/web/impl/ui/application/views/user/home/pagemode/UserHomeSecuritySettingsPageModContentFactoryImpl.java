@@ -95,7 +95,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 			final SetGoogleAuthenticatorCredentialRequest googleAuthRequest = new SetGoogleAuthenticatorCredentialRequest();
 			googleAuthRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 			googleAuthButton.addClickListener(
-					new SetGoogleAuthenticatorCredentialClickListener(googleAuthRequest, getApplicationManager()));
+					new SetGoogleAuthenticatorCredentialClickListener(googleAuthRequest));
 
 			panelContent.addComponent(googleAuthButton);
 
