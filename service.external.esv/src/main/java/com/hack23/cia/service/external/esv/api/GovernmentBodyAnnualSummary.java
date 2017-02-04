@@ -105,7 +105,7 @@ public final class GovernmentBodyAnnualSummary {
 	}
 
 	@Override
-	public final boolean equals(final Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
@@ -209,12 +209,12 @@ public final class GovernmentBodyAnnualSummary {
 	}
 
 	@Override
-	public final int hashCode() {
+	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);
 	}
 
 	@Override
-	public final String toString() {
+	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
