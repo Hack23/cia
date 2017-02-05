@@ -169,9 +169,8 @@ public final class VdemServiceImpl implements VdemService {
 			final String countryName, final String countryId, final String countryTextId, final String year,
 			final String gapStart, final String gapEnd, final String codingEnd, final String cowCode,
 			final Question question) {
-		if (question.getQuestionId() != null) {
-
-			if (record.isMapped(question.getTag())) {
+		
+		if (question.getQuestionId() != null && record.isMapped(question.getTag())) {
 
 				try {
 					final String questionValue = record.get(question.getTag());
@@ -201,7 +200,6 @@ public final class VdemServiceImpl implements VdemService {
 					LOGGER.warn("Missing value for:"+ question.getTag(), e);
 				}
 			}
-		}
 	}
 
 }

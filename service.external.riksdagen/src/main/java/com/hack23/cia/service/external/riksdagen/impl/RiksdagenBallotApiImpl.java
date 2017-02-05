@@ -221,7 +221,7 @@ public final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 				voteData.setPlace(voteDataDto.getPlace());
 				voteData.setGender(voteDataDto.getGender());
 				voteData.setFullName(voteDataDto.getFullName());
-				voteData.setParty(voteDataDto.getParty().toUpperCase());
+				voteData.setParty(voteDataDto.getParty().toUpperCase(Locale.ENGLISH));
 				voteData.setRm(voteDataDto.getRm());
 				voteData.setVote(voteDataDto.getVote());
 				voteData.setBallotType(voteDataDto.getBallotType());

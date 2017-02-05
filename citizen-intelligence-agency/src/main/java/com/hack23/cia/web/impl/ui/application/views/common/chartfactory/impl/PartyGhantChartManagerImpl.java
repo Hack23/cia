@@ -84,11 +84,11 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 			public String getBackgroundColor(final ViewRiksdagenPartyRoleMember t) {
 				String color = "A8D999";
 
-				if (t.getRoleCode().toLowerCase().contains("vice")) {
+				if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains("vice")) {
 					color = "A8D999";
-				} else if (t.getRoleCode().toLowerCase().contains("partiledare")
-						|| t.getRoleCode().toLowerCase().contains("språkrör")
-						|| t.getRoleCode().toLowerCase().contains("partisekreterare")) {
+				} else if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains("partiledare")
+						|| t.getRoleCode().toLowerCase(Locale.ENGLISH).contains("språkrör")
+						|| t.getRoleCode().toLowerCase(Locale.ENGLISH).contains("partisekreterare")) {
 					color = "3271c8";
 				} else {
 					color = "0eab76";

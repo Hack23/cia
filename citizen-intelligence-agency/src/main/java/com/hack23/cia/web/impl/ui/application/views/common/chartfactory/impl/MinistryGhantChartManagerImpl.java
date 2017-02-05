@@ -84,9 +84,9 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 			public String getBackgroundColor(final ViewRiksdagenGovermentRoleMember t) {
 				String color = "A8D999";
 
-				if (t.getRoleCode().toLowerCase().contains("statsråd")) {
+				if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains("statsråd")) {
 					color = "ded858";
-				} else if (t.getRoleCode().toLowerCase().contains("statsminister")) {
+				} else if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains("statsminister")) {
 					color = "3271c8";
 				} else {
 					color = "0eab76";
