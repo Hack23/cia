@@ -71,16 +71,12 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	@Qualifier("ViewRiksdagenCommitteeDataContainer")
 	private DataContainer<ViewRiksdagenCommittee,String> viewRiksdagenCommitteeDataContainer;
 
-
 	/** The view data data container factory. */
 	@Autowired
 	private ViewDataDataContainerFactory viewDataDataContainerFactory;
 
 	/** The service request business service map. */
 	private final Map<Class<? extends ServiceRequest>, BusinessService<? extends ServiceRequest,? extends ServiceResponse>> serviceRequestBusinessServiceMap = new ConcurrentHashMap<>();
-
-	/** The application context. */
-	private ApplicationContext applicationContext;
 
 
 	/**
@@ -118,9 +114,6 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public ServiceResponse service(final ServiceRequest serviceRequest) {
-
-		initBusinessServiceMap(serviceRequest);
-
 		final BusinessService businessService= serviceRequestBusinessServiceMap.get(serviceRequest.getClass());
 
 		ServiceResponse serviceResponse = null;
@@ -136,9 +129,6 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
     @Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
     @Override
 	public Future<ServiceResponse> asyncService(final ServiceRequest serviceRequest) {
-
-		initBusinessServiceMap(serviceRequest);
-
 		final BusinessService businessService= serviceRequestBusinessServiceMap.get(serviceRequest.getClass());
 
 		ServiceResponse serviceResponse = null;
@@ -151,28 +141,14 @@ public final class ApplicationManagerImpl implements ApplicationManager, Applica
 	}
 
 
-	/**
-	 * Inits the business service map.
-	 *
-	 * @param serviceRequest
-	 *            the service request
-	 */
-	private void initBusinessServiceMap(final ServiceRequest serviceRequest) {
-		if (serviceRequestBusinessServiceMap.get(serviceRequest.getClass()) == null) {
-			final Map<String, BusinessService> beansOfType = applicationContext.getBeansOfType(BusinessService.class);
-
-			for (final Entry<String, BusinessService> entry : beansOfType.entrySet()) {
-				if (serviceRequest.getClass().equals(entry.getValue().getSupportedService())) {
-					serviceRequestBusinessServiceMap.put(serviceRequest.getClass(), entry.getValue());
-				}
-			}
-		}
-	}
-
 	@Override
 	public void setApplicationContext(final ApplicationContext applicationContext)
 			throws BeansException {
-				this.applicationContext = applicationContext;
+		final Map<String, BusinessService> beansOfType = applicationContext.getBeansOfType(BusinessService.class);
+
+		for (final Entry<String, BusinessService> entry : beansOfType.entrySet()) {
+			serviceRequestBusinessServiceMap.put(entry.getValue().getSupportedService(), entry.getValue());
+		}
 	}
 
 }
