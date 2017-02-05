@@ -44,6 +44,8 @@ import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 @Component
 public final class EsvApiImpl implements EsvApi {
 
+	private static final String NO_MINISTRY = "Inget departement";
+
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(EsvApiImpl.class);
 
@@ -148,9 +150,9 @@ public final class EsvApiImpl implements EsvApi {
 	 *            the str
 	 * @return the integer
 	 */
-	private static Integer getInteger(String str) {
+	private static int getInteger(String str) {
 	    if (str == null || str.trim().length() == 0) {
-	        return Integer.valueOf(0);
+	        return 0;
 	    } else {
 	        return Integer.parseInt(str);
 	    }
@@ -200,7 +202,7 @@ public final class EsvApiImpl implements EsvApi {
 
 			for (final List<GovernmentBodyAnnualSummary> list : data.values()) {
 				for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
-					if (!ministryNameSet.contains(governmentBodyAnnualSummary.getMinistry()) && governmentBodyAnnualSummary.getHeadCount() > 0 && !governmentBodyAnnualSummary.getMinistry().equalsIgnoreCase("Inget departement")) {
+					if (!ministryNameSet.contains(governmentBodyAnnualSummary.getMinistry()) && governmentBodyAnnualSummary.getHeadCount() > 0 && !NO_MINISTRY.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())) {
 						ministryNameSet.add(governmentBodyAnnualSummary.getMinistry());
 					}
 				}

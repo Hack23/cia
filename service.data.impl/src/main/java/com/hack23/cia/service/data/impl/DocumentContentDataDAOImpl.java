@@ -20,8 +20,6 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -40,10 +38,6 @@ import com.hack23.cia.service.data.api.DocumentContentDataDAO;
 public final class DocumentContentDataDAOImpl extends
 AbstractGenericDAOImpl<DocumentContentData, Long>
 implements DocumentContentDataDAO {
-
-	/** The entity manager. */
-	@PersistenceContext(name = "ciaPersistenceUnit")
-	private EntityManager entityManager;
 
 	/**
 	 * Instantiates a new document content data dao impl.
