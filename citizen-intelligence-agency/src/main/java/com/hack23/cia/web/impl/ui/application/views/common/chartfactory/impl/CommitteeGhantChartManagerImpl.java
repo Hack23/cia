@@ -84,9 +84,9 @@ public final class CommitteeGhantChartManagerImpl
 			public String getBackgroundColor(final ViewRiksdagenCommitteeRoleMember t) {
 				String color = "A8D999";
 
-				if (t.getRoleCode().toLowerCase().contains("suppleant")) {
+				if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains("suppleant")) {
 					color = "ded858";
-				} else if (t.getRoleCode().toLowerCase().contains("ordförande")) {
+				} else if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains("ordförande")) {
 					color = "3271c8";
 				} else {
 					color = "0eab76";

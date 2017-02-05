@@ -111,7 +111,7 @@ public final class EsvApiImpl implements EsvApi {
 			final HSSFSheet mySheet) {
 		if (mySheet.getSheetName().chars().allMatch(Character::isDigit)) {
 
-			final int year = Integer.valueOf(mySheet.getSheetName());
+			final int year = Integer.parseInt(mySheet.getSheetName());
 
 			final List<GovernmentBodyAnnualSummary> yearList = new ArrayList<>();
 			final Iterator<Row> rowIterator = mySheet.iterator();
@@ -129,7 +129,6 @@ public final class EsvApiImpl implements EsvApi {
 							row.getCell(2).toString(), row.getCell(3).toString(), row.getCell(4).toString(),
 							row.getCell(5).toString(), getInteger(row.getCell(6).toString()), getInteger(row.getCell(7).toString()),
 							row.getCell(8).toString(), row.getCell(9).toString());
-					row.getCell(9).toString();
 
 					if (name == null || name.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())) {
 						yearList.add(governmentBodyAnnualSummary);
@@ -249,7 +248,7 @@ public final class EsvApiImpl implements EsvApi {
 			final HSSFSheet mySheet) {
 		if (mySheet.getSheetName().chars().allMatch(Character::isDigit)) {
 
-			final int year = Integer.valueOf(mySheet.getSheetName());
+			final int year = Integer.parseInt(mySheet.getSheetName());
 
 			final Iterator<Row> rowIterator = mySheet.iterator();
 
@@ -266,7 +265,6 @@ public final class EsvApiImpl implements EsvApi {
 							row.getCell(2).toString(), row.getCell(3).toString(), row.getCell(4).toString(),
 							row.getCell(5).toString(), getInteger(row.getCell(6).toString()), getInteger(row.getCell(7).toString()),
 							row.getCell(8).toString(), row.getCell(9).toString());
-					row.getCell(9).toString();
 
 					if (name == null || name.equalsIgnoreCase(governmentBodyAnnualSummary.getName())) {
 						map.put(year, governmentBodyAnnualSummary);

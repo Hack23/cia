@@ -50,7 +50,6 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 	@Autowired
 	private ChartOptions chartOptions;
 
-
 	/**
 	 * Instantiates a new government body chart data manager impl.
 	 */
@@ -72,10 +71,8 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 
 		for (final Entry<Integer, GovernmentBodyAnnualSummary> entry : map.entrySet()) {
 			final GovernmentBodyAnnualSummary item = entry.getValue();
-			if (entry.getKey() != null) {
-				if (item != null && item.getHeadCount() > 0) {
-					dataSeries.add("01-JAN-" + item.getYear(), item.getHeadCount());
-				}
+			if (entry.getKey() != null && item != null && item.getHeadCount() > 0) {
+				dataSeries.add("01-JAN-" + item.getYear(), item.getHeadCount());
 			}
 		}
 
@@ -84,7 +81,8 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 	}
 
 	@Override
-	public void createMinistryGovernmentBodyHeadcountSummaryChart(final AbstractOrderedLayout content, final String name) {
+	public void createMinistryGovernmentBodyHeadcountSummaryChart(final AbstractOrderedLayout content,
+			final String name) {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getDataPerMinistry(name);
 		final List<String> governmentBodyNames = esvApi.getGovernmentBodyNames(name);
 
@@ -100,13 +98,11 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 			for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
 
 				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
-				final Integer totalHeadcount = item.stream().filter(p -> p.getName().equalsIgnoreCase(govBodyName)).collect(Collectors.summingInt(p -> p.getHeadCount()));
+				final Integer totalHeadcount = item.stream().filter(p -> p.getName().equalsIgnoreCase(govBodyName))
+						.collect(Collectors.summingInt(p -> p.getHeadCount()));
 
-				if (entry.getKey() != null) {
-					if (item != null && totalHeadcount > 0) {
-						dataSeries.add("01-JAN-" + entry.getKey(), totalHeadcount);
-					}
-
+				if (entry.getKey() != null && item != null && totalHeadcount > 0) {
+					dataSeries.add("01-JAN-" + entry.getKey(), totalHeadcount);
 				}
 			}
 		}
@@ -135,13 +131,11 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 			for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
 
 				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
-				final Integer totalHeadcount = item.stream().filter(p -> p.getMinistry().equalsIgnoreCase(ministryName)).collect(Collectors.summingInt(p -> p.getHeadCount()));
+				final Integer totalHeadcount = item.stream().filter(p -> p.getMinistry().equalsIgnoreCase(ministryName))
+						.collect(Collectors.summingInt(p -> p.getHeadCount()));
 
-				if (entry.getKey() != null) {
-					if (item != null && totalHeadcount > 0) {
-						dataSeries.add("01-JAN-" + entry.getKey(), totalHeadcount);
-					}
-
+				if (entry.getKey() != null && item != null && totalHeadcount > 0) {
+					dataSeries.add("01-JAN-" + entry.getKey(), totalHeadcount);
 				}
 			}
 		}
