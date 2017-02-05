@@ -38,7 +38,7 @@ import com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.Riksd
  * The Class RiksdagenApiAgentWorkConsumerImpl.
  */
 @Service("RiksdagenApiAgentWorkConsumer")
-public final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkConsumerImpl {
+final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkConsumerImpl {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenApiAgentWorkConsumerImpl.class);

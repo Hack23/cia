@@ -27,7 +27,7 @@ import com.hack23.cia.service.data.api.ApplicationSessionDAO;
  * The Class ApplicationSessionDAOImpl.
  */
 @Repository("ApplicationSessionDAOImpl")
-public final class ApplicationSessionDAOImpl extends AbstractGenericDAOImpl<ApplicationSession, Long> implements ApplicationSessionDAO {
+final class ApplicationSessionDAOImpl extends AbstractGenericDAOImpl<ApplicationSession, Long> implements ApplicationSessionDAO {
 
 	/**
 	 * Instantiates a new application session dao impl.

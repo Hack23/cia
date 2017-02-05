@@ -37,7 +37,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
  * The Class RiksdagenPersonApiImpl.
  */
 @Component
-public final class RiksdagenPersonApiImpl implements RiksdagenPersonApi {
+final class RiksdagenPersonApiImpl implements RiksdagenPersonApi {
 
 	/**
 	 * The Constant HTTP_PERSON_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL.

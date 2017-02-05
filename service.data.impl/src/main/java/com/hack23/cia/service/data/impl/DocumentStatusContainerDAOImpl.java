@@ -36,7 +36,7 @@ import com.hack23.cia.service.data.api.DocumentStatusContainerDAO;
  * The Class DocumentStatusContainerDAOImpl.
  */
 @Repository("DocumentStatusContainerDAO")
-public final class DocumentStatusContainerDAOImpl extends
+final class DocumentStatusContainerDAOImpl extends
 AbstractGenericDAOImpl<DocumentStatusContainer, Long> implements
 DocumentStatusContainerDAO {
 

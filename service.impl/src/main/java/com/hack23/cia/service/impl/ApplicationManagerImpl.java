@@ -49,7 +49,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
  * The Class ApplicationManagerImpl.
  */
 @Service("ApplicationManager")
-public final class ApplicationManagerImpl implements ApplicationManager, ApplicationContextAware{
+final class ApplicationManagerImpl implements ApplicationManager, ApplicationContextAware{
 
 	/** The authentication manager. */
 	@Autowired

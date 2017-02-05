@@ -34,7 +34,7 @@ import com.hack23.cia.service.data.api.VoteDataDAO;
  * The Class VoteDataDAOImpl.
  */
 @Repository("VoteDataDAO")
-public final class VoteDataDAOImpl extends
+final class VoteDataDAOImpl extends
 AbstractGenericDAOImpl<VoteData, VoteDataEmbeddedId> implements VoteDataDAO {
 
 	/**

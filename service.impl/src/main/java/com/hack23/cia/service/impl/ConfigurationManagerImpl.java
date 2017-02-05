@@ -44,7 +44,7 @@ import com.hack23.cia.service.data.api.LanguageDataDAO;
  */
 @Service("ConfigurationManager")
 @Transactional
-public final class ConfigurationManagerImpl implements ConfigurationManager {
+final class ConfigurationManagerImpl implements ConfigurationManager {
 
 	/** The Constant EXPECTED_LOCALE_LENGTH. */
 	private static final int EXPECTED_LOCALE_LENGTH = 2;

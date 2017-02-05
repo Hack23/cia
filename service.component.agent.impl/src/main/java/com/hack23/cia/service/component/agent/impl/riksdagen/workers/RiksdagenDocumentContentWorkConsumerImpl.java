@@ -37,7 +37,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
  */
 @Service("riksdagenDocumentContentWorkConsumerImpl")
 @Transactional
-public final class RiksdagenDocumentContentWorkConsumerImpl implements
+final class RiksdagenDocumentContentWorkConsumerImpl implements
 MessageListener {
 
 	/** The Constant LOGGER. */

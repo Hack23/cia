@@ -35,7 +35,7 @@ import com.hack23.cia.service.data.api.DocumentContentDataDAO;
  * The Class DocumentContentDataDAOImpl.
  */
 @Repository("DocumentContentDataDAO")
-public final class DocumentContentDataDAOImpl extends
+final class DocumentContentDataDAOImpl extends
 AbstractGenericDAOImpl<DocumentContentData, Long>
 implements DocumentContentDataDAO {
 

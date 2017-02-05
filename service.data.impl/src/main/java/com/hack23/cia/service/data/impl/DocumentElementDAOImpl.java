@@ -38,7 +38,7 @@ import com.hack23.cia.service.data.api.DocumentElementDAO;
  * The Class DocumentElementDAOImpl.
  */
 @Repository("DocumentElementDAO")
-public final class DocumentElementDAOImpl extends
+final class DocumentElementDAOImpl extends
 AbstractGenericDAOImpl<DocumentElement, String> implements
 DocumentElementDAO {
 

@@ -28,7 +28,7 @@ import com.hack23.cia.service.data.api.CountryQuestionDataDAO;
  * The Class CountryQuestionDataDAOImpl.
  */
 @Repository("CountryQuestionDataDAOImpl")
-public final class CountryQuestionDataDAOImpl extends AbstractGenericDAOImpl<CountryQuestionData, CountryQuestionDataEmbeddedId> implements CountryQuestionDataDAO {
+final class CountryQuestionDataDAOImpl extends AbstractGenericDAOImpl<CountryQuestionData, CountryQuestionDataEmbeddedId> implements CountryQuestionDataDAO {
 
 	/**
 	 * Instantiates a new country question data dao impl.

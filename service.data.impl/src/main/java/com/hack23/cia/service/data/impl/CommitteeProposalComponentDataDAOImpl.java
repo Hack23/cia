@@ -36,7 +36,7 @@ import com.hack23.cia.service.data.api.CommitteeProposalComponentDataDAO;
  * The Class CommitteeProposalComponentDataDAOImpl.
  */
 @Repository("CommitteeProposalComponentDataDAO")
-public final class CommitteeProposalComponentDataDAOImpl extends
+final class CommitteeProposalComponentDataDAOImpl extends
 AbstractGenericDAOImpl<CommitteeProposalComponentData, Long>
 implements CommitteeProposalComponentDataDAO {
 

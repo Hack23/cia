@@ -45,7 +45,7 @@ import com.hack23.cia.service.data.impl.util.LoadHelper;
  */
 
 @Repository("DataViewer")
-public final class DataViewerImpl implements DataViewer {
+final class DataViewerImpl implements DataViewer {
 
 	/** The entity manager. */
 	@PersistenceContext(name = "ciaPersistenceUnit")

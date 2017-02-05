@@ -37,7 +37,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenCommitteeProposalA
  */
 @Service("riksdagenCommitteeProposalComponentDataWorkConsumerImpl")
 @Transactional
-public final class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl implements MessageListener {
+final class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl implements MessageListener {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory

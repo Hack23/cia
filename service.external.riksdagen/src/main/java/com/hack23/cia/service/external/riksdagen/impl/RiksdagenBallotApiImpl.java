@@ -50,7 +50,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi;
  * The Class RiksdagenBallotApiImpl.
  */
 @Component
-public final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
+final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 
 	/** The Constant BALLOT. */
 	private static final String BALLOT = "http://data.riksdagen.se/votering/${ID_KEY}/xml";

@@ -27,7 +27,7 @@ import com.hack23.cia.service.data.api.IndicatorElementDAO;
  * The Class IndicatorElementDAOImpl.
  */
 @Repository("IndicatorElementDAO")
-public final class IndicatorElementDAOImpl extends AbstractGenericDAOImpl<IndicatorElement, Long> implements IndicatorElementDAO {
+final class IndicatorElementDAOImpl extends AbstractGenericDAOImpl<IndicatorElement, Long> implements IndicatorElementDAO {
 
 	/**
 	 * Instantiates a new indicator element dao impl.

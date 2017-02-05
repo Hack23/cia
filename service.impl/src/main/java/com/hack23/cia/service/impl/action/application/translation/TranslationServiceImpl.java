@@ -42,7 +42,7 @@ import com.hack23.cia.service.data.api.ApplicationConfigurationService;
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public final class TranslationServiceImpl implements TranslationService {
+final class TranslationServiceImpl implements TranslationService {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(TranslationServiceImpl.class);

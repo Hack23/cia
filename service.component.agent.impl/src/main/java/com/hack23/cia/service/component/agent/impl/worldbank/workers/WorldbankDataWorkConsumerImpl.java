@@ -39,7 +39,7 @@ import com.hack23.cia.service.external.worldbank.api.WorldBankDataApi;
  */
 @Service("worldbankDataWorkConsumerImpl")
 @Transactional
-public final class WorldbankDataWorkConsumerImpl implements
+final class WorldbankDataWorkConsumerImpl implements
 MessageListener {
 
 	/** The Constant LOGGER. */

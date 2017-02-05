@@ -30,7 +30,7 @@ import com.hack23.cia.service.component.agent.api.DataAgentApi;
  * The Class DataAgentContainerImpl.
  */
 @Component("DataAgentContainer")
-public final class DataAgentContainerImpl implements AgentContainer {
+final class DataAgentContainerImpl implements AgentContainer {
 
 	/** The data agent api. */
 	@Autowired

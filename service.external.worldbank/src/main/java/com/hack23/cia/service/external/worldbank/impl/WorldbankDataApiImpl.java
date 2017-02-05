@@ -36,7 +36,7 @@ import com.hack23.cia.service.external.worldbank.api.WorldBankDataApi;
  * The Class WorldbankDataApiImpl.
  */
 @Component
-public final class WorldbankDataApiImpl extends AbstractWorldBankApiImpl implements WorldBankDataApi {
+final class WorldbankDataApiImpl extends AbstractWorldBankApiImpl implements WorldBankDataApi {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(WorldbankDataApiImpl.class);

@@ -37,7 +37,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi;
  */
 @Service("riksdagenVoteDataWorkConsumerImpl")
 @Transactional
-public final class RiksdagenVoteDataWorkConsumerImpl implements MessageListener {
+final class RiksdagenVoteDataWorkConsumerImpl implements MessageListener {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenVoteDataWorkConsumerImpl.class);

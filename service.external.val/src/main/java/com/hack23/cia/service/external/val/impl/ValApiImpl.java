@@ -48,7 +48,7 @@ import com.hack23.cia.service.external.val.api.ValApiException;
  * The Class ValApiImpl.
  */
 @Component
-public final class ValApiImpl implements ValApi {
+final class ValApiImpl implements ValApi {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ValApiImpl.class);

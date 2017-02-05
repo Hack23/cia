@@ -27,7 +27,7 @@ import com.hack23.cia.service.data.api.UserDAO;
  * The Class UserDAOImpl.
  */
 @Repository("UserDAO")
-public final class UserDAOImpl extends AbstractGenericDAOImpl<UserAccount, Long> implements UserDAO {
+final class UserDAOImpl extends AbstractGenericDAOImpl<UserAccount, Long> implements UserDAO {
 
 	/**
 	 * Instantiates a new user dao impl.

@@ -37,7 +37,7 @@ import com.hack23.cia.service.data.api.DataDAO;
  * The Class DataDAOImpl.
  */
 @Repository("DataDAOImpl")
-public final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Long> implements DataDAO {
+final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Long> implements DataDAO {
 
 	/** The Constant EXPECTED_NR_ELEMENTS. */
 	private static final int EXPECTED_NR_ELEMENTS = 2;

@@ -33,7 +33,7 @@ import com.hack23.cia.service.data.api.PersonDataDAO;
  * The Class PersonDataDAOImpl.
  */
 @Repository("PersonDataDAO")
-public final class PersonDataDAOImpl extends AbstractGenericDAOImpl<PersonData, String> implements PersonDataDAO {
+final class PersonDataDAOImpl extends AbstractGenericDAOImpl<PersonData, String> implements PersonDataDAO {
 
 	/**
 	 * Instantiates a new person data dao impl.

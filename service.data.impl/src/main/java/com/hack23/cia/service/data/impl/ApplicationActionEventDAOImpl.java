@@ -27,7 +27,7 @@ import com.hack23.cia.service.data.api.ApplicationActionEventDAO;
  * The Class ApplicationActionEventDAOImpl.
  */
 @Repository("ApplicationActionEventDAOImpl")
-public final class ApplicationActionEventDAOImpl extends AbstractGenericDAOImpl<ApplicationActionEvent, Long> implements ApplicationActionEventDAO {
+final class ApplicationActionEventDAOImpl extends AbstractGenericDAOImpl<ApplicationActionEvent, Long> implements ApplicationActionEventDAO {
 
 	/**
 	 * Instantiates a new application action event dao impl.

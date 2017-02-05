@@ -47,7 +47,7 @@ import com.hack23.cia.service.external.vdem.api.VdemService;
  * The Class VdemServiceImpl.
  */
 @Service
-public final class VdemServiceImpl implements VdemService {
+final class VdemServiceImpl implements VdemService {
 
 	/** The Constant VDEM_DATA_DOWNLOAD_URL. */
 	private static final String VDEM_DATA_DOWNLOAD_URL = "https://s3-eu-west-1.amazonaws.com/vdemdata/V-Dem-DS-CY-v5.csv";

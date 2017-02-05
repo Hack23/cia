@@ -35,7 +35,7 @@ import com.hack23.cia.service.component.agent.impl.riksdagen.workers.LoadDocumen
  * The Class RiksdagenDocumentListWorkGeneratorImpl.
  */
 @Service
-public final class RiksdagenDocumentListWorkGeneratorImpl extends AbstractRiksdagenDataSourcesWorkGenerator {
+final class RiksdagenDocumentListWorkGeneratorImpl extends AbstractRiksdagenDataSourcesWorkGenerator {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenDocumentListWorkGeneratorImpl.class);
