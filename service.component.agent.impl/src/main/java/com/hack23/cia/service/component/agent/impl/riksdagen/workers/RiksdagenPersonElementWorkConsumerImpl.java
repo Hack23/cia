@@ -36,7 +36,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
  * The Class RiksdagenPersonElementWorkConsumerImpl.
  */
 @Service("riksdagenPersonElementWorkConsumerImpl")
-public final class RiksdagenPersonElementWorkConsumerImpl implements MessageListener {
+final class RiksdagenPersonElementWorkConsumerImpl implements MessageListener {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory

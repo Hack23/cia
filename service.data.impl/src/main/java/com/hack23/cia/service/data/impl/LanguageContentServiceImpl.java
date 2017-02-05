@@ -35,7 +35,7 @@ import com.hack23.cia.service.data.api.LanguageContentService;
  */
 @Service
 @Transactional(propagation=Propagation.REQUIRES_NEW)
-public final class LanguageContentServiceImpl implements LanguageContentService {
+final class LanguageContentServiceImpl implements LanguageContentService {
 
 
 	/** The language content data dao. */

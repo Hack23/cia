@@ -40,7 +40,7 @@ import com.hack23.cia.service.external.worldbank.api.WorldBankCountryApi;
  * The Class WorldBankDataWorkGeneratorImpl.
  */
 @Service
-public final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesWorkGenerator {
+final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesWorkGenerator {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory

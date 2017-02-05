@@ -26,7 +26,7 @@ import com.hack23.cia.service.api.UserConfiguration;
 /**
  * The Class UserConfigurationImpl.
  */
-public final class UserConfigurationImpl implements UserConfiguration {
+final class UserConfigurationImpl implements UserConfiguration {
 
 	/** The agency. */
 	private final Agency agency;

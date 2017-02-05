@@ -42,7 +42,7 @@ import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
  * The Class EsvApiImpl.
  */
 @Component
-public final class EsvApiImpl implements EsvApi {
+final class EsvApiImpl implements EsvApi {
 
 	private static final String NO_MINISTRY = "Inget departement";
 

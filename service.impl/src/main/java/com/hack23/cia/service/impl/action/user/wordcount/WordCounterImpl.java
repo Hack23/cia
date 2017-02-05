@@ -41,7 +41,7 @@ import weka.filters.unsupervised.attribute.StringToWordVector;
  * The Class WordCounterImpl.
  */
 @Service
-public final class WordCounterImpl implements WordCounter {
+final class WordCounterImpl implements WordCounter {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory

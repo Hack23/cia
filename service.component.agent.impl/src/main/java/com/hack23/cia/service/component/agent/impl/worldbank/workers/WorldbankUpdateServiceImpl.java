@@ -37,7 +37,7 @@ import com.hack23.cia.service.data.api.IndicatorElementDAO;
  */
 @Component("WorldbankUpdateService")
 @Transactional(propagation = Propagation.MANDATORY)
-public final class WorldbankUpdateServiceImpl implements WorldbankUpdateService {
+final class WorldbankUpdateServiceImpl implements WorldbankUpdateService {
 
 	/** The country element dao. */
 	@Autowired

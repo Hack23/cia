@@ -38,7 +38,7 @@ import com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.World
  * The Class WorldBankApiAgentWorkConsumerImpl.
  */
 @Service("WorldBankApiAgentWorkConsumer")
-public final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkConsumerImpl {
+final class WorldBankApiAgentWorkConsumerImpl extends AbstractAgentWorkConsumerImpl {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(WorldBankApiAgentWorkConsumerImpl.class);

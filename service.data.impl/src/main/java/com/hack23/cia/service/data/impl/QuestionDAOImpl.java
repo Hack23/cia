@@ -27,7 +27,7 @@ import com.hack23.cia.service.data.api.QuestionDAO;
  * The Class QuestionDAOImpl.
  */
 @Repository("QuestionDAOImpl")
-public final class QuestionDAOImpl extends AbstractGenericDAOImpl<Question, String> implements QuestionDAO {
+final class QuestionDAOImpl extends AbstractGenericDAOImpl<Question, String> implements QuestionDAO {
 
 	/**
 	 * Instantiates a new question dao impl.

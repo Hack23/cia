@@ -33,7 +33,7 @@ import com.hack23.cia.service.data.api.SwedenPoliticalPartyDAO;
  * The Class SwedenPoliticalPartyDAOImpl.
  */
 @Repository("SwedenPoliticalPartyDAO")
-public final class SwedenPoliticalPartyDAOImpl extends
+final class SwedenPoliticalPartyDAOImpl extends
 AbstractGenericDAOImpl<SwedenPoliticalParty, String> implements
 SwedenPoliticalPartyDAO {
 

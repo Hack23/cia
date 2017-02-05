@@ -33,7 +33,7 @@ import com.hack23.cia.service.data.api.LanguageDataDAO;
  * The Class LanguageDataDAOImpl.
  */
 @Repository("LanguageDataDAO")
-public final class LanguageDataDAOImpl extends
+final class LanguageDataDAOImpl extends
 AbstractGenericDAOImpl<LanguageData, Long> implements
 LanguageDataDAO {
 

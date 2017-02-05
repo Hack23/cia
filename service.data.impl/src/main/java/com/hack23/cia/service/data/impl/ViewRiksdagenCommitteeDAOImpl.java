@@ -34,7 +34,7 @@ import com.hack23.cia.service.data.api.ViewRiksdagenCommitteeDAO;
  * The Class ViewRiksdagenCommitteeDAOImpl.
  */
 @Repository("ViewRiksdagenCommitteeDAO")
-public final class ViewRiksdagenCommitteeDAOImpl
+final class ViewRiksdagenCommitteeDAOImpl
 		extends
 		AbstractGenericDAOImpl<ViewRiksdagenCommittee, RiksdagenCommitteeEmbeddedId>
 		implements ViewRiksdagenCommitteeDAO {

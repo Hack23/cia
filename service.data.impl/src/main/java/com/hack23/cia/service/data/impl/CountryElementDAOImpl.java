@@ -27,7 +27,7 @@ import com.hack23.cia.service.data.api.CountryElementDAO;
  * The Class CountryElementDAOImpl.
  */
 @Repository("CountryElementDAO")
-public final class CountryElementDAOImpl extends AbstractGenericDAOImpl<CountryElement, Long> implements CountryElementDAO {
+final class CountryElementDAOImpl extends AbstractGenericDAOImpl<CountryElement, Long> implements CountryElementDAO {
 
 	/**
 	 * Instantiates a new country element dao impl.

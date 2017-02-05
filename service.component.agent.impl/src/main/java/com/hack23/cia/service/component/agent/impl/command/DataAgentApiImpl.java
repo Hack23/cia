@@ -43,7 +43,7 @@ import com.hack23.cia.service.component.agent.impl.common.ProducerMessageFactory
  */
 @Service
 @Transactional(propagation=Propagation.REQUIRED)
-public final class DataAgentApiImpl implements DataAgentApi {
+final class DataAgentApiImpl implements DataAgentApi {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory

@@ -27,7 +27,7 @@ import com.hack23.cia.service.data.api.ApplicationConfigurationDAO;
  * The Class ApplicationConfigurationDAOImpl.
  */
 @Repository("ApplicationConfigurationDAOImpl")
-public final class ApplicationConfigurationDAOImpl extends AbstractGenericDAOImpl<ApplicationConfiguration, Long> implements ApplicationConfigurationDAO {
+final class ApplicationConfigurationDAOImpl extends AbstractGenericDAOImpl<ApplicationConfiguration, Long> implements ApplicationConfigurationDAO {
 
 	/**
 	 * Instantiates a new application configuration dao impl.

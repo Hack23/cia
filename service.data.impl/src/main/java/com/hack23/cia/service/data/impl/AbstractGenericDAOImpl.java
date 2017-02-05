@@ -48,7 +48,7 @@ import com.hack23.cia.service.data.impl.util.LoadHelper;
  *            the generic type
  */
 
-public abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializable>
+abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializable>
 		implements AbstractGenericDAO<T, I> {
 
 	/** The entity manager. */

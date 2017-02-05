@@ -37,7 +37,7 @@ import com.hack23.cia.service.data.api.ApplicationConfigurationService;
  */
 @Service
 @Transactional(propagation=Propagation.REQUIRES_NEW)
-public final class ApplicationConfigurationServiceImpl implements ApplicationConfigurationService {
+final class ApplicationConfigurationServiceImpl implements ApplicationConfigurationService {
 
 
 	/** The application configuration dao. */

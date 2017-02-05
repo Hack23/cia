@@ -35,7 +35,7 @@ import com.hack23.cia.service.external.vdem.api.VdemService;
  * The Class VdemApiAgentWorkConsumerImpl.
  */
 @Service("VdemApiAgentWorkConsumer")
-public final class VdemApiAgentWorkConsumerImpl extends AbstractAgentWorkConsumerImpl {
+final class VdemApiAgentWorkConsumerImpl extends AbstractAgentWorkConsumerImpl {
 
 
 	/** The Constant LOGGER. */

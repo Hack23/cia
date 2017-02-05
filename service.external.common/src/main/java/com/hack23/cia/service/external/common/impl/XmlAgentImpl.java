@@ -48,7 +48,7 @@ import com.hack23.cia.service.external.common.api.XmlAgent;
  * The Class XmlAgentImpl.
  */
 @Service
-public final class XmlAgentImpl implements XmlAgent {
+final class XmlAgentImpl implements XmlAgent {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory

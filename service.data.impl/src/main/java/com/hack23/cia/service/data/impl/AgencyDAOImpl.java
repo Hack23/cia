@@ -27,7 +27,7 @@ import com.hack23.cia.service.data.api.AgencyDAO;
  * The Class AgencyDAOImpl.
  */
 @Repository("AgencyDAOImpl")
-public final class AgencyDAOImpl extends AbstractGenericDAOImpl<Agency, Long> implements AgencyDAO {
+final class AgencyDAOImpl extends AbstractGenericDAOImpl<Agency, Long> implements AgencyDAO {
 
 	/**
 	 * Instantiates a new agency dao impl.

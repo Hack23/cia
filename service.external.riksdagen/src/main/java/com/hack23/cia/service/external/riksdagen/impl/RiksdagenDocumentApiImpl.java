@@ -45,7 +45,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
  * The Class RiksdagenDocumentApiImpl.
  */
 @Component
-public final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
+final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 
 	/** The Constant CHANGED_SINCE_KEY. */
 	private static final String CHANGED_SINCE_KEY = "${CHANGED_SINCE}";

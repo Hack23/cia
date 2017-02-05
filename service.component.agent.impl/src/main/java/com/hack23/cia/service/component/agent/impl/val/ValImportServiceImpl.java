@@ -34,7 +34,7 @@ import com.hack23.cia.service.external.val.api.ValApiException;
  */
 @Component("ValImportService")
 @Transactional(propagation = Propagation.REQUIRED)
-public final class ValImportServiceImpl implements ValImportService {
+final class ValImportServiceImpl implements ValImportService {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory

@@ -31,7 +31,7 @@ import com.hack23.cia.service.data.api.SearchIndexer;
  * The Class SearchIndexerImpl.
  */
 @Repository
-public final class SearchIndexerImpl implements SearchIndexer {
+final class SearchIndexerImpl implements SearchIndexer {
 
 	/** The Constant TIMEOUT_IN_SECONDS. */
 	private static final int TIMEOUT_IN_SECONDS = 900;

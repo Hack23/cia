@@ -36,7 +36,7 @@ import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
  */
 @Service("worldbankIndicatorElementWorkConsumerImpl")
 @Transactional
-public final class WorldbankIndicatorElementWorkConsumerImpl implements
+final class WorldbankIndicatorElementWorkConsumerImpl implements
 MessageListener {
 
 	/** The Constant LOGGER. */

@@ -33,7 +33,7 @@ import com.hack23.cia.service.data.api.ViewRiksdagenMinistryDAO;
  * The Class ViewRiksdagenMinistryDAOImpl.
  */
 @Repository("ViewRiksdagenMinistryDAO")
-public final class ViewRiksdagenMinistryDAOImpl extends
+final class ViewRiksdagenMinistryDAOImpl extends
 		AbstractGenericDAOImpl<ViewRiksdagenMinistry, String> implements
 		ViewRiksdagenMinistryDAO {
 

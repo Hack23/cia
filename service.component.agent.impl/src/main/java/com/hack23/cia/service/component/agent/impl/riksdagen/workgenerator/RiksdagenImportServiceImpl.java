@@ -52,7 +52,7 @@ import com.hack23.cia.service.data.api.VoteDataDAO;
  */
 @Component("RiksdagenImportService")
 @Transactional(propagation = Propagation.MANDATORY)
-public final class RiksdagenImportServiceImpl implements RiksdagenImportService {
+final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenImportServiceImpl.class);

@@ -45,7 +45,7 @@ import com.hack23.cia.service.data.api.VoteDataDAO;
  */
 @Component("RiksdagenUpdateService")
 @Transactional(propagation = Propagation.MANDATORY)
-public final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
+final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 
 	/** The committee proposal component data dao. */
 	@Autowired

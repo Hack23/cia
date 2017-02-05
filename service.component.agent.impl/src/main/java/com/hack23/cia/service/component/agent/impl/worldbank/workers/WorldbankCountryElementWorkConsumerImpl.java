@@ -36,7 +36,7 @@ import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
  */
 @Service("worldbankCountryElementWorkConsumerImpl")
 @Transactional
-public final class WorldbankCountryElementWorkConsumerImpl implements
+final class WorldbankCountryElementWorkConsumerImpl implements
 MessageListener {
 
 	/** The Constant LOGGER. */
