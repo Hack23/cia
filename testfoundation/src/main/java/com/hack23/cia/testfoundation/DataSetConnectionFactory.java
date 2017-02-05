@@ -19,7 +19,9 @@
 package com.hack23.cia.testfoundation;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
+import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.DatabaseSequenceFilter;
 import org.dbunit.database.QueryDataSet;
@@ -42,14 +44,21 @@ public final class DataSetConnectionFactory {
 	/**
 	 * Gets the data set.
 	 *
+	 * @param connection
+	 *            the connection
 	 * @return the data set
-	 * @throws Exception
-	 *             the exception
+	 * @throws DatasetFactoryException
+	 *             the dataset factory exception
 	 */
-	public IDataSet getDataSet(final Connection connection) throws Exception {
-		final DatabaseConnection databaseConnection = new DatabaseConnection(connection);
-		final ITableFilter filter = new DatabaseSequenceFilter(databaseConnection);
-		return new FilteredDataSet(filter, databaseConnection.createDataSet());
+	public IDataSet getDataSet(final Connection connection) throws DatasetFactoryException {
+		DatabaseConnection databaseConnection;
+		try {
+			databaseConnection = new DatabaseConnection(connection);
+			final ITableFilter filter = new DatabaseSequenceFilter(databaseConnection);
+			return new FilteredDataSet(filter, databaseConnection.createDataSet());
+		} catch (DatabaseUnitException | SQLException e) {
+			throw new DatasetFactoryException(e);
+		}
 	}
 
 	
@@ -59,11 +68,15 @@ public final class DataSetConnectionFactory {
 	 * @param connection
 	 *            the connection
 	 * @return the query dataset
-	 * @throws Exception
-	 *             the exception
+	 * @throws DatasetFactoryException
+	 *             the dataset factory exception
 	 */
-	public QueryDataSet getQueryDataset(final Connection connection) throws Exception {
-		return new QueryDataSet(new DatabaseConnection(connection));
+	public QueryDataSet getQueryDataset(final Connection connection) throws DatasetFactoryException {
+		try {
+			return new QueryDataSet(new DatabaseConnection(connection));
+		} catch (DatabaseUnitException e) {
+			throw new DatasetFactoryException(e);
+		}
 	}
 
 }
