@@ -18,9 +18,6 @@
 */
 package com.hack23.cia.service.data.impl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Repository;
 
 import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
@@ -31,10 +28,6 @@ import com.hack23.cia.service.data.api.IndicatorElementDAO;
  */
 @Repository("IndicatorElementDAO")
 public final class IndicatorElementDAOImpl extends AbstractGenericDAOImpl<IndicatorElement, Long> implements IndicatorElementDAO {
-
-	/** The entity manager. */
-	@PersistenceContext(name = "ciaPersistenceUnit")
-	private EntityManager entityManager;
 
 	/**
 	 * Instantiates a new indicator element dao impl.
