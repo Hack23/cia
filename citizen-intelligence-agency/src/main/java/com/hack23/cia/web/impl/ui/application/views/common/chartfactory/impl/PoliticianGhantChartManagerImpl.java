@@ -91,7 +91,8 @@ public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartMan
 
 			@Override
 			public String getBackgroundColor(final AssignmentData t) {
-				String color = "A8D999";
+				String color;
+				
 				final String parliamentType = KAMMARUPPDRAG;
 
 				if (LEDIG.equalsIgnoreCase(t.getStatus())) {

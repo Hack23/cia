@@ -60,7 +60,7 @@ public final class AdminApplicationEventsChartsPageModContentFactoryImpl
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters != null && parameters.contains(PageMode.CHARTS.toString());
+		return parameters != null && NAME.equals(page) && parameters.contains(PageMode.CHARTS.toString());
 	}
 
 	@Secured({ "ROLE_ADMIN" })

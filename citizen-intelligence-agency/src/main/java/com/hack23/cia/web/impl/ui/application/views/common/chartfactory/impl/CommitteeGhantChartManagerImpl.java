@@ -83,7 +83,7 @@ public final class CommitteeGhantChartManagerImpl
 
 			@Override
 			public String getBackgroundColor(final ViewRiksdagenCommitteeRoleMember t) {
-				String color = "A8D999";
+				String color;
 
 				if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains("suppleant")) {
 					color = "ded858";
