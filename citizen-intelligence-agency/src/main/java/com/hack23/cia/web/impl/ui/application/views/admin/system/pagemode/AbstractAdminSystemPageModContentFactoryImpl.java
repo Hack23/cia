@@ -37,7 +37,7 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 	private static final int PAGE_ONE = 1;
 
 	/** The Constant PAGE_SEPARATOR. */
-	private static final String PAGE_SEPARATOR = "/";
+	private static final char PAGE_SEPARATOR = '/';
 
 	/** The Constant SHOW. */
 	private static final String SHOW = " :: Show ";

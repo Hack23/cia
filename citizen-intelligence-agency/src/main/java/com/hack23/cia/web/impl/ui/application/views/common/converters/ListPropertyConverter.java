@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.converters;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -30,6 +31,12 @@ import com.vaadin.data.util.converter.Converter;
  * The Class ListPropertyRenderer.
  */
 public final class ListPropertyConverter implements Converter<String, List> {
+
+	private static final char CONTENT_SEPARATOR = ' ';
+
+	private static final String START_TAG = "[ ";
+
+	private static final char END_TAG = ']';
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -112,7 +119,7 @@ public final class ListPropertyConverter implements Converter<String, List> {
 	@Override
 	public String convertToPresentation(final List value, final Class<? extends String> targetType, final Locale locale)
 			throws ConversionException {
-		final StringBuilder stringBuilder = new StringBuilder().append("[ ");
+		final StringBuilder stringBuilder = new StringBuilder().append(START_TAG);
 
 		if (value != null) {
 			for (final Object object : value) {
@@ -132,14 +139,14 @@ public final class ListPropertyConverter implements Converter<String, List> {
 
 					}
 
-				} catch (final Exception e) {
-					stringBuilder.append(" ");
+				} catch (final IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+					throw new ConversionException(e);
 				}
-				stringBuilder.append(" ");
+				stringBuilder.append(CONTENT_SEPARATOR);
 			}
 		}
 
-		stringBuilder.append("]");
+		stringBuilder.append(END_TAG);
 
 		return stringBuilder.toString();
 	}

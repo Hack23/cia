@@ -48,6 +48,15 @@ import com.vaadin.ui.VerticalLayout;
  */
 public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 
+	/** The Constant PARTY_END_TAG. */
+	private static final char PARTY_END_TAG = ')';
+
+	/** The Constant PARTY_START_TAG. */
+	private static final String PARTY_START_TAG = " (";
+
+	/** The Constant CONTENT_SEPARATOR. */
+	private static final char CONTENT_SEPARATOR = ' ';
+	
 	/** The Constant FILTER_DATA_BEFORE_YEAR. */
 	private static final int FILTER_DATA_BEFORE_YEAR = 2000;
 
@@ -208,11 +217,11 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 			if (stepMapping.getRoleCode(assignmentData) != null) {
 				final StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.append(stepMapping.getFirstName(assignmentData));
-				stringBuilder.append(" ");
+				stringBuilder.append(CONTENT_SEPARATOR);
 				stringBuilder.append(stepMapping.getLastName(assignmentData));
-				stringBuilder.append(" (");
+				stringBuilder.append(PARTY_START_TAG);
 				stringBuilder.append(stepMapping.getParty(assignmentData));
-				stringBuilder.append(")");
+				stringBuilder.append(PARTY_END_TAG);
 				subStepName = stringBuilder.toString();
 			}
 

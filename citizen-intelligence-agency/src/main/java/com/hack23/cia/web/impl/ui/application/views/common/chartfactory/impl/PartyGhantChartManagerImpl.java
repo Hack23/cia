@@ -83,7 +83,7 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 
 			@Override
 			public String getBackgroundColor(final ViewRiksdagenPartyRoleMember t) {
-				String color = "A8D999";
+				String color;
 
 				if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains("vice")) {
 					color = "A8D999";
