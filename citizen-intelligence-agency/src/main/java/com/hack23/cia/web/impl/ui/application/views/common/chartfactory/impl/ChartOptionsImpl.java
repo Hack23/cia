@@ -51,18 +51,31 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Char
 @Component
 public final class ChartOptionsImpl implements ChartOptions {
 
+	/** The Constant LEGEND_COLUMNS. */
+	private static final int LEGEND_COLUMNS = 3;
+	
+	/** The Constant LEGEND_ROWS. */
+	private static final int LEGEND_ROWS = 20;	
+	
+	/** The Constant LEGEND_FONT_SIZE. */
 	private static final String LEGEND_FONT_SIZE = "10px";
 
+	/** The Constant BORDER_COLOR. */
 	private static final String BORDER_COLOR = "#83898c";
 
+	/** The Constant GRIDLINE_COLOR. */
 	private static final String GRIDLINE_COLOR = "#213f49";
 
+	/** The Constant BACKGROUND_COLOR. */
 	private static final String BACKGROUND_COLOR = "#13303f";
 
+	/** The Constant TEXT_COLOR. */
 	private static final String TEXT_COLOR = "#ffffff";
 
+	/** The Constant FONT_SIZE. */
 	private static final String FONT_SIZE = "8px";
 
+	/** The Constant FONT_FAMILY. */
 	private static final String FONT_FAMILY = "Inconsolata";
 
 	/** The Constant NUMBER_TICKS_DATE. */
@@ -78,6 +91,11 @@ public final class ChartOptionsImpl implements ChartOptions {
 		super();
 	}
 
+	/**
+	 * Creates the axes XY date float.
+	 *
+	 * @return the axes
+	 */
 	private static Axes createAxesXYDateFloat() {
 		return new Axes()
 				.addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
@@ -86,6 +104,11 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFormatString("%.2f").setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(5));
 	}
 
+	/**
+	 * Creates the default grid.
+	 *
+	 * @return the grid
+	 */
 	private static Grid createDefaultGrid() {
 		final Grid grid = new Grid();
 		grid.setBackground(BACKGROUND_COLOR);
@@ -94,48 +117,91 @@ public final class ChartOptionsImpl implements ChartOptions {
 		return grid;
 	}
 
+	/**
+	 * Created legend enhanced inside north west.
+	 *
+	 * @return the legend
+	 */
 	private static Legend createdLegendEnhancedInsideNorthWest() {
 		return setLegendStyling(new Legend().setShow(true)
 				.setRendererOptions(
-						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true))
+						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(LEGEND_COLUMNS).setNumberRows(LEGEND_ROWS))
 				.setPlacement(LegendPlacements.INSIDE_GRID).setLocation(LegendLocations.NORTH_WEST));
 	}
 
+	/**
+	 * Created legend enhanced inside west.
+	 *
+	 * @return the legend
+	 */
 	private static Legend createdLegendEnhancedInsideWest() {
 		return setLegendStyling(
 				new Legend().setShow(true).setPlacement(LegendPlacements.INSIDE_GRID).setLocation(LegendLocations.WEST)
 						.setRenderer(LegendRenderers.ENHANCED).setRendererOptions(new EnhancedLegendRenderer()
-								.setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true)));
+								.setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(LEGEND_COLUMNS).setNumberRows(LEGEND_ROWS)));
 	}
 
+	/**
+	 * Creates the legend outside.
+	 *
+	 * @return the legend
+	 */
+	private static Legend createLegendOutside() {
+		return setLegendStyling(new Legend().setShow(true)
+				.setRendererOptions(
+						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(LEGEND_COLUMNS).setNumberRows(LEGEND_ROWS))
+				.setPlacement(LegendPlacements.OUTSIDE_GRID));
+	}
+
+	/**
+	 * Sets the legend styling.
+	 *
+	 * @param legend
+	 *            the legend
+	 * @return the legend
+	 */
+	private static Legend setLegendStyling(final Legend legend) {
+		legend.setBackground(BACKGROUND_COLOR).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(LEGEND_FONT_SIZE);
+		return legend;
+	}
+
+	/**
+	 * Creates the high lighter.
+	 *
+	 * @return the highlighter
+	 */
 	private static Highlighter createHighLighter() {
 		return new Highlighter().setShow(true).setShowTooltip(true).setTooltipAlwaysVisible(true)
 				.setKeepTooltipInsideChart(true);
 	}
 
+	/**
+	 * Creates the high lighter north.
+	 *
+	 * @return the highlighter
+	 */
 	private static Highlighter createHighLighterNorth() {
 		return new Highlighter().setShow(true).setShowTooltip(true).setTooltipAlwaysVisible(true)
 				.setKeepTooltipInsideChart(true).setTooltipLocation(TooltipLocations.NORTH)
 				.setTooltipAxes(TooltipAxes.XY_BAR);
 	}
 
-	private static Legend createLegendOutside() {
-		return setLegendStyling(new Legend().setShow(true)
-				.setRendererOptions(
-						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true))
-				.setPlacement(LegendPlacements.OUTSIDE_GRID));
-	}
-
+	/**
+	 * Creates the series default pie chart.
+	 *
+	 * @return the series defaults
+	 */
 	private static SeriesDefaults createSeriesDefaultPieChart() {
 		return new SeriesDefaults().setRenderer(SeriesRenderers.PIE)
 				.setRendererOptions(new PieRenderer().setShowDataLabels(true)).setShadow(true);
 	}
 
-	private static Legend setLegendStyling(final Legend legend) {
-		legend.setBackground(BACKGROUND_COLOR).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(LEGEND_FONT_SIZE);
-		return legend;
-	}
 
+	/**
+	 * Creates the cursor.
+	 *
+	 * @return the cursor
+	 */
 	private static Cursor createCursor() {
 		return new Cursor().setZoom(true).setShow(true);
 	}
