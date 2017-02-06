@@ -86,9 +86,6 @@ public abstract class AbstractChartDataManagerImpl {
 		chart.setMarginBottom(5);
 		chart.setMarginTop(5);
 
-		chart.setEnableDownload(true);
-		chart.setChartImageFormat(ChartImageFormat.PNG);
-
 		horizontalLayout.addComponent(chart);
 		chart.setCaption(caption);
 	}
