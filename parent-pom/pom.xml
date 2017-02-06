@@ -127,7 +127,7 @@
     <cia.project.versions.ehcache3>3.2.0</cia.project.versions.ehcache3>
     <cia.project.versions.poi>3.16-beta2</cia.project.versions.poi>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
-    <cia.project.versions.ant>1.10.0</cia.project.versions.ant>
+    <cia.project.versions.ant>1.10.1</cia.project.versions.ant>
     <cia.project.versions.junit>4.12</cia.project.versions.junit>
     <cia.project.versions.junit.dep>4.11</cia.project.versions.junit.dep>
     <cia.project.versions.easymock>3.4</cia.project.versions.easymock>
