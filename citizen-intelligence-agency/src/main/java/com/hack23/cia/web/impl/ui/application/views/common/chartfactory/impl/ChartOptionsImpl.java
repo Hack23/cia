@@ -51,6 +51,18 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Char
 @Component
 public final class ChartOptionsImpl implements ChartOptions {
 
+	/** The Constant SLICE_MARGIN. */
+	private static final int SLICE_MARGIN = 3;
+
+	/** The Constant START_ANGLE. */
+	private static final int START_ANGLE = -90;
+
+	/** The Constant FLOAT_FORMAT. */
+	private static final String FLOAT_FORMAT = "%.2f";
+
+	/** The Constant NUMBER_TICKS. */
+	private static final int NUMBER_TICKS = 5;
+
 	/** The Constant LEGEND_COLUMNS. */
 	private static final int LEGEND_COLUMNS = 3;
 	
@@ -101,15 +113,20 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
 						.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE))
 						.setNumberTicks(NUMBER_TICKS_DATE))
-				.addAxis(new XYaxis(XYaxes.Y).setRenderer(AxisRenderers.LINEAR).setTickOptions(new AxisTickRenderer().setFormatString("%.2f").setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(5));
+				.addAxis(new XYaxis(XYaxes.Y).setRenderer(AxisRenderers.LINEAR).setTickOptions(new AxisTickRenderer().setFormatString(FLOAT_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(NUMBER_TICKS));
 	}
 
+	/**
+	 * Creates the axes XY date float log.
+	 *
+	 * @return the axes
+	 */
 	private static Axes createAxesXYDateFloatLog() {
 		return new Axes()
 				.addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
 						.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE))
 						.setNumberTicks(NUMBER_TICKS_DATE))
-				.addAxis(new XYaxis(XYaxes.Y).setRenderer(AxisRenderers.LOG).setTickOptions(new AxisTickRenderer().setFormatString("%.2f").setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(5));
+				.addAxis(new XYaxis(XYaxes.Y).setRenderer(AxisRenderers.LOG).setTickOptions(new AxisTickRenderer().setFormatString(FLOAT_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(NUMBER_TICKS));
 	}
 
 	
@@ -219,7 +236,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 	public Options createOptionsCountryLineChart(final Series series) {
 		final Axes axes = new Axes().addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
 				.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE))
-				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(5));
+				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(NUMBER_TICKS));
 
 		return new Options().addOption(new SeriesDefaults()).addOption(axes)
 				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside())
@@ -234,7 +251,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.setTooltipAlwaysVisible(true).setKeepTooltipInsideChart(true);
 
 		final SeriesDefaults seriesDefaults = new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
-				.setRendererOptions(new DonutRenderer().setSliceMargin(3).setStartAngle(-90).setShowDataLabels(true)
+				.setRendererOptions(new DonutRenderer().setSliceMargin(SLICE_MARGIN).setStartAngle(START_ANGLE).setShowDataLabels(true)
 						.setDataLabels(DataLabels.VALUE));
 
 
@@ -250,7 +267,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.setTooltipAlwaysVisible(true).setKeepTooltipInsideChart(true);
 
 		final SeriesDefaults seriesDefaults = new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
-				.setRendererOptions(new DonutRenderer().setSliceMargin(3).setStartAngle(-90).setShowDataLabels(true)
+				.setRendererOptions(new DonutRenderer().setSliceMargin(SLICE_MARGIN).setStartAngle(START_ANGLE).setShowDataLabels(true)
 						.setDataLabels(DataLabels.VALUE));
 
 		return new Options().setSeriesDefaults(seriesDefaults).setLegend(legend)
