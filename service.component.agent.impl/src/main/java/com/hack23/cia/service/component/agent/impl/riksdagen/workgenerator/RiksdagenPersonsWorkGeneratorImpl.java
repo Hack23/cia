@@ -80,8 +80,8 @@ final class RiksdagenPersonsWorkGeneratorImpl extends AbstractRiksdagenDataSourc
 					sendMessage(personElementWorkdestination, new PersonElement().withId(personId));
 				}
 			}
-		} catch (final Exception e1) {
-			LOGGER.warn("jms", e1);
+		} catch (final Exception exception) {
+			LOGGER.warn("jms", exception);
 		}
 	}
 

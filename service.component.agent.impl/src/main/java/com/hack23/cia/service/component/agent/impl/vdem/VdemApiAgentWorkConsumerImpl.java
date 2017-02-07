@@ -72,8 +72,8 @@ final class VdemApiAgentWorkConsumerImpl extends AbstractAgentWorkConsumerImpl {
 				break;
 			}
 
-		} catch (final JMSException e1) {
-			LOGGER.warn("jms", e1);
+		} catch (final JMSException exception) {
+			LOGGER.warn("jms", exception);
 		}
 
 	}

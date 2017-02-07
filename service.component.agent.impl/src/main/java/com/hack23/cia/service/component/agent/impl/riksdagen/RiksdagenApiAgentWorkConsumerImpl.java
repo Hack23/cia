@@ -71,8 +71,8 @@ final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkConsumerI
 			}
 			LOGGER.warn("Missing import for :{}", dataSource);
 
-		} catch (final JMSException e1) {
-			LOGGER.warn("jms", e1);
+		} catch (final JMSException exception) {
+			LOGGER.warn("jms", exception);
 		}
 	}
 

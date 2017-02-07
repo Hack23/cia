@@ -77,8 +77,8 @@ final class WorldBankIndicatorWorkGeneratorImpl extends AbstractWorldBankDataSou
 							element);
 				}
 			}
-		} catch (final Exception e1) {
-			LOGGER.warn("jms", e1);
+		} catch (final Exception exception) {
+			LOGGER.warn("jms", exception);
 		}
 	}
 

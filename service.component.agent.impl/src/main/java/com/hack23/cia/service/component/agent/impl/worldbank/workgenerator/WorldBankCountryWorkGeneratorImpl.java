@@ -82,8 +82,8 @@ final class WorldBankCountryWorkGeneratorImpl extends AbstractWorldBankDataSourc
 							countryElement);
 				}
 			}
-		} catch (final Exception e1) {
-			LOGGER.warn("jms", e1);
+		} catch (final Exception exception) {
+			LOGGER.warn("jms", exception);
 		}
 	}
 

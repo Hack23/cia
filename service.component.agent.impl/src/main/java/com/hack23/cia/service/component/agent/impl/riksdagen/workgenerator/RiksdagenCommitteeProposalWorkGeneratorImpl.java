@@ -74,8 +74,8 @@ final class RiksdagenCommitteeProposalWorkGeneratorImpl extends AbstractRiksdage
 					LOGGER.info("load http://data.riksdagen.se/utskottsforslag/{}", id);
 				}
 			}
-		} catch (final Exception e1) {
-			LOGGER.warn("Loading avaibleCommitteeProposal", e1);
+		} catch (final Exception exception) {
+			LOGGER.warn("Loading avaibleCommitteeProposal", exception);
 		}
 	}
 
