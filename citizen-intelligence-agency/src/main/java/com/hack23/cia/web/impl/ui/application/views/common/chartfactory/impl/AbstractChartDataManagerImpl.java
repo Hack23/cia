@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
 import java.util.Optional;
 
-import org.dussan.vaadin.dcharts.ChartImageFormat;
 import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -40,6 +39,21 @@ import com.vaadin.ui.Panel;
 public abstract class AbstractChartDataManagerImpl {
 
 
+	/** The Constant WINDOW_WIDTH_REDUCTION. */
+	private static final int WINDOW_WIDTH_REDUCTION = 50;
+	
+	/** The Constant WINDOW_HEIGHT_REDUCTION. */
+	private static final int WINDOW_HEIGHT_REDUCTION = 200;
+	
+	/** The Constant CHART_HEIGHT_REDUCTION. */
+	private static final int CHART_HEIGHT_REDUCTION = 100;
+	
+	/** The Constant CHART_WIDTH_REDUCTION. */
+	private static final int CHART_WIDTH_REDUCTION = 50;
+	
+	/** The Constant CHART_MARGIN_SIZE. */
+	private static final int CHART_MARGIN_SIZE = 5;
+	
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
@@ -64,8 +78,8 @@ public abstract class AbstractChartDataManagerImpl {
 	protected final void addChart(final AbstractOrderedLayout content,final String caption, final DCharts chart) {
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 
-		final int browserWindowWidth = Page.getCurrent().getBrowserWindowWidth() -50;
-		final int browserWindowHeight = Page.getCurrent().getBrowserWindowHeight() -200;
+		final int browserWindowWidth = Page.getCurrent().getBrowserWindowWidth() - WINDOW_WIDTH_REDUCTION;
+		final int browserWindowHeight = Page.getCurrent().getBrowserWindowHeight() - WINDOW_HEIGHT_REDUCTION;
 
 		horizontalLayout.setWidth(browserWindowWidth, Unit.PIXELS);
 		horizontalLayout.setHeight(browserWindowHeight, Unit.PIXELS);
@@ -79,12 +93,12 @@ public abstract class AbstractChartDataManagerImpl {
 		content.setExpandRatio(formPanel, ContentRatio.LARGE);
 
 
-		chart.setWidth(browserWindowWidth-50, Unit.PIXELS);
-		chart.setHeight(browserWindowHeight-100, Unit.PIXELS);
-		chart.setMarginRight(5);
-		chart.setMarginLeft(5);
-		chart.setMarginBottom(5);
-		chart.setMarginTop(5);
+		chart.setWidth(browserWindowWidth - CHART_WIDTH_REDUCTION, Unit.PIXELS);
+		chart.setHeight(browserWindowHeight - CHART_HEIGHT_REDUCTION, Unit.PIXELS);
+		chart.setMarginRight(CHART_MARGIN_SIZE);
+		chart.setMarginLeft(CHART_MARGIN_SIZE);
+		chart.setMarginBottom(CHART_MARGIN_SIZE);
+		chart.setMarginTop(CHART_MARGIN_SIZE);
 
 		horizontalLayout.addComponent(chart);
 		chart.setCaption(caption);
