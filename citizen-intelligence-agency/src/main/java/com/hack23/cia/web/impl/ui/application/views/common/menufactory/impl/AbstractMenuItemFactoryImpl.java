@@ -43,8 +43,10 @@ import com.vaadin.ui.VerticalLayout;
  */
 public abstract class AbstractMenuItemFactoryImpl {
 
+	/** The Constant COMMAND20. */
 	private static final PageModeMenuCommand COMMAND20 = new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS);
 
+	/** The Constant COMMAND19. */
 	private static final PageModeMenuCommand COMMAND19 = new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME,
 			"");
 
@@ -116,6 +118,33 @@ public abstract class AbstractMenuItemFactoryImpl {
 	private static final PageModeMenuCommand COMMAND = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
 			PageMode.OVERVIEW);
 
+	/** The Constant LINK_STYLE_NAME. */
+	private static final String LINK_STYLE_NAME = "link";
+
+	/** The Constant HEADER_STYLE_NAME. */
+	private static final String HEADER_STYLE_NAME = "Header";
+
+	/** The Constant MENU_BAR_WIDTH. */
+	private static final String MENU_BAR_WIDTH = "80%";
+
+	/** The Constant MAIN. */
+	private static final String MAIN = "Main";
+
+	/** The Constant REGISTER. */
+	private static final String REGISTER = "Register";
+
+	/** The Constant LOGIN. */
+	private static final String LOGIN = "Login";
+
+	/** The Constant LOGOUT. */
+	private static final String LOGOUT = "Logout";
+
+	/** The Constant APPLICATION. */
+	private static final String APPLICATION = "Application";
+
+	/** The Constant EMAIL. */
+	private static final String EMAIL = "Email";
+
 	/** The Constant USER_ACTIVITY. */
 	private static final String USER_ACTIVITY = "User Activity";
 
@@ -179,6 +208,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
+	/** The Constant APPLICATION_EVENT_CHARTS. */
 	private static final String APPLICATION_EVENT_CHARTS = "Application Event charts";
 
 
@@ -199,13 +229,13 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 */
 	protected final void initApplicationMenuBar(final MenuBar menuBar) {
 		menuBar.removeItems();
-		menuBar.setWidth("80%");
-		menuBar.setStyleName("Header");
-		final MenuItem mainViewItem = menuBar.addItem("Application", FontAwesome.SERVER, null);
+		menuBar.setWidth(MENU_BAR_WIDTH);
+		menuBar.setStyleName(HEADER_STYLE_NAME);
+		final MenuItem mainViewItem = menuBar.addItem(APPLICATION, FontAwesome.SERVER, null);
 
 		mainViewItem.addItem(START_TEXT, FontAwesome.STAR, COMMAND);
 
-		final MenuItem mainItem = mainViewItem.addItem("Main", FontAwesome.STAR, null);
+		final MenuItem mainItem = mainViewItem.addItem(MAIN, FontAwesome.STAR, null);
 
 		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.AREA_CHART, COMMAND18);
 
@@ -213,10 +243,10 @@ public abstract class AbstractMenuItemFactoryImpl {
 		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {
 			mainViewItem.addItem(USERHOME, FontAwesome.USER,COMMAND2);
 			createAdminMenu(mainViewItem);
-			mainViewItem.addItem("Logout", FontAwesome.SIGN_OUT, COMMAND3);
+			mainViewItem.addItem(LOGOUT, FontAwesome.SIGN_OUT, COMMAND3);
 		} else {
-			mainViewItem.addItem("Login", FontAwesome.SIGN_IN, COMMAND4);
-			mainViewItem.addItem("Register", FontAwesome.USER_PLUS, COMMAND5);
+			mainViewItem.addItem(LOGIN, FontAwesome.SIGN_IN, COMMAND4);
+			mainViewItem.addItem(REGISTER, FontAwesome.USER_PLUS, COMMAND5);
 		}
 
 	}
@@ -246,7 +276,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 
 			managementMenuItem.addItem(DATA_SUMMARY_TEXT,FontAwesome.DATABASE, COMMAND13);
 
-			managementMenuItem.addItem("Email",FontAwesome.MAIL_FORWARD, COMMAND19);
+			managementMenuItem.addItem(EMAIL,FontAwesome.MAIL_FORWARD, COMMAND19);
 
 
 			managementMenuItem.addItem(SYSTEM_PERFORMANCE,FontAwesome.DASHBOARD, COMMAND14);
@@ -261,6 +291,20 @@ public abstract class AbstractMenuItemFactoryImpl {
 		}
 	}
 
+	/**
+	 * Creates the button link.
+	 *
+	 * @param panelContent
+	 *            the panel content
+	 * @param linkText
+	 *            the link text
+	 * @param icon
+	 *            the icon
+	 * @param command
+	 *            the command
+	 * @param description
+	 *            the description
+	 */
 	protected final void createButtonLink(final GridLayout panelContent,final String linkText,final Resource icon, final ClickListener command, final String description) {
 		final GridLayout grid = new GridLayout(2, 1);
 		grid.setWidth(100, Unit.PERCENTAGE);
@@ -269,7 +313,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 		grid.setColumnExpandRatio(1, 2);
 
 		final Button b = new Button(linkText);
-		b.setStyleName("link");
+		b.setStyleName(LINK_STYLE_NAME);
 		b.addClickListener(command);
 		b.setWidth(100, Unit.PERCENTAGE);
 
@@ -290,6 +334,13 @@ public abstract class AbstractMenuItemFactoryImpl {
 		panelContent.setComponentAlignment(grid, Alignment.MIDDLE_LEFT);
 	}
 
+	/**
+	 * Creates the grid layout.
+	 *
+	 * @param panelContent
+	 *            the panel content
+	 * @return the grid layout
+	 */
 	protected final GridLayout createGridLayout(final VerticalLayout panelContent) {
 		final GridLayout grid = new GridLayout(2, 1);
 		grid.setWidth(100, Unit.PERCENTAGE);
