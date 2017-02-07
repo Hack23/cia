@@ -101,9 +101,18 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
 						.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE))
 						.setNumberTicks(NUMBER_TICKS_DATE))
-				.addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFormatString("%.2f").setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(5));
+				.addAxis(new XYaxis(XYaxes.Y).setRenderer(AxisRenderers.LINEAR).setTickOptions(new AxisTickRenderer().setFormatString("%.2f").setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(5));
 	}
 
+	private static Axes createAxesXYDateFloatLog() {
+		return new Axes()
+				.addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
+						.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE))
+						.setNumberTicks(NUMBER_TICKS_DATE))
+				.addAxis(new XYaxis(XYaxes.Y).setRenderer(AxisRenderers.LOG).setTickOptions(new AxisTickRenderer().setFormatString("%.2f").setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(5));
+	}
+
+	
 	/**
 	 * Creates the default grid.
 	 *
@@ -203,7 +212,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 	 * @return the cursor
 	 */
 	private static Cursor createCursor() {
-		return new Cursor().setZoom(true).setShow(true);
+		return new Cursor().setZoom(true).setLooseZoom(true).setShow(true);
 	}
 
 	@Override
