@@ -125,7 +125,7 @@ final class ApplicationManagerImpl implements ApplicationManager, ApplicationCon
 		return serviceResponse;
 	}
 
-    @Async
+    @Async("SecureTaskExecutor")
     @Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
     @Override
 	public Future<ServiceResponse> asyncService(final ServiceRequest serviceRequest) {

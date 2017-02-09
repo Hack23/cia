@@ -79,6 +79,7 @@
    <filter>
        <filter-name>customResourceFilter</filter-name>
        <filter-class>net.bull.javamelody.CustomResourceFilter</filter-class>
+       <async-supported>true</async-supported>       
        <init-param>
            <param-name>customizableMonitoring.css</param-name>
            <param-value>/VAADIN/themes/cia/customizedMonitoring.css</param-value>
