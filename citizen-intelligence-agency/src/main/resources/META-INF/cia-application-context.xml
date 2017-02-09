@@ -81,13 +81,31 @@
 		</property>
 	</bean>
 
-	<bean id="applicationMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor">
+
+	<bean id="pageModeContentFactoryMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor">
 		<property name="pointcut">
 			<bean class="net.bull.javamelody.MonitoredWithInterfacePointcut">
 				<property name="interfaceName"
-					value="com.hack23.cia.service.api.ApplicationManager" />
+					value="com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory" />
 			</bean>
 		</property>
+	</bean>
+
+	<bean id="businessServiceMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor">
+		<property name="pointcut">
+			<bean class="net.bull.javamelody.MonitoredWithInterfacePointcut">
+				<property name="interfaceName"
+					value="com.hack23.cia.service.impl.action.common.BusinessService" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="daoMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor">
+	    <property name="pointcut">
+	        <bean class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+	            <property name="pattern" value="com.hack23.cia.service.data.api.*" />
+	        </bean>
+	    </property>
 	</bean>
 
 	<bean id="webCacheManager" depends-on="serviceCacheManager"

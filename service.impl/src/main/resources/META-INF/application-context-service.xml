@@ -30,10 +30,14 @@
 	<context:spring-configured />
 	<context:component-scan base-package="com.hack23.cia.service.impl" />
 
-
 	<task:annotation-driven executor="myExecutor" scheduler="myScheduler"/>
 	<task:executor id="myExecutor" pool-size="5"/>
 	<task:scheduler id="myScheduler" pool-size="10"/>
+
+	<bean id="SecureTaskExecutor"
+	          class="org.springframework.security.task.DelegatingSecurityContextAsyncTaskExecutor">
+	     <constructor-arg ref="myExecutor"/>
+	</bean>
 
 	<security:global-method-security secured-annotations="enabled"/>
 
