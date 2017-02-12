@@ -113,19 +113,34 @@ public final class LoadHelper {
 	private static void initProxyAndCollections(final Object obj, final PropertyDescriptor[] properties,
 			final Set<Object> dejaVu) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
 		for (final PropertyDescriptor propertyDescriptor : properties) {
-
 			if (PropertyUtils.getReadMethod(propertyDescriptor) != null) {
+				initProxies(dejaVu, PropertyUtils.getProperty(obj, propertyDescriptor.getName()));
+			}
+		}
+	}
 
-				final Object origProp = PropertyUtils.getProperty(obj, propertyDescriptor.getName());
-
-				if (origProp != null) {
-					recursiveInitialize(origProp, dejaVu);
-				}
-				if (origProp instanceof Collection) {
-					for (final Object item : (Collection<?>) origProp) {
-						recursiveInitialize(item, dejaVu);
-					}
-				}
+	/**
+	 * Inits the proxies.
+	 *
+	 * @param dejaVu
+	 *            the deja vu
+	 * @param origProp
+	 *            the orig prop
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
+	 * @throws InvocationTargetException
+	 *             the invocation target exception
+	 * @throws NoSuchMethodException
+	 *             the no such method exception
+	 */
+	private static void initProxies(final Set<Object> dejaVu, final Object origProp)
+			throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+		if (origProp != null) {
+			recursiveInitialize(origProp, dejaVu);
+		}
+		if (origProp instanceof Collection) {
+			for (final Object item : (Collection<?>) origProp) {
+				recursiveInitialize(item, dejaVu);
 			}
 		}
 	}

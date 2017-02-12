@@ -170,23 +170,46 @@ final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 		final Map<String, String> map = new ConcurrentHashMap<>();
 
 		for (final DocumentElement documentElement : all) {
-			try {
-				if (getDate(documentElement.getMadePublicDate()).after(after)
-						&& documentTypeValues.contains(documentElement.getDocumentType())) {
-					if (onlyWithDocStatus) {
-						if (documentElement.getDocumentStatusUrlXml() != null) {
-							map.put(documentElement.getId(), documentElement.getDocumentType());
-						}
-
-					} else {
-						map.put(documentElement.getId(), documentElement.getDocumentType());
-					}
-				}
-			} catch (final ParseException e) {
-				LOGGER.warn("Add msg", e);
+			if (checkIncludeDate(after, documentTypeValues, documentElement) && checkIncludeStatus(onlyWithDocStatus, documentElement)) {
+				map.put(documentElement.getId(), documentElement.getDocumentType());
 			}
 		}
 		return map;
+	}
+
+	/**
+	 * Check include status.
+	 *
+	 * @param onlyWithDocStatus
+	 *            the only with doc status
+	 * @param documentElement
+	 *            the document element
+	 * @return true, if successful
+	 */
+	private static boolean checkIncludeStatus(final boolean onlyWithDocStatus, final DocumentElement documentElement) {
+		return !onlyWithDocStatus || documentElement.getDocumentStatusUrlXml() != null;
+	}
+
+	/**
+	 * Check include date.
+	 *
+	 * @param after
+	 *            the after
+	 * @param documentTypeValues
+	 *            the document type values
+	 * @param documentElement
+	 *            the document element
+	 * @return true, if successful
+	 */
+	private static boolean checkIncludeDate(final Date after, final List<String> documentTypeValues,
+			final DocumentElement documentElement) {
+		try {
+			return getDate(documentElement.getMadePublicDate()).after(after)
+					&& documentTypeValues.contains(documentElement.getDocumentType());
+		} catch (ParseException e) {
+			LOGGER.warn("Problem getting date from{} : exception:{}", documentElement, e);
+			return false;
+		}
 	}
 
 	/**
@@ -221,12 +244,16 @@ final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 		return createMapFromList(personDataDAO.getIdList());
 	}
 
-
 	@Override
 	public int getStartYearForDocumentElement() {
-		final ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService.checkValueOrLoadDefault("Load Riksdagen documents from year", "Load Riksdagen documents from year", ConfigurationGroup.AGENT, RiksdagenImportService.class.getSimpleName(), "Riksdagen Import Service", "Responsible import Riksdagen data", "agent.riksdagen.documents.loadfromyear", "2000");
+		final ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService
+				.checkValueOrLoadDefault("Load Riksdagen documents from year", "Load Riksdagen documents from year",
+						ConfigurationGroup.AGENT, RiksdagenImportService.class.getSimpleName(),
+						"Riksdagen Import Service", "Responsible import Riksdagen data",
+						"agent.riksdagen.documents.loadfromyear", "2000");
 
-		return documentElementDAO.getMissingDocumentStartFromYear(Integer.parseInt(registeredUsersGetAdminConfig.getPropertyValue()));
+		return documentElementDAO
+				.getMissingDocumentStartFromYear(Integer.parseInt(registeredUsersGetAdminConfig.getPropertyValue()));
 	}
 
 }
