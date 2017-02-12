@@ -94,7 +94,7 @@ public final class EncryptProperty {
 	 *            the symmetric key
 	 * @return the encryptor
 	 */
-	private StandardPBEStringEncryptor getEncryptor(final String symmetricKey) {
+	private static StandardPBEStringEncryptor getEncryptor(final String symmetricKey) {
 		Security.addProvider(new BouncyCastleProvider());
 		final StandardPBEStringEncryptor mySecondEncryptor = new StandardPBEStringEncryptor();
 		mySecondEncryptor.setProviderName(BC_PROVIDER_NAME);
