@@ -94,7 +94,7 @@ MessageListener {
 		public void process(final DocumentElement t) {
 			try {
 				jmsTemplate.send(documentElementWorkdestination, new ProducerMessageFactory(t));
-			} catch (final org.springframework.jms.JmsException   e) {
+			} catch (final org.springframework.jms.JmsException e) {
 				LOGGER.warn("Error proccessing documentElement",e);
 			}
 		}
