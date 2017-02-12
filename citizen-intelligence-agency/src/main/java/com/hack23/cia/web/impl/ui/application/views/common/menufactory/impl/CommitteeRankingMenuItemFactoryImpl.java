@@ -69,17 +69,8 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	private static final PageModeMenuCommand COMMAND18 = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
 			PageMode.DATAGRID);
 
-	/** The Constant ALL_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES. */
-	private static final String ALL_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES = "All committees,total days served in committees";
-
 	/** The Constant ALL_COMMITTEES_TOTAL_MEMBERS. */
 	private static final String ALL_COMMITTEES_TOTAL_MEMBERS = "All committees, total members";
-
-	/** The Constant ALL_PARTIES_TOTAL_ASSIGNMENTS. */
-	private static final String ALL_PARTIES_TOTAL_ASSIGNMENTS = "All parties, total assignments";
-
-	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED_IN_COMMITTEES. */
-	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED_IN_COMMITTEES = "All parties, total days served in committees";
 
 	/**
 	 * The Constant
@@ -91,9 +82,6 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	 * The Constant CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS.
 	 */
 	private static final String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS = "Current parties active in committees, current assignments";
-
-	/** The Constant CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT. */
-	private static final String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT = "Current parties active in committees, head count";
 
 	/** The Constant CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS. */
 	private static final String CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS = "Current and past member and summary of polticial days ";
@@ -152,15 +140,10 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 
 
 		chartByTopic.addItem(CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,FontAwesome.GROUP, COMMAND24);
-		//chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,FontAwesome.GROUP, COMMAND20);
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,FontAwesome.GROUP, COMMAND23);
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND25);
 
-		//chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND20);
-		//chartByTopic.addItem(ALL_PARTIES_TOTAL_ASSIGNMENTS,FontAwesome.GROUP, COMMAND20);
-
 		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_MEMBERS,FontAwesome.GROUP, COMMAND22);
-		//chartByTopic.addItem(ALL_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND20);
 
 		committeeMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP, COMMAND21);
 

@@ -66,20 +66,8 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT. */
 	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT = "All parties, total days served in parliament";
 
-	/** The Constant ALL_PARTIES_HEAD_COUNT_IN_PARLIAMENT. */
-	private static final String ALL_PARTIES_HEAD_COUNT_IN_PARLIAMENT = "All parties, head count in parliament";
-
-	/** The Constant CURRENT_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT. */
-	private static final String CURRENT_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT = "Current parties, total days served in parliament";
-
 	/** The Constant CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT. */
 	private static final String CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT = "Current parties active in parliament, head count";
-
-	/** The Constant ALL_PARTIES_TOTAL_ASSIGNMENTS_IN_COMMITTEES. */
-	private static final String ALL_PARTIES_TOTAL_ASSIGNMENTS_IN_COMMITTEES = "All parties, total assignments in committees";
-
-	/** The Constant CURRENT_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES. */
-	private static final String CURRENT_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES = "Current parties, total days served in ministries";
 
 	/**
 	 * The Constant
@@ -90,25 +78,8 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 	/** The Constant TOTAL_MEMBERS. */
 	private static final String TOTAL_MEMBERS = "Total members";
 
-	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED_IN_COMMITTEES. */
-	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED_IN_COMMITTEES = "All parties, total days served in committees";
-
-	/**
-	 * The Constant
-	 * CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES.
-	 */
-	private static final String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES = "Current parties active in committees, total days served in committees";
-
-	/**
-	 * The Constant CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS.
-	 */
-	private static final String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS = "Current parties active in committees, current assignments";
-
 	/** The Constant CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT. */
 	private static final String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT = "Current parties active in committees, head count";
-
-	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT. */
-	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT = "All parties, total days served in ministries";
 
 	/** The Constant CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT. */
 	private static final String CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT = "Current parties active in ministries, head count";
@@ -166,32 +137,14 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,FontAwesome.GROUP,
 				COMMAND24);
-//		chartByTopic.addItem(CURRENT_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES,FontAwesome.GROUP,
-//				COMMAND20);
 
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,FontAwesome.GROUP,
 				COMMAND23);
-//		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,FontAwesome.GROUP,
-//				COMMAND20);
-//		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP,
-//				COMMAND20);
 
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,FontAwesome.GROUP,
 				COMMAND25);
-//		chartByTopic.addItem(CURRENT_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,FontAwesome.GROUP,
-//				COMMAND20);
-
-//		chartByTopic.addItem(ALL_PARTIES_HEAD_COUNT_IN_PARLIAMENT,FontAwesome.GROUP,
-//				COMMAND20);
 		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,FontAwesome.GROUP,
 				COMMAND22);
-
-//		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT,FontAwesome.GROUP,
-//				COMMAND20);
-//		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP,
-//				COMMAND20);
-//		chartByTopic.addItem(ALL_PARTIES_TOTAL_ASSIGNMENTS_IN_COMMITTEES,FontAwesome.GROUP,
-//				COMMAND20);
 
 		partynMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
 				COMMAND21);
