@@ -56,7 +56,7 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 
 	/** The Constant CONTENT_SEPARATOR. */
 	private static final char CONTENT_SEPARATOR = ' ';
-	
+
 	/** The Constant FILTER_DATA_BEFORE_YEAR. */
 	private static final int FILTER_DATA_BEFORE_YEAR = 2000;
 
@@ -79,11 +79,13 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 
 		final Comparator<T> compare = getComparator();
 
-		final List<T> list = assignmentList.stream().filter(x -> new DateTime(getStepMapping().getFromDate(x).getTime()).getYear() > FILTER_DATA_BEFORE_YEAR).collect(Collectors.toList());
+		final List<T> list = assignmentList.stream().filter(
+				x -> new DateTime(getStepMapping().getFromDate(x).getTime()).getYear() > FILTER_DATA_BEFORE_YEAR)
+				.collect(Collectors.toList());
 
 		Collections.sort(list, compare);
 
-		final Gantt createGantt = createGenericGantt(list,getRoleMapping(),getStepMapping());
+		final Gantt createGantt = createGenericGantt(list, getRoleMapping(), getStepMapping());
 		roleSummaryLayoutTabsheet.addComponent(createGantt);
 		roleSummaryLayoutTabsheet.setExpandRatio(createGantt, ContentRatio.GRID);
 
@@ -121,20 +123,21 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 	 *            the step mapping
 	 * @return the gantt
 	 */
-	private Gantt createGenericGantt(final List<T> assignmentList,final Function<T, String> roleMapping,final StepMapping<T> stepMapping) {
+	private Gantt createGenericGantt(final List<T> assignmentList, final Function<T, String> roleMapping,
+			final StepMapping<T> stepMapping) {
 
-
-		final Map<String, List<T>> assignmentListMap = assignmentList.stream().collect(Collectors.groupingBy(roleMapping, TreeMap::new, Collectors.toList()));
+		final Map<String, List<T>> assignmentListMap = assignmentList.stream()
+				.collect(Collectors.groupingBy(roleMapping, TreeMap::new, Collectors.toList()));
 
 		final Gantt gantt = createGantt();
 
 		if (!assignmentList.isEmpty()) {
 
 			gantt.setStartDate(stepMapping.getFromDate(assignmentList.get(0)));
-			gantt.setEndDate(stripDatesAfterCurrentDate(stepMapping.getToDate(assignmentList.get(assignmentList.size() - 1))));
+			gantt.setEndDate(
+					stripDatesAfterCurrentDate(stepMapping.getToDate(assignmentList.get(assignmentList.size() - 1))));
 
-			for (final Entry<String, List<T>> entry : entriesSortedByValues(
-					assignmentListMap,stepMapping)) {
+			for (final Entry<String, List<T>> entry : entriesSortedByValues(assignmentListMap, stepMapping)) {
 
 				final String stepName = entry.getKey();
 
@@ -145,7 +148,7 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 
 				Collections.sort(assignments, getComparator());
 
-				addViewGenericRoleMemberToStep(stepName, step, assignments,stepMapping);
+				addViewGenericRoleMemberToStep(stepName, step, assignments, stepMapping);
 
 				gantt.addStep(step);
 			}
@@ -153,7 +156,6 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 
 		return gantt;
 	}
-
 
 	/**
 	 * Entries sorted by values.
@@ -164,8 +166,8 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 	 *            the step mapping
 	 * @return the sorted set
 	 */
-	private SortedSet<Map.Entry<String, List<T>>> entriesSortedByValues(
-			final Map<String, List<T>> map,final StepMapping<T> stepMapping) {
+	private SortedSet<Map.Entry<String, List<T>>> entriesSortedByValues(final Map<String, List<T>> map,
+			final StepMapping<T> stepMapping) {
 		final Comparator<? super Entry<String, List<T>>> compare = (o1, o2) -> {
 
 			final Comparator<T> compare1 = (o11, o21) -> {
@@ -188,12 +190,10 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 			return compare1.compare(o1.getValue().get(0), o2.getValue().get(0));
 		};
 
-		final SortedSet<Map.Entry<String, List<T>>> sortedEntries = new TreeSet<>(
-				compare);
+		final SortedSet<Map.Entry<String, List<T>>> sortedEntries = new TreeSet<>(compare);
 		sortedEntries.addAll(map.entrySet());
 		return sortedEntries;
 	}
-
 
 	/**
 	 * Adds the view generic role member to step.
@@ -207,28 +207,23 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 	 * @param stepMapping
 	 *            the step mapping
 	 */
-	private void addViewGenericRoleMemberToStep(final String stepName, final Step step,
-			final List<T> assignments,final StepMapping<T> stepMapping) {
+	private void addViewGenericRoleMemberToStep(final String stepName, final Step step, final List<T> assignments,
+			final StepMapping<T> stepMapping) {
 
 		for (final T assignmentData : assignments) {
 
 			String subStepName = "";
 
 			if (stepMapping.getRoleCode(assignmentData) != null) {
-				final StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append(stepMapping.getFirstName(assignmentData));
-				stringBuilder.append(CONTENT_SEPARATOR);
-				stringBuilder.append(stepMapping.getLastName(assignmentData));
-				stringBuilder.append(PARTY_START_TAG);
-				stringBuilder.append(stepMapping.getParty(assignmentData));
-				stringBuilder.append(PARTY_END_TAG);
-				subStepName = stringBuilder.toString();
+				subStepName = new StringBuilder().append(stepMapping.getFirstName(assignmentData))
+						.append(CONTENT_SEPARATOR).append(stepMapping.getLastName(assignmentData))
+						.append(PARTY_START_TAG).append(stepMapping.getParty(assignmentData)).append(PARTY_END_TAG)
+						.toString();
 			}
 
 			final SubStep sameRoleSubStep = new SubStep(stepName + '.' + subStepName);
 
 			sameRoleSubStep.setBackgroundColor(stepMapping.getBackgroundColor(assignmentData));
-
 
 			sameRoleSubStep.setStartDate(stepMapping.getFromDate(assignmentData).getTime());
 			sameRoleSubStep.setEndDate(stripDatesAfterCurrentDate(stepMapping.getToDate(assignmentData)).getTime());
@@ -236,7 +231,6 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 			step.addSubStep(sameRoleSubStep);
 		}
 	}
-
 
 	/**
 	 * Strip dates after current date.
