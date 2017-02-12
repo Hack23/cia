@@ -65,10 +65,10 @@ public final class ChartOptionsImpl implements ChartOptions {
 
 	/** The Constant LEGEND_COLUMNS. */
 	private static final int LEGEND_COLUMNS = 3;
-	
+
 	/** The Constant LEGEND_ROWS. */
-	private static final int LEGEND_ROWS = 20;	
-	
+	private static final int LEGEND_ROWS = 20;
+
 	/** The Constant LEGEND_FONT_SIZE. */
 	private static final String LEGEND_FONT_SIZE = "10px";
 
@@ -129,7 +129,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.addAxis(new XYaxis(XYaxes.Y).setRenderer(AxisRenderers.LOG).setTickOptions(new AxisTickRenderer().setFormatString(FLOAT_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(NUMBER_TICKS));
 	}
 
-	
+
 	/**
 	 * Creates the default grid.
 	 *

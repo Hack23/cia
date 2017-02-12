@@ -41,19 +41,19 @@ public abstract class AbstractChartDataManagerImpl {
 
 	/** The Constant WINDOW_WIDTH_REDUCTION. */
 	private static final int WINDOW_WIDTH_REDUCTION = 50;
-	
+
 	/** The Constant WINDOW_HEIGHT_REDUCTION. */
 	private static final int WINDOW_HEIGHT_REDUCTION = 200;
-	
+
 	/** The Constant CHART_HEIGHT_REDUCTION. */
 	private static final int CHART_HEIGHT_REDUCTION = 100;
-	
+
 	/** The Constant CHART_WIDTH_REDUCTION. */
 	private static final int CHART_WIDTH_REDUCTION = 50;
-	
+
 	/** The Constant CHART_MARGIN_SIZE. */
 	private static final int CHART_MARGIN_SIZE = 5;
-	
+
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;

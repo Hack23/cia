@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.dussan.vaadin.dcharts.DCharts;
@@ -89,7 +90,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 				.getDataContainer(ViewApplicationActionEventPageDailySummary.class);
 
 		return documentTypeSummaryDailyDataContainer.getAll().parallelStream()
-				.filter(t -> t != null)
+				.filter(Objects::nonNull)
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPage()));
 	}
 
@@ -140,7 +141,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 		final List<ViewApplicationActionEventPageModeDailySummary> findOrderedListByEmbeddedProperty = documentTypeSummaryDailyDataContainer.findOrderedListByEmbeddedProperty(ViewApplicationActionEventPageModeDailySummary.class, ViewApplicationActionEventPageModeDailySummary_.embeddedId, ApplicationActionEventPageModePeriodSummaryEmbeddedId.class, ApplicationActionEventPageModePeriodSummaryEmbeddedId_.page, page, ApplicationActionEventPageModePeriodSummaryEmbeddedId_.createdDate);
 
 		return findOrderedListByEmbeddedProperty.parallelStream()
-				.filter(t -> t != null)
+				.filter(Objects::nonNull)
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPageMode()));
 	}
 

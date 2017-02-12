@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.dussan.vaadin.dcharts.DCharts;
@@ -105,7 +106,7 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 				.getDataContainer(ViewRiksdagenCommitteeDecisionTypeOrgDailySummary.class);
 
 		return committeeBallotDecisionPartyDataContainer.getAll().parallelStream()
-				.filter(t -> t != null).collect(Collectors.groupingBy(t -> t.getEmbeddedId().getOrg()));
+				.filter(Objects::nonNull).collect(Collectors.groupingBy(t -> t.getEmbeddedId().getOrg()));
 	}
 
 

@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -127,7 +128,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 			final DataContainer<ViewRiksdagenVoteDataBallotPartySummaryDaily, RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId> partyBallotSummaryDailyDataContainer = applicationManager
 					.getDataContainer(ViewRiksdagenVoteDataBallotPartySummaryDaily.class);
 
-			partyMap = partyBallotSummaryDailyDataContainer.getAll().parallelStream().filter(t -> t != null)
+			partyMap = partyBallotSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
 					.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getParty()));
 		}
 	}
