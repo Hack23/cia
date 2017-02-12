@@ -43,8 +43,7 @@ import com.hack23.cia.service.external.worldbank.api.WorldBankCountryApi;
 final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesWorkGenerator {
 
 	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(WorldBankDataWorkGeneratorImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(WorldBankDataWorkGeneratorImpl.class);
 
 	/** The data workdestination. */
 	@Autowired
@@ -54,7 +53,6 @@ final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesW
 	/** The worldbank country api. */
 	@Autowired
 	private WorldBankCountryApi worldbankCountryApi;
-
 
 	/**
 	 * Instantiates a new world bank data work generator impl.
@@ -69,26 +67,38 @@ final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesW
 			final List<IndicatorElement> indicatorlist = getImportService().getAllIndicators();
 			final List<CountryElement> countryList = worldbankCountryApi.getCountries();
 
-			final Map<String, String> currentSaved = getImportService()
-					.getWorldBankDataMap();
-
+			final Map<String, String> currentSaved = getImportService().getWorldBankDataMap();
 
 			for (final IndicatorElement indicator : indicatorlist) {
 				for (final CountryElement country : countryList) {
-					final List<String> load = new ArrayList<>();
-					if (country.getIso2Code() != null
-							&& country.getIso2Code().length() > 0) {
-						load.add(country.getIso2Code());
-						load.add(indicator.getId());
-
-						if (!currentSaved.containsKey(country.getIso2Code()	+ '.' + indicator.getId())) {
-							sendMessage(dataWorkdestination,(Serializable) load);
-						}
-					}
+					sendCountryIndicatorWorkOrder(currentSaved, indicator, country);
 				}
 			}
 		} catch (final Exception exception) {
 			LOGGER.warn("jms", exception);
+		}
+	}
+
+	/**
+	 * Send country indicator work order.
+	 *
+	 * @param currentSaved
+	 *            the current saved
+	 * @param indicator
+	 *            the indicator
+	 * @param country
+	 *            the country
+	 * @throws Exception
+	 *             the exception
+	 */
+	private void sendCountryIndicatorWorkOrder(final Map<String, String> currentSaved, final IndicatorElement indicator,
+			final CountryElement country) throws Exception {
+		if (country.getIso2Code() != null && country.getIso2Code().length() > 0
+				&& !currentSaved.containsKey(country.getIso2Code() + '.' + indicator.getId())) {
+			final List<String> load = new ArrayList<>();
+			load.add(country.getIso2Code());
+			load.add(indicator.getId());
+			sendMessage(dataWorkdestination, (Serializable) load);
 		}
 	}
 
