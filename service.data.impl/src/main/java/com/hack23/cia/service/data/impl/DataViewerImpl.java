@@ -329,7 +329,7 @@ final class DataViewerImpl implements DataViewer {
 
 	@Override
 	public <T> Long getSize(final Class<T> clazz) {
-		CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
+		final CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
 		countQuery.select(criteriaBuilder.count(countQuery.from(clazz)));
 		return entityManager.createQuery(countQuery).getSingleResult();
 	}

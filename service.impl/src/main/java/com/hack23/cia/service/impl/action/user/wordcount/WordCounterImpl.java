@@ -43,6 +43,12 @@ import weka.filters.unsupervised.attribute.StringToWordVector;
 @Service
 final class WordCounterImpl implements WordCounter {
 
+	/** The Constant TOKEN_DELIMITERS. */
+	private static final String TOKEN_DELIMITERS = " \r\n\t.,;:'\"()?!'";
+
+	/** The Constant HTML. */
+	private static final String HTML = "html";
+	
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(WordCounterImpl.class);
@@ -60,18 +66,18 @@ final class WordCounterImpl implements WordCounter {
 
 		final String html = documentContentData.getContent();
 
-		final Attribute input = new Attribute("html", (ArrayList<String>) null);
+		final Attribute input = new Attribute(HTML, (ArrayList<String>) null);
 
 		final ArrayList<Attribute> inputVec = new ArrayList<>();
 		inputVec.add(input);
 
-		final Instances htmlInst = new Instances("html", inputVec, 1);
+		final Instances htmlInst = new Instances(HTML, inputVec, 1);
 
 		htmlInst.add(new DenseInstance(1));
 		htmlInst.instance(0).setValue(0, html);
 
 
-		final StopwordsHandler StopwordsHandler = new StopwordsHandler() {
+		final StopwordsHandler stopwordsHandler = new StopwordsHandler() {
 
 			@Override
 			public boolean isStopword(final String word) {
@@ -83,11 +89,11 @@ final class WordCounterImpl implements WordCounter {
 		final NGramTokenizer tokenizer = new NGramTokenizer();
 		tokenizer.setNGramMinSize(1);
 		tokenizer.setNGramMaxSize(1);
-		tokenizer.setDelimiters(" \r\n\t.,;:'\"()?!'");
+		tokenizer.setDelimiters(TOKEN_DELIMITERS);
 
 		final StringToWordVector filter = new StringToWordVector();
 		filter.setTokenizer(tokenizer);
-		filter.setStopwordsHandler(StopwordsHandler);
+		filter.setStopwordsHandler(stopwordsHandler);
 		filter.setLowerCaseTokens(true);
 		filter.setOutputWordCounts(true);
 		filter.setWordsToKeep(maxResult);
