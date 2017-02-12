@@ -86,7 +86,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 
 		getGridFactory().createBasicBeanItemGrid(content, politicianDocumentDataSource,
 				"ApplicationActionEvent",
-				new String[] { "hjid", "createdDate", "userId","actionName","errorMessage","applicationMessage", "page","pageMode","elementId", "modelObjectVersion" }, new String[] { "hjid", "modelObjectId","modelObjectVersion","sessionId", "eventGroup", "applicationOperation"  },
+				new String[] { "hjid", "createdDate", "userId","actionName","errorMessage","applicationMessage", "page","pageMode","elementId", "modelObjectVersion" }, new String[] { "hjid", "modelObjectId","modelObjectVersion","sessionId", "eventGroup", "applicationOperation" },
 				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null, null);
 
 		if (pageId != null && !pageId.isEmpty()) {

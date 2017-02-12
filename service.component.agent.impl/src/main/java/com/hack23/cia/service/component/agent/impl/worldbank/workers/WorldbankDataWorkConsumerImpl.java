@@ -64,7 +64,7 @@ MessageListener {
 	@Override
 	public void onMessage(final Message message) {
 		try {
-			final List<String>  countryIndicator= (List<String>) ((ObjectMessage) message).getObject();
+			final List<String> countryIndicator= (List<String>) ((ObjectMessage) message).getObject();
 			updateService.updateData(worldbankDataApi.getData(countryIndicator.get(0), countryIndicator.get(1)));
 		} catch (final DataFailureException | RuntimeException | JMSException e) {
 			LOGGER.warn("Error loading worldbank data:" , e);

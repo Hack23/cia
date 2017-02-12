@@ -139,7 +139,7 @@ final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 				result=new SimpleDateFormat(YYYY_MM_DD,Locale.ENGLISH).parse(ballotDocumentElement.getMadePublicDate());
 			}
 		}
-		return  result;
+		return result;
 	}
 
 	/**

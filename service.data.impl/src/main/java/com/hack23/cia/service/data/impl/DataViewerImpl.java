@@ -76,7 +76,7 @@ final class DataViewerImpl implements DataViewer {
 	}
 
 	@Override
-	public  <T,V> T findByQueryProperty(final Class<T> clazz,
+	public <T,V> T findByQueryProperty(final Class<T> clazz,
 			final SingularAttribute<T, ? extends Object> property,final Class<V> clazz2,
 			final SingularAttribute<V, ? extends Object> property2, final Object value) {
 

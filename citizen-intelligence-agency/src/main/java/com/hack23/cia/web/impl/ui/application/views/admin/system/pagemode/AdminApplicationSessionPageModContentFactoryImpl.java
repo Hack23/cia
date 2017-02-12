@@ -126,7 +126,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 						"ApplicationActionEvent",
 						new String[] { "hjid", "createdDate", "eventGroup", "actionName", "applicationOperation", "page", "pageMode",
 								"elementId", "errorMessage", "applicationMessage",
-								"modelObjectVersion" }, new String[] { "hjid", "modelObjectId","modelObjectVersion","userId", "sessionId"  },
+								"modelObjectVersion" }, new String[] { "hjid", "modelObjectId","modelObjectVersion","userId", "sessionId" },
 						new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"),
 						null, null);
 			}
