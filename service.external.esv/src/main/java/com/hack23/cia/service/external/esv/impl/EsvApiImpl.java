@@ -44,6 +44,8 @@ import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 @Component
 final class EsvApiImpl implements EsvApi {
 
+	private static final int EXPECTED_COLUMN_LENGTH = 10;
+
 	private static final String NO_MINISTRY = "Inget departement";
 
 	/** The Constant LOGGER. */
@@ -56,8 +58,8 @@ final class EsvApiImpl implements EsvApi {
 	private static final Set<String> governmentBodyNameSet = new HashSet<>();
 
 	/** The Constant governmentBodyNameSetMinistryMap. */
-	private static final Map<String,Set<String>> governmentBodyNameSetMinistryMap = new HashMap<>();
-	
+	private static final Map<String, Set<String>> governmentBodyNameSetMinistryMap = new HashMap<>();
+
 	/**
 	 * Instantiates a new esv api impl.
 	 */
@@ -65,7 +67,9 @@ final class EsvApiImpl implements EsvApi {
 		super();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.hack23.cia.service.external.esv.api.EsvApi#getData()
 	 */
 	@Override
@@ -73,8 +77,12 @@ final class EsvApiImpl implements EsvApi {
 		return getDataPerMinistry(null);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.external.esv.api.EsvApi#getDataPerMinistry(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.hack23.cia.service.external.esv.api.EsvApi#getDataPerMinistry(java.
+	 * lang.String)
 	 */
 	@Override
 	public Map<Integer, List<GovernmentBodyAnnualSummary>> getDataPerMinistry(final String name) {
@@ -84,9 +92,7 @@ final class EsvApiImpl implements EsvApi {
 					EsvApiImpl.class.getResourceAsStream("/Myndighetsinformation.xls"));
 
 			for (int sheetNr = 0; sheetNr < myWorkBook.getNumberOfSheets(); sheetNr++) {
-				final HSSFSheet mySheet = myWorkBook.getSheetAt(sheetNr);
-
-				addMinistryPerYearToMap(name, map, mySheet);
+				addMinistryPerYearToMap(name, map, myWorkBook.getSheetAt(sheetNr));
 			}
 
 			myWorkBook.close();
@@ -109,8 +115,8 @@ final class EsvApiImpl implements EsvApi {
 	 * @param mySheet
 	 *            the my sheet
 	 */
-	private static void addMinistryPerYearToMap(final String name, final Map<Integer, List<GovernmentBodyAnnualSummary>> map,
-			final HSSFSheet mySheet) {
+	private static void addMinistryPerYearToMap(final String name,
+			final Map<Integer, List<GovernmentBodyAnnualSummary>> map, final HSSFSheet mySheet) {
 		if (mySheet.getSheetName().chars().allMatch(Character::isDigit)) {
 
 			final int year = Integer.parseInt(mySheet.getSheetName());
@@ -118,31 +124,41 @@ final class EsvApiImpl implements EsvApi {
 			final List<GovernmentBodyAnnualSummary> yearList = new ArrayList<>();
 			final Iterator<Row> rowIterator = mySheet.iterator();
 
+			// Skip header row, ignore first
 			rowIterator.next();
 
 			while (rowIterator.hasNext()) {
-				final Row row = rowIterator.next();
-				final short maxColIx = row.getLastCellNum();
-
-				
-				if (maxColIx == 10) {
-					final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = new GovernmentBodyAnnualSummary(
-							year, row.getCell(0).toString(), getInteger(row.getCell(1).toString()),
-							row.getCell(2).toString(), row.getCell(3).toString(), row.getCell(4).toString(),
-							row.getCell(5).toString(), getInteger(row.getCell(6).toString()), getInteger(row.getCell(7).toString()),
-							row.getCell(8).toString(), row.getCell(9).toString());
-
-					if (name == null || name.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())) {
-						yearList.add(governmentBodyAnnualSummary);
-					}
-
-				}
-
+				addGovernmentBodyAnnualSummaryToList(name, year, yearList, rowIterator.next());
 			}
 			map.put(year, yearList);
 		}
 	}
-	
+
+	/**
+	 * Adds the government body annual summary.
+	 *
+	 * @param name
+	 *            the name
+	 * @param year
+	 *            the year
+	 * @param yearList
+	 *            the year list
+	 * @param row
+	 *            the row
+	 */
+	private static void addGovernmentBodyAnnualSummaryToList(final String name, final int year,
+			final List<GovernmentBodyAnnualSummary> yearList, final Row row) {
+		if (row.getLastCellNum() == EXPECTED_COLUMN_LENGTH) {
+
+			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = createGovernmentBodyAnnualSummaryFromRow(
+					year, row);
+
+			if (name == null || name.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())) {
+				yearList.add(governmentBodyAnnualSummary);
+			}
+		}
+	}
+
 	/**
 	 * Gets the integer.
 	 *
@@ -151,15 +167,19 @@ final class EsvApiImpl implements EsvApi {
 	 * @return the integer
 	 */
 	private static int getInteger(String str) {
-	    if (str == null || str.trim().length() == 0) {
-	        return 0;
-	    } else {
-	        return Integer.parseInt(str);
-	    }
+		if (str == null || str.trim().length() == 0) {
+			return 0;
+		} else {
+			return Integer.parseInt(str);
+		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.external.esv.api.EsvApi#getDataPerMinistryAndYear(java.lang.String, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.hack23.cia.service.external.esv.api.EsvApi#getDataPerMinistryAndYear(
+	 * java.lang.String, int)
 	 */
 	@Override
 	public List<GovernmentBodyAnnualSummary> getDataPerMinistryAndYear(final String name, final int year) {
@@ -172,8 +192,11 @@ final class EsvApiImpl implements EsvApi {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.external.esv.api.EsvApi#getGovernmentBodyNames()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.hack23.cia.service.external.esv.api.EsvApi#getGovernmentBodyNames()
 	 */
 	@Override
 	public List<String> getGovernmentBodyNames() {
@@ -183,7 +206,8 @@ final class EsvApiImpl implements EsvApi {
 
 			for (final List<GovernmentBodyAnnualSummary> list : data.values()) {
 				for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
-					if (!governmentBodyNameSet.contains(governmentBodyAnnualSummary.getName()) && governmentBodyAnnualSummary.getHeadCount() > 0) {
+					if (!governmentBodyNameSet.contains(governmentBodyAnnualSummary.getName())
+							&& governmentBodyAnnualSummary.getHeadCount() > 0) {
 						governmentBodyNameSet.add(governmentBodyAnnualSummary.getName());
 					}
 				}
@@ -192,7 +216,9 @@ final class EsvApiImpl implements EsvApi {
 		return new ArrayList<>(governmentBodyNameSet);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.hack23.cia.service.external.esv.api.EsvApi#getMinistryNames()
 	 */
 	@Override
@@ -202,7 +228,9 @@ final class EsvApiImpl implements EsvApi {
 
 			for (final List<GovernmentBodyAnnualSummary> list : data.values()) {
 				for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
-					if (!ministryNameSet.contains(governmentBodyAnnualSummary.getMinistry()) && governmentBodyAnnualSummary.getHeadCount() > 0 && !NO_MINISTRY.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())) {
+					if (!ministryNameSet.contains(governmentBodyAnnualSummary.getMinistry())
+							&& governmentBodyAnnualSummary.getHeadCount() > 0
+							&& !NO_MINISTRY.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())) {
 						ministryNameSet.add(governmentBodyAnnualSummary.getMinistry());
 					}
 				}
@@ -211,8 +239,12 @@ final class EsvApiImpl implements EsvApi {
 		return new ArrayList<>(ministryNameSet);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.external.esv.api.EsvApi#getDataPerGovernmentBody(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.hack23.cia.service.external.esv.api.EsvApi#getDataPerGovernmentBody(
+	 * java.lang.String)
 	 */
 	@Override
 	public Map<Integer, GovernmentBodyAnnualSummary> getDataPerGovernmentBody(String name) {
@@ -249,48 +281,79 @@ final class EsvApiImpl implements EsvApi {
 	private static void addDataForYearToMap(String name, final Map<Integer, GovernmentBodyAnnualSummary> map,
 			final HSSFSheet mySheet) {
 		if (mySheet.getSheetName().chars().allMatch(Character::isDigit)) {
-
 			final int year = Integer.parseInt(mySheet.getSheetName());
-
 			final Iterator<Row> rowIterator = mySheet.iterator();
 
 			rowIterator.next();
 
 			while (rowIterator.hasNext()) {
-				final Row row = rowIterator.next();
-				final short maxColIx = row.getLastCellNum();
-
-				
-				if (maxColIx == 10) {
-					final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = new GovernmentBodyAnnualSummary(
-							year, row.getCell(0).toString(), getInteger(row.getCell(1).toString()),
-							row.getCell(2).toString(), row.getCell(3).toString(), row.getCell(4).toString(),
-							row.getCell(5).toString(), getInteger(row.getCell(6).toString()), getInteger(row.getCell(7).toString()),
-							row.getCell(8).toString(), row.getCell(9).toString());
-
-					if (name == null || name.equalsIgnoreCase(governmentBodyAnnualSummary.getName())) {
-						map.put(year, governmentBodyAnnualSummary);
-					}
-				}
+				addGovernmentBodyAnnualSummaryToMap(name, map, year, rowIterator.next());
 			}
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.external.esv.api.EsvApi#getGovernmentBodyNames(java.lang.String)
+	/**
+	 * Adds the government body annual summary to map.
+	 *
+	 * @param name
+	 *            the name
+	 * @param map
+	 *            the map
+	 * @param year
+	 *            the year
+	 * @param row
+	 *            the row
+	 */
+	private static void addGovernmentBodyAnnualSummaryToMap(String name, final Map<Integer, GovernmentBodyAnnualSummary> map,
+			final int year, final Row row) {
+		if (row.getLastCellNum() == EXPECTED_COLUMN_LENGTH) {
+
+			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = createGovernmentBodyAnnualSummaryFromRow(
+					year, row);
+
+			if (name == null || name.equalsIgnoreCase(governmentBodyAnnualSummary.getName())) {
+				map.put(year, governmentBodyAnnualSummary);
+			}
+		}
+	}
+
+	/**
+	 * Creates the government body annual summary from row.
+	 *
+	 * @param year
+	 *            the year
+	 * @param row
+	 *            the row
+	 * @return the government body annual summary
+	 */
+	private static GovernmentBodyAnnualSummary createGovernmentBodyAnnualSummaryFromRow(final int year, final Row row) {
+		return new GovernmentBodyAnnualSummary(year, row.getCell(0).toString(), getInteger(row.getCell(1).toString()),
+				row.getCell(2).toString(), row.getCell(3).toString(), row.getCell(4).toString(),
+				row.getCell(5).toString(), getInteger(row.getCell(6).toString()), getInteger(row.getCell(7).toString()),
+				row.getCell(8).toString(), row.getCell(9).toString());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.hack23.cia.service.external.esv.api.EsvApi#getGovernmentBodyNames(
+	 * java.lang.String)
 	 */
 	@Override
 	public List<String> getGovernmentBodyNames(String ministry) {
 		if (!governmentBodyNameSetMinistryMap.containsKey(ministry)) {
-			
+
 			final Set<String> governmentBodyNameSetMapEntry = new HashSet<>();
 			governmentBodyNameSetMinistryMap.put(ministry, governmentBodyNameSetMapEntry);
-			
+
 			final Map<Integer, List<GovernmentBodyAnnualSummary>> data = getData();
 
 			for (final List<GovernmentBodyAnnualSummary> list : data.values()) {
 				for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
-					if (ministry.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry()) && !governmentBodyNameSetMapEntry.contains(governmentBodyAnnualSummary.getName()) && governmentBodyAnnualSummary.getHeadCount() > 0) {
+					if (ministry.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())
+							&& !governmentBodyNameSetMapEntry.contains(governmentBodyAnnualSummary.getName())
+							&& governmentBodyAnnualSummary.getHeadCount() > 0) {
 						governmentBodyNameSetMapEntry.add(governmentBodyAnnualSummary.getName());
 					}
 				}
