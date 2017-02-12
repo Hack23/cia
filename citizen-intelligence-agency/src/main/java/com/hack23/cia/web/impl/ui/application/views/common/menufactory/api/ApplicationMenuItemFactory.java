@@ -44,6 +44,12 @@ public interface ApplicationMenuItemFactory {
 	void addRankingMenu(MenuBar menuBar);
 
 
+	/**
+	 * Creates a new ApplicationMenuItem object.
+	 *
+	 * @param panelContent
+	 *            the panel content
+	 */
 	void createOverviewPage(VerticalLayout panelContent);
 
 
