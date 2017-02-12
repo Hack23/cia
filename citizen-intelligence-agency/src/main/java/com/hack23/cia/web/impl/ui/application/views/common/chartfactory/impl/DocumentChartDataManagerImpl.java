@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
@@ -144,7 +145,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 		final DataContainer<ViewRiksdagenPartyDocumentDailySummary, RiksdagenDocumentPartySummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenPartyDocumentDailySummary.class);
 
-		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(t -> t != null)
+		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPartyShortCode().toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).trim()));
 	}
 
@@ -158,7 +159,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 		final DataContainer<ViewRiksdagenPoliticianDocumentDailySummary, RiksdagenDocumentPersonSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenPoliticianDocumentDailySummary.class);
 
-		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(t -> t != null)
+		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPersonId()));
 	}
 
@@ -202,7 +203,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 	private static void addDocumentHistoryByOrgData(final DataSeries dataSeries, final Series series,
 			final List<ViewRiksdagenOrgDocumentDailySummary> itemList) {
 		final Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> map = itemList.parallelStream()
-				.filter(t -> t != null)
+				.filter(Objects::nonNull)
 				.collect(Collectors.groupingBy(t -> StringUtils.defaultIfBlank(t.getDocumentType(), NO_INFO)));
 
 		for (final Entry<String, List<ViewRiksdagenOrgDocumentDailySummary>> entry : map.entrySet()) {
@@ -236,7 +237,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 		if (itemList != null) {
 
 			final Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> map = itemList.parallelStream()
-					.filter(t -> t != null).collect(Collectors.groupingBy(
+					.filter(Objects::nonNull).collect(Collectors.groupingBy(
 							t -> StringUtils.defaultIfBlank(t.getEmbeddedId().getDocumentType(), NO_INFO)));
 
 			addDocumentHistoryByPartyData(dataSeries, series, map);
@@ -297,7 +298,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 		if (itemList != null) {
 
 			final Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> map = itemList.parallelStream()
-					.filter(t -> t != null).collect(Collectors.groupingBy(
+					.filter(Objects::nonNull).collect(Collectors.groupingBy(
 							t -> StringUtils.defaultIfBlank(t.getEmbeddedId().getDocumentType(), NO_INFO)));
 
 			addDocumentHistoryByPersonData(simpleDateFormat, dataSeries, series, map);
