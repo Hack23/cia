@@ -27,7 +27,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 /**
  * The Class AbstractPoliticianPageModContentFactoryImpl.
  */
-public abstract class AbstractParliamentPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractParliamentPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.PARLIAMENT_RANKING_VIEW_NAME;
@@ -39,7 +39,7 @@ public abstract class AbstractParliamentPageModContentFactoryImpl extends Abstra
 	/**
 	 * Instantiates a new abstract parliament page mod content factory impl.
 	 */
-	protected AbstractParliamentPageModContentFactoryImpl() {
+	AbstractParliamentPageModContentFactoryImpl() {
 		super();
 	}
 

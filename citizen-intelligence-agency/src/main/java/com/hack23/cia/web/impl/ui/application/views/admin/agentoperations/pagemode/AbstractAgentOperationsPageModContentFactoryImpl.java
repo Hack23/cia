@@ -23,13 +23,13 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPage
 /**
  * The Class AbstractAgentOperationsPageModContentFactoryImpl.
  */
-public abstract class AbstractAgentOperationsPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractAgentOperationsPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
 	/**
 	 * Instantiates a new abstract agent operations page mod content factory
 	 * impl.
 	 */
-	protected AbstractAgentOperationsPageModContentFactoryImpl() {
+	AbstractAgentOperationsPageModContentFactoryImpl() {
 		super();
 	}
 }

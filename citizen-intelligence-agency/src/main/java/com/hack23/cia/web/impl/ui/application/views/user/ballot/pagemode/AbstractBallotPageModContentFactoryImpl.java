@@ -27,7 +27,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 /**
  * The Class AbstractBallotPageModContentFactoryImpl.
  */
-public abstract class AbstractBallotPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractBallotPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.BALLOT_VIEW_NAME;
@@ -38,7 +38,7 @@ public abstract class AbstractBallotPageModContentFactoryImpl extends AbstractPa
 	/**
 	 * Instantiates a new abstract ballot page mod content factory impl.
 	 */
-	protected AbstractBallotPageModContentFactoryImpl() {
+	AbstractBallotPageModContentFactoryImpl() {
 		super();
 	}
 

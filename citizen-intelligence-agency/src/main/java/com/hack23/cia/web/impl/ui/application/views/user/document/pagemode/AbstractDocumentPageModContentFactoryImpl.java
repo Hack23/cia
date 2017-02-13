@@ -27,7 +27,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 /**
  * The Class AbstractDocumentPageModContentFactoryImpl.
  */
-public abstract class AbstractDocumentPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractDocumentPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.DOCUMENT_VIEW_NAME;
@@ -38,7 +38,7 @@ public abstract class AbstractDocumentPageModContentFactoryImpl extends Abstract
 	/**
 	 * Instantiates a new abstract document page mod content factory impl.
 	 */
-	protected AbstractDocumentPageModContentFactoryImpl() {
+	AbstractDocumentPageModContentFactoryImpl() {
 		super();
 	}
 

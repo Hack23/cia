@@ -31,7 +31,7 @@ import com.vaadin.ui.Component;
 /**
  * The Class AbstractPoliticianPageModContentFactoryImpl.
  */
-public abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_VIEW_NAME;
@@ -50,7 +50,7 @@ public abstract class AbstractPoliticianPageModContentFactoryImpl extends Abstra
 	/**
 	 * Instantiates a new abstract politician page mod content factory impl.
 	 */
-	protected AbstractPoliticianPageModContentFactoryImpl() {
+	AbstractPoliticianPageModContentFactoryImpl() {
 		super();
 	}
 

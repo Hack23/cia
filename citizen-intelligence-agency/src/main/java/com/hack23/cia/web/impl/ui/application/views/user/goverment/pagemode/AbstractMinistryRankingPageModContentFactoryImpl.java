@@ -27,7 +27,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 /**
  * The Class AbstractMinistryRankingPageModContentFactoryImpl.
  */
-public abstract class AbstractMinistryRankingPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractMinistryRankingPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.MINISTRY_RANKING_VIEW_NAME;
@@ -40,7 +40,7 @@ public abstract class AbstractMinistryRankingPageModContentFactoryImpl extends A
 	 * Instantiates a new abstract ministry ranking page mod content factory
 	 * impl.
 	 */
-	protected AbstractMinistryRankingPageModContentFactoryImpl() {
+	AbstractMinistryRankingPageModContentFactoryImpl() {
 		super();
 	}
 

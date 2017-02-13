@@ -24,7 +24,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 /**
  * The Class AbstractPoliticianPageModContentFactoryImpl.
  */
-public abstract class AbstractUserHomePageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractUserHomePageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.USERHOME_VIEW_NAME;
@@ -32,7 +32,7 @@ public abstract class AbstractUserHomePageModContentFactoryImpl extends Abstract
 	/**
 	 * Instantiates a new abstract user home page mod content factory impl.
 	 */
-	protected AbstractUserHomePageModContentFactoryImpl() {
+	AbstractUserHomePageModContentFactoryImpl() {
 		super();
 	}
 

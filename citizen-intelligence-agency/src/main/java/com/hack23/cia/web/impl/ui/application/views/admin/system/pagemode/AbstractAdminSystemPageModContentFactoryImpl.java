@@ -28,7 +28,7 @@ import com.vaadin.ui.Link;
 /**
  * The Class AbstractAdminSystemPageModContentFactoryImpl.
  */
-public abstract class AbstractAdminSystemPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractAdminSystemPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
 	/** The Constant LIMIT_FOR_DISPLAYING_START_END_LINKS. */
 	private static final int LIMIT_FOR_DISPLAYING_START_END_LINKS = 5;
@@ -69,7 +69,7 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 	/**
 	 * Instantiates a new abstract admin system page mod content factory impl.
 	 */
-	protected AbstractAdminSystemPageModContentFactoryImpl() {
+	AbstractAdminSystemPageModContentFactoryImpl() {
 		super();
 	}
 

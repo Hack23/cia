@@ -31,7 +31,7 @@ import com.vaadin.ui.Component;
 /**
  * The Class AbstractPoliticianPageModContentFactoryImpl.
  */
-public abstract class AbstractPartyPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractPartyPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
 	/** The Constant PARTY. */
 	private static final String PARTY = "Party:";
@@ -46,7 +46,7 @@ public abstract class AbstractPartyPageModContentFactoryImpl extends AbstractPag
 	/**
 	 * Instantiates a new abstract party page mod content factory impl.
 	 */
-	protected AbstractPartyPageModContentFactoryImpl() {
+	AbstractPartyPageModContentFactoryImpl() {
 		super();
 	}
 

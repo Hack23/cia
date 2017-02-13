@@ -27,7 +27,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 /**
  * The Class AbstractCommitteePageModContentFactoryImpl.
  */
-public abstract class AbstractCommitteePageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractCommitteePageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_VIEW_NAME;
@@ -39,7 +39,7 @@ public abstract class AbstractCommitteePageModContentFactoryImpl extends Abstrac
 	/**
 	 * Instantiates a new abstract committee page mod content factory impl.
 	 */
-	protected AbstractCommitteePageModContentFactoryImpl() {
+	AbstractCommitteePageModContentFactoryImpl() {
 		super();
 	}
 
