@@ -18,7 +18,6 @@
 */
 package com.hack23.cia.service.api.action.user;
 
-
 import java.util.Map;
 
 import com.hack23.cia.service.api.action.common.AbstractResponse;
@@ -28,7 +27,7 @@ import com.hack23.cia.service.api.action.common.AbstractResponse;
  * The Class DocumentWordCountResponse.
  */
 public final class DocumentWordCountResponse extends AbstractResponse {
-
+	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
