@@ -84,5 +84,14 @@ public interface ChartOptions {
 	 * @return the options
 	 */
 	Options createOptionsXYDateFloatLegendOutside(Series series);
-
+	
+	/**
+	 * Creates the options XY date float log Y axis legend outside.
+	 *
+	 * @param series
+	 *            the series
+	 * @return the options
+	 */
+	Options createOptionsXYDateFloatLogYAxisLegendOutside(Series series);
+	
 }

@@ -77,7 +77,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 		}
 
 		addChart(content, name + " Annual headcount summary", new DCharts().setDataSeries(dataSeries)
-				.setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
+				.setOptions(chartOptions.createOptionsXYDateFloatLogYAxisLegendOutside(series)).show());
 	}
 
 	@Override
@@ -109,7 +109,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 
 		addChart(content, name + " Annual headcount summary, all government bodies",
 				new DCharts().setDataSeries(dataSeries)
-						.setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
+						.setOptions(chartOptions.createOptionsXYDateFloatLogYAxisLegendOutside(series)).show());
 
 	}
 
@@ -141,7 +141,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 		}
 
 		addChart(content, "Annual headcount, all ministries", new DCharts().setDataSeries(dataSeries)
-				.setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
+				.setOptions(chartOptions.createOptionsXYDateFloatLogYAxisLegendOutside(series)).show());
 
 	}
 

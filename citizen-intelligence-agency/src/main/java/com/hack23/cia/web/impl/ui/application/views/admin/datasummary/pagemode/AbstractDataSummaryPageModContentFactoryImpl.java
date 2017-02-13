@@ -23,12 +23,12 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPage
 /**
  * The Class AbstractPoliticianPageModContentFactoryImpl.
  */
-public abstract class AbstractDataSummaryPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractDataSummaryPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
 	/**
 	 * Instantiates a new abstract data summary page mod content factory impl.
 	 */
-	protected AbstractDataSummaryPageModContentFactoryImpl() {
+	AbstractDataSummaryPageModContentFactoryImpl() {
 		super();
 	}
 

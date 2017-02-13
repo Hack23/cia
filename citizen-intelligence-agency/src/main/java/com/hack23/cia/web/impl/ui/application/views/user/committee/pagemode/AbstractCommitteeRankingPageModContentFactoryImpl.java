@@ -26,7 +26,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPage
 /**
  * The Class AbstractRankingPageModContentFactoryImpl.
  */
-public abstract class AbstractCommitteeRankingPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractCommitteeRankingPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
 	/** The committee ranking menu item factory. */
 	@Autowired
@@ -36,7 +36,7 @@ public abstract class AbstractCommitteeRankingPageModContentFactoryImpl extends 
 	/**
 	 * Instantiates a new abstract ranking page mod content factory impl.
 	 */
-	protected AbstractCommitteeRankingPageModContentFactoryImpl() {
+	AbstractCommitteeRankingPageModContentFactoryImpl() {
 		super();
 	}
 

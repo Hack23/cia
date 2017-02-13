@@ -302,4 +302,11 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.addOption(createDefaultGrid()).addOption(createCursor());
 	}
 
+	@Override
+	public Options createOptionsXYDateFloatLogYAxisLegendOutside(Series series) {
+		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloatLog())
+				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside())
+				.addOption(createDefaultGrid()).addOption(createCursor());
+	}
+
 }
