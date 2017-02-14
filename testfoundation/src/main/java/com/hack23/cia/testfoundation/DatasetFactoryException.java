@@ -23,9 +23,7 @@ package com.hack23.cia.testfoundation;
  */
 public class DatasetFactoryException extends Exception {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/**

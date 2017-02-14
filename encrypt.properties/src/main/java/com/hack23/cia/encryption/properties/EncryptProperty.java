@@ -28,6 +28,7 @@ import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
  */
 public final class EncryptProperty {
 
+	/** The Constant EXPECTED_NUMBER_ARGS. */
 	private static final int EXPECTED_NUMBER_ARGS = 2;
 
 	/** The Constant PBEWITHSHA256AND128BITAES_CBC_BC. */
@@ -62,8 +63,7 @@ public final class EncryptProperty {
 	/**
 	 * The main method.
 	 *
-	 * @param args
-	 *            the arguments
+	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 		if (args.length == EXPECTED_NUMBER_ARGS) {
