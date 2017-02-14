@@ -44,8 +44,40 @@ import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 @Component
 final class EsvApiImpl implements EsvApi {
 
+	/** The Constant COMMENT_CELL. */
+	private static final int COMMENT_CELL = 9;
+
+	/** The Constant VAT_CELL. */
+	private static final int VAT_CELL = 8;
+
+	/** The Constant ANNUAL_HEADCOUNT_CELL. */
+	private static final int ANNUAL_HEADCOUNT_CELL = 7;
+
+	/** The Constant HEADCOUNT_CELL. */
+	private static final int HEADCOUNT_CELL = 6;
+
+	/** The Constant ORG_NUMBER_CELL. */
+	private static final int ORG_NUMBER_CELL = 5;
+
+	/** The Constant MINISTRY_CELL. */
+	private static final int MINISTRY_CELL = 4;
+
+	/** The Constant MCODE_CELL. */
+	private static final int MCODE_CELL = 3;
+
+	/** The Constant GOVERNMENT_BODY_ID_CELL. */
+	private static final int GOVERNMENT_BODY_ID_CELL = 2;
+
+	/** The Constant CONSECUTIVE_NUMBER_CELL. */
+	private static final int CONSECUTIVE_NUMBER_CELL = 1;
+
+	/** The Constant NAME_CELL. */
+	private static final int NAME_CELL = 0;
+
+	/** The Constant EXPECTED_COLUMN_LENGTH. */
 	private static final int EXPECTED_COLUMN_LENGTH = 10;
 
+	/** The Constant NO_MINISTRY. */
 	private static final String NO_MINISTRY = "Inget departement";
 
 	/** The Constant LOGGER. */
@@ -135,7 +167,7 @@ final class EsvApiImpl implements EsvApi {
 	}
 
 	/**
-	 * Adds the government body annual summary.
+	 * Adds the government body annual summary to list.
 	 *
 	 * @param name
 	 *            the name
@@ -327,10 +359,10 @@ final class EsvApiImpl implements EsvApi {
 	 * @return the government body annual summary
 	 */
 	private static GovernmentBodyAnnualSummary createGovernmentBodyAnnualSummaryFromRow(final int year, final Row row) {
-		return new GovernmentBodyAnnualSummary(year, row.getCell(0).toString(), getInteger(row.getCell(1).toString()),
-				row.getCell(2).toString(), row.getCell(3).toString(), row.getCell(4).toString(),
-				row.getCell(5).toString(), getInteger(row.getCell(6).toString()), getInteger(row.getCell(7).toString()),
-				row.getCell(8).toString(), row.getCell(9).toString());
+		return new GovernmentBodyAnnualSummary(year, row.getCell(NAME_CELL).toString(), getInteger(row.getCell(CONSECUTIVE_NUMBER_CELL).toString()),
+				row.getCell(GOVERNMENT_BODY_ID_CELL).toString(), row.getCell(MCODE_CELL).toString(), row.getCell(MINISTRY_CELL).toString(),
+				row.getCell(ORG_NUMBER_CELL).toString(), getInteger(row.getCell(HEADCOUNT_CELL).toString()), getInteger(row.getCell(ANNUAL_HEADCOUNT_CELL).toString()),
+				row.getCell(VAT_CELL).toString(), row.getCell(COMMENT_CELL).toString());
 	}
 
 	/*

@@ -28,6 +28,8 @@ import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
  */
 public final class EncryptProperty {
 
+	private static final int EXPECTED_NUMBER_ARGS = 2;
+
 	/** The Constant PBEWITHSHA256AND128BITAES_CBC_BC. */
 	private static final String PBEWITHSHA256AND128BITAES_CBC_BC = "PBEWITHSHA256AND128BITAES-CBC-BC";
 	
@@ -64,7 +66,7 @@ public final class EncryptProperty {
 	 *            the arguments
 	 */
 	public static void main(String[] args) {
-		if (args.length == 2) {
+		if (args.length == EXPECTED_NUMBER_ARGS) {
 			final String encryptValue = new EncryptProperty().encryptValue(args[0], args[1]);
 			System.out.println(ENCRYPTED_VALUE +encryptValue);
 			System.out.println(ENCRYPTED_PROPERTY_VALUE + ENC_CONTENT_PREFIX +encryptValue +ENC_CONTENT_SUFFIX);

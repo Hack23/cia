@@ -49,6 +49,12 @@ import com.hack23.cia.service.external.vdem.api.VdemService;
 @Service
 final class VdemServiceImpl implements VdemService {
 
+	private static final int QUESTION_ID_CELL = 0;
+
+	private static final int NAME_CELL = 2;
+
+	private static final int TAG_CELL = 1;
+
 	/** The Constant VDEM_DATA_DOWNLOAD_URL. */
 	private static final String VDEM_DATA_DOWNLOAD_URL = "https://s3-eu-west-1.amazonaws.com/vdemdata/V-Dem-DS-CY-v5.csv";
 
@@ -72,12 +78,12 @@ final class VdemServiceImpl implements VdemService {
 				final Question question = new Question();
 
 				if (row.getCell(0) == null) {
-					question.setTag(row.getCell(1).toString());
-					question.setName(row.getCell(2).toString());
+					question.setTag(row.getCell(TAG_CELL).toString());
+					question.setName(row.getCell(NAME_CELL).toString());
 				} else {
-					question.setQuestionId(row.getCell(0).toString());
-					question.setTag(row.getCell(1).toString());
-					question.setName(row.getCell(2).toString());
+					question.setQuestionId(row.getCell(QUESTION_ID_CELL).toString());
+					question.setTag(row.getCell(TAG_CELL).toString());
+					question.setName(row.getCell(NAME_CELL).toString());
 				}
 				list.add(question);
 			}
