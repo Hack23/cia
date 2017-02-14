@@ -27,6 +27,7 @@ import java.io.Reader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -123,7 +124,7 @@ final class XmlAgentImpl implements XmlAgent {
 
 		LOGGER.info("Calls {}", accessUrl);
 
-		final boolean isWeb = accessUrl.toLowerCase().startsWith("http://") || accessUrl.toLowerCase().startsWith("https://");
+		final boolean isWeb = accessUrl.toLowerCase(Locale.ENGLISH).startsWith("http://") || accessUrl.toLowerCase(Locale.ENGLISH).startsWith("https://");
 
 		String xmlContent;
 		if (isWeb) {
