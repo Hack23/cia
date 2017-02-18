@@ -84,7 +84,7 @@ public interface ChartOptions {
 	 * @return the options
 	 */
 	Options createOptionsXYDateFloatLegendOutside(Series series);
-	
+
 	/**
 	 * Creates the options XY date float log Y axis legend outside.
 	 *
@@ -93,5 +93,5 @@ public interface ChartOptions {
 	 * @return the options
 	 */
 	Options createOptionsXYDateFloatLogYAxisLegendOutside(Series series);
-	
+
 }

@@ -76,6 +76,8 @@ abstract class AbstractAdminSystemPageModContentFactoryImpl extends AbstractPage
 	/**
 	 * Creates the paging controls.
 	 *
+	 * @param content
+	 *            the content
 	 * @param name
 	 *            the name
 	 * @param pageId
@@ -86,7 +88,6 @@ abstract class AbstractAdminSystemPageModContentFactoryImpl extends AbstractPage
 	 *            the page nr
 	 * @param resultPerPage
 	 *            the result per page
-	 * @return the horizontal layout
 	 */
 	protected final void createPagingControls(final AbstractOrderedLayout content,final String name,final String pageId, final Long size, final int pageNr, final int resultPerPage) {
 		final HorizontalLayout pagingControls = new HorizontalLayout();
