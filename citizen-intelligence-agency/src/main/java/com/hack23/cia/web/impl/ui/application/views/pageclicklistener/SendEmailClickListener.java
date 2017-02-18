@@ -31,13 +31,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 
 /**
- * The listener interface for receiving sendEmailClick events. The class that is
- * interested in processing a sendEmailClick event implements this interface,
- * and the object created with that class is registered with a component using
- * the component's <code>addSendEmailClickListener<code> method. When the
- * sendEmailClick event occurs, that object's appropriate method is invoked.
- *
- * @see SendEmailClickEvent
+ * The Class SendEmailClickListener.
  */
 public final class SendEmailClickListener implements ClickListener {
 
