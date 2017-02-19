@@ -46,7 +46,6 @@
 	<import resource="classpath:META-INF/cia-service-external-common.xml" />
 	<import resource="classpath:META-INF/cia-service-external-riksdagen.xml" />
 	<import resource="classpath:META-INF/cia-service-external-worldbank.xml" />
-	<import resource="classpath:META-INF/cia-service-external-vdem.xml" />
 	<import resource="classpath:META-INF/cia-service-external-val.xml" />
 	<import resource="classpath:META-INF/cia-service-external-esv.xml" />
 	<import resource="classpath:META-INF/cia-service-component-agent.xml" />
