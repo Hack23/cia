@@ -27,7 +27,6 @@
     <module>../model.external.worldbank</module>
     <module>../model.external.riksdagen</module>
     <module>../model.external.val</module>
-    <module>../model.external.vdem.indicators.impl</module>
   </modules>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
