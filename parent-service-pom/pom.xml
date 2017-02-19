@@ -35,7 +35,6 @@
     <module>../service.external.riksdagen</module>
     <module>../service.external.val</module>
     <module>../service.external.esv</module>
-    <module>../service.external.vdem</module>
     <module>../service.data.api</module>
     <module>../service.data.impl</module>
   </modules>

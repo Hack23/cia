@@ -149,11 +149,6 @@
     </dependency>
     <dependency>
       <groupId>com.hack23.cia</groupId>
-      <artifactId>service.external.vdem</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.hack23.cia</groupId>
       <artifactId>service.external.val</artifactId>
       <version>${project.version}</version>
       <exclusions>
