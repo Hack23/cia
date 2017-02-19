@@ -33,7 +33,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder;
 import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
 import com.hack23.cia.model.internal.application.data.impl.ValDataSources;
-import com.hack23.cia.model.internal.application.data.impl.VdemDataSources;
 import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
 import com.hack23.cia.service.component.agent.api.DataAgentApi;
 import com.hack23.cia.service.component.agent.impl.common.ProducerMessageFactory;
@@ -62,11 +61,6 @@ final class DataAgentApiImpl implements DataAgentApi {
 	@Autowired
 	@Qualifier("worldbankApiAgentWorkQueue")
 	private Destination worldBankApiDestination;
-
-	@Autowired
-	@Qualifier("vdemApiAgentWorkQueue")
-	private Destination vdemApiDestination;
-
 
 	/**
 	 * Instantiates a new data agent api impl.
@@ -111,11 +105,6 @@ final class DataAgentApiImpl implements DataAgentApi {
 		case MODEL_EXTERNAL_VAL:
 			for (final ValDataSources datasource :ValDataSources.values()) {
 				jmsTemplate.send(new ProducerMessageFactory(datasource));
-			}
-			break;
-		case MODEL_EXTERNAL_VDEM:
-			for (final VdemDataSources datasource :VdemDataSources.values()) {
-				jmsTemplate.send(vdemApiDestination,new ProducerMessageFactory(datasource));
 			}
 			break;
 		default:
