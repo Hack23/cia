@@ -82,8 +82,7 @@
 				href="https://cia.sourceforge.io/service.external.riksdagen/" />
 			<item name="service.external.val" href="https://cia.sourceforge.io/service.external.val/" />
 			<item name="service.external.esv" href="https://cia.sourceforge.io/service.external.esv/" />			
-			<item name="service.external.vdem" href="https://cia.sourceforge.io/service.external.vdem/" />
-
+			<item name="service.external.vdem(deprecated)" href="https://cia.sourceforge.io/service.external.vdem/" />
 
 			<item name="Service.Data.Api" href="https://cia.sourceforge.io/service.data.api/" />
 			<item name="Service.Data.Impl" href="https://cia.sourceforge.io/service.data.impl/" />
