@@ -27,7 +27,7 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DocumentChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.OrgDocumentChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.vaadin.ui.Layout;
@@ -49,7 +49,7 @@ public final class CommitteeDocumentActivityPageModContentFactoryImpl extends Ab
 
 	/** The chart data manager. */
 	@Autowired
-	private DocumentChartDataManager chartDataManager;
+	private OrgDocumentChartDataManager chartDataManager;
 
 
 	/**

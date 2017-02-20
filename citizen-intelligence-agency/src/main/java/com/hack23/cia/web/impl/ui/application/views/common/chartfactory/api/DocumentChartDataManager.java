@@ -23,6 +23,7 @@ import com.vaadin.ui.AbstractOrderedLayout;
 /**
  * The Interface ChartDataManager.
  */
+@FunctionalInterface
 public interface DocumentChartDataManager {
 
 
@@ -33,35 +34,5 @@ public interface DocumentChartDataManager {
 	 *            the content
 	 */
 	void createDocumentTypeChart(AbstractOrderedLayout content);
-
-	/**
-	 * Creates the document history chart by org.
-	 *
-	 * @param content
-	 *            the content
-	 * @param org
-	 *            the org
-	 */
-	void createDocumentHistoryChartByOrg(AbstractOrderedLayout content,String org);
-
-	/**
-	 * Creates the document history party chart.
-	 *
-	 * @param content
-	 *            the content
-	 * @param org
-	 *            the org
-	 */
-	void createDocumentHistoryPartyChart(AbstractOrderedLayout content,String org);
-
-	/**
-	 * Creates the person document history chart.
-	 *
-	 * @param content
-	 *            the content
-	 * @param personId
-	 *            the person id
-	 */
-	void createPersonDocumentHistoryChart(AbstractOrderedLayout content,String personId);
 
 }
