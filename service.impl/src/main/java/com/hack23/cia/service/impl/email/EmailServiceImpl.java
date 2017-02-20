@@ -55,7 +55,7 @@ public final class EmailServiceImpl implements EmailService {
 	private static final String APPLICATION_EMAIL_SMTP_AUTH = "application.email.smtp.auth";
 
 	/** The Constant APPLICATION_EMAIL_SMTP_PASSWORD. */
-	private static final String APPLICATION_EMAIL_SMTP_PASSWORD = "application.email.smtp.password";
+	private static final String APPLICATION_EMAIL_SMTP_SECRET = "application.email.smtp.password";
 
 	/** The Constant APPLICATION_EMAIL_SMTP_USERNAME. */
 	private static final String APPLICATION_EMAIL_SMTP_USERNAME = "application.email.smtp.username";
@@ -82,7 +82,7 @@ public final class EmailServiceImpl implements EmailService {
 	private static final String SMTP_AUTH = "Smtp auth";
 
 	/** The Constant SMTP_PASSWORD. */
-	private static final String SMTP_PASSWORD = "Smtp password";
+	private static final String SMTP_SECRET = "Smtp password";
 
 	/** The Constant SMTP_USERNAME. */
 	private static final String SMTP_USERNAME = "Smtp username";
@@ -106,7 +106,7 @@ public final class EmailServiceImpl implements EmailService {
 	private static final String EMAIL_CONFIGURATION_SMTP_AUTH = "Email configuration smtp auth";
 
 	/** The Constant EMAIL_CONFIGURATION_SMTP_PASSWORD. */
-	private static final String EMAIL_CONFIGURATION_SMTP_PASSWORD = "Email configuration smtp password";
+	private static final String EMAIL_CONFIGURATION_SMTP_SECRET = "Email configuration smtp password";
 
 	/** The Constant EMAIL_CONFIGURATION_SMTP_USERNAME. */
 	private static final String EMAIL_CONFIGURATION_SMTP_USERNAME = "Email configuration smtp username";
@@ -152,7 +152,7 @@ public final class EmailServiceImpl implements EmailService {
 		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_HOST, SMTP_HOST, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_HOST, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_HOST, "localhost"));
 		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_PORT, SMTP_PORT, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_PORT, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_PORT, "587"));
 		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_USERNAME, SMTP_USERNAME, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_USERNAME, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_USERNAME, "username"));
-		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_PASSWORD, SMTP_PASSWORD, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_PASSWORD, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_PASSWORD, "password"));
+		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_SECRET, SMTP_SECRET, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_SECRET, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_SECRET, "password"));
 		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_AUTH, SMTP_AUTH, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_AUTH, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_AUTH, "true"));
 		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_STARTTLS_ENABLE, SMTP_STARTTLS_ENABLE, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_STARTTLS_ENABLE, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_STARTTLS_ENABLE, "true"));
 
@@ -191,7 +191,7 @@ public final class EmailServiceImpl implements EmailService {
 		final ApplicationConfiguration smtpHostConfig = applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_HOST, SMTP_HOST, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_HOST, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_HOST, "localhost");
 		final ApplicationConfiguration smtpPort = applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_PORT, SMTP_PORT, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_PORT, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_PORT, "587");
 		final ApplicationConfiguration smtpUsername = applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_USERNAME, SMTP_USERNAME, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_USERNAME, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_USERNAME, "username");
-		final ApplicationConfiguration smtpPassword = applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_PASSWORD, SMTP_PASSWORD, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_PASSWORD, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_PASSWORD, "password");
+		final ApplicationConfiguration smtpPassword = applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_SECRET, SMTP_SECRET, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_SECRET, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_SECRET, "password");
 		final ApplicationConfiguration smtpAuth = applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_AUTH, SMTP_AUTH, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_AUTH, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_AUTH, "true");
 		final ApplicationConfiguration smtpStartTlsEnable = applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_STARTTLS_ENABLE, SMTP_STARTTLS_ENABLE, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_STARTTLS_ENABLE, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_STARTTLS_ENABLE, "true");
 
