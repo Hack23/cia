@@ -18,33 +18,20 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
 import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.dussan.vaadin.dcharts.options.Series;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentOrgSummaryEmbeddedId;
-import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentPartySummaryEmbeddedId;
-import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentPersonSummaryEmbeddedId;
 import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentTypeSummaryEmbeddedId;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenDocumentTypeDailySummary;
-import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenOrgDocumentDailySummary;
-import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPartyDocumentDailySummary;
-import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
@@ -52,40 +39,19 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Docu
 import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
- * The Class ChartDataManagerImpl.
+ * The Class DocumentChartDataManagerImpl.
  */
 @Service
 public final class DocumentChartDataManagerImpl extends AbstractChartDataManagerImpl implements DocumentChartDataManager {
 
-	/** The Constant NO_INFO. */
-	private static final String NO_INFO = "NoInfo";
-
 	/** The Constant MOT_PROP_BET. */
 	private static final String MOT_PROP_BET = "mot:prop:bet";
-
-	/** The Constant LOG_MSG_MISSING_DATA_FOR_KEY. */
-	private static final String LOG_MSG_MISSING_DATA_FOR_KEY = "missing data for key:{}";
-
-	/** The Constant LOG_MSG_TRYING_TO_FIND_DOCUMENT_SUMMARY_FOR_ORG_IN_MAP. */
-	private static final String LOG_MSG_TRYING_TO_FIND_DOCUMENT_SUMMARY_FOR_ORG_IN_MAP = "Trying to find document summary for org:{} in map:{}";
 
 	/** The Constant YEAR_PREFIX. */
 	private static final String YEAR_PREFIX = "19";
 
-	/** The Constant MINUS_SIGN. */
-	private static final String MINUS_SIGN = "-";
-
 	/** The Constant EMPTY_STRING. */
 	private static final String EMPTY_STRING = "";
-
-	/** The Constant UNDER_SCORE. */
-	private static final String UNDER_SCORE = "_";
-
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(DocumentChartDataManagerImpl.class);
-
-	/** The Constant DD_MMM_YYYY. */
-	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
 
 	/** The application manager. */
 	@Autowired
@@ -117,228 +83,6 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 				.filter(t -> t != null && !t.getEmbeddedId().getPublicDate().startsWith(YEAR_PREFIX)
 						&& MOT_PROP_BET.contains(t.getEmbeddedId().getDocumentType()))
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDocumentType()));
-	}
-
-
-
-	/**
-	 * Gets the view riksdagen org document daily summary map.
-	 *
-	 * @return the view riksdagen org document daily summary map
-	 */
-	private Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> getViewRiksdagenOrgDocumentDailySummaryMap() {
-		final DataContainer<ViewRiksdagenOrgDocumentDailySummary, RiksdagenDocumentOrgSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenOrgDocumentDailySummary.class);
-
-		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream()
-				.filter(t -> t != null && !t.getEmbeddedId().getPublicDate().startsWith(YEAR_PREFIX))
-				.collect(Collectors.groupingBy(t -> StringEscapeUtils.unescapeHtml4(t.getEmbeddedId().getOrg()).toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).replace(MINUS_SIGN, EMPTY_STRING).trim()));
-	}
-
-
-	/**
-	 * Gets the view riksdagen party document daily summary map.
-	 *
-	 * @return the view riksdagen party document daily summary map
-	 */
-	private Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> getViewRiksdagenPartyDocumentDailySummaryMap() {
-		final DataContainer<ViewRiksdagenPartyDocumentDailySummary, RiksdagenDocumentPartySummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenPartyDocumentDailySummary.class);
-
-		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
-				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPartyShortCode().toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).trim()));
-	}
-
-
-	/**
-	 * Gets the view riksdagen politician document daily summary map.
-	 *
-	 * @return the view riksdagen politician document daily summary map
-	 */
-	private Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> getViewRiksdagenPoliticianDocumentDailySummaryMap() {
-		final DataContainer<ViewRiksdagenPoliticianDocumentDailySummary, RiksdagenDocumentPersonSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenPoliticianDocumentDailySummary.class);
-
-		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
-				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPersonId()));
-	}
-
-
-
-	@Override
-	public void createDocumentHistoryChartByOrg(final AbstractOrderedLayout content,final String org) {
-		final String searchOrg = org.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).replace(MINUS_SIGN, EMPTY_STRING).trim();
-
-		final DataSeries dataSeries = new DataSeries();
-
-		final Series series = new Series();
-
-		final Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> allMap = getViewRiksdagenOrgDocumentDailySummaryMap();
-
-		LOGGER.debug(LOG_MSG_TRYING_TO_FIND_DOCUMENT_SUMMARY_FOR_ORG_IN_MAP,searchOrg,allMap.keySet().toString());
-
-
-		final List<ViewRiksdagenOrgDocumentDailySummary> itemList = allMap
-				.get(searchOrg);
-
-		if (itemList != null) {
-
-			addDocumentHistoryByOrgData(dataSeries, series, itemList);
-		}
-
-		addChart(content,"Document History by Org", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
-	}
-
-
-	/**
-	 * Adds the document history by org data.
-	 *
-	 * @param dataSeries
-	 *            the data series
-	 * @param series
-	 *            the series
-	 * @param itemList
-	 *            the item list
-	 */
-	private static void addDocumentHistoryByOrgData(final DataSeries dataSeries, final Series series,
-			final List<ViewRiksdagenOrgDocumentDailySummary> itemList) {
-		final Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> map = itemList.parallelStream()
-				.filter(Objects::nonNull)
-				.collect(Collectors.groupingBy(t -> StringUtils.defaultIfBlank(t.getDocumentType(), NO_INFO)));
-
-		for (final Entry<String, List<ViewRiksdagenOrgDocumentDailySummary>> entry : map.entrySet()) {
-
-			series.addSeries(new XYseries().setLabel(entry.getKey()));
-
-			dataSeries.newSeries();
-			if (entry.getValue() != null) {
-				for (final ViewRiksdagenOrgDocumentDailySummary item : entry.getValue()) {
-					if (item != null) {
-						dataSeries.add(item.getEmbeddedId().getPublicDate(), item.getTotal());
-					}
-				}
-			} else {
-				LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
-			}
-
-		}
-	}
-
-	@Override
-	public void createDocumentHistoryPartyChart(final AbstractOrderedLayout content,final String org) {
-		final DataSeries dataSeries = new DataSeries();
-		final Series series = new Series();
-
-		final Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> allMap = getViewRiksdagenPartyDocumentDailySummaryMap();
-
-		final List<ViewRiksdagenPartyDocumentDailySummary> itemList = allMap
-				.get(org.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).trim());
-
-		if (itemList != null) {
-
-			final Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> map = itemList.parallelStream()
-					.filter(Objects::nonNull).collect(Collectors.groupingBy(
-							t -> StringUtils.defaultIfBlank(t.getEmbeddedId().getDocumentType(), NO_INFO)));
-
-			addDocumentHistoryByPartyData(dataSeries, series, map);
-		}
-
-		addChart(content, "Document history party",new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
-	}
-
-
-	/**
-	 * Adds the document history by party data.
-	 *
-	 * @param dataSeries
-	 *            the data series
-	 * @param series
-	 *            the series
-	 * @param map
-	 *            the map
-	 */
-	private static void addDocumentHistoryByPartyData(final DataSeries dataSeries, final Series series,
-			final Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> map) {
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
-
-		for (final Entry<String, List<ViewRiksdagenPartyDocumentDailySummary>> entry : map.entrySet()) {
-
-			series.addSeries(new XYseries().setLabel(entry.getKey()));
-
-			dataSeries.newSeries();
-			if (entry.getValue() != null) {
-				for (final ViewRiksdagenPartyDocumentDailySummary item : entry.getValue()) {
-					if (item != null) {
-						dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getPublicDate()), item.getTotal());
-					}
-				}
-			} else {
-				LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
-			}
-
-		}
-	}
-
-
-
-	@Override
-	public void createPersonDocumentHistoryChart(final AbstractOrderedLayout content,final String personId) {
-
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
-
-		final DataSeries dataSeries = new DataSeries();
-
-		final Series series = new Series();
-
-		final Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> allMap = getViewRiksdagenPoliticianDocumentDailySummaryMap();
-
-		final List<ViewRiksdagenPoliticianDocumentDailySummary> itemList = allMap
-				.get(personId.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).trim());
-
-		if (itemList != null) {
-
-			final Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> map = itemList.parallelStream()
-					.filter(Objects::nonNull).collect(Collectors.groupingBy(
-							t -> StringUtils.defaultIfBlank(t.getEmbeddedId().getDocumentType(), NO_INFO)));
-
-			addDocumentHistoryByPersonData(simpleDateFormat, dataSeries, series, map);
-		}
-
-		addChart(content,"Document history ", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
-	}
-
-
-	/**
-	 * Adds the document history by person data.
-	 *
-	 * @param simpleDateFormat
-	 *            the simple date format
-	 * @param dataSeries
-	 *            the data series
-	 * @param series
-	 *            the series
-	 * @param map
-	 *            the map
-	 */
-	private static void addDocumentHistoryByPersonData(final SimpleDateFormat simpleDateFormat, final DataSeries dataSeries,
-			final Series series, final Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> map) {
-		for (final Entry<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> entry : map.entrySet()) {
-
-			series.addSeries(new XYseries().setLabel(entry.getKey()));
-
-			dataSeries.newSeries();
-			if (entry.getValue() != null) {
-				for (final ViewRiksdagenPoliticianDocumentDailySummary item : entry.getValue()) {
-					if (item != null) {
-						dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getPublicDate()),
-								item.getTotal());
-					}
-				}
-			} else {
-				LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
-			}
-
-		}
 	}
 
 

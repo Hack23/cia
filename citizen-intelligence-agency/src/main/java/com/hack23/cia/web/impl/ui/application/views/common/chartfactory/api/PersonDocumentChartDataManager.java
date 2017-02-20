@@ -21,20 +21,20 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
 import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
- * The Interface PoliticianChartDataManager.
+ * The Interface PersonDocumentChartDataManager.
  */
 @FunctionalInterface
-public interface PoliticianChartDataManager {
+public interface PersonDocumentChartDataManager {
 
 
 	/**
-	 * Creates the person line chart.
+	 * Creates the person document history chart.
 	 *
 	 * @param content
 	 *            the content
 	 * @param personId
 	 *            the person id
 	 */
-	void createPersonLineChart(AbstractOrderedLayout content,String personId);
+	void createPersonDocumentHistoryChart(AbstractOrderedLayout content,String personId);
 
 }

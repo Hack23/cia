@@ -27,7 +27,7 @@ import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DocumentChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.OrgDocumentChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.vaadin.ui.Layout;
@@ -49,7 +49,7 @@ public final class MinistryDocumentActivityPageModContentFactoryImpl extends Abs
 
 	/** The chart data manager. */
 	@Autowired
-	private DocumentChartDataManager chartDataManager;
+	private OrgDocumentChartDataManager chartDataManager;
 
 	/**
 	 * Instantiates a new ministry document activity page mod content factory

@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DocumentChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyDocumentChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.vaadin.ui.Layout;
@@ -43,7 +43,7 @@ public final class PartyDocumentActivityPageModContentFactoryImpl extends Abstra
 
 	/** The document chart data manager. */
 	@Autowired
-	private DocumentChartDataManager documentChartDataManager;
+	private PartyDocumentChartDataManager documentChartDataManager;
 
 	/**
 	 * Instantiates a new party document activity page mod content factory impl.

@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DocumentChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PersonDocumentChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
 import com.vaadin.ui.Layout;
@@ -41,7 +41,7 @@ public final class PoliticianDocumentActivityPageModContentFactoryImpl extends A
 
 	/** The document chart data manager. */
 	@Autowired
-	private DocumentChartDataManager documentChartDataManager;
+	private PersonDocumentChartDataManager documentChartDataManager;
 
 	/**
 	 * Instantiates a new politician document activity page mod content factory
