@@ -40,9 +40,21 @@ import com.vaadin.ui.AbstractOrderedLayout;
  * The Class GovernmentBodyChartDataManagerImpl.
  */
 @Service
-public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManagerImpl
-		implements GovernmentBodyChartDataManager {
+public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManagerImpl implements GovernmentBodyChartDataManager {
 
+	/** The Constant ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES. */
+	private static final String ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES = " Annual headcount summary, all government bodies";
+
+	/** The Constant ANNUAL_HEADCOUNT_SUMMARY. */
+	private static final String ANNUAL_HEADCOUNT_SUMMARY = " Annual headcount summary";
+
+	/** The Constant ANNUAL_HEADCOUNT_ALL_MINISTRIES. */
+	private static final String ANNUAL_HEADCOUNT_ALL_MINISTRIES = "Annual headcount, all ministries";
+
+	/** The Constant FIRST_OF_JAN. */
+	private static final String FIRST_OF_JAN = "01-JAN-";
+
+	/** The esv api. */
 	@Autowired
 	private EsvApi esvApi;
 
@@ -72,11 +84,11 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 		for (final Entry<Integer, GovernmentBodyAnnualSummary> entry : map.entrySet()) {
 			final GovernmentBodyAnnualSummary item = entry.getValue();
 			if (entry.getKey() != null && item != null && item.getHeadCount() > 0) {
-				dataSeries.add("01-JAN-" + item.getYear(), item.getHeadCount());
+				dataSeries.add(FIRST_OF_JAN + item.getYear(), item.getHeadCount());
 			}
 		}
 
-		addChart(content, name + " Annual headcount summary", new DCharts().setDataSeries(dataSeries)
+		addChart(content, name + ANNUAL_HEADCOUNT_SUMMARY, new DCharts().setDataSeries(dataSeries)
 				.setOptions(chartOptions.createOptionsXYDateFloatLogYAxisLegendOutside(series)).show());
 	}
 
@@ -99,15 +111,15 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 
 				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
 				final Integer totalHeadcount = item.stream().filter(p -> p.getName().equalsIgnoreCase(govBodyName))
-						.collect(Collectors.summingInt(p -> p.getHeadCount()));
+						.collect(Collectors.summingInt(GovernmentBodyAnnualSummary::getHeadCount));
 
 				if (entry.getKey() != null && item != null && totalHeadcount > 0) {
-					dataSeries.add("01-JAN-" + entry.getKey(), totalHeadcount);
+					dataSeries.add(FIRST_OF_JAN + entry.getKey(), totalHeadcount);
 				}
 			}
 		}
 
-		addChart(content, name + " Annual headcount summary, all government bodies",
+		addChart(content, name + ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES,
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(chartOptions.createOptionsXYDateFloatLogYAxisLegendOutside(series)).show());
 
@@ -132,15 +144,15 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 
 				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
 				final Integer totalHeadcount = item.stream().filter(p -> p.getMinistry().equalsIgnoreCase(ministryName))
-						.collect(Collectors.summingInt(p -> p.getHeadCount()));
+						.collect(Collectors.summingInt(GovernmentBodyAnnualSummary::getHeadCount));
 
 				if (entry.getKey() != null && item != null && totalHeadcount > 0) {
-					dataSeries.add("01-JAN-" + entry.getKey(), totalHeadcount);
+					dataSeries.add(FIRST_OF_JAN + entry.getKey(), totalHeadcount);
 				}
 			}
 		}
 
-		addChart(content, "Annual headcount, all ministries", new DCharts().setDataSeries(dataSeries)
+		addChart(content, ANNUAL_HEADCOUNT_ALL_MINISTRIES, new DCharts().setDataSeries(dataSeries)
 				.setOptions(chartOptions.createOptionsXYDateFloatLogYAxisLegendOutside(series)).show());
 
 	}

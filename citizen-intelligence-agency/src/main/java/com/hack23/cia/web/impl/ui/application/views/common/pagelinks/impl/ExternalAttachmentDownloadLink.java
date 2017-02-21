@@ -75,11 +75,10 @@ public final class ExternalAttachmentDownloadLink extends Link {
 
 		final StreamResource.StreamSource source = new StreamResource.StreamSource() {
 
-			/**
-			 *
-			 */
+			/** The Constant serialVersionUID. */
 			private static final long serialVersionUID = 1L;
 
+			@Override
 			public InputStream getStream() {
 
 				try {
