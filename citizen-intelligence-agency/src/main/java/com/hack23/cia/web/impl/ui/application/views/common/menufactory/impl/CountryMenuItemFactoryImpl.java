@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 
 import java.util.AbstractMap;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -135,12 +136,8 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 	@Override
 	public void createCountryTopicMenu(final MenuItem charts) {
-
-
 		charts.addItem(OVERVIEW_TEXT, FontAwesome.LINE_CHART,
 				COMMAND18);
-
-
 
 		final DataContainer<ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId> indicatorDataCountrSummaryDailyDataContainer = applicationManager
 				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);
@@ -148,7 +145,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 		final Map<String, List<ViewWorldbankIndicatorDataCountrySummary>> sourceIndicatorMap = indicatorDataCountrSummaryDailyDataContainer
 				.getAll().parallelStream()
 				.filter(t -> t != null && t.getSourceValue() != null && t.getEndYear() > 2010 && t.getDataPoint() > 10)
-				.collect(Collectors.groupingBy(t -> t.getSourceValue()));
+				.collect(Collectors.groupingBy(ViewWorldbankIndicatorDataCountrySummary::getSourceValue));
 
 		final Map<String, List<ViewWorldbankIndicatorDataCountrySummary>> topicIndicatorMap = indicatorDataCountrSummaryDailyDataContainer
 				.getAll().parallelStream()
@@ -156,8 +153,8 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 				.flatMap(t -> Arrays.asList(t.getTopics().split(";")).stream()
 						.map(topic -> new AbstractMap.SimpleEntry<>(topic, t)))
 
-				.collect(Collectors.groupingBy(e -> e.getKey(),
-						Collectors.mapping(v -> v.getValue(), Collectors.toList())));
+				.collect(Collectors.groupingBy(SimpleEntry::getKey,
+						Collectors.mapping(SimpleEntry::getValue, Collectors.toList())));
 
 		final MenuItem countryIndicators = charts.addItem(COUNTRY_INDICATORS_SWEDEN, FontAwesome.LINE_CHART, null);
 
