@@ -244,8 +244,8 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 		assertNotNull(map);
 		for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
 
-			List<GovernmentBodyAnnualSummary> item = entry.getValue();
-			Integer totalHeadcount = item.stream().collect(Collectors.summingInt(p -> p.getHeadCount()));
+			final List<GovernmentBodyAnnualSummary> item = entry.getValue();
+			final Integer totalHeadcount = item.stream().collect(Collectors.summingInt(p -> p.getHeadCount()));
 
 			if (entry.getKey() != null) {
 				if (item != null && totalHeadcount > 0) {
@@ -262,16 +262,16 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	public void printMinistryGovernmentBodyAnnualSummaryTest() {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getDataPerMinistry("Försvarsdepartementet");
 
-		List<String> govBodyNames = esvApi.getGovernmentBodyNames("Försvarsdepartementet");
+		final List<String> govBodyNames = esvApi.getGovernmentBodyNames("Försvarsdepartementet");
 		assertNotNull(govBodyNames);
 
-		for (String govBodyName : govBodyNames) {
+		for (final String govBodyName : govBodyNames) {
 			System.out.println(govBodyName);
-			
+
 			for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
 
-				List<GovernmentBodyAnnualSummary> item = entry.getValue();
-				Integer totalHeadcount = item.stream().filter(p -> p.getName().equalsIgnoreCase(govBodyName)).collect(Collectors.summingInt(p -> p.getHeadCount()));
+				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
+				final Integer totalHeadcount = item.stream().filter(p -> p.getName().equalsIgnoreCase(govBodyName)).collect(Collectors.summingInt(p -> p.getHeadCount()));
 
 				if (entry.getKey() != null) {
 					if (item != null && totalHeadcount > 0) {
@@ -288,15 +288,15 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	@Test
 	public void printAllMinistryAnnualSummaryTest() {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getData();
-		List<String> ministryNames = esvApi.getMinistryNames();
+		final List<String> ministryNames = esvApi.getMinistryNames();
 		assertNotNull(ministryNames);
-		for (String ministryName : ministryNames) {
+		for (final String ministryName : ministryNames) {
 
 			System.out.println(ministryName);
 			for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
 
-				List<GovernmentBodyAnnualSummary> item = entry.getValue();
-				Integer totalHeadcount = item.stream().filter(p -> p.getMinistry().equalsIgnoreCase(ministryName))
+				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
+				final Integer totalHeadcount = item.stream().filter(p -> p.getMinistry().equalsIgnoreCase(ministryName))
 						.collect(Collectors.summingInt(p -> p.getHeadCount()));
 
 				if (entry.getKey() != null) {

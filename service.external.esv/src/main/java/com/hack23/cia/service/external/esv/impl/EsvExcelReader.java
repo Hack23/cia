@@ -16,22 +16,17 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.external.esv.api;
+package com.hack23.cia.service.external.esv.impl;
 
 import java.util.List;
 import java.util.Map;
 
-/**
- * The Interface EsvApi.
- */
-public interface EsvApi {
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 
-	/**
-	 * Gets the data.
-	 *
-	 * @return the data
-	 */
-	Map<Integer, List<GovernmentBodyAnnualSummary>> getData();
+/**
+ * The Interface EsvExcelReader.
+ */
+public interface EsvExcelReader {
 
 	/**
 	 * Gets the data per ministry.
@@ -50,40 +45,5 @@ public interface EsvApi {
 	 * @return the data per government body
 	 */
 	Map<Integer, GovernmentBodyAnnualSummary> getDataPerGovernmentBody(String name);
-
-	/**
-	 * Gets the data per ministry and year.
-	 *
-	 * @param name
-	 *            the name
-	 * @param year
-	 *            the year
-	 * @return the data per ministry and year
-	 */
-	List<GovernmentBodyAnnualSummary> getDataPerMinistryAndYear(String name, int year);
-
-	/**
-	 * Gets the government body names.
-	 *
-	 * @return the government body names
-	 */
-	List<String> getGovernmentBodyNames();
-
-	/**
-	 * Gets the government body names.
-	 *
-	 * @param ministry
-	 *            the ministry
-	 * @return the government body names
-	 */
-	List<String> getGovernmentBodyNames(String ministry);
-
-
-	/**
-	 * Gets the ministry names.
-	 *
-	 * @return the ministry names
-	 */
-	List<String> getMinistryNames();
 
 }
