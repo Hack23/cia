@@ -30,9 +30,7 @@ import com.vaadin.ui.Notification;
  */
 public final class UpdateSearchIndexClickListener implements ClickListener {
 
-	/**
-	 *
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The Constant UPDATE_SEARCH_INDEX_STARTED. */

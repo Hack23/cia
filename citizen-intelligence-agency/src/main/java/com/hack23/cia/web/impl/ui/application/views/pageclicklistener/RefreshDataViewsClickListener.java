@@ -30,9 +30,7 @@ import com.vaadin.ui.Notification;
  */
 public final class RefreshDataViewsClickListener implements ClickListener {
 
-	/**
-	 *
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The Constant REFRESH_VIEWS_STARTED. */
