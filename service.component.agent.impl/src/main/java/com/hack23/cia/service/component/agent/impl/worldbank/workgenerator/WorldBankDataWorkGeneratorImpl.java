@@ -98,7 +98,7 @@ final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesW
 			final List<String> load = new ArrayList<>();
 			load.add(country.getIso2Code());
 			load.add(indicator.getId());
-			sendMessage(dataWorkdestination, (Serializable) load);
+			getJmsSender().send(dataWorkdestination, (Serializable) load);
 		}
 	}
 

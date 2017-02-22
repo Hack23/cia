@@ -67,7 +67,7 @@ final class RiksdagenDocumentListWorkGeneratorImpl extends AbstractRiksdagenData
 			while (loadedWeekDate.isBefore(toDate)) {
 				loadedWeekDate = loadedWeekDate.plusWeeks(1);
 
-				sendMessage(loadDocumentWorkdestination,
+				getJmsSender().send(loadDocumentWorkdestination,
 						new LoadDocumentWork(fmt.print(fromDateTime), fmt.print(loadedWeekDate)));
 
 				fromDateTime = fromDateTime.plusWeeks(1);

@@ -18,13 +18,11 @@
 */
 package com.hack23.cia.service.component.agent.impl.common;
 
-import java.io.Serializable;
-
-import javax.jms.Destination;
 import javax.jms.MessageListener;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jms.core.JmsTemplate;
+
+import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
 
 
 /**
@@ -32,33 +30,16 @@ import org.springframework.jms.core.JmsTemplate;
  */
 public abstract class AbstractAgentWorkConsumerImpl implements MessageListener {
 
-	/** The jms template. */
 	@Autowired
-	private JmsTemplate jmsTemplate;
+	private JmsSender jmsSender;
 
 	/**
 	 * Gets the jms template.
 	 *
 	 * @return the jms template
 	 */
-	public final JmsTemplate getJmsTemplate() {
-		return jmsTemplate;
-	}
-
-	/**
-	 * Send message.
-	 *
-	 * @param destination
-	 *            the destination
-	 * @param msg
-	 *            the msg
-	 * @throws Exception
-	 *             the exception
-	 */
-	protected final void sendMessage(final Destination destination,
-			final Serializable msg) throws Exception {
-		jmsTemplate.send(destination, new ProducerMessageFactory(
-				msg));
+	public final JmsSender getJmsSender() {
+		return jmsSender;
 	}
 
 }

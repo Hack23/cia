@@ -18,15 +18,10 @@
 */
 package com.hack23.cia.service.component.agent.impl.worldbank.workgenerator;
 
-import java.io.Serializable;
-
-import javax.jms.Destination;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jms.core.JmsTemplate;
 
 import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
-import com.hack23.cia.service.component.agent.impl.common.ProducerMessageFactory;
+import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
 import com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.data.WorldbankImportService;
 
 /**
@@ -34,9 +29,8 @@ import com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.data.
  */
 public abstract class AbstractWorldBankDataSourcesWorkGenerator implements WorldBankDataSourcesWorkGenerator {
 
-	/** The jms template. */
 	@Autowired
-	private JmsTemplate jmsTemplate;
+	private JmsSender jmsSender;
 
 	/** The import service. */
 	@Autowired
@@ -62,26 +56,21 @@ public abstract class AbstractWorldBankDataSourcesWorkGenerator implements World
 	}
 
 	/**
-	 * Send message.
-	 *
-	 * @param destination
-	 *            the destination
-	 * @param msg
-	 *            the msg
-	 * @throws Exception
-	 *             the exception
-	 */
-	protected final void sendMessage(final Destination destination, final Serializable msg) throws Exception {
-		jmsTemplate.send(destination, new ProducerMessageFactory(msg));
-	}
-
-	/**
 	 * Gets the import service.
 	 *
 	 * @return the import service
 	 */
 	protected final WorldbankImportService getImportService() {
 		return importService;
+	}
+
+	/**
+	 * Gets the jms sender.
+	 *
+	 * @return the jms sender
+	 */
+	protected final JmsSender getJmsSender() {
+		return jmsSender;
 	}
 
 }

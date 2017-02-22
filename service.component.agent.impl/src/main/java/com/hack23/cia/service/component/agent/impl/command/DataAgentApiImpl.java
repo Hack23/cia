@@ -25,7 +25,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,7 +33,7 @@ import com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder;
 import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
 import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
 import com.hack23.cia.service.component.agent.api.DataAgentApi;
-import com.hack23.cia.service.component.agent.impl.common.ProducerMessageFactory;
+import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
 
 /**
  * The Class DataAgentApiImpl.
@@ -49,7 +48,7 @@ final class DataAgentApiImpl implements DataAgentApi {
 
 	/** The jms template. */
 	@Autowired
-	private JmsTemplate jmsTemplate;
+	private JmsSender jmsSender;
 
 	/** The riksdagen api destination. */
 	@Autowired
@@ -91,14 +90,12 @@ final class DataAgentApiImpl implements DataAgentApi {
 		switch (workOrder.getTarget()) {
 		case MODEL_EXTERNAL_RIKSDAGEN:
 			for (final RiksdagenDataSources datasource :RiksdagenDataSources.values()) {
-				jmsTemplate.send(riksdagenApiDestination,
-						new ProducerMessageFactory(datasource));
+				jmsSender.send(riksdagenApiDestination,	datasource);
 			}
 			break;
 		case MODEL_EXTERNAL_WORLDBANK:
 			for (final WorldBankDataSources datasource :WorldBankDataSources.values()) {
-				jmsTemplate.send(worldBankApiDestination,
-						new ProducerMessageFactory(datasource));
+				jmsSender.send(worldBankApiDestination,datasource);
 			}
 			break;
 		default:

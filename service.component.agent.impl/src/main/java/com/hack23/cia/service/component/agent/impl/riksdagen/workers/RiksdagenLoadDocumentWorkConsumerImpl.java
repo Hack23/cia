@@ -28,12 +28,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
-import com.hack23.cia.service.component.agent.impl.common.ProducerMessageFactory;
+import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
 import com.hack23.cia.service.external.common.api.ProcessDataStrategy;
 import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
@@ -62,7 +61,7 @@ MessageListener {
 
 	/** The jms template. */
 	@Autowired
-	private JmsTemplate jmsTemplate;
+	private JmsSender jmsSender;
 
 
 	/**
@@ -93,8 +92,8 @@ MessageListener {
 		@Override
 		public void process(final DocumentElement t) {
 			try {
-				jmsTemplate.send(documentElementWorkdestination, new ProducerMessageFactory(t));
-			} catch (final org.springframework.jms.JmsException e) {
+				jmsSender.send(documentElementWorkdestination, t);
+			} catch (final JMSException e) {
 				LOGGER.warn("Error proccessing documentElement",e);
 			}
 		}

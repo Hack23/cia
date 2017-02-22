@@ -18,15 +18,10 @@
 */
 package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator;
 
-import java.io.Serializable;
-
-import javax.jms.Destination;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jms.core.JmsTemplate;
 
 import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
-import com.hack23.cia.service.component.agent.impl.common.ProducerMessageFactory;
+import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
 import com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data.RiksdagenImportService;
 
 /**
@@ -38,12 +33,11 @@ public abstract class AbstractRiksdagenDataSourcesWorkGenerator implements Riksd
 	@Autowired
 	private RiksdagenImportService importService;
 
-	/** The jms template. */
-	@Autowired
-	private JmsTemplate jmsTemplate;
-
 	/** The datasource. */
 	private final RiksdagenDataSources datasource;
+
+	@Autowired
+	private JmsSender jmsSender;
 
 	/**
 	 * Instantiates a new abstract riksdagen data sources work generator.
@@ -61,20 +55,13 @@ public abstract class AbstractRiksdagenDataSourcesWorkGenerator implements Riksd
 		return this.datasource == datasource;
 	}
 
-
-
 	/**
-	 * Send message.
+	 * Gets the jms template.
 	 *
-	 * @param destination
-	 *            the destination
-	 * @param msg
-	 *            the msg
-	 * @throws Exception
-	 *             the exception
+	 * @return the jms template
 	 */
-	protected final void sendMessage(final Destination destination, final Serializable msg) throws Exception {
-		jmsTemplate.send(destination, new ProducerMessageFactory(msg));
+	public final JmsSender getJmsSender() {
+		return jmsSender;
 	}
 
 	/**

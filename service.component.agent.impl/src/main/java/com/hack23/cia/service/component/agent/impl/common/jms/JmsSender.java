@@ -16,36 +16,27 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.common;
+package com.hack23.cia.service.component.agent.impl.common.jms;
 
 import java.io.Serializable;
 
+import javax.jms.Destination;
 import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.Session;
-
-import org.springframework.jms.core.MessageCreator;
 
 /**
- * A factory for creating ProducerMessage objects.
+ * The Interface JmsSender.
  */
-public final class ProducerMessageFactory implements MessageCreator {
-
-	/** The message. */
-	private final Serializable message;
+public interface JmsSender {
 
 	/**
-	 * Instantiates a new producer message factory.
+	 * Send.
 	 *
-	 * @param message
-	 *            the message
+	 * @param worldBankApiDestination
+	 *            the world bank api destination
+	 * @param msg
+	 *            the msg
+	 * @throws JMSException
+	 *             the JMS exception
 	 */
-	public ProducerMessageFactory(final Serializable message) {
-		this.message = message;
-	}
-
-	@Override
-	public Message createMessage(final Session session) throws JMSException {
-		return session.createObjectMessage(message);
-	}
+	void send(Destination worldBankApiDestination,Serializable msg) throws JMSException;
 }

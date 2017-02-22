@@ -73,7 +73,7 @@ final class WorldBankIndicatorWorkGeneratorImpl extends AbstractWorldBankDataSou
 
 			for (final IndicatorElement element : list) {
 				if (!currentSaved.containsKey(element.getId())) {
-					sendMessage(indicatorElementWorkdestination,
+					getJmsSender().send(indicatorElementWorkdestination,
 							element);
 				}
 			}

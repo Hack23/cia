@@ -86,7 +86,7 @@ final class RiksdagenDocumentStatusWorkGeneratorImpl extends AbstractRiksdagenDa
 
 			for (final String id : avaibleDocumentStatus) {
 				if (!documentStatusContainerMap.containsKey(id)) {
-					sendMessage(documentStatusContainerWorkdestination,
+					getJmsSender().send(documentStatusContainerWorkdestination,
 							id);
 				}
 			}
