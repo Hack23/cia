@@ -51,12 +51,23 @@ public final class DataAgentApiITest extends AbstractServiceComponentAgentFuncti
 	@Ignore
 	public void importRiksdagenDataSuccessTest() {
 		dataAgentApi.execute(new DataAgentWorkOrder().withOperation(DataAgentOperation.IMPORT).withTarget(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN));
+		waitUntilQueueIsEmpty("riksdagen");
+	}
 
+	@Test
+	@Ignore
+	public void importWorldbankDataSuccessTest() {
+		dataAgentApi.execute(new DataAgentWorkOrder().withOperation(DataAgentOperation.IMPORT).withTarget(DataAgentTarget.MODEL_EXTERNAL_WORLDBANK));
+		waitUntilQueueIsEmpty("worldbank");
+	}
+	
+	private void waitUntilQueueIsEmpty(String queue) {
 		try {
-			while (!isAllCompleted(brokerQuery.getQueues())) {
+			while (!isAllCompleted(brokerQuery.getQueues(), queue)) {
 				;
 			}
-			while(brokerQuery.getBrokerAdmin().getTotalDequeueCount() != brokerQuery.getBrokerAdmin().getTotalEnqueueCount()) {
+			while (brokerQuery.getBrokerAdmin().getTotalDequeueCount() != brokerQuery.getBrokerAdmin()
+					.getTotalEnqueueCount()) {
 				;
 			}
 
@@ -65,22 +76,14 @@ public final class DataAgentApiITest extends AbstractServiceComponentAgentFuncti
 		}
 	}
 
-	/**
-	 * Checks if is all completed.
-	 *
-	 * @param queues
-	 *            the queues
-	 * @return true, if is all completed
-	 */
-	private boolean isAllCompleted(final Collection<QueueViewMBean> queues) {
-		boolean allCompleted=true;
-		for(final QueueViewMBean queue: queues) {
+	private boolean isAllCompleted(final Collection<QueueViewMBean> queues, String queue2) {
+		boolean allCompleted = true;
+		for (final QueueViewMBean queue : queues) {
 			if (queue.getName().toLowerCase().contains("riksdagen")) {
 				allCompleted = allCompleted && queue.getEnqueueCount() == queue.getDequeueCount();
 			}
 		}
 		return allCompleted;
 	}
-
 
 }
