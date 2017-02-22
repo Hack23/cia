@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.riksdagen.workers;
+package com.hack23.cia.service.component.agent.impl.riksdagen.workers.data;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
