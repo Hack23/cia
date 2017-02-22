@@ -67,7 +67,7 @@ final class RiksdagenCommitteeProposalWorkGeneratorImpl extends AbstractRiksdage
 
 			for (final String id : avaibleCommitteeProposal) {
 				if (!committeeProposalComponentDataMap.containsKey(id)) {
-					sendMessage(
+					getJmsSender().send(
 							committeeProposalComponentDataWorkdestination,
 							id);
 

@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl;
+package com.hack23.cia.service.component.agent.impl.command;
 
 import java.util.Collection;
 
@@ -30,6 +30,7 @@ import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder;
 import com.hack23.cia.service.component.agent.api.DataAgentApi;
+import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
 
 /**
  * The Class DataAgentApiITest.
@@ -60,8 +61,8 @@ public final class DataAgentApiITest extends AbstractServiceComponentAgentFuncti
 		dataAgentApi.execute(new DataAgentWorkOrder().withOperation(DataAgentOperation.IMPORT).withTarget(DataAgentTarget.MODEL_EXTERNAL_WORLDBANK));
 		waitUntilQueueIsEmpty("worldbank");
 	}
-	
-	private void waitUntilQueueIsEmpty(String queue) {
+
+	private void waitUntilQueueIsEmpty(final String queue) {
 		try {
 			while (!isAllCompleted(brokerQuery.getQueues(), queue)) {
 				;
@@ -76,7 +77,7 @@ public final class DataAgentApiITest extends AbstractServiceComponentAgentFuncti
 		}
 	}
 
-	private boolean isAllCompleted(final Collection<QueueViewMBean> queues, String queue2) {
+	private boolean isAllCompleted(final Collection<QueueViewMBean> queues, final String queue2) {
 		boolean allCompleted = true;
 		for (final QueueViewMBean queue : queues) {
 			if (queue.getName().toLowerCase().contains("riksdagen")) {

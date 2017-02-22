@@ -70,14 +70,14 @@ final class RiksdagenPersonsWorkGeneratorImpl extends AbstractRiksdagenDataSourc
 			for (final PersonElement personElement : personList) {
 				if (!currentSaved.containsKey(personElement.getId())) {
 					LOGGER.info("Send Load Order:{}", personElement.getPersonUrlXml());
-					sendMessage(personElementWorkdestination, personElement);
+					getJmsSender().send(personElementWorkdestination, personElement);
 					currentSaved.put(personElement.getId(), personElement.getId());
 				}
 			}
 			for (final String personId : readMissingPersonList()) {
 				if (!currentSaved.containsKey(personId)) {
 					LOGGER.info("Send Load Order:{}{}", "http://data.riksdagen.se/person/", personId);
-					sendMessage(personElementWorkdestination, new PersonElement().withId(personId));
+					getJmsSender().send(personElementWorkdestination, new PersonElement().withId(personId));
 				}
 			}
 		} catch (final Exception exception) {

@@ -78,7 +78,7 @@ final class WorldBankCountryWorkGeneratorImpl extends AbstractWorldBankDataSourc
 
 			for (final CountryElement countryElement : countryList) {
 				if (!currentSaved.containsKey(countryElement.getIso2Code()) && importDataForCountries.getPropertyValue().equalsIgnoreCase(countryElement.getIso2Code())) {
-					sendMessage(countryElementWorkdestination,
+					getJmsSender().send(countryElementWorkdestination,
 							countryElement);
 				}
 			}

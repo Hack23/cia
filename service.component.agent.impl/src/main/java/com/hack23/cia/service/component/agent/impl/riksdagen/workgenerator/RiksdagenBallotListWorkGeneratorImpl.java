@@ -68,7 +68,7 @@ final class RiksdagenBallotListWorkGeneratorImpl extends AbstractRiksdagenDataSo
 
 			for (final BallotDocumentElement ballotDocument : ballotList) {
 				if (!alreadySavedIdMap.containsKey(ballotDocument.getBallotId())) {
-					sendMessage(voteDataWorkdestination,
+					getJmsSender().send(voteDataWorkdestination,
 							ballotDocument.getBallotId());
 					LOGGER.info("Load : http://data.riksdagen.se/votering/{}", ballotDocument.getBallotId());
 				}
