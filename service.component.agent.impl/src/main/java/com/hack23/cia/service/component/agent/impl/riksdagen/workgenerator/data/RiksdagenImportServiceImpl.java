@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator;
+package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -206,7 +206,7 @@ final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 		try {
 			return getDate(documentElement.getMadePublicDate()).after(after)
 					&& documentTypeValues.contains(documentElement.getDocumentType());
-		} catch (ParseException e) {
+		} catch (final ParseException e) {
 			LOGGER.warn("Problem getting date from{} : exception:{}", documentElement, e);
 			return false;
 		}

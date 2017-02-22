@@ -59,10 +59,10 @@ final class ValImportServiceImpl implements ValImportService {
 
 	@Override
 	public void loadPoliticalParties() {
-		if (swedenPoliticalPartyDAO.getSize() ==0) {			
+		if (swedenPoliticalPartyDAO.getSize() ==0) {
 			try {
 				swedenPoliticalPartyDAO.persist(valApi.getSwedenPoliticalParties());
-			} catch (ValApiException e) {
+			} catch (final ValApiException e) {
 				LOGGER.warn("Problem loading Sweden political parties",e);
 			}
 			LOGGER.info("Sweden political persisted to database");

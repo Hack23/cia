@@ -27,6 +27,7 @@ import org.springframework.jms.core.JmsTemplate;
 
 import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
 import com.hack23.cia.service.component.agent.impl.common.ProducerMessageFactory;
+import com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data.RiksdagenImportService;
 
 /**
  * The Class AbstractRiksdagenDataSourcesWorkGenerator.
