@@ -19,8 +19,13 @@
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.lang3.StringUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document.OutputSettings;
+import org.jsoup.safety.Whitelist;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -105,21 +110,21 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 				final FormLayout formContent = new FormLayout();
 				formPanel.setContent(formContent);
 
-				final Label htmlContent = new Label(documentContentlist.get(0).getContent(), ContentMode.HTML);
+				final String cleanContent = Jsoup.clean(documentContentlist.get(0).getContent(),"", Whitelist.simpleText(), new OutputSettings().indentAmount(4));
+
+				final Label htmlContent = new Label(cleanContent, ContentMode.HTML);
 
 				formContent.addComponent(htmlContent);
-				
-				DocumentWordCountRequest documentWordCountRequest = new DocumentWordCountRequest();
+
+				final DocumentWordCountRequest documentWordCountRequest = new DocumentWordCountRequest();
 				documentWordCountRequest.setDocumentId(pageId);
 				documentWordCountRequest.setMaxResults(30);
 				documentWordCountRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-				DocumentWordCountResponse resp = (DocumentWordCountResponse) getApplicationManager().service(documentWordCountRequest);
+				final DocumentWordCountResponse resp = (DocumentWordCountResponse) getApplicationManager().service(documentWordCountRequest);
 
 				if (resp.getWordCountMap() != null) {
-					final Label wordCloud = new Label(resp.getWordCountMap().toString(), ContentMode.HTML);
-
+					final Label wordCloud = new Label(createWordCloud(resp.getWordCountMap()), ContentMode.HTML);
 					formContent.addComponent(wordCloud);
-					
 				}
 
 				panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
@@ -134,6 +139,17 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 
 		return panelContent;
 
+	}
+
+	private static String createWordCloud(final Map<String, Integer> wordMap) {
+		final StringBuilder builder = new StringBuilder();
+		builder.append("<p>");
+		for (final Entry<String, Integer> entry : wordMap.entrySet()) {
+			final int fontSize = entry.getValue().intValue();
+			builder.append("<font size=\"").append(entry.getValue()).append(")\">").append(entry.getKey()).append("</font> ");
+		}
+		builder.append("/<p>");
+		return builder.toString();
 	}
 
 
