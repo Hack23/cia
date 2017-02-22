@@ -54,7 +54,7 @@ final class WorldBankCountryWorkGeneratorImpl extends AbstractWorldBankDataSourc
 	/** The worldbank country api. */
 	@Autowired
 	private WorldBankCountryApi worldbankCountryApi;
-	
+
 	/** The application configuration service. */
 	@Autowired
 	private ApplicationConfigurationService applicationConfigurationService;
@@ -69,9 +69,9 @@ final class WorldBankCountryWorkGeneratorImpl extends AbstractWorldBankDataSourc
 
 	@Override
 	public void generateWorkOrders() {
-		
+
 		final ApplicationConfiguration importDataForCountries = applicationConfigurationService.checkValueOrLoadDefault("Countries to import data from worldbank (isocode) alt comma separated list", "Load worldbank data for countries", ConfigurationGroup.AGENT, WorldBankCountryWorkGeneratorImpl.class.getSimpleName(), "Worldbank country data loading", "Responsible import worldlbank country data", "agent.worldbank.country.data.loadCountries", "SE");
-				
+
 		try {
 			final List<CountryElement> countryList = worldbankCountryApi.getCountries();
 			final Map<String, String> currentSaved = getImportService().getWorldBankCountryMap();

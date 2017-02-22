@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator;
+package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data;
 
 import java.util.Date;
 import java.util.List;

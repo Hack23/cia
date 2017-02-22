@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.worldbank.workgenerator;
+package com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.data;
 
 import java.util.ArrayList;
 import java.util.List;

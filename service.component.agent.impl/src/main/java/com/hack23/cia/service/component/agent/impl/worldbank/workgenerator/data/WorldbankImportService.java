@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.worldbank.workgenerator;
+package com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.data;
 
 import java.util.List;
 import java.util.Map;

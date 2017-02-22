@@ -27,6 +27,7 @@ import org.springframework.jms.core.JmsTemplate;
 
 import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
 import com.hack23.cia.service.component.agent.impl.common.ProducerMessageFactory;
+import com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.data.WorldbankImportService;
 
 /**
  * The Class AbstractWorldBankDataSourcesWorkGenerator.
