@@ -32,7 +32,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder;
 import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
-import com.hack23.cia.model.internal.application.data.impl.ValDataSources;
 import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
 import com.hack23.cia.service.component.agent.api.DataAgentApi;
 import com.hack23.cia.service.component.agent.impl.common.ProducerMessageFactory;
@@ -100,11 +99,6 @@ final class DataAgentApiImpl implements DataAgentApi {
 			for (final WorldBankDataSources datasource :WorldBankDataSources.values()) {
 				jmsTemplate.send(worldBankApiDestination,
 						new ProducerMessageFactory(datasource));
-			}
-			break;
-		case MODEL_EXTERNAL_VAL:
-			for (final ValDataSources datasource :ValDataSources.values()) {
-				jmsTemplate.send(new ProducerMessageFactory(datasource));
 			}
 			break;
 		default:

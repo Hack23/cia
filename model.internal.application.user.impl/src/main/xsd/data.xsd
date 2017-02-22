@@ -9,7 +9,6 @@
 	<xsd:simpleType name="DataAgentTarget">
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="Model_External_Worldbank" />
-			<xsd:enumeration value="Model_External_Val" />
 			<xsd:enumeration value="Model_External_Riksdagen" />
 		</xsd:restriction>
 	</xsd:simpleType>
@@ -26,13 +25,6 @@
 			<xsd:enumeration value="Data" />
 			<xsd:enumeration value="Indicators" />
 			<xsd:enumeration value="Topic" />
-		</xsd:restriction>
-	</xsd:simpleType>
-
-	<xsd:simpleType name="VdemDataSources">
-		<xsd:restriction base="xsd:string">
-			<xsd:enumeration value="Questions" />
-			<xsd:enumeration value="QuestionCountryYearData" />
 		</xsd:restriction>
 	</xsd:simpleType>
 
@@ -63,10 +55,6 @@
 				minOccurs="0" />
 		</xsd:sequence>
 	</xsd:complexType>
-
-
-
-
 
 
 	<xsd:complexType name="WorldbankIndicatorDataCountrySummaryEmbeddedId">
