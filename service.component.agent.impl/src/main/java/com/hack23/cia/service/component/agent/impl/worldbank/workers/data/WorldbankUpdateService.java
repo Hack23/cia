@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.worldbank.workers;
+package com.hack23.cia.service.component.agent.impl.worldbank.workers.data;
 
 import java.util.List;
 

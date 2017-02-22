@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.riksdagen.workers;
+package com.hack23.cia.service.component.agent.impl.riksdagen.workers.data;
 
 import java.util.List;
 

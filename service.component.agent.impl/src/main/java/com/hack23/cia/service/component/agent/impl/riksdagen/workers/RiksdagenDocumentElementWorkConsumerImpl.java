@@ -30,6 +30,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
+import com.hack23.cia.service.component.agent.impl.riksdagen.workers.data.RiksdagenUpdateService;
 
 /**
  * The Class RiksdagenDocumentElementWorkConsumerImpl.

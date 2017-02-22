@@ -30,6 +30,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
+import com.hack23.cia.service.component.agent.impl.worldbank.workers.data.WorldbankUpdateService;
 
 /**
  * The Class WorldbankCountryElementWorkConsumerImpl.

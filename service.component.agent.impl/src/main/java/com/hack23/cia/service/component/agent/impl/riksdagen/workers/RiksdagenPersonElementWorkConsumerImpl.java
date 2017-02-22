@@ -29,6 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement;
+import com.hack23.cia.service.component.agent.impl.riksdagen.workers.data.RiksdagenUpdateService;
 import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
 

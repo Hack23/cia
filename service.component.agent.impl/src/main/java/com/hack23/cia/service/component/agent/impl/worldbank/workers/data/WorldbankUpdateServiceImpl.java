@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.worldbank.workers;
+package com.hack23.cia.service.component.agent.impl.worldbank.workers.data;
 
 import java.util.List;
 
@@ -58,21 +58,25 @@ final class WorldbankUpdateServiceImpl implements WorldbankUpdateService {
 		super();
 	}
 
-
-
 	@Override
 	public void updateCountryElement(final CountryElement country) {
-		countryElementDAO.persist(country);
+		if (country != null) {
+			countryElementDAO.persist(country);
+		}
 	}
 
 	@Override
 	public void updateData(final List<WorldBankData> data) {
-		dataDAO.persist(data);
+		if (data != null && !data.isEmpty()) {
+			dataDAO.persist(data);
+		}
 	}
 
 	@Override
 	public void updateIndicatorElement(final IndicatorElement object) {
-		indicatorElementDAO.persist(object);
+		if (object != null) {
+			indicatorElementDAO.persist(object);
+		}
 	}
 
 }
