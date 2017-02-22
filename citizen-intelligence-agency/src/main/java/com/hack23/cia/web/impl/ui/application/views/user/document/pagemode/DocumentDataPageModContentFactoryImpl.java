@@ -23,6 +23,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData_;
@@ -30,6 +31,8 @@ import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElemen
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.service.api.action.user.DocumentWordCountRequest;
+import com.hack23.cia.service.api.action.user.DocumentWordCountResponse;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -104,9 +107,20 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 
 				final Label htmlContent = new Label(documentContentlist.get(0).getContent(), ContentMode.HTML);
 
-
 				formContent.addComponent(htmlContent);
+				
+				DocumentWordCountRequest documentWordCountRequest = new DocumentWordCountRequest();
+				documentWordCountRequest.setDocumentId(pageId);
+				documentWordCountRequest.setMaxResults(30);
+				documentWordCountRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+				DocumentWordCountResponse resp = (DocumentWordCountResponse) getApplicationManager().service(documentWordCountRequest);
 
+				if (resp.getWordCountMap() != null) {
+					final Label wordCloud = new Label(resp.getWordCountMap().toString(), ContentMode.HTML);
+
+					formContent.addComponent(wordCloud);
+					
+				}
 
 				panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
 
