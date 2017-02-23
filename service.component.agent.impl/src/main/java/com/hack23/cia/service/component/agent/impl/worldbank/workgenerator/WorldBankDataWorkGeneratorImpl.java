@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.jms.Destination;
+import javax.jms.JMSException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +35,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
 import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
 import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
+import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankCountryApi;
 
 /**
@@ -74,7 +76,7 @@ final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesW
 					sendCountryIndicatorWorkOrder(currentSaved, indicator, country);
 				}
 			}
-		} catch (final Exception exception) {
+		} catch (final JMSException | DataFailureException exception) {
 			LOGGER.warn("jms", exception);
 		}
 	}
@@ -88,11 +90,11 @@ final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesW
 	 *            the indicator
 	 * @param country
 	 *            the country
-	 * @throws Exception
+	 * @throws JMSException
 	 *             the exception
 	 */
 	private void sendCountryIndicatorWorkOrder(final Map<String, String> currentSaved, final IndicatorElement indicator,
-			final CountryElement country) throws Exception {
+			final CountryElement country) throws JMSException {
 		if (country.getIso2Code() != null && country.getIso2Code().length() > 0
 				&& !currentSaved.containsKey(country.getIso2Code() + '.' + indicator.getId())) {
 			final List<String> load = new ArrayList<>();

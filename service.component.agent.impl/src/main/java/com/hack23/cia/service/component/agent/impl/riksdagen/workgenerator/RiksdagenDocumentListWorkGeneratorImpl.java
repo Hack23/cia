@@ -19,6 +19,7 @@
 package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator;
 
 import javax.jms.Destination;
+import javax.jms.JMSException;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -73,7 +74,7 @@ final class RiksdagenDocumentListWorkGeneratorImpl extends AbstractRiksdagenData
 				fromDateTime = fromDateTime.plusWeeks(1);
 			}
 
-		} catch (final Exception e) {
+		} catch (final JMSException e) {
 			LOGGER.warn("error generating work for loading documents", e);
 		}
 	}

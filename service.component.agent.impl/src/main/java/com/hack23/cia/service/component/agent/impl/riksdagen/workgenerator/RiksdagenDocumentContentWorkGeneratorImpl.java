@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.jms.Destination;
+import javax.jms.JMSException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,7 +70,7 @@ final class RiksdagenDocumentContentWorkGeneratorImpl extends AbstractRiksdagenD
 				}
 			}
 
-		} catch (final Exception e) {
+		} catch (final JMSException e) {
 			LOGGER.warn("error loading document content", e);
 		}
 	}
