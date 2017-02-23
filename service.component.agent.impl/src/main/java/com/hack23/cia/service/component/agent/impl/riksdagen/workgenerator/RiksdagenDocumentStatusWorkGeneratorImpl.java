@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +27,13 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.jms.Destination;
+import javax.jms.JMSException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jms.JmsException;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentType;
@@ -91,7 +94,7 @@ final class RiksdagenDocumentStatusWorkGeneratorImpl extends AbstractRiksdagenDa
 				}
 			}
 
-		} catch (final Exception e) {
+		} catch (final JmsException | ParseException | JMSException e) {
 			LOGGER.warn("Loading document status ", e);
 		}
 	}

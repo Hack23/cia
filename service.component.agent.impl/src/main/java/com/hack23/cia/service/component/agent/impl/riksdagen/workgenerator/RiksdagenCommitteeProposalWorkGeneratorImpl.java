@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.jms.Destination;
+import javax.jms.JMSException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,7 +75,7 @@ final class RiksdagenCommitteeProposalWorkGeneratorImpl extends AbstractRiksdage
 					LOGGER.info("load http://data.riksdagen.se/utskottsforslag/{}", id);
 				}
 			}
-		} catch (final Exception exception) {
+		} catch (final JMSException exception) {
 			LOGGER.warn("Loading avaibleCommitteeProposal", exception);
 		}
 	}

@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.jms.Destination;
+import javax.jms.JMSException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.riksdagen.voteringlista.impl.BallotDocumentElement;
 import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
+import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi;
 
 /**
@@ -73,7 +75,7 @@ final class RiksdagenBallotListWorkGeneratorImpl extends AbstractRiksdagenDataSo
 					LOGGER.info("Load : http://data.riksdagen.se/votering/{}", ballotDocument.getBallotId());
 				}
 			}
-		} catch (final Exception e) {
+		} catch (final JMSException | DataFailureException e) {
 			LOGGER.warn("Loadin ballots", e);
 		}
 	}

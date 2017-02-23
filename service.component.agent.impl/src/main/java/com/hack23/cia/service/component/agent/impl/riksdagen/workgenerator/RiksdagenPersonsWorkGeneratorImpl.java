@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import javax.jms.Destination;
+import javax.jms.JMSException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +35,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement;
 import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
+import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
 
 /**
@@ -80,7 +82,7 @@ final class RiksdagenPersonsWorkGeneratorImpl extends AbstractRiksdagenDataSourc
 					getJmsSender().send(personElementWorkdestination, new PersonElement().withId(personId));
 				}
 			}
-		} catch (final Exception exception) {
+		} catch (final JMSException | DataFailureException exception) {
 			LOGGER.warn("jms", exception);
 		}
 	}

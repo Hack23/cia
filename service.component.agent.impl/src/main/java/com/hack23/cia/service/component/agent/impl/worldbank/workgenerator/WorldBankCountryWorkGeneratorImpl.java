@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.jms.Destination;
+import javax.jms.JMSException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +35,7 @@ import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration;
 import com.hack23.cia.model.internal.application.system.impl.ConfigurationGroup;
 import com.hack23.cia.service.data.api.ApplicationConfigurationService;
+import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankCountryApi;
 
 /**
@@ -82,7 +84,7 @@ final class WorldBankCountryWorkGeneratorImpl extends AbstractWorldBankDataSourc
 							countryElement);
 				}
 			}
-		} catch (final Exception exception) {
+		} catch (final JMSException | DataFailureException exception) {
 			LOGGER.warn("jms", exception);
 		}
 	}
