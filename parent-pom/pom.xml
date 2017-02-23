@@ -98,7 +98,7 @@
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <!-- <cia.project.versions.spring>4.3.6.RELEASE/5.0.0.M4/5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring> -->
-    <cia.project.versions.spring>5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring>
+    <cia.project.versions.spring>5.0.0.M5</cia.project.versions.spring>
     <!-- <cia.project.versions.spring.security>4.2.0.M1</cia.project.versions.spring.security>-->
     <cia.project.versions.spring.security>4.2.1.RELEASE</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.0.BETA-4</cia.project.versions.aspectj>
@@ -150,11 +150,11 @@
     <cia.project.versions.jackson>2.8.7</cia.project.versions.jackson>
     <cia.project.versions.xerces>2.11.0.SP5</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
-    <cia.project.versions.jetty>9.4.1.v20170120</cia.project.versions.jetty>
+    <cia.project.versions.jetty>9.4.2.v20170220</cia.project.versions.jetty>
     <cia.project.versions.javamelody>1.64.0-SNAPSHOT</cia.project.versions.javamelody>
     <cia.project.versions.vaadin>7.7.7</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.8.0</cia.project.versions.vaadin.gwt.user>
-    <cia.project.versions.vaadin.cssparser>0.9.21</cia.project.versions.vaadin.cssparser>
+    <cia.project.versions.vaadin.cssparser>0.9.22</cia.project.versions.vaadin.cssparser>
     <cia.project.versions.servlet.api>3.1.0</cia.project.versions.servlet.api>
     <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
   </properties>
