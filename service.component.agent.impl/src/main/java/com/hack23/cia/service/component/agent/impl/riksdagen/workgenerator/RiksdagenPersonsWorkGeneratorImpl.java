@@ -41,7 +41,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
 /**
  * The Class RiksdagenPersonsWorkGeneratorImpl.
  */
-@Service
+@Service("RiksdagenPersonsWorkGeneratorImpl")
 final class RiksdagenPersonsWorkGeneratorImpl extends AbstractRiksdagenDataSourcesWorkGenerator {
 
 	/** The Constant LOGGER. */

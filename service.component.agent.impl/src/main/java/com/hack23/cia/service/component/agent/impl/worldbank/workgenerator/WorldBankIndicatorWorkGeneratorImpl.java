@@ -38,7 +38,7 @@ import com.hack23.cia.service.external.worldbank.api.WorldBankIndicatorApi;
 /**
  * The Class WorldBankIndicatorWorkGeneratorImpl.
  */
-@Service
+@Service("WorldBankIndicatorWorkGeneratorImpl")
 final class WorldBankIndicatorWorkGeneratorImpl extends AbstractWorldBankDataSourcesWorkGenerator {
 
 	/** The Constant LOGGER. */

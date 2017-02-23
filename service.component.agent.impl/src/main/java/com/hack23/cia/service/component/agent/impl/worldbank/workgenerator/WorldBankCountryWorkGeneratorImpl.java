@@ -41,7 +41,7 @@ import com.hack23.cia.service.external.worldbank.api.WorldBankCountryApi;
 /**
  * The Class WorldBankCountryWorkGeneratorImpl.
  */
-@Service
+@Service("WorldBankCountryWorkGeneratorImpl")
 final class WorldBankCountryWorkGeneratorImpl extends AbstractWorldBankDataSourcesWorkGenerator {
 
 	/** The Constant LOGGER. */
