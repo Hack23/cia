@@ -32,6 +32,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
 import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
+import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankIndicatorApi;
 
 /**
@@ -78,7 +79,7 @@ final class WorldBankIndicatorWorkGeneratorImpl extends AbstractWorldBankDataSou
 							element);
 				}
 			}
-		} catch (final JMSException exception) {
+		} catch (final JMSException | DataFailureException exception) {
 			LOGGER.warn("jms", exception);
 		}
 	}
