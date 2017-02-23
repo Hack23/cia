@@ -35,7 +35,7 @@ import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
 /**
  * The Class RiksdagenDocumentContentWorkGeneratorImpl.
  */
-@Service
+@Service("RiksdagenDocumentContentWorkGeneratorImpl")
 final class RiksdagenDocumentContentWorkGeneratorImpl extends AbstractRiksdagenDataSourcesWorkGenerator {
 
 	/** The Constant LOGGER. */

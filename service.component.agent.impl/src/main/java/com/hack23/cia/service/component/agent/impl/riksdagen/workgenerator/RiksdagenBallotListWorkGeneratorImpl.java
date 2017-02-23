@@ -38,7 +38,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi;
 /**
  * The Class RiksdagenBallotListWorkGeneratorImpl.
  */
-@Service
+@Service("RiksdagenBallotListWorkGeneratorImpl")
 final class RiksdagenBallotListWorkGeneratorImpl extends AbstractRiksdagenDataSourcesWorkGenerator {
 
 	/** The Constant LOGGER. */
