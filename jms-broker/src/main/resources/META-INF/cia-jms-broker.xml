@@ -71,9 +71,28 @@
 		<constructor-arg ref="jmsFactory" />
 		<property name="sessionCacheSize" value="100" />
 	</bean>
+	
  -->
 
+	<bean name="connectionFactory" class="org.jboss.narayana.jta.jms.ConnectionFactoryProxy">
+		<constructor-arg ref="jmsFactory" />
+		<constructor-arg ref="transactionHelper" />
+	</bean>
+
+	<bean name="senderConnectionFactory" class="org.jboss.narayana.jta.jms.ConnectionFactoryProxy">
+		<constructor-arg ref="jmsFactory" />
+		<constructor-arg ref="transactionHelper" />
+	</bean>
+	
+<bean class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple" />
+	<bean name="transactionHelper" class="org.jboss.narayana.jta.jms.TransactionHelperImpl">
+		<constructor-arg>
+		<bean class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple" />
+		</constructor-arg>
+		
+	</bean>
  	
+ <!-- 
    <bean name="connectionFactory" id="connectionFactory" depends-on="broker"
               class="com.atomikos.jms.AtomikosConnectionFactoryBean"
               init-method="init" destroy-method="close">
@@ -97,6 +116,9 @@
 
        <property name="localTransactionMode" value="false" />
    </bean>
+   jmsFactory
+-->
+   
 
  <!-- 
 	<amq:xaConnectionFactory  id="connectionFactory" brokerURL="vm://localhost"  checkForDuplicates="false" >
