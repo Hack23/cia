@@ -26,27 +26,6 @@
 		<property name="ignoreUnresolvablePlaceholders" value="true" />
 	</bean>
 
-	<!-- Mysql
-	<bean id="dataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean"
-		init-method="init" destroy-method="close">
-		<property name="uniqueResourceName">
-			<value>cia</value>
-		</property>
-		<property name="xaDataSourceClassName">
-			<value>${datasource.xaDataSourceClassName}</value>
-		</property>
-		<property name="xaProperties">
-			<props>
-				<prop key="user">${database.username}</prop>
-				<prop key="password">${database.password}</prop>
-				<prop key="Url">${database.url}</prop>
-			</props>
-		</property>
-		<property name="minPoolSize" value="40" />
-		<property name="maxPoolSize" value="200" />
-	</bean>
- 	-->
-
  	<bean id="liquibase" class="com.hack23.cia.service.data.impl.liquidbase.SpringLiquidBaseFailSafe">
       <property name="dataSource" ref="dataSource" />
       <property name="changeLog" value="classpath:db-changelog.xml" />
@@ -54,34 +33,24 @@
       contexts specifies the runtime contexts to use.
       <property name="contexts" value="test, production" />
       -->
- </bean>
-
-
- 	<!-- Postgres -->
-	<bean id="dataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean" depends-on="transactionManager"
-		init-method="init" destroy-method="close">
-		<property name="uniqueResourceName">
-			<value>cia</value>
-		</property>
-		<property name="xaDataSourceClassName">
-			<value>${datasource.xaDataSourceClassName}</value>
-		</property>
-		<property name="xaProperties">
-			<props>
-				<prop key="user">${database.username}</prop>
-				<prop key="password">${database.password}</prop>
-				<prop key="serverName">${database.hostname}</prop>
-				<prop key="portNumber">5432</prop>
-				<prop key="databaseName">${database.name}</prop>
-				<!--
-				<prop key="ssl">true</prop>
-				<prop key="sslfactory">org.postgresql.ssl.NonValidatingFactory</prop> -->
-			</props>
-		</property>
-		<property name="minPoolSize" value="20" />
-		<property name="maxPoolSize" value="80" />
-		 <property name="testQuery" value="select 1"/>
-	</bean>
+ 	</bean>
+ 
+ 	<bean id="xADataSource" class="${datasource.xaDataSourceClassName}">
+ 		<property name="user" value="${database.username}" />
+		<property name="password" value="${database.password}"/>
+		<property name="serverName" value="${database.hostname}"/>
+		<property name="portNumber" value="5432"/>
+		<property name="databaseName" value="${database.name}"/> 	
+ 	</bean>
+ 
+ 	<bean id="dataSource" class="org.apache.commons.dbcp2.managed.BasicManagedDataSource">
+	    	<property name="XaDataSourceInstance" ref="xADataSource"/>	    	
+			<property name="transactionManager">
+				<bean class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple" />
+			</property>
+			<property name="validationQuery" value="select 1"/>
+			<property name="maxTotal" value="80"/>
+ 	</bean> 
 
 	<bean id="dataCacheManager"
 		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
@@ -150,19 +119,10 @@
 
                 <prop key="hibernate.current_session_context_class">jta</prop>
 
-				<!-- 
-                <prop key="hibernate.transaction.manager_lookup_class">com.atomikos.icatch.jta.hibernate4.AtomikosJ2eePlatform</prop>
-                <prop key="hibernate.transaction.jta.platform">com.hack23.cia.service.data.impl.AtomikosJtaPlatform</prop>
-                -->
                 <prop key="hibernate.transaction.manager_lookup_class">com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple</prop>
                 <prop key="hibernate.transaction.jta.platform">org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform</prop>
                 
-                
-<!--
-                <prop key="hibernate.implicit_naming_strategy">legacy-hbm</prop>
--->
                 <prop key="hibernate.physical_naming_strategy">com.hack23.cia.service.data.impl.LegacyNamingStrategy</prop>
-
 
                 <prop key="hibernate.transaction.auto_close_session">false</prop>
 
@@ -186,28 +146,6 @@
 		</property>
 	</bean>
 
-<!-- 
-	<bean id="userTransactionService" class="com.atomikos.icatch.config.UserTransactionServiceImp"
-		init-method="init" destroy-method="shutdownForce">
-	</bean>
-
-	<bean id="AtomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager"
-		init-method="init" destroy-method="close" depends-on="userTransactionService">
-		<property name="forceShutdown" value="false" />
-	</bean>
-
-	<bean id="AtomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp"
-		depends-on="userTransactionService">
-		<property name="transactionTimeout" value="300000" />
-	</bean>
-
-	<bean id="transactionManager"
-		class="org.springframework.transaction.jta.JtaTransactionManager"
-		depends-on="userTransactionService">
-		<property name="transactionManager" ref="AtomikosTransactionManager" />
-		<property name="userTransaction" ref="AtomikosUserTransaction" />
-	</bean>
--->	
 	<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
 		<property name="transactionManager">
 			<bean class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple" />
