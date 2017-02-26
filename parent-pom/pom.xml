@@ -122,7 +122,6 @@
     <cia.project.versions.bytebuddy>1.6.9</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.193</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.0.0</cia.project.versions.postgresql>
-    <cia.project.versions.atomikos>4.0.4</cia.project.versions.atomikos>
     <cia.project.versions.ehcache>2.10.3</cia.project.versions.ehcache>
     <cia.project.versions.ehcache3>3.2.0</cia.project.versions.ehcache3>
     <cia.project.versions.poi>3.16-beta2</cia.project.versions.poi>
@@ -1716,10 +1715,6 @@
                   <banSnapshots>true</banSnapshots>
                 </property>
                 <property>
-                  <name>cia.project.versions.atomikos</name>
-                  <banSnapshots>true</banSnapshots>
-                </property>
-                <property>
                   <name>cia.project.versions.ehcache</name>
                   <banSnapshots>true</banSnapshots>
                 </property>
@@ -1832,10 +1827,6 @@
                 </property>
                 <property>
                   <name>cia.project.versions.h2</name>
-                  <banSnapshots>false</banSnapshots>
-                </property>
-                <property>
-                  <name>cia.project.versions.atomikos</name>
                   <banSnapshots>false</banSnapshots>
                 </property>
                 <property>

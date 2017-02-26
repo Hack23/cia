@@ -39,14 +39,6 @@
 		</amq:transportConnectors>
  	</amq:broker>
 
-	<!-- JMS ConnectionFactory to use, configuring the embedded broker using
-		XML
-
-	<bean id="jmsFactory"  depends-on="broker"
-              class="org.apache.activemq.ActiveMQXAConnectionFactory">
-      <property name="brokerURL" value="vm://localhost" />
-   </bean>
--->
 	<amq:xaConnectionFactory  id="jmsFactory" brokerURL="vm://localhost"  checkForDuplicates="false" >
 		<amq:redeliveryPolicy>
     		<amq:redeliveryPolicy maximumRedeliveries="1" initialRedeliveryDelay="30000" />
@@ -65,15 +57,6 @@
     </property>
   	</amq:xaConnectionFactory>
 
-<!--
-	<bean id="connectionFactory"
-		class="org.springframework.jms.connection.CachingConnectionFactory">
-		<constructor-arg ref="jmsFactory" />
-		<property name="sessionCacheSize" value="100" />
-	</bean>
-	
- -->
-
 	<bean name="connectionFactory" class="org.jboss.narayana.jta.jms.ConnectionFactoryProxy">
 		<constructor-arg ref="jmsFactory" />
 		<constructor-arg ref="transactionHelper" />
@@ -84,103 +67,12 @@
 		<constructor-arg ref="transactionHelper" />
 	</bean>
 	
-<bean class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple" />
 	<bean name="transactionHelper" class="org.jboss.narayana.jta.jms.TransactionHelperImpl">
 		<constructor-arg>
-		<bean class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple" />
-		</constructor-arg>
-		
-	</bean>
- 	
- <!-- 
-   <bean name="connectionFactory" id="connectionFactory" depends-on="broker"
-              class="com.atomikos.jms.AtomikosConnectionFactoryBean"
-              init-method="init" destroy-method="close">
-      <property name="uniqueResourceName" value="ciaJmsConnectionFactory" />
-      <property name="xaConnectionFactory" ref="jmsFactory" />
-      <property name="minPoolSize" value="5"/>
-      <property name="maxPoolSize" value="250"/>
-      <property name="maxIdleTime" value="5000"/>
-      <property name="localTransactionMode" value="false" />
-   </bean>
-
-   <bean name="senderConnectionFactory" id="senderConnectionFactory" depends-on="broker"
-              class="com.atomikos.jms.AtomikosConnectionFactoryBean"
-              init-method="init" destroy-method="close">
-      <property name="uniqueResourceName" value="ciaSenderJmsConnectionFactory" />
-      <property name="xaConnectionFactory" ref="jmsFactory" />
-
-      <property name="minPoolSize" value="5"/>
-      <property name="maxPoolSize" value="250"/>
-      <property name="maxIdleTime" value="5000"/>
-
-       <property name="localTransactionMode" value="false" />
-   </bean>
-   jmsFactory
--->
-   
-
- <!-- 
-	<amq:xaConnectionFactory  id="connectionFactory" brokerURL="vm://localhost"  checkForDuplicates="false" >
-		<amq:redeliveryPolicy>
-    		<amq:redeliveryPolicy maximumRedeliveries="1" initialRedeliveryDelay="30000" />
-  		</amq:redeliveryPolicy>
-  	 <property name="trustedPackages">
-        <list>
-            <value>com.hack23.cia</value>
-            <value>java.util</value>
-            <value>java.lang</value>
-            <value>java.math</value>
-            <value>org.apache</value>
-            <value>org.apache</value>
-            <value>com.fasterxml</value>
-            <value>org.joda</value>
-        </list>
-    </property>
-  	</amq:xaConnectionFactory>
-
-	<amq:xaConnectionFactory  id="senderConnectionFactory" brokerURL="vm://localhost"  checkForDuplicates="false" >
-		<amq:redeliveryPolicy>
-    		<amq:redeliveryPolicy maximumRedeliveries="1" initialRedeliveryDelay="30000" />
-  		</amq:redeliveryPolicy>
-  	 <property name="trustedPackages">
-        <list>
-            <value>com.hack23.cia</value>
-            <value>java.util</value>
-            <value>java.lang</value>
-            <value>java.math</value>
-            <value>org.apache</value>
-            <value>org.apache</value>
-            <value>com.fasterxml</value>
-            <value>org.joda</value>
-        </list>
-    </property>
-  	</amq:xaConnectionFactory>
-
--->
-
+			<bean class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple" />
+		</constructor-arg>		
+	</bean> 	
 
 	<bean id="brokerQuery" class="org.apache.activemq.web.SingletonBrokerFacade" autowire="constructor" scope="prototype"/>
-
-<!--
-	<bean id="connectionFactory"
-	    class="org.springframework.jms.connection.SingleConnectionFactory">
-	    <property name="targetConnectionFactory" ref="atomikosConnectionFactory" />
-	</bean>
--->
-
-<!--
-	<bean id="MessageListenerContainer"
-	    class="org.springframework.jms.listener.DefaultMessageListenerContainer"
-	    destroy-method="close">
-	    <property name="concurrentConsumers" value="1" />
-	    <property name="connectionFactory" ref="connectionFactory" />
-	    <property name="transactionManager" ref="transactionManager" />
-	    <property name="sessionTransacted" value="true" />
-	    <property name="receiveTimeout" value="5000" />
-	    <property name="recoveryInterval" value="6000" />
-	    <property name="autoStartup" value="false" />
-	</bean>
- -->
 
 </beans>
