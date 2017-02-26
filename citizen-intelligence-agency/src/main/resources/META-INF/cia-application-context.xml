@@ -27,12 +27,10 @@
 			<list>
 				<value>classpath:application.properties</value>
 				<value>classpath:database.properties</value>
-				<value>classpath:transactions.properties</value>
 				<value>classpath:agent-jms-settings.properties</value>
 				<value>classpath:cia-service.properties</value>
 				<value>classpath:admin.properties</value>
 				<value>WEB-INF/database.properties</value>
-				<value>WEB-INF/transactions.properties</value>
 				<value>WEB-INF/agent-jms-settings.properties</value>
 				<value>WEB-INF/cia-service.properties</value>
 				<value>WEB-INF/admin.properties</value>
