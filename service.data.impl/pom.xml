@@ -480,6 +480,17 @@
       <version>5.5.2.Final</version>
     </dependency>
     <dependency>
+      <groupId>org.jboss</groupId>
+      <artifactId>jboss-transaction-spi</artifactId>
+      <version>7.5.0.Final</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+          <groupId>org.jboss.spec.javax.transaction</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-dbcp2</artifactId>
       <version>2.1.1</version>
