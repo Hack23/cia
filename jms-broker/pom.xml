@@ -338,25 +338,6 @@
       <version>1.9.13</version>
     </dependency>
     <dependency>
-      <groupId>com.atomikos</groupId>
-      <artifactId>transactions-jms</artifactId>
-      <version>${cia.project.versions.atomikos}</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>transactions-jta</artifactId>
-          <groupId>com.atomikos</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>geronimo-jms_1.1_spec</artifactId>
-          <groupId>org.apache.geronimo.specs</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>slf4j-simple</artifactId>
-          <groupId>org.slf4j</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
       <groupId>org.jasypt</groupId>
       <artifactId>jasypt-hibernate4</artifactId>
       <version>1.9.2</version>
