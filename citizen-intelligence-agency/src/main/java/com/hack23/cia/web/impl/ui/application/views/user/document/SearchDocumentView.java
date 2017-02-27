@@ -25,15 +25,14 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView;
-
-import ru.xpoft.vaadin.VaadinView;
+import com.vaadin.spring.annotation.SpringView;
 
 /**
  * The Class PartyView.
  */
 @Service
 @Scope(value = "prototype")
-@VaadinView(value = SearchDocumentView.NAME, cached = true)
+@SpringView(name = SearchDocumentView.NAME)
 public final class SearchDocumentView extends AbstractUserView {
 
 	/** The Constant serialVersionUID. */

@@ -21,9 +21,6 @@ package com.hack23.cia.web.impl.ui.application;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
@@ -42,15 +39,17 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.server.WebBrowser;
 import com.vaadin.shared.ui.ui.Transport;
+import com.vaadin.spring.annotation.SpringUI;
+import com.vaadin.spring.annotation.SpringViewDisplay;
+import com.vaadin.spring.navigator.SpringNavigator;
 import com.vaadin.ui.UI;
 
-import ru.xpoft.vaadin.DiscoveryNavigator;
 
 /**
  * The Class CitizenIntelligenceAgencyUI.
  */
-@Service(value = "ui")
-@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@SpringUI
+@SpringViewDisplay
 @Theme("cia")
 @Push(transport = Transport.WEBSOCKET_XHR)
 @StyleSheet({"https://fonts.googleapis.com/css?family=Inconsolata"})
@@ -77,6 +76,9 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 	@Autowired
 	private transient ConfigurationManager configurationManager;
 
+	@Autowired
+	private SpringNavigator springNavigator;
+
 	/**
 	 * Instantiates a new citizen intelligence agency ui.
 	 */
@@ -89,9 +91,9 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 	protected void init(final VaadinRequest request) {
 		VaadinSession.getCurrent().setErrorHandler(new UiInstanceErrorHandler(this));
 		setSizeFull();
-		final DiscoveryNavigator navigator = new DiscoveryNavigator(this, this);
-		navigator.addView("", mainView);
-		setNavigator(navigator);
+		//final Navigator navigator = new SpringNavigator(this, this);
+		springNavigator.addView("", mainView);
+		setNavigator(springNavigator);
 
 
 		final Page currentPage = Page.getCurrent();

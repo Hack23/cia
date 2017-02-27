@@ -18,18 +18,17 @@
 */
 package com.hack23.cia.web.impl.ui.application;
 
-import javax.servlet.annotation.WebServlet;
+import org.springframework.context.annotation.Configuration;
 
-import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.spring.server.SpringVaadinServlet;
+import com.vaadin.spring.annotation.EnableVaadin;
+import com.vaadin.spring.annotation.EnableVaadinNavigation;
 
 /**
- * The Class CitizenIntelligenceAgencySpringVaadinServlet.
+ * The Class VaadinSpringConfig.
  */
-@WebServlet(value = "/*", loadOnStartup=1, asyncSupported = true)
-@VaadinServletConfiguration(productionMode = true, ui = CitizenIntelligenceAgencyUI.class, widgetset = "com.hack23.cia.web.widgets.WebWidgetSet")
-public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVaadinServlet {
+@Configuration
+@EnableVaadin
+@EnableVaadinNavigation
+public class VaadinSpringConfig {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 }

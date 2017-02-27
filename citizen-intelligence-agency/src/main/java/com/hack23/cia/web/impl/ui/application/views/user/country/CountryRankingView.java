@@ -26,15 +26,14 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView;
-
-import ru.xpoft.vaadin.VaadinView;
+import com.vaadin.spring.annotation.SpringView;
 
 /**
  * The Class CountryRankingView.
  */
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-@VaadinView(value = CountryRankingView.NAME, cached = true)
+@SpringView(name = CountryRankingView.NAME)
 public final class CountryRankingView extends AbstractRankingView {
 
 	/** The Constant NAME. */

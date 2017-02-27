@@ -26,15 +26,14 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingView;
-
-import ru.xpoft.vaadin.VaadinView;
+import com.vaadin.spring.annotation.SpringView;
 
 /**
  * The Class PartyRankingView.
  */
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-@VaadinView(value = PartyRankingView.NAME, cached = true)
+@SpringView(name = PartyRankingView.NAME)
 public final class PartyRankingView extends AbstractRankingView {
 
 	/** The Constant NAME. */
