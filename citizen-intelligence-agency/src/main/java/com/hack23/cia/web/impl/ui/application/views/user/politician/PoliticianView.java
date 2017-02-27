@@ -26,15 +26,14 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractPersonView;
-
-import ru.xpoft.vaadin.VaadinView;
+import com.vaadin.spring.annotation.SpringView;
 
 /**
  * The Class PoliticianView.
  */
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-@VaadinView(value = PoliticianView.NAME, cached = true)
+@SpringView(name = PoliticianView.NAME)
 public final class PoliticianView extends AbstractPersonView {
 
 	/** The Constant serialVersionUID. */

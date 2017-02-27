@@ -26,15 +26,14 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
-
-import ru.xpoft.vaadin.VaadinView;
+import com.vaadin.spring.annotation.SpringView;
 
 /**
  * The Class AdminEmailView.
  */
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-@VaadinView(AdminEmailView.NAME)
+@SpringView(name = AdminEmailView.NAME)
 public final class AdminEmailView extends AbstractAdminView {
 
 	/** The Constant serialVersionUID. */

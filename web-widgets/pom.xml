@@ -29,9 +29,19 @@
   </properties>
   <dependencies>
     <dependency>
-      <groupId>ru.xpoft.vaadin</groupId>
-      <artifactId>spring-vaadin-integration</artifactId>
-      <version>3.2</version>
+      <groupId>com.vaadin</groupId>
+      <artifactId>vaadin-spring</artifactId>
+      <version>1.2.0</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>commons-logging</artifactId>
+          <groupId>commons-logging</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-server</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.vaadin.addons</groupId>
