@@ -18,7 +18,18 @@
 */
 package com.hack23.cia.service.component.agent.impl.worldbank.workers;
 
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import javax.jms.JMSException;
+import javax.jms.MessageListener;
+import javax.jms.ObjectMessage;
+
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
 
@@ -27,12 +38,22 @@ import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgent
  */
 public class WorldbankCountryElementWorkConsumerImplITest extends AbstractServiceComponentAgentFunctionalIntegrationTest {
 
+	@Autowired
+	@Qualifier("riksdagenCommitteeProposalComponentDataWorkConsumerImpl")
+	private MessageListener messsageListener;
+
 	/**
 	 * On message success test.
+	 * @throws JMSException
 	 */
 	@Test
-	public void onMessageSuccessTest() {
+	public void onMessageSuccessTest() throws JMSException {
+		final ObjectMessage message = mock(ObjectMessage.class);
 
+		when(message.getObject()).thenReturn("");
+
+		messsageListener.onMessage(message);
+		verify(message, atLeastOnce()).getObject();
 	}
 
 }
