@@ -18,14 +18,26 @@
 */
 package com.hack23.cia.service.component.agent.impl.worldbank.workgenerator;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
+import java.io.Serializable;
+import java.util.List;
+
+import javax.jms.Destination;
+import javax.jms.JMSException;
 import javax.transaction.Transactional;
 
 import org.junit.Ignore;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
+import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
 
 /**
  * The Class WorldBankDataWorkGeneratorImplITest.
@@ -40,11 +52,27 @@ public class WorldBankDataWorkGeneratorImplITest extends AbstractServiceComponen
 
 	/**
 	 * Generate work orders success test.
+	 * @throws JMSException
 	 */
 	@Test
 	@Ignore
-	public void generateWorkOrdersSuccessTest() {
+	public void generateWorkOrdersSuccessTest() throws JMSException {
+		final JmsSender jmsSenderMock = mock(JmsSender.class);
+        ReflectionTestUtils.setField(worldBankDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
+
 		worldBankDataSourcesWorkGenerator.generateWorkOrders();
+
+		final ArgumentCaptor<Destination> destCaptor = ArgumentCaptor.forClass(Destination.class);
+
+		final ArgumentCaptor<Serializable> stringCaptor = ArgumentCaptor.forClass(Serializable.class);
+
+		verify(jmsSenderMock, times(7)).send(destCaptor.capture(),stringCaptor.capture());
+
+		final List<Serializable> capturedStrings = stringCaptor.getAllValues();
+		final List<Destination> capturedDestinations = destCaptor.getAllValues();
+
+		assertNotNull(capturedStrings);
+		assertNotNull(capturedDestinations);
 	}
 
 }
