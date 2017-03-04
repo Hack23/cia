@@ -26,6 +26,9 @@
       <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs</url>
     </site>
   </distributionManagement>
+  <properties>
+  	<sonar.dependencyCheck.reportPath>${project.basedir}/../dependency-check-report.xml</sonar.dependencyCheck.reportPath>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>org.apache.lucene</groupId>
