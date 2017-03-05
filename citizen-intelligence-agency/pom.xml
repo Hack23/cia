@@ -27,7 +27,7 @@
     </site>
   </distributionManagement>
   <properties>
-  	<sonar.dependencyCheck.reportPath>${project.basedir}/../dependency-check-report.xml</sonar.dependencyCheck.reportPath>
+    <sonar.dependencyCheck.reportPath>${project.basedir}/../dependency-check-report.xml</sonar.dependencyCheck.reportPath>
   </properties>
   <dependencies>
     <dependency>
