@@ -22,6 +22,9 @@
       <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/cia-dist-cloudformation</url>
     </site>
   </distributionManagement>
+  <properties>
+    <sonar.dependencyCheck.reportPath>${project.basedir}/../parent-pom/src/config/dependency-check-report.xml</sonar.dependencyCheck.reportPath>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>com.hack23.cia</groupId>

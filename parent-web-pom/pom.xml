@@ -41,6 +41,9 @@
       <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/parent-web-pom</url>
     </site>
   </distributionManagement>
+  <properties>
+    <sonar.dependencyCheck.reportPath>${project.basedir}/../parent-pom/src/config/dependency-check-report.xml</sonar.dependencyCheck.reportPath>
+  </properties>
   <dependencyManagement>
     <dependencies>
       <dependency>

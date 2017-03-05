@@ -94,7 +94,7 @@
     <sonar.jdbc.password>sonar</sonar.jdbc.password>
     <sonar.sources>.</sonar.sources>
     <sonar.inclusions>src/main/**</sonar.inclusions>
-    <sonar.dependencyCheck.reportPath>${project.basedir}/../parent-pom/src/config/dependency-check-report.xml</sonar.dependencyCheck.reportPath>
+    <sonar.dependencyCheck.reportPath>${project.basedir}/../dependency-check-report.xml</sonar.dependencyCheck.reportPath>
     <sonar.libraries>target</sonar.libraries>
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
