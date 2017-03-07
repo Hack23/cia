@@ -610,8 +610,17 @@
           <artifactId>ant</artifactId>
           <groupId>ant</groupId>
         </exclusion>
+        <exclusion>
+        	<groupId>com.ibm.icu</groupId>
+	    	<artifactId>icu4j</artifactId>        
+        </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+	    <groupId>com.ibm.icu</groupId>
+	    <artifactId>icu4j</artifactId>
+	    <version>58.2</version>
+	</dependency>
     <dependency>
       <groupId>org.apache.ant</groupId>
       <artifactId>ant</artifactId>
