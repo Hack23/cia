@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.1.xsd">
+    <suppress>
+        <notes><![CDATA[This suppresses any jar.]]></notes>
+        <filePath regex="true">.*\b\.jar</filePath>
+		<cve>CVE-2014-1972</cve>
+		<cve>CVE-2014-7923</cve>
+		<cve>CVE-2014-7926</cve>
+		<cve>CVE-2014-8146</cve>
+		<cve>CVE-2014-8147</cve>
+		<cve>CVE-2014-9911</cve>
+		<cve>CVE-2015-1427</cve>
+		<cve>CVE-2015-5922</cve>
+		<cve>CVE-2016-3720</cve>
+		<cve>CVE-2016-6293</cve>
+		<cve>CVE-2016-7415</cve>
+    </suppress>
+</suppressions>
