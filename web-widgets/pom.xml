@@ -70,25 +70,6 @@
       <version>${cia.project.versions.jackson}</version>
     </dependency>
     <dependency>
-      <groupId>org.vaadin</groupId>
-      <artifactId>viritin</artifactId>
-      <version>1.61</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>vaadin-server</artifactId>
-          <groupId>com.vaadin</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>commons-logging</artifactId>
-          <groupId>commons-logging</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>javax.el-api</artifactId>
-          <groupId>javax.el</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
       <groupId>org.dussan.vaadin</groupId>
       <artifactId>dcharts</artifactId>
       <version>1.7.1-hack23</version>

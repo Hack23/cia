@@ -3,7 +3,6 @@
     <suppress>
         <notes><![CDATA[This suppresses any jar.]]></notes>
         <filePath regex="true">.*\b\.jar</filePath>
-		<cve>CVE-2014-1972</cve>
 		<cve>CVE-2014-7923</cve>
 		<cve>CVE-2014-7926</cve>
 		<cve>CVE-2014-8146</cve>
