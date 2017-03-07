@@ -107,7 +107,7 @@
     <cia.project.versions.aspectj>1.9.0.BETA-4</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.22.0-CR1</cia.project.versions.javassist>
     <cia.project.versions.asm>5.2</cia.project.versions.asm>
-    <cia.project.versions.cglib>3.2.4</cia.project.versions.cglib>
+    <cia.project.versions.cglib>3.2.5</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
     <cia.project.versions.commons.lang3>2.6</cia.project.versions.commons.lang3>
