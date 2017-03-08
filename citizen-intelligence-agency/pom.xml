@@ -478,7 +478,7 @@
     <dependency>
       <groupId>org.jrobin</groupId>
       <artifactId>jrobin</artifactId>
-      <version>1.5.15</version>
+      <version>1.6.0</version>
     </dependency>
     <!-- For pdf support in javamelody -->
     <dependency>
@@ -613,6 +613,10 @@
         <exclusion>
           <artifactId>icu4j</artifactId>
           <groupId>com.ibm.icu</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>tapestry</artifactId>
+          <groupId>tapestry</groupId>
         </exclusion>
       </exclusions>
     </dependency>
