@@ -325,7 +325,7 @@
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
-      <version>1.6.0</version>
+      <version>1.6.1</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
