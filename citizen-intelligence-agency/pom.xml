@@ -1059,7 +1059,7 @@
                 <artifactItem>
                   <groupId>org.tltv.gantt</groupId>
                   <artifactId>gantt-addon</artifactId>
-                  <version>0.9.4</version>
+                  <version>0.9.5</version>
                   <type>jar</type>
                   <overWrite>false</overWrite>
                   <outputDirectory>${basedir}/src/main/webapp/</outputDirectory>
