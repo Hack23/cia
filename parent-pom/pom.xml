@@ -646,6 +646,11 @@
               <version>2.12</version>
             </dependency>
             <dependency>
+              <groupId>org.apache.maven.wagon</groupId>
+              <artifactId>wagon-ssh-external</artifactId>
+              <version>2.12</version>
+            </dependency>
+            <dependency>
               <groupId>xml-apis</groupId>
               <artifactId>xml-apis</artifactId>
               <version>${cia.project.versions.xmlapis}</version>
