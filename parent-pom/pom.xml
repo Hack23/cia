@@ -153,7 +153,7 @@
     <cia.project.versions.xerces>2.11.0.SP5</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>9.4.2.v20170220</cia.project.versions.jetty>
-    <cia.project.versions.javamelody>1.63.0</cia.project.versions.javamelody>
+    <cia.project.versions.javamelody>1.65.0</cia.project.versions.javamelody>
     <cia.project.versions.vaadin>7.7.7</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.8.0</cia.project.versions.vaadin.gwt.user>
     <cia.project.versions.vaadin.cssparser>0.9.22</cia.project.versions.vaadin.cssparser>
