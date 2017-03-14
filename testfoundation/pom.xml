@@ -190,7 +190,17 @@
           <artifactId>stax-api</artifactId>
           <groupId>stax</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>curvesapi</artifactId>
+          <groupId>com.github.virtuald</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.github.virtuald/curvesapi -->
+    <dependency>
+      <groupId>com.github.virtuald</groupId>
+      <artifactId>curvesapi</artifactId>
+      <version>1.05</version>
     </dependency>
     <dependency>
       <groupId>cglib</groupId>

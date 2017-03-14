@@ -182,7 +182,16 @@
           <artifactId>jetty-servlet</artifactId>
           <groupId>org.eclipse.jetty</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>snakeyaml</artifactId>
+          <groupId>org.yaml</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.yaml</groupId>
+      <artifactId>snakeyaml</artifactId>
+      <version>1.18</version>
     </dependency>
     <dependency>
       <groupId>commons-beanutils</groupId>
@@ -281,7 +290,16 @@
           <artifactId>log4j</artifactId>
           <groupId>log4j</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>curvesapi</artifactId>
+          <groupId>com.github.virtuald</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.github.virtuald</groupId>
+      <artifactId>curvesapi</artifactId>
+      <version>1.05</version>
     </dependency>
     <!-- Spring dependencies, IOC & MVC framework -->
     <dependency>
