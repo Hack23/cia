@@ -4,6 +4,11 @@
 pipeline {
    agent any
   
+   tools { 
+        maven 'Maven339' 
+        jdk 'Java8' 
+    }
+    
    stages {
 
    stage ('Fixing Release'){
@@ -13,12 +18,12 @@ pipeline {
    }
    stage ('Check conventions'){
       steps {
-         sh "/opt/tools/maven/bin/mvn pmd:check"
+         sh "mvn pmd:check"
       }
    }
    stage('Build') {
       steps {
-         sh "/opt/tools/maven/bin/mvn package"
+         sh "mvn package"
       }
    }
    stage('Results') {
