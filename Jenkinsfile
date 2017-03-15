@@ -13,12 +13,12 @@ pipeline {
    }
    stage ('Check conventions'){
       steps {
-         sh "mvn pmd:check"
+         sh "/opt/tools/maven/bin/mvn pmd:check"
       }
    }
    stage('Build') {
       steps {
-         sh "mvn package"
+         sh "/opt/tools/maven/bin/mvn package"
       }
    }
    stage('Results') {
