@@ -887,11 +887,11 @@
       </plugins>
     </pluginManagement>
     <plugins>
-	<plugin>
-	  <groupId>org.walkmod.maven.plugins</groupId>
-	  <artifactId>walkmod-maven-plugin</artifactId>
-	  <version>1.0.3</version>
-	</plugin>
+      <plugin>
+        <groupId>org.walkmod.maven.plugins</groupId>
+        <artifactId>walkmod-maven-plugin</artifactId>
+        <version>1.0.3</version>
+      </plugin>
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
@@ -1404,6 +1404,9 @@
               <sourceEncoding>utf-8</sourceEncoding>
               <minimumTokens>100</minimumTokens>
               <targetJdk>${jdk.target.version}</targetJdk>
+              <rulesets>
+                <ruleset>${pom.basedir}/../ruleset.xml</ruleset>
+              </rulesets>
             </configuration>
           </plugin>
           <plugin>
