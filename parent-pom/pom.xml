@@ -159,6 +159,8 @@
     <cia.project.versions.vaadin.cssparser>0.9.22</cia.project.versions.vaadin.cssparser>
     <cia.project.versions.servlet.api>3.1.0</cia.project.versions.servlet.api>
     <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
+    <walkmod.chains>pmd</walkmod.chains>
+    <walkmod.properties>configurationFile=${pom.basedir}/../ruleset.xml</walkmod.properties>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -885,6 +887,11 @@
       </plugins>
     </pluginManagement>
     <plugins>
+	<plugin>
+	  <groupId>org.walkmod.maven.plugins</groupId>
+	  <artifactId>walkmod-maven-plugin</artifactId>
+	  <version>1.0.3</version>
+	</plugin>
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
