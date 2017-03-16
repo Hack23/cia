@@ -27,14 +27,13 @@ import java.util.List;
 
 import javax.jms.Destination;
 import javax.jms.JMSException;
-import javax.transaction.Transactional;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
 import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
@@ -42,7 +41,7 @@ import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
 /**
  * The Class WorldBankDataWorkGeneratorImplITest.
  */
-@Transactional
+@Transactional(timeout = 300)
 public class WorldBankDataWorkGeneratorImplITest extends AbstractServiceComponentAgentFunctionalIntegrationTest {
 
 	/** The world bank data sources work generator. */
@@ -55,7 +54,6 @@ public class WorldBankDataWorkGeneratorImplITest extends AbstractServiceComponen
 	 * @throws JMSException
 	 */
 	@Test
-	@Ignore
 	public void generateWorkOrdersSuccessTest() throws JMSException {
 		final JmsSender jmsSenderMock = mock(JmsSender.class);
         ReflectionTestUtils.setField(worldBankDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);

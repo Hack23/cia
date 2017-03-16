@@ -23,34 +23,65 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.Set;
+
 import javax.jms.JMSException;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
+import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
+import com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data.RiksdagenImportService;
 
 /**
  * The Class RiksdagenCommitteeProposalComponentDataWorkConsumerImplITest.
  */
+@Transactional
 public class RiksdagenCommitteeProposalComponentDataWorkConsumerImplITest extends AbstractServiceComponentAgentFunctionalIntegrationTest {
 
+	/** The messsage listener. */
 	@Autowired
 	@Qualifier("riksdagenCommitteeProposalComponentDataWorkConsumerImpl")
 	private MessageListener messsageListener;
 
+	/** The riksdagen import service. */
+	@Autowired
+	private RiksdagenImportService riksdagenImportService;
+
 	/**
 	 * On message success test.
+	 *
 	 * @throws JMSException
+	 *             the JMS exception
 	 */
 	@Test
 	public void onMessageSuccessTest() throws JMSException {
 		final ObjectMessage message = mock(ObjectMessage.class);
 
-		when(message.getObject()).thenReturn("");
+		final Set<String> keySet = riksdagenImportService.getCommitteeProposalComponentDataMap().keySet();
+
+		when(message.getObject()).thenReturn(keySet.iterator().next());
+
+		messsageListener.onMessage(message);
+		verify(message, atLeastOnce()).getObject();
+	}
+
+
+	/**
+	 * On message failure test.
+	 *
+	 * @throws JMSException
+	 *             the JMS exception
+	 */
+	@Test
+	public void onMessageFailureTest() throws JMSException {
+		final ObjectMessage message = mock(ObjectMessage.class);
+
+		when(message.getObject()).thenThrow(new JMSException("test"));
 
 		messsageListener.onMessage(message);
 		verify(message, atLeastOnce()).getObject();

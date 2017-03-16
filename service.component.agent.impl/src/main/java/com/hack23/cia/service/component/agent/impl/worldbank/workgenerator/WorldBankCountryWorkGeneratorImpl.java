@@ -32,9 +32,6 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
 import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
-import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration;
-import com.hack23.cia.model.internal.application.system.impl.ConfigurationGroup;
-import com.hack23.cia.service.data.api.ApplicationConfigurationService;
 import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankCountryApi;
 
@@ -57,11 +54,6 @@ final class WorldBankCountryWorkGeneratorImpl extends AbstractWorldBankDataSourc
 	@Autowired
 	private WorldBankCountryApi worldbankCountryApi;
 
-	/** The application configuration service. */
-	@Autowired
-	private ApplicationConfigurationService applicationConfigurationService;
-
-
 	/**
 	 * Instantiates a new world bank country work generator impl.
 	 */
@@ -71,15 +63,12 @@ final class WorldBankCountryWorkGeneratorImpl extends AbstractWorldBankDataSourc
 
 	@Override
 	public void generateWorkOrders() {
-
-		final ApplicationConfiguration importDataForCountries = applicationConfigurationService.checkValueOrLoadDefault("Countries to import data from worldbank (isocode) alt comma separated list", "Load worldbank data for countries", ConfigurationGroup.AGENT, WorldBankCountryWorkGeneratorImpl.class.getSimpleName(), "Worldbank country data loading", "Responsible import worldlbank country data", "agent.worldbank.country.data.loadCountries", "SE");
-
 		try {
 			final List<CountryElement> countryList = worldbankCountryApi.getCountries();
 			final Map<String, String> currentSaved = getImportService().getWorldBankCountryMap();
 
 			for (final CountryElement countryElement : countryList) {
-				if (!currentSaved.containsKey(countryElement.getIso2Code()) && importDataForCountries.getPropertyValue().equalsIgnoreCase(countryElement.getIso2Code())) {
+				if (countryElement.getIso2Code().length() > 2 && !currentSaved.containsKey(countryElement.getIso2Code())) {
 					getJmsSender().send(countryElementWorkdestination,
 							countryElement);
 				}

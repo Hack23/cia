@@ -32,25 +32,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
+import com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data.RiksdagenImportService;
 
 /**
  * The Class RiksdagenVoteDataWorkConsumerImplITest.
  */
 public class RiksdagenVoteDataWorkConsumerImplITest extends AbstractServiceComponentAgentFunctionalIntegrationTest {
 
+	/** The messsage listener. */
 	@Autowired
 	@Qualifier("riksdagenVoteDataWorkConsumerImpl")
 	private MessageListener messsageListener;
 
+	/** The riksdagen import service. */
+	@Autowired
+	private RiksdagenImportService riksdagenImportService;
+
 	/**
 	 * On message success test.
+	 *
 	 * @throws JMSException
+	 *             the JMS exception
 	 */
 	@Test
 	public void onMessageSuccessTest() throws JMSException {
 		final ObjectMessage message = mock(ObjectMessage.class);
 
 		when(message.getObject()).thenReturn("");
+
+		messsageListener.onMessage(message);
+		verify(message, atLeastOnce()).getObject();
+	}
+
+	/**
+	 * On message failure test.
+	 *
+	 * @throws JMSException
+	 *             the JMS exception
+	 */
+	@Test
+	public void onMessageFailureTest() throws JMSException {
+		final ObjectMessage message = mock(ObjectMessage.class);
+
+		when(message.getObject()).thenThrow(new JMSException("test"));
 
 		messsageListener.onMessage(message);
 		verify(message, atLeastOnce()).getObject();

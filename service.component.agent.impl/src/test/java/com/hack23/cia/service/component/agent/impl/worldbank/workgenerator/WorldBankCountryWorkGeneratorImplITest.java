@@ -50,11 +50,13 @@ public class WorldBankCountryWorkGeneratorImplITest extends AbstractServiceCompo
 	private WorldBankDataSourcesWorkGenerator worldBankDataSourcesWorkGenerator;
 
 	/**
-	 * Generate work orders success test.
+	 * Generate work orders all data is already imported success test.
+	 *
 	 * @throws JMSException
+	 *             the JMS exception
 	 */
 	@Test
-	public void generateWorkOrdersSuccessTest() throws JMSException {
+	public void generateWorkOrdersAllDataIsAlreadyImportedSuccessTest() throws JMSException {
 		final JmsSender jmsSenderMock = mock(JmsSender.class);
         ReflectionTestUtils.setField(worldBankDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
 

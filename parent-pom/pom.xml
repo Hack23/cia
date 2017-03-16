@@ -115,9 +115,9 @@
     <cia.project.versions.logback>1.2.1</cia.project.versions.logback>
     <cia.project.versions.mysql>5.1.34</cia.project.versions.mysql>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
-    <cia.project.versions.hibernate>5.2.8.Final</cia.project.versions.hibernate>
-    <cia.project.versions.hibernate.jpamodelgen>5.2.8.Final</cia.project.versions.hibernate.jpamodelgen>
-    <cia.project.versions.hibernate.build>5.2.8.Final</cia.project.versions.hibernate.build>
+    <cia.project.versions.hibernate>5.2.9.Final</cia.project.versions.hibernate>
+    <cia.project.versions.hibernate.jpamodelgen>5.2.9.Final</cia.project.versions.hibernate.jpamodelgen>
+    <cia.project.versions.hibernate.build>5.2.9.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.2.2.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.0.Final</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>5.4.0.Final</cia.project.versions.hibernate.validator>

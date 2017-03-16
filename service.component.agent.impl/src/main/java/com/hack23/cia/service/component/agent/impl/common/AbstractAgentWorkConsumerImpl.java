@@ -20,26 +20,10 @@ package com.hack23.cia.service.component.agent.impl.common;
 
 import javax.jms.MessageListener;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
-
 
 /**
  * The Class AbstractAgentWorkConsumerImpl.
  */
 public abstract class AbstractAgentWorkConsumerImpl implements MessageListener {
-
-	@Autowired
-	private JmsSender jmsSender;
-
-	/**
-	 * Gets the jms template.
-	 *
-	 * @return the jms template
-	 */
-	public final JmsSender getJmsSender() {
-		return jmsSender;
-	}
 
 }
