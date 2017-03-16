@@ -101,7 +101,7 @@
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <!-- <cia.project.versions.spring>4.3.6.RELEASE/5.0.0.M4/5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring> -->
-    <cia.project.versions.spring>5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring>
+    <cia.project.versions.spring>4.3.7.RELEASE</cia.project.versions.spring>
     <!-- <cia.project.versions.spring.security>4.2.0.M1</cia.project.versions.spring.security>-->
     <cia.project.versions.spring.security>4.2.2.RELEASE</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.0.BETA-4</cia.project.versions.aspectj>
@@ -115,9 +115,9 @@
     <cia.project.versions.logback>1.2.1</cia.project.versions.logback>
     <cia.project.versions.mysql>5.1.34</cia.project.versions.mysql>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
-    <cia.project.versions.hibernate>5.2.9-SNAPSHOT</cia.project.versions.hibernate>
-    <cia.project.versions.hibernate.jpamodelgen>5.2.9-SNAPSHOT</cia.project.versions.hibernate.jpamodelgen>
-    <cia.project.versions.hibernate.build>5.2.9-SNAPSHOT</cia.project.versions.hibernate.build>
+    <cia.project.versions.hibernate>5.2.9.Final</cia.project.versions.hibernate>
+    <cia.project.versions.hibernate.jpamodelgen>5.2.9.Final</cia.project.versions.hibernate.jpamodelgen>
+    <cia.project.versions.hibernate.build>5.2.9.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.2.2.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.0.Final</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>5.4.0.Final</cia.project.versions.hibernate.validator>
