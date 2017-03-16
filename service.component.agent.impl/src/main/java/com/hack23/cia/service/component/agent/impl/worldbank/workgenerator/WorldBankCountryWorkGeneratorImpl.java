@@ -68,7 +68,7 @@ final class WorldBankCountryWorkGeneratorImpl extends AbstractWorldBankDataSourc
 			final Map<String, String> currentSaved = getImportService().getWorldBankCountryMap();
 
 			for (final CountryElement countryElement : countryList) {
-				if (countryElement.getIso2Code().length() > 2 && !currentSaved.containsKey(countryElement.getIso2Code())) {
+				if (countryElement.getCapitalCity() != null && countryElement.getCapitalCity().length() > 0 && !currentSaved.containsKey(countryElement.getIso2Code())) {
 					getJmsSender().send(countryElementWorkdestination,
 							countryElement);
 				}
