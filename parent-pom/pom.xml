@@ -884,13 +884,18 @@
           <artifactId>liquibase-maven-plugin</artifactId>
           <version>3.5.3</version>
         </plugin>
+        <plugin>
+            <groupId>org.walkmod.maven.plugins</groupId>
+        	<artifactId>walkmod-maven-plugin</artifactId>
+            <version>1.0.3</version>        
+        </plugin>
       </plugins>
+      
     </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.walkmod.maven.plugins</groupId>
         <artifactId>walkmod-maven-plugin</artifactId>
-        <version>1.0.3</version>
       </plugin>
       <plugin>
         <groupId>org.jacoco</groupId>
@@ -1193,7 +1198,26 @@
       <properties>
         <cia.project.phase.site>true</cia.project.phase.site>
       </properties>
-    </profile>
+    </profile>    
+    <profile>
+    	<id>walkmod</id>
+	    <build>
+	    	<plugins>
+		    	<plugin>
+		        <groupId>org.walkmod.maven.plugins</groupId>
+		        <artifactId>walkmod-maven-plugin</artifactId>
+		        <executions>
+		          <execution>
+		            <phase>generate-sources</phase>
+		            <goals>
+		              <goal>patch</goal>
+		            </goals>
+		          </execution>
+		        </executions>
+		      </plugin>    	
+	    	</plugins>
+	    </build>    
+    </profile>    
     <profile>
       <id>cia-dev-windows</id>
       <activation>
