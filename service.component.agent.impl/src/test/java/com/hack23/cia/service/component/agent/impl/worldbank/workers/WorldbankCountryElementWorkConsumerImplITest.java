@@ -31,8 +31,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
-import com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.data.WorldbankImportService;
 
 /**
  * The Class WorldbankCountryElementWorkConsumerImplITest.
@@ -41,12 +41,8 @@ public class WorldbankCountryElementWorkConsumerImplITest extends AbstractServic
 
 	/** The messsage listener. */
 	@Autowired
-	@Qualifier("riksdagenCommitteeProposalComponentDataWorkConsumerImpl")
+	@Qualifier("worldbankCountryElementWorkConsumerImpl")
 	private MessageListener messsageListener;
-
-	/** The worldbank import service. */
-	@Autowired
-	private WorldbankImportService worldbankImportService;
 
 
 	/**
@@ -59,7 +55,8 @@ public class WorldbankCountryElementWorkConsumerImplITest extends AbstractServic
 	public void onMessageSuccessTest() throws JMSException {
 		final ObjectMessage message = mock(ObjectMessage.class);
 
-		when(message.getObject()).thenReturn("");
+
+		when(message.getObject()).thenReturn(new CountryElement());
 
 		messsageListener.onMessage(message);
 		verify(message, atLeastOnce()).getObject();

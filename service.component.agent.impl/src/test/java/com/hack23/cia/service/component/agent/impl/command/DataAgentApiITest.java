@@ -18,19 +18,30 @@
 */
 package com.hack23.cia.service.component.agent.impl.command;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
+import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
+
+import javax.jms.Destination;
+import javax.jms.JMSException;
 
 import org.apache.activemq.broker.jmx.QueueViewMBean;
 import org.apache.activemq.web.BrokerFacadeSupport;
-import org.junit.Ignore;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder;
 import com.hack23.cia.service.component.agent.api.DataAgentApi;
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
+import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
 
 /**
  * The Class DataAgentApiITest.
@@ -47,19 +58,50 @@ public final class DataAgentApiITest extends AbstractServiceComponentAgentFuncti
 
 	/**
 	 * Import riksdagen data success test.
+	 * @throws JMSException
 	 */
 	@Test
-	@Ignore
-	public void importRiksdagenDataSuccessTest() {
+	public void importRiksdagenDataSuccessTest() throws JMSException {
+		final JmsSender jmsSenderMock = mock(JmsSender.class);
+        ReflectionTestUtils.setField(dataAgentApi, "jmsSender", jmsSenderMock);
+
 		dataAgentApi.execute(new DataAgentWorkOrder().withOperation(DataAgentOperation.IMPORT).withTarget(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN));
-		waitUntilQueueIsEmpty("riksdagen");
+
+		final ArgumentCaptor<Destination> destCaptor = ArgumentCaptor.forClass(Destination.class);
+
+		final ArgumentCaptor<Serializable> stringCaptor = ArgumentCaptor.forClass(Serializable.class);
+
+		verify(jmsSenderMock, times(7)).send(destCaptor.capture(),stringCaptor.capture());
+
+		final List<Serializable> capturedStrings = stringCaptor.getAllValues();
+		final List<Destination> capturedDestinations = destCaptor.getAllValues();
+
+		assertNotNull(capturedStrings);
+		assertNotNull(capturedDestinations);
+
+		//waitUntilQueueIsEmpty("riksdagen");
 	}
 
 	@Test
-	@Ignore
-	public void importWorldbankDataSuccessTest() {
+	public void importWorldbankDataSuccessTest() throws JMSException {
+		final JmsSender jmsSenderMock = mock(JmsSender.class);
+        ReflectionTestUtils.setField(dataAgentApi, "jmsSender", jmsSenderMock);
+
 		dataAgentApi.execute(new DataAgentWorkOrder().withOperation(DataAgentOperation.IMPORT).withTarget(DataAgentTarget.MODEL_EXTERNAL_WORLDBANK));
-		waitUntilQueueIsEmpty("worldbank");
+
+		final ArgumentCaptor<Destination> destCaptor = ArgumentCaptor.forClass(Destination.class);
+
+		final ArgumentCaptor<Serializable> stringCaptor = ArgumentCaptor.forClass(Serializable.class);
+
+		verify(jmsSenderMock, times(4)).send(destCaptor.capture(),stringCaptor.capture());
+
+		final List<Serializable> capturedStrings = stringCaptor.getAllValues();
+		final List<Destination> capturedDestinations = destCaptor.getAllValues();
+
+		assertNotNull(capturedStrings);
+		assertNotNull(capturedDestinations);
+
+		//waitUntilQueueIsEmpty("worldbank");
 	}
 
 	private void waitUntilQueueIsEmpty(final String queue) {

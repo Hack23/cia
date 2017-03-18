@@ -71,7 +71,9 @@ final class WorldbankImportServiceImpl implements WorldbankImportService {
 		final Map<String, String> map = new ConcurrentHashMap<>();
 
 		for (final String documentElement : all) {
-			map.put(documentElement, documentElement);
+			if (documentElement != null) {
+				map.put(documentElement, documentElement);
+			}
 		}
 		return map;
 	}

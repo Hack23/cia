@@ -31,6 +31,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
 
 /**
@@ -40,7 +41,7 @@ public class WorldbankIndicatorElementWorkConsumerImplITest extends AbstractServ
 
 	/** The messsage listener. */
 	@Autowired
-	@Qualifier("riksdagenCommitteeProposalComponentDataWorkConsumerImpl")
+	@Qualifier("worldbankIndicatorElementWorkConsumerImpl")
 	private MessageListener messsageListener;
 
 	/**
@@ -53,7 +54,7 @@ public class WorldbankIndicatorElementWorkConsumerImplITest extends AbstractServ
 	public void onMessageSuccessTest() throws JMSException {
 		final ObjectMessage message = mock(ObjectMessage.class);
 
-		when(message.getObject()).thenReturn("");
+		when(message.getObject()).thenReturn(new IndicatorElement());
 
 		messsageListener.onMessage(message);
 		verify(message, atLeastOnce()).getObject();

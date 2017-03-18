@@ -23,6 +23,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+
 import javax.jms.JMSException;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
@@ -40,7 +42,7 @@ public class WorldbankDataWorkConsumerImplITest extends AbstractServiceComponent
 
 	/** The messsage listener. */
 	@Autowired
-	@Qualifier("riksdagenCommitteeProposalComponentDataWorkConsumerImpl")
+	@Qualifier("worldbankDataWorkConsumerImpl")
 	private MessageListener messsageListener;
 
 	/**
@@ -53,7 +55,11 @@ public class WorldbankDataWorkConsumerImplITest extends AbstractServiceComponent
 	public void onMessageSuccessTest() throws JMSException {
 		final ObjectMessage message = mock(ObjectMessage.class);
 
-		when(message.getObject()).thenReturn("");
+		final ArrayList<String> list = new ArrayList<>();
+		list.add("SE");
+		list.add("UIS.DR.1.G1.M");
+
+		when(message.getObject()).thenReturn(list);
 
 		messsageListener.onMessage(message);
 		verify(message, atLeastOnce()).getObject();
