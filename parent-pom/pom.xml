@@ -122,7 +122,7 @@
     <cia.project.versions.hibernate.jpa2>1.0.0.Final</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>5.4.1.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>5.4.1.Final</cia.project.versions.hibernate.build.validator>
-    <cia.project.versions.bytebuddy>1.6.11</cia.project.versions.bytebuddy>
+    <cia.project.versions.bytebuddy>1.6.12</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.194</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.0.0</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.3</cia.project.versions.ehcache>
@@ -860,7 +860,7 @@
         <plugin>
           <groupId>com.github.ekryd.sortpom</groupId>
           <artifactId>sortpom-maven-plugin</artifactId>
-          <version>2.5.0</version>
+          <version>2.6.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
