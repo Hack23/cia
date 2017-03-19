@@ -29,6 +29,7 @@ import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.transaction.Transactional;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,7 @@ public class WorldBankCountryWorkGeneratorImplITest extends AbstractServiceCompo
 	 *             the JMS exception
 	 */
 	@Test
+	@Ignore
 	public void generateWorkOrdersAllDataIsAlreadyImportedSuccessTest() throws JMSException {
 		final JmsSender jmsSenderMock = mock(JmsSender.class);
         ReflectionTestUtils.setField(worldBankDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
