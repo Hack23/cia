@@ -39,26 +39,26 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements PartyRankingMenuItemFactory {
 
-	/** The Constant COMMAND21. */
-	private static final PageModeMenuCommand COMMAND21 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+	/** The Constant COMMAND_PAGEVISITHISTORY. */
+	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
 
-	/** The Constant COMMAND22. */
-	private static final PageModeMenuCommand COMMAND22 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.ALLPARTIES.toString());
+	/** The Constant COMMAND_CHARTS_ALL_PARTIES. */
+	private static final PageModeMenuCommand COMMAND_CHARTS_ALL_PARTIES = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.ALLPARTIES.toString());
 
-	/** The Constant COMMAND23. */
-	private static final PageModeMenuCommand COMMAND23 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEES.toString());
+	/** The Constant COMMAND_CHARTS_CURRENT_COMMITTEES. */
+	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_COMMITTEES = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEES.toString());
 
-	/** The Constant COMMAND24. */
-	private static final PageModeMenuCommand COMMAND24 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTGOVERMENTPARTIES.toString());
+	/** The Constant COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES. */
+	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTGOVERMENTPARTIES.toString());
 
-	/** The Constant COMMAND25. */
-	private static final PageModeMenuCommand COMMAND25 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTPARTIES.toString());
+	/** The Constant COMMAND_CHARTS_CURRENT_PARTIES. */
+	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_PARTIES = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTPARTIES.toString());
 
-	/** The Constant COMMAND19. */
-	private static final PageModeMenuCommand COMMAND19 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.DATAGRID);
+	/** The Constant COMMAND_DATAGRID. */
+	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.DATAGRID);
 
-	/** The Constant COMMAND18. */
-	private static final PageModeMenuCommand COMMAND18 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+	/** The Constant COMMAND_OVERVIEW. */
+	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
 
 	/** The Constant PARTY_RANKING. */
 	private static final String PARTY_RANKING = "Party Ranking";
@@ -124,30 +124,30 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 	public void createPartyRankingTopics(final MenuItem partynMenuItem) {
 
 		partynMenuItem.addItem(OVERVIEW_TEXT, FontAwesome.GROUP,
-				COMMAND18);
+				COMMAND_OVERVIEW);
 
 		final MenuItem listByTopic = partynMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, FontAwesome.GROUP, null);
 
 		final MenuItem listItem = listByTopic.addItem(TOTAL_MEMBERS,FontAwesome.GROUP,
-				COMMAND19);
+				COMMAND_DATAGRID);
 		listItem.setDescription(PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT);
 
 		final MenuItem chartByTopic = partynMenuItem.addItem(CHART_BY_TOPIC_TEXT, FontAwesome.GROUP, null);
 
 
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,FontAwesome.GROUP,
-				COMMAND24);
+				COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES);
 
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,FontAwesome.GROUP,
-				COMMAND23);
+				COMMAND_CHARTS_CURRENT_COMMITTEES);
 
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,FontAwesome.GROUP,
-				COMMAND25);
+				COMMAND_CHARTS_CURRENT_PARTIES);
 		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,FontAwesome.GROUP,
-				COMMAND22);
+				COMMAND_CHARTS_ALL_PARTIES);
 
 		partynMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
-				COMMAND21);
+				COMMAND_PAGEVISITHISTORY);
 	}
 
 
@@ -156,19 +156,19 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 		final GridLayout grid = createGridLayout(panelContent);
 
 		createButtonLink(grid,TOTAL_MEMBERS,FontAwesome.GROUP,
-				COMMAND19, "Default description");
+				COMMAND_DATAGRID, "Default description");
 		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,FontAwesome.GROUP,
-				COMMAND24, "Default description");
+				COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES, "Default description");
 
 		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,FontAwesome.GROUP,
-				COMMAND23, "Default description");
+				COMMAND_CHARTS_CURRENT_COMMITTEES, "Default description");
 		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,FontAwesome.GROUP,
-				COMMAND25, "Default description");
+				COMMAND_CHARTS_CURRENT_PARTIES, "Default description");
 		createButtonLink(grid,ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,FontAwesome.GROUP,
-				COMMAND22, "Default description");
+				COMMAND_CHARTS_ALL_PARTIES, "Default description");
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
-				COMMAND21, "Default description");
+				COMMAND_PAGEVISITHISTORY, "Default description");
 
 	}
 

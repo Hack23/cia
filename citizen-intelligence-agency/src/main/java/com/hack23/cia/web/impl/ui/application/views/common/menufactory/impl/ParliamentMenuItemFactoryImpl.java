@@ -51,32 +51,32 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 	/** The Constant PARTY_GENDER. */
 	private static final String PARTY_GENDER = "Party Gender";
 
-	/** The Constant COMMAND22. */
-	private static final PageModeMenuCommand COMMAND22 = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+	/** The Constant COMMAND_PAGEVISITHISTORY. */
+	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
 
-	/** The Constant COMMAND21. */
-	private static final PageModeMenuCommand COMMAND21 = new PageModeMenuCommand(
+	/** The Constant COMMAND_DECISION_ACTIVITY. */
+	private static final PageModeMenuCommand COMMAND_DECISION_ACTIVITY = new PageModeMenuCommand(
 			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DECISIONACTIVITYBYTYPE.toString());
 
-	/** The Constant COMMAND20. */
-	private static final PageModeMenuCommand COMMAND20 = new PageModeMenuCommand(
+	/** The Constant COMMAND_DOCUMENT_ACTIVITY. */
+	private static final PageModeMenuCommand COMMAND_DOCUMENT_ACTIVITY = new PageModeMenuCommand(
 			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DOCUMENTACTIVITYBYTYPE.toString());
 
-	/** The Constant COMMAND19. */
-	private static final PageModeMenuCommand COMMAND19 = new PageModeMenuCommand(
+	/** The Constant COMMAND_CHARTS_PARTY_WINNER. */
+	private static final PageModeMenuCommand COMMAND_CHARTS_PARTY_WINNER = new PageModeMenuCommand(
 			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.PARTYWINNER.toString());
 
-	/** The Constant COMMAND23. */
-	private static final PageModeMenuCommand COMMAND23 = new PageModeMenuCommand(
+	/** The Constant COMMAND_CHARTS_PARTY_GENDER. */
+	private static final PageModeMenuCommand COMMAND_CHARTS_PARTY_GENDER = new PageModeMenuCommand(
 			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.PARTYGENDER.toString());
 
-	/** The Constant COMMAND24. */
-	private static final PageModeMenuCommand COMMAND24 = new PageModeMenuCommand(
+	/** The Constant COMMAND_CHARTS_PARTY_AGE. */
+	private static final PageModeMenuCommand COMMAND_CHARTS_PARTY_AGE = new PageModeMenuCommand(
 			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.PARTYAGE.toString());
 
 
-	/** The Constant COMMAND18. */
-	private static final PageModeMenuCommand COMMAND18 = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+	/** The Constant COMMAND_OVERVIEW. */
+	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.OVERVIEW);
 
 	/** The Constant DAILY_TOTAL_OF_NUMBER_OF_DECSIONS_MADE. */
 	private static final String DAILY_TOTAL_OF_NUMBER_OF_DECSIONS_MADE = "daily total of number of decsions made";
@@ -132,48 +132,48 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 	@Override
 	public void createParliamentTopicMenu(final MenuItem charts) {
 		charts.addItem(OVERVIEW_TEXT, FontAwesome.INSTITUTION,
-				COMMAND18);
+				COMMAND_OVERVIEW);
 
 		// Submenu item with a sub-submenu
 		final MenuItem chartIndicators = charts.addItem(SWEDISH_PARLIAMENT_INDICATORS, FontAwesome.INSTITUTION, null);
 
-		final MenuItem addItem = chartIndicators.addItem(PARTY_WINNER,FontAwesome.INSTITUTION, COMMAND19);
+		final MenuItem addItem = chartIndicators.addItem(PARTY_WINNER,FontAwesome.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER);
 		addItem.setDescription(DAILY_AVERAGE_WON_BALLOTS);
 
-		final MenuItem addItem2 = chartIndicators.addItem(PARTY_GENDER,FontAwesome.INSTITUTION, COMMAND23);
+		final MenuItem addItem2 = chartIndicators.addItem(PARTY_GENDER,FontAwesome.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER);
 		addItem2.setDescription(AVERAGE_PERCENTAGE_MALE);
 
-		final MenuItem addItem3 = chartIndicators.addItem(PARTY_AGE, FontAwesome.INSTITUTION,COMMAND24);
+		final MenuItem addItem3 = chartIndicators.addItem(PARTY_AGE, FontAwesome.INSTITUTION,COMMAND_CHARTS_PARTY_AGE);
 		addItem3.setDescription(AVERAGE_AGE);
 
 
-		final MenuItem addItem4 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE,FontAwesome.INSTITUTION, COMMAND20);
+		final MenuItem addItem4 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE,FontAwesome.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY);
 		addItem4.setDescription(DAILY_TOTAL_OF_NUMBER_PUBLISHED_DOCUMENTS);
-		final MenuItem addItem5 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, FontAwesome.INSTITUTION,COMMAND21);
+		final MenuItem addItem5 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, FontAwesome.INSTITUTION,COMMAND_DECISION_ACTIVITY);
 		addItem5.setDescription(DAILY_TOTAL_OF_NUMBER_OF_DECSIONS_MADE);
 
 
 		charts.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.INSTITUTION,
-				COMMAND22);
+				COMMAND_PAGEVISITHISTORY);
 	}
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent) {
 		final GridLayout grid = createGridLayout(panelContent);
 
-		createButtonLink(grid,PARTY_WINNER,FontAwesome.INSTITUTION, COMMAND19, "Default description");
+		createButtonLink(grid,PARTY_WINNER,FontAwesome.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER, "Default description");
 
-		createButtonLink(grid,PARTY_GENDER,FontAwesome.INSTITUTION, COMMAND23, "Default description");
+		createButtonLink(grid,PARTY_GENDER,FontAwesome.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER, "Default description");
 
-		createButtonLink(grid,PARTY_AGE, FontAwesome.INSTITUTION,COMMAND24, "Default description");
+		createButtonLink(grid,PARTY_AGE, FontAwesome.INSTITUTION,COMMAND_CHARTS_PARTY_AGE, "Default description");
 
 
-		createButtonLink(grid,DOCUMENT_ACTIVITY_BY_TYPE,FontAwesome.INSTITUTION, COMMAND20, "Default description");
-		createButtonLink(grid,DECISION_ACTIVITY_BY_TYPE, FontAwesome.INSTITUTION,COMMAND21, "Default description");
+		createButtonLink(grid,DOCUMENT_ACTIVITY_BY_TYPE,FontAwesome.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY, "Default description");
+		createButtonLink(grid,DECISION_ACTIVITY_BY_TYPE, FontAwesome.INSTITUTION,COMMAND_DECISION_ACTIVITY, "Default description");
 
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.INSTITUTION,
-				COMMAND22, "Default description");
+				COMMAND_PAGEVISITHISTORY, "Default description");
 
 	}
 

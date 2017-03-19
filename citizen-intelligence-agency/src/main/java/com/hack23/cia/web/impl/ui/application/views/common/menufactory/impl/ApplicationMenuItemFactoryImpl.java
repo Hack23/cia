@@ -68,7 +68,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	/** The Constant COMMAND_COMMITTEE_RANKING_DATAGRID. */
 	private static final PageModeMenuCommand COMMAND_COMMITTEE_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
 			PageMode.DATAGRID);
-	
+
 	/** The Constant COMMAND_PARTY_RANKING_OVERVIEW. */
 	private static final PageModeMenuCommand COMMAND_PARTY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
@@ -77,7 +77,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	private static final PageModeMenuCommand COMMAND_PARTY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME,
 			PageMode.DATAGRID);
 
-	
+
 	/** The Constant COMMAND_POLITICIAN_RANKING_OVERVIEW. */
 	private static final PageModeMenuCommand COMMAND_POLITICIAN_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
@@ -85,8 +85,8 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	/** The Constant COMMAND_POLITICIAN_RANKING_DATAGRID. */
 	private static final PageModeMenuCommand COMMAND_POLITICIAN_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
 			PageMode.DATAGRID);
-	
-	
+
+
 
 	/** The Constant POLITICIAN_RANKING. */
 	private static final String POLITICIAN_RANKING = "Politician Ranking";
@@ -120,7 +120,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 	/** The Constant PARLIAMENT_RANKING_LINK_TEXT. */
 	private static final String PARLIAMENT_RANKING_LINK_TEXT = "Parliament Ranking";
-	
+
 	/** The Constant MINISTRIES_LINK_TEXT. */
 	private static final String MINISTRIES_LINK_TEXT = "Ministries";
 
@@ -214,24 +214,24 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 		createButtonLink(grid,PARLIAMENT_RANKING_LINK_TEXT,FontAwesome.INSTITUTION, COMMAND_PARLIAMENT_RANKING_OVERVIEW,"Charts over parlimentary ballots and document activity");
 
 		createButtonLink(grid,POLITICIAN_RANKING_LINK_TEXT,FontAwesome.USER, COMMAND_POLITICIAN_RANKING_OVERVIEW,"Overview");
-		
+
 		createButtonLink(grid,POLITICIANS_LINK_TEXT,FontAwesome.USER, COMMAND_POLITICIAN_RANKING_DATAGRID,"Politican Experience Summary");
-		
+
 
 		createButtonLink(grid,PARTY_RANKING_LINK_TEXT, FontAwesome.GROUP,COMMAND_PARTY_RANKING_OVERVIEW,"Overview");
-		
+
 		createButtonLink(grid,PARTIES_LINK_TEXT, FontAwesome.GROUP,COMMAND_PARTY_RANKING_DATAGRID,"Political Work Summary");
-		
+
 
 		createButtonLink(grid,COMMITTEE_RANKING_LINK_TEXT,FontAwesome.GROUP, COMMAND_COMMITTEE_RANKING_OVERVIEW,"Overview");
-		
+
 		createButtonLink(grid,COMMITTEES_LINK_TEXT,FontAwesome.GROUP, COMMAND_COMMITTEE_RANKING_DATAGRID,"Political Work Summary");
-		
+
 
 		createButtonLink(grid,MINISTRY_RANKING_LINK_TEXT,FontAwesome.GROUP, COMMAND_MINISTRY_RANKING_OVERVIEW,"Overview");
-		
+
 		createButtonLink(grid,MINISTRIES_LINK_TEXT,FontAwesome.GROUP, COMMAND_MINISTRY_RANKING_DATAGRID,"Political Work Summary");
-		
+
 
 	}
 

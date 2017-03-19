@@ -46,24 +46,24 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 	/** The Constant ALL_PARTIES. */
 	private static final String ALL_PARTIES = "All parties";
 
-	/** The Constant COMMAND20. */
-	private static final PageModeMenuCommand COMMAND20 = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
+	/** The Constant COMMAND_PAGEVISITHISTORY. */
+	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
 			PageMode.PAGEVISITHISTORY);
 
-	/** The Constant COMMAND19. */
-	private static final PageModeMenuCommand COMMAND19 = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
+	/** The Constant COMMAND_DATAGRID. */
+	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
 			PageMode.DATAGRID);
 
-	/** The Constant COMMAND18. */
-	private static final PageModeMenuCommand COMMAND18 = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
+	/** The Constant COMMAND_OVERVIEW. */
+	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
 
-	/** The Constant COMMAND21. */
-	private static final PageModeMenuCommand COMMAND21 = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
+	/** The Constant COMMAND_ALL_PARTIES. */
+	private static final PageModeMenuCommand COMMAND_ALL_PARTIES = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
 			PageMode.CHARTS, ChartIndicators.ALLPARTIES.toString());
 
-	/** The Constant COMMAND22. */
-	private static final PageModeMenuCommand COMMAND22 = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
+	/** The Constant COMMAND_CURRENT_PARTIES. */
+	private static final PageModeMenuCommand COMMAND_CURRENT_PARTIES = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
 			PageMode.CHARTS, ChartIndicators.CURRENTPARTIES.toString());
 
 	/** The Constant POLITICIAN_RANKING. */
@@ -111,20 +111,20 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 
 	@Override
 	public void createPoliticianRankingTopics(final MenuItem politicianMenuItem) {
-		politicianMenuItem.addItem(OVERVIEW_TEXT, FontAwesome.BUG, COMMAND18);
+		politicianMenuItem.addItem(OVERVIEW_TEXT, FontAwesome.BUG, COMMAND_OVERVIEW);
 
 		final MenuItem listByTopic = politicianMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, FontAwesome.BUG, null);
 
-		final MenuItem listItem = listByTopic.addItem(POLITICAL_EXPERIENCE_SUMMARY, FontAwesome.BUG, COMMAND19);
+		final MenuItem listItem = listByTopic.addItem(POLITICAL_EXPERIENCE_SUMMARY, FontAwesome.BUG, COMMAND_DATAGRID);
 		listItem.setDescription(CURRENT_AND_PAST_ASSIGNMENTS_AND_SUMMARY_EXPERIENCE_IN_DAYS);
 
 		final MenuItem chartByTopic = politicianMenuItem.addItem(CHART_BY_TOPIC_TEXT, FontAwesome.BUG, null);
 
-		chartByTopic.addItem(ALL_PARTIES, FontAwesome.GROUP, COMMAND21);
+		chartByTopic.addItem(ALL_PARTIES, FontAwesome.GROUP, COMMAND_ALL_PARTIES);
 
-		chartByTopic.addItem(CURRENT_PARTIES, FontAwesome.GROUP, COMMAND22);
+		chartByTopic.addItem(CURRENT_PARTIES, FontAwesome.GROUP, COMMAND_CURRENT_PARTIES);
 
-		politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG, COMMAND20);
+		politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG, COMMAND_PAGEVISITHISTORY);
 
 	}
 
@@ -132,9 +132,9 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 	public void createOverviewPage(final VerticalLayout panelContent) {
 		final GridLayout grid = createGridLayout(panelContent);
 
-		createButtonLink(grid, POLITICAL_EXPERIENCE_SUMMARY, FontAwesome.BUG, COMMAND19, "Default description");
+		createButtonLink(grid, POLITICAL_EXPERIENCE_SUMMARY, FontAwesome.BUG, COMMAND_DATAGRID, "Default description");
 
-		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG, COMMAND20, "Default description");
+		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG, COMMAND_PAGEVISITHISTORY, "Default description");
 
 	}
 

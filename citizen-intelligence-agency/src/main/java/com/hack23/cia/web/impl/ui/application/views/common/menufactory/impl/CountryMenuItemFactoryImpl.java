@@ -52,12 +52,12 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements CountryMenuItemFactory {
 
-	/** The Constant COMMAND22. */
-	private static final PageModeMenuCommand COMMAND22 = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+	/** The Constant COMMAND_PAGEVISITHISTORY. */
+	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
 
 
-	/** The Constant COMMAND18. */
-	private static final PageModeMenuCommand COMMAND18 = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+	/** The Constant COMMAND_OVERVIEW. */
+	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
 
 	/** The Constant BY_SOURCE. */
 	private static final String BY_SOURCE = "By Source";
@@ -139,14 +139,14 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 	@Override
 	public void createCountryTopicMenu(final MenuItem charts) {
 		charts.addItem(OVERVIEW_TEXT, FontAwesome.LINE_CHART,
-				COMMAND18);
+				COMMAND_OVERVIEW);
 
 		final MenuItem countryIndicators = charts.addItem(COUNTRY_INDICATORS_SWEDEN, FontAwesome.LINE_CHART, null);
 
 		addSourcesAndIndicatorsToMenu(countryIndicators.addItem(BY_TOPIC,FontAwesome.LINE_CHART, null), getTopicIndicatorMap());
 		addSourcesAndIndicatorsToMenu(countryIndicators.addItem(BY_SOURCE,FontAwesome.LINE_CHART, null), getSourceIndicatorMap());
 
-		charts.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.LINE_CHART,	COMMAND22);
+		charts.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.LINE_CHART,	COMMAND_PAGEVISITHISTORY);
 
 	}
 

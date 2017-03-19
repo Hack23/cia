@@ -43,79 +43,79 @@ import com.vaadin.ui.VerticalLayout;
  */
 public abstract class AbstractMenuItemFactoryImpl {
 
-	/** The Constant COMMAND20. */
-	private static final PageModeMenuCommand COMMAND20 = new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS);
+	/** The Constant COMMAND_APPLICATION_EVENTS_CHARTS. */
+	private static final PageModeMenuCommand COMMAND_APPLICATION_EVENTS_CHARTS = new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS);
 
-	/** The Constant COMMAND19. */
-	private static final PageModeMenuCommand COMMAND19 = new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME,
+	/** The Constant COMMAND_EMAIL. */
+	private static final PageModeMenuCommand COMMAND_EMAIL = new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME,
 			"");
 
-	/** The Constant COMMAND18. */
-	private static final PageModeMenuCommand COMMAND18 = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
+	/** The Constant COMMAND_MAINVIEW_PAGEVISITHISTORY. */
+	private static final PageModeMenuCommand COMMAND_MAINVIEW_PAGEVISITHISTORY = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
 			PageMode.PAGEVISITHISTORY);
 
-	/** The Constant COMMAND17. */
-	private static final PageModeMenuCommand COMMAND17 = new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME,
+	/** The Constant COMMAND_USERACCOUNT. */
+	private static final PageModeMenuCommand COMMAND_USERACCOUNT = new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME,
 			"");
 
-	/** The Constant COMMAND16. */
-	private static final PageModeMenuCommand COMMAND16 = new PageModeMenuCommand(
+	/** The Constant COMMAND_APPLICATION_EVENTS. */
+	private static final PageModeMenuCommand COMMAND_APPLICATION_EVENTS = new PageModeMenuCommand(
 			AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "");
 
-	/** The Constant COMMAND15. */
-	private static final PageModeMenuCommand COMMAND15 = new PageModeMenuCommand(
+	/** The Constant COMMAND_APPLICATION_SESSION. */
+	private static final PageModeMenuCommand COMMAND_APPLICATION_SESSION = new PageModeMenuCommand(
 			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "");
 
-	/** The Constant COMMAND14. */
-	private static final PageModeMenuCommand COMMAND14 = new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME,
+	/** The Constant COMMAND_MONITORING. */
+	private static final PageModeMenuCommand COMMAND_MONITORING = new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME,
 			"");
 
-	/** The Constant COMMAND13. */
-	private static final PageModeMenuCommand COMMAND13 = new PageModeMenuCommand(
+	/** The Constant COMMAND_DATASUMMARY. */
+	private static final PageModeMenuCommand COMMAND_DATASUMMARY = new PageModeMenuCommand(
 			AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, "");
 
-	/** The Constant COMMAND12. */
-	private static final PageModeMenuCommand COMMAND12 = new PageModeMenuCommand(
+	/** The Constant COMMAND_AGENT_OPERATION. */
+	private static final PageModeMenuCommand COMMAND_AGENT_OPERATION = new PageModeMenuCommand(
 			AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, "");
 
-	/** The Constant COMMAND11. */
-	private static final PageModeMenuCommand COMMAND11 = new PageModeMenuCommand(
+	/** The Constant COMMAND_LANGUAGE_CONTENT. */
+	private static final PageModeMenuCommand COMMAND_LANGUAGE_CONTENT = new PageModeMenuCommand(
 			AdminViews.ADMIN_LANGUAGE_CONTENT_VIEW_NAME, "");
 
-	/** The Constant COMMAND10. */
-	private static final PageModeMenuCommand COMMAND10 = new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME,
+	/** The Constant COMMAND_LANGUAGE. */
+	private static final PageModeMenuCommand COMMAND_LANGUAGE = new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME,
 			"");
 
-	/** The Constant COMMAND9. */
-	private static final PageModeMenuCommand COMMAND9 = new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "");
+	/** The Constant COMMAND_COUNTRY. */
+	private static final PageModeMenuCommand COMMAND_COUNTRY = new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "");
 
-	/** The Constant COMMAND8. */
-	private static final PageModeMenuCommand COMMAND8 = new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, "");
+	/** The Constant COMMAND_PORTAL. */
+	private static final PageModeMenuCommand COMMAND_PORTAL = new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, "");
 
-	/** The Constant COMMAND7. */
-	private static final PageModeMenuCommand COMMAND7 = new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, "");
+	/** The Constant COMMAND_AGENCY. */
+	private static final PageModeMenuCommand COMMAND_AGENCY = new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, "");
 
-	/** The Constant COMMAND6. */
-	private static final PageModeMenuCommand COMMAND6 = new PageModeMenuCommand(
+	/** The Constant COMMAND_APPLICATION_CONFIGURATION. */
+	private static final PageModeMenuCommand COMMAND_APPLICATION_CONFIGURATION = new PageModeMenuCommand(
 			AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, "");
 
-	/** The Constant COMMAND5. */
-	private static final PageModeMenuCommand COMMAND5 = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
+	/** The Constant COMMAND_REGISTER. */
+	private static final PageModeMenuCommand COMMAND_REGISTER = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
 			ApplicationPageMode.REGISTER.toString());
 
-	/** The Constant COMMAND4. */
-	private static final PageModeMenuCommand COMMAND4 = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
+	/** The Constant COMMAND_LOGIN. */
+	private static final PageModeMenuCommand COMMAND_LOGIN = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
 			ApplicationPageMode.LOGIN.toString());
 
-	/** The Constant COMMAND3. */
-	private static final PageModeMenuCommand COMMAND3 = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
+	/** The Constant COMMAND_LOGOUT. */
+	private static final PageModeMenuCommand COMMAND_LOGOUT = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
 			ApplicationPageMode.LOGOUT.toString());
 
-	/** The Constant COMMAND2. */
-	private static final PageModeMenuCommand COMMAND2 = new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, "");
+	/** The Constant COMMAND_USERHOME. */
+	private static final PageModeMenuCommand COMMAND_USERHOME = new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, "");
 
-	/** The Constant COMMAND. */
-	private static final PageModeMenuCommand COMMAND = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
+	/** The Constant COMMAND_MAINVIEW_OVERVIEW. */
+	private static final PageModeMenuCommand COMMAND_MAINVIEW_OVERVIEW = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
 			PageMode.OVERVIEW);
 
 	/** The Constant LINK_STYLE_NAME. */
@@ -233,20 +233,20 @@ public abstract class AbstractMenuItemFactoryImpl {
 		menuBar.setStyleName(HEADER_STYLE_NAME);
 		final MenuItem mainViewItem = menuBar.addItem(APPLICATION, FontAwesome.SERVER, null);
 
-		mainViewItem.addItem(START_TEXT, FontAwesome.STAR, COMMAND);
+		mainViewItem.addItem(START_TEXT, FontAwesome.STAR, COMMAND_MAINVIEW_OVERVIEW);
 
 		final MenuItem mainItem = mainViewItem.addItem(MAIN, FontAwesome.STAR, null);
 
-		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.AREA_CHART, COMMAND18);
+		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.AREA_CHART, COMMAND_MAINVIEW_PAGEVISITHISTORY);
 
 
 		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {
-			mainViewItem.addItem(USERHOME, FontAwesome.USER,COMMAND2);
+			mainViewItem.addItem(USERHOME, FontAwesome.USER,COMMAND_USERHOME);
 			createAdminMenu(mainViewItem);
-			mainViewItem.addItem(LOGOUT, FontAwesome.SIGN_OUT, COMMAND3);
+			mainViewItem.addItem(LOGOUT, FontAwesome.SIGN_OUT, COMMAND_LOGOUT);
 		} else {
-			mainViewItem.addItem(LOGIN, FontAwesome.SIGN_IN, COMMAND4);
-			mainViewItem.addItem(REGISTER, FontAwesome.USER_PLUS, COMMAND5);
+			mainViewItem.addItem(LOGIN, FontAwesome.SIGN_IN, COMMAND_LOGIN);
+			mainViewItem.addItem(REGISTER, FontAwesome.USER_PLUS, COMMAND_REGISTER);
 		}
 
 	}
@@ -262,31 +262,31 @@ public abstract class AbstractMenuItemFactoryImpl {
 			final MenuItem adminMenuItem = mainViewItem.addItem(ADMIN_TEXT, FontAwesome.SERVER, null);
 
 			final MenuItem configurationMenuItem = adminMenuItem.addItem(CONFIGURATION, FontAwesome.GEARS, null);
-			configurationMenuItem.addItem(APPLICATION_CONFIGURATION,FontAwesome.GEARS, COMMAND6);
+			configurationMenuItem.addItem(APPLICATION_CONFIGURATION,FontAwesome.GEARS, COMMAND_APPLICATION_CONFIGURATION);
 
-			configurationMenuItem.addItem(AGENCY,FontAwesome.SERVER, COMMAND7);
-			configurationMenuItem.addItem(PORTAL, FontAwesome.SITEMAP,COMMAND8);
-			configurationMenuItem.addItem(COUNTRY,FontAwesome.FLAG, COMMAND9);
-			configurationMenuItem.addItem(LANGUAGE,FontAwesome.LANGUAGE, COMMAND10);
-			configurationMenuItem.addItem(LANGUAGE_CONTENT,FontAwesome.FILE_TEXT, COMMAND11);
+			configurationMenuItem.addItem(AGENCY,FontAwesome.SERVER, COMMAND_AGENCY);
+			configurationMenuItem.addItem(PORTAL, FontAwesome.SITEMAP,COMMAND_PORTAL);
+			configurationMenuItem.addItem(COUNTRY,FontAwesome.FLAG, COMMAND_COUNTRY);
+			configurationMenuItem.addItem(LANGUAGE,FontAwesome.LANGUAGE, COMMAND_LANGUAGE);
+			configurationMenuItem.addItem(LANGUAGE_CONTENT,FontAwesome.FILE_TEXT, COMMAND_LANGUAGE_CONTENT);
 
 			final MenuItem managementMenuItem = adminMenuItem.addItem(MANAGEMENT, FontAwesome.SERVER, null);
 
-			managementMenuItem.addItem(AGENT_OPERATIONS_TEXT,FontAwesome.USER_SECRET, COMMAND12);
+			managementMenuItem.addItem(AGENT_OPERATIONS_TEXT,FontAwesome.USER_SECRET, COMMAND_AGENT_OPERATION);
 
-			managementMenuItem.addItem(DATA_SUMMARY_TEXT,FontAwesome.DATABASE, COMMAND13);
+			managementMenuItem.addItem(DATA_SUMMARY_TEXT,FontAwesome.DATABASE, COMMAND_DATASUMMARY);
 
-			managementMenuItem.addItem(EMAIL,FontAwesome.MAIL_FORWARD, COMMAND19);
+			managementMenuItem.addItem(EMAIL,FontAwesome.MAIL_FORWARD, COMMAND_EMAIL);
 
 
-			managementMenuItem.addItem(SYSTEM_PERFORMANCE,FontAwesome.DASHBOARD, COMMAND14);
+			managementMenuItem.addItem(SYSTEM_PERFORMANCE,FontAwesome.DASHBOARD, COMMAND_MONITORING);
 
 			final MenuItem userActivityMenuItem = adminMenuItem.addItem(USER_ACTIVITY, FontAwesome.DATABASE, null);
-			userActivityMenuItem.addItem(APPLICATION_SESSION,FontAwesome.LAPTOP, COMMAND15);
-			userActivityMenuItem.addItem(APPLICATION_EVENT,FontAwesome.ARROWS, COMMAND16);
-			userActivityMenuItem.addItem(APPLICATION_EVENT_CHARTS,FontAwesome.ARROWS, COMMAND20);
+			userActivityMenuItem.addItem(APPLICATION_SESSION,FontAwesome.LAPTOP, COMMAND_APPLICATION_SESSION);
+			userActivityMenuItem.addItem(APPLICATION_EVENT,FontAwesome.ARROWS, COMMAND_APPLICATION_EVENTS);
+			userActivityMenuItem.addItem(APPLICATION_EVENT_CHARTS,FontAwesome.ARROWS, COMMAND_APPLICATION_EVENTS_CHARTS);
 
-			userActivityMenuItem.addItem(USERACCOUNT,FontAwesome.GROUP, COMMAND17);
+			userActivityMenuItem.addItem(USERACCOUNT,FontAwesome.GROUP, COMMAND_USERACCOUNT);
 
 		}
 	}
