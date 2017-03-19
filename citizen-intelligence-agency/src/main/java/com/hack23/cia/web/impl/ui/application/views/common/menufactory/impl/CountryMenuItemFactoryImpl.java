@@ -37,9 +37,11 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CountryMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
@@ -139,15 +141,40 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 		charts.addItem(OVERVIEW_TEXT, FontAwesome.LINE_CHART,
 				COMMAND18);
 
+		final MenuItem countryIndicators = charts.addItem(COUNTRY_INDICATORS_SWEDEN, FontAwesome.LINE_CHART, null);
+
+		addSourcesAndIndicatorsToMenu(countryIndicators.addItem(BY_TOPIC,FontAwesome.LINE_CHART, null), getTopicIndicatorMap());
+		addSourcesAndIndicatorsToMenu(countryIndicators.addItem(BY_SOURCE,FontAwesome.LINE_CHART, null), getSourceIndicatorMap());
+
+		charts.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.LINE_CHART,	COMMAND22);
+
+	}
+
+	/**
+	 * Gets the source indicator map.
+	 *
+	 * @return the source indicator map
+	 */
+	private Map<String, List<ViewWorldbankIndicatorDataCountrySummary>> getSourceIndicatorMap() {
 		final DataContainer<ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId> indicatorDataCountrSummaryDailyDataContainer = applicationManager
 				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);
 
-		final Map<String, List<ViewWorldbankIndicatorDataCountrySummary>> sourceIndicatorMap = indicatorDataCountrSummaryDailyDataContainer
+		return indicatorDataCountrSummaryDailyDataContainer
 				.getAll().parallelStream()
 				.filter(t -> t != null && t.getSourceValue() != null && t.getEndYear() > 2010 && t.getDataPoint() > 10)
 				.collect(Collectors.groupingBy(ViewWorldbankIndicatorDataCountrySummary::getSourceValue));
+	}
 
-		final Map<String, List<ViewWorldbankIndicatorDataCountrySummary>> topicIndicatorMap = indicatorDataCountrSummaryDailyDataContainer
+	/**
+	 * Gets the topic indicator map.
+	 *
+	 * @return the topic indicator map
+	 */
+	private Map<String, List<ViewWorldbankIndicatorDataCountrySummary>> getTopicIndicatorMap() {
+		final DataContainer<ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId> indicatorDataCountrSummaryDailyDataContainer = applicationManager
+				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);
+
+		return indicatorDataCountrSummaryDailyDataContainer
 				.getAll().parallelStream()
 				.filter(t -> t != null && t.getSourceValue() != null && t.getEndYear() > 2010 && t.getDataPoint() > 10)
 				.flatMap(t -> Arrays.asList(t.getTopics().split(";")).stream()
@@ -155,23 +182,16 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 				.collect(Collectors.groupingBy(SimpleEntry::getKey,
 						Collectors.mapping(SimpleEntry::getValue, Collectors.toList())));
-
-		final MenuItem countryIndicators = charts.addItem(COUNTRY_INDICATORS_SWEDEN, FontAwesome.LINE_CHART, null);
-
-		final MenuItem byTopicItem = countryIndicators.addItem(BY_TOPIC,FontAwesome.LINE_CHART, null);
-
-		final MenuItem bySourceItem = countryIndicators.addItem(BY_SOURCE,FontAwesome.LINE_CHART, null);
-
-		addSourcesAndIndicatorsToMenu(byTopicItem, topicIndicatorMap);
-		addSourcesAndIndicatorsToMenu(bySourceItem, sourceIndicatorMap);
-
-		charts.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.LINE_CHART,
-				COMMAND22);
-
 	}
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent) {
+		final MenuBar menuBar = new MenuBar();
+		panelContent.addComponent(menuBar);
+		panelContent.setComponentAlignment(menuBar, Alignment.TOP_LEFT);
+		panelContent.setExpandRatio(menuBar, ContentRatio.LARGE);
 
+		addSourcesAndIndicatorsToMenu(menuBar.addItem(BY_TOPIC,FontAwesome.LINE_CHART, null), getTopicIndicatorMap());
+		menuBar.setAutoOpen(true);
 	}
 }
