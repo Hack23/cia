@@ -38,35 +38,55 @@ import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class MenuItemFactoryImpl.
+ * The Class ApplicationMenuItemFactoryImpl.
  */
 @Service
 public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		implements ApplicationMenuItemFactory {
 
-	/** The Constant COMMAND5. */
-	private static final PageModeMenuCommand COMMAND5 = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME,
+	/** The Constant COMMAND_PARLIAMENT_RANKING_OVERVIEW. */
+	private static final PageModeMenuCommand COMMAND_PARLIAMENT_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
 
-	/** The Constant COMMAND7. */
-	private static final PageModeMenuCommand COMMAND7 = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME,
+	/** The Constant COMMAND_COUNTRY_RANKING_OVERVIEW. */
+	private static final PageModeMenuCommand COMMAND_COUNTRY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
 
-	/** The Constant COMMAND4. */
-	private static final PageModeMenuCommand COMMAND4 = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
+	/** The Constant COMMAND_MINISTRY_RANKING_OVERVIEW. */
+	private static final PageModeMenuCommand COMMAND_MINISTRY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
 
-	/** The Constant COMMAND3. */
-	private static final PageModeMenuCommand COMMAND3 = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
+	/** The Constant COMMAND_MINISTRY_RANKING_DATAGRID. */
+	private static final PageModeMenuCommand COMMAND_MINISTRY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
+			PageMode.DATAGRID);
+
+
+	/** The Constant COMMAND_COMMITTEE_RANKING_OVERVIEW. */
+	private static final PageModeMenuCommand COMMAND_COMMITTEE_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
 
-	/** The Constant COMMAND2. */
-	private static final PageModeMenuCommand COMMAND2 = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME,
+	/** The Constant COMMAND_COMMITTEE_RANKING_DATAGRID. */
+	private static final PageModeMenuCommand COMMAND_COMMITTEE_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
+			PageMode.DATAGRID);
+	
+	/** The Constant COMMAND_PARTY_RANKING_OVERVIEW. */
+	private static final PageModeMenuCommand COMMAND_PARTY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
 
-	/** The Constant COMMAND. */
-	private static final PageModeMenuCommand COMMAND = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
+	/** The Constant COMMAND_PARTY_RANKING_DATAGRID. */
+	private static final PageModeMenuCommand COMMAND_PARTY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME,
+			PageMode.DATAGRID);
+
+	
+	/** The Constant COMMAND_POLITICIAN_RANKING_OVERVIEW. */
+	private static final PageModeMenuCommand COMMAND_POLITICIAN_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
+
+	/** The Constant COMMAND_POLITICIAN_RANKING_DATAGRID. */
+	private static final PageModeMenuCommand COMMAND_POLITICIAN_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
+			PageMode.DATAGRID);
+	
+	
 
 	/** The Constant POLITICIAN_RANKING. */
 	private static final String POLITICIAN_RANKING = "Politician Ranking";
@@ -100,6 +120,19 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 	/** The Constant PARLIAMENT_RANKING_LINK_TEXT. */
 	private static final String PARLIAMENT_RANKING_LINK_TEXT = "Parliament Ranking";
+	
+	/** The Constant MINISTRIES_LINK_TEXT. */
+	private static final String MINISTRIES_LINK_TEXT = "Ministries";
+
+	/** The Constant COMMITTEES_LINK_TEXT. */
+	private static final String COMMITTEES_LINK_TEXT = "Committees";
+
+	/** The Constant PARTIES_LINK_TEXT. */
+	private static final String PARTIES_LINK_TEXT = "Parties";
+
+	/** The Constant POLITICIANS_LINK_TEXT. */
+	private static final String POLITICIANS_LINK_TEXT = "Politicians";
+
 
 	/** The politician ranking menu item factory. */
 	@Autowired
@@ -146,27 +179,27 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 		final MenuItem rankingsMenuItem = menuBar.addItem(RANKING_TEXT, FontAwesome.AREA_CHART, null);
 
-		final MenuItem countryMenuItem = rankingsMenuItem.addItem(COUNTRY_RANKING_LINK_TEXT,FontAwesome.FLAG, COMMAND7);
+		final MenuItem countryMenuItem = rankingsMenuItem.addItem(COUNTRY_RANKING_LINK_TEXT,FontAwesome.FLAG, COMMAND_COUNTRY_RANKING_OVERVIEW);
 
 		countryMenuItemFactory.createCountryTopicMenu(countryMenuItem);
 
-		final MenuItem parliamentMenuItem = rankingsMenuItem.addItem(PARLIAMENT_RANKING_LINK_TEXT,FontAwesome.INSTITUTION, COMMAND5);
+		final MenuItem parliamentMenuItem = rankingsMenuItem.addItem(PARLIAMENT_RANKING_LINK_TEXT,FontAwesome.INSTITUTION, COMMAND_PARLIAMENT_RANKING_OVERVIEW);
 
 		parliamentMenuItemFactory.createParliamentTopicMenu(parliamentMenuItem);
 
-		final MenuItem politicianMenuItem = rankingsMenuItem.addItem(POLITICIAN_RANKING_LINK_TEXT,FontAwesome.USER, COMMAND);
+		final MenuItem politicianMenuItem = rankingsMenuItem.addItem(POLITICIAN_RANKING_LINK_TEXT,FontAwesome.USER, COMMAND_POLITICIAN_RANKING_OVERVIEW);
 
 		politicianRankingMenuItemFactory.createPoliticianRankingTopics(politicianMenuItem);
 
-		final MenuItem partynMenuItem = rankingsMenuItem.addItem(PARTY_RANKING_LINK_TEXT, FontAwesome.GROUP,COMMAND2);
+		final MenuItem partynMenuItem = rankingsMenuItem.addItem(PARTY_RANKING_LINK_TEXT, FontAwesome.GROUP,COMMAND_PARTY_RANKING_OVERVIEW);
 
 		partyRankingMenuItemFactory.createPartyRankingTopics(partynMenuItem);
 
-		final MenuItem committeeMenuItem = rankingsMenuItem.addItem(COMMITTEE_RANKING_LINK_TEXT,FontAwesome.GROUP, COMMAND3);
+		final MenuItem committeeMenuItem = rankingsMenuItem.addItem(COMMITTEE_RANKING_LINK_TEXT,FontAwesome.GROUP, COMMAND_COMMITTEE_RANKING_OVERVIEW);
 
 		committeeRankingMenuItemFactory.createCommitteeRankingTopics(committeeMenuItem);
 
-		final MenuItem ministryMenuItem = rankingsMenuItem.addItem(MINISTRY_RANKING_LINK_TEXT,FontAwesome.GROUP, COMMAND4);
+		final MenuItem ministryMenuItem = rankingsMenuItem.addItem(MINISTRY_RANKING_LINK_TEXT,FontAwesome.GROUP, COMMAND_MINISTRY_RANKING_OVERVIEW);
 
 		ministryRankingMenuItemFactory.createMinistryRankingTopics(ministryMenuItem);
 
@@ -176,17 +209,29 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	public void createOverviewPage(final VerticalLayout panelContent) {
 		final GridLayout grid = createGridLayout(panelContent);
 
-		createButtonLink(grid,COUNTRY_RANKING_LINK_TEXT,FontAwesome.FLAG, COMMAND7,"Description");
+		createButtonLink(grid,COUNTRY_RANKING_LINK_TEXT,FontAwesome.FLAG, COMMAND_COUNTRY_RANKING_OVERVIEW,"View indicators for Sweden, find data by topic or source.");
 
-		createButtonLink(grid,PARLIAMENT_RANKING_LINK_TEXT,FontAwesome.INSTITUTION, COMMAND5,"Description");
+		createButtonLink(grid,PARLIAMENT_RANKING_LINK_TEXT,FontAwesome.INSTITUTION, COMMAND_PARLIAMENT_RANKING_OVERVIEW,"Charts over parlimentary ballots and document activity");
 
-		createButtonLink(grid,POLITICIAN_RANKING_LINK_TEXT,FontAwesome.USER, COMMAND,"Description");
+		createButtonLink(grid,POLITICIAN_RANKING_LINK_TEXT,FontAwesome.USER, COMMAND_POLITICIAN_RANKING_OVERVIEW,"Overview");
+		
+		createButtonLink(grid,POLITICIANS_LINK_TEXT,FontAwesome.USER, COMMAND_POLITICIAN_RANKING_DATAGRID,"Politican Experience Summary");
+		
 
-		createButtonLink(grid,PARTY_RANKING_LINK_TEXT, FontAwesome.GROUP,COMMAND2,"Description");
+		createButtonLink(grid,PARTY_RANKING_LINK_TEXT, FontAwesome.GROUP,COMMAND_PARTY_RANKING_OVERVIEW,"Overview");
+		
+		createButtonLink(grid,PARTIES_LINK_TEXT, FontAwesome.GROUP,COMMAND_PARTY_RANKING_DATAGRID,"Political Work Summary");
+		
 
-		createButtonLink(grid,COMMITTEE_RANKING_LINK_TEXT,FontAwesome.GROUP, COMMAND3,"Description");
+		createButtonLink(grid,COMMITTEE_RANKING_LINK_TEXT,FontAwesome.GROUP, COMMAND_COMMITTEE_RANKING_OVERVIEW,"Overview");
+		
+		createButtonLink(grid,COMMITTEES_LINK_TEXT,FontAwesome.GROUP, COMMAND_COMMITTEE_RANKING_DATAGRID,"Political Work Summary");
+		
 
-		createButtonLink(grid,MINISTRY_RANKING_LINK_TEXT,FontAwesome.GROUP, COMMAND4,"Description");
+		createButtonLink(grid,MINISTRY_RANKING_LINK_TEXT,FontAwesome.GROUP, COMMAND_MINISTRY_RANKING_OVERVIEW,"Overview");
+		
+		createButtonLink(grid,MINISTRIES_LINK_TEXT,FontAwesome.GROUP, COMMAND_MINISTRY_RANKING_DATAGRID,"Political Work Summary");
+		
 
 	}
 
