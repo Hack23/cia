@@ -341,11 +341,17 @@
       <groupId>org.jasypt</groupId>
       <artifactId>jasypt-hibernate4</artifactId>
       <version>1.9.2</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>jasypt</artifactId>
+          <groupId>org.jasypt</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.jasypt</groupId>
       <artifactId>jasypt-spring31</artifactId>
-      <version>1.9.2</version>
+      <version>1.9.3.redhat_3</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
