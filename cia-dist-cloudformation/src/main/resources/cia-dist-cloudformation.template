@@ -444,7 +444,7 @@
          },
          "eu-west-1":{
             "PV64":"NOT_SUPPORTED",
-            "HVM64":"ami-405f7226",
+            "HVM64":"ami-971238f1",
             "HVMG2":"NOT_SUPPORTED"
          },
          "eu-central-1":{
@@ -2179,7 +2179,9 @@
                         "ufw allow 53\n",
                         "ufw allow ntp\n",
                         "ufw enable\n",
-                        "ufw status verbose\n",
+                        "ufw status verbose\n",                        
+                        "wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install\n",
+                        "sudo bash install\n",                                                
                         "# Signal completion\n",
                         "cfn-signal -e $? ",
                         "    --stack ",
