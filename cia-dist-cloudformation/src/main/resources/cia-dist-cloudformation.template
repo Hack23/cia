@@ -142,7 +142,7 @@
          "MinLength":"8"
       },
       "DBClass":{
-         "Default":"db.t2.large",
+         "Default":"db.m4.xlarge",
          "Description":"Database instance class",
          "Type":"String",
          "AllowedValues":[
@@ -566,10 +566,10 @@
             "JavaMemorySize":"4096m"
          },
          "m4.large":{
-            "JavaMemorySize":"4096m"
+            "JavaMemorySize":"6192m"
          },
          "m4.xlarge":{
-            "JavaMemorySize":"4096m"
+            "JavaMemorySize":"12384m"
          },
          "m4.2xlarge":{
             "JavaMemorySize":"4096m"
