@@ -1,25 +1,25 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
 	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+           http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/security
-           http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+           http://www.springframework.org/schema/security/spring-security.xsd">
 
-	 <http use-expressions="false">
+	<http use-expressions="false">
 
-	  <intercept-url pattern="/monitoring" access="ROLE_ADMIN" />
-	  <intercept-url pattern="/monitoring/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/monitoring" access="ROLE_ADMIN" />
+		<intercept-url pattern="/monitoring/**" access="ROLE_ADMIN" />
 
-	 	<csrf disabled="true"/>
-	   <!--   <http-basic />-->
-	   <form-login/>
-        <anonymous />
-	 	<logout/>
-	 	<headers>
+		<csrf disabled="true" />
+		<!-- <http-basic /> -->
+		<form-login />
+		<anonymous />
+		<logout />
+		<headers>
 
-		<frame-options policy="SAMEORIGIN" />
-	</headers>
-    </http>
+			<frame-options policy="SAMEORIGIN" />
+		</headers>
+	</http>
 
 	<beans:bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
@@ -27,7 +27,7 @@
 
 
 	<authentication-manager>
-		<authentication-provider ref="securityAuthenticationProvider"/>
+		<authentication-provider ref="securityAuthenticationProvider" />
 	</authentication-manager>
 
 </beans:beans>

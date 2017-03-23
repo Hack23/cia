@@ -1,21 +1,23 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:cache="http://www.springframework.org/schema/cache"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
-       http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.3.xsd">
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
 	<context:mbean-export />
-	<cache:annotation-driven/>
-	
+	<cache:annotation-driven />
+
 	<bean id="cacheManager" class="org.springframework.cache.jcache.JCacheCacheManager">
-	      <property name="cacheManager" ref="jCacheManager" />
+		<property name="cacheManager" ref="jCacheManager" />
 	</bean>
-	
-	<bean id="jCacheManager" class="org.springframework.cache.jcache.JCacheManagerFactoryBean">
-	     <property name="cacheManagerUri"   value="classpath:ehcache3.xml" /> 	
+
+	<bean id="jCacheManager"
+		class="org.springframework.cache.jcache.JCacheManagerFactoryBean">
+		<property name="cacheManagerUri" value="classpath:ehcache3.xml" />
 	</bean>
 
 	<bean id="databasePropertyConfigurer"
@@ -26,31 +28,31 @@
 		<property name="ignoreUnresolvablePlaceholders" value="true" />
 	</bean>
 
- 	<bean id="liquibase" class="com.hack23.cia.service.data.impl.liquidbase.SpringLiquidBaseFailSafe">
-      <property name="dataSource" ref="dataSource" />
-      <property name="changeLog" value="classpath:db-changelog.xml" />
-      <!--
-      contexts specifies the runtime contexts to use.
-      <property name="contexts" value="test, production" />
-      -->
- 	</bean>
- 
- 	<bean id="xADataSource" class="${datasource.xaDataSourceClassName}">
- 		<property name="user" value="${database.username}" />
-		<property name="password" value="${database.password}"/>
-		<property name="serverName" value="${database.hostname}"/>
-		<property name="portNumber" value="5432"/>
-		<property name="databaseName" value="${database.name}"/> 	
- 	</bean>
- 
- 	<bean id="dataSource" class="org.apache.commons.dbcp2.managed.BasicManagedDataSource">
-	    	<property name="XaDataSourceInstance" ref="xADataSource"/>	    	
-			<property name="transactionManager">
-				<bean class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple" />
-			</property>
-			<property name="validationQuery" value="select 1"/>
-			<property name="maxTotal" value="80"/>
- 	</bean> 
+	<bean id="liquibase"
+		class="com.hack23.cia.service.data.impl.liquidbase.SpringLiquidBaseFailSafe">
+		<property name="dataSource" ref="dataSource" />
+		<property name="changeLog" value="classpath:db-changelog.xml" />
+		<!-- contexts specifies the runtime contexts to use. <property name="contexts" 
+			value="test, production" /> -->
+	</bean>
+
+	<bean id="xADataSource" class="${datasource.xaDataSourceClassName}">
+		<property name="user" value="${database.username}" />
+		<property name="password" value="${database.password}" />
+		<property name="serverName" value="${database.hostname}" />
+		<property name="portNumber" value="5432" />
+		<property name="databaseName" value="${database.name}" />
+	</bean>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp2.managed.BasicManagedDataSource">
+		<property name="XaDataSourceInstance" ref="xADataSource" />
+		<property name="transactionManager">
+			<bean
+				class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple" />
+		</property>
+		<property name="validationQuery" value="select 1" />
+		<property name="maxTotal" value="80" />
+	</bean>
 
 	<bean id="dataCacheManager"
 		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
@@ -73,10 +75,8 @@
 		<property name="jpaProperties">
 			<props>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<!--
-				<prop key="hibernate.hbm2ddl.auto">${database.ddl}</prop>
-				Do not support materialized views in postgres
-				-->
+				<!-- <prop key="hibernate.hbm2ddl.auto">${database.ddl}</prop> Do not 
+					support materialized views in postgres -->
 				<prop key="hibernate.jmx.enabled">true</prop>
 				<prop key="hibernate.jmx.usePlatformServer">true</prop>
 
@@ -84,74 +84,76 @@
 				<prop key="hibernate.jmx.defaultDomain">org.hibernate.core</prop>
 				<prop key="hibernate.jmx.sessionFactoryName">sessionFactory</prop>
 
-			    <prop key="hibernate.generate_statistics">true</prop>
-                <prop key="hibernate.show_sql">false</prop>
-                <prop key="hibernate.use_sql_comments">false</prop>
-                <prop key="hibernate.format_sql">false</prop>
-                <prop key="hibernate.max_fetch_depth">4</prop>
-                <prop key="hibernate.id.new_generator_mappings">true</prop>
-                <prop key="hibernate.order_inserts">true</prop>
-                <prop key="hibernate.order_updates">true</prop>
-                <prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
-                <prop key="hibernate.bytecode.provider">bytebuddy</prop>
-                <!--<prop key="hibernate.bytecode.provider">cglib</prop> -->
-                <prop key="hibernate.jdbc.use_streams_for_binary">true</prop>
-                <prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
-                <prop key="hibernate.connection.isolation">3</prop>
-                <!-- 
-                <prop key="hibernate.connection.release_mode">on_close</prop> 
-                <prop key="hibernate.connection.acquisition_mode">immediate</prop>
-                <prop key="hibernate.connection.handling_mode">DELAYED_ACQUISITION_AND_RELEASE_AFTER_TRANSACTION</prop>
-                -->
-                <prop key="hibernate.connection.release_mode">auto</prop>
-                <prop key="hibernate.connection.useUnicode">true</prop>
-                <prop key="hibernate.connection.characterEncoding">UTF-8</prop>
-                <prop key="hibernate.connection.charSet">UTF-8</prop>
-                <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
+				<prop key="hibernate.generate_statistics">true</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.use_sql_comments">false</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.max_fetch_depth">4</prop>
+				<prop key="hibernate.id.new_generator_mappings">true</prop>
+				<prop key="hibernate.order_inserts">true</prop>
+				<prop key="hibernate.order_updates">true</prop>
+				<prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
+				<prop key="hibernate.bytecode.provider">bytebuddy</prop>
+				<!--<prop key="hibernate.bytecode.provider">cglib</prop> -->
+				<prop key="hibernate.jdbc.use_streams_for_binary">true</prop>
+				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
+				<prop key="hibernate.connection.isolation">3</prop>
+				<!-- <prop key="hibernate.connection.release_mode">on_close</prop> <prop 
+					key="hibernate.connection.acquisition_mode">immediate</prop> <prop key="hibernate.connection.handling_mode">DELAYED_ACQUISITION_AND_RELEASE_AFTER_TRANSACTION</prop> -->
+				<prop key="hibernate.connection.release_mode">auto</prop>
+				<prop key="hibernate.connection.useUnicode">true</prop>
+				<prop key="hibernate.connection.characterEncoding">UTF-8</prop>
+				<prop key="hibernate.connection.charSet">UTF-8</prop>
+				<prop key="hibernate.enable_lazy_load_no_trans">true</prop>
 
-                <prop key="hibernate.default_batch_fetch_size">1024</prop>
-                <prop key="hibernate.jdbc.batch_size">1024</prop>
-                <prop key="hibernate.jdbc.fetch_size">1024</prop>	
-                <prop key="hibernate.jdbc.batch_versioned_data">true</prop>
-                <prop key="hibernate.jdbc.use_getGeneratedKeys">true</prop>
-                <prop key="hibernate.jdbc.use_get_generated_keys">true</prop>
-                <prop key="hibernate.jdbc.use_scrollable_resultset">true</prop>
+				<prop key="hibernate.default_batch_fetch_size">1024</prop>
+				<prop key="hibernate.jdbc.batch_size">1024</prop>
+				<prop key="hibernate.jdbc.fetch_size">1024</prop>
+				<prop key="hibernate.jdbc.batch_versioned_data">true</prop>
+				<prop key="hibernate.jdbc.use_getGeneratedKeys">true</prop>
+				<prop key="hibernate.jdbc.use_get_generated_keys">true</prop>
+				<prop key="hibernate.jdbc.use_scrollable_resultset">true</prop>
 
-                <prop key="hibernate.current_session_context_class">jta</prop>
+				<prop key="hibernate.current_session_context_class">jta</prop>
 
-                <prop key="hibernate.transaction.manager_lookup_class">com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple</prop>
-                <prop key="hibernate.transaction.jta.platform">org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform</prop>
-                
-                <prop key="hibernate.physical_naming_strategy">com.hack23.cia.service.data.impl.LegacyNamingStrategy</prop>
+				<prop key="hibernate.transaction.manager_lookup_class">com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple
+				</prop>
+				<prop key="hibernate.transaction.jta.platform">org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform
+				</prop>
 
-                <prop key="hibernate.transaction.auto_close_session">false</prop>
+				<prop key="hibernate.physical_naming_strategy">com.hack23.cia.service.data.impl.LegacyNamingStrategy
+				</prop>
 
-                <prop key="hibernate.cache.use_minimal_puts">true</prop>
-                <prop key="hibernate.cache.use_query_cache">true</prop>
-                <prop key="hibernate.cache.use_second_level_cache">true</prop>
-                <prop key="hibernate.cache.use_structured_entries">true</prop>
-                
-                <prop key="hibernate.cache.use_minimal_puts">true</prop>
-                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop>
-                <prop key="hibernate.cache.default_cache_concurrency_strategy">TRANSACTIONAL</prop>
-                <!--
-	                <prop key="hibernate.cache.default_cache_concurrency_strategy">READ_WRITE</prop>
-	                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.JCacheRegionFactory</prop>
-					<prop key="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</prop>
-			    -->
-				               
-                <prop key="hibernate.search.default.indexBase">${database.search.index.location}</prop>                
-				
+				<prop key="hibernate.transaction.auto_close_session">false</prop>
+
+				<prop key="hibernate.cache.use_minimal_puts">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_structured_entries">true</prop>
+
+				<prop key="hibernate.cache.use_minimal_puts">true</prop>
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+				</prop>
+				<prop key="hibernate.cache.default_cache_concurrency_strategy">TRANSACTIONAL</prop>
+				<!-- <prop key="hibernate.cache.default_cache_concurrency_strategy">READ_WRITE</prop> 
+					<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.JCacheRegionFactory</prop> 
+					<prop key="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</prop> -->
+
+				<prop key="hibernate.search.default.indexBase">${database.search.index.location}</prop>
+
 			</props>
 		</property>
 	</bean>
 
-	<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+	<bean id="transactionManager"
+		class="org.springframework.transaction.jta.JtaTransactionManager">
 		<property name="transactionManager">
-			<bean class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple" />
+			<bean
+				class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple" />
 		</property>
 		<property name="userTransaction">
-			<bean class="com.arjuna.ats.internal.jta.transaction.arjunacore.UserTransactionImple" />
+			<bean
+				class="com.arjuna.ats.internal.jta.transaction.arjunacore.UserTransactionImple" />
 		</property>
 	</bean>
 
@@ -168,22 +170,16 @@
 		</property>
 		<property name="beans">
 			<map>
-				<!-- temp disabled hibernate 4.3.1
-				<entry key="org.hibernate:name=cia-statistics">
-					<bean class="org.hibernate.jmx.spi.JmxService">
-						<property name="statisticsEnabled" value="true" />
-						<property name="sessionFactory">
-							<bean id="entityManagerFactory.sessionFactory.statistics"
-								class="org.springframework.beans.factory.config.PropertyPathFactoryBean" />
-						</property>
-					</bean>
-				</entry>
-				-->
+				<!-- temp disabled hibernate 4.3.1 <entry key="org.hibernate:name=cia-statistics"> 
+					<bean class="org.hibernate.jmx.spi.JmxService"> <property name="statisticsEnabled" 
+					value="true" /> <property name="sessionFactory"> <bean id="entityManagerFactory.sessionFactory.statistics" 
+					class="org.springframework.beans.factory.config.PropertyPathFactoryBean" 
+					/> </property> </bean> </entry> -->
 			</map>
 		</property>
-		 <property name="server">
-            <ref bean="mbeanServer"/>
-        </property>
+		<property name="server">
+			<ref bean="mbeanServer" />
+		</property>
 	</bean>
 
 
@@ -202,7 +198,8 @@
 		<property name="locateExistingServerIfPossible" value="true" />
 	</bean>
 
-	<tx:annotation-driven mode="proxy" transaction-manager="transactionManager" />
+	<tx:annotation-driven mode="proxy"
+		transaction-manager="transactionManager" />
 
 	<context:annotation-config />
 	<context:spring-configured />
