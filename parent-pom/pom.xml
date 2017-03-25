@@ -1787,6 +1787,7 @@
                 <exclude>com.google.gwt:gwt-dev</exclude>
                 <exclude>com.google.gwt:gwt-user</exclude>
                 <exclude>com.google.gwt:gwt-elemental</exclude>
+                <exclude>org.tltv.gantt:gantt-addon</exclude>
               </excludes>
             </configuration>
           </plugin>
@@ -1903,6 +1904,7 @@
                 <exclude>com.google.gwt:gwt-dev</exclude>
                 <exclude>com.google.gwt:gwt-user</exclude>
                 <exclude>com.google.gwt:gwt-elemental</exclude>
+                <exclude>org.tltv.gantt:gantt-addon</exclude>
               </excludes>
             </configuration>
           </plugin>

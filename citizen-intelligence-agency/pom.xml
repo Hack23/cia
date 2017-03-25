@@ -320,6 +320,10 @@
           <artifactId>cglib-nodep</artifactId>
           <groupId>cglib</groupId>
         </exclusion>
+        <exclusion>
+        	<groupId>org.eclipse.jetty</groupId>
+        	<artifactId>jetty-servlet</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
