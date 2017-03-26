@@ -321,8 +321,8 @@
           <groupId>cglib</groupId>
         </exclusion>
         <exclusion>
-        	<groupId>org.eclipse.jetty</groupId>
-        	<artifactId>jetty-servlet</artifactId>
+          <artifactId>jetty-servlet</artifactId>
+          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
       </exclusions>
     </dependency>
