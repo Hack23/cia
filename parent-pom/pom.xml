@@ -1334,7 +1334,7 @@
                 <docletArtifact>
                   <groupId>com.grahamedgecombe.apiviz</groupId>
                   <artifactId>apiviz</artifactId>
-                  <version>1.3.3</version>
+                  <version>1.3.4</version>
                 </docletArtifact>
               </docletArtifacts>
               <useStandardDocletOptions>true</useStandardDocletOptions>
@@ -1535,7 +1535,7 @@
               <docletArtifact>
                 <groupId>com.grahamedgecombe.apiviz</groupId>
                 <artifactId>apiviz</artifactId>
-                <version>1.3.3</version>
+                <version>1.3.4</version>
               </docletArtifact>
               <useStandardDocletOptions>true</useStandardDocletOptions>
               <charset>UTF-8</charset>
