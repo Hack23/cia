@@ -637,6 +637,11 @@
           <version>1.2.0</version>
         </plugin>
         <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>findbugs-maven-plugin</artifactId>
+            <version>3.0.4</version>
+        </plugin>
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
           <version>3.6</version>
@@ -1608,17 +1613,17 @@
               <findbugsXmlOutput>true</findbugsXmlOutput>
               <xmlOutput>true</xmlOutput>
               <plugins>
-	            <plugin>
-	                <groupId>com.mebigfatguy.fb-contrib</groupId>
-	                <artifactId>fb-contrib</artifactId>
-	                <version>6.8.4</version>
-	            </plugin>
-	            <plugin>
-                   	<groupId>com.h3xstream.findsecbugs</groupId>
-                    <artifactId>findsecbugs-plugin</artifactId>
-                    <version>1.6.0</version>
+                <plugin>
+                  <groupId>com.mebigfatguy.fb-contrib</groupId>
+                  <artifactId>fb-contrib</artifactId>
+                  <version>6.8.4</version>
                 </plugin>
-	        </plugins>        
+                <plugin>
+                  <groupId>com.h3xstream.findsecbugs</groupId>
+                  <artifactId>findsecbugs-plugin</artifactId>
+                  <version>1.6.0</version>
+                </plugin>
+              </plugins>
             </configuration>
           </plugin>
           <plugin>
