@@ -1607,6 +1607,18 @@
               <onlyAnalyze>com.hack23.*</onlyAnalyze>
               <findbugsXmlOutput>true</findbugsXmlOutput>
               <xmlOutput>true</xmlOutput>
+              <plugins>
+	            <plugin>
+	                <groupId>com.mebigfatguy.fb-contrib</groupId>
+	                <artifactId>fb-contrib</artifactId>
+	                <version>6.8.4</version>
+	            </plugin>
+	            <plugin>
+                   	<groupId>com.h3xstream.findsecbugs</groupId>
+                    <artifactId>findsecbugs-plugin</artifactId>
+                    <version>1.6.0</version>
+                </plugin>
+	        </plugins>        
             </configuration>
           </plugin>
           <plugin>
@@ -1902,7 +1914,7 @@
                 <exclude>com.google.gwt:gwt-elemental</exclude>
                 <exclude>org.tltv.gantt:gantt-addon</exclude>
                 <exclude>javax.el:javax.el-api</exclude>
-                <exclude>com.vaadin:vaadin-spring</exclude>                
+                <exclude>com.vaadin:vaadin-spring</exclude>
               </excludes>
             </configuration>
           </plugin>

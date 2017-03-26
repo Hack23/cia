@@ -622,7 +622,16 @@
           <artifactId>tapestry</artifactId>
           <groupId>tapestry</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>colt</artifactId>
+          <groupId>colt</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.blazegraph</groupId>
+      <artifactId>colt</artifactId>
+      <version>2.1.4</version>
     </dependency>
     <dependency>
       <groupId>com.ibm.icu</groupId>
