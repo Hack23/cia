@@ -1,0 +1,28 @@
+node {
+
+   stage ("Prepare cloud environment resources") {
+    build job: 'Citizen-Intelligence-Agency-dist-cloudformation'
+    build job: 'Citizen-Intelligence-Agency-dist-deb'
+   }
+
+   stage ("Setup cloud environment") {
+    build job: 'Citizen-Intelligence-Agency-Cloudformation-setup'
+   }
+   
+   stage ("Cloud validation") {
+       
+        def branches = [:]
+        
+        branches["branch${0}"] = { try { stage ("Web Performance Rating") { build job: 'webpagetest', parameters: [[$class: 'StringParameterValue', name: 'WebUrl', value: 'https://cia.hack23.com/']] } } catch (e) {}}
+        branches["branch${1}"] = { try { stage ("System Roles Test") { build job: 'Citizen-Intelligence-Agency-System-Test-Site-Parameter', parameters: [[$class: 'StringParameterValue', name: 'SiteUrl', value: 'https://cia.hack23.com/']] } } catch (e) {}}
+        branches["branch${2}"] = { try { stage ("Security SSL Rating") { build job: 'ssllabtest', parameters: [[$class: 'StringParameterValue', name: 'webDomain', value: 'cia.hack23.com']] } } catch (e) {}}
+        
+        parallel branches
+   }
+
+   stage ("Tear down cloud environment") {
+       build job: 'Citizen-Intelligence-Agency-Cloudformation-teardown'
+   }
+   
+   stage ("Completed") {}
+}
