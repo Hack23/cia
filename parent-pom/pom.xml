@@ -154,7 +154,7 @@
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>9.4.3.v20170317</cia.project.versions.jetty>
     <cia.project.versions.javamelody>1.65.0</cia.project.versions.javamelody>
-    <cia.project.versions.vaadin>7.7.7</cia.project.versions.vaadin>
+    <cia.project.versions.vaadin>7.7.8</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.8.0</cia.project.versions.vaadin.gwt.user>
     <cia.project.versions.vaadin.cssparser>0.9.22</cia.project.versions.vaadin.cssparser>
     <cia.project.versions.servlet.api>3.1.0</cia.project.versions.servlet.api>
