@@ -27,12 +27,12 @@ import javax.jms.JMSException;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
-import com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data.RiksdagenImportService;
 
 /**
  * The Class RiksdagenVoteDataWorkConsumerImplITest.
@@ -44,10 +44,6 @@ public class RiksdagenVoteDataWorkConsumerImplITest extends AbstractServiceCompo
 	@Qualifier("riksdagenVoteDataWorkConsumerImpl")
 	private MessageListener messsageListener;
 
-	/** The riksdagen import service. */
-	@Autowired
-	private RiksdagenImportService riksdagenImportService;
-
 	/**
 	 * On message success test.
 	 *
@@ -55,12 +51,23 @@ public class RiksdagenVoteDataWorkConsumerImplITest extends AbstractServiceCompo
 	 *             the JMS exception
 	 */
 	@Test
-	public void onMessageSuccessTest() throws JMSException {
+	@Ignore
+	public void onMessageDuplicateSuccessTest() throws JMSException {
 		final ObjectMessage message = mock(ObjectMessage.class);
 
-		when(message.getObject()).thenReturn("");
+		when(message.getObject()).thenReturn("000561B4-3637-41D2-8A8C-5CE5DAED9F57");
 
-		messsageListener.onMessage(message);
+			messsageListener.onMessage(message);
+		verify(message, atLeastOnce()).getObject();
+	}
+
+	@Test
+	public void onMessageNoBallotExistForIdFailureTest() throws JMSException {
+		final ObjectMessage message = mock(ObjectMessage.class);
+
+		when(message.getObject()).thenReturn("000561B4-3637-41D2-8A8C-5CE5DAED9F57-INVALID");
+
+			messsageListener.onMessage(message);
 		verify(message, atLeastOnce()).getObject();
 	}
 

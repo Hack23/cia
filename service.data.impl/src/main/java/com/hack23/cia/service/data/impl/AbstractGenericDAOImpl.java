@@ -27,6 +27,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.Metamodel;
@@ -157,6 +159,45 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 		return typedQuery.getResultList();
 	}
 
+	@Override
+	public <V> List<T> findListByEmbeddedProperty(final SingularAttribute<T, V> property, final Class<V> clazz2,
+			final SingularAttribute<V, ? extends Object> property2, final Object value) {
+		return findOrderedByPropertyListByEmbeddedProperty(property,clazz2,property2,value,null);
+
+	}
+
+	@Override
+	public <V> List<T> findOrderedByPropertyListByEmbeddedProperty(final SingularAttribute<T, V> property,
+			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
+			final SingularAttribute<T, ? extends Object> orderByProperty) {
+		final CriteriaQuery<T> criteriaQuery = criteriaBuilder
+				.createQuery(persistentClass);
+		final Root<T> root = criteriaQuery.from(persistentClass);
+		criteriaQuery.select(root);
+
+		if (orderByProperty != null) {
+			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderByProperty)));
+		}
+
+
+		final Join<T, V> join = root.join(property);
+
+		final Path<? extends Object> path = join.get(property2);
+
+		final Predicate condition = criteriaBuilder.equal(path, value);
+
+		criteriaQuery.where(condition);
+
+		final TypedQuery<T> typedQuery = entityManager
+				.createQuery(criteriaQuery);
+
+		addCacheHints(typedQuery, "findListByEmbeddedProperty." + persistentClass.getSimpleName());
+
+
+		return typedQuery.getResultList();
+	}
+
+	
 	@Override
 	public final List<T> getAll() {
 		return getAllOrderBy(null);

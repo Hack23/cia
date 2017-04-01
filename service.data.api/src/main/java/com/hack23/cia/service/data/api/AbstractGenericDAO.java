@@ -76,6 +76,44 @@ public interface AbstractGenericDAO<T extends Serializable, I extends Serializab
 	 */
 	List<T> findListByProperty(SingularAttribute<T, ? extends Object> property, Object value);
 
+	/**
+	 * Find list by embedded property.
+	 *
+	 * @param <V>
+	 *            the value type
+	 * @param property
+	 *            the property
+	 * @param clazz2
+	 *            the clazz 2
+	 * @param property2
+	 *            the property 2
+	 * @param value
+	 *            the value
+	 * @return the list
+	 */
+	<V> List<T> findListByEmbeddedProperty(SingularAttribute<T, V> property,Class<V> clazz2,SingularAttribute<V, ? extends Object> property2, Object value);
+
+	/**
+	 * Find ordered by property list by embedded property.
+	 *
+	 * @param <V>
+	 *            the value type
+	 * @param property
+	 *            the property
+	 * @param clazz2
+	 *            the clazz 2
+	 * @param property2
+	 *            the property 2
+	 * @param value
+	 *            the value
+	 * @param orderByProperty
+	 *            the order by property
+	 * @return the list
+	 */
+	<V> List<T> findOrderedByPropertyListByEmbeddedProperty(final SingularAttribute<T, V> property,
+			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
+			final SingularAttribute<T, ? extends Object> orderByProperty);
+
 
 	/**
 	 * Gets the all.

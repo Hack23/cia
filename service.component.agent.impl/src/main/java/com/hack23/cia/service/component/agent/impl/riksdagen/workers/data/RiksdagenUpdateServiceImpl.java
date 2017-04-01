@@ -123,7 +123,9 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 
 	@Override
 	public void updateVoteDataData(final List<VoteData> list) {
-		voteDataDAO.persist(list);
+		if (list != null && !list.isEmpty()) {
+			voteDataDAO.persist(list);
+		}
 	}
 
 }
