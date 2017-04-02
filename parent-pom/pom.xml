@@ -161,6 +161,8 @@
     <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
     <walkmod.chains>pmd</walkmod.chains>
     <walkmod.properties>configurationFile=${pom.basedir}/../ruleset.xml</walkmod.properties>
+    <tattletale-source-directory>${project.build.directory}/${project.artifactId}-${project.version}</tattletale-source-directory>
+    <tattletale-destination-directory>${project.build.directory}/site/tattleTaleReport</tattletale-destination-directory>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -1465,8 +1467,11 @@
             </dependencies>
             <inherited>true</inherited>
             <configuration>
-              <source>${project.build.directory}/${project.artifactId}-${project.version}</source>
-              <destination>${project.build.directory}/site/tattleTaleReport</destination>
+              <profiles>
+                <profile>*</profile>
+              </profiles>
+              <source>${tattletale-source-directory}</source>
+              <destination>${tattletale-destination-directory}</destination>
               <graphvizDot>${graphviz.dot.executable}</graphvizDot>
               <profiles>
                 <report>*</report>
