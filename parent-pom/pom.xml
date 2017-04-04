@@ -634,6 +634,11 @@
           </dependencies>
         </plugin>
         <plugin>
+        	<groupId>external.atlassian.jgitflow</groupId>
+            <artifactId>jgitflow-maven-plugin</artifactId>
+            <version>1.0-m5.1</version>
+        </plugin>
+        <plugin>
           <groupId>com.stratio.mojo.unix</groupId>
           <artifactId>unix-maven-plugin</artifactId>
           <version>1.2.0</version>
