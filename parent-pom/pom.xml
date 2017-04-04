@@ -641,7 +641,7 @@
         <plugin>
           <groupId>com.e-gineering</groupId>
           <artifactId>gitflow-helper-maven-plugin</artifactId>
-          <version>1.7.0</version>
+          <version>1.7.1</version>
         </plugin>
         <plugin>
           <groupId>com.stratio.mojo.unix</groupId>
