@@ -1,90 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<artifactId>parent-web-pom</artifactId>
-		<groupId>com.hack23.cia</groupId>
-		<version>2017.2.25-SNAPSHOT</version>
-		<relativePath>../parent-web-pom/pom.xml</relativePath>
-	</parent>
-	<artifactId>cia-dist-docker</artifactId>
-	<packaging>docker</packaging>
-	<name>cia-dist-docker</name>
-	<scm>
-		<connection>scm:git:https://github.com/Hack23/cia.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
-		<tag>HEAD</tag>
-		<url>https://github.com/Hack23/cia/tree/master/cia-dist-docker</url>
-	</scm>
-	<dependencies>
-		<dependency>
-			<groupId>com.hack23.cia</groupId>
-			<artifactId>cia-dist-deb</artifactId>
-			<version>${project.version}</version>
-			<type>deb</type>
-			<exclusions>
-				<exclusion>
-					<artifactId>*</artifactId>
-					<groupId>*</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-	</dependencies>
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>io.fabric8</groupId>
-					<artifactId>docker-maven-plugin</artifactId>
-					<version>0.20.1</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-		<plugins>
-			<plugin>
-				<groupId>io.fabric8</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<extensions>true</extensions>
-				<executions>
-					<execution>
-						<id>start</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>build</goal>
-							<goal>start</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>stop</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<volumes>
-						<volume>
-							<name>temp-volume</name>
-							<driver>local</driver>
-							<opts>
-								<type>tmpfs</type>
-								<device>tmpfs</device>
-								<o>size=100m,uid=1000</o>
-							</opts>
-							<labels>
-								<volatileData>true</volatileData>
-							</labels>
-						</volume>
-					</volumes>
-					<images>
-						<!-- <image> <alias>cia-docker-compose</alias> <name>ciadockercomposer:latest</name> 
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>parent-web-pom</artifactId>
+    <groupId>com.hack23.cia</groupId>
+    <version>2017.2.25-SNAPSHOT</version>
+    <relativePath>../parent-web-pom/pom.xml</relativePath>
+  </parent>
+  <artifactId>cia-dist-docker</artifactId>
+  <packaging>docker</packaging>
+  <name>cia-dist-docker</name>
+  <scm>
+    <connection>scm:git:https://github.com/Hack23/cia.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
+    <tag>HEAD</tag>
+    <url>https://github.com/Hack23/cia/tree/master/cia-dist-docker</url>
+  </scm>
+  <dependencies>
+    <dependency>
+      <groupId>com.hack23.cia</groupId>
+      <artifactId>cia-dist-deb</artifactId>
+      <version>${project.version}</version>
+      <type>deb</type>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+  </dependencies>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>io.fabric8</groupId>
+          <artifactId>docker-maven-plugin</artifactId>
+          <version>0.20.1</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <extensions>true</extensions>
+        <executions>
+          <execution>
+            <id>start</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>build</goal>
+              <goal>start</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>stop</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>stop</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <volumes>
+            <volume>
+              <name>temp-volume</name>
+              <driver>local</driver>
+              <opts>
+                <type>tmpfs</type>
+                <device>tmpfs</device>
+                <o>size=100m,uid=1000</o>
+              </opts>
+              <labels>
+                <volatileData>true</volatileData>
+              </labels>
+            </volume>
+          </volumes>
+          <images>
+            <!-- <image> <alias>cia-docker-compose</alias> <name>ciadockercomposer:latest</name> 
 							<external> <basedir>src/main/docker</basedir> <composeFile>docker-compose.yml</composeFile> 
 							<type>compose</type> </external> <run> <ports> <port>18080:18080</port> </ports> 
 							<wait> <http> <url>http://localhost:8080/access</url> </http> <time>10000</time> 
 							</wait> <links> <link>database:db</link> </links> </run> </image> -->
-						<!-- ><image>
+            <!-- ><image>
 							<alias>cia-docker</alias>
 							<name>ciadocker:latest</name>
 							<build>
@@ -105,41 +104,41 @@
 								</links>
 							</run>
 						</image>-->
-						<image>
-							<alias>database</alias>
-							<name>postgres:9.6.2</name>
-							<run>
-								<wait>
-									<log>database system is ready to accept connections</log>
-									<time>20000</time>
-								</wait>
-							</run>
-						</image>
-					</images>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-enforcer-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>enforce-versions</id>
-						<goals>
-							<goal>enforce</goal>
-						</goals>
-						<configuration combine.self="override">
-							<rules>
-								<requireMavenVersion>
-									<version>cia.project.versions.maven</version>
-								</requireMavenVersion>
-								<requireJavaVersion>
-									<version>${jdk.src.version}</version>
-								</requireJavaVersion>
-							</rules>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+            <image>
+              <alias>database</alias>
+              <name>postgres:9.6.2</name>
+              <run>
+                <wait>
+                  <log>database system is ready to accept connections</log>
+                  <time>20000</time>
+                </wait>
+              </run>
+            </image>
+          </images>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-versions</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration combine.self="override">
+              <rules>
+                <requireMavenVersion>
+                  <version>cia.project.versions.maven</version>
+                </requireMavenVersion>
+                <requireJavaVersion>
+                  <version>${jdk.src.version}</version>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>
