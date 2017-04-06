@@ -18,10 +18,18 @@
 		<url>https://github.com/Hack23/cia/tree/master/cia-dist-docker</url>
 	</scm>
 	<dependencies>
-		<!-- <dependency> <groupId>com.hack23.cia</groupId> <artifactId>cia-dist-deb</artifactId> 
-			<version>${project.version}</version> <type>deb</type> <exclusions> <exclusion> 
-			<artifactId>*</artifactId> <groupId>*</groupId> </exclusion> </exclusions> 
-			</dependency> -->
+		<dependency>
+			<groupId>com.hack23.cia</groupId>
+			<artifactId>cia-dist-deb</artifactId>
+			<version>${project.version}</version>
+			<type>deb</type>
+			<exclusions>
+				<exclusion>
+					<artifactId>*</artifactId>
+					<groupId>*</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 	<build>
 		<pluginManagement>
@@ -71,32 +79,12 @@
 						</volume>
 					</volumes>
 					<images>
-					<!-- 
-						<image>
-							<alias>cia-docker-compose</alias>
-							<name>ciadockercomposer:latest</name>
-							<external>
-								<basedir>src/main/docker</basedir>
-								<composeFile>docker-compose.yml</composeFile>
-								<type>compose</type>
-							</external>
-							<run>
-								<ports>
-									<port>18080:18080</port>
-								</ports>
-								<wait>
-									<http>
-										<url>http://localhost:8080/access</url>
-									</http>
-									<time>10000</time>
-								</wait>
-								<links>
-									<link>database:db</link>
-								</links>
-							</run>
-
-						</image>-->
-						<image>
+						<!-- <image> <alias>cia-docker-compose</alias> <name>ciadockercomposer:latest</name> 
+							<external> <basedir>src/main/docker</basedir> <composeFile>docker-compose.yml</composeFile> 
+							<type>compose</type> </external> <run> <ports> <port>18080:18080</port> </ports> 
+							<wait> <http> <url>http://localhost:8080/access</url> </http> <time>10000</time> 
+							</wait> <links> <link>database:db</link> </links> </run> </image> -->
+						<!-- ><image>
 							<alias>cia-docker</alias>
 							<name>ciadocker:latest</name>
 							<build>
@@ -116,7 +104,7 @@
 									<link>database:db</link>
 								</links>
 							</run>
-						</image>
+						</image>-->
 						<image>
 							<alias>database</alias>
 							<name>postgres:9.6.2</name>
