@@ -1159,6 +1159,7 @@
         <module>../parent-service-pom</module>
         <module>../parent-web-pom</module>
         <module>../cia-dist-deb</module>
+        <module>../cia-dist-docker</module>        
         <module>../cia-dist-cloudformation</module>
       </modules>
     </profile>
