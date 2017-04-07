@@ -996,6 +996,8 @@
                     <!-- <ignoreClass>org.mozilla.javascript.*</ignoreClass> -->
                     <ignoreClass>javax.annotation.*</ignoreClass>
                     <ignoreClass>org.mozilla.classfile.*</ignoreClass>
+                    <ignoreClass>module-info.class</ignoreClass>
+                    <ignoreClass>*.module-info.class</ignoreClass>
                   </ignoreClasses>
                 </banDuplicateClasses>
                 <!-- <requireEncoding>
@@ -1159,7 +1161,7 @@
         <module>../parent-service-pom</module>
         <module>../parent-web-pom</module>
         <module>../cia-dist-deb</module>
-        <module>../cia-dist-docker</module>        
+        <module>../cia-dist-docker</module>
         <module>../cia-dist-cloudformation</module>
       </modules>
     </profile>
