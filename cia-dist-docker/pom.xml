@@ -78,40 +78,43 @@
             </volume>
           </volumes>
           <images>
-            <!-- <image> <alias>cia-docker-compose</alias> <name>ciadockercomposer:latest</name> 
-							<external> <basedir>src/main/docker</basedir> <composeFile>docker-compose.yml</composeFile> 
-							<type>compose</type> </external> <run> <ports> <port>18080:18080</port> </ports> 
-							<wait> <http> <url>http://localhost:8080/access</url> </http> <time>10000</time> 
-							</wait> <links> <link>database:db</link> </links> </run> </image> -->
-            <!-- ><image>
-							<alias>cia-docker</alias>
-							<name>ciadocker:latest</name>
-							<build>
-								<from>java:8</from>
-							</build>
-							<run>
-								<ports>
-									<port>28080:28080</port>
-								</ports>
-								<wait>
-									<http>
-										<url>http://localhost:8080/access</url>
-									</http>
-									<time>1000</time>
-								</wait>
-								<links>
-									<link>database:db</link>
-								</links>
-							</run>
-						</image>-->
+            <image>
+              <alias>app</alias>
+              <name>java:8</name>
+              <run>
+                <ports>
+                  <port>4323:4323</port>
+                </ports>
+                <links>
+                  <link>database</link>
+                </links>
+                <wait>
+                  <time>2000</time>
+                </wait>
+                <dependsOn>
+                  <container>database</container>
+                </dependsOn>
+                <log>
+                  <enabled>true</enabled>
+                  <color>green</color>
+                </log>
+                <hostname>cia</hostname>
+              </run>
+            </image>
             <image>
               <alias>database</alias>
               <name>postgres:9.6.2</name>
               <run>
+                <!-- <ports> <port>6432:6432</port> </ports> -->
                 <wait>
                   <log>database system is ready to accept connections</log>
-                  <time>20000</time>
+                  <time>2000</time>
                 </wait>
+                <log>
+                  <enabled>false</enabled>
+                  <color>blue</color>
+                </log>
+                <hostname>postgres</hostname>
               </run>
             </image>
           </images>
