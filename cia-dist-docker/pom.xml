@@ -89,7 +89,7 @@
                   <link>database</link>
                 </links>
                 <wait>
-                  <time>2000</time>
+                  <time>5000</time>
                 </wait>
                 <dependsOn>
                   <container>database</container>
@@ -108,7 +108,7 @@
                 <!-- <ports> <port>6432:6432</port> </ports> -->
                 <wait>
                   <log>database system is ready to accept connections</log>
-                  <time>2000</time>
+                  <time>5000</time>
                 </wait>
                 <log>
                   <enabled>false</enabled>
