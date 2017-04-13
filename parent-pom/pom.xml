@@ -118,7 +118,7 @@
     <cia.project.versions.hibernate>5.2.9.Final</cia.project.versions.hibernate>
     <cia.project.versions.hibernate.jpamodelgen>5.2.9.Final</cia.project.versions.hibernate.jpamodelgen>
     <cia.project.versions.hibernate.build>5.2.9.Final</cia.project.versions.hibernate.build>
-    <cia.project.versions.hibernate.tools>5.2.2.Final</cia.project.versions.hibernate.tools>
+    <cia.project.versions.hibernate.tools>5.2.3.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.0.Final</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>5.4.1.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>5.4.1.Final</cia.project.versions.hibernate.build.validator>
@@ -152,7 +152,7 @@
     <cia.project.versions.jackson>2.9.0.pr2</cia.project.versions.jackson>
     <cia.project.versions.xerces>2.11.0.SP5</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
-    <cia.project.versions.jetty>9.4.4.v20170410</cia.project.versions.jetty>
+    <cia.project.versions.jetty>9.4.4.v20170413</cia.project.versions.jetty>
     <cia.project.versions.javamelody>1.65.0</cia.project.versions.javamelody>
     <cia.project.versions.vaadin>7.7.8</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.8.0</cia.project.versions.vaadin.gwt.user>
@@ -826,12 +826,12 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-report-plugin</artifactId>
-          <version>2.19.1</version>
+          <version>2.20</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.19.1</version>
+          <version>2.20</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -861,7 +861,7 @@
         <plugin>
           <groupId>org.bsc.maven</groupId>
           <artifactId>maven-processor-plugin</artifactId>
-          <version>3.3</version>
+          <version>3.3.1</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -1586,7 +1586,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.19.1</version>
+            <version>2.20</version>
             <inherited>true</inherited>
           </plugin>
           <plugin>
@@ -1602,7 +1602,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-report-plugin</artifactId>
-            <version>2.19.1</version>
+            <version>2.20</version>
             <reportSets>
               <reportSet>
                 <reports>
