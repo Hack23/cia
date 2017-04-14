@@ -134,6 +134,10 @@
           <artifactId>moa</artifactId>
           <groupId>nz.ac.waikato.cms.moa</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>scalatest-maven-plugin</artifactId>
+          <groupId>org.scalatest</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -144,6 +148,10 @@
         <exclusion>
           <artifactId>weka-dev</artifactId>
           <groupId>nz.ac.waikato.cms.weka</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>meka</artifactId>
+          <groupId>net.sf.meka</groupId>
         </exclusion>
       </exclusions>
     </dependency>
