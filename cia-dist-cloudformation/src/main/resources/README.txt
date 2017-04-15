@@ -1,7 +1,7 @@
-Will use latest hvm-ssd ubuntu image:Current: ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20170307 : ami-971238f1
+Will use latest hvm-ssd ubuntu image:Current: ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20170414 : ami-a8d2d7ce
 
 17.04
-ubuntu/images-testing/hvm-ssd/ubuntu-zesty-daily-amd64-server-20170322 : ami-ed65568b
+ubuntu/images/hvm-ssd/ubuntu-zesty-17.04-amd64-server-20170412.1 : ami-b4a79dd2
 
 Add optional AWS::Elasticsearch::Domain alt specify elasticsearch url 
 http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html
