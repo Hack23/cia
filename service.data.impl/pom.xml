@@ -66,6 +66,10 @@
           <artifactId>lucene-analyzers-common</artifactId>
           <groupId>org.apache.lucene</groupId>
         </exclusion>
+        <exclusion>
+        	<groupId>com.fasterxml.jackson.core</groupId>
+        	<artifactId>jackson-core</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
