@@ -67,8 +67,8 @@
           <groupId>org.apache.lucene</groupId>
         </exclusion>
         <exclusion>
-        	<groupId>com.fasterxml.jackson.core</groupId>
-        	<artifactId>jackson-core</artifactId>
+          <artifactId>jackson-core</artifactId>
+          <groupId>com.fasterxml.jackson.core</groupId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -122,9 +122,9 @@
           <groupId>org.apache.httpcomponents</groupId>
         </exclusion>
         <exclusion>
-        	<groupId>com.fasterxml.jackson.core</groupId>
-        	<artifactId>jackson-core</artifactId>
-        </exclusion>        
+          <artifactId>jackson-core</artifactId>
+          <groupId>com.fasterxml.jackson.core</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>

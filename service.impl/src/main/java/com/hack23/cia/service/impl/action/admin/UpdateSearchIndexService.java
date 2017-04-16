@@ -42,7 +42,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
  * The Class UpdateSearchIndexService.
  */
 @Service
-@Transactional(propagation = Propagation.REQUIRED,timeout=600)
+@Transactional(propagation = Propagation.REQUIRED,timeout=1200)
 public final class UpdateSearchIndexService extends
 		AbstractBusinessServiceImpl<UpdateSearchIndexRequest, UpdateSearchIndexResponse>
 		implements BusinessService<UpdateSearchIndexRequest, UpdateSearchIndexResponse> {
