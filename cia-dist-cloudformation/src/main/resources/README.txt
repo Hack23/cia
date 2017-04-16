@@ -3,9 +3,6 @@ Will use latest hvm-ssd ubuntu image:Current: ubuntu/images/hvm-ssd/ubuntu-xenia
 17.04
 ubuntu/images/hvm-ssd/ubuntu-zesty-17.04-amd64-server-20170412.1 : ami-b4a79dd2
 
-Add optional AWS::Elasticsearch::Domain alt specify elasticsearch url 
-http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html
-
 
 http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL.Procedural.Importing.html
 
@@ -15,7 +12,7 @@ Add elasticsearch
 
 https://github.com/alphagov/digitalmarketplace-aws/blob/master/cloudformation_templates/aws_kibana.json
 
- "AvailabilityZone" : { "Fn::Select" : [ "0", { "Fn::GetAZs" : { "Ref" : "AWS::Region" } } ] }
+"AvailabilityZone" : { "Fn::Select" : [ "0", { "Fn::GetAZs" : { "Ref" : "AWS::Region" } } ] }
  
 add java memory size map per instance type.
 
@@ -58,8 +55,6 @@ AWS::Logs::LogGroup
 http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/systems-manager.html
 
 http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/QuickStartEC2Instance.html
-
-http://docs.aws.amazon.com/inspector/latest/userguide/inspector_introduction.html
 
 
 

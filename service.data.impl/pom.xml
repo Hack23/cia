@@ -35,7 +35,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-search-orm</artifactId>
-      <version>5.7.0.Final</version>
+      <version>5.8.0.Beta1</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -71,7 +71,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-search-elasticsearch</artifactId>
-      <version>5.7.0.Final</version>
+      <version>5.8.0.Beta1</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-entitymanager</artifactId>
