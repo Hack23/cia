@@ -88,14 +88,6 @@
            <param-name>useForward</param-name>
            <param-value>true</param-value>
        </init-param>
-       <init-param>
-           <param-name>jmx-expose-enabled</param-name>
-           <param-value>true</param-value>
-       </init-param>       
-        <init-param>
-            <param-name>maven-repositories</param-name>
-            <param-value>https://www.hack23.com/nexus/repository/maven-public/,~/.m2/repository,https://repo1.maven.org/maven2/</param-value>
-        </init-param>       
    </filter>
    <filter-mapping>
        <filter-name>customResourceFilter</filter-name>
@@ -134,6 +126,14 @@
 			<param-name>disabled</param-name>
 			<param-value>false</param-value>
 		</init-param>
+		<init-param>
+           <param-name>jmx-expose-enabled</param-name>
+           <param-value>true</param-value>
+       </init-param>       
+        <init-param>
+            <param-name>maven-repositories</param-name>
+            <param-value>https://www.hack23.com/nexus/repository/maven-public/,~/.m2/repository,https://repo1.maven.org/maven2/</param-value>
+        </init-param>       		
 	</filter>
 	<filter-mapping>
 		<filter-name>monitoring</filter-name>
