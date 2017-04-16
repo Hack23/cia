@@ -121,6 +121,10 @@
           <artifactId>httpcore</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
         </exclusion>
+        <exclusion>
+        	<groupId>com.fasterxml.jackson.core</groupId>
+        	<artifactId>jackson-core</artifactId>
+        </exclusion>        
       </exclusions>
     </dependency>
     <dependency>
