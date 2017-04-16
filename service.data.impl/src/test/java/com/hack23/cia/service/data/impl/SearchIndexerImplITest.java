@@ -74,6 +74,7 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 	 *             the exception
 	 */
 	@Test
+	@Transactional(timeout=1300)
 	public void testCreateSearchIndex() throws Exception {
 		FileUtils.deleteDirectory(new File(databaseSearchIndexLocation));
 		searchIndexer.updateSearchIndex();
