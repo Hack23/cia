@@ -122,7 +122,7 @@
     <cia.project.versions.hibernate.jpa2>1.0.0.Final</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>5.4.1.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>5.4.1.Final</cia.project.versions.hibernate.build.validator>
-    <cia.project.versions.bytebuddy>1.6.12</cia.project.versions.bytebuddy>
+    <cia.project.versions.bytebuddy>1.6.13</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.194</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.0.0</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.3</cia.project.versions.ehcache>
@@ -146,7 +146,7 @@
     <cia.project.versions.maven>3.3.9</cia.project.versions.maven>
     <cia.project.versions.jaxb.impl>2.2.11</cia.project.versions.jaxb.impl>
     <cia.project.versions.jaxb.xjc>2.2.11</cia.project.versions.jaxb.xjc>
-    <cia.project.versions.activemq>5.14.4</cia.project.versions.activemq>
+    <cia.project.versions.activemq>5.14.5</cia.project.versions.activemq>
     <cia.project.versions.httpclient>4.5.3</cia.project.versions.httpclient>
     <cia.project.versions.guava>21.0</cia.project.versions.guava>
     <cia.project.versions.jackson>2.9.0.pr2</cia.project.versions.jackson>
