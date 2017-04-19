@@ -159,4 +159,36 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>push-docker</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>io.fabric8</groupId>
+						<artifactId>docker-maven-plugin</artifactId>
+						<extensions>true</extensions>
+						<executions>
+							<execution>
+								<id>docker:push</id>
+								<phase>install</phase>
+								<goals>
+									<goal>push</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			<distributionManagement>
+				<repository>
+					<id>hack23docker</id>
+					<name>hack23docker</name>
+					<uniqueVersion>false</uniqueVersion>
+					<layout>legacy</layout>
+					<url>https://www.hack23.com/nexus/repository/hack23docker/v1/</url>
+				</repository>
+			</distributionManagement>
+		</profile>
+	</profiles>
 </project>
