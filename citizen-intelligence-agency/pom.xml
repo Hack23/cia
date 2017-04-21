@@ -130,7 +130,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>3.3.1</version>
+      <version>3.4.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -138,16 +138,40 @@
           <groupId>org.seleniumhq.selenium</groupId>
         </exclusion>
         <exclusion>
+          <artifactId>xalan</artifactId>
+          <groupId>xalan</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>websocket-api</artifactId>
+          <groupId>org.eclipse.jetty.websocket</groupId>
+        </exclusion>
+        <exclusion>
           <artifactId>jetty-websocket</artifactId>
           <groupId>org.eclipse.jetty</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jetty-util</artifactId>
+          <groupId>org.eclipse.jetty</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>xercesImpl</artifactId>
+          <groupId>xerces</groupId>
         </exclusion>
         <exclusion>
           <artifactId>websocket-server</artifactId>
           <groupId>org.eclipse.jetty.websocket</groupId>
         </exclusion>
         <exclusion>
+          <artifactId>websocket-common</artifactId>
+          <groupId>org.eclipse.jetty.websocket</groupId>
+        </exclusion>
+        <exclusion>
           <artifactId>websocket-client</artifactId>
           <groupId>org.eclipse.jetty.websocket</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jetty-io</artifactId>
+          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
         <exclusion>
           <artifactId>selenium-java</artifactId>
@@ -202,7 +226,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-remote-driver</artifactId>
-      <version>3.3.1</version>
+      <version>3.4.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -279,8 +303,26 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-support</artifactId>
-      <version>3.3.1</version>
+      <version>3.4.0</version>
       <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>cglib-nodep</artifactId>
+          <groupId>cglib</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jna-platform</artifactId>
+          <groupId>net.java.dev.jna</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jna</artifactId>
+          <groupId>net.java.dev.jna</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>commons-logging</artifactId>
+          <groupId>commons-logging</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
@@ -323,6 +365,10 @@
         <exclusion>
           <artifactId>jetty-servlet</artifactId>
           <groupId>org.eclipse.jetty</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jna-platform</artifactId>
+          <groupId>net.java.dev.jna</groupId>
         </exclusion>
       </exclusions>
     </dependency>
