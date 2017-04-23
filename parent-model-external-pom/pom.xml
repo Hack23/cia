@@ -4,7 +4,7 @@
   <parent>
     <artifactId>parent-model-jpa2-pom</artifactId>
     <groupId>com.hack23.cia</groupId>
-    <version>2017.4.16-SNAPSHOT</version>
+    <version>2017.4.24-SNAPSHOT</version>
     <relativePath>../parent-model-jpa2-pom/pom.xml</relativePath>
   </parent>
   <artifactId>parent-model-external-pom</artifactId>
@@ -40,8 +40,8 @@
       <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/parent-model-external-pom</url>
     </site>
   </distributionManagement>
-  <properties></properties>
-  <dependencyManagement></dependencyManagement>
+  <properties />
+  <dependencyManagement />
   <dependencies>
     <dependency>
       <groupId>com.hack23.cia</groupId>
@@ -71,7 +71,7 @@
     <dependency>
       <groupId>com.hack23.cia</groupId>
       <artifactId>model.common.impl</artifactId>
-      <version>2017.4.16-SNAPSHOT</version>
+      <version>2017.4.24-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.jvnet.hyperjaxb3</groupId>
