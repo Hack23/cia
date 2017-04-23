@@ -219,7 +219,7 @@
     </dependencies>
   </dependencyManagement>
   <build>
-    <extensions />
+    <extensions></extensions>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -239,6 +239,6 @@
         </plugin>
       </plugins>
     </pluginManagement>
-    <plugins />
+    <plugins></plugins>
   </build>
 </project>

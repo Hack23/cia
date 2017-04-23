@@ -42,12 +42,12 @@
   <properties>
     <sonar.dependencyCheck.reportPath>${project.basedir}/../parent-pom/src/config/dependency-check-report.xml</sonar.dependencyCheck.reportPath>
   </properties>
-  <dependencyManagement />
+  <dependencyManagement></dependencyManagement>
   <build>
-    <extensions />
+    <extensions></extensions>
     <pluginManagement>
-      <plugins />
+      <plugins></plugins>
     </pluginManagement>
-    <plugins />
+    <plugins></plugins>
   </build>
 </project>
