@@ -204,8 +204,13 @@ final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 	private static boolean checkIncludeDate(final Date after, final List<String> documentTypeValues,
 			final DocumentElement documentElement) {
 		try {
-			return getDate(documentElement.getMadePublicDate()).after(after)
-					&& documentTypeValues.contains(documentElement.getDocumentType());
+			if (documentElement.getMadePublicDate() != null && documentElement.getMadePublicDate().length() > 0) {
+				return getDate(documentElement.getMadePublicDate()).after(after)
+						&& documentTypeValues.contains(documentElement.getDocumentType());
+			} else {
+				return getDate(documentElement.getCreatedDate()).after(after)
+						&& documentTypeValues.contains(documentElement.getDocumentType());				
+			}			
 		} catch (final ParseException e) {
 			LOGGER.warn("Problem getting date from{} : exception:{}", documentElement, e);
 			return false;
