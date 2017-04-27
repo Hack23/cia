@@ -21,6 +21,9 @@
 		<cve>CVE-2015-5922</cve>
 		<cve>CVE-2016-3720</cve>
 		<cve>CVE-2016-6293</cve>
-		<cve>CVE-2016-7415</cve>				
+		<cve>CVE-2016-7415</cve>		
+		<cve>CVE-2012-4231</cve>
+		<cve>CVE-2012-4232</cve>
+		<cve>CVE-2016-7051</cve>
     </suppress>
 </suppressions>
