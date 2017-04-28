@@ -65,7 +65,7 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>jul-to-slf4j</artifactId>
-      <version>1.7.25</version>
+      <version>1.8.0-alpha2</version>
     </dependency>
     <dependency>
       <groupId>org.ow2.asm</groupId>

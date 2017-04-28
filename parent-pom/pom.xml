@@ -101,9 +101,9 @@
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <!-- <cia.project.versions.spring>4.3.6.RELEASE/5.0.0.M4/5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring> -->
-    <cia.project.versions.spring>4.3.8.RELEASE</cia.project.versions.spring>
+    <cia.project.versions.spring>5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring>
     <!-- <cia.project.versions.spring.security>4.2.0.M1/4.2.3.BUILD-SNAPSHOT</cia.project.versions.spring.security>-->
-    <cia.project.versions.spring.security>4.2.2.RELEASE</cia.project.versions.spring.security>
+    <cia.project.versions.spring.security>4.2.3.BUILD-SNAPSHOT</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.0.BETA-4</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.22.0-CR1</cia.project.versions.javassist>
     <cia.project.versions.asm>5.2</cia.project.versions.asm>
@@ -111,7 +111,7 @@
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
     <cia.project.versions.commons.lang3>2.6</cia.project.versions.commons.lang3>
-    <cia.project.versions.slf4j>1.7.25</cia.project.versions.slf4j>
+    <cia.project.versions.slf4j>1.8.0-alpha2</cia.project.versions.slf4j>
     <cia.project.versions.logback>1.2.3</cia.project.versions.logback>
     <cia.project.versions.mysql>5.1.34</cia.project.versions.mysql>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
@@ -152,7 +152,7 @@
     <cia.project.versions.jackson>2.9.0.pr3</cia.project.versions.jackson>
     <cia.project.versions.xerces>2.11.0.SP5</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
-    <cia.project.versions.jetty>9.4.5.v20170427</cia.project.versions.jetty>
+    <cia.project.versions.jetty>9.4.4.v20170414</cia.project.versions.jetty>
     <cia.project.versions.javamelody>1.65.0</cia.project.versions.javamelody>
     <cia.project.versions.vaadin>7.7.8</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.8.0</cia.project.versions.vaadin.gwt.user>
@@ -886,7 +886,7 @@
             <dependency>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>extra-enforcer-rules</artifactId>
-              <version>1.0-beta-6</version>
+              <version>1.0-beta-7-SNAPSHOT</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -951,7 +951,7 @@
         <artifactId>maven-enforcer-plugin</artifactId>
         <executions>
           <execution>
-            <id>enforce-versions</id>
+            <id>enforce-build-env</id>
             <goals>
               <goal>enforce</goal>
             </goals>
@@ -963,7 +963,16 @@
                 <requireJavaVersion>
                   <version>${jdk.src.version}</version>
                 </requireJavaVersion>
-                <!-- <requireOS> <family>unix</family> </requireOS> -->
+              </rules>
+            </configuration>
+          </execution>
+          <execution>
+            <id>enforce-fixed-dependencies-and-classes</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
                 <DependencyConvergence></DependencyConvergence>
                 <bannedDependencies>
                   <excludes>
@@ -972,9 +981,12 @@
                     <exclude>stax:stax-api</exclude>
                   </excludes>
                 </bannedDependencies>
+                <!-- do not support jdk9, issue 
                 <banDuplicateClasses>
                   <findAllDuplicates>true</findAllDuplicates>
                   <ignoreClasses>
+                    <ignoreClass>module-info.*</ignoreClass>
+                    <ignoreClass>*.module-info.*</ignoreClass>
                     <ignoreClass>org.xmlpull.v1.*</ignoreClass>
                     <ignoreClass>org.w3c.dom.ElementTraversal</ignoreClass>
                     <ignoreClass>org.apache.xmlbeans.xml.stream.*</ignoreClass>
@@ -993,20 +1005,72 @@
                     <ignoreClass>javax.el.*</ignoreClass>
                     <ignoreClass>javax.xml.namespace.QName</ignoreClass>
                     <ignoreClass>org.apache.regexp.*</ignoreClass>
-                    <!-- <ignoreClass>org.mozilla.javascript.*</ignoreClass> -->
                     <ignoreClass>javax.annotation.*</ignoreClass>
                     <ignoreClass>org.mozilla.classfile.*</ignoreClass>
-                    <ignoreClass>module-info.class</ignoreClass>
-                    <ignoreClass>*.module-info.class</ignoreClass>
                   </ignoreClasses>
-                </banDuplicateClasses>
-                <!-- <requireEncoding>
-                  <encoding>UTF-8</encoding>
-                  <includes>src/main/resources/**,src/test/resources/**</includes>
-                </requireEncoding>-->
+                </banDuplicateClasses>-->
               </rules>
             </configuration>
           </execution>
+          <execution>
+            <id>enforce-java-source-encoding</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireEncoding>
+                  <encoding>UTF-8</encoding>
+                  <includes>src/main/java/**/*.java</includes>
+                  <excludes>**/package-info.java</excludes>
+                </requireEncoding>
+              </rules>
+            </configuration>
+          </execution>
+          <execution>
+            <id>enforce-property-file-encoding</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireEncoding>
+                  <encoding>ISO-8859-1</encoding>
+                  <includes>src/main/resources/**/*.properties</includes>
+                  <excludes>**/schema-mysql.properties,**/IAResources*.*,**/cia-service.properties</excludes>
+                </requireEncoding>
+              </rules>
+            </configuration>
+          </execution>
+          <execution>
+            <id>enforce-property-translations-encoding</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireEncoding>
+                  <encoding>UTF-8</encoding>
+                  <includes>**/IAResources*.*</includes>
+                </requireEncoding>
+              </rules>
+            </configuration>
+          </execution>
+          <!-- 
+          <execution>
+            <id>enforce-xsd-wsdl-encoding</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireEncoding>
+                  <encoding>UTF-8</encoding>
+                  <includes>**/*.xsd,**/*.xjb,**/*.wsdl</includes>
+                </requireEncoding>
+              </rules>
+            </configuration>
+          </execution>-->
         </executions>
       </plugin>
       <plugin>
