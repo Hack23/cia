@@ -111,7 +111,7 @@
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
     <cia.project.versions.commons.lang3>2.6</cia.project.versions.commons.lang3>
-    <cia.project.versions.slf4j>1.8.0-alpha2</cia.project.versions.slf4j>
+    <cia.project.versions.slf4j>1.7.25</cia.project.versions.slf4j>
     <cia.project.versions.logback>1.2.3</cia.project.versions.logback>
     <cia.project.versions.mysql>5.1.34</cia.project.versions.mysql>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
