@@ -33,8 +33,16 @@
       <type>zip</type>
       <exclusions>
         <exclusion>
-          <artifactId>*</artifactId>
-          <groupId>*</groupId>
+          <artifactId>jetty-home</artifactId>
+          <groupId>org.eclipse.jetty</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>test-jetty-webapp</artifactId>
+          <groupId>org.eclipse.jetty</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>test-proxy-webapp</artifactId>
+          <groupId>org.eclipse.jetty</groupId>
         </exclusion>
       </exclusions>
     </dependency>
