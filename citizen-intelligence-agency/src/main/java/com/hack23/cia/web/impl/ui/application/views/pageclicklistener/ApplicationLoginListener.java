@@ -22,8 +22,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestContextHolder;
 
-import com.ejt.vaadin.loginform.LoginForm.LoginEvent;
-import com.ejt.vaadin.loginform.LoginForm.LoginListener;
+import com.vaadin.ui.LoginForm.LoginEvent;
+import com.vaadin.ui.LoginForm.LoginListener;
 import com.hack23.cia.service.api.action.application.LoginRequest;
 import com.hack23.cia.service.api.action.application.LoginResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
@@ -70,20 +70,20 @@ public final class ApplicationLoginListener implements LoginListener {
 
 	@Override
 	public void onLogin(final LoginEvent event) {
-		loginRequest.setEmail(event.getUserName());
-		loginRequest.setUserpassword(event.getPassword());
+		loginRequest.setEmail(event.getLoginParameter("Email"));
+		loginRequest.setUserpassword(event.getLoginParameter("Password"));
 		loginRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 
 		final LoginResponse response = (LoginResponse) ApplicationMangerAccess.getApplicationManager().service(loginRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
-			LOGGER.info(LOG_MSG_LOGIN_REQUEST,event.getUserName());
+			LOGGER.info(LOG_MSG_LOGIN_REQUEST,event.getLoginParameter("Email"));
 
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);
 		} else {
 			Notification.show(LOGIN_FAILED,
 	                  ERROR_MESSAGE,
 	                  Notification.Type.WARNING_MESSAGE);
-			LOGGER.info(LOG_MSG_LOGIN_REQUEST_FAILURE,event.getUserName());
+			LOGGER.info(LOG_MSG_LOGIN_REQUEST_FAILURE,event.getLoginParameter("Email"));
 		}
 
 	}

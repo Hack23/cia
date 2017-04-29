@@ -22,7 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.ejt.vaadin.loginform.DefaultVerticalLoginForm;
+import com.vaadin.ui.LoginForm;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.action.application.LoginRequest;
 import com.hack23.cia.web.impl.ui.application.action.ApplicationAction;
@@ -74,7 +74,7 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractPageMo
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		final DefaultVerticalLoginForm loginForm = new EmailPasswordLoginForm();
+		final LoginForm loginForm = new EmailPasswordLoginForm();
 		final LoginRequest loginRequest = new LoginRequest();
 		loginRequest.setOtpCode("");
 		loginForm.addLoginListener(new ApplicationLoginListener(loginRequest));

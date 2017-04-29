@@ -18,18 +18,18 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
 
-import com.ejt.vaadin.loginform.DefaultVerticalLoginForm;
+import com.vaadin.ui.LoginForm;
 
 /**
  * The Class EmailPasswordLoginForm.
  */
-final class EmailPasswordLoginForm extends DefaultVerticalLoginForm {
+final class EmailPasswordLoginForm extends LoginForm {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected String getUserNameFieldCaption() {
+	public String getUsernameCaption() {
 	    return "Email";
 	}
 }
