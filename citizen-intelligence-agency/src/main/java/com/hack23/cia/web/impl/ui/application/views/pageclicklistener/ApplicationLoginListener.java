@@ -70,20 +70,20 @@ public final class ApplicationLoginListener implements LoginListener {
 
 	@Override
 	public void onLogin(final LoginEvent event) {
-		loginRequest.setEmail(event.getLoginParameter("Email"));
-		loginRequest.setUserpassword(event.getLoginParameter("Password"));
+		loginRequest.setEmail(event.getLoginParameter("username"));
+		loginRequest.setUserpassword(event.getLoginParameter("password"));
 		loginRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 
 		final LoginResponse response = (LoginResponse) ApplicationMangerAccess.getApplicationManager().service(loginRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
-			LOGGER.info(LOG_MSG_LOGIN_REQUEST,event.getLoginParameter("Email"));
+			LOGGER.info(LOG_MSG_LOGIN_REQUEST,event.getLoginParameter("username"));
 
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);
 		} else {
 			Notification.show(LOGIN_FAILED,
 	                  ERROR_MESSAGE,
 	                  Notification.Type.WARNING_MESSAGE);
-			LOGGER.info(LOG_MSG_LOGIN_REQUEST_FAILURE,event.getLoginParameter("Email"));
+			LOGGER.info(LOG_MSG_LOGIN_REQUEST_FAILURE,event.getLoginParameter("username"));
 		}
 
 	}
