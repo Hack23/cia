@@ -868,6 +868,8 @@
  * @group tree
  */
 
+/** Expander button visual - expanded */
+
 /**
  *
  *
@@ -957,7 +959,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "8.0.5";
+	content: "8.1.0.alpha6";
 }
 
 .v-widget {
@@ -2115,6 +2117,8 @@ div.v-layout.v-horizontal.v-widget {
  * @group tree
  */
 
+/** Expander button visual - expanded */
+
 /**
  *
  *
@@ -2202,14 +2206,6 @@ div.v-layout.v-horizontal.v-widget {
 /**
  * @group valo-menu
  */
-
-.v-ie8 .gantt .month.even, .v-ie8 .gantt .day.even {
-	background-color: #ddd;
-}
-
-.v-ie9 .gantt .gantt-container {
-	filter: none;
-}
 
 .v-ie8 .gantt .month.even, .v-ie8 .gantt .day.even {
 	background-color: black;
@@ -2405,6 +2401,10 @@ div.v-layout.v-horizontal.v-widget {
 	overflow: hidden;
 	opacity: 0.5;
 	filter: alpha(opacity=50) ;
+}
+
+.cia .v-draggable {
+	user-select: none !important;
 }
 
 .cia .v-tooltip {
@@ -5448,6 +5448,18 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-grid-scroller-horizontal::-webkit-scrollbar-thumb {
 	min-width: 30px;
+}
+
+.cia .v-grid-row-drag-badge {
+	background-color: red;
+	color: white;
+	display: block;
+	width: 30px;
+	height: 30px;
+	border-radius: 10px;
+	line-height: 30px;
+	text-align: center;
+	float: left;
 }
 
 .cia .v-textfield {
@@ -8993,6 +9005,120 @@ div.v-layout.v-horizontal.v-widget {
 
 .v-ff .cia .v-tree-node-drag-top:before, .v-ff .cia .v-tree-node-drag-bottom:after {
 	line-height: 1px;
+}
+
+.cia .v-tree-grid-expander {
+	display: inline-block;
+	width: 10px;
+	padding-right: 10px;
+}
+
+.cia .v-tree-grid-expander::before {
+	display: inline-block;
+	padding-right: 4px;
+	font-family: FontAwesome;
+}
+
+.cia .v-tree-grid-expander.expanded::before {
+	content: "\f0d7";
+}
+
+.cia .v-tree-grid-expander.collapsed::before {
+	content: "\f0da";
+}
+
+.cia .v-tree-grid-expander.collapse-disabled {
+	opacity: 0.5;
+	filter: alpha(opacity=50) ;
+	cursor: default;
+}
+
+.cia .v-tree-grid-node.depth-0 {
+	padding-left: 0px;
+}
+
+.cia .v-tree-grid-node.depth-1 {
+	padding-left: 20px;
+}
+
+.cia .v-tree-grid-node.depth-2 {
+	padding-left: 40px;
+}
+
+.cia .v-tree-grid-node.depth-3 {
+	padding-left: 60px;
+}
+
+.cia .v-tree-grid-node.depth-4 {
+	padding-left: 80px;
+}
+
+.cia .v-tree-grid-node.depth-5 {
+	padding-left: 100px;
+}
+
+.cia .v-tree-grid-node.depth-6 {
+	padding-left: 120px;
+}
+
+.cia .v-tree-grid-node.depth-7 {
+	padding-left: 140px;
+}
+
+.cia .v-tree-grid-node.depth-8 {
+	padding-left: 160px;
+}
+
+.cia .v-tree-grid-node.depth-9 {
+	padding-left: 180px;
+}
+
+.cia .v-tree-grid-node.depth-10 {
+	padding-left: 200px;
+}
+
+.cia .v-tree-grid-node.depth-11 {
+	padding-left: 220px;
+}
+
+.cia .v-tree-grid-node.depth-12 {
+	padding-left: 240px;
+}
+
+.cia .v-tree-grid-node.depth-13 {
+	padding-left: 260px;
+}
+
+.cia .v-tree-grid-node.depth-14 {
+	padding-left: 280px;
+}
+
+.cia .v-tree-grid-node.depth-15 {
+	padding-left: 300px;
+}
+
+.cia .v-tree-grid-cell-content {
+	display: inline-block;
+}
+
+.cia .v-grid-rowmode-row-focused:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	border: 2px solid #008780;
+	display: none;
+	pointer-events: none;
+}
+
+.cia .v-grid:focus .v-grid-rowmode-row-focused:before {
+	display: block;
+}
+
+.cia .v-grid.v-disabled:focus .v-grid-rowmode-row-focused:before {
+	display: none;
 }
 
 .cia .v-table {

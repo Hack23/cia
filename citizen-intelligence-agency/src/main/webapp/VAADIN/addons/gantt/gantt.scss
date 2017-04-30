@@ -269,16 +269,3 @@
 			
 	background-attachment: local;
 }
- 
-/* IE8 hacks */
-.v-ie8 .gantt {
-	
-	.month.even,
-	.day.even {
-		background-color: #ddd;
-	}
-}
-
-.v-ie9 .gantt .gantt-container { 
-	filter: none;
-}
