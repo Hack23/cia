@@ -82,6 +82,18 @@
           <artifactId>vaadin-themes</artifactId>
           <groupId>com.vaadin</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>vaadin-compatibility-server</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-compatibility-client</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-compatibility-shared</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
