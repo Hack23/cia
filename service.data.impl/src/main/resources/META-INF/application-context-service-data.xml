@@ -36,7 +36,7 @@
 			value="test, production" /> -->
 	</bean>
 
-	<bean id="xADataSource" class="${datasource.xaDataSourceClassName}">
+	<bean id="xADataSource" class="org.postgresql.xa.PGXADataSource">
 		<property name="user" value="${database.username}" />
 		<property name="password" value="${database.password}" />
 		<property name="serverName" value="${database.hostname}" />
