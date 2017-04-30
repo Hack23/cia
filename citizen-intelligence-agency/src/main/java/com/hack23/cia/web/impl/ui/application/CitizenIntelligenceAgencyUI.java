@@ -51,7 +51,7 @@ import com.vaadin.ui.UI;
 @SpringUI
 @SpringViewDisplay
 @Theme("cia")
-@Push(transport = Transport.WEBSOCKET_XHR)
+@Push(transport = Transport.LONG_POLLING)
 @StyleSheet({"https://fonts.googleapis.com/css?family=Inconsolata"})
 public final class CitizenIntelligenceAgencyUI extends UI {
 
