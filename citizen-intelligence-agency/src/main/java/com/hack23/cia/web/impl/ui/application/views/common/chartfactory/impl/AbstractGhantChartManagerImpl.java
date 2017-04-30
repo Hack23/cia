@@ -38,7 +38,7 @@ import org.tltv.gantt.client.shared.SubStep;
 
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.server.Sizeable.Unit;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.ui.VerticalLayout;
 
 /**
  * The Class AbstractGhantChartManagerImpl.

@@ -33,7 +33,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPag
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.ui.VerticalLayout;
 
 /**
  * The Class MinistryGovernmentBodiesModContentFactoryImpl.

@@ -18,7 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.tablefactory;
 
-import com.vaadin.ui.Table;
+import com.vaadin.v7.ui.Table;
 
 /**
  * A factory for creating Table objects.

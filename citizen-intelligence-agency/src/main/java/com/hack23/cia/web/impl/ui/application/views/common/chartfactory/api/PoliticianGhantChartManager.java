@@ -21,7 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
 import java.util.List;
 
 import com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.ui.VerticalLayout;
 
 /**
  * The Interface PoliticianGhantChartManager.

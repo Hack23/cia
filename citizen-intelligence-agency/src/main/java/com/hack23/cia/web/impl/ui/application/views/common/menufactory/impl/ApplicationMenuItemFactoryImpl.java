@@ -35,7 +35,7 @@ import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.ui.VerticalLayout;
 
 /**
  * The Class ApplicationMenuItemFactoryImpl.

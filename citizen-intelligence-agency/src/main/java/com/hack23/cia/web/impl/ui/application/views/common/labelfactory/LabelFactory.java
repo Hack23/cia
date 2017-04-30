@@ -20,7 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.labelfactory;
 
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.ui.AbstractOrderedLayout;
-import com.vaadin.ui.Label;
+import com.vaadin.v7.ui.Label;
 
 /**
  * A factory for creating Label objects.

@@ -26,7 +26,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.DataSummary;
-import com.vaadin.ui.Table;
+import com.vaadin.v7.ui.Table;
 
 /**
  * The Class TableFactoryImpl.

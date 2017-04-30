@@ -25,7 +25,7 @@ import java.util.Locale;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import com.vaadin.data.util.converter.Converter;
+import com.vaadin.v7.data.util.converter.Converter;
 
 /**
  * The Class ListPropertyRenderer.

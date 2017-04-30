@@ -19,20 +19,19 @@
 package com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl;
 
 import org.springframework.stereotype.Service;
-import org.vaadin.gridutil.cell.GridCellFilter;
 
 import com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener;
-import com.vaadin.data.Container;
-import com.vaadin.data.Container.Indexed;
-import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.event.SelectionEvent.SelectionListener;
+import com.vaadin.v7.data.Container;
+import com.vaadin.v7.data.Container.Indexed;
+import com.vaadin.v7.data.util.BeanItemContainer;
+import com.vaadin.v7.event.SelectionEvent.SelectionListener;
 import com.vaadin.ui.AbstractOrderedLayout;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Grid.Column;
-import com.vaadin.ui.Grid.SelectionMode;
+import com.vaadin.v7.ui.Grid;
+import com.vaadin.v7.ui.Grid.Column;
+import com.vaadin.v7.ui.Grid.SelectionMode;
 
 /**
  * The Class GridFactoryImpl.
@@ -76,11 +75,6 @@ public final class GridFactoryImpl implements GridFactory {
 		grid.setSizeFull();
 
 		grid.setStyleName("Level2Header");
-
-		grid.setImmediate(true);
-		grid.setReadOnly(true);
-
-		createGridCellFilter(columnOrder, grid);
 
 		panelContent.addComponent(grid);
 		panelContent.setExpandRatio(grid, ContentRatio.GRID);
@@ -153,11 +147,11 @@ public final class GridFactoryImpl implements GridFactory {
 	 */
 	private static void createGridCellFilter(final Object[] columnOrder, final Grid grid) {
 		if (columnOrder != null) {
-			final GridCellFilter gridCellFilter = new GridCellFilter(grid);
+			//final GridCellFilter gridCellFilter = new GridCellFilter(grid);
 
 			for (final Object column : columnOrder) {
 				if (grid.getColumn(column) != null) {
-					gridCellFilter.setTextFilter(column.toString(), true, true);
+					//gridCellFilter.setTextFilter(column.toString(), true, true);
 				}
 			}
 

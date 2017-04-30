@@ -8,7 +8,8 @@
     -->
 
     <!-- Inherit DefaultWidgetSet -->
-    <inherits name="com.vaadin.DefaultWidgetSet" /> 
+    
+     
 
     <!--
      Uncomment the following to compile the widgetset for one browser only.
@@ -35,10 +36,11 @@
 
     <inherits name="org.tltv.gantt.WidgetSet" />
 
-    <inherits name="org.vaadin.gridutil.WidgetSet" />
-
     <inherits name="fi.jasoft.qrcode.QrcodeWidgetset" />
     
     <inherits name="com.google.gwt.precompress.Precompress"/> 
     
+    <inherits name="com.vaadin.v7.Vaadin7WidgetSet" />
+
+    <inherits name="com.vaadin.DefaultWidgetSet" />
 </module>

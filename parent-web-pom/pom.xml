@@ -236,6 +236,13 @@
           <groupId>com.vaadin</groupId>
           <artifactId>vaadin-maven-plugin</artifactId>
           <version>${cia.project.versions.vaadin}</version>
+          <dependencies>
+            <dependency>
+              <groupId>com.vaadin</groupId>
+              <artifactId>vaadin-compatibility-server</artifactId>
+              <version>8.0.5</version>
+            </dependency>
+          </dependencies>
         </plugin>
       </plugins>
     </pluginManagement>

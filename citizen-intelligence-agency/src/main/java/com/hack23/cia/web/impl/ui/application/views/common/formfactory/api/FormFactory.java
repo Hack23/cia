@@ -21,7 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.formfactory.api;
 import java.io.Serializable;
 import java.util.List;
 
-import com.vaadin.data.util.BeanItem;
+import com.vaadin.v7.data.util.BeanItem;
 import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.FormLayout;
