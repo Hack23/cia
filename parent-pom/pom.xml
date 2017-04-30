@@ -109,8 +109,7 @@
     <cia.project.versions.asm>5.2</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.5</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
-    <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
-    <cia.project.versions.commons.lang3>2.6</cia.project.versions.commons.lang3>
+    <cia.project.versions.commons.lang>2.6.0.redhat-6</cia.project.versions.commons.lang>
     <cia.project.versions.slf4j>1.7.25</cia.project.versions.slf4j>
     <cia.project.versions.logback>1.2.3</cia.project.versions.logback>
     <cia.project.versions.mysql>5.1.34</cia.project.versions.mysql>
@@ -150,7 +149,7 @@
     <cia.project.versions.httpclient>4.5.3</cia.project.versions.httpclient>
     <cia.project.versions.guava>21.0</cia.project.versions.guava>
     <cia.project.versions.jackson>2.9.0.pr3</cia.project.versions.jackson>
-    <cia.project.versions.xerces>2.11.0.SP5</cia.project.versions.xerces>
+    <cia.project.versions.xerces>2.11.0.SP5-redhat-1</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>9.4.5.v20170427</cia.project.versions.jetty>
     <cia.project.versions.javamelody>1.65.0</cia.project.versions.javamelody>
@@ -184,7 +183,7 @@
       <dependency>
         <groupId>commons-codec</groupId>
         <artifactId>commons-codec</artifactId>
-        <version>1.10</version>
+        <version>1.10.0.redhat-5</version>
       </dependency>
       <dependency>
         <groupId>org.apache.httpcomponents</groupId>
@@ -214,7 +213,7 @@
       <dependency>
         <groupId>com.thoughtworks.xstream</groupId>
         <artifactId>xstream</artifactId>
-        <version>1.4.9</version>
+        <version>1.4.9.redhat-2</version>
       </dependency>
       <dependency>
         <groupId>org.apache.lucene</groupId>
