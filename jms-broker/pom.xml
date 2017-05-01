@@ -335,7 +335,7 @@
     <dependency>
       <groupId>org.codehaus.jackson</groupId>
       <artifactId>jackson-mapper-asl</artifactId>
-      <version>1.9.13</version>
+      <version>1.9.13.redhat-3</version>
     </dependency>
     <dependency>
       <groupId>org.jasypt</groupId>
