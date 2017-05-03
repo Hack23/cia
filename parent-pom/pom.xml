@@ -100,10 +100,10 @@
     <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
-    <!-- <cia.project.versions.spring>4.3.6.RELEASE/5.0.0.M4/5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring> -->
-    <cia.project.versions.spring>4.3.8.RELEASE</cia.project.versions.spring>
+    <!-- <cia.project.versions.spring>4.3.8.RELEASE/5.0.0.M5/5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring> -->
+    <cia.project.versions.spring>5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring>
     <!-- <cia.project.versions.spring.security>4.2.0.M1/4.2.3.BUILD-SNAPSHOT</cia.project.versions.spring.security>-->
-    <cia.project.versions.spring.security>4.2.2.RELEASE</cia.project.versions.spring.security>
+    <cia.project.versions.spring.security>4.2.3.BUILD-SNAPSHOT</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.0.BETA-4</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.22.0-CR1</cia.project.versions.javassist>
     <cia.project.versions.asm>5.2</cia.project.versions.asm>
@@ -147,7 +147,7 @@
     <cia.project.versions.jaxb.xjc>2.2.11</cia.project.versions.jaxb.xjc>
     <cia.project.versions.activemq>5.14.5</cia.project.versions.activemq>
     <cia.project.versions.httpclient>4.5.3</cia.project.versions.httpclient>
-    <cia.project.versions.guava>21.0</cia.project.versions.guava>
+    <cia.project.versions.guava>22.0-rc1</cia.project.versions.guava>
     <cia.project.versions.jackson>2.9.0.pr3</cia.project.versions.jackson>
     <cia.project.versions.xerces>2.11.0.SP5-redhat-1</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
@@ -850,7 +850,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-pmd-plugin</artifactId>
-          <version>3.7</version>
+          <version>3.8</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1497,7 +1497,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-pmd-plugin</artifactId>
-            <version>3.7</version>
+            <version>3.8</version>
             <inherited>true</inherited>
             <configuration>
               <linkXref>true</linkXref>
@@ -1710,7 +1710,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-pmd-plugin</artifactId>
-            <version>3.7</version>
+            <version>3.8</version>
             <inherited>true</inherited>
             <configuration>
               <linkXref>true</linkXref>
@@ -1789,7 +1789,7 @@
               </execution>
             </executions>
             <configuration>
-              <excludeProperties>cia.project.versions.spring,cia.project.versions.spring.security</excludeProperties>
+              <excludeProperties>cia.project.versions.spring,cia.project.versions.spring.security,cia.project.versions.slf4j</excludeProperties>
               <properties>
                 <!-- 
                 <property>
@@ -1907,7 +1907,7 @@
               </execution>
             </executions>
             <configuration>
-              <excludeProperties>cia.project.versions.spring</excludeProperties>
+              <excludeProperties>cia.project.versions.spring,cia.project.versions.slf4j</excludeProperties>
               <properties>
                 <!-- 
                 <property>

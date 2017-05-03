@@ -73,45 +73,6 @@
         <version>${cia.project.versions.spring}</version>
       </dependency>
       <dependency>
-        <groupId>com.googlecode.ehcache-spring-annotations</groupId>
-        <artifactId>ehcache-spring-annotations</artifactId>
-        <version>${cia.project.versions.ehcache.spring.annotations}</version>
-        <exclusions>
-          <exclusion>
-            <artifactId>aopalliance</artifactId>
-            <groupId>aopalliance</groupId>
-          </exclusion>
-          <exclusion>
-            <artifactId>commons-codec</artifactId>
-            <groupId>commons-codec</groupId>
-          </exclusion>
-          <exclusion>
-            <artifactId>slf4j-api</artifactId>
-            <groupId>org.slf4j</groupId>
-          </exclusion>
-          <exclusion>
-            <artifactId>spring-beans</artifactId>
-            <groupId>org.springframework</groupId>
-          </exclusion>
-          <exclusion>
-            <artifactId>spring-core</artifactId>
-            <groupId>org.springframework</groupId>
-          </exclusion>
-          <exclusion>
-            <artifactId>spring-aop</artifactId>
-            <groupId>org.springframework</groupId>
-          </exclusion>
-          <exclusion>
-            <artifactId>ehcache-core</artifactId>
-            <groupId>net.sf.ehcache</groupId>
-          </exclusion>
-          <exclusion>
-            <artifactId>jta</artifactId>
-            <groupId>javax.transaction</groupId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
         <groupId>org.springframework.security</groupId>
         <artifactId>spring-security-config</artifactId>
         <version>${cia.project.versions.spring.security}</version>

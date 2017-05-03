@@ -134,6 +134,10 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
+          <artifactId>guava</artifactId>
+          <groupId>com.google.guava</groupId>
+        </exclusion>
+        <exclusion>
           <artifactId>htmlunit-driver</artifactId>
           <groupId>org.seleniumhq.selenium</groupId>
         </exclusion>
@@ -306,6 +310,10 @@
       <version>3.4.0</version>
       <scope>test</scope>
       <exclusions>
+        <exclusion>
+          <artifactId>guava</artifactId>
+          <groupId>com.google.guava</groupId>
+        </exclusion>
         <exclusion>
           <artifactId>cglib-nodep</artifactId>
           <groupId>cglib</groupId>
