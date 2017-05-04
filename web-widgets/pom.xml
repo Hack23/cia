@@ -66,6 +66,37 @@
       <version>${cia.project.versions.jackson}</version>
     </dependency>
     <dependency>
+      <groupId>org.vaadin.addons</groupId>
+      <artifactId>vaadin-grid-util</artifactId>
+      <version>1.2.0-SNAPSHOT</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>vaadin-server</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-client-compiled</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-themes</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-compatibility-server</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-compatibility-client</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-compatibility-shared</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <groupId>org.dussan.vaadin</groupId>
       <artifactId>dcharts</artifactId>
       <version>1.7.2-SNAPSHOT</version>

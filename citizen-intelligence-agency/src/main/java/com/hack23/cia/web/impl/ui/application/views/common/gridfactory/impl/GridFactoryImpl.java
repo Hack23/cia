@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl;
 
 import org.springframework.stereotype.Service;
+import org.vaadin.gridutil.cell.GridCellFilter;
 
 import com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory;
@@ -75,6 +76,9 @@ public final class GridFactoryImpl implements GridFactory {
 		grid.setSizeFull();
 
 		grid.setStyleName("Level2Header");
+
+		createGridCellFilter(columnOrder, grid);
+
 
 		panelContent.addComponent(grid);
 		panelContent.setExpandRatio(grid, ContentRatio.GRID);
@@ -145,13 +149,21 @@ public final class GridFactoryImpl implements GridFactory {
 	 * @param grid
 	 *            the grid
 	 */
+	/**
+	 * Creates the grid cell filter.
+	 *
+	 * @param columnOrder
+	 *            the column order
+	 * @param grid
+	 *            the grid
+	 */
 	private static void createGridCellFilter(final Object[] columnOrder, final Grid grid) {
 		if (columnOrder != null) {
-			//final GridCellFilter gridCellFilter = new GridCellFilter(grid);
+			final GridCellFilter gridCellFilter = new GridCellFilter(grid);
 
 			for (final Object column : columnOrder) {
 				if (grid.getColumn(column) != null) {
-					//gridCellFilter.setTextFilter(column.toString(), true, true);
+					gridCellFilter.setTextFilter(column.toString(), true, true);
 				}
 			}
 
