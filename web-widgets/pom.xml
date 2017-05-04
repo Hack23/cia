@@ -70,7 +70,7 @@
       <artifactId>vaadin-grid-util</artifactId>
       <version>1.2.0-SNAPSHOT</version>
       <exclusions>
-        <exclusion>
+        <exclusion>".settings/org.eclipse.jdt.core.prefs"
           <artifactId>vaadin-server</artifactId>
           <groupId>com.vaadin</groupId>
         </exclusion>
