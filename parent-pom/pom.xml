@@ -90,7 +90,7 @@
     
     <scm-publish.scmBranch>gh-pages</scm-publish.scmBranch>
     <scm-publish.pubScmUrl>scm:git:https://github.com/Hack23/cia.git</scm-publish.pubScmUrl>
-    <scm-publish.siteDocOuputDirectory>${project.reporting.outputDirectory}</scm-publish.siteDocOuputDirectory>
+    <scm-publish.siteDocOuputDirectory>${project.build.directory}/staging</scm-publish.siteDocOuputDirectory>
     
     
     <sonar.host.url>http://localhost:9000</sonar.host.url>
@@ -647,7 +647,7 @@
 				<checkoutDirectory>${scmPublish.checkoutDirectory}</checkoutDirectory>
 				<checkinComment>Publishing Site Docs for ${project.artifactId}:${project.version}
 				</checkinComment>
-				<content>${scm-publish.siteDocOuputDirectory}</content>
+				<content>${project.build.directory}/staging</content>
 				<skipDeletedFiles>true</skipDeletedFiles>
 				<pubScmUrl>${scm-publish.pubScmUrl}</pubScmUrl>
 				<scmBranch>${scm-publish.scmBranch}</scmBranch>
@@ -1514,6 +1514,7 @@
               <inputEncoding>UTF-8</inputEncoding>
               <generateSitemap>true</generateSitemap>
               <topSiteURL>http://hack23.github.io/cia/</topSiteURL>
+              <stagingDirectory>${project.build.directory}/staging</stagingDirectory>
             </configuration>
           </plugin>
           <plugin>
