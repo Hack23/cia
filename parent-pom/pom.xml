@@ -87,6 +87,12 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    
+    <scm-publish.scmBranch>gh-pages</scm-publish.scmBranch>
+    <scm-publish.pubScmUrl>scm:git:https://github.com/Hack23/cia.git</scm-publish.pubScmUrl>
+    <scm-publish.siteDocOuputDirectory>${project.reporting.outputDirectory}</scm-publish.siteDocOuputDirectory>
+    
+    
     <sonar.host.url>http://localhost:9000</sonar.host.url>
     <sonar.jdbc.url>jdbc:postgresql://localhost/sonar</sonar.jdbc.url>
     <sonar.jdbc.driver>org.postgresql.Driver</sonar.jdbc.driver>
@@ -632,6 +638,21 @@
             </dependency>
           </dependencies>
         </plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-scm-publish-plugin</artifactId>
+			<version>1.1</version>
+			<inherited>true</inherited>
+			<configuration>
+				<checkoutDirectory>${scmPublish.checkoutDirectory}</checkoutDirectory>
+				<checkinComment>Publishing Site Docs for ${project.artifactId}:${project.version}
+				</checkinComment>
+				<content>${scm-publish.siteDocOuputDirectory}</content>
+				<skipDeletedFiles>true</skipDeletedFiles>
+				<pubScmUrl>${scm-publish.pubScmUrl}</pubScmUrl>
+				<scmBranch>${scm-publish.scmBranch}</scmBranch>
+			</configuration>
+		</plugin>
         <plugin>
           <groupId>external.atlassian.jgitflow</groupId>
           <artifactId>jgitflow-maven-plugin</artifactId>
@@ -1492,6 +1513,7 @@
             <configuration>
               <inputEncoding>UTF-8</inputEncoding>
               <generateSitemap>true</generateSitemap>
+              <topSiteURL>http://hack23.github.io/cia/</topSiteURL>
             </configuration>
           </plugin>
           <plugin>
