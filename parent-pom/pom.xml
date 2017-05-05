@@ -1513,7 +1513,7 @@
             <configuration>
               <inputEncoding>UTF-8</inputEncoding>
               <generateSitemap>true</generateSitemap>
-              <topSiteURL>http://hack23.github.io/cia/</topSiteURL>
+              <topSiteURL>http://hack23.github.io/cia/${project.version}/</topSiteURL>
               <stagingDirectory>${project.build.directory}/staging</stagingDirectory>
             </configuration>
           </plugin>
