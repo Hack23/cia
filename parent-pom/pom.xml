@@ -87,12 +87,9 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    
     <scm-publish.scmBranch>gh-pages</scm-publish.scmBranch>
     <scm-publish.pubScmUrl>scm:git:https://github.com/Hack23/cia.git</scm-publish.pubScmUrl>
     <scm-publish.siteDocOuputDirectory>${project.build.directory}/staging</scm-publish.siteDocOuputDirectory>
-    
-    
     <sonar.host.url>http://localhost:9000</sonar.host.url>
     <sonar.jdbc.url>jdbc:postgresql://localhost/sonar</sonar.jdbc.url>
     <sonar.jdbc.driver>org.postgresql.Driver</sonar.jdbc.driver>
@@ -638,21 +635,57 @@
             </dependency>
           </dependencies>
         </plugin>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-scm-publish-plugin</artifactId>
-			<version>1.1</version>
-			<inherited>true</inherited>
-			<configuration>
-				<checkoutDirectory>${scmPublish.checkoutDirectory}</checkoutDirectory>
-				<checkinComment>Publishing Site Docs for ${project.artifactId}:${project.version}
-				</checkinComment>
-				<content>${project.build.directory}/staging</content>
-				<skipDeletedFiles>true</skipDeletedFiles>
-				<pubScmUrl>${scm-publish.pubScmUrl}</pubScmUrl>
-				<scmBranch>${scm-publish.scmBranch}</scmBranch>
-			</configuration>
-		</plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-publish-plugin</artifactId>
+          <version>1.1</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.maven.scm</groupId>
+              <artifactId>maven-scm-api</artifactId>
+              <version>1.9.5</version>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.maven.scm</groupId>
+              <artifactId>maven-scm-provider-gitexe</artifactId>
+              <version>1.9.5</version>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.maven.scm</groupId>
+              <artifactId>maven-scm-provider-svn-commons</artifactId>
+              <version>1.9.5</version>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.maven.scm</groupId>
+              <artifactId>maven-scm-provider-svnexe</artifactId>
+              <version>1.9.5</version>
+            </dependency>
+            <dependency>
+              <groupId>commons-io</groupId>
+              <artifactId>commons-io</artifactId>
+              <version>2.5</version>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.commons</groupId>
+              <artifactId>commons-lang3</artifactId>
+              <version>3.5</version>
+            </dependency>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-utils</artifactId>
+              <version>3.0.24</version>
+            </dependency>
+          </dependencies>
+          <inherited>true</inherited>
+          <configuration>
+            <checkoutDirectory>${scmPublish.checkoutDirectory}</checkoutDirectory>
+            <checkinComment>Publishing Site Docs for ${project.artifactId}:${project.version}</checkinComment>
+            <content>${project.build.directory}/staging</content>
+            <skipDeletedFiles>true</skipDeletedFiles>
+            <pubScmUrl>${scm-publish.pubScmUrl}</pubScmUrl>
+            <scmBranch>${scm-publish.scmBranch}</scmBranch>
+          </configuration>
+        </plugin>
         <plugin>
           <groupId>external.atlassian.jgitflow</groupId>
           <artifactId>jgitflow-maven-plugin</artifactId>
