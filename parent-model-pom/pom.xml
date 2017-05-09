@@ -11,7 +11,7 @@
   <packaging>pom</packaging>
   <name>parent-model-pom</name>
   <description>parent-model-pom</description>
-  <url>https://cia.sourceforge.io/</url>
+  <url>https://hack23.github.io/cia/</url>
   <inceptionYear>2008</inceptionYear>
   <organization>
     <name>www.hack23.com</name>
@@ -35,8 +35,8 @@
   </scm>
   <distributionManagement>
     <site>
-      <id>cia.sf.net</id>
-      <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/parent-model-pom</url>
+      <id>github</id>
+      <url>github:https://hack23.github.io/cia/parent-model-pom</url>
     </site>
   </distributionManagement>
   <properties>

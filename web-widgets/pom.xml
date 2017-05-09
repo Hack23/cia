@@ -18,8 +18,8 @@
   </scm>
   <distributionManagement>
     <site>
-      <id>cia.sf.net</id>
-      <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/web-widgets</url>
+      <id>github</id>
+      <url>github:https://hack23.github.io/cia/web-widgets</url>
     </site>
   </distributionManagement>
   <properties>

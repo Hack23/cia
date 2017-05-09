@@ -7,7 +7,7 @@
   <packaging>pom</packaging>
   <name>CIA Project</name>
   <description>CIA Parent pom</description>
-  <url>https://cia.sourceforge.io/</url>
+  <url>https://hack23.github.io/cia/</url>
   <inceptionYear>2008</inceptionYear>
   <organization>
     <name>www.hack23.com</name>
@@ -58,12 +58,12 @@
     <url>https://github.com/Hack23/cia/tree/master/parent-pom</url>
   </scm>
   <issueManagement>
-    <system>trac</system>
-    <url>http://sourceforge.net/apps/trac/cia/</url>
+    <system>github</system>
+    <url>https://github.com/Hack23/cia/issues</url>
   </issueManagement>
   <ciManagement>
-    <system>hudson</system>
-    <url>http://www.hack23.com/</url>
+    <system>jenkins</system>
+    <url>https://www.hack23.com/jenkins/</url>
   </ciManagement>
   <distributionManagement>
     <repository>
@@ -80,10 +80,10 @@
     </snapshotRepository>
     <!-- http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->
     <site>
-      <!-- ><id>cia.sf.net</id>-->
+      <!-- ><id>github</id>-->
       <id>github</id>
-      <!-- ><url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/parent-pom</url>-->
-      <url>git:https://github.com/Hack23/cia.git?gh-pages#</url>
+      <!-- ><url>github:https://hack23.github.io/cia/parent-pom</url>-->
+      <url>github:https://hack23.github.io/cia/</url>
     </site>
   </distributionManagement>
   <properties>

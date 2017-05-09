@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>testfoundation</name>
   <description>Testfoundation</description>
-  <url>https://cia.sourceforge.io/testfoundation/</url>
+  <url>https://hack23.github.io/cia/testfoundation/</url>
   <inceptionYear>2010</inceptionYear>
   <licenses>
     <license>
@@ -27,8 +27,8 @@
   </scm>
   <distributionManagement>
     <site>
-      <id>cia.sf.net</id>
-      <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/testfoundation</url>
+      <id>github</id>
+      <url>github:https://hack23.github.io/cia/testfoundation</url>
     </site>
   </distributionManagement>
   <properties>

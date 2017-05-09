@@ -11,7 +11,7 @@
   <packaging>pom</packaging>
   <name>model.external.val</name>
   <description>model.external.val</description>
-  <url>https://cia.sourceforge.io/model.external.val/</url>
+  <url>https://hack23.github.io/cia/model.external.val/</url>
   <inceptionYear>2008</inceptionYear>
   <modules>
     <module>../model.external.val.partier.impl</module>
@@ -27,8 +27,8 @@
   </scm>
   <distributionManagement>
     <site>
-      <id>cia.sf.net</id>
-      <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/model.external.val/</url>
+      <id>github</id>
+      <url>github:https://hack23.github.io/cia/model.external.val/</url>
     </site>
   </distributionManagement>
 </project>

@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>service.data.impl</name>
   <description>service.data.impl</description>
-  <url>https://cia.sourceforge.io/service.data.impl/</url>
+  <url>https://hack23.github.io/cia/service.data.impl/</url>
   <inceptionYear>2010</inceptionYear>
   <licenses>
     <license>
@@ -27,8 +27,8 @@
   </scm>
   <distributionManagement>
     <site>
-      <id>cia.sf.net</id>
-      <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/service.data.impl</url>
+      <id>github</id>
+      <url>github:https://hack23.github.io/cia/service.data.impl</url>
     </site>
   </distributionManagement>
   <dependencies>

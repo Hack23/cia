@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>service.external.worldbank</name>
   <description>service.external.worldbank</description>
-  <url>https://cia.sourceforge.io/service.external.worldbank/</url>
+  <url>https://hack23.github.io/cia/service.external.worldbank/</url>
   <inceptionYear>2010</inceptionYear>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
@@ -21,8 +21,8 @@
   </scm>
   <distributionManagement>
     <site>
-      <id>cia.sf.net</id>
-      <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/service.external.worldbank</url>
+      <id>github</id>
+      <url>github:https://hack23.github.io/cia/service.external.worldbank</url>
     </site>
   </distributionManagement>
   <dependencies>

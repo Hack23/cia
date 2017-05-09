@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>model.internal.application.user.impl</name>
   <description>model.internal.application.user.impl</description>
-  <url>https://cia.sourceforge.io/model.internal.application.user.impl</url>
+  <url>https://hack23.github.io/cia/model.internal.application.user.impl</url>
   <inceptionYear>2010</inceptionYear>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
@@ -22,8 +22,8 @@
   <distributionManagement>
     <!-- http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->
     <site>
-      <id>cia.sf.net</id>
-      <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/model.internal.application.user.impl</url>
+      <id>github</id>
+      <url>github:https://hack23.github.io/cia/model.internal.application.user.impl</url>
     </site>
   </distributionManagement>
   <dependencies>

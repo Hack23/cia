@@ -11,7 +11,7 @@
   <packaging>pom</packaging>
   <name>model.internal.application</name>
   <description>model.internal.application</description>
-  <url>https://cia.sourceforge.io/model.internal.application/</url>
+  <url>https://hack23.github.io/cia/model.internal.application/</url>
   <inceptionYear>2008</inceptionYear>
   <modules>
     <module>../model.internal.application.user.impl</module>
@@ -24,8 +24,8 @@
   </scm>
   <distributionManagement>
     <site>
-      <id>cia.sf.net</id>
-      <url>scp://shell.sourceforge.net/home/project-web/cia/htdocs/model.internal.application</url>
+      <id>github</id>
+      <url>github:https://hack23.github.io/cia/model.internal.application</url>
     </site>
   </distributionManagement>
 </project>
