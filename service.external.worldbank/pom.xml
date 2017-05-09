@@ -11,18 +11,18 @@
   <packaging>jar</packaging>
   <name>service.external.worldbank</name>
   <description>service.external.worldbank</description>
-  <url>https://hack23.github.io/cia/service.external.worldbank/</url>
+  <url>github:https://hack23.github.io/cia/service.external.worldbank/</url>
   <inceptionYear>2010</inceptionYear>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
+    <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
     <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
   <distributionManagement>
     <site>
       <id>github</id>
-      <url>github:https://hack23.github.io/cia/service.external.worldbank</url>
+      <url>github:http://hack23.github.io/cia/service.external.worldbank</url>
     </site>
   </distributionManagement>
   <dependencies>

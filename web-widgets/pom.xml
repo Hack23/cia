@@ -12,14 +12,14 @@
   <name>Web-Widgets</name>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
+    <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
     <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/web-widgets</url>
   </scm>
   <distributionManagement>
     <site>
       <id>github</id>
-      <url>github:https://hack23.github.io/cia/web-widgets</url>
+      <url>github:http://hack23.github.io/cia/web-widgets</url>
     </site>
   </distributionManagement>
   <properties>

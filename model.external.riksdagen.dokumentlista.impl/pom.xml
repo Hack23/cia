@@ -11,11 +11,11 @@
   <packaging>jar</packaging>
   <name>model.external.riksdagen.dokumentlista.impl</name>
   <description>model.external.riksdagen.dokumentlista.impl</description>
-  <url>https://hack23.github.io/cia/model.external.riksdagen.dokumentlista.impl</url>
+  <url>github:https://hack23.github.io/cia/model.external.riksdagen.dokumentlista.impl</url>
   <inceptionYear>2010</inceptionYear>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
+    <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
     <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
@@ -23,7 +23,7 @@
     <!-- http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->
     <site>
       <id>github</id>
-      <url>github:https://hack23.github.io/cia/model.external.riksdagen.dokumentlista.impl</url>
+      <url>github:http://hack23.github.io/cia/model.external.riksdagen.dokumentlista.impl</url>
     </site>
   </distributionManagement>
   <build>

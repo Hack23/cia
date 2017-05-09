@@ -11,7 +11,7 @@
   <packaging>pom</packaging>
   <name>model.external.val</name>
   <description>model.external.val</description>
-  <url>https://hack23.github.io/cia/model.external.val/</url>
+  <url>github:https://hack23.github.io/cia/model.external.val/</url>
   <inceptionYear>2008</inceptionYear>
   <modules>
     <module>../model.external.val.partier.impl</module>
@@ -21,14 +21,14 @@
   </modules>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
+    <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
     <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/model.external.val</url>
   </scm>
   <distributionManagement>
     <site>
       <id>github</id>
-      <url>github:https://hack23.github.io/cia/model.external.val/</url>
+      <url>github:http://hack23.github.io/cia/model.external.val/</url>
     </site>
   </distributionManagement>
 </project>

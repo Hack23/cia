@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>model.common.api</name>
   <description>model.common.api</description>
-  <url>https://hack23.github.io/cia/model.common.api</url>
+  <url>github:https://hack23.github.io/cia/model.common.api</url>
   <inceptionYear>2010</inceptionYear>
   <licenses>
     <license>
@@ -21,14 +21,14 @@
   </licenses>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
+    <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
     <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/model.common.api</url>
   </scm>
   <distributionManagement>
     <site>
       <id>github</id>
-      <url>github:https://hack23.github.io/cia/model.common.api</url>
+      <url>github:http://hack23.github.io/cia/model.common.api</url>
     </site>
   </distributionManagement>
 </project>

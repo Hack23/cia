@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>service.component.agent.api</name>
   <description>service.component.agent.api</description>
-  <url>https://hack23.github.io/cia/service.component.agent.api</url>
+  <url>github:https://hack23.github.io/cia/service.component.agent.api</url>
   <inceptionYear>2010</inceptionYear>
   <licenses>
     <license>
@@ -21,14 +21,14 @@
   </licenses>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
+    <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
     <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/service.component.agent.api</url>
   </scm>
   <distributionManagement>
     <site>
       <id>github</id>
-      <url>github:https://hack23.github.io/cia/service.component.agent.api</url>
+      <url>github:http://hack23.github.io/cia/service.component.agent.api</url>
     </site>
   </distributionManagement>
   <dependencies>

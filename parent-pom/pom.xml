@@ -7,7 +7,7 @@
   <packaging>pom</packaging>
   <name>CIA Project</name>
   <description>CIA Parent pom</description>
-  <url>https://hack23.github.io/cia/</url>
+  <url>github:https://hack23.github.io/cia/parent-pom/</url>
   <inceptionYear>2008</inceptionYear>
   <organization>
     <name>www.hack23.com</name>
@@ -53,7 +53,7 @@
   </prerequisites>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
+    <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
     <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/parent-pom</url>
   </scm>
@@ -80,10 +80,8 @@
     </snapshotRepository>
     <!-- http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->
     <site>
-      <!-- ><id>github</id>-->
       <id>github</id>
-      <!-- ><url>github:https://hack23.github.io/cia/parent-pom</url>-->
-      <url>github:https://hack23.github.io/cia/</url>
+      <url>github:http://hack23.github.io/cia/parent-pom/</url>
     </site>
   </distributionManagement>
   <properties>
@@ -714,17 +712,6 @@
           <version>3.6</version>
           <dependencies>
             <dependency>
-              <!-- add support for ssh/scp -->
-              <groupId>org.apache.maven.wagon</groupId>
-              <artifactId>wagon-ssh</artifactId>
-              <version>2.12</version>
-            </dependency>
-            <dependency>
-              <groupId>org.apache.maven.wagon</groupId>
-              <artifactId>wagon-ssh-external</artifactId>
-              <version>2.12</version>
-            </dependency>
-            <dependency>
               <groupId>xml-apis</groupId>
               <artifactId>xml-apis</artifactId>
               <version>${cia.project.versions.xmlapis}</version>
@@ -734,11 +721,6 @@
               <artifactId>wagon-git</artifactId>
               <version>2.0.4</version>
             </dependency>
-            <!--             <dependency>
-              <groupId>org.apache.velocity</groupId>
-              <artifactId>velocity</artifactId>
-              <version>1.7.1</version>
-            </dependency>-->
           </dependencies>
         </plugin>
         <plugin>

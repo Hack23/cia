@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>testfoundation</name>
   <description>Testfoundation</description>
-  <url>https://hack23.github.io/cia/testfoundation/</url>
+  <url>github:https://hack23.github.io/cia/testfoundation/</url>
   <inceptionYear>2010</inceptionYear>
   <licenses>
     <license>
@@ -21,14 +21,14 @@
   </licenses>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
+    <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
     <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/testfoundation</url>
   </scm>
   <distributionManagement>
     <site>
       <id>github</id>
-      <url>github:https://hack23.github.io/cia/testfoundation</url>
+      <url>github:http://hack23.github.io/cia/testfoundation</url>
     </site>
   </distributionManagement>
   <properties>

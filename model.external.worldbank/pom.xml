@@ -11,7 +11,7 @@
   <packaging>pom</packaging>
   <name>model.external.worldbank</name>
   <description>model.external.worldbank</description>
-  <url>https://hack23.github.io/cia/model.external.worldbank/</url>
+  <url>github:https://hack23.github.io/cia/model.external.worldbank/</url>
   <inceptionYear>2008</inceptionYear>
   <modules>
     <module>../model.external.worldbank.countries.impl</module>
@@ -21,14 +21,14 @@
   </modules>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
+    <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
     <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/model.external.worldbank</url>
   </scm>
   <distributionManagement>
     <site>
       <id>github</id>
-      <url>github:https://hack23.github.io/cia/model.external.worldbank</url>
+      <url>github:http://hack23.github.io/cia/model.external.worldbank</url>
     </site>
   </distributionManagement>
 </project>

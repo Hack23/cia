@@ -10,16 +10,17 @@
   <artifactId>cia-dist-cloudformation</artifactId>
   <packaging>pom</packaging>
   <name>cia-dist-cloudformation</name>
+  <url>github:http://hack23.github.io/cia/cia-dist-cloudformation</url>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
+    <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
     <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/cia-dist-deb</url>
   </scm>
   <distributionManagement>
     <site>
       <id>github</id>
-      <url>github:https://hack23.github.io/cia/cia-dist-cloudformation</url>
+      <url>github:http://hack23.github.io/cia/cia-dist-cloudformation</url>
     </site>
   </distributionManagement>
   <properties>

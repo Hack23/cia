@@ -10,13 +10,13 @@
   <artifactId>cia-all</artifactId>
   <packaging>pom</packaging>
   <name>cia-all</name>
-  <url>https://hack23.github.io/cia/</url>
+  <url>github:https://hack23.github.io/cia/</url>
   <modules>
     <module>parent-pom</module>
   </modules>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
+    <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
     <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
