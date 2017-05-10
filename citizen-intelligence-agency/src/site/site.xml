@@ -51,96 +51,96 @@
 		<menu ref="reports" />
 
 		<menu name="Project Modules">
-			<item name="cia-dist-deb" href="https://cia.sourceforge.io/cia-dist-deb/" />
-			<item name="cia-dist-cloudformation" href="https://cia.sourceforge.io/cia-dist-cloudformation/" />					
-			<item name="Parent Pom" href="https://cia.sourceforge.io/parent-pom/" />
-			<item name="Parent Model Pom" href="https://cia.sourceforge.io/parent-model-pom/" />
-			<item name="Parent Model JPA2 Pom" href="https://cia.sourceforge.io/parent-model-jpa2-pom/" />
+			<item name="cia-dist-deb" href="https://hack23.github.io/cia/cia-dist-deb/" />
+			<item name="cia-dist-cloudformation" href="https://hack23.github.io/cia/cia-dist-cloudformation/" />					
+			<item name="Parent Pom" href="https://hack23.github.io/cia/parent-pom/" />
+			<item name="Parent Model Pom" href="https://hack23.github.io/cia/parent-model-pom/" />
+			<item name="Parent Model JPA2 Pom" href="https://hack23.github.io/cia/parent-model-jpa2-pom/" />
 			<item name="Parent Model Internal Pom"
-				href="https://cia.sourceforge.io/parent-model-internal-pom/" />
+				href="https://hack23.github.io/cia/parent-model-internal-pom/" />
 			<item name="Parent Model External Pom"
-				href="https://cia.sourceforge.io/parent-model-external-pom/" />
-			<item name="Parent Service Pom" href="https://cia.sourceforge.io/parent-service-pom/" />
-			<item name="Parent Web Pom" href="https://cia.sourceforge.io/parent-web-pom/" />
+				href="https://hack23.github.io/cia/parent-model-external-pom/" />
+			<item name="Parent Service Pom" href="https://hack23.github.io/cia/parent-service-pom/" />
+			<item name="Parent Web Pom" href="https://hack23.github.io/cia/parent-web-pom/" />
 
-			<item name="Web Widgets" href="https://cia.sourceforge.io/web-widgets/" />
+			<item name="Web Widgets" href="https://hack23.github.io/cia/web-widgets/" />
 
-			<item name="Service.Api" href="https://cia.sourceforge.io/service.api/" />
+			<item name="Service.Api" href="https://hack23.github.io/cia/service.api/" />
 
-			<item name="Service.Impl" href="https://cia.sourceforge.io/service.impl/" />
-			<item name="jms-broker" href="https://cia.sourceforge.io/jms-broker/" />
+			<item name="Service.Impl" href="https://hack23.github.io/cia/service.impl/" />
+			<item name="jms-broker" href="https://hack23.github.io/cia/jms-broker/" />
 
 			<item name="Service.Component.Agent.Api"
-				href="https://cia.sourceforge.io/service.component.agent.api/" />
+				href="https://hack23.github.io/cia/service.component.agent.api/" />
 			<item name="Service.Component.Agent.Impl"
-				href="https://cia.sourceforge.io/service.component.agent.impl/" />
+				href="https://hack23.github.io/cia/service.component.agent.impl/" />
 
-			<item name="service.external.common" href="https://cia.sourceforge.io/service.external.common/" />
+			<item name="service.external.common" href="https://hack23.github.io/cia/service.external.common/" />
 			<item name="service.external.worldbank"
-				href="https://cia.sourceforge.io/service.external.worldbank/" />
+				href="https://hack23.github.io/cia/service.external.worldbank/" />
 			<item name="service.external.riksdagen"
-				href="https://cia.sourceforge.io/service.external.riksdagen/" />
-			<item name="service.external.val" href="https://cia.sourceforge.io/service.external.val/" />
-			<item name="service.external.esv" href="https://cia.sourceforge.io/service.external.esv/" />			
-			<item name="service.external.vdem(deprecated)" href="https://cia.sourceforge.io/service.external.vdem/" />
+				href="https://hack23.github.io/cia/service.external.riksdagen/" />
+			<item name="service.external.val" href="https://hack23.github.io/cia/service.external.val/" />
+			<item name="service.external.esv" href="https://hack23.github.io/cia/service.external.esv/" />			
+			<item name="service.external.vdem(deprecated)" href="https://hack23.github.io/cia/service.external.vdem/" />
 
-			<item name="Service.Data.Api" href="https://cia.sourceforge.io/service.data.api/" />
-			<item name="Service.Data.Impl" href="https://cia.sourceforge.io/service.data.impl/" />
+			<item name="Service.Data.Api" href="https://hack23.github.io/cia/service.data.api/" />
+			<item name="Service.Data.Impl" href="https://hack23.github.io/cia/service.data.impl/" />
 
-			<item name="model.common.api" href="https://cia.sourceforge.io/model.common.api/" />
-			<item name="model.common.impl" href="https://cia.sourceforge.io/model.common.impl/" />
+			<item name="model.common.api" href="https://hack23.github.io/cia/model.common.api/" />
+			<item name="model.common.impl" href="https://hack23.github.io/cia/model.common.impl/" />
 
-			<item name="model.internal.application.user.impl" href="https://cia.sourceforge.io/model.internal.application.user.impl/" />
-			<item name="model.internal.application" href="https://cia.sourceforge.io/model.internal.application" />
+			<item name="model.internal.application.user.impl" href="https://hack23.github.io/cia/model.internal.application.user.impl/" />
+			<item name="model.internal.application" href="https://hack23.github.io/cia/model.internal.application" />
 
 			<item name="model.external.worldbank"
-				href="https://cia.sourceforge.io/model.external.worldbank/" />
+				href="https://hack23.github.io/cia/model.external.worldbank/" />
 			<item name="worldbank.countries.impl"
-				href="https://cia.sourceforge.io/model.external.worldbank.countries.impl/" />
+				href="https://hack23.github.io/cia/model.external.worldbank.countries.impl/" />
 			<item name="worldbank.indicators.impl"
-				href="https://cia.sourceforge.io/model.external.worldbank.indicators.impl/" />
+				href="https://hack23.github.io/cia/model.external.worldbank.indicators.impl/" />
 			<item name="worldbank.data.impl"
-				href="https://cia.sourceforge.io/model.external.worldbank.data.impl/" />
+				href="https://hack23.github.io/cia/model.external.worldbank.data.impl/" />
 
 			<item name="vdem.indicators.impl"
-				href="https://cia.sourceforge.io/model.external.vdem.indicators.impl/" />
+				href="https://hack23.github.io/cia/model.external.vdem.indicators.impl/" />
 
 
-			<item name="model.external.val" href="https://cia.sourceforge.io/model.external.val/" />
+			<item name="model.external.val" href="https://hack23.github.io/cia/model.external.val/" />
 			<item name="val.partier.impl"
-				href="https://cia.sourceforge.io/model.external.val.partier.impl/" />
+				href="https://hack23.github.io/cia/model.external.val.partier.impl/" />
 			<item name="val.riksdagsvalkrets.impl"
-				href="https://cia.sourceforge.io/model.external.val.riksdagsvalkrets.impl/" />
+				href="https://hack23.github.io/cia/model.external.val.riksdagsvalkrets.impl/" />
 			<item name="val.landstingvalkrets.impl"
-				href="https://cia.sourceforge.io/model.external.val.landstingvalkrets.impl/" />
+				href="https://hack23.github.io/cia/model.external.val.landstingvalkrets.impl/" />
 			<item name="val.kommunvalkrets.impl"
-				href="https://cia.sourceforge.io/model.external.val.kommunvalkrets.impl/" />
+				href="https://hack23.github.io/cia/model.external.val.kommunvalkrets.impl/" />
 
 			<item name="model.external.riksdagen"
-				href="https://cia.sourceforge.io/model.external.riksdagen/" />
+				href="https://hack23.github.io/cia/model.external.riksdagen/" />
 			<item name="riksdagen.dokumentstatus.impl"
-				href="https://cia.sourceforge.io/model.external.riksdagen.dokumentstatus.impl/" />
+				href="https://hack23.github.io/cia/model.external.riksdagen.dokumentstatus.impl/" />
 			<item name="riksdagen.dokumentlista.impl"
-				href="https://cia.sourceforge.io/model.external.riksdagen.dokumentlista.impl/" />
+				href="https://hack23.github.io/cia/model.external.riksdagen.dokumentlista.impl/" />
 			<item name="riksdagen.documentcontent.impl"
-				href="https://cia.sourceforge.io/model.external.riksdagen.documentcontent.impl/" />
+				href="https://hack23.github.io/cia/model.external.riksdagen.documentcontent.impl/" />
 
 			<item name="riksdagen.personlista.impl"
-				href="https://cia.sourceforge.io/model.external.riksdagen.personlista.impl/" />
+				href="https://hack23.github.io/cia/model.external.riksdagen.personlista.impl/" />
 			<item name="riksdagen.person.impl"
-				href="https://cia.sourceforge.io/model.external.riksdagen.person.impl/" />
+				href="https://hack23.github.io/cia/model.external.riksdagen.person.impl/" />
 			<item name="riksdagen.utskottsforslag.impl"
-				href="https://cia.sourceforge.io/model.external.riksdagen.utskottsforslag.impl/" />
+				href="https://hack23.github.io/cia/model.external.riksdagen.utskottsforslag.impl/" />
 			<item name="riksdagen.voteringlista.impl"
-				href="https://cia.sourceforge.io/model.external.riksdagen.voteringlista.impl/" />
+				href="https://hack23.github.io/cia/model.external.riksdagen.voteringlista.impl/" />
 			<item name="riksdagen.votering.impl"
-				href="https://cia.sourceforge.io/model.external.riksdagen.votering.impl/" />
+				href="https://hack23.github.io/cia/model.external.riksdagen.votering.impl/" />
 
 
-			<item name="testfoundation" href="https://cia.sourceforge.io/testfoundation/" />
+			<item name="testfoundation" href="https://hack23.github.io/cia/testfoundation/" />
 		</menu>
 		<menu name="Legacy Demo Documentation">
-			<item name="Legacy-1.0-demo branch" href="https://cia.sourceforge.io/legacy/" />
+			<item name="Legacy-1.0-demo branch" href="https://hack23.github.io/cia/legacy/" />
 		</menu>
 
 		<menu name="Documentation [Development]">

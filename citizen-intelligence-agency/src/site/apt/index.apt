@@ -47,15 +47,15 @@ Resources
 
 Project Documentation
 
- * Source Code {{{https://cia.sourceforge.io/xref/index.html}Cross-reference Java source code}}.
+ * Source Code {{{http://hack23.github.io/cia/xref/index.html}Cross-reference Java source code}}.
 
- * Javadoc & UML {{{https://cia.sourceforge.io/apidocs/index.html}Generated javadoc with UML diagrams}}.
+ * Javadoc & UML {{{http://hack23.github.io/cia/apidocs/index.html}Generated javadoc with UML diagrams}}.
 
  * Entity Model {{{.//service.data.impl/hbm2doc/entities/index.html}Hibernate Mapping Documentation}}.
 
- * Test Result {{{https://cia.sourceforge.io/surefire-report.html}Surefire test report}}.
+ * Test Result {{{http://hack23.github.io/cia/surefire-report.html}Surefire test report}}.
 
- * Jar Usage Validation {{{https://cia.sourceforge.io/tattleTaleReport/index.html}Tattletale report}}.
+ * Jar Usage Validation {{{http://hack23.github.io/cia/tattleTaleReport/index.html}Tattletale report}}.
 
 
 Installing Debian/Ubuntu package
