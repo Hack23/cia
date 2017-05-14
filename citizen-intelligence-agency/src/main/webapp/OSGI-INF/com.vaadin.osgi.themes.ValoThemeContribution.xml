@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="com.vaadin.osgi.themes.ValoThemeContribution" immediate="true" activate="startup">
+  <implementation class="com.vaadin.osgi.themes.ValoThemeContribution"/>
+  <reference name="HttpService" interface="org.osgi.service.http.HttpService" bind="setHttpService" unbind="unsetHttpService"/>
+</scr:component>
