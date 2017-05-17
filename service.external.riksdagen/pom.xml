@@ -4,7 +4,7 @@
   <parent>
     <artifactId>parent-service-pom</artifactId>
     <groupId>com.hack23.cia</groupId>
-    <version>2017.5.17</version>
+    <version>2017.5.18-SNAPSHOT</version>
     <relativePath>../parent-service-pom/pom.xml</relativePath>
   </parent>
   <artifactId>service.external.riksdagen</artifactId>
@@ -16,7 +16,7 @@
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
-    <tag>cia-all-2017.5.17</tag>
+    <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
   <distributionManagement>
@@ -120,5 +120,5 @@
       <artifactId>logback-classic</artifactId>
     </dependency>
   </dependencies>
-  <reporting></reporting>
+  <reporting />
 </project>
