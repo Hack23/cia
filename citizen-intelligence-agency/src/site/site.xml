@@ -140,7 +140,7 @@
 			<item name="testfoundation" href="https://hack23.github.io/cia/testfoundation/" />
 		</menu>
 		<menu name="Legacy Demo Documentation">
-			<item name="Legacy-1.0-demo branch" href="https://hack23.github.io/cia/legacy/" />
+			<item name="Legacy-1.0-demo branch" href="https://cia.sourceforge.io/legacy/" />
 		</menu>
 
 		<menu name="Documentation [Development]">
