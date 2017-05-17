@@ -116,7 +116,7 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 
 		@Override
 		public String apply(final ViewRiksdagenGovermentRoleMember t) {
-			return t.getRoleCode();
+			return t.getRoleCode()+ "." + t.getDetail();
 		}
 	}
 
