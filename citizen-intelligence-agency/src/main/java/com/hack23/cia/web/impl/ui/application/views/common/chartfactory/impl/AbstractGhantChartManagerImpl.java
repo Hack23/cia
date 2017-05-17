@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -25,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.SortedSet;
+import java.util.TimeZone;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.function.Function;
@@ -32,6 +34,7 @@ import java.util.stream.Collectors;
 
 import org.joda.time.DateTime;
 import org.tltv.gantt.Gantt;
+import org.tltv.gantt.client.shared.AbstractStep.CaptionMode;
 import org.tltv.gantt.client.shared.Resolution;
 import org.tltv.gantt.client.shared.Step;
 import org.tltv.gantt.client.shared.SubStep;
@@ -111,6 +114,7 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 	 * @return the step mapping
 	 */
 	protected abstract StepMapping<T> getStepMapping();
+	
 
 	/**
 	 * Creates the generic gantt.
@@ -141,7 +145,7 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 
 				final String stepName = entry.getKey();
 
-				final Step step = new Step();
+				final Step step = new Step(stepName,CaptionMode.HTML);
 				step.setDescription(stepName);
 
 				final List<T> assignments = entry.getValue();
@@ -221,8 +225,8 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 						.toString();
 			}
 
-			final SubStep sameRoleSubStep = new SubStep(stepName + '.' + subStepName);
-
+			final SubStep sameRoleSubStep = new SubStep(stepName + '.' + subStepName,CaptionMode.HTML);
+			sameRoleSubStep.setDescription(stepName + '.' + subStepName);			
 			sameRoleSubStep.setBackgroundColor(stepMapping.getBackgroundColor(assignmentData));
 
 			sameRoleSubStep.setStartDate(stepMapping.getFromDate(assignmentData).getTime());
