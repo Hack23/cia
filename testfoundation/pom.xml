@@ -232,7 +232,7 @@
     <dependency>
       <groupId>org.databene</groupId>
       <artifactId>contiperf</artifactId>
-      <version>2.4.3</version>
+      <version>2.4.4.hack23pre </version>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
