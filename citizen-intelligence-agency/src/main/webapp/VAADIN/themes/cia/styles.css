@@ -1057,7 +1057,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "8.1.0.alpha7";
+	content: "8.1.0.alpha8";
 }
 
 .v-widget {
@@ -2654,6 +2654,11 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-tooltip h1, .cia .v-tooltip h2, .cia .v-tooltip h3, .cia .v-tooltip h4 {
 	color: inherit;
+}
+
+.cia .v-tooltip pre.v-tooltip-pre {
+	font: inherit;
+	white-space: pre-wrap;
 }
 
 .cia .v-contextmenu {
@@ -10190,7 +10195,7 @@ div.v-layout.v-horizontal.v-widget {
 	display: inline-block;
 }
 
-.cia .v-tree8-rowmode-row-focused:before {
+.cia .v-tree8-row-focused:before {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -10202,11 +10207,23 @@ div.v-layout.v-horizontal.v-widget {
 	pointer-events: none;
 }
 
-.cia .v-tree8:focus .v-tree8-rowmode-row-focused:before {
+.cia .v-tree8-cell-focused {
+	position: static;
+}
+
+.cia .v-tree8-cell-focused:before {
+	display: none;
+}
+
+.cia .v-tree8:focus .v-tree8-row-focused:before {
 	display: block;
 }
 
-.cia .v-tree8.v-disabled:focus .v-tree8-rowmode-row-focused:before {
+.cia .v-tree8.v-disabled:focus .v-tree8-row-focused:before {
+	display: none;
+}
+
+.cia .v-tree8:focus .v-tree8-cell-focused:before {
 	display: none;
 }
 
@@ -10232,10 +10249,6 @@ div.v-layout.v-horizontal.v-widget {
 	border: none;
 }
 
-.cia .v-tree8:focus .v-tree8-rowmode-row-focused:before {
-	display: none;
-}
-
 .cia .v-tree8-cell-content {
 	border: 2px solid #008780;
 	border-color: transparent;
@@ -10243,7 +10256,11 @@ div.v-layout.v-horizontal.v-widget {
 	padding: $v-grid-cell-padding;
 }
 
-.cia .v-tree8:focus .v-tree8-rowmode-cell-focused > .v-tree8-node > .v-tree8-cell-content {
+.cia .v-tree8:focus .v-tree8-row-focused:before {
+	display: none;
+}
+
+.cia .v-tree8:focus .v-tree8-cell-focused > .v-tree8-node > .v-tree8-cell-content {
 	border: 2px solid #008780;
 }
 
@@ -11200,7 +11217,7 @@ div.v-layout.v-horizontal.v-widget {
 	display: inline-block;
 }
 
-.cia .v-treegrid-rowmode-row-focused:before {
+.cia .v-treegrid-row-focused:before {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -11212,11 +11229,23 @@ div.v-layout.v-horizontal.v-widget {
 	pointer-events: none;
 }
 
-.cia .v-treegrid:focus .v-treegrid-rowmode-row-focused:before {
+.cia .v-treegrid-cell-focused {
+	position: static;
+}
+
+.cia .v-treegrid-cell-focused:before {
+	display: none;
+}
+
+.cia .v-treegrid:focus .v-treegrid-row-focused:before {
 	display: block;
 }
 
-.cia .v-treegrid.v-disabled:focus .v-treegrid-rowmode-row-focused:before {
+.cia .v-treegrid.v-disabled:focus .v-treegrid-row-focused:before {
+	display: none;
+}
+
+.cia .v-treegrid:focus .v-treegrid-cell-focused:before {
 	display: none;
 }
 
