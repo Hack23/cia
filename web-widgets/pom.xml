@@ -99,7 +99,7 @@
     <dependency>
       <groupId>org.dussan.vaadin</groupId>
       <artifactId>dcharts</artifactId>
-      <version>1.7.2-SNAPSHOT</version>
+      <version>2.0.0.hack23</version>
       <exclusions>
         <exclusion>
           <artifactId>vaadin-server</artifactId>
