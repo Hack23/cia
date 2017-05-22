@@ -1834,7 +1834,7 @@
               </execution>
             </executions>
             <configuration>
-              <excludeProperties>cia.project.versions.spring,cia.project.versions.spring.security,cia.project.versions.slf4j</excludeProperties>
+              <excludeProperties>cia.project.versions.spring,cia.project.versions.spring.security,cia.project.versions.slf4j,cia.project.versions.guava</excludeProperties>
               <properties>
                 <!-- 
                 <property>
@@ -1952,7 +1952,7 @@
               </execution>
             </executions>
             <configuration>
-              <excludeProperties>cia.project.versions.spring,cia.project.versions.slf4j</excludeProperties>
+              <excludeProperties>cia.project.versions.spring,cia.project.versions.slf4j,cia.project.versions.guava</excludeProperties>
               <properties>
                 <!-- 
                 <property>
