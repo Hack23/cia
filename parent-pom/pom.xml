@@ -150,7 +150,7 @@
     <cia.project.versions.jaxb.xjc>2.2.11</cia.project.versions.jaxb.xjc>
     <cia.project.versions.activemq>5.14.5</cia.project.versions.activemq>
     <cia.project.versions.httpclient>4.5.3</cia.project.versions.httpclient>
-    <cia.project.versions.guava>22.0-rc1</cia.project.versions.guava>
+    <cia.project.versions.guava>22.0</cia.project.versions.guava>
     <cia.project.versions.jackson>2.9.0.pr3</cia.project.versions.jackson>
     <cia.project.versions.xerces>2.11.0.SP5-redhat-1</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
