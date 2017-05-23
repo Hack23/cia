@@ -237,6 +237,7 @@ public abstract class AbstractView extends Panel implements View {
 		pageModeContent.setComponentAlignment(getBarmenu(), Alignment.TOP_CENTER);
 
 		panel = new Panel(panelName);
+		panel.addStyleName("v-panel-page-panel");
 
 		panel.setSizeFull();
 		pageModeContent.addComponent(panel);

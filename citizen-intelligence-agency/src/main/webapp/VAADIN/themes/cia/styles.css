@@ -15438,6 +15438,10 @@ div.v-layout.v-horizontal.v-widget {
 	background: #008780 !important;
 }
 
+.cia .v-panel-page-panel {
+	border: 1px solid #fed552;
+}
+
 .cia .v-label-Header {
 	font-size: 18px;
 	color: #fed552;
