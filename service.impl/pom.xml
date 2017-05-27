@@ -50,7 +50,7 @@
     <dependency>
       <groupId>com.google.apis</groupId>
       <artifactId>google-api-services-translate</artifactId>
-      <version>v2-rev49-1.22.0</version>
+      <version>v2-rev50-1.22.0</version>
       <exclusions>
         <exclusion>
           <artifactId>commons-logging</artifactId>
@@ -285,7 +285,7 @@
     <dependency>
       <groupId>com.sun.mail</groupId>
       <artifactId>javax.mail</artifactId>
-      <version>1.6.0-rc1</version>
+      <version>1.6.0-rc2</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.security</groupId>
