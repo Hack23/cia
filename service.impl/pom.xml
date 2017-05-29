@@ -50,7 +50,7 @@
     <dependency>
       <groupId>com.google.apis</groupId>
       <artifactId>google-api-services-translate</artifactId>
-      <version>v2-rev50-1.22.0</version>
+      <version>v2-rev51-1.22.0</version>
       <exclusions>
         <exclusion>
           <artifactId>commons-logging</artifactId>
