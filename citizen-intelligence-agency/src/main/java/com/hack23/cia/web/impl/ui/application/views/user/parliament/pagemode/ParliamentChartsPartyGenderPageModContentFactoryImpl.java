@@ -73,7 +73,7 @@ public final class ParliamentChartsPartyGenderPageModContentFactoryImpl extends 
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
-		panel.setCaption(PARTY_GENDER_DAILY_AVERAGE_FOR_ALL_BALLOTS);
+		panel.setCaption(NAME + "::" + PARTY_GENDER_DAILY_AVERAGE_FOR_ALL_BALLOTS);
 
 		return panelContent;
 

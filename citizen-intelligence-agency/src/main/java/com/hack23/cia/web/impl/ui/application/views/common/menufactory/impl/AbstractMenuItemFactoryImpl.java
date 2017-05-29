@@ -306,32 +306,31 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 *            the description
 	 */
 	protected final void createButtonLink(final GridLayout panelContent,final String linkText,final Resource icon, final ClickListener command, final String description) {
-		final GridLayout grid = new GridLayout(2, 1);
+		final GridLayout grid = new GridLayout(1, 2);
 		grid.setWidth(100, Unit.PERCENTAGE);
 		grid.setHeight(100, Unit.PERCENTAGE);
-		grid.setColumnExpandRatio(0, 1);
-		grid.setColumnExpandRatio(1, 2);
+		grid.addStyleName("v-grid-layout-content-overview-panel");
 
-		final Button b = new Button(linkText);
-		b.setStyleName(LINK_STYLE_NAME);
-		b.addClickListener(command);
-		b.setWidth(100, Unit.PERCENTAGE);
+		final Button button = new Button(linkText);
+		button.setStyleName(LINK_STYLE_NAME);
+		button.addClickListener(command);
+		button.setWidth(100, Unit.PERCENTAGE);
 
-		b.setIcon(icon);
-		b.setWidth(100, Unit.PERCENTAGE);
+		button.setIcon(icon);
+		button.setWidth(100, Unit.PERCENTAGE);
 
 
-		grid.addComponent(b, 0, 0);
-		grid.setComponentAlignment(b, Alignment.MIDDLE_LEFT);
+		grid.addComponent(button, 0, 0);
+		grid.setComponentAlignment(button, Alignment.TOP_LEFT);
 
 		final Label descriptionLabel = new Label(description);
 		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
-		grid.addComponent(descriptionLabel,1,0);
-		grid.setComponentAlignment(descriptionLabel, Alignment.MIDDLE_LEFT);
+		grid.addComponent(descriptionLabel,0,1);
+		grid.setComponentAlignment(descriptionLabel, Alignment.TOP_LEFT);
 
 
 		panelContent.addComponent(grid);
-		panelContent.setComponentAlignment(grid, Alignment.MIDDLE_LEFT);
+		panelContent.setComponentAlignment(grid, Alignment.TOP_LEFT);
 	}
 
 	/**

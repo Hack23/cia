@@ -92,7 +92,7 @@ public final class CommitteeRankingCurrentCommitteePartiesChartsPageModContentFa
 
 		panelContent.addComponent(chartLayout);
 
-		panel.setCaption(CHARTS + parameters);
+		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

@@ -99,7 +99,7 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 					new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId",
 							"org","roleDescription", "label","subTitle","docId" }, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME,"docId"), null, null);
 
-			panel.setCaption(MINISTRY + viewRiksdagenMinistry.getNameId());
+			panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);
 

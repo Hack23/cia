@@ -72,7 +72,7 @@ public final class ParliamentChartsPartyAgePageModContentFactoryImpl extends Abs
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
-		panel.setCaption(PARTY_AGE_DAILY_AVERAGE_FOR_ALL_BALLOTS);
+		panel.setCaption(NAME + "::" + PARTY_AGE_DAILY_AVERAGE_FOR_ALL_BALLOTS);
 
 		return panelContent;
 

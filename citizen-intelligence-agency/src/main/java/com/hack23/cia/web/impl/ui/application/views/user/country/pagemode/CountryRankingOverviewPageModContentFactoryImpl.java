@@ -68,7 +68,7 @@ public final class CountryRankingOverviewPageModContentFactoryImpl extends Abstr
 		getCountryMenuItemFactory().createOverviewPage(panelContent);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
-		panel.setCaption(OVERVIEW);
+		panel.setCaption(NAME + "::" + OVERVIEW);
 
 		return panelContent;
 

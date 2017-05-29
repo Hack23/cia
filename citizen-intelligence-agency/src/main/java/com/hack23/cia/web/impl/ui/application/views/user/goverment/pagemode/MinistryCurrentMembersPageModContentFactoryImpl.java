@@ -99,7 +99,7 @@ public final class MinistryCurrentMembersPageModContentFactoryImpl extends Abstr
 							"fromDate", "toDate" }, new String[] { "roleId", "personId", "detail", "active" },
 					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null, null);
 
-			panel.setCaption(MINISTRY + viewRiksdagenMinistry.getNameId());
+			panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);
 

@@ -81,7 +81,7 @@ public final class MinistryGovernmentBodiesModContentFactoryImpl extends Abstrac
 
 			governmentBodyChartDataManager.createMinistryGovernmentBodyHeadcountSummaryChart(panelContent, viewRiksdagenMinistry.getNameId());
 
-			panel.setCaption(MINISTRY + viewRiksdagenMinistry.getNameId());
+			panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);
 

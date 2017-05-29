@@ -139,7 +139,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 			}
 
-			panel.setCaption(USERHOME);
+			panel.setCaption(NAME + "::" + USERHOME);
 
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);

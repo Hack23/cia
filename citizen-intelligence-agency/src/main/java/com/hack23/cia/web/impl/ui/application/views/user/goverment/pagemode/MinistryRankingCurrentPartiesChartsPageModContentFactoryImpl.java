@@ -84,7 +84,7 @@ public final class MinistryRankingCurrentPartiesChartsPageModContentFactoryImpl 
 
 		panelContent.addComponent(chartLayout);
 
-		panel.setCaption(CHARTS + parameters);
+		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

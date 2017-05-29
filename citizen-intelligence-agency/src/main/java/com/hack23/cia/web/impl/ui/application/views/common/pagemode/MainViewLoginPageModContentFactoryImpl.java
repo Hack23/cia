@@ -46,7 +46,7 @@ import com.vaadin.v7.ui.VerticalLayout;
 public final class MainViewLoginPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
 	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_MAIN. */
-	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = "Citizen Intelligence Agency::Main";
+	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = "Citizen Intelligence Agency";
 
 	/** The Constant NAME. */
 	public static final String NAME = CommonsViews.MAIN_VIEW_NAME;
@@ -70,7 +70,7 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractPageMo
 		final VerticalLayout content = createPanelContent();
 		final String pageId = getPageId(parameters);
 
-		panel.setCaption(CITIZEN_INTELLIGENCE_AGENCY_MAIN);
+		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
@@ -91,7 +91,7 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractPageMo
 
 		content.addComponent(loginForm);
 
-		panel.setCaption(CITIZEN_INTELLIGENCE_AGENCY_MAIN);
+		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);
 

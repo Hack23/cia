@@ -98,7 +98,7 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractPag
 
 		content.addComponent(registerLayout);
 
-		panel.setCaption(CITIZEN_INTELLIGENCE_AGENCY_MAIN);
+		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);
 

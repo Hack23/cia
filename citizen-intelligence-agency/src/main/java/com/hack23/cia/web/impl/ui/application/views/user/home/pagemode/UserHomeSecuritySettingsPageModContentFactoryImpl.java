@@ -101,7 +101,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 
 		}
 
-		panel.setCaption(USERHOME + SECURITY_SETTINGS);
+		panel.setCaption(NAME + "::" + USERHOME + SECURITY_SETTINGS);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

@@ -63,7 +63,7 @@ public final class MainViewOverviewPageModContentFactoryImpl extends AbstractPag
 		final VerticalLayout panelContent = createPanelContent();
 		final String pageId = getPageId(parameters);
 
-		panel.setCaption(CITIZEN_INTELLIGENCE_AGENCY_MAIN);
+		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
@@ -71,7 +71,7 @@ public final class MainViewOverviewPageModContentFactoryImpl extends AbstractPag
 
 		getMenuItemFactory().createOverviewPage(panelContent);
 
-		panel.setCaption(CITIZEN_INTELLIGENCE_AGENCY_MAIN);
+		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);
 

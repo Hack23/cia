@@ -84,7 +84,7 @@ public final class MinistryRankingAllRolesChartsPageModContentFactoryImpl
 
 		ministryGhantChartManager.createRoleGhant(panelContent, allMembers);
 
-		panel.setCaption(CHARTS + parameters);
+		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

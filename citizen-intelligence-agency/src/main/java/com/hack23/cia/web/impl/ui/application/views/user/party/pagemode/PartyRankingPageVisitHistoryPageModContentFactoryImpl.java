@@ -44,7 +44,7 @@ public final class PartyRankingPageVisitHistoryPageModContentFactoryImpl
 	public static final String NAME = UserViews.PARTY_RANKING_VIEW_NAME;
 
 	/** The Constant PAGE_VISIT_HISTORY. */
-	private static final String PAGE_VISIT_HISTORY = "Page Visit History:";
+	private static final String PAGE_VISIT_HISTORY = "Page Visit History";
 
 	/** The admin chart data manager. */
 	@Autowired
@@ -69,7 +69,7 @@ public final class PartyRankingPageVisitHistoryPageModContentFactoryImpl
 
 		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
 
-		panel.setCaption(PAGE_VISIT_HISTORY + parameters);
+		panel.setCaption(NAME + "::" + PAGE_VISIT_HISTORY);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

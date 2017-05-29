@@ -73,7 +73,7 @@ public final class CommitteePageVisitHistoryPageModContentFactoryImpl extends Ab
 
 				createPageVisitHistory(NAME,pageId,panelContent);
 
-				panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
+				panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
 		}
 		return panelContent;

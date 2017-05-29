@@ -44,7 +44,7 @@ public final class MinistryRankingDataGridPageModContentFactoryImpl
 		extends AbstractMinistryRankingPageModContentFactoryImpl {
 
 	/** The Constant DATAGRID. */
-	private static final String DATAGRID = "Datagrid:";
+	private static final String DATAGRID = "Datagrid";
 
 	/**
 	 * Instantiates a new ministry ranking data grid page mod content factory
@@ -80,7 +80,7 @@ public final class MinistryRankingDataGridPageModContentFactoryImpl
 				new String[] { "nameId", "totalDaysServed", "currentMemberSize", "totalAssignments",
 						"firstAssignmentDate", "lastAssignmentDate", "active" }, new String[] {"active"}, new PageItemPropertyClickListener(UserViews.MINISTRY_VIEW_NAME, "nameId"), null, null);
 
-		panel.setCaption(DATAGRID + parameters);
+		panel.setCaption(NAME + "::" + DATAGRID);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

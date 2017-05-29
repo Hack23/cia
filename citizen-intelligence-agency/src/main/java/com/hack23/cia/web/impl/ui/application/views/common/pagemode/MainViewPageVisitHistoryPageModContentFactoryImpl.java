@@ -64,13 +64,13 @@ public final class MainViewPageVisitHistoryPageModContentFactoryImpl extends Abs
 
 		final String pageId = getPageId(parameters);
 
-		panel.setCaption(CITIZEN_INTELLIGENCE_AGENCY_MAIN);
+		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
 		createPageVisitHistory(NAME,pageId,content);
 
-		panel.setCaption(CITIZEN_INTELLIGENCE_AGENCY_MAIN);
+		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);
 

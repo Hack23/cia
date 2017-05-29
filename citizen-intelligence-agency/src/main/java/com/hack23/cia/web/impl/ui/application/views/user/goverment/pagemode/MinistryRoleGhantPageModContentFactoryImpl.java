@@ -92,7 +92,7 @@ public final class MinistryRoleGhantPageModContentFactoryImpl extends AbstractMi
 
 			ministryGhantChartManager.createRoleGhant(panelContent, allMembers);
 
-			panel.setCaption(MINISTRY + viewRiksdagenMinistry.getNameId());
+			panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);
 

@@ -64,7 +64,7 @@ abstract class AbstractPartyPageModContentFactoryImpl extends AbstractPageModCon
 	 */
 	protected final void pageCompleted(final String parameters, final Component panel, final String pageId,
 			final ViewRiksdagenParty viewRiksdagenParty) {
-		panel.setCaption(new StringBuilder().append(PARTY).append(viewRiksdagenParty.getPartyName()).toString());
+		panel.setCaption(NAME + "::" + new StringBuilder().append(PARTY).append(viewRiksdagenParty.getPartyName()).toString());
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,
 				pageId);

@@ -82,7 +82,7 @@ public final class PoliticianRankingChartsCurrentPartiesPageModContentFactoryImp
 		chartDataManager
 				.createChartPanel(panelContent,dataSeriesFactory.createPartyChartTimeSeriesCurrent(), "Current");
 
-		panel.setCaption(CHARTS);
+		panel.setCaption(NAME + "::" + CHARTS);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

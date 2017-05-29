@@ -67,7 +67,7 @@ public final class MinistryRankingGovernmentBodiesPageModContentFactoryImpl exte
 		final String pageId = getPageId(parameters);
 
 
-		panel.setCaption(GOVERNMENT_BODIES + parameters);
+		panel.setCaption(NAME + "::" + GOVERNMENT_BODIES + parameters);
 
 		governmentBodyChartDataManager.createMinistryGovernmentBodyHeadcountSummaryChart(panelContent);
 

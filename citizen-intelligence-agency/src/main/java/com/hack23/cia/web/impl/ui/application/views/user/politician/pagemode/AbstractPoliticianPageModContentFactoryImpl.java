@@ -85,7 +85,7 @@ abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractPageM
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,
 				UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
 
-		panel.setCaption(POLITICIAN + viewRiksdagenPolitician.getFirstName() + ' '
+		panel.setCaption(NAME + "::" + POLITICIAN + viewRiksdagenPolitician.getFirstName() + ' '
 				+ viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')');
 	}
 

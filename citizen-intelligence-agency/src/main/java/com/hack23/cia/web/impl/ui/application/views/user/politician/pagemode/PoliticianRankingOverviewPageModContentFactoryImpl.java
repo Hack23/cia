@@ -71,7 +71,7 @@ public final class PoliticianRankingOverviewPageModContentFactoryImpl
 
 		getPoliticianRankingMenuItemFactory().createOverviewPage(panelContent);
 
-		panel.setCaption(OVERVIEW + parameters);
+		panel.setCaption(NAME + "::" + OVERVIEW);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

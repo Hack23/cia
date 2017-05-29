@@ -103,7 +103,7 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 					new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId", "org", "docId", "label","roleDescription" }, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null, null);
 
 
-			panel.setCaption(COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
+			panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER,
 					NAME, parameters, pageId);
 		}

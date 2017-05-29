@@ -83,7 +83,7 @@ public final class MinistryRankingCurrentMinistriesChartsPageModContentFactoryIm
 				"Current Ministies, by headcount");
 		panelContent.addComponent(chartLayout);
 
-		panel.setCaption(CHARTS + parameters);
+		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

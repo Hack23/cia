@@ -74,7 +74,7 @@ public final class ParliamentChartsDocumentActivityByTypePageModContentFactoryIm
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
-		panel.setCaption(PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS);
+		panel.setCaption(NAME + "::" + PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS);
 
 		return panelContent;
 

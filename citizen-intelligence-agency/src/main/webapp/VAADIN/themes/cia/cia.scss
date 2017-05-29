@@ -29,7 +29,15 @@
 	$headerFontSize : 18px;
 
 	.v-panel-page-panel {
-		border: 1px solid #fed552;
+		border: 1px solid rgba(0, 0, 0, .6);
+	}
+
+	.v-grid-layout-content-overview-panel {
+		background-color: rgba(0, 0, 0, .6); 	
+		border: 2px inset #2deff9;
+		border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
+		margin: 1px;
+		padding: 6px;		
 	}
 	
 	

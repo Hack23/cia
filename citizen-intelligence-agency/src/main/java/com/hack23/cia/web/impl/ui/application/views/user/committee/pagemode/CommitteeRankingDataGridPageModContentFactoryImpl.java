@@ -46,7 +46,7 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
 
 	/** The Constant DATAGRID. */
-	private static final String DATAGRID = "Datagrid:";
+	private static final String DATAGRID = "Datagrid";
 
 
 	/**
@@ -86,7 +86,7 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 						"totalAssignments", "firstAssignmentDate", "active", "lastAssignmentDate" }, new String[] { "embeddedId","embeddedId.orgCode" , "active" },
 				new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, "embeddedId.orgCode"), null, null);
 
-		panel.setCaption(DATAGRID + parameters);
+		panel.setCaption(NAME + "::" + DATAGRID);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

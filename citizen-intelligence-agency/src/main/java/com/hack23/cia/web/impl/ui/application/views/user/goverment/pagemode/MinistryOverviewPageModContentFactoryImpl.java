@@ -99,7 +99,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 
 			panelContent.setExpandRatio(addMinistryPageLink, ContentRatio.SMALL);
 
-			panel.setCaption(MINISTRY + viewRiksdagenMinistry.getNameId());
+			panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);
 

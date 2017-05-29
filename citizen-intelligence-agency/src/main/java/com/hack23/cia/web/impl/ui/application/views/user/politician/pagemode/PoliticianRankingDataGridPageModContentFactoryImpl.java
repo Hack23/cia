@@ -47,7 +47,7 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 	public static final String NAME = UserViews.POLITICIAN_RANKING_VIEW_NAME;
 
 	/** The Constant DATAGRID. */
-	private static final String DATAGRID = "Datagrid:";
+	private static final String DATAGRID = "Datagrid";
 
 	/**
 	 * Instantiates a new politician ranking data grid page mod content factory
@@ -96,7 +96,7 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 						"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
 						"currentSpeakerAssignments", "gender" }, new String[] { "personId", "active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker","bornYear" }, new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null, null);
 
-		panel.setCaption(DATAGRID + parameters);
+		panel.setCaption(NAME + "::" + DATAGRID);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

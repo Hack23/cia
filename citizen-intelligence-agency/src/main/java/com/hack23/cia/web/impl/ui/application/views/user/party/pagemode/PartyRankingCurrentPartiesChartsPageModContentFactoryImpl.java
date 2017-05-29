@@ -80,7 +80,7 @@ public final class PartyRankingCurrentPartiesChartsPageModContentFactoryImpl ext
 
 		panelContent.addComponent(chartLayout);
 
-		panel.setCaption(CHARTS + parameters);
+		panel.setCaption(NAME + "::" + CHARTS + parameters);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
