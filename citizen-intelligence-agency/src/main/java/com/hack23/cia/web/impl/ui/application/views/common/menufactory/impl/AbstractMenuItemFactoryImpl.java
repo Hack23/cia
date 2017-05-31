@@ -26,19 +26,18 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.Application
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.jarektoro.responsivelayout.ResponsiveLayout;
+import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Resource;
 import com.vaadin.server.Responsive;
 import com.vaadin.server.Sizeable.Unit;
-import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.CssLayout;
-import com.vaadin.ui.GridLayout;
-import com.vaadin.ui.Layout;
-import com.vaadin.v7.ui.Label;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.v7.ui.Label;
 import com.vaadin.v7.ui.VerticalLayout;
 
 /**
@@ -297,7 +296,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 	/**
 	 * Creates the button link.
 	 *
-	 * @param panelContent
+	 * @param row
 	 *            the panel content
 	 * @param linkText
 	 *            the link text
@@ -308,7 +307,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 * @param description
 	 *            the description
 	 */
-	protected final void createButtonLink(final Layout panelContent,final String linkText,final Resource icon, final ClickListener command, final String description) {
+	protected final void createButtonLink(final ResponsiveRow row,final String linkText,final Resource icon, final ClickListener command, final String description) {		
 		CssLayout layout = new CssLayout();
 		layout.addStyleName("v-layout-content-overview-panel-level2");
 		Responsive.makeResponsive(layout);
@@ -332,7 +331,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(descriptionLabel);
 	
-		panelContent.addComponent(layout);
+		row.addColumn().withDisplayRules(12,6,4,4).withComponent(layout);
 	}
 
 	/**
@@ -342,16 +341,14 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 *            the panel content
 	 * @return the grid layout
 	 */
-	protected final Layout createGridLayout(final VerticalLayout panelContent) {
-
-		CssLayout layout = new CssLayout();
-		Responsive.makeResponsive(layout);	
-		layout.addStyleName("v-layout-content-overview-panel-level1");		
+	protected final ResponsiveRow createGridLayout(final VerticalLayout panelContent) {
+		ResponsiveLayout layout = new ResponsiveLayout();
+		layout.addStyleName("v-layout-content-overview-panel-level1");
 		layout.setWidth(100, Unit.PERCENTAGE);
 		layout.setHeight(100, Unit.PERCENTAGE);
 		panelContent.addComponent(layout);
 		panelContent.setExpandRatio(layout, ContentRatio.LARGE);
-		return layout;
+		return layout.addRow();
 	}
 
 }

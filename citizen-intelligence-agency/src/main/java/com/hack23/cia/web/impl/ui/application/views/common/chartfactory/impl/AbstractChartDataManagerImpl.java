@@ -30,8 +30,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.server.Page;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.AbstractOrderedLayout;
-import com.vaadin.v7.ui.HorizontalLayout;
 import com.vaadin.ui.Panel;
+import com.vaadin.v7.ui.HorizontalLayout;
 
 /**
  * The Class AbstractChartDataManagerImpl.

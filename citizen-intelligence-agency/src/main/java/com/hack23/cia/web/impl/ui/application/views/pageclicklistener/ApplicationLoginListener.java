@@ -22,12 +22,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestContextHolder;
 
-import com.vaadin.ui.LoginForm.LoginEvent;
-import com.vaadin.ui.LoginForm.LoginListener;
 import com.hack23.cia.service.api.action.application.LoginRequest;
 import com.hack23.cia.service.api.action.application.LoginResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.ui.LoginForm.LoginEvent;
+import com.vaadin.ui.LoginForm.LoginListener;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 

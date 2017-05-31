@@ -28,9 +28,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageMod
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.server.FontAwesome;
-import com.vaadin.ui.GridLayout;
-import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.v7.ui.VerticalLayout;
@@ -144,7 +143,7 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
-		final Layout grid = createGridLayout(panelContent);
+		final ResponsiveRow grid = createGridLayout(panelContent);
 
 		createButtonLink(grid,OVERVIEW_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW, pageId), "Default description");

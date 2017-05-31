@@ -34,6 +34,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.MainView;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.Viewport;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinSession;
@@ -53,6 +54,7 @@ import com.vaadin.ui.UI;
 @Theme("cia")
 @Push(transport = Transport.LONG_POLLING)
 @StyleSheet({"https://fonts.googleapis.com/css?family=Inconsolata"})
+@Viewport("width=device-width, initial-scale=1")
 public final class CitizenIntelligenceAgencyUI extends UI {
 
 	/** The Constant serialVersionUID. */

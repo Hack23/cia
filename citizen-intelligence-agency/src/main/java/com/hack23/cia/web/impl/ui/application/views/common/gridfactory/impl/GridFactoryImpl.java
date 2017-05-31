@@ -25,11 +25,11 @@ import com.hack23.cia.web.impl.ui.application.views.common.converters.ListProper
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener;
+import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.v7.data.Container;
 import com.vaadin.v7.data.Container.Indexed;
 import com.vaadin.v7.data.util.BeanItemContainer;
 import com.vaadin.v7.event.SelectionEvent.SelectionListener;
-import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.v7.ui.Grid;
 import com.vaadin.v7.ui.Grid.Column;
 import com.vaadin.v7.ui.Grid.SelectionMode;

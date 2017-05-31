@@ -21,9 +21,9 @@ package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.ui.AbstractOrderedLayout;
+import com.vaadin.ui.Link;
 import com.vaadin.v7.ui.HorizontalLayout;
 import com.vaadin.v7.ui.Label;
-import com.vaadin.ui.Link;
 
 /**
  * The Class AbstractAdminSystemPageModContentFactoryImpl.

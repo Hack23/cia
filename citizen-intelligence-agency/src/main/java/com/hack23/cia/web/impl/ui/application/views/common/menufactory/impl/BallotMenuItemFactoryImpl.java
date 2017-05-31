@@ -24,9 +24,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Ballo
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.server.FontAwesome;
-import com.vaadin.ui.GridLayout;
-import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.v7.ui.VerticalLayout;
 
@@ -69,7 +68,7 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
-		final Layout grid = createGridLayout(panelContent);
+		final ResponsiveRow grid = createGridLayout(panelContent);
 
 		createButtonLink(grid,CHARTS_TEXT, FontAwesome.PIE_CHART,
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId), "Default description");

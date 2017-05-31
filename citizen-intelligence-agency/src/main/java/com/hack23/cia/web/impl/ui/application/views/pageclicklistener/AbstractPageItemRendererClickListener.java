@@ -20,9 +20,9 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
 import java.util.Set;
 
+import com.vaadin.ui.UI;
 import com.vaadin.v7.event.SelectionEvent;
 import com.vaadin.v7.event.SelectionEvent.SelectionListener;
-import com.vaadin.ui.UI;
 import com.vaadin.v7.ui.renderers.ClickableRenderer.RendererClickEvent;
 import com.vaadin.v7.ui.renderers.ClickableRenderer.RendererClickListener;
 
