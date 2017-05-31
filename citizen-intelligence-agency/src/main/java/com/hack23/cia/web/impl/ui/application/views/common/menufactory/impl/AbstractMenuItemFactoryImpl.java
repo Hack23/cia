@@ -343,6 +343,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 */
 	protected final ResponsiveRow createGridLayout(final VerticalLayout panelContent) {
 		ResponsiveLayout layout = new ResponsiveLayout();
+		Responsive.makeResponsive(layout);
 		layout.addStyleName("v-layout-content-overview-panel-level1");
 		layout.setWidth(100, Unit.PERCENTAGE);
 		layout.setHeight(100, Unit.PERCENTAGE);
