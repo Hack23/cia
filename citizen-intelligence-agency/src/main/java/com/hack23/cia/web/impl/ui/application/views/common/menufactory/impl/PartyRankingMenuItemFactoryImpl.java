@@ -29,6 +29,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.GridLayout;
+import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.v7.ui.VerticalLayout;
@@ -153,7 +154,7 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent) {
-		final GridLayout grid = createGridLayout(panelContent);
+		final Layout grid = createGridLayout(panelContent);
 
 		createButtonLink(grid,TOTAL_MEMBERS,FontAwesome.GROUP,
 				COMMAND_DATAGRID, "Default description");

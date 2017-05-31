@@ -28,11 +28,14 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Resource;
+import com.vaadin.server.Responsive;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.GridLayout;
+import com.vaadin.ui.Layout;
 import com.vaadin.v7.ui.Label;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
@@ -305,32 +308,31 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 * @param description
 	 *            the description
 	 */
-	protected final void createButtonLink(final GridLayout panelContent,final String linkText,final Resource icon, final ClickListener command, final String description) {
-		final GridLayout grid = new GridLayout(1, 2);
-		grid.setWidth(100, Unit.PERCENTAGE);
-		grid.setHeight(100, Unit.PERCENTAGE);
-		grid.addStyleName("v-grid-layout-content-overview-panel");
+	protected final void createButtonLink(final Layout panelContent,final String linkText,final Resource icon, final ClickListener command, final String description) {
+		CssLayout layout = new CssLayout();
+		layout.addStyleName("v-layout-content-overview-panel-level2");
+		Responsive.makeResponsive(layout);
+		layout.setSizeUndefined();
 
+		
 		final Button button = new Button(linkText);
+		Responsive.makeResponsive(button);
 		button.setStyleName(LINK_STYLE_NAME);
+		button.addStyleName("title");
 		button.addClickListener(command);
-		button.setWidth(100, Unit.PERCENTAGE);
-
 		button.setIcon(icon);
 		button.setWidth(100, Unit.PERCENTAGE);
 
 
-		grid.addComponent(button, 0, 0);
-		grid.setComponentAlignment(button, Alignment.TOP_LEFT);
+		layout.addComponent(button);
 
 		final Label descriptionLabel = new Label(description);
+		descriptionLabel.addStyleName("itembox");
+		Responsive.makeResponsive(descriptionLabel);
 		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
-		grid.addComponent(descriptionLabel,0,1);
-		grid.setComponentAlignment(descriptionLabel, Alignment.TOP_LEFT);
-
-
-		panelContent.addComponent(grid);
-		panelContent.setComponentAlignment(grid, Alignment.TOP_LEFT);
+		layout.addComponent(descriptionLabel);
+	
+		panelContent.addComponent(layout);
 	}
 
 	/**
@@ -340,16 +342,16 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 *            the panel content
 	 * @return the grid layout
 	 */
-	protected final GridLayout createGridLayout(final VerticalLayout panelContent) {
-		final GridLayout grid = new GridLayout(2, 1);
-		grid.setWidth(100, Unit.PERCENTAGE);
-		grid.setHeight(100, Unit.PERCENTAGE);
-		grid.setColumnExpandRatio(0, 1);
-		grid.setColumnExpandRatio(1, 1);
-		grid.setSpacing(true);
-		panelContent.addComponent(grid);
-		panelContent.setExpandRatio(grid, ContentRatio.LARGE);
-		return grid;
+	protected final Layout createGridLayout(final VerticalLayout panelContent) {
+
+		CssLayout layout = new CssLayout();
+		Responsive.makeResponsive(layout);	
+		layout.addStyleName("v-layout-content-overview-panel-level1");		
+		layout.setWidth(100, Unit.PERCENTAGE);
+		layout.setHeight(100, Unit.PERCENTAGE);
+		panelContent.addComponent(layout);
+		panelContent.setExpandRatio(layout, ContentRatio.LARGE);
+		return layout;
 	}
 
 }

@@ -32,15 +32,65 @@
 		border: 1px solid rgba(0, 0, 0, .6);
 	}
 
-	.v-grid-layout-content-overview-panel {
+	.v-layout-content-overview-panel-level1 {
+		overflow: scroll;
 		background-color: rgba(0, 0, 0, .6); 	
 		border: 2px inset #2deff9;
 		border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
-		margin: 1px;
-		padding: 6px;		
+		padding: 6px;
+		margin: 4px;
 	}
 	
+	.v-layout-content-overview-panel-level2 {
+		background-color: rgba(0, 0, 0, .6);
+		color: white; 	
+		border: 2px inset #2deff9;
+		border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
+		padding: 6px;
+		margin: 4px;
+		height: 100px;
+        display: inline-block;
+		
+	    .title {
+	    	font-weight: bold;
+	    	font-size: 20px;
+			height: 40px;
+			text-align: center;
+	    }
 	
+	    .itembox {
+	    	height: 60px;
+	        white-space: normal;
+	        text-align: left;
+	    }	
+	}
+	
+	.v-layout-content-overview-panel-level2[width-range~="0-499px"][height-range~="0-499px"] {
+		width: 100%;
+		
+		.title {
+			width: 100%;
+	    }
+	    
+	    .itembox {
+	    	width: 100%;
+	    }
+		
+	}
+	
+	.v-layout-content-overview-panel-level2[width-range~="500px-"][height-range~="500px-"] {
+	    width: 40%;
+	    
+	    .title {
+			width: 100%;
+	    }
+	    
+	    .itembox {
+	    	width: 100%;
+	    }
+	}
+
+		
 	.v-label-Header {
 	 font-size: 18px;
 	 color: #fed552;	 
