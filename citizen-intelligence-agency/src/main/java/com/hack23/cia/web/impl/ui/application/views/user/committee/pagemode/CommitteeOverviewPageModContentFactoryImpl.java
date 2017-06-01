@@ -83,15 +83,6 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 
 				LabelFactory.createHeader2Label(panelContent,OVERVIEW);
 
-				final VerticalLayout overviewLayout = new VerticalLayout();
-				overviewLayout.setSizeFull();
-
-				panelContent.addComponent(overviewLayout);
-				panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
-
-				getCommitteeMenuItemFactory().createOverviewPage(overviewLayout, pageId);
-
-
 				final Link addCommitteePageLink = getPageLinkFactory().addCommitteePageLink(viewRiksdagenCommittee);
 				panelContent.addComponent(addCommitteePageLink);
 
@@ -101,6 +92,14 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 								"lastAssignmentDate", "totalAssignments", "totalDaysServed",
 								"currentMemberSize" }));
 
+
+				final VerticalLayout overviewLayout = new VerticalLayout();
+				overviewLayout.setSizeFull();
+
+				panelContent.addComponent(overviewLayout);
+				panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
+
+				getCommitteeMenuItemFactory().createOverviewPage(overviewLayout, pageId);
 
 				panelContent.setExpandRatio(addCommitteePageLink,ContentRatio.SMALL);
 

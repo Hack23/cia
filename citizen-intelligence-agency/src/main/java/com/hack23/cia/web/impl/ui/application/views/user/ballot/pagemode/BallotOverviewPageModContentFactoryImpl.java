@@ -111,13 +111,6 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
 
-			final VerticalLayout overviewLayout = new VerticalLayout();
-			overviewLayout.setSizeFull();
-
-			panelContent.addComponent(overviewLayout);
-			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
-
-			getBallotMenuItemFactory().createOverviewPage(overviewLayout, pageId);
 
 			for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {
 
@@ -161,6 +154,13 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 							"totalVotes", "approved", "yesVotes", "noVotes", "ballotType",
 							"abstainVotes", "absentVotes", "embeddedId.ballotId", "noWinner" },
 					new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "embeddedId.party"), "embeddedId.party", null);
+
+			final VerticalLayout overviewLayout = new VerticalLayout();
+			overviewLayout.setSizeFull();
+
+			panelContent.addComponent(overviewLayout);
+			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
+			getBallotMenuItemFactory().createOverviewPage(overviewLayout, pageId);
 
 
 			panel.setCaption(NAME + "::" + BALLOT + pageId);

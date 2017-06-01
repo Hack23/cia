@@ -84,14 +84,6 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
 
-			final VerticalLayout overviewLayout = new VerticalLayout();
-			overviewLayout.setSizeFull();
-
-			panelContent.addComponent(overviewLayout);
-			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
-
-			getPartyMenuItemFactory().createOverviewPage(overviewLayout, pageId);
-
 			final Link addPartyPageLink = getPageLinkFactory().addPartyPageLink(viewRiksdagenParty);
 			panelContent.addComponent(addPartyPageLink);
 
@@ -130,6 +122,13 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 			}
 
+			final VerticalLayout overviewLayout = new VerticalLayout();
+			overviewLayout.setSizeFull();
+
+			panelContent.addComponent(overviewLayout);
+			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
+
+			getPartyMenuItemFactory().createOverviewPage(overviewLayout, pageId);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}

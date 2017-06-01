@@ -92,14 +92,6 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 
 			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
 
-			final VerticalLayout overviewLayout = new VerticalLayout();
-			overviewLayout.setSizeFull();
-
-			panelContent.addComponent(overviewLayout);
-			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
-
-			getDocumentMenuItemFactory().createOverviewPage(overviewLayout, pageId);
-
 			getFormFactory().addFormPanelTextFields(panelContent, new BeanItem<>(documentElement), DocumentElement.class,
 					Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status", "title",
 							"subTitle", "madePublicDate", "createdDate", "systemDate", "relatedId", "label",
@@ -117,6 +109,14 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 										"title", "subTitle", "madePublicDate", "label", "tempLabel", "numberValue",
 										"hangarId", }));
 			}
+
+			final VerticalLayout overviewLayout = new VerticalLayout();
+			overviewLayout.setSizeFull();
+
+			panelContent.addComponent(overviewLayout);
+			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
+
+			getDocumentMenuItemFactory().createOverviewPage(overviewLayout, pageId);
 
 			panel.setContent(panelContent);
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
