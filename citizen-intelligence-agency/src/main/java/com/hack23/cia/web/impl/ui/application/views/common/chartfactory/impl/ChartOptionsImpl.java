@@ -209,7 +209,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 	private static Highlighter createHighLighterNorth() {
 		return new Highlighter().setShow(true).setShowTooltip(true).setTooltipAlwaysVisible(true)
 				.setKeepTooltipInsideChart(true).setTooltipLocation(TooltipLocations.NORTH)
-				.setTooltipAxes(TooltipAxes.XY_BAR);
+				.setTooltipAxes(TooltipAxes.XY_BAR).setShowMarker(true);
 	}
 
 	/**
@@ -245,33 +245,20 @@ public final class ChartOptionsImpl implements ChartOptions {
 
 	@Override
 	public Options createOptionsDonoutChart() {
-		final Legend legend = createdLegendEnhancedInsideNorthWest();
-
-		final Highlighter highlighter = new Highlighter().setShow(true).setShowTooltip(true)
-				.setTooltipAlwaysVisible(true).setKeepTooltipInsideChart(true);
-
-		final SeriesDefaults seriesDefaults = new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
-				.setRendererOptions(new DonutRenderer().setSliceMargin(SLICE_MARGIN).setStartAngle(START_ANGLE).setShowDataLabels(true)
-						.setDataLabels(DataLabels.VALUE));
-
-
-		return new Options().setSeriesDefaults(seriesDefaults).setLegend(legend)
-				.setHighlighter(highlighter).addOption(createDefaultGrid()).addOption(createCursor());
+		return new Options().setSeriesDefaults(createDonoutSeriesDefault()).setLegend(createdLegendEnhancedInsideNorthWest())
+				.setHighlighter(createHighLighter()).addOption(createDefaultGrid()).addOption(createCursor());
 	}
 
 	@Override
 	public Options createOptionsDonoutChartWithSeries(final Series series) {
-		final Legend legend = createdLegendEnhancedInsideNorthWest();
+		return new Options().setSeriesDefaults(createDonoutSeriesDefault()).setLegend(createdLegendEnhancedInsideNorthWest())
+				.setHighlighter(createHighLighter()).addOption(series).addOption(createDefaultGrid()).addOption(createCursor());
+	}
 
-		final Highlighter highlighter = new Highlighter().setShow(true).setShowTooltip(true)
-				.setTooltipAlwaysVisible(true).setKeepTooltipInsideChart(true);
-
-		final SeriesDefaults seriesDefaults = new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
+	private SeriesDefaults createDonoutSeriesDefault() {
+		return new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
 				.setRendererOptions(new DonutRenderer().setSliceMargin(SLICE_MARGIN).setStartAngle(START_ANGLE).setShowDataLabels(true)
 						.setDataLabels(DataLabels.VALUE));
-
-		return new Options().setSeriesDefaults(seriesDefaults).setLegend(legend)
-				.setHighlighter(highlighter).addOption(series).addOption(createDefaultGrid()).addOption(createCursor());
 	}
 
 	@Override
