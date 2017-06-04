@@ -132,9 +132,13 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 	public void createOverviewPage(final VerticalLayout panelContent) {
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
-		createButtonLink(grid, POLITICAL_EXPERIENCE_SUMMARY, FontAwesome.BUG, COMMAND_DATAGRID, "Default description");
+		createButtonLink(grid, POLITICAL_EXPERIENCE_SUMMARY, FontAwesome.BUG, COMMAND_DATAGRID, "All politicans, scoreboard assignments and days served in government, committees, speaker and party positions.");
 
-		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG, COMMAND_PAGEVISITHISTORY, "Default description");
+		createButtonLink(grid, ALL_PARTIES, FontAwesome.GROUP, COMMAND_ALL_PARTIES, "All parties summary by number of roles in parliament");
+
+		createButtonLink(grid, CURRENT_PARTIES, FontAwesome.GROUP, COMMAND_CURRENT_PARTIES, "Current parties roles in parliament");
+		
+		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG, COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
 
 	}
 

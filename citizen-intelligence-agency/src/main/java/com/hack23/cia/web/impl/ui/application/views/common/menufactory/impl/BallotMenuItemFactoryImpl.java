@@ -35,10 +35,6 @@ import com.vaadin.v7.ui.VerticalLayout;
 @Service
 public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements BallotMenuItemFactory {
 
-
-	/** The Constant INDICATORS_TEXT. */
-	private static final String INDICATORS_TEXT = "Indicators";
-
 	/** The Constant CHARTS_TEXT. */
 	private static final String CHARTS_TEXT = "Charts";
 
@@ -61,9 +57,6 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.OVERVIEW, pageId));
 		menuBar.addItem(CHARTS_TEXT, FontAwesome.PIE_CHART,
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId));
-		menuBar.addItem(INDICATORS_TEXT, FontAwesome.PIE_CHART,
-				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.INDICATORS, pageId));
-
 	}
 
 	@Override
@@ -71,11 +64,7 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
 		createButtonLink(grid,CHARTS_TEXT, FontAwesome.PIE_CHART,
-				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId), "Default description");
-
-		createButtonLink(grid,INDICATORS_TEXT, FontAwesome.PIE_CHART,
-				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.INDICATORS, pageId), "Default description");
-
+				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId), "Breakdown by total votes and by party.");
 	}
 
 }

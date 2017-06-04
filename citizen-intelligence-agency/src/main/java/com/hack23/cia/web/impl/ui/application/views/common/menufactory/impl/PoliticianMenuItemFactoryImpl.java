@@ -58,9 +58,6 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 	/** The Constant INDICATORS_TEXT. */
 	private static final String INDICATORS_TEXT = "Indicators";
 
-	/** The Constant CHARTS_TEXT. */
-	private static final String CHARTS_TEXT = "Charts";
-
 	/** The Constant ROLE_GHANT_TEXT. */
 	private static final String ROLE_GHANT_TEXT = "RoleGhant";
 
@@ -114,8 +111,6 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 			politicanItem.addItem(OVERVIEW_TEXT, FontAwesome.BUG,
 					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, pageId));
-			politicanItem.addItem(CHARTS_TEXT, FontAwesome.BUG,
-					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.CHARTS, pageId));
 			politicanItem.addItem(INDICATORS_TEXT, FontAwesome.BUG,
 					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId));
 
@@ -155,39 +150,35 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
-		createButtonLink(grid,OVERVIEW_TEXT, FontAwesome.BUG,
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, pageId), "Default description");
-		createButtonLink(grid,CHARTS_TEXT, FontAwesome.BUG,
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.CHARTS, pageId), "Default description");
 		createButtonLink(grid,INDICATORS_TEXT, FontAwesome.BUG,
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId), "Default description");
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId), "Daily summary of ballots breakdown by won,party rebel,absent and number of ballots");
 
 
 		createButtonLink(grid,TOTAL_EXPERIENCE, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.ROLESUMMARY.toString(), pageId), "Default description");
+				PoliticianPageMode.ROLESUMMARY.toString(), pageId), "Experience summary in EU,government,parliament,committess and party roles");
 
 		createButtonLink(grid,ROLE_LIST, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.ROLELIST.toString(), pageId), "Default description");
+				PoliticianPageMode.ROLELIST.toString(), pageId), "List all roles");
 
 		createButtonLink(grid,ROLE_GHANT_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.ROLEGHANT.toString(), pageId), "Default description");
+				PoliticianPageMode.ROLEGHANT.toString(), pageId), "Gantt chart of all roles");
 
 
 		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId), "Default description");
+				PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId), "Document activity by document type");
 
 		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId), "Default description");
+				PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId), "Document history list");
 
 
 		createButtonLink(grid,VOTE_HISTORY, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.VOTEHISTORY.toString(), pageId), "Default description");
+				PoliticianPageMode.VOTEHISTORY.toString(), pageId), "Summary of all votes");
 
 		createButtonLink(grid,BALLOT_DECISION_SUMMARY_TEXT, FontAwesome.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-				PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId), "Default description");
+				PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId), "Summary of all ballot decisions");
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG,
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId), "Default description");
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId), "View history of page visit for this page.");
 
 	}
 

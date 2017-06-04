@@ -1550,42 +1550,6 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	}
 
 	/**
-	 * Site party charts test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public void sitePartyChartsTest() throws Exception {
-		final WebDriver driver = getWebDriver();
-		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-
-		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.CHARTS.toString(), "S"));
-	}
-
-
-	/**
-	 * Site party indicators test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public void sitePartyIndicatorsTest() throws Exception {
-		final WebDriver driver = getWebDriver();
-		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-
-		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-
-		userPageVisit
-				.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.INDICATORS.toString(), "S"));
-	}
-
-
-	/**
 	 * Site party current members test.
 	 *
 	 * @throws Exception
@@ -1957,24 +1921,6 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
 				PageMode.INDICATORS.toString(), "0980681611418"));
-
-	}
-
-	/**
-	 * Site politican chart test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public void sitePoliticanChartTest() throws Exception {
-		final WebDriver driver = getWebDriver();
-		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
-
-		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
-
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.CHARTS.toString(), "0980681611418"));
 
 	}
 

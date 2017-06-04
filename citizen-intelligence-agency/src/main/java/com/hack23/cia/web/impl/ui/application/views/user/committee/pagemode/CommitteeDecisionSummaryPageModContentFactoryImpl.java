@@ -51,7 +51,7 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = "Committee:";
 
-	/** The Constant DECISION_SUMMARY_NOT_IMPLEMENTED. */
+	/** The Constant DECISION_SUMMARY. */
 	private static final String DECISION_SUMMARY = "Decision Summary";
 
 	/**

@@ -168,7 +168,7 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 				COMMAND_CHARTS_ALL_PARTIES, "Default description");
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
-				COMMAND_PAGEVISITHISTORY, "Default description");
+				COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
 
 	}
 

@@ -61,12 +61,6 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	/** The Constant DOCUMENT_DECISION. */
 	private static final String DOCUMENT_DECISION = "Document Decision";
 
-	/** The Constant INDICATORS_TEXT. */
-	private static final String INDICATORS_TEXT = "Indicators";
-
-	/** The Constant CHARTS_TEXT. */
-	private static final String CHARTS_TEXT = "Charts";
-
 	/** The Constant DOCUMENT_ACTIVITY_TEXT. */
 	private static final String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
 
@@ -91,11 +85,7 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 			menuBar.addItem(OVERVIEW_TEXT, FontAwesome.FILE,
 					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, pageId));
-			menuBar.addItem(CHARTS_TEXT, FontAwesome.FILE,
-					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.CHARTS, pageId));
-			menuBar.addItem(INDICATORS_TEXT, FontAwesome.FILE,
-					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.INDICATORS, pageId));
-
+			
 			final MenuItem documentItem = menuBar.addItem(DOCUMENT, FontAwesome.FILE, null);
 
 			documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
@@ -129,14 +119,6 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 		final ResponsiveRow grid = createGridLayout(panelContent);
-
-		createButtonLink(grid,OVERVIEW_TEXT, FontAwesome.FILE,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, pageId), "Default description");
-		createButtonLink(grid,CHARTS_TEXT, FontAwesome.FILE,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.CHARTS, pageId), "Default description");
-		createButtonLink(grid,INDICATORS_TEXT, FontAwesome.FILE,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.INDICATORS, pageId), "Default description");
-
 
 		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 				DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId), "Default description");

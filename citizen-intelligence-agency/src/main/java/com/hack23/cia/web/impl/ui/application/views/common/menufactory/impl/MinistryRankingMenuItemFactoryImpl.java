@@ -184,7 +184,7 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 
 		createButtonLink(grid,GOVERNMENT_ROLES_CHART, FontAwesome.GROUP, COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT, "Default description");
 
-		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP, COMMAND_PAGEVISITHISTORY, "Default description");
+		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP, COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
 
 	}
 

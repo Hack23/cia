@@ -173,7 +173,7 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.INSTITUTION,
-				COMMAND_PAGEVISITHISTORY, "Default description");
+				COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
 
 	}
 

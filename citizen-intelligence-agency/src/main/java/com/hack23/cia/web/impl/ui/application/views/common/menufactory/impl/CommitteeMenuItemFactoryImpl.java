@@ -46,12 +46,6 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 	/** The Constant DOCUMENT_HISTORY_TEXT. */
 	private static final String DOCUMENT_HISTORY_TEXT = "Document history";
 
-	/** The Constant INDICATORS_TEXT. */
-	private static final String INDICATORS_TEXT = "Indicators";
-
-	/** The Constant CHARTS_TEXT. */
-	private static final String CHARTS_TEXT = "Charts";
-
 	/** The Constant ROLE_GHANT_TEXT. */
 	private static final String ROLE_GHANT_TEXT = "RoleGhant";
 
@@ -117,10 +111,6 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 
 		committeeItem.addItem(OVERVIEW_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, pageId));
-		committeeItem.addItem(CHARTS_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS, pageId));
-		committeeItem.addItem(INDICATORS_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.INDICATORS, pageId));
 
 		final MenuItem rolesItem = committeeItem.addItem(ROLES_TEXT, FontAwesome.GROUP, null);
 
@@ -161,42 +151,34 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
-		createButtonLink(grid,OVERVIEW_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, pageId), "Default description");
-		createButtonLink(grid,CHARTS_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS, pageId), "Default description");
-		createButtonLink(grid,INDICATORS_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.INDICATORS, pageId), "Default description");
-
-
 		createButtonLink(grid,CURRENT_MEMBERS_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.CURRENT_MEMBERS.toString(), pageId), "Default description");
+				CommitteePageMode.CURRENT_MEMBERS.toString(), pageId), "Current roles and days served");
 
 		createButtonLink(grid,MEMBER_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.MEMBERHISTORY.toString(), pageId), "Default description");
+				CommitteePageMode.MEMBERHISTORY.toString(), pageId), "History of all roles and days served");
 
 		createButtonLink(grid,ROLE_GHANT_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), pageId), "Default description");
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), pageId), "Gantt chart of all roles over time");
 
 
 		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.DOCUMENTACTIVITY.toString(), pageId), "Default description");
+				CommitteePageMode.DOCUMENTACTIVITY.toString(), pageId), "Chart of document activity by document type.");
 
 		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.DOCUMENT_HISTORY.toString(), pageId), "Default description");
+				CommitteePageMode.DOCUMENT_HISTORY.toString(), pageId), "Document history list");
 
 
 		createButtonLink(grid,BALLOT_DECISION_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), pageId), "Default description");
+				CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), pageId), "Summary of all ballot decisions");
 
 		createButtonLink(grid,DECISION_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.DECISIONSUMMARY.toString(), pageId), "Default description");
+				CommitteePageMode.DECISIONSUMMARY.toString(), pageId), "Summary of all ballots");
 
 		createButtonLink(grid,DECISION_TYPE_DAILY_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(
-				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId), "Default description");
+				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId), "Chart over decisions by decisions type, daily summary");
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), "Default description");
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), "View history of page visit for this page.");
 
 
 	}

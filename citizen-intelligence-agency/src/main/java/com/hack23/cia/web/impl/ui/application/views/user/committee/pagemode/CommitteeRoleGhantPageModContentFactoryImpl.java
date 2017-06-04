@@ -48,7 +48,7 @@ public final class CommitteeRoleGhantPageModContentFactoryImpl extends AbstractC
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = "Committee:";
 
-	/** The Constant ROLE_GHANT_NOT_IMPLEMENTED. */
+	/** The Constant ROLE_GHANT. */
 	private static final String ROLE_GHANT = "Role chart";
 
 	@Autowired

@@ -49,12 +49,6 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	/** The Constant DOCUMENT_HISTORY_TEXT. */
 	private static final String DOCUMENT_HISTORY_TEXT = "Document history";
 
-	/** The Constant INDICATORS_TEXT. */
-	private static final String INDICATORS_TEXT = "Indicators";
-
-	/** The Constant CHARTS_TEXT. */
-	private static final String CHARTS_TEXT = "Charts";
-
 	/** The Constant ROLE_GHANT_TEXT. */
 	private static final String ROLE_GHANT_TEXT = "RoleGhant";
 
@@ -107,11 +101,6 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 		ministryItem.addItem(OVERVIEW_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW, pageId));
-		ministryItem.addItem(CHARTS_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.CHARTS, pageId));
-		ministryItem.addItem(INDICATORS_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.INDICATORS, pageId));
-
 		final MenuItem rolesItem = ministryItem.addItem(ROLES_TEXT, FontAwesome.GROUP, null);
 
 		rolesItem.addItem(CURRENT_MEMBERS_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
@@ -145,13 +134,6 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
-		createButtonLink(grid,OVERVIEW_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW, pageId), "Default description");
-		createButtonLink(grid,CHARTS_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.CHARTS, pageId), "Default description");
-		createButtonLink(grid,INDICATORS_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.INDICATORS, pageId), "Default description");
-
 		createButtonLink(grid,CURRENT_MEMBERS_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
 				MinistryPageMode.CURRENTMEMBERS.toString(), pageId), "Default description");
 
@@ -172,7 +154,7 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 				MinistryPageMode.DOCUMENTHISTORY.toString(), pageId), "Default description");
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), "Default description");
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), "View history of page visit for this page.");
 
 
 	}
