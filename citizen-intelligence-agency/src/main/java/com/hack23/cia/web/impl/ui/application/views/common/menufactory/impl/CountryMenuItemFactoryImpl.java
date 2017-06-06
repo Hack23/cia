@@ -31,7 +31,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary;
+import com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary_;
 import com.hack23.cia.model.internal.application.data.impl.WorldbankIndicatorDataCountrySummaryEmbeddedId;
+import com.hack23.cia.model.internal.application.data.impl.WorldbankIndicatorDataCountrySummaryEmbeddedId_;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
@@ -159,8 +161,8 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 		final DataContainer<ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId> indicatorDataCountrSummaryDailyDataContainer = applicationManager
 				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);
 
-		return indicatorDataCountrSummaryDailyDataContainer
-				.getAll().parallelStream()
+		return indicatorDataCountrSummaryDailyDataContainer.
+				findListByEmbeddedProperty(ViewWorldbankIndicatorDataCountrySummary.class,ViewWorldbankIndicatorDataCountrySummary_.embeddedId,WorldbankIndicatorDataCountrySummaryEmbeddedId.class,WorldbankIndicatorDataCountrySummaryEmbeddedId_.countryId,"SE").parallelStream()
 				.filter(t -> t != null && t.getSourceValue() != null && t.getEndYear() > 2010 && t.getDataPoint() > 10)
 				.collect(Collectors.groupingBy(ViewWorldbankIndicatorDataCountrySummary::getSourceValue));
 	}
@@ -175,7 +177,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);
 
 		return indicatorDataCountrSummaryDailyDataContainer
-				.getAll().parallelStream()
+				.findListByEmbeddedProperty(ViewWorldbankIndicatorDataCountrySummary.class,ViewWorldbankIndicatorDataCountrySummary_.embeddedId,WorldbankIndicatorDataCountrySummaryEmbeddedId.class,WorldbankIndicatorDataCountrySummaryEmbeddedId_.countryId,"SE").parallelStream()
 				.filter(t -> t != null && t.getSourceValue() != null && t.getEndYear() > 2010 && t.getDataPoint() > 10)
 				.flatMap(t -> Arrays.asList(t.getTopics().split(";")).stream()
 						.map(topic -> new AbstractMap.SimpleEntry<>(topic, t)))

@@ -180,6 +180,18 @@ public final class ChartOptionsImpl implements ChartOptions {
 	}
 
 	/**
+	 * Creates the legend outside.
+	 *
+	 * @return the legend
+	 */
+	private static Legend createLegendInsideOneRow() {
+		return setLegendStyling(new Legend().setShow(true)
+				.setRendererOptions(
+						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(10).setNumberRows(1))
+				.setPlacement(LegendPlacements.INSIDE_GRID));
+	}
+
+	/**
 	 * Sets the legend styling.
 	 *
 	 * @param legend
@@ -239,7 +251,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(NUMBER_TICKS));
 
 		return new Options().addOption(new SeriesDefaults()).addOption(axes)
-				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside())
+				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendInsideOneRow())
 				.addOption(createDefaultGrid()).addOption(createCursor());
 	}
 
