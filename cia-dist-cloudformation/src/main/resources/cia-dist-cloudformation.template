@@ -136,7 +136,7 @@
          "Type":"String"
       },
       "DebPackageUrl":{
-         "Default":"https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2017.5.17/cia-dist-deb-2017.5.17.deb",
+         "Default":"https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2017.6.6/cia-dist-deb-2017.6.6.deb",
          "Description":"The debian package url",
          "Type":"String",
          "MinLength":"8"

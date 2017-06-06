@@ -160,14 +160,14 @@ $ service postgresql restart
 
 
 ```
-$ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2017.5.17/cia-dist-deb-2017.5.17.deb
+$ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2017.6.6/cia-dist-deb-2017.6.6.deb
 ```
 
 
 8. Install debian package
 
 ```
-$ sudo dpkg -i cia-dist-deb-2017.5.17.deb
+$ sudo dpkg -i cia-dist-deb-2017.6.6.deb
 ```
 
 
