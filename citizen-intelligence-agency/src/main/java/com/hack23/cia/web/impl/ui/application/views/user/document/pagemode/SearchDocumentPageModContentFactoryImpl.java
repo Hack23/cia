@@ -30,6 +30,7 @@ import com.hack23.cia.service.api.action.user.SearchDocumentRequest;
 import com.hack23.cia.service.api.action.user.SearchDocumentResponse;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocumentClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocumentResponseHandler;
@@ -91,6 +92,8 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractPageM
 		formPanel.setContent(formContent);
 
 		panelContent.addComponent(searchresultLayout);
+		panelContent.setExpandRatio(searchresultLayout, ContentRatio.LARGE);
+
 
 		final SearchDocumentRequest searchRequest = new SearchDocumentRequest();
 		searchRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
