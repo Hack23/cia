@@ -24,7 +24,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.external.riksdagen.person.impl.DetailData;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.service.api.DataContainer;
@@ -38,7 +37,6 @@ import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.data.util.BeanItemContainer;
 import com.vaadin.v7.ui.HorizontalLayout;
 import com.vaadin.v7.ui.VerticalLayout;
 
@@ -135,11 +133,6 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 						"activeGovernment", "totalDaysServedGovernment", "activeSpeaker", "totalDaysServedSpeaker",
 						"activeCommittee", "totalDaysServedCommittee", "activeParliament", "totalDaysServedParliament",
 						"activeParty", "totalDaysServedParty" }));
-
-		getGridFactory().createBasicBeanItemGrid(
-				panelContent, new BeanItemContainer<>(DetailData.class, personData.getPersonDetailData().getDetailList()),
-				"Detail", new String[] {"code", "detail" }, new String[] { "hjid", "intressentId","detailType" }, null,
-				null, null);
 
 		final VerticalLayout overviewLayout = new VerticalLayout();
 		overviewLayout.setSizeFull();
