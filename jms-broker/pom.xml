@@ -4,7 +4,7 @@
   <parent>
     <artifactId>parent-service-pom</artifactId>
     <groupId>com.hack23.cia</groupId>
-    <version>2017.6.6</version>
+    <version>2017.6.7-SNAPSHOT</version>
     <relativePath>../parent-service-pom/pom.xml</relativePath>
   </parent>
   <artifactId>jms-broker</artifactId>
@@ -22,7 +22,7 @@
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
-    <tag>cia-all-2017.6.6</tag>
+    <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/jms-broker</url>
   </scm>
   <distributionManagement>
