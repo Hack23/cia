@@ -39,8 +39,7 @@ import com.vaadin.v7.ui.VerticalLayout;
 @Component
 public final class ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
-	/** The Constant PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS. */
-	private static final String PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS = "Party Winner, daily average for all ballots";
+	private static final String DECISION_ACTIVIY_DESCRIPTION = "Decision activity by type";
 
 	/** The decision chart data manager. */
 	@Autowired
@@ -71,9 +70,9 @@ public final class ParliamentChartsDecisionActivityByTypePageModContentFactoryIm
 
 		decisionChartDataManager.createDecisionTypeChart(panelContent);
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_TEST_CHART_VIEW, ApplicationEventGroup.USER, NAME,
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
-		panel.setCaption(NAME + "::" + PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS);
+		panel.setCaption(NAME + "::" + DECISION_ACTIVIY_DESCRIPTION);
 
 		return panelContent;
 

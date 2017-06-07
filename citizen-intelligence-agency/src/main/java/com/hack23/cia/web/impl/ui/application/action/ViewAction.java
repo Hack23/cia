@@ -35,8 +35,7 @@ public enum ViewAction {
 	/** The visit ballot view. */
 	VISIT_BALLOT_VIEW,
 
-	/** The visit test chart view. */
-	VISIT_TEST_CHART_VIEW,
+	VISIT_COUNTRY_VIEW,
 
 	/** The visit main view. */
 	VISIT_MAIN_VIEW,
@@ -49,6 +48,8 @@ public enum ViewAction {
 
 	/** The visit politician ranking view. */
 	VISIT_POLITICIAN_RANKING_VIEW,
+	
+	VISIT_PARLIAMENT_RANKING_VIEW,
 
 	/** The visit party view. */
 	VISIT_PARTY_VIEW,

@@ -124,7 +124,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	public Link createCountryRankingViewPageLink() {
 		final Link pageLink = new Link(COUNTRY_RANKING_LINK_TEXT,
 				new ExternalResource(LINK_SEPARATOR + UserViews.COUNTRY_RANKING_VIEW_NAME));
-		pageLink.setId(ViewAction.VISIT_TEST_CHART_VIEW.name());
+		pageLink.setId(ViewAction.VISIT_COUNTRY_VIEW.name());
 		pageLink.setIcon(FontAwesome.FLAG);
 		return pageLink;
 	}
@@ -133,7 +133,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	public Link createParliamentViewPageLink() {
 		final Link pageLink = new Link(PARLIAMENT_RANKING_LINK_TEXT,
 				new ExternalResource(LINK_SEPARATOR + UserViews.PARLIAMENT_RANKING_VIEW_NAME));
-		pageLink.setId(ViewAction.VISIT_TEST_CHART_VIEW.name());
+		pageLink.setId(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW.name());
 		pageLink.setIcon(FontAwesome.INSTITUTION);
 		return pageLink;
 	}

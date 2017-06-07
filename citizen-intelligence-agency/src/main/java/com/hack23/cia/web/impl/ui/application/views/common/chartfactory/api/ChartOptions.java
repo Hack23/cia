@@ -94,4 +94,6 @@ public interface ChartOptions {
 	 */
 	Options createOptionsXYDateFloatLogYAxisLegendOutside(Series series);
 
+	Options createOptionsXYDateFloatLegendInsideOneColumn(Series series);
+
 }

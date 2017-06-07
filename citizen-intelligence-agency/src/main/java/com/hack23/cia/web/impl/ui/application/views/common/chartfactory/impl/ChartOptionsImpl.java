@@ -178,6 +178,13 @@ public final class ChartOptionsImpl implements ChartOptions {
 						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(LEGEND_COLUMNS).setNumberRows(LEGEND_ROWS))
 				.setPlacement(LegendPlacements.OUTSIDE_GRID));
 	}
+	
+	private static Legend createLegendOutsideOneColumn() {
+		return setLegendStyling(new Legend().setShow(true)
+				.setRendererOptions(
+						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(1).setNumberRows(12))
+				.setPlacement(LegendPlacements.OUTSIDE_GRID));
+	}
 
 	/**
 	 * Creates the legend outside.
@@ -298,6 +305,13 @@ public final class ChartOptionsImpl implements ChartOptions {
 	public Options createOptionsXYDateFloatLegendOutside(final Series series) {
 		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
 				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside())
+				.addOption(createDefaultGrid()).addOption(createCursor());
+	}
+
+	@Override
+	public Options createOptionsXYDateFloatLegendInsideOneColumn(final Series series) {
+		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
+				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutsideOneColumn())
 				.addOption(createDefaultGrid()).addOption(createCursor());
 	}
 

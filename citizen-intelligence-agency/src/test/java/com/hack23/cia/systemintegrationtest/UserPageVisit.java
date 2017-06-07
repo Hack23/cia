@@ -140,7 +140,7 @@ public final class UserPageVisit extends Assert {
 				ViewAction.VISIT_PARTY_RANKING_VIEW,
 				ViewAction.VISIT_MINISTRY_RANKING_VIEW,
 				ViewAction.VISIT_COMMITTEE_RANKING_VIEW,
-				ViewAction.VISIT_TEST_CHART_VIEW });
+				ViewAction.VISIT_COUNTRY_VIEW });
 	}
 
 	/**
@@ -389,23 +389,6 @@ public final class UserPageVisit extends Assert {
 
 
 	/**
-	 * Visit test chart view.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	public void VisitTestChartView() throws Exception {
-		final WebElement politicianViewLink = driver.findElement(By
-				.id(ViewAction.VISIT_TEST_CHART_VIEW.name()));
-		performClickAction(politicianViewLink, WAIT_FOR_PAGE_DELAY);
-
-		assertEquals("http://localhost:8080/#!testchartview",
-				driver.getCurrentUrl());
-
-		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW });
-	}
-
-	/**
 	 * Visit politician ranking view.
 	 *
 	 * @throws Exception
@@ -586,7 +569,7 @@ public final class UserPageVisit extends Assert {
 				ViewAction.VISIT_PARTY_RANKING_VIEW,
 				ViewAction.VISIT_MINISTRY_RANKING_VIEW,
 				ViewAction.VISIT_COMMITTEE_RANKING_VIEW,
-				ViewAction.VISIT_TEST_CHART_VIEW });
+				ViewAction.VISIT_COUNTRY_VIEW });
 	}
 
 	/**
