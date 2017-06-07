@@ -123,7 +123,7 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 			addDocumentHistoryByOrgData(dataSeries, series, itemList);
 		}
 
-		addChart(content,DOCUMENT_HISTORY_BY_ORG, new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,DOCUMENT_HISTORY_BY_ORG, new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show(), true);
 	}
 
 

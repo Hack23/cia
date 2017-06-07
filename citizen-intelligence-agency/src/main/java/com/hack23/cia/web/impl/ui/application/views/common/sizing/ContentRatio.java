@@ -45,7 +45,7 @@ public final class ContentRatio {
 	public static final float LARGE = 20;
 
 	/** The Constant SMALL_GRID. */
-	public static final float SMALL_GRID = 4;
+	public static final float SMALL_GRID = 8;
 
 	/** The Constant FULL_SIZE. */
 	public static final float FULL_SIZE = 1.0F;

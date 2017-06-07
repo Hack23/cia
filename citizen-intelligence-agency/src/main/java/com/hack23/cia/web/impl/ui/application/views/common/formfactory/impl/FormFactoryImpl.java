@@ -108,12 +108,19 @@ public final class FormFactoryImpl implements FormFactory {
 		final Panel formPanel = new Panel();
 		formPanel.setSizeFull();
 
+		
 		panelContent.addComponent(formPanel);
-		panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
+		if (displayProperties.size() > 8) {
+			panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
+		}
+		else {
+			panelContent.setExpandRatio(formPanel, ContentRatio.SMALL_GRID);				
+		}
+		
 
 		final FormLayout formContent = new FormLayout();
 		formPanel.setContent(formContent);
-
+		formContent.setWidth(ContentSize.FULL_SIZE);
 
 		final BeanFieldGroup<T> fieldGroup = new BeanFieldGroup<>(beanType);
 		fieldGroup.setItemDataSource(item);

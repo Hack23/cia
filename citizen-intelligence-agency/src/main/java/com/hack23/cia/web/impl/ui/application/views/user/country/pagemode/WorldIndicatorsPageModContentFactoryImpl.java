@@ -119,11 +119,9 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 							Arrays.asList(new String[] {
 									   "indicatorName",
 									   "sourceValue",
+									   "topics",
 									   "sourceNote",
-									   "sourceOrganization",
-									   "startYear",
-									   "endYear",
-									   "dataPoint","topics"}));
+									   "sourceOrganization"}));
 		}
 
 		final DataContainer<WorldBankData, Serializable> dataContainer = getApplicationManager()

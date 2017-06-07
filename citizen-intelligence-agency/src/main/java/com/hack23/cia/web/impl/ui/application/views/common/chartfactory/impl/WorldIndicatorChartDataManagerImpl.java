@@ -81,7 +81,7 @@ public final class WorldIndicatorChartDataManagerImpl extends AbstractChartDataM
 			}			
 		}
 		
-		addChart(content,"Country indicator" +summary.getIndicatorName(), new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsCountryLineChart(series)).show());
+		addChart(content,summary.getIndicatorName(), new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsCountryLineChart(series)).show(), false);
 	}
 
 

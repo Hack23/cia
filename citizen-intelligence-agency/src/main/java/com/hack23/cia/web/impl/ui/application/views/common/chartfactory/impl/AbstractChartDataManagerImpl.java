@@ -39,20 +39,11 @@ import com.vaadin.v7.ui.HorizontalLayout;
 public abstract class AbstractChartDataManagerImpl {
 
 
-	/** The Constant WINDOW_WIDTH_REDUCTION. */
-	private static final int WINDOW_WIDTH_REDUCTION = 50;
-
-	/** The Constant WINDOW_HEIGHT_REDUCTION. */
-	private static final int WINDOW_HEIGHT_REDUCTION = 200;
-
-	/** The Constant CHART_HEIGHT_REDUCTION. */
-	private static final int CHART_HEIGHT_REDUCTION = 100;
-
-	/** The Constant CHART_WIDTH_REDUCTION. */
-	private static final int CHART_WIDTH_REDUCTION = 50;
-
 	/** The Constant CHART_MARGIN_SIZE. */
-	private static final int CHART_MARGIN_SIZE = 5;
+	private static final int CHART_BOTTOM_MARGIN_SIZE = 10;
+	private static final int CHART_RIGHT_MARGIN = 5;
+	private static final int CHART_LEFT_MARGIN= 20;
+	private static final int CHART_TOP_MARGIN_SIZE = 10;
 
 	/** The application manager. */
 	@Autowired
@@ -74,13 +65,15 @@ public abstract class AbstractChartDataManagerImpl {
 	 *            the caption
 	 * @param chart
 	 *            the chart
+	 * @param fullPage TODO
 	 */
-	protected final void addChart(final AbstractOrderedLayout content,final String caption, final DCharts chart) {
+	protected final void addChart(final AbstractOrderedLayout content,final String caption, final DCharts chart, boolean fullPage) {
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 
-		final int browserWindowWidth = Page.getCurrent().getBrowserWindowWidth() - WINDOW_WIDTH_REDUCTION;
-		final int browserWindowHeight = Page.getCurrent().getBrowserWindowHeight() - WINDOW_HEIGHT_REDUCTION;
-
+		final int browserWindowWidth = getChartWindowWidth();				
+				
+		final int browserWindowHeight = getChartWindowHeight(fullPage);
+		
 		horizontalLayout.setWidth(browserWindowWidth, Unit.PIXELS);
 		horizontalLayout.setHeight(browserWindowHeight, Unit.PIXELS);
 
@@ -88,20 +81,33 @@ public abstract class AbstractChartDataManagerImpl {
 		final Panel formPanel = new Panel();
 		formPanel.setSizeFull();
 		formPanel.setContent(horizontalLayout);
+		formPanel.setCaption(caption);
 
 		content.addComponent(formPanel);
 		content.setExpandRatio(formPanel, ContentRatio.LARGE);
 
 
-		chart.setWidth(browserWindowWidth - CHART_WIDTH_REDUCTION, Unit.PIXELS);
-		chart.setHeight(browserWindowHeight - CHART_HEIGHT_REDUCTION, Unit.PIXELS);
-		chart.setMarginRight(CHART_MARGIN_SIZE);
-		chart.setMarginLeft(CHART_MARGIN_SIZE);
-		chart.setMarginBottom(CHART_MARGIN_SIZE);
-		chart.setMarginTop(CHART_MARGIN_SIZE);
+		chart.setWidth(100, Unit.PERCENTAGE);
+		chart.setHeight(95, Unit.PERCENTAGE);
+		chart.setMarginRight(CHART_RIGHT_MARGIN);
+		chart.setMarginLeft(CHART_LEFT_MARGIN);
+		chart.setMarginBottom(CHART_BOTTOM_MARGIN_SIZE);
+		chart.setMarginTop(CHART_TOP_MARGIN_SIZE);
 
 		horizontalLayout.addComponent(chart);
 		chart.setCaption(caption);
+	}
+
+	private int getChartWindowWidth() {
+		return (Page.getCurrent().getBrowserWindowWidth() / 20) * 19;
+	}
+
+	private int getChartWindowHeight(boolean fullPage) {
+		if (fullPage) {
+			return (Page.getCurrent().getBrowserWindowHeight() / 10) * 7;
+		} else {
+			return Page.getCurrent().getBrowserWindowHeight() / 2;
+		}
 	}
 
 	/**

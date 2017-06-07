@@ -174,7 +174,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 			}
 		}
 
-		addChart(content,"Party winner by daily ballot average", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,"Party winner by daily ballot average", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show(), true);
 	}
 
 	/**
@@ -228,7 +228,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 			}
 		}
 
-		addChart(content,"Party result by", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsPartyLineChart(series)).show());
+		addChart(content,"Party result by", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsPartyLineChart(series)).show(), true);
 	}
 
 
@@ -281,7 +281,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 			}
 		}
 
-		addChart(content,"Party ballot chart", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,"Party ballot chart", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show(), true);
 	}
 
 	/**

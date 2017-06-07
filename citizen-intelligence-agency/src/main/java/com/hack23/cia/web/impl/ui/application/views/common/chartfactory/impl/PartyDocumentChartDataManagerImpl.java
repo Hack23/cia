@@ -120,7 +120,7 @@ public final class PartyDocumentChartDataManagerImpl extends AbstractChartDataMa
 			addDocumentHistoryByPartyData(dataSeries, series, map);
 		}
 
-		addChart(content, DOCUMENT_HISTORY_PARTY,new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content, DOCUMENT_HISTORY_PARTY,new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show(), true);
 	}
 
 

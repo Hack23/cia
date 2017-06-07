@@ -125,7 +125,7 @@ public final class PersonDocumentChartDataManagerImpl extends AbstractChartDataM
 			addDocumentHistoryByPersonData(simpleDateFormat, dataSeries, series, map);
 		}
 
-		addChart(content,DOCUMENT_HISTORY, new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,DOCUMENT_HISTORY, new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show(), true);
 	}
 
 

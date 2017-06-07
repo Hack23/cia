@@ -93,7 +93,7 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 
 		}
 
-		addChart(content,"Ballot indicators", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsPersonLineChart(series)).show());
+		addChart(content,"Ballot indicators", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsPersonLineChart(series)).show(), true);
 	}
 
 

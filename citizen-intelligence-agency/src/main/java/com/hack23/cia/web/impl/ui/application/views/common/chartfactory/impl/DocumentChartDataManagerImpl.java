@@ -114,7 +114,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 
 		}
 
-		addChart(content,"Document type", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show());
+		addChart(content,"Document type", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendOutside(series)).show(), true);
 	}
 
 }

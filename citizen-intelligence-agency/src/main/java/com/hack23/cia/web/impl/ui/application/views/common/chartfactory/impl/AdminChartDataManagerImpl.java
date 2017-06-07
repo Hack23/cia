@@ -123,7 +123,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 
 		}
 
-		addChart(content,"Application Action Events daily Summary", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLogYAxisLegendOutside(series)).show());
+		addChart(content,"Application Action Events daily Summary", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(), true);
 	}
 
 
@@ -176,7 +176,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 
 		}
 
-		addChart(content,"Page Action Events daily Summary", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLogYAxisLegendOutside(series)).show());
+		addChart(content,"Page Action Events daily Summary", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(), true);
 	}
 
 
@@ -230,7 +230,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 			}
 		}
 
-		addChart(content, "Page element Action Events daily Summary",new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLogYAxisLegendOutside(series)).show());
+		addChart(content, "Page element Action Events daily Summary",new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(), true);
 	}
 
 

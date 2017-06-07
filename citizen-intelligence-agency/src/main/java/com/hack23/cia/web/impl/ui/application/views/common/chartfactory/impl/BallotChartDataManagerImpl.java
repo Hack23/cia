@@ -64,7 +64,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 		final String caption = "Summary : " +viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getIssue() + " " + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern();
 		tab.setCaption(caption);
 
-		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsDonoutChart()).show());
+		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsDonoutChart()).show(), true);
 	}
 
 
@@ -96,7 +96,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 		}
 
 
-		addChart(content,caption + " ( 4 circles Yes/No/Abstain/Absent votes by party )", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsDonoutChartWithSeries(series)).show());
+		addChart(content,caption + " ( 4 circles Yes/No/Abstain/Absent votes by party )", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsDonoutChartWithSeries(series)).show(), true);
 	}
 
 
