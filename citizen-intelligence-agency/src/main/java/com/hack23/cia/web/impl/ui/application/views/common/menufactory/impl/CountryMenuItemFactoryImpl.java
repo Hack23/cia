@@ -163,7 +163,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 		return indicatorDataCountrSummaryDailyDataContainer.
 				findListByEmbeddedProperty(ViewWorldbankIndicatorDataCountrySummary.class,ViewWorldbankIndicatorDataCountrySummary_.embeddedId,WorldbankIndicatorDataCountrySummaryEmbeddedId.class,WorldbankIndicatorDataCountrySummaryEmbeddedId_.countryId,"SE").parallelStream()
-				.filter(t -> t != null && t.getSourceValue() != null && t.getEndYear() > 2010 && t.getDataPoint() > 10)
+				.filter(t -> t != null && t.getSourceValue() != null && t.getEndYear() > 2010 && t.getDataPoint() > 20)
 				.collect(Collectors.groupingBy(ViewWorldbankIndicatorDataCountrySummary::getSourceValue));
 	}
 
@@ -178,7 +178,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 		return indicatorDataCountrSummaryDailyDataContainer
 				.findListByEmbeddedProperty(ViewWorldbankIndicatorDataCountrySummary.class,ViewWorldbankIndicatorDataCountrySummary_.embeddedId,WorldbankIndicatorDataCountrySummaryEmbeddedId.class,WorldbankIndicatorDataCountrySummaryEmbeddedId_.countryId,"SE").parallelStream()
-				.filter(t -> t != null && t.getSourceValue() != null && t.getEndYear() > 2010 && t.getDataPoint() > 10)
+				.filter(t -> t != null && t.getSourceValue() != null && t.getEndYear() > 2010 && t.getDataPoint() > 20)
 				.flatMap(t -> Arrays.asList(t.getTopics().split(";")).stream()
 						.map(topic -> new AbstractMap.SimpleEntry<>(topic, t)))
 
