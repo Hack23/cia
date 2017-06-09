@@ -444,7 +444,7 @@
          },
          "eu-west-1":{
             "PV64":"NOT_SUPPORTED",
-            "HVM64":"ami-a8d2d7ce",
+            "HVM64":"ami-6c101b0a",
             "HVMG2":"NOT_SUPPORTED"
          },
          "eu-central-1":{
@@ -2181,7 +2181,10 @@
                         "ufw enable\n",
                         "ufw status verbose\n",                        
                         "wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install\n",
-                        "sudo bash install\n",                                                
+                        "sudo bash install\n",
+                        "wget https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb\n",
+						"sudo dpkg -i --force all amazon-ssm-agent.deb\n",
+						"sudo systemctl enable amazon-ssm-agent\n",                                                           
                         "# Signal completion\n",
                         "cfn-signal -e $? ",
                         "    --stack ",
