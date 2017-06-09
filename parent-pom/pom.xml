@@ -231,7 +231,7 @@
       <dependency>
         <groupId>org.jboss.logging</groupId>
         <artifactId>jboss-logging</artifactId>
-        <version>3.3.1.Final</version>
+        <version>3.3.1.Final-redhat-1</version>
       </dependency>
       <dependency>
         <groupId>org.jvnet.hyperjaxb3</groupId>
