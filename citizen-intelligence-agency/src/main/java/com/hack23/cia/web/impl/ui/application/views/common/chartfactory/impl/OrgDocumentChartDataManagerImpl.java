@@ -18,6 +18,9 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -48,7 +51,8 @@ import com.vaadin.ui.AbstractOrderedLayout;
  * The Class OrgDocumentChartDataManagerImpl.
  */
 @Service
-public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataManagerImpl implements OrgDocumentChartDataManager {
+public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataManagerImpl
+		implements OrgDocumentChartDataManager {
 
 	private static final String DOCUMENT_HISTORY_BY_ORG = "Document History by Org";
 
@@ -70,6 +74,8 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 	/** The Constant UNDER_SCORE. */
 	private static final String UNDER_SCORE = "_";
 
+	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
+
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(OrgDocumentChartDataManagerImpl.class);
 
@@ -81,14 +87,12 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 	@Autowired
 	private ChartOptions chartOptions;
 
-
 	/**
 	 * Instantiates a new org document chart data manager impl.
 	 */
 	public OrgDocumentChartDataManagerImpl() {
 		super();
 	}
-
 
 	/**
 	 * Gets the view riksdagen org document daily summary map.
@@ -101,13 +105,15 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 
 		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream()
 				.filter(t -> t != null && !t.getEmbeddedId().getPublicDate().startsWith(YEAR_PREFIX))
-				.collect(Collectors.groupingBy(t -> StringEscapeUtils.unescapeHtml4(t.getEmbeddedId().getOrg()).toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).replace(MINUS_SIGN, EMPTY_STRING).trim()));
+				.collect(Collectors.groupingBy(
+						t -> StringEscapeUtils.unescapeHtml4(t.getEmbeddedId().getOrg()).toUpperCase(Locale.ENGLISH)
+								.replace(UNDER_SCORE, EMPTY_STRING).replace(MINUS_SIGN, EMPTY_STRING).trim()));
 	}
 
-
 	@Override
-	public void createDocumentHistoryChartByOrg(final AbstractOrderedLayout content,final String org) {
-		final String searchOrg = org.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).replace(MINUS_SIGN, EMPTY_STRING).trim();
+	public void createDocumentHistoryChartByOrg(final AbstractOrderedLayout content, final String org) {
+		final String searchOrg = org.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING)
+				.replace(MINUS_SIGN, EMPTY_STRING).trim();
 
 		final DataSeries dataSeries = new DataSeries();
 
@@ -115,17 +121,16 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 
 		final Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> allMap = getViewRiksdagenOrgDocumentDailySummaryMap();
 
-		final List<ViewRiksdagenOrgDocumentDailySummary> itemList = allMap
-				.get(searchOrg);
+		final List<ViewRiksdagenOrgDocumentDailySummary> itemList = allMap.get(searchOrg);
 
 		if (itemList != null) {
 
 			addDocumentHistoryByOrgData(dataSeries, series, itemList);
 		}
 
-		addChart(content,DOCUMENT_HISTORY_BY_ORG, new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+		addChart(content, DOCUMENT_HISTORY_BY_ORG, new DCharts().setDataSeries(dataSeries)
+				.setOptions(chartOptions.createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
 	}
-
 
 	/**
 	 * Adds the document history by org data.
@@ -142,6 +147,8 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 		final Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> map = itemList.parallelStream()
 				.filter(Objects::nonNull)
 				.collect(Collectors.groupingBy(t -> StringUtils.defaultIfBlank(t.getDocumentType(), NO_INFO)));
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
+		final SimpleDateFormat parseIncomingDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 		for (final Entry<String, List<ViewRiksdagenOrgDocumentDailySummary>> entry : map.entrySet()) {
 
@@ -150,8 +157,15 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 			dataSeries.newSeries();
 			if (entry.getValue() != null) {
 				for (final ViewRiksdagenOrgDocumentDailySummary item : entry.getValue()) {
-					if (item != null) {
-						dataSeries.add(item.getEmbeddedId().getPublicDate(), item.getTotal());
+					if (item != null && item.getEmbeddedId().getPublicDate().length() > 0) {
+
+						try {
+							final Date convertedCurrentDate = parseIncomingDateFormat
+									.parse(item.getEmbeddedId().getPublicDate());
+							dataSeries.add(simpleDateFormat.format(convertedCurrentDate), item.getTotal());
+						} catch (ParseException e) {
+							LOGGER.warn("Problem parsing date:{]", item.getEmbeddedId().getPublicDate());
+						}
 					}
 				}
 			} else {

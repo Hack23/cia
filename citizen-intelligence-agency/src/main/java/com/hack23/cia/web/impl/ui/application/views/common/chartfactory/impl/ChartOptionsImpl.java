@@ -94,7 +94,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 	public static final int NUMBER_TICKS_DATE = 8;
 
 	/** The Constant YEAR_MONTH_DAY_FORMAT. */
-	public static final String YEAR_MONTH_DAY_FORMAT = "%Y-%#m-%#d";
+	public static final String YEAR_MONTH_DAY_FORMAT = "%F";
 
 	/**
 	 * Instantiates a new chart options impl.

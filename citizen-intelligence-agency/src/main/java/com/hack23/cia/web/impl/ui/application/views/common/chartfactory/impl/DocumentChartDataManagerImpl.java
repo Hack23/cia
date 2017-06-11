@@ -18,15 +18,22 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
 import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.dussan.vaadin.dcharts.options.Series;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +49,10 @@ import com.vaadin.ui.AbstractOrderedLayout;
  * The Class DocumentChartDataManagerImpl.
  */
 @Service
-public final class DocumentChartDataManagerImpl extends AbstractChartDataManagerImpl implements DocumentChartDataManager {
+public final class DocumentChartDataManagerImpl extends AbstractChartDataManagerImpl
+		implements DocumentChartDataManager {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(DocumentChartDataManagerImpl.class);
 
 	/** The Constant MOT_PROP_BET. */
 	private static final String MOT_PROP_BET = "mot:prop:bet";
@@ -57,10 +67,11 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 	@Autowired
 	private ApplicationManager applicationManager;
 
+	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
+
 	/** The chart options. */
 	@Autowired
 	private ChartOptions chartOptions;
-
 
 	/**
 	 * Instantiates a new document chart data manager impl.
@@ -68,7 +79,6 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 	public DocumentChartDataManagerImpl() {
 		super();
 	}
-
 
 	/**
 	 * Gets the document type map.
@@ -81,16 +91,16 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 
 		return documentTypeSummaryDailyDataContainer.getAll().parallelStream()
 				.filter(t -> t != null && !t.getEmbeddedId().getPublicDate().startsWith(YEAR_PREFIX)
-						&& MOT_PROP_BET.contains(t.getEmbeddedId().getDocumentType()))
+						&& StringUtils.containsIgnoreCase(MOT_PROP_BET, t.getEmbeddedId().getDocumentType()))
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDocumentType()));
 	}
-
-
 
 	@Override
 	public void createDocumentTypeChart(final AbstractOrderedLayout content) {
 
 		final Map<String, List<ViewRiksdagenDocumentTypeDailySummary>> map = getDocumentTypeMap();
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
+		final SimpleDateFormat parseInputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 		final DataSeries dataSeries = new DataSeries();
 
@@ -104,17 +114,26 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 
 				dataSeries.newSeries();
 				final List<ViewRiksdagenDocumentTypeDailySummary> list = entry.getValue();
-				for (final ViewRiksdagenDocumentTypeDailySummary viewRiksdagenVoteDataBallotPartySummaryDaily : list) {
-					if (viewRiksdagenVoteDataBallotPartySummaryDaily != null) {
-						dataSeries.add(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getPublicDate(),
-								viewRiksdagenVoteDataBallotPartySummaryDaily.getTotal());
+				for (final ViewRiksdagenDocumentTypeDailySummary item : list) {
+					if (item != null && item.getEmbeddedId().getPublicDate().length() > 0) {
+
+						try {
+							final Date convertedCurrentDate = parseInputDateFormat
+									.parse(item.getEmbeddedId().getPublicDate());
+
+							dataSeries.add(simpleDateFormat.format(convertedCurrentDate), item.getTotal());
+						} catch (ParseException e) {
+							LOGGER.warn("Problem parsing date:{]", item.getEmbeddedId().getPublicDate());
+						}
+
 					}
 				}
 			}
 
 		}
 
-		addChart(content,"Document type", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+		addChart(content, "Document type", new DCharts().setDataSeries(dataSeries)
+				.setOptions(chartOptions.createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
 	}
 
 }
