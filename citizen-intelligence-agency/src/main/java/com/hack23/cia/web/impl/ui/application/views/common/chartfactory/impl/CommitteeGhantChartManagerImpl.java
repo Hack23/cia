@@ -116,7 +116,7 @@ public final class CommitteeGhantChartManagerImpl
 
 		@Override
 		public String apply(final ViewRiksdagenCommitteeRoleMember t) {
-			return t.getRoleCode();
+			return t.getRoleCode() +".["+ t.getPersonId() +"]";
 		}
 	}
 
