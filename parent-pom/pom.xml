@@ -105,8 +105,8 @@
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <!-- <cia.project.versions.spring>4.3.8.RELEASE/5.0.0.RC1/5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring> -->
     <cia.project.versions.spring>5.0.0.RC2</cia.project.versions.spring>
-    <!-- <cia.project.versions.spring.security>5.0.0.M1/4.2.2.RELEASE/4.2.3.BUILD-SNAPSHOT</cia.project.versions.spring.security>-->
-    <cia.project.versions.spring.security>5.0.0.M1</cia.project.versions.spring.security>
+    <!-- <cia.project.versions.spring.security>5.0.0.M2/4.2.2.RELEASE/4.2.3.BUILD-SNAPSHOT</cia.project.versions.spring.security>-->
+    <cia.project.versions.spring.security>5.0.0.M2</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.0.BETA-4</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.22.0-CR2</cia.project.versions.javassist>
     <cia.project.versions.asm>5.2</cia.project.versions.asm>
@@ -124,7 +124,7 @@
     <cia.project.versions.hibernate.jpa2>1.0.0.Final</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.0.0.Beta2</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>5.4.1.Final</cia.project.versions.hibernate.build.validator>
-    <cia.project.versions.bytebuddy>1.7.0</cia.project.versions.bytebuddy>
+    <cia.project.versions.bytebuddy>1.7.1</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.196</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.1.1</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.4</cia.project.versions.ehcache>
