@@ -395,7 +395,7 @@
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
-      <version>1.6.2</version>
+      <version>1.7.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -1038,7 +1038,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>license-maven-plugin</artifactId>
-        <version>1.10</version>
+        <version>1.13</version>
         <configuration>
           <excludedScopes>test</excludedScopes>
           <useMissingFile>true</useMissingFile>
@@ -1230,7 +1230,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>license-maven-plugin</artifactId>
-        <version>1.10</version>
+        <version>1.13</version>
         <configuration>
           <excludedScopes>test</excludedScopes>
           <useMissingFile>true</useMissingFile>

@@ -105,7 +105,7 @@
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <!-- <cia.project.versions.spring>4.3.8.RELEASE/5.0.0.RC1/5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring> -->
     <cia.project.versions.spring>5.0.0.RC2</cia.project.versions.spring>
-    <!-- <cia.project.versions.spring.security>5.0.0.M2/4.2.2.RELEASE/4.2.3.BUILD-SNAPSHOT</cia.project.versions.spring.security>-->
+    <!-- <cia.project.versions.spring.security>5.0.0.M1/4.2.2.RELEASE/4.2.3.BUILD-SNAPSHOT</cia.project.versions.spring.security>-->
     <cia.project.versions.spring.security>5.0.0.M2</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.0.BETA-4</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.22.0-CR2</cia.project.versions.javassist>
@@ -151,7 +151,7 @@
     <cia.project.versions.activemq>5.14.5</cia.project.versions.activemq>
     <cia.project.versions.httpclient>4.5.3</cia.project.versions.httpclient>
     <cia.project.versions.guava>22.0</cia.project.versions.guava>
-    <cia.project.versions.jackson>2.9.0.pr3</cia.project.versions.jackson>
+    <cia.project.versions.jackson>2.9.0.pr4</cia.project.versions.jackson>
     <cia.project.versions.xerces>2.11.0.SP5-redhat-1</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>9.4.6.v20170531</cia.project.versions.jetty>
