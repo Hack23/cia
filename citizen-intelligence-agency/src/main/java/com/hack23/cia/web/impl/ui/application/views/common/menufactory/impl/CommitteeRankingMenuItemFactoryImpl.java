@@ -57,8 +57,8 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 			PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEESBYHEADCOUNT.toString());
 
 	/** The Constant COMMAND_CURRENT_COMMITTEES_BY_PARTY_HEADCOUNT. */
-	private static final PageModeMenuCommand COMMAND_CURRENT_COMMITTEES_BY_PARTY_HEADCOUNT = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
-			PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEESBYPARTYHEADCOUNT.toString());
+	private static final PageModeMenuCommand COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
+			PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEESBYPARTYDAYSSERVED.toString());
 
 
 	/** The Constant COMMAND_OVERVIEW. */
@@ -153,7 +153,7 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 
 		chartByTopic.addItem(CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,FontAwesome.GROUP, COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT);
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,FontAwesome.GROUP, COMMAND_COMMITTEES_BY_PARTY);
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND_CURRENT_COMMITTEES_BY_PARTY_HEADCOUNT);
+		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED);
 
 		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_MEMBERS,FontAwesome.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT);
 
@@ -176,7 +176,7 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 		createButtonLink(grid,CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,FontAwesome.GROUP, COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT, "Chart over current committees and member size");
 
 		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,FontAwesome.GROUP, COMMAND_COMMITTEES_BY_PARTY, "Chart over current parties active in committees and member size");
-		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND_CURRENT_COMMITTEES_BY_PARTY_HEADCOUNT, "Chart over current parties active in committees days served");
+		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED, "Chart over current parties active in committees days served");
 		createButtonLink(grid,ALL_COMMITTEES_TOTAL_MEMBERS,FontAwesome.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT, "Chart over all committees and member size");
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP, COMMAND_PAGEVISIT_HISTORY, "View history of page visit for this page.");

@@ -150,8 +150,8 @@ public abstract class AbstractView extends Panel implements View {
 
 
 		final VerticalLayout pageModeContent = new VerticalLayout();
-		pageModeContent.setMargin(true);
-		pageModeContent.setSpacing(true);
+		pageModeContent.setMargin(false);
+		pageModeContent.setSpacing(false);
 		pageModeContent.setWidth(100, Unit.PERCENTAGE);
 		pageModeContent.setHeight(100, Unit.PERCENTAGE);
 
@@ -164,8 +164,8 @@ public abstract class AbstractView extends Panel implements View {
 		final HorizontalLayout topHeader = new HorizontalLayout();
 
 		topHeader.addComponent(ciaLogoImage);
-		ciaLogoImage.setWidth("75px");
-		ciaLogoImage.setHeight("75px");
+		ciaLogoImage.setWidth("60px");
+		ciaLogoImage.setHeight("60px");
 		topHeader.setComponentAlignment(ciaLogoImage, Alignment.MIDDLE_LEFT);
 		topHeader.setExpandRatio(ciaLogoImage, ContentRatio.SMALL);
 
@@ -224,10 +224,10 @@ public abstract class AbstractView extends Panel implements View {
 
 
 		topHeaderRightPanel.setWidth("100%");
-		topHeaderRightPanel.setHeight("60px");
+		topHeaderRightPanel.setHeight("50px");
 
 		topHeader.setWidth("100%");
-		topHeader.setHeight("60px");
+		topHeader.setHeight("50px");
 
 		pageModeContent.addComponent(topHeader);
 		pageModeContent.setComponentAlignment(topHeader, Alignment.TOP_CENTER);

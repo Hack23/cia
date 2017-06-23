@@ -51,7 +51,7 @@ public final class CommitteeRankingCurrentCommitteePartiesChartsPageModContentFa
 	private static final String CHARTS = "Charts:";
 
 	/** The Constant CURRENT_PARTIES_HEADCOUNT. */
-	private static final String CURRENT_PARTIES_HEADCOUNT = "Current Parties, headcount";
+	private static final String CURRENT_PARTIES_BY_DAYS_SERVED = "Current Parties, total political days served";
 
 	/** The chart data manager. */
 	@Autowired
@@ -72,7 +72,7 @@ public final class CommitteeRankingCurrentCommitteePartiesChartsPageModContentFa
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(PageMode.CHARTS.toString())
-				&& parameters.contains(ChartIndicators.CURRENTCOMMITTEESBYPARTYHEADCOUNT.toString());
+				&& parameters.contains(ChartIndicators.CURRENTCOMMITTEESBYPARTYDAYSSERVED.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -88,7 +88,7 @@ public final class CommitteeRankingCurrentCommitteePartiesChartsPageModContentFa
 		chartLayout.setSizeFull();
 
 		chartDataManager.createChartPanel(chartLayout,
-				dataSeriesFactory2.createChartTimeSeriesCurrentCommitteeByParty(), CURRENT_PARTIES_HEADCOUNT);
+				dataSeriesFactory2.createChartTimeSeriesCurrentCommitteeByParty(), CURRENT_PARTIES_BY_DAYS_SERVED);
 
 		panelContent.addComponent(chartLayout);
 

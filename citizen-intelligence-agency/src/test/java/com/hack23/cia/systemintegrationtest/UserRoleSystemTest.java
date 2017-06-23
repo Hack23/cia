@@ -173,7 +173,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEESBYPARTYHEADCOUNT.toString()));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEESBYPARTYDAYSSERVED.toString()));
 
 	}
 

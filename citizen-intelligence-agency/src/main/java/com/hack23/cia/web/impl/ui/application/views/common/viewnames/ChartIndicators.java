@@ -60,7 +60,7 @@ public enum ChartIndicators {
 	CURRENTCOMMITTEESBYHEADCOUNT,
 
 	/** The currentcommitteesbypartyheadcount. */
-	CURRENTCOMMITTEESBYPARTYHEADCOUNT,
+	CURRENTCOMMITTEESBYPARTYDAYSSERVED,
 
 	/** The allparties. */
 	ALLPARTIES,

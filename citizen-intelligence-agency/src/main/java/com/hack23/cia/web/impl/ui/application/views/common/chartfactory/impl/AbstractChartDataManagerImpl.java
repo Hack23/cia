@@ -40,10 +40,10 @@ public abstract class AbstractChartDataManagerImpl {
 
 
 	/** The Constant CHART_MARGIN_SIZE. */
-	private static final int CHART_BOTTOM_MARGIN_SIZE = 10;
-	private static final int CHART_RIGHT_MARGIN = 5;
-	private static final int CHART_LEFT_MARGIN= 20;
-	private static final int CHART_TOP_MARGIN_SIZE = 10;
+	private static final int CHART_BOTTOM_MARGIN_SIZE = 2;
+	private static final int CHART_RIGHT_MARGIN = 2;
+	private static final int CHART_LEFT_MARGIN= 2;
+	private static final int CHART_TOP_MARGIN_SIZE = 2;
 
 	/** The application manager. */
 	@Autowired
@@ -76,8 +76,10 @@ public abstract class AbstractChartDataManagerImpl {
 		
 		horizontalLayout.setWidth(browserWindowWidth, Unit.PIXELS);
 		horizontalLayout.setHeight(browserWindowHeight, Unit.PIXELS);
-
-
+		horizontalLayout.setMargin(true);
+		horizontalLayout.setSpacing(false);
+		horizontalLayout.addStyleName("v-layout-content-overview-panel-level1");
+		
 		final Panel formPanel = new Panel();
 		formPanel.setSizeFull();
 		formPanel.setContent(horizontalLayout);
@@ -88,25 +90,25 @@ public abstract class AbstractChartDataManagerImpl {
 
 
 		chart.setWidth(100, Unit.PERCENTAGE);
-		chart.setHeight(95, Unit.PERCENTAGE);
+		chart.setHeight(100, Unit.PERCENTAGE);
 		chart.setMarginRight(CHART_RIGHT_MARGIN);
 		chart.setMarginLeft(CHART_LEFT_MARGIN);
 		chart.setMarginBottom(CHART_BOTTOM_MARGIN_SIZE);
 		chart.setMarginTop(CHART_TOP_MARGIN_SIZE);
-
+		
 		horizontalLayout.addComponent(chart);
 		chart.setCaption(caption);
 	}
 
 	private int getChartWindowWidth() {
-		return (Page.getCurrent().getBrowserWindowWidth() / 20) * 19;
+		return Math.max((Page.getCurrent().getBrowserWindowWidth() -50),600);
 	}
 
 	private int getChartWindowHeight(boolean fullPage) {
 		if (fullPage) {
-			return (Page.getCurrent().getBrowserWindowHeight() / 10) * 7;
+			return Math.max((Page.getCurrent().getBrowserWindowHeight() / 20) * 16,400);
 		} else {
-			return Page.getCurrent().getBrowserWindowHeight() / 2;
+			return Math.max(Page.getCurrent().getBrowserWindowHeight() / 2,200);
 		}
 	}
 
