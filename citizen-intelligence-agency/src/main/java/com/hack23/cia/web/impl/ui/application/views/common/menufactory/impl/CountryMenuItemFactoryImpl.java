@@ -61,12 +61,6 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 	/** The Constant COMMAND_OVERVIEW. */
 	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
 
-	/** The Constant BY_SOURCE. */
-	private static final String BY_SOURCE = "By Source";
-
-	/** The Constant BY_TOPIC. */
-	private static final String BY_TOPIC = "ByTopic";
-
 	/** The Constant COUNTRY_INDICATORS_SWEDEN. */
 	private static final String COUNTRY_INDICATORS_SWEDEN = "Country Indicators, Sweden";
 
@@ -145,26 +139,10 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 		final MenuItem countryIndicators = charts.addItem(COUNTRY_INDICATORS_SWEDEN, FontAwesome.LINE_CHART, null);
 
-		addSourcesAndIndicatorsToMenu(countryIndicators.addItem(BY_TOPIC,FontAwesome.LINE_CHART, null), getTopicIndicatorMap());
-		addSourcesAndIndicatorsToMenu(countryIndicators.addItem(BY_SOURCE,FontAwesome.LINE_CHART, null), getSourceIndicatorMap());
+		addSourcesAndIndicatorsToMenu(countryIndicators, getTopicIndicatorMap());
 
 		charts.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.LINE_CHART,	COMMAND_PAGEVISITHISTORY);
 
-	}
-
-	/**
-	 * Gets the source indicator map.
-	 *
-	 * @return the source indicator map
-	 */
-	private Map<String, List<ViewWorldbankIndicatorDataCountrySummary>> getSourceIndicatorMap() {
-		final DataContainer<ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId> indicatorDataCountrSummaryDailyDataContainer = applicationManager
-				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);
-
-		return indicatorDataCountrSummaryDailyDataContainer.
-				findListByEmbeddedProperty(ViewWorldbankIndicatorDataCountrySummary.class,ViewWorldbankIndicatorDataCountrySummary_.embeddedId,WorldbankIndicatorDataCountrySummaryEmbeddedId.class,WorldbankIndicatorDataCountrySummaryEmbeddedId_.countryId,"SE").parallelStream()
-				.filter(t -> t != null && t.getSourceValue() != null && t.getEndYear() > 2010 && t.getDataPoint() > 20)
-				.collect(Collectors.groupingBy(ViewWorldbankIndicatorDataCountrySummary::getSourceValue));
 	}
 
 	/**
@@ -193,7 +171,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 		panelContent.setComponentAlignment(menuBar, Alignment.TOP_LEFT);
 		panelContent.setExpandRatio(menuBar, ContentRatio.LARGE);
 
-		addSourcesAndIndicatorsToMenu(menuBar.addItem(BY_TOPIC,FontAwesome.LINE_CHART, null), getTopicIndicatorMap());
+		addSourcesAndIndicatorsToMenu(menuBar.addItem("By Topic",FontAwesome.LINE_CHART, null), getTopicIndicatorMap());
 		menuBar.setAutoOpen(true);
 	}
 }
