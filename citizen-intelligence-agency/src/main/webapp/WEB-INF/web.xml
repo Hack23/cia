@@ -136,7 +136,7 @@
         </init-param>
         <init-param>
 			<param-name>rum-enabled</param-name>
-			<param-value>true</param-value>
+			<param-value>false</param-value>
 		</init-param>       		
 	</filter>
 	<filter-mapping>
