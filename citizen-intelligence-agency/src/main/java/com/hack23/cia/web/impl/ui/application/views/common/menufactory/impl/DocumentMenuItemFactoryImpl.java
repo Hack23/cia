@@ -121,25 +121,25 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
 		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId), "Default description");
+				DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId), "Document activities");
 
 		createButtonLink(grid,PERSON_REFERENCES, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.PERSONREFERENCES.toString(), pageId), "Default description");
+				DocumentPageMode.PERSONREFERENCES.toString(), pageId), "Person references");
 
 		createButtonLink(grid,DOCUMENT_DETAILS, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTDETAILS.toString(), pageId), "Default description");
+				DocumentPageMode.DOCUMENTDETAILS.toString(), pageId), "Document details");
 
 		createButtonLink(grid,DOCUMENT_DATA, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTDATA.toString(), pageId), "Default description");
+				DocumentPageMode.DOCUMENTDATA.toString(), pageId), "Complete document as text");
 
 		createButtonLink(grid,DOCUMENT_REFERENCES, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId), "Default description");
+				DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId), "Document references");
 
 		createButtonLink(grid,DOCUMENT_DECISION, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTDECISION.toString(), pageId), "Default description");
+				DocumentPageMode.DOCUMENTDECISION.toString(), pageId), "Document decisions");
 
 		createButtonLink(grid,DOCUMENT_ATTACHEMENTS, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId), "Default description");
+				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId), "Attachements");
 
 
 

@@ -182,42 +182,42 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
 		createButtonLink(grid,CURRENT_LEADERS, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTLEADERS.toString(), pageId), "Default description");
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTLEADERS.toString(), pageId), "Current leaders");
 
 		createButtonLink(grid,LEADER_HISTORY, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.LEADERHISTORY.toString(), pageId), "Default description");
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.LEADERHISTORY.toString(), pageId), "Leader history");
 
 		createButtonLink(grid,CURRENT_MEMBERS_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTMEMBERS.toString(), pageId), "Default description");
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTMEMBERS.toString(), pageId), "Current members");
 
 		createButtonLink(grid,MEMBER_HISTORY_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.MEMBERHISTORY.toString(), pageId), "Default description");
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.MEMBERHISTORY.toString(), pageId), "Current and past members");
 
 		createButtonLink(grid,GOVERMENT_ROLES, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.GOVERNMENTROLES.toString(), pageId), "Default description");
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.GOVERNMENTROLES.toString(), pageId), "Government roles hold");
 
 		createButtonLink(grid,COMMITTEE_ROLES, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEROLES.toString(), pageId), "Default description");
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEROLES.toString(), pageId), "Committe roles hold");
 
 		createButtonLink(grid,ROLE_CHART_PARTY_LEADERS, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.ROLEGHANT.toString(), pageId), "Default description");
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.ROLEGHANT.toString(), pageId), "Gantt chart all party leaders");
 
 
 		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTACTIVITY.toString(), pageId), "Default description");
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTACTIVITY.toString(), pageId), "Chart over document activity by type");
 
 		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTHISTORY.toString(), pageId), "Default description");
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTHISTORY.toString(), pageId), "List all document history");
 
 
 		createButtonLink(grid,VOTE_HISTORY, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), pageId), "Default description");
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), pageId), "Vote history");
 
 		createButtonLink(grid,BALLOT_DECISION_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-				PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString(), pageId), "Default description");
+				PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString(), pageId), "Ballot decision summary");
 
 		createButtonLink(grid,PARTY_WON_DAILY_SUMMARY_CHART, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-				PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), pageId), "Default description");
+				PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), pageId), "Chart for Party over won,absent and party rebel votes");
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), "View history of page visit for this page.");
