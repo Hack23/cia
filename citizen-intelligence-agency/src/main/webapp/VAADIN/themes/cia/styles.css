@@ -1057,7 +1057,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "8.1.0.beta2";
+	content: "8.1.0.beta3";
 }
 
 .v-widget {
@@ -10133,6 +10133,11 @@ div.v-layout.v-horizontal.v-widget {
 	z-index: 100;
 }
 
+.cia .v-tree8-expander {
+	display: inline-block;
+	vertical-align: top;
+}
+
 .cia .v-tree8-expander::before {
 	display: inline-block;
 	width: 1.5em;
@@ -10222,6 +10227,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-tree8-cell-content {
 	display: inline-block;
+	vertical-align: middle;
 }
 
 .cia .v-tree8-row-focused::before {
@@ -11171,6 +11177,11 @@ div.v-layout.v-horizontal.v-widget {
 	z-index: 100;
 }
 
+.cia .v-treegrid-expander {
+	display: inline-block;
+	vertical-align: top;
+}
+
 .cia .v-treegrid-expander::before {
 	display: inline-block;
 	width: 1.5em;
@@ -11260,6 +11271,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .v-treegrid-cell-content {
 	display: inline-block;
+	vertical-align: middle;
 }
 
 .cia .v-treegrid-row-focused::before {
