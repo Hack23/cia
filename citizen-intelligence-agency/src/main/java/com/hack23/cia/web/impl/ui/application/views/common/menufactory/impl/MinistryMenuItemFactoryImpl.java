@@ -135,23 +135,23 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
 		createButtonLink(grid,CURRENT_MEMBERS_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.CURRENTMEMBERS.toString(), pageId), "Default description");
+				MinistryPageMode.CURRENTMEMBERS.toString(), pageId), "Members currently holding positions");
 
 		createButtonLink(grid,MEMBER_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.MEMBERHISTORY.toString(), pageId), "Default description");
+				MinistryPageMode.MEMBERHISTORY.toString(), pageId), "Current and past members");
 
 		createButtonLink(grid,ROLE_GHANT_TEXT, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString(), pageId), "Default description");
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString(), pageId), "Gantt chart for all the roles");
 
 		createButtonLink(grid,GOVERNMENT_BODIES, FontAwesome.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES.toString(), pageId), "Default description");
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES.toString(), pageId), "All government bodies that are governed by ministry");
 
 
 		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId), "Default description");
+				MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId), "Chart over document activity");
 
 		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.DOCUMENTHISTORY.toString(), pageId), "Default description");
+				MinistryPageMode.DOCUMENTHISTORY.toString(), pageId), "List of all document sorted by most recent");
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), "View history of page visit for this page.");

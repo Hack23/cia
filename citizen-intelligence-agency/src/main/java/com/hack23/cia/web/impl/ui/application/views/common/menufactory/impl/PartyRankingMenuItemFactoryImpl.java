@@ -156,16 +156,16 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
 		createButtonLink(grid,TOTAL_MEMBERS,FontAwesome.GROUP,
-				COMMAND_DATAGRID, "Default description");
+				COMMAND_DATAGRID, "Scoreboard all parties current assignments and roles in eu,government,committes and parliament");
 		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,FontAwesome.GROUP,
-				COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES, "Default description");
+				COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES, "Chart over the headcount by party in current goverment");
 
 		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,FontAwesome.GROUP,
-				COMMAND_CHARTS_CURRENT_COMMITTEES, "Default description");
+				COMMAND_CHARTS_CURRENT_COMMITTEES, "Chart over the headcount by party in current committees");
 		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,FontAwesome.GROUP,
-				COMMAND_CHARTS_CURRENT_PARTIES, "Default description");
+				COMMAND_CHARTS_CURRENT_PARTIES, "Chart over the headcount by party in current parliament");
 		createButtonLink(grid,ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,FontAwesome.GROUP,
-				COMMAND_CHARTS_ALL_PARTIES, "Default description");
+				COMMAND_CHARTS_ALL_PARTIES, "Chart all parties total politician days serverd in parliament");
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
 				COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
