@@ -172,12 +172,12 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
 
-		createButtonLink(grid,POLITICAL_WORK_SUMMARY_TEXT,FontAwesome.GROUP, COMMAND_DATAGRID, "Default description");
-		createButtonLink(grid,CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,FontAwesome.GROUP, COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT, "Default description");
+		createButtonLink(grid,POLITICAL_WORK_SUMMARY_TEXT,FontAwesome.GROUP, COMMAND_DATAGRID, "Scoreboard over current member size, political days served and total assignments");
+		createButtonLink(grid,CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,FontAwesome.GROUP, COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT, "Chart over current committees and member size");
 
-		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,FontAwesome.GROUP, COMMAND_COMMITTEES_BY_PARTY, "Default description");
-		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND_CURRENT_COMMITTEES_BY_PARTY_HEADCOUNT, "Default description");
-		createButtonLink(grid,ALL_COMMITTEES_TOTAL_MEMBERS,FontAwesome.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT, "Default description");
+		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,FontAwesome.GROUP, COMMAND_COMMITTEES_BY_PARTY, "Chart over current parties active in committees and member size");
+		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND_CURRENT_COMMITTEES_BY_PARTY_HEADCOUNT, "Chart over current parties active in committees days served");
+		createButtonLink(grid,ALL_COMMITTEES_TOTAL_MEMBERS,FontAwesome.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT, "Chart over all committees and member size");
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP, COMMAND_PAGEVISIT_HISTORY, "View history of page visit for this page.");
 
