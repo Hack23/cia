@@ -45,9 +45,6 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 	/** The Constant ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES. */
 	private static final String ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES = " Annual headcount summary, all government bodies";
 
-	/** The Constant ANNUAL_HEADCOUNT_SUMMARY. */
-	private static final String ANNUAL_HEADCOUNT_SUMMARY = " Annual headcount summary";
-
 	/** The Constant ANNUAL_HEADCOUNT_ALL_MINISTRIES. */
 	private static final String ANNUAL_HEADCOUNT_ALL_MINISTRIES = "Annual headcount, all ministries";
 
@@ -67,29 +64,6 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 	 */
 	public GovernmentBodyChartDataManagerImpl() {
 		super();
-	}
-
-	@Override
-	public void createGovernmentBodyHeadcountChart(final AbstractOrderedLayout content, final String name) {
-		final Map<Integer, GovernmentBodyAnnualSummary> map = esvApi.getDataPerGovernmentBody(name);
-
-		final DataSeries dataSeries = new DataSeries();
-
-		final Series series = new Series();
-
-		series.addSeries(new XYseries().setLabel(name));
-
-		dataSeries.newSeries();
-
-		for (final Entry<Integer, GovernmentBodyAnnualSummary> entry : map.entrySet()) {
-			final GovernmentBodyAnnualSummary item = entry.getValue();
-			if (entry.getKey() != null && item != null && item.getHeadCount() > 0) {
-				dataSeries.add(FIRST_OF_JAN + item.getYear(), item.getHeadCount());
-			}
-		}
-
-		addChart(content, name + ANNUAL_HEADCOUNT_SUMMARY, new DCharts().setDataSeries(dataSeries)
-				.setOptions(chartOptions.createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(), true);
 	}
 
 	@Override

@@ -26,16 +26,6 @@ import com.vaadin.ui.AbstractOrderedLayout;
 public interface GovernmentBodyChartDataManager {
 
 	/**
-	 * Creates the government body headcount chart.
-	 *
-	 * @param content
-	 *            the content
-	 * @param name
-	 *            the name
-	 */
-	void createGovernmentBodyHeadcountChart(AbstractOrderedLayout content,String name);
-
-	/**
 	 * Creates the ministry government body headcount summary chart.
 	 *
 	 * @param content
