@@ -27,7 +27,6 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -61,30 +60,6 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = "Committee ";
-
-	/** The Constant ADMIN_AGENT_OPERATIONS_LINK_TEXT. */
-	private static final String ADMIN_AGENT_OPERATIONS_LINK_TEXT = "Admin Agent Operations";
-
-	/** The Constant ADMIN_DATA_SUMMARY_LINK_TEXT. */
-	private static final String ADMIN_DATA_SUMMARY_LINK_TEXT = "Admin Data Summary";
-
-	/** The Constant POLITICIAN_RANKING_LINK_TEXT. */
-	private static final String POLITICIAN_RANKING_LINK_TEXT = "Politician Ranking";
-
-	/** The Constant PARTY_RANKING_LINK_TEXT. */
-	private static final String PARTY_RANKING_LINK_TEXT = "Party Ranking";
-
-	/** The Constant COMMITTEE_RANKING_LINK_TEXT. */
-	private static final String COMMITTEE_RANKING_LINK_TEXT = "Committee Ranking";
-
-	/** The Constant MINISTRY_RANKING_LINK_TEXT. */
-	private static final String MINISTRY_RANKING_LINK_TEXT = "Ministry Ranking";
-
-	/** The Constant COUNTRY_RANKING_LINK_TEXT. */
-	private static final String COUNTRY_RANKING_LINK_TEXT = "Country Ranking";
-
-	/** The Constant PARLIAMENT_RANKING_LINK_TEXT. */
-	private static final String PARLIAMENT_RANKING_LINK_TEXT = "Parliament Ranking";
 
 	/** The Constant LINK_SEPARATOR. */
 	private static final String LINK_SEPARATOR = PAGE_PREFIX;
@@ -120,79 +95,6 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	}
 
 
-	@Override
-	public Link createCountryRankingViewPageLink() {
-		final Link pageLink = new Link(COUNTRY_RANKING_LINK_TEXT,
-				new ExternalResource(LINK_SEPARATOR + UserViews.COUNTRY_RANKING_VIEW_NAME));
-		pageLink.setId(ViewAction.VISIT_COUNTRY_VIEW.name());
-		pageLink.setIcon(FontAwesome.FLAG);
-		return pageLink;
-	}
-
-	@Override
-	public Link createParliamentViewPageLink() {
-		final Link pageLink = new Link(PARLIAMENT_RANKING_LINK_TEXT,
-				new ExternalResource(LINK_SEPARATOR + UserViews.PARLIAMENT_RANKING_VIEW_NAME));
-		pageLink.setId(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW.name());
-		pageLink.setIcon(FontAwesome.INSTITUTION);
-		return pageLink;
-	}
-
-
-	@Override
-	public Link createMinistryRankingViewPageLink() {
-		final Link pageLink = new Link(MINISTRY_RANKING_LINK_TEXT, new ExternalResource(
-				LINK_SEPARATOR + UserViews.MINISTRY_RANKING_VIEW_NAME));
-		pageLink.setId(ViewAction.VISIT_MINISTRY_RANKING_VIEW.name());
-		pageLink.setIcon(FontAwesome.GROUP);
-		return pageLink;
-	}
-
-	@Override
-	public Link createCommitteeRankingViewPageLink() {
-		final Link pageLink = new Link(COMMITTEE_RANKING_LINK_TEXT, new ExternalResource(
-				LINK_SEPARATOR + UserViews.COMMITTEE_RANKING_VIEW_NAME));
-		pageLink.setId(ViewAction.VISIT_COMMITTEE_RANKING_VIEW.name());
-		pageLink.setIcon(FontAwesome.GROUP);
-		return pageLink;
-	}
-
-	@Override
-	public Link createPartyRankingViewPageLink() {
-		final Link pageLink = new Link(PARTY_RANKING_LINK_TEXT, new ExternalResource(
-				LINK_SEPARATOR + UserViews.PARTY_RANKING_VIEW_NAME));
-		pageLink.setId(ViewAction.VISIT_PARTY_RANKING_VIEW.name());
-		pageLink.setIcon(FontAwesome.GROUP);
-		return pageLink;
-	}
-
-	@Override
-	public Link createPoliticianRankingViewPageLink() {
-		final Link pageLink = new Link(POLITICIAN_RANKING_LINK_TEXT,
-				new ExternalResource(LINK_SEPARATOR + UserViews.POLITICIAN_RANKING_VIEW_NAME));
-		pageLink.setId(ViewAction.VISIT_POLITICIAN_RANKING_VIEW.name());
-		pageLink.setIcon(FontAwesome.BUG);
-		return pageLink;
-	}
-
-	@Override
-	public Link createAdminDataSummaryViewPageLink() {
-		final Link pageLink = new Link(ADMIN_DATA_SUMMARY_LINK_TEXT,
-				new ExternalResource(LINK_SEPARATOR
-						+ AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME));
-		pageLink.setId(ViewAction.VISIT_ADMIN_DATA_SUMMARY_VIEW.name());
-		pageLink.setIcon(FontAwesome.DATABASE);
-		return pageLink;
-	}
-
-	@Override
-	public Link createAdminAgentOperationViewPageLink() {
-		final Link pageLink = new Link(ADMIN_AGENT_OPERATIONS_LINK_TEXT, new ExternalResource(
-				LINK_SEPARATOR + AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME));
-		pageLink.setId(ViewAction.VISIT_ADMIN_AGENT_OPERATION_VIEW.name());
-		pageLink.setIcon(FontAwesome.USER_SECRET);
-		return pageLink;
-	}
 
 	@Override
 	public Link addCommitteePageLink(final ViewRiksdagenCommittee data) {

@@ -22,6 +22,11 @@ import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.server.ExternalResource;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Link;
 
 /**
@@ -42,48 +47,6 @@ public interface PageLinkFactory {
 	 * @return the link
 	 */
 	Link createUserHomeViewPageLink();
-
-	/**
-	 * Creates a new PageLink object.
-	 *
-	 * @return the link
-	 */
-	Link createMinistryRankingViewPageLink();
-
-	/**
-	 * Creates a new PageLink object.
-	 *
-	 * @return the link
-	 */
-	Link createCommitteeRankingViewPageLink();
-
-	/**
-	 * Creates a new PageLink object.
-	 *
-	 * @return the link
-	 */
-	Link createPartyRankingViewPageLink();
-
-	/**
-	 * Creates a new PageLink object.
-	 *
-	 * @return the link
-	 */
-	Link createPoliticianRankingViewPageLink();
-
-	/**
-	 * Creates a new PageLink object.
-	 *
-	 * @return the link
-	 */
-	Link createAdminDataSummaryViewPageLink();
-
-	/**
-	 * Creates a new PageLink object.
-	 *
-	 * @return the link
-	 */
-	Link createAdminAgentOperationViewPageLink();
 
 	/**
 	 * Adds the committee page link.
@@ -156,19 +119,5 @@ public interface PageLinkFactory {
 	 * @return the link
 	 */
 	Link createLoginPageLink();
-
-	/**
-	 * Creates a new PageLink object.
-	 *
-	 * @return the link
-	 */
-	Link createCountryRankingViewPageLink();
-
-	/**
-	 * Creates a new PageLink object.
-	 *
-	 * @return the link
-	 */
-	Link createParliamentViewPageLink();
 
 }
