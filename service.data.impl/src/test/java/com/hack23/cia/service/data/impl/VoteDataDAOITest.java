@@ -31,7 +31,7 @@ import com.hack23.cia.service.data.api.VoteDataDAO;
  * The Class VoteDataDAOITest.
  */
 @PerfTest(threads = 1, duration = 3000, warmUp = 1500)
-@Required(max = 1000,average = 500,percentile95=500,throughput=2)
+@Required(max = 1200,average = 600,percentile95=700,throughput=2)
 public final class VoteDataDAOITest extends AbstractServiceDataFunctionalIntegrationTest {
 
 	/** The i. */
