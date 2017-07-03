@@ -923,7 +923,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
-          <version>1.4.1</version>
+          <version>1.4.2.jenkins-1</version>
           <dependencies>
             <dependency>
               <groupId>org.codehaus.mojo</groupId>
@@ -1023,7 +1023,7 @@
                     <exclude>stax:stax-api</exclude>
                   </excludes>
                 </bannedDependencies>
-                <!-- do not support jdk9, issue 
+                <!-- do not support jdk9, issue
                 <banDuplicateClasses>
                   <findAllDuplicates>true</findAllDuplicates>
                   <ignoreClasses>
@@ -1098,7 +1098,7 @@
               </rules>
             </configuration>
           </execution>
-          <!-- 
+          <!--
           <execution>
             <id>enforce-xsd-wsdl-encoding</id>
             <goals>
@@ -1836,7 +1836,7 @@
             <configuration>
               <excludeProperties>cia.project.versions.spring,cia.project.versions.spring.security,cia.project.versions.slf4j,cia.project.versions.guava</excludeProperties>
               <properties>
-                <!-- 
+                <!--
                 <property>
                   <name>cia.project.versions.spring</name>
                   <banSnapshots>true</banSnapshots>
@@ -1954,7 +1954,7 @@
             <configuration>
               <excludeProperties>cia.project.versions.spring,cia.project.versions.slf4j,cia.project.versions.guava</excludeProperties>
               <properties>
-                <!-- 
+                <!--
                 <property>
                   <name>cia.project.versions.spring</name>
                   <banSnapshots>false</banSnapshots>
@@ -1972,7 +1972,7 @@
                   <name>cia.project.versions.javassist</name>
                   <banSnapshots>false</banSnapshots>
                 </property>
-                <!--  
+                <!--
                 <property>
                   <name>cia.project.versions.asm</name>
                   <banSnapshots>false</banSnapshots>
