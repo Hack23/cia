@@ -38,7 +38,8 @@
 		</property>
 	</bean>
 
-	<import resource="classpath:net/bull/javamelody/monitoring-spring.xml" />
+	
+	
 	<import resource="classpath:META-INF/security-settings.xml" />
 	<import resource="classpath:META-INF/application-context-service-data.xml" />
 	<import resource="classpath:META-INF/cia-service-external-common.xml" />
@@ -48,7 +49,6 @@
 	<import resource="classpath:META-INF/cia-service-external-esv.xml" />
 	<import resource="classpath:META-INF/cia-service-component-agent.xml" />
 	<import resource="classpath:META-INF/application-context-service.xml" />
-
 
 
 	<!-- Declare the Resolver -->
@@ -67,6 +67,15 @@
 	<context:mbean-export />
 
 	<context:component-scan base-package="com.hack23.cia.web" />
+
+	<bean id="monitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor">
+		<property name="pointcut">
+			<bean class="net.bull.javamelody.MonitoredWithAnnotationPointcut"/>
+		</property>
+	</bean>
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+	<bean id="springDataSourceBeanPostProcessor" class="net.bull.javamelody.SpringDataSourceBeanPostProcessor"/>
+	<bean id="javamelodySpringContext" class="net.bull.javamelody.SpringContext" />
 
 	<bean id="monitoringAdvice" class="net.bull.javamelody.MonitoringSpringInterceptor" />
 
