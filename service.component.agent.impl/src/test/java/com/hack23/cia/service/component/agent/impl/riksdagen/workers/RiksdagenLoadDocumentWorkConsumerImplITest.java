@@ -23,6 +23,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.jms.JMSException;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
@@ -32,7 +36,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
-import com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data.RiksdagenImportService;
 
 /**
  * The Class RiksdagenLoadDocumentWorkConsumerImplITest.
@@ -44,9 +47,7 @@ public class RiksdagenLoadDocumentWorkConsumerImplITest extends AbstractServiceC
 	@Qualifier("riksdagenLoadDocumentWorkConsumerImpl")
 	private MessageListener messsageListener;
 
-	/** The riksdagen import service. */
-	@Autowired
-	private RiksdagenImportService riksdagenImportService;
+	private static final String RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT = "yyyy-MM-dd";
 
 
 	/**
@@ -57,9 +58,17 @@ public class RiksdagenLoadDocumentWorkConsumerImplITest extends AbstractServiceC
 	 */
 	@Test
 	public void onMessageSuccessTest() throws JMSException {
+		SimpleDateFormat dateFormat = new SimpleDateFormat(RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT);
+
+		String nowDateAsString = dateFormat.format(new Date());
+
+		Calendar cal = Calendar.getInstance();
+	    cal.add(Calendar.DATE, -1);
+	    String weekBeforeCurrentDateAsString = dateFormat.format(cal.getTime());
+
 		final ObjectMessage message = mock(ObjectMessage.class);
 
-		when(message.getObject()).thenReturn("");
+		when(message.getObject()).thenReturn(new LoadDocumentWork(weekBeforeCurrentDateAsString,nowDateAsString));
 
 		messsageListener.onMessage(message);
 		verify(message, atLeastOnce()).getObject();

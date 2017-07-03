@@ -26,13 +26,14 @@ import static org.mockito.Mockito.when;
 import javax.jms.JMSException;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
+import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement;
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
-import com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data.RiksdagenImportService;
 
 /**
  * The Class RiksdagenPersonElementWorkConsumerImplITest.
@@ -44,10 +45,6 @@ public class RiksdagenPersonElementWorkConsumerImplITest extends AbstractService
 	@Qualifier("riksdagenPersonElementWorkConsumerImpl")
 	private MessageListener messsageListener;
 
-	/** The riksdagen import service. */
-	@Autowired
-	private RiksdagenImportService riksdagenImportService;
-
 	/**
 	 * On message success test.
 	 *
@@ -55,10 +52,11 @@ public class RiksdagenPersonElementWorkConsumerImplITest extends AbstractService
 	 *             the JMS exception
 	 */
 	@Test
+	@Transactional
 	public void onMessageSuccessTest() throws JMSException {
 		final ObjectMessage message = mock(ObjectMessage.class);
 
-		when(message.getObject()).thenReturn("");
+		when(message.getObject()).thenReturn(new PersonElement().withId("0542160909628"));
 
 		messsageListener.onMessage(message);
 		verify(message, atLeastOnce()).getObject();

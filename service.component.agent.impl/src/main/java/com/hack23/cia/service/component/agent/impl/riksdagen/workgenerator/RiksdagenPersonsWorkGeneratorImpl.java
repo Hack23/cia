@@ -83,7 +83,7 @@ final class RiksdagenPersonsWorkGeneratorImpl extends AbstractRiksdagenDataSourc
 				}
 			}
 		} catch (final JMSException | DataFailureException exception) {
-			LOGGER.warn("jms", exception);
+			LOGGER.warn("Problem during generate work orders", exception);
 		}
 	}
 

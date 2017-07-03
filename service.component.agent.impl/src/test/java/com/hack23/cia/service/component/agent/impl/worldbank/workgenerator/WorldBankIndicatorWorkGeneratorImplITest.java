@@ -18,8 +18,8 @@
 */
 package com.hack23.cia.service.component.agent.impl.worldbank.workgenerator;
 
+import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 import java.io.Serializable;
@@ -29,7 +29,6 @@ import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.transaction.Transactional;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +54,6 @@ public class WorldBankIndicatorWorkGeneratorImplITest extends AbstractServiceCom
 	 * @throws JMSException
 	 */
 	@Test
-	@Ignore
 	public void generateWorkOrdersSuccessTest() throws JMSException {
 		final JmsSender jmsSenderMock = mock(JmsSender.class);
         ReflectionTestUtils.setField(worldBankDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
@@ -66,7 +64,7 @@ public class WorldBankIndicatorWorkGeneratorImplITest extends AbstractServiceCom
 
 		final ArgumentCaptor<Serializable> stringCaptor = ArgumentCaptor.forClass(Serializable.class);
 
-		verify(jmsSenderMock, never()).send(destCaptor.capture(),stringCaptor.capture());
+		verify(jmsSenderMock, atLeastOnce()).send(destCaptor.capture(),stringCaptor.capture());
 
 		final List<Serializable> capturedStrings = stringCaptor.getAllValues();
 		final List<Destination> capturedDestinations = destCaptor.getAllValues();

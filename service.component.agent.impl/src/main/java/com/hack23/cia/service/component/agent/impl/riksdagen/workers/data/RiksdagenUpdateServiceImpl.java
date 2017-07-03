@@ -28,11 +28,17 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData_;
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData_;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer_;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData_;
 import com.hack23.cia.model.external.riksdagen.votering.impl.VoteData;
+import com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId;
+import com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId_;
+import com.hack23.cia.model.external.riksdagen.votering.impl.VoteData_;
 import com.hack23.cia.service.data.api.CommitteeProposalComponentDataDAO;
 import com.hack23.cia.service.data.api.DocumentContentDataDAO;
 import com.hack23.cia.service.data.api.DocumentElementDAO;
@@ -108,7 +114,9 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 
 	@Override
 	public void updateDocumentData(final DocumentStatusContainer documentData) {
-		documentStatusContainerDAO.persist(documentData);
+		if(documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document,DocumentData.class,DocumentData_.id,documentData.getDocument().getId()).isEmpty()) {
+			documentStatusContainerDAO.persist(documentData);
+		}
 	}
 
 	@Override
@@ -124,7 +132,10 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 	@Override
 	public void updateVoteDataData(final List<VoteData> list) {
 		if (list != null && !list.isEmpty()) {
-			voteDataDAO.persist(list);
+			if (voteDataDAO.findListByEmbeddedProperty(VoteData_.embeddedId,VoteDataEmbeddedId.class,VoteDataEmbeddedId_.ballotId,
+					list.get(0).getEmbeddedId().getBallotId()).isEmpty()) {
+				voteDataDAO.persist(list);
+			}
 		}
 	}
 

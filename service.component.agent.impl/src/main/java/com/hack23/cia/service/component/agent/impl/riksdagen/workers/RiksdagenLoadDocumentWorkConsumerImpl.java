@@ -94,7 +94,7 @@ MessageListener {
 			try {
 				jmsSender.send(documentElementWorkdestination, t);
 			} catch (final JMSException e) {
-				LOGGER.warn("Error proccessing documentElement",e);
+				LOGGER.warn("Error proccessing documentElement: " + t,e);
 			}
 		}
 	}
