@@ -1057,7 +1057,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "8.1.0.beta3";
+	content: "8.1.0.rc1";
 }
 
 .v-widget {
@@ -2557,31 +2557,6 @@ div.v-layout.v-horizontal.v-widget {
 .cia select:focus {
 	outline: none;
 	border-color: #008780;
-}
-
-.cia button {
-	font: inherit;
-	font-weight: 400;
-	line-height: 1.55;
-}
-
-.cia a {
-	cursor: pointer;
-	color: #008780;
-	text-decoration: underline;
-	font-weight: inherit;
-	-webkit-transition: color 140ms;
-	-moz-transition: color 140ms;
-	transition: color 140ms;
-}
-
-.cia a:hover {
-	color: #00bab0;
-}
-
-.cia a.v-disabled {
-	opacity: 0.5;
-	filter: alpha(opacity=50) ;
 }
 
 .cia .v-disabled {
@@ -8766,12 +8741,28 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-link a {
+	cursor: pointer;
+	color: #008780;
+	text-decoration: underline;
+	font-weight: inherit;
+	-webkit-transition: color 140ms;
+	-moz-transition: color 140ms;
+	transition: color 140ms;
 	cursor: inherit;
 	color: inherit;
 	text-decoration: inherit;
 	-webkit-transition: inherit;
 	-moz-transition: inherit;
 	transition: inherit;
+}
+
+.cia .v-link a:hover {
+	color: #00bab0;
+}
+
+.cia .v-link a.v-disabled {
+	opacity: 0.5;
+	filter: alpha(opacity=50) ;
 }
 
 .cia .v-link .v-icon {
@@ -13861,6 +13852,12 @@ div.v-layout.v-horizontal.v-widget {
 .cia .no-box-drag-hints.v-ddwrapper:after, .cia .no-box-drag-hints .v-ddwrapper:after {
 	display: none !important;
 	content: none;
+}
+
+.cia button {
+	font: inherit;
+	font-weight: 400;
+	line-height: 1.55;
 }
 
 .cia .v-nativebutton {
