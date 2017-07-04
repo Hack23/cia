@@ -42,6 +42,12 @@ final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Long> impl
 	/** The Constant EXPECTED_NR_ELEMENTS. */
 	private static final int EXPECTED_NR_ELEMENTS = 2;
 
+	/** The Constant FIRST_ELEMENT. */
+	private static final int FIRST_ELEMENT = 0;
+
+	/** The Constant SECOND_ELEMENT. */
+	private static final int SECOND_ELEMENT = 1;
+
 	/**
 	 * Instantiates a new data dao impl.
 	 */
@@ -62,8 +68,8 @@ final class DataDAOImpl extends AbstractGenericDAOImpl<WorldBankData, Long> impl
 
 		for (final Object[] objects : valueArray) {
 			if (objects.length == EXPECTED_NR_ELEMENTS) {
-				final StringBuilder stringBuilder = new StringBuilder().append(((Country) objects[0]).getId())
-						.append('.').append(((Indicator) objects[1]).getId());
+				final StringBuilder stringBuilder = new StringBuilder().append(((Country) objects[FIRST_ELEMENT]).getId())
+						.append('.').append(((Indicator) objects[SECOND_ELEMENT]).getId());
 				resultList.add(stringBuilder.toString());
 			}
 		}

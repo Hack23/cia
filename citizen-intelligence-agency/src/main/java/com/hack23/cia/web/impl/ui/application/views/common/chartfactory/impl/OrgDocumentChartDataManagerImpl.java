@@ -153,7 +153,7 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 									.parse(item.getEmbeddedId().getPublicDate());
 							dataSeries.add(simpleDateFormat.format(convertedCurrentDate), item.getTotal());
 						} catch (ParseException e) {
-							LOGGER.warn("Problem parsing date:{]", item.getEmbeddedId().getPublicDate());
+							LOGGER.warn("Problem parsing date:{}", item.getEmbeddedId().getPublicDate());
 						}
 					}
 				}

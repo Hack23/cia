@@ -112,7 +112,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 
 							dataSeries.add(simpleDateFormat.format(convertedCurrentDate), item.getTotal());
 						} catch (ParseException e) {
-							LOGGER.warn("Problem parsing date:{]", item.getEmbeddedId().getPublicDate());
+							LOGGER.warn("Problem parsing date:{}", item.getEmbeddedId().getPublicDate());
 						}
 
 					}
