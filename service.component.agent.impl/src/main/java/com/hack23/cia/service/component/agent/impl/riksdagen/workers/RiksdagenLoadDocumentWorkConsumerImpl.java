@@ -91,11 +91,7 @@ MessageListener {
 
 		@Override
 		public void process(final DocumentElement t) {
-			try {
 				jmsSender.send(documentElementWorkdestination, t);
-			} catch (final JMSException e) {
-				LOGGER.warn("Error proccessing documentElement: " + t,e);
-			}
 		}
 	}
 

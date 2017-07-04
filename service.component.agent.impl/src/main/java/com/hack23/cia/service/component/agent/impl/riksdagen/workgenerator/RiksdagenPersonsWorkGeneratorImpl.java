@@ -25,7 +25,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 import javax.jms.Destination;
-import javax.jms.JMSException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,7 +81,7 @@ final class RiksdagenPersonsWorkGeneratorImpl extends AbstractRiksdagenDataSourc
 					getJmsSender().send(personElementWorkdestination, new PersonElement().withId(personId));
 				}
 			}
-		} catch (final JMSException | DataFailureException exception) {
+		} catch (final DataFailureException exception) {
 			LOGGER.warn("Problem during generate work orders", exception);
 		}
 	}

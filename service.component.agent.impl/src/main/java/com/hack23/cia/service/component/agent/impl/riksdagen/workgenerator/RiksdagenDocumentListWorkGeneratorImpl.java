@@ -19,12 +19,9 @@
 package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator;
 
 import javax.jms.Destination;
-import javax.jms.JMSException;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -37,9 +34,6 @@ import com.hack23.cia.service.component.agent.impl.riksdagen.workers.LoadDocumen
  */
 @Service("RiksdagenDocumentListWorkGeneratorImpl")
 final class RiksdagenDocumentListWorkGeneratorImpl extends AbstractRiksdagenDataSourcesWorkGenerator {
-
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenDocumentListWorkGeneratorImpl.class);
 
 	/** The document element workdestination. */
 	@Autowired
@@ -55,27 +49,20 @@ final class RiksdagenDocumentListWorkGeneratorImpl extends AbstractRiksdagenData
 
 	@Override
 	public void generateWorkOrders() {
-		try {
+		final int startYearForDocumentElement = getImportService().getStartYearForDocumentElement();
 
-			final int startYearForDocumentElement = getImportService().getStartYearForDocumentElement();
+		final org.joda.time.format.DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd");
+		DateTime fromDateTime = fmt.parseDateTime(startYearForDocumentElement + "-01-01");
 
-			final org.joda.time.format.DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd");
-			DateTime fromDateTime = fmt.parseDateTime(startYearForDocumentElement + "-01-01");
+		DateTime loadedWeekDate = fmt.parseDateTime(startYearForDocumentElement + "-01-01");
 
-			DateTime loadedWeekDate = fmt.parseDateTime(startYearForDocumentElement + "-01-01");
+		final DateTime toDate = new DateTime();
+		while (loadedWeekDate.isBefore(toDate)) {
+			loadedWeekDate = loadedWeekDate.plusWeeks(1);
 
-			final DateTime toDate = new DateTime();
-			while (loadedWeekDate.isBefore(toDate)) {
-				loadedWeekDate = loadedWeekDate.plusWeeks(1);
-
-				getJmsSender().send(loadDocumentWorkdestination,
-						new LoadDocumentWork(fmt.print(fromDateTime), fmt.print(loadedWeekDate)));
-
-				fromDateTime = fromDateTime.plusWeeks(1);
-			}
-
-		} catch (final JMSException e) {
-			LOGGER.warn("error generating work for loading documents", e);
+			getJmsSender().send(loadDocumentWorkdestination,
+					new LoadDocumentWork(fmt.print(fromDateTime), fmt.print(loadedWeekDate)));
+			fromDateTime = fromDateTime.plusWeeks(1);
 		}
 	}
 

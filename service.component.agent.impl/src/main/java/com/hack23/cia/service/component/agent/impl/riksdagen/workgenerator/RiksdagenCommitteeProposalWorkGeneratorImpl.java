@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.jms.Destination;
-import javax.jms.JMSException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,12 +40,10 @@ final class RiksdagenCommitteeProposalWorkGeneratorImpl extends AbstractRiksdage
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenCommitteeProposalWorkGeneratorImpl.class);
 
-
 	/** The committee proposal component data workdestination. */
 	@Autowired
 	@Qualifier("com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData")
 	private Destination committeeProposalComponentDataWorkdestination;
-
 
 	/**
 	 * Instantiates a new riksdagen committee proposal work generator impl.
@@ -57,26 +54,19 @@ final class RiksdagenCommitteeProposalWorkGeneratorImpl extends AbstractRiksdage
 
 	@Override
 	public void generateWorkOrders() {
-		try {
-			final List<String> avaibleCommitteeProposal = getImportService()
-					.getAvaibleCommitteeProposal();
-			final Map<String, String> committeeProposalComponentDataMap = getImportService()
-					.getCommitteeProposalComponentDataMap();
+		final List<String> avaibleCommitteeProposal = getImportService().getAvaibleCommitteeProposal();
+		final Map<String, String> committeeProposalComponentDataMap = getImportService()
+				.getCommitteeProposalComponentDataMap();
 
-			LOGGER.info("getAvaibleCommitteeProposal()={}",avaibleCommitteeProposal.size());
-			LOGGER.info("getCommitteeProposalComponentDataMap()={}",committeeProposalComponentDataMap.keySet().size());
+		LOGGER.info("getAvaibleCommitteeProposal()={}", avaibleCommitteeProposal.size());
+		LOGGER.info("getCommitteeProposalComponentDataMap()={}", committeeProposalComponentDataMap.keySet().size());
 
-			for (final String id : avaibleCommitteeProposal) {
-				if (!committeeProposalComponentDataMap.containsKey(id)) {
-					getJmsSender().send(
-							committeeProposalComponentDataWorkdestination,
-							id);
+		for (final String id : avaibleCommitteeProposal) {
+			if (!committeeProposalComponentDataMap.containsKey(id)) {
+				getJmsSender().send(committeeProposalComponentDataWorkdestination, id);
 
-					LOGGER.info("load http://data.riksdagen.se/utskottsforslag/{}", id);
-				}
+				LOGGER.info("load http://data.riksdagen.se/utskottsforslag/{}", id);
 			}
-		} catch (final JMSException exception) {
-			LOGGER.warn("Loading avaibleCommitteeProposal", exception);
 		}
 	}
 

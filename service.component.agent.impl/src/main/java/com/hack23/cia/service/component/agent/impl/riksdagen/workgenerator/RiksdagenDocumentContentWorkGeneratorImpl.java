@@ -22,10 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.jms.Destination;
-import javax.jms.JMSException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -38,14 +35,10 @@ import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
 @Service("RiksdagenDocumentContentWorkGeneratorImpl")
 final class RiksdagenDocumentContentWorkGeneratorImpl extends AbstractRiksdagenDataSourcesWorkGenerator {
 
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenDocumentContentWorkGeneratorImpl.class);
-
 	/** The document content workdestination. */
 	@Autowired
 	@Qualifier("com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData")
 	private Destination documentContentWorkdestination;
-
 
 	/**
 	 * Instantiates a new riksdagen document content work generator impl.
@@ -56,22 +49,14 @@ final class RiksdagenDocumentContentWorkGeneratorImpl extends AbstractRiksdagenD
 
 	@Override
 	public void generateWorkOrders() {
-		try {
-			final Map<String, String> documentStatusContainerMap = getImportService()
-					.getDocumentContentMap();
+		final Map<String, String> documentStatusContainerMap = getImportService().getDocumentContentMap();
 
-			final List<String> avaibleDocumentStatus = getImportService()
-					.getAvaibleDocumentContent();
+		final List<String> avaibleDocumentStatus = getImportService().getAvaibleDocumentContent();
 
-			for (final String id : avaibleDocumentStatus) {
-				if (!documentStatusContainerMap.containsKey(id)) {
-					getJmsSender().send(documentContentWorkdestination,
-							id);
-				}
+		for (final String id : avaibleDocumentStatus) {
+			if (!documentStatusContainerMap.containsKey(id)) {
+				getJmsSender().send(documentContentWorkdestination, id);
 			}
-
-		} catch (final JMSException e) {
-			LOGGER.warn("error loading document content", e);
 		}
 	}
 

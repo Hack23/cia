@@ -27,13 +27,11 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.jms.Destination;
-import javax.jms.JMSException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.jms.JmsException;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentType;
@@ -94,7 +92,7 @@ final class RiksdagenDocumentStatusWorkGeneratorImpl extends AbstractRiksdagenDa
 				}
 			}
 
-		} catch (final JmsException | ParseException | JMSException e) {
+		} catch (final ParseException e) {
 			LOGGER.warn("Loading document status ", e);
 		}
 	}
