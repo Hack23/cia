@@ -33,14 +33,11 @@ import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.dussan.vaadin.dcharts.options.Series;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentPartySummaryEmbeddedId;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPartyDocumentDailySummary;
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyDocumentChartDataManager;
 import com.vaadin.ui.AbstractOrderedLayout;
 
@@ -70,15 +67,6 @@ public final class PartyDocumentChartDataManagerImpl extends AbstractChartDataMa
 	/** The Constant DD_MMM_YYYY. */
 	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
 
-	/** The application manager. */
-	@Autowired
-	private ApplicationManager applicationManager;
-
-	/** The chart options. */
-	@Autowired
-	private ChartOptions chartOptions;
-
-
 	/**
 	 * Instantiates a new party document chart data manager impl.
 	 */
@@ -93,7 +81,7 @@ public final class PartyDocumentChartDataManagerImpl extends AbstractChartDataMa
 	 * @return the view riksdagen party document daily summary map
 	 */
 	private Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> getViewRiksdagenPartyDocumentDailySummaryMap() {
-		final DataContainer<ViewRiksdagenPartyDocumentDailySummary, RiksdagenDocumentPartySummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
+		final DataContainer<ViewRiksdagenPartyDocumentDailySummary, RiksdagenDocumentPartySummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyDocumentDailySummary.class);
 
 		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
@@ -120,7 +108,7 @@ public final class PartyDocumentChartDataManagerImpl extends AbstractChartDataMa
 			addDocumentHistoryByPartyData(dataSeries, series, map);
 		}
 
-		addChart(content, DOCUMENT_HISTORY_PARTY,new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+		addChart(content, DOCUMENT_HISTORY_PARTY,new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
 	}
 
 

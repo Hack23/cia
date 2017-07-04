@@ -26,6 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.server.Page;
 import com.vaadin.server.Sizeable.Unit;
@@ -38,7 +39,6 @@ import com.vaadin.v7.ui.HorizontalLayout;
  */
 public abstract class AbstractChartDataManagerImpl {
 
-
 	/** The Constant CHART_MARGIN_SIZE. */
 	private static final int CHART_BOTTOM_MARGIN_SIZE = 2;
 	private static final int CHART_RIGHT_MARGIN = 2;
@@ -49,11 +49,24 @@ public abstract class AbstractChartDataManagerImpl {
 	@Autowired
 	private ApplicationManager applicationManager;
 
+	/** The chart options. */
+	@Autowired
+	private ChartOptions chartOptions;
+
+
 	/**
 	 * Instantiates a new abstract chart data manager impl.
 	 */
 	public AbstractChartDataManagerImpl() {
 		super();
+	}
+
+	protected final ApplicationManager getApplicationManager() {
+		return applicationManager;
+	}
+
+	protected final ChartOptions getChartOptions() {
+		return chartOptions;
 	}
 
 	/**
@@ -70,16 +83,16 @@ public abstract class AbstractChartDataManagerImpl {
 	protected final void addChart(final AbstractOrderedLayout content,final String caption, final DCharts chart, boolean fullPage) {
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 
-		final int browserWindowWidth = getChartWindowWidth();				
-				
+		final int browserWindowWidth = getChartWindowWidth();
+
 		final int browserWindowHeight = getChartWindowHeight(fullPage);
-		
+
 		horizontalLayout.setWidth(browserWindowWidth, Unit.PIXELS);
 		horizontalLayout.setHeight(browserWindowHeight, Unit.PIXELS);
 		horizontalLayout.setMargin(true);
 		horizontalLayout.setSpacing(false);
 		horizontalLayout.addStyleName("v-layout-content-overview-panel-level1");
-		
+
 		final Panel formPanel = new Panel();
 		formPanel.setSizeFull();
 		formPanel.setContent(horizontalLayout);
@@ -95,7 +108,7 @@ public abstract class AbstractChartDataManagerImpl {
 		chart.setMarginLeft(CHART_LEFT_MARGIN);
 		chart.setMarginBottom(CHART_BOTTOM_MARGIN_SIZE);
 		chart.setMarginTop(CHART_TOP_MARGIN_SIZE);
-		
+
 		horizontalLayout.addComponent(chart);
 		chart.setCaption(caption);
 	}

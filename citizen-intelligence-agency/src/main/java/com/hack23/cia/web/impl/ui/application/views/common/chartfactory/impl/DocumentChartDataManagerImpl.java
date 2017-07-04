@@ -34,14 +34,11 @@ import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.dussan.vaadin.dcharts.options.Series;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentTypeSummaryEmbeddedId;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenDocumentTypeDailySummary;
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DocumentChartDataManager;
 import com.vaadin.ui.AbstractOrderedLayout;
 
@@ -63,15 +60,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 	/** The Constant EMPTY_STRING. */
 	private static final String EMPTY_STRING = "";
 
-	/** The application manager. */
-	@Autowired
-	private ApplicationManager applicationManager;
-
 	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
-
-	/** The chart options. */
-	@Autowired
-	private ChartOptions chartOptions;
 
 	/**
 	 * Instantiates a new document chart data manager impl.
@@ -86,7 +75,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 	 * @return the document type map
 	 */
 	private Map<String, List<ViewRiksdagenDocumentTypeDailySummary>> getDocumentTypeMap() {
-		final DataContainer<ViewRiksdagenDocumentTypeDailySummary, RiksdagenDocumentTypeSummaryEmbeddedId> documentTypeSummaryDailyDataContainer = applicationManager
+		final DataContainer<ViewRiksdagenDocumentTypeDailySummary, RiksdagenDocumentTypeSummaryEmbeddedId> documentTypeSummaryDailyDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenDocumentTypeDailySummary.class);
 
 		return documentTypeSummaryDailyDataContainer.getAll().parallelStream()
@@ -133,7 +122,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 		}
 
 		addChart(content, "Document type", new DCharts().setDataSeries(dataSeries)
-				.setOptions(chartOptions.createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+				.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
 	}
 
 }

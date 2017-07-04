@@ -30,7 +30,6 @@ import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
 import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.dussan.vaadin.dcharts.options.Series;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.impl.ApplicationActionEventPageElementPeriodSummaryEmbeddedId;
@@ -43,10 +42,8 @@ import com.hack23.cia.model.internal.application.data.impl.ViewApplicationAction
 import com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementDailySummary_;
 import com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeDailySummary;
 import com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeDailySummary_;
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
@@ -64,14 +61,6 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	/** The Constant DD_MMM_YYYY. */
 	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
 
-	/** The application manager. */
-	@Autowired
-	private ApplicationManager applicationManager;
-
-	/** The chart options. */
-	@Autowired
-	private ChartOptions chartOptions;
-
 	/**
 	 * Instantiates a new admin chart data manager impl.
 	 */
@@ -86,7 +75,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	 * @return the application action event page daily summary map
 	 */
 	private Map<String, List<ViewApplicationActionEventPageDailySummary>> getApplicationActionEventPageDailySummaryMap() {
-		final DataContainer<ViewApplicationActionEventPageDailySummary, ApplicationActionEventPagePeriodSummaryEmbeddedId> documentTypeSummaryDailyDataContainer = applicationManager
+		final DataContainer<ViewApplicationActionEventPageDailySummary, ApplicationActionEventPagePeriodSummaryEmbeddedId> documentTypeSummaryDailyDataContainer = getApplicationManager()
 				.getDataContainer(ViewApplicationActionEventPageDailySummary.class);
 
 		return documentTypeSummaryDailyDataContainer.getAll().parallelStream()
@@ -123,7 +112,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 
 		}
 
-		addChart(content,"Application Action Events daily Summary", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(), true);
+		addChart(content,"Application Action Events daily Summary", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(), true);
 	}
 
 
@@ -135,7 +124,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	 * @return the application action event page mode daily summary map
 	 */
 	private Map<String, List<ViewApplicationActionEventPageModeDailySummary>> getApplicationActionEventPageModeDailySummaryMap(final String page) {
-		final DataContainer<ViewApplicationActionEventPageModeDailySummary, ApplicationActionEventPageModePeriodSummaryEmbeddedId> documentTypeSummaryDailyDataContainer = applicationManager
+		final DataContainer<ViewApplicationActionEventPageModeDailySummary, ApplicationActionEventPageModePeriodSummaryEmbeddedId> documentTypeSummaryDailyDataContainer = getApplicationManager()
 				.getDataContainer(ViewApplicationActionEventPageModeDailySummary.class);
 
 		final List<ViewApplicationActionEventPageModeDailySummary> findOrderedListByEmbeddedProperty = documentTypeSummaryDailyDataContainer.findOrderedListByEmbeddedProperty(ViewApplicationActionEventPageModeDailySummary.class, ViewApplicationActionEventPageModeDailySummary_.embeddedId, ApplicationActionEventPageModePeriodSummaryEmbeddedId.class, ApplicationActionEventPageModePeriodSummaryEmbeddedId_.page, page, ApplicationActionEventPageModePeriodSummaryEmbeddedId_.createdDate);
@@ -176,7 +165,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 
 		}
 
-		addChart(content,"Page Action Events daily Summary", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(), true);
+		addChart(content,"Page Action Events daily Summary", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(), true);
 	}
 
 
@@ -190,7 +179,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	 * @return the application action event page element daily summary list
 	 */
 	private List<ViewApplicationActionEventPageElementDailySummary> getApplicationActionEventPageElementDailySummaryList(final String page,final String elementId) {
-		final DataContainer<ViewApplicationActionEventPageElementDailySummary, ApplicationActionEventPageElementPeriodSummaryEmbeddedId> documentTypeSummaryDailyDataContainer = applicationManager
+		final DataContainer<ViewApplicationActionEventPageElementDailySummary, ApplicationActionEventPageElementPeriodSummaryEmbeddedId> documentTypeSummaryDailyDataContainer = getApplicationManager()
 				.getDataContainer(ViewApplicationActionEventPageElementDailySummary.class);
 
 		final List<ViewApplicationActionEventPageElementDailySummary> findOrderedListByEmbeddedProperty = documentTypeSummaryDailyDataContainer.findOrderedListByEmbeddedProperty(ViewApplicationActionEventPageElementDailySummary.class, ViewApplicationActionEventPageElementDailySummary_.embeddedId, ApplicationActionEventPageElementPeriodSummaryEmbeddedId.class, ApplicationActionEventPageElementPeriodSummaryEmbeddedId_.elementId, elementId, ApplicationActionEventPageElementPeriodSummaryEmbeddedId_.createdDate);
@@ -230,7 +219,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 			}
 		}
 
-		addChart(content, "Page element Action Events daily Summary",new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(), true);
+		addChart(content, "Page element Action Events daily Summary",new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(), true);
 	}
 
 

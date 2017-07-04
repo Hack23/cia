@@ -27,13 +27,11 @@ import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
 import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.dussan.vaadin.dcharts.options.Series;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.worldbank.data.impl.Country;
 import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
 import com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.WorldIndicatorChartDataManager;
 import com.vaadin.ui.AbstractOrderedLayout;
 
@@ -42,11 +40,6 @@ import com.vaadin.ui.AbstractOrderedLayout;
  */
 @Service
 public final class WorldIndicatorChartDataManagerImpl extends AbstractChartDataManagerImpl implements WorldIndicatorChartDataManager {
-
-	/** The chart options. */
-	@Autowired
-	private ChartOptions chartOptions;
-
 
 	/**
 	 * Instantiates a new world indicator chart data manager impl.
@@ -59,18 +52,18 @@ public final class WorldIndicatorChartDataManagerImpl extends AbstractChartDataM
 	@Override
 	public void createIndicatorChart(final AbstractOrderedLayout content,final List<WorldBankData> list,
 			final ViewWorldbankIndicatorDataCountrySummary summary) {
-		
+
 		Map<Country, List<WorldBankData>> countryIndicatorsMap = list.stream()
 				.collect(Collectors.groupingBy(WorldBankData::getCountry, Collectors.toList()));
 
-		
+
 		final Series series = new Series();
 		final DataSeries dataSeries = new DataSeries();
 
-		
+
 		for (Entry<Country, List<WorldBankData>> entry : countryIndicatorsMap.entrySet() ) {
 			series.addSeries(new XYseries().setLabel(entry.getKey().getValue()));
-			
+
 			dataSeries.newSeries();
 
 			for (final WorldBankData item : entry.getValue()) {
@@ -78,10 +71,10 @@ public final class WorldIndicatorChartDataManagerImpl extends AbstractChartDataM
 						&& !item.getDataValue().isEmpty()) {
 					dataSeries.add(item.getYearDate() + "-01-01", Float.valueOf(item.getDataValue()));
 				}
-			}			
+			}
 		}
-		
-		addChart(content,summary.getIndicatorName(), new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsCountryLineChart(series)).show(), false);
+
+		addChart(content,summary.getIndicatorName(), new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsCountryLineChart(series)).show(), false);
 	}
 
 

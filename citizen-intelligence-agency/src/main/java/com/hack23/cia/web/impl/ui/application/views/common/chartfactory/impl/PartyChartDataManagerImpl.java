@@ -34,14 +34,11 @@ import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
 import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.dussan.vaadin.dcharts.options.Series;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily;
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyChartDataManager;
 import com.vaadin.ui.AbstractOrderedLayout;
 
@@ -63,15 +60,6 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 
 	/** The Constant DD_MMM_YYYY. */
 	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
-
-	/** The application manager. */
-	@Autowired
-	private ApplicationManager applicationManager;
-
-	/** The chart options. */
-	@Autowired
-	private ChartOptions chartOptions;
-
 
 	/** The party map. */
 	private Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> partyMap;
@@ -125,7 +113,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 	 */
 	private void initPartyMap() {
 		if (partyMap == null) {
-			final DataContainer<ViewRiksdagenVoteDataBallotPartySummaryDaily, RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId> partyBallotSummaryDailyDataContainer = applicationManager
+			final DataContainer<ViewRiksdagenVoteDataBallotPartySummaryDaily, RiksdagenVoteDataBallotPartyPeriodSummaryEmbeddedId> partyBallotSummaryDailyDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenVoteDataBallotPartySummaryDaily.class);
 
 			partyMap = partyBallotSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
@@ -174,7 +162,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 			}
 		}
 
-		addChart(content,"Party winner by daily ballot average", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+		addChart(content,"Party winner by daily ballot average", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
 	}
 
 	/**
@@ -228,7 +216,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 			}
 		}
 
-		addChart(content,"Party result by", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsPartyLineChart(series)).show(), true);
+		addChart(content,"Party result by", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), true);
 	}
 
 
@@ -281,7 +269,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 			}
 		}
 
-		addChart(content,"Party ballot chart", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+		addChart(content,"Party ballot chart", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
 	}
 
 	/**

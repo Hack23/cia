@@ -20,11 +20,9 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
 import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.data.DataSeries;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
@@ -32,10 +30,6 @@ import com.vaadin.ui.AbstractOrderedLayout;
  */
 @Service
 public final class ChartDataManagerImpl extends AbstractChartDataManagerImpl implements ChartDataManager {
-
-	/** The chart options. */
-	@Autowired
-	private ChartOptions chartOptions;
 
 	/**
 	 * Instantiates a new chart data manager impl.
@@ -48,7 +42,7 @@ public final class ChartDataManagerImpl extends AbstractChartDataManagerImpl imp
 	@Override
 	public void createChartPanel(final AbstractOrderedLayout content,final DataSeries dataSeries, final String caption) {
 
-		final DCharts chart = new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsPieChart());
+		final DCharts chart = new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPieChart());
 
 		chart.show();
 

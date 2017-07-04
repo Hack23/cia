@@ -33,16 +33,13 @@ import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
 import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.dussan.vaadin.dcharts.options.Series;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId;
 import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenCommitteeDecisionTypeSummaryEmbeddedId;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeDailySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeOrgDailySummary;
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionChartDataManager;
 import com.vaadin.ui.AbstractOrderedLayout;
 
@@ -61,15 +58,6 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 	/** The Constant DD_MMM_YYYY. */
 	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
 
-	/** The application manager. */
-	@Autowired
-	private ApplicationManager applicationManager;
-
-	/** The chart options. */
-	@Autowired
-	private ChartOptions chartOptions;
-
-
 	/**
 	 * Instantiates a new decision chart data manager impl.
 	 */
@@ -84,7 +72,7 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 	 * @return the committee decision type map
 	 */
 	private Map<String, List<ViewRiksdagenCommitteeDecisionTypeDailySummary>> getCommitteeDecisionTypeMap() {
-		final DataContainer<ViewRiksdagenCommitteeDecisionTypeDailySummary, RiksdagenCommitteeDecisionTypeSummaryEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
+		final DataContainer<ViewRiksdagenCommitteeDecisionTypeDailySummary, RiksdagenCommitteeDecisionTypeSummaryEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeDecisionTypeDailySummary.class);
 
 		final Date now = new Date();
@@ -102,7 +90,7 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 	 * @return the committee decision type org map
 	 */
 	private Map<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> getCommitteeDecisionTypeOrgMap() {
-		final DataContainer<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary, RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId> committeeBallotDecisionPartyDataContainer = applicationManager
+		final DataContainer<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary, RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeDecisionTypeOrgDailySummary.class);
 
 		return committeeBallotDecisionPartyDataContainer.getAll().parallelStream()
@@ -138,7 +126,7 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 
 		}
 
-		addChart(content,"Decision type daily summary", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+		addChart(content,"Decision type daily summary", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
 	}
 
 
@@ -164,7 +152,7 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 			addDecisionTypeByOrgData(simpleDateFormat, dataSeries, series, map);
 		}
 
-		addChart(content,"Org Decision type daily summary", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+		addChart(content,"Org Decision type daily summary", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
 	}
 
 

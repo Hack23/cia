@@ -24,13 +24,11 @@ import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
 import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.dussan.vaadin.dcharts.options.Series;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.BallotChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.TabSheet.Tab;
 
@@ -39,10 +37,6 @@ import com.vaadin.ui.TabSheet.Tab;
  */
 @Service
 public final class BallotChartDataManagerImpl extends AbstractChartDataManagerImpl implements BallotChartDataManager {
-
-	/** The chart options. */
-	@Autowired
-	private ChartOptions chartOptions;
 
 	/**
 	 * Instantiates a new ballot chart data manager impl.
@@ -64,7 +58,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 		final String caption = "Summary : " +viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getIssue() + " " + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern();
 		tab.setCaption(caption);
 
-		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsDonoutChart()).show(), true);
+		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsDonoutChart()).show(), true);
 	}
 
 
@@ -96,7 +90,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 		}
 
 
-		addChart(content,caption + " ( 4 circles Yes/No/Abstain/Absent votes by party )", new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsDonoutChartWithSeries(series)).show(), true);
+		addChart(content,caption + " ( 4 circles Yes/No/Abstain/Absent votes by party )", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsDonoutChartWithSeries(series)).show(), true);
 	}
 
 

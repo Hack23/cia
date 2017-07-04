@@ -33,14 +33,11 @@ import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.dussan.vaadin.dcharts.options.Series;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentPersonSummaryEmbeddedId;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary;
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PersonDocumentChartDataManager;
 import com.vaadin.ui.AbstractOrderedLayout;
 
@@ -70,15 +67,6 @@ public final class PersonDocumentChartDataManagerImpl extends AbstractChartDataM
 	/** The Constant DD_MMM_YYYY. */
 	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
 
-	/** The application manager. */
-	@Autowired
-	private ApplicationManager applicationManager;
-
-	/** The chart options. */
-	@Autowired
-	private ChartOptions chartOptions;
-
-
 	/**
 	 * Instantiates a new person document chart data manager impl.
 	 */
@@ -93,7 +81,7 @@ public final class PersonDocumentChartDataManagerImpl extends AbstractChartDataM
 	 * @return the view riksdagen politician document daily summary map
 	 */
 	private Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> getViewRiksdagenPoliticianDocumentDailySummaryMap() {
-		final DataContainer<ViewRiksdagenPoliticianDocumentDailySummary, RiksdagenDocumentPersonSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
+		final DataContainer<ViewRiksdagenPoliticianDocumentDailySummary, RiksdagenDocumentPersonSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPoliticianDocumentDailySummary.class);
 
 		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
@@ -125,7 +113,7 @@ public final class PersonDocumentChartDataManagerImpl extends AbstractChartDataM
 			addDocumentHistoryByPersonData(simpleDateFormat, dataSeries, series, map);
 		}
 
-		addChart(content,DOCUMENT_HISTORY, new DCharts().setDataSeries(dataSeries).setOptions(chartOptions.createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+		addChart(content,DOCUMENT_HISTORY, new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
 	}
 
 

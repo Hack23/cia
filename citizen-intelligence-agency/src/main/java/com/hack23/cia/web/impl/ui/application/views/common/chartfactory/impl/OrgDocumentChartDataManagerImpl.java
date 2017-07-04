@@ -36,14 +36,11 @@ import org.dussan.vaadin.dcharts.data.DataSeries;
 import org.dussan.vaadin.dcharts.options.Series;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentOrgSummaryEmbeddedId;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenOrgDocumentDailySummary;
-import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.OrgDocumentChartDataManager;
 import com.vaadin.ui.AbstractOrderedLayout;
 
@@ -79,14 +76,6 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(OrgDocumentChartDataManagerImpl.class);
 
-	/** The application manager. */
-	@Autowired
-	private ApplicationManager applicationManager;
-
-	/** The chart options. */
-	@Autowired
-	private ChartOptions chartOptions;
-
 	/**
 	 * Instantiates a new org document chart data manager impl.
 	 */
@@ -100,7 +89,7 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 	 * @return the view riksdagen org document daily summary map
 	 */
 	private Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> getViewRiksdagenOrgDocumentDailySummaryMap() {
-		final DataContainer<ViewRiksdagenOrgDocumentDailySummary, RiksdagenDocumentOrgSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = applicationManager
+		final DataContainer<ViewRiksdagenOrgDocumentDailySummary, RiksdagenDocumentOrgSummaryEmbeddedId> politicianBallotSummaryDailyDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenOrgDocumentDailySummary.class);
 
 		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream()
@@ -129,7 +118,7 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 		}
 
 		addChart(content, DOCUMENT_HISTORY_BY_ORG, new DCharts().setDataSeries(dataSeries)
-				.setOptions(chartOptions.createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+				.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
 	}
 
 	/**
