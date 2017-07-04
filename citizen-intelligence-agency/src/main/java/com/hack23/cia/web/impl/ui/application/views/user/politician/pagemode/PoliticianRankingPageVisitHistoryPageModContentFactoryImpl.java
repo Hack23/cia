@@ -19,13 +19,11 @@
 package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Layout;
@@ -45,10 +43,6 @@ public final class PoliticianRankingPageVisitHistoryPageModContentFactoryImpl
 
 	/** The Constant PAGE_VISIT_HISTORY. */
 	private static final String PAGE_VISIT_HISTORY = "Page Visit History";
-
-	/** The admin chart data manager. */
-	@Autowired
-	private AdminChartDataManager adminChartDataManager;
 
 	/**
 	 * Instantiates a new politician ranking page visit history page mod content
@@ -72,7 +66,7 @@ public final class PoliticianRankingPageVisitHistoryPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
+		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
 
 		panel.setCaption(NAME + "::" + PAGE_VISIT_HISTORY);
 

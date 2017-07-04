@@ -19,13 +19,11 @@
 package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Layout;
@@ -46,10 +44,6 @@ public final class PartyRankingPageVisitHistoryPageModContentFactoryImpl
 	/** The Constant PAGE_VISIT_HISTORY. */
 	private static final String PAGE_VISIT_HISTORY = "Page Visit History";
 
-	/** The admin chart data manager. */
-	@Autowired
-	private AdminChartDataManager adminChartDataManager;
-
 	/**
 	 * Instantiates a new party ranking page visit history page mod content
 	 * factory impl.
@@ -67,7 +61,7 @@ public final class PartyRankingPageVisitHistoryPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
+		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
 
 		panel.setCaption(NAME + "::" + PAGE_VISIT_HISTORY);
 

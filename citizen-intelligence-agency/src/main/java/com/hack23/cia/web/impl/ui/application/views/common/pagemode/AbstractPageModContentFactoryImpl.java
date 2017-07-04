@@ -166,6 +166,10 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 		return pageLinkFactory;
 	}
 
+	protected final AdminChartDataManager getAdminChartDataManager() {
+		return adminChartDataManager;
+	}
+
 	/**
 	 * Gets the page action event helper.
 	 *

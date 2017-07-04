@@ -18,13 +18,11 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -45,10 +43,6 @@ public final class AdminApplicationEventsChartsPageModContentFactoryImpl
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME;
-
-	/** The chart data manager. */
-	@Autowired
-	private AdminChartDataManager chartDataManager;
 
 	/**
 	 * Instantiates a new admin application events charts page mod content
@@ -74,7 +68,7 @@ public final class AdminApplicationEventsChartsPageModContentFactoryImpl
 
 		LabelFactory.createHeader2Label(content, ADMIN_APPLICATION_ACTION_EVENT);
 
-		chartDataManager.createApplicationActionEventPageDailySummaryChart(content);
+		getAdminChartDataManager().createApplicationActionEventPageDailySummaryChart(content);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_EVENTS_VIEW,
 				ApplicationEventGroup.ADMIN, NAME, null, pageId);
