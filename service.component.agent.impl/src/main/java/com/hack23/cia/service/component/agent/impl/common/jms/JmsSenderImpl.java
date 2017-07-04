@@ -21,7 +21,6 @@ package com.hack23.cia.service.component.agent.impl.common.jms;
 import java.io.Serializable;
 
 import javax.jms.Destination;
-import javax.jms.JMSException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
@@ -40,10 +39,16 @@ final class JmsSenderImpl implements JmsSender {
 	@Autowired
 	private JmsTemplate jmsTemplate;
 
-	@Override
-	public void send(final Destination destination, final Serializable msg) throws JMSException {
-		jmsTemplate.send(destination, new ProducerMessageFactory(msg));
+	/**
+	 * Instantiates a new jms sender impl.
+	 */
+	public JmsSenderImpl() {
+		super();
+	}
 
+	@Override
+	public void send(final Destination destination, final Serializable msg) {
+		jmsTemplate.send(destination, new ProducerMessageFactory(msg));
 	}
 
 }

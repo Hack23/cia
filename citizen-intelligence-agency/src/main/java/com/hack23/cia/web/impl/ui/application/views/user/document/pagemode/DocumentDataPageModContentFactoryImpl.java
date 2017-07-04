@@ -145,7 +145,6 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 		final StringBuilder builder = new StringBuilder();
 		builder.append("<p>");
 		for (final Entry<String, Integer> entry : wordMap.entrySet()) {
-			final int fontSize = entry.getValue().intValue();
 			builder.append("<font size=\"").append(entry.getValue()).append(")\">").append(entry.getKey()).append("</font> ");
 		}
 		builder.append("/<p>");

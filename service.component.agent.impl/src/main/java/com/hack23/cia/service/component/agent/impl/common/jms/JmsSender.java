@@ -21,7 +21,6 @@ package com.hack23.cia.service.component.agent.impl.common.jms;
 import java.io.Serializable;
 
 import javax.jms.Destination;
-import javax.jms.JMSException;
 
 /**
  * The Interface JmsSender.
@@ -35,8 +34,6 @@ public interface JmsSender {
 	 *            the world bank api destination
 	 * @param msg
 	 *            the msg
-	 * @throws JMSException
-	 *             the JMS exception
 	 */
-	void send(Destination worldBankApiDestination,Serializable msg) throws JMSException;
+	void send(Destination worldBankApiDestination,Serializable msg);
 }
