@@ -86,9 +86,7 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 
 	@Override
 	public void update(final PersonData personData) {
-		if (personDataDAO.load(personData.getId()) != null) {
-			//personDataDAO.merge(personData);
-		} else {
+		if (personDataDAO.load(personData.getId()) == null) {
 			personDataDAO.persist(personData);
 		}
 	}
@@ -96,18 +94,14 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 	@Override
 	public void updateCommitteeProposalComponentData(final CommitteeProposalComponentData committeeProposal) {
 		if (committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
-				committeeProposal.getDocument()) != null) {
-			//committeeProposalComponentDataDAO.merge(committeeProposal);
-		} else {
+				committeeProposal.getDocument()) == null) {
 			committeeProposalComponentDataDAO.persist(committeeProposal);
 		}
 	}
 
 	@Override
 	public void updateDocumentContentData(final DocumentContentData documentData) {
-		if (documentContentDataDAO.findFirstByProperty(DocumentContentData_.id, documentData.getId()) != null) {
-			// documentContentDataDAO.merge(documentData);
-		} else {
+		if (documentContentDataDAO.findFirstByProperty(DocumentContentData_.id, documentData.getId()) == null) {
 			documentContentDataDAO.persist(documentData);
 		}
 	}
@@ -121,9 +115,7 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 
 	@Override
 	public void updateDocumentElement(final DocumentElement documentData) {
-		if (documentElementDAO.checkDocumentElement(documentData.getId())) {
-			//documentElementDAO.merge(documentData);
-		} else {
+		if (!documentElementDAO.checkDocumentElement(documentData.getId())) {
 			documentElementDAO.persist(documentData);
 		}
 
