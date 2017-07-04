@@ -64,7 +64,7 @@ public final class LogoutServiceITest extends AbstractServiceFunctionalIntegrati
 	 */
 	@Test
 	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
-	@Required(max = 1200, average = 950, percentile95 = 1000, throughput = 4)
+	@Required(max = 1500, average = 1200, percentile95 = 1300, throughput = 4)
 	public void serviceLogoutRequestSuccessTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
 

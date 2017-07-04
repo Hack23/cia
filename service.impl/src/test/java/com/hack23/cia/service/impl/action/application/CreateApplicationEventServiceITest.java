@@ -60,7 +60,7 @@ public final class CreateApplicationEventServiceITest extends AbstractServiceFun
 	 */
 	@Test
 	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
-	@Required(max = 1000,average = 400,percentile95=450,throughput=20)
+	@Required(max = 1000,average = 400,percentile95=450,throughput=10)
 	public void serviceCreateApplicationEventRequestSuccessTest() throws Exception {
 		setAuthenticatedAnonymousUser();
 
