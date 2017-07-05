@@ -54,6 +54,12 @@ import com.vaadin.v7.ui.VerticalLayout;
 @Service
 public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements CountryMenuItemFactory {
 
+	/** The Constant MINIMUM_NUMBER_DATA_POINTS. */
+	private static final int MINIMUM_NUMBER_DATA_POINTS = 10;
+
+	/** The Constant DATA_POINTS_FOR_YEAR_ABOVE. */
+	private static final int DATA_POINTS_FOR_YEAR_ABOVE = 2010;
+
 	/** The Constant COMMAND_PAGEVISITHISTORY. */
 	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
 
@@ -156,7 +162,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 		return indicatorDataCountrSummaryDailyDataContainer
 				.findListByEmbeddedProperty(ViewWorldbankIndicatorDataCountrySummary.class,ViewWorldbankIndicatorDataCountrySummary_.embeddedId,WorldbankIndicatorDataCountrySummaryEmbeddedId.class,WorldbankIndicatorDataCountrySummaryEmbeddedId_.countryId,"SE").parallelStream()
-				.filter(t -> t != null && t.getSourceValue() != null && t.getEndYear() > 2010 && t.getDataPoint() > 10)
+				.filter(t -> t != null && t.getSourceValue() != null && t.getEndYear() > DATA_POINTS_FOR_YEAR_ABOVE && t.getDataPoint() > MINIMUM_NUMBER_DATA_POINTS)
 				.flatMap(t -> Arrays.asList(t.getTopics().split(";")).stream()
 						.map(topic -> new AbstractMap.SimpleEntry<>(topic, t)))
 

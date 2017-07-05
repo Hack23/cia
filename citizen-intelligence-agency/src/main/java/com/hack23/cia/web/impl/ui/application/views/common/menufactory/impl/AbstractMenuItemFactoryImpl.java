@@ -45,6 +45,18 @@ import com.vaadin.v7.ui.VerticalLayout;
  */
 public abstract class AbstractMenuItemFactoryImpl {
 
+	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
+	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
+
+	/** The Constant DISPLAY_SIZE_MD_DEVICE. */
+	private static final int DISPLAY_SIZE_MD_DEVICE = 4;
+
+	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
+	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
+
+	/** The Constant DISPLAY_SIZE_XS_DEVICE. */
+	private static final int DISPLAY_SIZE_XS_DEVICE = 12;
+
 	/** The Constant COMMAND_APPLICATION_EVENTS_CHARTS. */
 	private static final PageModeMenuCommand COMMAND_APPLICATION_EVENTS_CHARTS = new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS);
 
@@ -307,13 +319,13 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 * @param description
 	 *            the description
 	 */
-	protected final void createButtonLink(final ResponsiveRow row,final String linkText,final Resource icon, final ClickListener command, final String description) {		
+	protected final void createButtonLink(final ResponsiveRow row,final String linkText,final Resource icon, final ClickListener command, final String description) {
 		CssLayout layout = new CssLayout();
 		layout.addStyleName("v-layout-content-overview-panel-level2");
 		Responsive.makeResponsive(layout);
 		layout.setSizeUndefined();
 
-		
+
 		final Button button = new Button(linkText);
 		Responsive.makeResponsive(button);
 		button.setStyleName(LINK_STYLE_NAME);
@@ -330,8 +342,8 @@ public abstract class AbstractMenuItemFactoryImpl {
 		Responsive.makeResponsive(descriptionLabel);
 		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(descriptionLabel);
-	
-		row.addColumn().withDisplayRules(12,6,4,4).withComponent(layout);
+
+		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE,DISPLAYS_SIZE_XM_DEVICE,DISPLAY_SIZE_MD_DEVICE,DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
 	}
 
 	/**

@@ -51,6 +51,18 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Char
 @Component
 public final class ChartOptionsImpl implements ChartOptions {
 
+	/** The Constant ONE_COLUMN_NUMBER_OF_ROWS. */
+	private static final int ONE_COLUMN_NUMBER_OF_ROWS = 12;
+
+	/** The Constant ONE_COLUMN_NUMBER_OF_COLUMNS. */
+	private static final int ONE_COLUMN_NUMBER_OF_COLUMNS = 1;
+
+	/** The Constant ONE_ROW_NUMBER_OF_ROWS. */
+	private static final int ONE_ROW_NUMBER_OF_ROWS = 1;
+
+	/** The Constant ONE_ROW_NUMBER_OF_COLUMNS. */
+	private static final int ONE_ROW_NUMBER_OF_COLUMNS = 10;
+
 	/** The Constant SLICE_MARGIN. */
 	private static final int SLICE_MARGIN = 3;
 
@@ -178,11 +190,16 @@ public final class ChartOptionsImpl implements ChartOptions {
 						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(LEGEND_COLUMNS).setNumberRows(LEGEND_ROWS))
 				.setPlacement(LegendPlacements.OUTSIDE_GRID));
 	}
-	
+
+	/**
+	 * Creates the legend outside one column.
+	 *
+	 * @return the legend
+	 */
 	private static Legend createLegendOutsideOneColumn() {
 		return setLegendStyling(new Legend().setShow(true)
 				.setRendererOptions(
-						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(1).setNumberRows(12))
+						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(ONE_COLUMN_NUMBER_OF_COLUMNS).setNumberRows(ONE_COLUMN_NUMBER_OF_ROWS))
 				.setPlacement(LegendPlacements.OUTSIDE_GRID));
 	}
 
@@ -194,7 +211,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 	private static Legend createLegendInsideOneRow() {
 		return setLegendStyling(new Legend().setShow(true)
 				.setRendererOptions(
-						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(10).setNumberRows(1))
+						new EnhancedLegendRenderer().setSeriesToggle(SeriesToggles.NORMAL).setSeriesToggleReplot(true).setNumberColumns(ONE_ROW_NUMBER_OF_COLUMNS).setNumberRows(ONE_ROW_NUMBER_OF_ROWS))
 				.setPlacement(LegendPlacements.INSIDE_GRID));
 	}
 
@@ -274,6 +291,11 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.setHighlighter(createHighLighter()).addOption(series).addOption(createDefaultGrid()).addOption(createCursor());
 	}
 
+	/**
+	 * Creates the donout series default.
+	 *
+	 * @return the series defaults
+	 */
 	private SeriesDefaults createDonoutSeriesDefault() {
 		return new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
 				.setRendererOptions(new DonutRenderer().setSliceMargin(SLICE_MARGIN).setStartAngle(START_ANGLE).setShowDataLabels(true)

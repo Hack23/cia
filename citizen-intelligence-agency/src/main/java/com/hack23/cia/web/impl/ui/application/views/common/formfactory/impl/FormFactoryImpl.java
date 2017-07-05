@@ -50,6 +50,9 @@ import com.vaadin.v7.ui.VerticalLayout;
 @Service
 public final class FormFactoryImpl implements FormFactory {
 
+	/** The Constant SIZE_FOR_GRID. */
+	private static final int SIZE_FOR_GRID = 8;
+
 	/** The Constant LOG_MSG_PROPERTY. */
 	private static final String LOG_MSG_PROPERTY = "property:{}";
 
@@ -108,15 +111,15 @@ public final class FormFactoryImpl implements FormFactory {
 		final Panel formPanel = new Panel();
 		formPanel.setSizeFull();
 
-		
+
 		panelContent.addComponent(formPanel);
-		if (displayProperties.size() > 8) {
+		if (displayProperties.size() > SIZE_FOR_GRID) {
 			panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
 		}
 		else {
-			panelContent.setExpandRatio(formPanel, ContentRatio.SMALL_GRID);				
+			panelContent.setExpandRatio(formPanel, ContentRatio.SMALL_GRID);
 		}
-		
+
 
 		final FormLayout formContent = new FormLayout();
 		formPanel.setContent(formContent);
