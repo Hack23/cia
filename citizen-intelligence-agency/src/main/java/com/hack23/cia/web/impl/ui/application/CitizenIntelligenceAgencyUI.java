@@ -93,7 +93,6 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 	protected void init(final VaadinRequest request) {
 		VaadinSession.getCurrent().setErrorHandler(new UiInstanceErrorHandler(this));
 		setSizeFull();
-		//final Navigator navigator = new SpringNavigator(this, this);
 		springNavigator.addView("", mainView);
 		setNavigator(springNavigator);
 

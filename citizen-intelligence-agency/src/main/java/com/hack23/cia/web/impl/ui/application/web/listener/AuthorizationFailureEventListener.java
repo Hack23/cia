@@ -18,12 +18,17 @@
 */
 package com.hack23.cia.web.impl.ui.application.web.listener;
 
+import java.text.MessageFormat;
+import java.util.Collection;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.ReflectiveMethodInvocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
+import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.event.AuthorizationFailureEvent;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 
@@ -55,6 +60,10 @@ public final class AuthorizationFailureEventListener implements ApplicationListe
 	 * LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES.
 	 */
 	private static final String LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES = "Authorization Failure:: url : {} Method : {} SessionId :{} , Authorities : {} , RequiredAuthorities : {}";
+
+	/** The Constant ERROR_MESSAGE_FORMAT. */
+	private static final String ERROR_MESSAGE_FORMAT = "Url:{0} , Method{1} ,{2}{3}{4}{5} source:{6}";
+
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(AuthorizationFailureEventListener.class);
@@ -103,16 +112,18 @@ public final class AuthorizationFailureEventListener implements ApplicationListe
 			}
 		}
 
-		serviceRequest.setErrorMessage("Url:" + requestUrl + " , Method" + methodInfo + " ," + AUTHORITIES
-				+ authorizationFailureEvent.getAuthentication().getAuthorities() + REQUIRED_AUTHORITIES
-				+ authorizationFailureEvent.getConfigAttributes() + " source:" + authorizationFailureEvent.getSource());
+		final Collection<? extends GrantedAuthority> authorities = authorizationFailureEvent.getAuthentication().getAuthorities();
+		final Collection<ConfigAttribute> configAttributes = authorizationFailureEvent.getConfigAttributes();
+
+		serviceRequest.setErrorMessage(MessageFormat.format(ERROR_MESSAGE_FORMAT, requestUrl, methodInfo, AUTHORITIES, authorities,
+				REQUIRED_AUTHORITIES, configAttributes, authorizationFailureEvent.getSource()));
 		serviceRequest.setApplicationMessage(ACCESS_DENIED);
 
 		applicationManager.service(serviceRequest);
 
 		LOGGER.info(LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES, requestUrl, methodInfo,
-				sessionId, authorizationFailureEvent.getAuthentication().getAuthorities().toString(),
-				authorizationFailureEvent.getConfigAttributes().toString());
+				sessionId, authorities,
+				configAttributes);
 	}
 
 }
