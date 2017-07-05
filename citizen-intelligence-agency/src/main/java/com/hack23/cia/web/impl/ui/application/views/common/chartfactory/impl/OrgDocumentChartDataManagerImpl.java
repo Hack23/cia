@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -105,7 +104,6 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 				.replace(MINUS_SIGN, EMPTY_STRING).trim();
 
 		final DataSeries dataSeries = new DataSeries();
-
 		final Series series = new Series();
 
 		final Map<String, List<ViewRiksdagenOrgDocumentDailySummary>> allMap = getViewRiksdagenOrgDocumentDailySummaryMap();
@@ -117,8 +115,10 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 			addDocumentHistoryByOrgData(dataSeries, series, itemList);
 		}
 
-		addChart(content, DOCUMENT_HISTORY_BY_ORG, new DCharts().setDataSeries(dataSeries)
-				.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+		addChart(content, DOCUMENT_HISTORY_BY_ORG,
+				new DCharts().setDataSeries(dataSeries)
+						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),
+				true);
 	}
 
 	/**
@@ -140,27 +140,33 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 		final SimpleDateFormat parseIncomingDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 		for (final Entry<String, List<ViewRiksdagenOrgDocumentDailySummary>> entry : map.entrySet()) {
+			addNewDataSerie(dataSeries, series, simpleDateFormat, parseIncomingDateFormat, entry);
+		}
+	}
 
-			series.addSeries(new XYseries().setLabel(entry.getKey()));
+	private static void addNewDataSerie(final DataSeries dataSeries, final Series series,
+			final SimpleDateFormat simpleDateFormat, final SimpleDateFormat parseIncomingDateFormat,
+			final Entry<String, List<ViewRiksdagenOrgDocumentDailySummary>> entry) {
 
-			dataSeries.newSeries();
-			if (entry.getValue() != null) {
-				for (final ViewRiksdagenOrgDocumentDailySummary item : entry.getValue()) {
-					if (item != null && item.getEmbeddedId().getPublicDate().length() > 0) {
+		series.addSeries(new XYseries().setLabel(entry.getKey()));
+		dataSeries.newSeries();
 
-						try {
-							final Date convertedCurrentDate = parseIncomingDateFormat
-									.parse(item.getEmbeddedId().getPublicDate());
-							dataSeries.add(simpleDateFormat.format(convertedCurrentDate), item.getTotal());
-						} catch (ParseException e) {
-							LOGGER.warn("Problem parsing date:{}", item.getEmbeddedId().getPublicDate());
-						}
+		if (entry.getValue() != null) {
+			for (final ViewRiksdagenOrgDocumentDailySummary item : entry.getValue()) {
+				if (item != null && item.getEmbeddedId().getPublicDate().length() > 0) {
+
+					try {
+						dataSeries.add(
+								simpleDateFormat
+										.format(parseIncomingDateFormat.parse(item.getEmbeddedId().getPublicDate())),
+								item.getTotal());
+					} catch (ParseException e) {
+						LOGGER.warn("Problem parsing date:{}", item.getEmbeddedId().getPublicDate());
 					}
 				}
-			} else {
-				LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
 			}
-
+		} else {
+			LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
 		}
 	}
 

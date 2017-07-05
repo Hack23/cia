@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -86,43 +85,51 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 
 	@Override
 	public void createDocumentTypeChart(final AbstractOrderedLayout content) {
-
 		final Map<String, List<ViewRiksdagenDocumentTypeDailySummary>> map = getDocumentTypeMap();
 		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 		final SimpleDateFormat parseInputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 		final DataSeries dataSeries = new DataSeries();
-
 		final Series series = new Series();
 
 		for (final Entry<String, List<ViewRiksdagenDocumentTypeDailySummary>> entry : map.entrySet()) {
-
 			if (entry.getKey() != null && !EMPTY_STRING.equals(entry.getKey())) {
-
-				series.addSeries(new XYseries().setLabel(entry.getKey()));
-
-				dataSeries.newSeries();
-				final List<ViewRiksdagenDocumentTypeDailySummary> list = entry.getValue();
-				for (final ViewRiksdagenDocumentTypeDailySummary item : list) {
-					if (item != null && item.getEmbeddedId().getPublicDate().length() > 0) {
-
-						try {
-							final Date convertedCurrentDate = parseInputDateFormat
-									.parse(item.getEmbeddedId().getPublicDate());
-
-							dataSeries.add(simpleDateFormat.format(convertedCurrentDate), item.getTotal());
-						} catch (ParseException e) {
-							LOGGER.warn("Problem parsing date:{}", item.getEmbeddedId().getPublicDate());
-						}
-
-					}
-				}
+				addDataSeries(simpleDateFormat, parseInputDateFormat, dataSeries, series, entry);
 			}
-
 		}
 
-		addChart(content, "Document type", new DCharts().setDataSeries(dataSeries)
-				.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+		addChart(content, "Document type",
+				new DCharts().setDataSeries(dataSeries)
+						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),
+				true);
+	}
+
+	/**
+	 * Adds the data series.
+	 *
+	 * @param simpleDateFormat the simple date format
+	 * @param parseInputDateFormat the parse input date format
+	 * @param dataSeries the data series
+	 * @param series the series
+	 * @param entry the entry
+	 */
+	private static void addDataSeries(final SimpleDateFormat simpleDateFormat,
+			final SimpleDateFormat parseInputDateFormat, final DataSeries dataSeries, final Series series,
+			final Entry<String, List<ViewRiksdagenDocumentTypeDailySummary>> entry) {
+
+		series.addSeries(new XYseries().setLabel(entry.getKey()));
+		dataSeries.newSeries();
+
+		for (final ViewRiksdagenDocumentTypeDailySummary item : entry.getValue()) {
+			if (item != null && item.getEmbeddedId().getPublicDate().length() > 0) {
+				try {
+					dataSeries.add(simpleDateFormat.format(parseInputDateFormat.parse(item.getEmbeddedId().getPublicDate())), item.getTotal());
+				} catch (ParseException e) {
+					LOGGER.warn("Problem parsing date:{}", item.getEmbeddedId().getPublicDate());
+				}
+
+			}
+		}
 	}
 
 }
