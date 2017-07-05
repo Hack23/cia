@@ -134,7 +134,6 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 		charts.addItem(OVERVIEW_TEXT, FontAwesome.INSTITUTION,
 				COMMAND_OVERVIEW);
 
-		// Submenu item with a sub-submenu
 		final MenuItem chartIndicators = charts.addItem(SWEDISH_PARLIAMENT_INDICATORS, FontAwesome.INSTITUTION, null);
 
 		final MenuItem addItem = chartIndicators.addItem(PARTY_WINNER,FontAwesome.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER);

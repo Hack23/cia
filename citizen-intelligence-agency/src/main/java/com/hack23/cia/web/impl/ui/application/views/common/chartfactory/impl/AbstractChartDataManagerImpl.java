@@ -39,10 +39,33 @@ import com.vaadin.v7.ui.HorizontalLayout;
  */
 public abstract class AbstractChartDataManagerImpl {
 
+	/** The Constant HEIGHT_PERCETAGE_HALF_PAGE. */
+	private static final double HEIGHT_PERCETAGE_HALF_PAGE = 0.5;
+
+	/** The Constant HEIGHT_PERCENTAGE_FULL_PAGE. */
+	private static final double HEIGHT_PERCENTAGE_FULL_PAGE = 0.8;
+
+	/** The Constant CHART_WIDTH_REDUCTION. */
+	private static final int CHART_WIDTH_REDUCTION = 50;
+
+	/** The Constant NINIMUM_CHART_HEIGHT_HALF_PAGE. */
+	private static final int NINIMUM_CHART_HEIGHT_HALF_PAGE = 200;
+
+	/** The Constant MINIMUM_CHART_HEIGHT_FULL_PAGE. */
+	private static final int MINIMUM_CHART_HEIGHT_FULL_PAGE = 400;
+
+	/** The Constant MINIMUM_CHART_WIDTH. */
+	private static final int MINIMUM_CHART_WIDTH = 600;
 	/** The Constant CHART_MARGIN_SIZE. */
 	private static final int CHART_BOTTOM_MARGIN_SIZE = 2;
+
+	/** The Constant CHART_RIGHT_MARGIN. */
 	private static final int CHART_RIGHT_MARGIN = 2;
+
+	/** The Constant CHART_LEFT_MARGIN. */
 	private static final int CHART_LEFT_MARGIN= 2;
+
+	/** The Constant CHART_TOP_MARGIN_SIZE. */
 	private static final int CHART_TOP_MARGIN_SIZE = 2;
 
 	/** The application manager. */
@@ -61,10 +84,20 @@ public abstract class AbstractChartDataManagerImpl {
 		super();
 	}
 
+	/**
+	 * Gets the application manager.
+	 *
+	 * @return the application manager
+	 */
 	protected final ApplicationManager getApplicationManager() {
 		return applicationManager;
 	}
 
+	/**
+	 * Gets the chart options.
+	 *
+	 * @return the chart options
+	 */
 	protected final ChartOptions getChartOptions() {
 		return chartOptions;
 	}
@@ -113,15 +146,26 @@ public abstract class AbstractChartDataManagerImpl {
 		chart.setCaption(caption);
 	}
 
-	private int getChartWindowWidth() {
-		return Math.max((Page.getCurrent().getBrowserWindowWidth() -50),600);
+	/**
+	 * Gets the chart window width.
+	 *
+	 * @return the chart window width
+	 */
+	private static int getChartWindowWidth() {
+		return Math.max((Page.getCurrent().getBrowserWindowWidth() - CHART_WIDTH_REDUCTION),MINIMUM_CHART_WIDTH);
 	}
 
-	private int getChartWindowHeight(boolean fullPage) {
+	/**
+	 * Gets the chart window height.
+	 *
+	 * @param fullPage the full page
+	 * @return the chart window height
+	 */
+	private static int getChartWindowHeight(final boolean fullPage) {
 		if (fullPage) {
-			return Math.max((Page.getCurrent().getBrowserWindowHeight() / 20) * 16,400);
+			return Math.max((int) (Page.getCurrent().getBrowserWindowHeight() * HEIGHT_PERCENTAGE_FULL_PAGE) ,MINIMUM_CHART_HEIGHT_FULL_PAGE);
 		} else {
-			return Math.max(Page.getCurrent().getBrowserWindowHeight() / 2,200);
+			return Math.max((int) (Page.getCurrent().getBrowserWindowHeight() * HEIGHT_PERCETAGE_HALF_PAGE),NINIMUM_CHART_HEIGHT_HALF_PAGE);
 		}
 	}
 
