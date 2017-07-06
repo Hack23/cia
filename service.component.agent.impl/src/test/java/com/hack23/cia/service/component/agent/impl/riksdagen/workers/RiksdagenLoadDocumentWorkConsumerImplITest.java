@@ -34,6 +34,7 @@ import javax.jms.ObjectMessage;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
 
@@ -57,6 +58,7 @@ public class RiksdagenLoadDocumentWorkConsumerImplITest extends AbstractServiceC
 	 *             the JMS exception
 	 */
 	@Test
+	@Transactional
 	public void onMessageSuccessTest() throws JMSException {
 		SimpleDateFormat dateFormat = new SimpleDateFormat(RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT);
 

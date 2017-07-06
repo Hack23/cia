@@ -64,7 +64,7 @@ final class RiksdagenPersonElementWorkConsumerImpl implements MessageListener {
 			updateService.update(riksdagenApi
 					.getPerson(((PersonElement) ((ObjectMessage) message)
 							.getObject()).getId()));
-		} catch (final DataFailureException | RuntimeException | JMSException e) {
+		} catch (final DataFailureException | JMSException e) {
 			LOGGER.warn("Error loading PersonElement",e);
 		}
 	}

@@ -59,6 +59,7 @@ public class RiksdagenCommitteeProposalComponentDataWorkConsumerImplITest extend
 	 *             the JMS exception
 	 */
 	@Test
+	@Transactional
 	public void onMessageSuccessTest() throws JMSException {
 		final ObjectMessage message = mock(ObjectMessage.class);
 

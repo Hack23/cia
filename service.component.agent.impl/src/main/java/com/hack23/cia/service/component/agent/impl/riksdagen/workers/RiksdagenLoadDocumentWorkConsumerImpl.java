@@ -78,7 +78,7 @@ MessageListener {
 
 			riksdagenApi.processDocumentList(work.getFromDate(),work.getToDate(),new DocumentElementWorkProducer());
 
-		} catch (final DataFailureException | RuntimeException | JMSException e) {
+		} catch (final DataFailureException | JMSException e) {
 			LOGGER.warn("Error loading riksdagen document" , e);
 		}
 	}

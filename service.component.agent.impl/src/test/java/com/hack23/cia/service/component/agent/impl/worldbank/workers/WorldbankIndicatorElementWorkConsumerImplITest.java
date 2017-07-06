@@ -30,6 +30,7 @@ import javax.jms.ObjectMessage;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
@@ -51,6 +52,7 @@ public class WorldbankIndicatorElementWorkConsumerImplITest extends AbstractServ
 	 *             the JMS exception
 	 */
 	@Test
+	@Transactional
 	public void onMessageSuccessTest() throws JMSException {
 		final ObjectMessage message = mock(ObjectMessage.class);
 

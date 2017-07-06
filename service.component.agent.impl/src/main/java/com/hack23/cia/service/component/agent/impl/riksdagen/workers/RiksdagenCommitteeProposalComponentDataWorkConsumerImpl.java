@@ -68,7 +68,7 @@ final class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl implements M
 			updateService.updateCommitteeProposalComponentData(riksdagenApi
 					.getCommitteeProposal((String) ((ObjectMessage) message)
 							.getObject()));
-		} catch (final DataFailureException | RuntimeException | JMSException e) {
+		} catch (final DataFailureException | JMSException e) {
 			LOGGER.warn("Error loading CommitteeProposalComponentData" , e);
 		}
 	}

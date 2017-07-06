@@ -30,6 +30,7 @@ import javax.jms.ObjectMessage;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
 import com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data.RiksdagenImportService;
@@ -55,6 +56,7 @@ public class RiksdagenDocumentElementWorkConsumerImplITest extends AbstractServi
 	 *             the JMS exception
 	 */
 	@Test
+	@Transactional
 	public void onMessageSuccessTest() throws JMSException {
 		final ObjectMessage message = mock(ObjectMessage.class);
 

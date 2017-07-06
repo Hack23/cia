@@ -68,7 +68,7 @@ MessageListener {
 			updateService.updateDocumentContentData(riksdagenApi
 					.getDocumentContent((String) ((ObjectMessage) message)
 							.getObject()));
-		} catch (final DataFailureException | RuntimeException | JMSException e) {
+		} catch (final DataFailureException | JMSException e) {
 			LOGGER.warn("Error loading DocumentContent:", e);
 		}
 	}

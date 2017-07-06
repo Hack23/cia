@@ -59,7 +59,7 @@ MessageListener {
 	public void onMessage(final Message message) {
 		try {
 			updateService.updateDocumentElement((DocumentElement) ((ObjectMessage) message).getObject());
-		} catch (final RuntimeException | JMSException e) {
+		} catch (final JMSException e) {
 			LOGGER.warn("Error loading riksdagen document" , e);
 		}
 	}
