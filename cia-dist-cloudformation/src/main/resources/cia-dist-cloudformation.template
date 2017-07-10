@@ -131,8 +131,7 @@
          "MinLength":"8"
       },
       "DBSnapshotName":{
-         "Description":"The name of a DB snapshot (optional, if supplied DBUsername,DBPassword need to root,root1234)",
-         "Default":"arn:aws:rds:eu-west-1:172017021075:snapshot:cia-demo-20170609",
+         "Description":"The name of a DB snapshot (optional, if arn:aws:rds:eu-west-1:172017021075:snapshot:cia-demo-20170609 supplied DBUsername,DBPassword need to root,root1234)",
          "Type":"String"
       },
       "DebPackageUrl":{
