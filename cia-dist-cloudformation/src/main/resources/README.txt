@@ -1,7 +1,7 @@
-Will use latest hvm-ssd ubuntu image:Current: ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20170516 : ami-6c101b0a
+Will use latest hvm-ssd ubuntu image:Current: ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20170619.1 : ami-6d48500b
 
 17.04
-ubuntu/images/hvm-ssd/ubuntu-zesty-17.04-amd64-server-20170412.1 : ami-b4a79dd2
+ubuntu/images/hvm-ssd/ubuntu-zesty-17.04-amd64-server-20170619.1 : ami-af455dc9
 
 
 http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL.Procedural.Importing.html
@@ -13,12 +13,12 @@ Add elasticsearch
 https://github.com/alphagov/digitalmarketplace-aws/blob/master/cloudformation_templates/aws_kibana.json
 
 "AvailabilityZone" : { "Fn::Select" : [ "0", { "Fn::GetAZs" : { "Ref" : "AWS::Region" } } ] }
- 
+
 add java memory size map per instance type.
 
 improve postgres rds config.
 
-why no materialized views in quicksight. 
+why no materialized views in quicksight.
 
 http://www.ec2instances.info/
 
@@ -30,11 +30,11 @@ http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-cloudwatc
     AWS::ApplicationAutoScaling::ScalableTarget
 
     AWS::ApplicationAutoScaling::ScalingPolicy
-    
+
         AWS::SSM::Association
 
     AWS::SSM::Document
-    
+
         AWS::WAF::ByteMatchSet
 
     AWS::WAF::IPSet
@@ -47,8 +47,8 @@ http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-cloudwatc
 
     AWS::WAF::WebACL
 
-    AWS::WAF::XssMatchSet            
-            
+    AWS::WAF::XssMatchSet
+
 
 AWS::Logs::LogGroup
 

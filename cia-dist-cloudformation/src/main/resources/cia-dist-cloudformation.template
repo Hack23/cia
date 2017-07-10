@@ -175,7 +175,7 @@
          "Default":"false",
          "Description":"Set to true to enable",
          "Type":"String"
-      },     
+      },
       "ElasticSearchInstanceType":{
          "Default":"t2.medium.elasticsearch",
          "Description":"ElasticSearch instance type",
@@ -197,17 +197,17 @@
             "r3.8xlarge.elasticsearch"
          ],
          "ConstraintDescription":"must select a valid elastic search instance type."
-      }    
+      }
    },
    "Mappings":{
       "SubnetConfig":{
 	      "VPC"     : { "CIDR" : "10.40.0.0/16" },
 	      "Public"  : { "CIDR" : "10.40.10.0/24" },
 	      "Public2"  : { "CIDR" : "10.40.11.0/24" },
-	      "Public3"  : { "CIDR" : "10.40.12.0/24" },     
+	      "Public3"  : { "CIDR" : "10.40.12.0/24" },
 	      "Private"  : { "CIDR" : "10.40.20.0/24"},
 	      "Private2"  : { "CIDR" : "10.40.21.0/24"},
-	      "Private3"  : { "CIDR" : "10.40.22.0/24"}                       
+	      "Private3"  : { "CIDR" : "10.40.22.0/24"}
       },
       "QuickSightRegionSubnet":{
          "us-east-1":{
@@ -444,7 +444,7 @@
          },
          "eu-west-1":{
             "PV64":"NOT_SUPPORTED",
-            "HVM64":"ami-6c101b0a",
+            "HVM64":"ami-6d48500b",
             "HVMG2":"NOT_SUPPORTED"
          },
          "eu-central-1":{
@@ -530,7 +530,7 @@
             "THIRD":"cn-north-1c"
          }
       },
-      
+
       "AWSInstanceType2UseRamSize":{
          "t2.micro":{
             "JavaMemorySize":"UNSUPPORTED"
@@ -542,7 +542,7 @@
             "JavaMemorySize":"2096m"
          },
          "t2.large":{
-            "JavaMemorySize":"6192m" 
+            "JavaMemorySize":"6192m"
          },
          "t2.xlarge":{
             "JavaMemorySize":"12384m"
@@ -765,7 +765,7 @@
                ]
             }
          ]
-      }      
+      }
    },
    "Resources":{
       "VPC":{
@@ -1565,7 +1565,7 @@
                "Ref":"DBClass"
             },
             "Engine":"postgres",
-            "EngineVersion":"9.6.1",
+            "EngineVersion":"9.6.3",
             "MultiAZ":"false",
             "PubliclyAccessible":"true",
             "StorageType":"gp2",
@@ -2179,12 +2179,12 @@
                         "ufw allow 53\n",
                         "ufw allow ntp\n",
                         "ufw enable\n",
-                        "ufw status verbose\n",                        
+                        "ufw status verbose\n",
                         "wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install\n",
                         "sudo bash install\n",
                         "wget https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb\n",
 						"sudo dpkg -i --force all amazon-ssm-agent.deb\n",
-						"sudo systemctl enable amazon-ssm-agent\n",                                                           
+						"sudo systemctl enable amazon-ssm-agent\n",
                         "# Signal completion\n",
                         "cfn-signal -e $? ",
                         "    --stack ",
@@ -2248,7 +2248,7 @@
       },
     "ElasticsearchDomain": {
       "Type": "AWS::Elasticsearch::Domain",
-      "Condition":"useElasticSearch",     
+      "Condition":"useElasticSearch",
       "Properties": {
         "DomainName": {"Ref": "DomainNamePrefix"},
         "EBSOptions": {
@@ -2256,7 +2256,7 @@
           "VolumeSize": 30,
           "VolumeType": "gp2"
         },
-        "ElasticsearchVersion": "5.1",
+        "ElasticsearchVersion": "5.3",
         "ElasticsearchClusterConfig": {
           "InstanceType": {"Ref": "ElasticSearchInstanceType"},
           "InstanceCount": 1
@@ -2273,7 +2273,7 @@
         }
       }
     }
-      
+
    },
    "Outputs":{
       "WebSite":{
@@ -2324,7 +2324,7 @@
     "ElasticSearchName": {
       "Description": "Elasticsearch domain name",
       "Value": {"Ref": "ElasticsearchDomain"},
-      "Condition":"useElasticSearch"          
+      "Condition":"useElasticSearch"
     },
     "ElasticSearchDomain": {
       "Description": "Elasticsearch domain endpoint",
@@ -2345,6 +2345,6 @@
       "Description" : "Elasticsearch domain URL",
       "Condition":"useElasticSearch"
     }
-    
+
    }
 }
