@@ -119,37 +119,6 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>com.byteowls</groupId>
-      <artifactId>vaadin-chartjs</artifactId>
-      <version>1.0.0</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>vaadin-server</artifactId>
-          <groupId>com.vaadin</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>vaadin-client-compiled</artifactId>
-          <groupId>com.vaadin</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>vaadin-themes</artifactId>
-          <groupId>com.vaadin</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>vaadin-compatibility-server</artifactId>
-          <groupId>com.vaadin</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>vaadin-compatibility-client</artifactId>
-          <groupId>com.vaadin</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>vaadin-compatibility-shared</artifactId>
-          <groupId>com.vaadin</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
       <groupId>org.dussan.vaadin</groupId>
       <artifactId>dcharts</artifactId>
       <version>2.0.0.hack23</version>
