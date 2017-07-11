@@ -131,7 +131,7 @@
          "MinLength":"8"
       },
       "DBSnapshotName":{
-         "Description":"The name of a DB snapshot (optional, if arn:aws:rds:eu-west-1:172017021075:snapshot:cia-demo-20170609supplied DBUsername,DBPassword need to root,root1234)",
+         "Description":"The name of a DB snapshot (optional, if arn:aws:rds:eu-west-1:172017021075:snapshot:cia-demo-20170711 supplied DBUsername,DBPassword need to eris,discord23)",
          "Default":"",
          "Type":"String"
       },
