@@ -293,6 +293,11 @@
         <version>${cia.project.versions.jaxb.runtime}</version>
       </dependency>
       <dependency>
+        <groupId>com.sun.xml.bind</groupId>
+        <artifactId>jaxb-core</artifactId>
+        <version>${cia.project.versions.jaxb.runtime}</version>
+      </dependency>
+      <dependency>
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
         <version>${cia.project.versions.h2}</version>
