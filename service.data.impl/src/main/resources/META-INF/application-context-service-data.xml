@@ -32,7 +32,7 @@
 		class="com.hack23.cia.service.data.impl.liquidbase.SpringLiquidBaseFailSafe">
 		<property name="dataSource" ref="dataSource" />
 		<property name="changeLog" value="classpath:db-changelog.xml" />
-		<!-- contexts specifies the runtime contexts to use. <property name="contexts" 
+		<!-- contexts specifies the runtime contexts to use. <property name="contexts"
 			value="test, production" /> -->
 	</bean>
 
@@ -75,7 +75,7 @@
 		<property name="jpaProperties">
 			<props>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<!-- <prop key="hibernate.hbm2ddl.auto">${database.ddl}</prop> Do not 
+				<!-- <prop key="hibernate.hbm2ddl.auto">${database.ddl}</prop> Do not
 					support materialized views in postgres -->
 				<prop key="hibernate.jmx.enabled">true</prop>
 				<prop key="hibernate.jmx.usePlatformServer">true</prop>
@@ -98,7 +98,7 @@
 				<prop key="hibernate.jdbc.use_streams_for_binary">true</prop>
 				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
 				<prop key="hibernate.connection.isolation">3</prop>
-				<!-- <prop key="hibernate.connection.release_mode">on_close</prop> <prop 
+				<!-- <prop key="hibernate.connection.release_mode">on_close</prop> <prop
 					key="hibernate.connection.acquisition_mode">immediate</prop> <prop key="hibernate.connection.handling_mode">DELAYED_ACQUISITION_AND_RELEASE_AFTER_TRANSACTION</prop> -->
 				<prop key="hibernate.connection.release_mode">auto</prop>
 				<prop key="hibernate.connection.useUnicode">true</prop>
@@ -135,12 +135,17 @@
 				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
 				</prop>
 				<prop key="hibernate.cache.default_cache_concurrency_strategy">TRANSACTIONAL</prop>
-				<!-- <prop key="hibernate.cache.default_cache_concurrency_strategy">READ_WRITE</prop> 
-					<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.JCacheRegionFactory</prop> 
+				<!-- <prop key="hibernate.cache.default_cache_concurrency_strategy">READ_WRITE</prop>
+					<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.JCacheRegionFactory</prop>
 					<prop key="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</prop> -->
 
 				<prop key="hibernate.search.default.indexBase">${database.search.index.location}</prop>
-
+				<!-- Elasticsearch integration
+				<prop key="hibernate.search.default.indexmanager">elasticsearch</prop>
+				<prop key="hibernate.search.default.elasticsearch.host">http://127.0.0.1:9200</prop>
+				<prop key="hibernate.search.default.elasticsearch.index_schema_management_strategy">none</prop>
+				<prop key="hibernate.search.default.elasticsearch.index_management_wait_timeout">30000</prop>
+				 -->
 			</props>
 		</property>
 	</bean>
@@ -170,10 +175,10 @@
 		</property>
 		<property name="beans">
 			<map>
-				<!-- temp disabled hibernate 4.3.1 <entry key="org.hibernate:name=cia-statistics"> 
-					<bean class="org.hibernate.jmx.spi.JmxService"> <property name="statisticsEnabled" 
-					value="true" /> <property name="sessionFactory"> <bean id="entityManagerFactory.sessionFactory.statistics" 
-					class="org.springframework.beans.factory.config.PropertyPathFactoryBean" 
+				<!-- temp disabled hibernate 4.3.1 <entry key="org.hibernate:name=cia-statistics">
+					<bean class="org.hibernate.jmx.spi.JmxService"> <property name="statisticsEnabled"
+					value="true" /> <property name="sessionFactory"> <bean id="entityManagerFactory.sessionFactory.statistics"
+					class="org.springframework.beans.factory.config.PropertyPathFactoryBean"
 					/> </property> </bean> </entry> -->
 			</map>
 		</property>
