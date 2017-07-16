@@ -142,12 +142,16 @@
     <cia.project.versions.plexus.utils>3.0.24</cia.project.versions.plexus.utils>
     <cia.project.versions.jaxb2.commons>0.11.1</cia.project.versions.jaxb2.commons>
     <cia.project.versions.hyperjaxb3>0.6.1</cia.project.versions.hyperjaxb3>
-    <cia.project.versions.jaxb>2.2.11</cia.project.versions.jaxb>
+    <cia.project.versions.jaxb.build>2.2.11</cia.project.versions.jaxb.build>
+    <cia.project.versions.jaxb.runtime>2.3.0</cia.project.versions.jaxb.runtime>
+
+    <cia.project.versions.jaxb.impl.build>2.2.11</cia.project.versions.jaxb.impl.build>
+    <cia.project.versions.jaxb.impl.runtime>2.3.0</cia.project.versions.jaxb.impl.runtime>
+    <cia.project.versions.jaxb.xjc.build>2.2.11</cia.project.versions.jaxb.xjc.build>
+    <cia.project.versions.jaxb.xjc.runtime>2.3.0</cia.project.versions.jaxb.xjc.runtime>
     <cia.project.versions.jaxb2.plugin>0.13.1</cia.project.versions.jaxb2.plugin>
     <cia.project.versions.jaxb2.fluent.api>3.0</cia.project.versions.jaxb2.fluent.api>
     <cia.project.versions.maven>3.3.9</cia.project.versions.maven>
-    <cia.project.versions.jaxb.impl>2.2.11</cia.project.versions.jaxb.impl>
-    <cia.project.versions.jaxb.xjc>2.2.11</cia.project.versions.jaxb.xjc>
     <cia.project.versions.activemq>5.15.0</cia.project.versions.activemq>
     <cia.project.versions.httpclient>4.5.3</cia.project.versions.httpclient>
     <cia.project.versions.guava>22.0</cia.project.versions.guava>
@@ -276,17 +280,17 @@
       <dependency>
         <groupId>com.sun.xml.bind</groupId>
         <artifactId>jaxb-impl</artifactId>
-        <version>${cia.project.versions.jaxb.impl}</version>
+        <version>${cia.project.versions.jaxb.impl.runtime}</version>
       </dependency>
       <dependency>
         <groupId>com.sun.xml.bind</groupId>
         <artifactId>jaxb-xjc</artifactId>
-        <version>${cia.project.versions.jaxb.impl}</version>
+        <version>${cia.project.versions.xjc.runtime}</version>
       </dependency>
       <dependency>
         <groupId>javax.xml.bind</groupId>
         <artifactId>jaxb-api</artifactId>
-        <version>${cia.project.versions.jaxb}</version>
+        <version>${cia.project.versions.jaxb.runtime}</version>
       </dependency>
       <dependency>
         <groupId>com.h2database</groupId>

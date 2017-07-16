@@ -193,17 +193,17 @@
           <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-xjc</artifactId>
-            <version>${cia.project.versions.jaxb}</version>
+            <version>${cia.project.versions.jaxb.build}</version>
           </dependency>
           <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
-            <version>${cia.project.versions.jaxb}</version>
+            <version>${cia.project.versions.jaxb.build}</version>
           </dependency>
           <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
-            <version>${cia.project.versions.jaxb}</version>
+            <version>${cia.project.versions.jaxb.build}</version>
           </dependency>
           <dependency>
             <groupId>org.jvnet.jaxb2.maven2</groupId>
@@ -213,7 +213,7 @@
           <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-core</artifactId>
-            <version>${cia.project.versions.jaxb}</version>
+            <version>${cia.project.versions.jaxb.build}</version>
           </dependency>
         </dependencies>
         <configuration>
