@@ -20,6 +20,7 @@ package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator;
 
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 import java.io.Serializable;
@@ -50,11 +51,13 @@ public class RiksdagenBallotListWorkGeneratorImplITest extends AbstractServiceCo
 	private RiksdagenDataSourcesWorkGenerator riksdagenDataSourcesWorkGenerator;
 
 	/**
-	 * Generate work orders success test.
+	 * Generate work orders when already exist success test.
+	 *
 	 * @throws JMSException
+	 *             the JMS exception
 	 */
 	@Test
-	public void generateWorkOrdersSuccessTest() throws JMSException {
+	public void generateWorkOrdersWhenAlreadyExistSuccessTest() throws JMSException {
 		riksdagenDataSourcesWorkGenerator.generateWorkOrders();
 		final JmsSender jmsSenderMock = mock(JmsSender.class);
         ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
@@ -65,7 +68,7 @@ public class RiksdagenBallotListWorkGeneratorImplITest extends AbstractServiceCo
 
 		final ArgumentCaptor<Serializable> stringCaptor = ArgumentCaptor.forClass(Serializable.class);
 
-		verify(jmsSenderMock, atLeastOnce()).send(destCaptor.capture(),stringCaptor.capture());
+		verify(jmsSenderMock, never()).send(destCaptor.capture(),stringCaptor.capture());
 
 		final List<Serializable> capturedStrings = stringCaptor.getAllValues();
 		final List<Destination> capturedDestinations = destCaptor.getAllValues();

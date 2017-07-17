@@ -18,8 +18,8 @@
 */
 package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator;
 
-import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 import java.io.Serializable;
@@ -42,7 +42,8 @@ import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
  * The Class RiksdagenCommitteeProposalWorkGeneratorImplITest.
  */
 @Transactional
-public class RiksdagenCommitteeProposalWorkGeneratorImplITest extends AbstractServiceComponentAgentFunctionalIntegrationTest {
+public class RiksdagenCommitteeProposalWorkGeneratorImplITest
+		extends AbstractServiceComponentAgentFunctionalIntegrationTest {
 
 	/** The riksdagen data sources work generator. */
 	@Autowired
@@ -50,22 +51,24 @@ public class RiksdagenCommitteeProposalWorkGeneratorImplITest extends AbstractSe
 	private RiksdagenDataSourcesWorkGenerator riksdagenDataSourcesWorkGenerator;
 
 	/**
-	 * Generate work orders success test.
+	 * Generate work orders when already exist success test.
+	 *
 	 * @throws JMSException
+	 *             the JMS exception
 	 */
 	@Test
-	public void generateWorkOrdersSuccessTest() throws JMSException {
+	public void generateWorkOrdersWhenAlreadyExistSuccessTest() throws JMSException {
 		riksdagenDataSourcesWorkGenerator.generateWorkOrders();
 		final JmsSender jmsSenderMock = mock(JmsSender.class);
-        ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
+		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
 
-        riksdagenDataSourcesWorkGenerator.generateWorkOrders();
+		riksdagenDataSourcesWorkGenerator.generateWorkOrders();
 
 		final ArgumentCaptor<Destination> destCaptor = ArgumentCaptor.forClass(Destination.class);
 
 		final ArgumentCaptor<Serializable> stringCaptor = ArgumentCaptor.forClass(Serializable.class);
 
-		verify(jmsSenderMock, atLeastOnce()).send(destCaptor.capture(),stringCaptor.capture());
+		verify(jmsSenderMock, never()).send(destCaptor.capture(), stringCaptor.capture());
 
 		final List<Serializable> capturedStrings = stringCaptor.getAllValues();
 		final List<Destination> capturedDestinations = destCaptor.getAllValues();
