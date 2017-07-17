@@ -32,8 +32,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
-import com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data.RiksdagenImportService;
 
 /**
  * The Class RiksdagenDocumentElementWorkConsumerImplITest.
@@ -44,10 +44,6 @@ public class RiksdagenDocumentElementWorkConsumerImplITest extends AbstractServi
 	@Autowired
 	@Qualifier("riksdagenDocumentElementWorkConsumerImpl")
 	private MessageListener messsageListener;
-
-	/** The riksdagen import service. */
-	@Autowired
-	private RiksdagenImportService riksdagenImportService;
 
 	/**
 	 * On message success test.
@@ -60,7 +56,7 @@ public class RiksdagenDocumentElementWorkConsumerImplITest extends AbstractServi
 	public void onMessageSuccessTest() throws JMSException {
 		final ObjectMessage message = mock(ObjectMessage.class);
 
-		when(message.getObject()).thenReturn("");
+		when(message.getObject()).thenReturn(new DocumentElement().withId("2a6fd34d-969f-48b5-b472-363ee61cdb96"));
 
 		messsageListener.onMessage(message);
 		verify(message, atLeastOnce()).getObject();
