@@ -25,6 +25,7 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
@@ -382,6 +383,55 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
+
+	}
+
+	/**
+	 * Visit admin data summary view refresh views test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void visitAdminDataSummaryViewRefreshViewsTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
+
+		final WebElement refreshViewsButton =userPageVisit.findButton("Refresh Views");
+		assertNotNull("Expect to find a Refresh Views Button",refreshViewsButton);
+
+		userPageVisit.performClickAction(refreshViewsButton);
+
+	}
+
+	/**
+	 * Visit admin data summary view update search index test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void visitAdminDataSummaryViewUpdateSearchIndexTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
+
+		final WebElement updateSearchIndexButton =userPageVisit.findButton("Update Search Index");
+		assertNotNull("Expect to find a Update Search Index Button",updateSearchIndexButton);
+
+		userPageVisit.performClickAction(updateSearchIndexButton);
+
 	}
 
 	/**

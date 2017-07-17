@@ -845,7 +845,7 @@ public final class UserPageVisit extends Assert {
 	 *            the button label
 	 * @return the web element
 	 */
-	private WebElement findButton(final String buttonLabel) {
+	public final WebElement findButton(final String buttonLabel) {
 		final List<WebElement> buttons = getButtons();
 		for (final WebElement webElement : buttons) {
 			if (buttonLabel.equalsIgnoreCase(webElement.getText().trim())) {
