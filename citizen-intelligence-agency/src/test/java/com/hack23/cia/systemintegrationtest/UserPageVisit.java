@@ -555,9 +555,9 @@ public final class UserPageVisit extends Assert {
 	 *            the value
 	 */
 	private void setValueForSelectField(final String selectId, final String value) {
-		WebElement selectField = driver.findElement(By.id(selectId));
+		final WebElement selectField = driver.findElement(By.id(selectId));
 
-		WebElement selectInputField = selectField.findElement(By.className("v-filterselect-input"));
+		final WebElement selectInputField = selectField.findElement(By.className("v-filterselect-input"));
 		selectInputField.sendKeys(value);
 		selectInputField.sendKeys(Keys.ENTER);
 	}
@@ -735,6 +735,22 @@ public final class UserPageVisit extends Assert {
 	 *             the exception
 	 */
 	public void registerNewUser(final String username,final String password) throws Exception {
+		registerNewUserCheckView(username,password,UserViews.USERHOME_VIEW_NAME);
+	}
+
+	/**
+	 * Register new user check view.
+	 *
+	 * @param username
+	 *            the username
+	 * @param password
+	 *            the password
+	 * @param userView
+	 *            the user view
+	 * @throws Exception
+	 *             the exception
+	 */
+	public void registerNewUserCheckView(final String username,final String password,final String userView) throws Exception {
 
 		setFieldValue("Register.username",username);
 		setFieldValue("Register.email",username+"@test.com");
@@ -744,12 +760,13 @@ public final class UserPageVisit extends Assert {
 		final WebElement registerButton = driver.findElement(By.id("Register"));
 		performClickAction(registerButton);
 
-		final String url = systemTestTargetUrl  +"#!" + UserViews.USERHOME_VIEW_NAME;
-
-		assertEquals(browser, url,
-				driver.getCurrentUrl());
+		if (userView != null) {
+			final String url = systemTestTargetUrl  +"#!" + userView;
+			assertEquals(browser, url,driver.getCurrentUrl());
+		}
 
 	}
+
 
 	/**
 	 * Search document.
@@ -785,6 +802,22 @@ public final class UserPageVisit extends Assert {
 	 *             the exception
 	 */
 	public void loginUser(final String username,final String password) throws Exception {
+		loginUserCheckView(username,password,UserViews.USERHOME_VIEW_NAME);
+	}
+
+	/**
+	 * Login user check view.
+	 *
+	 * @param username
+	 *            the username
+	 * @param password
+	 *            the password
+	 * @param view
+	 *            the view
+	 * @throws Exception
+	 *             the exception
+	 */
+	public void loginUserCheckView(final String username,final String password,final String view) throws Exception {
 
 		setFieldValue("username",username);
 		setFieldValue("password",password);
@@ -794,12 +827,10 @@ public final class UserPageVisit extends Assert {
 
 		performClickAction(loginButton);
 
-		final String url = systemTestTargetUrl  +"#!" + UserViews.USERHOME_VIEW_NAME;
+		final String url = systemTestTargetUrl  +"#!" + view;
 
 		assertEquals(browser, url,
 				driver.getCurrentUrl());
-
-
 	}
 
 	/**

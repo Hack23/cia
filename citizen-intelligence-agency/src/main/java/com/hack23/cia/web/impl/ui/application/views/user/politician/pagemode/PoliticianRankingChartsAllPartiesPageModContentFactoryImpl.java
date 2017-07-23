@@ -67,7 +67,7 @@ public final class PoliticianRankingChartsAllPartiesPageModContentFactoryImpl
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page)
-				&& (!StringUtils.isEmpty(parameters) && parameters.contains(PageMode.CHARTS.toString()) && parameters.contains(ChartIndicators.ALLPARTIES.toString()));
+				&& !StringUtils.isEmpty(parameters) && parameters.contains(PageMode.CHARTS.toString()) && parameters.contains(ChartIndicators.ALLPARTIES.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })

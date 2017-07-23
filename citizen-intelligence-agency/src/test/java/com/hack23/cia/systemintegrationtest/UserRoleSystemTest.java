@@ -688,6 +688,45 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
+
+	/**
+	 * Site register user already exist test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteRegisterUserAlreadyExistTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
+
+		final String username = UUID.randomUUID().toString();
+		final String password = UUID.randomUUID().toString();
+
+		userPageVisit.registerNewUser(username, password);
+
+		userPageVisit.logoutUser();
+
+		driver.quit();
+
+		final WebDriver loginDriver = getWebDriver();
+
+		final UserPageVisit userRegisterAgainPageVisit = new UserPageVisit(loginDriver, browser);
+
+		userRegisterAgainPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
+
+
+		userRegisterAgainPageVisit.registerNewUserCheckView(username, password,"main/"+ApplicationPageMode.REGISTER.toString());
+
+	}
+
+
 	/**
 	 * Site login user test.
 	 *
@@ -723,6 +762,42 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userLoginPageVisit.loginUser(username + "@test.com", password);
 
 		userLoginPageVisit.logoutUser();
+
+	}
+
+	/**
+	 * Site login user wrong password test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteLoginUserWrongPasswordTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
+
+		final String username = UUID.randomUUID().toString();
+		final String password = UUID.randomUUID().toString();
+
+		userPageVisit.registerNewUser(username, password);
+
+		userPageVisit.logoutUser();
+
+		driver.quit();
+
+		final WebDriver loginDriver = getWebDriver();
+
+		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
+
+		userLoginPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
+
+		userLoginPageVisit.loginUserCheckView(username + "@test.com", "wrongpassword","main/" + ApplicationPageMode.LOGIN);
 
 	}
 

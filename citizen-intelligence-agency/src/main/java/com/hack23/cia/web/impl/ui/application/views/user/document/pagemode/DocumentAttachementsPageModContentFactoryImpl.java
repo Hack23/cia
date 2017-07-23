@@ -62,8 +62,8 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (!StringUtils.isEmpty(parameters)
-				&& parameters.contains(DocumentPageMode.DOCUMENTATTACHMENTS.toString()));
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters)
+				&& parameters.contains(DocumentPageMode.DOCUMENTATTACHMENTS.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })

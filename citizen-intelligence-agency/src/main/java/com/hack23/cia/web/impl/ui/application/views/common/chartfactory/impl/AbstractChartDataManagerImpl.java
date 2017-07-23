@@ -113,7 +113,7 @@ public abstract class AbstractChartDataManagerImpl {
 	 *            the chart
 	 * @param fullPage TODO
 	 */
-	protected final void addChart(final AbstractOrderedLayout content,final String caption, final DCharts chart, boolean fullPage) {
+	protected final void addChart(final AbstractOrderedLayout content,final String caption, final DCharts chart, final boolean fullPage) {
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 
 		final int browserWindowWidth = getChartWindowWidth();
@@ -152,7 +152,7 @@ public abstract class AbstractChartDataManagerImpl {
 	 * @return the chart window width
 	 */
 	private static int getChartWindowWidth() {
-		return Math.max((Page.getCurrent().getBrowserWindowWidth() - CHART_WIDTH_REDUCTION),MINIMUM_CHART_WIDTH);
+		return Math.max(Page.getCurrent().getBrowserWindowWidth() - CHART_WIDTH_REDUCTION,MINIMUM_CHART_WIDTH);
 	}
 
 	/**

@@ -64,12 +64,6 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 	/** The Constant DOCUMENT_HISTORY_TEXT. */
 	private static final String DOCUMENT_HISTORY_TEXT = "Document history";
 
-	/** The Constant INDICATORS_TEXT. */
-	private static final String INDICATORS_TEXT = "Indicators";
-
-	/** The Constant CHARTS_TEXT. */
-	private static final String CHARTS_TEXT = "Charts";
-
 	/** The Constant MEMBER_HISTORY_TEXT. */
 	private static final String MEMBER_HISTORY_TEXT = "Member History";
 

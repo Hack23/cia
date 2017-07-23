@@ -54,7 +54,7 @@ public final class MinistryRankingGovernmentBodiesPageModContentFactoryImpl exte
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (!StringUtils.isEmpty(parameters) && parameters.contains(MinistryPageMode.GOVERNMENT_BODIES.toString()));
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(MinistryPageMode.GOVERNMENT_BODIES.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })

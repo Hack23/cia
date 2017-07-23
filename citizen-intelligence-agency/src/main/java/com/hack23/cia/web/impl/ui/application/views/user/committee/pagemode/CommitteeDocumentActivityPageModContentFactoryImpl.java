@@ -62,7 +62,7 @@ public final class CommitteeDocumentActivityPageModContentFactoryImpl extends Ab
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (!StringUtils.isEmpty(parameters) && parameters.contains(CommitteePageMode.DOCUMENTACTIVITY.toString()));
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(CommitteePageMode.DOCUMENTACTIVITY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })

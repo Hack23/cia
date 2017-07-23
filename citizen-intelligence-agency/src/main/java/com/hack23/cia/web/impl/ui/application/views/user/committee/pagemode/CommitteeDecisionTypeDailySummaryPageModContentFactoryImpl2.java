@@ -62,8 +62,8 @@ public final class CommitteeDecisionTypeDailySummaryPageModContentFactoryImpl2
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (!StringUtils.isEmpty(parameters)
-				&& parameters.contains(CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString()));
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters)
+				&& parameters.contains(CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })

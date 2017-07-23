@@ -320,7 +320,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 *            the description
 	 */
 	protected final void createButtonLink(final ResponsiveRow row,final String linkText,final Resource icon, final ClickListener command, final String description) {
-		CssLayout layout = new CssLayout();
+		final CssLayout layout = new CssLayout();
 		layout.addStyleName("v-layout-content-overview-panel-level2");
 		Responsive.makeResponsive(layout);
 		layout.setSizeUndefined();
@@ -354,7 +354,7 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 * @return the grid layout
 	 */
 	protected final ResponsiveRow createGridLayout(final VerticalLayout panelContent) {
-		ResponsiveLayout layout = new ResponsiveLayout();
+		final ResponsiveLayout layout = new ResponsiveLayout();
 		Responsive.makeResponsive(layout);
 		layout.addStyleName("v-layout-content-overview-panel-level1");
 		layout.setWidth(100, Unit.PERCENTAGE);

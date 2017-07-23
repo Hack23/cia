@@ -74,7 +74,7 @@ public final class PartyRankingPageVisitHistoryPageModContentFactoryImpl
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (!StringUtils.isEmpty(parameters) && parameters.contains(PageMode.PAGEVISITHISTORY.toString()));
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(PageMode.PAGEVISITHISTORY.toString());
 	}
 
 }

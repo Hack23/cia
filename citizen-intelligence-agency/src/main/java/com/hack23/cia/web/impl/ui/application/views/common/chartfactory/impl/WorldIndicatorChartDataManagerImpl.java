@@ -53,7 +53,7 @@ public final class WorldIndicatorChartDataManagerImpl extends AbstractChartDataM
 	public void createIndicatorChart(final AbstractOrderedLayout content,final List<WorldBankData> list,
 			final ViewWorldbankIndicatorDataCountrySummary summary) {
 
-		Map<Country, List<WorldBankData>> countryIndicatorsMap = list.stream()
+		final Map<Country, List<WorldBankData>> countryIndicatorsMap = list.stream()
 				.collect(Collectors.groupingBy(WorldBankData::getCountry, Collectors.toList()));
 
 
@@ -61,7 +61,7 @@ public final class WorldIndicatorChartDataManagerImpl extends AbstractChartDataM
 		final DataSeries dataSeries = new DataSeries();
 
 
-		for (Entry<Country, List<WorldBankData>> entry : countryIndicatorsMap.entrySet() ) {
+		for (final Entry<Country, List<WorldBankData>> entry : countryIndicatorsMap.entrySet() ) {
 			series.addSeries(new XYseries().setLabel(entry.getKey().getValue()));
 
 			dataSeries.newSeries();

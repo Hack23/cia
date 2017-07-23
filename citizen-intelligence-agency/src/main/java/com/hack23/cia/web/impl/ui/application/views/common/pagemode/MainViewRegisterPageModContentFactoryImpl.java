@@ -61,7 +61,7 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractPag
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page)
-				&& (!StringUtils.isEmpty(parameters) && parameters.contains(ApplicationPageMode.REGISTER.toString()));
+				&& !StringUtils.isEmpty(parameters) && parameters.contains(ApplicationPageMode.REGISTER.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS" })

@@ -58,8 +58,8 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractDoc
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (!StringUtils.isEmpty(parameters)
-				&& parameters.contains(DocumentPageMode.DOCUMENTACTIVITY.toString()));
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters)
+				&& parameters.contains(DocumentPageMode.DOCUMENTACTIVITY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })

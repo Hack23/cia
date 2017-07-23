@@ -64,7 +64,7 @@ public final class CommitteeRoleGhantPageModContentFactoryImpl extends AbstractC
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page)
-				&& (!StringUtils.isEmpty(parameters) && parameters.contains(CommitteePageMode.ROLEGHANT.toString()));
+				&& !StringUtils.isEmpty(parameters) && parameters.contains(CommitteePageMode.ROLEGHANT.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })

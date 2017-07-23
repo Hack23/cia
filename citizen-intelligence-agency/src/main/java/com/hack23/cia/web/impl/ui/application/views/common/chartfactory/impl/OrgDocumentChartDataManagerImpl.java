@@ -160,7 +160,7 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 								simpleDateFormat
 										.format(parseIncomingDateFormat.parse(item.getEmbeddedId().getPublicDate())),
 								item.getTotal());
-					} catch (ParseException e) {
+					} catch (final ParseException e) {
 						LOGGER.warn("Problem parsing date:{}", item.getEmbeddedId().getPublicDate());
 					}
 				}

@@ -60,7 +60,7 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page)
-				&& (!StringUtils.isEmpty(parameters) && parameters.contains(PageMode.DATAGRID.toString()));
+				&& !StringUtils.isEmpty(parameters) && parameters.contains(PageMode.DATAGRID.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
