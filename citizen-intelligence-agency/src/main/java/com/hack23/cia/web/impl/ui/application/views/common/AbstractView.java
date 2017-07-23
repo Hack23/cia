@@ -270,13 +270,4 @@ public abstract class AbstractView extends Panel implements View {
 		return panel;
 	}
 
-	/**
-	 * Gets the top header right panel.
-	 *
-	 * @return the top header right panel
-	 */
-	protected final HorizontalLayout getTopHeaderRightPanel() {
-		return topHeaderRightPanel;
-	}
-
 }

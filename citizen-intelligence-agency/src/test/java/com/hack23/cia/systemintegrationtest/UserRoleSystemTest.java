@@ -665,6 +665,25 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
+
+	/**
+	 * Site main view page visit history test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteMainViewPageVisitHistoryTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, PageMode.PAGEVISITHISTORY));
+
+	}
+
 	/**
 	 * Site register user test.
 	 *
