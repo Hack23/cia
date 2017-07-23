@@ -537,17 +537,29 @@ public final class UserPageVisit extends Assert {
 	 *             the exception
 	 */
 	public void performAdminAgentOperation(final DataAgentTarget target,final DataAgentOperation operation) throws Exception {
-		//		Select operationSelector = new Select(driver.findElement(By.id(ViewAction.StartAgentButton.name() +"/Operation")));
-		//		Select targetSelector = new Select(driver.findElement(By.id(ViewAction.StartAgentButton.name() +"/Target")));
-		//		targetSelector.selectByValue(target.name());
-		//		operationSelector.selectByValue(operation.name());
-
-
+		setValueForSelectField(ViewAction.START_AGENT_BUTTON.name() +"/Target",target.name().replace("_", " ").toLowerCase().replaceFirst("m", "M"));
+		setValueForSelectField(ViewAction.START_AGENT_BUTTON.name() +"/Operation",operation.name());
 
 		final WebElement startButtion = driver.findElement(By
 				.id(ViewAction.START_AGENT_BUTTON.name()));
 
 		performClickAction(startButtion, WAIT_FOR_PAGE_DELAY);
+	}
+
+	/**
+	 * Sets the value for select field.
+	 *
+	 * @param selectId
+	 *            the select id
+	 * @param value
+	 *            the value
+	 */
+	private void setValueForSelectField(final String selectId, final String value) {
+		WebElement selectField = driver.findElement(By.id(selectId));
+
+		WebElement selectInputField = selectField.findElement(By.className("v-filterselect-input"));
+		selectInputField.sendKeys(value);
+		selectInputField.sendKeys(Keys.ENTER);
 	}
 
 
@@ -671,13 +683,6 @@ public final class UserPageVisit extends Assert {
 			wait.until(ExpectedConditions.visibilityOf(clickElement));
 
 			action.clickAndHold(clickElement).release().perform();
-
-//			action.moveToElement(clickElement);
-//			//action.doubleClick(clickElement);
-
-//			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", clickElement);
-//			JavascriptExecutor js = (JavascriptExecutor) driver;
-//			js.executeScript("arguments[0].click();", clickElement);
 
 		}
 		waitForBrowser(waitDelay);
