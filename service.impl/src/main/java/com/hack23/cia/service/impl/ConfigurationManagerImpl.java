@@ -71,7 +71,7 @@ final class ConfigurationManagerImpl implements ConfigurationManager {
 		Portal usePortal = null;
 		final LanguageData languageData = findLanguage(locale);
 		for (final Portal portal : agency.getPortals()) {
-			if ((usePortal == null && PortalType.DEFAULT == portal.getPortalType()) || url.contains(portal.getPortalName())) {
+			if (usePortal == null && PortalType.DEFAULT == portal.getPortalType() || url.contains(portal.getPortalName())) {
 				usePortal = portal;
 			}
 		}

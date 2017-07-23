@@ -34,6 +34,13 @@ public final class RegisterUserResponse extends AbstractResponse {
 	private UserAccount userAccount;
 
 	/**
+	 * The Enum ErrorMessage.
+	 */
+	public enum ErrorMessage {
+		USER_ALREADY_EXIST;
+	}
+
+	/**
 	 * Instantiates a new register user response.
 	 *
 	 * @param result

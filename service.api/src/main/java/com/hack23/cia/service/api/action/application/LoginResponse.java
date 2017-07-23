@@ -30,6 +30,13 @@ public final class LoginResponse extends AbstractResponse {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * The Enum ErrorMessage.
+	 */
+	public enum ErrorMessage {
+		USERNAME_OR_PASSWORD_DO_NOT_MATCH;
+	}
+
+	/**
 	 * Instantiates a new login response.
 	 *
 	 * @param result

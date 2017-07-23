@@ -95,4 +95,41 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 		assertNotNull("Expect a result", loginResponse);
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, loginResponse.getResult());
 	}
+
+
+	public void serviceLoginRequestUserPasswordDoNotMatchFailureTest() throws Exception {
+		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
+
+
+		final RegisterUserRequest serviceRequest = new RegisterUserRequest();
+		serviceRequest.setCountry("Sweden");
+		serviceRequest.setUsername(UUID.randomUUID().toString());
+		serviceRequest.setEmail(serviceRequest.getUsername() + "@email.com");
+		serviceRequest.setUserpassword("userpassword");
+		serviceRequest.setUserType(UserType.PRIVATE);
+		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
+
+		final RegisterUserResponse response = (RegisterUserResponse) applicationManager.service(serviceRequest);
+		assertNotNull("Expect a result", response);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, response.getResult());
+
+		final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
+		final List<UserAccount> allBy = dataContainer.getAllBy(UserAccount_.username, serviceRequest.getUsername());
+		assertEquals(1, allBy.size());
+
+
+
+		final LoginRequest loginRequest = new LoginRequest();
+		loginRequest.setEmail(serviceRequest.getEmail());
+		loginRequest.setSessionId(serviceRequest.getSessionId());
+		loginRequest.setUserpassword(serviceRequest.getUserpassword() + "wrongpassword");
+
+		final LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
+
+		assertNotNull("Expect a result", loginResponse);
+		assertEquals(ServiceResult.FAILURE, loginResponse.getResult());
+		assertEquals(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString(), loginResponse.getErrorMessage());
+
+	}
+
 }

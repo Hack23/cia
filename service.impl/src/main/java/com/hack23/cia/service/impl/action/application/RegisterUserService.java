@@ -139,6 +139,7 @@ public final class RegisterUserService extends
 			response = new RegisterUserResponse(ServiceResult.SUCCESS);
 		} else {
 			response = new RegisterUserResponse(ServiceResult.FAILURE);
+			response.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());
 		}
 
 		eventRequest.setApplicationMessage(response.getResult().toString());

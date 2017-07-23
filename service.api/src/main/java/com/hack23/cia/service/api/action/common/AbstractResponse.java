@@ -34,6 +34,9 @@ public abstract class AbstractResponse implements ServiceResponse {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	private String errorMessage;
+
+
 	/**
 	 * Instantiates a new abstract response.
 	 *
@@ -48,6 +51,33 @@ public abstract class AbstractResponse implements ServiceResponse {
 	@Override
 	public final ServiceResult getResult() {
 		return result;
+	}
+
+	/**
+	 * Sets the error message.
+	 *
+	 * @param errorMessage
+	 *            the new error message
+	 */
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+
+	/**
+	 * With error message.
+	 *
+	 * @param errorMessage
+	 *            the error message
+	 * @return the service response
+	 */
+	public ServiceResponse withErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+		return this;
+	}
+
+	@Override
+	public String getErrorMessage() {
+		return errorMessage;
 	}
 
 	@Override

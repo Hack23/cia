@@ -82,4 +82,38 @@ public final class RegisterUserServiceITest extends AbstractServiceFunctionalInt
 		assertEquals(1, allBy.size());
 	}
 
+	/**
+	 * Service register user request user already exist failure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	public void serviceRegisterUserRequestUserAlreadyExistFailureTest() throws Exception {
+		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
+
+		final RegisterUserRequest serviceRequest = new RegisterUserRequest();
+		serviceRequest.setCountry("Sweden");
+		serviceRequest.setUsername(UUID.randomUUID().toString());
+		serviceRequest.setEmail(serviceRequest.getUsername() + "@email.com");
+		serviceRequest.setUserpassword("userpassword");
+		serviceRequest.setUserType(UserType.PRIVATE);
+		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
+
+		final RegisterUserResponse response = (RegisterUserResponse) applicationManager.service(serviceRequest);
+		assertNotNull(EXPECT_A_RESULT, response);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, response.getResult());
+
+		final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
+		final List<UserAccount> allBy = dataContainer.getAllBy(UserAccount_.username, serviceRequest.getUsername());
+		assertEquals(1, allBy.size());
+
+		final RegisterUserResponse errorResponse = (RegisterUserResponse) applicationManager.service(serviceRequest);
+		assertNotNull(EXPECT_A_RESULT, errorResponse);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.FAILURE, errorResponse.getResult());
+		assertEquals(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString(), errorResponse.getErrorMessage());
+
+
+
+	}
+
 }

@@ -44,4 +44,11 @@ public interface ServiceResponse extends ServiceMessage {
 	 */
 	ServiceResult getResult();
 
+	/**
+	 * Gets the error message.
+	 *
+	 * @return the error message
+	 */
+	String getErrorMessage();
+
 }

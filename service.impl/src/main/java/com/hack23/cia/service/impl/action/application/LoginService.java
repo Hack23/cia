@@ -115,6 +115,7 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 
 		} else {
 			response = new LoginResponse(ServiceResult.FAILURE);
+			response.setErrorMessage(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString());
 		}
 		eventRequest.setApplicationMessage(response.getResult().toString());
 
