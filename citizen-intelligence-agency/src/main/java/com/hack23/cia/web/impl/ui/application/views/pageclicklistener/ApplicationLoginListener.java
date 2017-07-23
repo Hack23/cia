@@ -39,11 +39,8 @@ public final class ApplicationLoginListener implements LoginListener {
 	/** The Constant LOG_MSG_LOGIN_REQUEST_FAILURE. */
 	private static final String LOG_MSG_LOGIN_REQUEST_FAILURE = "LoginRequest {} failure";
 
-	/** The Constant ERROR_MESSAGE. */
-	private static final String ERROR_MESSAGE = "Error message";
-
 	/** The Constant LOGIN_FAILED. */
-	private static final String LOGIN_FAILED = "Login failed";
+	private static final String LOGIN_FAILED = "Login failed:";
 
 	/** The Constant LOG_MSG_LOGIN_REQUEST. */
 	private static final String LOG_MSG_LOGIN_REQUEST = "LoginRequest {}";
@@ -81,7 +78,7 @@ public final class ApplicationLoginListener implements LoginListener {
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);
 		} else {
 			Notification.show(LOGIN_FAILED,
-	                  ERROR_MESSAGE,
+					response.getErrorMessage(),
 	                  Notification.Type.WARNING_MESSAGE);
 			LOGGER.info(LOG_MSG_LOGIN_REQUEST_FAILURE,event.getLoginParameter("username"));
 		}

@@ -27,6 +27,8 @@ import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.hack23.cia.service.api.action.application.LoginResponse;
+import com.hack23.cia.service.api.action.application.RegisterUserResponse;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
@@ -743,7 +745,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userRegisterAgainPageVisit.registerNewUserCheckView(username, password,"main/"+ApplicationPageMode.REGISTER.toString());
 
-		userRegisterAgainPageVisit.checkNotificationMessage("Register failed\nError message");
+		userRegisterAgainPageVisit.checkNotificationMessage("Register failed:\n" + RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST);
 
 	}
 
@@ -820,7 +822,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userLoginPageVisit.loginUserCheckView(username + "@test.com", "wrongpassword","main/" + ApplicationPageMode.LOGIN);
 
-		userLoginPageVisit.checkNotificationMessage("Login failedError message");
+		userLoginPageVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);
 
 	}
 

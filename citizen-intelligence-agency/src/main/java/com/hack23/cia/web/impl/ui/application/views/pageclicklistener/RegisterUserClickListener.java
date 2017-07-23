@@ -38,11 +38,8 @@ public final class RegisterUserClickListener implements ClickListener {
 	/** The Constant REGISTER_USER_FAILURE. */
 	private static final String REGISTER_USER_FAILURE = "RegisterUser {} failure";
 
-	/** The Constant ERROR_MESSAGE. */
-	private static final String ERROR_MESSAGE = "Error message";
-
 	/** The Constant REGISTER_FAILED. */
-	private static final String REGISTER_FAILED = "Register failed";
+	private static final String REGISTER_FAILED = "Register failed:";
 
 	/** The Constant LOG_MSG_REGISTER_USER. */
 	private static final String LOG_MSG_REGISTER_USER = "RegisterUser {}";
@@ -74,7 +71,7 @@ public final class RegisterUserClickListener implements ClickListener {
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);
 		} else {
 			Notification.show(REGISTER_FAILED,
-	                  ERROR_MESSAGE,
+					response.getErrorMessage(),
 	                  Notification.Type.WARNING_MESSAGE);
 			LOGGER.info(REGISTER_USER_FAILURE,reqisterRequest.getUsername());
 		}
