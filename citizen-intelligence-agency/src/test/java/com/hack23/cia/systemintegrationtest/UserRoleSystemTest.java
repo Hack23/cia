@@ -743,6 +743,8 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userRegisterAgainPageVisit.registerNewUserCheckView(username, password,"main/"+ApplicationPageMode.REGISTER.toString());
 
+		userRegisterAgainPageVisit.checkNotificationMessage("Register failed\nError message");
+
 	}
 
 
@@ -817,6 +819,8 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 
 		userLoginPageVisit.loginUserCheckView(username + "@test.com", "wrongpassword","main/" + ApplicationPageMode.LOGIN);
+
+		userLoginPageVisit.checkNotificationMessage("Login failedError message");
 
 	}
 

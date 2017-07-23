@@ -564,6 +564,19 @@ public final class UserPageVisit extends Assert {
 
 
 	/**
+	 * Check notification message.
+	 *
+	 * @param expectedValue
+	 *            the expected value
+	 */
+	public void checkNotificationMessage(final String expectedValue) {
+		final WebElement notification = driver.findElement(By.className("v-Notification"));
+		assertNotNull(notification);
+		assertEquals(expectedValue, notification.getText());
+
+	}
+
+	/**
 	 * Visit main view.
 	 *
 	 * @throws Exception
