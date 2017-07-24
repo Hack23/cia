@@ -745,7 +745,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userRegisterAgainPageVisit.registerNewUserCheckView(username, password,"main/"+ApplicationPageMode.REGISTER.toString());
 
-		userRegisterAgainPageVisit.checkNotificationMessage("Register failed:\n" + RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST);
+		userRegisterAgainPageVisit.checkNotificationMessage("Register failed:" + RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST);
 
 	}
 
