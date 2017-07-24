@@ -4,7 +4,7 @@
   <parent>
     <artifactId>parent-model-external-pom</artifactId>
     <groupId>com.hack23.cia</groupId>
-    <version>2017.7.24</version>
+    <version>2017.7.25-SNAPSHOT</version>
     <relativePath>../parent-model-external-pom/pom.xml</relativePath>
   </parent>
   <artifactId>model.external.riksdagen.utskottsforslag.impl</artifactId>
@@ -16,7 +16,7 @@
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
-    <tag>cia-all-2017.7.24</tag>
+    <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
   <distributionManagement>
@@ -146,14 +146,14 @@
         </dependencies>
         <configuration>
           <hibernatetool destdir="target/classes">
-            <jpaconfiguration persistenceunit="com.hack23.cia.${project.artifactId}" propertyfile="src/main/resources/schema-mysql.properties"></jpaconfiguration>
-            <hbm2ddl export="false" outputfilename="schema-mysql.sql"></hbm2ddl>
-            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
-            <property key="dot.executable" value="${graphviz.dot.executable}"></property>
+            <jpaconfiguration persistenceunit="com.hack23.cia.${project.artifactId}" propertyfile="src/main/resources/schema-mysql.properties" />
+            <hbm2ddl export="false" outputfilename="schema-mysql.sql" />
+            <hbm2doc destdir="target/site/hbm2doc" />
+            <property key="dot.executable" value="${graphviz.dot.executable}" />
           </hibernatetool>
         </configuration>
       </plugin>
     </plugins>
   </build>
-  <reporting></reporting>
+  <reporting />
 </project>
