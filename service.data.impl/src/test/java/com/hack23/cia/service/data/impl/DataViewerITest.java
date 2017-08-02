@@ -196,7 +196,7 @@ public final class DataViewerITest extends
 		assertEquals(
 				"Should always be 20 in eu, but riksdagen data contains only 15",
 				15, euSum);
-		assertEquals("Should always be 24 in current government", 24,
+		assertEquals("Should always be 23 in current government", 23,
 				governmentSum);
 
 	}

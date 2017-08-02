@@ -120,9 +120,16 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 				EmailServiceImpl.class.getSimpleName(), "Smtp port", "Responsible for sending email",
 				"application.email.smtp.port", "587");
 
+
+		final ApplicationConfiguration smtpHost = applicationConfigurationService.checkValueOrLoadDefault(
+				"Email configuration smtp host", "Smtp host", ConfigurationGroup.EXTERNAL_SERVICES,
+				EmailServiceImpl.class.getSimpleName(), "Smtp host","Responsible for sending email", "application.email.smtp.host", "localhost");
+
 		updateApplicationConfiguration(createTestApplicationSession, sendEmail, "true");
-		updateApplicationConfiguration(createTestApplicationSession, smtpPort,
-				Integer.toString(dumbster.getPort()));
+		updateApplicationConfiguration(createTestApplicationSession, smtpPort,Integer.toString(dumbster.getPort()));
+		updateApplicationConfiguration(createTestApplicationSession, smtpHost,"localhost");
+
+
 
 		return dumbster;
 	}
