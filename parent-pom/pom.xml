@@ -122,7 +122,7 @@
     <cia.project.versions.hibernate.build>5.2.10.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.2.5.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.0.Final</cia.project.versions.hibernate.jpa2>
-    <cia.project.versions.hibernate.validator>6.0.0.CR3</cia.project.versions.hibernate.validator>
+    <cia.project.versions.hibernate.validator>6.0.1.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>5.4.1.Final</cia.project.versions.hibernate.build.validator>
     <cia.project.versions.bytebuddy>1.7.1</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.196</cia.project.versions.h2>
@@ -139,7 +139,7 @@
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
     <cia.project.versions.xmlbeans>2.6.0</cia.project.versions.xmlbeans>
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
-    <cia.project.versions.plexus.utils>3.0.24</cia.project.versions.plexus.utils>
+    <cia.project.versions.plexus.utils>3.1.0</cia.project.versions.plexus.utils>
     <cia.project.versions.jaxb2.commons>0.11.1</cia.project.versions.jaxb2.commons>
     <cia.project.versions.hyperjaxb3>0.6.1</cia.project.versions.hyperjaxb3>
     <cia.project.versions.jaxb.build>2.2.11</cia.project.versions.jaxb.build>
@@ -681,7 +681,7 @@
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-utils</artifactId>
-              <version>3.0.24</version>
+              <version>3.1.0</version>
             </dependency>
           </dependencies>
           <inherited>true</inherited>

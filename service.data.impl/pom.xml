@@ -503,7 +503,7 @@
     <dependency>
       <groupId>org.jboss.narayana.jta</groupId>
       <artifactId>narayana-jta</artifactId>
-      <version>5.6.3.Final</version>
+      <version>5.6.4.Final</version>
     </dependency>
     <dependency>
       <groupId>org.jboss</groupId>
