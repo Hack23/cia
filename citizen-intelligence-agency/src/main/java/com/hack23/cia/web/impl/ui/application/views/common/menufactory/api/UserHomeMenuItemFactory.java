@@ -19,11 +19,11 @@
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api;
 
 import com.vaadin.ui.MenuBar;
+import com.vaadin.v7.ui.VerticalLayout;
 
 /**
  * A factory for creating UserHomeMenuItem objects.
  */
-@FunctionalInterface
 public interface UserHomeMenuItemFactory {
 
 	/**
@@ -35,5 +35,13 @@ public interface UserHomeMenuItemFactory {
 	 *            the page id
 	 */
 	void createUserHomeMenuBar(MenuBar barmenu, String pageId);
+
+	/**
+	 * Creates a new UserHomeMenuItem object.
+	 *
+	 * @param overviewLayout
+	 *            the overview layout
+	 */
+	void createOverviewPage(VerticalLayout overviewLayout);
 
 }

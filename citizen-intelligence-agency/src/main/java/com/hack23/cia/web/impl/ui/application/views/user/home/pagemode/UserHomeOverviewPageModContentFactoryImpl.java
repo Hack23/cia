@@ -119,6 +119,13 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 				panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);
 
+				final VerticalLayout overviewLayout = new VerticalLayout();
+				overviewLayout.setSizeFull();
+
+				panelContent.addComponent(overviewLayout);
+				panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
+
+				userHomeMenuItemFactory.createOverviewPage(overviewLayout);
 			}
 
 			panel.setCaption(NAME + "::" + USERHOME);
