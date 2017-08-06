@@ -85,12 +85,12 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 				.getDataContainer(ApplicationSession.class);
 
 
-		final BeanItemContainer<ApplicationSession> politicianDocumentDataSource = new BeanItemContainer<>(
+		final BeanItemContainer<ApplicationSession> dataSource = new BeanItemContainer<>(
 				ApplicationSession.class, dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationSession_.createdDate));
 
 		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
-		getGridFactory().createBasicBeanItemGrid(content, politicianDocumentDataSource,
+		getGridFactory().createBasicBeanItemGrid(content, dataSource,
 				"ApplicationSession",
 				new String[] { "hjid", "createdDate", "sessionType", "userId", "events", "operatingSystem", "locale",
 						"ipInformation", "userAgentInformation", "sessionId" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion" ,"userAgentInformation", "sessionId","ipInformation"},

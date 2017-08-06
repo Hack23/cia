@@ -77,13 +77,13 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 		final DataContainer<UserAccount, Long> dataContainer = getApplicationManager()
 				.getDataContainer(UserAccount.class);
 
-		final BeanItemContainer<UserAccount> politicianDocumentDataSource = new BeanItemContainer<>(UserAccount.class,
+		final BeanItemContainer<UserAccount> dataSource = new BeanItemContainer<>(UserAccount.class,
 				dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,UserAccount_.createdDate));
 
 		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(content,
-				politicianDocumentDataSource,
+				dataSource,
 				"UserAccount",
 				new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "userId", "username",
 						"userType", "userRole", "userpassword", "email", "country", "numberOfVisits" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion","userId","userpassword", "address","googleAuthKey",

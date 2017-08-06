@@ -26,8 +26,6 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 
-import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent;
-import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.DataContainer;
@@ -37,11 +35,9 @@ import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.LogoutClickListener;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Layout;
@@ -49,7 +45,6 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.data.util.BeanItemContainer;
 import com.vaadin.v7.ui.VerticalLayout;
 
 /**
@@ -121,19 +116,6 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 				getFormFactory().addFormPanelTextFields(panelContent, new BeanItem<>(userAccount), UserAccount.class,
 						Arrays.asList(new String[] { "username","createdDate","email","country","numberOfVisits" }));
-
-
-
-				final DataContainer<ApplicationActionEvent, Long> eventDataContainer = getApplicationManager().getDataContainer(ApplicationActionEvent.class);
-
-
-				final BeanItemContainer<ApplicationActionEvent> politicianDocumentDataSource = new BeanItemContainer<>(ApplicationActionEvent.class,
-						eventDataContainer.findOrderedListByProperty(ApplicationActionEvent_.userId,userAccount.getUserId(),ApplicationActionEvent_.createdDate));
-
-				getGridFactory().createBasicBeanItemGrid(panelContent, politicianDocumentDataSource,
-						"ApplicationActionEvent",
-						new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","actionName","page","pageMode","elementId", "applicationMessage","errorMessage", "modelObjectVersion" }, new String[] { "hjid","userId","sessionId", "modelObjectId","modelObjectVersion" },
-						new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null, null);
 
 				panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);
 

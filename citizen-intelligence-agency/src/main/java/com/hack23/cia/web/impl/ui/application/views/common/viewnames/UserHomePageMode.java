@@ -24,6 +24,12 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
 public enum UserHomePageMode {
 
 	/** The security settings. */
-	SECURITY_SETTINGS;
+	SECURITY_SETTINGS,
+
+	/** The user visits. */
+	USER_VISITS,
+
+	/** The user events. */
+	USER_EVENTS;
 
 }

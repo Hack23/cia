@@ -78,13 +78,13 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
 		final DataContainer<LanguageData, Long> dataContainer = getApplicationManager()
 				.getDataContainer(LanguageData.class);
 
-		final BeanItemContainer<LanguageData> politicianDocumentDataSource = new BeanItemContainer<>(LanguageData.class,
+		final BeanItemContainer<LanguageData> dataSource = new BeanItemContainer<>(LanguageData.class,
 				dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,LanguageData_.languageName));
 
 		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(content,
-				politicianDocumentDataSource, "LanguageData",
+				dataSource, "LanguageData",
 				new String[] { "hjid", "languageName", "modelObjectVersion" }, new String[] { "hjid", "modelObjectId","modelObjectVersion", "createdDate","lastModifiedDate" },
 				new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, "hjid"), null, null);
 

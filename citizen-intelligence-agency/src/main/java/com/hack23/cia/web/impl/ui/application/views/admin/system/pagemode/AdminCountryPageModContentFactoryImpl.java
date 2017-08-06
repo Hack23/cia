@@ -77,13 +77,13 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 		final DataContainer<CountryElement, Long> dataContainer = getApplicationManager()
 				.getDataContainer(CountryElement.class);
 
-		final BeanItemContainer<CountryElement> politicianDocumentDataSource = new BeanItemContainer<>(
+		final BeanItemContainer<CountryElement> dataSource = new BeanItemContainer<>(
 				CountryElement.class, dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,CountryElement_.countryName));
 
 		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory()
-				.createBasicBeanItemNestedPropertiesGrid(content, politicianDocumentDataSource,
+				.createBasicBeanItemNestedPropertiesGrid(content, dataSource,
 						"Country",null,
 						new String[] { "hjid", "id", "countryName", "iso2Code", "capitalCity", "longitude",
 								"latitude" }, new String[] { "hjid","id", "region", "adminregion" ,"incomeLevel", "lendingType","longitude", "latitude" },

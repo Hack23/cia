@@ -79,12 +79,12 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 
 		final DataContainer<ApplicationActionEvent, Long> dataContainer = getApplicationManager().getDataContainer(ApplicationActionEvent.class);
 
-		final BeanItemContainer<ApplicationActionEvent> politicianDocumentDataSource = new BeanItemContainer<>(ApplicationActionEvent.class,
+		final BeanItemContainer<ApplicationActionEvent> dataSource = new BeanItemContainer<>(ApplicationActionEvent.class,
 		dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationActionEvent_.createdDate));
 
 		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
-		getGridFactory().createBasicBeanItemGrid(content, politicianDocumentDataSource,
+		getGridFactory().createBasicBeanItemGrid(content, dataSource,
 				"ApplicationActionEvent",
 				new String[] { "hjid", "createdDate", "userId","actionName","errorMessage","applicationMessage", "page","pageMode","elementId", "modelObjectVersion" }, new String[] { "hjid", "modelObjectId","modelObjectVersion","sessionId", "eventGroup", "applicationOperation" },
 				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null, null);

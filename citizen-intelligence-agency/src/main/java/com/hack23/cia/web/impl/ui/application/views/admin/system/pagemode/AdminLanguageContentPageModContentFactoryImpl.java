@@ -77,13 +77,13 @@ public final class AdminLanguageContentPageModContentFactoryImpl extends Abstrac
 		final DataContainer<LanguageContentData, Long> dataContainer = getApplicationManager()
 				.getDataContainer(LanguageContentData.class);
 
-		final BeanItemContainer<LanguageContentData> politicianDocumentDataSource = new BeanItemContainer<>(
+		final BeanItemContainer<LanguageContentData> dataSource = new BeanItemContainer<>(
 				LanguageContentData.class, dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,LanguageContentData_.toLanguage));
 
 		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(content,
-				politicianDocumentDataSource,
+				dataSource,
 				"LanguageContentData",
 				new String[] { "hjid", "languageContentType", "refKey", "fromLanguage", "toLanguage", "createdDate",
 						"languageValue" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion" },

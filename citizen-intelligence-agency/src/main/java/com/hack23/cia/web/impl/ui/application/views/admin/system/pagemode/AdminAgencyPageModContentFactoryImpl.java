@@ -83,13 +83,13 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 
 		final DataContainer<Agency, Long> dataContainer = getApplicationManager().getDataContainer(Agency.class);
 
-		final BeanItemContainer<Agency> politicianDocumentDataSource = new BeanItemContainer<>(Agency.class,
+		final BeanItemContainer<Agency> dataSource = new BeanItemContainer<>(Agency.class,
 				dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,Agency_.agencyName));
 
 		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(content,
-				politicianDocumentDataSource, "Agency",
+				dataSource, "Agency",
 				new String[] { "hjid", "agencyName", "description", "portals", "modelObjectVersion" }, new String[] { "hjid","modelObjectId", "modelObjectVersion" },
 				new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid"), null, new ListPropertyConverter[] { new ListPropertyConverter(List.class, "portalName", "portals")});
 

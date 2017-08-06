@@ -18,8 +18,10 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -27,6 +29,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePag
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.MenuBar.MenuItem;
 
 /**
  * The Class UserHomeMenuItemFactoryImpl.
@@ -34,15 +37,20 @@ import com.vaadin.ui.MenuBar;
 @Service
 public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements UserHomeMenuItemFactory {
 
+	/** The Constant USER_EVENTS. */
+	private static final String USER_EVENTS = "User Events";
+
+	/** The Constant USER_VISITS. */
+	private static final String USER_VISITS = "User Visits";
+
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = "Overview";
-
-	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
-	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
 	/** The Constant SECURITY_SETTING_TEXT. */
 	private static final String SECURITY_SETTING_TEXT = "Security settings";
 
+	@Autowired
+	private ApplicationMenuItemFactory applicationMenuItemFactory;
 
 	/**
 	 * Instantiates a new user home menu item factory impl.
@@ -56,15 +64,22 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	public void createUserHomeMenuBar(final MenuBar menuBar, final String pageId) {
 		initApplicationMenuBar(menuBar);
 
-		menuBar.addItem(OVERVIEW_TEXT, FontAwesome.USER,
+		applicationMenuItemFactory.addRankingMenu(menuBar);
+		final MenuItem accountItem = menuBar.addItem("Useraccount"+ pageId, FontAwesome.USER,null);
+
+
+		accountItem.addItem(OVERVIEW_TEXT, FontAwesome.USER,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
-		menuBar.addItem(SECURITY_SETTING_TEXT, FontAwesome.USER,
+		accountItem.addItem(SECURITY_SETTING_TEXT, FontAwesome.USER,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString(), pageId));
 
+		accountItem.addItem(USER_VISITS, FontAwesome.USER,
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_VISITS.toString(), pageId));
 
-		menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.LINE_CHART,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
+		accountItem.addItem(USER_EVENTS, FontAwesome.USER,
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_EVENTS.toString(), pageId));
+
 
 	}
 

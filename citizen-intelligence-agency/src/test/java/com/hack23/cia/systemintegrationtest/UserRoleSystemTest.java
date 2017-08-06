@@ -861,12 +861,121 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userLoginPageVisit.loginUser(username + "@test.com", password);
 
+
+		final WebElement userAccountMenuItem = userLoginPageVisit.getMenuItem("Useraccount");
+		assertNotNull(userAccountMenuItem);
+		userLoginPageVisit.performClickAction(userAccountMenuItem);
+
+		Thread.sleep(1000);
+
+
 		final WebElement securitySettingMenuItem = userLoginPageVisit.getMenuItem("Security settings");
 		assertNotNull(securitySettingMenuItem);
 		userLoginPageVisit.performClickAction(securitySettingMenuItem);
 
 
 		userLoginPageVisit.enableGoogleAuthenticator();
+
+		userLoginPageVisit.logoutUser();
+
+	}
+
+
+	/**
+	 * Site login user check user visits test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteLoginUserCheckUserVisitsTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
+
+		final String username = UUID.randomUUID().toString();
+		final String password = UUID.randomUUID().toString();
+
+		userPageVisit.registerNewUser(username, password);
+
+		userPageVisit.logoutUser();
+
+		driver.quit();
+
+		final WebDriver loginDriver = getWebDriver();
+
+		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
+
+		userLoginPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
+
+		userLoginPageVisit.loginUser(username + "@test.com", password);
+
+
+		final WebElement useraccountMenuItem = userLoginPageVisit.getMenuItem("Useraccount");
+		assertNotNull(useraccountMenuItem);
+		userLoginPageVisit.performClickAction(useraccountMenuItem);
+
+		Thread.sleep(1000);
+
+
+		final WebElement userVisitsMenuItem = userLoginPageVisit.getMenuItem("User Visits");
+		assertNotNull(userVisitsMenuItem);
+		userLoginPageVisit.performClickAction(userVisitsMenuItem);
+
+		userLoginPageVisit.logoutUser();
+
+	}
+
+	/**
+	 * Site login user check user events test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteLoginUserCheckUserEventsTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
+
+		final String username = UUID.randomUUID().toString();
+		final String password = UUID.randomUUID().toString();
+
+		userPageVisit.registerNewUser(username, password);
+
+		userPageVisit.logoutUser();
+
+		driver.quit();
+
+		final WebDriver loginDriver = getWebDriver();
+
+		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
+
+		userLoginPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
+
+		userLoginPageVisit.loginUser(username + "@test.com", password);
+
+
+		final WebElement useraccountMenuItem = userLoginPageVisit.getMenuItem("Useraccount");
+		assertNotNull(useraccountMenuItem);
+		userLoginPageVisit.performClickAction(useraccountMenuItem);
+
+		Thread.sleep(1000);
+
+
+		final WebElement userEventsMenuItem = userLoginPageVisit.getMenuItem("User Events");
+		assertNotNull(userEventsMenuItem);
+		userLoginPageVisit.performClickAction(userEventsMenuItem);
 
 		userLoginPageVisit.logoutUser();
 

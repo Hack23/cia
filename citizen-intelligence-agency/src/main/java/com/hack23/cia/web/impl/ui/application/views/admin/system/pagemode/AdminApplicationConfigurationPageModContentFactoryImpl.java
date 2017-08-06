@@ -87,14 +87,14 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 		final DataContainer<ApplicationConfiguration, Long> dataContainer = getApplicationManager()
 				.getDataContainer(ApplicationConfiguration.class);
 
-		final BeanItemContainer<ApplicationConfiguration> politicianDocumentDataSource = new BeanItemContainer<>(
+		final BeanItemContainer<ApplicationConfiguration> dataSource = new BeanItemContainer<>(
 				ApplicationConfiguration.class,
 		dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationConfiguration_.configurationGroup));
 
 		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(content,
-				politicianDocumentDataSource,
+				dataSource,
 				"ApplicationConfiguration",
 				new String[] { "hjid", "configurationGroup", "component", "componentTitle", "configTitle", "configDescription",
 						 "componentDescription", "propertyId", "propertyValue" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "updatedDate","propertyId" ,"componentDescription", "componentTitle"},
