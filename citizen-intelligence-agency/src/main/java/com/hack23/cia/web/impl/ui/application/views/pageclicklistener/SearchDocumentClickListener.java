@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.api.action.user.SearchDocumentRequest;
 import com.hack23.cia.service.api.action.user.SearchDocumentResponse;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.api.SearchDocumentResponseHandler;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;

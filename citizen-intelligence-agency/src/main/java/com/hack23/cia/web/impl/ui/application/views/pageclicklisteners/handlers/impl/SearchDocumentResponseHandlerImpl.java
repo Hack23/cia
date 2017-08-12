@@ -16,13 +16,15 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
+package com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.impl;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.service.api.action.user.SearchDocumentResponse;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.api.SearchDocumentResponseHandler;
 import com.vaadin.ui.Panel;
 import com.vaadin.v7.data.util.BeanItemContainer;
 import com.vaadin.v7.ui.VerticalLayout;

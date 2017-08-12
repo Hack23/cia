@@ -31,7 +31,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPage
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocumentClickListener;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocumentResponseHandlerImpl;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.impl.SearchDocumentResponseHandlerImpl;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;

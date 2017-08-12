@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
+package com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.api;
 
 import java.io.Serializable;
 
