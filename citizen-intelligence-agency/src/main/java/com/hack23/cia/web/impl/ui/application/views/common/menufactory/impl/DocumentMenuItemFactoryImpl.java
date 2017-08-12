@@ -83,10 +83,10 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	public void createDocumentMenuBar(final MenuBar menuBar, final String pageId) {
 			initApplicationMenuBar(menuBar);
 
-			menuBar.addItem(OVERVIEW_TEXT, FontAwesome.FILE,
-					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, pageId));
-			
 			final MenuItem documentItem = menuBar.addItem(DOCUMENT, FontAwesome.FILE, null);
+
+			documentItem.addItem(OVERVIEW_TEXT, FontAwesome.FILE,
+					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
 			documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 					DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId));
