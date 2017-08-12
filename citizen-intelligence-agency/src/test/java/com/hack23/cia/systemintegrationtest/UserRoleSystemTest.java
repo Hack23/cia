@@ -1453,6 +1453,25 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	}
 
 	/**
+	 * Site ballot overview with decision summary test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteBallotOverviewWithDecisionSummaryTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME,"A411DA4A-430F-408A-99BE-3539E0E2D82A"));
+
+		assertTrue(userPageVisit.checkHtmlBodyContainsText("Ballot"));
+
+	}
+
+	/**
 	 * Site ballot chart test.
 	 *
 	 * @throws Exception
@@ -1465,7 +1484,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME,PageMode.CHARTS,"A411DA4A-430F-408A-99BE-3539E0E2D82A"));
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME,PageMode.CHARTS,"F6E3920D-429A-4438-B22A-5E1AF3A72CEE"));
 
 		assertTrue(userPageVisit.checkHtmlBodyContainsText("Ballot"));
 
