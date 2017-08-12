@@ -24,23 +24,19 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 
-import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.action.user.SearchDocumentRequest;
-import com.hack23.cia.service.api.action.user.SearchDocumentResponse;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocumentClickListener;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocumentResponseHandler;
-import com.vaadin.ui.Button.ClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocumentResponseHandlerImpl;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.data.util.BeanItemContainer;
 import com.vaadin.v7.ui.VerticalLayout;
 
 /**
@@ -94,38 +90,14 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractPageM
 		panelContent.addComponent(searchresultLayout);
 		panelContent.setExpandRatio(searchresultLayout, ContentRatio.LARGE);
 
-
 		final SearchDocumentRequest searchRequest = new SearchDocumentRequest();
 		searchRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 		searchRequest.setMaxResults(MAX_RESULT_SIZE);
 		searchRequest.setSearchExpression("");
-		final SearchDocumentResponseHandler handler = new SearchDocumentResponseHandler() {
-
-			/** The Constant serialVersionUID. */
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void handle(final SearchDocumentResponse response) {
-				searchresultLayout.removeAllComponents();
-
-				final BeanItemContainer<DocumentElement> documentActivityDataDataDataSource = new BeanItemContainer<>(
-						DocumentElement.class, response.getResultElement());
-
-				getGridFactory().createBasicBeanItemGrid(searchresultLayout, documentActivityDataDataDataSource,
-						"Document",
-						new String[] { "rm", "createdDate", "madePublicDate", "documentType", "subType", "title",
-								"subTitle", "status" },
-						new String[] { "label", "id", "hit", "relatedId", "org", "tempLabel", "numberValue",
-								"systemDate", "kallId", "documentFormat", "documentUrlText", "documentUrlHtml",
-								"documentStatusUrlXml", "committeeReportUrlXml" },
-						null, null, null);
-
-			}
-		};
-		final ClickListener searchListener = new SearchDocumentClickListener(searchRequest, handler);
 		getFormFactory().addRequestInputFormFields(formContent, new BeanItem<>(searchRequest),
 				SearchDocumentRequest.class, Arrays.asList(new String[] { "searchExpression" }), "Search",
-				searchListener);
+				new SearchDocumentClickListener(searchRequest, new SearchDocumentResponseHandlerImpl(getGridFactory(), formPanel,
+						searchresultLayout)));
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

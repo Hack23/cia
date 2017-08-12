@@ -270,10 +270,10 @@
       <artifactId>system-rules</artifactId>
       <version>1.16.1</version>
       <exclusions>
-      	<exclusion>
-      		<groupId>org.hamcrest</groupId>
-      		<artifactId>hamcrest-core</artifactId>
-      	</exclusion>
+        <exclusion>
+          <artifactId>hamcrest-core</artifactId>
+          <groupId>org.hamcrest</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>

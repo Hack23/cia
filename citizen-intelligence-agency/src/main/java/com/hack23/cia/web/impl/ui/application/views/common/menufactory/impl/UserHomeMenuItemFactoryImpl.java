@@ -87,7 +87,7 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 
 	@Override
-	public void createOverviewPage(VerticalLayout overviewLayout) {
+	public void createOverviewPage(final VerticalLayout overviewLayout) {
 		final ResponsiveRow grid = createGridLayout(overviewLayout);
 
 		createButtonLink(grid,SECURITY_SETTING_TEXT, FontAwesome.USER,
