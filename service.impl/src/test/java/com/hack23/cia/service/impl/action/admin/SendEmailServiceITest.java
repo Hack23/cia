@@ -30,6 +30,7 @@ import com.dumbster.smtp.SmtpMessage;
 import com.hack23.cia.service.api.action.admin.SendEmailRequest;
 import com.hack23.cia.service.api.action.admin.SendEmailResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
+import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 
 /**
@@ -81,6 +82,29 @@ public final class SendEmailServiceITest extends AbstractServiceFunctionalIntegr
 		assertEquals(email.getBody(), serviceRequest.getContent());
 		assertEquals(email.getHeaderValue("To"), serviceRequest.getEmail());
 
+	}
+
+	/**
+	 * Send email invalid email failure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void sendEmailInvalidEmailFailureTest() throws Exception {
+		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
+
+		final SendEmailRequest serviceRequest = new SendEmailRequest();
+		serviceRequest.setSessionId(createSessionRequest.getSessionId());
+		serviceRequest.setEmail("novalidemail$###hack23.com");
+		serviceRequest.setSubject("Test Email SendEmailServiceITest");
+		serviceRequest.setContent("Test content");
+
+		final SendEmailResponse response = (SendEmailResponse) applicationManager
+				.service(serviceRequest);
+		assertNotNull(EXPECT_A_RESULT, response);
+		assertEquals(ServiceResult.FAILURE, response.getResult());
+		assertEquals("Email is not a valid email address", response.getErrorMessage());
 	}
 
 }

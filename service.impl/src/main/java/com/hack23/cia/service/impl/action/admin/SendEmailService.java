@@ -18,6 +18,9 @@
 */
 package com.hack23.cia.service.impl.action.admin;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +48,9 @@ import com.hack23.cia.service.impl.email.EmailService;
 @Transactional(propagation = Propagation.REQUIRED, timeout = 600)
 public final class SendEmailService extends AbstractBusinessServiceImpl<SendEmailRequest, SendEmailResponse>
 		implements BusinessService<SendEmailRequest, SendEmailResponse> {
+
+	/** The Constant EMAIL_IS_NOT_A_VALID_EMAIL_ADDRESS. */
+	private static final String EMAIL_IS_NOT_A_VALID_EMAIL_ADDRESS = "Email is not a valid email address";
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(SendEmailService.class);
@@ -82,13 +88,29 @@ public final class SendEmailService extends AbstractBusinessServiceImpl<SendEmai
 		}
 
 		SendEmailResponse response;
-		emailService.sendEmail(serviceRequest.getEmail(), serviceRequest.getSubject(), serviceRequest.getContent());
-		response = new SendEmailResponse(ServiceResult.SUCCESS);
+		if (isValidEmailAddress(serviceRequest.getEmail())) {
+			emailService.sendEmail(serviceRequest.getEmail(), serviceRequest.getSubject(), serviceRequest.getContent());
+			response = new SendEmailResponse(ServiceResult.SUCCESS);
+		} else {
+			response = new SendEmailResponse(ServiceResult.FAILURE);
+			response.setErrorMessage(EMAIL_IS_NOT_A_VALID_EMAIL_ADDRESS);
+		}
 
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);
 
 		return response;
+	}
+
+	public static boolean isValidEmailAddress(String email) {
+		   boolean result = true;
+		   try {
+		      InternetAddress emailAddr = new InternetAddress(email);
+		      emailAddr.validate();
+		   } catch (AddressException ex) {
+		      result = false;
+		   }
+		   return result;
 	}
 
 }

@@ -186,6 +186,28 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.checkNotificationMessage("Email Sent");
 	}
 
+	/**
+	 * Site admin email failed no valid email test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteAdminEmailFailedNoValidEmailTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME, ""));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("email"));
+
+		userPageVisit.sendEmailOnEmailPage("nonvalidemail", "siteAdminEmailFailedNoValidEmailTest", "siteAdminEmailFailedNoValidEmailTest content");
+
+		userPageVisit.checkNotificationMessage("SendEmail nonvalidemail failure");
+	}
+
 
 	/**
 	 * Site admin useraccount test.
