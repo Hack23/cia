@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import com.hack23.cia.service.api.action.admin.SendEmailRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -34,6 +35,9 @@ import com.vaadin.ui.UI;
  * The Class SendEmailClickListener.
  */
 public final class SendEmailClickListener implements ClickListener {
+
+	/** The Constant EMAIL_SENT. */
+	private static final String EMAIL_SENT = "Email Sent";
 
 	/** The Constant SEND_EMAIL_FAILURE. */
 	private static final String SEND_EMAIL_FAILURE = "SendEmail {} failure";
@@ -71,7 +75,7 @@ public final class SendEmailClickListener implements ClickListener {
 		final ServiceResponse response = ApplicationMangerAccess.getApplicationManager().service(sendEmailRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_MSG_SEND_EMAIL,sendEmailRequest.getEmail());
-			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);
+			Notification.show(EMAIL_SENT);
 		} else {
 			Notification.show(SEND_EMAIL_FAILEDFAILED,
 	                  ERROR_MESSAGE,

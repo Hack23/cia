@@ -780,6 +780,16 @@ public final class UserPageVisit extends Assert {
 
 	}
 
+	public void sendEmailOnEmailPage(final String email,final String subject,final String content) throws Exception {
+
+		setFieldValue("Email.email",email);
+		setFieldValue("Email.subject",subject);
+		setFieldValue("Email.content",content);
+
+		final WebElement emailButton = driver.findElement(By.id("Email"));
+		performClickAction(emailButton);
+	}
+
 
 	/**
 	 * Search document.

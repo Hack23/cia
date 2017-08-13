@@ -181,6 +181,9 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME, ""));
 		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("email"));
 
+		userPageVisit.sendEmailOnEmailPage("james@hack23.com", "siteAdminEmailTest", "siteAdminEmailTest content");
+
+		userPageVisit.checkNotificationMessage("Email Sent");
 	}
 
 
