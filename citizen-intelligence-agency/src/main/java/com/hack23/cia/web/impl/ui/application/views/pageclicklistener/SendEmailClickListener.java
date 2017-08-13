@@ -78,7 +78,7 @@ public final class SendEmailClickListener implements ClickListener {
 			Notification.show(EMAIL_SENT);
 		} else {
 			Notification.show(SEND_EMAIL_FAILEDFAILED,
-	                  ERROR_MESSAGE,
+	                  response.getErrorMessage(),
 	                  Notification.Type.WARNING_MESSAGE);
 			LOGGER.info(SEND_EMAIL_FAILURE,sendEmailRequest.getEmail());
 		}

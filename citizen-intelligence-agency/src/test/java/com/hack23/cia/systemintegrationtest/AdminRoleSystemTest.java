@@ -205,7 +205,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.sendEmailOnEmailPage("nonvalidemail", "siteAdminEmailFailedNoValidEmailTest", "siteAdminEmailFailedNoValidEmailTest content");
 
-		userPageVisit.checkNotificationMessage("SendEmail nonvalidemail failure");
+		userPageVisit.checkNotificationMessage("Send email failedEmail is not a valid email address");
 	}
 
 
