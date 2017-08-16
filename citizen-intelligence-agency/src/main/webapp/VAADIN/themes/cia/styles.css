@@ -1057,7 +1057,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "8.1.1";
+	content: "8.1.2";
 }
 
 .v-widget {
@@ -3805,6 +3805,10 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-filterselect .v-icon {
 	position: absolute;
 	pointer-events: none;
+}
+
+.cia .v-filterselect .v-icon.FontAwesome {
+	margin-left: 0px;
 }
 
 .cia .v-filterselect-error .v-filterselect-input {
