@@ -712,7 +712,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>findbugs-maven-plugin</artifactId>
-          <version>3.0.4</version>
+          <version>3.0.5</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1740,7 +1740,7 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>findbugs-maven-plugin</artifactId>
-            <version>3.0.4</version>
+            <version>3.0.5</version>
             <inherited>true</inherited>
             <configuration>
               <onlyAnalyze>com.hack23.*</onlyAnalyze>
@@ -1750,12 +1750,12 @@
                 <plugin>
                   <groupId>com.mebigfatguy.fb-contrib</groupId>
                   <artifactId>fb-contrib</artifactId>
-                  <version>6.8.4</version>
+                  <version>7.0.3</version>
                 </plugin>
                 <plugin>
                   <groupId>com.h3xstream.findsecbugs</groupId>
                   <artifactId>findsecbugs-plugin</artifactId>
-                  <version>1.6.0</version>
+                  <version>1.7.1</version>
                 </plugin>
               </plugins>
             </configuration>
