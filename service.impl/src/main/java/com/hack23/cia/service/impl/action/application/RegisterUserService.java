@@ -23,6 +23,13 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.UUID;
 
+import org.passay.CharacterRule;
+import org.passay.EnglishCharacterData;
+import org.passay.LengthRule;
+import org.passay.PasswordData;
+import org.passay.PasswordValidator;
+import org.passay.RuleResult;
+import org.passay.WhitespaceRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,6 +89,15 @@ public final class RegisterUserService extends
 	/** The password encoder. */
 	private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+	/** The password validator. */
+	private final PasswordValidator passwordValidator = new PasswordValidator(new LengthRule(8, 64),
+			  new CharacterRule(EnglishCharacterData.UpperCase, 1),
+			  new CharacterRule(EnglishCharacterData.LowerCase, 1),
+			  new CharacterRule(EnglishCharacterData.Digit, 1),
+			  new CharacterRule(EnglishCharacterData.Special, 1),
+			  new WhitespaceRule());
+
+
 	/**
 	 * Instantiates a new register user service.
 	 */
@@ -106,8 +122,10 @@ public final class RegisterUserService extends
 		final UserAccount userNameExist = userDAO.findFirstByProperty(UserAccount_.username, serviceRequest.getUsername());
 		final UserAccount userEmailExist = userDAO.findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
 
+		final RuleResult passwordRuleResults = passwordValidator.validate(new PasswordData(serviceRequest.getUserpassword()));
+
 		RegisterUserResponse response;
-		if (userEmailExist == null && userNameExist == null) {
+		if (userEmailExist == null && userNameExist == null && passwordRuleResults.isValid()) {
 			final UserAccount userAccount = new UserAccount();
 			userAccount.setCountry(serviceRequest.getCountry());
 			userAccount.setEmail(serviceRequest.getEmail());
@@ -139,7 +157,14 @@ public final class RegisterUserService extends
 			response = new RegisterUserResponse(ServiceResult.SUCCESS);
 		} else {
 			response = new RegisterUserResponse(ServiceResult.FAILURE);
-			response.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());
+			if (passwordRuleResults.isValid()) {
+				response.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());
+				eventRequest.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());
+			} else {
+				String errorMessage = passwordValidator.getMessages(passwordRuleResults).toString();
+				response.setErrorMessage(errorMessage);
+				eventRequest.setErrorMessage(errorMessage);
+			}
 		}
 
 		eventRequest.setApplicationMessage(response.getResult().toString());

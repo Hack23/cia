@@ -60,7 +60,7 @@ public final class RegisterUserServiceITest extends AbstractServiceFunctionalInt
 	 */
 	@Test
 	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
-	@Required(max = 1500, average = 900, percentile95 = 950, throughput = 4)
+	@Required(max = 2000, average = 1200, percentile95 = 1500, throughput = 2)
 	public void serviceRegisterUserRequestSuccessTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
 
@@ -69,7 +69,7 @@ public final class RegisterUserServiceITest extends AbstractServiceFunctionalInt
 		serviceRequest.setCountry("Sweden");
 		serviceRequest.setUsername(UUID.randomUUID().toString());
 		serviceRequest.setEmail(serviceRequest.getUsername() + "@email.com");
-		serviceRequest.setUserpassword("userpassword");
+		serviceRequest.setUserpassword("Userpassword1!");
 		serviceRequest.setUserType(UserType.PRIVATE);
 		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
 
@@ -88,6 +88,7 @@ public final class RegisterUserServiceITest extends AbstractServiceFunctionalInt
 	 * @throws Exception
 	 *             the exception
 	 */
+	@Test
 	public void serviceRegisterUserRequestUserAlreadyExistFailureTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
 
@@ -95,13 +96,15 @@ public final class RegisterUserServiceITest extends AbstractServiceFunctionalInt
 		serviceRequest.setCountry("Sweden");
 		serviceRequest.setUsername(UUID.randomUUID().toString());
 		serviceRequest.setEmail(serviceRequest.getUsername() + "@email.com");
-		serviceRequest.setUserpassword("userpassword");
+		serviceRequest.setUserpassword("Userpassword1!");
 		serviceRequest.setUserType(UserType.PRIVATE);
 		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
 
 		final RegisterUserResponse response = (RegisterUserResponse) applicationManager.service(serviceRequest);
 		assertNotNull(EXPECT_A_RESULT, response);
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, response.getResult());
+
+		final CreateApplicationSessionRequest createApplicationSesstionNew = createApplicationSesstionWithRoleAnonymous();
 
 		final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
 		final List<UserAccount> allBy = dataContainer.getAllBy(UserAccount_.username, serviceRequest.getUsername());
@@ -112,8 +115,34 @@ public final class RegisterUserServiceITest extends AbstractServiceFunctionalInt
 		assertEquals(EXPECT_SUCCESS,ServiceResult.FAILURE, errorResponse.getResult());
 		assertEquals(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString(), errorResponse.getErrorMessage());
 
+	}
 
+	/**
+	 * Service register user request weak password failure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void serviceRegisterUserRequestWeakPasswordFailureTest() throws Exception {
+		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
 
+		final RegisterUserRequest serviceRequest = new RegisterUserRequest();
+		serviceRequest.setCountry("Sweden");
+		serviceRequest.setUsername(UUID.randomUUID().toString());
+		serviceRequest.setEmail(serviceRequest.getUsername() + "@email.com");
+		serviceRequest.setUserpassword("weak");
+		serviceRequest.setUserType(UserType.PRIVATE);
+		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
+
+		final RegisterUserResponse errorResponse = (RegisterUserResponse) applicationManager.service(serviceRequest);
+		assertNotNull(EXPECT_A_RESULT, errorResponse);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.FAILURE, errorResponse.getResult());
+		assertEquals("[Password must be 8 or more characters in length., Password must contain 1 or more uppercase characters., Password must contain 1 or more digit characters., Password must contain 1 or more special characters.]", errorResponse.getErrorMessage());
+
+		final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
+		final List<UserAccount> allBy = dataContainer.getAllBy(UserAccount_.username, serviceRequest.getUsername());
+		assertEquals(0, allBy.size());
 	}
 
 }

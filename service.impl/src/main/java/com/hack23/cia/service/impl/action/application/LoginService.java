@@ -46,6 +46,8 @@ import com.hack23.cia.service.api.action.application.LoginRequest;
 import com.hack23.cia.service.api.action.application.LoginResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.UserDAO;
+import com.hack23.cia.service.impl.action.application.access.LoginBlockedAccess;
+import com.hack23.cia.service.impl.action.application.access.LoginBlockedAccess.LoginBlockResult;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
 import com.warrenstrange.googleauth.GoogleAuthenticator;
@@ -68,6 +70,9 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 	/** The create application event service. */
 	@Autowired
 	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
+
+	@Autowired
+	private LoginBlockedAccess loginBlockedAccess;
 
 	/** The password encoder. */
 	private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -92,8 +97,10 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 
 		final UserAccount userExist = userDAO.findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
 
+		LoginBlockResult loginBlockResult = loginBlockedAccess.isBlocked(serviceRequest.getSessionId(), serviceRequest.getEmail());
+
 		LoginResponse response;
-		if (userExist != null && verifyOtp(serviceRequest, userExist) && passwordEncoder.matches(
+		if (!loginBlockResult.isBlocked() && userExist != null && verifyOtp(serviceRequest, userExist) && passwordEncoder.matches(
 				userExist.getUserId() + ".uuid" + serviceRequest.getUserpassword(), userExist.getUserpassword())) {
 
 			final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
@@ -116,6 +123,11 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 		} else {
 			response = new LoginResponse(ServiceResult.FAILURE);
 			response.setErrorMessage(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString());
+			if (loginBlockResult.isBlocked()) {
+				eventRequest.setErrorMessage(loginBlockResult.getMessage());
+			}else {
+				eventRequest.setErrorMessage(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString());
+			}
 		}
 		eventRequest.setApplicationMessage(response.getResult().toString());
 

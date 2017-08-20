@@ -64,7 +64,7 @@ public final class LogoutServiceITest extends AbstractServiceFunctionalIntegrati
 	 */
 	@Test
 	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
-	@Required(max = 1500, average = 1200, percentile95 = 1300, throughput = 4)
+	@Required(max = 2500, average = 1700, percentile95 = 2400, throughput = 2)
 	public void serviceLogoutRequestSuccessTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
 
@@ -73,7 +73,7 @@ public final class LogoutServiceITest extends AbstractServiceFunctionalIntegrati
 		serviceRequest.setCountry("Sweden");
 		serviceRequest.setUsername(UUID.randomUUID().toString());
 		serviceRequest.setEmail(serviceRequest.getUsername() + "@email.com");
-		serviceRequest.setUserpassword("userpassword");
+		serviceRequest.setUserpassword("Userpassword1!");
 		serviceRequest.setUserType(UserType.PRIVATE);
 		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
 

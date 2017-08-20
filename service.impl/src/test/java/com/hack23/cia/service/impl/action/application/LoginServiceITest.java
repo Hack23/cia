@@ -62,7 +62,7 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 	 */
 	@Test
 	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
-	@Required(max = 1500, average = 1100, percentile95 = 1200, throughput = 4)
+	@Required(max = 2000, average = 1500, percentile95 = 1700, throughput = 2)
 	public void serviceLoginRequestSuccessTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
 
@@ -71,7 +71,7 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 		serviceRequest.setCountry("Sweden");
 		serviceRequest.setUsername(UUID.randomUUID().toString());
 		serviceRequest.setEmail(serviceRequest.getUsername() + "@email.com");
-		serviceRequest.setUserpassword("userpassword");
+		serviceRequest.setUserpassword("Userpassword1!");
 		serviceRequest.setUserType(UserType.PRIVATE);
 		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
 
@@ -96,7 +96,13 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, loginResponse.getResult());
 	}
 
-
+	/**
+	 * Service login request user password do not match failure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
 	public void serviceLoginRequestUserPasswordDoNotMatchFailureTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
 
@@ -105,7 +111,7 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 		serviceRequest.setCountry("Sweden");
 		serviceRequest.setUsername(UUID.randomUUID().toString());
 		serviceRequest.setEmail(serviceRequest.getUsername() + "@email.com");
-		serviceRequest.setUserpassword("userpassword");
+		serviceRequest.setUserpassword("Userpassword1!");
 		serviceRequest.setUserType(UserType.PRIVATE);
 		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
 

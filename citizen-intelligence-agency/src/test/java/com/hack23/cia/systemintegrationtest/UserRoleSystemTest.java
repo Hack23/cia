@@ -21,11 +21,21 @@ package com.hack23.cia.systemintegrationtest;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.UUID;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import org.passay.CharacterRule;
+import org.passay.EnglishCharacterData;
+import org.passay.LengthRule;
+import org.passay.PasswordData;
+import org.passay.PasswordValidator;
+import org.passay.PasswordGenerator;
+import org.passay.RuleResult;
+import org.passay.WhitespaceRule;
 
 import com.hack23.cia.service.api.action.application.LoginResponse;
 import com.hack23.cia.service.api.action.application.RegisterUserResponse;
@@ -702,8 +712,8 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
-		final String username = UUID.randomUUID().toString();
-		final String password = UUID.randomUUID().toString();
+		final String username = generatePassword();
+		final String password = generatePassword();
 
 		userPageVisit.registerNewUser(username, password);
 
@@ -726,8 +736,8 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
-		final String username = UUID.randomUUID().toString();
-		final String password = UUID.randomUUID().toString();
+		final String username = generatePassword();
+		final String password = generatePassword();
 
 		userPageVisit.registerNewUser(username, password);
 
@@ -749,6 +759,30 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
+	/**
+	 * Site register user password weak test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteRegisterUserPasswordWeakTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
+
+		final String username = generatePassword();
+		final String password = "weak";
+
+		userPageVisit.registerNewUserCheckView(username, password,"main/"+ApplicationPageMode.REGISTER.toString());
+
+		userPageVisit.checkNotificationMessage("Register failed:" + RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST);
+	}
+
 
 	/**
 	 * Site login user test.
@@ -766,8 +800,8 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
-		final String username = UUID.randomUUID().toString();
-		final String password = UUID.randomUUID().toString();
+		final String username = generatePassword();
+		final String password = generatePassword();
 
 		userPageVisit.registerNewUser(username, password);
 
@@ -788,6 +822,24 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
+	private String generatePassword() {
+		List<CharacterRule> rules = Arrays.asList(
+				new CharacterRule(EnglishCharacterData.UpperCase, 1),
+
+				new CharacterRule(EnglishCharacterData.LowerCase, 1),
+
+				new CharacterRule(EnglishCharacterData.Digit, 1),
+
+				new CharacterRule(EnglishCharacterData.Special, 1),
+
+				new WhitespaceRule());
+
+		PasswordGenerator generator = new PasswordGenerator();
+
+		// Generated password is 12 characters long, which complies with policy
+		return generator.generatePassword(12, rules);
+	}
+
 	/**
 	 * Site login user wrong password test.
 	 *
@@ -804,8 +856,8 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
-		final String username = UUID.randomUUID().toString();
-		final String password = UUID.randomUUID().toString();
+		final String username = generatePassword();
+		final String password = generatePassword();
 
 		userPageVisit.registerNewUser(username, password);
 
@@ -843,8 +895,8 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
-		final String username = UUID.randomUUID().toString();
-		final String password = UUID.randomUUID().toString();
+		final String username = generatePassword();
+		final String password = generatePassword();
 
 		userPageVisit.registerNewUser(username, password);
 
@@ -897,8 +949,8 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
-		final String username = UUID.randomUUID().toString();
-		final String password = UUID.randomUUID().toString();
+		final String username = generatePassword();
+		final String password = generatePassword();
 
 		userPageVisit.registerNewUser(username, password);
 
@@ -947,8 +999,8 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
-		final String username = UUID.randomUUID().toString();
-		final String password = UUID.randomUUID().toString();
+		final String username = generatePassword();
+		final String password = generatePassword();
 
 		userPageVisit.registerNewUser(username, password);
 
