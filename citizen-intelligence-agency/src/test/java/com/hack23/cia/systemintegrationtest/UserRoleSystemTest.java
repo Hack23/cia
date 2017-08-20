@@ -711,7 +711,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
-		final String username = generatePassword();
+		final String username = UUID.randomUUID().toString();
 		final String password = generatePassword();
 
 		userPageVisit.registerNewUser(username, password);
@@ -735,7 +735,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
-		final String username = generatePassword();
+		final String username = UUID.randomUUID().toString();
 		final String password = generatePassword();
 
 		userPageVisit.registerNewUser(username, password);
@@ -774,7 +774,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
-		final String username = generatePassword();
+		final String username = UUID.randomUUID().toString();
 		final String password = "weak";
 
 		userPageVisit.registerNewUserCheckView(username, password,"main/"+ApplicationPageMode.REGISTER.toString());
@@ -799,7 +799,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
-		final String username = generatePassword();
+		final String username = UUID.randomUUID().toString();
 		final String password = generatePassword();
 
 		userPageVisit.registerNewUser(username, password);
@@ -853,7 +853,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
-		final String username = generatePassword();
+		final String username = UUID.randomUUID().toString();
 		final String password = generatePassword();
 
 		userPageVisit.registerNewUser(username, password);
@@ -892,7 +892,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
-		final String username = generatePassword();
+		final String username = UUID.randomUUID().toString();
 		final String password = generatePassword();
 
 		userPageVisit.registerNewUser(username, password);
@@ -946,7 +946,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
-		final String username = generatePassword();
+		final String username = UUID.randomUUID().toString();
 		final String password = generatePassword();
 
 		userPageVisit.registerNewUser(username, password);
@@ -996,7 +996,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
-		final String username = generatePassword();
+		final String username = UUID.randomUUID().toString();
 		final String password = generatePassword();
 
 		userPageVisit.registerNewUser(username, password);
