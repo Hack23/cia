@@ -35,7 +35,6 @@ import org.passay.PasswordData;
 import org.passay.PasswordValidator;
 import org.passay.PasswordGenerator;
 import org.passay.RuleResult;
-import org.passay.WhitespaceRule;
 
 import com.hack23.cia.service.api.action.application.LoginResponse;
 import com.hack23.cia.service.api.action.application.RegisterUserResponse;
@@ -830,9 +829,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 				new CharacterRule(EnglishCharacterData.Digit, 1),
 
-				new CharacterRule(EnglishCharacterData.Special, 1),
-
-				new WhitespaceRule());
+				new CharacterRule(EnglishCharacterData.Special, 1));
 
 		PasswordGenerator generator = new PasswordGenerator();
 
