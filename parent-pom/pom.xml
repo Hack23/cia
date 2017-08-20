@@ -135,7 +135,7 @@
     <cia.project.versions.junit>4.12</cia.project.versions.junit>
     <cia.project.versions.junit.dep>4.11</cia.project.versions.junit.dep>
     <cia.project.versions.easymock>3.4</cia.project.versions.easymock>
-    <cia.project.versions.dbunit>2.5.3</cia.project.versions.dbunit>
+    <cia.project.versions.dbunit>2.5.4</cia.project.versions.dbunit>
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
     <cia.project.versions.xmlbeans>2.6.0</cia.project.versions.xmlbeans>
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
