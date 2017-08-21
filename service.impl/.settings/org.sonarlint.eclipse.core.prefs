@@ -1,4 +1,3 @@
+autoEnabled=true
 eclipse.preferences.version=1
 extraProperties=
-moduleKey=com.hack23.cia\:service.impl
-serverId=192

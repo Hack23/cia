@@ -59,7 +59,7 @@ public final class RegisterUserServiceITest extends AbstractServiceFunctionalInt
 	 *             the exception
 	 */
 	@Test
-	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
+	@PerfTest(threads = 4, duration = 5000, warmUp = 1500)
 	@Required(max = 2000, average = 1200, percentile95 = 1500, throughput = 2)
 	public void serviceRegisterUserRequestSuccessTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();

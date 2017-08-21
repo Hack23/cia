@@ -64,8 +64,8 @@ public final class SetGoogleAuthenticatorCredentialServiceITest extends Abstract
 	 *             the exception
 	 */
 	@Test
-	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
-	@Required(max = 1800, average = 1200, percentile95 = 1400, throughput = 3)
+	@PerfTest(threads = 4, duration = 4000, warmUp = 1500)
+	@Required(max = 2500, average = 2000, percentile95 = 2200, throughput = 2)
 	public void servicesetGoogleAuthenticatorCredentialRequestSuccessTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
 
@@ -74,7 +74,7 @@ public final class SetGoogleAuthenticatorCredentialServiceITest extends Abstract
 		serviceRequest.setCountry("Sweden");
 		serviceRequest.setUsername(UUID.randomUUID().toString());
 		serviceRequest.setEmail(serviceRequest.getUsername() + "@email.com");
-		serviceRequest.setUserpassword("userpassword");
+		serviceRequest.setUserpassword("Userpassword1!");
 		serviceRequest.setUserType(UserType.PRIVATE);
 		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
 

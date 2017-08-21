@@ -779,7 +779,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.registerNewUserCheckView(username, password,"main/"+ApplicationPageMode.REGISTER.toString());
 
-		userPageVisit.checkNotificationMessage("Register failed:" + RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST);
+		userPageVisit.checkNotificationMessage("Register failed:" + "[Password must be 8 or more characters in length., Password must contain 1 or more uppercase characters., Password must contain 1 or more digit characters., Password must contain 1 or more special characters.]");
 	}
 
 
