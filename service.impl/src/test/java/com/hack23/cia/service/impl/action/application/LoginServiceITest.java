@@ -61,8 +61,8 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 	 *             the exception
 	 */
 	@Test
-	@PerfTest(threads = 4, duration = 4000, warmUp = 1500)
-	@Required(max = 2000, average = 1500, percentile95 = 1700, throughput = 2)
+	@PerfTest(threads = 2, duration = 4000, warmUp = 1500)
+	@Required(max = 2500, average = 2000, percentile95 = 2200, throughput = 1)
 	public void serviceLoginRequestSuccessTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
 
