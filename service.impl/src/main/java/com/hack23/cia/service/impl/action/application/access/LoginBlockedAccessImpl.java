@@ -18,7 +18,11 @@
 */
 package com.hack23.cia.service.impl.action.application.access;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +36,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
+import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ApplicationActionEventDAO;
 import com.hack23.cia.service.data.api.ApplicationSessionDAO;
 import com.hack23.cia.service.data.api.UserDAO;
@@ -57,23 +62,36 @@ public class LoginBlockedAccessImpl implements LoginBlockedAccess {
 	@Override
 	public LoginBlockResult isBlocked(String sessionId, String email) {
 		LoginBlockResultImpl loginBlockResultImpl = new LoginBlockResultImpl();
+
+		final UserAccount userExist = userDAO.findFirstByProperty(UserAccount_.email, email);
+
+		if (userExist != null) {
+			List<ApplicationActionEvent> failedLoginsByThisUser = applicationActionEventDAO.findListByProperty(new Object[] {email,ApplicationOperationType.AUTHENTICATION,ServiceResult.FAILURE.toString()},ApplicationActionEvent_.elementId,ApplicationActionEvent_.applicationOperation,ApplicationActionEvent_.applicationMessage);
+
+			Date oneHourAgo = new Date(System.currentTimeMillis() - 3600 * 1000);
+			Map<Boolean, List<ApplicationActionEvent>> recentOldLoginAttemptsMap = failedLoginsByThisUser.stream().collect(Collectors.groupingBy(x -> x.getCreatedDate().after(oneHourAgo)));
+			List<ApplicationActionEvent> recentFailedLogins = recentOldLoginAttemptsMap.get(Boolean.valueOf(true));
+			if (recentFailedLogins != null && recentFailedLogins.size() > 5) {
+				loginBlockResultImpl.setBlocked(true);
+				loginBlockResultImpl.setMessage("Blocked by more than 5 recent login attempts by this user");
+			}
+		}
+
+
 		final ApplicationSession applicationSession = applicationSessionDAO.findFirstByProperty(ApplicationSession_.sessionId, sessionId);
 
 		if (applicationSession != null) {
-			List<ApplicationActionEvent> findListByProperty = applicationActionEventDAO.findListByProperty(new Object[] {sessionId,ApplicationOperationType.AUTHENTICATION},ApplicationActionEvent_.sessionId,ApplicationActionEvent_.applicationOperation);
-			//TODO
-			// Block session after failed 5 attempts.
+			List<ApplicationActionEvent> failedLoginsByThisSession = applicationActionEventDAO.findListByProperty(new Object[] {sessionId,ApplicationOperationType.AUTHENTICATION,ServiceResult.FAILURE.toString()},ApplicationActionEvent_.sessionId,ApplicationActionEvent_.applicationOperation,ApplicationActionEvent_.applicationMessage);
+			if (failedLoginsByThisSession.size() > 5) {
+				loginBlockResultImpl.setBlocked(true);
+				loginBlockResultImpl.setMessage("Blocked by more than 5 login attempts by this session");
+			}
 
 			final List<ApplicationSession> applicationSessionsByIp = applicationSessionDAO.findListByProperty(ApplicationSession_.ipInformation, applicationSession.getIpInformation());
 			//TODO
 			// Block ip after failed flooding with failed attempts, recent hour,day,week
 
 		}
-
-		List<ApplicationActionEvent> findListByProperty = applicationActionEventDAO.findListByProperty(new Object[] {email,ApplicationOperationType.AUTHENTICATION},ApplicationActionEvent_.elementId,ApplicationActionEvent_.applicationOperation);
-		final UserAccount userExist = userDAO.findFirstByProperty(UserAccount_.email, email);
-		//TODO
-		// Block user after failed flooding with failed attempts, recent hour,day,week
 
 		return loginBlockResultImpl;
 	}
