@@ -152,7 +152,7 @@
     <dependency>
       <groupId>org.tltv.gantt</groupId>
       <artifactId>gantt-addon</artifactId>
-      <version>1.0.0</version>
+      <version>1.0.1</version>
       <exclusions>
         <exclusion>
           <artifactId>vaadin-server</artifactId>

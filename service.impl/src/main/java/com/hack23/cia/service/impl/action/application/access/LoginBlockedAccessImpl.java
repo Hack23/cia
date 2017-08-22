@@ -27,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent_;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
@@ -59,7 +60,7 @@ public class LoginBlockedAccessImpl implements LoginBlockedAccess {
 		final ApplicationSession applicationSession = applicationSessionDAO.findFirstByProperty(ApplicationSession_.sessionId, sessionId);
 
 		if (applicationSession != null) {
-			List<ApplicationActionEvent> findListByProperty = applicationActionEventDAO.findListByProperty(ApplicationActionEvent_.sessionId, sessionId);
+			List<ApplicationActionEvent> findListByProperty = applicationActionEventDAO.findListByProperty(new Object[] {sessionId,ApplicationOperationType.AUTHENTICATION},ApplicationActionEvent_.sessionId,ApplicationActionEvent_.applicationOperation);
 			//TODO
 			// Block session after failed 5 attempts.
 
@@ -69,7 +70,7 @@ public class LoginBlockedAccessImpl implements LoginBlockedAccess {
 
 		}
 
-		List<ApplicationActionEvent> findListByProperty = applicationActionEventDAO.findListByProperty(ApplicationActionEvent_.elementId, email);
+		List<ApplicationActionEvent> findListByProperty = applicationActionEventDAO.findListByProperty(new Object[] {email,ApplicationOperationType.AUTHENTICATION},ApplicationActionEvent_.elementId,ApplicationActionEvent_.applicationOperation);
 		final UserAccount userExist = userDAO.findFirstByProperty(UserAccount_.email, email);
 		//TODO
 		// Block user after failed flooding with failed attempts, recent hour,day,week
