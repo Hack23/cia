@@ -21,6 +21,7 @@ package com.hack23.cia.service.impl;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Random;
 import java.util.UUID;
 
 import org.junit.runner.RunWith;
@@ -150,8 +151,9 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 	 * @return the creates the application session request
 	 */
 	protected final CreateApplicationSessionRequest createTestApplicationSession() {
+		final Random r = new Random();
 		final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();
-		serviceRequest.setIpInformation("8.8.8.8");
+		serviceRequest.setIpInformation(r.nextInt(256) + "." + r.nextInt(256) + "." + r.nextInt(256) + "." + r.nextInt(256));
 		serviceRequest.setLocale("en_US.UTF-8");
 		serviceRequest.setOperatingSystem("LINUX");
 		serviceRequest.setSessionId(UUID.randomUUID().toString());
