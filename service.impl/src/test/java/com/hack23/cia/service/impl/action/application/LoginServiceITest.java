@@ -138,4 +138,117 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 
 	}
 
+
+	/**
+	 * Service login request user blocked by max user attemp test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void serviceLoginRequestUserBlockedByMaxUserAttempTest() throws Exception {
+		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
+
+
+		final RegisterUserRequest serviceRequest = new RegisterUserRequest();
+		serviceRequest.setCountry("Sweden");
+		serviceRequest.setUsername(UUID.randomUUID().toString());
+		serviceRequest.setEmail(serviceRequest.getUsername() + "@email.com");
+		serviceRequest.setUserpassword("Userpassword1!");
+		serviceRequest.setUserType(UserType.PRIVATE);
+		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
+
+		final RegisterUserResponse response = (RegisterUserResponse) applicationManager.service(serviceRequest);
+		assertNotNull("Expect a result", response);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, response.getResult());
+
+		final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
+		final List<UserAccount> allBy = dataContainer.getAllBy(UserAccount_.username, serviceRequest.getUsername());
+		assertEquals(1, allBy.size());
+
+
+		for(int i=0; i< 6; i++) {
+			final CreateApplicationSessionRequest newApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
+
+			final LoginRequest loginRequest = new LoginRequest();
+			loginRequest.setEmail(serviceRequest.getEmail());
+			loginRequest.setSessionId(newApplicationSesstion.getSessionId());
+			loginRequest.setUserpassword(serviceRequest.getUserpassword() + "wrongpassword");
+
+			final LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
+
+			assertNotNull("Expect a result", loginResponse);
+			assertEquals(ServiceResult.FAILURE, loginResponse.getResult());
+			assertEquals(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString(), loginResponse.getErrorMessage());
+		}
+
+		final LoginRequest loginRequest = new LoginRequest();
+		loginRequest.setEmail(serviceRequest.getEmail());
+		loginRequest.setSessionId(serviceRequest.getSessionId());
+		loginRequest.setUserpassword(serviceRequest.getUserpassword());
+
+		final LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
+
+		assertNotNull("Expect a result", loginResponse);
+		assertEquals(ServiceResult.FAILURE, loginResponse.getResult());
+		assertEquals(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString(), loginResponse.getErrorMessage());
+	}
+
+
+	/**
+	 * Service login request user blocked by max session attemp test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void serviceLoginRequestUserBlockedByMaxSessionAttempTest() throws Exception {
+		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
+
+
+		final RegisterUserRequest serviceRequest = new RegisterUserRequest();
+		serviceRequest.setCountry("Sweden");
+		serviceRequest.setUsername(UUID.randomUUID().toString());
+		serviceRequest.setEmail(serviceRequest.getUsername() + "@email.com");
+		serviceRequest.setUserpassword("Userpassword1!");
+		serviceRequest.setUserType(UserType.PRIVATE);
+		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
+
+		final RegisterUserResponse response = (RegisterUserResponse) applicationManager.service(serviceRequest);
+		assertNotNull("Expect a result", response);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, response.getResult());
+
+		final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
+		final List<UserAccount> allBy = dataContainer.getAllBy(UserAccount_.username, serviceRequest.getUsername());
+		assertEquals(1, allBy.size());
+
+
+		final CreateApplicationSessionRequest newApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
+		for(int i=0; i< 6; i++) {
+
+			final LoginRequest loginRequest = new LoginRequest();
+			loginRequest.setEmail(serviceRequest.getEmail() + "someotheruser");
+			loginRequest.setSessionId(newApplicationSesstion.getSessionId());
+			loginRequest.setUserpassword(serviceRequest.getUserpassword() + "wrongpassword");
+
+			final LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
+
+			assertNotNull("Expect a result", loginResponse);
+			assertEquals(ServiceResult.FAILURE, loginResponse.getResult());
+			assertEquals(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString(), loginResponse.getErrorMessage());
+		}
+
+		final LoginRequest loginRequest = new LoginRequest();
+		loginRequest.setEmail(serviceRequest.getEmail());
+		loginRequest.setSessionId(newApplicationSesstion.getSessionId());
+		loginRequest.setUserpassword(serviceRequest.getUserpassword());
+
+		final LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
+
+		assertNotNull("Expect a result", loginResponse);
+		assertEquals(ServiceResult.FAILURE, loginResponse.getResult());
+		assertEquals(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString(), loginResponse.getErrorMessage());
+	}
+
+
 }

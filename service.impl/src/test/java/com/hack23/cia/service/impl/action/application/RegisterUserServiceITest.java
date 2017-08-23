@@ -104,7 +104,7 @@ public final class RegisterUserServiceITest extends AbstractServiceFunctionalInt
 		assertNotNull(EXPECT_A_RESULT, response);
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, response.getResult());
 
-		final CreateApplicationSessionRequest createApplicationSesstionNew = createApplicationSesstionWithRoleAnonymous();
+		createApplicationSesstionWithRoleAnonymous();
 
 		final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
 		final List<UserAccount> allBy = dataContainer.getAllBy(UserAccount_.username, serviceRequest.getUsername());

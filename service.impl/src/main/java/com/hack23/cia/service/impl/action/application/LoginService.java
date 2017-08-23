@@ -97,7 +97,7 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 
 		final UserAccount userExist = userDAO.findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
 
-		LoginBlockResult loginBlockResult = loginBlockedAccess.isBlocked(serviceRequest.getSessionId(), serviceRequest.getEmail());
+		final LoginBlockResult loginBlockResult = loginBlockedAccess.isBlocked(serviceRequest.getSessionId(), serviceRequest.getEmail());
 
 		LoginResponse response;
 		if (!loginBlockResult.isBlocked() && userExist != null && verifyOtp(serviceRequest, userExist) && passwordEncoder.matches(
@@ -124,7 +124,7 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 			response = new LoginResponse(ServiceResult.FAILURE);
 			response.setErrorMessage(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString());
 			if (loginBlockResult.isBlocked()) {
-				eventRequest.setErrorMessage(loginBlockResult.getMessage());
+				eventRequest.setErrorMessage(loginBlockResult.getMessages().toString());
 			}else {
 				eventRequest.setErrorMessage(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString());
 			}

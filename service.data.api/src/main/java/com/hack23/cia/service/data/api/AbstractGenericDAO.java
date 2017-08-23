@@ -62,7 +62,7 @@ public interface AbstractGenericDAO<T extends Serializable, I extends Serializab
 	 *            the properties
 	 * @return the list
 	 */
-	List<T> findListByProperty(final Object[] values,final SingularAttribute<T, ? extends Object>... properties);
+	List<T> findListByProperty(Object[] values, SingularAttribute<T, ? extends Object>... properties);
 
 
 	/**
@@ -75,6 +75,18 @@ public interface AbstractGenericDAO<T extends Serializable, I extends Serializab
 	 * @return the list
 	 */
 	List<T> findListByProperty(SingularAttribute<T, ? extends Object> property, Object value);
+
+
+	/**
+	 * Find list by property in list.
+	 *
+	 * @param property
+	 *            the property
+	 * @param values
+	 *            the values
+	 * @return the list
+	 */
+	List<T> findListByPropertyInList(SingularAttribute<T, ? extends Object> property, Object[] values);
 
 	/**
 	 * Find list by embedded property.

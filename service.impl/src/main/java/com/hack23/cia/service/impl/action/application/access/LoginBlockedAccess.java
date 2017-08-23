@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.service.impl.action.application.access;
 
+import java.util.List;
+
 /**
  * The Interface LoginBlockedAccess.
  */
@@ -51,6 +53,6 @@ public interface LoginBlockedAccess {
 		 *
 		 * @return the message
 		 */
-		String getMessage();
+		List<String> getMessages();
 	}
 }

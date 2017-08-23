@@ -19,6 +19,7 @@
 package com.hack23.cia.service.data.impl;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -26,7 +27,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
@@ -160,6 +163,22 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 	}
 
 	@Override
+	public final List<T> findListByPropertyInList(final SingularAttribute<T, ? extends Object> property, final Object[] values) {
+		final CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(getPersistentClass());
+		final Root<T> root = criteriaQuery.from(getPersistentClass());
+		criteriaQuery.select(root);
+		In<Object> in = criteriaBuilder.in((Path<Object>) root.get(property));
+		for (Object object : values) {
+			in.value(object);
+		}
+		criteriaQuery.where(in);
+		final TypedQuery<T> typedQuery = getEntityManager().createQuery(criteriaQuery);
+		addCacheHints(typedQuery, "findListByPropertyInList");
+		return typedQuery.getResultList();
+	}
+
+
+	@Override
 	public <V> List<T> findListByEmbeddedProperty(final SingularAttribute<T, V> property, final Class<V> clazz2,
 			final SingularAttribute<V, ? extends Object> property2, final Object value) {
 		return findOrderedByPropertyListByEmbeddedProperty(property,clazz2,property2,value,null);
@@ -197,7 +216,7 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 		return typedQuery.getResultList();
 	}
 
-	
+
 	@Override
 	public final List<T> getAll() {
 		return getAllOrderBy(null);

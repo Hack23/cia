@@ -161,7 +161,7 @@ public final class RegisterUserService extends
 				response.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());
 				eventRequest.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());
 			} else {
-				String errorMessage = passwordValidator.getMessages(passwordRuleResults).toString();
+				final String errorMessage = passwordValidator.getMessages(passwordRuleResults).toString();
 				response.setErrorMessage(errorMessage);
 				eventRequest.setErrorMessage(errorMessage);
 			}

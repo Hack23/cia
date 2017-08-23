@@ -102,12 +102,12 @@ public final class SendEmailService extends AbstractBusinessServiceImpl<SendEmai
 		return response;
 	}
 
-	public static boolean isValidEmailAddress(String email) {
+	public static boolean isValidEmailAddress(final String email) {
 		   boolean result = true;
 		   try {
-		      InternetAddress emailAddr = new InternetAddress(email);
+		      final InternetAddress emailAddr = new InternetAddress(email);
 		      emailAddr.validate();
-		   } catch (AddressException ex) {
+		   } catch (final AddressException ex) {
 		      result = false;
 		   }
 		   return result;
