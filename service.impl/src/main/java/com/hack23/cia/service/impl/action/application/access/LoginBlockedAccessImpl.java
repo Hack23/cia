@@ -206,29 +206,32 @@ public class LoginBlockedAccessImpl implements LoginBlockedAccess {
 				loginBlockResultImpl.getMessages().add(BLOCKED_BY_MORE_THAN_5_LOGIN_ATTEMPTS_BY_THIS_SESSION);
 			}
 
-			final List<ApplicationSession> applicationSessionsByIp = applicationSessionDAO
-					.findListByProperty(ApplicationSession_.ipInformation, applicationSession.getIpInformation());
+			if (!("0:0:0:0:0:0:0:1".equals(applicationSession.getIpInformation()) || "127.0.0.1".equals(applicationSession.getIpInformation()))) {
 
-			final List<String> sessionIdsWithIp = applicationSessionsByIp.stream().map(ApplicationSession::getSessionId)
-					.collect(Collectors.toList());
+				final List<ApplicationSession> applicationSessionsByIp = applicationSessionDAO
+						.findListByProperty(ApplicationSession_.ipInformation, applicationSession.getIpInformation());
 
-			final List<ApplicationActionEvent> applicationEventsWithIp = applicationActionEventDAO
-					.findListByPropertyInList(ApplicationActionEvent_.sessionId,
-							sessionIdsWithIp.toArray(new Object[sessionIdsWithIp.size()]));
+				final List<String> sessionIdsWithIp = applicationSessionsByIp.stream().map(ApplicationSession::getSessionId)
+						.collect(Collectors.toList());
 
-			final Date oneHourAgo = new Date(System.currentTimeMillis() - ONE_HOUR);
-			final Map<Boolean, List<ApplicationActionEvent>> recentOldLoginAttemptsMap = applicationEventsWithIp
-					.stream()
-					.filter(x -> x.getApplicationOperation().equals(ApplicationOperationType.AUTHENTICATION)
-							&& x.getApplicationMessage().equals(ServiceResult.FAILURE.toString()))
-					.collect(Collectors.groupingBy(x -> x.getCreatedDate().after(oneHourAgo)));
-			final List<ApplicationActionEvent> recentFailedLogins = recentOldLoginAttemptsMap
-					.get(Boolean.valueOf(true));
+				final List<ApplicationActionEvent> applicationEventsWithIp = applicationActionEventDAO
+						.findListByPropertyInList(ApplicationActionEvent_.sessionId,
+								sessionIdsWithIp.toArray(new Object[sessionIdsWithIp.size()]));
 
-			final ApplicationConfiguration maxLoginAttemptsByIp = applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_IP, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_IP, DEFAULT_MAX_LOGIN_ATTEMPTS);
-			if (recentFailedLogins != null && recentFailedLogins.size() > NumberUtils.toInt(maxLoginAttemptsByIp.getPropertyValue(),DEFAULT_MAX_LOGINS_BY_IP)) {
-				loginBlockResultImpl.setBlocked(true);
-				loginBlockResultImpl.getMessages().add(BLOCKED_BY_MORE_THAN_5_RECENT_LOGIN_ATTEMPTS_BY_THIS_IP);
+				final Date oneHourAgo = new Date(System.currentTimeMillis() - ONE_HOUR);
+				final Map<Boolean, List<ApplicationActionEvent>> recentOldLoginAttemptsMap = applicationEventsWithIp
+						.stream()
+						.filter(x -> x.getApplicationOperation().equals(ApplicationOperationType.AUTHENTICATION)
+								&& x.getApplicationMessage().equals(ServiceResult.FAILURE.toString()))
+						.collect(Collectors.groupingBy(x -> x.getCreatedDate().after(oneHourAgo)));
+				final List<ApplicationActionEvent> recentFailedLogins = recentOldLoginAttemptsMap
+						.get(Boolean.valueOf(true));
+
+				final ApplicationConfiguration maxLoginAttemptsByIp = applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_IP, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_IP, DEFAULT_MAX_LOGIN_ATTEMPTS);
+				if (recentFailedLogins != null && recentFailedLogins.size() > NumberUtils.toInt(maxLoginAttemptsByIp.getPropertyValue(),DEFAULT_MAX_LOGINS_BY_IP)) {
+					loginBlockResultImpl.setBlocked(true);
+					loginBlockResultImpl.getMessages().add(BLOCKED_BY_MORE_THAN_5_RECENT_LOGIN_ATTEMPTS_BY_THIS_IP);
+				}
 			}
 		}
 	}
