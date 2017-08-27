@@ -39,6 +39,14 @@ public interface DocumentMenuItemFactory {
 	/**
 	 * Creates a new DocumentMenuItem object.
 	 *
+	 * @param menuBar
+	 *            the menu bar
+	 */
+	void createDocumentsMenuBar(MenuBar menuBar);
+
+	/**
+	 * Creates a new DocumentMenuItem object.
+	 *
 	 * @param panelContent
 	 *            the panel content
 	 * @param pageId

@@ -66,9 +66,12 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 
+		final String pageId = getPageId(parameters);
+
+		getDocumentMenuItemFactory().createDocumentsMenuBar(menuBar);
+
 		LabelFactory.createHeader2Label(panelContent,OVERVIEW);
 
-		final String pageId = getPageId(parameters);
 
 		final DataContainer<DocumentElement, String> documentElementDataContainer = getApplicationManager()
 				.getDataContainer(DocumentElement.class);

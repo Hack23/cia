@@ -70,6 +70,12 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
 	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
+	/** The Constant COMMAND_SEARCH_DOCUMENT. */
+	private static final PageModeMenuCommand COMMAND_SEARCH_DOCUMENT = new PageModeMenuCommand(UserViews.SEARCH_DOCUMENT_VIEW_NAME,"");
+
+	/** The Constant COMMAND_DOCUMENTS. */
+	private static final PageModeMenuCommand COMMAND_DOCUMENTS = new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW);
+
 
 	/**
 	 * Instantiates a new document menu item factory impl.
@@ -142,6 +148,17 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId), "Attachements");
 
 
+
+	}
+
+
+	@Override
+	public void createDocumentsMenuBar(MenuBar menuBar) {
+		initApplicationMenuBar(menuBar);
+
+		final MenuItem documentsItem = menuBar.addItem("Documents", FontAwesome.FILE, null);
+		documentsItem.addItem("List all",FontAwesome.GROUP, COMMAND_DOCUMENTS);
+		documentsItem.addItem("Search Documents",FontAwesome.GROUP, COMMAND_SEARCH_DOCUMENT);
 
 	}
 
