@@ -48,7 +48,7 @@ public enum ViewAction {
 
 	/** The visit politician ranking view. */
 	VISIT_POLITICIAN_RANKING_VIEW,
-	
+
 	VISIT_PARLIAMENT_RANKING_VIEW,
 
 	/** The visit party view. */
@@ -106,5 +106,5 @@ public enum ViewAction {
 	VISIT_ADMIN_APPLICATION_CONFIGURATION_VIEW, VISIT_REGISTER, VISIT_LOGIN,
 
 	/** The visit admin email view. */
-	VISIT_ADMIN_EMAIL_VIEW;
+	VISIT_ADMIN_EMAIL_VIEW, VISIT_DOCUMENTS_VIEW;
 }

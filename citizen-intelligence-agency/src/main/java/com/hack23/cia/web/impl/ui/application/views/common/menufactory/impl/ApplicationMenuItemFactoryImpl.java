@@ -86,7 +86,12 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	private static final PageModeMenuCommand COMMAND_POLITICIAN_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME,
 			PageMode.DATAGRID);
 
+	/** The Constant COMMAND_SEARCH_DOCUMENT. */
 	private static final PageModeMenuCommand COMMAND_SEARCH_DOCUMENT = new PageModeMenuCommand(UserViews.SEARCH_DOCUMENT_VIEW_NAME,"");
+
+	/** The Constant COMMAND_DOCUMENTS. */
+	private static final PageModeMenuCommand COMMAND_DOCUMENTS = new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW);
+
 
 	/** The Constant POLITICIAN_RANKING. */
 	private static final String POLITICIAN_RANKING = "Politician Ranking";
@@ -132,6 +137,12 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 	/** The Constant POLITICIANS_LINK_TEXT. */
 	private static final String POLITICIANS_LINK_TEXT = "Politicians";
+
+	/** The Constant DOCUMENTS. */
+	private static final String DOCUMENTS = "Documents";
+
+	/** The Constant SEARCH_DOCUMENTS. */
+	private static final String SEARCH_DOCUMENTS = "Search documents";
 
 
 	/** The politician ranking menu item factory. */
@@ -203,6 +214,10 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 		ministryRankingMenuItemFactory.createMinistryRankingTopics(ministryMenuItem);
 
+
+		final MenuItem documentsMenuItem = rankingsMenuItem.addItem(DOCUMENTS,FontAwesome.GROUP, COMMAND_DOCUMENTS);
+		documentsMenuItem.addItem("List all",FontAwesome.GROUP, COMMAND_DOCUMENTS);
+		documentsMenuItem.addItem(SEARCH_DOCUMENTS,FontAwesome.GROUP, COMMAND_SEARCH_DOCUMENT);
 	}
 
 	@Override
@@ -232,7 +247,9 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 		createButtonLink(grid,MINISTRIES_LINK_TEXT,FontAwesome.GROUP, COMMAND_MINISTRY_RANKING_DATAGRID,"All ministries, scoreboard assignments and days served in committees");
 
-		createButtonLink(grid,"Search documents",FontAwesome.GROUP, COMMAND_SEARCH_DOCUMENT,"Search parliament documents");
+		createButtonLink(grid,SEARCH_DOCUMENTS,FontAwesome.GROUP, COMMAND_SEARCH_DOCUMENT,"Search parliament documents");
+
+		createButtonLink(grid,DOCUMENTS,FontAwesome.GROUP, COMMAND_DOCUMENTS,"List all parliament documents");
 
 	}
 

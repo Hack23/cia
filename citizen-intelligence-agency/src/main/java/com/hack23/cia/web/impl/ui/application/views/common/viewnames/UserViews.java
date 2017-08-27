@@ -35,6 +35,9 @@ public final class UserViews {
 	/** The Constant DOCUMENT_VIEW_NAME. */
 	public static final String DOCUMENT_VIEW_NAME = "document";
 
+	/** The Constant DOCUMENTS_VIEW_NAME. */
+	public static final String DOCUMENTS_VIEW_NAME = "documents";
+
 	/** The Constant MINISTRY_RANKING_VIEW_NAME. */
 	public static final String MINISTRY_RANKING_VIEW_NAME = "ministryranking";
 

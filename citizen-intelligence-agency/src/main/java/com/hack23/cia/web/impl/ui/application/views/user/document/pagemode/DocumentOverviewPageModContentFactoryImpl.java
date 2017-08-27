@@ -78,8 +78,6 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 		final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
 				.getDataContainer(DocumentStatusContainer.class);
 
-		getApplicationManager().getDataContainer(CommitteeProposalComponentData.class);
-
 		final DocumentElement documentElement = documentElementDataContainer.load(pageId);
 
 		if (documentElement != null) {
