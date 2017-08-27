@@ -59,8 +59,7 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		final String pageId = getPageId(parameters);
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-				|| parameters.contains(PageMode.OVERVIEW.toString()));
+		return NAME.equals(page);
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
