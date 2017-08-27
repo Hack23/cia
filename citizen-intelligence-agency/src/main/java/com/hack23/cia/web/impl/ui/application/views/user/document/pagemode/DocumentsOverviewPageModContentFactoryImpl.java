@@ -24,6 +24,8 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement_;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
@@ -67,17 +69,19 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
+		final int pageNr= getPageNr(parameters);
 
 		getDocumentMenuItemFactory().createDocumentsMenuBar(menuBar);
 
 		LabelFactory.createHeader2Label(panelContent,OVERVIEW);
 
-
 		final DataContainer<DocumentElement, String> documentElementDataContainer = getApplicationManager()
 				.getDataContainer(DocumentElement.class);
 
-		final BeanItemContainer<DocumentElement> documentActivityDataDataDataSource = new BeanItemContainer<>(
-				DocumentElement.class, documentElementDataContainer.getAllOrderBy(DocumentElement_.createdDate));
+		final BeanItemContainer<DocumentElement> documentActivityDataDataDataSource = new BeanItemContainer<>(DocumentElement.class,
+				documentElementDataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, DocumentElement_.createdDate));
+
+		createPagingControls(panelContent,NAME,pageId, documentElementDataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(panelContent, documentActivityDataDataDataSource, "Document",
 				new String[] { "rm", "createdDate", "documentName", "subType", "title", "subTitle", "status" },
