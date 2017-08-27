@@ -316,14 +316,14 @@
         </dependencies>
         <configuration>
           <hibernatetool destdir="target/classes">
-            <jpaconfiguration persistenceunit="model.internal.application.user.impl" propertyfile="src/main/resources/schema-mysql.properties" />
-            <hbm2ddl export="false" outputfilename="schema-mysql.sql" />
-            <hbm2doc destdir="target/site/hbm2doc" />
-            <property key="dot.executable" value="${graphviz.dot.executable}" />
+            <jpaconfiguration persistenceunit="model.internal.application.user.impl" propertyfile="src/main/resources/schema-mysql.properties"></jpaconfiguration>
+            <hbm2ddl export="false" outputfilename="schema-mysql.sql"></hbm2ddl>
+            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
+            <property key="dot.executable" value="${graphviz.dot.executable}"></property>
           </hibernatetool>
         </configuration>
       </plugin>
     </plugins>
   </build>
-  <reporting />
+  <reporting></reporting>
 </project>
