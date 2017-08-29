@@ -130,7 +130,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>3.5.2</version>
+      <version>3.5.3</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -246,7 +246,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-remote-driver</artifactId>
-      <version>3.5.2</version>
+      <version>3.5.3</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -323,7 +323,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-support</artifactId>
-      <version>3.5.2</version>
+      <version>3.5.3</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
