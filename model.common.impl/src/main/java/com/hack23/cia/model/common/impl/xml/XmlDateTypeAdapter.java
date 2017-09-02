@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.model.common.xml;
+package com.hack23.cia.model.common.impl.xml;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,14 +25,15 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.xml.bind.DatatypeConverter;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The Class XmlTimeTypeAdapter.
+ * The Class XmlDateTypeAdapter.
  */
-public final class XmlTimeTypeAdapter {
+public final class XmlDateTypeAdapter extends XmlAdapter<String,Date> {
 
 	private static final String YYYY_MM_DD_HH_MM_SS = "2001-01-01 00:00:00";
 
@@ -40,24 +41,17 @@ public final class XmlTimeTypeAdapter {
 	private static final String YYYY_MM_DD = "yyyy-MM-dd";
 
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(XmlTimeTypeAdapter.class);
-
+			.getLogger(XmlDateTypeAdapter.class);
 
 	/**
 	 * Instantiates a new xml time type adapter.
 	 */
-	private XmlTimeTypeAdapter() {
+	private XmlDateTypeAdapter() {
 		super();
 	}
 
-	/**
-	 * Parses the date.
-	 *
-	 * @param s
-	 *            the s
-	 * @return the date
-	 */
-	public static Date parseDate(final String s) {
+
+	public Date unmarshal(final String s) {
 		if (s == null) {
 			return null;
 		}
@@ -75,14 +69,7 @@ public final class XmlTimeTypeAdapter {
 		return DatatypeConverter.parseDate(s).getTime();
 	}
 
-	/**
-	 * Prints the date.
-	 *
-	 * @param dt
-	 *            the dt
-	 * @return the string
-	 */
-	public static String printDate(final Date dt) {
+	public String marshal(final Date dt) {
 		if (dt == null) {
 			return null;
 		}
@@ -91,63 +78,4 @@ public final class XmlTimeTypeAdapter {
 		return DatatypeConverter.printDate(c);
 	}
 
-	/**
-	 * Parses the time.
-	 *
-	 * @param s
-	 *            the s
-	 * @return the date
-	 */
-	public static Date parseTime(final String s) {
-		if (s == null) {
-			return null;
-		}
-		return DatatypeConverter.parseTime(s).getTime();
-	}
-
-	/**
-	 * Prints the time.
-	 *
-	 * @param dt
-	 *            the dt
-	 * @return the string
-	 */
-	public static String printTime(final Date dt) {
-		if (dt == null) {
-			return null;
-		}
-		final Calendar c = Calendar.getInstance();
-		c.setTime(dt);
-		return DatatypeConverter.printTime(c);
-	}
-
-	/**
-	 * Parses the date time.
-	 *
-	 * @param s
-	 *            the s
-	 * @return the date
-	 */
-	public static Date parseDateTime(final String s) {
-		if (s == null) {
-			return null;
-		}
-		return DatatypeConverter.parseDateTime(s).getTime();
-	}
-
-	/**
-	 * Prints the date time.
-	 *
-	 * @param dt
-	 *            the dt
-	 * @return the string
-	 */
-	public static String printDateTime(final Date dt) {
-		if (dt == null) {
-			return null;
-		}
-		final Calendar c = Calendar.getInstance();
-		c.setTime(dt);
-		return DatatypeConverter.printDateTime(c);
-	}
 }

@@ -641,6 +641,16 @@
               <artifactId>asm-debug-all</artifactId>
               <version>${cia.project.versions.asm}</version>
             </dependency>
+            <dependency>
+              <groupId>org.ow2.asm</groupId>
+              <artifactId>asm</artifactId>
+              <version>${cia.project.versions.asm}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.ow2.asm</groupId>
+              <artifactId>asm-tree</artifactId>
+              <version>${cia.project.versions.asm}</version>
+            </dependency>
           </dependencies>
         </plugin>
         <plugin>
@@ -974,6 +984,12 @@
             </configuration>
           </execution>
         </executions>
+        <configuration>
+          <excludes>
+            <exclude>module-info.*</exclude>
+            <exclude>**/module-info.*</exclude>
+          </excludes>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -1135,18 +1151,62 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-toolchains-plugin</artifactId>
+        <version>1.1</version>
+        <configuration>
+          <toolchains>
+            <jdk>
+              <version>1.8</version>
+            </jdk>
+            <jdk>
+              <version>9</version>
+            </jdk>
+          </toolchains>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>default-compile</id>
+            <configuration>
+              <!-- compile everything to ensure module-info contains right entries -->
+              <!-- required when JAVA_HOME is JDK 8 or below -->
+              <jdkToolchain>
+                <version>9</version>
+              </jdkToolchain>
+              <release>9</release>
+              <source>9</source>
+              <target>9</target>
+              <compilerArgs>
+                <arg>--add-modules</arg>
+                <arg>java.activation,java.xml.bind,java.xml,java.se.ee,java.xml.ws.annotation</arg>
+              </compilerArgs>
+            </configuration>
+          </execution>
+          <execution>
+            <id>base-compile</id>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+            <!-- recompile everything for target VM except the module-info.java -->
+            <configuration>
+              <excludes>
+                <exclude>**/module-info.java</exclude>
+              </excludes>
+              <source>${jdk.src.version}</source>
+              <target>${jdk.target.version}</target>
+            </configuration>
+          </execution>
+        </executions>
         <inherited>true</inherited>
         <configuration>
+          <jdkToolchain>
+            <version>${jdk.target.version}</version>
+          </jdkToolchain>
           <source>${jdk.src.version}</source>
           <target>${jdk.target.version}</target>
-          <excludes>
-            <exclude>${jdk.src.exclude}</exclude>
-          </excludes>
-          <debug>false</debug>
-          <optimize>true</optimize>
-          <showWarnings>true</showWarnings>
-          <showDeprecation>true</showDeprecation>
         </configuration>
       </plugin>
       <plugin>

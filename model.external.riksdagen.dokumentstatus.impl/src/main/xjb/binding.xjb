@@ -7,20 +7,12 @@
 	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
 	jaxb:extensionBindingPrefixes="xjc hj orm">
 
-		<jaxb:globalBindings localScoping="toplevel">
-			<jaxb:serializable/>
-			<xjc:superInterface name="com.hack23.cia.model.common.api.ModelObject"/>
-			<!-- <xjc:simple /> -->
-	  <jaxb:javaType name="java.util.Date" xmlType="xsd:date"
-                      parseMethod="com.hack23.cia.model.common.xml.XmlTimeTypeAdapter.parseDate"
-                      printMethod="com.hack23.cia.model.common.xml.XmlTimeTypeAdapter.printDate"/>
-  	  <jaxb:javaType name="java.util.Date" xmlType="xsd:time"
-                      parseMethod="com.hack23.cia.model.common.xml.XmlTimeTypeAdapter.parseTime"
-                      printMethod="com.hack23.cia.model.common.xml.XmlTimeTypeAdapter.printTime"/>
-      <jaxb:javaType name="java.util.Date" xmlType="xsd:dateTime"
-                      parseMethod="com.hack23.cia.model.common.xml.XmlTimeTypeAdapter.parseDateTime"
-                      printMethod="com.hack23.cia.model.common.xml.XmlTimeTypeAdapter.printDateTime"/>
-
+	<jaxb:globalBindings localScoping="toplevel">
+		<jaxb:serializable/>
+		<xjc:superInterface name="com.hack23.cia.model.common.api.ModelObject"/>
+	  	<xjc:javaType name="java.util.Date" xmlType="xsd:date" adapter="com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter"/>
+  	  	<xjc:javaType name="java.util.Date" xmlType="xsd:time" adapter="com.hack23.cia.model.common.impl.xml.XmlTimeTypeAdapter"/>
+      	<xjc:javaType name="java.util.Date" xmlType="xsd:dateTime" adapter="com.hack23.cia.model.common.impl.xml.XmlDateTimeTypeAdapter"/>
 	</jaxb:globalBindings>
 
 	<jaxb:bindings schemaLocation="../xsd/dokumentstatus.xsd"
