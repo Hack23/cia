@@ -153,7 +153,7 @@
     <cia.project.versions.maven>3.3.9</cia.project.versions.maven>
     <cia.project.versions.activemq>5.15.0</cia.project.versions.activemq>
     <cia.project.versions.httpclient>4.5.3</cia.project.versions.httpclient>
-    <cia.project.versions.guava>22.0</cia.project.versions.guava>
+    <cia.project.versions.guava>23.0</cia.project.versions.guava>
     <cia.project.versions.jackson>2.9.0.pr4</cia.project.versions.jackson>
     <cia.project.versions.xerces>2.11.0.SP5-redhat-1</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
