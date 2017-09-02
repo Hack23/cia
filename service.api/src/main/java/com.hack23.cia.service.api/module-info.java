@@ -2,7 +2,7 @@ module com.hack23.cia.service.api {
 
 	exports com.hack23.cia.service.api;
 
-	requires commons.lang;
+	requires org.apache.commons.lang3;
 
 	requires com.hack23.cia.service.data.api;
 
