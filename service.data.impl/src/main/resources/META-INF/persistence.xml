@@ -167,6 +167,8 @@
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementDailySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementWeeklySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementAnnualSummary</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+
 
 		<shared-cache-mode>ALL</shared-cache-mode>
 		<properties>
@@ -175,7 +177,7 @@
 			-->
 			<property name="hibernate.dialect" value="${hibernate.dialect}" />
 			<property name="hibernate.implicit_naming_strategy" value="legacy-hbm"/>
-
+			<property name="hibernate.bytecode.provider" value="bytebuddy" />
 			<property name="hibernate.archive.autodetection" value="class" />
 			<property name="hibernate.connection.characterEncoding"
 				value="UTF-8" />

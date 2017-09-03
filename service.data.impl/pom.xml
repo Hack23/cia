@@ -602,6 +602,11 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${cia.project.versions.hibernate.build}</version>
           </dependency>
+          <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.22.0-CR2</version>
+          </dependency>
         </dependencies>
         <configuration>
           <hibernatetool destdir="target/classes">
