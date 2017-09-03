@@ -1,4 +1,5 @@
 module com.hack23.cia.web {
-	exports com.hack23.cia.web;
+	exports com.hack23.cia.web.impl.ui.application;
     requires com.hack23.cia.service.api;
+
 }
