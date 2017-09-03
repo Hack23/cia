@@ -34,9 +34,8 @@
   <dependencies>
     <dependency>
       <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-search-orm</artifactId>
+      <artifactId>hibernate-search-all</artifactId>
       <version>5.8.0.CR1</version>
-      <scope>provided</scope>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-entitymanager</artifactId>
@@ -70,13 +69,6 @@
           <artifactId>jackson-core</artifactId>
           <groupId>com.fasterxml.jackson.core</groupId>
         </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-search-elasticsearch</artifactId>
-      <version>5.8.0.CR1</version>
-      <exclusions>
         <exclusion>
           <artifactId>hibernate-entitymanager</artifactId>
           <groupId>org.hibernate</groupId>
