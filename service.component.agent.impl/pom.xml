@@ -38,6 +38,11 @@
       <version>2.7.7.redhat-7</version>
     </dependency>
     <dependency>
+      <groupId>javax.jms</groupId>
+      <artifactId>jms</artifactId>
+      <version>1.1</version>
+    </dependency>
+    <dependency>
       <groupId>com.hack23.cia</groupId>
       <artifactId>service.component.agent.api</artifactId>
       <version>${project.version}</version>
