@@ -32,11 +32,12 @@ public final class XmlTimeTypeAdapter extends XmlAdapter<String,Date> {
 	/**
 	 * Instantiates a new xml time type adapter.
 	 */
-	private XmlTimeTypeAdapter() {
+	public XmlTimeTypeAdapter() {
 		super();
 	}
 
 
+	@Override
 	public Date unmarshal(final String s) {
 		if (s == null) {
 			return null;
@@ -44,6 +45,7 @@ public final class XmlTimeTypeAdapter extends XmlAdapter<String,Date> {
 		return DatatypeConverter.parseTime(s).getTime();
 	}
 
+	@Override
 	public String marshal(final Date dt) {
 		if (dt == null) {
 			return null;

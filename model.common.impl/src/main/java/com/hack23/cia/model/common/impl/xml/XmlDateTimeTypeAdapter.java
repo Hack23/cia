@@ -33,7 +33,7 @@ public final class XmlDateTimeTypeAdapter extends XmlAdapter<String,Date> {
 	/**
 	 * Instantiates a new xml time type adapter.
 	 */
-	private XmlDateTimeTypeAdapter() {
+	public XmlDateTimeTypeAdapter() {
 		super();
 	}
 

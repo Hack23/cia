@@ -18,11 +18,11 @@
 */
 package com.hack23.cia.model.common.impl.xml;
 
+
 import java.util.Date;
 
 import org.junit.Test;
 
-import com.hack23.cia.model.common.impl.xml.XmlTimeTypeAdapter;
 import com.hack23.cia.testfoundation.AbstractTest;
 
 /**
@@ -30,68 +30,23 @@ import com.hack23.cia.testfoundation.AbstractTest;
  */
 public final class XmlTimeTypeAdapterTest extends AbstractTest {
 
-//
-//	/**
-//	 * Parses the date test.
-//	 *
-//	 * @throws Exception
-//	 *             the exception
-//	 */
-//	@Test
-//	public void parseDateTest() throws Exception {
-//
-//		Date simpleSwedishDateForm = XmlTimeTypeAdapter.parseDate("2015-05-20");
-//		assertNotNull("Expect a result",simpleSwedishDateForm);
-//		assertEquals("Expect specified date","2015-05-20+02:00",XmlTimeTypeAdapter.printDate(simpleSwedishDateForm));
-//
-//		Date simpleSwedishDateTimeFormat = XmlTimeTypeAdapter.parseDate("2001-01-01 00:00:00");
-//		assertNotNull("Expect a result",simpleSwedishDateTimeFormat);
-//		assertEquals("Expect specified date","2001-01-01+01:00",XmlTimeTypeAdapter.printDate(simpleSwedishDateTimeFormat));
-//
-//
-//		Date validDateForm = XmlTimeTypeAdapter.parseDate("2001-01-01+01:00");
-//		assertNotNull("Expect specified date",validDateForm);
-//		assertEquals("2001-01-01+01:00",XmlTimeTypeAdapter.printDate(validDateForm));
-//
-//		assertNull("Expect null",XmlTimeTypeAdapter.printDate(null));
-//		assertNull("Expect null",XmlTimeTypeAdapter.parseDate(null));
-//
-//	}
-//
-//
-//	/**
-//	 * Parses the time test.
-//	 *
-//	 * @throws Exception
-//	 *             the exception
-//	 */
-//	@Test
-//	public void parseTimeTest() throws Exception {
-//
-//		String printTime = "00:27:55.916+01:00";
-//		Date simpleSwedishDateForm = XmlTimeTypeAdapter.parseTime(printTime);
-//		assertEquals("Expect specified time",printTime,XmlTimeTypeAdapter.printTime(simpleSwedishDateForm));
-//
-//		assertNull("Expect null",XmlTimeTypeAdapter.printTime(null));
-//		assertNull("Expect null",XmlTimeTypeAdapter.parseTime(null));
-//
-//	}
-//
-//	/**
-//	 * Parses the date time test.
-//	 *
-//	 * @throws Exception
-//	 *             the exception
-//	 */
-//	@Test
-//	public void parseDateTimeTest() throws Exception {
-//		String printTime = "2015-05-21T00:33:27.560+02:00";
-//		Date simpleSwedishDateForm = XmlTimeTypeAdapter.parseDateTime(printTime);
-//		assertEquals("Expect specified time",printTime,XmlTimeTypeAdapter.printDateTime(simpleSwedishDateForm));
-//
-//		assertNull("Expect null",XmlTimeTypeAdapter.printDateTime(null));
-//		assertNull("Expect null",XmlTimeTypeAdapter.parseDateTime(null));
-//
-//	}
-//
+
+	/**
+	 * Parses the time test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void parseTimeTest() {
+		String printTime = "00:27:55.916+01:00";
+		XmlTimeTypeAdapter xmlTimeTypeAdapter = new XmlTimeTypeAdapter();
+		Date simpleSwedishDateForm = xmlTimeTypeAdapter.unmarshal(printTime);
+		assertEquals("Expect specified time",printTime,xmlTimeTypeAdapter.marshal(simpleSwedishDateForm));
+
+		assertNull("Expect null",xmlTimeTypeAdapter.unmarshal(null));
+		assertNull("Expect null",xmlTimeTypeAdapter.marshal(null));
+
+	}
+
 }
