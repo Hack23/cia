@@ -1748,6 +1748,10 @@
             <configuration>
               <dataFile>${sonar.jacoco.reportPath}</dataFile>
               <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+	          <excludes>
+	            <exclude>module-info.*</exclude>
+	            <exclude>**/module-info.*</exclude>
+	          </excludes>
             </configuration>
           </plugin>
           <plugin>
