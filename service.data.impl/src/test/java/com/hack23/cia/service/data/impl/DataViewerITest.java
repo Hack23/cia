@@ -23,8 +23,16 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData_;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer_;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee_;
+import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentPersonSummaryEmbeddedId;
+import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentPersonSummaryEmbeddedId_;
+import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary;
+import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary_;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry_;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
@@ -237,5 +245,87 @@ public final class DataViewerITest extends
 					true).size());
 		}
 	}
+
+
+
+	/**
+	 * Find by query property test.
+	 */
+	@Test
+	public void findByQueryPropertyTest() {
+		DocumentStatusContainer findByQueryProperty = dataViewer.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
+				DocumentData.class, DocumentData_.id, "H501NU6");
+		assertNotNull(findByQueryProperty);
+	}
+
+	/**
+	 * Find list by embedded property test.
+	 */
+	@Test
+	public void findListByEmbeddedPropertyTest() {
+		List<ViewRiksdagenPoliticianDocumentDailySummary> findListByEmbeddedProperty = dataViewer.findListByEmbeddedProperty(ViewRiksdagenPoliticianDocumentDailySummary.class, ViewRiksdagenPoliticianDocumentDailySummary_.embeddedId, RiksdagenDocumentPersonSummaryEmbeddedId.class, RiksdagenDocumentPersonSummaryEmbeddedId_.documentType, "mot");
+		assertNotNull(findListByEmbeddedProperty);
+		assertFalse(findListByEmbeddedProperty.isEmpty());
+	}
+
+	/**
+	 * Find ordered by property list by embedded property test.
+	 */
+	@Test
+	public void findOrderedByPropertyListByEmbeddedPropertyTest() {
+		List<ViewRiksdagenPoliticianDocumentDailySummary> findListByEmbeddedProperty = dataViewer.findOrderedByPropertyListByEmbeddedProperty(ViewRiksdagenPoliticianDocumentDailySummary.class, ViewRiksdagenPoliticianDocumentDailySummary_.embeddedId, RiksdagenDocumentPersonSummaryEmbeddedId.class, RiksdagenDocumentPersonSummaryEmbeddedId_.documentType, "mot",ViewRiksdagenPoliticianDocumentDailySummary_.total);
+		assertNotNull(findListByEmbeddedProperty);
+		assertFalse(findListByEmbeddedProperty.isEmpty());
+	}
+
+
+	/**
+	 * Find ordered list by embedded property test.
+	 */
+	@Test
+	public void findOrderedListByEmbeddedPropertyTest() {
+		List<ViewRiksdagenPoliticianDocumentDailySummary> findListByEmbeddedProperty = dataViewer.findOrderedListByEmbeddedProperty(ViewRiksdagenPoliticianDocumentDailySummary.class, ViewRiksdagenPoliticianDocumentDailySummary_.embeddedId, RiksdagenDocumentPersonSummaryEmbeddedId.class, RiksdagenDocumentPersonSummaryEmbeddedId_.documentType, "mot",RiksdagenDocumentPersonSummaryEmbeddedId_.personId);
+		assertNotNull(findListByEmbeddedProperty);
+		assertFalse(findListByEmbeddedProperty.isEmpty());
+	}
+
+	/**
+	 * Gets the page test.
+	 *
+	 * @return the page test
+	 */
+	@Test
+	public void getPageTest() {
+		int resultPerPage = 10;
+		List<ViewRiksdagenPolitician> pageOrderBy = dataViewer.getPage(ViewRiksdagenPolitician.class, 1, resultPerPage);
+		assertNotNull(pageOrderBy);
+		assertFalse(pageOrderBy.isEmpty());
+		assertEquals(resultPerPage,pageOrderBy.size());
+	}
+
+	/**
+	 * Gets the page order by test.
+	 *
+	 * @return the page order by test
+	 */
+	@Test
+	public void getPageOrderByTest() {
+		int resultPerPage = 10;
+		List<ViewRiksdagenPolitician> pageOrderBy = dataViewer.getPageOrderBy(ViewRiksdagenPolitician.class, 1, resultPerPage, ViewRiksdagenPolitician_.bornYear);
+		assertNotNull(pageOrderBy);
+		assertFalse(pageOrderBy.isEmpty());
+		assertEquals(resultPerPage,pageOrderBy.size());
+	}
+
+	/**
+	 * Gets the size test.
+	 *
+	 * @return the size test
+	 */
+	@Test
+	public void getSizeTest() {
+		assertNotNull(dataViewer.getSize(ViewRiksdagenPolitician.class));
+	}
+
 
 }
