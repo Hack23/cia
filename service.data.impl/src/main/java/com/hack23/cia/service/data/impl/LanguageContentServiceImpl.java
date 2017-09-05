@@ -50,7 +50,7 @@ final class LanguageContentServiceImpl implements LanguageContentService {
 	}
 
 	@Override
-	public String getLanguageResource(String key, String keyGroup,String language, String defaultEnglishValue) {
+	public String getLanguageResource(final String key, final String keyGroup,final String language, final String defaultEnglishValue) {
 		final LanguageContentData findTranslation = languageContentDataDAO.findTranslation(key, language, language);
 
 		if (findTranslation != null) {

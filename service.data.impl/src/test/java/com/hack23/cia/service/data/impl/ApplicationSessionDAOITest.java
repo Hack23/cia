@@ -47,9 +47,9 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 	 */
 	@Test
 	public void loadTest() throws Exception {
-		List<ApplicationSession> all = applicationSessionDAO.getAll();
-		ApplicationSession firstValue = all.iterator().next();
-		ApplicationSession load = applicationSessionDAO.load(firstValue.getHjid());
+		final List<ApplicationSession> all = applicationSessionDAO.getAll();
+		final ApplicationSession firstValue = all.iterator().next();
+		final ApplicationSession load = applicationSessionDAO.load(firstValue.getHjid());
 		assertEquals(firstValue,load);
 	}
 
@@ -85,11 +85,11 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 	 */
 	@Test
 	public void deleteTest() throws Exception {
-		List<ApplicationSession> all = applicationSessionDAO.getAll();
-		ApplicationSession firstValue = all.iterator().next();
-		Long hjid = firstValue.getHjid();
+		final List<ApplicationSession> all = applicationSessionDAO.getAll();
+		final ApplicationSession firstValue = all.iterator().next();
+		final Long hjid = firstValue.getHjid();
 		applicationSessionDAO.delete(firstValue);
-		ApplicationSession loadDeleted = applicationSessionDAO.load(hjid);
+		final ApplicationSession loadDeleted = applicationSessionDAO.load(hjid);
 		assertNull(loadDeleted);
 	}
 
@@ -101,8 +101,8 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 	 */
 	@Test
 	public void findFirstByPropertyTest() throws Exception {
-		List<ApplicationSession> all = applicationSessionDAO.getAll();
-		ApplicationSession findFirstByProperty = applicationSessionDAO.findFirstByProperty(ApplicationSession_.ipInformation, all.iterator().next().getIpInformation());
+		final List<ApplicationSession> all = applicationSessionDAO.getAll();
+		final ApplicationSession findFirstByProperty = applicationSessionDAO.findFirstByProperty(ApplicationSession_.ipInformation, all.iterator().next().getIpInformation());
 		assertNotNull(findFirstByProperty);
 	}
 
@@ -114,9 +114,9 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 	 */
 	@Test
 	public void findListByPropertyTest() throws Exception {
-		List<ApplicationSession> all = applicationSessionDAO.getAll();
+		final List<ApplicationSession> all = applicationSessionDAO.getAll();
 
-		List<ApplicationSession> findListByProperty = applicationSessionDAO.findListByProperty(ApplicationSession_.ipInformation, all.iterator().next().getIpInformation());
+		final List<ApplicationSession> findListByProperty = applicationSessionDAO.findListByProperty(ApplicationSession_.ipInformation, all.iterator().next().getIpInformation());
 		assertNotNull(findListByProperty);
 		assertFalse(findListByProperty.isEmpty());
 	}
@@ -166,7 +166,7 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 	 */
 	@Test
 	public void getAllTest() throws Exception {
-		List<ApplicationSession> all = applicationSessionDAO.getAll();
+		final List<ApplicationSession> all = applicationSessionDAO.getAll();
 		assertNotNull(all);
 		assertFalse(all.isEmpty());
 	}
@@ -180,8 +180,8 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 	 */
 	@Test
 	public void getPageTest() throws Exception {
-		int resultPerPage=100;
-		List<ApplicationSession> pageList = applicationSessionDAO.getPage(1, resultPerPage);
+		final int resultPerPage=100;
+		final List<ApplicationSession> pageList = applicationSessionDAO.getPage(1, resultPerPage);
 		assertNotNull(pageList);
 		assertFalse(pageList.isEmpty());
 		assertEquals(resultPerPage,pageList.size());
@@ -196,8 +196,8 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 	 */
 	@Test
 	public void getPageOrderByTest() throws Exception {
-		int resultPerPage=100;
-		List<ApplicationSession> pageList = applicationSessionDAO.getPageOrderBy(1, resultPerPage,ApplicationSession_.createdDate);
+		final int resultPerPage=100;
+		final List<ApplicationSession> pageList = applicationSessionDAO.getPageOrderBy(1, resultPerPage,ApplicationSession_.createdDate);
 		assertNotNull(pageList);
 		assertFalse(pageList.isEmpty());
 		assertEquals(resultPerPage,pageList.size());

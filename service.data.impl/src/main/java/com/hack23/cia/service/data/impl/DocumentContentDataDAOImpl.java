@@ -66,10 +66,7 @@ implements DocumentContentDataDAO {
 
 	@Override
 	public List<String> getIdList() {
-		final CriteriaQuery<String> criteria = getCriteriaBuilder().createQuery(String.class);
-		final Root<DocumentContentData> root = criteria.from(DocumentContentData.class);
-		criteria.select(root.get(DocumentContentData_.id));
-		return getEntityManager().createQuery(criteria).getResultList();
+		return getStringIdList(DocumentContentData_.id);
 	}
 
 }

@@ -97,11 +97,7 @@ DocumentElementDAO {
 
 	@Override
 	public List<String> getIdList() {
-		final CriteriaQuery<String> criteria = getCriteriaBuilder()
-				.createQuery(String.class);
-		final Root<DocumentElement> root = criteria.from(DocumentElement.class);
-		criteria.select(root.get(DocumentElement_.id));
-		return getEntityManager().createQuery(criteria).getResultList();
+		return getStringIdList(DocumentElement_.id);
 	}
 
 	@Override

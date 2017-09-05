@@ -81,18 +81,4 @@ LanguageContentDataDAO {
 
 	}
 
-	/**
-	 * Gets the id list.
-	 *
-	 * @return the id list
-	 */
-	private List<Long> getIdList() {
-		final CriteriaQuery<Long> criteria = getCriteriaBuilder().createQuery(
-				Long.class);
-		final Root<LanguageContentData> root = criteria
-				.from(LanguageContentData.class);
-		criteria.select(root.get(LanguageContentData_.hjid));
-		return getEntityManager().createQuery(criteria).getResultList();
-	}
-
 }

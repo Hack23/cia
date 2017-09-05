@@ -20,30 +20,33 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
-import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry_;
 import com.hack23.cia.service.data.api.ViewRiksdagenMinistryDAO;
 
 /**
- * The Class ViewRiksdagenMinistryDAOImpl.
+ * The Class ViewRiksdagenMinistryDAOITest.
  */
-@Repository("ViewRiksdagenMinistryDAO")
-final class ViewRiksdagenMinistryDAOImpl extends
-		AbstractGenericDAOImpl<ViewRiksdagenMinistry, String> implements
-		ViewRiksdagenMinistryDAO {
+@Transactional
+public class ViewRiksdagenMinistryDAOITest extends AbstractServiceDataFunctionalIntegrationTest {
+
+	/** The dao. */
+	@Autowired
+	private ViewRiksdagenMinistryDAO dao;
 
 	/**
-	 * Instantiates a new view riksdagen ministry dao impl.
+	 * Gets the id list test.
+	 *
+	 * @return the id list test
+	 * @throws Exception
+	 *             the exception
 	 */
-	public ViewRiksdagenMinistryDAOImpl() {
-		super(ViewRiksdagenMinistry.class);
+	@Test
+	public void getIdListTest() throws Exception {
+		final List<String> all = dao.getIdList();
+		assertNotNull(all);
+		assertFalse(all.isEmpty());
 	}
-
-	@Override
-	public List<String> getIdList() {
-		return getStringIdList(ViewRiksdagenMinistry_.nameId);
-	}
-
 }

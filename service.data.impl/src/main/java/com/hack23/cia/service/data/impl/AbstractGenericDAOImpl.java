@@ -91,6 +91,20 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 		typedQuery.setHint("org.hibernate.comment", comment);
 	}
 
+	/**
+	 * Gets the string id list.
+	 *
+	 * @param property
+	 *            the property
+	 * @return the string id list
+	 */
+	protected final List<String> getStringIdList(final SingularAttribute<T, String> property) {
+		final CriteriaQuery<String> criteria = getCriteriaBuilder().createQuery(String.class);
+		final Root<T> root = criteria.from(persistentClass);
+		criteria.select(getCriteriaBuilder().construct(String.class,root.get(property)));
+		return getEntityManager().createQuery(criteria).getResultList();
+	}
+
 	@Override
 	public final void delete(final T entity) {
 		getEntityManager().remove(entity);
@@ -165,8 +179,8 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 		final CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(getPersistentClass());
 		final Root<T> root = criteriaQuery.from(getPersistentClass());
 		criteriaQuery.select(root);
-		In<Object> in = criteriaBuilder.in((Path<Object>) root.get(property));
-		for (Object object : values) {
+		final In<Object> in = criteriaBuilder.in((Path<Object>) root.get(property));
+		for (final Object object : values) {
 			in.value(object);
 		}
 		criteriaQuery.where(in);
@@ -262,16 +276,16 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 	}
 
 	@Override
-	public final List<T> getPage(int pageNr, int resultPerPage) {
+	public final List<T> getPage(final int pageNr, final int resultPerPage) {
 		return getPageOrderBy(pageNr, resultPerPage, null);
 	}
 
 	@Override
-	public final List<T> getPageOrderBy(int pageNr, int resultPerPage, final SingularAttribute<T, ? extends Object> orderBy) {
+	public final List<T> getPageOrderBy(final int pageNr, final int resultPerPage, final SingularAttribute<T, ? extends Object> orderBy) {
 		return getPageOrderBy(Integer.valueOf(pageNr), Integer.valueOf(resultPerPage), orderBy);
 	}
 
-	private List<T> getPageOrderBy(Integer pageNr, Integer resultPerPage,
+	private List<T> getPageOrderBy(final Integer pageNr, final Integer resultPerPage,
 			final SingularAttribute<T, ? extends Object> orderBy) {
 		final CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(getPersistentClass());
 		final Root<T> root = criteriaQuery.from(getPersistentClass());

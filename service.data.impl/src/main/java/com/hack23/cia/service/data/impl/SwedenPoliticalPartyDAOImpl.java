@@ -20,9 +20,6 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-
 import org.springframework.stereotype.Repository;
 
 import com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty;
@@ -46,13 +43,7 @@ SwedenPoliticalPartyDAO {
 
 	@Override
 	public List<String> getIdList() {
-		final CriteriaQuery<String> criteria = getCriteriaBuilder()
-				.createQuery(String.class);
-		final Root<SwedenPoliticalParty> root = criteria
-				.from(SwedenPoliticalParty.class);
-		criteria.select(getCriteriaBuilder().construct(String.class,
-				root.get(SwedenPoliticalParty_.partyId)));
-		return getEntityManager().createQuery(criteria).getResultList();
+		return getStringIdList(SwedenPoliticalParty_.partyId);
 	}
 
 }

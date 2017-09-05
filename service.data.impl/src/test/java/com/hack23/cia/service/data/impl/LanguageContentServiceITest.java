@@ -49,8 +49,8 @@ public final class LanguageContentServiceITest extends AbstractServiceDataFuncti
 	@Test
 	public void getLanguageResourceAlreadyExistGetConfiguredValueTest() throws Exception {
 
-		String defaultEnglishValue = "defaultValue";
-		String key = UUID.randomUUID().toString();
+		final String defaultEnglishValue = "defaultValue";
+		final String key = UUID.randomUUID().toString();
 		final String languageResource = languageContentService.getLanguageResource(key, "test","en",
 				defaultEnglishValue);
 
@@ -71,8 +71,8 @@ public final class LanguageContentServiceITest extends AbstractServiceDataFuncti
 	@Test
 	public void getLanguageResourceNoValueExistTest() throws Exception {
 
-		String defaultEnglishValue = "defaultValue";
-		String key = UUID.randomUUID().toString();
+		final String defaultEnglishValue = "defaultValue";
+		final String key = UUID.randomUUID().toString();
 		final String languageResource = languageContentService.getLanguageResource(key, "test","en",
 				defaultEnglishValue);
 

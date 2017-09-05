@@ -293,17 +293,17 @@ final class DataViewerImpl implements DataViewer {
 
 
 	@Override
-	public <T> List<T> getPage(Class<T> clazz, int pageNr, int resultPerPage) {
+	public <T> List<T> getPage(final Class<T> clazz, final int pageNr, final int resultPerPage) {
 		return getPageOrderBy(clazz, pageNr, resultPerPage, null);
 	}
 
 	@Override
-	public <T> List<T> getPageOrderBy(Class<T> clazz, int pageNr, int resultPerPage,
-			SingularAttribute<T, ? extends Object> property) {
+	public <T> List<T> getPageOrderBy(final Class<T> clazz, final int pageNr, final int resultPerPage,
+			final SingularAttribute<T, ? extends Object> property) {
 		return getInternalPageOrderBy(clazz, pageNr, resultPerPage, property);
 	}
 
-	private <T> List<T> getInternalPageOrderBy(final Class<T> clazz, Integer pageNr,Integer resultPerPage,final SingularAttribute<T, ? extends Object> property) {
+	private <T> List<T> getInternalPageOrderBy(final Class<T> clazz, final Integer pageNr,final Integer resultPerPage,final SingularAttribute<T, ? extends Object> property) {
 		final CriteriaQuery<T> criteriaQuery = criteriaBuilder
 				.createQuery(clazz);
 		final Root<T> root = criteriaQuery.from(clazz);

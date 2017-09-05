@@ -20,9 +20,6 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-
 import org.springframework.stereotype.Repository;
 
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
@@ -44,10 +41,7 @@ final class PersonDataDAOImpl extends AbstractGenericDAOImpl<PersonData, String>
 
 	@Override
 	public List<String> getIdList() {
-		final CriteriaQuery<String> criteria = getCriteriaBuilder().createQuery(String.class);
-		final Root<PersonData> root = criteria.from(PersonData.class);
-		criteria.select(root.get(PersonData_.id));
-		return getEntityManager().createQuery(criteria).getResultList();
+		return getStringIdList(PersonData_.id);
 	}
 
 }
