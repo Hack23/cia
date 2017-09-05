@@ -125,7 +125,7 @@ public class LoginBlockedAccessImpl implements LoginBlockedAccess {
 
 	/** The application action event DAO. */
 	@Autowired
-	ApplicationActionEventDAO applicationActionEventDAO;
+	private ApplicationActionEventDAO applicationActionEventDAO;
 
 	/** The application configuration service. */
 	@Autowired
