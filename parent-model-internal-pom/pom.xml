@@ -165,7 +165,7 @@
         <plugin>
           <groupId>org.jvnet.hyperjaxb3</groupId>
           <artifactId>maven-hyperjaxb3-plugin</artifactId>
-          <version>${cia.project.versions.hyperjaxb3}</version>
+          <version>${cia.project.versions.hyperjaxb3.plugin}</version>
           <dependencies>
             <dependency>
               <groupId>com.sun.xml.bind</groupId>

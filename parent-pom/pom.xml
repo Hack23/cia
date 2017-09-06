@@ -141,7 +141,8 @@
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
     <cia.project.versions.plexus.utils>3.1.0</cia.project.versions.plexus.utils>
     <cia.project.versions.jaxb2.commons>0.11.1</cia.project.versions.jaxb2.commons>
-    <cia.project.versions.hyperjaxb3>0.6.1</cia.project.versions.hyperjaxb3>
+    <cia.project.versions.hyperjaxb3>0.6.2</cia.project.versions.hyperjaxb3>
+    <cia.project.versions.hyperjaxb3.plugin>0.6.1</cia.project.versions.hyperjaxb3.plugin>
     <cia.project.versions.jaxb.build>2.2.11</cia.project.versions.jaxb.build>
     <cia.project.versions.jaxb.runtime>2.2.11</cia.project.versions.jaxb.runtime>
     <cia.project.versions.jaxb.impl.build>2.2.11</cia.project.versions.jaxb.impl.build>
