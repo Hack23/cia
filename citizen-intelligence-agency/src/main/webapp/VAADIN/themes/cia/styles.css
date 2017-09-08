@@ -1057,7 +1057,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "8.1.3";
+	content: "8.2.0.alpha1";
 }
 
 .v-widget {
@@ -10319,6 +10319,19 @@ div.v-layout.v-horizontal.v-widget {
 .cia .v-tree8:focus .v-tree8-row-selected.v-tree8-row-focused::before {
 	border-color: transparent;
 	box-shadow: inset 0 0 0 1px #a9ece9;
+}
+
+.cia .v-tree8-scroller-vertical {
+	border: none;
+}
+
+.cia .v-tree8-scroller-horizontal {
+	border: none;
+}
+
+.cia .v-tree8-header-deco, .cia .v-tree8-footer-deco, .cia .v-tree8-horizontal-scrollbar-deco {
+	border: none;
+	background: transparent;
 }
 
 .cia .v-treegrid {
