@@ -148,7 +148,7 @@
     <dependency>
       <groupId>nz.ac.waikato.cms.moa</groupId>
       <artifactId>moa</artifactId>
-      <version>2016.04</version>
+      <version>2017.06</version>
       <exclusions>
         <exclusion>
           <artifactId>weka-dev</artifactId>
