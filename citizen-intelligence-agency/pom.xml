@@ -134,6 +134,10 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
+          <artifactId>httpcore</artifactId>
+          <groupId>org.apache.httpcomponents</groupId>
+        </exclusion>
+        <exclusion>
           <artifactId>neko-htmlunit</artifactId>
           <groupId>net.sourceforge.htmlunit</groupId>
         </exclusion>
@@ -250,6 +254,10 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
+          <artifactId>httpcore</artifactId>
+          <groupId>org.apache.httpcomponents</groupId>
+        </exclusion>
+        <exclusion>
           <artifactId>guava</artifactId>
           <groupId>com.google.guava</groupId>
         </exclusion>
@@ -326,6 +334,10 @@
       <version>3.5.3</version>
       <scope>test</scope>
       <exclusions>
+        <exclusion>
+          <artifactId>httpcore</artifactId>
+          <groupId>org.apache.httpcomponents</groupId>
+        </exclusion>
         <exclusion>
           <artifactId>guava</artifactId>
           <groupId>com.google.guava</groupId>
