@@ -20,21 +20,16 @@ package com.hack23.cia.systemintegrationtest;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.UUID;
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.Test;
 import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
-import org.passay.LengthRule;
-import org.passay.PasswordData;
-import org.passay.PasswordValidator;
 import org.passay.PasswordGenerator;
-import org.passay.RuleResult;
 
 import com.hack23.cia.service.api.action.application.LoginResponse;
 import com.hack23.cia.service.api.action.application.RegisterUserResponse;

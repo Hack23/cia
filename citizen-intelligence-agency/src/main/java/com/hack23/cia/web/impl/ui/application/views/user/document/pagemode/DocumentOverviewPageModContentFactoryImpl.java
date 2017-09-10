@@ -29,7 +29,6 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData_;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer_;
-import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;

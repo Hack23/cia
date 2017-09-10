@@ -38,7 +38,7 @@ import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
 /**
  * The Class DataAgentApiImpl.
  */
-@Service
+@Service("DataAgentApi")
 @Transactional(propagation=Propagation.REQUIRED)
 final class DataAgentApiImpl implements DataAgentApi {
 

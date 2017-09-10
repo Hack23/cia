@@ -33,6 +33,29 @@
   </distributionManagement>
   <dependencies>
     <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz</artifactId>
+      <version>2.3.0</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>c3p0</artifactId>
+          <groupId>com.mchange</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>mchange-commons-java</artifactId>
+          <groupId>com.mchange</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>HikariCP-java6</artifactId>
+          <groupId>com.zaxxer</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>slf4j-api</artifactId>
+          <groupId>org.slf4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <groupId>com.warrenstrange</groupId>
       <artifactId>googleauth</artifactId>
       <version>1.1.2</version>

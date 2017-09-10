@@ -34,6 +34,53 @@
 	<task:executor id="myExecutor" pool-size="5"/>
 	<task:scheduler id="myScheduler" pool-size="10"/>
 
+	<bean name="agentJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean" depends-on="AgentJobHolder">
+	        <property name="jobClass" value="com.hack23.cia.service.impl.task.AgentJob"/>
+	        <property name="durability" value="true" />
+	</bean>
+
+	<bean id="agentJobCronTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	    <property name="jobDetail" ref="agentJob" />
+	    <property name="cronExpression" value="0 30 3 * * ?" />
+	</bean>
+
+	<bean  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+
+    	<!-- Clustered support -->
+		<property name="dataSource" ref="dataSource"/>
+    	<property name="transactionManager" ref="transactionManager"/>
+ 		<property name="autoStartup" value="true" />
+ 		<property name="waitForJobsToCompleteOnShutdown" value="false"/>
+ 		<property name="overwriteExistingJobs" value="false"/>
+
+    	<property name="schedulerName" value="quartzScheduler"/>
+    	<property name="applicationContextSchedulerContextKey" value="applicationContext"/>
+ 		<property name="quartzProperties">
+        	<props>
+            	<prop key="org.quartz.jobStore.misfireThreshold">4</prop>
+            	<prop key="org.quartz.threadPool.threadCount">4</prop>
+            	<prop key="org.quartz.scheduler.instanceId">AUTO</prop>
+            	<prop key="org.quartz.jobStore.useProperties">false</prop>
+            	<prop key="org.quartz.jobStore.tablePrefix">QRTZ_</prop>
+            	<prop key="org.quartz.jobStore.isClustered">true</prop>
+            	<prop key="org.quartz.jobStore.driverDelegateClass">org.quartz.impl.jdbcjobstore.PostgreSQLDelegate</prop>
+       		</props>
+    	</property>
+
+		<property name="exposeSchedulerInRepository" value="true" />
+	    <property name="jobDetails">
+	        <list>
+	            <ref bean="agentJob" />
+	        </list>
+	    </property>
+	    <property name="triggers">
+	        <list>
+	            <ref bean="agentJobCronTrigger" />
+	        </list>
+	    </property>
+	</bean>
+
+
 	<bean id="SecureTaskExecutor"
 	          class="org.springframework.security.task.DelegatingSecurityContextAsyncTaskExecutor">
 	     <constructor-arg ref="myExecutor"/>

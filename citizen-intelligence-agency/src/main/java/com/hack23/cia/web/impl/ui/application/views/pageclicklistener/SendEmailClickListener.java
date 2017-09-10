@@ -24,12 +24,9 @@ import org.slf4j.LoggerFactory;
 import com.hack23.cia.service.api.action.admin.SendEmailRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
-import com.vaadin.ui.UI;
 
 /**
  * The Class SendEmailClickListener.
