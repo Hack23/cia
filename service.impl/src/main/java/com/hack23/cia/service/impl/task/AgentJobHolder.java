@@ -29,8 +29,14 @@ import com.hack23.cia.service.component.agent.api.DataAgentApi;
 public final class AgentJobHolder {
 
 	/** The data agent api. */
-	@Autowired
 	private static DataAgentApi dataAgentApi;
+
+	@Autowired
+	public AgentJobHolder(final DataAgentApi dataAgentApi) {
+		super();
+		AgentJobHolder.dataAgentApi = dataAgentApi;
+	}
+
 
 	/**
 	 * Gets the data agent api.
