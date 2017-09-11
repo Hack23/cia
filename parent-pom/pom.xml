@@ -655,6 +655,18 @@
           </dependencies>
         </plugin>
         <plugin>
+          <groupId>org.jboss.tattletale</groupId>
+          <artifactId>tattletale-maven</artifactId>
+          <version>1.2.0.Beta2</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.javassist</groupId>
+              <artifactId>javassist</artifactId>
+              <version>3.22.0-CR2</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-scm-publish-plugin</artifactId>
           <version>1.1</version>
