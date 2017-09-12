@@ -350,7 +350,7 @@
         </exclusions>
       </dependency>
       <dependency>
-        <groupId>org.hibernate</groupId>
+        <groupId>org.hibernate.validator</groupId>
         <artifactId>hibernate-validator</artifactId>
         <version>${cia.project.versions.hibernate.validator}</version>
         <exclusions>
@@ -1844,7 +1844,7 @@
               </execution>
             </executions>
             <configuration>
-              <excludeProperties>cia.project.versions.spring,cia.project.versions.spring.security,cia.project.versions.slf4j,cia.project.versions.guava</excludeProperties>
+              <excludeProperties>cia.project.versions.spring,cia.project.versions.spring.security,cia.project.versions.slf4j,cia.project.versions.guava,cia.project.versions.junit.dep,cia.project.versions.aspectj,cia.project.versions.slf4j,cia.project.versions.commons.lang,cia.project.versions.jaxb2.commons</excludeProperties>
               <properties>
                 <!--
                 <property>
@@ -1911,11 +1911,14 @@
                 <include>*:*</include>
               </includes>
               <excludes>
+              	<exclude>com.thoughtworks.xstream:xstream</exclude>
+              	<exclude>org.codehaus.jackson:jackson-core-asl</exclude>
                 <exclude>com.sun.xml.bind:*</exclude>
                 <exclude>javax.xml.bind:*</exclude>
                 <exclude>commons-collections:commons-collections</exclude>
                 <exclude>javax.servlet:javax.servlet-api</exclude>
                 <exclude>org.hibernate:hibernate-validator</exclude>
+                <exclude>org.hibernate.validator:hibernate-validator</exclude>
                 <exclude>org.hibernate:*</exclude>
                 <exclude>org.springframework:*</exclude>
                 <exclude>org.apache.lucene:*</exclude>
@@ -2034,6 +2037,7 @@
                 <exclude>commons-collections:commons-collections</exclude>
                 <exclude>javax.servlet:javax.servlet-api</exclude>
                 <exclude>org.hibernate:hibernate-validator</exclude>
+                <exclude>org.hibernate.validator:hibernate-validator</exclude>
                 <exclude>org.hibernate:*</exclude>
                 <exclude>org.springframework:*</exclude>
                 <exclude>org.apache.lucene:*</exclude>
