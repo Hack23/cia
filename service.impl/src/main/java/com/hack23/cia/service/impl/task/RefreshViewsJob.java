@@ -17,33 +17,27 @@
  *  $HeadURL$
 */
 package com.hack23.cia.service.impl.task;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import com.hack23.cia.service.component.agent.api.DataAgentApi;
+import java.io.Serializable;
+
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+import org.springframework.scheduling.quartz.QuartzJobBean;
 
 /**
- * The Class AgentJobHolder.
+ * The Class AgentJob.
  */
-@Service("AgentJobHolder")
-public final class AgentJobHolder {
-
-	/** The data agent api. */
-	private static DataAgentApi dataAgentApi;
-
-	@Autowired
-	public AgentJobHolder(final DataAgentApi dataAgentApi) {
-		super();
-		AgentJobHolder.dataAgentApi = dataAgentApi;
-	}
+public final class RefreshViewsJob extends QuartzJobBean implements Serializable {
 
 
 	/**
-	 * Gets the data agent api.
 	 *
-	 * @return the data agent api
 	 */
-	public static DataAgentApi getDataAgentApi() {
-		return dataAgentApi;
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
+		JobContextHolder.getViewDataManager().refreshViews();
 	}
+
 }

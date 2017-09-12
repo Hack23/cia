@@ -41,7 +41,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED,timeout=600)
-@Secured({ "ROLE_USER", "ROLE_ADMIN" })
+@Secured({ "ROLE_ADMIN" })
 public final class RefreshDataViewsService extends
 		AbstractBusinessServiceImpl<RefreshDataViewsRequest, RefreshDataViewsResponse>
 		implements BusinessService<RefreshDataViewsRequest, RefreshDataViewsResponse> {

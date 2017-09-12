@@ -24,14 +24,10 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
-import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
-import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
-import com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder;
-
 /**
  * The Class AgentJob.
  */
-public final class AgentJob extends QuartzJobBean implements Serializable {
+public final class UpdateSearchIndexJob extends QuartzJobBean implements Serializable {
 
 
 	/**
@@ -41,7 +37,12 @@ public final class AgentJob extends QuartzJobBean implements Serializable {
 
 	@Override
 	protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
-		JobContextHolder.getDataAgentApi().execute(new DataAgentWorkOrder().withOperation(DataAgentOperation.IMPORT).withTarget(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN));
+		try {
+			JobContextHolder.getSearchIndexer().updateSearchIndex();
+		} catch (InterruptedException e) {
+		    Thread.currentThread().interrupt();
+		    throw new JobExecutionException(e);
+		}
 	}
 
 }
