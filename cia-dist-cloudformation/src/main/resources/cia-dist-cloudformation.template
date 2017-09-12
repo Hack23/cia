@@ -444,7 +444,7 @@
          },
          "eu-west-1":{
             "PV64":"NOT_SUPPORTED",
-            "HVM64":"ami-6d48500b",
+            "HVM64":"ami-674cbc1e",
             "HVMG2":"NOT_SUPPORTED"
          },
          "eu-central-1":{
@@ -2125,9 +2125,9 @@
                         "sudo add-apt-repository ppa:webupd8team/java \n",
                         "sudo apt-get update\n",
                         "echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections\n",
-                        "sudo apt-get -y install oracle-java8-installer\n",
-                        "sudo apt-get -y install oracle-java8-unlimited-jce-policy\n",
-                        "sudo apt-get -y install oracle-java8-set-default\n",
+                        "sudo apt-get -y install oracle-java9-installer\n",
+                        "# sudo apt-get -y install oracle-java8-unlimited-jce-policy\n",
+                        "sudo apt-get -y install oracle-java9-set-default\n",
                         "wget ",
                         {
                            "Ref":"DebPackageUrl"

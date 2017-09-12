@@ -1,7 +1,7 @@
-Will use latest hvm-ssd ubuntu image:Current: ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20170619.1 : ami-6d48500b
+Will use latest hvm-ssd ubuntu image:Current: ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20170811 : ami-674cbc1e
 
 17.04
-ubuntu/images/hvm-ssd/ubuntu-zesty-17.04-amd64-server-20170619.1 : ami-af455dc9
+ubuntu/images/hvm-ssd/ubuntu-zesty-17.04-amd64-server-20170811 : ami-1446b66d
 
 
 http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL.Procedural.Importing.html
