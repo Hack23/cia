@@ -36,6 +36,7 @@
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/javax/transaction/jta/1.1/jta-1.1.jar" sourcepath="M2_REPO/javax/transaction/jta/1.1/jta-1.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/javax/jms/jms/1.1/jms-1.1.jar"/>
   <classpathentry kind="var" path="M2_REPO/javax/xml/bind/jaxb-api/2.2.11/jaxb-api-2.2.11.jar" sourcepath="M2_REPO/javax/xml/bind/jaxb-api/2.2.11/jaxb-api-2.2.11-sources.jar">
     <attributes>
       <attribute value="jar:file:/home/pether/.m2/repository/javax/xml/bind/jaxb-api/2.2.11/jaxb-api-2.2.11-javadoc.jar!/" name="javadoc_location"/>
@@ -95,9 +96,9 @@
       <attribute value="jar:file:/home/pether/.m2/repository/com/yahoo/platform/yui/yuicompressor/2.4.8/yuicompressor-2.4.8-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-themes/8.1.2/vaadin-themes-8.1.2.jar" sourcepath="M2_REPO/com/vaadin/vaadin-themes/8.1.2/vaadin-themes-8.1.2-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-themes/8.2.0.alpha1/vaadin-themes-8.2.0.alpha1.jar" sourcepath="M2_REPO/com/vaadin/vaadin-themes/8.2.0.alpha1/vaadin-themes-8.2.0.alpha1-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-themes/8.1.2/vaadin-themes-8.1.2-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-themes/8.2.0.alpha1/vaadin-themes-8.2.0.alpha1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/slf4j/jul-to-slf4j/1.7.25/jul-to-slf4j-1.7.25.jar" sourcepath="M2_REPO/org/slf4j/jul-to-slf4j/1.7.25/jul-to-slf4j-1.7.25-sources.jar">
@@ -110,54 +111,54 @@
       <attribute value="jar:file:/home/pether/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/ow2/asm/asm-tree/5.2/asm-tree-5.2.jar" sourcepath="M2_REPO/org/ow2/asm/asm-tree/5.2/asm-tree-5.2-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/ow2/asm/asm-tree/6.0_BETA/asm-tree-6.0_BETA.jar" sourcepath="M2_REPO/org/ow2/asm/asm-tree/6.0_BETA/asm-tree-6.0_BETA-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/ow2/asm/asm-tree/5.2/asm-tree-5.2-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/ow2/asm/asm-tree/6.0_BETA/asm-tree-6.0_BETA-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/ow2/asm/asm/5.2/asm-5.2.jar" sourcepath="M2_REPO/org/ow2/asm/asm/5.2/asm-5.2-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/ow2/asm/asm/6.0_BETA/asm-6.0_BETA.jar" sourcepath="M2_REPO/org/ow2/asm/asm/6.0_BETA/asm-6.0_BETA-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/ow2/asm/asm/5.2/asm-5.2-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/ow2/asm/asm/6.0_BETA/asm-6.0_BETA-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-webmvc/5.0.0.RC3/spring-webmvc-5.0.0.RC3.jar" sourcepath="M2_REPO/org/springframework/spring-webmvc/5.0.0.RC3/spring-webmvc-5.0.0.RC3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-webmvc/5.0.0.RC4/spring-webmvc-5.0.0.RC4.jar" sourcepath="M2_REPO/org/springframework/spring-webmvc/5.0.0.RC4/spring-webmvc-5.0.0.RC4-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-webmvc/5.0.0.RC3/spring-webmvc-5.0.0.RC3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-webmvc/5.0.0.RC4/spring-webmvc-5.0.0.RC4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-aop/5.0.0.RC3/spring-aop-5.0.0.RC3.jar" sourcepath="M2_REPO/org/springframework/spring-aop/5.0.0.RC3/spring-aop-5.0.0.RC3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-aop/5.0.0.RC4/spring-aop-5.0.0.RC4.jar" sourcepath="M2_REPO/org/springframework/spring-aop/5.0.0.RC4/spring-aop-5.0.0.RC4-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-aop/5.0.0.RC3/spring-aop-5.0.0.RC3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-aop/5.0.0.RC4/spring-aop-5.0.0.RC4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-beans/5.0.0.RC3/spring-beans-5.0.0.RC3.jar" sourcepath="M2_REPO/org/springframework/spring-beans/5.0.0.RC3/spring-beans-5.0.0.RC3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-beans/5.0.0.RC4/spring-beans-5.0.0.RC4.jar" sourcepath="M2_REPO/org/springframework/spring-beans/5.0.0.RC4/spring-beans-5.0.0.RC4-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-beans/5.0.0.RC3/spring-beans-5.0.0.RC3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-beans/5.0.0.RC4/spring-beans-5.0.0.RC4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-core/5.0.0.RC3/spring-core-5.0.0.RC3.jar" sourcepath="M2_REPO/org/springframework/spring-core/5.0.0.RC3/spring-core-5.0.0.RC3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-core/5.0.0.RC4/spring-core-5.0.0.RC4.jar" sourcepath="M2_REPO/org/springframework/spring-core/5.0.0.RC4/spring-core-5.0.0.RC4-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-core/5.0.0.RC3/spring-core-5.0.0.RC3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-core/5.0.0.RC4/spring-core-5.0.0.RC4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-jcl/5.0.0.RC3/spring-jcl-5.0.0.RC3.jar" sourcepath="M2_REPO/org/springframework/spring-jcl/5.0.0.RC3/spring-jcl-5.0.0.RC3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-jcl/5.0.0.RC4/spring-jcl-5.0.0.RC4.jar" sourcepath="M2_REPO/org/springframework/spring-jcl/5.0.0.RC4/spring-jcl-5.0.0.RC4-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-jcl/5.0.0.RC3/spring-jcl-5.0.0.RC3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-jcl/5.0.0.RC4/spring-jcl-5.0.0.RC4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-context/5.0.0.RC3/spring-context-5.0.0.RC3.jar" sourcepath="M2_REPO/org/springframework/spring-context/5.0.0.RC3/spring-context-5.0.0.RC3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-context/5.0.0.RC4/spring-context-5.0.0.RC4.jar" sourcepath="M2_REPO/org/springframework/spring-context/5.0.0.RC4/spring-context-5.0.0.RC4-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-context/5.0.0.RC3/spring-context-5.0.0.RC3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-context/5.0.0.RC4/spring-context-5.0.0.RC4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-expression/5.0.0.RC3/spring-expression-5.0.0.RC3.jar" sourcepath="M2_REPO/org/springframework/spring-expression/5.0.0.RC3/spring-expression-5.0.0.RC3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-expression/5.0.0.RC4/spring-expression-5.0.0.RC4.jar" sourcepath="M2_REPO/org/springframework/spring-expression/5.0.0.RC4/spring-expression-5.0.0.RC4-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-expression/5.0.0.RC3/spring-expression-5.0.0.RC3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-expression/5.0.0.RC4/spring-expression-5.0.0.RC4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-web/5.0.0.RC3/spring-web-5.0.0.RC3.jar" sourcepath="M2_REPO/org/springframework/spring-web/5.0.0.RC3/spring-web-5.0.0.RC3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-web/5.0.0.RC4/spring-web-5.0.0.RC4.jar" sourcepath="M2_REPO/org/springframework/spring-web/5.0.0.RC4/spring-web-5.0.0.RC4-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-web/5.0.0.RC3/spring-web-5.0.0.RC3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-web/5.0.0.RC4/spring-web-5.0.0.RC4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/com/internetitem/logback-elasticsearch-appender/1.6/logback-elasticsearch-appender-1.6.jar" sourcepath="M2_REPO/com/internetitem/logback-elasticsearch-appender/1.6/logback-elasticsearch-appender-1.6-sources.jar">
@@ -170,26 +171,22 @@
       <attribute value="jar:file:/home/pether/.m2/repository/cglib/cglib/3.2.5/cglib-3.2.5-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/testfoundation/2017.7.25-SNAPSHOT/testfoundation-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/testfoundation/2017.7.25-SNAPSHOT/testfoundation-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/testfoundation/2017.7.25-SNAPSHOT/testfoundation-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/testfoundation/2017.8.28-SNAPSHOT/testfoundation-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/testfoundation/2017.8.28-SNAPSHOT/testfoundation-2017.8.28-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/jdepend/jdepend/1.2.4-eclipsejdepend/jdepend-1.2.4-eclipsejdepend.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-aspects/5.0.0.RC3/spring-aspects-5.0.0.RC3.jar" sourcepath="M2_REPO/org/springframework/spring-aspects/5.0.0.RC3/spring-aspects-5.0.0.RC3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-aspects/5.0.0.RC4/spring-aspects-5.0.0.RC4.jar" sourcepath="M2_REPO/org/springframework/spring-aspects/5.0.0.RC4/spring-aspects-5.0.0.RC4-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-aspects/5.0.0.RC3/spring-aspects-5.0.0.RC3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-aspects/5.0.0.RC4/spring-aspects-5.0.0.RC4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/aspectj/aspectjweaver/1.9.0.BETA-4/aspectjweaver-1.9.0.BETA-4.jar" sourcepath="M2_REPO/org/aspectj/aspectjweaver/1.9.0.BETA-4/aspectjweaver-1.9.0.BETA-4-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-context-support/5.0.0.RC3/spring-context-support-5.0.0.RC3.jar" sourcepath="M2_REPO/org/springframework/spring-context-support/5.0.0.RC3/spring-context-support-5.0.0.RC3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-context-support/5.0.0.RC4/spring-context-support-5.0.0.RC4.jar" sourcepath="M2_REPO/org/springframework/spring-context-support/5.0.0.RC4/spring-context-support-5.0.0.RC4-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-context-support/5.0.0.RC3/spring-context-support-5.0.0.RC3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-context-support/5.0.0.RC4/spring-context-support-5.0.0.RC4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-oxm/5.0.0.RC3/spring-oxm-5.0.0.RC3.jar" sourcepath="M2_REPO/org/springframework/spring-oxm/5.0.0.RC3/spring-oxm-5.0.0.RC3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-oxm/5.0.0.RC4/spring-oxm-5.0.0.RC4.jar" sourcepath="M2_REPO/org/springframework/spring-oxm/5.0.0.RC4/spring-oxm-5.0.0.RC4-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-oxm/5.0.0.RC3/spring-oxm-5.0.0.RC3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-oxm/5.0.0.RC4/spring-oxm-5.0.0.RC4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/slf4j/jcl-over-slf4j/1.7.25/jcl-over-slf4j-1.7.25.jar" sourcepath="M2_REPO/org/slf4j/jcl-over-slf4j/1.7.25/jcl-over-slf4j-1.7.25-sources.jar">
@@ -212,10 +209,14 @@
       <attribute value="jar:file:/home/pether/.m2/repository/ch/qos/logback/logback-core/1.2.3/logback-core-1.2.3-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/jboss/logging/jboss-logging/3.3.1.Final-redhat-1/jboss-logging-3.3.1.Final-redhat-1.jar" sourcepath="M2_REPO/org/jboss/logging/jboss-logging/3.3.1.Final-redhat-1/jboss-logging-3.3.1.Final-redhat-1-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-test/5.0.0.RC3/spring-test-5.0.0.RC3.jar" sourcepath="M2_REPO/org/springframework/spring-test/5.0.0.RC3/spring-test-5.0.0.RC3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/jboss/logging/jboss-logging/3.3.1.Final-redhat-1/jboss-logging-3.3.1.Final-redhat-1.jar" sourcepath="M2_REPO/org/jboss/logging/jboss-logging/3.3.1.Final-redhat-1/jboss-logging-3.3.1.Final-redhat-1-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-test/5.0.0.RC3/spring-test-5.0.0.RC3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/jboss/logging/jboss-logging/3.3.1.Final-redhat-1/jboss-logging-3.3.1.Final-redhat-1-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-test/5.0.0.RC4/spring-test-5.0.0.RC4.jar" sourcepath="M2_REPO/org/springframework/spring-test/5.0.0.RC4/spring-test-5.0.0.RC4-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-test/5.0.0.RC4/spring-test-5.0.0.RC4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/junit/junit/4.12/junit-4.12.jar" sourcepath="M2_REPO/junit/junit/4.12/junit-4.12-sources.jar">
@@ -277,24 +278,24 @@
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/databene/contiperf/2.4.4.hack23pre/contiperf-2.4.4.hack23pre.jar" sourcepath="M2_REPO/org/databene/contiperf/2.4.4.hack23pre/contiperf-2.4.4.hack23pre-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/mockito/mockito-core/2.8.47/mockito-core-2.8.47.jar" sourcepath="M2_REPO/org/mockito/mockito-core/2.8.47/mockito-core-2.8.47-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/mockito/mockito-core/2.10.0/mockito-core-2.10.0.jar" sourcepath="M2_REPO/org/mockito/mockito-core/2.10.0/mockito-core-2.10.0-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/mockito/mockito-core/2.8.47/mockito-core-2.8.47-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/mockito/mockito-core/2.10.0/mockito-core-2.10.0-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/objenesis/objenesis/2.5/objenesis-2.5.jar" sourcepath="M2_REPO/org/objenesis/objenesis/2.5/objenesis-2.5-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/objenesis/objenesis/2.6/objenesis-2.6.jar" sourcepath="M2_REPO/org/objenesis/objenesis/2.6/objenesis-2.6-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/objenesis/objenesis/2.5/objenesis-2.5-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/objenesis/objenesis/2.6/objenesis-2.6-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/net/bytebuddy/byte-buddy/1.7.3/byte-buddy-1.7.3.jar" sourcepath="M2_REPO/net/bytebuddy/byte-buddy/1.7.3/byte-buddy-1.7.3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/net/bytebuddy/byte-buddy/1.7.5/byte-buddy-1.7.5.jar" sourcepath="M2_REPO/net/bytebuddy/byte-buddy/1.7.5/byte-buddy-1.7.5-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/net/bytebuddy/byte-buddy/1.7.3/byte-buddy-1.7.3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/net/bytebuddy/byte-buddy/1.7.5/byte-buddy-1.7.5-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/net/bytebuddy/byte-buddy-agent/1.7.3/byte-buddy-agent-1.7.3.jar" sourcepath="M2_REPO/net/bytebuddy/byte-buddy-agent/1.7.3/byte-buddy-agent-1.7.3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/net/bytebuddy/byte-buddy-agent/1.7.5/byte-buddy-agent-1.7.5.jar" sourcepath="M2_REPO/net/bytebuddy/byte-buddy-agent/1.7.5/byte-buddy-agent-1.7.5-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/net/bytebuddy/byte-buddy-agent/1.7.3/byte-buddy-agent-1.7.3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/net/bytebuddy/byte-buddy-agent/1.7.5/byte-buddy-agent-1.7.5-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/com/github/stefanbirkner/system-rules/1.16.1/system-rules-1.16.1.jar" sourcepath="M2_REPO/com/github/stefanbirkner/system-rules/1.16.1/system-rules-1.16.1-sources.jar">
@@ -348,9 +349,9 @@
       <attribute value="jar:file:/home/pether/.m2/repository/org/apache/httpcomponents/httpclient/4.5.3/httpclient-4.5.3-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpcore/4.4.6/httpcore-4.4.6.jar" sourcepath="M2_REPO/org/apache/httpcomponents/httpcore/4.4.6/httpcore-4.4.6-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpcore/4.4.7/httpcore-4.4.7.jar" sourcepath="M2_REPO/org/apache/httpcomponents/httpcore/4.4.7/httpcore-4.4.7-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/apache/httpcomponents/httpcore/4.4.6/httpcore-4.4.6-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/apache/httpcomponents/httpcore/4.4.7/httpcore-4.4.7-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpmime/4.5.3/httpmime-4.5.3.jar" sourcepath="M2_REPO/org/apache/httpcomponents/httpmime/4.5.3/httpmime-4.5.3-sources.jar">
@@ -359,29 +360,29 @@
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/xerces/xercesImpl/2.11.0.SP5-redhat-1/xercesImpl-2.11.0.SP5-redhat-1.jar" sourcepath="M2_REPO/xerces/xercesImpl/2.11.0.SP5-redhat-1/xercesImpl-2.11.0.SP5-redhat-1-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-java/3.5.2/selenium-java-3.5.2.jar" sourcepath="M2_REPO/org/seleniumhq/selenium/selenium-java/3.5.2/selenium-java-3.5.2-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-java/3.5.3/selenium-java-3.5.3.jar" sourcepath="M2_REPO/org/seleniumhq/selenium/selenium-java/3.5.3/selenium-java-3.5.3-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/seleniumhq/selenium/selenium-java/3.5.2/selenium-java-3.5.2-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/seleniumhq/selenium/selenium-java/3.5.3/selenium-java-3.5.3-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-api/3.5.2/selenium-api-3.5.2.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-chrome-driver/3.5.2/selenium-chrome-driver-3.5.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-api/3.5.3/selenium-api-3.5.3.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-chrome-driver/3.5.3/selenium-chrome-driver-3.5.3.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-exec/1.3/commons-exec-1.3.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-edge-driver/3.5.2/selenium-edge-driver-3.5.2.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-firefox-driver/3.5.2/selenium-firefox-driver-3.5.2.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-ie-driver/3.5.2/selenium-ie-driver-3.5.2.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-opera-driver/3.5.2/selenium-opera-driver-3.5.2.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-safari-driver/3.5.2/selenium-safari-driver-3.5.2.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-support/3.5.2/selenium-support-3.5.2.jar" sourcepath="M2_REPO/org/seleniumhq/selenium/selenium-support/3.5.2/selenium-support-3.5.2-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-edge-driver/3.5.3/selenium-edge-driver-3.5.3.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-firefox-driver/3.5.3/selenium-firefox-driver-3.5.3.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-ie-driver/3.5.3/selenium-ie-driver-3.5.3.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-opera-driver/3.5.3/selenium-opera-driver-3.5.3.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-safari-driver/3.5.3/selenium-safari-driver-3.5.3.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-support/3.5.3/selenium-support-3.5.3.jar" sourcepath="M2_REPO/org/seleniumhq/selenium/selenium-support/3.5.3/selenium-support-3.5.3-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/seleniumhq/selenium/selenium-support/3.5.2/selenium-support-3.5.2-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/seleniumhq/selenium/selenium-support/3.5.3/selenium-support-3.5.3-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/com/codeborne/phantomjsdriver/1.4.0/phantomjsdriver-1.4.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/xalan/serializer/2.7.2/serializer-2.7.2.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-remote-driver/3.5.2/selenium-remote-driver-3.5.2.jar" sourcepath="M2_REPO/org/seleniumhq/selenium/selenium-remote-driver/3.5.2/selenium-remote-driver-3.5.2-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-remote-driver/3.5.3/selenium-remote-driver-3.5.3.jar" sourcepath="M2_REPO/org/seleniumhq/selenium/selenium-remote-driver/3.5.3/selenium-remote-driver-3.5.3-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/seleniumhq/selenium/selenium-remote-driver/3.5.2/selenium-remote-driver-3.5.2-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/seleniumhq/selenium/selenium-remote-driver/3.5.3/selenium-remote-driver-3.5.3-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/net/java/dev/jna/jna-platform/4.4.0/jna-platform-4.4.0.jar" sourcepath="M2_REPO/net/java/dev/jna/jna-platform/4.4.0/jna-platform-4.4.0-sources.jar">
@@ -429,9 +430,9 @@
       <attribute value="jar:file:/home/pether/.m2/repository/org/webbitserver/webbit/0.4.15/webbit-0.4.15-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-all/4.1.14.Final/netty-all-4.1.14.Final.jar" sourcepath="M2_REPO/io/netty/netty-all/4.1.14.Final/netty-all-4.1.14.Final-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/io/netty/netty-all/4.1.15.Final/netty-all-4.1.15.Final.jar" sourcepath="M2_REPO/io/netty/netty-all/4.1.15.Final/netty-all-4.1.15.Final-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/io/netty/netty-all/4.1.14.Final/netty-all-4.1.14.Final-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/io/netty/netty-all/4.1.15.Final/netty-all-4.1.15.Final-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/jetty-webapp/9.4.7.RC0/jetty-webapp-9.4.7.RC0.jar" sourcepath="M2_REPO/org/eclipse/jetty/jetty-webapp/9.4.7.RC0/jetty-webapp-9.4.7.RC0-sources.jar">
@@ -509,9 +510,9 @@
       <attribute value="jar:file:/home/pether/.m2/repository/org/eclipse/jetty/jetty-annotations/9.4.7.RC0/jetty-annotations-9.4.7.RC0-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/ow2/asm/asm-commons/5.2/asm-commons-5.2.jar" sourcepath="M2_REPO/org/ow2/asm/asm-commons/5.2/asm-commons-5.2-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/ow2/asm/asm-commons/6.0_BETA/asm-commons-6.0_BETA.jar" sourcepath="M2_REPO/org/ow2/asm/asm-commons/6.0_BETA/asm-commons-6.0_BETA-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/ow2/asm/asm-commons/5.2/asm-commons-5.2-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/ow2/asm/asm-commons/6.0_BETA/asm-commons-6.0_BETA-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/jetty-continuation/9.4.7.RC0/jetty-continuation-9.4.7.RC0.jar" sourcepath="M2_REPO/org/eclipse/jetty/jetty-continuation/9.4.7.RC0/jetty-continuation-9.4.7.RC0-sources.jar">
@@ -564,9 +565,9 @@
       <attribute value="jar:file:/home/pether/.m2/repository/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/net/bull/javamelody/javamelody-core/1.68.1/javamelody-core-1.68.1.jar" sourcepath="M2_REPO/net/bull/javamelody/javamelody-core/1.68.1/javamelody-core-1.68.1-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/net/bull/javamelody/javamelody-core/1.69.0/javamelody-core-1.69.0.jar" sourcepath="M2_REPO/net/bull/javamelody/javamelody-core/1.69.0/javamelody-core-1.69.0-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/net/bull/javamelody/javamelody-core/1.68.1/javamelody-core-1.68.1-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/net/bull/javamelody/javamelody-core/1.69.0/javamelody-core-1.69.0-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/jrobin/jrobin/1.6.0/jrobin-1.6.0.jar" sourcepath="M2_REPO/org/jrobin/jrobin/1.6.0/jrobin-1.6.0-sources.jar">
@@ -589,26 +590,26 @@
       <attribute value="jar:file:/home/pether/.m2/repository/net/sf/ehcache/ehcache-web/2.0.4/ehcache-web-2.0.4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/web-widgets/2017.7.25-SNAPSHOT/web-widgets-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/web-widgets/2017.7.25-SNAPSHOT/web-widgets-2017.7.25-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/web-widgets/2017.8.28-SNAPSHOT/web-widgets-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/web-widgets/2017.8.28-SNAPSHOT/web-widgets-2017.8.28-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-spring/2.1.0.beta2/vaadin-spring-2.1.0.beta2.jar" sourcepath="M2_REPO/com/vaadin/vaadin-spring/2.1.0.beta2/vaadin-spring-2.1.0.beta2-sources.jar">
     <attributes>
       <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-spring/2.1.0.beta2/vaadin-spring-2.1.0.beta2-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/vaadin/addons/qrcode/2.1/qrcode-2.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.9.0.pr4/jackson-databind-2.9.0.pr4.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.9.0.pr4/jackson-databind-2.9.0.pr4-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.9.1/jackson-databind-2.9.1.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.9.1/jackson-databind-2.9.1-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.9.0.pr4/jackson-databind-2.9.0.pr4-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.9.1/jackson-databind-2.9.1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.9.0.pr4/jackson-annotations-2.9.0.pr4.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.9.0.pr4/jackson-annotations-2.9.0.pr4-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.9.0/jackson-annotations-2.9.0.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.9.0/jackson-annotations-2.9.0-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.9.0.pr4/jackson-annotations-2.9.0.pr4-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.9.0/jackson-annotations-2.9.0-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.9.0.pr4/jackson-core-2.9.0.pr4.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.9.0.pr4/jackson-core-2.9.0.pr4-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.9.1/jackson-core-2.9.1.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.9.1/jackson-core-2.9.1-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.9.0.pr4/jackson-core-2.9.0.pr4-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.9.1/jackson-core-2.9.1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/com/jarektoro/responsive-layout/2.0.0/responsive-layout-2.0.0.jar" sourcepath="M2_REPO/com/jarektoro/responsive-layout/2.0.0/responsive-layout-2.0.0-sources.jar">
@@ -627,14 +628,14 @@
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/tltv/gantt/gantt-addon/1.0.1/gantt-addon-1.0.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-server/8.1.2/vaadin-server-8.1.2.jar" sourcepath="M2_REPO/com/vaadin/vaadin-server/8.1.2/vaadin-server-8.1.2-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-server/8.2.0.alpha1/vaadin-server-8.2.0.alpha1.jar" sourcepath="M2_REPO/com/vaadin/vaadin-server/8.2.0.alpha1/vaadin-server-8.2.0.alpha1-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-server/8.1.2/vaadin-server-8.1.2-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-server/8.2.0.alpha1/vaadin-server-8.2.0.alpha1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-shared/8.1.2/vaadin-shared-8.1.2.jar" sourcepath="M2_REPO/com/vaadin/vaadin-shared/8.1.2/vaadin-shared-8.1.2-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-shared/8.2.0.alpha1/vaadin-shared-8.2.0.alpha1.jar" sourcepath="M2_REPO/com/vaadin/vaadin-shared/8.2.0.alpha1/vaadin-shared-8.2.0.alpha1-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-shared/8.1.2/vaadin-shared-8.1.2-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-shared/8.2.0.alpha1/vaadin-shared-8.2.0.alpha1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/com/vaadin/external/gentyref/1.2.0.vaadin1/gentyref-1.2.0.vaadin1.jar" sourcepath="M2_REPO/com/vaadin/external/gentyref/1.2.0.vaadin1/gentyref-1.2.0.vaadin1-sources.jar">
@@ -642,44 +643,44 @@
       <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/external/gentyref/1.2.0.vaadin1/gentyref-1.2.0.vaadin1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-client-compiled/8.1.2/vaadin-client-compiled-8.1.2.jar" sourcepath="M2_REPO/com/vaadin/vaadin-client-compiled/8.1.2/vaadin-client-compiled-8.1.2-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-client-compiled/8.2.0.alpha1/vaadin-client-compiled-8.2.0.alpha1.jar" sourcepath="M2_REPO/com/vaadin/vaadin-client-compiled/8.2.0.alpha1/vaadin-client-compiled-8.2.0.alpha1-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-client-compiled/8.1.2/vaadin-client-compiled-8.1.2-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-client-compiled/8.2.0.alpha1/vaadin-client-compiled-8.2.0.alpha1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-client/8.1.2/vaadin-client-8.1.2.jar" sourcepath="M2_REPO/com/vaadin/vaadin-client/8.1.2/vaadin-client-8.1.2-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-client/8.2.0.alpha1/vaadin-client-8.2.0.alpha1.jar" sourcepath="M2_REPO/com/vaadin/vaadin-client/8.2.0.alpha1/vaadin-client-8.2.0.alpha1-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-client/8.1.2/vaadin-client-8.1.2-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-client/8.2.0.alpha1/vaadin-client-8.2.0.alpha1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-compatibility-server/8.1.2/vaadin-compatibility-server-8.1.2.jar" sourcepath="M2_REPO/com/vaadin/vaadin-compatibility-server/8.1.2/vaadin-compatibility-server-8.1.2-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-compatibility-server/8.2.0.alpha1/vaadin-compatibility-server-8.2.0.alpha1.jar" sourcepath="M2_REPO/com/vaadin/vaadin-compatibility-server/8.2.0.alpha1/vaadin-compatibility-server-8.2.0.alpha1-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-compatibility-server/8.1.2/vaadin-compatibility-server-8.1.2-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-compatibility-server/8.2.0.alpha1/vaadin-compatibility-server-8.2.0.alpha1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-compatibility-shared/8.1.2/vaadin-compatibility-shared-8.1.2.jar" sourcepath="M2_REPO/com/vaadin/vaadin-compatibility-shared/8.1.2/vaadin-compatibility-shared-8.1.2-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-compatibility-shared/8.2.0.alpha1/vaadin-compatibility-shared-8.2.0.alpha1.jar" sourcepath="M2_REPO/com/vaadin/vaadin-compatibility-shared/8.2.0.alpha1/vaadin-compatibility-shared-8.2.0.alpha1-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-compatibility-shared/8.1.2/vaadin-compatibility-shared-8.1.2-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-compatibility-shared/8.2.0.alpha1/vaadin-compatibility-shared-8.2.0.alpha1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-compatibility-client/8.1.2/vaadin-compatibility-client-8.1.2.jar" sourcepath="M2_REPO/com/vaadin/vaadin-compatibility-client/8.1.2/vaadin-compatibility-client-8.1.2-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-compatibility-client/8.2.0.alpha1/vaadin-compatibility-client-8.2.0.alpha1.jar" sourcepath="M2_REPO/com/vaadin/vaadin-compatibility-client/8.2.0.alpha1/vaadin-compatibility-client-8.2.0.alpha1-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-compatibility-client/8.1.2/vaadin-compatibility-client-8.1.2-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-compatibility-client/8.2.0.alpha1/vaadin-compatibility-client-8.2.0.alpha1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-client-compiler/8.1.2/vaadin-client-compiler-8.1.2.jar" sourcepath="M2_REPO/com/vaadin/vaadin-client-compiler/8.1.2/vaadin-client-compiler-8.1.2-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-client-compiler/8.2.0.alpha1/vaadin-client-compiler-8.2.0.alpha1.jar" sourcepath="M2_REPO/com/vaadin/vaadin-client-compiler/8.2.0.alpha1/vaadin-client-compiler-8.2.0.alpha1-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-client-compiler/8.1.2/vaadin-client-compiler-8.1.2-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-client-compiler/8.2.0.alpha1/vaadin-client-compiler-8.2.0.alpha1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/ow2/asm/asm-util/5.2/asm-util-5.2.jar" sourcepath="M2_REPO/org/ow2/asm/asm-util/5.2/asm-util-5.2-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/ow2/asm/asm-util/6.0_BETA/asm-util-6.0_BETA.jar" sourcepath="M2_REPO/org/ow2/asm/asm-util/6.0_BETA/asm-util-6.0_BETA-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/ow2/asm/asm-util/5.2/asm-util-5.2-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/ow2/asm/asm-util/6.0_BETA/asm-util-6.0_BETA-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-push/8.1.2/vaadin-push-8.1.2.jar" sourcepath="M2_REPO/com/vaadin/vaadin-push/8.1.2/vaadin-push-8.1.2-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/com/vaadin/vaadin-push/8.2.0.alpha1/vaadin-push-8.2.0.alpha1.jar" sourcepath="M2_REPO/com/vaadin/vaadin-push/8.2.0.alpha1/vaadin-push-8.2.0.alpha1-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-push/8.1.2/vaadin-push-8.1.2-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/com/vaadin/vaadin-push/8.2.0.alpha1/vaadin-push-8.2.0.alpha1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/com/vaadin/external/atmosphere/atmosphere-runtime/2.4.11.vaadin2/atmosphere-runtime-2.4.11.vaadin2.jar" sourcepath="M2_REPO/com/vaadin/external/atmosphere/atmosphere-runtime/2.4.11.vaadin2/atmosphere-runtime-2.4.11.vaadin2-sources.jar">
@@ -729,9 +730,10 @@
       <attribute value="jar:file:/home/pether/.m2/repository/org/glassfish/web/javax.el/2.2.6/javax.el-2.2.6-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.impl/2017.7.25-SNAPSHOT/service.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.impl/2017.7.25-SNAPSHOT/service.impl-2017.7.25-SNAPSHOT-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.impl/2017.8.28-SNAPSHOT/service.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.impl/2017.8.28-SNAPSHOT/service.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/quartz-scheduler/quartz/2.3.0/quartz-2.3.0.jar" sourcepath="M2_REPO/org/quartz-scheduler/quartz/2.3.0/quartz-2.3.0-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/service.impl/2017.7.25-SNAPSHOT/service.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/quartz-scheduler/quartz/2.3.0/quartz-2.3.0-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/com/warrenstrange/googleauth/1.1.2/googleauth-1.1.2.jar" sourcepath="M2_REPO/com/warrenstrange/googleauth/1.1.2/googleauth-1.1.2-sources.jar">
@@ -876,14 +878,19 @@
       <attribute value="jar:file:/home/pether/.m2/repository/org/markdownj/markdownj-core/0.4/markdownj-core-0.4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/nz/ac/waikato/cms/moa/moa/2016.04/moa-2016.04.jar" sourcepath="M2_REPO/nz/ac/waikato/cms/moa/moa/2016.04/moa-2016.04-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/nz/ac/waikato/cms/moa/moa/2017.06/moa-2017.06.jar" sourcepath="M2_REPO/nz/ac/waikato/cms/moa/moa/2017.06/moa-2017.06-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/nz/ac/waikato/cms/moa/moa/2016.04/moa-2016.04-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/nz/ac/waikato/cms/moa/moa/2017.06/moa-2017.06-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/com/googlecode/sizeofag/sizeofag/1.0.0/sizeofag-1.0.0.jar" sourcepath="M2_REPO/com/googlecode/sizeofag/sizeofag/1.0.0/sizeofag-1.0.0-sources.jar">
     <attributes>
       <attribute value="jar:file:/home/pether/.m2/repository/com/googlecode/sizeofag/sizeofag/1.0.0/sizeofag-1.0.0-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar" sourcepath="M2_REPO/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/hibernate/hibernate-search-orm/5.8.0.CR1/hibernate-search-orm-5.8.0.CR1.jar" sourcepath="M2_REPO/org/hibernate/hibernate-search-orm/5.8.0.CR1/hibernate-search-orm-5.8.0.CR1-sources.jar">
@@ -913,45 +920,21 @@
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-core-asl/1.9.13.redhat-3/jackson-core-asl-1.9.13.redhat-3.jar" sourcepath="M2_REPO/org/codehaus/jackson/jackson-core-asl/1.9.13.redhat-3/jackson-core-asl-1.9.13.redhat-3-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.api/2017.7.25-SNAPSHOT/service.api-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.api/2017.7.25-SNAPSHOT/service.api-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/service.api/2017.7.25-SNAPSHOT/service.api-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.data.api/2017.7.25-SNAPSHOT/service.data.api-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.data.api/2017.7.25-SNAPSHOT/service.data.api-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/service.data.api/2017.7.25-SNAPSHOT/service.data.api-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.internal.application.user.impl/2017.7.25-SNAPSHOT/model.internal.application.user.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.internal.application.user.impl/2017.7.25-SNAPSHOT/model.internal.application.user.impl-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/model.internal.application.user.impl/2017.7.25-SNAPSHOT/model.internal.application.user.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.common.impl/2017.7.25-SNAPSHOT/model.common.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.common.impl/2017.7.25-SNAPSHOT/model.common.impl-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/model.common.impl/2017.7.25-SNAPSHOT/model.common.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.common.api/2017.7.25-SNAPSHOT/model.common.api-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.common.api/2017.7.25-SNAPSHOT/model.common.api-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/model.common.api/2017.7.25-SNAPSHOT/model.common.api-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.api/2017.8.28-SNAPSHOT/service.api-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.api/2017.8.28-SNAPSHOT/service.api-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.data.api/2017.8.28-SNAPSHOT/service.data.api-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.data.api/2017.8.28-SNAPSHOT/service.data.api-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.internal.application.user.impl/2017.8.28-SNAPSHOT/model.internal.application.user.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.internal.application.user.impl/2017.8.28-SNAPSHOT/model.internal.application.user.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.common.impl/2017.8.28-SNAPSHOT/model.common.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.common.impl/2017.8.28-SNAPSHOT/model.common.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.common.api/2017.8.28-SNAPSHOT/model.common.api-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.common.api/2017.8.28-SNAPSHOT/model.common.api-2017.8.28-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar" sourcepath="M2_REPO/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar">
     <attributes>
       <attribute value="jar:file:/home/pether/.m2/repository/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/2.6.0.redhat-6/commons-lang-2.6.0.redhat-6.jar" sourcepath="M2_REPO/commons-lang/commons-lang/2.6.0.redhat-6/commons-lang-2.6.0.redhat-6-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.worldbank.data.impl/2017.7.25-SNAPSHOT/model.external.worldbank.data.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.worldbank.data.impl/2017.7.25-SNAPSHOT/model.external.worldbank.data.impl-2017.7.25-SNAPSHOT-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.worldbank.data.impl/2017.8.28-SNAPSHOT/model.external.worldbank.data.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.worldbank.data.impl/2017.8.28-SNAPSHOT/model.external.worldbank.data.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jvnet/hyperjaxb3/hyperjaxb3-ejb-runtime/0.6.2/hyperjaxb3-ejb-runtime-0.6.2.jar" sourcepath="M2_REPO/org/jvnet/hyperjaxb3/hyperjaxb3-ejb-runtime/0.6.2/hyperjaxb3-ejb-runtime-0.6.2-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/model.external.worldbank.data.impl/2017.7.25-SNAPSHOT/model.external.worldbank.data.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/jvnet/hyperjaxb3/hyperjaxb3-ejb-runtime/0.6.1/hyperjaxb3-ejb-runtime-0.6.1.jar" sourcepath="M2_REPO/org/jvnet/hyperjaxb3/hyperjaxb3-ejb-runtime/0.6.1/hyperjaxb3-ejb-runtime-0.6.1-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/jvnet/hyperjaxb3/hyperjaxb3-ejb-runtime/0.6.1/hyperjaxb3-ejb-runtime-0.6.1-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/jvnet/hyperjaxb3/hyperjaxb3-ejb-runtime/0.6.2/hyperjaxb3-ejb-runtime-0.6.2-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/jvnet/jaxb2_commons/jaxb2-basics-runtime/0.11.1/jaxb2-basics-runtime-0.11.1.jar" sourcepath="M2_REPO/org/jvnet/jaxb2_commons/jaxb2-basics-runtime/0.11.1/jaxb2-basics-runtime-0.11.1-sources.jar">
@@ -959,9 +942,9 @@
       <attribute value="jar:file:/home/pether/.m2/repository/org/jvnet/jaxb2_commons/jaxb2-basics-runtime/0.11.1/jaxb2-basics-runtime-0.11.1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/jvnet/hyperjaxb3/hyperjaxb3-ejb-roundtrip/0.6.1/hyperjaxb3-ejb-roundtrip-0.6.1.jar" sourcepath="M2_REPO/org/jvnet/hyperjaxb3/hyperjaxb3-ejb-roundtrip/0.6.1/hyperjaxb3-ejb-roundtrip-0.6.1-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/jvnet/hyperjaxb3/hyperjaxb3-ejb-roundtrip/0.6.2/hyperjaxb3-ejb-roundtrip-0.6.2.jar" sourcepath="M2_REPO/org/jvnet/hyperjaxb3/hyperjaxb3-ejb-roundtrip/0.6.2/hyperjaxb3-ejb-roundtrip-0.6.2-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/jvnet/hyperjaxb3/hyperjaxb3-ejb-roundtrip/0.6.1/hyperjaxb3-ejb-roundtrip-0.6.1-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/jvnet/hyperjaxb3/hyperjaxb3-ejb-roundtrip/0.6.2/hyperjaxb3-ejb-roundtrip-0.6.2-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/jvnet/jaxb2_commons/jaxb2-basics-testing/0.10.0/jaxb2-basics-testing-0.10.0.jar" sourcepath="M2_REPO/org/jvnet/jaxb2_commons/jaxb2-basics-testing/0.10.0/jaxb2-basics-testing-0.10.0-sources.jar">
@@ -979,77 +962,21 @@
       <attribute value="jar:file:/home/pether/.m2/repository/org/jvnet/jaxb2_commons/jaxb2-basics-tools/0.10.0/jaxb2-basics-tools-0.10.0-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.worldbank.indicators.impl/2017.7.25-SNAPSHOT/model.external.worldbank.indicators.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.worldbank.indicators.impl/2017.7.25-SNAPSHOT/model.external.worldbank.indicators.impl-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/model.external.worldbank.indicators.impl/2017.7.25-SNAPSHOT/model.external.worldbank.indicators.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.worldbank.topic.impl/2017.7.25-SNAPSHOT/model.external.worldbank.topic.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.worldbank.topic.impl/2017.7.25-SNAPSHOT/model.external.worldbank.topic.impl-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/model.external.worldbank.topic.impl/2017.7.25-SNAPSHOT/model.external.worldbank.topic.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.val.partier.impl/2017.7.25-SNAPSHOT/model.external.val.partier.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.val.partier.impl/2017.7.25-SNAPSHOT/model.external.val.partier.impl-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/model.external.val.partier.impl/2017.7.25-SNAPSHOT/model.external.val.partier.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.val.riksdagsvalkrets.impl/2017.7.25-SNAPSHOT/model.external.val.riksdagsvalkrets.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.val.riksdagsvalkrets.impl/2017.7.25-SNAPSHOT/model.external.val.riksdagsvalkrets.impl-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/model.external.val.riksdagsvalkrets.impl/2017.7.25-SNAPSHOT/model.external.val.riksdagsvalkrets.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.val.landstingvalkrets.impl/2017.7.25-SNAPSHOT/model.external.val.landstingvalkrets.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.val.landstingvalkrets.impl/2017.7.25-SNAPSHOT/model.external.val.landstingvalkrets.impl-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/model.external.val.landstingvalkrets.impl/2017.7.25-SNAPSHOT/model.external.val.landstingvalkrets.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.val.kommunvalkrets.impl/2017.7.25-SNAPSHOT/model.external.val.kommunvalkrets.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.val.kommunvalkrets.impl/2017.7.25-SNAPSHOT/model.external.val.kommunvalkrets.impl-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/model.external.val.kommunvalkrets.impl/2017.7.25-SNAPSHOT/model.external.val.kommunvalkrets.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.riksdagen.person.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.person.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.riksdagen.person.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.person.impl-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/model.external.riksdagen.person.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.person.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.riksdagen.personlista.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.personlista.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.riksdagen.personlista.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.personlista.impl-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/model.external.riksdagen.personlista.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.personlista.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.riksdagen.dokumentlista.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.dokumentlista.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.riksdagen.dokumentlista.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.dokumentlista.impl-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/model.external.riksdagen.dokumentlista.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.dokumentlista.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.riksdagen.documentcontent.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.documentcontent.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.riksdagen.documentcontent.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.documentcontent.impl-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/model.external.riksdagen.documentcontent.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.documentcontent.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.riksdagen.dokumentstatus.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.dokumentstatus.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.riksdagen.dokumentstatus.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.dokumentstatus.impl-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/model.external.riksdagen.dokumentstatus.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.dokumentstatus.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.riksdagen.utskottsforslag.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.utskottsforslag.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.riksdagen.utskottsforslag.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.utskottsforslag.impl-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/model.external.riksdagen.utskottsforslag.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.utskottsforslag.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.riksdagen.votering.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.votering.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.riksdagen.votering.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.votering.impl-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/model.external.riksdagen.votering.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.votering.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.riksdagen.voteringlista.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.voteringlista.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.riksdagen.voteringlista.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.voteringlista.impl-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/model.external.riksdagen.voteringlista.impl/2017.7.25-SNAPSHOT/model.external.riksdagen.voteringlista.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/jms-broker/2017.7.25-SNAPSHOT/jms-broker-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/jms-broker/2017.7.25-SNAPSHOT/jms-broker-2017.7.25-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.worldbank.indicators.impl/2017.8.28-SNAPSHOT/model.external.worldbank.indicators.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.worldbank.indicators.impl/2017.8.28-SNAPSHOT/model.external.worldbank.indicators.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.worldbank.topic.impl/2017.8.28-SNAPSHOT/model.external.worldbank.topic.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.worldbank.topic.impl/2017.8.28-SNAPSHOT/model.external.worldbank.topic.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.val.partier.impl/2017.8.28-SNAPSHOT/model.external.val.partier.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.val.partier.impl/2017.8.28-SNAPSHOT/model.external.val.partier.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.val.riksdagsvalkrets.impl/2017.8.28-SNAPSHOT/model.external.val.riksdagsvalkrets.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.val.riksdagsvalkrets.impl/2017.8.28-SNAPSHOT/model.external.val.riksdagsvalkrets.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.val.landstingvalkrets.impl/2017.8.28-SNAPSHOT/model.external.val.landstingvalkrets.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.val.landstingvalkrets.impl/2017.8.28-SNAPSHOT/model.external.val.landstingvalkrets.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.val.kommunvalkrets.impl/2017.8.28-SNAPSHOT/model.external.val.kommunvalkrets.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.val.kommunvalkrets.impl/2017.8.28-SNAPSHOT/model.external.val.kommunvalkrets.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.riksdagen.person.impl/2017.8.28-SNAPSHOT/model.external.riksdagen.person.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.riksdagen.person.impl/2017.8.28-SNAPSHOT/model.external.riksdagen.person.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.riksdagen.personlista.impl/2017.8.28-SNAPSHOT/model.external.riksdagen.personlista.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.riksdagen.personlista.impl/2017.8.28-SNAPSHOT/model.external.riksdagen.personlista.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.riksdagen.dokumentlista.impl/2017.8.28-SNAPSHOT/model.external.riksdagen.dokumentlista.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.riksdagen.dokumentlista.impl/2017.8.28-SNAPSHOT/model.external.riksdagen.dokumentlista.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.riksdagen.documentcontent.impl/2017.8.28-SNAPSHOT/model.external.riksdagen.documentcontent.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.riksdagen.documentcontent.impl/2017.8.28-SNAPSHOT/model.external.riksdagen.documentcontent.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.riksdagen.dokumentstatus.impl/2017.8.28-SNAPSHOT/model.external.riksdagen.dokumentstatus.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.riksdagen.dokumentstatus.impl/2017.8.28-SNAPSHOT/model.external.riksdagen.dokumentstatus.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.riksdagen.utskottsforslag.impl/2017.8.28-SNAPSHOT/model.external.riksdagen.utskottsforslag.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.riksdagen.utskottsforslag.impl/2017.8.28-SNAPSHOT/model.external.riksdagen.utskottsforslag.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.riksdagen.votering.impl/2017.8.28-SNAPSHOT/model.external.riksdagen.votering.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.riksdagen.votering.impl/2017.8.28-SNAPSHOT/model.external.riksdagen.votering.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/model.external.riksdagen.voteringlista.impl/2017.8.28-SNAPSHOT/model.external.riksdagen.voteringlista.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/model.external.riksdagen.voteringlista.impl/2017.8.28-SNAPSHOT/model.external.riksdagen.voteringlista.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/jms-broker/2017.8.28-SNAPSHOT/jms-broker-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/jms-broker/2017.8.28-SNAPSHOT/jms-broker-2017.8.28-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/activemq/activemq-spring/5.15.0/activemq-spring-5.15.0.jar" sourcepath="M2_REPO/org/apache/activemq/activemq-spring/5.15.0/activemq-spring-5.15.0-sources.jar">
     <attributes>
       <attribute value="jar:file:/home/pether/.m2/repository/org/apache/activemq/activemq-spring/5.15.0/activemq-spring-5.15.0-javadoc.jar!/" name="javadoc_location"/>
@@ -1100,9 +1027,9 @@
       <attribute value="jar:file:/home/pether/.m2/repository/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/google/guava/guava/22.0/guava-22.0.jar" sourcepath="M2_REPO/com/google/guava/guava/22.0/guava-22.0-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/com/google/guava/guava/23.0/guava-23.0.jar" sourcepath="M2_REPO/com/google/guava/guava/23.0/guava-23.0-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/google/guava/guava/22.0/guava-22.0-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/com/google/guava/guava/23.0/guava-23.0-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/com/google/errorprone/error_prone_annotations/2.0.18/error_prone_annotations-2.0.18.jar" sourcepath="M2_REPO/com/google/errorprone/error_prone_annotations/2.0.18/error_prone_annotations-2.0.18-sources.jar">
@@ -1177,19 +1104,19 @@
       <attribute value="jar:file:/home/pether/.m2/repository/org/jasypt/jasypt/1.9.3.redhat_3/jasypt-1.9.3.redhat_3-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-jms/5.0.0.RC3/spring-jms-5.0.0.RC3.jar" sourcepath="M2_REPO/org/springframework/spring-jms/5.0.0.RC3/spring-jms-5.0.0.RC3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-jms/5.0.0.RC4/spring-jms-5.0.0.RC4.jar" sourcepath="M2_REPO/org/springframework/spring-jms/5.0.0.RC4/spring-jms-5.0.0.RC4-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-jms/5.0.0.RC3/spring-jms-5.0.0.RC3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-jms/5.0.0.RC4/spring-jms-5.0.0.RC4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-messaging/5.0.0.RC3/spring-messaging-5.0.0.RC3.jar" sourcepath="M2_REPO/org/springframework/spring-messaging/5.0.0.RC3/spring-messaging-5.0.0.RC3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-messaging/5.0.0.RC4/spring-messaging-5.0.0.RC4.jar" sourcepath="M2_REPO/org/springframework/spring-messaging/5.0.0.RC4/spring-messaging-5.0.0.RC4-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-messaging/5.0.0.RC3/spring-messaging-5.0.0.RC3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-messaging/5.0.0.RC4/spring-messaging-5.0.0.RC4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-tx/5.0.0.RC3/spring-tx-5.0.0.RC3.jar" sourcepath="M2_REPO/org/springframework/spring-tx/5.0.0.RC3/spring-tx-5.0.0.RC3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-tx/5.0.0.RC4/spring-tx-5.0.0.RC4.jar" sourcepath="M2_REPO/org/springframework/spring-tx/5.0.0.RC4/spring-tx-5.0.0.RC4-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-tx/5.0.0.RC3/spring-tx-5.0.0.RC3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-tx/5.0.0.RC4/spring-tx-5.0.0.RC4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/apache/xbean/xbean-spring/4.5/xbean-spring-4.5.jar" sourcepath="M2_REPO/org/apache/xbean/xbean-spring/4.5/xbean-spring-4.5-sources.jar">
@@ -1207,41 +1134,25 @@
       <attribute value="jar:file:/home/pether/.m2/repository/commons-net/commons-net/3.6/commons-net-3.6-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.component.agent.impl/2017.7.25-SNAPSHOT/service.component.agent.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.component.agent.impl/2017.7.25-SNAPSHOT/service.component.agent.impl-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/service.component.agent.impl/2017.7.25-SNAPSHOT/service.component.agent.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.component.agent.api/2017.7.25-SNAPSHOT/service.component.agent.api-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.component.agent.api/2017.7.25-SNAPSHOT/service.component.agent.api-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/service.component.agent.api/2017.7.25-SNAPSHOT/service.component.agent.api-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.component.agent.impl/2017.8.28-SNAPSHOT/service.component.agent.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.component.agent.impl/2017.8.28-SNAPSHOT/service.component.agent.impl-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.component.agent.api/2017.8.28-SNAPSHOT/service.component.agent.api-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.component.agent.api/2017.8.28-SNAPSHOT/service.component.agent.api-2017.8.28-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/joda-time/joda-time/2.9.9/joda-time-2.9.9.jar" sourcepath="M2_REPO/joda-time/joda-time/2.9.9/joda-time-2.9.9-sources.jar">
     <attributes>
       <attribute value="jar:file:/home/pether/.m2/repository/joda-time/joda-time/2.9.9/joda-time-2.9.9-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-orm/5.0.0.RC3/spring-orm-5.0.0.RC3.jar" sourcepath="M2_REPO/org/springframework/spring-orm/5.0.0.RC3/spring-orm-5.0.0.RC3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-orm/5.0.0.RC4/spring-orm-5.0.0.RC4.jar" sourcepath="M2_REPO/org/springframework/spring-orm/5.0.0.RC4/spring-orm-5.0.0.RC4-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-orm/5.0.0.RC3/spring-orm-5.0.0.RC3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-orm/5.0.0.RC4/spring-orm-5.0.0.RC4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-jdbc/5.0.0.RC3/spring-jdbc-5.0.0.RC3.jar" sourcepath="M2_REPO/org/springframework/spring-jdbc/5.0.0.RC3/spring-jdbc-5.0.0.RC3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-jdbc/5.0.0.RC4/spring-jdbc-5.0.0.RC4.jar" sourcepath="M2_REPO/org/springframework/spring-jdbc/5.0.0.RC4/spring-jdbc-5.0.0.RC4-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-jdbc/5.0.0.RC3/spring-jdbc-5.0.0.RC3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/spring-jdbc/5.0.0.RC4/spring-jdbc-5.0.0.RC4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.external.riksdagen/2017.7.25-SNAPSHOT/service.external.riksdagen-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.external.riksdagen/2017.7.25-SNAPSHOT/service.external.riksdagen-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/service.external.riksdagen/2017.7.25-SNAPSHOT/service.external.riksdagen-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.external.common/2017.7.25-SNAPSHOT/service.external.common-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.external.common/2017.7.25-SNAPSHOT/service.external.common-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/service.external.common/2017.7.25-SNAPSHOT/service.external.common-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.external.riksdagen/2017.8.28-SNAPSHOT/service.external.riksdagen-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.external.riksdagen/2017.8.28-SNAPSHOT/service.external.riksdagen-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.external.common/2017.8.28-SNAPSHOT/service.external.common-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.external.common/2017.8.28-SNAPSHOT/service.external.common-2017.8.28-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/sun/xml/bind/jaxb-impl/2.2.11/jaxb-impl-2.2.11.jar" sourcepath="M2_REPO/com/sun/xml/bind/jaxb-impl/2.2.11/jaxb-impl-2.2.11-sources.jar">
     <attributes>
       <attribute value="jar:file:/home/pether/.m2/repository/com/sun/xml/bind/jaxb-impl/2.2.11/jaxb-impl-2.2.11-javadoc.jar!/" name="javadoc_location"/>
@@ -1267,31 +1178,15 @@
       <attribute value="jar:file:/home/pether/.m2/repository/org/jdom/jdom2/2.0.6/jdom2-2.0.6-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.external.esv/2017.7.25-SNAPSHOT/service.external.esv-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.external.esv/2017.7.25-SNAPSHOT/service.external.esv-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/service.external.esv/2017.7.25-SNAPSHOT/service.external.esv-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.external.esv/2017.8.28-SNAPSHOT/service.external.esv-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.external.esv/2017.8.28-SNAPSHOT/service.external.esv-2017.8.28-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/poi/poi-scratchpad/3.17/poi-scratchpad-3.17.jar" sourcepath="M2_REPO/org/apache/poi/poi-scratchpad/3.17/poi-scratchpad-3.17-sources.jar">
     <attributes>
       <attribute value="jar:file:/home/pether/.m2/repository/org/apache/poi/poi-scratchpad/3.17/poi-scratchpad-3.17-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.external.worldbank/2017.7.25-SNAPSHOT/service.external.worldbank-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.external.worldbank/2017.7.25-SNAPSHOT/service.external.worldbank-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/service.external.worldbank/2017.7.25-SNAPSHOT/service.external.worldbank-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.external.val/2017.7.25-SNAPSHOT/service.external.val-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.external.val/2017.7.25-SNAPSHOT/service.external.val-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/service.external.val/2017.7.25-SNAPSHOT/service.external.val-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.data.impl/2017.7.25-SNAPSHOT/service.data.impl-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.data.impl/2017.7.25-SNAPSHOT/service.data.impl-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/service.data.impl/2017.7.25-SNAPSHOT/service.data.impl-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.external.worldbank/2017.8.28-SNAPSHOT/service.external.worldbank-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.external.worldbank/2017.8.28-SNAPSHOT/service.external.worldbank-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.external.val/2017.8.28-SNAPSHOT/service.external.val-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.external.val/2017.8.28-SNAPSHOT/service.external.val-2017.8.28-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/service.data.impl/2017.8.28-SNAPSHOT/service.data.impl-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/service.data.impl/2017.8.28-SNAPSHOT/service.data.impl-2017.8.28-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/hibernate/hibernate-search-elasticsearch/5.8.0.CR1/hibernate-search-elasticsearch-5.8.0.CR1.jar" sourcepath="M2_REPO/org/hibernate/hibernate-search-elasticsearch/5.8.0.CR1/hibernate-search-elasticsearch-5.8.0.CR1-sources.jar">
     <attributes>
       <attribute value="jar:file:/home/pether/.m2/repository/org/hibernate/hibernate-search-elasticsearch/5.8.0.CR1/hibernate-search-elasticsearch-5.8.0.CR1-javadoc.jar!/" name="javadoc_location"/>
@@ -1349,19 +1244,19 @@
       <attribute value="jar:file:/home/pether/.m2/repository/net/sf/ehcache/ehcache/2.10.4.1.4/ehcache-2.10.4.1.4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/ehcache/ehcache/3.3.1/ehcache-3.3.1.jar" sourcepath="M2_REPO/org/ehcache/ehcache/3.3.1/ehcache-3.3.1-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/ehcache/ehcache/3.4.0/ehcache-3.4.0.jar" sourcepath="M2_REPO/org/ehcache/ehcache/3.4.0/ehcache-3.4.0-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/ehcache/ehcache/3.3.1/ehcache-3.3.1-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/ehcache/ehcache/3.4.0/ehcache-3.4.0-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/ehcache/ehcache-transactions/3.3.1/ehcache-transactions-3.3.1.jar" sourcepath="M2_REPO/org/ehcache/ehcache-transactions/3.3.1/ehcache-transactions-3.3.1-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/ehcache/ehcache-transactions/3.4.0/ehcache-transactions-3.4.0.jar" sourcepath="M2_REPO/org/ehcache/ehcache-transactions/3.4.0/ehcache-transactions-3.4.0-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/ehcache/ehcache-transactions/3.3.1/ehcache-transactions-3.3.1-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/ehcache/ehcache-transactions/3.4.0/ehcache-transactions-3.4.0-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/ehcache/ehcache-clustered/3.3.1/ehcache-clustered-3.3.1.jar" sourcepath="M2_REPO/org/ehcache/ehcache-clustered/3.3.1/ehcache-clustered-3.3.1-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/ehcache/ehcache-clustered/3.4.0/ehcache-clustered-3.4.0.jar" sourcepath="M2_REPO/org/ehcache/ehcache-clustered/3.4.0/ehcache-clustered-3.4.0-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/org/ehcache/ehcache-clustered/3.3.1/ehcache-clustered-3.3.1-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/org/ehcache/ehcache-clustered/3.4.0/ehcache-clustered-3.4.0-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/hibernate/hibernate-jcache/5.2.10.Final/hibernate-jcache-5.2.10.Final.jar" sourcepath="M2_REPO/org/hibernate/hibernate-jcache/5.2.10.Final/hibernate-jcache-5.2.10.Final-sources.jar"/>
@@ -1375,9 +1270,9 @@
   <classpathentry kind="var" path="M2_REPO/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar" sourcepath="M2_REPO/dom4j/dom4j/1.6.1/dom4j-1.6.1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/hibernate/hibernate-java8/5.2.10.Final/hibernate-java8-5.2.10.Final.jar" sourcepath="M2_REPO/org/hibernate/hibernate-java8/5.2.10.Final/hibernate-java8-5.2.10.Final-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/hibernate/hibernate-ehcache/5.2.10.Final/hibernate-ehcache-5.2.10.Final.jar" sourcepath="M2_REPO/org/hibernate/hibernate-ehcache/5.2.10.Final/hibernate-ehcache-5.2.10.Final-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/fasterxml/classmate/1.3.3/classmate-1.3.3.jar" sourcepath="M2_REPO/com/fasterxml/classmate/1.3.3/classmate-1.3.3-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/com/fasterxml/classmate/1.3.4/classmate-1.3.4.jar" sourcepath="M2_REPO/com/fasterxml/classmate/1.3.4/classmate-1.3.4-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/fasterxml/classmate/1.3.3/classmate-1.3.3-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/com/fasterxml/classmate/1.3.4/classmate-1.3.4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/jboss/jandex/2.0.3.Final/jandex-2.0.3.Final.jar" sourcepath="M2_REPO/org/jboss/jandex/2.0.3.Final/jandex-2.0.3.Final-sources.jar"/>
@@ -1418,11 +1313,7 @@
       <attribute value="jar:file:/home/pether/.m2/repository/org/springframework/security/spring-security-core/5.0.0.M3/spring-security-core-5.0.0.M3-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/encrypt.properties/2017.7.25-SNAPSHOT/encrypt.properties-2017.7.25-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/encrypt.properties/2017.7.25-SNAPSHOT/encrypt.properties-2017.7.25-SNAPSHOT-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/hack23/cia/encrypt.properties/2017.7.25-SNAPSHOT/encrypt.properties-2017.7.25-SNAPSHOT-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/com/hack23/cia/encrypt.properties/2017.8.28-SNAPSHOT/encrypt.properties-2017.8.28-SNAPSHOT.jar" sourcepath="M2_REPO/com/hack23/cia/encrypt.properties/2017.8.28-SNAPSHOT/encrypt.properties-2017.8.28-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/bouncycastle/bcpkix-jdk15on/1.58/bcpkix-jdk15on-1.58.jar" sourcepath="M2_REPO/org/bouncycastle/bcpkix-jdk15on/1.58/bcpkix-jdk15on-1.58-sources.jar">
     <attributes>
       <attribute value="jar:file:/home/pether/.m2/repository/org/bouncycastle/bcpkix-jdk15on/1.58/bcpkix-jdk15on-1.58-javadoc.jar!/" name="javadoc_location"/>

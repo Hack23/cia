@@ -34,47 +34,7 @@
   <dependencies>
     <dependency>
       <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-search-orm</artifactId>
-      <version>5.8.0.CR1</version>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>hibernate-entitymanager</artifactId>
-          <groupId>org.hibernate</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>hibernate-core</artifactId>
-          <groupId>org.hibernate</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>lucene-backward-codecs</artifactId>
-          <groupId>org.apache.lucene</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>lucene-misc</artifactId>
-          <groupId>org.apache.lucene</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>lucene-facet</artifactId>
-          <groupId>org.apache.lucene</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>lucene-core</artifactId>
-          <groupId>org.apache.lucene</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>lucene-analyzers-common</artifactId>
-          <groupId>org.apache.lucene</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>jackson-core</artifactId>
-          <groupId>com.fasterxml.jackson.core</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-search-elasticsearch</artifactId>
+      <artifactId>hibernate-search-all</artifactId>
       <version>5.8.0.CR1</version>
       <exclusions>
         <exclusion>
@@ -215,6 +175,12 @@
       <groupId>com.hack23.cia</groupId>
       <artifactId>testfoundation</artifactId>
       <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>httpcore</artifactId>
+          <groupId>org.apache.httpcomponents</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.hack23.cia</groupId>

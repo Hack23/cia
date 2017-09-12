@@ -1,6 +1,11 @@
 module com.hack23.cia.service.api {
 
 	exports com.hack23.cia.service.api;
+	exports com.hack23.cia.service.api.action.admin;
+	exports com.hack23.cia.service.api.action.application;
+	exports com.hack23.cia.service.api.action.common;
+	exports com.hack23.cia.service.api.action.user;
+
 
 	requires org.apache.commons.lang3;
 

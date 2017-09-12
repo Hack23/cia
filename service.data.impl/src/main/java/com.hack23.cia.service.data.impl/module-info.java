@@ -14,7 +14,6 @@ module com.hack23.cia.service.data.impl {
 	requires hibernate.jpa;
 	requires hibernate.core;
 
-	//requires hibernate.search.engine;
 	requires hibernate.search.all;
 
 	requires liquibase.core;
