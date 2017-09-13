@@ -134,7 +134,7 @@
     <cia.project.versions.ant>1.10.1</cia.project.versions.ant>
     <cia.project.versions.junit>4.12</cia.project.versions.junit>
     <cia.project.versions.junit.dep>4.11</cia.project.versions.junit.dep>
-    <cia.project.versions.easymock>3.4</cia.project.versions.easymock>
+    <cia.project.versions.easymock>3.5</cia.project.versions.easymock>
     <cia.project.versions.dbunit>2.5.4</cia.project.versions.dbunit>
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
     <cia.project.versions.xmlbeans>2.6.0</cia.project.versions.xmlbeans>
@@ -1911,8 +1911,8 @@
                 <include>*:*</include>
               </includes>
               <excludes>
-              	<exclude>com.thoughtworks.xstream:xstream</exclude>
-              	<exclude>org.codehaus.jackson:jackson-core-asl</exclude>
+                <exclude>com.thoughtworks.xstream:xstream</exclude>
+                <exclude>org.codehaus.jackson:jackson-core-asl</exclude>
                 <exclude>com.sun.xml.bind:*</exclude>
                 <exclude>javax.xml.bind:*</exclude>
                 <exclude>commons-collections:commons-collections</exclude>
