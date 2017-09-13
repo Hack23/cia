@@ -351,7 +351,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jcache</artifactId>
-      <version>5.2.10.Final</version>
+      <version>5.2.11.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-core</artifactId>
