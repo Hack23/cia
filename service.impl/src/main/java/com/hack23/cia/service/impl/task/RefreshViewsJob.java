@@ -37,7 +37,7 @@ public final class RefreshViewsJob extends QuartzJobBean implements Serializable
 
 	@Override
 	protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
-		JobContextHolder.getViewDataManager().refreshViews();
+		JobContextHolder.refreshViews();
 	}
 
 }

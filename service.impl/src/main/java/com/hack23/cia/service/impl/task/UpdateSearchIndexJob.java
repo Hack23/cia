@@ -38,7 +38,7 @@ public final class UpdateSearchIndexJob extends QuartzJobBean implements Seriali
 	@Override
 	protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
 		try {
-			JobContextHolder.getSearchIndexer().updateSearchIndex();
+			JobContextHolder.updateSearchIndex();
 		} catch (InterruptedException e) {
 		    Thread.currentThread().interrupt();
 		    throw new JobExecutionException(e);

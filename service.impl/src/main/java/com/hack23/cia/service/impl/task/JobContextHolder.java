@@ -19,6 +19,8 @@
 package com.hack23.cia.service.impl.task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.service.component.agent.api.DataAgentApi;
 import com.hack23.cia.service.data.api.SearchIndexer;
@@ -28,6 +30,7 @@ import com.hack23.cia.service.data.api.ViewDataManager;
  * The Class JobContextHolder.
  */
 @Service("JobContextHolder")
+@Transactional(propagation = Propagation.REQUIRED,timeout=1200)
 public final class JobContextHolder {
 
 	/** The data agent api. */
@@ -61,9 +64,10 @@ public final class JobContextHolder {
 	 * Gets the search indexer.
 	 *
 	 * @return the search indexer
+	 * @throws InterruptedException
 	 */
-	public static SearchIndexer getSearchIndexer() {
-		return searchIndexer;
+	public static void updateSearchIndex() throws InterruptedException {
+		searchIndexer.updateSearchIndex();
 	}
 
 	/**
@@ -71,8 +75,8 @@ public final class JobContextHolder {
 	 *
 	 * @return the view data manager
 	 */
-	public static ViewDataManager getViewDataManager() {
-		return viewDataManager;
+	public static void refreshViews() {
+		viewDataManager.refreshViews();
 	}
 
 }
