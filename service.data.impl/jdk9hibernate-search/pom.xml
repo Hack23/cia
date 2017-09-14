@@ -4,7 +4,7 @@
 
 	<groupId>org.hibernate</groupId>
 	<artifactId>hibernate-search-all</artifactId>
-	<version>5.8.0.CR1</version>
+	<version>5.8.0.Final</version>
 	<packaging>jar</packaging>
 	<name>hibernate-search-all</name>
 
@@ -51,7 +51,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-search-orm</artifactId>
-			<version>5.8.0.CR1</version>
+			<version>5.8.0.Final</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>hibernate-entitymanager</artifactId>
@@ -90,7 +90,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-search-elasticsearch</artifactId>
-			<version>5.8.0.CR1</version>
+			<version>5.8.0.Final</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>hibernate-entitymanager</artifactId>
