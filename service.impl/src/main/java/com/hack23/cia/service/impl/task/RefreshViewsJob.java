@@ -18,16 +18,13 @@
 */
 package com.hack23.cia.service.impl.task;
 
-import java.io.Serializable;
-
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import org.springframework.scheduling.quartz.QuartzJobBean;
 
 /**
  * The Class AgentJob.
  */
-public final class RefreshViewsJob extends QuartzJobBean implements Serializable {
+public final class RefreshViewsJob extends AbstractJob {
 
 
 	/**
@@ -36,8 +33,8 @@ public final class RefreshViewsJob extends QuartzJobBean implements Serializable
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
-		JobContextHolder.refreshViews();
+	protected void executeInternal(final JobExecutionContext jobContext) throws JobExecutionException {
+		getJobContextHolder(jobContext).refreshViews();
 	}
 
 }

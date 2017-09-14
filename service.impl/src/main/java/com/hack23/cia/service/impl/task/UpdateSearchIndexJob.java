@@ -18,16 +18,13 @@
 */
 package com.hack23.cia.service.impl.task;
 
-import java.io.Serializable;
-
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import org.springframework.scheduling.quartz.QuartzJobBean;
 
 /**
  * The Class AgentJob.
  */
-public final class UpdateSearchIndexJob extends QuartzJobBean implements Serializable {
+public final class UpdateSearchIndexJob extends AbstractJob {
 
 
 	/**
@@ -36,10 +33,10 @@ public final class UpdateSearchIndexJob extends QuartzJobBean implements Seriali
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
+	protected void executeInternal(final JobExecutionContext jobContext) throws JobExecutionException {
 		try {
-			JobContextHolder.updateSearchIndex();
-		} catch (InterruptedException e) {
+			getJobContextHolder(jobContext).updateSearchIndex();
+		} catch (final InterruptedException e) {
 		    Thread.currentThread().interrupt();
 		    throw new JobExecutionException(e);
 		}

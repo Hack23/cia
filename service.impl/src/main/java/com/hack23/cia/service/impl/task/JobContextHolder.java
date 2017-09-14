@@ -17,66 +17,32 @@
  *  $HeadURL$
 */
 package com.hack23.cia.service.impl.task;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.service.component.agent.api.DataAgentApi;
-import com.hack23.cia.service.data.api.SearchIndexer;
-import com.hack23.cia.service.data.api.ViewDataManager;
 
 /**
- * The Class JobContextHolder.
+ * The Interface JobContextHolder.
  */
-@Service("JobContextHolder")
-@Transactional(propagation = Propagation.REQUIRED,timeout=1200)
-public final class JobContextHolder {
-
-	/** The data agent api. */
-	private static DataAgentApi dataAgentApi;
-
-	/** The search indexer. */
-	private static SearchIndexer searchIndexer;
-
-	/** The view data manager. */
-	private static ViewDataManager viewDataManager;
-
-	@Autowired
-	public JobContextHolder(final DataAgentApi dataAgentApi,final SearchIndexer searchIndexer, final ViewDataManager viewDataManager) {
-		super();
-		JobContextHolder.dataAgentApi = dataAgentApi;
-		JobContextHolder.searchIndexer = searchIndexer;
-		JobContextHolder.viewDataManager = viewDataManager;
-	}
-
+public interface JobContextHolder {
 
 	/**
 	 * Gets the data agent api.
 	 *
 	 * @return the data agent api
 	 */
-	public static DataAgentApi getDataAgentApi() {
-		return dataAgentApi;
-	}
+	DataAgentApi getDataAgentApi();
 
 	/**
-	 * Gets the search indexer.
+	 * Update search index.
 	 *
-	 * @return the search indexer
 	 * @throws InterruptedException
+	 *             the interrupted exception
 	 */
-	public static void updateSearchIndex() throws InterruptedException {
-		searchIndexer.updateSearchIndex();
-	}
+	void updateSearchIndex() throws InterruptedException;
 
 	/**
-	 * Gets the view data manager.
-	 *
-	 * @return the view data manager
+	 * Refresh views.
 	 */
-	public static void refreshViews() {
-		viewDataManager.refreshViews();
-	}
+	void refreshViews();
 
 }
