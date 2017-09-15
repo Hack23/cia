@@ -4,7 +4,7 @@
   <parent>
     <artifactId>parent-web-pom</artifactId>
     <groupId>com.hack23.cia</groupId>
-    <version>2017.8.28-SNAPSHOT</version>
+    <version>2017.9.16-SNAPSHOT</version>
     <relativePath>../parent-web-pom/pom.xml</relativePath>
   </parent>
   <artifactId>web-widgets</artifactId>
@@ -412,7 +412,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore />
                   </action>
                 </pluginExecution>
               </pluginExecutions>
@@ -502,7 +502,7 @@
               <goal>compile-theme</goal>
               <goal>compile</goal>
             </goals>
-            <configuration></configuration>
+            <configuration />
           </execution>
         </executions>
         <configuration>

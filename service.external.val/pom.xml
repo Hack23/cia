@@ -4,7 +4,7 @@
   <parent>
     <artifactId>parent-service-pom</artifactId>
     <groupId>com.hack23.cia</groupId>
-    <version>2017.8.28-SNAPSHOT</version>
+    <version>2017.9.16-SNAPSHOT</version>
     <relativePath>../parent-service-pom/pom.xml</relativePath>
   </parent>
   <artifactId>service.external.val</artifactId>
@@ -101,5 +101,5 @@
       </plugin>
     </plugins>
   </build>
-  <reporting></reporting>
+  <reporting />
 </project>
