@@ -16,7 +16,7 @@ Requirements
 
  To build and run the Citizen Intelligence Agency you need to install the following software.
 
- * Compiler & Runtime : JDK 8 (1.8)  {{{http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html}download}}.
+ * Compiler & Runtime : JDK 8 (1.8) & JDK 9 (9)  {{{http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html}download}}.
 
  * Database : PostgreSQL 9.6.x {{{http://www.postgresql.org/}download}}
 
@@ -52,6 +52,8 @@ Build the application & run test
 
  Now everything should be ready for you to build the application,
  execute the following commands to build & run
+
+ Install toolchain JDK8/JDK9 and install following in .m2 {{{https://github.com/Hack23/cia/blob/master/parent-pom/toolchain/toolchains.xml}https://github.com/Hack23/cia/blob/master/parent-pom/toolchain/toolchains.xml}}
 
  $ cd cia/citizen-intelligence-agency
 
