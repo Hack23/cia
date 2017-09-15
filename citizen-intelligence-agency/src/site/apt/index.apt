@@ -4,7 +4,7 @@
 Citizen Intelligence Agency
 
  Tracking politicians like bugs. Citizen Intelligence Agency is independent and non-partisan voluntary project.
- 
+
 
 Goal
 
@@ -17,7 +17,7 @@ Demo
 
  Using open data from  {{{http://data.riksdagen.se/}http://data.riksdagen.se/}} , {{{http://www.val.se/}http://www.val.se/}} and {{{http://data.worldbank.org/}http://data.worldbank.org/}}.
 
- Currently the application displays data, metadata and charts for data related to Swedish parliament and government. Covering parliament members, committees, documents, ballots, decisions, ministries, 
+ Currently the application displays data, metadata and charts for data related to Swedish parliament and government. Covering parliament members, committees, documents, ballots, decisions, ministries,
  government members and political parties.
 
  Limited functionality proper navigation, descriptions,content, ui and styling are still not in place.
@@ -35,9 +35,9 @@ Resources
  * Github source code location {{{https://github.com/Hack23/cia}https://github.com/Hack23/cia}}
 
  * Build server, jenkins: {{{https://www.hack23.com/jenkins/}https://www.hack23.com/jenkins/}}
- 
+
  * QA report, sonarqube: {{{https://www.hack23.com/sonar/}https://www.hack23.com/sonar/}}
- 
+
  * Repository manager, nexus: {{{https://www.hack23.com/nexus/}https://www.hack23.com/nexus/}}
 
  * Ohloh Project Summary {{{http://www.ohloh.net/p/citizenIntelligenceagency}Ohloh}}.
@@ -73,7 +73,7 @@ Installing Debian/Ubuntu package
 
  $ sudo add-apt-repository ppa:webupd8team/java
  $ sudo apt-get update
- $ sudo apt-get install oracle-java8-installer oracle-java8-unlimited-jce-policy
+ $ sudo apt-get install oracle-java9-installer oracle-java8-installer oracle-java8-unlimited-jce-policy
 
  3. Create empty database
 
@@ -104,11 +104,11 @@ Installing Debian/Ubuntu package
 
  7. Get cia debian package and
 
- $ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2017.8.27/cia-dist-deb-2017.8.27.deb
+ $ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2017.9.15/cia-dist-deb-2017.9.15.deb
 
  8. Install debian package
 
- $ sudo dpkg -i cia-dist-deb-2017.8.27.deb
+ $ sudo dpkg -i cia-dist-deb-2017.9.15.deb
 
 
  9. Access the server at {{{http://localhost:2323/cia/}http://localhost:2323/cia/}}
