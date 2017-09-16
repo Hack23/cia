@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.service.data.impl;
 
+import java.util.List;
+
 import org.databene.contiperf.PerfTest;
 import org.databene.contiperf.Required;
 import org.databene.contiperf.junit.ContiPerfRule;
@@ -38,7 +40,7 @@ public final class DocumentElementDAOITest extends AbstractServiceDataFunctional
 	@Rule
 	public ContiPerfRule i = new ContiPerfRule();
 
-	/** The document element dao. */
+	/** The document element DAO. */
 	@Autowired
 	private DocumentElementDAO documentElementDAO;
 
@@ -61,9 +63,54 @@ public final class DocumentElementDAOITest extends AbstractServiceDataFunctional
 	 */
 	@Test
 	public void testGetSize() throws Exception {
-
 		assertTrue("Expect some documents in database",documentElementDAO.getSize() >= 0);
 	}
 
+
+	/**
+	 * Check document element test.
+	 */
+	@Test
+	public void checkDocumentElementTest() {
+		assertFalse(documentElementDAO.checkDocumentElement("InvalidId"));
+		assertTrue(documentElementDAO.checkDocumentElement("H501UbU4"));
+
+	}
+
+	/**
+	 * Gets the avaible document content test.
+	 *
+	 * @return the avaible document content test
+	 */
+	@Test
+	public void getAvaibleDocumentContentTest() {
+		List<String> avaibleDocumentContent = documentElementDAO.getAvaibleDocumentContent();
+		assertNotNull(avaibleDocumentContent);
+		assertFalse(avaibleDocumentContent.isEmpty());
+	}
+
+	/**
+	 * Gets the avaible document status test.
+	 *
+	 * @return the avaible document status test
+	 */
+	@Test
+	public void getAvaibleDocumentStatusTest() {
+		List<String> avaibleDocumentStatus = documentElementDAO.getAvaibleDocumentStatus();
+		assertNotNull(avaibleDocumentStatus);
+		assertFalse(avaibleDocumentStatus.isEmpty());
+	}
+
+	/**
+	 * Gets the id list test.
+	 *
+	 * @return the id list test
+	 */
+	@Test
+	public void getIdListTest() {
+		List<String> idList = documentElementDAO.getIdList();
+		assertNotNull(idList);
+		assertFalse(idList.isEmpty());
+	}
 
 }
