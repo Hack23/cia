@@ -23,54 +23,48 @@ import java.util.List;
 import org.databene.contiperf.PerfTest;
 import org.databene.contiperf.Required;
 import org.databene.contiperf.junit.ContiPerfRule;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId;
-import com.hack23.cia.service.data.api.VoteDataDAO;
+import com.hack23.cia.service.data.api.DocumentStatusContainerDAO;
 
 /**
- * The Class VoteDataDAOITest.
+ * The Class DocumentStatusContainerDAOITest.
  */
 @PerfTest(threads = 1, duration = 3000, warmUp = 1500)
 @Required(max = 1200,average = 600,percentile95=700,throughput=2)
-public final class VoteDataDAOITest extends AbstractServiceDataFunctionalIntegrationTest {
+public final class DocumentStatusContainerDAOITest extends AbstractServiceDataFunctionalIntegrationTest {
 
 	/** The i. */
 	@Rule
 	public ContiPerfRule i = new ContiPerfRule();
 
-	/** The vote data DAO. */
+	/** The document status container DAO. */
 	@Autowired
-	private VoteDataDAO voteDataDAO;
-
-	/**
-	 * Test get size.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public void testGetSize() throws Exception {
-		assertTrue("Expect some votes in database",voteDataDAO.getSize() >= 0);
-	}
+	private DocumentStatusContainerDAO documentStatusContainerDAO;
 
 
 	/**
-	 * Gets the ballot id list test.
-	 *
-	 * @return the ballot id list test
+	 * Check exist by document id test.
 	 */
 	@Test
-	@PerfTest(threads = 1, duration = 20000)
-	@Required(max = 20000,average = 15000,percentile95=18000)
-	public void getBallotIdListTest() {
-		List<VoteDataEmbeddedId> ballotIdList = voteDataDAO.getBallotIdList();
-		assertNotNull(ballotIdList);
-		assertFalse(ballotIdList.isEmpty());
+	public void checkExistByDocumentIdTest() {
+		assertEquals(1,documentStatusContainerDAO.checkExistByDocumentId("H501UbU4"));
 	}
+
+	/**
+	 * Gets the avaible committee proposal test.
+	 *
+	 * @return the avaible committee proposal test
+	 */
+	@Test
+	public void getAvaibleCommitteeProposalTest() {
+		List<String> idList = documentStatusContainerDAO.getAvaibleCommitteeProposal();
+		assertNotNull(idList);
+		assertFalse(idList.isEmpty());
+	}
+
 
 	/**
 	 * Gets the id list test.
@@ -78,13 +72,10 @@ public final class VoteDataDAOITest extends AbstractServiceDataFunctionalIntegra
 	 * @return the id list test
 	 */
 	@Test
-	@PerfTest(threads = 1, duration = 20000)
-	@Required(max = 20000,average = 15000,percentile95=18000)
-	@Ignore
 	public void getIdListTest() {
-		List<VoteDataEmbeddedId> ballotIdList = voteDataDAO.getIdList();
-		assertNotNull(ballotIdList);
-		assertFalse(ballotIdList.isEmpty());
+		List<String> idList = documentStatusContainerDAO.getIdList();
+		assertNotNull(idList);
+		assertFalse(idList.isEmpty());
 	}
 
 }
