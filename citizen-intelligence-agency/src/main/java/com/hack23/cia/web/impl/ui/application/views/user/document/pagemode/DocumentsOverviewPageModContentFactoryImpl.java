@@ -53,7 +53,7 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
+		getPageId(parameters);
 		return NAME.equals(page);
 	}
 

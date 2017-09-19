@@ -817,7 +817,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	}
 
 	private String generatePassword() {
-		List<CharacterRule> rules = Arrays.asList(
+		final List<CharacterRule> rules = Arrays.asList(
 				new CharacterRule(EnglishCharacterData.UpperCase, 1),
 
 				new CharacterRule(EnglishCharacterData.LowerCase, 1),
@@ -826,7 +826,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 				new CharacterRule(EnglishCharacterData.Special, 1));
 
-		PasswordGenerator generator = new PasswordGenerator();
+		final PasswordGenerator generator = new PasswordGenerator();
 
 		// Generated password is 12 characters long, which complies with policy
 		return generator.generatePassword(12, rules);

@@ -18,8 +18,10 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.DocumentMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
@@ -37,6 +39,23 @@ import com.vaadin.v7.ui.VerticalLayout;
 @Service
 public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements DocumentMenuItemFactory {
 
+	/** The Constant DOCUMENTS. */
+	private static final String DOCUMENTS = "Documents";
+
+	/** The Constant DOCUMENT_DETAILS. */
+	private static final String DOCUMENT_DETAILS = "Document details";
+
+	/** The Constant COMPLETE_DOCUMENT_AS_TEXT. */
+	private static final String COMPLETE_DOCUMENT_AS_TEXT = "Complete document as text";
+
+	/** The Constant DOCUMENT_DECISIONS. */
+	private static final String DOCUMENT_DECISIONS = "Document decisions";
+
+	/** The Constant ATTACHEMENTS. */
+	private static final String ATTACHEMENTS = "Attachements";
+
+	/** The Constant DOCUMENT_ACTIVITIES. */
+	private static final String DOCUMENT_ACTIVITIES = "Document activities";
 
 	/** The Constant DOCUMENT_ATTACHEMENTS. */
 	private static final String DOCUMENT_ATTACHEMENTS = "Document Attachements";
@@ -46,10 +65,6 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 	/** The Constant DOCUMENT. */
 	private static final String DOCUMENT = "Document";
-
-
-	/** The Constant DOCUMENT_DETAILS. */
-	private static final String DOCUMENT_DETAILS = "Document details";
 
 	/** The Constant PERSON_REFERENCES. */
 	private static final String PERSON_REFERENCES = "Person references";
@@ -76,6 +91,9 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	/** The Constant COMMAND_DOCUMENTS. */
 	private static final PageModeMenuCommand COMMAND_DOCUMENTS = new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW);
 
+	/** The application menu item factory. */
+	@Autowired
+	private ApplicationMenuItemFactory applicationMenuItemFactory;
 
 	/**
 	 * Instantiates a new document menu item factory impl.
@@ -87,7 +105,7 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 	@Override
 	public void createDocumentMenuBar(final MenuBar menuBar, final String pageId) {
-			initApplicationMenuBar(menuBar);
+			createDocumentsMenuBar(menuBar);
 
 			final MenuItem documentItem = menuBar.addItem(DOCUMENT, FontAwesome.FILE, null);
 
@@ -116,7 +134,7 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 					DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId));
 
 
-			menuBar.addItem(PAGE_VISIT_HISTORY_TEXT, null,
+			documentItem.addItem(PAGE_VISIT_HISTORY_TEXT, null,
 					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
 
 	}
@@ -127,36 +145,34 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
 		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId), "Document activities");
+				DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId), DOCUMENT_ACTIVITIES);
 
 		createButtonLink(grid,PERSON_REFERENCES, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.PERSONREFERENCES.toString(), pageId), "Person references");
+				DocumentPageMode.PERSONREFERENCES.toString(), pageId), PERSON_REFERENCES);
 
 		createButtonLink(grid,DOCUMENT_DETAILS, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTDETAILS.toString(), pageId), "Document details");
+				DocumentPageMode.DOCUMENTDETAILS.toString(), pageId), DOCUMENT_DETAILS);
 
 		createButtonLink(grid,DOCUMENT_DATA, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTDATA.toString(), pageId), "Complete document as text");
+				DocumentPageMode.DOCUMENTDATA.toString(), pageId), COMPLETE_DOCUMENT_AS_TEXT);
 
 		createButtonLink(grid,DOCUMENT_REFERENCES, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId), "Document references");
+				DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId), DOCUMENT_REFERENCES);
 
 		createButtonLink(grid,DOCUMENT_DECISION, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTDECISION.toString(), pageId), "Document decisions");
+				DocumentPageMode.DOCUMENTDECISION.toString(), pageId), DOCUMENT_DECISIONS);
 
 		createButtonLink(grid,DOCUMENT_ATTACHEMENTS, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId), "Attachements");
-
-
-
+				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId), ATTACHEMENTS);
 	}
 
 
 	@Override
-	public void createDocumentsMenuBar(MenuBar menuBar) {
+	public void createDocumentsMenuBar(final MenuBar menuBar) {
 		initApplicationMenuBar(menuBar);
 
-		final MenuItem documentsItem = menuBar.addItem("Documents", FontAwesome.FILE, null);
+		applicationMenuItemFactory.addRankingMenu(menuBar);
+		final MenuItem documentsItem = menuBar.addItem(DOCUMENTS, FontAwesome.FILE, null);
 		documentsItem.addItem("List all",FontAwesome.GROUP, COMMAND_DOCUMENTS);
 		documentsItem.addItem("Search Documents",FontAwesome.GROUP, COMMAND_SEARCH_DOCUMENT);
 

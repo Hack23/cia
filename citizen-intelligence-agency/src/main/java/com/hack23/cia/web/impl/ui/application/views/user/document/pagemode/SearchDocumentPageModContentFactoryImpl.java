@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -27,6 +28,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.action.user.SearchDocumentRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.DocumentMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -51,6 +53,9 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractPageM
 	/** The Constant MAX_RESULT_SIZE. */
 	private static final int MAX_RESULT_SIZE = 100;
 
+	@Autowired
+	private DocumentMenuItemFactory documentMenuItemFactory;
+
 	/**
 	 * Instantiates a new search document page mod content factory impl.
 	 */
@@ -70,7 +75,8 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractPageM
 
 		final String pageId = getPageId(parameters);
 
-		getMenuItemFactory().createMainPageMenuBar(menuBar);
+		documentMenuItemFactory.createDocumentsMenuBar(menuBar);
+
 
 		final VerticalLayout searchLayout = new VerticalLayout();
 		searchLayout.setSizeFull();

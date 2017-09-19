@@ -39,9 +39,6 @@ public final class SendEmailClickListener implements ClickListener {
 	/** The Constant SEND_EMAIL_FAILURE. */
 	private static final String SEND_EMAIL_FAILURE = "SendEmail {} failure";
 
-	/** The Constant ERROR_MESSAGE. */
-	private static final String ERROR_MESSAGE = "Error message";
-
 	/** The Constant SEND_EMAIL_FAILEDFAILED. */
 	private static final String SEND_EMAIL_FAILEDFAILED = "Send email failed";
 
