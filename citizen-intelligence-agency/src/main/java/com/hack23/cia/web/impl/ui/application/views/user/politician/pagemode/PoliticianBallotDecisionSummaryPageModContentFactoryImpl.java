@@ -37,8 +37,8 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class BallotDecisionSummaryPageModContentFactoryImpl.
@@ -93,11 +93,8 @@ public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl exte
 							ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId_.intressentId, pageId,
 							ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.voteDate);
 
-			final BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> committeeBallotDecisionPartyDataSource = new BeanItemContainer<>(
-					ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class, decisionPartySummaryList);
-
 			getGridFactory()
-					.createBasicBeanItemNestedPropertiesGrid(panelContent,committeeBallotDecisionPartyDataSource,
+					.createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class, decisionPartySummaryList,
 							"Committee Ballot Decision Politician Summary",
 							new String[] { "embeddedId.concern", "embeddedId.issue" },
 							new String[] { "voteDate", "rm", "org", "committeeReport", "title", "subTitle",

@@ -33,8 +33,8 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class VoteHistoryPageModContentFactoryImpl.
@@ -79,11 +79,7 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 
 			LabelFactory.createHeader2Label(panelContent, VOTE_HISTORY);
 
-			final BeanItemContainer<ViewRiksdagenVoteDataBallotPartySummary> partyBallotDataSource = new BeanItemContainer<>(
-					ViewRiksdagenVoteDataBallotPartySummary.class,
-					viewRiksdagenVoteDataBallotPartySummaryChartDataManager.findByValue(pageId));
-
-			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, partyBallotDataSource, "Ballots",
+			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenVoteDataBallotPartySummary.class, viewRiksdagenVoteDataBallotPartySummaryChartDataManager.findByValue(pageId), "Ballots",
 					new String[] { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue",
 							"embeddedId.party" },
 					new String[] { "embeddedId.party", "voteDate", "rm", "label", "embeddedId.concern",

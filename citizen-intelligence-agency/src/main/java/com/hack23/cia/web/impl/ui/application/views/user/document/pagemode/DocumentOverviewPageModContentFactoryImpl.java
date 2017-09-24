@@ -38,8 +38,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class DocumentOverviewPageModContentFactoryImpl.
@@ -89,18 +89,18 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 
 			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
 
-			getFormFactory().addFormPanelTextFields(panelContent, new BeanItem<>(documentElement), DocumentElement.class,
+			getFormFactory().addFormPanelTextFields(panelContent, documentElement, DocumentElement.class,
 					Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status", "title",
 							"subTitle", "madePublicDate", "createdDate", "systemDate", "relatedId", "label",
 							"tempLabel", "numberValue", "kallId", "documentFormat" }));
 
 
 			if (documentStatusContainer != null) {
-				getFormFactory().addFormPanelTextFields(panelContent, new BeanItem<>(documentStatusContainer),
+				getFormFactory().addFormPanelTextFields(panelContent, documentStatusContainer,
 						DocumentStatusContainer.class, Arrays.asList(new String[] { "documentCategory" }));
 
 				getFormFactory()
-						.addFormPanelTextFields(panelContent, new BeanItem<>(documentStatusContainer.getDocument()),
+						.addFormPanelTextFields(panelContent, documentStatusContainer.getDocument(),
 								DocumentData.class,
 								Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status",
 										"title", "subTitle", "madePublicDate", "label", "tempLabel", "numberValue",

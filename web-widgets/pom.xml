@@ -90,7 +90,7 @@
     <dependency>
       <groupId>org.vaadin.addons</groupId>
       <artifactId>vaadin-grid-util</artifactId>
-      <version>1.2.0.hack23v7vaadin8r3</version>
+      <version>2.1.0</version>
       <exclusions>
         <exclusion>
           <artifactId>vaadin-server</artifactId>
@@ -153,6 +153,60 @@
       <groupId>org.tltv.gantt</groupId>
       <artifactId>gantt-addon</artifactId>
       <version>1.0.1</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>vaadin-server</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-client</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-compatibility-server</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-compatibility-client</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-compatibility-shared</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.byteowls</groupId>
+      <artifactId>vaadin-chartjs</artifactId>
+      <version>1.0.0</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>vaadin-server</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-client</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-compatibility-server</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-compatibility-client</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-compatibility-shared</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.whitestein.vaadin.widgets</groupId>
+      <artifactId>wt-pdf-viewer</artifactId>
+      <version>1.0.2</version>
       <exclusions>
         <exclusion>
           <artifactId>vaadin-server</artifactId>

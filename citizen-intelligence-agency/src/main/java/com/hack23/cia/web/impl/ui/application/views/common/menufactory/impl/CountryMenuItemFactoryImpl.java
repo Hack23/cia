@@ -42,11 +42,11 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageMod
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.vaadin.server.FontAwesome;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class CountryMenuItemFactoryImpl.
@@ -101,7 +101,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
 
-		createCountryTopicMenu( menuBar.addItem(COUNTRY_RANKING_TEXT, FontAwesome.SERVER, null));
+		createCountryTopicMenu( menuBar.addItem(COUNTRY_RANKING_TEXT, VaadinIcons.SERVER, null));
 
 	}
 
@@ -140,14 +140,14 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 	@Override
 	public void createCountryTopicMenu(final MenuItem charts) {
-		charts.addItem(OVERVIEW_TEXT, FontAwesome.LINE_CHART,
+		charts.addItem(OVERVIEW_TEXT, VaadinIcons.LINE_CHART,
 				COMMAND_OVERVIEW);
 
-		final MenuItem countryIndicators = charts.addItem(COUNTRY_INDICATORS_SWEDEN, FontAwesome.LINE_CHART, null);
+		final MenuItem countryIndicators = charts.addItem(COUNTRY_INDICATORS_SWEDEN, VaadinIcons.LINE_CHART, null);
 
 		addSourcesAndIndicatorsToMenu(countryIndicators, getTopicIndicatorMap());
 
-		charts.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.LINE_CHART,	COMMAND_PAGEVISITHISTORY);
+		charts.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART,	COMMAND_PAGEVISITHISTORY);
 
 	}
 
@@ -177,7 +177,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 		panelContent.setComponentAlignment(menuBar, Alignment.TOP_LEFT);
 		panelContent.setExpandRatio(menuBar, ContentRatio.LARGE);
 
-		addSourcesAndIndicatorsToMenu(menuBar.addItem("By Topic",FontAwesome.LINE_CHART, null), getTopicIndicatorMap());
+		addSourcesAndIndicatorsToMenu(menuBar.addItem("By Topic",VaadinIcons.LINE_CHART, null), getTopicIndicatorMap());
 		menuBar.setAutoOpen(true);
 	}
 }

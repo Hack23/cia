@@ -18,15 +18,11 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.tablefactory;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.service.api.ApplicationManager;
-import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.service.api.DataSummary;
-import com.vaadin.v7.ui.Table;
+import com.vaadin.ui.Grid;
 
 /**
  * The Class TableFactoryImpl.
@@ -79,47 +75,48 @@ public final class TableFactoryImpl implements TableFactory {
 	}
 
 	@Override
-	public Table createDataSummaryTable() {
-		final Table summaryTable = new Table();
-		summaryTable.addContainerProperty(COLUMN_NAME, String.class, null);
-		summaryTable.addContainerProperty(COLUMN_SIZE, String.class, null);
-		summaryTable.addContainerProperty(COLUMN_MISSING, String.class, null);
-
-		final DataContainer<DataSummary, String> dataContainer = applicationManager.getDataContainer(DataSummary.class);
-
-		final List<DataSummary> all = dataContainer.getAll();
-
-		if (!all.isEmpty()) {
-			final DataSummary dataSummary = all.get(FIRST_AND_ONLY);
-
-			int indexNr = 1;
-
-			summaryTable.addItem(new Object[] { PARLIAMENT_MEMBER, Long.toString(dataSummary.personSize), ZERO_MISSING },indexNr);
-			indexNr = indexNr + 1;
-
-
-			summaryTable.addItem(new Object[] { DOCUMENT_ELEMENT, Long.toString(dataSummary.documentElementSize), ZERO_MISSING },indexNr);
-			indexNr = indexNr + 1;
-
-
-			summaryTable.addItem(new Object[] { DOCUMENT_CONTENT, Long.toString(dataSummary.documentContentSize),Long.toString(dataSummary.documentElementSize - dataSummary.documentContentSize) },indexNr);
-			indexNr = indexNr + 1;
-
-
-			summaryTable.addItem(new Object[] { DOCUMENT_STATUS, Long.toString(dataSummary.documentStatusSize),Long.toString(dataSummary.documentElementSize - dataSummary.documentStatusSize) },indexNr);
-			indexNr = indexNr + 1;
-
-
-			summaryTable.addItem(new Object[] { COMMITTEE_PROPOSAL_SIZE,Long.toString(dataSummary.committeeProposalSize), ZERO_MISSING }, indexNr);
-			indexNr = indexNr + 1;
-
-
-			summaryTable.addItem(new Object[] { VOTES, Long.toString(dataSummary.voteSize),Long.toString(dataSummary.totalBallotVotes - dataSummary.voteSize) },indexNr);
-			summaryTable.setSizeFull();
-
-		}
-
-		return summaryTable;
+	public Grid createDataSummaryTable() {
+//		final Table summaryTable = new Table();
+//		summaryTable.addContainerProperty(COLUMN_NAME, String.class, null);
+//		summaryTable.addContainerProperty(COLUMN_SIZE, String.class, null);
+//		summaryTable.addContainerProperty(COLUMN_MISSING, String.class, null);
+//
+//		final DataContainer<DataSummary, String> dataContainer = applicationManager.getDataContainer(DataSummary.class);
+//
+//		final List<DataSummary> all = dataContainer.getAll();
+//
+//		if (!all.isEmpty()) {
+//			final DataSummary dataSummary = all.get(FIRST_AND_ONLY);
+//
+//			int indexNr = 1;
+//
+//			summaryTable.addItem(new Object[] { PARLIAMENT_MEMBER, Long.toString(dataSummary.personSize), ZERO_MISSING },indexNr);
+//			indexNr = indexNr + 1;
+//
+//
+//			summaryTable.addItem(new Object[] { DOCUMENT_ELEMENT, Long.toString(dataSummary.documentElementSize), ZERO_MISSING },indexNr);
+//			indexNr = indexNr + 1;
+//
+//
+//			summaryTable.addItem(new Object[] { DOCUMENT_CONTENT, Long.toString(dataSummary.documentContentSize),Long.toString(dataSummary.documentElementSize - dataSummary.documentContentSize) },indexNr);
+//			indexNr = indexNr + 1;
+//
+//
+//			summaryTable.addItem(new Object[] { DOCUMENT_STATUS, Long.toString(dataSummary.documentStatusSize),Long.toString(dataSummary.documentElementSize - dataSummary.documentStatusSize) },indexNr);
+//			indexNr = indexNr + 1;
+//
+//
+//			summaryTable.addItem(new Object[] { COMMITTEE_PROPOSAL_SIZE,Long.toString(dataSummary.committeeProposalSize), ZERO_MISSING }, indexNr);
+//			indexNr = indexNr + 1;
+//
+//
+//			summaryTable.addItem(new Object[] { VOTES, Long.toString(dataSummary.voteSize),Long.toString(dataSummary.totalBallotVotes - dataSummary.voteSize) },indexNr);
+//			summaryTable.setSizeFull();
+//
+//		}
+//
+//		return summaryTable;
+		return new Grid();
 	}
 
 }

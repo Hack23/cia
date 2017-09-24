@@ -36,8 +36,8 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class CommitteeBallotDecisionSummaryPageModContentFactoryImpl.
@@ -93,11 +93,8 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 							ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId_.party, pageId,
 							ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId_.issue);
 
-			final BeanItemContainer<ViewRiksdagenCommitteeBallotDecisionPartySummary> committeeBallotDecisionPartyDataSource = new BeanItemContainer<>(
-					ViewRiksdagenCommitteeBallotDecisionPartySummary.class, decisionPartySummaryList);
-
-			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
-					committeeBallotDecisionPartyDataSource, COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY,
+			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenCommitteeBallotDecisionPartySummary.class,
+					decisionPartySummaryList, COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY,
 					new String[] { "embeddedId.id", "embeddedId.concern", "embeddedId.issue", "embeddedId.party" },
 					new String[] { "voteDate", "rm", "org", "embeddedId.id", "embeddedId.party", "committeeReport",
 							"title", "subTitle", "winner", "partyApproved", "againstProposalParties", "embeddedId.concern",

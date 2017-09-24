@@ -38,8 +38,8 @@ import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class SearchDocumentPageModContentFactoryImpl.
@@ -100,7 +100,7 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractPageM
 		searchRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 		searchRequest.setMaxResults(MAX_RESULT_SIZE);
 		searchRequest.setSearchExpression("");
-		getFormFactory().addRequestInputFormFields(formContent, new BeanItem<>(searchRequest),
+		getFormFactory().addRequestInputFormFields(formContent, searchRequest,
 				SearchDocumentRequest.class, Arrays.asList(new String[] { "searchExpression" }), "Search",
 				new SearchDocumentClickListener(searchRequest, new SearchDocumentResponseHandlerImpl(getGridFactory(), formPanel,
 						searchresultLayout)));

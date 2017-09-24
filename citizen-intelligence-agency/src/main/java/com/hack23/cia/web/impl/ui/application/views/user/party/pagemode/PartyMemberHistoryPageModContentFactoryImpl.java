@@ -32,8 +32,8 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class MemberHistoryPageModContentFactoryImpl.
@@ -78,12 +78,8 @@ public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractP
 			final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenPolitician.class);
 
-			final BeanItemContainer<ViewRiksdagenPolitician> politicianDataSource = new BeanItemContainer<>(
-					ViewRiksdagenPolitician.class,
-					politicianDataContainer.getAllBy(ViewRiksdagenPolitician_.party, viewRiksdagenParty.getPartyId()));
-
-			getGridFactory().createBasicBeanItemGrid(panelContent,
-					politicianDataSource,
+			getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPolitician.class,
+					politicianDataContainer.getAllBy(ViewRiksdagenPolitician_.party, viewRiksdagenParty.getPartyId()),
 					"Politicians",
 					new String[] { "personId", "firstName", "lastName", "party", "bornYear", "totalDaysServed",
 							"currentAssignments", "totalAssignments", "firstAssignmentDate", "lastAssignmentDate",

@@ -36,13 +36,11 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.HorizontalLayout;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class OverviewPageModContentFactoryImpl.
@@ -83,13 +81,12 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 
 		final DataContainer<Agency, Long> dataContainer = getApplicationManager().getDataContainer(Agency.class);
 
-		final BeanItemContainer<Agency> dataSource = new BeanItemContainer<>(Agency.class,
-				dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,Agency_.agencyName));
+		List<Agency> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,Agency_.agencyName);
 
-		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(content,
-				dataSource, "Agency",
+				Agency.class,pageOrderBy, "Agency",
 				new String[] { "hjid", "agencyName", "description", "portals", "modelObjectVersion" }, new String[] { "hjid","modelObjectId", "modelObjectVersion" },
 				new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid"), null, new ListPropertyConverter[] { new ListPropertyConverter(List.class, "portalName", "portals")});
 
@@ -113,13 +110,10 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 			agency.getPortals().getClass();
 			if (agency != null) {
 
-				getFormFactory().addFormPanelTextFields(leftLayout, new BeanItem<>(agency), Agency.class,
+				getFormFactory().addFormPanelTextFields(leftLayout, agency, Agency.class,
 						Arrays.asList(new String[] { "agencyName", "description"}));
 
-				final BeanItemContainer<Portal> portalItemContainer = new BeanItemContainer<>(Portal.class,
-						agency.getPortals());
-
-				getGridFactory().createBasicBeanItemGrid(rightLayout, portalItemContainer,
+				getGridFactory().createBasicBeanItemGrid(rightLayout,Portal.class, agency.getPortals(),
 						"Portal",
 						new String[] { "hjid", "portalName", "description", "portalType", "googleMapApiKey",
 								"modelObjectVersion" }, new String[] { "hjid","modelObjectId", "modelObjectVersion", "googleMapApiKey" },

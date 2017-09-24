@@ -19,8 +19,6 @@
 package com.hack23.cia.web.impl.ui.application.views.common.formfactory.impl;
 
 import java.io.Serializable;
-import java.text.MessageFormat;
-import java.util.Collection;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -30,19 +28,11 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.api.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.CommitFormWrapperClickListener;
-import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.AbstractOrderedLayout;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.fieldgroup.BeanFieldGroup;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.ui.Field;
-import com.vaadin.v7.ui.PasswordField;
-import com.vaadin.v7.ui.VerticalLayout;
+
 
 /**
  * The Class FormFactoryImpl.
@@ -63,48 +53,48 @@ public final class FormFactoryImpl implements FormFactory {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FormFactoryImpl.class);
 
 	@Override
-	public <T extends Serializable> void addRequestInputFormFields(final FormLayout panelContent, final BeanItem<T> item,
+	public <T extends Serializable> void addRequestInputFormFields(final FormLayout panelContent, final T item,
 			final Class<T> beanType, final List<String> displayProperties,final String buttonLabel,final ClickListener buttonListener) {
-		final BeanFieldGroup<T> fieldGroup = new BeanFieldGroup<>(beanType);
-		fieldGroup.setItemDataSource(item);
-		fieldGroup.setReadOnly(true);
-
-		for (final String property : displayProperties) {
-
-			final Field<?> buildAndBind;
-			if (property.contains(HIDDEN_FIELD_NAME)) {
-				buildAndBind = fieldGroup.buildAndBind(property,property, PasswordField.class);
-			} else {
-				buildAndBind = fieldGroup.buildAndBind(property);
-			}
-
-			buildAndBind.setId(MessageFormat.format("{0}.{1}", buttonLabel, property));
-			buildAndBind.setReadOnly(false);
-			buildAndBind.setWidth(ContentSize.HALF_SIZE);
-
-			panelContent.addComponent(buildAndBind);
-		}
-		final Collection<Object> unboundPropertyIds = fieldGroup.getUnboundPropertyIds();
-		for (final Object property : unboundPropertyIds) {
-			LOGGER.debug(LOG_MSG_PROPERTY, property);
-		}
-
-		final VerticalLayout verticalLayout = new VerticalLayout();
-		verticalLayout.setWidth("50%");
-
-		final Button button = new Button(buttonLabel,new CommitFormWrapperClickListener(fieldGroup,buttonListener));
-		button.setId(buttonLabel);
-		button.setWidth("25%");
-		button.setIcon(FontAwesome.PAW);
-
-		verticalLayout.addComponent(button);
-		verticalLayout.setComponentAlignment(button, Alignment.MIDDLE_RIGHT);
-
-		panelContent.addComponent(verticalLayout);
+//		final BeanFieldGroup<T> fieldGroup = new BeanFieldGroup<>(beanType);
+//		fieldGroup.setItemDataSource(item);
+//		fieldGroup.setReadOnly(true);
+//
+//		for (final String property : displayProperties) {
+//
+//			final Field<?> buildAndBind;
+//			if (property.contains(HIDDEN_FIELD_NAME)) {
+//				buildAndBind = fieldGroup.buildAndBind(property,property, PasswordField.class);
+//			} else {
+//				buildAndBind = fieldGroup.buildAndBind(property);
+//			}
+//
+//			buildAndBind.setId(MessageFormat.format("{0}.{1}", buttonLabel, property));
+//			buildAndBind.setReadOnly(false);
+//			buildAndBind.setWidth(ContentSize.HALF_SIZE);
+//
+//			panelContent.addComponent(buildAndBind);
+//		}
+//		final Collection<Object> unboundPropertyIds = fieldGroup.getUnboundPropertyIds();
+//		for (final Object property : unboundPropertyIds) {
+//			LOGGER.debug(LOG_MSG_PROPERTY, property);
+//		}
+//
+//		final VerticalLayout verticalLayout = new VerticalLayout();
+//		verticalLayout.setWidth("50%");
+//
+//		final Button button = new Button(buttonLabel,new CommitFormWrapperClickListener(fieldGroup,buttonListener));
+//		button.setId(buttonLabel);
+//		button.setWidth("25%");
+//		button.setIcon(VaadinIcons.BULLSEYE);
+//
+//		verticalLayout.addComponent(button);
+//		verticalLayout.setComponentAlignment(button, Alignment.MIDDLE_RIGHT);
+//
+//		panelContent.addComponent(verticalLayout);
 	}
 
 	@Override
-	public <T extends Serializable> void addFormPanelTextFields(final AbstractOrderedLayout panelContent, final BeanItem<T> item,
+	public <T extends Serializable> void addFormPanelTextFields(final AbstractOrderedLayout panelContent, final T item,
 			final Class<T> beanType, final List<String> displayProperties) {
 
 
@@ -125,21 +115,21 @@ public final class FormFactoryImpl implements FormFactory {
 		formPanel.setContent(formContent);
 		formContent.setWidth(ContentSize.FULL_SIZE);
 
-		final BeanFieldGroup<T> fieldGroup = new BeanFieldGroup<>(beanType);
-		fieldGroup.setItemDataSource(item);
-		fieldGroup.setReadOnly(true);
-
-		for (final String property : displayProperties) {
-
-			final Field<?> buildAndBind = fieldGroup.buildAndBind(property);
-			buildAndBind.setWidth(ContentSize.FULL_SIZE);
-
-			formContent.addComponent(buildAndBind);
-		}
-		final Collection<Object> unboundPropertyIds = fieldGroup.getUnboundPropertyIds();
-		for (final Object property : unboundPropertyIds) {
-			LOGGER.debug(LOG_MSG_PROPERTY, property);
-		}
+//		final BeanFieldGroup<T> fieldGroup = new BeanFieldGroup<>(beanType);
+//		fieldGroup.setItemDataSource(item);
+//		fieldGroup.setReadOnly(true);
+//
+//		for (final String property : displayProperties) {
+//
+//			final Field<?> buildAndBind = fieldGroup.buildAndBind(property);
+//			buildAndBind.setWidth(ContentSize.FULL_SIZE);
+//
+//			formContent.addComponent(buildAndBind);
+//		}
+//		final Collection<Object> unboundPropertyIds = fieldGroup.getUnboundPropertyIds();
+//		for (final Object property : unboundPropertyIds) {
+//			LOGGER.debug(LOG_MSG_PROPERTY, property);
+//		}
 
 
 	}

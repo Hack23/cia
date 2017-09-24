@@ -29,15 +29,13 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ApplicationLoginListener;
-import com.vaadin.server.FontAwesome;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.LoginForm;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.fieldgroup.BeanFieldGroup;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.ui.Field;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class MainViewLoginPageModContentFactoryImpl.
@@ -79,15 +77,15 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractPageMo
 		loginRequest.setOtpCode("");
 		loginForm.addLoginListener(new ApplicationLoginListener(loginRequest));
 		loginForm.setId(ApplicationAction.LOGIN.toString());
-		loginForm.setIcon(FontAwesome.SIGN_IN);
+		loginForm.setIcon(VaadinIcons.SIGN_IN);
 
-		final BeanFieldGroup<LoginRequest> fieldGroup = new BeanFieldGroup<>(LoginRequest.class);
-		fieldGroup.setItemDataSource(new BeanItem<>(loginRequest));
-		fieldGroup.setReadOnly(true);
-		fieldGroup.setBuffered(false);
-		final Field<?> buildAndBind = fieldGroup.buildAndBind("otpCode");
-		buildAndBind.setReadOnly(false);
-		content.addComponent(buildAndBind);
+//		final BeanFieldGroup<LoginRequest> fieldGroup = new BeanFieldGroup<>(LoginRequest.class);
+//		fieldGroup.setItemDataSource(loginRequest);
+//		fieldGroup.setReadOnly(true);
+//		fieldGroup.setBuffered(false);
+//		final Field<?> buildAndBind = fieldGroup.buildAndBind("otpCode");
+//		buildAndBind.setReadOnly(false);
+//		content.addComponent(buildAndBind);
 
 		content.addComponent(loginForm);
 

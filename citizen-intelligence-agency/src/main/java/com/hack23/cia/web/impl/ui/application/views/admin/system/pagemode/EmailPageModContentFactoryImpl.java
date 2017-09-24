@@ -36,8 +36,8 @@ import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class EmailPageModContentFactoryImpl.
@@ -91,7 +91,7 @@ public final class EmailPageModContentFactoryImpl extends AbstractAdminSystemPag
 		sendEmailRequest.setSubject("");
 		sendEmailRequest.setContent("");
 		final ClickListener sendEmailListener = new SendEmailClickListener(sendEmailRequest);
-		getFormFactory().addRequestInputFormFields(formContent, new BeanItem<>(sendEmailRequest),
+		getFormFactory().addRequestInputFormFields(formContent, sendEmailRequest,
 				SendEmailRequest.class, Arrays.asList(new String[] { "email", "subject", "content" }), "Email",
 				sendEmailListener);
 

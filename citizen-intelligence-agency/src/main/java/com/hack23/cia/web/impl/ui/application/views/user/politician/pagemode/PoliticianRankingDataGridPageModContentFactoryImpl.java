@@ -33,8 +33,8 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class PoliticianRankingDataGridPageModContentFactoryImpl.
@@ -75,11 +75,7 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPolitician.class);
 
-		final BeanItemContainer<ViewRiksdagenPolitician> politicianDataSource = new BeanItemContainer<>(
-				ViewRiksdagenPolitician.class,
-				politicianDataContainer.getAllOrderBy(ViewRiksdagenPolitician_.currentAssignments));
-
-		getGridFactory().createBasicBeanItemGrid(panelContent, politicianDataSource,
+		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPolitician.class, politicianDataContainer.getAllOrderBy(ViewRiksdagenPolitician_.currentAssignments),
 				"Politicians",
 				new String[] { "personId", "firstName", "lastName", "party", "bornYear", "totalDaysServed",
 						"currentAssignments", "totalAssignments", "firstAssignmentDate", "lastAssignmentDate",

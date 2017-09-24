@@ -28,7 +28,7 @@ import com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder;
 import com.hack23.cia.service.api.AgentContainer;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.v7.ui.ComboBox;
+import com.vaadin.ui.ComboBox;
 
 /**
  * The Class StartAgentClickListener.

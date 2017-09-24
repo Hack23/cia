@@ -28,17 +28,17 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveLayout;
 import com.jarektoro.responsivelayout.ResponsiveRow;
-import com.vaadin.server.FontAwesome;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Resource;
 import com.vaadin.server.Responsive;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.CssLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.v7.ui.Label;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class AbstractMenuItemFactoryImpl.
@@ -245,22 +245,22 @@ public abstract class AbstractMenuItemFactoryImpl {
 		menuBar.removeItems();
 		menuBar.setWidth(MENU_BAR_WIDTH);
 		menuBar.setStyleName(HEADER_STYLE_NAME);
-		final MenuItem mainViewItem = menuBar.addItem(APPLICATION, FontAwesome.SERVER, null);
+		final MenuItem mainViewItem = menuBar.addItem(APPLICATION, VaadinIcons.SERVER, null);
 
-		mainViewItem.addItem(START_TEXT, FontAwesome.STAR, COMMAND_MAINVIEW_OVERVIEW);
+		mainViewItem.addItem(START_TEXT, VaadinIcons.STAR, COMMAND_MAINVIEW_OVERVIEW);
 
-		final MenuItem mainItem = mainViewItem.addItem(MAIN, FontAwesome.STAR, null);
+		final MenuItem mainItem = mainViewItem.addItem(MAIN, VaadinIcons.STAR, null);
 
-		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.AREA_CHART, COMMAND_MAINVIEW_PAGEVISITHISTORY);
+		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART, COMMAND_MAINVIEW_PAGEVISITHISTORY);
 
 
 		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {
-			mainViewItem.addItem(USERHOME, FontAwesome.USER,COMMAND_USERHOME);
+			mainViewItem.addItem(USERHOME, VaadinIcons.USER,COMMAND_USERHOME);
 			createAdminMenu(mainViewItem);
-			mainViewItem.addItem(LOGOUT, FontAwesome.SIGN_OUT, COMMAND_LOGOUT);
+			mainViewItem.addItem(LOGOUT, VaadinIcons.SIGN_OUT, COMMAND_LOGOUT);
 		} else {
-			mainViewItem.addItem(LOGIN, FontAwesome.SIGN_IN, COMMAND_LOGIN);
-			mainViewItem.addItem(REGISTER, FontAwesome.USER_PLUS, COMMAND_REGISTER);
+			mainViewItem.addItem(LOGIN, VaadinIcons.SIGN_IN, COMMAND_LOGIN);
+			mainViewItem.addItem(REGISTER, VaadinIcons.FILE_ADD, COMMAND_REGISTER);
 		}
 
 	}
@@ -273,34 +273,34 @@ public abstract class AbstractMenuItemFactoryImpl {
 	 */
 	private static void createAdminMenu(final MenuItem mainViewItem) {
 		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN)) {
-			final MenuItem adminMenuItem = mainViewItem.addItem(ADMIN_TEXT, FontAwesome.SERVER, null);
+			final MenuItem adminMenuItem = mainViewItem.addItem(ADMIN_TEXT, VaadinIcons.SERVER, null);
 
-			final MenuItem configurationMenuItem = adminMenuItem.addItem(CONFIGURATION, FontAwesome.GEARS, null);
-			configurationMenuItem.addItem(APPLICATION_CONFIGURATION,FontAwesome.GEARS, COMMAND_APPLICATION_CONFIGURATION);
+			final MenuItem configurationMenuItem = adminMenuItem.addItem(CONFIGURATION, VaadinIcons.TOOLS, null);
+			configurationMenuItem.addItem(APPLICATION_CONFIGURATION,VaadinIcons.TOOLS, COMMAND_APPLICATION_CONFIGURATION);
 
-			configurationMenuItem.addItem(AGENCY,FontAwesome.SERVER, COMMAND_AGENCY);
-			configurationMenuItem.addItem(PORTAL, FontAwesome.SITEMAP,COMMAND_PORTAL);
-			configurationMenuItem.addItem(COUNTRY,FontAwesome.FLAG, COMMAND_COUNTRY);
-			configurationMenuItem.addItem(LANGUAGE,FontAwesome.LANGUAGE, COMMAND_LANGUAGE);
-			configurationMenuItem.addItem(LANGUAGE_CONTENT,FontAwesome.FILE_TEXT, COMMAND_LANGUAGE_CONTENT);
+			configurationMenuItem.addItem(AGENCY,VaadinIcons.SERVER, COMMAND_AGENCY);
+			configurationMenuItem.addItem(PORTAL, VaadinIcons.SITEMAP,COMMAND_PORTAL);
+			configurationMenuItem.addItem(COUNTRY,VaadinIcons.FLAG, COMMAND_COUNTRY);
+			configurationMenuItem.addItem(LANGUAGE,VaadinIcons.ACCESSIBILITY, COMMAND_LANGUAGE);
+			configurationMenuItem.addItem(LANGUAGE_CONTENT,VaadinIcons.FILE_TEXT, COMMAND_LANGUAGE_CONTENT);
 
-			final MenuItem managementMenuItem = adminMenuItem.addItem(MANAGEMENT, FontAwesome.SERVER, null);
+			final MenuItem managementMenuItem = adminMenuItem.addItem(MANAGEMENT, VaadinIcons.SERVER, null);
 
-			managementMenuItem.addItem(AGENT_OPERATIONS_TEXT,FontAwesome.USER_SECRET, COMMAND_AGENT_OPERATION);
+			managementMenuItem.addItem(AGENT_OPERATIONS_TEXT,VaadinIcons.BRIEFCASE, COMMAND_AGENT_OPERATION);
 
-			managementMenuItem.addItem(DATA_SUMMARY_TEXT,FontAwesome.DATABASE, COMMAND_DATASUMMARY);
+			managementMenuItem.addItem(DATA_SUMMARY_TEXT,VaadinIcons.DATABASE, COMMAND_DATASUMMARY);
 
-			managementMenuItem.addItem(EMAIL,FontAwesome.MAIL_FORWARD, COMMAND_EMAIL);
+			managementMenuItem.addItem(EMAIL,VaadinIcons.MAILBOX, COMMAND_EMAIL);
 
 
-			managementMenuItem.addItem(SYSTEM_PERFORMANCE,FontAwesome.DASHBOARD, COMMAND_MONITORING);
+			managementMenuItem.addItem(SYSTEM_PERFORMANCE,VaadinIcons.DASHBOARD, COMMAND_MONITORING);
 
-			final MenuItem userActivityMenuItem = adminMenuItem.addItem(USER_ACTIVITY, FontAwesome.DATABASE, null);
-			userActivityMenuItem.addItem(APPLICATION_SESSION,FontAwesome.LAPTOP, COMMAND_APPLICATION_SESSION);
-			userActivityMenuItem.addItem(APPLICATION_EVENT,FontAwesome.ARROWS, COMMAND_APPLICATION_EVENTS);
-			userActivityMenuItem.addItem(APPLICATION_EVENT_CHARTS,FontAwesome.ARROWS, COMMAND_APPLICATION_EVENTS_CHARTS);
+			final MenuItem userActivityMenuItem = adminMenuItem.addItem(USER_ACTIVITY, VaadinIcons.DATABASE, null);
+			userActivityMenuItem.addItem(APPLICATION_SESSION,VaadinIcons.LAPTOP, COMMAND_APPLICATION_SESSION);
+			userActivityMenuItem.addItem(APPLICATION_EVENT,VaadinIcons.ARROWS, COMMAND_APPLICATION_EVENTS);
+			userActivityMenuItem.addItem(APPLICATION_EVENT_CHARTS,VaadinIcons.ARROWS, COMMAND_APPLICATION_EVENTS_CHARTS);
 
-			userActivityMenuItem.addItem(USERACCOUNT,FontAwesome.GROUP, COMMAND_USERACCOUNT);
+			userActivityMenuItem.addItem(USERACCOUNT,VaadinIcons.GROUP, COMMAND_USERACCOUNT);
 
 		}
 	}

@@ -26,8 +26,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.api.SearchDocumentResponseHandler;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class SearchDocumentResponseHandlerImpl.
@@ -69,10 +69,7 @@ public final class SearchDocumentResponseHandlerImpl implements SearchDocumentRe
 		searchresultLayout.addComponent(formPanel);
 		searchresultLayout.setExpandRatio(formPanel, ContentRatio.SMALL3);
 
-		final BeanItemContainer<DocumentElement> documentActivityDataDataDataSource = new BeanItemContainer<>(
-				DocumentElement.class, response.getResultElement());
-
-		gridFactory.createBasicBeanItemGrid(searchresultLayout, documentActivityDataDataDataSource, "Document",
+		gridFactory.createBasicBeanItemGrid(searchresultLayout, DocumentElement.class, response.getResultElement(), "Document",
 				new String[] { "rm", "createdDate", "documentName", "subType", "title", "subTitle", "status" },
 				new String[] { "rm", "lang", "noteTitle", "origin", "subType","note", "subTitle", "status", "label", "id", "hit", "madePublicDate", "databaseSource", "domainOrg", "relatedId",
 						"org", "documentType","docType", "debateName", "tempLabel", "numberValue", "systemDate", "kallId",

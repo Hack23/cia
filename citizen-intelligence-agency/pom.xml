@@ -1179,6 +1179,16 @@
                   <excludes>**/*.class,**/*.java,org/**,META-INF/**,gwt-unitCache/**</excludes>
                 </artifactItem>
                 <artifactItem>
+                  <groupId>com.whitestein.vaadin.widgets</groupId>
+                  <artifactId>wt-pdf-viewer</artifactId>
+                  <version>1.0.2</version>
+                  <type>jar</type>
+                  <overWrite>false</overWrite>
+                  <outputDirectory>${basedir}/src/main/webapp/</outputDirectory>
+                  <includes>**/*</includes>
+                  <excludes>**/*.class,com/**,**/*.java,org/**,META-INF/**,gwt-unitCache/**</excludes>
+                </artifactItem>
+                <artifactItem>
                   <groupId>com.vaadin</groupId>
                   <artifactId>vaadin-themes</artifactId>
                   <version>${cia.project.versions.vaadin}</version>

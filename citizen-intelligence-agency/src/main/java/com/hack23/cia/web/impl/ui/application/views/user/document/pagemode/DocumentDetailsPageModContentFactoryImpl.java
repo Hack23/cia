@@ -37,8 +37,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPag
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class DocumentDetailsPageModContentFactoryImpl.
@@ -92,12 +92,9 @@ public final class DocumentDetailsPageModContentFactoryImpl extends AbstractDocu
 
 			if (documentStatusContainer != null && documentStatusContainer.getDocumentDetailContainer() != null
 					&& documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList() != null) {
-				final BeanItemContainer<DocumentDetailData> documentDetailDataDataDataSource = new BeanItemContainer<>(
-						DocumentDetailData.class,
-						documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList());
 
 				getGridFactory().createBasicBeanItemGrid(
-						panelContent, documentDetailDataDataDataSource,
+						panelContent, DocumentDetailData.class, documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList(),
 						"Document details", new String[] { "code", "detailName", "text" }, new String[] { "hjid" }, null, null, null);
 			}
 

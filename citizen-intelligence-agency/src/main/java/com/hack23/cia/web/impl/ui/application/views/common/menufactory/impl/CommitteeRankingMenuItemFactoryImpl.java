@@ -28,10 +28,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndica
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
-import com.vaadin.server.FontAwesome;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class CommitteeRankingMenuItemFactoryImpl.
@@ -141,23 +141,23 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	 */
 	@Override
 	public void createCommitteeRankingTopics(final MenuItem committeeMenuItem) {
-		committeeMenuItem.addItem(OVERVIEW_TEXT, FontAwesome.GROUP, COMMAND_OVERVIEW);
+		committeeMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP, COMMAND_OVERVIEW);
 
-		final MenuItem listByTopic = committeeMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, FontAwesome.GROUP, null);
+		final MenuItem listByTopic = committeeMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);
 
-		final MenuItem listItem = listByTopic.addItem(POLITICAL_WORK_SUMMARY_TEXT,FontAwesome.GROUP, COMMAND_DATAGRID);
+		final MenuItem listItem = listByTopic.addItem(POLITICAL_WORK_SUMMARY_TEXT,VaadinIcons.GROUP, COMMAND_DATAGRID);
 		listItem.setDescription(CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS);
 
-		final MenuItem chartByTopic = committeeMenuItem.addItem(CHART_BY_TOPIC_TEXT, FontAwesome.GROUP, null);
+		final MenuItem chartByTopic = committeeMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);
 
 
-		chartByTopic.addItem(CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,FontAwesome.GROUP, COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT);
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,FontAwesome.GROUP, COMMAND_COMMITTEES_BY_PARTY);
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED);
+		chartByTopic.addItem(CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT);
+		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,VaadinIcons.GROUP, COMMAND_COMMITTEES_BY_PARTY);
+		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED);
 
-		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_MEMBERS,FontAwesome.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT);
+		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_MEMBERS,VaadinIcons.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT);
 
-		committeeMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP, COMMAND_PAGEVISIT_HISTORY);
+		committeeMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISIT_HISTORY);
 
 	}
 
@@ -172,14 +172,14 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
 
-		createButtonLink(grid,POLITICAL_WORK_SUMMARY_TEXT,FontAwesome.GROUP, COMMAND_DATAGRID, "Scoreboard over current member size, political days served and total assignments");
-		createButtonLink(grid,CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,FontAwesome.GROUP, COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT, "Chart over current committees and member size");
+		createButtonLink(grid,POLITICAL_WORK_SUMMARY_TEXT,VaadinIcons.GROUP, COMMAND_DATAGRID, "Scoreboard over current member size, political days served and total assignments");
+		createButtonLink(grid,CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT, "Chart over current committees and member size");
 
-		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,FontAwesome.GROUP, COMMAND_COMMITTEES_BY_PARTY, "Chart over current parties active in committees and member size");
-		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,FontAwesome.GROUP, COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED, "Chart over current parties active in committees days served");
-		createButtonLink(grid,ALL_COMMITTEES_TOTAL_MEMBERS,FontAwesome.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT, "Chart over all committees and member size");
+		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,VaadinIcons.GROUP, COMMAND_COMMITTEES_BY_PARTY, "Chart over current parties active in committees and member size");
+		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED, "Chart over current parties active in committees days served");
+		createButtonLink(grid,ALL_COMMITTEES_TOTAL_MEMBERS,VaadinIcons.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT, "Chart over all committees and member size");
 
-		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP, COMMAND_PAGEVISIT_HISTORY, "View history of page visit for this page.");
+		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISIT_HISTORY, "View history of page visit for this page.");
 
 	}
 

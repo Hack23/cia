@@ -33,8 +33,8 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class MinistryRankingDataGridPageModContentFactoryImpl.
@@ -72,10 +72,7 @@ public final class MinistryRankingDataGridPageModContentFactoryImpl
 		final DataContainer<ViewRiksdagenMinistry, String> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenMinistry.class);
 
-		final BeanItemContainer<ViewRiksdagenMinistry> dataSource = new BeanItemContainer<>(ViewRiksdagenMinistry.class,
-				dataContainer.getAllOrderBy(ViewRiksdagenMinistry_.currentMemberSize));
-
-		getGridFactory().createBasicBeanItemGrid(panelContent, dataSource,
+		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenMinistry.class, dataContainer.getAllOrderBy(ViewRiksdagenMinistry_.currentMemberSize),
 				"Ministries",
 				new String[] { "nameId", "totalDaysServed", "currentMemberSize", "totalAssignments",
 						"firstAssignmentDate", "lastAssignmentDate", "active" }, new String[] {"active"}, new PageItemPropertyClickListener(UserViews.MINISTRY_VIEW_NAME, "nameId"), null, null);

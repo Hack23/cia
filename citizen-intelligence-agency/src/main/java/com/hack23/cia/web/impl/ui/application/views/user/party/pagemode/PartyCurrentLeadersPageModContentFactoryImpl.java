@@ -32,8 +32,8 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class CurrentLeadersPageModContentFactoryImpl.
@@ -78,14 +78,10 @@ public final class PartyCurrentLeadersPageModContentFactoryImpl extends Abstract
 			final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenPartyRoleMember.class);
 
-			final BeanItemContainer<ViewRiksdagenPartyRoleMember> currentPartyMemberDataSource = new BeanItemContainer<>(
-					ViewRiksdagenPartyRoleMember.class,
+			getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPartyRoleMember.class,
 					partyRoleMemberDataContainer.findListByProperty(
 							new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },
-							ViewRiksdagenPartyRoleMember_.party, ViewRiksdagenPartyRoleMember_.active));
-
-			getGridFactory().createBasicBeanItemGrid(panelContent,
-					currentPartyMemberDataSource,
+							ViewRiksdagenPartyRoleMember_.party, ViewRiksdagenPartyRoleMember_.active),
 					CURRENT_LEADERS,
 					new String[] { "roleCode","roleId", "personId", "firstName", "lastName", "party","totalDaysServed", "active", "detail",
 							 "fromDate", "toDate" }, new String[] { "roleId", "personId", "detail" , "active", "party"},

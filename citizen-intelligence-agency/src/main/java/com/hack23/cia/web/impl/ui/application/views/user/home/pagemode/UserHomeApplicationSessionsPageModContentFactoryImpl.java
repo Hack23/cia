@@ -42,8 +42,8 @@ import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class UserHomeApplicationSessionsPageModContentFactoryImpl.
@@ -97,10 +97,7 @@ public final class UserHomeApplicationSessionsPageModContentFactoryImpl extends 
 
 			final DataContainer<ApplicationSession, Long> sessionDataContainer = getApplicationManager().getDataContainer(ApplicationSession.class);
 
-			final BeanItemContainer<ApplicationSession> sessionDataSource = new BeanItemContainer<>(ApplicationSession.class,
-					sessionDataContainer.findOrderedListByProperty(ApplicationSession_.userId,userAccount.getUserId(),ApplicationSession_.createdDate));
-
-			getGridFactory().createBasicBeanItemGrid(panelContent, sessionDataSource,
+			getGridFactory().createBasicBeanItemGrid(panelContent, ApplicationSession.class, sessionDataContainer.findOrderedListByProperty(ApplicationSession_.userId,userAccount.getUserId(),ApplicationSession_.createdDate),
 					"ApplicationSession",
 					new String[] { "hjid", "createdDate","operatingSystem", "userAgentInformation", "ipInformation", "events"}, new String[] { "hjid", "modelObjectId", "modelObjectVersion", "sessionId", "sessionType", "userId", "locale"},
 					new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid"), null, new ListPropertyConverter[] { new ListPropertyConverter(List.class, "page", "events","actionName")});

@@ -28,10 +28,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndica
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
-import com.vaadin.server.FontAwesome;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class ParliamentMenuItemFactoryImpl.
@@ -125,34 +125,34 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
-		createParliamentTopicMenu(menuBar.addItem(PARLIAMENT_RANKING_TEXT, FontAwesome.INSTITUTION, null));
+		createParliamentTopicMenu(menuBar.addItem(PARLIAMENT_RANKING_TEXT, VaadinIcons.INSTITUTION, null));
 
 	}
 
 	@Override
 	public void createParliamentTopicMenu(final MenuItem charts) {
-		charts.addItem(OVERVIEW_TEXT, FontAwesome.INSTITUTION,
+		charts.addItem(OVERVIEW_TEXT, VaadinIcons.INSTITUTION,
 				COMMAND_OVERVIEW);
 
-		final MenuItem chartIndicators = charts.addItem(SWEDISH_PARLIAMENT_INDICATORS, FontAwesome.INSTITUTION, null);
+		final MenuItem chartIndicators = charts.addItem(SWEDISH_PARLIAMENT_INDICATORS, VaadinIcons.INSTITUTION, null);
 
-		final MenuItem addItem = chartIndicators.addItem(PARTY_WINNER,FontAwesome.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER);
+		final MenuItem addItem = chartIndicators.addItem(PARTY_WINNER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER);
 		addItem.setDescription(DAILY_AVERAGE_WON_BALLOTS);
 
-		final MenuItem addItem2 = chartIndicators.addItem(PARTY_GENDER,FontAwesome.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER);
+		final MenuItem addItem2 = chartIndicators.addItem(PARTY_GENDER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER);
 		addItem2.setDescription(AVERAGE_PERCENTAGE_MALE);
 
-		final MenuItem addItem3 = chartIndicators.addItem(PARTY_AGE, FontAwesome.INSTITUTION,COMMAND_CHARTS_PARTY_AGE);
+		final MenuItem addItem3 = chartIndicators.addItem(PARTY_AGE, VaadinIcons.INSTITUTION,COMMAND_CHARTS_PARTY_AGE);
 		addItem3.setDescription(AVERAGE_AGE);
 
 
-		final MenuItem addItem4 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE,FontAwesome.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY);
+		final MenuItem addItem4 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE,VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY);
 		addItem4.setDescription(DAILY_TOTAL_OF_NUMBER_PUBLISHED_DOCUMENTS);
-		final MenuItem addItem5 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, FontAwesome.INSTITUTION,COMMAND_DECISION_ACTIVITY);
+		final MenuItem addItem5 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,COMMAND_DECISION_ACTIVITY);
 		addItem5.setDescription(DAILY_TOTAL_OF_NUMBER_OF_DECSIONS_MADE);
 
 
-		charts.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.INSTITUTION,
+		charts.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.INSTITUTION,
 				COMMAND_PAGEVISITHISTORY);
 	}
 
@@ -160,18 +160,18 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 	public void createOverviewPage(final VerticalLayout panelContent) {
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
-		createButtonLink(grid,PARTY_WINNER,FontAwesome.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER, "Chart daily ballot summary, percentage ballots that day the voted in winning side");
+		createButtonLink(grid,PARTY_WINNER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER, "Chart daily ballot summary, percentage ballots that day the voted in winning side");
 
-		createButtonLink(grid,PARTY_GENDER,FontAwesome.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER, "Chart Party average gender all ballots");
+		createButtonLink(grid,PARTY_GENDER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER, "Chart Party average gender all ballots");
 
-		createButtonLink(grid,PARTY_AGE, FontAwesome.INSTITUTION,COMMAND_CHARTS_PARTY_AGE, "Chart party age  all ballots");
-
-
-		createButtonLink(grid,DOCUMENT_ACTIVITY_BY_TYPE,FontAwesome.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY, "Chart document activity by type");
-		createButtonLink(grid,DECISION_ACTIVITY_BY_TYPE, FontAwesome.INSTITUTION,COMMAND_DECISION_ACTIVITY, "Chart decisions by decision type");
+		createButtonLink(grid,PARTY_AGE, VaadinIcons.INSTITUTION,COMMAND_CHARTS_PARTY_AGE, "Chart party age  all ballots");
 
 
-		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.INSTITUTION,
+		createButtonLink(grid,DOCUMENT_ACTIVITY_BY_TYPE,VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY, "Chart document activity by type");
+		createButtonLink(grid,DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,COMMAND_DECISION_ACTIVITY, "Chart decisions by decision type");
+
+
+		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.INSTITUTION,
 				COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
 
 	}

@@ -28,10 +28,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndica
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
-import com.vaadin.server.FontAwesome;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class PoliticianRankingMenuItemFactoryImpl.
@@ -106,25 +106,25 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
-		createPoliticianRankingTopics(menuBar.addItem(POLITICIAN_RANKING, FontAwesome.BUG, null));
+		createPoliticianRankingTopics(menuBar.addItem(POLITICIAN_RANKING, VaadinIcons.BUG, null));
 	}
 
 	@Override
 	public void createPoliticianRankingTopics(final MenuItem politicianMenuItem) {
-		politicianMenuItem.addItem(OVERVIEW_TEXT, FontAwesome.BUG, COMMAND_OVERVIEW);
+		politicianMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.BUG, COMMAND_OVERVIEW);
 
-		final MenuItem listByTopic = politicianMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, FontAwesome.BUG, null);
+		final MenuItem listByTopic = politicianMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, VaadinIcons.BUG, null);
 
-		final MenuItem listItem = listByTopic.addItem(POLITICAL_EXPERIENCE_SUMMARY, FontAwesome.BUG, COMMAND_DATAGRID);
+		final MenuItem listItem = listByTopic.addItem(POLITICAL_EXPERIENCE_SUMMARY, VaadinIcons.BUG, COMMAND_DATAGRID);
 		listItem.setDescription(CURRENT_AND_PAST_ASSIGNMENTS_AND_SUMMARY_EXPERIENCE_IN_DAYS);
 
-		final MenuItem chartByTopic = politicianMenuItem.addItem(CHART_BY_TOPIC_TEXT, FontAwesome.BUG, null);
+		final MenuItem chartByTopic = politicianMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.BUG, null);
 
-		chartByTopic.addItem(ALL_PARTIES, FontAwesome.GROUP, COMMAND_ALL_PARTIES);
+		chartByTopic.addItem(ALL_PARTIES, VaadinIcons.GROUP, COMMAND_ALL_PARTIES);
 
-		chartByTopic.addItem(CURRENT_PARTIES, FontAwesome.GROUP, COMMAND_CURRENT_PARTIES);
+		chartByTopic.addItem(CURRENT_PARTIES, VaadinIcons.GROUP, COMMAND_CURRENT_PARTIES);
 
-		politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG, COMMAND_PAGEVISITHISTORY);
+		politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG, COMMAND_PAGEVISITHISTORY);
 
 	}
 
@@ -132,13 +132,13 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 	public void createOverviewPage(final VerticalLayout panelContent) {
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
-		createButtonLink(grid, POLITICAL_EXPERIENCE_SUMMARY, FontAwesome.BUG, COMMAND_DATAGRID, "All politicans, scoreboard assignments and days served in government, committees, speaker and party positions.");
+		createButtonLink(grid, POLITICAL_EXPERIENCE_SUMMARY, VaadinIcons.BUG, COMMAND_DATAGRID, "All politicans, scoreboard assignments and days served in government, committees, speaker and party positions.");
 
-		createButtonLink(grid, ALL_PARTIES, FontAwesome.GROUP, COMMAND_ALL_PARTIES, "All parties summary by number of roles in parliament");
+		createButtonLink(grid, ALL_PARTIES, VaadinIcons.GROUP, COMMAND_ALL_PARTIES, "All parties summary by number of roles in parliament");
 
-		createButtonLink(grid, CURRENT_PARTIES, FontAwesome.GROUP, COMMAND_CURRENT_PARTIES, "Current parties roles in parliament");
+		createButtonLink(grid, CURRENT_PARTIES, VaadinIcons.GROUP, COMMAND_CURRENT_PARTIES, "Current parties roles in parliament");
 		
-		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, FontAwesome.BUG, COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
+		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG, COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
 
 	}
 

@@ -28,10 +28,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndica
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
-import com.vaadin.server.FontAwesome;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class PartyRankingMenuItemFactoryImpl.
@@ -115,7 +115,7 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
-		createPartyRankingTopics(menuBar.addItem(PARTY_RANKING, FontAwesome.GROUP,null));
+		createPartyRankingTopics(menuBar.addItem(PARTY_RANKING, VaadinIcons.GROUP,null));
 
 	}
 
@@ -123,30 +123,30 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 	@Override
 	public void createPartyRankingTopics(final MenuItem partynMenuItem) {
 
-		partynMenuItem.addItem(OVERVIEW_TEXT, FontAwesome.GROUP,
+		partynMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,
 				COMMAND_OVERVIEW);
 
-		final MenuItem listByTopic = partynMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, FontAwesome.GROUP, null);
+		final MenuItem listByTopic = partynMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);
 
-		final MenuItem listItem = listByTopic.addItem(TOTAL_MEMBERS,FontAwesome.GROUP,
+		final MenuItem listItem = listByTopic.addItem(TOTAL_MEMBERS,VaadinIcons.GROUP,
 				COMMAND_DATAGRID);
 		listItem.setDescription(PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT);
 
-		final MenuItem chartByTopic = partynMenuItem.addItem(CHART_BY_TOPIC_TEXT, FontAwesome.GROUP, null);
+		final MenuItem chartByTopic = partynMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);
 
 
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,FontAwesome.GROUP,
+		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,VaadinIcons.GROUP,
 				COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES);
 
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,FontAwesome.GROUP,
+		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,VaadinIcons.GROUP,
 				COMMAND_CHARTS_CURRENT_COMMITTEES);
 
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,FontAwesome.GROUP,
+		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,VaadinIcons.GROUP,
 				COMMAND_CHARTS_CURRENT_PARTIES);
-		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,FontAwesome.GROUP,
+		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,VaadinIcons.GROUP,
 				COMMAND_CHARTS_ALL_PARTIES);
 
-		partynMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
+		partynMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
 				COMMAND_PAGEVISITHISTORY);
 	}
 
@@ -155,19 +155,19 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 	public void createOverviewPage(final VerticalLayout panelContent) {
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
-		createButtonLink(grid,TOTAL_MEMBERS,FontAwesome.GROUP,
+		createButtonLink(grid,TOTAL_MEMBERS,VaadinIcons.GROUP,
 				COMMAND_DATAGRID, "Scoreboard all parties current assignments and roles in eu,government,committes and parliament");
-		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,FontAwesome.GROUP,
+		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,VaadinIcons.GROUP,
 				COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES, "Chart over the headcount by party in current goverment");
 
-		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,FontAwesome.GROUP,
+		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,VaadinIcons.GROUP,
 				COMMAND_CHARTS_CURRENT_COMMITTEES, "Chart over the headcount by party in current committees");
-		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,FontAwesome.GROUP,
+		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,VaadinIcons.GROUP,
 				COMMAND_CHARTS_CURRENT_PARTIES, "Chart over the headcount by party in current parliament");
-		createButtonLink(grid,ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,FontAwesome.GROUP,
+		createButtonLink(grid,ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,VaadinIcons.GROUP,
 				COMMAND_CHARTS_ALL_PARTIES, "Chart all parties total politician days serverd in parliament");
 
-		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
+		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
 				COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
 
 	}

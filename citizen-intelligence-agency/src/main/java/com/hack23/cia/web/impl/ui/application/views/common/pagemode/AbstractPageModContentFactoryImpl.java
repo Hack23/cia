@@ -30,12 +30,12 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLin
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.AbstractOrderedLayout;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TabSheet.Tab;
-import com.vaadin.v7.ui.HorizontalLayout;
-import com.vaadin.v7.ui.Label;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class AbstractPageModContentFactoryImpl.
@@ -288,7 +288,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @param resultPerPage
 	 *            the result per page
 	 */
-	protected final void createPagingControls(final AbstractOrderedLayout content, final String name, final String pageId, final Long size, final int pageNr,
+	protected final void createPagingControls(final AbstractOrderedLayout content, final String name, final String pageId, final int size, final int pageNr,
 			final int resultPerPage) {
 				final HorizontalLayout pagingControls = new HorizontalLayout();
 				pagingControls.setSpacing(true);

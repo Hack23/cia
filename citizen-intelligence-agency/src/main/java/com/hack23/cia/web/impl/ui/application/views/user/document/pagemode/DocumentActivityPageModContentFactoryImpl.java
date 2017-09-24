@@ -37,8 +37,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPag
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class DocumentActivityPageModContentFactoryImpl.
@@ -92,13 +92,10 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractDoc
 
 			if (documentStatusContainer != null && documentStatusContainer.getDocumentActivityContainer() != null
 					&& documentStatusContainer.getDocumentActivityContainer().getDocumentActivities() != null) {
-				final BeanItemContainer<DocumentActivityData> documentActivityDataDataDataSource = new BeanItemContainer<>(
-						DocumentActivityData.class,
-						documentStatusContainer.getDocumentActivityContainer().getDocumentActivities());
 
 				getGridFactory()
-						.createBasicBeanItemGrid(panelContent,
-								documentActivityDataDataDataSource, "Document activities",
+						.createBasicBeanItemGrid(panelContent, DocumentActivityData.class,
+								documentStatusContainer.getDocumentActivityContainer().getDocumentActivities(), "Document activities",
 								new String[] { "createdDate", "code", "activityName",
 										"orderNumber", "process", "status" }, new String[] { "hjid" }, null, null, null);
 

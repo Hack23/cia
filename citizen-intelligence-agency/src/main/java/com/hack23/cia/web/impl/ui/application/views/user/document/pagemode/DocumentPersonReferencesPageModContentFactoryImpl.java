@@ -39,8 +39,8 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class DocumentPersonReferencesPageModContentFactoryImpl.
@@ -98,12 +98,10 @@ public final class DocumentPersonReferencesPageModContentFactoryImpl extends Abs
 					&& documentStatusContainer.getDocumentPersonReferenceContainer() != null
 					&& documentStatusContainer.getDocumentPersonReferenceContainer()
 							.getDocumentPersonReferenceList() != null) {
-				final BeanItemContainer<DocumentPersonReferenceData> documentPersonReferenceDataDataSource = new BeanItemContainer<>(
-						DocumentPersonReferenceData.class, documentStatusContainer
-								.getDocumentPersonReferenceContainer().getDocumentPersonReferenceList());
 
 				getGridFactory().createBasicBeanItemGrid(
-						panelContent, documentPersonReferenceDataDataSource,
+						panelContent, DocumentPersonReferenceData.class, documentStatusContainer
+						.getDocumentPersonReferenceContainer().getDocumentPersonReferenceList(),
 						"Document person references",
 						new String[] { "personReferenceId", "referenceName", "partyShortCode", "orderNumber",
 								"roleDescription" }, new String[] { "personReferenceId", "hjid" },

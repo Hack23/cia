@@ -45,4 +45,6 @@
     <inherits name="com.vaadin.DefaultWidgetSet" />
 
     <inherits name="org.vaadin.gridutil.WidgetSet" />
+
+    <inherits name="com.whitestein.vaadin.widgets.wtpdfviewer.Widgetset" />
 </module>

@@ -32,8 +32,8 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class GovernmentRolesPageModContentFactoryImpl.
@@ -78,14 +78,10 @@ public final class PartyGovernmentRolesPageModContentFactoryImpl extends Abstrac
 			final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
 
-			final BeanItemContainer<ViewRiksdagenGovermentRoleMember> currentGovermentMemberDataSource = new BeanItemContainer<>(
-					ViewRiksdagenGovermentRoleMember.class,
-					govermentRoleMemberDataContainer.findListByProperty(
-							new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },
-							ViewRiksdagenGovermentRoleMember_.party, ViewRiksdagenGovermentRoleMember_.active));
-
 			getGridFactory().createBasicBeanItemGrid(
-					panelContent, currentGovermentMemberDataSource,
+					panelContent, ViewRiksdagenGovermentRoleMember.class, govermentRoleMemberDataContainer.findListByProperty(
+							new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },
+							ViewRiksdagenGovermentRoleMember_.party, ViewRiksdagenGovermentRoleMember_.active),
 					GOVERNMENT_ROLES,
 					new String[] { "roleId", "personId", "firstName", "lastName", "active", "detail",
 							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "roleId", "personId", "party" },

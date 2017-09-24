@@ -41,8 +41,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPag
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class DocumentAttachementsPageModContentFactoryImpl.
@@ -96,12 +96,9 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 
 			if (documentStatusContainer != null && documentStatusContainer.getDocumentAttachmentContainer() != null
 					&& documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList() != null) {
-				final BeanItemContainer<DocumentAttachment> documentAttachmentDataSource = new BeanItemContainer<>(
-						DocumentAttachment.class,
-						documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList());
 
 				getGridFactory().createBasicBeanItemGrid(
-						panelContent, documentAttachmentDataSource,
+						panelContent, DocumentAttachment.class, documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList(),
 						"Document attachements", new String[] { "fileName", "fileSize", "fileType", "fileUrl" }, new String[] { "hjid" },
 						null, null, null);
 

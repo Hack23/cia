@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -37,13 +38,13 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.UpdateApplicationConfigurationClickListener;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.HorizontalLayout;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
+
 
 /**
  * The Class AdminApplicationConfigurationPageModContentFactoryImpl.
@@ -87,14 +88,12 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 		final DataContainer<ApplicationConfiguration, Long> dataContainer = getApplicationManager()
 				.getDataContainer(ApplicationConfiguration.class);
 
-		final BeanItemContainer<ApplicationConfiguration> dataSource = new BeanItemContainer<>(
-				ApplicationConfiguration.class,
-		dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationConfiguration_.configurationGroup));
+		List<ApplicationConfiguration> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationConfiguration_.configurationGroup);
 
-		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
-		getGridFactory().createBasicBeanItemGrid(content,
-				dataSource,
+		getGridFactory().createBasicBeanItemGrid(content,ApplicationConfiguration.class,
+				pageOrderBy,
 				"ApplicationConfiguration",
 				new String[] { "hjid", "configurationGroup", "component", "componentTitle", "configTitle", "configDescription",
 						 "componentDescription", "propertyId", "propertyValue" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "updatedDate","propertyId" ,"componentDescription", "componentTitle"},
@@ -117,7 +116,7 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 				horizontalLayout.addComponent(rightLayout);
 
 
-				getFormFactory().addFormPanelTextFields(leftLayout, new BeanItem<>(applicationConfiguration),
+				getFormFactory().addFormPanelTextFields(leftLayout, applicationConfiguration,
 						ApplicationConfiguration.class,
 						Arrays.asList(new String[] { "configurationGroup", "component","configTitle" ,"configDescription",
 								"propertyValue", "createdDate",
@@ -145,7 +144,7 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 				final FormLayout updateFormContent = new FormLayout();
 				updateFormPanel.setContent(updateFormContent);
 
-				getFormFactory().addRequestInputFormFields(updateFormContent, new BeanItem<>(request),
+				getFormFactory().addRequestInputFormFields(updateFormContent, request,
 						UpdateApplicationConfigurationRequest.class, Arrays.asList(new String[] { "configTitle",
 								"configDescription", "componentTitle", "componentDescription", "propertyValue" }),
 						"Update Configuration", buttonListener);

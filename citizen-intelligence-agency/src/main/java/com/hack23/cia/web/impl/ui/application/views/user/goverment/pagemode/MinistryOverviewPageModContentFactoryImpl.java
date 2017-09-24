@@ -35,8 +35,8 @@ import com.vaadin.ui.Layout;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class MinistryOverviewPageModContentFactoryImpl.
@@ -81,18 +81,18 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
-			
+
 			final Link addMinistryPageLink = getPageLinkFactory().addMinistryPageLink(viewRiksdagenMinistry);
 			panelContent.addComponent(addMinistryPageLink);
 
-			getFormFactory().addFormPanelTextFields(panelContent, new BeanItem<>(viewRiksdagenMinistry),
+			getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenMinistry,
 					ViewRiksdagenMinistry.class, Arrays.asList(new String[] { "nameId", "active", "firstAssignmentDate",
 							"lastAssignmentDate", "totalAssignments", "totalDaysServed", "currentMemberSize" }));
 
 			panelContent.setExpandRatio(addMinistryPageLink, ContentRatio.SMALL);
 
 			panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
-			
+
 			final VerticalLayout overviewLayout = new VerticalLayout();
 			overviewLayout.setSizeFull();
 

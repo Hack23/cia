@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -34,9 +35,9 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
+
 
 /**
  * The Class AdminLanguagePageModContentFactoryImpl.
@@ -78,13 +79,12 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
 		final DataContainer<LanguageData, Long> dataContainer = getApplicationManager()
 				.getDataContainer(LanguageData.class);
 
-		final BeanItemContainer<LanguageData> dataSource = new BeanItemContainer<>(LanguageData.class,
-				dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,LanguageData_.languageName));
+		List<LanguageData> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,LanguageData_.languageName);
 
-		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(content,
-				dataSource, "LanguageData",
+				LanguageData.class, pageOrderBy, "LanguageData",
 				new String[] { "hjid", "languageName", "modelObjectVersion" }, new String[] { "hjid", "modelObjectId","modelObjectVersion", "createdDate","lastModifiedDate" },
 				new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, "hjid"), null, null);
 
@@ -94,7 +94,7 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
 
 			if (languageData != null) {
 
-				getFormFactory().addFormPanelTextFields(content, new BeanItem<>(languageData), LanguageData.class,
+				getFormFactory().addFormPanelTextFields(content, languageData, LanguageData.class,
 						Arrays.asList(new String[] { "languageName", "createdDate","lastModifiedDate" ,"languageEnabled" }));
 			}
 		}

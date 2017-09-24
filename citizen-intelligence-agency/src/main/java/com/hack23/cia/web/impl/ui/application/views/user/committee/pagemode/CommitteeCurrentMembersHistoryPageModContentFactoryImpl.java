@@ -35,8 +35,8 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class CommitteeCurrentMembersHistoryPageModContentFactoryImpl.
@@ -87,14 +87,10 @@ public final class CommitteeCurrentMembersHistoryPageModContentFactoryImpl
 			final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
 
-			final BeanItemContainer<ViewRiksdagenCommitteeRoleMember> currentMembersMemberDataSource = new BeanItemContainer<>(
-					ViewRiksdagenCommitteeRoleMember.class,
-					committeeRoleMemberDataContainer.findListByProperty(
-							new Object[] { viewRiksdagenCommittee.getEmbeddedId().getDetail(), Boolean.TRUE },
-							ViewRiksdagenCommitteeRoleMember_.detail, ViewRiksdagenCommitteeRoleMember_.active));
-
 			getGridFactory().createBasicBeanItemGrid(
-					panelContent, currentMembersMemberDataSource,
+					panelContent, ViewRiksdagenCommitteeRoleMember.class,committeeRoleMemberDataContainer.findListByProperty(
+							new Object[] { viewRiksdagenCommittee.getEmbeddedId().getDetail(), Boolean.TRUE },
+							ViewRiksdagenCommitteeRoleMember_.detail, ViewRiksdagenCommitteeRoleMember_.active),
 					CURRENT_MEMBERS,
 					new String[] { "roleCode","roleId", "personId", "firstName", "lastName", "party", "active", "totalDaysServed", "detail",
 							"fromDate", "toDate" }, new String[] { "roleId", "personId", "detail", "active" },

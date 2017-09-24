@@ -18,10 +18,12 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api;
 
+import java.io.Serializable;
+import java.util.List;
+
 import com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener;
 import com.vaadin.ui.AbstractOrderedLayout;
-import com.vaadin.v7.data.Container.Indexed;
 
 /**
  * A factory for creating Grid objects.
@@ -48,7 +50,7 @@ public interface GridFactory {
 	 * @param collectionPropertyConverters
 	 *            the collection property converters
 	 */
-	void createBasicBeanItemGrid(AbstractOrderedLayout panelContent, Indexed datasource, String caption, Object[] columnOrder,
+	<T extends Serializable> void createBasicBeanItemGrid(AbstractOrderedLayout panelContent,Class<T> dataType, List<T> datasource, String caption, Object[] columnOrder,
 			Object[] hideColumns, AbstractPageItemRendererClickListener<?> listener, String actionId, ListPropertyConverter[] collectionPropertyConverters);
 
 	/**
@@ -73,7 +75,7 @@ public interface GridFactory {
 	 * @param collectionPropertyConverters
 	 *            the collection property converters
 	 */
-	void createBasicBeanItemNestedPropertiesGrid(AbstractOrderedLayout panelContent,Indexed datasource, String caption, String[] nestedProperties,Object[] columnOrder, Object[] hideColumns,
+	<T extends Serializable> void createBasicBeanItemNestedPropertiesGrid(AbstractOrderedLayout panelContent,Class<T> dataType,List<T> datasource, String caption, String[] nestedProperties,Object[] columnOrder, Object[] hideColumns,
 			AbstractPageItemRendererClickListener<?> listener, String actionId, ListPropertyConverter[] collectionPropertyConverters);
 
 }

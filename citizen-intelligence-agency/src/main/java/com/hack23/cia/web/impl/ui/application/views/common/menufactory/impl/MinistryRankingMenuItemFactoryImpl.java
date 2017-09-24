@@ -29,10 +29,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPag
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
-import com.vaadin.server.FontAwesome;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class MinistryRankingMenuItemFactoryImpl.
@@ -143,26 +143,26 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 	@Override
 	public void createMinistryRankingTopics(final MenuItem ministryMenuItem) {
 
-		ministryMenuItem.addItem(OVERVIEW_TEXT, FontAwesome.GROUP, COMMAN_OVERVIEW);
+		ministryMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP, COMMAN_OVERVIEW);
 
-		final MenuItem listByTopic = ministryMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, FontAwesome.GROUP, null);
+		final MenuItem listByTopic = ministryMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);
 
-		final MenuItem listItem = listByTopic.addItem(POLITICAL_WORK_SUMMARY_TEXT, FontAwesome.GROUP, COMMAND_DATAGRID);
+		final MenuItem listItem = listByTopic.addItem(POLITICAL_WORK_SUMMARY_TEXT, VaadinIcons.GROUP, COMMAND_DATAGRID);
 		listItem.setDescription(CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_TOTAL_POLTICIAL_DAYS_MEMBERSHIP_DESCRIPTION);
 
-		final MenuItem chartByTopic = ministryMenuItem.addItem(CHART_BY_TOPIC_TEXT, FontAwesome.GROUP, null);
+		final MenuItem chartByTopic = ministryMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);
 
-		chartByTopic.addItem(CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT, FontAwesome.GROUP, COMMAND_CHARTS_CURRENT_MINISTRIES_BY_HEADCOUNT);
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT, FontAwesome.GROUP, COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT);
+		chartByTopic.addItem(CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_CURRENT_MINISTRIES_BY_HEADCOUNT);
+		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT);
 
-		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT, FontAwesome.GROUP, COMMAND_CHARTS_ALLMINISTRIES_BY_TOTAL_DAYS);
-		chartByTopic.addItem(ALL_MINISTRIES_TOTAL_MEMBERS_TEXT, FontAwesome.GROUP, COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT);
+		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_ALLMINISTRIES_BY_TOTAL_DAYS);
+		chartByTopic.addItem(ALL_MINISTRIES_TOTAL_MEMBERS_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT);
 
-		chartByTopic.addItem(GOVERNMENT_BODIES, FontAwesome.GROUP, COMMAND_GOVERNMENT_BODIES);
+		chartByTopic.addItem(GOVERNMENT_BODIES, VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODIES);
 
-		chartByTopic.addItem(GOVERNMENT_ROLES_CHART, FontAwesome.GROUP, COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT);
+		chartByTopic.addItem(GOVERNMENT_ROLES_CHART, VaadinIcons.GROUP, COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT);
 
-		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP, COMMAND_PAGEVISITHISTORY);
+		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISITHISTORY);
 
 	}
 
@@ -170,21 +170,21 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 	public void createOverviewPage(final VerticalLayout panelContent) {
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
-		createButtonLink(grid, POLITICAL_WORK_SUMMARY_TEXT, FontAwesome.GROUP, COMMAND_DATAGRID, "Scoreboard all ministries with current/total members and politican days served");
+		createButtonLink(grid, POLITICAL_WORK_SUMMARY_TEXT, VaadinIcons.GROUP, COMMAND_DATAGRID, "Scoreboard all ministries with current/total members and politican days served");
 
-		createButtonLink(grid, CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT, FontAwesome.GROUP, COMMAND_CHARTS_CURRENT_MINISTRIES_BY_HEADCOUNT,
+		createButtonLink(grid, CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_CURRENT_MINISTRIES_BY_HEADCOUNT,
 				"Chart over current ministries by headcount");
-		createButtonLink(grid, CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT, FontAwesome.GROUP, COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT,
+		createButtonLink(grid, CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT,
 				"Chart over current parties active in ministries by headcount");
 
-		createButtonLink(grid, ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT, FontAwesome.GROUP, COMMAND_CHARTS_ALLMINISTRIES_BY_TOTAL_DAYS,
+		createButtonLink(grid, ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_ALLMINISTRIES_BY_TOTAL_DAYS,
 				"Chart over all parties hold positons in ministries by headcount");
-		createButtonLink(grid, ALL_MINISTRIES_TOTAL_MEMBERS_TEXT, FontAwesome.GROUP, COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT, "Chart over all ministries by total headcount");
-		createButtonLink(grid, GOVERNMENT_BODIES, FontAwesome.GROUP, COMMAND_GOVERNMENT_BODIES, "Chart over total headcount for all goverment bodies governed by ministries ");
+		createButtonLink(grid, ALL_MINISTRIES_TOTAL_MEMBERS_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT, "Chart over all ministries by total headcount");
+		createButtonLink(grid, GOVERNMENT_BODIES, VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODIES, "Chart over total headcount for all goverment bodies governed by ministries ");
 
-		createButtonLink(grid,GOVERNMENT_ROLES_CHART, FontAwesome.GROUP, COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT, "Gantt chart all goverment roles");
+		createButtonLink(grid,GOVERNMENT_ROLES_CHART, VaadinIcons.GROUP, COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT, "Gantt chart all goverment roles");
 
-		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP, COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
+		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
 
 	}
 

@@ -2407,6 +2407,86 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: black;
 }
 
+.cia {
+	@-webkit-keyframes progressIndeterminate {
+		0% {
+		left: -142px;
+	}
+		100% {
+		left: 0;
+	}
+	}
+	@keyframes progressIndeterminate {
+		0% {
+		left: -142px;
+	}
+		100% {
+		left: 0;
+	}
+	}
+	@media print {
+	body * {
+		display: none;
+	}
+	body {
+		background: transparent none;
+		overflow: visible !important;
+	}
+	.sidebarContainer, .secondaryToolbar, .toolbar, .loadingBox, .errorWrapper, .textLayer {
+		display: none;
+	}
+	.viewerContainer {
+		overflow: visible;
+	}
+	.mainContainer, .viewerContainer, .page, .page canvas {
+		position: static;
+		padding: 0;
+		margin: 0;
+	}
+	.page {
+		float: left;
+		display: none;
+		border: none;
+		box-shadow: none;
+		background-clip: content-box;
+		background-color: white;
+	}
+	.page[data-loaded] {
+		display: block;
+	}
+	.fileInput {
+		display: none;
+	}
+	body[data-pdfjsprinting] .outerContainer {
+		display: none;
+	}
+	body[data-pdfjsprinting] .printContainer {
+		display: block;
+	}
+	.printContainer {
+		height: 100%;
+		display: block;
+		overflow: visible;
+	}
+	.printContainer * {
+		display: block;
+	}
+	.printContainer > div {
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 1px;
+		height: 1px;
+		overflow: visible;
+		page-break-after: always;
+		page-break-inside: avoid;
+	}
+	.printContainer canvas, .printContainer img {
+		display: block;
+	}
+}
+}
+
 .cia.v-app, .cia.v-app-loading {
 	font: 600 14px/1.55 "Inconsolata";
 	color: #afcad8;
@@ -15524,6 +15604,1648 @@ div.v-layout.v-horizontal.v-widget {
 
 .cia .gantt .select-target-step .bar:hover {
 	background: #008780 !important;
+}
+
+.cia div.wtpdfviewer {
+	cursor: pointer;
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+.cia .textLayer {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+	opacity: 0.2;
+	line-height: 1;
+}
+
+.cia .textLayer > div {
+	color: transparent;
+	position: absolute;
+	white-space: pre;
+	cursor: text;
+	-webkit-transform-origin: 0% 0%;
+	-moz-transform-origin: 0% 0%;
+	-o-transform-origin: 0% 0%;
+	-ms-transform-origin: 0% 0%;
+	transform-origin: 0% 0%;
+}
+
+.cia .textLayer .highlight {
+	margin: -1px;
+	padding: 1px;
+	background-color: #b400aa;
+	border-radius: 4px;
+}
+
+.cia .textLayer .highlight.begin {
+	border-radius: 4px 0px 0px 4px;
+}
+
+.cia .textLayer .highlight.end {
+	border-radius: 0px 4px 4px 0px;
+}
+
+.cia .textLayer .highlight.middle {
+	border-radius: 0px;
+}
+
+.cia .textLayer .highlight.selected {
+	background-color: #006400;
+}
+
+.cia .textLayer ::selection {
+	background: blue;
+}
+
+.cia .textLayer ::-moz-selection {
+	background: blue;
+}
+
+.cia .textLayer .endOfContent {
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 100%;
+	right: 0px;
+	bottom: 0px;
+	z-index: -1;
+	cursor: default;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-moz-user-select: none;
+}
+
+.cia .textLayer .endOfContent.active {
+	top: 0px;
+}
+
+.cia .annotationLayer section {
+	position: absolute;
+}
+
+.cia .annotationLayer .linkAnnotation > a {
+	position: absolute;
+	font-size: 1em;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.cia .annotationLayer .linkAnnotation > a {
+	background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7) 0 0 repeat;
+}
+
+.cia .annotationLayer .linkAnnotation > a:hover {
+	opacity: 0.2;
+	background: #ff0;
+	box-shadow: 0px 2px 10px #ff0;
+}
+
+.cia .annotationLayer .textAnnotation img {
+	position: absolute;
+	cursor: pointer;
+}
+
+.cia .annotationLayer .textWidgetAnnotation input, .cia .annotationLayer .textWidgetAnnotation textarea, .cia .annotationLayer .choiceWidgetAnnotation select, .cia .annotationLayer .buttonWidgetAnnotation.checkBox input, .cia .annotationLayer .buttonWidgetAnnotation.radioButton input {
+	background-color: rgba(0, 54, 255, 0.13);
+	border: 1px solid transparent;
+	box-sizing: border-box;
+	font-size: 9px;
+	height: 100%;
+	padding: 0 3px;
+	vertical-align: top;
+	width: 100%;
+}
+
+.cia .annotationLayer .textWidgetAnnotation textarea {
+	font: message-box;
+	font-size: 9px;
+	resize: none;
+}
+
+.cia .annotationLayer .textWidgetAnnotation input[disabled], .cia .annotationLayer .textWidgetAnnotation textarea[disabled], .cia .annotationLayer .choiceWidgetAnnotation select[disabled], .cia .annotationLayer .buttonWidgetAnnotation.checkBox input[disabled], .cia .annotationLayer .buttonWidgetAnnotation.radioButton input[disabled] {
+	background: none;
+	border: 1px solid transparent;
+	cursor: not-allowed;
+}
+
+.cia .annotationLayer .textWidgetAnnotation input:hover, .cia .annotationLayer .textWidgetAnnotation textarea:hover, .cia .annotationLayer .choiceWidgetAnnotation select:hover, .cia .annotationLayer .buttonWidgetAnnotation.checkBox input:hover, .cia .annotationLayer .buttonWidgetAnnotation.radioButton input:hover {
+	border: 1px solid #000;
+}
+
+.cia .annotationLayer .textWidgetAnnotation input:focus, .cia .annotationLayer .textWidgetAnnotation textarea:focus, .cia .annotationLayer .choiceWidgetAnnotation select:focus {
+	background: none;
+	border: 1px solid transparent;
+}
+
+.cia .annotationLayer .textWidgetAnnotation input.comb {
+	font-family: monospace;
+	padding-left: 2px;
+	padding-right: 0;
+}
+
+.cia .annotationLayer .textWidgetAnnotation input.comb:focus {
+	width: 115%;
+}
+
+.cia .annotationLayer .buttonWidgetAnnotation.checkBox input, .cia .annotationLayer .buttonWidgetAnnotation.radioButton input {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+}
+
+.cia .annotationLayer .popupWrapper {
+	position: absolute;
+	width: 20em;
+}
+
+.cia .annotationLayer .popup {
+	position: absolute;
+	z-index: 200;
+	max-width: 20em;
+	background-color: #FFFF99;
+	box-shadow: 0px 2px 5px #333;
+	border-radius: 2px;
+	padding: 0.6em;
+	margin-left: 5px;
+	cursor: pointer;
+	word-wrap: break-word;
+}
+
+.cia .annotationLayer .popup h1 {
+	font-size: 1em;
+	border-bottom: 1px solid #000000;
+	padding-bottom: 0.2em;
+}
+
+.cia .annotationLayer .popup p {
+	padding-top: 0.2em;
+}
+
+.cia .annotationLayer .highlightAnnotation, .cia .annotationLayer .underlineAnnotation, .cia .annotationLayer .squigglyAnnotation, .cia .annotationLayer .strikeoutAnnotation, .cia .annotationLayer .fileAttachmentAnnotation {
+	cursor: pointer;
+}
+
+.cia .pdfViewer .canvasWrapper {
+	overflow: hidden;
+}
+
+.cia .pdfViewer .page {
+	direction: ltr;
+	width: 816px;
+	height: 1056px;
+	margin: 1px auto -8px auto;
+	position: relative;
+	overflow: visible;
+	border: 9px solid transparent;
+	background-clip: content-box;
+	border-image: url(../../../VAADIN/themes/wtpdfviewer/images/shadow.png) 9 9 repeat;
+	background-color: white;
+}
+
+.cia .pdfViewer.removePageBorders .page {
+	margin: 0px auto 10px auto;
+	border: none;
+}
+
+.cia .pdfViewer.singlePageView {
+	display: inline-block;
+}
+
+.cia .pdfViewer.singlePageView .page {
+	margin: 0;
+	border: none;
+}
+
+.cia .pdfViewer .page canvas {
+	margin: 0;
+	display: block;
+}
+
+.cia .pdfViewer .page .loadingIcon {
+	position: absolute;
+	display: block;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background: url(../../../VAADIN/themes/wtpdfviewer/images/loading-icon.gif) center no-repeat;
+}
+
+.cia .pdfPresentationMode:-webkit-full-screen .pdfViewer .page {
+	margin-bottom: 100%;
+	border: 0;
+}
+
+.cia .pdfPresentationMode:-moz-full-screen .pdfViewer .page {
+	margin-bottom: 100%;
+	border: 0;
+}
+
+.cia .pdfPresentationMode:-ms-fullscreen .pdfViewer .page {
+	margin-bottom: 100% !important;
+	border: 0;
+}
+
+.cia .pdfPresentationMode:fullscreen .pdfViewer .page {
+	margin-bottom: 100%;
+	border: 0;
+}
+
+.cia * {
+	padding: 0;
+	margin: 0;
+}
+
+.cia html {
+	height: 100%;
+	width: 100%;
+	font-size: 10px;
+}
+
+.cia body {
+	height: 100%;
+	width: 100%;
+	background-color: #404040;
+	background-image: url(../../../VAADIN/themes/wtpdfviewer/images/texture.png);
+}
+
+.cia body, .cia input, .cia button, .cia select {
+	font: message-box;
+	outline: none;
+}
+
+.cia .hidden {
+	display: none !important;
+}
+
+.cia [hidden] {
+	display: none !important;
+}
+
+.cia .viewerContainer.pdfPresentationMode:-webkit-full-screen {
+	top: 0px;
+	border-top: 2px solid transparent;
+	background-color: #000;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	cursor: none;
+	-webkit-user-select: none;
+}
+
+.cia .viewerContainer.pdfPresentationMode:-moz-full-screen {
+	top: 0px;
+	border-top: 2px solid transparent;
+	background-color: #000;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	cursor: none;
+	-moz-user-select: none;
+}
+
+.cia .viewerContainer.pdfPresentationMode:-ms-fullscreen {
+	top: 0px !important;
+	border-top: 2px solid transparent;
+	width: 100%;
+	height: 100%;
+	overflow: hidden !important;
+	cursor: none;
+	-ms-user-select: none;
+}
+
+.cia .viewerContainer.pdfPresentationMode:-ms-fullscreen::-ms-backdrop {
+	background-color: #000;
+}
+
+.cia .viewerContainer.pdfPresentationMode:fullscreen {
+	top: 0px;
+	border-top: 2px solid transparent;
+	background-color: #000;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	cursor: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+.cia .pdfPresentationMode:-webkit-full-screen a:not(.internalLink) {
+	display: none;
+}
+
+.cia .pdfPresentationMode:-moz-full-screen a:not(.internalLink) {
+	display: none;
+}
+
+.cia .pdfPresentationMode:-ms-fullscreen a:not(.internalLink) {
+	display: none !important;
+}
+
+.cia .pdfPresentationMode:fullscreen a:not(.internalLink) {
+	display: none;
+}
+
+.cia .pdfPresentationMode:-webkit-full-screen .textLayer > div {
+	cursor: none;
+}
+
+.cia .pdfPresentationMode:-moz-full-screen .textLayer > div {
+	cursor: none;
+}
+
+.cia .pdfPresentationMode:-ms-fullscreen .textLayer > div {
+	cursor: none;
+}
+
+.cia .pdfPresentationMode:fullscreen .textLayer > div {
+	cursor: none;
+}
+
+.cia .pdfPresentationMode.pdfPresentationModeControls > *, .cia .pdfPresentationMode.pdfPresentationModeControls .textLayer > div {
+	cursor: default;
+}
+
+.cia .outerContainer {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+.cia .sidebarContainer {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 200px;
+	visibility: hidden;
+	-webkit-transition-duration: 200ms;
+	-webkit-transition-timing-function: ease;
+	transition-duration: 200ms;
+	transition-timing-function: ease;
+}
+
+.cia .sidebarContainer {
+	-webkit-transition-property: left;
+	transition-property: left;
+	left: -200px;
+}
+
+.cia .outerContainer.sidebarMoving > .sidebarContainer, .cia .outerContainer.sidebarOpen > .sidebarContainer {
+	visibility: visible;
+}
+
+.cia .outerContainer.sidebarOpen > .sidebarContainer {
+	left: 0px;
+}
+
+.cia .mainContainer {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	min-width: 320px;
+	-webkit-transition-duration: 200ms;
+	-webkit-transition-timing-function: ease;
+	transition-duration: 200ms;
+	transition-timing-function: ease;
+}
+
+.cia .outerContainer.sidebarOpen > .mainContainer {
+	-webkit-transition-property: left;
+	transition-property: left;
+	left: 200px;
+}
+
+.cia .sidebarContent {
+	top: 32px;
+	bottom: 0;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	position: absolute;
+	width: 200px;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.cia .sidebarContent {
+	left: 0;
+	box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25);
+}
+
+.cia .viewerContainer {
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	position: absolute;
+	top: 32px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	outline: none;
+}
+
+.cia .viewerContainer {
+	box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.05);
+}
+
+.cia .toolbar {
+	position: relative;
+	left: 0;
+	right: 0;
+	z-index: 9999;
+	cursor: default;
+}
+
+.cia .toolbarContainer {
+	width: 100%;
+}
+
+.cia .toolbarSidebar {
+	width: 200px;
+	height: 32px;
+	background-color: #424242;
+	background-image: url(../../../VAADIN/themes/wtpdfviewer/images/texture.png), linear, false, zip(rgba(77, 77, 77, 0.99) rgba(64, 64, 64, 0.95));
+}
+
+.cia .toolbarSidebar {
+	box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(255, 255, 255, 0.05), 0 1px 0 rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.cia .toolbarContainer, .cia .findbar, .cia .secondaryToolbar {
+	position: relative;
+	height: 32px;
+	background-color: #474747;
+	background-image: url(../../../VAADIN/themes/wtpdfviewer/images/texture.png), linear, false, zip(rgba(82, 82, 82, 0.99) rgba(69, 69, 69, 0.95));
+}
+
+.cia .toolbarContainer, .cia .findbar, .cia .secondaryToolbar {
+	box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.08), inset 0 1px 1px rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(255, 255, 255, 0.05), 0 1px 0 rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.cia .toolbarViewer {
+	height: 32px;
+	position: relative;
+}
+
+.cia .loadingBar {
+	position: relative;
+	width: 100%;
+	height: 4px;
+	background-color: #333;
+	border-bottom: 1px solid #333;
+}
+
+.cia .loadingBar .progress {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0%;
+	height: 100%;
+	background-color: #ddd;
+	overflow: hidden;
+	-webkit-transition: width 200ms;
+	transition: width 200ms;
+}
+
+.cia .loadingBar .progress.indeterminate {
+	background-color: #999;
+	-webkit-transition: none;
+	transition: none;
+}
+
+.cia .loadingBar .progress.indeterminate .glimmer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: calc(100% + 150px);
+	background: repeating-linear-gradient(135deg, #bbb 0, #999 5px, #999 45px, #ddd 55px, #ddd 95px, #bbb 100px);
+	-webkit-animation: progressIndeterminate 950ms linear infinite;
+	animation: progressIndeterminate 950ms linear infinite;
+}
+
+.cia .findbar, .cia .secondaryToolbar {
+	top: 32px;
+	position: absolute;
+	z-index: 10000;
+	height: auto;
+	min-width: 16px;
+	padding: 0px 6px 0px 6px;
+	margin: 4px 2px 4px 2px;
+	color: #d9d9d9;
+	font-size: 12px;
+	line-height: 14px;
+	text-align: left;
+	cursor: default;
+}
+
+.cia .findbar {
+	min-width: 300px;
+}
+
+.cia .findbar > div {
+	height: 32px;
+}
+
+.cia .findbar.wrapContainers > div {
+	clear: both;
+}
+
+.cia .findbar.wrapContainers > div.findbarMessageContainer {
+	height: auto;
+}
+
+.cia .findbar {
+	left: 68px;
+}
+
+.cia .findbar label {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+}
+
+.cia .findInput {
+	width: 200px;
+}
+
+.cia .findInput::-webkit-input-placeholder {
+	font-style: italic;
+}
+
+.cia .findInput::-moz-placeholder {
+	font-style: italic;
+}
+
+.cia .findInput:-ms-input-placeholder {
+	font-style: italic;
+}
+
+.cia .findInput::placeholder {
+	font-style: italic;
+}
+
+.cia .findInput[data-status="pending"] {
+	background-image: url(../../../VAADIN/themes/wtpdfviewer/images/loading-small.png);
+	background-repeat: no-repeat;
+	background-position: right;
+}
+
+.cia .secondaryToolbar {
+	padding: 6px;
+	height: auto;
+	z-index: 30000;
+}
+
+.cia .secondaryToolbar {
+	right: 4px;
+}
+
+.cia .secondaryToolbarButtonContainer {
+	max-width: 200px;
+	max-height: 400px;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	margin-bottom: -4px;
+}
+
+.cia .doorHanger, .cia .doorHangerRight {
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	border-radius: 2px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cia .doorHanger:after, .cia .doorHanger:before, .cia .doorHangerRight:after, .cia .doorHangerRight:before {
+	bottom: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.cia .doorHanger:after, .cia .doorHangerRight:after {
+	border-bottom-color: rgba(82, 82, 82, 0.99);
+	border-width: 8px;
+}
+
+.cia .doorHanger:before, .cia .doorHangerRight:before {
+	border-bottom-color: rgba(0, 0, 0, 0.5);
+	border-width: 9px;
+}
+
+.cia .doorHanger:after {
+	left: 13px;
+	margin-left: -8px;
+}
+
+.cia .doorHanger:before {
+	left: 13px;
+	margin-left: -9px;
+}
+
+.cia .doorHangerRight:after {
+	right: 13px;
+	margin-right: -8px;
+}
+
+.cia .doorHangerRight:before {
+	right: 13px;
+	margin-right: -9px;
+}
+
+.cia .findResultsCount {
+	background-color: #817e7e;
+	color: #525252;
+	text-align: center;
+	padding: 3px 4px;
+}
+
+.cia .findMsg {
+	font-style: italic;
+	color: #A6B7D0;
+}
+
+.cia .findMsg:empty {
+	display: none;
+}
+
+.cia .findInput.notFound {
+	background-color: #ff6666;
+}
+
+.cia .toolbarViewerMiddle {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.cia .toolbarViewerLeft {
+	height: 32px;
+	max-width: calc(100% - 50px);
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.cia .toolbarViewerLeft {
+	float: left;
+}
+
+.cia .toolbarViewerRight {
+	float: right;
+}
+
+.cia .toolbarViewerLeft > *, .cia .toolbarViewerMiddle > *, .cia .toolbarViewerRight > *, .cia .findbar * {
+	position: relative;
+	float: left;
+}
+
+.cia .splitToolbarButton {
+	margin: 3px 2px 4px 0;
+	display: inline-block;
+}
+
+.cia .splitToolbarButton > .toolbarButton {
+	border-radius: 0;
+	float: left;
+}
+
+.cia .toolbarButton, .cia .secondaryToolbarButton, .cia .overlayButton {
+	border: 0 none;
+	background: none;
+	width: 32px;
+	height: 25px;
+}
+
+.cia .toolbarButton > span {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+.cia .toolbarButton[disabled], .cia .secondaryToolbarButton[disabled], .cia .overlayButton[disabled] {
+	opacity: 0.5;
+}
+
+.cia .splitToolbarButton.toggled .toolbarButton {
+	margin: 0;
+}
+
+.cia .splitToolbarButton:hover > .toolbarButton, .cia .splitToolbarButton:focus > .toolbarButton, .cia .splitToolbarButton.toggled > .toolbarButton, .cia .toolbarButton.textButton {
+	background-color: rgba(0, 0, 0, 0.12);
+	background-image: linear, false, zip(rgba(255, 255, 255, 0.05) rgba(255, 255, 255, 0));
+	background-clip: padding-box;
+	border: 1px solid rgba(0, 0, 0, 0.35);
+	border-color: rgba(0, 0, 0, 0.32) rgba(0, 0, 0, 0.38) rgba(0, 0, 0, 0.42);
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 1px 0 rgba(255, 255, 255, 0.05);
+	-webkit-transition-property: background-color, border-color, box-shadow;
+	-webkit-transition-duration: 150ms;
+	-webkit-transition-timing-function: ease;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 150ms;
+	transition-timing-function: ease;
+}
+
+.cia .splitToolbarButton > .toolbarButton:hover, .cia .splitToolbarButton > .toolbarButton:focus, .cia .dropdownToolbarButton:hover, .cia .overlayButton:hover, .cia .overlayButton:focus, .cia .toolbarButton.textButton:hover, .cia .toolbarButton.textButton:focus {
+	background-color: rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 1px rgba(0, 0, 0, 0.05);
+	z-index: 199;
+}
+
+.cia .splitToolbarButton > .toolbarButton {
+	position: relative;
+}
+
+.cia .splitToolbarButton > .toolbarButton:first-child {
+	position: relative;
+	margin: 0;
+	margin-right: -1px;
+	border-top-left-radius: 2px;
+	border-bottom-left-radius: 2px;
+	border-right-color: transparent;
+}
+
+.cia .splitToolbarButton > .toolbarButton:last-child {
+	position: relative;
+	margin: 0;
+	margin-left: -1px;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+	border-left-color: transparent;
+}
+
+.cia .splitToolbarButtonSeparator {
+	padding: 8px 0;
+	width: 1px;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 99;
+	box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+	display: inline-block;
+	margin: 5px 0;
+}
+
+.cia .splitToolbarButtonSeparator {
+	float: left;
+}
+
+.cia .splitToolbarButton:hover > .splitToolbarButtonSeparator, .cia .splitToolbarButton.toggled > .splitToolbarButtonSeparator {
+	padding: 12px 0;
+	margin: 1px 0;
+	box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03);
+	-webkit-transition-property: padding;
+	-webkit-transition-duration: 10ms;
+	-webkit-transition-timing-function: ease;
+	transition-property: padding;
+	transition-duration: 10ms;
+	transition-timing-function: ease;
+}
+
+.cia .toolbarButton, .cia .dropdownToolbarButton, .cia .secondaryToolbarButton, .cia .overlayButton {
+	min-width: 16px;
+	padding: 2px 6px 0;
+	border: 1px solid transparent;
+	border-radius: 2px;
+	color: rgba(255, 255, 255, 0.8);
+	font-size: 12px;
+	line-height: 14px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	cursor: default;
+	-webkit-transition-property: background-color, border-color, box-shadow;
+	-webkit-transition-duration: 150ms;
+	-webkit-transition-timing-function: ease;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 150ms;
+	transition-timing-function: ease;
+}
+
+.cia .toolbarButton, .cia .overlayButton, .cia .dropdownToolbarButton {
+	margin: 3px 2px 4px 0;
+}
+
+.cia .toolbarButton:hover, .cia .toolbarButton:focus, .cia .dropdownToolbarButton, .cia .overlayButton, .cia .secondaryToolbarButton:hover, .cia .secondaryToolbarButton:focus {
+	background-color: rgba(0, 0, 0, 0.12);
+	background-image: linear, false, zip(rgba(255, 255, 255, 0.05) rgba(255, 255, 255, 0));
+	background-clip: padding-box;
+	border: 1px solid rgba(0, 0, 0, 0.35);
+	border-color: rgba(0, 0, 0, 0.32) rgba(0, 0, 0, 0.38) rgba(0, 0, 0, 0.42);
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.cia .toolbarButton:hover:active, .cia .overlayButton:hover:active, .cia .dropdownToolbarButton:hover:active, .cia .secondaryToolbarButton:hover:active {
+	background-color: rgba(0, 0, 0, 0.2);
+	background-image: linear, false, zip(rgba(255, 255, 255, 0.05) rgba(255, 255, 255, 0));
+	border-color: rgba(0, 0, 0, 0.35) rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.45);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset, 0 0 1px rgba(0, 0, 0, 0.2) inset, 0 1px 0 rgba(255, 255, 255, 0.05);
+	-webkit-transition-property: background-color, border-color, box-shadow;
+	-webkit-transition-duration: 10ms;
+	-webkit-transition-timing-function: linear;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 10ms;
+	transition-timing-function: linear;
+}
+
+.cia .toolbarButton.toggled, .cia .splitToolbarButton.toggled > .toolbarButton.toggled, .cia .secondaryToolbarButton.toggled {
+	background-color: rgba(0, 0, 0, 0.3);
+	background-image: linear, false, zip(rgba(255, 255, 255, 0.05) rgba(255, 255, 255, 0));
+	border-color: rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.45) rgba(0, 0, 0, 0.5);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset, 0 0 1px rgba(0, 0, 0, 0.2) inset, 0 1px 0 rgba(255, 255, 255, 0.05);
+	-webkit-transition-property: background-color, border-color, box-shadow;
+	-webkit-transition-duration: 10ms;
+	-webkit-transition-timing-function: linear;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 10ms;
+	transition-timing-function: linear;
+}
+
+.cia .toolbarButton.toggled:hover:active, .cia .splitToolbarButton.toggled > .toolbarButton.toggled:hover:active, .cia .secondaryToolbarButton.toggled:hover:active {
+	background-color: rgba(0, 0, 0, 0.4);
+	border-color: rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0.55);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2) inset, 0 0 1px rgba(0, 0, 0, 0.3) inset, 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.cia .dropdownToolbarButton {
+	width: 120px;
+	max-width: 120px;
+	padding: 0;
+	overflow: hidden;
+	background: url(../../../VAADIN/themes/wtpdfviewer/images/toolbarButton-menuArrows.png) no-repeat;
+}
+
+.cia .dropdownToolbarButton {
+	background-position: 95%;
+}
+
+.cia .dropdownToolbarButton > select {
+	min-width: 140px;
+	font-size: 12px;
+	color: #f2f2f2;
+	margin: 0;
+	padding: 3px 2px 2px;
+	border: none;
+	background: transparent;
+}
+
+.cia .dropdownToolbarButton > select > option {
+	background: #3d3d3d;
+}
+
+.cia .customScaleOption {
+	display: none;
+}
+
+.cia .pageWidthOption {
+	border-bottom: 1px rgba(255, 255, 255, 0.5) solid;
+}
+
+.cia .splitToolbarButton:first-child, .cia .toolbarButton:first-child {
+	margin-left: 4px;
+}
+
+.cia .splitToolbarButton:last-child, .cia .toolbarButton:last-child {
+	margin-right: 4px;
+}
+
+.cia .toolbarButtonSpacer {
+	width: 30px;
+	display: inline-block;
+	height: 1px;
+}
+
+.cia .findPrevious {
+	margin-left: 3px;
+}
+
+.cia .findNext {
+	margin-right: 3px;
+}
+
+.cia .toolbarButton::before, .cia .secondaryToolbarButton::before {
+	position: absolute;
+	display: inline-block;
+	top: 4px;
+	left: 7px;
+}
+
+.cia .secondaryToolbarButton::before {
+	left: 4px;
+}
+
+.cia .toolbarButton.sidebarToggle::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/toolbarButton-sidebarToggle.png);
+}
+
+.cia .toolbarButton.secondaryToolbarToggle::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/toolbarButton-secondaryToolbarToggle.png);
+}
+
+.cia .toolbarButton.findPrevious::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/findbarButton-previous.png);
+}
+
+.cia .toolbarButton.findNext::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/findbarButton-next.png);
+}
+
+.cia .toolbarButton.pageUp::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/toolbarButton-pageUp.png);
+}
+
+.cia .toolbarButton.pageDown::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/toolbarButton-pageDown.png);
+}
+
+.cia .toolbarButton.zoomOut::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/toolbarButton-zoomOut.png);
+}
+
+.cia .toolbarButton.zoomIn::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/toolbarButton-zoomIn.png);
+}
+
+.cia .toolbarButton.presentationMode::before, .cia .secondaryToolbarButton.presentationMode::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/toolbarButton-presentationMode.png);
+}
+
+.cia .toolbarButton.print::before, .cia .secondaryToolbarButton.print::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/toolbarButton-print.png);
+}
+
+.cia .toolbarButton.openFile::before, .cia .secondaryToolbarButton.openFile::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/toolbarButton-openFile.png);
+}
+
+.cia .toolbarButton.download::before, .cia .secondaryToolbarButton.download::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/toolbarButton-download.png);
+}
+
+.cia .toolbarButton.bookmark, .cia .secondaryToolbarButton.bookmark {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	outline: none;
+	padding-top: 4px;
+	text-decoration: none;
+}
+
+.cia .secondaryToolbarButton.bookmark {
+	padding-top: 5px;
+}
+
+.cia .bookmark[href='#'] {
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+.cia .toolbarButton.bookmark::before, .cia .secondaryToolbarButton.bookmark::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/toolbarButton-bookmark.png);
+}
+
+.cia .viewThumbnail.toolbarButton::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/toolbarButton-viewThumbnail.png);
+}
+
+.cia .viewOutline.toolbarButton::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/toolbarButton-viewOutline.png);
+}
+
+.cia .viewAttachments.toolbarButton::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/toolbarButton-viewAttachments.png);
+}
+
+.cia .viewFind.toolbarButton::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/toolbarButton-search.png);
+}
+
+.cia .toolbarButton.pdfSidebarNotification::after {
+	position: absolute;
+	display: inline-block;
+	top: 1px;
+	content: "";
+	background-color: #70DB55;
+	height: 9px;
+	width: 9px;
+	border-radius: 50%;
+}
+
+.cia .toolbarButton.pdfSidebarNotification::after {
+	left: 17px;
+}
+
+.cia .secondaryToolbarButton {
+	position: relative;
+	margin: 0 0 4px 0;
+	padding: 3px 0 1px 0;
+	height: auto;
+	min-height: 25px;
+	width: auto;
+	min-width: 100%;
+	white-space: normal;
+}
+
+.cia .secondaryToolbarButton {
+	padding-left: 24px;
+	text-align: left;
+}
+
+.cia .secondaryToolbarButton.bookmark {
+	padding-left: 27px;
+}
+
+.cia .secondaryToolbarButton > span {
+	padding-right: 4px;
+}
+
+.cia .secondaryToolbarButton.firstPage::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/secondaryToolbarButton-firstPage.png);
+}
+
+.cia .secondaryToolbarButton.lastPage::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/secondaryToolbarButton-lastPage.png);
+}
+
+.cia .secondaryToolbarButton.rotateCcw::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/secondaryToolbarButton-rotateCcw.png);
+}
+
+.cia .secondaryToolbarButton.rotateCw::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/secondaryToolbarButton-rotateCw.png);
+}
+
+.cia .secondaryToolbarButton.handTool::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/secondaryToolbarButton-handTool.png);
+}
+
+.cia .secondaryToolbarButton.documentProperties::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/secondaryToolbarButton-documentProperties.png);
+}
+
+.cia .verticalToolbarSeparator {
+	display: block;
+	padding: 8px 0;
+	margin: 8px 4px;
+	width: 1px;
+	background-color: rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.cia .verticalToolbarSeparator {
+	margin-left: 2px;
+}
+
+.cia .horizontalToolbarSeparator {
+	display: block;
+	margin: 0 0 4px 0;
+	height: 1px;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.cia .toolbarField {
+	padding: 3px 6px;
+	margin: 4px 0 4px 0;
+	border: 1px solid transparent;
+	border-radius: 2px;
+	background-color: rgba(255, 255, 255, 0.09);
+	background-image: linear, false, zip(rgba(255, 255, 255, 0.05) rgba(255, 255, 255, 0));
+	background-clip: padding-box;
+	border: 1px solid rgba(0, 0, 0, 0.35);
+	border-color: rgba(0, 0, 0, 0.32) rgba(0, 0, 0, 0.38) rgba(0, 0, 0, 0.42);
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05) inset, 0 1px 0 rgba(255, 255, 255, 0.05);
+	color: #f2f2f2;
+	font-size: 12px;
+	line-height: 14px;
+	outline-style: none;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 150ms;
+	transition-timing-function: ease;
+}
+
+.cia .toolbarField[type=checkbox] {
+	display: inline-block;
+	margin: 8px 0px;
+}
+
+.cia .toolbarField.pageNumber {
+	-moz-appearance: textfield;
+	min-width: 16px;
+	text-align: right;
+	width: 40px;
+}
+
+.cia .toolbarField.pageNumber.visiblePageIsLoading {
+	background-image: url(../../../VAADIN/themes/wtpdfviewer/images/loading-small.png);
+	background-repeat: no-repeat;
+	background-position: 1px;
+}
+
+.cia .toolbarField.pageNumber::-webkit-inner-spin-button, .cia .toolbarField.pageNumber::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.cia .toolbarField:hover {
+	background-color: rgba(255, 255, 255, 0.11);
+	border-color: rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.43) rgba(0, 0, 0, 0.45);
+}
+
+.cia .toolbarField:focus {
+	background-color: rgba(255, 255, 255, 0.15);
+	border-color: rgba(76, 184, 255, 0.8) rgba(76, 184, 255, 0.85) rgba(76, 184, 255, 0.9);
+}
+
+.cia .toolbarLabel {
+	min-width: 16px;
+	padding: 3px 6px 3px 2px;
+	margin: 4px 2px 4px 0;
+	border: 1px solid transparent;
+	border-radius: 2px;
+	color: #d9d9d9;
+	font-size: 12px;
+	line-height: 14px;
+	text-align: left;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	cursor: default;
+}
+
+.cia .thumbnailView {
+	position: absolute;
+	width: 120px;
+	top: 0;
+	bottom: 0;
+	padding: 10px 40px 0;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.cia .thumbnail {
+	float: left;
+	margin-bottom: 5px;
+}
+
+.cia .thumbnailView > a:last-of-type > .thumbnail {
+	margin-bottom: 10px;
+}
+
+.cia .thumbnailView > a:last-of-type > .thumbnail:not([data-loaded]) {
+	margin-bottom: 9px;
+}
+
+.cia .thumbnail:not([data-loaded]) {
+	border: 1px dashed rgba(255, 255, 255, 0.5);
+	margin: -1px -1px 4px -1px;
+}
+
+.cia .thumbnailImage {
+	border: 1px solid transparent;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+	opacity: 0.8;
+	z-index: 99;
+	background-color: white;
+	background-clip: content-box;
+}
+
+.cia .thumbnailSelectionRing {
+	border-radius: 2px;
+	padding: 7px;
+}
+
+.cia a:focus > .thumbnail > .thumbnailSelectionRing > .thumbnailImage, .cia .thumbnail:hover > .thumbnailSelectionRing > .thumbnailImage {
+	opacity: 0.9;
+}
+
+.cia a:focus > .thumbnail > .thumbnailSelectionRing, .cia .thumbnail:hover > .thumbnailSelectionRing {
+	background-color: rgba(255, 255, 255, 0.15);
+	background-image: linear, false, zip(rgba(255, 255, 255, 0.05) rgba(255, 255, 255, 0));
+	background-clip: padding-box;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 0 1px rgba(255, 255, 255, 0.2) inset, 0 0 1px rgba(0, 0, 0, 0.2);
+	color: rgba(255, 255, 255, 0.9);
+}
+
+.cia .thumbnail.selected > .thumbnailSelectionRing > .thumbnailImage {
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+	opacity: 1;
+}
+
+.cia .thumbnail.selected > .thumbnailSelectionRing {
+	background-color: rgba(255, 255, 255, 0.3);
+	background-image: linear, false, zip(rgba(255, 255, 255, 0.05) rgba(255, 255, 255, 0));
+	background-clip: padding-box;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 0 1px rgba(0, 0, 0, 0.2);
+	color: white;
+}
+
+.cia .outlineView, .cia .attachmentsView {
+	position: absolute;
+	width: 192px;
+	top: 0;
+	bottom: 0;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+}
+
+.cia .outlineView {
+	padding: 4px 4px 0;
+}
+
+.cia .attachmentsView {
+	padding: 3px 4px 0;
+}
+
+.cia .outlineWithDeepNesting > .outlineItem, .cia .outlineItem > .outlineItems {
+	margin-left: 20px;
+}
+
+.cia .outlineItem > a, .cia .attachmentsItem > button {
+	text-decoration: none;
+	display: inline-block;
+	min-width: 95%;
+	min-width: calc(100% - 4px);
+	height: auto;
+	margin-bottom: 1px;
+	border-radius: 2px;
+	color: rgba(255, 255, 255, 0.8);
+	font-size: 13px;
+	line-height: 15px;
+	-moz-user-select: none;
+	white-space: normal;
+}
+
+.cia .attachmentsItem > button {
+	border: 0 none;
+	background: none;
+	cursor: pointer;
+	width: 100%;
+}
+
+.cia .outlineItem > a {
+	padding: 2px 0 5px 4px;
+}
+
+.cia .attachmentsItem > button {
+	padding: 2px 0 3px 7px;
+	text-align: left;
+}
+
+.cia .outlineItemToggler {
+	position: relative;
+	height: 0;
+	width: 0;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.cia .outlineItemToggler::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/treeitem-expanded.png);
+	display: inline-block;
+	position: absolute;
+}
+
+.cia .outlineItemToggler.outlineItemsHidden::before {
+	content: url(../../../VAADIN/themes/wtpdfviewer/images/treeitem-collapsed.png);
+}
+
+.cia .outlineItemToggler.outlineItemsHidden ~ .outlineItems {
+	display: none;
+}
+
+.cia .outlineItemToggler {
+	float: left;
+}
+
+.cia .outlineItemToggler::before {
+	right: 4px;
+}
+
+.cia .outlineItemToggler:hover, .cia .outlineItemToggler:hover + a, .cia .outlineItemToggler:hover ~ .outlineItems, .cia .outlineItem > a:hover, .cia .attachmentsItem > button:hover {
+	background-color: rgba(255, 255, 255, 0.02);
+	background-image: linear, false, zip(rgba(255, 255, 255, 0.05) rgba(255, 255, 255, 0));
+	background-clip: padding-box;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 0 1px rgba(255, 255, 255, 0.2) inset, 0 0 1px rgba(0, 0, 0, 0.2);
+	border-radius: 2px;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+.cia .outlineItem.selected {
+	background-color: rgba(255, 255, 255, 0.08);
+	background-image: linear, false, zip(rgba(255, 255, 255, 0.05) rgba(255, 255, 255, 0));
+	background-clip: padding-box;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 0 1px rgba(0, 0, 0, 0.2);
+	color: white;
+}
+
+.cia .noResults {
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.8);
+	font-style: italic;
+	cursor: default;
+}
+
+.cia ::selection {
+	background: rgba(0, 0, 255, 0.3);
+}
+
+.cia ::-moz-selection {
+	background: rgba(0, 0, 255, 0.3);
+}
+
+.cia .errorWrapper {
+	background: none repeat scroll 0 0 #FF5555;
+	color: white;
+	left: 0;
+	position: absolute;
+	right: 0;
+	z-index: 1000;
+	padding: 3px;
+	font-size: 0.8em;
+}
+
+.cia .loadingInProgress {
+	width: inherit;
+	height: inherit;
+}
+
+.cia .loadingInProgress .errorWrapper {
+	top: 37px;
+}
+
+.cia .errorMessageLeft {
+	float: left;
+}
+
+.cia .errorMessageRight {
+	float: right;
+}
+
+.cia .errorMoreInfo {
+	background-color: #FFFFFF;
+	color: black;
+	padding: 3px;
+	margin: 3px;
+	width: 98%;
+}
+
+.cia .overlayButton {
+	width: auto;
+	margin: 3px 4px 2px 4px !important;
+	padding: 2px 6px 3px 6px;
+}
+
+.cia .overlayContainer {
+	display: table;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.2);
+	z-index: 40000;
+}
+
+.cia .overlayContainer > * {
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.cia .overlayContainer > .container {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.cia .overlayContainer > .container > .dialog {
+	display: inline-block;
+	padding: 15px;
+	border-spacing: 4px;
+	color: #d9d9d9;
+	font-size: 12px;
+	line-height: 14px;
+	background-color: #474747;
+	background-image: url(../../../VAADIN/themes/wtpdfviewer/images/texture.png), linear, false, zip(rgba(82, 82, 82, 0.99) rgba(69, 69, 69, 0.95));
+	box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.08), inset 0 1px 1px rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(255, 255, 255, 0.05), 0 1px 0 rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.1);
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	border-radius: 4px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cia .dialog > .row {
+	display: table-row;
+}
+
+.cia .dialog > .row > * {
+	display: table-cell;
+}
+
+.cia .dialog .toolbarField {
+	margin: 5px 0;
+}
+
+.cia .dialog .separator {
+	display: block;
+	margin: 4px 0 4px 0;
+	height: 1px;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.cia .dialog .buttonRow {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.cia .dialog :link {
+	color: white;
+}
+
+.cia .passwordOverlay > .dialog {
+	text-align: center;
+}
+
+.cia .passwordOverlay .toolbarField {
+	width: 200px;
+}
+
+.cia .documentPropertiesOverlay > .dialog {
+	text-align: left;
+}
+
+.cia .documentPropertiesOverlay .row > * {
+	min-width: 100px;
+}
+
+.cia .documentPropertiesOverlay .row > * {
+	text-align: left;
+}
+
+.cia .documentPropertiesOverlay .row > span {
+	width: 125px;
+	word-wrap: break-word;
+}
+
+.cia .documentPropertiesOverlay .row > p {
+	max-width: 225px;
+	word-wrap: break-word;
+}
+
+.cia .documentPropertiesOverlay .buttonRow {
+	margin-top: 10px;
+}
+
+.cia .clearBoth {
+	clear: both;
+}
+
+.cia .fileInput {
+	background: white;
+	color: black;
+	margin-top: 5px;
+	visibility: hidden;
+	position: fixed;
+	right: 0;
+	top: 0;
+}
+
+.cia .PDFBug {
+	background: none repeat scroll 0 0 white;
+	border: 1px solid #666666;
+	position: fixed;
+	top: 32px;
+	right: 0;
+	bottom: 0;
+	font-size: 10px;
+	padding: 0;
+	width: 300px;
+}
+
+.cia .PDFBug .controls {
+	background: #EEEEEE;
+	border-bottom: 1px solid #666666;
+	padding: 3px;
+}
+
+.cia .PDFBug .panels {
+	bottom: 0;
+	left: 0;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	position: absolute;
+	right: 0;
+	top: 27px;
+}
+
+.cia .PDFBug button.active {
+	font-weight: bold;
+}
+
+.cia .debuggerShowText {
+	background: none repeat scroll 0 0 yellow;
+	color: blue;
+}
+
+.cia .debuggerHideText:hover {
+	background: none repeat scroll 0 0 yellow;
+}
+
+.cia .PDFBug .stats {
+	font-family: courier;
+	font-size: 10px;
+	white-space: pre;
+}
+
+.cia .PDFBug .stats .title {
+	font-weight: bold;
+}
+
+.cia .PDFBug table {
+	font-size: 10px;
+}
+
+.cia .viewer.textLayer-visible .textLayer {
+	opacity: 1;
+}
+
+.cia .viewer.textLayer-visible .canvasWrapper {
+	background-color: #80ff80;
+}
+
+.cia .viewer.textLayer-visible .canvasWrapper canvas {
+	mix-blend-mode: screen;
+}
+
+.cia .viewer.textLayer-visible .textLayer > div {
+	background-color: rgba(255, 255, 0, 0.1);
+	color: black;
+	border: solid 1px rgba(255, 0, 0, 0.5);
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.cia .viewer.textLayer-hover .textLayer > div:hover {
+	background-color: white;
+	color: black;
+}
+
+.cia .viewer.textLayer-shadow .textLayer > div {
+	background-color: rgba(255, 255, 255, 0.6);
+	color: black;
+}
+
+.cia .grab-to-pan-grab {
+	cursor: url(../../../VAADIN/themes/wtpdfviewer/images/grab.cur), move !important;
+	cursor: -webkit-grab !important;
+	cursor: -moz-grab !important;
+	cursor: grab !important;
+}
+
+.cia .grab-to-pan-grab *:not(input):not(textarea):not(button):not(select):not(:link) {
+	cursor: inherit !important;
+}
+
+.cia .grab-to-pan-grab:active {
+	cursor: url(../../../VAADIN/themes/wtpdfviewer/images/grabbing.cur), move !important;
+	cursor: -webkit-grabbing !important;
+	cursor: -moz-grabbing !important;
+	cursor: grabbing !important;
+}
+
+.cia .grab-to-pan-grabbing {
+	cursor: url(../../../VAADIN/themes/wtpdfviewer/images/grabbing.cur), move !important;
+	cursor: -webkit-grabbing !important;
+	cursor: -moz-grabbing !important;
+	cursor: grabbing !important;
+	position: fixed;
+	background: transparent;
+	display: block;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+	z-index: 50000;
+}
+
+.cia .visibleLargeView, .cia .visibleMediumView, .cia .visibleSmallView {
+	display: none;
+}
+
+.cia .printContainer {
+	display: none;
 }
 
 .cia .v-panel-page-panel {

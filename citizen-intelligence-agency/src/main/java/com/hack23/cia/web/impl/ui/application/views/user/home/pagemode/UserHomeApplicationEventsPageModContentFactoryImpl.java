@@ -39,8 +39,8 @@ import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class UserHomeApplicationEventsPageModContentFactoryImpl.
@@ -95,10 +95,7 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl extends Ab
 			final DataContainer<ApplicationActionEvent, Long> eventDataContainer = getApplicationManager().getDataContainer(ApplicationActionEvent.class);
 
 
-			final BeanItemContainer<ApplicationActionEvent> eventDataSource = new BeanItemContainer<>(ApplicationActionEvent.class,
-					eventDataContainer.findOrderedListByProperty(ApplicationActionEvent_.userId,userAccount.getUserId(),ApplicationActionEvent_.createdDate));
-
-			getGridFactory().createBasicBeanItemGrid(panelContent, eventDataSource,
+			getGridFactory().createBasicBeanItemGrid(panelContent, ApplicationActionEvent.class, eventDataContainer.findOrderedListByProperty(ApplicationActionEvent_.userId,userAccount.getUserId(),ApplicationActionEvent_.createdDate),
 					"ApplicationActionEvent",
 					new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","actionName","page","pageMode","elementId", "applicationMessage","errorMessage", "modelObjectVersion" }, new String[] { "hjid","userId","sessionId", "modelObjectId","modelObjectVersion" },
 					new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null, null);

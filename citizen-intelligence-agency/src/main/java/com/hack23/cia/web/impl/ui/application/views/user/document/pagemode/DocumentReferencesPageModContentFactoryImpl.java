@@ -37,8 +37,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPag
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class DocumentReferencesPageModContentFactoryImpl.
@@ -99,12 +99,9 @@ public final class DocumentReferencesPageModContentFactoryImpl extends AbstractD
 					&& documentStatusContainer.getDocumentReferenceContainer() != null
 					&& documentStatusContainer.getDocumentReferenceContainer()
 							.getDocumentReferenceList() != null) {
-				final BeanItemContainer<DocumentReferenceData> documentReferenceDataDataSource = new BeanItemContainer<>(
-						DocumentReferenceData.class,
-						documentStatusContainer.getDocumentReferenceContainer().getDocumentReferenceList());
 
 				getGridFactory().createBasicBeanItemGrid(
-						panelContent, documentReferenceDataDataSource,
+						panelContent, DocumentReferenceData.class, documentStatusContainer.getDocumentReferenceContainer().getDocumentReferenceList(),
 						"Document references",
 						new String[] { "referenceType", "referenceDocumentId", "detail" }, new String[] { "hjid" }, null, null, null);
 			}

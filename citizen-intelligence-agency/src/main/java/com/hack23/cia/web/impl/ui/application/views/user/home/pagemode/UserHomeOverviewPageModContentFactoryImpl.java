@@ -38,14 +38,14 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.LogoutClickListener;
-import com.vaadin.server.FontAwesome;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class UserHomeOverviewPageModContentFactoryImpl.
@@ -93,7 +93,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 		LabelFactory.createHeader2Label(panelContent,OVERVIEW);
 
 
-		final Button logoutButton = new Button(LOGOUT,FontAwesome.SIGN_OUT);
+		final Button logoutButton = new Button(LOGOUT,VaadinIcons.SIGN_OUT);
 
 		final LogoutRequest logoutRequest = new LogoutRequest();
 		logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
@@ -114,7 +114,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 				final UserAccount userAccount = dataContainer.load(userIdFromSecurityContext);
 
 
-				getFormFactory().addFormPanelTextFields(panelContent, new BeanItem<>(userAccount), UserAccount.class,
+				getFormFactory().addFormPanelTextFields(panelContent, userAccount, UserAccount.class,
 						Arrays.asList(new String[] { "username","createdDate","email","country","numberOfVisits" }));
 
 				panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);

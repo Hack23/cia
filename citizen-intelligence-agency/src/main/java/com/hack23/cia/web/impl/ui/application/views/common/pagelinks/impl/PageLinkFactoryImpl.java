@@ -30,8 +30,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLin
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.ExternalResource;
-import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Link;
 
 /**
@@ -72,7 +72,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link(MAIN_VIEW_LINK_TEXT, new ExternalResource(
 				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME));
 		pageLink.setId(ViewAction.VISIT_MAIN_VIEW.name());
-		pageLink.setIcon(FontAwesome.STAR);
+		pageLink.setIcon(VaadinIcons.STAR);
 		return pageLink;
 	}
 
@@ -81,7 +81,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link("Register", new ExternalResource(
 				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + PAGE_SEPARATOR + ApplicationPageMode.REGISTER));
 		pageLink.setId(ViewAction.VISIT_REGISTER.name());
-		pageLink.setIcon(FontAwesome.USER_PLUS);
+		pageLink.setIcon(VaadinIcons.RANDOM);
 		return pageLink;
 	}
 
@@ -90,7 +90,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link("Login", new ExternalResource(
 				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + PAGE_SEPARATOR + ApplicationPageMode.LOGIN));
 		pageLink.setId(ViewAction.VISIT_LOGIN.name());
-		pageLink.setIcon(FontAwesome.SIGN_IN);
+		pageLink.setIcon(VaadinIcons.SIGN_IN);
 		return pageLink;
 	}
 
@@ -103,7 +103,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 						+ UserViews.COMMITTEE_VIEW_NAME + PAGE_SEPARATOR + data.getEmbeddedId().getOrgCode()));
 		pageLink.setId(ViewAction.VISIT_COMMITTEE_VIEW.name() + PAGE_SEPARATOR
 				+ data.getEmbeddedId().getOrgCode());
-		pageLink.setIcon(FontAwesome.GROUP);
+		pageLink.setIcon(VaadinIcons.GROUP);
 		return pageLink;
 	}
 
@@ -114,7 +114,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 						+ data.getNameId()));
 		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR
 				+ data.getNameId());
-		pageLink.setIcon(FontAwesome.GROUP);
+		pageLink.setIcon(VaadinIcons.GROUP);
 		return pageLink;
 	}
 
@@ -125,7 +125,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 						+ data.getPartyId()));
 		pageLink.setId(ViewAction.VISIT_PARTY_VIEW.name() + PAGE_SEPARATOR
 				+ data.getPartyId());
-		pageLink.setIcon(FontAwesome.GROUP);
+		pageLink.setIcon(VaadinIcons.GROUP);
 		return pageLink;
 	}
 
@@ -137,7 +137,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 						+ UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + personData.getId()));
 		pageLink.setId(ViewAction.VISIT_POLITICIAN_VIEW.name() + PAGE_SEPARATOR
 				+ personData.getId());
-		pageLink.setIcon(FontAwesome.BUG);
+		pageLink.setIcon(VaadinIcons.BUG);
 		return pageLink;
 	}
 
@@ -146,7 +146,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link(SEARCH, new ExternalResource(PAGE_PREFIX
 						+ UserViews.SEARCH_DOCUMENT_VIEW_NAME));
 		pageLink.setId(ViewAction.VISIT_DOCUMENT_VIEW.name());
-		pageLink.setIcon(FontAwesome.SEARCH);
+		pageLink.setIcon(VaadinIcons.SEARCH);
 
 		return pageLink;
 	}
@@ -158,7 +158,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 						+ "[" + pageNr + "]"));
 		pageLink.setId(page +"ShowPage" + PAGE_SEPARATOR
 				+ pageNr);
-		pageLink.setIcon(FontAwesome.SERVER);
+		pageLink.setIcon(VaadinIcons.SERVER);
 
 		return pageLink;
 	}
@@ -168,7 +168,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link("User account:" + UserContextUtil.getUserNameFromSecurityContext(), new ExternalResource(PAGE_PREFIX
 				+ UserViews.USERHOME_VIEW_NAME));
 			pageLink.setId(ViewAction.VISIT_USER_HOME_VIEW.name());
-			pageLink.setIcon(FontAwesome.USER);
+			pageLink.setIcon(VaadinIcons.USER);
 			return pageLink;
 	}
 

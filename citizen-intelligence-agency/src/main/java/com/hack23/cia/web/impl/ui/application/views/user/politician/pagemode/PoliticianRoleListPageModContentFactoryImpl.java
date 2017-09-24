@@ -34,8 +34,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianP
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class RoleListPageModContentFactoryImpl.
@@ -106,7 +105,7 @@ public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractP
 		Collections.sort(assignmentList, compare);
 
 		getGridFactory()
-				.createBasicBeanItemGrid(roleSummaryLayoutTabsheet, new BeanItemContainer<>(AssignmentData.class, assignmentList),
+				.createBasicBeanItemGrid(roleSummaryLayoutTabsheet, AssignmentData.class, assignmentList,
 						"Assignments",
 						new String[] { "roleCode", "assignmentType", "status", "detail", "orgCode", "fromDate",
 								"toDate" }, new String[] { "hjid", "intressentId", "orderNumber", "orgCode" }, null, null, null);

@@ -32,8 +32,8 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class LeaderHistoryPageModContentFactoryImpl.
@@ -74,24 +74,18 @@ public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractP
 
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-
 			LabelFactory.createHeader2Label(panelContent,LEADER_HISTORY);
-
 
 			final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenPartyRoleMember.class);
 
-			final BeanItemContainer<ViewRiksdagenPartyRoleMember> partyRoleMemberDataSource = new BeanItemContainer<>(
-					ViewRiksdagenPartyRoleMember.class, partyRoleMemberDataContainer
-							.getAllBy(ViewRiksdagenPartyRoleMember_.party, viewRiksdagenParty.getPartyId()));
-
 			getGridFactory().createBasicBeanItemGrid(
-					panelContent, partyRoleMemberDataSource,
+					panelContent, ViewRiksdagenPartyRoleMember.class, partyRoleMemberDataContainer
+					.getAllBy(ViewRiksdagenPartyRoleMember_.party, viewRiksdagenParty.getPartyId()),
 					"Leader History",
 					new String[] { "roleId", "roleCode", "personId", "firstName", "lastName", "party", "totalDaysServed", "active", "detail",
 							"fromDate", "toDate" }, new String[] { "roleId", "personId", "party", "detail" },
 					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null, null);
-
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}

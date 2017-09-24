@@ -28,10 +28,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPag
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
-import com.vaadin.server.FontAwesome;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class DocumentMenuItemFactoryImpl.
@@ -107,30 +107,30 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	public void createDocumentMenuBar(final MenuBar menuBar, final String pageId) {
 			createDocumentsMenuBar(menuBar);
 
-			final MenuItem documentItem = menuBar.addItem(DOCUMENT, FontAwesome.FILE, null);
+			final MenuItem documentItem = menuBar.addItem(DOCUMENT, VaadinIcons.FILE, null);
 
-			documentItem.addItem(OVERVIEW_TEXT, FontAwesome.FILE,
+			documentItem.addItem(OVERVIEW_TEXT, VaadinIcons.FILE,
 					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
-			documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+			documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 					DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId));
 
-			documentItem.addItem(PERSON_REFERENCES, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+			documentItem.addItem(PERSON_REFERENCES, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 					DocumentPageMode.PERSONREFERENCES.toString(), pageId));
 
-			documentItem.addItem(DOCUMENT_DETAILS, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+			documentItem.addItem(DOCUMENT_DETAILS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 					DocumentPageMode.DOCUMENTDETAILS.toString(), pageId));
 
-			documentItem.addItem(DOCUMENT_DATA, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+			documentItem.addItem(DOCUMENT_DATA, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 					DocumentPageMode.DOCUMENTDATA.toString(), pageId));
 
-			documentItem.addItem(DOCUMENT_REFERENCES, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+			documentItem.addItem(DOCUMENT_REFERENCES, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 					DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId));
 
-			documentItem.addItem(DOCUMENT_DECISION, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+			documentItem.addItem(DOCUMENT_DECISION, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 					DocumentPageMode.DOCUMENTDECISION.toString(), pageId));
 
-			documentItem.addItem(DOCUMENT_ATTACHEMENTS, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+			documentItem.addItem(DOCUMENT_ATTACHEMENTS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 					DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId));
 
 
@@ -144,25 +144,25 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
-		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 				DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId), DOCUMENT_ACTIVITIES);
 
-		createButtonLink(grid,PERSON_REFERENCES, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+		createButtonLink(grid,PERSON_REFERENCES, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 				DocumentPageMode.PERSONREFERENCES.toString(), pageId), PERSON_REFERENCES);
 
-		createButtonLink(grid,DOCUMENT_DETAILS, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+		createButtonLink(grid,DOCUMENT_DETAILS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 				DocumentPageMode.DOCUMENTDETAILS.toString(), pageId), DOCUMENT_DETAILS);
 
-		createButtonLink(grid,DOCUMENT_DATA, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+		createButtonLink(grid,DOCUMENT_DATA, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 				DocumentPageMode.DOCUMENTDATA.toString(), pageId), COMPLETE_DOCUMENT_AS_TEXT);
 
-		createButtonLink(grid,DOCUMENT_REFERENCES, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+		createButtonLink(grid,DOCUMENT_REFERENCES, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 				DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId), DOCUMENT_REFERENCES);
 
-		createButtonLink(grid,DOCUMENT_DECISION, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+		createButtonLink(grid,DOCUMENT_DECISION, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 				DocumentPageMode.DOCUMENTDECISION.toString(), pageId), DOCUMENT_DECISIONS);
 
-		createButtonLink(grid,DOCUMENT_ATTACHEMENTS, FontAwesome.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+		createButtonLink(grid,DOCUMENT_ATTACHEMENTS, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId), ATTACHEMENTS);
 	}
 
@@ -172,9 +172,9 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		initApplicationMenuBar(menuBar);
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
-		final MenuItem documentsItem = menuBar.addItem(DOCUMENTS, FontAwesome.FILE, null);
-		documentsItem.addItem("List all",FontAwesome.GROUP, COMMAND_DOCUMENTS);
-		documentsItem.addItem("Search Documents",FontAwesome.GROUP, COMMAND_SEARCH_DOCUMENT);
+		final MenuItem documentsItem = menuBar.addItem(DOCUMENTS, VaadinIcons.FILE, null);
+		documentsItem.addItem("List all",VaadinIcons.GROUP, COMMAND_DOCUMENTS);
+		documentsItem.addItem("Search Documents",VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT);
 
 	}
 

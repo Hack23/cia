@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -34,9 +35,9 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
+
 
 /**
  * The Class AdminLanguageContentPageModContentFactoryImpl.
@@ -77,13 +78,12 @@ public final class AdminLanguageContentPageModContentFactoryImpl extends Abstrac
 		final DataContainer<LanguageContentData, Long> dataContainer = getApplicationManager()
 				.getDataContainer(LanguageContentData.class);
 
-		final BeanItemContainer<LanguageContentData> dataSource = new BeanItemContainer<>(
-				LanguageContentData.class, dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,LanguageContentData_.toLanguage));
+		List<LanguageContentData> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,LanguageContentData_.toLanguage);
 
-		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(content,
-				dataSource,
+				LanguageContentData.class,pageOrderBy,
 				"LanguageContentData",
 				new String[] { "hjid", "languageContentType", "refKey", "fromLanguage", "toLanguage", "createdDate",
 						"languageValue" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion" },
@@ -95,7 +95,7 @@ public final class AdminLanguageContentPageModContentFactoryImpl extends Abstrac
 
 			if (languageContentData != null) {
 
-				getFormFactory().addFormPanelTextFields(content, new BeanItem<>(languageContentData), LanguageContentData.class,
+				getFormFactory().addFormPanelTextFields(content, languageContentData, LanguageContentData.class,
 						Arrays.asList(new String[] { "refKey", "fromLanguage", "toLanguage", "createdDate",
 								"languageValue"}));
 			}

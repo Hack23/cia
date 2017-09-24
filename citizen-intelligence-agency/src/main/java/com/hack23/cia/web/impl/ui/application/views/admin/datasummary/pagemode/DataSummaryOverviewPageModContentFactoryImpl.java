@@ -28,13 +28,12 @@ import com.hack23.cia.web.impl.ui.application.views.common.tablefactory.TableFac
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RefreshDataViewsClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.UpdateSearchIndexClickListener;
-import com.vaadin.server.FontAwesome;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.ui.Table;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class DataSummaryOverviewPageModContentFactoryImpl.
@@ -79,22 +78,22 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 		LabelFactory.createHeader2Label(content,ADMIN_DATA_SUMMARY);
 
-		final Table createDataSummaryTable = tableFactory.createDataSummaryTable();
-		content.addComponent(createDataSummaryTable);
-		content.setExpandRatio(createDataSummaryTable, ContentRatio.LARGE);
+//		final Table createDataSummaryTable = tableFactory.createDataSummaryTable();
+//		content.addComponent(createDataSummaryTable);
+//		content.setExpandRatio(createDataSummaryTable, ContentRatio.LARGE);
 
 		content.setSizeFull();
 		content.setMargin(false);
 		content.setSpacing(true);
 
-		final Button refreshViewsButton = new Button(REFRESH_VIEWS,FontAwesome.REFRESH);
+		final Button refreshViewsButton = new Button(REFRESH_VIEWS,VaadinIcons.REFRESH);
 
 		refreshViewsButton.addClickListener(new RefreshDataViewsClickListener());
 
 		content.addComponent(refreshViewsButton);
 		content.setExpandRatio(refreshViewsButton, ContentRatio.SMALL);
 
-		final Button updateSearchIndexButton = new Button(UPDATE_SEARCH_INDEX,FontAwesome.REFRESH);
+		final Button updateSearchIndexButton = new Button(UPDATE_SEARCH_INDEX,VaadinIcons.REFRESH);
 
 		updateSearchIndexButton.addClickListener(new UpdateSearchIndexClickListener());
 

@@ -19,13 +19,17 @@
 package com.hack23.cia.web.impl.ui.application.views.common.converters;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
+import java.util.Optional;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import com.vaadin.v7.data.util.converter.Converter;
+import com.vaadin.data.Converter;
+import com.vaadin.data.Result;
+import com.vaadin.data.ValueContext;
+import com.vaadin.server.SerializableConsumer;
+import com.vaadin.server.SerializableFunction;
+
 
 /**
  * The Class ListPropertyRenderer.
@@ -92,16 +96,6 @@ public final class ListPropertyConverter implements Converter<String, List> {
 
 
 	/**
-	 * Gets the presentation type.
-	 *
-	 * @return the presentation type
-	 */
-	@Override
-	public Class<String> getPresentationType() {
-		return String.class;
-	}
-
-	/**
 	 * Gets the column.
 	 *
 	 * @return the column
@@ -111,14 +105,44 @@ public final class ListPropertyConverter implements Converter<String, List> {
 	}
 
 	@Override
-	public List convertToModel(final String value, final Class<? extends List> targetType, final Locale locale)
-			throws ConversionException {
-		return new ArrayList<>();
+	public Result<List> convertToModel(String value, ValueContext context) {
+		return new Result() {
+
+			@Override
+			public Result flatMap(SerializableFunction mapper) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public void handle(SerializableConsumer ifOk, SerializableConsumer ifError) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public boolean isError() {
+				// TODO Auto-generated method stub
+				return false;
+			}
+
+			@Override
+			public Optional getMessage() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public Object getOrThrow(SerializableFunction exceptionProvider) throws Throwable {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+		};
 	}
 
 	@Override
-	public String convertToPresentation(final List value, final Class<? extends String> targetType, final Locale locale)
-			throws ConversionException {
+	public String convertToPresentation(List value, ValueContext context) {
 		final StringBuilder stringBuilder = new StringBuilder().append(START_TAG);
 
 		if (value != null) {
@@ -140,7 +164,6 @@ public final class ListPropertyConverter implements Converter<String, List> {
 					}
 
 				} catch (final IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-					throw new ConversionException(e);
 				}
 				stringBuilder.append(CONTENT_SEPARATOR);
 			}
@@ -149,11 +172,6 @@ public final class ListPropertyConverter implements Converter<String, List> {
 		stringBuilder.append(END_TAG);
 
 		return stringBuilder.toString();
-	}
-
-	@Override
-	public Class<List> getModelType() {
-		return modelType;
 	}
 
 }

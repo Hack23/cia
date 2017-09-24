@@ -28,10 +28,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
-import com.vaadin.server.FontAwesome;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class UserHomeMenuItemFactoryImpl.
@@ -67,19 +67,19 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		initApplicationMenuBar(menuBar);
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
-		final MenuItem accountItem = menuBar.addItem("Useraccount", FontAwesome.USER,null);
+		final MenuItem accountItem = menuBar.addItem("Useraccount", VaadinIcons.USER,null);
 
 
-		accountItem.addItem(OVERVIEW_TEXT, FontAwesome.USER,
+		accountItem.addItem(OVERVIEW_TEXT, VaadinIcons.USER,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
-		accountItem.addItem(SECURITY_SETTING_TEXT, FontAwesome.USER,
+		accountItem.addItem(SECURITY_SETTING_TEXT, VaadinIcons.USER,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString(), pageId));
 
-		accountItem.addItem(USER_VISITS, FontAwesome.USER,
+		accountItem.addItem(USER_VISITS, VaadinIcons.USER,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_VISITS.toString(), pageId));
 
-		accountItem.addItem(USER_EVENTS, FontAwesome.USER,
+		accountItem.addItem(USER_EVENTS, VaadinIcons.USER,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_EVENTS.toString(), pageId));
 
 
@@ -90,13 +90,13 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	public void createOverviewPage(final VerticalLayout overviewLayout) {
 		final ResponsiveRow grid = createGridLayout(overviewLayout);
 
-		createButtonLink(grid,SECURITY_SETTING_TEXT, FontAwesome.USER,
+		createButtonLink(grid,SECURITY_SETTING_TEXT, VaadinIcons.USER,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString(),""),"Security settings, enable MFA");
 
-		createButtonLink(grid,USER_VISITS, FontAwesome.USER,
+		createButtonLink(grid,USER_VISITS, VaadinIcons.USER,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_VISITS.toString()),"All past visits");
 
-		createButtonLink(grid,USER_EVENTS, FontAwesome.USER,
+		createButtonLink(grid,USER_EVENTS, VaadinIcons.USER,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_EVENTS.toString()),"All past events");
 
 

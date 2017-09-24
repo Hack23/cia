@@ -25,9 +25,9 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageMod
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
-import com.vaadin.server.FontAwesome;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class BallotMenuItemFactoryImpl.
@@ -53,9 +53,9 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 	public void createBallotMenuBar(final MenuBar menuBar, final String pageId) {
 		initApplicationMenuBar(menuBar);
 
-		menuBar.addItem(OVERVIEW_TEXT, FontAwesome.PIE_CHART,
+		menuBar.addItem(OVERVIEW_TEXT, VaadinIcons.PIE_CHART,
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.OVERVIEW, pageId));
-		menuBar.addItem(CHARTS_TEXT, FontAwesome.PIE_CHART,
+		menuBar.addItem(CHARTS_TEXT, VaadinIcons.PIE_CHART,
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId));
 	}
 
@@ -63,7 +63,7 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
-		createButtonLink(grid,CHARTS_TEXT, FontAwesome.PIE_CHART,
+		createButtonLink(grid,CHARTS_TEXT, VaadinIcons.PIE_CHART,
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId), "Breakdown by total votes and by party.");
 	}
 

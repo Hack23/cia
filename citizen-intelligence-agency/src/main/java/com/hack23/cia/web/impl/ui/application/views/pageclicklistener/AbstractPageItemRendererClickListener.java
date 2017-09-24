@@ -20,11 +20,11 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
 import java.util.Set;
 
+import com.vaadin.event.selection.SelectionEvent;
+import com.vaadin.event.selection.SelectionListener;
 import com.vaadin.ui.UI;
-import com.vaadin.v7.event.SelectionEvent;
-import com.vaadin.v7.event.SelectionEvent.SelectionListener;
-import com.vaadin.v7.ui.renderers.ClickableRenderer.RendererClickEvent;
-import com.vaadin.v7.ui.renderers.ClickableRenderer.RendererClickListener;
+import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
+import com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener;
 
 /**
  * The class AbstractPageItemRendererClickListener.
@@ -32,7 +32,7 @@ import com.vaadin.v7.ui.renderers.ClickableRenderer.RendererClickListener;
  * @param <T>
  *            the generic type
  */
-public abstract class AbstractPageItemRendererClickListener<T> implements RendererClickListener ,SelectionListener{
+public abstract class AbstractPageItemRendererClickListener<T> implements RendererClickListener<T>, SelectionListener<T> {
 
 	/** The Constant PAGE_SEPARATOR. */
 	private static final Character PAGE_SEPARATOR = '/';
@@ -54,14 +54,14 @@ public abstract class AbstractPageItemRendererClickListener<T> implements Render
 	}
 
 	@Override
-	public final void click(final RendererClickEvent event) {
-		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + getPageId((T)event.getItemId()));
+	public final void click(final RendererClickEvent<T> event) {
+		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + getPageId(event.getItem()));
 	}
 
 
 	@Override
-	public final void select(final SelectionEvent event) {
-		final Set<T> added =(Set<T>) event.getAdded();
+	public void selectionChange(SelectionEvent<T> event) {
+		final Set<T> added =event.getAllSelectedItems();
 
 		if (!added.isEmpty()) {
 			UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + getPageId(added.iterator().next()));
@@ -69,6 +69,7 @@ public abstract class AbstractPageItemRendererClickListener<T> implements Render
 		}
 
 	}
+
 
 	/**
 	 * Gets the page id.

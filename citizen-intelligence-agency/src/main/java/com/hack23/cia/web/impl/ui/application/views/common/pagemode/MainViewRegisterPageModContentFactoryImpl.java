@@ -36,8 +36,8 @@ import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class MainViewRegisterPageModContentFactoryImpl.
@@ -91,7 +91,7 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractPag
 		reqisterRequest.setCountry("");
 		reqisterRequest.setUserpassword("");
 		final ClickListener reqisterListener = new RegisterUserClickListener(reqisterRequest);
-		getFormFactory().addRequestInputFormFields(formContent, new BeanItem<>(reqisterRequest),
+		getFormFactory().addRequestInputFormFields(formContent, reqisterRequest,
 				RegisterUserRequest.class,
 				Arrays.asList(new String[] { "username", "email", "country", "userpassword" }), "Register",
 				reqisterListener);

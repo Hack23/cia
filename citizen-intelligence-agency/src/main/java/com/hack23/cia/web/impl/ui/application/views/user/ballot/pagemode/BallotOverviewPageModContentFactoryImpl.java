@@ -47,9 +47,9 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
+
 
 /**
  * The Class BallotOverviewPageModContentFactoryImpl.
@@ -116,7 +116,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 				if (!decisionSummaries.isEmpty()) {
 
-					getFormFactory().addFormPanelTextFields(panelContent, new BeanItem<>(decisionSummaries.get(FIRST_OBJECT)),
+					getFormFactory().addFormPanelTextFields(panelContent, decisionSummaries.get(FIRST_OBJECT),
 							ViewRiksdagenCommitteeBallotDecisionSummary.class,
 							Arrays.asList(new String[] { "embeddedId.id", "ballotId", "rm", "voteDate", "org",
 									"committeeReport", "embeddedId.issue", "title", "subTitle", "decisionType",
@@ -126,7 +126,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 				} else {
 
-					getFormFactory().addFormPanelTextFields(panelContent, new BeanItem<>(viewRiksdagenVoteDataBallotSummary),
+					getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenVoteDataBallotSummary,
 							ViewRiksdagenVoteDataBallotSummary.class,
 							Arrays.asList(new String[] { "embeddedId.ballotId", "rm", "voteDate", "embeddedId.issue",
 									"embeddedId.concern", "ballotType", "label", "totalVotes", "yesVotes", "noVotes",
@@ -136,11 +136,8 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			}
 
 
-			final BeanItemContainer<ViewRiksdagenVoteDataBallotPartySummary> partyBallotDataSource = new BeanItemContainer<>(
-					ViewRiksdagenVoteDataBallotPartySummary.class, partyBallotList);
-
-			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
-					partyBallotDataSource, "Party Ballot Summary",
+			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenVoteDataBallotPartySummary.class,
+					partyBallotList, "Party Ballot Summary",
 					new String[] { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue",
 							"embeddedId.party" },
 					new String[] { "embeddedId.party", "voteDate", "rm", "label", "embeddedId.concern",

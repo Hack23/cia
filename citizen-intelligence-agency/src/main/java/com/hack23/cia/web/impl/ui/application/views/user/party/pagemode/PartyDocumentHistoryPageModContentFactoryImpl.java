@@ -32,8 +32,8 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class DocumentHistoryPageModContentFactoryImpl.
@@ -78,14 +78,10 @@ public final class PartyDocumentHistoryPageModContentFactoryImpl extends Abstrac
 			final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
 					.getDataContainer(ViewRiksdagenPoliticianDocument.class);
 
-			final BeanItemContainer<ViewRiksdagenPoliticianDocument> politicianDocumentDataSource = new BeanItemContainer<>(
-					ViewRiksdagenPoliticianDocument.class,
-					politicianDocumentDataContainer.findOrderedListByProperty(
-							ViewRiksdagenPoliticianDocument_.partyShortCode, pageId,
-							ViewRiksdagenPoliticianDocument_.madePublicDate));
-
 			getGridFactory().createBasicBeanItemGrid(
-					panelContent, politicianDocumentDataSource,
+					panelContent, ViewRiksdagenPoliticianDocument.class, politicianDocumentDataContainer.findOrderedListByProperty(
+							ViewRiksdagenPoliticianDocument_.partyShortCode, pageId,
+							ViewRiksdagenPoliticianDocument_.madePublicDate),
 					"Member Document history",
 					new String[] { "rm", "madePublicDate", "title", "subTitle","id", "docId", "referenceName", "partyShortCode", "personReferenceId",
 							"roleDescription", "documentType", "subType", "org", "label",

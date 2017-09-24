@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
+import java.util.List;
+
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
@@ -32,8 +34,8 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class DocumentOverviewPageModContentFactoryImpl.
@@ -72,12 +74,11 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 		final DataContainer<DocumentElement, String> documentElementDataContainer = getApplicationManager()
 				.getDataContainer(DocumentElement.class);
 
-		final BeanItemContainer<DocumentElement> documentActivityDataDataDataSource = new BeanItemContainer<>(DocumentElement.class,
-				documentElementDataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, DocumentElement_.createdDate));
+		List<DocumentElement> pageOrderBy = documentElementDataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, DocumentElement_.createdDate);
 
-		createPagingControls(panelContent,NAME,pageId, documentElementDataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		createPagingControls(panelContent,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
-		getGridFactory().createBasicBeanItemGrid(panelContent, documentActivityDataDataDataSource, "Document",
+		getGridFactory().createBasicBeanItemGrid(panelContent, DocumentElement.class, pageOrderBy, "Document",
 				new String[] { "rm", "createdDate", "documentName", "subType", "title", "subTitle", "status" },
 				new String[] { "rm", "lang", "noteTitle", "origin", "subType", "note", "subTitle", "status", "label",
 						"id", "hit", "madePublicDate", "databaseSource", "domainOrg", "relatedId", "org",

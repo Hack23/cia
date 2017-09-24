@@ -36,13 +36,13 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.HorizontalLayout;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
+
 
 /**
  * The Class AdminApplicationSessionPageModContentFactoryImpl.
@@ -84,13 +84,11 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 		final DataContainer<ApplicationSession, Long> dataContainer = getApplicationManager()
 				.getDataContainer(ApplicationSession.class);
 
+		List<ApplicationSession> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationSession_.createdDate);
 
-		final BeanItemContainer<ApplicationSession> dataSource = new BeanItemContainer<>(
-				ApplicationSession.class, dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationSession_.createdDate));
+		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
-		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
-
-		getGridFactory().createBasicBeanItemGrid(content, dataSource,
+		getGridFactory().createBasicBeanItemGrid(content, ApplicationSession.class, pageOrderBy,
 				"ApplicationSession",
 				new String[] { "hjid", "createdDate", "sessionType", "userId", "events", "operatingSystem", "locale",
 						"ipInformation", "userAgentInformation", "sessionId" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion" ,"userAgentInformation", "sessionId","ipInformation"},
@@ -110,7 +108,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 				content.setExpandRatio(horizontalLayout, ContentRatio.GRID);
 
 
-				getFormFactory().addFormPanelTextFields(horizontalLayout, new BeanItem<>(applicationSession),
+				getFormFactory().addFormPanelTextFields(horizontalLayout, applicationSession,
 						ApplicationSession.class,
 						Arrays.asList(new String[] { "createdDate","sessionType", "userId", "sessionId", "operatingSystem", "locale",
 								"ipInformation", "userAgentInformation"}));
@@ -118,11 +116,8 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 				horizontalLayout.addComponent(rightLayout);
 				horizontalLayout.setExpandRatio(rightLayout, ContentRatio.GRID);
 
-				final BeanItemContainer<ApplicationActionEvent> eventsItemContainer = new BeanItemContainer<>(
-						ApplicationActionEvent.class, applicationSession.getEvents());
-
 				getGridFactory().createBasicBeanItemGrid(rightLayout,
-						eventsItemContainer,
+						ApplicationActionEvent.class,applicationSession.getEvents(),
 						"ApplicationActionEvent",
 						new String[] { "hjid", "createdDate", "eventGroup", "actionName", "applicationOperation", "page", "pageMode",
 								"elementId", "errorMessage", "applicationMessage",

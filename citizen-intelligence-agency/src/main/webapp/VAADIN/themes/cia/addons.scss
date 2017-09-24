@@ -1,9 +1,11 @@
 @import "../../../VAADIN/addons/gantt/gantt.scss";
 @import "../../../VAADIN/addons/gantt/gantt-valo.scss";
+@import "../../../VAADIN/themes/wtpdfviewer/wtpdfviewer.scss";
 
 @mixin addons {
 	@include gantt;
 	@include gantt-valo;
-		
+	@include wtpdfviewer;
+	@include wtPdfViewerPrintSupport		
 }
 

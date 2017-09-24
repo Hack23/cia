@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -35,9 +36,9 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
+
 
 /**
  * The Class AdminApplicationEventsPageModContentFactoryImpl.
@@ -79,12 +80,12 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 
 		final DataContainer<ApplicationActionEvent, Long> dataContainer = getApplicationManager().getDataContainer(ApplicationActionEvent.class);
 
-		final BeanItemContainer<ApplicationActionEvent> dataSource = new BeanItemContainer<>(ApplicationActionEvent.class,
-		dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationActionEvent_.createdDate));
 
-		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		List<ApplicationActionEvent> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationActionEvent_.createdDate);
 
-		getGridFactory().createBasicBeanItemGrid(content, dataSource,
+		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+
+		getGridFactory().createBasicBeanItemGrid(content, ApplicationActionEvent.class, pageOrderBy,
 				"ApplicationActionEvent",
 				new String[] { "hjid", "createdDate", "userId","actionName","errorMessage","applicationMessage", "page","pageMode","elementId", "modelObjectVersion" }, new String[] { "hjid", "modelObjectId","modelObjectVersion","sessionId", "eventGroup", "applicationOperation" },
 				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null, null);
@@ -95,7 +96,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 
 			if (applicationActionEvent != null) {
 
-				getFormFactory().addFormPanelTextFields(content, new BeanItem<>(applicationActionEvent), ApplicationActionEvent.class,
+				getFormFactory().addFormPanelTextFields(content, applicationActionEvent, ApplicationActionEvent.class,
 					Arrays.asList(new String[] { "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage"}));
 			}
 		}

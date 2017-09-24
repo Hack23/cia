@@ -29,10 +29,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePa
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
-import com.vaadin.server.FontAwesome;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class CommitteeMenuItemFactoryImpl.
@@ -104,45 +104,45 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
-		committeeRankingMenuItemFactory.createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, FontAwesome.GROUP, null));
+		committeeRankingMenuItemFactory.createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, VaadinIcons.GROUP, null));
 
-		final MenuItem committeeItem = menuBar.addItem("Committee "+ pageId, FontAwesome.GROUP,null);
+		final MenuItem committeeItem = menuBar.addItem("Committee "+ pageId, VaadinIcons.GROUP,null);
 
 
-		committeeItem.addItem(OVERVIEW_TEXT, FontAwesome.GROUP,
+		committeeItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
-		final MenuItem rolesItem = committeeItem.addItem(ROLES_TEXT, FontAwesome.GROUP, null);
+		final MenuItem rolesItem = committeeItem.addItem(ROLES_TEXT, VaadinIcons.GROUP, null);
 
-		rolesItem.addItem(CURRENT_MEMBERS_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		rolesItem.addItem(CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.CURRENT_MEMBERS.toString(), pageId));
 
-		rolesItem.addItem(MEMBER_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		rolesItem.addItem(MEMBER_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.MEMBERHISTORY.toString(), pageId));
 
-		rolesItem.addItem(ROLE_GHANT_TEXT, FontAwesome.GROUP,
+		rolesItem.addItem(ROLE_GHANT_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), pageId));
 
-		final MenuItem documentItem = committeeItem.addItem(DOCUMENTS_TEXT, FontAwesome.GROUP, null);
+		final MenuItem documentItem = committeeItem.addItem(DOCUMENTS_TEXT, VaadinIcons.GROUP, null);
 
-		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.DOCUMENTACTIVITY.toString(), pageId));
 
-		documentItem.addItem(DOCUMENT_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		documentItem.addItem(DOCUMENT_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.DOCUMENT_HISTORY.toString(), pageId));
 
-		final MenuItem ballotItem = committeeItem.addItem(BALLOTS_TEXT, FontAwesome.GROUP, null);
+		final MenuItem ballotItem = committeeItem.addItem(BALLOTS_TEXT, VaadinIcons.GROUP, null);
 
-		ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), pageId));
 
-		ballotItem.addItem(DECISION_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		ballotItem.addItem(DECISION_SUMMARY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.DECISIONSUMMARY.toString(), pageId));
 
-		ballotItem.addItem(DECISION_TYPE_DAILY_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(
+		ballotItem.addItem(DECISION_TYPE_DAILY_SUMMARY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(
 				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId));
 
-		committeeItem.addItem(PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
+		committeeItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
 	}
@@ -151,33 +151,33 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
-		createButtonLink(grid,CURRENT_MEMBERS_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		createButtonLink(grid,CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.CURRENT_MEMBERS.toString(), pageId), "Current roles and days served");
 
-		createButtonLink(grid,MEMBER_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		createButtonLink(grid,MEMBER_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.MEMBERHISTORY.toString(), pageId), "History of all roles and days served");
 
-		createButtonLink(grid,ROLE_GHANT_TEXT, FontAwesome.GROUP,
+		createButtonLink(grid,ROLE_GHANT_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), pageId), "Gantt chart of all roles over time");
 
 
-		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.DOCUMENTACTIVITY.toString(), pageId), "Chart of document activity by document type.");
 
-		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.DOCUMENT_HISTORY.toString(), pageId), "Document history list");
 
 
-		createButtonLink(grid,BALLOT_DECISION_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		createButtonLink(grid,BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), pageId), "Summary of all ballot decisions");
 
-		createButtonLink(grid,DECISION_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+		createButtonLink(grid,DECISION_SUMMARY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.DECISIONSUMMARY.toString(), pageId), "Summary of all ballots");
 
-		createButtonLink(grid,DECISION_TYPE_DAILY_SUMMARY_TEXT, FontAwesome.GROUP, new PageModeMenuCommand(
+		createButtonLink(grid,DECISION_TYPE_DAILY_SUMMARY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(
 				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId), "Chart over decisions by decisions type, daily summary");
 
-		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, FontAwesome.GROUP,
+		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), "View history of page visit for this page.");
 
 

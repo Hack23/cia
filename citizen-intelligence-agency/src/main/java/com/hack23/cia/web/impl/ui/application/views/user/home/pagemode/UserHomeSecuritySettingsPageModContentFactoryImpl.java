@@ -32,13 +32,13 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserH
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SetGoogleAuthenticatorCredentialClickListener;
-import com.vaadin.server.FontAwesome;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class UserHomeSecuritySettingsPageModContentFactoryImpl.
@@ -89,7 +89,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 			UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
 		} else {
 
-			final Button googleAuthButton = new Button(ENABLE_GOOGLE_AUTHENTICATOR, FontAwesome.USER_SECRET);
+			final Button googleAuthButton = new Button(ENABLE_GOOGLE_AUTHENTICATOR, VaadinIcons.SAFE_LOCK);
 			googleAuthButton.setId(ENABLE_GOOGLE_AUTHENTICATOR);
 
 			final SetGoogleAuthenticatorCredentialRequest googleAuthRequest = new SetGoogleAuthenticatorCredentialRequest();

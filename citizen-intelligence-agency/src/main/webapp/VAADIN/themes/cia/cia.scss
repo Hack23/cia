@@ -4,27 +4,27 @@
 	@include valo;
 
 	@include addons;
-	
+
 
 /*
-	$color1: $panelCaptionColor;		
-    @include valo-panel-caption-style($background-color: $color1);	
-	@include valo-caption-style($background-color: $color1);	
-	
-	
+	$color1: $panelCaptionColor;
+    @include valo-panel-caption-style($background-color: $color1);
+	@include valo-caption-style($background-color: $color1);
+
+
 	HeaderText
 	http://www.color-hex.com/color/003cf0
-	
-	
-	http://www.color-hex.com/color/00b4f0	
+
+
+	http://www.color-hex.com/color/00b4f0
 	http://www.color-hex.com/color/ccf2ff
-	
+
 	http://www.color-hex.com/color/40b527
 	http://www.color-hex.com/color/deffd7
-	
-*/	
 
-		
+*/
+
+
 	$headerBorderRadius : 6px;
 	$headerFontSize : 18px;
 
@@ -34,129 +34,129 @@
 
 	.v-layout-content-overview-panel-level1 {
 		overflow: scroll;
-		background-color: rgba(0, 0, 0, .6); 	
+		background-color: rgba(0, 0, 0, .6);
 		border: 2px inset #2deff9;
 		border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
 		padding: 6px;
 		margin: 4px;
 	}
-	
+
 	.v-layout-content-overview-panel-level2 {
 		width: 100%;
-				
+
 		background-color: rgba(0, 0, 0, .6);
-		color: white; 	
+		color: white;
 		border: 2px inset #2deff9;
 		border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
 		height: 100px;
         display: inline-block;
-		
+
 	    .title {
 	    	font-weight: bold;
 	    	font-size: 20px;
 			height: 40px;
 			text-align: center;
 	    }
-	
+
 	    .itembox {
 	    	height: 60px;
 	        white-space: normal;
 	        text-align: left;
-	    }	
+	    }
 	}
-	
+
 	.v-layout-content-overview-panel-level2[width-range~="0-600px"] {
 		padding: 4px;
 		margin: 2px;
-		
+
 		.title {
 			width: 100%;
 			font-weight: bold;
 	    	font-size: 16px;
 			height: 30px;
 			text-align: center;
-			
+
 	    }
-	    
+
 	    .itembox {
 	    	width: 100%;
 	    	height: 70px;
 	        white-space: normal;
 	        text-align: left;
-	    	
+
 	    }
-		
+
 	}
-	
+
 	.v-layout-content-overview-panel-level2[width-range~="600px-"] {
 		padding: 6px;
 		margin: 4px;
-	    
+
 	    .title {
 			width: 100%;
 	    }
-	    
+
 	    .itembox {
 	    	width: 100%;
 	    }
 	}
 
-		
+
 	.v-label-Header {
 	 font-size: 16px;
-	 color: #fed552;	 
-	 border-radius: $headerBorderRadius;	 
+	 color: #fed552;
+	 border-radius: $headerBorderRadius;
 	}
 
 	.v-label-HeaderSlogan {
 	 font-size: 16px;
-	 color: #2deff9;	 
-	 border-radius: $headerBorderRadius;	 
+	 color: #2deff9;
+	 border-radius: $headerBorderRadius;
 	}
-		
+
 
 	.v-label-Level2Header {
 	 color: #2debf5;
-	 background-color: #213f49; 
+	 background-color: #213f49;
 	 font-size: $headerFontSize;
 	 border-radius: $headerBorderRadius;
-	}	
-			
+	}
+
 	.v-panel-caption {
 	 color : #2bed1b;
 	 /* color: #2debf5;
 	 background-color: #213f49; */
-	 background-image: none;	 
+	 background-image: none;
 	 font-size: $headerFontSize;
 	 border-radius: $headerBorderRadius;
 	}
 
-	
+
 	.v-caption-Level2Header {
 	 color: #2debf5;
 	 background-color: #213f49;
 	 font-size: $headerFontSize;
 	 border-radius: $headerBorderRadius;
 	}
-				
+
 	.v-menubar-Header {
 	 font-size: $headerFontSize;
 	}
-	
+
 	.v-menubar-menuitem-Header {
 	 font-size: 14px;
 	}
-	
+
 	.v-menubar-menuitem-caption-Header {
 	 font-size: 14px;
 	}
-	
+
 	.v-menubar-submenu-Header {
 	 font-size: 14px;
 	}
-	
+
 	.v-menubar-selected-Header {
 	 font-size: 14px;
 	}
-	
+
 }

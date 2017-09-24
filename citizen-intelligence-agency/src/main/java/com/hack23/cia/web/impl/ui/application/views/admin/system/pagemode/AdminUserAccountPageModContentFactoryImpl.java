@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -34,9 +35,9 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
+
 
 /**
  * The Class AdminUserAccountPageModContentFactoryImpl.
@@ -77,13 +78,12 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 		final DataContainer<UserAccount, Long> dataContainer = getApplicationManager()
 				.getDataContainer(UserAccount.class);
 
-		final BeanItemContainer<UserAccount> dataSource = new BeanItemContainer<>(UserAccount.class,
-				dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,UserAccount_.createdDate));
+		List<UserAccount> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,UserAccount_.createdDate);
 
-		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
-		getGridFactory().createBasicBeanItemGrid(content,
-				dataSource,
+		getGridFactory().createBasicBeanItemGrid(content, UserAccount.class,
+				pageOrderBy,
 				"UserAccount",
 				new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "userId", "username",
 						"userType", "userRole", "userpassword", "email", "country", "numberOfVisits" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion","userId","userpassword", "address","googleAuthKey",
@@ -99,7 +99,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 			if (userAccount != null) {
 
 				getFormFactory()
-						.addFormPanelTextFields(content, new BeanItem<>(userAccount), UserAccount.class,
+						.addFormPanelTextFields(content, userAccount, UserAccount.class,
 								Arrays.asList(new String[] {"username", "createdDate", "email", "country",
 										"numberOfVisits" }));
 			}

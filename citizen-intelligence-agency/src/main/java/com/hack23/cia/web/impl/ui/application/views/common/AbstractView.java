@@ -36,19 +36,19 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLin
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.LogoutClickListener;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.server.FontAwesome;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.ui.HorizontalLayout;
-import com.vaadin.v7.ui.Label;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class AbstractView.
@@ -203,7 +203,7 @@ public abstract class AbstractView extends Panel implements View {
 			topHeaderRightPanel.setComponentAlignment(userHomePageLink, Alignment.MIDDLE_RIGHT);
 
 
-			final Button logoutButton = new Button(LOGOUT,FontAwesome.SIGN_OUT);
+			final Button logoutButton = new Button(LOGOUT,VaadinIcons.SIGN_OUT);
 
 			final LogoutRequest logoutRequest = new LogoutRequest();
 			logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());

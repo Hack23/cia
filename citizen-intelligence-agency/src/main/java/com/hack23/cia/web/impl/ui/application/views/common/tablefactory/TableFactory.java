@@ -18,7 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.tablefactory;
 
-import com.vaadin.v7.ui.Table;
+import com.vaadin.ui.Grid;
 
 /**
  * A factory for creating Table objects.
@@ -31,5 +31,5 @@ public interface TableFactory {
 	 *
 	 * @return the table
 	 */
-	Table createDataSummaryTable();
+	Grid createDataSummaryTable();
 }

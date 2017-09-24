@@ -32,10 +32,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageMod
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
-import com.vaadin.server.FontAwesome;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class ApplicationMenuItemFactoryImpl.
@@ -188,68 +188,68 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	@Override
 	public void addRankingMenu(final MenuBar menuBar) {
 
-		final MenuItem rankingsMenuItem = menuBar.addItem(RANKING_TEXT, FontAwesome.AREA_CHART, null);
+		final MenuItem rankingsMenuItem = menuBar.addItem(RANKING_TEXT, VaadinIcons.LINE_CHART, null);
 
-		final MenuItem countryMenuItem = rankingsMenuItem.addItem(COUNTRY_RANKING_LINK_TEXT,FontAwesome.FLAG, COMMAND_COUNTRY_RANKING_OVERVIEW);
+		final MenuItem countryMenuItem = rankingsMenuItem.addItem(COUNTRY_RANKING_LINK_TEXT,VaadinIcons.FLAG, COMMAND_COUNTRY_RANKING_OVERVIEW);
 
 		countryMenuItemFactory.createCountryTopicMenu(countryMenuItem);
 
-		final MenuItem parliamentMenuItem = rankingsMenuItem.addItem(PARLIAMENT_RANKING_LINK_TEXT,FontAwesome.INSTITUTION, COMMAND_PARLIAMENT_RANKING_OVERVIEW);
+		final MenuItem parliamentMenuItem = rankingsMenuItem.addItem(PARLIAMENT_RANKING_LINK_TEXT,VaadinIcons.INSTITUTION, COMMAND_PARLIAMENT_RANKING_OVERVIEW);
 
 		parliamentMenuItemFactory.createParliamentTopicMenu(parliamentMenuItem);
 
-		final MenuItem politicianMenuItem = rankingsMenuItem.addItem(POLITICIAN_RANKING_LINK_TEXT,FontAwesome.USER, COMMAND_POLITICIAN_RANKING_OVERVIEW);
+		final MenuItem politicianMenuItem = rankingsMenuItem.addItem(POLITICIAN_RANKING_LINK_TEXT,VaadinIcons.USER, COMMAND_POLITICIAN_RANKING_OVERVIEW);
 
 		politicianRankingMenuItemFactory.createPoliticianRankingTopics(politicianMenuItem);
 
-		final MenuItem partynMenuItem = rankingsMenuItem.addItem(PARTY_RANKING_LINK_TEXT, FontAwesome.GROUP,COMMAND_PARTY_RANKING_OVERVIEW);
+		final MenuItem partynMenuItem = rankingsMenuItem.addItem(PARTY_RANKING_LINK_TEXT, VaadinIcons.GROUP,COMMAND_PARTY_RANKING_OVERVIEW);
 
 		partyRankingMenuItemFactory.createPartyRankingTopics(partynMenuItem);
 
-		final MenuItem committeeMenuItem = rankingsMenuItem.addItem(COMMITTEE_RANKING_LINK_TEXT,FontAwesome.GROUP, COMMAND_COMMITTEE_RANKING_OVERVIEW);
+		final MenuItem committeeMenuItem = rankingsMenuItem.addItem(COMMITTEE_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_COMMITTEE_RANKING_OVERVIEW);
 
 		committeeRankingMenuItemFactory.createCommitteeRankingTopics(committeeMenuItem);
 
-		final MenuItem ministryMenuItem = rankingsMenuItem.addItem(MINISTRY_RANKING_LINK_TEXT,FontAwesome.GROUP, COMMAND_MINISTRY_RANKING_OVERVIEW);
+		final MenuItem ministryMenuItem = rankingsMenuItem.addItem(MINISTRY_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_OVERVIEW);
 
 		ministryRankingMenuItemFactory.createMinistryRankingTopics(ministryMenuItem);
 
 
-		final MenuItem documentsMenuItem = rankingsMenuItem.addItem(DOCUMENTS,FontAwesome.GROUP, COMMAND_DOCUMENTS);
-		documentsMenuItem.addItem("List all",FontAwesome.GROUP, COMMAND_DOCUMENTS);
-		documentsMenuItem.addItem(SEARCH_DOCUMENTS,FontAwesome.GROUP, COMMAND_SEARCH_DOCUMENT);
+		final MenuItem documentsMenuItem = rankingsMenuItem.addItem(DOCUMENTS,VaadinIcons.GROUP, COMMAND_DOCUMENTS);
+		documentsMenuItem.addItem("List all",VaadinIcons.GROUP, COMMAND_DOCUMENTS);
+		documentsMenuItem.addItem(SEARCH_DOCUMENTS,VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT);
 	}
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent) {
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
-		createButtonLink(grid,COUNTRY_RANKING_LINK_TEXT,FontAwesome.FLAG, COMMAND_COUNTRY_RANKING_OVERVIEW,"Indicators for Sweden overview, find data by topic or source.");
+		createButtonLink(grid,COUNTRY_RANKING_LINK_TEXT,VaadinIcons.FLAG, COMMAND_COUNTRY_RANKING_OVERVIEW,"Indicators for Sweden overview, find data by topic or source.");
 
-		createButtonLink(grid,PARLIAMENT_RANKING_LINK_TEXT,FontAwesome.INSTITUTION, COMMAND_PARLIAMENT_RANKING_OVERVIEW,"Charts over parlimentary ballots and document activity");
+		createButtonLink(grid,PARLIAMENT_RANKING_LINK_TEXT,VaadinIcons.INSTITUTION, COMMAND_PARLIAMENT_RANKING_OVERVIEW,"Charts over parlimentary ballots and document activity");
 
-		createButtonLink(grid,POLITICIAN_RANKING_LINK_TEXT,FontAwesome.USER, COMMAND_POLITICIAN_RANKING_OVERVIEW,"Politician ranking overiew, contains data and charts.");
+		createButtonLink(grid,POLITICIAN_RANKING_LINK_TEXT,VaadinIcons.USER, COMMAND_POLITICIAN_RANKING_OVERVIEW,"Politician ranking overiew, contains data and charts.");
 
-		createButtonLink(grid,POLITICIANS_LINK_TEXT,FontAwesome.USER, COMMAND_POLITICIAN_RANKING_DATAGRID,"All politicans, scoreboard assignments and days served in government, committees, speaker and party positions.");
-
-
-		createButtonLink(grid,PARTY_RANKING_LINK_TEXT, FontAwesome.GROUP,COMMAND_PARTY_RANKING_OVERVIEW,"Party ranking overiew, contains data and charts.");
-
-		createButtonLink(grid,PARTIES_LINK_TEXT, FontAwesome.GROUP,COMMAND_PARTY_RANKING_DATAGRID,"All parties, scoreboard assignments and days served in government, committees, speaker and party positions.");
+		createButtonLink(grid,POLITICIANS_LINK_TEXT,VaadinIcons.USER, COMMAND_POLITICIAN_RANKING_DATAGRID,"All politicans, scoreboard assignments and days served in government, committees, speaker and party positions.");
 
 
-		createButtonLink(grid,COMMITTEE_RANKING_LINK_TEXT,FontAwesome.GROUP, COMMAND_COMMITTEE_RANKING_OVERVIEW,"Committee ranking overiew, contains data and charts.");
+		createButtonLink(grid,PARTY_RANKING_LINK_TEXT, VaadinIcons.GROUP,COMMAND_PARTY_RANKING_OVERVIEW,"Party ranking overiew, contains data and charts.");
 
-		createButtonLink(grid,COMMITTEES_LINK_TEXT,FontAwesome.GROUP, COMMAND_COMMITTEE_RANKING_DATAGRID,"All committees, scoreboard assignments and days served in committees");
+		createButtonLink(grid,PARTIES_LINK_TEXT, VaadinIcons.GROUP,COMMAND_PARTY_RANKING_DATAGRID,"All parties, scoreboard assignments and days served in government, committees, speaker and party positions.");
 
 
-		createButtonLink(grid,MINISTRY_RANKING_LINK_TEXT,FontAwesome.GROUP, COMMAND_MINISTRY_RANKING_OVERVIEW,"Ministry ranking overiew, contains data and charts.");
+		createButtonLink(grid,COMMITTEE_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_COMMITTEE_RANKING_OVERVIEW,"Committee ranking overiew, contains data and charts.");
 
-		createButtonLink(grid,MINISTRIES_LINK_TEXT,FontAwesome.GROUP, COMMAND_MINISTRY_RANKING_DATAGRID,"All ministries, scoreboard assignments and days served in committees");
+		createButtonLink(grid,COMMITTEES_LINK_TEXT,VaadinIcons.GROUP, COMMAND_COMMITTEE_RANKING_DATAGRID,"All committees, scoreboard assignments and days served in committees");
 
-		createButtonLink(grid,SEARCH_DOCUMENTS,FontAwesome.GROUP, COMMAND_SEARCH_DOCUMENT,"Search parliament documents");
 
-		createButtonLink(grid,DOCUMENTS,FontAwesome.GROUP, COMMAND_DOCUMENTS,"List all parliament documents");
+		createButtonLink(grid,MINISTRY_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_OVERVIEW,"Ministry ranking overiew, contains data and charts.");
+
+		createButtonLink(grid,MINISTRIES_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_DATAGRID,"All ministries, scoreboard assignments and days served in committees");
+
+		createButtonLink(grid,SEARCH_DOCUMENTS,VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT,"Search parliament documents");
+
+		createButtonLink(grid,DOCUMENTS,VaadinIcons.GROUP, COMMAND_DOCUMENTS,"List all parliament documents");
 
 	}
 

@@ -35,8 +35,8 @@ import com.vaadin.ui.Layout;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class CommitteeOverviewPageModContentFactoryImpl.
@@ -86,7 +86,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 				final Link addCommitteePageLink = getPageLinkFactory().addCommitteePageLink(viewRiksdagenCommittee);
 				panelContent.addComponent(addCommitteePageLink);
 
-				getFormFactory().addFormPanelTextFields(panelContent, new BeanItem<>(viewRiksdagenCommittee),
+				getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenCommittee,
 						ViewRiksdagenCommittee.class,
 						Arrays.asList(new String[] { "embeddedId.detail", "active", "firstAssignmentDate",
 								"lastAssignmentDate", "totalAssignments", "totalDaysServed",

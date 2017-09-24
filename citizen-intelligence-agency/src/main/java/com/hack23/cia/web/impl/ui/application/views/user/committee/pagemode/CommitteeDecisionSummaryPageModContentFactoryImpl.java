@@ -38,8 +38,8 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class CommitteeDecisionSummaryPageModContentFactoryImpl.
@@ -93,10 +93,7 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 					.findOrderedListByProperty(ViewRiksdagenCommitteeDecisions_.org, pageId,
 							ViewRiksdagenCommitteeDecisions_.createdDate);
 
-			final BeanItemContainer<ViewRiksdagenCommitteeDecisions> committeeDecisionDataSource = new BeanItemContainer<>(
-					ViewRiksdagenCommitteeDecisions.class, decisionPartySummaryList);
-
-			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, committeeDecisionDataSource,
+			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenCommitteeDecisions.class,decisionPartySummaryList,
 					DECISION_SUMMARY, new String[] { "embeddedId.hangarId", "embeddedId.id", "embeddedId.issueNummer" },
 					new String[] { "createdDate", "publicDate", "committeeReport", "embeddedId.hangarId",
 							"embeddedId.id", "embeddedId.issueNummer", "rm", "decisionType", "winner", "title",

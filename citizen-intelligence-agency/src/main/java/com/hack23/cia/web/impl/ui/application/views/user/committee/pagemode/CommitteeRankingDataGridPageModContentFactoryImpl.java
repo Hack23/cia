@@ -33,8 +33,8 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class CommitteeRankingDataGridPageModContentFactoryImpl.
@@ -74,13 +74,11 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommittee.class);
 
-		final BeanItemContainer<ViewRiksdagenCommittee> politicianDocumentDataSource = new BeanItemContainer<>(
-				ViewRiksdagenCommittee.class, dataContainer.getAllOrderBy(ViewRiksdagenCommittee_.currentMemberSize));
 
-		politicianDocumentDataSource.addNestedContainerProperty("embeddedId.detail");
-		politicianDocumentDataSource.addNestedContainerProperty("embeddedId.orgCode");
+//		politicianDocumentDataSource.addNestedContainerProperty("embeddedId.detail");
+//		politicianDocumentDataSource.addNestedContainerProperty("embeddedId.orgCode");
 
-		getGridFactory().createBasicBeanItemGrid(panelContent, politicianDocumentDataSource,
+		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenCommittee.class, dataContainer.getAllOrderBy(ViewRiksdagenCommittee_.currentMemberSize),
 				"Committees",
 				new String[] { "embeddedId.orgCode", "embeddedId.detail", "totalDaysServed", "currentMemberSize",
 						"totalAssignments", "firstAssignmentDate", "active", "lastAssignmentDate" }, new String[] { "embeddedId","embeddedId.orgCode" , "active" },

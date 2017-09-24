@@ -34,8 +34,8 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class VotesHistoryPageModContentFactoryImpl.
@@ -86,12 +86,8 @@ public final class PoliticianVotesHistoryPageModContentFactoryImpl extends Abstr
 			LabelFactory.createHeader2Label(panelContent,PoliticianPageMode.VOTEHISTORY.toString());
 
 
-			final BeanItemContainer<ViewRiksdagenVoteDataBallotPoliticianSummary> politicianBallotDataSource = new BeanItemContainer<>(
-					ViewRiksdagenVoteDataBallotPoliticianSummary.class,
-					viewRiksdagenVoteDataBallotPoliticianSummaryChartDataManager.findByValue(personData.getId()));
-
-			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
-					politicianBallotDataSource, "Ballots",
+			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenVoteDataBallotPoliticianSummary.class,
+					viewRiksdagenVoteDataBallotPoliticianSummaryChartDataManager.findByValue(personData.getId()), "Ballots",
 					new String[] { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue" },
 					new String[] { "voteDate", "rm", "label", "embeddedId.concern", "embeddedId.issue", "vote",
 							"won", "partyWon", "rebel", "noWinner", "approved", "partyApproved", "totalVotes",

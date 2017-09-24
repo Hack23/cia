@@ -34,8 +34,8 @@ import com.vaadin.ui.Layout;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class OverviewPageModContentFactoryImpl.
@@ -91,7 +91,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 			getFormFactory().addFormPanelTextFields(
 					panelContent,
-					new BeanItem<>(viewRiksdagenParty),
+					viewRiksdagenParty,
 					ViewRiksdagenParty.class,
 					Arrays.asList(new String[] { "partyName", "partyId",
 							"headCount", "partyNumber", "registeredDate",
@@ -105,8 +105,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 
 				getFormFactory().addFormPanelTextFields(panelContent,
-						new BeanItem<>(
-								viewRiksdagenPartySummary),
+								viewRiksdagenPartySummary,
 								ViewRiksdagenPartySummary.class,
 								Arrays.asList(new String[] { "active",
 										"firstAssignmentDate", "lastAssignmentDate",

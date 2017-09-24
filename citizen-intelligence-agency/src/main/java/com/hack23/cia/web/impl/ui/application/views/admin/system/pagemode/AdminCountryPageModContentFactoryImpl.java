@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -34,9 +35,9 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
+
 
 /**
  * The Class AdminCountryPageModContentFactoryImpl.
@@ -77,13 +78,12 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 		final DataContainer<CountryElement, Long> dataContainer = getApplicationManager()
 				.getDataContainer(CountryElement.class);
 
-		final BeanItemContainer<CountryElement> dataSource = new BeanItemContainer<>(
-				CountryElement.class, dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,CountryElement_.countryName));
+		List<CountryElement> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,CountryElement_.countryName);
 
-		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory()
-				.createBasicBeanItemNestedPropertiesGrid(content, dataSource,
+				.createBasicBeanItemNestedPropertiesGrid(content, CountryElement.class, pageOrderBy,
 						"Country",null,
 						new String[] { "hjid", "id", "countryName", "iso2Code", "capitalCity", "longitude",
 								"latitude" }, new String[] { "hjid","id", "region", "adminregion" ,"incomeLevel", "lendingType","longitude", "latitude" },
@@ -94,7 +94,7 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 			final CountryElement country = dataContainer.load(Long.valueOf(pageId));
 			if (country != null) {
 
-				getFormFactory().addFormPanelTextFields(content, new BeanItem<>(country), CountryElement.class,
+				getFormFactory().addFormPanelTextFields(content, country, CountryElement.class,
 						Arrays.asList(new String[] { "hjid", "id", "countryName", "iso2Code", "capitalCity",
 								"longitude", "latitude" }));
 			}

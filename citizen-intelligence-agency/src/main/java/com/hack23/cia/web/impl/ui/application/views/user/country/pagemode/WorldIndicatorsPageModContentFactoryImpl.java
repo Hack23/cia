@@ -41,8 +41,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.v7.data.util.BeanItem;
-import com.vaadin.v7.ui.VerticalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 
 /**
  * The Class WorldIndicatorsPageModContentFactoryImpl.
@@ -113,8 +113,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 			indicatorSummaryValue = indicatorSummary.get();
 
 			getFormFactory().addFormPanelTextFields(verticalLayout,
-					new BeanItem<>(
-							indicatorSummaryValue),
+					indicatorSummaryValue,
 							ViewWorldbankIndicatorDataCountrySummary.class,
 							Arrays.asList(new String[] {
 									   "indicatorName",
