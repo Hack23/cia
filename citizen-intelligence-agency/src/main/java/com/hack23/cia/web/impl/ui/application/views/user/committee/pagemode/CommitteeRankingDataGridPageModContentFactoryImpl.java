@@ -78,10 +78,10 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 //		politicianDocumentDataSource.addNestedContainerProperty("embeddedId.detail");
 //		politicianDocumentDataSource.addNestedContainerProperty("embeddedId.orgCode");
 
-		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenCommittee.class, dataContainer.getAllOrderBy(ViewRiksdagenCommittee_.currentMemberSize),
-				"Committees",
-				new String[] { "embeddedId.orgCode", "embeddedId.detail", "totalDaysServed", "currentMemberSize",
-						"totalAssignments", "firstAssignmentDate", "active", "lastAssignmentDate" }, new String[] { "embeddedId","embeddedId.orgCode" , "active" },
+		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenCommittee.class, dataContainer.getAllOrderBy(ViewRiksdagenCommittee_.currentMemberSize),
+				"Committees", new String[] {"embeddedId.detail"},
+				new String[] { "embeddedId", "totalDaysServed", "currentMemberSize",
+						"totalAssignments", "firstAssignmentDate", "active", "lastAssignmentDate" }, new String[] { "active" },
 				new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, "embeddedId.orgCode"), null, null);
 
 		panel.setCaption(NAME + "::" + DATAGRID);

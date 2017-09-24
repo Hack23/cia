@@ -21,6 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.vaadin.data.Binder;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
@@ -42,7 +43,7 @@ public final class CommitFormWrapperClickListener implements ClickListener {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CommitFormWrapperClickListener.class);
 
 	/** The field group. */
-	private final BeanFieldGroup<?> fieldGroup;
+	private final Binder<?> binder;
 
 	/** The button listener. */
 	private final ClickListener buttonListener;
@@ -55,21 +56,14 @@ public final class CommitFormWrapperClickListener implements ClickListener {
 	 * @param buttonListener
 	 *            the button listener
 	 */
-	public CommitFormWrapperClickListener(final BeanFieldGroup<?> fieldGroup, final ClickListener buttonListener) {
-		this.fieldGroup = fieldGroup;
+	public CommitFormWrapperClickListener(final Binder<?> fieldGroup, final ClickListener buttonListener) {
+		this.binder = fieldGroup;
 		this.buttonListener = buttonListener;
 	}
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-		try {
-			fieldGroup.commit();
-		} catch (final CommitException e) {
-			Notification.show(FORM_ERROR,
-	                  e.getMessage(),
-	                  Notification.Type.WARNING_MESSAGE);
-			LOGGER.warn(FORM_ERROR,e);
-		}
+		binder.isValid();
 		buttonListener.buttonClick(event);
 	}
 }

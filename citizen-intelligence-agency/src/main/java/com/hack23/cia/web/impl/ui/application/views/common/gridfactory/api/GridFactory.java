@@ -50,8 +50,8 @@ public interface GridFactory {
 	 * @param collectionPropertyConverters
 	 *            the collection property converters
 	 */
-	<T extends Serializable> void createBasicBeanItemGrid(AbstractOrderedLayout panelContent,Class<T> dataType, List<T> datasource, String caption, Object[] columnOrder,
-			Object[] hideColumns, AbstractPageItemRendererClickListener<?> listener, String actionId, ListPropertyConverter[] collectionPropertyConverters);
+	<T extends Serializable> void createBasicBeanItemGrid(AbstractOrderedLayout panelContent,Class<T> dataType, List<T> datasource, String caption, String[] columnOrder,
+			String[] hideColumns, AbstractPageItemRendererClickListener<?> listener, String actionId, ListPropertyConverter[] collectionPropertyConverters);
 
 	/**
 	 * Creates a new Grid object.
@@ -75,7 +75,7 @@ public interface GridFactory {
 	 * @param collectionPropertyConverters
 	 *            the collection property converters
 	 */
-	<T extends Serializable> void createBasicBeanItemNestedPropertiesGrid(AbstractOrderedLayout panelContent,Class<T> dataType,List<T> datasource, String caption, String[] nestedProperties,Object[] columnOrder, Object[] hideColumns,
+	<T extends Serializable> void createBasicBeanItemNestedPropertiesGrid(AbstractOrderedLayout panelContent,Class<T> dataType,List<T> datasource, String caption, String[] nestedProperties,String[] columnOrder, String[] hideColumns,
 			AbstractPageItemRendererClickListener<?> listener, String actionId, ListPropertyConverter[] collectionPropertyConverters);
 
 }
