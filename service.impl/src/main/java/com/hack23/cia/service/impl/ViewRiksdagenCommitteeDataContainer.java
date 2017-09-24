@@ -98,7 +98,7 @@ public final class ViewRiksdagenCommitteeDataContainer implements DataContainer<
 	public List<ViewRiksdagenCommittee> findOrderedListByProperty(
 			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object> orderByProperty, final Object[] values,
 			final SingularAttribute<ViewRiksdagenCommittee, ? extends Object>... properties) {
-		return null;
+		return new ArrayList<>();
 	}
 
 	@Override

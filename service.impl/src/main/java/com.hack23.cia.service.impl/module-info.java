@@ -16,12 +16,7 @@ module com.hack23.cia.service.impl {
 	requires quartz;
 	requires commons.lang;
 
-	requires google.api.client;
-	requires google.oauth.client;
-	requires google.http.client.jackson2;
-	requires google.http.client;
 	requires googleauth;
-	requires google.api.services.translate.v2.rev51;
 
 	requires spring.security.core;
 	requires org.apache.commons.lang3;
