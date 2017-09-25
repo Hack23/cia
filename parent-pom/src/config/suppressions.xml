@@ -32,5 +32,6 @@
 		<cve>CVE-2005-3594</cve>
 		<cve>CVE-2013-4499</cve>
 		<cve>CVE-2015-9097</cve>
+		<cve>CVE-2015-2197</cve>
     </suppress>
 </suppressions>
