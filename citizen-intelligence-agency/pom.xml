@@ -463,7 +463,7 @@
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-all</artifactId>
-      <version>4.1.15.Final</version>
+      <version>4.1.16.Final</version>
       <scope>test</scope>
     </dependency>
     <dependency>
