@@ -23,6 +23,8 @@ import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.text.MessageFormat;
 import java.util.Date;
 import java.util.List;
@@ -37,10 +39,13 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.CommitFormWrapperClickListener;
 import com.vaadin.data.Binder;
 import com.vaadin.data.Converter;
+import com.vaadin.data.converter.StringToBigDecimalConverter;
+import com.vaadin.data.converter.StringToBigIntegerConverter;
 import com.vaadin.data.converter.StringToDateConverter;
 import com.vaadin.data.converter.StringToDoubleConverter;
 import com.vaadin.data.converter.StringToFloatConverter;
 import com.vaadin.data.converter.StringToIntegerConverter;
+import com.vaadin.data.converter.StringToLongConverter;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.AbstractField;
 import com.vaadin.ui.AbstractOrderedLayout;
@@ -52,7 +57,6 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
-
 
 /**
  * The Class FormFactoryImpl.
@@ -164,6 +168,18 @@ public final class FormFactoryImpl implements FormFactory {
 				} else if (Double.class.equals(typeOfProperty)) {
 					field = new TextField();
 					converter = new StringToDoubleConverter("Input value should be an double");
+				} else if (Long.class.equals(typeOfProperty)) {
+					field = new TextField();
+					converter = new StringToLongConverter("Input value should be an long");
+				} else if (BigInteger.class.equals(typeOfProperty)) {
+					field = new TextField();
+					converter = new StringToBigIntegerConverter("Input value should be an biginteger");
+				} else if (BigDecimal.class.equals(typeOfProperty)) {
+					field = new TextField();
+					converter = new StringToBigDecimalConverter("Input value should be an bigdecimal");
+				} else if (typeOfProperty.isEnum()) {
+					field = new TextField();
+					converter = new StringToEnumConverter();
 				}
 
 				if (field != null) {
