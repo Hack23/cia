@@ -79,7 +79,7 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
 		final DataContainer<LanguageData, Long> dataContainer = getApplicationManager()
 				.getDataContainer(LanguageData.class);
 
-		List<LanguageData> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,LanguageData_.languageName);
+		final List<LanguageData> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,LanguageData_.languageName);
 
 		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 

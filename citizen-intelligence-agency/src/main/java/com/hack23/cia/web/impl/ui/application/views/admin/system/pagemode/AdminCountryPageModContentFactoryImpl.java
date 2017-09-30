@@ -78,7 +78,7 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 		final DataContainer<CountryElement, Long> dataContainer = getApplicationManager()
 				.getDataContainer(CountryElement.class);
 
-		List<CountryElement> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,CountryElement_.countryName);
+		final List<CountryElement> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,CountryElement_.countryName);
 
 		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 

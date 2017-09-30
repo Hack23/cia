@@ -18,9 +18,13 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.formfactory.impl;
 
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.io.Serializable;
 import java.text.MessageFormat;
-import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -32,8 +36,11 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.CommitFormWrapperClickListener;
 import com.vaadin.data.Binder;
-import com.vaadin.data.Binder.Binding;
-import com.vaadin.data.HasValue;
+import com.vaadin.data.Converter;
+import com.vaadin.data.converter.StringToDateConverter;
+import com.vaadin.data.converter.StringToDoubleConverter;
+import com.vaadin.data.converter.StringToFloatConverter;
+import com.vaadin.data.converter.StringToIntegerConverter;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.AbstractField;
 import com.vaadin.ui.AbstractOrderedLayout;
@@ -45,7 +52,6 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.v7.ui.Field;
 
 
 /**
@@ -56,9 +62,6 @@ public final class FormFactoryImpl implements FormFactory {
 
 	/** The Constant SIZE_FOR_GRID. */
 	private static final int SIZE_FOR_GRID = 8;
-
-	/** The Constant LOG_MSG_PROPERTY. */
-	private static final String LOG_MSG_PROPERTY = "property:{}";
 
 	/** The Constant HIDDEN_FIELD_NAME. */
 	private static final String HIDDEN_FIELD_NAME = "password";
@@ -78,23 +81,19 @@ public final class FormFactoryImpl implements FormFactory {
 			final AbstractField buildAndBind;
 			if (property.contains(HIDDEN_FIELD_NAME)) {
 				buildAndBind = new PasswordField();
-				Binding<T, String> bind = binder.bind(buildAndBind, property);
+				binder.bind(buildAndBind, property);
 			} else {
 				buildAndBind = new TextField();
 				binder.bind(buildAndBind,property);
 			}
 
+			buildAndBind.setCaption(property);
 			buildAndBind.setId(MessageFormat.format("{0}.{1}", buttonLabel, property));
 			buildAndBind.setReadOnly(false);
 			buildAndBind.setWidth(ContentSize.HALF_SIZE);
 
 			panelContent.addComponent(buildAndBind);
 		}
-
-		//		final Collection<Object> unboundPropertyIds = fieldGroup.getUnboundPropertyIds();
-//		for (final Object property : unboundPropertyIds) {
-//			LOGGER.debug(LOG_MSG_PROPERTY, property);
-//		}
 
 		final VerticalLayout verticalLayout = new VerticalLayout();
 		verticalLayout.setWidth("50%");
@@ -136,22 +135,61 @@ public final class FormFactoryImpl implements FormFactory {
 		binder.setBean(item);
 		binder.setReadOnly(true);
 
-		for (final String property : displayProperties) {
-
-			TextField field = new TextField();
-
-			Binding<T, String> bind = binder.bind(field, property);
-			field.setWidth(ContentSize.FULL_SIZE);
-
-			formContent.addComponent(field);
+		PropertyDescriptor[] propertyDescriptors=null;
+		try {
+			final BeanInfo info = Introspector.getBeanInfo(item.getClass());
+			propertyDescriptors = info.getPropertyDescriptors();
+		} catch (final IntrospectionException e1) {
+			LOGGER.error("No able to getfieldtypes for type:+ item.getClass()", e1);
 		}
 
-//		final Collection<Object> unboundPropertyIds = binder.getUnboundPropertyIds();
-//		for (final Object property : unboundPropertyIds) {
-//			LOGGER.debug(LOG_MSG_PROPERTY, property);
-//		}
 
+		for (final String property : displayProperties) {
+			final Class<?> typeOfProperty = getTypeOfProperty(propertyDescriptors, property);
 
+			if (typeOfProperty != null) {
+				AbstractField<?> field=null;
+				Converter converter = null;
+				if (typeOfProperty.equals(String.class)) {
+					field = new TextField();
+				} else if (Date.class.equals(typeOfProperty)) {
+					field = new TextField();
+					converter = new StringToDateConverter();
+				} else if (Integer.class.equals(typeOfProperty)) {
+					field = new TextField();
+					converter = new StringToIntegerConverter("Input value should be an integer");
+				} else if (Float.class.equals(typeOfProperty)) {
+					field = new TextField();
+					converter = new StringToFloatConverter("Input value should be an float");
+				} else if (Double.class.equals(typeOfProperty)) {
+					field = new TextField();
+					converter = new StringToDoubleConverter("Input value should be an double");
+				}
+
+				if (field != null) {
+					field.setCaption(property);
+					if (converter != null) {
+						binder.forField(field).withConverter(converter).bind(property);
+					} else {
+						binder.forField(field).bind(property);
+					}
+					field.setWidth(ContentSize.FULL_SIZE);
+					formContent.addComponent(field);
+				} else {
+					LOGGER.warn("No fieldtype for property: {}, type: {}", property,typeOfProperty);
+				}
+			}
+		}
+	}
+
+	private Class<?> getTypeOfProperty(final PropertyDescriptor[] propertyDescriptors, final String property) {
+
+		for (final PropertyDescriptor propertyDescriptor : propertyDescriptors) {
+			if (propertyDescriptor.getName().equalsIgnoreCase(property)) {
+				return propertyDescriptor.getPropertyType();
+			}
+		}
+		return null;
 	}
 
 

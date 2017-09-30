@@ -19,17 +19,14 @@
 package com.hack23.cia.web.impl.ui.application.views.common.converters;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.vaadin.data.Converter;
 import com.vaadin.data.Result;
 import com.vaadin.data.ValueContext;
-import com.vaadin.server.SerializableConsumer;
-import com.vaadin.server.SerializableFunction;
-
 
 /**
  * The Class ListPropertyRenderer.
@@ -44,9 +41,6 @@ public final class ListPropertyConverter implements Converter<String, List> {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-
-	/** The model type. */
-	private final Class<List> modelType;
 
 	/** The property. */
 	private final String property;
@@ -68,7 +62,6 @@ public final class ListPropertyConverter implements Converter<String, List> {
 	 */
 	public ListPropertyConverter(final Class<List> modelType, final String property, final String column) {
 		super();
-		this.modelType = modelType;
 		this.property = property;
 		this.column = column;
 		this.fallbackColumn = null;
@@ -88,7 +81,6 @@ public final class ListPropertyConverter implements Converter<String, List> {
 	 */
 	public ListPropertyConverter(final Class<List> modelType, final String property, final String column,final String fallbackColumn) {
 		super();
-		this.modelType = modelType;
 		this.property = property;
 		this.column = column;
 		this.fallbackColumn = fallbackColumn;
@@ -105,44 +97,12 @@ public final class ListPropertyConverter implements Converter<String, List> {
 	}
 
 	@Override
-	public Result<List> convertToModel(String value, ValueContext context) {
-		return new Result() {
-
-			@Override
-			public Result flatMap(SerializableFunction mapper) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public void handle(SerializableConsumer ifOk, SerializableConsumer ifError) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public boolean isError() {
-				// TODO Auto-generated method stub
-				return false;
-			}
-
-			@Override
-			public Optional getMessage() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public Object getOrThrow(SerializableFunction exceptionProvider) throws Throwable {
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-		};
+	public Result<List> convertToModel(final String value, final ValueContext context) {
+		return Result.ok(new ArrayList<>());
 	}
 
 	@Override
-	public String convertToPresentation(List value, ValueContext context) {
+	public String convertToPresentation(final List value, final ValueContext context) {
 		final StringBuilder stringBuilder = new StringBuilder().append(START_TAG);
 
 		if (value != null) {

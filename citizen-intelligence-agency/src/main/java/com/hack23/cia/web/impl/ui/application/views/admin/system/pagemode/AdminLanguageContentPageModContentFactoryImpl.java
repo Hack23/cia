@@ -78,7 +78,7 @@ public final class AdminLanguageContentPageModContentFactoryImpl extends Abstrac
 		final DataContainer<LanguageContentData, Long> dataContainer = getApplicationManager()
 				.getDataContainer(LanguageContentData.class);
 
-		List<LanguageContentData> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,LanguageContentData_.toLanguage);
+		final List<LanguageContentData> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,LanguageContentData_.toLanguage);
 
 		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 

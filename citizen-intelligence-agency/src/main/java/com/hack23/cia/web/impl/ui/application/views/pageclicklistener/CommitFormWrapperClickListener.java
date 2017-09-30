@@ -24,17 +24,11 @@ import org.slf4j.LoggerFactory;
 import com.vaadin.data.Binder;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Notification;
-import com.vaadin.v7.data.fieldgroup.BeanFieldGroup;
-import com.vaadin.v7.data.fieldgroup.FieldGroup.CommitException;
 
 /**
  * The Class CommitFormWrapperClickListener.
  */
 public final class CommitFormWrapperClickListener implements ClickListener {
-
-	/** The Constant FORM_ERROR. */
-	private static final String FORM_ERROR = "Form Error";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;

@@ -81,7 +81,7 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 
 		final DataContainer<Agency, Long> dataContainer = getApplicationManager().getDataContainer(Agency.class);
 
-		List<Agency> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,Agency_.agencyName);
+		final List<Agency> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,Agency_.agencyName);
 
 		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 

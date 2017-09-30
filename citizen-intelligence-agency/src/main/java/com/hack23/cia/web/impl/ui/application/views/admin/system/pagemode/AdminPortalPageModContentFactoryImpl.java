@@ -77,7 +77,7 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 
 		final DataContainer<Portal, Long> dataContainer = getApplicationManager().getDataContainer(Portal.class);
 
-		List<Portal> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,Portal_.portalName);
+		final List<Portal> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,Portal_.portalName);
 
 		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 

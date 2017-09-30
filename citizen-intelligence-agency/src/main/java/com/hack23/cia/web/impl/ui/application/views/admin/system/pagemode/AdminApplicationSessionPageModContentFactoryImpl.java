@@ -84,7 +84,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 		final DataContainer<ApplicationSession, Long> dataContainer = getApplicationManager()
 				.getDataContainer(ApplicationSession.class);
 
-		List<ApplicationSession> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationSession_.createdDate);
+		final List<ApplicationSession> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationSession_.createdDate);
 
 		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 

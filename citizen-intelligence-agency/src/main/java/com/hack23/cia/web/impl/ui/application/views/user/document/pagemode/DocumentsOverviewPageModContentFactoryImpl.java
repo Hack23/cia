@@ -74,7 +74,7 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 		final DataContainer<DocumentElement, String> documentElementDataContainer = getApplicationManager()
 				.getDataContainer(DocumentElement.class);
 
-		List<DocumentElement> pageOrderBy = documentElementDataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, DocumentElement_.createdDate);
+		final List<DocumentElement> pageOrderBy = documentElementDataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, DocumentElement_.createdDate);
 
 		createPagingControls(panelContent,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 

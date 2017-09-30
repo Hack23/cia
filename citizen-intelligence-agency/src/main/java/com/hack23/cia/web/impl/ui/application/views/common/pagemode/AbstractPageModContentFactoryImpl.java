@@ -294,7 +294,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 				pagingControls.setSpacing(true);
 				pagingControls.setMargin(true);
 
-				final int maxPages = (int) ((size +(resultPerPage-1)) / resultPerPage);
+				final int maxPages = (size +resultPerPage-1) / resultPerPage;
 
 				final StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.append(PAGE_HEADER)

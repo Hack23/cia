@@ -18,10 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.tablefactory;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hack23.cia.service.api.ApplicationManager;
 import com.vaadin.ui.Grid;
 
 /**
@@ -30,42 +28,8 @@ import com.vaadin.ui.Grid;
 @Service
 public final class TableFactoryImpl implements TableFactory {
 
-	/** The Constant VOTES. */
-	private static final String VOTES = "Votes";
-
-	/** The Constant COMMITTEE_PROPOSAL_SIZE. */
-	private static final String COMMITTEE_PROPOSAL_SIZE = "committeeProposalSize";
-
-	/** The Constant DOCUMENT_STATUS. */
-	private static final String DOCUMENT_STATUS = "documentStatus";
-
-	/** The Constant DOCUMENT_CONTENT. */
-	private static final String DOCUMENT_CONTENT = "documentContent";
-
-	/** The Constant DOCUMENT_ELEMENT. */
-	private static final String DOCUMENT_ELEMENT = "DocumentElement";
-
-	/** The Constant PARLIAMENT_MEMBER. */
-	private static final String PARLIAMENT_MEMBER = "Parliament member";
-
-	/** The Constant COLUMN_MISSING. */
-	private static final String COLUMN_MISSING = "Missing";
-
-	/** The Constant COLUMN_SIZE. */
-	private static final String COLUMN_SIZE = "Size";
-
-	/** The Constant COLUMN_NAME. */
-	private static final String COLUMN_NAME = "Name";
-
-	/** The Constant FIRST_AND_ONLY. */
-	private static final int FIRST_AND_ONLY = 0;
-
 	/** The Constant ZERO_MISSING. */
 	private static final String ZERO_MISSING = Long.toString(0);
-
-	/** The application manager. */
-	@Autowired
-	private ApplicationManager applicationManager;
 
 	/**
 	 * Instantiates a new table factory impl.

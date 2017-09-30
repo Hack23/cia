@@ -88,7 +88,7 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 		final DataContainer<ApplicationConfiguration, Long> dataContainer = getApplicationManager()
 				.getDataContainer(ApplicationConfiguration.class);
 
-		List<ApplicationConfiguration> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationConfiguration_.configurationGroup);
+		final List<ApplicationConfiguration> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationConfiguration_.configurationGroup);
 
 		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 

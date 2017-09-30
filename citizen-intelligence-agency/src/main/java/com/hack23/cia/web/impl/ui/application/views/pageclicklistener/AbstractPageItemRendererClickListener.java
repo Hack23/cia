@@ -60,7 +60,7 @@ public abstract class AbstractPageItemRendererClickListener<T> implements Render
 
 
 	@Override
-	public void selectionChange(SelectionEvent<T> event) {
+	public void selectionChange(final SelectionEvent<T> event) {
 		final Set<T> added =event.getAllSelectedItems();
 
 		if (!added.isEmpty()) {
