@@ -109,7 +109,7 @@
     <cia.project.versions.spring.security>5.0.0.M4</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.0.BETA-4</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.22.0-CR2</cia.project.versions.javassist>
-    <cia.project.versions.asm>6.0_BETA</cia.project.versions.asm>
+    <cia.project.versions.asm>6.0</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.5</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2.redhat-2</cia.project.versions.commons.collections>
     <cia.project.versions.commons.lang>2.6.0.redhat-6</cia.project.versions.commons.lang>
@@ -638,9 +638,15 @@
           <version>${jacoco.version}</version>
           <dependencies>
             <dependency>
-              <groupId>org.ow2.asm</groupId>
-              <artifactId>asm-debug-all</artifactId>
-              <version>${cia.project.versions.asm}</version>
+              <groupId>org.jacoco</groupId>
+              <artifactId>org.jacoco.report</artifactId>
+              <version>0.7.9</version>
+              <exclusions>
+                <exclusion>
+                  <artifactId>asm-debug-all</artifactId>
+                  <groupId>org.ow2.asm</groupId>
+                </exclusion>
+              </exclusions>
             </dependency>
             <dependency>
               <groupId>org.ow2.asm</groupId>
@@ -912,6 +918,24 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>${compiler.plugin.version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.ow2.asm</groupId>
+              <artifactId>asm</artifactId>
+              <version>${cia.project.versions.asm}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.ow2.asm</groupId>
+              <artifactId>asm-tree</artifactId>
+              <version>${cia.project.versions.asm}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.codehaus.plexus/plexus-languages -->
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-java</artifactId>
+              <version>0.9.3</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>

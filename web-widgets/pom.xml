@@ -88,6 +88,41 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>org.vaadin</groupId>
+      <artifactId>easybinder</artifactId>
+      <version>0.3</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>javax.el-api</artifactId>
+          <groupId>javax.el</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-server</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-client-compiled</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-themes</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-compatibility-server</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-compatibility-client</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>vaadin-compatibility-shared</artifactId>
+          <groupId>com.vaadin</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <groupId>org.vaadin.addons</groupId>
       <artifactId>vaadin-grid-util</artifactId>
       <version>2.1.0</version>
@@ -259,12 +294,6 @@
       <artifactId>vaadin-client-compiled</artifactId>
       <version>${vaadin.version}</version>
     </dependency>
-    <!-- Needed when using the widgetset optimizer (custom ConnectorBundleLoaderFactory).
-			For widgetset compilation, vaadin-client-compiler is automatically added
-			on the compilation classpath by vaadin-maven-plugin so normally there is
-			no need for an explicit dependency. -->
-    <!-- <dependency> <groupId>com.vaadin</groupId> <artifactId>vaadin-client-compiler</artifactId>
-			<version>${vaadin.version}</version> <scope>provided</scope> </dependency> -->
     <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-client</artifactId>
@@ -443,8 +472,6 @@
   <build>
     <pluginManagement>
       <plugins>
-        <!--This plugin's configuration is used to store Eclipse m2e settings
-					only. It has no influence on the Maven build itself. -->
         <plugin>
           <groupId>org.eclipse.m2e</groupId>
           <artifactId>lifecycle-mapping</artifactId>
@@ -497,8 +524,6 @@
           <target>1.8</target>
         </configuration>
       </plugin>
-      <!-- As we are doing "inplace" GWT compilation, ensure the widgetset -->
-      <!-- directory is cleaned properly -->
       <plugin>
         <artifactId>maven-clean-plugin</artifactId>
         <configuration>
@@ -523,15 +548,11 @@
             <index>true</index>
             <manifest>
               <addClasspath>true</addClasspath>
-              <!-- Implementation-Title and Implementation-Version come from the
-								POM by default -->
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
             </manifest>
             <manifestEntries>
-              <!-- Package format version - do not change -->
               <Vaadin-Package-Version>1</Vaadin-Package-Version>
-              <!-- Comma-separated list of widgetsets in the package -->
-              <Vaadin-Widgetsets>vaadintest.AppWidgetSet</Vaadin-Widgetsets>
+              <Vaadin-Widgetsets>com.hack23.cia.web.widgets.WebWidgetSet</Vaadin-Widgetsets>
             </manifestEntries>
           </archive>
         </configuration>
@@ -563,36 +584,18 @@
           <generatedWidgetsetDirectory>${basedir}/src/main/java/</generatedWidgetsetDirectory>
           <widgetsetMode>local</widgetsetMode>
           <extraJvmArgs>${additionalRuntimeArgLine}</extraJvmArgs>
-          <!-- <runTarget>mobilemail</runTarget> -->
-          <!-- We are doing "inplace" but into subdir VAADIN/widgetsets. This
-						way compatible with Vaadin eclipse plugin. -->
-          <!-- <webappDirectory>${basedir}/src/main/webapp/VAADIN/widgetsets</webappDirectory>
-						<hostedWebapp>${basedir}/src/main/webapp/VAADIN/widgetsets</hostedWebapp> -->
           <webappDirectory>${project.build.directory}/classes/VAADIN/widgetsets</webappDirectory>
           <hostedWebapp>${project.build.directory}/classes/VAADIN/widgetsets</hostedWebapp>
-          <!-- Most Vaadin apps don't need this stuff, guide that to target -->
           <persistentunitcachedir>${project.build.directory}/classes/</persistentunitcachedir>
           <deploy>${project.build.directory}/classes/WEB-INF/deploy</deploy>
-          <!-- Compile report is not typically needed either, saves hunreds of
-						mb disk -->
           <compileReport>false</compileReport>
           <noServer>true</noServer>
-          <!-- Remove draftCompile when project is ready -->
           <draftCompile>false</draftCompile>
           <style>OBF</style>
           <strict>true</strict>
           <runTarget>http://localhost:8080/</runTarget>
         </configuration>
       </plugin>
-      <!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>gwt-maven-plugin</artifactId>
-				<version>2.8.0-rc3</version> <executions> <execution> <goals> <goal>compile</goal>
-				</goals> </execution> </executions> <configuration> <webappDirectory>${basedir}/target/classes/VAADIN/widgetsets</webappDirectory>
-				<style>OBF</style> <extraJvmArgs>${additionalRuntimeArgLine}</extraJvmArgs>
-				<persistentunitcachedir>${project.build.directory}/classes/</persistentunitcachedir>
-				<deploy>${project.build.directory}/classes/WEB-INF/deploy</deploy> <optimizationLevel>9</optimizationLevel>
-				</configuration> </plugin> <plugin> <groupId>org.eclipse.jettys</groupId>
-				<artifactId>jetty-maven-plugin</artifactId> <version>${cia.project.versions.jetty}</version>
-				</plugin> -->
     </plugins>
   </build>
 </project>
