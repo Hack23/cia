@@ -155,7 +155,7 @@
     <cia.project.versions.activemq>5.15.1</cia.project.versions.activemq>
     <cia.project.versions.httpclient>4.5.3</cia.project.versions.httpclient>
     <cia.project.versions.guava>23.0</cia.project.versions.guava>
-    <cia.project.versions.jackson>2.8.10</cia.project.versions.jackson>
+    <cia.project.versions.jackson>2.9.1</cia.project.versions.jackson>
     <cia.project.versions.xerces>2.11.0.SP5-redhat-1</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>9.4.7.v20170914</cia.project.versions.jetty>
