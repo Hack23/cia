@@ -40,6 +40,8 @@ Plan to make it public some time after 2018.04, running Ubuntu 18.04, Postgresql
 
 Project documentation [http://hack23.github.io/cia/](http://hack23.github.io/cia//)
 
+Project Architecture [https://structurizr.com/share/37264#Enterprise](https://structurizr.com/share/37264#Enterprise)
+
 Github source code location [https://github.com/Hack23/cia](https://github.com/Hack23/cia)
 
 Build server, jenkins [https://www.hack23.com/jenkins/](https://www.hack23.com/jenkins/)
