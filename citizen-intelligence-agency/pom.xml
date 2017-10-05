@@ -91,6 +91,13 @@
     </dependency>
     <dependency>
       <groupId>com.structurizr</groupId>
+      <artifactId>structurizr-dot</artifactId>
+      <version>1.0.0-RC4</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.structurizr</groupId>
       <artifactId>structurizr-spring</artifactId>
       <version>1.0.0-RC4</version>
       <scope>test</scope>
@@ -104,6 +111,12 @@
           <groupId>org.springframework.data</groupId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+      <version>1</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
