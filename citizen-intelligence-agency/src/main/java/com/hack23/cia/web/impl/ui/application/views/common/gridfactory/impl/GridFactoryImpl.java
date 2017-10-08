@@ -71,8 +71,7 @@ public final class GridFactoryImpl implements GridFactory {
 		
 		grid.setItems(datasource.stream().filter(party -> party != null) 
         .collect(Collectors.toList()));
-		
-		
+			
 		grid.setSelectionMode(SelectionMode.SINGLE);
 
 		createNestedProperties(grid, nestedProperties);
@@ -89,19 +88,19 @@ public final class GridFactoryImpl implements GridFactory {
 
 		createGridCellFilter(columnOrder, grid,dataType);
 
-		//grid.setResponsive(true);
+		grid.setResponsive(true);
 
 		panelContent.addComponent(grid);
 		panelContent.setExpandRatio(grid, ContentRatio.GRID);
 	}
 
 	private <T extends Serializable> void createNestedProperties(Grid<T> grid, String[] nestedProperties) {
-//		if (nestedProperties != null) {
-//			for (String property : nestedProperties) {			
-//				Column<T, ?> addColumn = grid.addColumn(new BeanNestedPropertyValueProvider<T>(property));
-//				addColumn.setId(property);
-//			}
-//		}		
+		if (nestedProperties != null) {
+			for (String property : nestedProperties) {			
+				Column<T, ?> addColumn = grid.addColumn(new BeanNestedPropertyValueProvider<T>(property));
+				addColumn.setId(property);
+			}
+		}		
 	}
 	
 	public class BeanNestedPropertyValueProvider<T> implements ValueProvider<T, String> {
