@@ -95,7 +95,6 @@
       <version>1.0.0-RC4</version>
       <scope>test</scope>
     </dependency>
-    
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-spring</artifactId>
@@ -224,6 +223,10 @@
       <version>3.6.0</version>
       <scope>test</scope>
       <exclusions>
+      	<exclusion>
+      		<groupId>net.bytebuddy</groupId>
+      		<artifactId>byte-buddy</artifactId>
+      	</exclusion>
         <exclusion>
           <artifactId>httpcore</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
@@ -344,6 +347,10 @@
       <version>3.6.0</version>
       <scope>test</scope>
       <exclusions>
+         <exclusion>
+      		<groupId>net.bytebuddy</groupId>
+      		<artifactId>byte-buddy</artifactId>
+      	</exclusion>      
         <exclusion>
           <artifactId>httpcore</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
@@ -425,6 +432,10 @@
       <version>3.6.0</version>
       <scope>test</scope>
       <exclusions>
+      	<exclusion>
+      		<groupId>net.bytebuddy</groupId>
+      		<artifactId>byte-buddy</artifactId>
+      	</exclusion> 
         <exclusion>
           <artifactId>httpcore</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
