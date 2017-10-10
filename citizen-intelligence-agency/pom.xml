@@ -223,10 +223,10 @@
       <version>3.6.0</version>
       <scope>test</scope>
       <exclusions>
-      	<exclusion>
-      		<groupId>net.bytebuddy</groupId>
-      		<artifactId>byte-buddy</artifactId>
-      	</exclusion>
+        <exclusion>
+          <artifactId>byte-buddy</artifactId>
+          <groupId>net.bytebuddy</groupId>
+        </exclusion>
         <exclusion>
           <artifactId>httpcore</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
@@ -347,10 +347,10 @@
       <version>3.6.0</version>
       <scope>test</scope>
       <exclusions>
-         <exclusion>
-      		<groupId>net.bytebuddy</groupId>
-      		<artifactId>byte-buddy</artifactId>
-      	</exclusion>      
+        <exclusion>
+          <artifactId>byte-buddy</artifactId>
+          <groupId>net.bytebuddy</groupId>
+        </exclusion>
         <exclusion>
           <artifactId>httpcore</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
@@ -432,10 +432,10 @@
       <version>3.6.0</version>
       <scope>test</scope>
       <exclusions>
-      	<exclusion>
-      		<groupId>net.bytebuddy</groupId>
-      		<artifactId>byte-buddy</artifactId>
-      	</exclusion> 
+        <exclusion>
+          <artifactId>byte-buddy</artifactId>
+          <groupId>net.bytebuddy</groupId>
+        </exclusion>
         <exclusion>
           <artifactId>httpcore</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
