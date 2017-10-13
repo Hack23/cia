@@ -18,9 +18,14 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.tools.ant.taskdefs.optional.ejb.WeblogicTOPLinkDeploymentTool;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
@@ -38,10 +43,13 @@ import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFac
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl.ExternalAttachmentDownloadLink;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
+import com.vaadin.server.StreamResource;
+import com.vaadin.server.StreamResource.StreamSource;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
+import com.whitestein.vaadin.widgets.wtpdfviewer.WTPdfViewer;
 
 
 /**
@@ -104,13 +112,41 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 
 				final List<DocumentAttachment> documentAttachmentList = documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList();
 
-				final VerticalLayout verticalLayout = new VerticalLayout();
-				panelContent.addComponent(verticalLayout);
-				panelContent.setExpandRatio(verticalLayout,ContentRatio.SMALL);
-
 				for (final DocumentAttachment documentAttachment : documentAttachmentList) {
-					final ExternalAttachmentDownloadLink link = new ExternalAttachmentDownloadLink(documentAttachment.getFileName(), documentAttachment.getFileType(), documentAttachment.getFileUrl());
-					verticalLayout.addComponent(link);
+					
+					if ("pdf".equalsIgnoreCase(documentAttachment.getFileType())) {
+						WTPdfViewer wtPdfViewer = new WTPdfViewer();
+						wtPdfViewer.setSizeFull();
+
+						System.out.println("ADDED PDF");
+						final StreamResource.StreamSource source = new StreamResource.StreamSource() {
+
+							/** The Constant serialVersionUID. */
+							private static final long serialVersionUID = 1L;
+
+							@Override
+							public InputStream getStream() {
+
+								try {
+									return new URL(documentAttachment.getFileUrl()).openStream();
+								} catch (final IOException e) {
+									return new ByteArrayInputStream(new byte[0]);
+								}
+							}
+						};
+
+						
+						wtPdfViewer.setResource(new StreamResource(source, documentAttachment.getFileName()));
+						
+						panelContent.addComponent(wtPdfViewer);						
+						panelContent.setExpandRatio(wtPdfViewer,ContentRatio.LARGE);
+					} else {
+						final VerticalLayout verticalLayout = new VerticalLayout();
+						panelContent.addComponent(verticalLayout);
+						panelContent.setExpandRatio(verticalLayout,ContentRatio.SMALL);
+						final ExternalAttachmentDownloadLink link = new ExternalAttachmentDownloadLink(documentAttachment.getFileName(), documentAttachment.getFileType(), documentAttachment.getFileUrl());
+						verticalLayout.addComponent(link);
+					}
 				}
 			}
 

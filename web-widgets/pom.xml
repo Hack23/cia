@@ -241,7 +241,7 @@
     <dependency>
       <groupId>com.whitestein.vaadin.widgets</groupId>
       <artifactId>wt-pdf-viewer</artifactId>
-      <version>1.0.2</version>
+      <version>1.0.4</version>
       <exclusions>
         <exclusion>
           <artifactId>vaadin-server</artifactId>

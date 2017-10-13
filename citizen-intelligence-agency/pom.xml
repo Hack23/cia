@@ -1283,7 +1283,7 @@
                 <artifactItem>
                   <groupId>com.whitestein.vaadin.widgets</groupId>
                   <artifactId>wt-pdf-viewer</artifactId>
-                  <version>1.0.2</version>
+                  <version>1.0.4</version>
                   <type>jar</type>
                   <overWrite>false</overWrite>
                   <outputDirectory>${basedir}/src/main/webapp/</outputDirectory>

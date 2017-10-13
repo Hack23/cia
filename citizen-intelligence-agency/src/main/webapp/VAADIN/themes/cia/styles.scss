@@ -3,9 +3,12 @@
 @import "addons.scss";
 @import "cia.scss";
 
+@import "../../../VAADIN/themes/wtpdfviewer/wtpdfviewer.scss";
+
 .cia {
-	@include cia;
-	
-	
+  	@include addons;
+	@include cia;	
 }
 
+@include wtPdfViewerMedia2dppx;
+@include wtPdfViewerPrintSupport
