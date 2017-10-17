@@ -152,7 +152,7 @@
     <cia.project.versions.jaxb2.plugin>0.13.2</cia.project.versions.jaxb2.plugin>
     <cia.project.versions.jaxb2.fluent.api>3.0</cia.project.versions.jaxb2.fluent.api>
     <cia.project.versions.maven>3.3.9</cia.project.versions.maven>
-    <cia.project.versions.activemq>5.15.1</cia.project.versions.activemq>
+    <cia.project.versions.activemq>5.15.2</cia.project.versions.activemq>
     <cia.project.versions.httpclient>4.5.3</cia.project.versions.httpclient>
     <cia.project.versions.guava>23.2-jre</cia.project.versions.guava>
     <cia.project.versions.jackson>2.9.2</cia.project.versions.jackson>
