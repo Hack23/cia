@@ -117,12 +117,12 @@
     <cia.project.versions.logback>1.2.3</cia.project.versions.logback>
     <cia.project.versions.mysql>5.1.34</cia.project.versions.mysql>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
-    <cia.project.versions.hibernate>5.2.11.Final</cia.project.versions.hibernate>
-    <cia.project.versions.hibernate.jpamodelgen>5.2.11.Final</cia.project.versions.hibernate.jpamodelgen>
-    <cia.project.versions.hibernate.build>5.2.11.Final</cia.project.versions.hibernate.build>
+    <cia.project.versions.hibernate>5.2.12.Final</cia.project.versions.hibernate>
+    <cia.project.versions.hibernate.jpamodelgen>5.2.12.Final</cia.project.versions.hibernate.jpamodelgen>
+    <cia.project.versions.hibernate.build>5.2.12.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.2.6.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.0.Final</cia.project.versions.hibernate.jpa2>
-    <cia.project.versions.hibernate.validator>6.0.2.Final</cia.project.versions.hibernate.validator>
+    <cia.project.versions.hibernate.validator>6.0.3.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>5.4.1.Final</cia.project.versions.hibernate.build.validator>
     <cia.project.versions.bytebuddy>1.7.6</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.196</cia.project.versions.h2>
@@ -215,7 +215,7 @@
       <dependency>
         <groupId>org.json</groupId>
         <artifactId>json</artifactId>
-        <version>20170516</version>
+        <version>20171018</version>
       </dependency>
       <dependency>
         <groupId>com.thoughtworks.xstream</groupId>

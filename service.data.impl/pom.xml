@@ -447,7 +447,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jcache</artifactId>
-      <version>5.2.11.Final</version>
+      <version>5.2.12.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-core</artifactId>
@@ -565,7 +565,7 @@
     <dependency>
       <groupId>org.jboss.narayana.jta</groupId>
       <artifactId>narayana-jta</artifactId>
-      <version>5.7.0.Final</version>
+      <version>5.7.1.Final</version>
     </dependency>
     <dependency>
       <groupId>org.jboss</groupId>
