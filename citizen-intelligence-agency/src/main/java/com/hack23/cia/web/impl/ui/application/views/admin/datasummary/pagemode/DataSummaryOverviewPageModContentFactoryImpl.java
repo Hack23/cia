@@ -18,9 +18,15 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.service.api.DataSummary;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
@@ -29,6 +35,7 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.UpdateSear
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -73,10 +80,24 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 		LabelFactory.createHeader2Label(content,ADMIN_DATA_SUMMARY);
 
-//		final Table createDataSummaryTable = tableFactory.createDataSummaryTable();
-//		content.addComponent(createDataSummaryTable);
-//		content.setExpandRatio(createDataSummaryTable, ContentRatio.LARGE);
+		
+		final HorizontalLayout horizontalLayout = new HorizontalLayout();
+		horizontalLayout.setSizeFull();
 
+		content.addComponent(horizontalLayout);
+		content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
+
+		final DataContainer<DataSummary, String> dataContainer = getApplicationManager().getDataContainer(DataSummary.class);
+
+		final List<DataSummary> all = dataContainer.getAll();
+		if (!all.isEmpty()) {
+			final DataSummary dataSummary = all.get(0);
+
+			getFormFactory().addFormPanelTextFields(horizontalLayout, dataSummary, DataSummary.class,
+					Arrays.asList(new String[] { "personSize", "totalBallotVotes", "committeeProposalSize", "voteSize",
+							"documentStatusSize", "documentElementSize", "documentContentSize" }));
+		}		
+		
 		final VerticalLayout overviewLayout = new VerticalLayout();
 		overviewLayout.setSizeFull();
 		content.addComponent(overviewLayout);
