@@ -97,6 +97,33 @@
 	    }
 	}
 
+	.v-layout-content-pagemode-panel-level2 {
+		width: 100%;
+
+		background-color: rgba(0, 0, 0, .6);
+		color: white;
+		border: 2px inset #2deff9;
+		border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
+		height: 100%;
+        display: inline-block;
+
+	    .title {
+	    	font-weight: bold;
+	    	font-size: 20px;
+			height: 40px;
+			width: 100%;
+			text-align: center;
+	    }
+
+	    .itembox {
+	    	height: 100%;
+	    	width: 100%;
+	        white-space: normal;
+	        text-align: left;
+	    }
+	}
+
+
 
 	.v-label-Header {
 	 font-size: 16px;

@@ -29,23 +29,27 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SetGoogleAuthenticatorCredentialClickListener;
+import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
+import com.vaadin.server.Resource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Button.ClickListener;
 
 /**
  * The Class UserHomeSecuritySettingsPageModContentFactoryImpl.
  */
 @Component
 public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
-
+	
 	/** The Constant ENABLE_GOOGLE_AUTHENTICATOR. */
 	private static final String ENABLE_GOOGLE_AUTHENTICATOR = "Enable Google Authenticator";
 
@@ -96,9 +100,15 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 			googleAuthRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 			googleAuthButton.addClickListener(
 					new SetGoogleAuthenticatorCredentialClickListener(googleAuthRequest));
+			
+			final VerticalLayout overviewLayout = new VerticalLayout();
+			overviewLayout.setSizeFull();
+			panelContent.addComponent(overviewLayout);
+			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
-			panelContent.addComponent(googleAuthButton);
-
+			final ResponsiveRow grid = createGridLayout(overviewLayout);
+			
+			createRowItem(grid,googleAuthButton,"Enable MFA using google authenticator");
 		}
 
 		panel.setCaption(NAME + "::" + USERHOME + SECURITY_SETTINGS);

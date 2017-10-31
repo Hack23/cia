@@ -28,9 +28,11 @@ import org.springframework.web.context.request.RequestContextHolder;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.action.application.RegisterUserRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RegisterUserClickListener;
+import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Layout;
@@ -96,7 +98,13 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractPag
 				Arrays.asList(new String[] { "username", "email", "country", "userpassword" }), "Register",
 				reqisterListener);
 
-		content.addComponent(registerLayout);
+		final VerticalLayout overviewLayout = new VerticalLayout();
+		overviewLayout.setSizeFull();
+		content.addComponent(overviewLayout);
+		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
+
+		final ResponsiveRow grid = createGridLayout(overviewLayout);		
+		createRowComponent(grid,formContent,"Register a new user");
 
 		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,

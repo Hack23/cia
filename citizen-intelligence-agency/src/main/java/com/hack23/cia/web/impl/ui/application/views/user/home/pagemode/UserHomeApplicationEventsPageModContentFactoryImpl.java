@@ -93,7 +93,7 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl extends Ab
 			final UserAccount userAccount = dataContainer.load(userIdFromSecurityContext);
 
 			final DataContainer<ApplicationActionEvent, Long> eventDataContainer = getApplicationManager().getDataContainer(ApplicationActionEvent.class);
-
+			
 
 			getGridFactory().createBasicBeanItemGrid(panelContent, ApplicationActionEvent.class, eventDataContainer.findOrderedListByProperty(ApplicationActionEvent_.userId,userAccount.getUserId(),ApplicationActionEvent_.createdDate),
 					"ApplicationActionEvent",

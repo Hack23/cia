@@ -26,10 +26,14 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.action.application.LoginRequest;
 import com.hack23.cia.web.impl.ui.application.action.ApplicationAction;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ApplicationLoginListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RefreshDataViewsClickListener;
+import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.LoginForm;
 import com.vaadin.ui.MenuBar;
@@ -87,8 +91,14 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractPageMo
 //		buildAndBind.setReadOnly(false);
 //		content.addComponent(buildAndBind);
 
-		content.addComponent(loginForm);
+		final VerticalLayout overviewLayout = new VerticalLayout();
+		overviewLayout.setSizeFull();
+		content.addComponent(overviewLayout);
+		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
+		final ResponsiveRow grid = createGridLayout(overviewLayout);		
+		createRowComponent(grid,loginForm,"Login user");
+		
 		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);

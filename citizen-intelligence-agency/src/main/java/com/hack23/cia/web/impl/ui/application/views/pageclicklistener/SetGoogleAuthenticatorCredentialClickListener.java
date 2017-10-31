@@ -52,7 +52,7 @@ public final class SetGoogleAuthenticatorCredentialClickListener implements Clic
 	private static final String GOOGLE_AUTHENTICATOR_QR_CODE = "Google Authenticator QR code";
 
 	/** The Constant MODAL_WINDOW_SIZE. */
-	private static final String MODAL_WINDOW_SIZE = "200px";
+	private static final String MODAL_WINDOW_SIZE = "400px";
 
 	/** The Constant QR_CODE_IMAGE_SIZE. */
 	private static final String QR_CODE_IMAGE_SIZE = "175px";

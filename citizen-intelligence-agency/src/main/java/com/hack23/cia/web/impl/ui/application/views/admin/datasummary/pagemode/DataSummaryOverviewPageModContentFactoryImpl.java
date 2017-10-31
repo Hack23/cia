@@ -26,6 +26,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RefreshDataViewsClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.UpdateSearchIndexClickListener;
+import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Layout;
@@ -76,24 +77,23 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 //		content.addComponent(createDataSummaryTable);
 //		content.setExpandRatio(createDataSummaryTable, ContentRatio.LARGE);
 
-		content.setSizeFull();
-		content.setMargin(false);
-		content.setSpacing(true);
+		final VerticalLayout overviewLayout = new VerticalLayout();
+		overviewLayout.setSizeFull();
+		content.addComponent(overviewLayout);
+		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
+		final ResponsiveRow grid = createGridLayout(overviewLayout);
+		
 		final Button refreshViewsButton = new Button(REFRESH_VIEWS,VaadinIcons.REFRESH);
-
 		refreshViewsButton.addClickListener(new RefreshDataViewsClickListener());
-
-		content.addComponent(refreshViewsButton);
-		content.setExpandRatio(refreshViewsButton, ContentRatio.SMALL);
+		createRowItem(grid,refreshViewsButton,"Refresh all views");
+		
 
 		final Button updateSearchIndexButton = new Button(UPDATE_SEARCH_INDEX,VaadinIcons.REFRESH);
-
 		updateSearchIndexButton.addClickListener(new UpdateSearchIndexClickListener());
-
-		content.addComponent(updateSearchIndexButton);
-		content.setExpandRatio(updateSearchIndexButton, ContentRatio.SMALL);
-
+		createRowItem(grid,updateSearchIndexButton,"Update document search index");
+	
+		
 		return content;
 
 	}

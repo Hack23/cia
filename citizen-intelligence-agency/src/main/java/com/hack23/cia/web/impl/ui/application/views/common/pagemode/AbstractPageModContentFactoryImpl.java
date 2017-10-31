@@ -28,8 +28,14 @@ import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridF
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.jarektoro.responsivelayout.ResponsiveLayout;
+import com.jarektoro.responsivelayout.ResponsiveRow;
+import com.vaadin.server.Responsive;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.AbstractOrderedLayout;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
@@ -83,6 +89,21 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 
 	/** The Constant DEFAULT_RESULTS_PER_PAGE. */
 	public static final int DEFAULT_RESULTS_PER_PAGE = 250;
+
+	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
+	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
+
+	/** The Constant DISPLAY_SIZE_MD_DEVICE. */
+	private static final int DISPLAY_SIZE_MD_DEVICE = 4;
+
+	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
+	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
+
+	/** The Constant DISPLAY_SIZE_XS_DEVICE. */
+	private static final int DISPLAY_SIZE_XS_DEVICE = 12;
+
+	/** The Constant LINK_STYLE_NAME. */
+	private static final String LINK_STYLE_NAME = "link";
 
 	/** The application manager. */
 	@Autowired
@@ -350,6 +371,63 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 		final Link previousPageLink = getPageLinkFactory().createAdminPagingLink(label,name, pageId, String.valueOf(pageNr));
 		pagingControls.addComponent(previousPageLink);
 		pagingControls.setExpandRatio(previousPageLink, ContentRatio.SMALL);
+	}
+
+	protected final void createRowItem(final ResponsiveRow row, final Button button, final String description) {
+		final CssLayout layout = new CssLayout();
+		layout.addStyleName("v-layout-content-overview-panel-level2");
+		Responsive.makeResponsive(layout);
+		layout.setSizeUndefined();
+		
+		button.addStyleName("itembox");
+		button.addStyleName("title");
+		Responsive.makeResponsive(button);
+		button.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(button);
+	
+		final Label descriptionLabel = new Label(description);
+		descriptionLabel.addStyleName("itembox");
+		Responsive.makeResponsive(descriptionLabel);
+		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(descriptionLabel);
+	
+		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE,DISPLAYS_SIZE_XM_DEVICE,DISPLAY_SIZE_MD_DEVICE,DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
+	}
+
+	protected final void createRowComponent(final ResponsiveRow row, final Component component, final String description) {
+		final CssLayout layout = new CssLayout();
+		layout.addStyleName(".v-layout-content-pagemode-panel-level2");
+		Responsive.makeResponsive(layout);
+		layout.setSizeUndefined();
+
+		final Label descriptionLabel = new Label(description);
+		descriptionLabel.addStyleName("itembox");
+		Responsive.makeResponsive(descriptionLabel);
+		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(descriptionLabel);
+
+		component.addStyleName("itembox");
+		component.addStyleName("title");
+		Responsive.makeResponsive(component);
+		component.setWidth(100, Unit.PERCENTAGE);
+		layout.addComponent(component);	
+	
+		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE,DISPLAYS_SIZE_XM_DEVICE,DISPLAY_SIZE_MD_DEVICE,DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
+	}
+
+	
+	
+	
+	
+	protected final ResponsiveRow createGridLayout(final VerticalLayout panelContent) {
+		final ResponsiveLayout layout = new ResponsiveLayout();
+		Responsive.makeResponsive(layout);
+		layout.addStyleName("v-layout-content-overview-panel-level1");
+		layout.setWidth(100, Unit.PERCENTAGE);
+		layout.setHeight(100, Unit.PERCENTAGE);
+		panelContent.addComponent(layout);
+		panelContent.setExpandRatio(layout, ContentRatio.LARGE);
+		return layout.addRow();
 	}
 
 }
