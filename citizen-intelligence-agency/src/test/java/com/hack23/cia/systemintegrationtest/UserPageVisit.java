@@ -842,8 +842,8 @@ public final class UserPageVisit extends Assert {
 	 */
 	public void loginUserCheckView(final String username,final String password,final String view) throws Exception {
 
-		setFieldValue("username",username);
-		setFieldValue("password",password);
+		setFieldValue("Login.email",username);
+		setFieldValue("Login.userpassword",password);
 
 		final WebElement loginButton =findButton("Login");
 		assertNotNull("Expect to find a Login Button",loginButton);

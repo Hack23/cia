@@ -104,7 +104,7 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractPag
 		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
 		final ResponsiveRow grid = createGridLayout(overviewLayout);		
-		createRowComponent(grid,formContent,"Register a new user");
+		createRowComponent(grid,registerLayout,"Register a new user");
 
 		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,

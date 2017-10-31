@@ -20,21 +20,20 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.service.api.action.application.LoginRequest;
 import com.hack23.cia.service.api.action.application.LoginResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.vaadin.ui.LoginForm.LoginEvent;
-import com.vaadin.ui.LoginForm.LoginListener;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 
 /**
  * The Class ApplicationLoginListener.
  */
-public final class ApplicationLoginListener implements LoginListener {
+public final class ApplicationLoginListener implements ClickListener {
 
 	/** The Constant LOG_MSG_LOGIN_REQUEST_FAILURE. */
 	private static final String LOG_MSG_LOGIN_REQUEST_FAILURE = "LoginRequest {} failure";
@@ -65,23 +64,19 @@ public final class ApplicationLoginListener implements LoginListener {
 	}
 
 
-	@Override
-	public void onLogin(final LoginEvent event) {
-		loginRequest.setEmail(event.getLoginParameter("username"));
-		loginRequest.setUserpassword(event.getLoginParameter("password"));
-		loginRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 
+	@Override
+	public void buttonClick(ClickEvent event) {
 		final LoginResponse response = (LoginResponse) ApplicationMangerAccess.getApplicationManager().service(loginRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
-			LOGGER.info(LOG_MSG_LOGIN_REQUEST,event.getLoginParameter("username"));
+			LOGGER.info(LOG_MSG_LOGIN_REQUEST,loginRequest.getEmail());
 
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);
 		} else {
 			Notification.show(LOGIN_FAILED,
 					response.getErrorMessage(),
 	                  Notification.Type.WARNING_MESSAGE);
-			LOGGER.info(LOG_MSG_LOGIN_REQUEST_FAILURE,event.getLoginParameter("username"));
-		}
-
+			LOGGER.info(LOG_MSG_LOGIN_REQUEST_FAILURE,loginRequest.getEmail());
+		}		
 	}
 }

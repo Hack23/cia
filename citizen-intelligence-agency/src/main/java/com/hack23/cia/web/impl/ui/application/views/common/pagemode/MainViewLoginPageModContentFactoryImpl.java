@@ -18,12 +18,16 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
 
+import java.util.Arrays;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.action.application.LoginRequest;
+import com.hack23.cia.service.api.action.application.RegisterUserRequest;
 import com.hack23.cia.web.impl.ui.application.action.ApplicationAction;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -31,14 +35,17 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.Application
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ApplicationLoginListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RefreshDataViewsClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RegisterUserClickListener;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.LoginForm;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Button.ClickListener;
 
 
 /**
@@ -76,20 +83,34 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractPageMo
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		final LoginForm loginForm = new EmailPasswordLoginForm();
+
+//		final LoginForm loginForm = new EmailPasswordLoginForm();
+//		loginForm.addLoginListener(new ApplicationLoginListener(loginRequest));
+//		loginForm.setId(ApplicationAction.LOGIN.toString());
+
+		final VerticalLayout loginLayout = new VerticalLayout();
+		loginLayout.setSizeFull();
+
+		final Panel formPanel = new Panel();
+		formPanel.setSizeFull();
+
+		loginLayout.addComponent(formPanel);
+
+		final FormLayout formContent = new FormLayout();
+		formContent.setIcon(VaadinIcons.SIGN_IN);
+		formPanel.setContent(formContent);
+
 		final LoginRequest loginRequest = new LoginRequest();
 		loginRequest.setOtpCode("");
-		loginForm.addLoginListener(new ApplicationLoginListener(loginRequest));
-		loginForm.setId(ApplicationAction.LOGIN.toString());
-		loginForm.setIcon(VaadinIcons.SIGN_IN);
-
-//		final BeanFieldGroup<LoginRequest> fieldGroup = new BeanFieldGroup<>(LoginRequest.class);
-//		fieldGroup.setItemDataSource(loginRequest);
-//		fieldGroup.setReadOnly(true);
-//		fieldGroup.setBuffered(false);
-//		final Field<?> buildAndBind = fieldGroup.buildAndBind("otpCode");
-//		buildAndBind.setReadOnly(false);
-//		content.addComponent(buildAndBind);
+		loginRequest.setEmail("");
+		loginRequest.setUserpassword("");
+		
+		loginRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+		final ClickListener loginListener = new ApplicationLoginListener(loginRequest);
+		getFormFactory().addRequestInputFormFields(formContent, loginRequest,
+				LoginRequest.class,
+				Arrays.asList(new String[] { "email", "otpCode", "userpassword" }), "Login",
+				loginListener);
 
 		final VerticalLayout overviewLayout = new VerticalLayout();
 		overviewLayout.setSizeFull();
@@ -97,7 +118,7 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractPageMo
 		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
 		final ResponsiveRow grid = createGridLayout(overviewLayout);		
-		createRowComponent(grid,loginForm,"Login user");
+		createRowComponent(grid,loginLayout,"Register a new user");
 		
 		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,
