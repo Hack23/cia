@@ -113,7 +113,7 @@
     <cia.project.versions.cglib>3.2.5</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2.redhat-2</cia.project.versions.commons.collections>
     <cia.project.versions.commons.lang>2.6.0.redhat-6</cia.project.versions.commons.lang>
-    <cia.project.versions.slf4j>1.7.25</cia.project.versions.slf4j>
+    <cia.project.versions.slf4j>1.8.0-beta0</cia.project.versions.slf4j>
     <cia.project.versions.logback>1.2.3</cia.project.versions.logback>
     <cia.project.versions.mysql>5.1.34</cia.project.versions.mysql>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
@@ -144,11 +144,11 @@
     <cia.project.versions.hyperjaxb3>0.6.2</cia.project.versions.hyperjaxb3>
     <cia.project.versions.hyperjaxb3.plugin>0.6.1</cia.project.versions.hyperjaxb3.plugin>
     <cia.project.versions.jaxb.build>2.2.11</cia.project.versions.jaxb.build>
-    <cia.project.versions.jaxb.runtime>2.2.11</cia.project.versions.jaxb.runtime>
+    <cia.project.versions.jaxb.runtime>2.3.0</cia.project.versions.jaxb.runtime>
     <cia.project.versions.jaxb.impl.build>2.2.11</cia.project.versions.jaxb.impl.build>
-    <cia.project.versions.jaxb.impl.runtime>2.2.11</cia.project.versions.jaxb.impl.runtime>
+    <cia.project.versions.jaxb.impl.runtime>2.3.0</cia.project.versions.jaxb.impl.runtime>
     <cia.project.versions.jaxb.xjc.build>2.2.11</cia.project.versions.jaxb.xjc.build>
-    <cia.project.versions.jaxb.xjc.runtime>2.2.11</cia.project.versions.jaxb.xjc.runtime>
+    <cia.project.versions.jaxb.xjc.runtime>2.3.0</cia.project.versions.jaxb.xjc.runtime>
     <cia.project.versions.jaxb2.plugin>0.13.2</cia.project.versions.jaxb2.plugin>
     <cia.project.versions.jaxb2.fluent.api>3.0</cia.project.versions.jaxb2.fluent.api>
     <cia.project.versions.maven>3.3.9</cia.project.versions.maven>

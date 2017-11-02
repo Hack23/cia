@@ -9,7 +9,7 @@ module com.hack23.cia.service.component.agent.impl {
 
 	requires java.xml.bind;
 	requires java.xml.ws.annotation;
-	requires slf4j.api;
+	requires org.slf4j;
 	requires spring.context;
 	requires spring.beans;
 	requires spring.tx;

@@ -4,6 +4,7 @@ module com.hack23.cia.service.external.worldbank {
 
 	requires java.xml.bind;
 	requires spring.beans;
+	requires org.slf4j;
 
 	requires com.hack23.cia.service.external.common;
 

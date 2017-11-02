@@ -181,6 +181,7 @@
 			<property name="hibernate.archive.autodetection" value="class" />
 			<property name="hibernate.connection.characterEncoding"
 				value="UTF-8" />
+			<property name="hibernate.session.events.log" value="false"/>
 			<property name="hibernate.connection.charSet" value="UTF-8" />
 			<property name="hibernate.enable_lazy_load_no_trans" value="true"/>
 			<property name="hibernate.search.model_mapping" value="com.hack23.cia.service.data.impl.DataSearchMappingFactory"/>
