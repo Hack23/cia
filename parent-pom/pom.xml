@@ -158,7 +158,7 @@
     <cia.project.versions.jackson>2.9.2</cia.project.versions.jackson>
     <cia.project.versions.xerces>2.11.0.SP5-redhat-1</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
-    <cia.project.versions.jetty>9.4.7.v20170914</cia.project.versions.jetty>
+    <cia.project.versions.jetty>9.4.8.v20171101</cia.project.versions.jetty>
     <cia.project.versions.javamelody>1.70.0</cia.project.versions.javamelody>
     <cia.project.versions.vaadin>8.2.0.alpha2</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.8.2</cia.project.versions.vaadin.gwt.user>
