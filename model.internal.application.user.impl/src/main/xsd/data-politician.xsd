@@ -33,9 +33,9 @@
 
 			<xsd:element name="currentAssignments" type="xsd:long" />
 
-			<xsd:element name="firstAssignmentDate" type="xsd:date" />
-			<xsd:element name="lastAssignmentDate" type="xsd:date" />
-			<xsd:element name="totalDaysServed" type="xsd:long" />
+			<xsd:element name="firstAssignmentDate" type="xsd:date" nillable="true" />
+			<xsd:element name="lastAssignmentDate" type="xsd:date" nillable="true"/>
+			<xsd:element name="totalDaysServed" type="xsd:long" nillable="true"/>
 			<xsd:element name="totalDaysServedParliament" type="xsd:long" />
 			<xsd:element name="totalDaysServedCommittee" type="xsd:long" />
 			<xsd:element name="totalDaysServedGovernment" type="xsd:long" />

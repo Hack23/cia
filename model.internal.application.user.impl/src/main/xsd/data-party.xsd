@@ -160,7 +160,7 @@
 			<xsd:element name="to_date" type="xsd:date" />
 			<xsd:element name="person_id" type="xsd:string" />
 			<xsd:element name="party" type="xsd:string" />
-			<xsd:element name="total_days_served" type="xsd:int" />
+			<xsd:element name="total_days_served" type="xsd:int" nillable="true"/>
 			<xsd:element name="active" type="xsd:boolean" />
 		</xsd:sequence>
 	</xsd:complexType>
