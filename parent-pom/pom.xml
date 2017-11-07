@@ -575,7 +575,7 @@
         <enabled>false</enabled>
       </snapshots>
       <id>hack23.public</id>
-      <url>https://www.hack23.com/nexus/content/groups/public/</url>
+      <url>https://www.hack23.com/nexus/repository/maven-public/</url>
     </repository>
     <repository>
       <releases>
@@ -585,7 +585,7 @@
         <enabled>true</enabled>
       </snapshots>
       <id>hack23.snapshots</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+      <url>https://www.hack23.com/nexus/repository/maven-snapshots/</url>
     </repository>
   </repositories>
   <pluginRepositories>
@@ -597,7 +597,7 @@
         <enabled>true</enabled>
       </snapshots>
       <id>hack23.public</id>
-      <url>https://www.hack23.com/nexus/content/groups/public/</url>
+      <url>https://www.hack23.com/nexus/repository/maven-public/</url>
     </pluginRepository>
   </pluginRepositories>
   <build>
