@@ -107,7 +107,7 @@
     <cia.project.versions.spring>5.0.1.RELEASE</cia.project.versions.spring>
     <!-- <cia.project.versions.spring.security>5.0.0.M1/4.2.2.RELEASE/4.2.3.BUILD-SNAPSHOT</cia.project.versions.spring.security>-->
     <cia.project.versions.spring.security>5.0.0.RC1</cia.project.versions.spring.security>
-    <cia.project.versions.aspectj>1.9.0.RC1</cia.project.versions.aspectj>
+    <cia.project.versions.aspectj>1.9.0.RC2</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.22.0-GA</cia.project.versions.javassist>
     <cia.project.versions.asm>6.0</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.5</cia.project.versions.cglib>
