@@ -33,7 +33,7 @@ Limited functionality proper navigation, descriptions,content, ui and styling ar
 
 # Roadmap
 
-Plan to make it public some time after 2018.04, running Ubuntu 18.04, Postgresql 10.x, JDK9, Spring framework 5.x , Hibernate 6.x, Vaadin 8.x
+Plan to make it public some time after 2018.04, running Ubuntu 18.04, Postgresql 10.x, JDK10, Spring framework 5.x , Hibernate 6.x, Vaadin 8.x
 
 
 #Resources
