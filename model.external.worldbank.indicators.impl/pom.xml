@@ -4,7 +4,7 @@
   <parent>
     <artifactId>parent-model-external-pom</artifactId>
     <groupId>com.hack23.cia</groupId>
-    <version>2017.9.16-SNAPSHOT</version>
+    <version>2017.11.12</version>
     <relativePath>../parent-model-external-pom/pom.xml</relativePath>
   </parent>
   <artifactId>model.external.worldbank.indicators.impl</artifactId>
@@ -16,7 +16,7 @@
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>cia-all-2017.11.12</tag>
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
   <distributionManagement>
