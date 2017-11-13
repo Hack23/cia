@@ -13,6 +13,9 @@
   <description>Tracking Politicians Like Bugs!</description>
   <url>github:https://hack23.github.io/cia/</url>
   <inceptionYear>2008</inceptionYear>
+  <properties>
+  	<sonar.dependencyCheck.reportPath>${project.basedir}/dependency-check-report.xml</sonar.dependencyCheck.reportPath>
+  </properties>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>

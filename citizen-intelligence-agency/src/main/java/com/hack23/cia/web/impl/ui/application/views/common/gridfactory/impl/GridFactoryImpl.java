@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.vaadin.gridutil.cell.GridCellFilter;
 
 import com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory;
@@ -68,7 +69,7 @@ public final class GridFactoryImpl implements GridFactory {
 			final String actionId, final ListPropertyConverter[] collectionPropertyConverters) {
 
 		final Grid<T> grid = new Grid<T>(caption).withPropertySet(BeanPropertySet.get(dataType));
-		
+				
 		grid.setItems(datasource.stream().filter(party -> party != null) 
         .collect(Collectors.toList()));
 			
@@ -181,13 +182,13 @@ public final class GridFactoryImpl implements GridFactory {
 	 *            the grid
 	 */
 	private static void createGridCellFilter(final String[] columnOrder, final Grid grid,final Class dataType) {
-		if (columnOrder != null) {
-//			final GridCellFilter gridCellFilter = new GridCellFilter(grid, dataType);
-//			for (final String column : columnOrder) {
-//				if (grid.getColumn(column) != null) {
-//					gridCellFilter.setTextFilter(column, true, true);
-//				}
-//			}
+		if (columnOrder != null) {			
+			final GridCellFilter filter = new GridCellFilter(grid, dataType);
+			for (final String column : columnOrder) {
+				if (grid.getColumn(column) != null) {
+					filter.setTextFilter(column, true, true);
+				}
+			}
 		}
 	}
 
