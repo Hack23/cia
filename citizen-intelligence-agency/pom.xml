@@ -679,30 +679,11 @@
       <artifactId>jrobin</artifactId>
       <version>1.6.0</version>
     </dependency>
-    <!-- For pdf support in javamelody -->
-    <dependency>
-      <groupId>com.lowagie</groupId>
-      <artifactId>itext</artifactId>
-      <version>2.1.7</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>bcmail-jdk14</artifactId>
-          <groupId>bouncycastle</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>bcprov-jdk14</artifactId>
-          <groupId>bouncycastle</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>bctsp-jdk14</artifactId>
-          <groupId>org.bouncycastle</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>dom4j</artifactId>
-          <groupId>dom4j</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
+	<dependency>
+	    <groupId>com.github.librepdf</groupId>
+	    <artifactId>openpdf</artifactId>
+	    <version>1.0.5</version>
+	</dependency>
     <dependency>
       <groupId>com.thoughtworks.xstream</groupId>
       <artifactId>xstream</artifactId>
