@@ -18,6 +18,16 @@
 		</provides>
 		<configuration>
 			<jdkHome>/usr/lib/jvm/java-9-oracle</jdkHome>
-		</configuration>
+		</configuration>		
 	</toolchain>
+	<toolchain>
+		<type>jdk</type>
+		<provides>
+			<version>10</version>
+			<vendor>oracle</vendor>
+		</provides>
+		<configuration>
+			<jdkHome>/usr/lib/jvm/java-10-oracle</jdkHome>
+		</configuration>		
+	</toolchain>	
 </toolchains>
