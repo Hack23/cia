@@ -18,6 +18,10 @@
 */
 package com.hack23.cia.service.api;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * The Class DataSummary.
@@ -75,4 +79,92 @@ public final class DataSummary implements DataModel {
 		this.documentStatusSize = documentStatusSize;
 		this.committeeProposalSize = committeeProposalSize;
 	}
+
+	/**
+	 * Gets the serialversionuid.
+	 *
+	 * @return the serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	/**
+	 * Gets the committee proposal size.
+	 *
+	 * @return the committee proposal size
+	 */
+	public long getCommitteeProposalSize() {
+		return committeeProposalSize;
+	}
+
+	/**
+	 * Gets the document content size.
+	 *
+	 * @return the document content size
+	 */
+	public long getDocumentContentSize() {
+		return documentContentSize;
+	}
+
+	/**
+	 * Gets the document element size.
+	 *
+	 * @return the document element size
+	 */
+	public long getDocumentElementSize() {
+		return documentElementSize;
+	}
+
+	/**
+	 * Gets the document status size.
+	 *
+	 * @return the document status size
+	 */
+	public long getDocumentStatusSize() {
+		return documentStatusSize;
+	}
+
+	/**
+	 * Gets the person size.
+	 *
+	 * @return the person size
+	 */
+	public long getPersonSize() {
+		return personSize;
+	}
+
+	/**
+	 * Gets the total ballot votes.
+	 *
+	 * @return the total ballot votes
+	 */
+	public long getTotalBallotVotes() {
+		return totalBallotVotes;
+	}
+
+	/**
+	 * Gets the vote size.
+	 *
+	 * @return the vote size
+	 */
+	public long getVoteSize() {
+		return voteSize;
+	}
+
+	@Override
+	public final boolean equals(Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
+
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.NO_FIELD_NAMES_STYLE);
+	}
+
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
+	
 }

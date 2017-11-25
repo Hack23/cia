@@ -47,6 +47,8 @@ import com.hack23.cia.service.data.api.VoteDataDAO;
 @Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 public final class DataSummaryDataContainer implements DataContainer<DataSummary,String>{
 
+	private static final int PARTICIPANTS_EACH_BALLOT = 349;
+
 	/** The committee proposal component data dao. */
 	@Autowired
 	private CommitteeProposalComponentDataDAO committeeProposalComponentDataDAO;
@@ -145,10 +147,9 @@ public final class DataSummaryDataContainer implements DataContainer<DataSummary
 
 	@Override
 	public DataSummary load(final String id) {
-		final List<PersonData> all = personDataDAO.getAll();
-		final long personSize=all.size();
-
-		return new DataSummary(personSize,voteDataDAO.getSize(),voteDataDAO.getSize(),documentElementDAO.getSize(),documentContentDataDAO.getSize(),documentStatusContainerDAO.getSize(),committeeProposalComponentDataDAO.getSize());
+		final long personSize=personDataDAO.getAll().size();
+		final long votes = voteDataDAO.getSize();
+		return new DataSummary(personSize,votes,votes / PARTICIPANTS_EACH_BALLOT ,documentElementDAO.getSize(),documentContentDataDAO.getSize(),documentStatusContainerDAO.getSize(),committeeProposalComponentDataDAO.getSize());
 	}
 
 	@Override
