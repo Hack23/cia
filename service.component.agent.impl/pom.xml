@@ -50,7 +50,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-search-orm</artifactId>
-      <version>5.8.2.Final</version>
+      <version>5.9.0.Beta1</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-entitymanager</artifactId>
