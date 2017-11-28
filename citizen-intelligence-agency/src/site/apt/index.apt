@@ -104,11 +104,11 @@ Installing Debian/Ubuntu package
 
  7. Get cia debian package and
 
- $ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2017.11.12/cia-dist-deb-2017.11.12.deb
+ $ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2017.11.28/cia-dist-deb-2017.11.28.deb
 
  8. Install debian package
 
- $ sudo dpkg -i cia-dist-deb-2017.11.12.deb
+ $ sudo dpkg -i cia-dist-deb-2017.11.28.deb
 
 
  9. Access the server at {{{http://localhost:2323/cia/}http://localhost:2323/cia/}}
