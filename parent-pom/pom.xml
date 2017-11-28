@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.hack23.cia</groupId>
   <artifactId>parent-pom</artifactId>
-  <version>2017.11.28</version>
+  <version>2017.11.29-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>CIA Project</name>
   <description>CIA Parent pom</description>
@@ -47,14 +47,14 @@
       </roles>
     </contributor>
   </contributors>
-  <mailingLists></mailingLists>
+  <mailingLists />
   <prerequisites>
     <maven>3.3.9</maven>
   </prerequisites>
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
-    <tag>cia-all-2017.11.28</tag>
+    <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/parent-pom</url>
   </scm>
   <issueManagement>
@@ -1073,7 +1073,7 @@
             </goals>
             <configuration>
               <rules>
-                <DependencyConvergence></DependencyConvergence>
+                <DependencyConvergence />
                 <bannedDependencies>
                   <excludes>
                     <exclude>commons-logging:commons-logging</exclude>
@@ -1366,7 +1366,7 @@
         <jdk>1.8</jdk>
       </activation>
       <properties>
-        <additionalRuntimeArgLine></additionalRuntimeArgLine>
+        <additionalRuntimeArgLine />
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
