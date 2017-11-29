@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.api.action.user.DisableGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
@@ -32,6 +33,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserH
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.DisableGoogleAuthenticatorCredentialClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SetGoogleAuthenticatorCredentialClickListener;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
@@ -53,6 +55,9 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 	/** The Constant ENABLE_GOOGLE_AUTHENTICATOR. */
 	private static final String ENABLE_GOOGLE_AUTHENTICATOR = "Enable Google Authenticator";
 
+	/** The Constant DISABLE_GOOGLE_AUTHENTICATOR. */
+	private static final String DISABLE_GOOGLE_AUTHENTICATOR = "Disable Google Authenticator";
+	
 	/** The Constant USERHOME. */
 	private static final String USERHOME = "Userhome:";
 
@@ -92,23 +97,16 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		if (userIdFromSecurityContext == null) {
 			UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
 		} else {
-
-			final Button googleAuthButton = new Button(ENABLE_GOOGLE_AUTHENTICATOR, VaadinIcons.SAFE_LOCK);
-			googleAuthButton.setId(ENABLE_GOOGLE_AUTHENTICATOR);
-
-			final SetGoogleAuthenticatorCredentialRequest googleAuthRequest = new SetGoogleAuthenticatorCredentialRequest();
-			googleAuthRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-			googleAuthButton.addClickListener(
-					new SetGoogleAuthenticatorCredentialClickListener(googleAuthRequest));
 			
 			final VerticalLayout overviewLayout = new VerticalLayout();
 			overviewLayout.setSizeFull();
 			panelContent.addComponent(overviewLayout);
 			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE);
-
+			
 			final ResponsiveRow grid = createGridLayout(overviewLayout);
 			
-			createRowItem(grid,googleAuthButton,"Enable MFA using google authenticator");
+			createRowItem(grid,createEnableGoogleAuthButton(),"Enable MFA using google authenticator");
+			createRowItem(grid,createDisableGoogleAuthButton(),"Disable MFA using google authenticator");			
 		}
 
 		panel.setCaption(NAME + "::" + USERHOME + SECURITY_SETTINGS);
@@ -118,6 +116,28 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 
 		return panelContent;
 
+	}
+
+	private Button createEnableGoogleAuthButton() {
+		final Button googleAuthButton = new Button(ENABLE_GOOGLE_AUTHENTICATOR, VaadinIcons.SAFE_LOCK);
+		googleAuthButton.setId(ENABLE_GOOGLE_AUTHENTICATOR);
+
+		final SetGoogleAuthenticatorCredentialRequest googleAuthRequest = new SetGoogleAuthenticatorCredentialRequest();
+		googleAuthRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+		googleAuthButton.addClickListener(
+				new SetGoogleAuthenticatorCredentialClickListener(googleAuthRequest));
+		return googleAuthButton;
+	}
+
+	private Button createDisableGoogleAuthButton() {
+		final Button googleAuthButton = new Button(DISABLE_GOOGLE_AUTHENTICATOR, VaadinIcons.SAFE_LOCK);
+		googleAuthButton.setId(DISABLE_GOOGLE_AUTHENTICATOR);
+
+		final DisableGoogleAuthenticatorCredentialRequest googleAuthRequest = new DisableGoogleAuthenticatorCredentialRequest();
+		googleAuthRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+		googleAuthButton.addClickListener(
+				new DisableGoogleAuthenticatorCredentialClickListener(googleAuthRequest));
+		return googleAuthButton;
 	}
 
 }

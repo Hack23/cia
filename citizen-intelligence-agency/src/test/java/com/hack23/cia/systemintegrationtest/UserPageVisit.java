@@ -963,6 +963,14 @@ public final class UserPageVisit extends Assert {
 		closeModal();
 	}
 
+	public void disableGoogleAuthenticator() throws Exception {
+
+		final WebElement enableGoogleAuthButton = findButton("Disable Google Authenticator");
+		assertNotNull("Expect to find a Enable Google Authenticator Button",enableGoogleAuthButton);
+
+		performClickAction(enableGoogleAuthButton);
+	}
+
 	/**
 	 * Close modal.
 	 *
