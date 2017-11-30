@@ -90,7 +90,7 @@
     <dependency>
       <groupId>org.vaadin</groupId>
       <artifactId>easybinder</artifactId>
-      <version>0.4</version>
+      <version>0.5</version>
       <exclusions>
         <exclusion>
           <artifactId>javax.el-api</artifactId>
