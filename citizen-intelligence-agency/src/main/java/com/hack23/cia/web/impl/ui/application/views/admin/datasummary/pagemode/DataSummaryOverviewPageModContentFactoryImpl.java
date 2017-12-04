@@ -24,13 +24,14 @@ import java.util.List;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.DataSummary;
+import com.hack23.cia.service.api.action.admin.RemoveDataRequest;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RefreshDataViewsClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RemoveDataClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.UpdateSearchIndexClickListener;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
@@ -46,6 +47,21 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class DataSummaryOverviewPageModContentFactoryImpl extends AbstractDataSummaryPageModContentFactoryImpl {
+
+	/** The Constant REMOVE_DOCUMENTS. */
+	private static final String REMOVE_DOCUMENTS = "Remove Documents";
+
+	/** The Constant REMOVE_POLITICIANS. */
+	private static final String REMOVE_POLITICIANS = "Remove Politicians";
+
+	/** The Constant REFRESH_ALL_VIEWS. */
+	private static final String REFRESH_ALL_VIEWS = "Refresh all views";
+
+	/** The Constant UPDATE_DOCUMENT_SEARCH_INDEX. */
+	private static final String UPDATE_DOCUMENT_SEARCH_INDEX = "Update document search index";
+
+	/** The Constant REMOVE_APPLICATION_HISTORY. */
+	private static final String REMOVE_APPLICATION_HISTORY = "Remove Application History";
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME;
@@ -78,16 +94,16 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		LabelFactory.createHeader2Label(content,ADMIN_DATA_SUMMARY);
+		LabelFactory.createHeader2Label(content, ADMIN_DATA_SUMMARY);
 
-		
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		horizontalLayout.setSizeFull();
 
 		content.addComponent(horizontalLayout);
 		content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
 
-		final DataContainer<DataSummary, String> dataContainer = getApplicationManager().getDataContainer(DataSummary.class);
+		final DataContainer<DataSummary, String> dataContainer = getApplicationManager()
+				.getDataContainer(DataSummary.class);
 
 		final List<DataSummary> all = dataContainer.getAll();
 		if (!all.isEmpty()) {
@@ -96,25 +112,36 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 			getFormFactory().addFormPanelTextFields(horizontalLayout, dataSummary, DataSummary.class,
 					Arrays.asList(new String[] { "personSize", "totalBallotVotes", "committeeProposalSize", "voteSize",
 							"documentStatusSize", "documentElementSize", "documentContentSize" }));
-		}		
-		
+		}
+
 		final VerticalLayout overviewLayout = new VerticalLayout();
 		overviewLayout.setSizeFull();
 		content.addComponent(overviewLayout);
 		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
 		final ResponsiveRow grid = createGridLayout(overviewLayout);
-		
-		final Button refreshViewsButton = new Button(REFRESH_VIEWS,VaadinIcons.REFRESH);
-		refreshViewsButton.addClickListener(new RefreshDataViewsClickListener());
-		createRowItem(grid,refreshViewsButton,"Refresh all views");
-		
 
-		final Button updateSearchIndexButton = new Button(UPDATE_SEARCH_INDEX,VaadinIcons.REFRESH);
+		final Button refreshViewsButton = new Button(REFRESH_VIEWS, VaadinIcons.REFRESH);
+		refreshViewsButton.addClickListener(new RefreshDataViewsClickListener());
+		createRowItem(grid, refreshViewsButton, REFRESH_ALL_VIEWS);
+
+		final Button updateSearchIndexButton = new Button(UPDATE_SEARCH_INDEX, VaadinIcons.REFRESH);
 		updateSearchIndexButton.addClickListener(new UpdateSearchIndexClickListener());
-		createRowItem(grid,updateSearchIndexButton,"Update document search index");
-	
-		
+		createRowItem(grid, updateSearchIndexButton, UPDATE_DOCUMENT_SEARCH_INDEX);
+
+		final Button removeDataButton = new Button(REMOVE_POLITICIANS, VaadinIcons.DEL);
+		removeDataButton.addClickListener(new RemoveDataClickListener(RemoveDataRequest.DataType.POLITICIAN));
+		createRowItem(grid, removeDataButton, REMOVE_POLITICIANS);
+
+		final Button removeDocumentsButton = new Button(REMOVE_DOCUMENTS, VaadinIcons.DEL);
+		removeDocumentsButton.addClickListener(new RemoveDataClickListener(RemoveDataRequest.DataType.DOCUMENTS));
+		createRowItem(grid, removeDocumentsButton, REMOVE_DOCUMENTS);
+
+		final Button removeApplicationHistoryButton = new Button(REMOVE_APPLICATION_HISTORY, VaadinIcons.DEL);
+		removeApplicationHistoryButton
+				.addClickListener(new RemoveDataClickListener(RemoveDataRequest.DataType.APPLICATION_HISTORY));
+		createRowItem(grid, removeApplicationHistoryButton, REMOVE_APPLICATION_HISTORY);
+
 		return content;
 
 	}
