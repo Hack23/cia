@@ -432,8 +432,84 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		assertNotNull("Expect to find a Refresh Views Button",refreshViewsButton);
 
 		userPageVisit.performClickAction(refreshViewsButton);
+	}
+	
+	
+	/**
+	 * Visit admin data summary view remove politician test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void visitAdminDataSummaryViewRemovePoliticianTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
+
+		final WebElement removePoliticiansButton =userPageVisit.findButton("Remove Politicians");
+		assertNotNull("Expect to find a Button",removePoliticiansButton);
+
+		userPageVisit.performClickAction(removePoliticiansButton);
+	}
+	
+	/**
+	 * Visit admin data summary view remove documents test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void visitAdminDataSummaryViewRemoveDocumentsTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
+
+		final WebElement removeDocumentsButton =userPageVisit.findButton("Remove Documents");
+		assertNotNull("Expect to find a Button",removeDocumentsButton);
+
+		userPageVisit.performClickAction(removeDocumentsButton);
 
 	}
+
+	
+	/**
+	 * Visit admin data summary view remove application history test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void visitAdminDataSummaryViewRemoveApplicationHistoryTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
+
+		final WebElement removeApplicationHistoryButton =userPageVisit.findButton("Remove Application History");
+		assertNotNull("Expect to find a Button",removeApplicationHistoryButton);
+
+		userPageVisit.performClickAction(removeApplicationHistoryButton);
+
+	}
+
+	
+	
+
 
 	/**
 	 * Visit admin data summary view update search index test.
