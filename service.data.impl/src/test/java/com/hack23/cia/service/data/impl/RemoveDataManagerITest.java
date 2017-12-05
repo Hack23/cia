@@ -62,7 +62,7 @@ public final class RemoveDataManagerITest extends AbstractServiceDataFunctionalI
 	 */
 	@Test
 	@Ignore
-	void removeCommitteeProposalsTest() {
+	public void removeCommitteeProposalsTest() {
 		removeDataManager.removeCommitteeProposals();
 		assertEquals("Expect no data",0,dataViewer.getAll(CommitteeProposalData.class).size());
 	}
@@ -72,7 +72,7 @@ public final class RemoveDataManagerITest extends AbstractServiceDataFunctionalI
 	 */
 	@Test
 	@Ignore
-	void removeDocumentStatusTest() {
+	public void removeDocumentStatusTest() {
 		removeDataManager.removeDocumentStatus();
 		assertEquals("Expect no data",0,dataViewer.getAll(DocumentStatusContainer.class).size());
 
@@ -83,7 +83,7 @@ public final class RemoveDataManagerITest extends AbstractServiceDataFunctionalI
 	 */
 	@Test
 	@Ignore
-	void removeDocumentsTest() {
+	public void removeDocumentsTest() {
 		removeDataManager.removeDocuments();
 		assertEquals("Expect no data",0,dataViewer.getAll(DocumentElement.class).size());
 		assertEquals("Expect no data",0,dataViewer.getAll(DocumentContentData.class).size());
@@ -94,7 +94,7 @@ public final class RemoveDataManagerITest extends AbstractServiceDataFunctionalI
 	 */
 	@Test
 	@Ignore
-	void removeApplicationHistoryTest() {
+	public void removeApplicationHistoryTest() {
 		removeDataManager.removeApplicationHistory();
 		assertEquals("Expect no data",0,dataViewer.getAll(ApplicationActionEvent.class).size());
 		assertEquals("Expect no data",0,dataViewer.getAll(ApplicationSession.class).size());
