@@ -18,6 +18,7 @@
  */
 package com.hack23.cia.service.data.impl;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -49,6 +50,7 @@ public final class RemoveDataManagerITest extends AbstractServiceDataFunctionalI
 	 * Removes the person data test.
 	 */
 	@Test
+	@Ignore
 	public void removePersonDataTest() {
 		removeDataManager.removePersonData();
 		assertEquals("Expect no data",0,dataViewer.getAll(PersonData.class).size());
@@ -58,6 +60,8 @@ public final class RemoveDataManagerITest extends AbstractServiceDataFunctionalI
 	/**
 	 * Removes the committee proposals test.
 	 */
+	@Test
+	@Ignore
 	void removeCommitteeProposalsTest() {
 		removeDataManager.removeCommitteeProposals();
 		assertEquals("Expect no data",0,dataViewer.getAll(CommitteeProposalData.class).size());
@@ -66,6 +70,8 @@ public final class RemoveDataManagerITest extends AbstractServiceDataFunctionalI
 	/**
 	 * Removes the document status test.
 	 */
+	@Test
+	@Ignore
 	void removeDocumentStatusTest() {
 		removeDataManager.removeDocumentStatus();
 		assertEquals("Expect no data",0,dataViewer.getAll(DocumentStatusContainer.class).size());
@@ -75,6 +81,8 @@ public final class RemoveDataManagerITest extends AbstractServiceDataFunctionalI
 	/**
 	 * Removes the documents test.
 	 */
+	@Test
+	@Ignore
 	void removeDocumentsTest() {
 		removeDataManager.removeDocuments();
 		assertEquals("Expect no data",0,dataViewer.getAll(DocumentElement.class).size());
@@ -84,6 +92,8 @@ public final class RemoveDataManagerITest extends AbstractServiceDataFunctionalI
 	/**
 	 * Removes the application history test.
 	 */
+	@Test
+	@Ignore
 	void removeApplicationHistoryTest() {
 		removeDataManager.removeApplicationHistory();
 		assertEquals("Expect no data",0,dataViewer.getAll(ApplicationActionEvent.class).size());

@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.impl.action.admin;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -46,6 +47,7 @@ public final class RemoveDataServiceITest extends AbstractServiceFunctionalInteg
 	 *             the exception
 	 */
 	@Test
+	@Ignore
 	public void Test() throws Exception {
 
 		setAuthenticatedAdminuser();
