@@ -88,9 +88,9 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 
 				getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenCommittee,
 						ViewRiksdagenCommittee.class,
-						Arrays.asList(new String[] { "embeddedId.detail", "active", "firstAssignmentDate",
+						Arrays.asList( "embeddedId.detail", "active", "firstAssignmentDate",
 								"lastAssignmentDate", "totalAssignments", "totalDaysServed",
-								"currentMemberSize" }));
+								"currentMemberSize" ));
 
 
 				final VerticalLayout overviewLayout = new VerticalLayout();

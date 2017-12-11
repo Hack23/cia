@@ -27,25 +27,19 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.action.application.LoginRequest;
-import com.hack23.cia.service.api.action.application.RegisterUserRequest;
-import com.hack23.cia.web.impl.ui.application.action.ApplicationAction;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ApplicationLoginListener;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RefreshDataViewsClickListener;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RegisterUserClickListener;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Layout;
-import com.vaadin.ui.LoginForm;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Button.ClickListener;
 
 
 /**
@@ -83,11 +77,6 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractPageMo
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-
-//		final LoginForm loginForm = new EmailPasswordLoginForm();
-//		loginForm.addLoginListener(new ApplicationLoginListener(loginRequest));
-//		loginForm.setId(ApplicationAction.LOGIN.toString());
-
 		final VerticalLayout loginLayout = new VerticalLayout();
 		loginLayout.setSizeFull();
 
@@ -109,7 +98,7 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractPageMo
 		final ClickListener loginListener = new ApplicationLoginListener(loginRequest);
 		getFormFactory().addRequestInputFormFields(formContent, loginRequest,
 				LoginRequest.class,
-				Arrays.asList(new String[] { "email", "otpCode", "userpassword" }), "Login",
+				Arrays.asList( "email", "otpCode", "userpassword" ), "Login",
 				loginListener);
 
 		final VerticalLayout overviewLayout = new VerticalLayout();

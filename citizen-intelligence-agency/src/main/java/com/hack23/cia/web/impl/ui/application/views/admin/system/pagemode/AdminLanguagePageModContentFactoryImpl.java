@@ -95,7 +95,7 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
 			if (languageData != null) {
 
 				getFormFactory().addFormPanelTextFields(content, languageData, LanguageData.class,
-						Arrays.asList(new String[] { "languageName", "createdDate","lastModifiedDate" ,"languageEnabled" }));
+						Arrays.asList( "languageName", "createdDate","lastModifiedDate" ,"languageEnabled" ));
 			}
 		}
 

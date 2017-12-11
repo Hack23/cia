@@ -101,7 +101,7 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractPageM
 		searchRequest.setMaxResults(MAX_RESULT_SIZE);
 		searchRequest.setSearchExpression("");
 		getFormFactory().addRequestInputFormFields(formContent, searchRequest,
-				SearchDocumentRequest.class, Arrays.asList(new String[] { "searchExpression" }), "Search",
+				SearchDocumentRequest.class, Arrays.asList( "searchExpression" ), "Search",
 				new SearchDocumentClickListener(searchRequest, new SearchDocumentResponseHandlerImpl(getGridFactory(), formPanel,
 						searchresultLayout)));
 

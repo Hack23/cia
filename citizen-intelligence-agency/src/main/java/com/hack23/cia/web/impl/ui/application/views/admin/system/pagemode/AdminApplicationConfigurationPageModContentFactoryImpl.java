@@ -118,9 +118,9 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 
 				getFormFactory().addFormPanelTextFields(leftLayout, applicationConfiguration,
 						ApplicationConfiguration.class,
-						Arrays.asList(new String[] { "configurationGroup", "component","configTitle" ,"configDescription",
+						Arrays.asList( "configurationGroup", "component","configTitle" ,"configDescription",
 								"propertyValue", "createdDate",
-								"updatedDate" }));
+								"updatedDate" ));
 
 				final UpdateApplicationConfigurationRequest request = new UpdateApplicationConfigurationRequest();
 				request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
@@ -145,8 +145,8 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 				updateFormPanel.setContent(updateFormContent);
 
 				getFormFactory().addRequestInputFormFields(updateFormContent, request,
-						UpdateApplicationConfigurationRequest.class, Arrays.asList(new String[] { "configTitle",
-								"configDescription", "componentTitle", "componentDescription", "propertyValue" }),
+						UpdateApplicationConfigurationRequest.class, Arrays.asList( "configTitle",
+								"configDescription", "componentTitle", "componentDescription", "propertyValue" ),
 						"Update Configuration", buttonListener);
 
 			}

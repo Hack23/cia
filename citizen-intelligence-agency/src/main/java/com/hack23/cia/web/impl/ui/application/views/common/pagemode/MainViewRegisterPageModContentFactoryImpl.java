@@ -95,7 +95,7 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractPag
 		final ClickListener reqisterListener = new RegisterUserClickListener(reqisterRequest);
 		getFormFactory().addRequestInputFormFields(formContent, reqisterRequest,
 				RegisterUserRequest.class,
-				Arrays.asList(new String[] { "username", "email", "country", "userpassword" }), "Register",
+				Arrays.asList( "username", "email", "country", "userpassword" ), "Register",
 				reqisterListener);
 
 		final VerticalLayout overviewLayout = new VerticalLayout();

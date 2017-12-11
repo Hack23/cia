@@ -95,8 +95,8 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 			if (country != null) {
 
 				getFormFactory().addFormPanelTextFields(content, country, CountryElement.class,
-						Arrays.asList(new String[] { "hjid", "id", "countryName", "iso2Code", "capitalCity",
-								"longitude", "latitude" }));
+						Arrays.asList( "hjid", "id", "countryName", "iso2Code", "capitalCity",
+								"longitude", "latitude" ));
 			}
 		}
 

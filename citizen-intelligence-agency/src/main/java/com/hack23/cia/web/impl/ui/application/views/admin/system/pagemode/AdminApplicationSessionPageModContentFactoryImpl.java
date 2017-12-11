@@ -110,8 +110,8 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 
 				getFormFactory().addFormPanelTextFields(horizontalLayout, applicationSession,
 						ApplicationSession.class,
-						Arrays.asList(new String[] { "createdDate","sessionType", "userId", "sessionId", "operatingSystem", "locale",
-								"ipInformation", "userAgentInformation"}));
+						Arrays.asList( "createdDate","sessionType", "userId", "sessionId", "operatingSystem", "locale",
+								"ipInformation", "userAgentInformation"));
 
 				horizontalLayout.addComponent(rightLayout);
 				horizontalLayout.setExpandRatio(rightLayout, ContentRatio.GRID);

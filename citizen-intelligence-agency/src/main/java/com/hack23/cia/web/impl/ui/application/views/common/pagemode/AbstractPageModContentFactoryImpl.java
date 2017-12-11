@@ -102,9 +102,6 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	/** The Constant DISPLAY_SIZE_XS_DEVICE. */
 	private static final int DISPLAY_SIZE_XS_DEVICE = 12;
 
-	/** The Constant LINK_STYLE_NAME. */
-	private static final String LINK_STYLE_NAME = "link";
-
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;

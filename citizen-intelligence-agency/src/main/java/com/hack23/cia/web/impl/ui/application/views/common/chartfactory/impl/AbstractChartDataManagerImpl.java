@@ -111,7 +111,8 @@ public abstract class AbstractChartDataManagerImpl {
 	 *            the caption
 	 * @param chart
 	 *            the chart
-	 * @param fullPage TODO
+	 * @param fullPage
+	 *            the full page
 	 */
 	protected final void addChart(final AbstractOrderedLayout content,final String caption, final DCharts chart, final boolean fullPage) {
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();

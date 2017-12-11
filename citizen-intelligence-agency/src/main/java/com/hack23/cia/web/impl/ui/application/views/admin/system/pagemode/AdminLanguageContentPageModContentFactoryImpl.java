@@ -96,8 +96,8 @@ public final class AdminLanguageContentPageModContentFactoryImpl extends Abstrac
 			if (languageContentData != null) {
 
 				getFormFactory().addFormPanelTextFields(content, languageContentData, LanguageContentData.class,
-						Arrays.asList(new String[] { "refKey", "fromLanguage", "toLanguage", "createdDate",
-								"languageValue"}));
+						Arrays.asList( "refKey", "fromLanguage", "toLanguage", "createdDate",
+								"languageValue"));
 			}
 		}
 

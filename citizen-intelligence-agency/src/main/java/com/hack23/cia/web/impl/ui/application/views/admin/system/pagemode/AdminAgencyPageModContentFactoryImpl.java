@@ -43,10 +43,40 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class OverviewPageModContentFactoryImpl.
+ * The Class AdminAgencyPageModContentFactoryImpl.
  */
 @Component
 public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
+
+	/** The Constant AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS. */
+	private static final ListPropertyConverter[] AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS = new ListPropertyConverter[] { new ListPropertyConverter(List.class, "portalName", "portals")};
+
+	/** The Constant AGENCY_GRID_LISTENER. */
+	private static final PageItemPropertyClickListener AGENCY_GRID_LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid");
+
+	/** The Constant PORTAL_GRID_LISTENER. */
+	private static final PageItemPropertyClickListener PORTAL_GRID_LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid");
+
+	/** The Constant PORTAL_GRID_HIDE_COLUMNS. */
+	private static final String[] PORTAL_GRID_HIDE_COLUMNS = new String[] { "hjid","modelObjectId", "modelObjectVersion", "googleMapApiKey" };
+
+	/** The Constant PORTAL. */
+	private static final String PORTAL = "Portal";
+
+	/** The Constant PORTAL_GRID_COLUMN_ORDER. */
+	private static final String[] PORTAL_GRID_COLUMN_ORDER = new String[] { "hjid", "portalName", "description", "portalType", "googleMapApiKey", "modelObjectVersion" };
+
+	/** The Constant AGENCY_FORM_FIELDS. */
+	private static final List<String> AGENCY_FORM_FIELDS = Arrays.asList( "agencyName", "description");
+
+	/** The Constant AGENCY_GRID_HIDE_COLUMNS. */
+	private static final String[] AGENCY_GRID_HIDE_COLUMNS = new String[] { "hjid","modelObjectId", "modelObjectVersion" };
+
+	/** The Constant AGENCY_GRID_COLUMN_ORDER. */
+	private static final String[] AGENCY_GRID_COLUMN_ORDER = new String[] { "hjid", "agencyName", "description", "portals", "modelObjectVersion" };
+
+	/** The Constant AGENCY. */
+	private static final String AGENCY = "Agency";
 
 	/** The Constant ADMIN_AGENCY. */
 	private static final String ADMIN_AGENCY = "Admin Agency";
@@ -86,9 +116,9 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(content,
-				Agency.class,pageOrderBy, "Agency",
-				new String[] { "hjid", "agencyName", "description", "portals", "modelObjectVersion" }, new String[] { "hjid","modelObjectId", "modelObjectVersion" },
-				new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid"), null, new ListPropertyConverter[] { new ListPropertyConverter(List.class, "portalName", "portals")});
+				Agency.class,pageOrderBy, AGENCY,
+				AGENCY_GRID_COLUMN_ORDER, AGENCY_GRID_HIDE_COLUMNS,
+				AGENCY_GRID_LISTENER, null, AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS);
 
 		if (pageId != null && !pageId.isEmpty()) {
 
@@ -107,17 +137,15 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 			horizontalLayout.addComponent(rightLayout);
 
 			final Agency agency = dataContainer.load(Long.valueOf(pageId));
-			agency.getPortals().getClass();
 			if (agency != null) {
 
 				getFormFactory().addFormPanelTextFields(leftLayout, agency, Agency.class,
-						Arrays.asList(new String[] { "agencyName", "description"}));
+						AGENCY_FORM_FIELDS);
 
 				getGridFactory().createBasicBeanItemGrid(rightLayout,Portal.class, agency.getPortals(),
-						"Portal",
-						new String[] { "hjid", "portalName", "description", "portalType", "googleMapApiKey",
-								"modelObjectVersion" }, new String[] { "hjid","modelObjectId", "modelObjectVersion", "googleMapApiKey" },
-						new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid"), null, null);
+						PORTAL,
+						PORTAL_GRID_COLUMN_ORDER, PORTAL_GRID_HIDE_COLUMNS,
+						PORTAL_GRID_LISTENER, null, null);
 			}
 
 		}

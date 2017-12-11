@@ -110,8 +110,8 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 			final DataSummary dataSummary = all.get(0);
 
 			getFormFactory().addFormPanelTextFields(horizontalLayout, dataSummary, DataSummary.class,
-					Arrays.asList(new String[] { "personSize", "totalBallotVotes", "committeeProposalSize", "voteSize",
-							"documentStatusSize", "documentElementSize", "documentContentSize" }));
+					Arrays.asList( "personSize", "totalBallotVotes", "committeeProposalSize", "voteSize",
+							"documentStatusSize", "documentElementSize", "documentContentSize" ));
 		}
 
 		final VerticalLayout overviewLayout = new VerticalLayout();

@@ -96,8 +96,8 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 			if (portal != null) {
 
 				getFormFactory().addFormPanelTextFields(content, portal, Portal.class,
-						Arrays.asList(new String[] {"portalName", "description", "portalType",
-								"googleMapApiKey"}));
+						Arrays.asList("portalName", "description", "portalType",
+								"googleMapApiKey"));
 			}
 		}
 

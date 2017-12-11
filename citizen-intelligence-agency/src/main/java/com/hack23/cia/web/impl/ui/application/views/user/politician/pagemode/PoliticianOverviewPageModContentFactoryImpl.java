@@ -125,14 +125,14 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 
 		getFormFactory().addFormPanelTextFields(horizontalLayout, viewRiksdagenPolitician,
 				ViewRiksdagenPolitician.class,
-				Arrays.asList(new String[] { "firstName", "lastName", "gender", "bornYear", "party", "active",
+				Arrays.asList( "firstName", "lastName", "gender", "bornYear", "party", "active",
 						"firstAssignmentDate", "lastAssignmentDate", "currentAssignments", "currentMinistryAssignments",
 						"currentSpeakerAssignments", "currentCommitteeAssignments", "currentPartyAssignments",
 						"totalMinistryAssignments", "totalCommitteeAssignments", "totalSpeakerAssignments",
 						"totalPartyAssignments", "totalAssignments", "totalDaysServed", "activeEu", "totalDaysServedEu",
 						"activeGovernment", "totalDaysServedGovernment", "activeSpeaker", "totalDaysServedSpeaker",
 						"activeCommittee", "totalDaysServedCommittee", "activeParliament", "totalDaysServedParliament",
-						"activeParty", "totalDaysServedParty" }));
+						"activeParty", "totalDaysServedParty" ));
 
 		final VerticalLayout overviewLayout = new VerticalLayout();
 		overviewLayout.setSizeFull();

@@ -115,7 +115,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 
 				getFormFactory().addFormPanelTextFields(panelContent, userAccount, UserAccount.class,
-						Arrays.asList(new String[] { "username","createdDate","email","country","numberOfVisits" }));
+						Arrays.asList("username","createdDate","email","country","numberOfVisits"));
 
 				panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);
 

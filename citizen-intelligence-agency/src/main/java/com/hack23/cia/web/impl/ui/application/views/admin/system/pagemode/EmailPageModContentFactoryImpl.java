@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -44,6 +45,12 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class EmailPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
+
+	/** The Constant EMAIL. */
+	private static final String EMAIL = "Email";
+
+	/** The Constant SEND_EMAIL_REQUEST_FORM_FIELDS. */
+	private static final List<String> SEND_EMAIL_REQUEST_FORM_FIELDS = Arrays.asList( "email", "subject", "content" );
 
 	/** The Constant ADMIN_EMAIL. */
 	private static final String ADMIN_EMAIL = "Admin email";
@@ -92,13 +99,13 @@ public final class EmailPageModContentFactoryImpl extends AbstractAdminSystemPag
 		sendEmailRequest.setContent("");
 		final ClickListener sendEmailListener = new SendEmailClickListener(sendEmailRequest);
 		getFormFactory().addRequestInputFormFields(formContent, sendEmailRequest,
-				SendEmailRequest.class, Arrays.asList(new String[] { "email", "subject", "content" }), "Email",
+				SendEmailRequest.class, SEND_EMAIL_REQUEST_FORM_FIELDS, EMAIL,
 				sendEmailListener);
 
 		content.addComponent(emailLayout);
 		content.setExpandRatio(emailLayout, ContentRatio.LARGE_FORM);
 
-		panel.setCaption(NAME + "::" + "Admin email");
+		panel.setCaption(NAME + "::" + ADMIN_EMAIL);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_EMAIL_VIEW, ApplicationEventGroup.ADMIN, NAME,
 				null, pageId);
 

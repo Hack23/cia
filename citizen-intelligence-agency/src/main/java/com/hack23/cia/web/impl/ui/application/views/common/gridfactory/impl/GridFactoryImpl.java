@@ -32,9 +32,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridF
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener;
 import com.vaadin.data.BeanPropertySet;
-import com.vaadin.data.PropertySet;
 import com.vaadin.data.ValueProvider;
-import com.vaadin.data.provider.ListDataProvider;
 import com.vaadin.event.selection.SelectionListener;
 import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Grid;

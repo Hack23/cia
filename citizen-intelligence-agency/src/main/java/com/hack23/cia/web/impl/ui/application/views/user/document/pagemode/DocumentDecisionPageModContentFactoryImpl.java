@@ -100,9 +100,9 @@ public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDoc
 				getFormFactory().addFormPanelTextFields(panelContent,
 						documentStatusContainer.getDocumentProposal().getProposal(),
 						DocumentProposalData.class,
-						Arrays.asList(new String[] { "committee", "chamber", "processedIn", "decisionType",
+						Arrays.asList( "committee", "chamber", "processedIn", "decisionType",
 								"proposalNumber", "designation", "wording", "wording2", "wording3",
-								"wording4" }));
+								"wording4" ));
 
 			}
 

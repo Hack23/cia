@@ -118,19 +118,19 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 					getFormFactory().addFormPanelTextFields(panelContent, decisionSummaries.get(FIRST_OBJECT),
 							ViewRiksdagenCommitteeBallotDecisionSummary.class,
-							Arrays.asList(new String[] { "embeddedId.id", "ballotId", "rm", "voteDate", "org",
+							Arrays.asList( "embeddedId.id", "ballotId", "rm", "voteDate", "org",
 									"committeeReport", "embeddedId.issue", "title", "subTitle", "decisionType",
 									"embeddedId.concern", "ballotType", "winner", "totalVotes", "yesVotes", "noVotes",
 									"abstainVotes", "absentVotes", "approved", "endNumber", "againstProposalParties",
-									"againstProposalNumber" }));
+									"againstProposalNumber" ));
 
 				} else {
 
 					getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenVoteDataBallotSummary,
 							ViewRiksdagenVoteDataBallotSummary.class,
-							Arrays.asList(new String[] { "embeddedId.ballotId", "rm", "voteDate", "embeddedId.issue",
+							Arrays.asList( "embeddedId.ballotId", "rm", "voteDate", "embeddedId.issue",
 									"embeddedId.concern", "ballotType", "label", "totalVotes", "yesVotes", "noVotes",
-									"abstainVotes", "absentVotes", "approved" }));
+									"abstainVotes", "absentVotes", "approved" ));
 				}
 
 			}

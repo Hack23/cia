@@ -115,12 +115,11 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 			getFormFactory().addFormPanelTextFields(verticalLayout,
 					indicatorSummaryValue,
 							ViewWorldbankIndicatorDataCountrySummary.class,
-							Arrays.asList(new String[] {
-									   "indicatorName",
+							Arrays.asList("indicatorName",
 									   "sourceValue",
 									   "topics",
 									   "sourceNote",
-									   "sourceOrganization"}));
+									   "sourceOrganization"));
 		}
 
 		final DataContainer<WorldBankData, Serializable> dataContainer = getApplicationManager()

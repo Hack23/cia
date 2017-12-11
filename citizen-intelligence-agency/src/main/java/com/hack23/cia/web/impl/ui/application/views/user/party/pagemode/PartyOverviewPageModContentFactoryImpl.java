@@ -93,9 +93,9 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 					panelContent,
 					viewRiksdagenParty,
 					ViewRiksdagenParty.class,
-					Arrays.asList(new String[] { "partyName", "partyId",
+					Arrays.asList( "partyName", "partyId",
 							"headCount", "partyNumber", "registeredDate",
-					"website" }));
+					"website" ));
 
 			final ViewRiksdagenPartySummary viewRiksdagenPartySummary = partySummarydataContainer
 					.load(pageId);
@@ -107,7 +107,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 				getFormFactory().addFormPanelTextFields(panelContent,
 								viewRiksdagenPartySummary,
 								ViewRiksdagenPartySummary.class,
-								Arrays.asList(new String[] { "active",
+								Arrays.asList( "active",
 										"firstAssignmentDate", "lastAssignmentDate",
 										"currentAssignments", "totalAssignments",
 										"totalDaysServed", "activeEu", "totalActiveEu",
@@ -117,7 +117,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 										"totalActiveCommittee",
 										"totalDaysServedCommittee", "activeParliament",
 										"totalActiveParliament",
-								"totalDaysServedParliament" }));
+								"totalDaysServedParliament" ));
 
 			}
 

@@ -86,8 +86,8 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 			panelContent.addComponent(addMinistryPageLink);
 
 			getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenMinistry,
-					ViewRiksdagenMinistry.class, Arrays.asList(new String[] { "nameId", "active", "firstAssignmentDate",
-							"lastAssignmentDate", "totalAssignments", "totalDaysServed", "currentMemberSize" }));
+					ViewRiksdagenMinistry.class, Arrays.asList( "nameId", "active", "firstAssignmentDate",
+							"lastAssignmentDate", "totalAssignments", "totalDaysServed", "currentMemberSize" ));
 
 			panelContent.setExpandRatio(addMinistryPageLink, ContentRatio.SMALL);
 

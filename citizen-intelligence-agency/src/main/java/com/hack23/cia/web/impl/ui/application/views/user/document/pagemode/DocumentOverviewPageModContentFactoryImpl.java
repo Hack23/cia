@@ -90,21 +90,21 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
 
 			getFormFactory().addFormPanelTextFields(panelContent, documentElement, DocumentElement.class,
-					Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status", "title",
+					Arrays.asList( "id", "org", "documentType", "subType", "rm", "status", "title",
 							"subTitle", "madePublicDate", "createdDate", "systemDate", "relatedId", "label",
-							"tempLabel", "numberValue", "kallId", "documentFormat" }));
+							"tempLabel", "numberValue", "kallId", "documentFormat" ));
 
 
 			if (documentStatusContainer != null) {
 				getFormFactory().addFormPanelTextFields(panelContent, documentStatusContainer,
-						DocumentStatusContainer.class, Arrays.asList(new String[] { "documentCategory" }));
+						DocumentStatusContainer.class, Arrays.asList( "documentCategory" ));
 
 				getFormFactory()
 						.addFormPanelTextFields(panelContent, documentStatusContainer.getDocument(),
 								DocumentData.class,
-								Arrays.asList(new String[] { "id", "org", "documentType", "subType", "rm", "status",
+								Arrays.asList( "id", "org", "documentType", "subType", "rm", "status",
 										"title", "subTitle", "madePublicDate", "label", "tempLabel", "numberValue",
-										"hangarId", }));
+										"hangarId"));
 			}
 
 			final VerticalLayout overviewLayout = new VerticalLayout();
