@@ -296,7 +296,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 	 *
 	 * @return the series defaults
 	 */
-	private SeriesDefaults createDonoutSeriesDefault() {
+	private static SeriesDefaults createDonoutSeriesDefault() {
 		return new SeriesDefaults().setRenderer(SeriesRenderers.DONUT)
 				.setRendererOptions(new DonutRenderer().setSliceMargin(SLICE_MARGIN).setStartAngle(START_ANGLE).setShowDataLabels(true)
 						.setDataLabels(DataLabels.VALUE));

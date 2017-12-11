@@ -116,7 +116,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 
 	}
 
-	private Button createEnableGoogleAuthButton() {
+	private static Button createEnableGoogleAuthButton() {
 		final Button googleAuthButton = new Button(ENABLE_GOOGLE_AUTHENTICATOR, VaadinIcons.SAFE_LOCK);
 		googleAuthButton.setId(ENABLE_GOOGLE_AUTHENTICATOR);
 
@@ -127,7 +127,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		return googleAuthButton;
 	}
 
-	private Button createDisableGoogleAuthButton() {
+	private static Button createDisableGoogleAuthButton() {
 		final Button googleAuthButton = new Button(DISABLE_GOOGLE_AUTHENTICATOR, VaadinIcons.SAFE_LOCK);
 		googleAuthButton.setId(DISABLE_GOOGLE_AUTHENTICATOR);
 

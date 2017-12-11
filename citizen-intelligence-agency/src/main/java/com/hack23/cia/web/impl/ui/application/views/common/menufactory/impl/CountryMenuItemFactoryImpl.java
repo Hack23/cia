@@ -113,7 +113,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 	 * @param sourceIndicatorMap
 	 *            the source indicator map
 	 */
-	private void addSourcesAndIndicatorsToMenu(final MenuItem countryIndicators,
+	private static void addSourcesAndIndicatorsToMenu(final MenuItem countryIndicators,
 			final Map<String, List<ViewWorldbankIndicatorDataCountrySummary>> sourceIndicatorMap) {
 
 		final Map<String, List<ViewWorldbankIndicatorDataCountrySummary>> sortedIndicatorMap = sourceIndicatorMap

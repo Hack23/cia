@@ -102,27 +102,6 @@ public final class GridFactoryImpl implements GridFactory {
 		}		
 	}
 	
-	public class BeanNestedPropertyValueProvider<T> implements ValueProvider<T, String> {
-
-		private final String property;
-				
-		public BeanNestedPropertyValueProvider(String property) {
-			super();
-			this.property = property;
-		}
-		
-		@Override
-		public String apply(T source) {
-			try {
-				return BeanUtils.getProperty(source, property);
-			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-				e.printStackTrace();
-				return "";
-			}
-		}
-		
-	}
-
 	/**
 	 * Configure column orders and hidden fields.
 	 *
@@ -206,6 +185,31 @@ public final class GridFactoryImpl implements GridFactory {
 
 			}
 		}
+	}
+
+	public class BeanNestedPropertyValueProvider<T> implements ValueProvider<T, String> {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		
+		private final String property;
+				
+		public BeanNestedPropertyValueProvider(String property) {
+			super();
+			this.property = property;
+		}
+		
+		@Override
+		public String apply(T source) {
+			try {
+				return BeanUtils.getProperty(source, property);
+			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+				return "";
+			}
+		}
+		
 	}
 
 }

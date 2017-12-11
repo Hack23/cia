@@ -202,7 +202,7 @@ public final class FormFactoryImpl implements FormFactory {
 		}
 	}
 
-	private Class<?> getTypeOfProperty(final PropertyDescriptor[] propertyDescriptors, final String property) {
+	private static Class<?> getTypeOfProperty(final PropertyDescriptor[] propertyDescriptors, final String property) {
 
 		for (final PropertyDescriptor propertyDescriptor : propertyDescriptors) {
 			if (propertyDescriptor.getName().equalsIgnoreCase(property)) {
