@@ -46,7 +46,7 @@ public final class RemoveDataClickListener implements ClickListener {
 	 * @param dataType
 	 *            the data type
 	 */
-	public RemoveDataClickListener(RemoveDataRequest.DataType dataType) {
+	public RemoveDataClickListener(final RemoveDataRequest.DataType dataType) {
 		super();
 		this.dataType = dataType;
 	}

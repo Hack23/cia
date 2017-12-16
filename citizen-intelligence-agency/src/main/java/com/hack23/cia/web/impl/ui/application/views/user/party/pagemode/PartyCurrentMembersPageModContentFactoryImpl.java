@@ -41,6 +41,24 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyCurrentMembersPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId");
+	
+	private static final String[] HIDE_COLUMNS = new String[] { "personId", "active", "activeEu", "party", "activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker","bornYear" };
+	private static final String[] COLUMN_ORDER = new String[] { "personId", "firstName", "lastName", "party", "bornYear", "totalDaysServed",
+			"currentAssignments", "totalAssignments", "firstAssignmentDate", "lastAssignmentDate",
+			"totalDaysServedParliament", "totalDaysServedCommittee", "totalDaysServedGovernment",
+			"totalDaysServedEu",
+
+			"active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament",
+
+			"activeParty", "activeSpeaker", "totalDaysServedSpeaker", "totalDaysServedParty",
+
+			"totalPartyAssignments", "totalMinistryAssignments", "totalCommitteeAssignments",
+			"totalSpeakerAssignments",
+
+			"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
+			"currentSpeakerAssignments", "gender" };
+	private static final String POLITICIANS = "Politicians";
 	/** The Constant CURRENT_MEMBERS. */
 	private static final String CURRENT_MEMBERS = "Current Members";
 
@@ -82,21 +100,8 @@ public final class PartyCurrentMembersPageModContentFactoryImpl extends Abstract
 					politicianDataContainer.findListByProperty(
 							new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },
 							ViewRiksdagenPolitician_.party, ViewRiksdagenPolitician_.active),
-					"Politicians",
-					new String[] { "personId", "firstName", "lastName", "party", "bornYear", "totalDaysServed",
-							"currentAssignments", "totalAssignments", "firstAssignmentDate", "lastAssignmentDate",
-							"totalDaysServedParliament", "totalDaysServedCommittee", "totalDaysServedGovernment",
-							"totalDaysServedEu",
-
-							"active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament",
-
-							"activeParty", "activeSpeaker", "totalDaysServedSpeaker", "totalDaysServedParty",
-
-							"totalPartyAssignments", "totalMinistryAssignments", "totalCommitteeAssignments",
-							"totalSpeakerAssignments",
-
-							"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
-							"currentSpeakerAssignments", "gender" }, new String[] { "personId", "active", "activeEu", "party", "activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker","bornYear" }, new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null, null);
+					POLITICIANS,
+					COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);

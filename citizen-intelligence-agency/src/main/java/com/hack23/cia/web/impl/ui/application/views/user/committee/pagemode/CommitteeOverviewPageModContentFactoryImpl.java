@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
@@ -43,6 +44,10 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
+
+	private static final List<String> AS_LIST = Arrays.asList( "embeddedId.detail", "active", "firstAssignmentDate",
+			"lastAssignmentDate", "totalAssignments", "totalDaysServed",
+			"currentMemberSize" );
 
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = "Committee:";
@@ -88,9 +93,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 
 				getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenCommittee,
 						ViewRiksdagenCommittee.class,
-						Arrays.asList( "embeddedId.detail", "active", "firstAssignmentDate",
-								"lastAssignmentDate", "totalAssignments", "totalDaysServed",
-								"currentMemberSize" ));
+						AS_LIST);
 
 
 				final VerticalLayout overviewLayout = new VerticalLayout();

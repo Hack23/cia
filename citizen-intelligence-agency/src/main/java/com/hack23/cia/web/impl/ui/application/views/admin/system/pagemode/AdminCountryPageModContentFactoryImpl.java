@@ -45,6 +45,18 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "hjid");
+
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid","id", "region", "adminregion" ,"incomeLevel", "lendingType","longitude", "latitude" };
+
+	private static final List<String> AS_LIST = Arrays.asList( "hjid", "id", "countryName", "iso2Code", "capitalCity",
+			"longitude", "latitude" );
+
+	private static final String[] COLUMN_ORDER = new String[] { "hjid", "id", "countryName", "iso2Code", "capitalCity", "longitude",
+			"latitude" };
+
+	private static final String COUNTRY2 = "Country";
+
 	/** The Constant ADMIN_COUNTRY. */
 	private static final String ADMIN_COUNTRY = "Admin Country";
 
@@ -84,10 +96,9 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 
 		getGridFactory()
 				.createBasicBeanItemNestedPropertiesGrid(content, CountryElement.class, pageOrderBy,
-						"Country",null,
-						new String[] { "hjid", "id", "countryName", "iso2Code", "capitalCity", "longitude",
-								"latitude" }, new String[] { "hjid","id", "region", "adminregion" ,"incomeLevel", "lendingType","longitude", "latitude" },
-						new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "hjid"), null, null);
+						COUNTRY2,null,
+						COLUMN_ORDER, HIDE_COLUMNS,
+						LISTENER, null, null);
 
 		if (pageId != null && !pageId.isEmpty()) {
 
@@ -95,8 +106,7 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 			if (country != null) {
 
 				getFormFactory().addFormPanelTextFields(content, country, CountryElement.class,
-						Arrays.asList( "hjid", "id", "countryName", "iso2Code", "capitalCity",
-								"longitude", "latitude" ));
+						AS_LIST);
 			}
 		}
 

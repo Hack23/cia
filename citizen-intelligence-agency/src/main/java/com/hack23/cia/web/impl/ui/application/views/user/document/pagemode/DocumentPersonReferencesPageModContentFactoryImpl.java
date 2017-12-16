@@ -48,6 +48,11 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentPersonReferencesPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personReferenceId");
+	private static final String[] HIDE_COLUMNS = new String[] { "personReferenceId", "hjid" };
+	private static final String[] COLUMN_ORDER = new String[] { "personReferenceId", "referenceName", "partyShortCode", "orderNumber",
+			"roleDescription" };
+	private static final String DOCUMENT_PERSON_REFERENCES = "Document person references";
 	/** The Constant PERSON_REFERENCES. */
 	private static final String PERSON_REFERENCES = "Person References";
 
@@ -102,10 +107,9 @@ public final class DocumentPersonReferencesPageModContentFactoryImpl extends Abs
 				getGridFactory().createBasicBeanItemGrid(
 						panelContent, DocumentPersonReferenceData.class, documentStatusContainer
 						.getDocumentPersonReferenceContainer().getDocumentPersonReferenceList(),
-						"Document person references",
-						new String[] { "personReferenceId", "referenceName", "partyShortCode", "orderNumber",
-								"roleDescription" }, new String[] { "personReferenceId", "hjid" },
-						new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personReferenceId"), null, null);
+						DOCUMENT_PERSON_REFERENCES,
+						COLUMN_ORDER, HIDE_COLUMNS,
+						LISTENER, null, null);
 
 			}
 

@@ -50,6 +50,12 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCountryPageModContentFactoryImpl {
 
+	private static final List<String> AS_LIST = Arrays.asList("indicatorName",
+			   "sourceValue",
+			   "topics",
+			   "sourceNote",
+			   "sourceOrganization");
+
 	/** The Constant WORLD_INDICATORS. */
 	private static final String WORLD_INDICATORS = "World Indicators";
 
@@ -115,11 +121,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 			getFormFactory().addFormPanelTextFields(verticalLayout,
 					indicatorSummaryValue,
 							ViewWorldbankIndicatorDataCountrySummary.class,
-							Arrays.asList("indicatorName",
-									   "sourceValue",
-									   "topics",
-									   "sourceNote",
-									   "sourceOrganization"));
+							AS_LIST);
 		}
 
 		final DataContainer<WorldBankData, Serializable> dataContainer = getApplicationManager()

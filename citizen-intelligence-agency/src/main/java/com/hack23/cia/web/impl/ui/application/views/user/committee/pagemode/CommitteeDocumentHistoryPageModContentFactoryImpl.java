@@ -45,6 +45,16 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 		extends AbstractCommitteePageModContentFactoryImpl {
 
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId");
+
+	private static final String[] HIDE_COLUMNS = new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId", "org", "docId", "label","roleDescription" };
+
+	private static final String[] COLUMN_ORDER = new String[] { "rm", "madePublicDate","id", "docId", "personReferenceId",
+			"roleDescription", "title", "subTitle", "documentType", "subType", "org", "label",
+			"numberValue", "status", "tempLabel", "orderNumber","referenceName", "partyShortCode" };
+
+	private static final String DOCUMENTS = "Documents";
+
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = "Committee:";
 
@@ -92,11 +102,9 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 							ViewRiksdagenPoliticianDocument_.org, viewRiksdagenCommittee.getEmbeddedId().getOrgCode()
 							.replace(" ", "").replace("_", "").trim(),
 					ViewRiksdagenPoliticianDocument_.madePublicDate),
-					"Documents",
-					new String[] { "rm", "madePublicDate","id", "docId", "personReferenceId",
-							"roleDescription", "title", "subTitle", "documentType", "subType", "org", "label",
-							"numberValue", "status", "tempLabel", "orderNumber","referenceName", "partyShortCode" },
-					new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId", "org", "docId", "label","roleDescription" }, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null, null);
+					DOCUMENTS,
+					COLUMN_ORDER,
+					HIDE_COLUMNS, LISTENER, null, null);
 
 
 			panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());

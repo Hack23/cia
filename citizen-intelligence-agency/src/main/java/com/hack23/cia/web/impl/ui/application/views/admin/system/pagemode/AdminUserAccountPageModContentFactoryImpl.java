@@ -45,6 +45,20 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
+	private static final List<String> AS_LIST = Arrays.asList("username", "createdDate", "email", "country",
+			"numberOfVisits" );
+
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, "hjid");
+
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion","userId","userpassword", "address","googleAuthKey",
+				    "googleAuthVerificationCode",
+				    "googleAuthScratchCodes" };
+
+	private static final String[] COLUMN_ORDER = new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "userId", "username",
+			"userType", "userRole", "userpassword", "email", "country", "numberOfVisits" };
+
+	private static final String USER_ACCOUNT = "UserAccount";
+
 	/** The Constant ADMIN_USERACCOUNT. */
 	private static final String ADMIN_USERACCOUNT = "Admin Useraccount";
 
@@ -84,12 +98,9 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 
 		getGridFactory().createBasicBeanItemGrid(content, UserAccount.class,
 				pageOrderBy,
-				"UserAccount",
-				new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "userId", "username",
-						"userType", "userRole", "userpassword", "email", "country", "numberOfVisits" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion","userId","userpassword", "address","googleAuthKey",
-							    "googleAuthVerificationCode",
-							    "googleAuthScratchCodes" },
-				new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, "hjid"), null, null);
+				USER_ACCOUNT,
+				COLUMN_ORDER, HIDE_COLUMNS,
+				LISTENER, null, null);
 
 
 		if (pageId != null && !pageId.isEmpty()) {
@@ -100,8 +111,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 
 				getFormFactory()
 						.addFormPanelTextFields(content, userAccount, UserAccount.class,
-								Arrays.asList("username", "createdDate", "email", "country",
-										"numberOfVisits" ));
+								AS_LIST);
 			}
 		}
 

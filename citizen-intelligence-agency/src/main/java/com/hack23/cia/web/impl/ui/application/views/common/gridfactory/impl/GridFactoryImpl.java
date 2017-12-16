@@ -21,6 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -68,7 +69,7 @@ public final class GridFactoryImpl implements GridFactory {
 
 		final Grid<T> grid = new Grid<T>(caption).withPropertySet(BeanPropertySet.get(dataType));
 				
-		grid.setItems(datasource.stream().filter(party -> party != null) 
+		grid.setItems(datasource.stream().filter(Objects::nonNull) 
         .collect(Collectors.toList()));
 			
 		grid.setSelectionMode(SelectionMode.SINGLE);
@@ -93,10 +94,10 @@ public final class GridFactoryImpl implements GridFactory {
 		panelContent.setExpandRatio(grid, ContentRatio.GRID);
 	}
 
-	private <T extends Serializable> void createNestedProperties(Grid<T> grid, String[] nestedProperties) {
+	private <T extends Serializable> void createNestedProperties(final Grid<T> grid, final String[] nestedProperties) {
 		if (nestedProperties != null) {
-			for (String property : nestedProperties) {			
-				Column<T, ?> addColumn = grid.addColumn(new BeanNestedPropertyValueProvider<T>(property));
+			for (final String property : nestedProperties) {			
+				final Column<T, ?> addColumn = grid.addColumn(new BeanNestedPropertyValueProvider<T>(property));
 				addColumn.setId(property);
 			}
 		}		
@@ -196,13 +197,13 @@ public final class GridFactoryImpl implements GridFactory {
 		
 		private final String property;
 				
-		public BeanNestedPropertyValueProvider(String property) {
+		public BeanNestedPropertyValueProvider(final String property) {
 			super();
 			this.property = property;
 		}
 		
 		@Override
-		public String apply(T source) {
+		public String apply(final T source) {
 			try {
 				return BeanUtils.getProperty(source, property);
 			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {

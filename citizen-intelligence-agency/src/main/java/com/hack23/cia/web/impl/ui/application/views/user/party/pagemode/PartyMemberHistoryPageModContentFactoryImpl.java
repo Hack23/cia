@@ -41,6 +41,23 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId");
+	private static final String[] HIDE_COLUMNS = new String[] { "personId", "active", "party", "activeEu", "activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker","bornYear" };
+	private static final String[] COLUMN_ORDER = new String[] { "personId", "firstName", "lastName", "party", "bornYear", "totalDaysServed",
+			"currentAssignments", "totalAssignments", "firstAssignmentDate", "lastAssignmentDate",
+			"totalDaysServedParliament", "totalDaysServedCommittee", "totalDaysServedGovernment",
+			"totalDaysServedEu",
+
+			"active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament",
+
+			"activeParty", "activeSpeaker", "totalDaysServedSpeaker", "totalDaysServedParty",
+
+			"totalPartyAssignments", "totalMinistryAssignments", "totalCommitteeAssignments",
+			"totalSpeakerAssignments",
+
+			"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
+			"currentSpeakerAssignments", "gender" };
+	private static final String POLITICIANS = "Politicians";
 	/** The Constant MEMBER_HISTORY. */
 	private static final String MEMBER_HISTORY = "MemberHistory";
 
@@ -80,21 +97,8 @@ public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractP
 
 			getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPolitician.class,
 					politicianDataContainer.getAllBy(ViewRiksdagenPolitician_.party, viewRiksdagenParty.getPartyId()),
-					"Politicians",
-					new String[] { "personId", "firstName", "lastName", "party", "bornYear", "totalDaysServed",
-							"currentAssignments", "totalAssignments", "firstAssignmentDate", "lastAssignmentDate",
-							"totalDaysServedParliament", "totalDaysServedCommittee", "totalDaysServedGovernment",
-							"totalDaysServedEu",
-
-							"active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament",
-
-							"activeParty", "activeSpeaker", "totalDaysServedSpeaker", "totalDaysServedParty",
-
-							"totalPartyAssignments", "totalMinistryAssignments", "totalCommitteeAssignments",
-							"totalSpeakerAssignments",
-
-							"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
-							"currentSpeakerAssignments", "gender" }, new String[] { "personId", "active", "party", "activeEu", "activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker","bornYear" }, new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null, null);
+					POLITICIANS,
+					COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}

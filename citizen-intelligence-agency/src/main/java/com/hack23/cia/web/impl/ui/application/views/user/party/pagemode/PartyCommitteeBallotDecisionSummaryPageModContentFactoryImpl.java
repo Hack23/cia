@@ -46,6 +46,29 @@ import com.vaadin.ui.VerticalLayout;
 public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 		extends AbstractPartyPageModContentFactoryImpl {
 
+	private static final String BALLOT_ID = "ballotId";
+
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
+
+	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", BALLOT_ID, "decisionType", "ballotType", "againstProposalNumber",
+			"embeddedId.id", "embeddedId.party", "createdDate", "publicDate", "label", "endNumber",
+			"org", "partyPercentageYes", "partyPercentageNo", "partyPercentageAbsent",
+			"partyPercentageAbstain", "partyPercentageMale", "partyAvgBornYear", "avgBornYear",
+			"percentageYes", "percentageNo", "percentageAbsent", "percentageAbstain", "percentageMale",
+			"approved", "noWinner" };
+
+	private static final String[] COLUMN_ORDER = new String[] { "voteDate", "rm", "org", "embeddedId.id", "embeddedId.party", "committeeReport",
+			"title", "subTitle", "winner", "partyApproved", "againstProposalParties", "embeddedId.concern",
+			"embeddedId.issue", "endNumber", "createdDate", "publicDate", BALLOT_ID, "decisionType",
+			"againstProposalNumber", "ballotType", "label", "avgBornYear", "totalVotes", "approved",
+			"noWinner", "percentageYes", "percentageNo", "percentageAbsent", "percentageAbstain",
+			"percentageMale", "partyAvgBornYear", "partyTotalVotes", "partyYesVotes", "partyNoVotes",
+			"partyAbstainVotes", "partyAbsentVotes", "yesVotes", "noVotes",
+			"abstainVotes", "absentVotes", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
+			"partyPercentageAbsent", "partyPercentageAbstain", "partyPercentageMale" };
+
+	private static final String[] NESTED_PROPERTIES = new String[] { "embeddedId.id", "embeddedId.concern", "embeddedId.issue", "embeddedId.party" };
+
 	/** The Constant COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY. */
 	private static final String COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY = "Committee Ballot Decision Party Summary";
 
@@ -95,23 +118,10 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 
 			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenCommitteeBallotDecisionPartySummary.class,
 					decisionPartySummaryList, COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY,
-					new String[] { "embeddedId.id", "embeddedId.concern", "embeddedId.issue", "embeddedId.party" },
-					new String[] { "voteDate", "rm", "org", "embeddedId.id", "embeddedId.party", "committeeReport",
-							"title", "subTitle", "winner", "partyApproved", "againstProposalParties", "embeddedId.concern",
-							"embeddedId.issue", "endNumber", "createdDate", "publicDate", "ballotId", "decisionType",
-							"againstProposalNumber", "ballotType", "label", "avgBornYear", "totalVotes", "approved",
-							"noWinner", "percentageYes", "percentageNo", "percentageAbsent", "percentageAbstain",
-							"percentageMale", "partyAvgBornYear", "partyTotalVotes", "partyYesVotes", "partyNoVotes",
-							"partyAbstainVotes", "partyAbsentVotes", "yesVotes", "noVotes",
-							"abstainVotes", "absentVotes", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
-							"partyPercentageAbsent", "partyPercentageAbstain", "partyPercentageMale" },
-					new String[] { "embeddedId", "ballotId", "decisionType", "ballotType", "againstProposalNumber",
-							"embeddedId.id", "embeddedId.party", "createdDate", "publicDate", "label", "endNumber",
-							"org", "partyPercentageYes", "partyPercentageNo", "partyPercentageAbsent",
-							"partyPercentageAbstain", "partyPercentageMale", "partyAvgBornYear", "avgBornYear",
-							"percentageYes", "percentageNo", "percentageAbsent", "percentageAbstain", "percentageMale",
-							"approved", "noWinner" },
-					new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "ballotId"), "ballotId", null);
+					NESTED_PROPERTIES,
+					COLUMN_ORDER,
+					HIDE_COLUMNS,
+					LISTENER, BALLOT_ID, null);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}

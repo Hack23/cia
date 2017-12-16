@@ -41,6 +41,11 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId");
+	private static final String[] HIDE_COLUMNS = new String[] { "roleId", "personId", "party", "detail" };
+	private static final String[] COLUMN_ORDER = new String[] { "roleId", "roleCode", "personId", "firstName", "lastName", "party", "totalDaysServed", "active", "detail",
+			"fromDate", "toDate" };
+	private static final String LEADER_HISTORY2 = "Leader History";
 	/** The Constant LEADER_HISTORY. */
 	private static final String LEADER_HISTORY = "LeaderHistory";
 
@@ -82,10 +87,9 @@ public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractP
 			getGridFactory().createBasicBeanItemGrid(
 					panelContent, ViewRiksdagenPartyRoleMember.class, partyRoleMemberDataContainer
 					.getAllBy(ViewRiksdagenPartyRoleMember_.party, viewRiksdagenParty.getPartyId()),
-					"Leader History",
-					new String[] { "roleId", "roleCode", "personId", "firstName", "lastName", "party", "totalDaysServed", "active", "detail",
-							"fromDate", "toDate" }, new String[] { "roleId", "personId", "party", "detail" },
-					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null, null);
+					LEADER_HISTORY2,
+					COLUMN_ORDER, HIDE_COLUMNS,
+					LISTENER, null, null);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}

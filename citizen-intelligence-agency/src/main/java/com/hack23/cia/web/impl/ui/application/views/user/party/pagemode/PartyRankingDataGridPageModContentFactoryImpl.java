@@ -42,6 +42,18 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class PartyRankingDataGridPageModContentFactoryImpl extends AbstractPartyRankingPageModContentFactoryImpl {
 
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "party");
+
+	private static final String[] HIDE_COLUMNS = new String[] {"active","activeParliament","activeGovernment","activeCommittee", "activeEu", "activeParty", "activeSpeaker"};
+
+	private static final String[] COLUMN_ORDER = new String[] { "party", "currentAssignments", "totalActiveGovernment", "totalActiveCommittee", "totalActiveParliament", "totalActiveEu", "active", "firstAssignmentDate", "lastAssignmentDate",
+			"activeEu",
+			"activeGovernment", "activeCommittee",
+			"totalAssignments","totalDaysServed", "totalDaysServedGovernment", "totalDaysServedCommittee", "activeParliament",
+			"totalDaysServedParliament", "totalDaysServedEu" };
+
+	private static final String PARTIES = "Parties";
+
 	/** The Constant DATAGRID. */
 	private static final String DATAGRID = "Datagrid";
 
@@ -69,12 +81,8 @@ public final class PartyRankingDataGridPageModContentFactoryImpl extends Abstrac
 				.getDataContainer(ViewRiksdagenPartySummary.class);
 
 		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPartySummary.class, dataContainer.getAllOrderBy(ViewRiksdagenPartySummary_.currentAssignments),
-				"Parties",
-				new String[] { "party", "currentAssignments", "totalActiveGovernment", "totalActiveCommittee", "totalActiveParliament", "totalActiveEu", "active", "firstAssignmentDate", "lastAssignmentDate",
-						"activeEu",
-						"activeGovernment", "activeCommittee",
-						"totalAssignments","totalDaysServed", "totalDaysServedGovernment", "totalDaysServedCommittee", "activeParliament",
-						"totalDaysServedParliament", "totalDaysServedEu" }, new String[] {"active","activeParliament","activeGovernment","activeCommittee", "activeEu", "activeParty", "activeSpeaker"}, new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "party"), null, null);
+				PARTIES,
+				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
 
 		panel.setCaption(NAME + "::" + DATAGRID);

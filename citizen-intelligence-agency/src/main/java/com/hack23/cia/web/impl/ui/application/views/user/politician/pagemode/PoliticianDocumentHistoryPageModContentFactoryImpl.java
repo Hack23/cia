@@ -42,6 +42,14 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PoliticianDocumentHistoryPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId");
+	private static final String[] HIDE_COLUMNS = new String[] { "id", "partyShortCode", "personReferenceId", "numberValue", "orderNumber",
+			"tempLabel", "referenceName" , "docId", "label","roleDescription"};
+	private static final String[] COLUMN_ORDER = new String[] { "rm", "madePublicDate","documentType", "subType", "title", "subTitle", "referenceName", "partyShortCode", "personReferenceId", "roleDescription",
+			"org", "id",
+			"docId", "tempLabel", "label", "numberValue", "orderNumber", "status" };
+	private static final String DOCUMENTS = "Documents";
+
 	/**
 	 * Instantiates a new politician document history page mod content factory
 	 * impl.
@@ -85,12 +93,9 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl extends Ab
 					panelContent, ViewRiksdagenPoliticianDocument.class, politicianDocumentDataContainer.findOrderedListByProperty(
 							ViewRiksdagenPoliticianDocument_.personReferenceId, personData.getId(),
 							ViewRiksdagenPoliticianDocument_.madePublicDate),
-					"Documents",
-					new String[] { "rm", "madePublicDate","documentType", "subType", "title", "subTitle", "referenceName", "partyShortCode", "personReferenceId", "roleDescription",
-							"org", "id",
-							"docId", "tempLabel", "label", "numberValue", "orderNumber", "status" },
-					new String[] { "id", "partyShortCode", "personReferenceId", "numberValue", "orderNumber",
-							"tempLabel", "referenceName" , "docId", "label","roleDescription"}, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId"), null, null);
+					DOCUMENTS,
+					COLUMN_ORDER,
+					HIDE_COLUMNS, LISTENER, null, null);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 

@@ -44,6 +44,18 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryDocumentHistoryPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME,"docId");
+
+	private static final String[] HIDE_COLUMNS = new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId",
+			"org","roleDescription", "label","subTitle","docId" };
+
+	private static final String[] COLUMN_ORDER = new String[] { "id", "docId", "personReferenceId",
+			"roleDescription", "org", "label", "rm",
+			"madePublicDate", "numberValue", "title", "subTitle", "tempLabel",
+			"orderNumber" , "documentType", "subType","status", "partyShortCode", "referenceName"};
+
+	private static final String DOCUMENTS = "Documents";
+
 	/** The Constant DOCUMENT_HISTORY. */
 	private static final String DOCUMENT_HISTORY = "Document History";
 
@@ -88,13 +100,9 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 			getGridFactory().createBasicBeanItemGrid(
 					panelContent, ViewRiksdagenPoliticianDocument.class, politicianDocumentDataContainer
 					.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.org, viewRiksdagenMinistry.getNameId(),ViewRiksdagenPoliticianDocument_.madePublicDate),
-					"Documents",
-					new String[] { "id", "docId", "personReferenceId",
-							"roleDescription", "org", "label", "rm",
-							"madePublicDate", "numberValue", "title", "subTitle", "tempLabel",
-							"orderNumber" , "documentType", "subType","status", "partyShortCode", "referenceName"},
-					new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId",
-							"org","roleDescription", "label","subTitle","docId" }, new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME,"docId"), null, null);
+					DOCUMENTS,
+					COLUMN_ORDER,
+					HIDE_COLUMNS, LISTENER, null, null);
 
 			panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,

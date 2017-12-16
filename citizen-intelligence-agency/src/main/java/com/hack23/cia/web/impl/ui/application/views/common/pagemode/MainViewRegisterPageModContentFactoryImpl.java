@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
@@ -46,6 +47,10 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class MainViewRegisterPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+
+	private static final String REGISTER = "Register";
+
+	private static final List<String> AS_LIST = Arrays.asList( "username", "email", "country", "userpassword" );
 
 	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_MAIN. */
 	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = "Citizen Intelligence Agency::Main";
@@ -95,7 +100,7 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractPag
 		final ClickListener reqisterListener = new RegisterUserClickListener(reqisterRequest);
 		getFormFactory().addRequestInputFormFields(formContent, reqisterRequest,
 				RegisterUserRequest.class,
-				Arrays.asList( "username", "email", "country", "userpassword" ), "Register",
+				AS_LIST, REGISTER,
 				reqisterListener);
 
 		final VerticalLayout overviewLayout = new VerticalLayout();

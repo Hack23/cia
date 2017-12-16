@@ -43,6 +43,19 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PoliticianVotesHistoryPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
+	private static final String EMBEDDED_ID_BALLOT_ID = "embeddedId.ballotId";
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, EMBEDDED_ID_BALLOT_ID);
+	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
+			"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
+			"percentageAbsent", "percentageAbstain", "firstName", "lastName", "party", EMBEDDED_ID_BALLOT_ID, "ballotType" };
+	private static final String[] COLUMN_ORDER = new String[] { "voteDate", "rm", "label", "embeddedId.concern", "embeddedId.issue", "vote",
+			"won", "partyWon", "rebel", "noWinner", "approved", "partyApproved", "totalVotes",
+			"partyTotalVotes", "yesVotes", "partyYesVotes", "noVotes", "partyNoVotes",
+			"partyAbstainVotes", "abstainVotes", "partyAbsentVotes", "absentVotes", "bornYear",
+			"partyAvgBornYear", "avgBornYear", "gender", "partyPercentageMale",
+			"percentageMale", "ballotType", EMBEDDED_ID_BALLOT_ID };
+	private static final String[] NESTED_PROPERTIES = new String[] { EMBEDDED_ID_BALLOT_ID, "embeddedId.concern", "embeddedId.issue" };
+	private static final String BALLOTS = "Ballots";
 	/**
 	 * The view riksdagen vote data ballot politician summary chart data
 	 * manager.
@@ -87,18 +100,11 @@ public final class PoliticianVotesHistoryPageModContentFactoryImpl extends Abstr
 
 
 			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenVoteDataBallotPoliticianSummary.class,
-					viewRiksdagenVoteDataBallotPoliticianSummaryChartDataManager.findByValue(personData.getId()), "Ballots",
-					new String[] { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue" },
-					new String[] { "voteDate", "rm", "label", "embeddedId.concern", "embeddedId.issue", "vote",
-							"won", "partyWon", "rebel", "noWinner", "approved", "partyApproved", "totalVotes",
-							"partyTotalVotes", "yesVotes", "partyYesVotes", "noVotes", "partyNoVotes",
-							"partyAbstainVotes", "abstainVotes", "partyAbsentVotes", "absentVotes", "bornYear",
-							"partyAvgBornYear", "avgBornYear", "gender", "partyPercentageMale",
-							"percentageMale", "ballotType", "embeddedId.ballotId" },
-					new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
-							"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
-							"percentageAbsent", "percentageAbstain", "firstName", "lastName", "party", "embeddedId.ballotId", "ballotType" },
-					new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "embeddedId.ballotId"), "embeddedId.ballotId", null);
+					viewRiksdagenVoteDataBallotPoliticianSummaryChartDataManager.findByValue(personData.getId()), BALLOTS,
+					NESTED_PROPERTIES,
+					COLUMN_ORDER,
+					HIDE_COLUMNS,
+					LISTENER, EMBEDDED_ID_BALLOT_ID, null);
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 

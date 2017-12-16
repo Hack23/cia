@@ -42,6 +42,11 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "intressentId", "orderNumber", "orgCode" };
+	private static final String[] COLUMN_ORDER = new String[] { "roleCode", "assignmentType", "status", "detail", "orgCode", "fromDate",
+			"toDate" };
+	private static final String ASSIGNMENTS = "Assignments";
+
 	/**
 	 * Instantiates a new politician role list page mod content factory impl.
 	 */
@@ -106,9 +111,8 @@ public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractP
 
 		getGridFactory()
 				.createBasicBeanItemGrid(roleSummaryLayoutTabsheet, AssignmentData.class, assignmentList,
-						"Assignments",
-						new String[] { "roleCode", "assignmentType", "status", "detail", "orgCode", "fromDate",
-								"toDate" }, new String[] { "hjid", "intressentId", "orderNumber", "orgCode" }, null, null, null);
+						ASSIGNMENTS,
+						COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
 
 	}
 

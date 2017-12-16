@@ -41,6 +41,10 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyGovernmentRolesPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
+	private static final String PERSON_ID = "personId";
+	private static final String[] HIDE_COLUMNS = new String[] { "roleId", PERSON_ID, "party" };
+	private static final String[] COLUMN_ORDER = new String[] { "roleId", PERSON_ID, "firstName", "lastName", "active", "detail",
+			"roleCode", "fromDate", "toDate", "totalDaysServed" };
 	/** The Constant GOVERNMENT_ROLES. */
 	private static final String GOVERNMENT_ROLES = "Government Roles";
 
@@ -83,9 +87,8 @@ public final class PartyGovernmentRolesPageModContentFactoryImpl extends Abstrac
 							new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },
 							ViewRiksdagenGovermentRoleMember_.party, ViewRiksdagenGovermentRoleMember_.active),
 					GOVERNMENT_ROLES,
-					new String[] { "roleId", "personId", "firstName", "lastName", "active", "detail",
-							"roleCode", "fromDate", "toDate", "totalDaysServed" }, new String[] { "roleId", "personId", "party" },
-					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null, null);
+					COLUMN_ORDER, HIDE_COLUMNS,
+					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, PERSON_ID), null, null);
 
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);

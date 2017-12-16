@@ -46,6 +46,9 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentDetailsPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid" };
+	private static final String[] COLUMN_ORDER = new String[] { "code", "detailName", "text" };
+	private static final String DOCUMENT_DETAILS2 = "Document details";
 	/** The Constant DOCUMENT_DETAILS. */
 	private static final String DOCUMENT_DETAILS = "Document Details";
 
@@ -95,7 +98,7 @@ public final class DocumentDetailsPageModContentFactoryImpl extends AbstractDocu
 
 				getGridFactory().createBasicBeanItemGrid(
 						panelContent, DocumentDetailData.class, documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList(),
-						"Document details", new String[] { "code", "detailName", "text" }, new String[] { "hjid" }, null, null, null);
+						DOCUMENT_DETAILS2, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
 			}
 
 			panel.setContent(panelContent);

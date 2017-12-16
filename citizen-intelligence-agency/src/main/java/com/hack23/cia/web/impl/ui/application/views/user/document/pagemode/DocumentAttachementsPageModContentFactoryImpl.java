@@ -56,6 +56,10 @@ import com.whitestein.vaadin.widgets.wtpdfviewer.WTPdfViewer;
 @Component
 public final class DocumentAttachementsPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
+	private static final String PDF = "pdf";
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid" };
+	private static final String[] COLUMN_ORDER = new String[] { "fileName", "fileSize", "fileType", "fileUrl" };
+	private static final String DOCUMENT_ATTACHEMENTS = "Document attachements";
 	/** The Constant DOCUMENT_ATTACHMENTS. */
 	private static final String DOCUMENT_ATTACHMENTS = "Document Attachments";
 
@@ -105,18 +109,17 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 
 				getGridFactory().createBasicBeanItemGrid(
 						panelContent, DocumentAttachment.class, documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList(),
-						"Document attachements", new String[] { "fileName", "fileSize", "fileType", "fileUrl" }, new String[] { "hjid" },
+						DOCUMENT_ATTACHEMENTS, COLUMN_ORDER, HIDE_COLUMNS,
 						null, null, null);
 
 				final List<DocumentAttachment> documentAttachmentList = documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList();
 
 				for (final DocumentAttachment documentAttachment : documentAttachmentList) {
 					
-					if ("pdf".equalsIgnoreCase(documentAttachment.getFileType())) {
-						WTPdfViewer wtPdfViewer = new WTPdfViewer();
+					if (PDF.equalsIgnoreCase(documentAttachment.getFileType())) {
+						final WTPdfViewer wtPdfViewer = new WTPdfViewer();
 						wtPdfViewer.setSizeFull();
 
-						System.out.println("ADDED PDF");
 						final StreamResource.StreamSource source = new StreamResource.StreamSource() {
 
 							/** The Constant serialVersionUID. */

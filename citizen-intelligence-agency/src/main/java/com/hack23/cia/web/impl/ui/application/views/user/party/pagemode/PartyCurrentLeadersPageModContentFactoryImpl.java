@@ -41,6 +41,10 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyCurrentLeadersPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId");
+	private static final String[] HIDE_COLUMNS = new String[] { "roleId", "personId", "detail" , "active", "party"};
+	private static final String[] COLUMN_ORDER = new String[] { "roleCode","roleId", "personId", "firstName", "lastName", "party","totalDaysServed", "active", "detail",
+			 "fromDate", "toDate" };
 	/** The Constant CURRENT_LEADERS. */
 	private static final String CURRENT_LEADERS = "Current Leaders";
 
@@ -83,9 +87,8 @@ public final class PartyCurrentLeadersPageModContentFactoryImpl extends Abstract
 							new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },
 							ViewRiksdagenPartyRoleMember_.party, ViewRiksdagenPartyRoleMember_.active),
 					CURRENT_LEADERS,
-					new String[] { "roleCode","roleId", "personId", "firstName", "lastName", "party","totalDaysServed", "active", "detail",
-							 "fromDate", "toDate" }, new String[] { "roleId", "personId", "detail" , "active", "party"},
-					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null, null);
+					COLUMN_ORDER, HIDE_COLUMNS,
+					LISTENER, null, null);
 
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);

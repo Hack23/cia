@@ -25,7 +25,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeCont
 /**
  * The Class AbstractActorView.
  */
-public abstract class AbstractActorView extends AbstractUserView{
+public abstract class AbstractActorView extends AbstractUserView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;

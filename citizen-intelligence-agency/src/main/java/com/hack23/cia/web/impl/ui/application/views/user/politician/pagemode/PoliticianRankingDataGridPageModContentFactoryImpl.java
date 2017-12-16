@@ -43,6 +43,27 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianRankingDataGridPageModContentFactoryImpl
 		extends AbstractPoliticianRankingPageModContentFactoryImpl {
 
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId");
+
+	private static final String[] HIDE_COLUMNS = new String[] { "personId", "active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker","bornYear" };
+
+	private static final String[] COLUMN_ORDER = new String[] { "personId", "firstName", "lastName", "party", "bornYear", "totalDaysServed",
+			"currentAssignments", "totalAssignments", "firstAssignmentDate", "lastAssignmentDate",
+			"totalDaysServedParliament", "totalDaysServedCommittee", "totalDaysServedGovernment",
+			"totalDaysServedEu",
+
+			"active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament",
+
+			"activeParty", "activeSpeaker", "totalDaysServedSpeaker", "totalDaysServedParty",
+
+			"totalPartyAssignments", "totalMinistryAssignments", "totalCommitteeAssignments",
+			"totalSpeakerAssignments",
+
+			"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
+			"currentSpeakerAssignments", "gender" };
+
+	private static final String POLITICIANS = "Politicians";
+
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_RANKING_VIEW_NAME;
 
@@ -76,21 +97,8 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 				.getDataContainer(ViewRiksdagenPolitician.class);
 
 		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPolitician.class, politicianDataContainer.getAllOrderBy(ViewRiksdagenPolitician_.currentAssignments),
-				"Politicians",
-				new String[] { "personId", "firstName", "lastName", "party", "bornYear", "totalDaysServed",
-						"currentAssignments", "totalAssignments", "firstAssignmentDate", "lastAssignmentDate",
-						"totalDaysServedParliament", "totalDaysServedCommittee", "totalDaysServedGovernment",
-						"totalDaysServedEu",
-
-						"active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament",
-
-						"activeParty", "activeSpeaker", "totalDaysServedSpeaker", "totalDaysServedParty",
-
-						"totalPartyAssignments", "totalMinistryAssignments", "totalCommitteeAssignments",
-						"totalSpeakerAssignments",
-
-						"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
-						"currentSpeakerAssignments", "gender" }, new String[] { "personId", "active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker","bornYear" }, new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null, null);
+				POLITICIANS,
+				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
 		panel.setCaption(NAME + "::" + DATAGRID);
 

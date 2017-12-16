@@ -46,6 +46,16 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminApplicationEventsPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
+	private static final List<String> AS_LIST = Arrays.asList( "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage");
+
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid");
+
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId","modelObjectVersion","sessionId", "eventGroup", "applicationOperation" };
+
+	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate", "userId","actionName","errorMessage","applicationMessage", "page","pageMode","elementId", "modelObjectVersion" };
+
+	private static final String APPLICATION_ACTION_EVENT = "ApplicationActionEvent";
+
 	/** The Constant ADMIN_APPLICATION_ACTION_EVENT. */
 	private static final String ADMIN_APPLICATION_ACTION_EVENT = "Admin Application Action Event";
 
@@ -86,9 +96,9 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(content, ApplicationActionEvent.class, pageOrderBy,
-				"ApplicationActionEvent",
-				new String[] { "hjid", "createdDate", "userId","actionName","errorMessage","applicationMessage", "page","pageMode","elementId", "modelObjectVersion" }, new String[] { "hjid", "modelObjectId","modelObjectVersion","sessionId", "eventGroup", "applicationOperation" },
-				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null, null);
+				APPLICATION_ACTION_EVENT,
+				COLUMN_ORDER, HIDE_COLUMNS,
+				LISTENER, null, null);
 
 		if (pageId != null && !pageId.isEmpty()) {
 
@@ -97,7 +107,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 			if (applicationActionEvent != null) {
 
 				getFormFactory().addFormPanelTextFields(content, applicationActionEvent, ApplicationActionEvent.class,
-					Arrays.asList( "createdDate", "eventGroup", "applicationOperation","page","pageMode","elementId","actionName","userId","sessionId","errorMessage","applicationMessage"));
+					AS_LIST);
 			}
 		}
 

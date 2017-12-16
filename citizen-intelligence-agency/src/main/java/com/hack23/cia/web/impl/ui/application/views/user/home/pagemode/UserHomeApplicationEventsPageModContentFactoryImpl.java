@@ -48,6 +48,14 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class UserHomeApplicationEventsPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
 
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid");
+
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid","userId","sessionId", "modelObjectId","modelObjectVersion" };
+
+	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","actionName","page","pageMode","elementId", "applicationMessage","errorMessage", "modelObjectVersion" };
+
+	private static final String APPLICATION_ACTION_EVENT = "ApplicationActionEvent";
+
 	/** The Constant USERHOME. */
 	private static final String USERHOME = "Userhome:";
 
@@ -96,9 +104,9 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl extends Ab
 			
 
 			getGridFactory().createBasicBeanItemGrid(panelContent, ApplicationActionEvent.class, eventDataContainer.findOrderedListByProperty(ApplicationActionEvent_.userId,userAccount.getUserId(),ApplicationActionEvent_.createdDate),
-					"ApplicationActionEvent",
-					new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","actionName","page","pageMode","elementId", "applicationMessage","errorMessage", "modelObjectVersion" }, new String[] { "hjid","userId","sessionId", "modelObjectId","modelObjectVersion" },
-					new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"), null, null);
+					APPLICATION_ACTION_EVENT,
+					COLUMN_ORDER, HIDE_COLUMNS,
+					LISTENER, null, null);
 
 		}
 

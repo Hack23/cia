@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
@@ -46,6 +47,14 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
+	private static final List<String> AS_LIST = Arrays.asList( "firstName", "lastName", "gender", "bornYear", "party", "active",
+			"firstAssignmentDate", "lastAssignmentDate", "currentAssignments", "currentMinistryAssignments",
+			"currentSpeakerAssignments", "currentCommitteeAssignments", "currentPartyAssignments",
+			"totalMinistryAssignments", "totalCommitteeAssignments", "totalSpeakerAssignments",
+			"totalPartyAssignments", "totalAssignments", "totalDaysServed", "activeEu", "totalDaysServedEu",
+			"activeGovernment", "totalDaysServedGovernment", "activeSpeaker", "totalDaysServedSpeaker",
+			"activeCommittee", "totalDaysServedCommittee", "activeParliament", "totalDaysServedParliament",
+			"activeParty", "totalDaysServedParty" );
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
 
@@ -125,14 +134,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 
 		getFormFactory().addFormPanelTextFields(horizontalLayout, viewRiksdagenPolitician,
 				ViewRiksdagenPolitician.class,
-				Arrays.asList( "firstName", "lastName", "gender", "bornYear", "party", "active",
-						"firstAssignmentDate", "lastAssignmentDate", "currentAssignments", "currentMinistryAssignments",
-						"currentSpeakerAssignments", "currentCommitteeAssignments", "currentPartyAssignments",
-						"totalMinistryAssignments", "totalCommitteeAssignments", "totalSpeakerAssignments",
-						"totalPartyAssignments", "totalAssignments", "totalDaysServed", "activeEu", "totalDaysServedEu",
-						"activeGovernment", "totalDaysServedGovernment", "activeSpeaker", "totalDaysServedSpeaker",
-						"activeCommittee", "totalDaysServedCommittee", "activeParliament", "totalDaysServedParliament",
-						"activeParty", "totalDaysServedParty" ));
+				AS_LIST);
 
 		final VerticalLayout overviewLayout = new VerticalLayout();
 		overviewLayout.setSizeFull();

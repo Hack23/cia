@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -46,6 +47,10 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class SearchDocumentPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+
+	private static final String SEARCH = "Search";
+
+	private static final List<String> AS_LIST = Arrays.asList( "searchExpression" );
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.SEARCH_DOCUMENT_VIEW_NAME;
@@ -101,7 +106,7 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractPageM
 		searchRequest.setMaxResults(MAX_RESULT_SIZE);
 		searchRequest.setSearchExpression("");
 		getFormFactory().addRequestInputFormFields(formContent, searchRequest,
-				SearchDocumentRequest.class, Arrays.asList( "searchExpression" ), "Search",
+				SearchDocumentRequest.class, AS_LIST, SEARCH,
 				new SearchDocumentClickListener(searchRequest, new SearchDocumentResponseHandlerImpl(getGridFactory(), formPanel,
 						searchresultLayout)));
 

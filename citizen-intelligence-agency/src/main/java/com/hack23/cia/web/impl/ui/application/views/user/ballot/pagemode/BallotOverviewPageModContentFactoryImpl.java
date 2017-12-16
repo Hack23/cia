@@ -57,6 +57,37 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallotPageModContentFactoryImpl {
 
+	private static final String EMBEDDED_ID_PARTY = "embeddedId.party";
+
+	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
+			"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
+			"percentageAbsent", "percentageAbstain", "voteDate", "rm", "label", "embeddedId.concern",
+			"totalVotes", "approved", "yesVotes", "noVotes", "ballotType",
+			"abstainVotes", "absentVotes", "embeddedId.ballotId", "noWinner" };
+
+	private static final String[] COLUMN_ORDER = new String[] { EMBEDDED_ID_PARTY, "voteDate", "rm", "label", "embeddedId.concern",
+			"embeddedId.issue", "approved", "partyApproved", "totalVotes", "partyTotalVotes",
+			"yesVotes", "partyYesVotes", "noVotes", "partyNoVotes", "partyAbstainVotes", "abstainVotes",
+			"partyAbsentVotes", "absentVotes", "partyAvgBornYear", "avgBornYear", "partyPercentageMale",
+			"percentageMale", "ballotType", "embeddedId.ballotId" };
+
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, EMBEDDED_ID_PARTY);
+
+	private static final String[] NESTED_PROPERTIES = new String[] { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue",
+			EMBEDDED_ID_PARTY };
+
+	private static final List<String> AS_LIST2 = Arrays.asList( "embeddedId.ballotId", "rm", "voteDate", "embeddedId.issue",
+			"embeddedId.concern", "ballotType", "label", "totalVotes", "yesVotes", "noVotes",
+			"abstainVotes", "absentVotes", "approved" );
+
+	private static final List<String> AS_LIST = Arrays.asList( "embeddedId.id", "ballotId", "rm", "voteDate", "org",
+			"committeeReport", "embeddedId.issue", "title", "subTitle", "decisionType",
+			"embeddedId.concern", "ballotType", "winner", "totalVotes", "yesVotes", "noVotes",
+			"abstainVotes", "absentVotes", "approved", "endNumber", "againstProposalParties",
+			"againstProposalNumber" );
+
+	private static final String PARTY_BALLOT_SUMMARY = "Party Ballot Summary";
+
 	private static final int FIRST_OBJECT = 0;
 
 	/** The Constant COMMITTEE. */
@@ -118,39 +149,24 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 					getFormFactory().addFormPanelTextFields(panelContent, decisionSummaries.get(FIRST_OBJECT),
 							ViewRiksdagenCommitteeBallotDecisionSummary.class,
-							Arrays.asList( "embeddedId.id", "ballotId", "rm", "voteDate", "org",
-									"committeeReport", "embeddedId.issue", "title", "subTitle", "decisionType",
-									"embeddedId.concern", "ballotType", "winner", "totalVotes", "yesVotes", "noVotes",
-									"abstainVotes", "absentVotes", "approved", "endNumber", "againstProposalParties",
-									"againstProposalNumber" ));
+							AS_LIST);
 
 				} else {
 
 					getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenVoteDataBallotSummary,
 							ViewRiksdagenVoteDataBallotSummary.class,
-							Arrays.asList( "embeddedId.ballotId", "rm", "voteDate", "embeddedId.issue",
-									"embeddedId.concern", "ballotType", "label", "totalVotes", "yesVotes", "noVotes",
-									"abstainVotes", "absentVotes", "approved" ));
+							AS_LIST2);
 				}
 
 			}
 
 
 			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenVoteDataBallotPartySummary.class,
-					partyBallotList, "Party Ballot Summary",
-					new String[] { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue",
-							"embeddedId.party" },
-					new String[] { "embeddedId.party", "voteDate", "rm", "label", "embeddedId.concern",
-							"embeddedId.issue", "approved", "partyApproved", "totalVotes", "partyTotalVotes",
-							"yesVotes", "partyYesVotes", "noVotes", "partyNoVotes", "partyAbstainVotes", "abstainVotes",
-							"partyAbsentVotes", "absentVotes", "partyAvgBornYear", "avgBornYear", "partyPercentageMale",
-							"percentageMale", "ballotType", "embeddedId.ballotId" },
-					new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
-							"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
-							"percentageAbsent", "percentageAbstain", "voteDate", "rm", "label", "embeddedId.concern",
-							"totalVotes", "approved", "yesVotes", "noVotes", "ballotType",
-							"abstainVotes", "absentVotes", "embeddedId.ballotId", "noWinner" },
-					new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "embeddedId.party"), "embeddedId.party", null);
+					partyBallotList, PARTY_BALLOT_SUMMARY,
+					NESTED_PROPERTIES,
+					COLUMN_ORDER,
+					HIDE_COLUMNS,
+					LISTENER, EMBEDDED_ID_PARTY, null);
 
 			final VerticalLayout overviewLayout = new VerticalLayout();
 			overviewLayout.setSizeFull();

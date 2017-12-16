@@ -50,6 +50,24 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminApplicationSessionPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
+	private static final String[] HIDE_COLUMNS2 = new String[] { "hjid", "modelObjectId","modelObjectVersion","userId", "sessionId" };
+
+	private static final String[] COLUMN_ORDER2 = new String[] { "hjid", "createdDate", "eventGroup", "actionName", "applicationOperation", "page", "pageMode",
+			"elementId", "errorMessage", "applicationMessage",
+			"modelObjectVersion" };
+
+	private static final String APPLICATION_ACTION_EVENT = "ApplicationActionEvent";
+
+	private static final List<String> AS_LIST = Arrays.asList( "createdDate","sessionType", "userId", "sessionId", "operatingSystem", "locale",
+			"ipInformation", "userAgentInformation");
+
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion" ,"userAgentInformation", "sessionId","ipInformation"};
+
+	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate", "sessionType", "userId", "events", "operatingSystem", "locale",
+			"ipInformation", "userAgentInformation", "sessionId" };
+
+	private static final String APPLICATION_SESSION = "ApplicationSession";
+
 	/** The Constant ADMIN_APPLICATION_SESSION. */
 	private static final String ADMIN_APPLICATION_SESSION = "Admin Application Session";
 
@@ -89,9 +107,8 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(content, ApplicationSession.class, pageOrderBy,
-				"ApplicationSession",
-				new String[] { "hjid", "createdDate", "sessionType", "userId", "events", "operatingSystem", "locale",
-						"ipInformation", "userAgentInformation", "sessionId" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion" ,"userAgentInformation", "sessionId","ipInformation"},
+				APPLICATION_SESSION,
+				COLUMN_ORDER, HIDE_COLUMNS,
 				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid"), null, new ListPropertyConverter[] { new ListPropertyConverter(List.class, "page", "events","actionName")});
 
 		if (pageId != null && !pageId.isEmpty()) {
@@ -110,18 +127,15 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 
 				getFormFactory().addFormPanelTextFields(horizontalLayout, applicationSession,
 						ApplicationSession.class,
-						Arrays.asList( "createdDate","sessionType", "userId", "sessionId", "operatingSystem", "locale",
-								"ipInformation", "userAgentInformation"));
+						AS_LIST);
 
 				horizontalLayout.addComponent(rightLayout);
 				horizontalLayout.setExpandRatio(rightLayout, ContentRatio.GRID);
 
 				getGridFactory().createBasicBeanItemGrid(rightLayout,
 						ApplicationActionEvent.class,applicationSession.getEvents(),
-						"ApplicationActionEvent",
-						new String[] { "hjid", "createdDate", "eventGroup", "actionName", "applicationOperation", "page", "pageMode",
-								"elementId", "errorMessage", "applicationMessage",
-								"modelObjectVersion" }, new String[] { "hjid", "modelObjectId","modelObjectVersion","userId", "sessionId" },
+						APPLICATION_ACTION_EVENT,
+						COLUMN_ORDER2, HIDE_COLUMNS2,
 						new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid"),
 						null, null);
 			}

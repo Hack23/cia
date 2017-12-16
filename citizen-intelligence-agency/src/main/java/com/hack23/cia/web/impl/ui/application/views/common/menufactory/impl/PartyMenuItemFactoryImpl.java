@@ -205,7 +205,7 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 
 
 		createButtonLink(grid,VOTE_HISTORY, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), pageId), "Vote history");
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), pageId), VOTE_HISTORY);
 
 		createButtonLink(grid,BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
 				PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString(), pageId), "Ballot decision summary");

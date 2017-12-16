@@ -43,6 +43,14 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDocumentsPageModContentFactoryImpl {
 
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "id");
+	private static final String[] HIDE_COLUMNS = new String[] { "rm", "lang", "noteTitle", "origin", "subType", "note", "subTitle", "status", "label",
+			"id", "hit", "madePublicDate", "databaseSource", "domainOrg", "relatedId", "org",
+			"documentType", "docType", "debateName", "tempLabel", "numberValue", "systemDate", "kallId",
+			"documentFormat", "documentUrlText", "documentUrlHtml", "documentStatusUrlXml",
+			"committeeReportUrlXml" };
+	private static final String[] COLUMN_ORDER = new String[] { "rm", "createdDate", "documentName", "subType", "title", "subTitle", "status" };
+	private static final String DOCUMENT = "Document";
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
 
@@ -78,14 +86,10 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 
 		createPagingControls(panelContent,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
-		getGridFactory().createBasicBeanItemGrid(panelContent, DocumentElement.class, pageOrderBy, "Document",
-				new String[] { "rm", "createdDate", "documentName", "subType", "title", "subTitle", "status" },
-				new String[] { "rm", "lang", "noteTitle", "origin", "subType", "note", "subTitle", "status", "label",
-						"id", "hit", "madePublicDate", "databaseSource", "domainOrg", "relatedId", "org",
-						"documentType", "docType", "debateName", "tempLabel", "numberValue", "systemDate", "kallId",
-						"documentFormat", "documentUrlText", "documentUrlHtml", "documentStatusUrlXml",
-						"committeeReportUrlXml" },
-				new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "id"), null, null);
+		getGridFactory().createBasicBeanItemGrid(panelContent, DocumentElement.class, pageOrderBy, DOCUMENT,
+				COLUMN_ORDER,
+				HIDE_COLUMNS,
+				LISTENER, null, null);
 
 		panel.setContent(panelContent);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENTS_VIEW, ApplicationEventGroup.USER, NAME,

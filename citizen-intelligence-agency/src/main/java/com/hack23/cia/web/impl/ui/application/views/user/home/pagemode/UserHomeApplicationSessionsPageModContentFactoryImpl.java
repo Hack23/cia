@@ -51,6 +51,16 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class UserHomeApplicationSessionsPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
 
+	private static final ListPropertyConverter[] COLLECTION_PROPERTY_CONVERTERS = new ListPropertyConverter[] { new ListPropertyConverter(List.class, "page", "events","actionName")};
+
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid");
+
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion", "sessionId", "sessionType", "userId", "locale"};
+
+	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate","operatingSystem", "userAgentInformation", "ipInformation", "events"};
+
+	private static final String APPLICATION_SESSION = "ApplicationSession";
+
 	/** The Constant USERHOME. */
 	private static final String USERHOME = "Userhome:";
 
@@ -98,9 +108,9 @@ public final class UserHomeApplicationSessionsPageModContentFactoryImpl extends 
 			final DataContainer<ApplicationSession, Long> sessionDataContainer = getApplicationManager().getDataContainer(ApplicationSession.class);
 
 			getGridFactory().createBasicBeanItemGrid(panelContent, ApplicationSession.class, sessionDataContainer.findOrderedListByProperty(ApplicationSession_.userId,userAccount.getUserId(),ApplicationSession_.createdDate),
-					"ApplicationSession",
-					new String[] { "hjid", "createdDate","operatingSystem", "userAgentInformation", "ipInformation", "events"}, new String[] { "hjid", "modelObjectId", "modelObjectVersion", "sessionId", "sessionType", "userId", "locale"},
-					new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid"), null, new ListPropertyConverter[] { new ListPropertyConverter(List.class, "page", "events","actionName")});
+					APPLICATION_SESSION,
+					COLUMN_ORDER, HIDE_COLUMNS,
+					LISTENER, null, COLLECTION_PROPERTY_CONVERTERS);
 		}
 
 		panel.setCaption(NAME + "::" + USERHOME + USER_VISITS);

@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.user.home.pagemode;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,8 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
+
+	private static final List<String> AS_LIST = Arrays.asList("username","createdDate","email","country","numberOfVisits");
 
 	/** The Constant LOGOUT. */
 	private static final String LOGOUT = "Logout";
@@ -115,7 +118,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 
 				getFormFactory().addFormPanelTextFields(panelContent, userAccount, UserAccount.class,
-						Arrays.asList("username","createdDate","email","country","numberOfVisits"));
+						AS_LIST);
 
 				panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);
 

@@ -44,7 +44,7 @@ public class AppPublicSystemDocumentation {
 	public static final class SpringRepositoryComponentFinderStrategy extends AbstractSpringComponentFinderStrategy {
 		private static final String SPRING_REPOSITORY = "Spring Repository";
 
-		public SpringRepositoryComponentFinderStrategy(SupportingTypesStrategy... strategies) {
+		public SpringRepositoryComponentFinderStrategy(final SupportingTypesStrategy... strategies) {
 			super(strategies);
 		}
 
@@ -55,31 +55,31 @@ public class AppPublicSystemDocumentation {
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
-		Workspace workspace = new Workspace("Citizen Intelligence Agency", "Public System Documentation");
-		Model model = workspace.getModel();
-		ViewSet viewSet = workspace.getViews();
+	public static void main(final String[] args) throws Exception {
+		final Workspace workspace = new Workspace("Citizen Intelligence Agency", "Public System Documentation");
+		final Model model = workspace.getModel();
+		final ViewSet viewSet = workspace.getViews();
 
-		Person userPerson = model.addPerson("User", "User of the system");
-		Person adminPerson = model.addPerson("Admin", "Manager of the system");
+		final Person userPerson = model.addPerson("User", "User of the system");
+		final Person adminPerson = model.addPerson("Admin", "Manager of the system");
 
-		SoftwareSystem ciaSystem = model.addSoftwareSystem("Citizen Intelligence Agency System",
+		final SoftwareSystem ciaSystem = model.addSoftwareSystem("Citizen Intelligence Agency System",
 				"Tracking politicians like bugs!");
 
-		SoftwareSystem riksdagenApiSystem = model.addSoftwareSystem(Location.External, "data.riksdagen.se",
+		final SoftwareSystem riksdagenApiSystem = model.addSoftwareSystem(Location.External, "data.riksdagen.se",
 				"Public API Swedish Parliament data");
-		SoftwareSystem worldBankApiSystem = model.addSoftwareSystem(Location.External, "data.wordbank.org",
+		final SoftwareSystem worldBankApiSystem = model.addSoftwareSystem(Location.External, "data.wordbank.org",
 				"Public API Country indicators");
-		SoftwareSystem valApiSystem = model.addSoftwareSystem(Location.External, "www.val.se",
+		final SoftwareSystem valApiSystem = model.addSoftwareSystem(Location.External, "www.val.se",
 				"Public API Swedish Election data");
-		SoftwareSystem esvApiSystem = model.addSoftwareSystem(Location.External, "www.esv.se",
+		final SoftwareSystem esvApiSystem = model.addSoftwareSystem(Location.External, "www.esv.se",
 				"Public Data Swedish public sector spending data");
 
-		Container loadBalancerContainer = ciaSystem.addContainer("Loadbalancer", "Loadbalancer",
+		final Container loadBalancerContainer = ciaSystem.addContainer("Loadbalancer", "Loadbalancer",
 				"ALB/ELB/Apache/Nginx/HaProxy");
 
-		Container ciaWebContainer = ciaSystem.addContainer("Web Application", "Web Application", "Jetty/Java");
-		ComponentFinder componentFinderWeb = new ComponentFinder(ciaWebContainer, "com.hack23.cia",
+		final Container ciaWebContainer = ciaSystem.addContainer("Web Application", "Web Application", "Jetty/Java");
+		final ComponentFinder componentFinderWeb = new ComponentFinder(ciaWebContainer, "com.hack23.cia",
 				new SpringServiceComponentFinderStrategy(), new SpringComponentComponentFinderStrategy(),
 				new SpringRepositoryComponentFinderStrategy());
 		componentFinderWeb.exclude(".*pagemode.*");
@@ -91,7 +91,7 @@ public class AppPublicSystemDocumentation {
 
 		componentFinderWeb.findComponents();
 
-		Container relationalDatabase = ciaSystem.addContainer("Database", "Stores information", "Postgresql");
+		final Container relationalDatabase = ciaSystem.addContainer("Database", "Stores information", "Postgresql");
 		relationalDatabase.addTags("Database");
 
 		adminPerson.uses(ciaSystem, "Manages");
@@ -109,7 +109,7 @@ public class AppPublicSystemDocumentation {
 		viewSet.createContainerView(ciaSystem, "Container view", "Application Overview").addAllContainers();
 		viewSet.createComponentView(ciaWebContainer, "Web", "Web").addAllComponents();
 
-		Styles styles = viewSet.getConfiguration().getStyles();
+		final Styles styles = viewSet.getConfiguration().getStyles();
 		styles.addElementStyle(Tags.COMPONENT).background("#1168bd").color("#ffffff");
 		styles.addElementStyle(Tags.CONTAINER).background("#1168bd").color("#ffffff");
 		styles.addElementStyle(Tags.SOFTWARE_SYSTEM).background("#1168bd").color("#ffffff");
@@ -124,35 +124,35 @@ public class AppPublicSystemDocumentation {
 
 	}
 
-	private static void createDotAndPngFiles(Workspace workspace) throws IOException {
-		StringWriter stringWriter = new StringWriter();
-		DotWriter dotWriter = new DotWriter();
+	private static void createDotAndPngFiles(final Workspace workspace) throws IOException {
+		final StringWriter stringWriter = new StringWriter();
+		final DotWriter dotWriter = new DotWriter();
 		dotWriter.write(workspace, stringWriter);
 
-		String[] split = stringWriter.getBuffer().toString().split("#");
+		final String[] split = stringWriter.getBuffer().toString().split("#");
 
-		for (String string : split) {
+		for (final String string : split) {
 			if (!string.isEmpty()) {
-				String[] split2 = string.split(System.lineSeparator(), 2);
-				String fullFilePathDotFile = Paths.get(".").toAbsolutePath().normalize().toString() + File.separator
+				final String[] split2 = string.split(System.lineSeparator(), 2);
+				final String fullFilePathDotFile = Paths.get(".").toAbsolutePath().normalize().toString() + File.separator
 						+ "target" + File.separator + "site" + File.separator + "architecture" + File.separator
 						+ split2[0].trim().replace(" ", "_").replaceAll("_-_", "_") + ".dot";
 				FileUtils.writeStringToFile(new File(fullFilePathDotFile), split2[1], Charset.defaultCharset());
 
 				System.out.println("Writing file:" + fullFilePathDotFile);
 
-				List<String> commands = new ArrayList<String>();
+				final List<String> commands = new ArrayList<String>();
 				commands.add("/bin/bash");
 				commands.add("-c");
 				commands.add("dot dot -Tpng -O " + fullFilePathDotFile);
 
-				Runtime r = Runtime.getRuntime();
+				final Runtime r = Runtime.getRuntime();
 				try {
 					System.out.println("generate png :" + fullFilePathDotFile.replace(".dot", ".png"));
-					Process p = r.exec(commands.toArray(new String[commands.size()]));
+					final Process p = r.exec(commands.toArray(new String[commands.size()]));
 
 					p.waitFor();
-					BufferedReader b = new BufferedReader(new InputStreamReader(p.getInputStream()));
+					final BufferedReader b = new BufferedReader(new InputStreamReader(p.getInputStream()));
 					String line = "";
 
 					while ((line = b.readLine()) != null) {
@@ -160,7 +160,7 @@ public class AppPublicSystemDocumentation {
 					}
 
 					b.close();
-				} catch (Exception e) {
+				} catch (final Exception e) {
 					System.err.println("Failed to generate png (dot executable missing) for :" + fullFilePathDotFile);
 					e.printStackTrace();
 				}

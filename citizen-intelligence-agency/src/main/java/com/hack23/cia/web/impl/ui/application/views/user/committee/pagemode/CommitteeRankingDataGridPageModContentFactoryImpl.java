@@ -42,6 +42,17 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class CommitteeRankingDataGridPageModContentFactoryImpl extends AbstractCommitteeRankingPageModContentFactoryImpl {
 
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, "embeddedId.orgCode");
+
+	private static final String[] HIDE_COLUMNS = new String[] { "active" };
+
+	private static final String[] COLUMN_ORDER = new String[] { "embeddedId", "totalDaysServed", "currentMemberSize",
+			"totalAssignments", "firstAssignmentDate", "active", "lastAssignmentDate" };
+
+	private static final String[] NESTED_PROPERTIES = new String[] {"embeddedId.detail"};
+
+	private static final String COMMITTEES = "Committees";
+
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
 
@@ -75,14 +86,10 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 				.getDataContainer(ViewRiksdagenCommittee.class);
 
 
-//		politicianDocumentDataSource.addNestedContainerProperty("embeddedId.detail");
-//		politicianDocumentDataSource.addNestedContainerProperty("embeddedId.orgCode");
-
 		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenCommittee.class, dataContainer.getAllOrderBy(ViewRiksdagenCommittee_.currentMemberSize),
-				"Committees", new String[] {"embeddedId.detail"},
-				new String[] { "embeddedId", "totalDaysServed", "currentMemberSize",
-						"totalAssignments", "firstAssignmentDate", "active", "lastAssignmentDate" }, new String[] { "active" },
-				new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, "embeddedId.orgCode"), null, null);
+				COMMITTEES, NESTED_PROPERTIES,
+				COLUMN_ORDER, HIDE_COLUMNS,
+				LISTENER, null, null);
 
 		panel.setCaption(NAME + "::" + DATAGRID);
 

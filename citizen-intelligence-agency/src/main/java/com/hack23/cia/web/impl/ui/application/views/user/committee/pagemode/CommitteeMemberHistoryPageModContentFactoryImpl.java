@@ -44,6 +44,13 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class CommitteeMemberHistoryPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
 
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId");
+
+	private static final String[] HIDE_COLUMNS = new String[] { "roleId", "personId", "detail" };
+
+	private static final String[] COLUMN_ORDER = new String[] { "roleCode", "roleId", "personId", "firstName", "lastName", "party", "active", "totalDaysServed","detail",
+			"fromDate", "toDate" };
+
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = "Committee:";
 
@@ -90,9 +97,8 @@ public final class CommitteeMemberHistoryPageModContentFactoryImpl extends Abstr
 					panelContent, ViewRiksdagenCommitteeRoleMember.class, committeeRoleMemberDataContainer.getAllBy(ViewRiksdagenCommitteeRoleMember_.detail,
 							viewRiksdagenCommittee.getEmbeddedId().getDetail()),
 					MEMBER_HISTORY,
-					new String[] { "roleCode", "roleId", "personId", "firstName", "lastName", "party", "active", "totalDaysServed","detail",
-							"fromDate", "toDate" }, new String[] { "roleId", "personId", "detail" },
-					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null, null);
+					COLUMN_ORDER, HIDE_COLUMNS,
+					LISTENER, null, null);
 
 			panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER,

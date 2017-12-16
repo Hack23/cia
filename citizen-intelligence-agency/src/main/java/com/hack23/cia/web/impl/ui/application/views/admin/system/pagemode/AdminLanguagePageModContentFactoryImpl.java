@@ -45,6 +45,16 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, "hjid");
+
+	private static final List<String> AS_LIST = Arrays.asList( "languageName", "createdDate","lastModifiedDate" ,"languageEnabled" );
+
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId","modelObjectVersion", "createdDate","lastModifiedDate" };
+
+	private static final String[] COLUMN_ORDER = new String[] { "hjid", "languageName", "modelObjectVersion" };
+
+	private static final String LANGUAGE_DATA = "LanguageData";
+
 	/** The Constant ADMIN_LANGUAGE. */
 	private static final String ADMIN_LANGUAGE = "Admin Language";
 
@@ -84,9 +94,9 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
 		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(content,
-				LanguageData.class, pageOrderBy, "LanguageData",
-				new String[] { "hjid", "languageName", "modelObjectVersion" }, new String[] { "hjid", "modelObjectId","modelObjectVersion", "createdDate","lastModifiedDate" },
-				new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, "hjid"), null, null);
+				LanguageData.class, pageOrderBy, LANGUAGE_DATA,
+				COLUMN_ORDER, HIDE_COLUMNS,
+				LISTENER, null, null);
 
 		if (pageId != null && !pageId.isEmpty()) {
 
@@ -95,7 +105,7 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
 			if (languageData != null) {
 
 				getFormFactory().addFormPanelTextFields(content, languageData, LanguageData.class,
-						Arrays.asList( "languageName", "createdDate","lastModifiedDate" ,"languageEnabled" ));
+						AS_LIST);
 			}
 		}
 

@@ -34,6 +34,21 @@ import com.vaadin.ui.VerticalLayout;
  */
 public final class SearchDocumentResponseHandlerImpl implements SearchDocumentResponseHandler {
 
+	/** The Constant DOCUMENT_LISTENER. */
+	private static final PageItemPropertyClickListener DOCUMENT_LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "id");
+
+	/** The Constant DOCUMENT_GRID_HIDE_COLUMNS. */
+	private static final String[] DOCUMENT_GRID_HIDE_COLUMNS = new String[] { "rm", "lang", "noteTitle", "origin", "subType","note", "subTitle", "status", "label", "id", "hit", "madePublicDate", "databaseSource", "domainOrg", "relatedId",
+			"org", "documentType","docType", "debateName", "tempLabel", "numberValue", "systemDate", "kallId",
+			"documentFormat", "documentUrlText", "documentUrlHtml", "documentStatusUrlXml",
+			"committeeReportUrlXml" };
+
+	/** The Constant DOCUMENT_GRID_COLUMN_ORDER. */
+	private static final String[] DOCUMENT_GRID_COLUMN_ORDER = new String[] { "rm", "createdDate", "documentName", "subType", "title", "subTitle", "status" };
+
+	/** The Constant DOCUMENT. */
+	private static final String DOCUMENT = "Document";
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -69,13 +84,10 @@ public final class SearchDocumentResponseHandlerImpl implements SearchDocumentRe
 		searchresultLayout.addComponent(formPanel);
 		searchresultLayout.setExpandRatio(formPanel, ContentRatio.SMALL3);
 
-		gridFactory.createBasicBeanItemGrid(searchresultLayout, DocumentElement.class, response.getResultElement(), "Document",
-				new String[] { "rm", "createdDate", "documentName", "subType", "title", "subTitle", "status" },
-				new String[] { "rm", "lang", "noteTitle", "origin", "subType","note", "subTitle", "status", "label", "id", "hit", "madePublicDate", "databaseSource", "domainOrg", "relatedId",
-						"org", "documentType","docType", "debateName", "tempLabel", "numberValue", "systemDate", "kallId",
-						"documentFormat", "documentUrlText", "documentUrlHtml", "documentStatusUrlXml",
-						"committeeReportUrlXml" },
-				new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "id"), null, null);
+		gridFactory.createBasicBeanItemGrid(searchresultLayout, DocumentElement.class, response.getResultElement(), DOCUMENT,
+				DOCUMENT_GRID_COLUMN_ORDER,
+				DOCUMENT_GRID_HIDE_COLUMNS,
+				DOCUMENT_LISTENER, null, null);
 
 	}
 }

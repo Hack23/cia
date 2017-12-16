@@ -46,6 +46,9 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentReferencesPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid" };
+	private static final String[] COLUMN_ORDER = new String[] { "referenceType", "referenceDocumentId", "detail" };
+	private static final String DOCUMENT_REFERENCES2 = "Document references";
 	/** The Constant DOCUMENT_REFERENCES. */
 	private static final String DOCUMENT_REFERENCES = "Document References";
 
@@ -102,8 +105,8 @@ public final class DocumentReferencesPageModContentFactoryImpl extends AbstractD
 
 				getGridFactory().createBasicBeanItemGrid(
 						panelContent, DocumentReferenceData.class, documentStatusContainer.getDocumentReferenceContainer().getDocumentReferenceList(),
-						"Document references",
-						new String[] { "referenceType", "referenceDocumentId", "detail" }, new String[] { "hjid" }, null, null, null);
+						DOCUMENT_REFERENCES2,
+						COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
 			}
 
 

@@ -53,6 +53,22 @@ import com.vaadin.ui.VerticalLayout;
 public final class AdminApplicationConfigurationPageModContentFactoryImpl
 		extends AbstractAdminSystemPageModContentFactoryImpl {
 
+	private static final String UPDATE_CONFIGURATION = "Update Configuration";
+
+	private static final List<String> AS_LIST2 = Arrays.asList( "configTitle",
+			"configDescription", "componentTitle", "componentDescription", "propertyValue" );
+
+	private static final List<String> AS_LIST = Arrays.asList( "configurationGroup", "component","configTitle" ,"configDescription",
+			"propertyValue", "createdDate",
+			"updatedDate" );
+
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "updatedDate","propertyId" ,"componentDescription", "componentTitle"};
+
+	private static final String[] COLUMN_ORDER = new String[] { "hjid", "configurationGroup", "component", "componentTitle", "configTitle", "configDescription",
+			 "componentDescription", "propertyId", "propertyValue" };
+
+	private static final String APPLICATION_CONFIGURATION = "ApplicationConfiguration";
+
 	/** The Constant ADMIN_APPLICATION_CONFIGURATION. */
 	private static final String ADMIN_APPLICATION_CONFIGURATION = "Admin Application Configuration";
 
@@ -94,9 +110,8 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 
 		getGridFactory().createBasicBeanItemGrid(content,ApplicationConfiguration.class,
 				pageOrderBy,
-				"ApplicationConfiguration",
-				new String[] { "hjid", "configurationGroup", "component", "componentTitle", "configTitle", "configDescription",
-						 "componentDescription", "propertyId", "propertyValue" }, new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "updatedDate","propertyId" ,"componentDescription", "componentTitle"},
+				APPLICATION_CONFIGURATION,
+				COLUMN_ORDER, HIDE_COLUMNS,
 				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, "hjid"), null, null);
 
 		if (pageId != null && !pageId.isEmpty()) {
@@ -118,9 +133,7 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 
 				getFormFactory().addFormPanelTextFields(leftLayout, applicationConfiguration,
 						ApplicationConfiguration.class,
-						Arrays.asList( "configurationGroup", "component","configTitle" ,"configDescription",
-								"propertyValue", "createdDate",
-								"updatedDate" ));
+						AS_LIST);
 
 				final UpdateApplicationConfigurationRequest request = new UpdateApplicationConfigurationRequest();
 				request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
@@ -145,9 +158,8 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 				updateFormPanel.setContent(updateFormContent);
 
 				getFormFactory().addRequestInputFormFields(updateFormContent, request,
-						UpdateApplicationConfigurationRequest.class, Arrays.asList( "configTitle",
-								"configDescription", "componentTitle", "componentDescription", "propertyValue" ),
-						"Update Configuration", buttonListener);
+						UpdateApplicationConfigurationRequest.class, AS_LIST2,
+						UPDATE_CONFIGURATION, buttonListener);
 
 			}
 		}

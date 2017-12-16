@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
@@ -48,6 +49,9 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
+	private static final List<String> AS_LIST = Arrays.asList( "committee", "chamber", "processedIn", "decisionType",
+			"proposalNumber", "designation", "wording", "wording2", "wording3",
+			"wording4" );
 	/** The Constant DOCUMENT_DECISION. */
 	private static final String DOCUMENT_DECISION = "Document Decision";
 
@@ -100,9 +104,7 @@ public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDoc
 				getFormFactory().addFormPanelTextFields(panelContent,
 						documentStatusContainer.getDocumentProposal().getProposal(),
 						DocumentProposalData.class,
-						Arrays.asList( "committee", "chamber", "processedIn", "decisionType",
-								"proposalNumber", "designation", "wording", "wording2", "wording3",
-								"wording4" ));
+						AS_LIST);
 
 			}
 

@@ -48,6 +48,9 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DataSummaryOverviewPageModContentFactoryImpl extends AbstractDataSummaryPageModContentFactoryImpl {
 
+	private static final List<String> DATASUMMARY_FORM_FIELDS = Arrays.asList( "personSize", "totalBallotVotes", "committeeProposalSize", "voteSize",
+			"documentStatusSize", "documentElementSize", "documentContentSize" );
+
 	/** The Constant REMOVE_DOCUMENTS. */
 	private static final String REMOVE_DOCUMENTS = "Remove Documents";
 
@@ -110,8 +113,7 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 			final DataSummary dataSummary = all.get(0);
 
 			getFormFactory().addFormPanelTextFields(horizontalLayout, dataSummary, DataSummary.class,
-					Arrays.asList( "personSize", "totalBallotVotes", "committeeProposalSize", "voteSize",
-							"documentStatusSize", "documentElementSize", "documentContentSize" ));
+					DATASUMMARY_FORM_FIELDS);
 		}
 
 		final VerticalLayout overviewLayout = new VerticalLayout();

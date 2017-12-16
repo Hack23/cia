@@ -43,6 +43,11 @@ import com.vaadin.ui.VerticalLayout;
 public final class MinistryRankingDataGridPageModContentFactoryImpl
 		extends AbstractMinistryRankingPageModContentFactoryImpl {
 
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.MINISTRY_VIEW_NAME, "nameId");
+	private static final String[] HIDE_COLUMNS = new String[] {"active"};
+	private static final String[] COLUMN_ORDER = new String[] { "nameId", "totalDaysServed", "currentMemberSize", "totalAssignments",
+			"firstAssignmentDate", "lastAssignmentDate", "active" };
+	private static final String MINISTRIES = "Ministries";
 	/** The Constant DATAGRID. */
 	private static final String DATAGRID = "Datagrid";
 
@@ -73,9 +78,8 @@ public final class MinistryRankingDataGridPageModContentFactoryImpl
 				.getDataContainer(ViewRiksdagenMinistry.class);
 
 		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenMinistry.class, dataContainer.getAllOrderBy(ViewRiksdagenMinistry_.currentMemberSize),
-				"Ministries",
-				new String[] { "nameId", "totalDaysServed", "currentMemberSize", "totalAssignments",
-						"firstAssignmentDate", "lastAssignmentDate", "active" }, new String[] {"active"}, new PageItemPropertyClickListener(UserViews.MINISTRY_VIEW_NAME, "nameId"), null, null);
+				MINISTRIES,
+				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
 		panel.setCaption(NAME + "::" + DATAGRID);
 

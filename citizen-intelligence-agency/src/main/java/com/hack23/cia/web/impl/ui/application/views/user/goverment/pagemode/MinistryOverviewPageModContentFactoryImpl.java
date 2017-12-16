@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
@@ -43,6 +44,9 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
+
+	private static final List<String> AS_LIST = Arrays.asList( "nameId", "active", "firstAssignmentDate",
+			"lastAssignmentDate", "totalAssignments", "totalDaysServed", "currentMemberSize" );
 
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
@@ -86,8 +90,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 			panelContent.addComponent(addMinistryPageLink);
 
 			getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenMinistry,
-					ViewRiksdagenMinistry.class, Arrays.asList( "nameId", "active", "firstAssignmentDate",
-							"lastAssignmentDate", "totalAssignments", "totalDaysServed", "currentMemberSize" ));
+					ViewRiksdagenMinistry.class, AS_LIST);
 
 			panelContent.setExpandRatio(addMinistryPageLink, ContentRatio.SMALL);
 

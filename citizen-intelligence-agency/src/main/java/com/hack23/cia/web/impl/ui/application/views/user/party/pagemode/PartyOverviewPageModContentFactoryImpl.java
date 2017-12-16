@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
@@ -36,13 +37,21 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class OverviewPageModContentFactoryImpl.
  */
 @Component
 public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
+	private static final List<String> AS_LIST2 = Arrays.asList("active", "firstAssignmentDate", "lastAssignmentDate", "currentAssignments",
+			"totalAssignments", "totalDaysServed", "activeEu", "totalActiveEu", "totalDaysServedEu",
+			"activeGovernment", "totalActiveGovernment", "totalDaysServedGovernment",
+			"activeCommittee", "totalActiveCommittee", "totalDaysServedCommittee",
+			"activeParliament", "totalActiveParliament", "totalDaysServedParliament");
+
+	private static final List<String> AS_LIST = Arrays.asList("partyName", "partyId", "headCount", "partyNumber",
+			"registeredDate", "website");
+	
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
 
@@ -67,57 +76,35 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 		final String pageId = getPageId(parameters);
 
-
 		final DataContainer<ViewRiksdagenParty, String> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenParty.class);
 
 		final DataContainer<ViewRiksdagenPartySummary, String> partySummarydataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartySummary.class);
 
-		final ViewRiksdagenParty viewRiksdagenParty = dataContainer
-				.load(pageId);
+		final ViewRiksdagenParty viewRiksdagenParty = dataContainer.load(pageId);
 
 		if (viewRiksdagenParty != null) {
 
 			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-
-			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
+			LabelFactory.createHeader2Label(panelContent, OVERVIEW);
 
 			final Link addPartyPageLink = getPageLinkFactory().addPartyPageLink(viewRiksdagenParty);
 			panelContent.addComponent(addPartyPageLink);
 
 			panelContent.setExpandRatio(addPartyPageLink, ContentRatio.SMALL);
 
-			getFormFactory().addFormPanelTextFields(
-					panelContent,
-					viewRiksdagenParty,
-					ViewRiksdagenParty.class,
-					Arrays.asList( "partyName", "partyId",
-							"headCount", "partyNumber", "registeredDate",
-					"website" ));
+			getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenParty, ViewRiksdagenParty.class,
+					AS_LIST);
 
-			final ViewRiksdagenPartySummary viewRiksdagenPartySummary = partySummarydataContainer
-					.load(pageId);
+			final ViewRiksdagenPartySummary viewRiksdagenPartySummary = partySummarydataContainer.load(pageId);
 
 			if (viewRiksdagenPartySummary != null) {
 
-
-
-				getFormFactory().addFormPanelTextFields(panelContent,
-								viewRiksdagenPartySummary,
-								ViewRiksdagenPartySummary.class,
-								Arrays.asList( "active",
-										"firstAssignmentDate", "lastAssignmentDate",
-										"currentAssignments", "totalAssignments",
-										"totalDaysServed", "activeEu", "totalActiveEu",
-										"totalDaysServedEu", "activeGovernment",
-										"totalActiveGovernment",
-										"totalDaysServedGovernment", "activeCommittee",
-										"totalActiveCommittee",
-										"totalDaysServedCommittee", "activeParliament",
-										"totalActiveParliament",
-								"totalDaysServedParliament" ));
+				getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenPartySummary,
+						ViewRiksdagenPartySummary.class,
+						AS_LIST2);
 
 			}
 
@@ -134,6 +121,5 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 		return panelContent;
 
 	}
-
 
 }

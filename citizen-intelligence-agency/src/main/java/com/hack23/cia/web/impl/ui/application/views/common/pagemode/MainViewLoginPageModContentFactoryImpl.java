@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
@@ -47,6 +48,12 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Component
 public final class MainViewLoginPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+
+	private static final String LOGIN = "Login";
+
+	private static final String REGISTER_A_NEW_USER = "Register a new user";
+
+	private static final List<String> AS_LIST = Arrays.asList( "email", "otpCode", "userpassword" );
 
 	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_MAIN. */
 	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = "Citizen Intelligence Agency";
@@ -98,7 +105,7 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractPageMo
 		final ClickListener loginListener = new ApplicationLoginListener(loginRequest);
 		getFormFactory().addRequestInputFormFields(formContent, loginRequest,
 				LoginRequest.class,
-				Arrays.asList( "email", "otpCode", "userpassword" ), "Login",
+				AS_LIST, LOGIN,
 				loginListener);
 
 		final VerticalLayout overviewLayout = new VerticalLayout();
@@ -107,7 +114,7 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractPageMo
 		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
 		final ResponsiveRow grid = createGridLayout(overviewLayout);		
-		createRowComponent(grid,loginLayout,"Register a new user");
+		createRowComponent(grid,loginLayout,REGISTER_A_NEW_USER);
 		
 		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,

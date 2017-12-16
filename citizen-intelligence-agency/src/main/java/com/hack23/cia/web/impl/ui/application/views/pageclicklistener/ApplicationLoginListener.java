@@ -66,7 +66,7 @@ public final class ApplicationLoginListener implements ClickListener {
 
 
 	@Override
-	public void buttonClick(ClickEvent event) {
+	public void buttonClick(final ClickEvent event) {
 		final LoginResponse response = (LoginResponse) ApplicationMangerAccess.getApplicationManager().service(loginRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_MSG_LOGIN_REQUEST,loginRequest.getEmail());

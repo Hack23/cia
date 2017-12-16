@@ -45,6 +45,16 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
+	private static final List<String> AS_LIST = Arrays.asList("portalName", "description", "portalType",
+			"googleMapApiKey");
+
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "googleMapApiKey", "modelObjectVersion" };
+
+	private static final String[] COLUMN_ORDER = new String[] { "hjid", "portalName", "description", "portalType", "googleMapApiKey",
+			"modelObjectVersion" };
+
+	private static final String PORTAL2 = "Portal";
+
 	/** The Constant ADMIN_PORTAL. */
 	private static final String ADMIN_PORTAL = "Admin Portal";
 
@@ -84,9 +94,8 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 
 		getGridFactory().createBasicBeanItemGrid(content, Portal.class,
 				pageOrderBy,
-				"Portal",
-				new String[] { "hjid", "portalName", "description", "portalType", "googleMapApiKey",
-						"modelObjectVersion" }, new String[] { "hjid", "modelObjectId", "googleMapApiKey", "modelObjectVersion" },
+				PORTAL2,
+				COLUMN_ORDER, HIDE_COLUMNS,
 				new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid"), null, null);
 
 		if (pageId != null && !pageId.isEmpty()) {
@@ -96,8 +105,7 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 			if (portal != null) {
 
 				getFormFactory().addFormPanelTextFields(content, portal, Portal.class,
-						Arrays.asList("portalName", "description", "portalType",
-								"googleMapApiKey"));
+						AS_LIST);
 			}
 		}
 

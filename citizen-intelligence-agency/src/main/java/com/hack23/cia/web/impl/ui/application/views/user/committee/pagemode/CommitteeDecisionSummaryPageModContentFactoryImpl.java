@@ -48,6 +48,21 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 		extends AbstractCommitteePageModContentFactoryImpl {
 
+	private static final String BALLOT_ID = "ballotId";
+
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
+
+	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "embeddedId.hangarId", "embeddedId.id", "endNumber", "org",
+			"committeeProposalUrlXml", BALLOT_ID, "againstProposalParties", "againstProposalNumber",
+			"createdDate" };
+
+	private static final String[] COLUMN_ORDER = new String[] { "createdDate", "publicDate", "committeeReport", "embeddedId.hangarId",
+			"embeddedId.id", "embeddedId.issueNummer", "rm", "decisionType", "winner", "title",
+			"header", "endNumber", "org", "committeeProposalUrlXml", BALLOT_ID,
+			"againstProposalParties", "againstProposalNumber" };
+
+	private static final String[] NESTED_PROPERTIES = new String[] { "embeddedId.hangarId", "embeddedId.id", "embeddedId.issueNummer" };
+
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = "Committee:";
 
@@ -94,15 +109,10 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 							ViewRiksdagenCommitteeDecisions_.createdDate);
 
 			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenCommitteeDecisions.class,decisionPartySummaryList,
-					DECISION_SUMMARY, new String[] { "embeddedId.hangarId", "embeddedId.id", "embeddedId.issueNummer" },
-					new String[] { "createdDate", "publicDate", "committeeReport", "embeddedId.hangarId",
-							"embeddedId.id", "embeddedId.issueNummer", "rm", "decisionType", "winner", "title",
-							"header", "endNumber", "org", "committeeProposalUrlXml", "ballotId",
-							"againstProposalParties", "againstProposalNumber" },
-					new String[] { "embeddedId", "embeddedId.hangarId", "embeddedId.id", "endNumber", "org",
-							"committeeProposalUrlXml", "ballotId", "againstProposalParties", "againstProposalNumber",
-							"createdDate" },
-					new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, "ballotId"), "ballotId", null);
+					DECISION_SUMMARY, NESTED_PROPERTIES,
+					COLUMN_ORDER,
+					HIDE_COLUMNS,
+					LISTENER, BALLOT_ID, null);
 
 			panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER,

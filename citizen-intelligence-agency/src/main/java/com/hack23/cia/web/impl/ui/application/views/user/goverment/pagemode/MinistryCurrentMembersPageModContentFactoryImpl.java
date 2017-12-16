@@ -44,6 +44,13 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryCurrentMembersPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId");
+
+	private static final String[] HIDE_COLUMNS = new String[] { "roleId", "personId", "detail", "active" };
+
+	private static final String[] COLUMN_ORDER = new String[] { "roleCode", "roleId", "personId", "firstName", "lastName", "party", "active", "totalDaysServed", "detail",
+			"fromDate", "toDate" };
+
 	/** The Constant CURRENT_MEMBERS. */
 	private static final String CURRENT_MEMBERS = "Current Members";
 
@@ -91,9 +98,8 @@ public final class MinistryCurrentMembersPageModContentFactoryImpl extends Abstr
 							new Object[] { viewRiksdagenMinistry.getNameId(), Boolean.TRUE },
 							ViewRiksdagenGovermentRoleMember_.detail, ViewRiksdagenGovermentRoleMember_.active),
 					CURRENT_MEMBERS,
-					new String[] { "roleCode", "roleId", "personId", "firstName", "lastName", "party", "active", "totalDaysServed", "detail",
-							"fromDate", "toDate" }, new String[] { "roleId", "personId", "detail", "active" },
-					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId"), null, null);
+					COLUMN_ORDER, HIDE_COLUMNS,
+					LISTENER, null, null);
 
 			panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
