@@ -122,8 +122,8 @@
     <cia.project.versions.hibernate.build>5.2.12.Final</cia.project.versions.hibernate.build>
     <cia.project.versions.hibernate.tools>5.2.8.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.0.Final</cia.project.versions.hibernate.jpa2>
-    <cia.project.versions.hibernate.validator>6.0.6.Final</cia.project.versions.hibernate.validator>
-    <cia.project.versions.hibernate.build.validator>6.0.6.Final</cia.project.versions.hibernate.build.validator>
+    <cia.project.versions.hibernate.validator>6.0.7.Final</cia.project.versions.hibernate.validator>
+    <cia.project.versions.hibernate.build.validator>6.0.7.Final</cia.project.versions.hibernate.build.validator>
     <cia.project.versions.bytebuddy>1.7.9</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.196</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.1.4</cia.project.versions.postgresql>
@@ -900,7 +900,7 @@
             <dependency>
               <groupId>javax.validation</groupId>
               <artifactId>validation-api</artifactId>
-              <version>2.0.0.Final</version>
+              <version>2.0.1.Final</version>
             </dependency>
           </dependencies>
         </plugin>

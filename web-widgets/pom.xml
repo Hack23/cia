@@ -31,7 +31,7 @@
     <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-spring</artifactId>
-      <version>2.1.0.beta2</version>
+      <version>3.0.0.alpha1</version>
       <exclusions>
         <exclusion>
           <artifactId>commons-logging</artifactId>
@@ -214,7 +214,7 @@
     <dependency>
       <groupId>com.byteowls</groupId>
       <artifactId>vaadin-chartjs</artifactId>
-      <version>1.0.0</version>
+      <version>1.1.1</version>
       <exclusions>
         <exclusion>
           <artifactId>vaadin-server</artifactId>
