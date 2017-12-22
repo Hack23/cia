@@ -94,6 +94,13 @@ public interface ChartOptions {
 	 */
 	Options createOptionsXYDateFloatLogYAxisLegendOutside(Series series);
 
+	/**
+	 * Creates the options XY date float legend inside one column.
+	 *
+	 * @param series
+	 *            the series
+	 * @return the options
+	 */
 	Options createOptionsXYDateFloatLegendInsideOneColumn(Series series);
 
 }

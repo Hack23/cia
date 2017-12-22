@@ -102,6 +102,13 @@ public final class SendEmailService extends AbstractBusinessServiceImpl<SendEmai
 		return response;
 	}
 
+	/**
+	 * Checks if is valid email address.
+	 *
+	 * @param email
+	 *            the email
+	 * @return true, if is valid email address
+	 */
 	public static boolean isValidEmailAddress(final String email) {
 		   boolean result = true;
 		   try {

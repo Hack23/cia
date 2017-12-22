@@ -29,6 +29,9 @@ public final class RemoveDataRequest extends AbstractRequest {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * The Enum DataType.
+	 */
 	public enum DataType {
 		POLITICIAN,DOCUMENTS,APPLICATION_HISTORY;
 	}

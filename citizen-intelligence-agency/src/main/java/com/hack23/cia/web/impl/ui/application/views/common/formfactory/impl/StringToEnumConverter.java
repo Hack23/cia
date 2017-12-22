@@ -22,6 +22,9 @@ import com.vaadin.data.Converter;
 import com.vaadin.data.Result;
 import com.vaadin.data.ValueContext;
 
+/**
+ * The Class StringToEnumConverter.
+ */
 final class StringToEnumConverter implements Converter<String, Enum> {
 
 	/**

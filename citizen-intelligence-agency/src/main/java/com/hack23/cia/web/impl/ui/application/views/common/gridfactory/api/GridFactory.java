@@ -33,8 +33,12 @@ public interface GridFactory {
 	/**
 	 * Creates a new Grid object.
 	 *
+	 * @param <T>
+	 *            the generic type
 	 * @param panelContent
 	 *            the panel content
+	 * @param dataType
+	 *            the data type
 	 * @param datasource
 	 *            the datasource
 	 * @param caption
@@ -56,8 +60,12 @@ public interface GridFactory {
 	/**
 	 * Creates a new Grid object.
 	 *
+	 * @param <T>
+	 *            the generic type
 	 * @param panelContent
 	 *            the panel content
+	 * @param dataType
+	 *            the data type
 	 * @param datasource
 	 *            the datasource
 	 * @param caption

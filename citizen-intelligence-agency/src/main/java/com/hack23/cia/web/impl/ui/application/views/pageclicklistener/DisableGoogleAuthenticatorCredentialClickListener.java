@@ -28,6 +28,9 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
 
+/**
+ * The Class DisableGoogleAuthenticatorCredentialClickListener.
+ */
 public final class DisableGoogleAuthenticatorCredentialClickListener implements ClickListener {
 
 	/** The Constant PROBLEM_ENABLE_GOOGLE_AUTHENTICATOR_SESSIONID. */

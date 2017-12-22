@@ -239,10 +239,10 @@ public class LoginBlockedAccessImpl implements LoginBlockedAccess {
 	/**
 	 * The Class LoginBlockResultImpl.
 	 */
-	class LoginBlockResultImpl implements LoginBlockResult {
+	final class LoginBlockResultImpl implements LoginBlockResult {
 
 		/** The is blocked. */
-		private boolean isBlocked = false;
+		private boolean isBlocked;
 
 		/** The messages. */
 		private final List<String> messages = new ArrayList<>();
@@ -258,7 +258,7 @@ public class LoginBlockedAccessImpl implements LoginBlockedAccess {
 		 * @param isBlocked
 		 *            the new blocked
 		 */
-		public void setBlocked(final boolean isBlocked) {
+		public void setBlocked(boolean isBlocked) {
 			this.isBlocked = isBlocked;
 		}
 

@@ -29,7 +29,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.DataSummary;
 import com.hack23.cia.service.data.api.CommitteeProposalComponentDataDAO;

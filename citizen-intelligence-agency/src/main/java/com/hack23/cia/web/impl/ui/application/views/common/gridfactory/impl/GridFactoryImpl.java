@@ -188,6 +188,12 @@ public final class GridFactoryImpl implements GridFactory {
 		}
 	}
 
+	/**
+	 * The Class BeanNestedPropertyValueProvider.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 */
 	public class BeanNestedPropertyValueProvider<T> implements ValueProvider<T, String> {
 
 		/**
@@ -197,6 +203,12 @@ public final class GridFactoryImpl implements GridFactory {
 		
 		private final String property;
 				
+		/**
+		 * Instantiates a new bean nested property value provider.
+		 *
+		 * @param property
+		 *            the property
+		 */
 		public BeanNestedPropertyValueProvider(final String property) {
 			super();
 			this.property = property;
