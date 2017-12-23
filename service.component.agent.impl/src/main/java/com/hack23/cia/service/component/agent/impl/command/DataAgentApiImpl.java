@@ -90,12 +90,12 @@ final class DataAgentApiImpl implements DataAgentApi {
 		switch (workOrder.getTarget()) {
 		case MODEL_EXTERNAL_RIKSDAGEN:
 			for (final RiksdagenDataSources datasource :RiksdagenDataSources.values()) {
-				jmsSender.send(riksdagenApiDestination,	datasource);
+				jmsSender.send(riksdagenApiDestination, datasource);
 			}
 			break;
 		case MODEL_EXTERNAL_WORLDBANK:
 			for (final WorldBankDataSources datasource :WorldBankDataSources.values()) {
-				jmsSender.send(worldBankApiDestination,datasource);
+				jmsSender.send(worldBankApiDestination, datasource);
 			}
 			break;
 		default:

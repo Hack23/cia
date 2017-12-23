@@ -27,9 +27,7 @@ import com.vaadin.data.ValueContext;
  */
 final class StringToEnumConverter implements Converter<String, Enum> {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	@Override

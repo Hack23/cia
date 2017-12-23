@@ -30,10 +30,7 @@ import com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder;
  */
 public final class AgentJob extends AbstractJob {
 
-
-	/**
-	 *
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	@Override

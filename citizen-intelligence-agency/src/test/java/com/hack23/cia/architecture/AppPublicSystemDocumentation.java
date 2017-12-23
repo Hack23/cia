@@ -19,14 +19,18 @@ import com.structurizr.analysis.ComponentFinder;
 import com.structurizr.analysis.SpringComponentComponentFinderStrategy;
 import com.structurizr.analysis.SpringServiceComponentFinderStrategy;
 import com.structurizr.analysis.SupportingTypesStrategy;
+import com.structurizr.io.WorkspaceWriterException;
 import com.structurizr.io.dot.DotWriter;
+import com.structurizr.io.plantuml.PlantUMLWriter;
 import com.structurizr.model.Component;
 import com.structurizr.model.Container;
+import com.structurizr.model.Enterprise;
 import com.structurizr.model.Location;
 import com.structurizr.model.Model;
 import com.structurizr.model.Person;
 import com.structurizr.model.SoftwareSystem;
 import com.structurizr.model.Tags;
+import com.structurizr.view.EnterpriseContextView;
 import com.structurizr.view.Shape;
 import com.structurizr.view.Styles;
 import com.structurizr.view.ViewSet;
@@ -62,7 +66,7 @@ public class AppPublicSystemDocumentation {
 
 		final Person userPerson = model.addPerson("User", "User of the system");
 		final Person adminPerson = model.addPerson("Admin", "Manager of the system");
-
+		
 		final SoftwareSystem ciaSystem = model.addSoftwareSystem("Citizen Intelligence Agency System",
 				"Tracking politicians like bugs!");
 
@@ -104,7 +108,11 @@ public class AppPublicSystemDocumentation {
 
 		ciaWebContainer.uses(relationalDatabase, "JDBC");
 
-		viewSet.createEnterpriseContextView("Enterprise", "Enterprise").addAllElements();
+		final EnterpriseContextView enterpriseContextView = viewSet.createEnterpriseContextView("Enterprise", "Enterprise");		
+		enterpriseContextView.addAllElements();
+		Enterprise enterprise = new Enterprise("Hack23");
+		enterpriseContextView.getModel().setEnterprise(enterprise);
+		
 		viewSet.createSystemContextView(ciaSystem, "System context", "System context").addAllElements();
 		viewSet.createContainerView(ciaSystem, "Container view", "Application Overview").addAllContainers();
 		viewSet.createComponentView(ciaWebContainer, "Web", "Web").addAllComponents();
@@ -121,9 +129,42 @@ public class AppPublicSystemDocumentation {
 		// structurizrClient.putWorkspace(WORKSPACE_ID, workspace);
 
 		createDotAndPngFiles(workspace);
-
+		printPlantUml(workspace);
 	}
 
+	
+	private static void printPlantUml(final Workspace workspace) throws WorkspaceWriterException, IOException {
+		StringWriter stringWriter = new StringWriter();
+		PlantUMLWriter plantUMLWriter = new PlantUMLWriter();
+		plantUMLWriter.write(workspace, stringWriter);
+		String allPlantUmlsString = stringWriter.toString();
+		
+		String componentUml = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"), allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
+		allPlantUmlsString = allPlantUmlsString.replace(componentUml,"");
+		writePlantUml("Citizen-Intelligence-Agency-System-Web-Application-Components",componentUml);
+		
+		String containersUml = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"), allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
+		allPlantUmlsString = allPlantUmlsString.replace(containersUml,"");
+		writePlantUml("Citizen-Intelligence-Agency-System-Containers",containersUml);
+		
+		String systemUml = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"), allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
+		allPlantUmlsString = allPlantUmlsString.replace(systemUml,"");
+		writePlantUml("Citizen-Intelligence-Agency-System-System-Context",systemUml);
+		
+		String enterpriseUml = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"), allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
+		allPlantUmlsString = allPlantUmlsString.replace(enterpriseUml,"");
+		writePlantUml("Enterprise-Context-for-Hack23",enterpriseUml);
+	}
+
+
+	private static void writePlantUml(String filename,String content) throws IOException {
+		final String fullFilePathPlantUmlFile = Paths.get(".").toAbsolutePath().normalize().toString() + File.separator
+				+ "target" + File.separator + "site" + File.separator + "architecture" + File.separator
+				+ filename + ".plantuml";
+		System.out.println("Writing file:" + fullFilePathPlantUmlFile);
+		FileUtils.writeStringToFile(new File(fullFilePathPlantUmlFile), content, Charset.defaultCharset());
+	}
+	
 	private static void createDotAndPngFiles(final Workspace workspace) throws IOException {
 		final StringWriter stringWriter = new StringWriter();
 		final DotWriter dotWriter = new DotWriter();

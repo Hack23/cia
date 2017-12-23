@@ -150,14 +150,8 @@ public final class GridFactoryImpl implements GridFactory {
 	 *            the column order
 	 * @param grid
 	 *            the grid
-	 */
-	/**
-	 * Creates the grid cell filter.
-	 *
-	 * @param columnOrder
-	 *            the column order
-	 * @param grid
-	 *            the grid
+	 * @param dataType
+	 *            the data type
 	 */
 	private static void createGridCellFilter(final String[] columnOrder, final Grid grid,final Class dataType) {
 		if (columnOrder != null) {			
@@ -196,11 +190,10 @@ public final class GridFactoryImpl implements GridFactory {
 	 */
 	public class BeanNestedPropertyValueProvider<T> implements ValueProvider<T, String> {
 
-		/**
-		 * 
-		 */
+		/** The Constant serialVersionUID. */
 		private static final long serialVersionUID = 1L;
 		
+		/** The property. */
 		private final String property;
 				
 		/**

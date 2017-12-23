@@ -22,14 +22,12 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
 /**
- * The Class AgentJob.
+ * The Class UpdateSearchIndexJob.
  */
 public final class UpdateSearchIndexJob extends AbstractJob {
 
 
-	/**
-	 *
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	@Override
