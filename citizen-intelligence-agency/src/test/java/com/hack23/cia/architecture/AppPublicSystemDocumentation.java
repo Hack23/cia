@@ -1,3 +1,21 @@
+/*
+ * Copyright 2014 James Pether Sörling
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
 package com.hack23.cia.architecture;
 
 import java.io.BufferedReader;
@@ -35,6 +53,12 @@ import com.structurizr.view.Shape;
 import com.structurizr.view.Styles;
 import com.structurizr.view.ViewSet;
 
+import net.sourceforge.plantuml.Run;
+
+
+/**
+ * The Class AppPublicSystemDocumentation.
+ */
 public class AppPublicSystemDocumentation {
 
 	// Public site https://structurizr.com/share/37264#Enterprise
@@ -45,9 +69,18 @@ public class AppPublicSystemDocumentation {
 	private static final String API_KEY = "";
 	private static final String API_SECRET = "";
 
+	/**
+	 * The Class SpringRepositoryComponentFinderStrategy.
+	 */
 	public static final class SpringRepositoryComponentFinderStrategy extends AbstractSpringComponentFinderStrategy {
 		private static final String SPRING_REPOSITORY = "Spring Repository";
 
+		/**
+		 * Instantiates a new spring repository component finder strategy.
+		 *
+		 * @param strategies
+		 *            the strategies
+		 */
 		public SpringRepositoryComponentFinderStrategy(final SupportingTypesStrategy... strategies) {
 			super(strategies);
 		}
@@ -59,6 +92,14 @@ public class AppPublicSystemDocumentation {
 		}
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 * @throws Exception
+	 *             the exception
+	 */
 	public static void main(final String[] args) throws Exception {
 		final Workspace workspace = new Workspace("Citizen Intelligence Agency", "Public System Documentation");
 		final Model model = workspace.getModel();
@@ -130,10 +171,24 @@ public class AppPublicSystemDocumentation {
 
 		createDotAndPngFiles(workspace);
 		printPlantUml(workspace);
+		Run.main(new String[] { Paths.get(".").toAbsolutePath().normalize().toString() + File.separator
+				+ "target" + File.separator + "site" + File.separator + "architecture" + File.separator});
 	}
 
 	
-	private static void printPlantUml(final Workspace workspace) throws WorkspaceWriterException, IOException {
+	/**
+	 * Prints the plant uml.
+	 *
+	 * @param workspace
+	 *            the workspace
+	 * @throws WorkspaceWriterException
+	 *             the workspace writer exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws InterruptedException
+	 *             the interrupted exception
+	 */
+	private static void printPlantUml(final Workspace workspace) throws WorkspaceWriterException, IOException, InterruptedException {
 		StringWriter stringWriter = new StringWriter();
 		PlantUMLWriter plantUMLWriter = new PlantUMLWriter();
 		plantUMLWriter.write(workspace, stringWriter);
@@ -157,14 +212,34 @@ public class AppPublicSystemDocumentation {
 	}
 
 
-	private static void writePlantUml(String filename,String content) throws IOException {
+	/**
+	 * Write plant uml.
+	 *
+	 * @param filename
+	 *            the filename
+	 * @param content
+	 *            the content
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws InterruptedException
+	 *             the interrupted exception
+	 */
+	private static void writePlantUml(String filename,String content) throws IOException, InterruptedException {
 		final String fullFilePathPlantUmlFile = Paths.get(".").toAbsolutePath().normalize().toString() + File.separator
 				+ "target" + File.separator + "site" + File.separator + "architecture" + File.separator
-				+ filename + ".plantuml";
+				+ filename + ".pu";
 		System.out.println("Writing file:" + fullFilePathPlantUmlFile);
-		FileUtils.writeStringToFile(new File(fullFilePathPlantUmlFile), content, Charset.defaultCharset());
+		FileUtils.writeStringToFile(new File(fullFilePathPlantUmlFile), content, Charset.defaultCharset());		
 	}
 	
+	/**
+	 * Creates the dot and png files.
+	 *
+	 * @param workspace
+	 *            the workspace
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
 	private static void createDotAndPngFiles(final Workspace workspace) throws IOException {
 		final StringWriter stringWriter = new StringWriter();
 		final DotWriter dotWriter = new DotWriter();
