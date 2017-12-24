@@ -65,7 +65,7 @@
     <dependency>
       <groupId>net.sourceforge.plantuml</groupId>
       <artifactId>plantuml</artifactId>
-      <version>8059</version>
+      <version>1.2017.20</version>
       <scope>test</scope>
     </dependency>
     <dependency>

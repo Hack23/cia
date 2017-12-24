@@ -30,6 +30,7 @@ import org.apache.commons.io.FileUtils;
 import com.structurizr.Workspace;
 import com.structurizr.analysis.AbstractSpringComponentFinderStrategy;
 import com.structurizr.analysis.ComponentFinder;
+import com.structurizr.analysis.ReferencedTypesSupportingTypesStrategy;
 import com.structurizr.analysis.SpringComponentComponentFinderStrategy;
 import com.structurizr.analysis.SpringServiceComponentFinderStrategy;
 import com.structurizr.analysis.SupportingTypesStrategy;
@@ -37,12 +38,17 @@ import com.structurizr.io.WorkspaceWriterException;
 import com.structurizr.io.plantuml.PlantUMLWriter;
 import com.structurizr.model.Component;
 import com.structurizr.model.Container;
+import com.structurizr.model.ContainerInstance;
+import com.structurizr.model.DeploymentNode;
 import com.structurizr.model.Enterprise;
 import com.structurizr.model.Location;
 import com.structurizr.model.Model;
 import com.structurizr.model.Person;
+import com.structurizr.model.Relationship;
 import com.structurizr.model.SoftwareSystem;
 import com.structurizr.model.Tags;
+import com.structurizr.util.MapUtils;
+import com.structurizr.view.DeploymentView;
 import com.structurizr.view.EnterpriseContextView;
 import com.structurizr.view.Shape;
 import com.structurizr.view.Styles;
@@ -122,11 +128,9 @@ public class AppPublicSystemDocumentation {
 		final ComponentFinder componentFinderWeb = new ComponentFinder(ciaWebContainer, "com.hack23.cia",
 				new SpringServiceComponentFinderStrategy(), new SpringComponentComponentFinderStrategy(),
 				new SpringRepositoryComponentFinderStrategy());
-		componentFinderWeb.exclude(".*pagemode.*");
-		componentFinderWeb.exclude(".*common.*");
-		componentFinderWeb.exclude(".*action.*");
-		componentFinderWeb.exclude(".*listener.*");
 		componentFinderWeb.exclude(".*ui.*");
+		componentFinderWeb.exclude(".*service.external.*");
+		componentFinderWeb.exclude(".*service.component.*");		
 		componentFinderWeb.exclude(".*package.*");
 
 		componentFinderWeb.findComponents();
@@ -152,6 +156,24 @@ public class AppPublicSystemDocumentation {
 		viewSet.createSystemContextView(ciaSystem, "System context", "System context").addAllElements();
 		viewSet.createContainerView(ciaSystem, "Container view", "Application Overview").addAllContainers();
 		viewSet.createComponentView(ciaWebContainer, "Web", "Web").addAllComponents();
+				
+		DeploymentNode applicationLoadbalancerNode = model.addDeploymentNode("Application Loadbalancer", "AWS", "ALB");
+		applicationLoadbalancerNode.add(loadBalancerContainer);
+
+		DeploymentNode webNode = model.addDeploymentNode("Application", "AWS", "EC2",2);
+		webNode.add(ciaWebContainer);
+		applicationLoadbalancerNode.uses(webNode, "Uses", "https");
+
+		DeploymentNode databaseNode = model.addDeploymentNode("Database", "AWS", "RDS",2);
+		databaseNode.add(relationalDatabase);
+		webNode.uses(databaseNode, "Uses", "jdbc");
+		
+		DeploymentView developmentDeploymentView = viewSet.createDeploymentView(ciaSystem, "Deployment",
+				"Deployment Aws.");
+		developmentDeploymentView.add(applicationLoadbalancerNode);
+		developmentDeploymentView.add(webNode);
+		developmentDeploymentView.add(databaseNode);
+		
 
 		final Styles styles = viewSet.getConfiguration().getStyles();
 		styles.addElementStyle(Tags.COMPONENT).background("#1168bd").color("#ffffff");
@@ -165,6 +187,7 @@ public class AppPublicSystemDocumentation {
 		// structurizrClient.putWorkspace(WORKSPACE_ID, workspace);
 
 		printPlantUml(workspace);
+		System.setProperty("PLANTUML_LIMIT_SIZE", "8192");
 		Run.main(new String[] { Paths.get(".").toAbsolutePath().normalize().toString() + File.separator
 				+ "target" + File.separator + "site" + File.separator + "architecture" + File.separator});
 	}
@@ -188,6 +211,10 @@ public class AppPublicSystemDocumentation {
 		plantUMLWriter.write(workspace, stringWriter);
 		String allPlantUmlsString = stringWriter.toString();
 		
+		String systemUml2 = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"), allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
+		allPlantUmlsString = allPlantUmlsString.replace(systemUml2,"");
+		writePlantUml("Citizen-Intelligence-Agency-System-System-Deployment",systemUml2);
+		
 		String componentUml = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"), allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
 		allPlantUmlsString = allPlantUmlsString.replace(componentUml,"");
 		writePlantUml("Citizen-Intelligence-Agency-System-Web-Application-Components",componentUml);
@@ -199,6 +226,7 @@ public class AppPublicSystemDocumentation {
 		String systemUml = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"), allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
 		allPlantUmlsString = allPlantUmlsString.replace(systemUml,"");
 		writePlantUml("Citizen-Intelligence-Agency-System-System-Context",systemUml);
+
 		
 		String enterpriseUml = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"), allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
 		allPlantUmlsString = allPlantUmlsString.replace(enterpriseUml,"");
