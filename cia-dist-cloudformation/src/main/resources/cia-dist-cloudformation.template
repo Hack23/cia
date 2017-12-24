@@ -136,7 +136,7 @@
          "Type":"String"
       },
       "DebPackageUrl":{
-         "Default":"https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2017.11.28/cia-dist-deb-2017.11.28.deb",
+         "Default":"https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2017.12.24/cia-dist-deb-2017.12.24.deb",
          "Description":"The debian package url",
          "Type":"String",
          "MinLength":"8"
@@ -444,7 +444,7 @@
          },
          "eu-west-1":{
             "PV64":"NOT_SUPPORTED",
-            "HVM64":"ami-674cbc1e",
+            "HVM64":"ami-63b0341a",
             "HVMG2":"NOT_SUPPORTED"
          },
          "eu-central-1":{
