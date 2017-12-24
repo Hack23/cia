@@ -18,15 +18,11 @@
 */
 package com.hack23.cia.architecture;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
@@ -38,7 +34,6 @@ import com.structurizr.analysis.SpringComponentComponentFinderStrategy;
 import com.structurizr.analysis.SpringServiceComponentFinderStrategy;
 import com.structurizr.analysis.SupportingTypesStrategy;
 import com.structurizr.io.WorkspaceWriterException;
-import com.structurizr.io.dot.DotWriter;
 import com.structurizr.io.plantuml.PlantUMLWriter;
 import com.structurizr.model.Component;
 import com.structurizr.model.Container;
@@ -169,7 +164,6 @@ public class AppPublicSystemDocumentation {
 		// API_SECRET);
 		// structurizrClient.putWorkspace(WORKSPACE_ID, workspace);
 
-		createDotAndPngFiles(workspace);
 		printPlantUml(workspace);
 		Run.main(new String[] { Paths.get(".").toAbsolutePath().normalize().toString() + File.separator
 				+ "target" + File.separator + "site" + File.separator + "architecture" + File.separator});
@@ -230,58 +224,5 @@ public class AppPublicSystemDocumentation {
 				+ filename + ".pu";
 		System.out.println("Writing file:" + fullFilePathPlantUmlFile);
 		FileUtils.writeStringToFile(new File(fullFilePathPlantUmlFile), content, Charset.defaultCharset());		
-	}
-	
-	/**
-	 * Creates the dot and png files.
-	 *
-	 * @param workspace
-	 *            the workspace
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	private static void createDotAndPngFiles(final Workspace workspace) throws IOException {
-		final StringWriter stringWriter = new StringWriter();
-		final DotWriter dotWriter = new DotWriter();
-		dotWriter.write(workspace, stringWriter);
-
-		final String[] split = stringWriter.getBuffer().toString().split("#");
-
-		for (final String string : split) {
-			if (!string.isEmpty()) {
-				final String[] split2 = string.split(System.lineSeparator(), 2);
-				final String fullFilePathDotFile = Paths.get(".").toAbsolutePath().normalize().toString() + File.separator
-						+ "target" + File.separator + "site" + File.separator + "architecture" + File.separator
-						+ split2[0].trim().replace(" ", "_").replaceAll("_-_", "_") + ".dot";
-				FileUtils.writeStringToFile(new File(fullFilePathDotFile), split2[1], Charset.defaultCharset());
-
-				System.out.println("Writing file:" + fullFilePathDotFile);
-
-				final List<String> commands = new ArrayList<String>();
-				commands.add("/bin/bash");
-				commands.add("-c");
-				commands.add("dot dot -Tpng -O " + fullFilePathDotFile);
-
-				final Runtime r = Runtime.getRuntime();
-				try {
-					System.out.println("generate png :" + fullFilePathDotFile.replace(".dot", ".png"));
-					final Process p = r.exec(commands.toArray(new String[commands.size()]));
-
-					p.waitFor();
-					final BufferedReader b = new BufferedReader(new InputStreamReader(p.getInputStream()));
-					String line = "";
-
-					while ((line = b.readLine()) != null) {
-						System.out.println(line);
-					}
-
-					b.close();
-				} catch (final Exception e) {
-					System.err.println("Failed to generate png (dot executable missing) for :" + fullFilePathDotFile);
-					e.printStackTrace();
-				}
-
-			}
-		}
 	}
 }
