@@ -145,6 +145,7 @@
 
 		<menu name="Documentation [Development]">
 			<item name="Developer Guide" href="developer.html" />
+			<item name="Architecture Overview" href="architecture.html" />			
 		</menu>
 	</body>
 
