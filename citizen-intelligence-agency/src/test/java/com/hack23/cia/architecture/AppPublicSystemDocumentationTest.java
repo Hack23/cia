@@ -18,13 +18,19 @@
 */
 package com.hack23.cia.architecture;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 
 /**
  * The Class AppPublicSystemDocumentationTest.
  */
 public class AppPublicSystemDocumentationTest {
 
+	/** The exit. */
+	@Rule
+    public final ExpectedSystemExit exit = ExpectedSystemExit.none();
+	
 	/**
 	 * Generate architecture diagrams test.
 	 *
@@ -33,6 +39,7 @@ public class AppPublicSystemDocumentationTest {
 	 */
 	@Test
 	public void generateArchitectureDiagramsTest() throws Exception {
+        exit.expectSystemExit();
 		AppPublicSystemDocumentation.main(new String[0]);
 	}
 }
