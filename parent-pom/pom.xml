@@ -1518,11 +1518,32 @@
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.8</version>
+            <executions>
+              <execution>
+                <id>createdepdir</id>
+                <phase>generate-sources</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <target>
+                    <mkdir dir="${project.build.directory}/dependency"></mkdir>
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+            <inherited>true</inherited>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
             <version>3.0.2</version>
             <executions>
               <execution>
                 <id>unpack-dependencies</id>
+                <phase>generate-sources</phase>
                 <goals>
                   <goal>unpack-dependencies</goal>
                 </goals>
@@ -1532,6 +1553,7 @@
                 </configuration>
               </execution>
             </executions>
+            <inherited>true</inherited>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -1556,24 +1578,7 @@
               <dependencySourceExcludes>
                 <dependencySourceExclude>com.hack23.cia:testfoundation</dependencySourceExclude>
               </dependencySourceExcludes>
-              <!--
-              <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
-              <docletArtifact>
-                <groupId>org.umlgraph</groupId>
-                <artifactId>umlgraph</artifactId>
-                <version>5.6</version>
-              </docletArtifact>
-              <tagletArtifact>
-                <groupId>org.umlgraph</groupId>
-                <artifactId>umlgraph</artifactId>
-                <version>5.6</version>
-              </tagletArtifact>
-              <additionalparam>-inferrel -inferdep -quiet -hide java.*
-								-collpackages java.util.* -qualify
-								-postfixpackage -nodefontsize
-								9
-								-nodefontpackagesize 7</additionalparam>
-				 -->
+              <sourceFileExcludes>**/module-info.java</sourceFileExcludes>
               <doclet>org.jboss.apiviz.APIviz</doclet>
               <docletArtifacts>
                 <docletArtifact>
@@ -1591,7 +1596,7 @@
               <version>true</version>
               <author>true</author>
               <keywords>true</keywords>
-              <additionalparam>-sourceclasspath ${project.build.outputDirectory} -sourceclasspath ${project.build.directory}/dependency ${additionalRuntimeArgLine}</additionalparam>
+              <additionalOptions>-sourceclasspath ${project.build.outputDirectory} -sourceclasspath ${project.build.directory}/dependency ${additionalRuntimeArgLine}</additionalOptions>
             </configuration>
           </plugin>
           <plugin>
@@ -1609,6 +1614,7 @@
                 </goals>
               </execution>
             </executions>
+            <inherited>true</inherited>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
