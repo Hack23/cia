@@ -33,6 +33,12 @@
             "m4.4xlarge",
             "m4.10xlarge",
             "m4.16xlarge",
+            "m5.large",
+            "m5.xlarge",
+            "m5.2xlarge",
+            "m5.4xlarge",
+            "m5.12xlarge",
+            "m5.24xlarge",
             "c4.large",
             "c4.xlarge",
             "c4.2xlarge",
@@ -92,7 +98,7 @@
       "CertificateArn":{
          "Description":"Certificate (optional) used to configure loadbalancer if DomainNamePrefix and DomainName is also included ",
          "Type":"String",
-         "Default":"arn:aws:acm:eu-west-1:172017021075:certificate/df6bef02-77fb-4d19-abd7-23bb067be865"
+         "Default":"arn:aws:acm:eu-west-1:172017021075:certificate/ce58dc65-4a13-4ca5-8ddc-ccf7a71cf29d"
       },
       "SubNetPrefix":{
          "Description":"The prefix for all subnets, only change if you need vpn connection and prefer other prefix.",
@@ -291,6 +297,24 @@
             "Arch":"HVM64"
          },
          "m4.16xlarge":{
+            "Arch":"HVM64"
+         },
+         "m5.large":{
+            "Arch":"HVM64"
+         },
+         "m5.xlarge":{
+            "Arch":"HVM64"
+         },
+         "m5.2xlarge":{
+            "Arch":"HVM64"
+         },
+         "m5.4xlarge":{
+            "Arch":"HVM64"
+         },
+         "m5.12xlarge":{
+            "Arch":"HVM64"
+         },
+         "m5.24xlarge":{
             "Arch":"HVM64"
          },
          "c3.large":{
@@ -583,6 +607,24 @@
          "m4.16xlarge":{
             "JavaMemorySize":"4096m"
          },
+         "m5.large":{
+            "JavaMemorySize":"6192m"
+         },
+         "m5.xlarge":{
+            "JavaMemorySize":"12384m"
+         },
+         "m5.2xlarge":{
+            "JavaMemorySize":"4096m"
+         },
+         "m5.4xlarge":{
+            "JavaMemorySize":"4096m"
+         },
+         "m5.12xlarge":{
+            "JavaMemorySize":"4096m"
+         },
+         "m5.24xlarge":{
+            "JavaMemorySize":"4096m"
+         },
          "c3.large":{
             "JavaMemorySize":"4096m"
          },
@@ -736,6 +778,18 @@
                "Fn::Equals":[
                   {
                      "Ref":"CertificateArn"
+                  },
+                  ""
+               ]
+            }
+         ]
+      },      
+      "useDBEncryptionKmsAlias":{
+         "Fn::Not":[
+            {
+               "Fn::Equals":[
+                  {
+                     "Ref":"DBEncryptionKmsAlias"
                   },
                   ""
                ]
@@ -1557,6 +1611,24 @@
                      "Ref":"DBName"
                   }
                ]
+            },            
+            "StorageEncrypted":{
+               "Fn::If":[
+                  "useDBEncryptionKmsAlias",
+                   "false",
+                   "true"
+               ]
+            },
+            "KmsKeyId":{
+               "Fn::If":[
+                  "useDBEncryptionKmsAlias",
+                  {
+                     "Ref":"AWS::NoValue"
+                  },
+                  {
+                     "Ref":"DBEncryptionKmsAlias"
+                  }
+               ]
             },
             "AllocatedStorage":{
                "Ref":"DBAllocatedStorage"
@@ -1565,7 +1637,7 @@
                "Ref":"DBClass"
             },
             "Engine":"postgres",
-            "EngineVersion":"9.6.3",
+            "EngineVersion":"9.6.5",
             "MultiAZ":"false",
             "PubliclyAccessible":"true",
             "StorageType":"gp2",
@@ -2256,7 +2328,7 @@
           "VolumeSize": 30,
           "VolumeType": "gp2"
         },
-        "ElasticsearchVersion": "5.3",
+        "ElasticsearchVersion": "6.0",
         "ElasticsearchClusterConfig": {
           "InstanceType": {"Ref": "ElasticSearchInstanceType"},
           "InstanceCount": 1
@@ -2273,7 +2345,6 @@
         }
       }
     }
-
    },
    "Outputs":{
       "WebSite":{
