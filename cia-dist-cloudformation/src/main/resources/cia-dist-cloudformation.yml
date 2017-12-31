@@ -1,0 +1,1430 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CIA CloudFormation demo runtime template. Create a HA(3 az LB,3 az servers,MultiAZ
+  RDS) solution using a load balanced, auto scaled group in a VPC with where the EC2
+  instances can directly access the internet, loadbalancers in public subnet with
+  access to app servers and data stored in postgres RDS in private subnet. **WARNING**
+  This template creates Elastic Load Balancers and Amazon EC2 instances. You will
+  be billed for the AWS resources used if you create a stack from this template.
+Parameters:
+  KeyName:
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the instances
+    Type: AWS::EC2::KeyPair::KeyName
+    ConstraintDescription: must be the name of an existing EC2 KeyPair.
+  SSHLocation:
+    Description: Lockdown SSH access to the bastion host (default can be accessed
+      from anywhere)
+    Type: String
+    MinLength: '9'
+    MaxLength: '18'
+    Default: 0.0.0.0/0
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
+    ConstraintDescription: must be a valid CIDR range of the form x.x.x.x/x.
+  WebServerInstanceType:
+    Description: WebServer Server EC2 instance type
+    Type: String
+    Default: t2.large
+    AllowedValues:
+      - t2.micro
+      - t2.small
+      - t2.medium
+      - t2.large
+      - t2.xlarge
+      - t2.2xlarge
+      - m4.large
+      - m4.xlarge
+      - m4.2xlarge
+      - m4.4xlarge
+      - m4.10xlarge
+      - m4.16xlarge
+      - c4.large
+      - c4.xlarge
+      - c4.2xlarge
+      - c4.4xlarge
+      - c4.8xlarge
+      - c5.large
+      - c5.xlarge
+      - c5.2xlarge
+      - c5.4xlarge
+      - c5.8xlarge
+      - r3.large
+      - r3.xlarge
+      - r3.2xlarge
+      - r3.4xlarge
+      - r3.8xlarge
+      - r4.large
+      - r4.xlarge
+      - r4.2xlarge
+      - r4.4xlarge
+      - r4.8xlarge
+      - r4.16xlarge
+      - i2.xlarge
+      - i2.2xlarge
+      - i2.4xlarge
+      - i2.8xlarge
+      - i3.xlarge
+      - i3.2xlarge
+      - i3.4xlarge
+      - i3.8xlarge
+      - d2.xlarge
+      - d2.2xlarge
+      - d2.4xlarge
+      - d2.8xlarge
+      - hi1.4xlarge
+      - hs1.8xlarge
+      - cr1.8xlarge
+      - cc2.8xlarge
+      - cg1.4xlarge
+    ConstraintDescription: must be a valid EC2 instance type.
+  WebServerCount:
+    Description: Number of EC2 instances to launch for the WebServer server
+    Type: Number
+    Default: '1'
+  DomainNamePrefix:
+    Description: Domain name prefix (optional), used to setup route53 dns
+    Type: String
+    Default: cia
+  DomainName:
+    Description: Domain name (optional), used to setup route53 dns
+    Type: String
+    Default: hack23.com
+  CertificateArn:
+    Description: 'Certificate (optional) used to configure loadbalancer if DomainNamePrefix
+      and DomainName is also included '
+    Type: String
+    Default: arn:aws:acm:eu-west-1:172017021075:certificate/df6bef02-77fb-4d19-abd7-23bb067be865
+  SubNetPrefix:
+    Description: The prefix for all subnets, only change if you need vpn connection
+      and prefer other prefix.
+    Type: String
+    Default: '10.40'
+  DBEncryptionKmsAlias:
+    Description: The alias for Key Management Service encryption key alias
+    Type: String
+    Default: ''
+  DBName:
+    Default: pgdb
+    Description: The database name
+    Type: String
+    MinLength: '1'
+    MaxLength: '8'
+    AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    ConstraintDescription: must begin with a letter and contain only alphanumeric
+      characters.
+  DBUsername:
+    Default: root
+    NoEcho: 'true'
+    Description: The database admin account username
+    Type: String
+    MinLength: '1'
+    MaxLength: '16'
+    AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    ConstraintDescription: must begin with a letter and contain only alphanumeric
+      characters.
+  DBPassword:
+    Default: root1234
+    NoEcho: 'true'
+    Description: The database admin account password
+    Type: String
+    MinLength: '8'
+  DBSnapshotName:
+    Description: The name of a DB snapshot (optional, if arn:aws:rds:eu-west-1:172017021075:snapshot:cia-demo-20170711
+      supplied DBUsername,DBPassword need to eris,discord23)
+    Default: ''
+    Type: String
+  DebPackageUrl:
+    Default: https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2017.12.24/cia-dist-deb-2017.12.24.deb
+    Description: The debian package url
+    Type: String
+    MinLength: '8'
+  DBClass:
+    Default: db.m4.xlarge
+    Description: Database instance class
+    Type: String
+    AllowedValues:
+      - db.t2.micro
+      - db.t2.small
+      - db.t2.medium
+      - db.t2.large
+      - db.m4.large
+      - db.m4.xlarge
+      - db.m4.2xlarge
+      - db.m4.4xlarge
+      - db.m4.10xlarge
+      - db.r3.large
+      - db.r3.xlarge
+      - db.r3.2xlarge
+      - db.r3.4xlarge
+      - db.r3.8xlarge
+    ConstraintDescription: must select a valid database instance type.
+  DBAllocatedStorage:
+    Default: '100'
+    Description: The size of the database (Gb)
+    Type: Number
+    MinValue: '100'
+    MaxValue: '6144'
+    ConstraintDescription: must be between 10+
+  UseElasticSearch:
+    Default: 'false'
+    Description: Set to true to enable
+    Type: String
+  ElasticSearchInstanceType:
+    Default: t2.medium.elasticsearch
+    Description: ElasticSearch instance type
+    Type: String
+    AllowedValues:
+      - t2.micro.elasticsearch
+      - t2.small.elasticsearch
+      - t2.medium.elasticsearch
+      - t2.large.elasticsearch
+      - m4.large.elasticsearch
+      - m4.xlarge.elasticsearch
+      - m4.2xlarge.elasticsearch
+      - m4.4xlarge.elasticsearch
+      - m4.10xlarge.elasticsearch
+      - r3.large.elasticsearch
+      - r3.xlarge.elasticsearch
+      - r3.2xlarge.elasticsearch
+      - r3.4xlarge.elasticsearch
+      - r3.8xlarge.elasticsearch
+    ConstraintDescription: must select a valid elastic search instance type.
+Mappings:
+  SubnetConfig:
+    VPC:
+      CIDR: 10.40.0.0/16
+    Public:
+      CIDR: 10.40.10.0/24
+    Public2:
+      CIDR: 10.40.11.0/24
+    Public3:
+      CIDR: 10.40.12.0/24
+    Private:
+      CIDR: 10.40.20.0/24
+    Private2:
+      CIDR: 10.40.21.0/24
+    Private3:
+      CIDR: 10.40.22.0/24
+  QuickSightRegionSubnet:
+    us-east-1:
+      CIDR: 52.23.63.224/27
+    us-west-2:
+      CIDR: 0.0.0.0/0
+    us-west-1:
+      CIDR: 54.70.204.128/27
+    eu-west-1:
+      CIDR: 52.210.255.224/27
+    eu-central-1:
+      CIDR: 0.0.0.0/0
+    ap-northeast-1:
+      CIDR: 0.0.0.0/0
+    ap-southeast-1:
+      CIDR: 0.0.0.0/0
+    ap-southeast-2:
+      CIDR: 0.0.0.0/0
+    sa-east-1:
+      CIDR: 0.0.0.0/0
+    cn-north-1:
+      CIDR: 0.0.0.0/0
+  AWSInstanceType2Arch:
+    t2.micro:
+      Arch: HVM64
+    t2.small:
+      Arch: HVM64
+    t2.medium:
+      Arch: HVM64
+    t2.large:
+      Arch: HVM64
+    t2.xlarge:
+      Arch: HVM64
+    t2.2xlarge:
+      Arch: HVM64
+    m3.medium:
+      Arch: HVM64
+    m3.large:
+      Arch: HVM64
+    m3.xlarge:
+      Arch: HVM64
+    m3.2xlarge:
+      Arch: HVM64
+    m4.medium:
+      Arch: HVM64
+    m4.large:
+      Arch: HVM64
+    m4.xlarge:
+      Arch: HVM64
+    m4.2xlarge:
+      Arch: HVM64
+    m4.4xlarge:
+      Arch: HVM64
+    m4.10xlarge:
+      Arch: HVM64
+    m4.16xlarge:
+      Arch: HVM64
+    c3.large:
+      Arch: HVM64
+    c3.xlarge:
+      Arch: HVM64
+    c3.2xlarge:
+      Arch: HVM64
+    c3.4xlarge:
+      Arch: HVM64
+    c3.8xlarge:
+      Arch: HVM64
+    c4.large:
+      Arch: HVM64
+    c4.xlarge:
+      Arch: HVM64
+    c4.2xlarge:
+      Arch: HVM64
+    c4.4xlarge:
+      Arch: HVM64
+    c4.8xlarge:
+      Arch: HVM64
+    c5.large:
+      Arch: HVM64
+    c5.xlarge:
+      Arch: HVM64
+    c5.2xlarge:
+      Arch: HVM64
+    c5.4xlarge:
+      Arch: HVM64
+    c5.8xlarge:
+      Arch: HVM64
+    g2.2xlarge:
+      Arch: HVMG2
+    g2.8xlarge:
+      Arch: HVMG2
+    r3.large:
+      Arch: HVM64
+    r3.xlarge:
+      Arch: HVM64
+    r3.2xlarge:
+      Arch: HVM64
+    r3.4xlarge:
+      Arch: HVM64
+    r3.8xlarge:
+      Arch: HVM64
+    r4.large:
+      Arch: HVM64
+    r4.xlarge:
+      Arch: HVM64
+    r4.2xlarge:
+      Arch: HVM64
+    r4.4xlarge:
+      Arch: HVM64
+    r4.8xlarge:
+      Arch: HVM64
+    r4.16xlarge:
+      Arch: HVM64
+    i2.xlarge:
+      Arch: HVM64
+    i2.2xlarge:
+      Arch: HVM64
+    i2.4xlarge:
+      Arch: HVM64
+    i2.8xlarge:
+      Arch: HVM64
+    i3.xlarge:
+      Arch: HVM64
+    i3.2xlarge:
+      Arch: HVM64
+    i3.4xlarge:
+      Arch: HVM64
+    i3.8xlarge:
+      Arch: HVM64
+    d2.xlarge:
+      Arch: HVM64
+    d2.2xlarge:
+      Arch: HVM64
+    d2.4xlarge:
+      Arch: HVM64
+    d2.8xlarge:
+      Arch: HVM64
+    hi1.4xlarge:
+      Arch: HVM64
+    hs1.8xlarge:
+      Arch: HVM64
+    cr1.8xlarge:
+      Arch: HVM64
+    cc2.8xlarge:
+      Arch: HVM64
+  AWSRegionArch2AMI:
+    us-east-1:
+      PV64: NOT_SUPPORTED
+      HVM64: ami-60b6c60a
+      HVMG2: NOT_SUPPORTED
+    us-west-2:
+      PV64: NOT_SUPPORTED
+      HVM64: ami-f0091d91
+      HVMG2: NOT_SUPPORTED
+    us-west-1:
+      PV64: NOT_SUPPORTED
+      HVM64: ami-8fd760f6
+      HVMG2: NOT_SUPPORTED
+    eu-west-1:
+      PV64: NOT_SUPPORTED
+      HVM64: ami-63b0341a
+      HVMG2: NOT_SUPPORTED
+    eu-central-1:
+      PV64: NOT_SUPPORTED
+      HVM64: ami-b0db1ddf
+      HVMG2: NOT_SUPPORTED
+    ap-northeast-1:
+      PV64: NOT_SUPPORTED
+      HVM64: ami-383c1956
+      HVMG2: NOT_SUPPORTED
+    ap-southeast-1:
+      PV64: NOT_SUPPORTED
+      HVM64: ami-c9b572aa
+      HVMG2: NOT_SUPPORTED
+    ap-southeast-2:
+      PV64: NOT_SUPPORTED
+      HVM64: ami-48d38c2b
+      HVMG2: NOT_SUPPORTED
+    sa-east-1:
+      PV64: NOT_SUPPORTED
+      HVM64: ami-6817af04
+      HVMG2: NOT_SUPPORTED
+    cn-north-1:
+      PV64: NOT_SUPPORTED
+      HVM64: ami-43a36a2e
+      HVMG2: NOT_SUPPORTED
+  AWSRegionAvailabilityZone:
+    us-east-1:
+      FIRST: us-east-1a
+      SECOND: us-east-1b
+      THIRD: us-east-1c
+    us-west-1:
+      FIRST: us-west-1a
+      SECOND: us-west-1b
+      THIRD: us-west-1c
+    us-west-2:
+      FIRST: us-west-2a
+      SECOND: us-west-2b
+      THIRD: us-west-2c
+    eu-west-1:
+      FIRST: eu-west-1a
+      SECOND: eu-west-1b
+      THIRD: eu-west-1c
+    eu-central-1:
+      FIRST: eu-central-1a
+      SECOND: eu-central-1b
+      THIRD: eu-central-1c
+    ap-northeast-1:
+      FIRST: ap-northeast-1a
+      SECOND: ap-northeast-1b
+      THIRD: ap-northeast-1c
+    ap-southeast-1:
+      FIRST: ap-southeast-1a
+      SECOND: ap-southeast-1b
+      THIRD: ap-southeast-1c
+    ap-southeast-2:
+      FIRST: ap-southeast-2a
+      SECOND: ap-southeast-2b
+      THIRD: ap-southeast-2c
+    sa-east-1:
+      FIRST: sa-east-1a
+      SECOND: sa-east-1b
+      THIRD: sa-east-1c
+    cn-north-1:
+      FIRST: cn-north-1a
+      SECOND: cn-north-1b
+      THIRD: cn-north-1c
+  AWSInstanceType2UseRamSize:
+    t2.micro:
+      JavaMemorySize: UNSUPPORTED
+    t2.small:
+      JavaMemorySize: 512m
+    t2.medium:
+      JavaMemorySize: 2096m
+    t2.large:
+      JavaMemorySize: 6192m
+    t2.xlarge:
+      JavaMemorySize: 12384m
+    t2.2xlarge:
+      JavaMemorySize: 28672m
+    m3.medium:
+      JavaMemorySize: 4096m
+    m3.large:
+      JavaMemorySize: 4096m
+    m3.xlarge:
+      JavaMemorySize: 4096m
+    m3.2xlarge:
+      JavaMemorySize: 4096m
+    m4.medium:
+      JavaMemorySize: 4096m
+    m4.large:
+      JavaMemorySize: 6192m
+    m4.xlarge:
+      JavaMemorySize: 12384m
+    m4.2xlarge:
+      JavaMemorySize: 4096m
+    m4.4xlarge:
+      JavaMemorySize: 4096m
+    m4.10xlarge:
+      JavaMemorySize: 4096m
+    m4.16xlarge:
+      JavaMemorySize: 4096m
+    c3.large:
+      JavaMemorySize: 4096m
+    c3.xlarge:
+      JavaMemorySize: 4096m
+    c3.2xlarge:
+      JavaMemorySize: 4096m
+    c3.4xlarge:
+      JavaMemorySize: 4096m
+    c3.8xlarge:
+      JavaMemorySize: 4096m
+    c4.large:
+      JavaMemorySize: 2048m
+    c4.xlarge:
+      JavaMemorySize: 4096m
+    c4.2xlarge:
+      JavaMemorySize: 12384m
+    c4.4xlarge:
+      JavaMemorySize: 28672m
+    c4.8xlarge:
+      JavaMemorySize: 57344m
+    c5.large:
+      JavaMemorySize: 2048m
+    c5.xlarge:
+      JavaMemorySize: 4096m
+    c5.2xlarge:
+      JavaMemorySize: 12384m
+    c5.4xlarge:
+      JavaMemorySize: 28672m
+    c5.8xlarge:
+      JavaMemorySize: 57344m
+    g2.2xlarge:
+      JavaMemorySize: 4096m
+    g2.8xlarge:
+      JavaMemorySize: 4096m
+    r3.large:
+      JavaMemorySize: 4096m
+    r3.xlarge:
+      JavaMemorySize: 4096m
+    r3.2xlarge:
+      JavaMemorySize: 4096m
+    r3.4xlarge:
+      JavaMemorySize: 4096m
+    r3.8xlarge:
+      JavaMemorySize: 4096m
+    r4.large:
+      JavaMemorySize: 4096m
+    r4.xlarge:
+      JavaMemorySize: 4096m
+    r4.2xlarge:
+      JavaMemorySize: 4096m
+    r4.4xlarge:
+      JavaMemorySize: 4096m
+    r4.8xlarge:
+      JavaMemorySize: 4096m
+    r4.16xlarge:
+      JavaMemorySize: 4096m
+    i2.xlarge:
+      JavaMemorySize: 4096m
+    i2.2xlarge:
+      JavaMemorySize: 4096m
+    i2.4xlarge:
+      JavaMemorySize: 4096m
+    i2.8xlarge:
+      JavaMemorySize: 4096m
+    i3.xlarge:
+      JavaMemorySize: 4096m
+    i3.2xlarge:
+      JavaMemorySize: 4096m
+    i3.4xlarge:
+      JavaMemorySize: 4096m
+    i3.8xlarge:
+      JavaMemorySize: 4096m
+    d2.xlarge:
+      JavaMemorySize: 4096m
+    d2.2xlarge:
+      JavaMemorySize: 4096m
+    d2.4xlarge:
+      JavaMemorySize: 4096m
+    d2.8xlarge:
+      JavaMemorySize: 4096m
+    hi1.4xlarge:
+      JavaMemorySize: 4096m
+    hs1.8xlarge:
+      JavaMemorySize: 4096m
+    cr1.8xlarge:
+      JavaMemorySize: 4096m
+    cc2.8xlarge:
+      JavaMemorySize: 4096m
+Conditions:
+  useDBSnapshot: !Not
+    - !Equals
+      - !Ref 'DBSnapshotName'
+      - ''
+  useCertificate: !Not
+    - !Equals
+      - !Ref 'CertificateArn'
+      - ''
+  useDomainName: !Not
+    - !Equals
+      - !Ref 'DomainName'
+      - ''
+  useElasticSearch: !Not
+    - !Equals
+      - !Ref 'UseElasticSearch'
+      - 'false'
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !FindInMap
+        - SubnetConfig
+        - VPC
+        - CIDR
+      EnableDnsSupport: 'true'
+      EnableDnsHostnames: 'true'
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Network
+          Value: Public
+  PublicSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref 'VPC'
+      AvailabilityZone: !FindInMap
+        - AWSRegionAvailabilityZone
+        - !Ref 'AWS::Region'
+        - FIRST
+      CidrBlock: !FindInMap
+        - SubnetConfig
+        - Public
+        - CIDR
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Network
+          Value: Public
+  PublicSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref 'VPC'
+      AvailabilityZone: !FindInMap
+        - AWSRegionAvailabilityZone
+        - !Ref 'AWS::Region'
+        - SECOND
+      CidrBlock: !FindInMap
+        - SubnetConfig
+        - Public2
+        - CIDR
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Network
+          Value: Public
+  PublicSubnet3:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref 'VPC'
+      AvailabilityZone: !FindInMap
+        - AWSRegionAvailabilityZone
+        - !Ref 'AWS::Region'
+        - THIRD
+      CidrBlock: !FindInMap
+        - SubnetConfig
+        - Public3
+        - CIDR
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Network
+          Value: Public
+  PrivateSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref 'VPC'
+      AvailabilityZone: !FindInMap
+        - AWSRegionAvailabilityZone
+        - !Ref 'AWS::Region'
+        - FIRST
+      CidrBlock: !FindInMap
+        - SubnetConfig
+        - Private
+        - CIDR
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Network
+          Value: Private
+  PrivateSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref 'VPC'
+      AvailabilityZone: !FindInMap
+        - AWSRegionAvailabilityZone
+        - !Ref 'AWS::Region'
+        - SECOND
+      CidrBlock: !FindInMap
+        - SubnetConfig
+        - Private2
+        - CIDR
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Network
+          Value: Private
+  PrivateSubnet3:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref 'VPC'
+      AvailabilityZone: !FindInMap
+        - AWSRegionAvailabilityZone
+        - !Ref 'AWS::Region'
+        - THIRD
+      CidrBlock: !FindInMap
+        - SubnetConfig
+        - Private3
+        - CIDR
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Network
+          Value: Private
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Network
+          Value: Public
+  GatewayToInternet:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref 'VPC'
+      InternetGatewayId: !Ref 'InternetGateway'
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref 'VPC'
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Network
+          Value: Public
+  PublicRoute:
+    Type: AWS::EC2::Route
+    DependsOn: GatewayToInternet
+    Properties:
+      RouteTableId: !Ref 'PublicRouteTable'
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref 'InternetGateway'
+  PublicSubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref 'PublicSubnet'
+      RouteTableId: !Ref 'PublicRouteTable'
+  Public2SubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref 'PublicSubnet2'
+      RouteTableId: !Ref 'PublicRouteTable'
+  Public3SubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref 'PublicSubnet3'
+      RouteTableId: !Ref 'PublicRouteTable'
+  PrivateRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref 'VPC'
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Network
+          Value: Private
+  PrivateRoute:
+    Type: AWS::EC2::Route
+    DependsOn: GatewayToInternet
+    Properties:
+      RouteTableId: !Ref 'PrivateRouteTable'
+      DestinationCidrBlock: !FindInMap
+        - QuickSightRegionSubnet
+        - !Ref 'AWS::Region'
+        - CIDR
+      GatewayId: !Ref 'InternetGateway'
+  PrivateSubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref 'PrivateSubnet'
+      RouteTableId: !Ref 'PrivateRouteTable'
+  Private2SubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref 'PrivateSubnet2'
+      RouteTableId: !Ref 'PrivateRouteTable'
+  Private3SubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref 'PrivateSubnet3'
+      RouteTableId: !Ref 'PrivateRouteTable'
+  PublicNetworkAcl:
+    Type: AWS::EC2::NetworkAcl
+    Properties:
+      VpcId: !Ref 'VPC'
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Network
+          Value: Public
+  PrivateNetworkAcl:
+    Type: AWS::EC2::NetworkAcl
+    Properties:
+      VpcId: !Ref 'VPC'
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Network
+          Value: Private
+  InboundPostgresqlPrivateNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PrivateNetworkAcl'
+      RuleNumber: '100'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'false'
+      CidrBlock: 0.0.0.0/0
+      PortRange:
+        From: '5432'
+        To: '5432'
+  OutboundPostgresqlPrivateNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PrivateNetworkAcl'
+      RuleNumber: '100'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'true'
+      CidrBlock: 0.0.0.0/0
+      PortRange:
+        From: '1'
+        To: '65535'
+  InboundQuickSightPostgresqlPrivateNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PrivateNetworkAcl'
+      RuleNumber: '200'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'false'
+      CidrBlock: !FindInMap
+        - QuickSightRegionSubnet
+        - !Ref 'AWS::Region'
+        - CIDR
+      PortRange:
+        From: '5432'
+        To: '5432'
+  OutboundQuickSightPostgresqlPrivateNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PrivateNetworkAcl'
+      RuleNumber: '200'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'true'
+      CidrBlock: !FindInMap
+        - QuickSightRegionSubnet
+        - !Ref 'AWS::Region'
+        - CIDR
+      PortRange:
+        From: '1'
+        To: '65535'
+  InboundHTTPPublicNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PublicNetworkAcl'
+      RuleNumber: '100'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'false'
+      CidrBlock: 0.0.0.0/0
+      PortRange:
+        From: '80'
+        To: '80'
+  InboundHTTPSPublicNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PublicNetworkAcl'
+      RuleNumber: '200'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'false'
+      CidrBlock: 0.0.0.0/0
+      PortRange:
+        From: '443'
+        To: '443'
+  InboundDynamicPortPublicNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PublicNetworkAcl'
+      RuleNumber: '101'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'false'
+      CidrBlock: 0.0.0.0/0
+      PortRange:
+        From: '1024'
+        To: '65535'
+  InboundDynamicPortNtpPublicNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PublicNetworkAcl'
+      RuleNumber: '301'
+      Protocol: '17'
+      RuleAction: allow
+      Egress: 'false'
+      CidrBlock: 0.0.0.0/0
+      PortRange:
+        From: '1024'
+        To: '65535'
+  InboundSSHPublicNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PublicNetworkAcl'
+      RuleNumber: '102'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'false'
+      CidrBlock: !Ref 'SSHLocation'
+      PortRange:
+        From: '22'
+        To: '22'
+  OutboundPublicNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PublicNetworkAcl'
+      RuleNumber: '100'
+      Protocol: '6'
+      RuleAction: allow
+      Egress: 'true'
+      CidrBlock: 0.0.0.0/0
+      PortRange:
+        From: '0'
+        To: '65535'
+  OutboundNtpPublicNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      NetworkAclId: !Ref 'PublicNetworkAcl'
+      RuleNumber: '300'
+      Protocol: '17'
+      RuleAction: allow
+      Egress: 'true'
+      CidrBlock: 0.0.0.0/0
+      PortRange:
+        From: '123'
+        To: '123'
+  PublicSubnetNetworkAclAssociation:
+    Type: AWS::EC2::SubnetNetworkAclAssociation
+    Properties:
+      SubnetId: !Ref 'PublicSubnet'
+      NetworkAclId: !Ref 'PublicNetworkAcl'
+  Public2SubnetNetworkAclAssociation:
+    Type: AWS::EC2::SubnetNetworkAclAssociation
+    Properties:
+      SubnetId: !Ref 'PublicSubnet2'
+      NetworkAclId: !Ref 'PublicNetworkAcl'
+  Public3SubnetNetworkAclAssociation:
+    Type: AWS::EC2::SubnetNetworkAclAssociation
+    Properties:
+      SubnetId: !Ref 'PublicSubnet3'
+      NetworkAclId: !Ref 'PublicNetworkAcl'
+  PrivateSubnetNetworkAclAssociation:
+    Type: AWS::EC2::SubnetNetworkAclAssociation
+    Properties:
+      SubnetId: !Ref 'PrivateSubnet'
+      NetworkAclId: !Ref 'PrivateNetworkAcl'
+  Private2SubnetNetworkAclAssociation:
+    Type: AWS::EC2::SubnetNetworkAclAssociation
+    Properties:
+      SubnetId: !Ref 'PrivateSubnet2'
+      NetworkAclId: !Ref 'PrivateNetworkAcl'
+  Private3SubnetNetworkAclAssociation:
+    Type: AWS::EC2::SubnetNetworkAclAssociation
+    Properties:
+      SubnetId: !Ref 'PrivateSubnet3'
+      NetworkAclId: !Ref 'PrivateNetworkAcl'
+  myDBEC2SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Frontend Access
+      VpcId: !Ref 'VPC'
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: '5432'
+          ToPort: '5432'
+          CidrIp: 0.0.0.0/0
+  myDBParamGroup:
+    Type: AWS::RDS::DBParameterGroup
+    Properties:
+      Description: Database Parameter Group + pg_stat_statements
+      Family: postgres9.6
+      Parameters:
+        shared_preload_libraries: pg_stat_statements
+        max_prepared_transactions: LEAST({DBInstanceClassMemory/9531392},5000)
+        max_parallel_workers_per_gather: '4'
+  myDBSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: DB Private Subnet
+      SubnetIds:
+        - !Ref 'PrivateSubnet'
+        - !Ref 'PrivateSubnet2'
+        - !Ref 'PrivateSubnet3'
+  pgDB:
+    Type: AWS::RDS::DBInstance
+    DependsOn: PrivateRoute
+    Properties:
+      DBName: !If
+        - useDBSnapshot
+        - !Ref 'AWS::NoValue'
+        - !Ref 'DBName'
+      AllocatedStorage: !Ref 'DBAllocatedStorage'
+      DBInstanceClass: !Ref 'DBClass'
+      Engine: postgres
+      EngineVersion: 9.6.3
+      MultiAZ: 'false'
+      PubliclyAccessible: 'true'
+      StorageType: gp2
+      MasterUsername: !If
+        - useDBSnapshot
+        - !Ref 'AWS::NoValue'
+        - !Ref 'DBUsername'
+      MasterUserPassword: !If
+        - useDBSnapshot
+        - !Ref 'AWS::NoValue'
+        - !Ref 'DBPassword'
+      DBSnapshotIdentifier: !If
+        - useDBSnapshot
+        - !Ref 'DBSnapshotName'
+        - !Ref 'AWS::NoValue'
+      DBSubnetGroupName: !Ref 'myDBSubnetGroup'
+      DBParameterGroupName: !Ref 'myDBParamGroup'
+      VPCSecurityGroups:
+        - !GetAtt 'myDBEC2SecurityGroup.GroupId'
+  PublicElasticLoadBalancerV2:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Subnets:
+        - !Ref 'PublicSubnet'
+        - !Ref 'PublicSubnet2'
+        - !Ref 'PublicSubnet3'
+      SecurityGroups:
+        - !Ref 'PublicLoadBalancerSecurityGroup'
+  DNSRecordCNAME2PublicElasticLoadBalancerV2:
+    Type: AWS::Route53::RecordSet
+    Condition: useDomainName
+    DependsOn: PublicElasticLoadBalancerV2
+    Properties:
+      HostedZoneName: !Join
+        - ''
+        - - !Ref 'DomainName'
+          - .
+      Comment: !Join
+        - ''
+        - - !Ref 'DomainNamePrefix'
+          - .
+          - !Ref 'DomainName'
+          - .
+      Name: !Join
+        - ''
+        - - !Ref 'DomainNamePrefix'
+          - .
+          - !Ref 'DomainName'
+          - .
+      Type: CNAME
+      TTL: '900'
+      ResourceRecords:
+        - !GetAtt 'PublicElasticLoadBalancerV2.DNSName'
+  LoadBalancerListenerV2:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn: !Ref 'TargetGroup'
+      LoadBalancerArn: !Ref 'PublicElasticLoadBalancerV2'
+      Port: 80
+      Protocol: HTTP
+  LoadBalancerListenerHttpsV2:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Condition: useCertificate
+    Properties:
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn: !Ref 'TargetGroupHttps'
+      LoadBalancerArn: !Ref 'PublicElasticLoadBalancerV2'
+      Certificates:
+        - CertificateArn: !Ref 'CertificateArn'
+      Port: 443
+      Protocol: HTTPS
+  TargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Name: !Join
+        - '-'
+        - - !Ref 'AWS::StackName'
+          - TargetGroup
+      Port: 80
+      Protocol: HTTP
+      VpcId: !Ref 'VPC'
+      HealthCheckPort: 2323
+      HealthCheckIntervalSeconds: 5
+      HealthCheckProtocol: HTTP
+      HealthCheckTimeoutSeconds: 4
+      HealthyThresholdCount: 4
+      Matcher:
+        HttpCode: '200'
+    DependsOn:
+      - PublicElasticLoadBalancerV2
+  TargetGroupHttps:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Condition: useCertificate
+    Properties:
+      Name: !Join
+        - '-'
+        - - !Ref 'AWS::StackName'
+          - TargetGroupHttps
+      Port: 2323
+      Protocol: HTTP
+      VpcId: !Ref 'VPC'
+      HealthCheckPort: 2323
+      HealthCheckIntervalSeconds: 5
+      HealthCheckProtocol: HTTP
+      HealthCheckTimeoutSeconds: 4
+      HealthyThresholdCount: 4
+      Matcher:
+        HttpCode: '200'
+    DependsOn:
+      - PublicElasticLoadBalancerV2
+  PublicLoadBalancerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Public ELB Security Group with HTTP access on port 80 from
+        the internet
+      VpcId: !Ref 'VPC'
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '443'
+          ToPort: '443'
+          CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '2323'
+          ToPort: '2323'
+          CidrIp: 0.0.0.0/0
+  WebServerFleet:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    DependsOn:
+      - PublicRoute
+      - pgDB
+    Properties:
+      AvailabilityZones:
+        - !GetAtt 'PublicSubnet.AvailabilityZone'
+        - !GetAtt 'PublicSubnet2.AvailabilityZone'
+        - !GetAtt 'PublicSubnet3.AvailabilityZone'
+      VPCZoneIdentifier:
+        - !Ref 'PublicSubnet'
+        - !Ref 'PublicSubnet2'
+        - !Ref 'PublicSubnet3'
+      LaunchConfigurationName: !Ref 'WebServerLaunchConfig'
+      MinSize: '1'
+      MaxSize: '10'
+      DesiredCapacity: !Ref 'WebServerCount'
+      TargetGroupARNs:
+        - !Ref 'TargetGroup'
+        - !Ref 'TargetGroupHttps'
+      Tags:
+        - Key: Network
+          Value: Public
+          PropagateAtLaunch: 'true'
+    CreationPolicy:
+      ResourceSignal:
+        Timeout: PT45M
+        Count: !Ref 'WebServerCount'
+    UpdatePolicy:
+      AutoScalingRollingUpdate:
+        MinInstancesInService: '1'
+        MaxBatchSize: '1'
+        PauseTime: PT15M
+        WaitOnResourceSignals: 'true'
+  WebServerLaunchConfig:
+    Type: AWS::AutoScaling::LaunchConfiguration
+    Metadata:
+      AWS::CloudFormation::Init:
+        config:
+          packages:
+            apt:
+              apache2: []
+              openjdk-8-jdk: []
+              postgresql-client-9.5: []
+              ntp: []
+              ntpdate: []
+              ufw: []
+              language-pack-en: []
+          files:
+            /var/www/html/index.html:
+              content: !Join
+                - "\n"
+                - - OK
+              mode: '000644'
+              owner: root
+              group: root
+            /etc/apache2/sites-available/redirect-https.conf:
+              content: !Join
+                - "\n"
+                - - <VirtualHost *:80>
+                  - RequestHeader unset Range
+                  - RequestHeader unset If-Range
+                  - RewriteEngine On
+                  - RewriteCond %{HTTPS} !=on
+                  - RewriteRule ^/(.*) https://%{SERVER_NAME}%{REQUEST_URI} [R]
+                  - Header unset Accept-Ranges
+                  - Header set Accept-Ranges none
+                  - Header always set Strict-Transport-Security "max-age=500; includeSubDomains"
+                  - Header set X-XSS-Protection "1; mode=block"
+                  - Header set Cache-Control "max-age=172800, public"
+                  - Header set Server "Server"
+                  - </VirtualHost>
+              mode: '000644'
+              owner: root
+              group: root
+            /etc/cfn/cfn-hup.conf:
+              content: !Join
+                - ''
+                - - "[main]\n"
+                  - stack=
+                  - !Ref 'AWS::StackId'
+                  - "\n"
+                  - region=
+                  - !Ref 'AWS::Region'
+                  - "\n"
+              mode: '000400'
+              owner: root
+              group: root
+            /etc/cfn/hooks.d/cfn-auto-reloader.conf:
+              content: !Join
+                - ''
+                - - "[cfn-auto-reloader-hook]\n"
+                  - "triggers=post.update\n"
+                  - "path=Resources.WebServerLaunchConfig.Metadata.AWS::CloudFormation::Init\n"
+                  - 'action=/opt/aws/bin/cfn-init -v '
+                  - '         --stack '
+                  - !Ref 'AWS::StackName'
+                  - '         --resource WebServerLaunchConfig '
+                  - '         --region '
+                  - !Ref 'AWS::Region'
+                  - "\n"
+                  - "runas=root\n"
+          services: {}
+    Properties:
+      ImageId: !FindInMap
+        - AWSRegionArch2AMI
+        - !Ref 'AWS::Region'
+        - !FindInMap
+          - AWSInstanceType2Arch
+          - !Ref 'WebServerInstanceType'
+          - Arch
+      EbsOptimized: 'false'
+      SecurityGroups:
+        - !Ref 'WebServerSecurityGroup'
+      InstanceType: !Ref 'WebServerInstanceType'
+      KeyName: !Ref 'KeyName'
+      AssociatePublicIpAddress: 'true'
+      UserData: !Base64
+        Fn::Join:
+          - ''
+          - - "#!/bin/bash -xe\n"
+            - "exec > >(tee /var/log/user-data.log) 2>&1 \n"
+            - "export DEBIAN_FRONTEND=noninteractive\n"
+            - "apt_get_install()\n"
+            - "{\n"
+            - DEBIAN_FRONTEND=noninteractive apt-get -y \n
+            - -o DPkg::Options::=--force-confnew \n
+            - "install $@\n"
+            - "}\n"
+            - "timedatectl set-timezone Europe/Stockholm \n"
+            - "dpkg-reconfigure -f noninteractive tzdata \n"
+            - "echo 'LANG=\"en_US.UTF-8\"'> /etc/default/locale\n"
+            - "locale-gen en_US.UTF-8 en_GB.UTF-8 sv_SE.UTF-8 \n"
+            - "dpkg-reconfigure --frontend=noninteractive locales \n"
+            - "apt-get update\n"
+            - "apt-get -y install python-pip\n"
+            - "pip install --upgrade pip\n"
+            - "pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz\n"
+            - "cp /usr/local/init/ubuntu/cfn-hup /etc/init.d/cfn-hup \n"
+            - "chmod +x /etc/init.d/cfn-hup \n"
+            - "update-rc.d cfn-hup defaults \n "
+            - "service cfn-hup start \n"
+            - "# Install the sample application\n"
+            - 'cfn-init -v '
+            - '    --stack '
+            - !Ref 'AWS::StackId'
+            - '    --resource WebServerLaunchConfig '
+            - '    --region '
+            - !Ref 'AWS::Region'
+            - "\n"
+            - "a2enmod rewrite\n"
+            - "a2enmod headers\n"
+            - "a2enmod status\n"
+            - "a2dissite 000-default.conf\n"
+            - "a2ensite redirect-https\n"
+            - "service apache2 restart\n"
+            - "# INSTALL ORACLE JDK\n"
+            - "sudo add-apt-repository ppa:webupd8team/java \n"
+            - "sudo apt-get update\n"
+            - "echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select\
+              \ true | sudo /usr/bin/debconf-set-selections\n"
+            - "sudo apt-get -y install oracle-java9-installer\n"
+            - "# sudo apt-get -y install oracle-java8-unlimited-jce-policy\n"
+            - "sudo apt-get -y install oracle-java9-set-default\n"
+            - 'wget '
+            - !Ref 'DebPackageUrl'
+            - " -O cia-dist-deb.deb \n"
+            - "dpkg -i --force all cia-dist-deb.deb \n"
+            - echo 'database.name=
+            - !Ref 'DBName'
+            - "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n"
+            - echo 'database.username=
+            - !Ref 'DBUsername'
+            - "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n"
+            - echo 'database.password=
+            - !Ref 'DBPassword'
+            - "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n"
+            - echo 'database.hostname=
+            - !GetAtt 'pgDB.Endpoint.Address'
+            - "'  >> /opt/cia/webapps/cia/WEB-INF/database.properties\n"
+            - "sed -i -e 's_\">/cia<_\">/<_' /opt/cia/webapps/cia.xml\n"
+            - sed -i -e 's_4096m_
+            - !FindInMap
+              - AWSInstanceType2UseRamSize
+              - !Ref 'WebServerInstanceType'
+              - JavaMemorySize
+            - "_' /opt/cia/start.ini\n"
+            - "/etc/init.d/cia restart\n"
+            - "ufw default allow outgoing\n"
+            - "ufw default deny incoming\n"
+            - "ufw allow 22/tcp\n"
+            - "ufw allow 2323/tcp\n"
+            - "ufw allow 80/tcp\n"
+            - "ufw allow 443/tcp\n"
+            - "ufw allow 53\n"
+            - "ufw allow ntp\n"
+            - "ufw enable\n"
+            - "ufw status verbose\n"
+            - "wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install\n"
+            - "sudo bash install\n"
+            - "wget https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb\n"
+            - "sudo dpkg -i --force all amazon-ssm-agent.deb\n"
+            - "sudo systemctl enable amazon-ssm-agent\n"
+            - "# Signal completion\n"
+            - 'cfn-signal -e $? '
+            - '    --stack '
+            - !Ref 'AWS::StackId'
+            - '    --resource WebServerFleet '
+            - '    --region '
+            - !Ref 'AWS::Region'
+            - "\n"
+  WebServerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow access from load balancer and bastion as well as outbound
+        HTTP and HTTPS traffic
+      VpcId: !Ref 'VPC'
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          SourceSecurityGroupId: !Ref 'PublicLoadBalancerSecurityGroup'
+        - IpProtocol: tcp
+          FromPort: '443'
+          ToPort: '443'
+          SourceSecurityGroupId: !Ref 'PublicLoadBalancerSecurityGroup'
+        - IpProtocol: tcp
+          FromPort: '2323'
+          ToPort: '2323'
+          SourceSecurityGroupId: !Ref 'PublicLoadBalancerSecurityGroup'
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: !Ref 'SSHLocation'
+  ElasticsearchDomain:
+    Type: AWS::Elasticsearch::Domain
+    Condition: useElasticSearch
+    Properties:
+      DomainName: !Ref 'DomainNamePrefix'
+      EBSOptions:
+        EBSEnabled: true
+        VolumeSize: 30
+        VolumeType: gp2
+      ElasticsearchVersion: '5.3'
+      ElasticsearchClusterConfig:
+        InstanceType: !Ref 'ElasticSearchInstanceType'
+        InstanceCount: 1
+      AccessPolicies:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: ''
+            Effect: Allow
+            Principal:
+              AWS: '*'
+            Action: es:*
+            Resource: arn:aws:es:*
+Outputs:
+  WebSite:
+    Description: URL of the website
+    Value: !Join
+      - ''
+      - - http://
+        - !GetAtt 'PublicElasticLoadBalancerV2.DNSName'
+  JDBCConnectionString:
+    Description: JDBC connection string for database
+    Value: !Join
+      - ''
+      - - jdbc:postgresql://
+        - !GetAtt 'pgDB.Endpoint.Address'
+        - ':'
+        - !GetAtt 'pgDB.Endpoint.Port'
+        - /
+        - !Ref 'DBName'
+  ElasticSearchName:
+    Description: Elasticsearch domain name
+    Value: !Ref 'ElasticsearchDomain'
+    Condition: useElasticSearch
+  ElasticSearchDomain:
+    Description: Elasticsearch domain endpoint
+    Value: !GetAtt 'ElasticsearchDomain.DomainEndpoint'
+    Condition: useElasticSearch
+  ElasticSearchURL:
+    Value: !Join
+      - ''
+      - - https://
+        - !GetAtt 'ElasticsearchDomain.DomainEndpoint'
+    Description: Elasticsearch domain URL
+    Condition: useElasticSearch
+  KibanaURL:
+    Value: !Join
+      - ''
+      - - https://
+        - !GetAtt 'ElasticsearchDomain.DomainEndpoint'
+        - _plugin/kibana/
+    Description: Elasticsearch domain URL
+    Condition: useElasticSearch
