@@ -1026,12 +1026,12 @@ Resources:
         - !Ref 'DBName'
       StorageEncrypted: !If
         - useDBEncryptionKmsAlias
-        - 'false'
         - 'true'
+        - 'false'
       KmsKeyId: !If
         - useDBEncryptionKmsAlias
-        - !Ref 'AWS::NoValue'
         - !Ref 'DBEncryptionKmsAlias'
+        - !Ref 'AWS::NoValue'
       AllocatedStorage: !Ref 'DBAllocatedStorage'
       DBInstanceClass: !Ref 'DBClass'
       Engine: postgres

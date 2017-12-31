@@ -1615,18 +1615,18 @@
             "StorageEncrypted":{
                "Fn::If":[
                   "useDBEncryptionKmsAlias",
-                   "false",
-                   "true"
+                   "true",
+                   "false"
                ]
             },
             "KmsKeyId":{
                "Fn::If":[
                   "useDBEncryptionKmsAlias",
                   {
-                     "Ref":"AWS::NoValue"
+                     "Ref":"DBEncryptionKmsAlias"
                   },
                   {
-                     "Ref":"DBEncryptionKmsAlias"
+                     "Ref":"AWS::NoValue"
                   }
                ]
             },
