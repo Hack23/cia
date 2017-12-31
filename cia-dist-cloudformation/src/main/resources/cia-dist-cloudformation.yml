@@ -991,14 +991,28 @@ Resources:
       VpcId: !Ref 'VPC'
       SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: 5432
-          ToPort: 5432
-          CidrIp: 0.0.0.0/0
+          FromPort: '5432'
+          ToPort: '5432'
+          SourceSecurityGroupId: !Ref 'WebServerSecurityGroup'
+        - IpProtocol: tcp
+          FromPort: '5432'
+          ToPort: '5432'
+          CidrIp: !FindInMap
+            - QuickSightRegionSubnet
+            - !Ref 'AWS::Region'
+            - CIDR
       SecurityGroupEgress:
         - IpProtocol: tcp
           FromPort: '5432'
           ToPort: '5432'
-          CidrIp: 0.0.0.0/0
+          SourceSecurityGroupId: !Ref 'WebServerSecurityGroup'
+        - IpProtocol: tcp
+          FromPort: '5432'
+          ToPort: '5432'
+          CidrIp: !FindInMap
+            - QuickSightRegionSubnet
+            - !Ref 'AWS::Region'
+            - CIDR
   myDBParamGroup:
     Type: AWS::RDS::DBParameterGroup
     Properties:
