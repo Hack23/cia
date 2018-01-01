@@ -1218,6 +1218,9 @@ Resources:
             - "sudo apt-get -y install oracle-java9-installer\n"
             - "# sudo apt-get -y install oracle-java8-unlimited-jce-policy\n"
             - "sudo apt-get -y install oracle-java9-set-default\n"
+            - "wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem\n"
+            - "keytool -import -keystore /etc/ssl/certs/java/cacerts -file rds-combined-ca-bundle.pem\
+              \ -storepass 'changeit' -noprompt -alias aws-rds-2016\n"
             - 'wget '
             - !Ref 'DebPackageUrl'
             - " -O cia-dist-deb.deb \n"
