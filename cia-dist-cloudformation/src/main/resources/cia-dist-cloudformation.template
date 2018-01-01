@@ -1608,7 +1608,8 @@
             "Parameters":{
                "shared_preload_libraries":"pg_stat_statements",
                "max_prepared_transactions":"LEAST({DBInstanceClassMemory/9531392},5000)",
-               "max_parallel_workers_per_gather":"4"
+               "max_parallel_workers_per_gather":"4",
+               "rds.force_ssl":"1"
             }
          }
       },
