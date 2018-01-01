@@ -43,7 +43,7 @@
 		<property name="portNumber" value="5432" />
 		<property name="databaseName" value="${database.name}" />
 		<property name="ssl" value="true" />
-		<property name="sslmode" value="verify-full" />
+		<property name="sslMode" value="verify-full" />
 	</bean>
 
 	<bean id="dataSource" class="org.apache.commons.dbcp2.managed.BasicManagedDataSource">
