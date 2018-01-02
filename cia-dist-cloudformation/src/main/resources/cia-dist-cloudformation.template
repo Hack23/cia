@@ -2028,10 +2028,7 @@
                         "echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections\n",
                         "sudo apt-get -y install oracle-java9-installer\n",
                         "# sudo apt-get -y install oracle-java8-unlimited-jce-policy\n",
-                        "sudo apt-get -y install oracle-java9-set-default\n",
-                        "wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem\n",
-                        "keytool -import -keystore /etc/ssl/certs/java/cacerts -file rds-combined-ca-bundle.pem -storepass 'changeit' -noprompt -alias aws-rds-2016\n",
-                        
+                        "sudo apt-get -y install oracle-java9-set-default\n",                        
                         "wget ",
                         {
                            "Ref":"DebPackageUrl"
@@ -2064,7 +2061,13 @@
                         "sed -i -e 's_\">/cia<_\">/<_' /opt/cia/webapps/cia.xml\n",                        
                         "TOTAL_MEM_KB=$(awk '/MemTotal:/ { print $2 }' /proc/meminfo)\n",
                         "let JAVAMEMSIZE=$TOTAL_MEM_KB-1280*1024\n",                        
-                        "sed -i -e 's_4096m_'$JAVAMEMSIZE'k_' /opt/cia/start.ini\n",
+                        "sed -i -e 's_4096m_'$JAVAMEMSIZE'k_' /opt/cia/start.ini\n",                        
+                        "wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem\n",
+                        "mkdir /opt/cia/.postgresql\n",
+                        "cp rds-combined-ca-bundle.pem /opt/cia/.postgresql/root.crt\n",
+                        "chown -R cia:cia /opt/cia/.postgresql\n",
+                        "chmod -R 700 /opt/cia/.postgresql\n",                       
+                        "keytool -import -keystore /etc/ssl/certs/java/cacerts -file rds-combined-ca-bundle.pem -storepass 'changeit' -noprompt -alias aws-rds-2016\n",                        
                         "/etc/init.d/cia restart\n",
                         "ufw default allow outgoing\n",
                         "ufw default deny incoming\n",
