@@ -2075,7 +2075,7 @@
                         "ufw allow 8443/tcp\n",                        
                         "ufw allow 80/tcp\n",
                         "ufw allow 443/tcp\n",
-                        "ufw allow 53\n",
+                        "ufw allow 53\n",                        
                         "ufw allow ntp\n",
                         "ufw enable\n",
                         "ufw status verbose\n",
