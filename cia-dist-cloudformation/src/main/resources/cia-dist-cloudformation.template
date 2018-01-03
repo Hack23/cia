@@ -1661,9 +1661,9 @@
             "VpcId":{
                "Ref":"VPC"
             },
-            "HealthCheckPort":2323,
+            "HealthCheckPort":8443,
             "HealthCheckIntervalSeconds":5,
-            "HealthCheckProtocol":"HTTP",
+            "HealthCheckProtocol":"HTTPS",
             "HealthCheckTimeoutSeconds":4,
             "HealthyThresholdCount":4,
             "Matcher":{
@@ -1689,14 +1689,14 @@
                   ]
                ]
             },
-            "Port":2323,
-            "Protocol":"HTTP",
+            "Port":8443,
+            "Protocol":"HTTPS",
             "VpcId":{
                "Ref":"VPC"
             },
-            "HealthCheckPort":2323,
+            "HealthCheckPort":8443,
             "HealthCheckIntervalSeconds":5,
-            "HealthCheckProtocol":"HTTP",
+            "HealthCheckProtocol":"HTTPS",
             "HealthCheckTimeoutSeconds":4,
             "HealthyThresholdCount":4,
             "Matcher":{
@@ -1737,8 +1737,8 @@
                },
                {
                   "IpProtocol":"tcp",
-                  "FromPort":"2323",
-                  "ToPort":"2323",
+                  "FromPort":"8443",
+                  "ToPort":"8443",
                   "CidrIp":"0.0.0.0/0"
                }
             ]
@@ -2073,6 +2073,7 @@
                         "ufw default deny incoming\n",
                         "ufw allow 22/tcp\n",
                         "ufw allow 2323/tcp\n",
+                        "ufw allow 8443/tcp\n",                        
                         "ufw allow 80/tcp\n",
                         "ufw allow 443/tcp\n",
                         "ufw allow 53\n",
@@ -2128,8 +2129,8 @@
                },
                {
                   "IpProtocol":"tcp",
-                  "FromPort":"2323",
-                  "ToPort":"2323",
+                  "FromPort":"8443",
+                  "ToPort":"8443",
                   "SourceSecurityGroupId":{
                      "Ref":"PublicLoadBalancerSecurityGroup"
                   }

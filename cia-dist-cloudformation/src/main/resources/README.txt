@@ -6,11 +6,11 @@ ubuntu/images/hvm-ssd/ubuntu-zesty-17.04-amd64-server-20170811 : ami-1446b66d
 
 http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL.Procedural.Importing.html
 
-https://www.cloudconformity.com/conformity-rules/RDS/rds-encryption-enabled.html
-
 Add elasticsearch
-
 https://github.com/alphagov/digitalmarketplace-aws/blob/master/cloudformation_templates/aws_kibana.json
+
+
+
 
 "AvailabilityZone" : { "Fn::Select" : [ "0", { "Fn::GetAZs" : { "Ref" : "AWS::Region" } } ] }
 
@@ -37,6 +37,8 @@ http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-cloudwatc
 
         AWS::WAF::ByteMatchSet
 
+
+https://docs.aws.amazon.com/solutions/latest/aws-waf-security-automations/template.html
     AWS::WAF::IPSet
 
     AWS::WAF::Rule
