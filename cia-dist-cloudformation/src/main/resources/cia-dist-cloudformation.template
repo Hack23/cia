@@ -2072,7 +2072,6 @@
                         "ufw default allow outgoing\n",
                         "ufw default deny incoming\n",
                         "ufw allow 22/tcp\n",
-                        "ufw allow 2323/tcp\n",
                         "ufw allow 8443/tcp\n",                        
                         "ufw allow 80/tcp\n",
                         "ufw allow 443/tcp\n",
