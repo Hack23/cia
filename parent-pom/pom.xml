@@ -160,7 +160,7 @@
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>9.4.8.v20171121</cia.project.versions.jetty>
     <cia.project.versions.javamelody>1.70.0</cia.project.versions.javamelody>
-    <cia.project.versions.vaadin>8.2.0</cia.project.versions.vaadin>
+    <cia.project.versions.vaadin>8.3.0.alpha1</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.8.2</cia.project.versions.vaadin.gwt.user>
     <cia.project.versions.vaadin.cssparser>0.9.24</cia.project.versions.vaadin.cssparser>
     <cia.project.versions.servlet.api>3.1.0</cia.project.versions.servlet.api>
@@ -640,7 +640,7 @@
             <dependency>
               <groupId>org.jacoco</groupId>
               <artifactId>org.jacoco.report</artifactId>
-              <version>0.7.9</version>
+              <version>0.8.0</version>
               <exclusions>
                 <exclusion>
                   <artifactId>asm-debug-all</artifactId>
@@ -1340,7 +1340,7 @@
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.7.9</jacoco.version>
+        <jacoco.version>0.8.0</jacoco.version>
         <compiler.plugin.version>3.7.0</compiler.plugin.version>
         <surefire.version>2.21.0-SNAPSHOT</surefire.version>
       </properties>
@@ -1355,7 +1355,7 @@
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.7.9</jacoco.version>
+        <jacoco.version>0.8.0</jacoco.version>
         <compiler.plugin.version>3.7.0</compiler.plugin.version>
         <surefire.version>2.20.1</surefire.version>
       </properties>
@@ -1370,7 +1370,7 @@
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
-        <jacoco.version>0.7.9</jacoco.version>
+        <jacoco.version>0.8.0</jacoco.version>
         <compiler.plugin.version>3.7.0</compiler.plugin.version>
         <surefire.version>2.20.1</surefire.version>
       </properties>
@@ -1809,7 +1809,7 @@
           <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.7.9</version>
+            <version>0.8.0</version>
             <inherited>true</inherited>
             <configuration>
               <dataFile>${sonar.jacoco.reportPath}</dataFile>
