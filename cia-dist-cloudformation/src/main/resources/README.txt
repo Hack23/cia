@@ -25,12 +25,6 @@ http://www.ec2instances.info/
 http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-cloudwatchlogs.html
 
 
-
-
-    AWS::ApplicationAutoScaling::ScalableTarget
-
-    AWS::ApplicationAutoScaling::ScalingPolicy
-
         AWS::SSM::Association
 
     AWS::SSM::Document
