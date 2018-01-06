@@ -347,7 +347,7 @@ Resources:
   VPCFlowLog:
     Type: AWS::EC2::FlowLog
     Properties:
-      DeliverLogsPermissionArn: !Ref 'FlowLogsRoleArn'
+      DeliverLogsPermissionArn: !GetAtt 'FlowLogsRole.Arn'
       LogGroupName: !Join
         - ''
         - - VPCFlowLogsGroup

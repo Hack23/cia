@@ -446,7 +446,7 @@
      "VPCFlowLog": {
       "Type" : "AWS::EC2::FlowLog",
       "Properties" : {
-        "DeliverLogsPermissionArn" : { "Ref" : "FlowLogsRoleArn" },
+        "DeliverLogsPermissionArn" : { "Fn::GetAtt" : [ "FlowLogsRole", "Arn" ] },
         "LogGroupName"             : { "Fn::Join": ["", [
           "VPCFlowLogsGroup", "-", { "Ref": "AWS::StackName" }
         ]]},
