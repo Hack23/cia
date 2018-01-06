@@ -360,8 +360,9 @@ Resources:
     Type: AWS::Inspector::ResourceGroup
     Properties:
       ResourceGroupTags:
-        - key: Network
-          value: Public
+        - Key: Network
+          Value: Public
+    DependsOn: PublicElasticLoadBalancerV2
   PublicNetworkTarget:
     Type: AWS::Inspector::AssessmentTarget
     Properties:
