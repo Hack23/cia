@@ -81,6 +81,11 @@ Parameters:
       - cc2.8xlarge
       - cg1.4xlarge
     ConstraintDescription: must be a valid EC2 instance type.
+  WebServerAmi:
+    Description: Web server ami ubuntu 16.04+, recommend ebs encrypted ami based on
+      ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server
+    Type: String
+    Default: ''
   WebServerCount:
     Description: Number of EC2 instances to launch for the WebServer server
     Type: Number
@@ -230,182 +235,6 @@ Mappings:
       CIDR: 0.0.0.0/0
     cn-north-1:
       CIDR: 0.0.0.0/0
-  AWSInstanceType2Arch:
-    t2.micro:
-      Arch: HVM64
-    t2.small:
-      Arch: HVM64
-    t2.medium:
-      Arch: HVM64
-    t2.large:
-      Arch: HVM64
-    t2.xlarge:
-      Arch: HVM64
-    t2.2xlarge:
-      Arch: HVM64
-    m3.medium:
-      Arch: HVM64
-    m3.large:
-      Arch: HVM64
-    m3.xlarge:
-      Arch: HVM64
-    m3.2xlarge:
-      Arch: HVM64
-    m4.medium:
-      Arch: HVM64
-    m4.large:
-      Arch: HVM64
-    m4.xlarge:
-      Arch: HVM64
-    m4.2xlarge:
-      Arch: HVM64
-    m4.4xlarge:
-      Arch: HVM64
-    m4.10xlarge:
-      Arch: HVM64
-    m4.16xlarge:
-      Arch: HVM64
-    m5.large:
-      Arch: HVM64
-    m5.xlarge:
-      Arch: HVM64
-    m5.2xlarge:
-      Arch: HVM64
-    m5.4xlarge:
-      Arch: HVM64
-    m5.12xlarge:
-      Arch: HVM64
-    m5.24xlarge:
-      Arch: HVM64
-    c3.large:
-      Arch: HVM64
-    c3.xlarge:
-      Arch: HVM64
-    c3.2xlarge:
-      Arch: HVM64
-    c3.4xlarge:
-      Arch: HVM64
-    c3.8xlarge:
-      Arch: HVM64
-    c4.large:
-      Arch: HVM64
-    c4.xlarge:
-      Arch: HVM64
-    c4.2xlarge:
-      Arch: HVM64
-    c4.4xlarge:
-      Arch: HVM64
-    c4.8xlarge:
-      Arch: HVM64
-    c5.large:
-      Arch: HVM64
-    c5.xlarge:
-      Arch: HVM64
-    c5.2xlarge:
-      Arch: HVM64
-    c5.4xlarge:
-      Arch: HVM64
-    c5.8xlarge:
-      Arch: HVM64
-    g2.2xlarge:
-      Arch: HVMG2
-    g2.8xlarge:
-      Arch: HVMG2
-    r3.large:
-      Arch: HVM64
-    r3.xlarge:
-      Arch: HVM64
-    r3.2xlarge:
-      Arch: HVM64
-    r3.4xlarge:
-      Arch: HVM64
-    r3.8xlarge:
-      Arch: HVM64
-    r4.large:
-      Arch: HVM64
-    r4.xlarge:
-      Arch: HVM64
-    r4.2xlarge:
-      Arch: HVM64
-    r4.4xlarge:
-      Arch: HVM64
-    r4.8xlarge:
-      Arch: HVM64
-    r4.16xlarge:
-      Arch: HVM64
-    i2.xlarge:
-      Arch: HVM64
-    i2.2xlarge:
-      Arch: HVM64
-    i2.4xlarge:
-      Arch: HVM64
-    i2.8xlarge:
-      Arch: HVM64
-    i3.xlarge:
-      Arch: HVM64
-    i3.2xlarge:
-      Arch: HVM64
-    i3.4xlarge:
-      Arch: HVM64
-    i3.8xlarge:
-      Arch: HVM64
-    d2.xlarge:
-      Arch: HVM64
-    d2.2xlarge:
-      Arch: HVM64
-    d2.4xlarge:
-      Arch: HVM64
-    d2.8xlarge:
-      Arch: HVM64
-    hi1.4xlarge:
-      Arch: HVM64
-    hs1.8xlarge:
-      Arch: HVM64
-    cr1.8xlarge:
-      Arch: HVM64
-    cc2.8xlarge:
-      Arch: HVM64
-  AWSRegionArch2AMI:
-    us-east-1:
-      PV64: NOT_SUPPORTED
-      HVM64: ami-60b6c60a
-      HVMG2: NOT_SUPPORTED
-    us-west-2:
-      PV64: NOT_SUPPORTED
-      HVM64: ami-f0091d91
-      HVMG2: NOT_SUPPORTED
-    us-west-1:
-      PV64: NOT_SUPPORTED
-      HVM64: ami-8fd760f6
-      HVMG2: NOT_SUPPORTED
-    eu-west-1:
-      PV64: NOT_SUPPORTED
-      HVM64: ami-63b0341a
-      HVMG2: NOT_SUPPORTED
-    eu-central-1:
-      PV64: NOT_SUPPORTED
-      HVM64: ami-b0db1ddf
-      HVMG2: NOT_SUPPORTED
-    ap-northeast-1:
-      PV64: NOT_SUPPORTED
-      HVM64: ami-383c1956
-      HVMG2: NOT_SUPPORTED
-    ap-southeast-1:
-      PV64: NOT_SUPPORTED
-      HVM64: ami-c9b572aa
-      HVMG2: NOT_SUPPORTED
-    ap-southeast-2:
-      PV64: NOT_SUPPORTED
-      HVM64: ami-48d38c2b
-      HVMG2: NOT_SUPPORTED
-    sa-east-1:
-      PV64: NOT_SUPPORTED
-      HVM64: ami-6817af04
-      HVMG2: NOT_SUPPORTED
-    cn-north-1:
-      PV64: NOT_SUPPORTED
-      HVM64: ami-43a36a2e
-      HVMG2: NOT_SUPPORTED
   AWSRegionAvailabilityZone:
     us-east-1:
       FIRST: us-east-1a
@@ -1158,13 +987,7 @@ Resources:
                   - "runas=root\n"
           services: {}
     Properties:
-      ImageId: !FindInMap
-        - AWSRegionArch2AMI
-        - !Ref 'AWS::Region'
-        - !FindInMap
-          - AWSInstanceType2Arch
-          - !Ref 'WebServerInstanceType'
-          - Arch
+      ImageId: !Ref 'WebServerAmi'
       EbsOptimized: 'false'
       SecurityGroups:
         - !Ref 'WebServerSecurityGroup'
