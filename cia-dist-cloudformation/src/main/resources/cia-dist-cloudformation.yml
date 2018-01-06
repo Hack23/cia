@@ -16,7 +16,7 @@ Parameters:
     Type: String
     MinLength: '9'
     MaxLength: '18'
-    Default: 0.0.0.0/0
+    Default: 10.40.0.0/16
     AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
     ConstraintDescription: must be a valid CIDR range of the form x.x.x.x/x.
   WebServerInstanceType:
@@ -218,23 +218,23 @@ Mappings:
     us-east-1:
       CIDR: 52.23.63.224/27
     us-west-2:
-      CIDR: 0.0.0.0/0
+      CIDR: 10.40.0.0/16
     us-west-1:
       CIDR: 54.70.204.128/27
     eu-west-1:
       CIDR: 52.210.255.224/27
     eu-central-1:
-      CIDR: 0.0.0.0/0
+      CIDR: 10.40.0.0/16
     ap-northeast-1:
-      CIDR: 0.0.0.0/0
+      CIDR: 10.40.0.0/16
     ap-southeast-1:
-      CIDR: 0.0.0.0/0
+      CIDR: 10.40.0.0/16
     ap-southeast-2:
-      CIDR: 0.0.0.0/0
+      CIDR: 10.40.0.0/16
     sa-east-1:
-      CIDR: 0.0.0.0/0
+      CIDR: 10.40.0.0/16
     cn-north-1:
-      CIDR: 0.0.0.0/0
+      CIDR: 10.40.0.0/16
   AWSRegionAvailabilityZone:
     us-east-1:
       FIRST: us-east-1a
