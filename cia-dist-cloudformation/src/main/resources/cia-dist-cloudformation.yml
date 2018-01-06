@@ -312,6 +312,50 @@ Resources:
           Value: !Ref 'AWS::StackId'
         - Key: Network
           Value: Public
+  FlowLogsRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - vpc-flow-logs.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: /
+  FlowLogsPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: FlowLogs
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+              - logs:DescribeLogGroups
+              - logs:DescribeLogStreams
+            Effect: Allow
+            Resource: '*'
+      Roles:
+        - !Ref 'FlowLogsRole'
+    DependsOn:
+      - FlowLogsRole
+  VPCFlowLog:
+    Type: AWS::EC2::FlowLog
+    Properties:
+      DeliverLogsPermissionArn: !Ref 'FlowLogsRoleArn'
+      LogGroupName: !Join
+        - ''
+        - - VPCFlowLogsGroup
+          - '-'
+          - !Ref 'AWS::StackName'
+      ResourceId: !Ref 'VPC'
+      ResourceType: VPC
+      TrafficType: ALL
   PublicSubnet:
     Type: AWS::EC2::Subnet
     Properties:
