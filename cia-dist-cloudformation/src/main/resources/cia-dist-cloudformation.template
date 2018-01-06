@@ -1634,7 +1634,65 @@
                "WaitOnResourceSignals":"true"
             }
          }
-      },
+      },      
+	    "WebServerScaleUpPolicy" : {
+	      "Type" : "AWS::AutoScaling::ScalingPolicy",
+	      "Properties" : {
+	        "AdjustmentType" : "ChangeInCapacity",
+	        "AutoScalingGroupName" : { "Ref" : "WebServerFleet" },
+	        "Cooldown" : "60",
+	        "ScalingAdjustment" : "1"
+	      }
+	    },
+	    "WebServerScaleDownPolicy" : {
+	      "Type" : "AWS::AutoScaling::ScalingPolicy",
+	      "Properties" : {
+	        "AdjustmentType" : "ChangeInCapacity",
+	        "AutoScalingGroupName" : { "Ref" : "WebServerFleet" },
+	        "Cooldown" : "60",
+	        "ScalingAdjustment" : "-1"
+	      }
+	    },
+	    "CPUAlarmHigh": {
+	     "Type": "AWS::CloudWatch::Alarm",
+	     "Properties": {
+	        "AlarmDescription": "Scale-up if CPU > 60% for 30 minutes",
+	        "MetricName": "CPUUtilization",
+	        "Namespace": "AWS/EC2",
+	        "Statistic": "Average",
+	        "Period": "900",
+	        "EvaluationPeriods": "2",
+	        "Threshold": "60",
+	        "AlarmActions": [ { "Ref": "WebServerScaleUpPolicy" } ],
+	        "Dimensions": [
+	          {
+	            "Name": "AutoScalingGroupName",
+	            "Value": { "Ref": "WebServerFleet" }
+	          }
+	        ],
+	        "ComparisonOperator": "GreaterThanThreshold"
+	      }
+	    },
+	    "CPUAlarmLow": {
+	     "Type": "AWS::CloudWatch::Alarm",
+	     "Properties": {
+	        "AlarmDescription": "Scale-down if CPU < 40% for 30 minutes",
+	        "MetricName": "CPUUtilization",
+	        "Namespace": "AWS/EC2",
+	        "Statistic": "Average",
+	        "Period": "900",
+	        "EvaluationPeriods": "2",
+	        "Threshold": "40",
+	        "AlarmActions": [ { "Ref": "WebServerScaleDownPolicy" } ],
+	        "Dimensions": [
+	          {
+	            "Name": "AutoScalingGroupName",
+	            "Value": { "Ref": "WebServerFleet" }
+	          }
+	        ],
+	        "ComparisonOperator": "LessThanThreshold"
+	      }
+	    },      
       "WebServerLaunchConfig":{
          "Type":"AWS::AutoScaling::LaunchConfiguration",
          "Metadata":{
