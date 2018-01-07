@@ -304,7 +304,20 @@
             "SECOND":"cn-north-1b",
             "THIRD":"cn-north-1c"
          }
-      }
+      },
+      "Region2ARNPrefix": {
+      "us-east-1"      : { "ARNPrefix": "arn:aws:" },
+      "us-west-1"      : { "ARNPrefix": "arn:aws:" },
+      "us-west-2"      : { "ARNPrefix": "arn:aws:" },
+      "eu-west-1"      : { "ARNPrefix": "arn:aws:" },
+      "ap-northeast-1" : { "ARNPrefix": "arn:aws:" },
+      "ap-southeast-1" : { "ARNPrefix": "arn:aws:" },
+      "ap-southeast-2" : { "ARNPrefix": "arn:aws:" },
+      "sa-east-1"      : { "ARNPrefix": "arn:aws:" },
+      "cn-north-1"     : { "ARNPrefix": "arn:aws-cn:" },
+      "eu-central-1"   : { "ARNPrefix": "arn:aws:" }
+    }
+      
    },
    "Conditions":{
       "useDBSnapshot":{
