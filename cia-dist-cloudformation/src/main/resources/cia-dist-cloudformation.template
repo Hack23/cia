@@ -1413,9 +1413,9 @@
                               "s3:::", { "Ref": "LogsBucket" }, "/", "Logs", "/AWSLogs/", { "Ref": "AWS::AccountId" }, "/*" ] ]
               },
               "Principal": { "AWS": { "Fn::Join": [":", [
-						            "arn:aws:iam", 
+						            "arn:aws:iam:", 
 						            { "Ref": "AWS::AccountId"},
-						            "*"]
+						            "root"]
 						         ]
           } },
               "Action": [ "s3:PutObject" ]

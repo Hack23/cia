@@ -890,9 +890,9 @@ Resources:
             Principal:
               AWS: !Join
                 - ':'
-                - - arn:aws:iam
+                - - 'arn:aws:iam:'
                   - !Ref 'AWS::AccountId'
-                  - '*'
+                  - root
             Action:
               - s3:PutObject
   PublicElasticLoadBalancerV2:
