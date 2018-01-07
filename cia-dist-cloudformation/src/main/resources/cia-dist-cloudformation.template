@@ -1412,7 +1412,7 @@
                 "Fn::Join": [ "", [ { "Fn::FindInMap" : ["Region2ARNPrefix", {"Ref" : "AWS::Region"}, "ARNPrefix"] },
                               "s3:::", { "Ref": "LogsBucket" }, "/", "Logs", "/AWSLogs/", { "Ref": "AWS::AccountId" }, "/*" ] ]
               },
-              "Principal": { "AWS": { "Fn::FindInMap": [ "Region2ELBAccountId", { "Ref": "AWS::Region" }, "AccountId" ] } },
+              "Principal": { "AWS": { "Ref" : "AWS::AccountId" } },
               "Action": [ "s3:PutObject" ]
             }
           ]

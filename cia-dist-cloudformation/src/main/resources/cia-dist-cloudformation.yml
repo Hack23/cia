@@ -888,10 +888,7 @@ Resources:
                 - !Ref 'AWS::AccountId'
                 - /*
             Principal:
-              AWS: !FindInMap
-                - Region2ELBAccountId
-                - !Ref 'AWS::Region'
-                - AccountId
+              AWS: !Ref 'AWS::AccountId'
             Action:
               - s3:PutObject
   PublicElasticLoadBalancerV2:
