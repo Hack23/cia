@@ -456,16 +456,16 @@
       }
     },    
     "PublicNetworkResourceGroup": {
-    "Type": "AWS::Inspector::ResourceGroup",
+    "Type": "AWS: : Inspector: : ResourceGroup",
         "Properties": {
             "ResourceGroupTags": [
                 {
-                    "Network": "Public"
+                    "key": "Network",
+                    "value": "Public"
                 }
             ]
-        },
-        "DependsOn":"PublicElasticLoadBalancerV2"
-	},		
+        }
+    },		
 	"PublicNetworkTarget": {
 	  "Type": "AWS::Inspector::AssessmentTarget",
 	  "Properties": {
