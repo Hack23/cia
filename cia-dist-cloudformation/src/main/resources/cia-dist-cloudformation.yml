@@ -888,7 +888,11 @@ Resources:
                 - !Ref 'AWS::AccountId'
                 - /*
             Principal:
-              AWS: !Ref 'AWS::AccountId'
+              AWS: !Join
+                - ':'
+                - - arn:aws:iam
+                  - !Ref 'AWS::AccountId'
+                  - '*'
             Action:
               - s3:PutObject
   PublicElasticLoadBalancerV2:
