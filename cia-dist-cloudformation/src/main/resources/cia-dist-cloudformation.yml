@@ -360,8 +360,8 @@ Resources:
     Type: AWS::Inspector::ResourceGroup
     Properties:
       ResourceGroupTags:
-        - key: Network
-          value: Public
+        - Key: Network
+          Value: Public
   PublicNetworkTarget:
     Type: AWS::Inspector::AssessmentTarget
     Properties:
@@ -378,8 +378,8 @@ Resources:
         - arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-SnojL3Z6
         - arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-lLmwe1zd
       UserAttributesForFindings:
-        - key: Service
-          value: cia
+        - Key: Service
+          Value: cia
   PublicSubnet:
     Type: AWS::EC2::Subnet
     Properties:

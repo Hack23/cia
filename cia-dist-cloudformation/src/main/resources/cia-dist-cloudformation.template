@@ -482,8 +482,8 @@
 		    "RulesPackageArns" : [ "arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-ubA5XvBh","arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-SnojL3Z6", "arn:aws:inspector:eu-west-1:357557129151:rulespackage/0-lLmwe1zd" ],
 		    "UserAttributesForFindings" : [ 
 		       {
-	            "key": "Service",
-	            "value": "cia"
+	            "Key": "Service",
+	            "Value": "cia"
 	         }
 		]
 	 }
