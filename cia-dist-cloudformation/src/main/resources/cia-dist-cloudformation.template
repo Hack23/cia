@@ -456,7 +456,7 @@
       }
     },    
     "PublicNetworkResourceGroup": {
-    "Type": "AWS: : Inspector: : ResourceGroup",
+    "Type": "AWS::Inspector::ResourceGroup",
         "Properties": {
             "ResourceGroupTags": [
                 {

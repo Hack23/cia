@@ -357,7 +357,7 @@ Resources:
       ResourceType: VPC
       TrafficType: ALL
   PublicNetworkResourceGroup:
-    Type: 'AWS: : Inspector: : ResourceGroup'
+    Type: AWS::Inspector::ResourceGroup
     Properties:
       ResourceGroupTags:
         - key: Network
