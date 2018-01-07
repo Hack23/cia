@@ -460,8 +460,7 @@
         "Properties": {
             "ResourceGroupTags": [
                 {
-                    "key": "Network",
-                    "value": "Public"
+                    "Network": "Public"
                 }
             ]
         },
