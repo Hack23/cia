@@ -1397,20 +1397,6 @@
       "DeletionPolicy" : "Retain",
       "Properties" : { "AccessControl" : "LogDeliveryWrite" }
     },
-    "LogBucketRole": {
-	  "Type": "AWS::IAM::Role",
-	  "Properties": {
-	    "AssumeRolePolicyDocument": {
-	      "Statement": [{
-	        "Action": [ "sts:AssumeRole" ],
-	        "Effect": "Allow",
-	        "Principal": {
-	          "Service": [ "s3.amazonaws.com" ]
-	        }
-	      }]
-	    }
-	  }    
-	},
     "LogsBucketPolicy": {
       "Type": "AWS::S3::BucketPolicy",
       "Properties": {
@@ -1435,15 +1421,12 @@
                                     ]
                                 ]
                             },
-              "Principal": { "AWS": { "Ref": "AWS::AccountId"} },
+              "Principal": { "AWS": "*" },
               "Action": [ "*" ]
             }
           ]
         }
-      },
-      "Roles": [{
-	      "Ref": "LogBucketRole"
-	    }]      
+      }
     },
       
       "PublicElasticLoadBalancerV2":{
