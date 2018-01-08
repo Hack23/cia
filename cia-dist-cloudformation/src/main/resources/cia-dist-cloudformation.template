@@ -1408,14 +1408,13 @@
             {
               "Sid": "ELBAccessLogs20130930",
               "Effect": "Allow",
-              "Action": "*",
                "Resource": {
                                 "Fn::Join": [
                                     "",
                                     [
                                         "arn:aws:s3:::",
                                         {
-                                            "Ref": "S3Bucket"
+                                            "Ref": "LogsBucket"
                                         },
                                         "/*"
                                     ]
@@ -1427,7 +1426,7 @@
 						            "root"]
 						         ]
           } },
-              "Action": [ "s3:PutObject" ]
+              "Action": [ "s3:*" ]
             }
           ]
         }
