@@ -1408,10 +1408,19 @@
             {
               "Sid": "ELBAccessLogs20130930",
               "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [ "", [ { "Fn::FindInMap" : ["Region2ARNPrefix", {"Ref" : "AWS::Region"}, "ARNPrefix"] },
-                              "s3:::", { "Ref": "LogsBucket" }, "/", "Logs", "/AWSLogs/", { "Ref": "AWS::AccountId" }, "/*" ] ]
-              },
+              "Action": "*",
+               "Resource": {
+                                "Fn::Join": [
+                                    "",
+                                    [
+                                        "arn:aws:s3:::",
+                                        {
+                                            "Ref": "S3Bucket"
+                                        },
+                                        "/*"
+                                    ]
+                                ]
+                            },
               "Principal": { "AWS": { "Fn::Join": [":", [
 						            "arn:aws:iam:", 
 						            { "Ref": "AWS::AccountId"},
