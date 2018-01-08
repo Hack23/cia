@@ -1420,13 +1420,8 @@
                                     ]
                                 ]
                             },
-              "Principal": { "AWS": { "Fn::Join": [":", [
-						            "arn:aws:iam:", 
-						            { "Ref": "AWS::AccountId"},
-						            "root"]
-						         ]
-          } },
-              "Action": [ "s3:*" ]
+              "Principal": { "AWS": { "Ref": "AWS::AccountId"} },
+              "Action": [ "*" ]
             }
           ]
         }
