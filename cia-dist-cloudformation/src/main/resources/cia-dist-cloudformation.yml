@@ -401,6 +401,266 @@ Resources:
       UserAttributesForFindings:
         - Key: Service
           Value: cia
+  StartContinuousAssessmentLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+        - arn:aws:iam::aws:policy/AmazonInspectorFullAccess
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: /
+      Policies:
+        - PolicyName: StartContinuousAssessmentLambdaPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Sid: StartContinuousAssessmentLambdaPolicyStmt
+                Effect: Allow
+                Action:
+                  - ssm:GetParameter
+                  - ec2:DescribeImages
+                  - ec2:RunInstances
+                  - ec2:CreateTags
+                Resource:
+                  - '*'
+  StartContinuousAssessmentLambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Role: !GetAtt 'StartContinuousAssessmentLambdaRole.Arn'
+      Code:
+        ZipFile: !Join
+          - ''
+          - - "\n"
+            - import json
+            - "\n"
+            - import urllib.parse
+            - "\n"
+            - import boto3
+            - "\n"
+            - import time
+            - "\n"
+            - import os
+            - "\n"
+            - 'def lambda_handler(event, context):'
+            - "\n"
+            - '    region=os.environ[''AWS_DEFAULT_REGION'']'
+            - "\n"
+            - '    inspector = boto3.client(''inspector'',region)'
+            - "\n"
+            - '    existingTemplates = inspector.list_assessment_templates(filter={''namePattern'':
+              ''PublicNetworkTemplate''})'
+            - "\n"
+            - '    print(''Total templates found:''+str(len(existingTemplates[''assessmentTemplateArns''])))'
+            - "\n"
+            - '    if len(existingTemplates[''assessmentTemplateArns''])==0:'
+            - "\n"
+            - '        return ''Failure'''
+            - "\n"
+            - '    assessmentTemplateArn=existingTemplates.get(''assessmentTemplateArns'')[0]'
+            - "\n"
+            - '    run = inspector.start_assessment_run(assessmentTemplateArn=assessmentTemplateArn,assessmentRunName=''ContinuousAssessment''+''-''+str(millis))'
+            - "\n"
+            - '    return ''Done'''
+      Runtime: python3.6
+      Timeout: 300
+      Handler: index.lambda_handler
+      MemorySize: 512
+  ContinuousAssessmentResultsTopic:
+    Type: AWS::SNS::Topic
+  ContinuousAssessmentCompleteTopicSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Endpoint: !GetAtt 'AnalyzeInspectorFindingsLambdaFunction.Arn'
+      Protocol: lambda
+      TopicArn: !Ref 'ContinuousAssessmentCompleteTopic'
+  ContinuousAssessmentCompleteTopic:
+    Type: AWS::SNS::Topic
+  ContinuousAssessmentCompleteTopicPolicy:
+    Type: AWS::SNS::TopicPolicy
+    Properties:
+      PolicyDocument:
+        Id: MyTopicPolicy
+        Version: '2012-10-17'
+        Statement:
+          - Sid: My-statement-id
+            Effect: Allow
+            Principal:
+              Service: inspector.amazonaws.com
+            Action: sns:Publish
+            Resource: '*'
+      Topics:
+        - !Ref 'ContinuousAssessmentCompleteTopic'
+  LambdaInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      Principal: sns.amazonaws.com
+      SourceArn: !Ref 'ContinuousAssessmentCompleteTopic'
+      FunctionName: !GetAtt 'AnalyzeInspectorFindingsLambdaFunction.Arn'
+  AnalyzeInspectorFindingsLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: /
+      Policies:
+        - PolicyName: AnalyzeInspectorFindingsLambdaPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Sid: AnalyzeInspectorFindingsLambdaPolicyStmt
+                Effect: Allow
+                Action:
+                  - sns:Publish
+                  - ec2:DescribeInstances
+                  - ec2:TerminateInstances
+                  - inspector:AddAttributesToFindings
+                  - inspector:DescribeFindings
+                  - inspector:ListFindings
+                Resource:
+                  - '*'
+  AnalyzeInspectorFindingsLambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Role: !GetAtt 'AnalyzeInspectorFindingsLambdaRole.Arn'
+      Code:
+        ZipFile: !Join
+          - ''
+          - - "\n"
+            - 'import json '
+            - "\n"
+            - import os
+            - "\n"
+            - import boto3
+            - "\n"
+            - import collections
+            - "\n"
+            - import ast
+            - "\n"
+            - 'def lambda_handler(event, context): '
+            - "\n"
+            - '    message = event[''Records''][0][''Sns''][''Message''] '
+            - "\n"
+            - '    jsonVal = json.loads(message);'
+            - "\n"
+            - '    assessmentArn =jsonVal[''run'']  '
+            - "\n"
+            - '    region=os.environ[''AWS_DEFAULT_REGION'']'
+            - "\n"
+            - '    ec2 = boto3.client(''ec2'',region) '
+            - "\n"
+            - '    sns = boto3.client(''sns'',region) '
+            - "\n"
+            - '    inspector = boto3.client(''inspector'',region) '
+            - "\n"
+            - '    findingArns = inspector.list_findings(assessmentRunArns=[jsonVal[''run'']],maxResults=5000)'
+            - "\n"
+            - '    aggregateData={}'
+            - "\n"
+            - '    for findingArn in findingArns[''findingArns'']:'
+            - "\n"
+            - '        finding = inspector.describe_findings(findingArns=[findingArn]) '
+            - "\n"
+            - '        for result in finding[''findings'']: '
+            - "\n"
+            - '            instanceId =result[''assetAttributes''][''agentId'']'
+            - "\n"
+            - '            severity =result[''severity'']'
+            - "\n"
+            - '            cveName=result[''id'']'
+            - "\n"
+            - '            if not (instanceId) in aggregateData:'
+            - "\n"
+            - '                aggregateData[instanceId]={}'
+            - "\n"
+            - '                aggregateData[instanceId][''findings'']={}'
+            - "\n"
+            - '                aggregateData[instanceId][''findings''][severity]=0'
+            - "\n"
+            - '                instance=ec2.describe_instances(InstanceIds=[instanceId]);'
+            - "\n"
+            - '                tagsStr=str(instance[''Reservations''][0][''Instances''][0][''Tags'']) '
+            - "\n"
+            - '                tagsStr =tagsStr.replace(''Key'',''key'').replace(''Value'',''value'')  '
+            - "\n"
+            - '                aggregateData[instanceId][''tags'']= ast.literal_eval(tagsStr)'
+            - "\n"
+            - '            elif not (severity) in aggregateData[instanceId][''findings'']:'
+            - "\n"
+            - '                aggregateData[instanceId][''findings''][severity]=0'
+            - "\n"
+            - '            aggregateData[instanceId][''findings''][severity]=aggregateData[instanceId][''findings''][severity]+1; '
+            - "\n"
+            - '            inspector.add_attributes_to_findings(findingArns=[result[''arn'']],attributes=aggregateData[instanceId][''tags''])'
+            - "\n"
+            - '    tagsList=[]'
+            - "\n"
+            - '    for key  in aggregateData: '
+            - "\n"
+            - '        outputJson=[] '
+            - "\n"
+            - '        for tag in aggregateData[key][''tags'']:'
+            - "\n"
+            - '            if tag[''key''] != ''continuous-assessment-instance'':'
+            - "\n"
+            - '                outputJson.append("\""+tag[''key'']+"\""+":"+"\""+tag[''value'']+"\"")'
+            - "\n"
+            - '        for sev in aggregateData[key][''findings'']:'
+            - "\n"
+            - '            outputJson.append("\"Finding-Severity-"+sev+"-Count\""+":"+"\""+str(aggregateData[key][''findings''][sev])+"\"")'
+            - "\n"
+            - '        outputJson.sort()'
+            - "\n"
+            - '        print(outputJson)'
+            - "\n"
+            - '        tagsList.append(''{''+'', ''.join(outputJson)+''}'')'
+            - "\n"
+            - '        print(''Terminating:''+key)'
+            - "\n"
+            - '        ec2.terminate_instances(InstanceIds=[key],DryRun=False)'
+            - "\n"
+            - '    sns.publish(TopicArn='''
+            - !Ref 'ContinuousAssessmentResultsTopic'
+            - ''',Message=''[''+'', ''.join(tagsList)+'']'')'
+            - "\n"
+            - '    return jsonVal[''run'']'
+      Runtime: python3.6
+      Timeout: 300
+      Handler: index.lambda_handler
+      MemorySize: 512
+  InspectorScheduledRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: ScheduledRule
+      ScheduleExpression: cron(0 4 * * ? *)
+      State: ENABLED
+      Targets:
+        - Arn: !GetAtt 'StartContinuousAssessmentLambdaFunction.Arn'
+          Id: TargetFunctionV1
+  InspectorPermissionForEventsToInvokeLambda:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref 'StartContinuousAssessmentLambdaFunction'
+      Action: lambda:InvokeFunction
+      Principal: events.amazonaws.com
+      SourceArn: !GetAtt 'InspectorScheduledRule.Arn'
   NotificationTopic:
     Type: AWS::SNS::Topic
     Properties: {}
@@ -865,6 +1125,8 @@ Resources:
   LogsBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Retain
+    Properties:
+      AccessControl: LogDeliveryWrite
   LogsBucketPolicy:
     Type: AWS::S3::BucketPolicy
     Properties:
@@ -876,25 +1138,13 @@ Resources:
             Effect: Allow
             Resource: !Join
               - ''
-              - - !FindInMap
-                  - Region2ARNPrefix
-                  - !Ref 'AWS::Region'
-                  - ARNPrefix
-                - 's3:::'
+              - - 'arn:aws:s3:::'
                 - !Ref 'LogsBucket'
-                - /
-                - Logs
-                - /AWSLogs/
-                - !Ref 'AWS::AccountId'
                 - /*
             Principal:
-              AWS: !Join
-                - ':'
-                - - 'arn:aws:iam:'
-                  - !Ref 'AWS::AccountId'
-                  - root
+              AWS: '*'
             Action:
-              - s3:PutObject
+              - '*'
   PublicElasticLoadBalancerV2:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
