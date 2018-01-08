@@ -1395,7 +1395,7 @@
     "LogsBucket": {
       "Type": "AWS::S3::Bucket",
       "DeletionPolicy" : "Retain",
-      "AccessControl" : "LogDeliveryWrite"
+      "Properties" : { "AccessControl" : "LogDeliveryWrite" }
     },
     "LogBucketRole": {
 	  "Type": "AWS::IAM::Role",
