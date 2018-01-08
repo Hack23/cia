@@ -156,12 +156,16 @@ public class AppPublicSystemDocumentation {
 		viewSet.createSystemContextView(ciaSystem, "System context", "System context").addAllElements();
 		viewSet.createContainerView(ciaSystem, "Container view", "Application Overview").addAllContainers();
 		viewSet.createComponentView(ciaWebContainer, "Web", "Web").addAllComponents();
-				
+
+		
+		DeploymentNode wafNode = model.addDeploymentNode("Web Application Firewall", "AWS", "WAF");
+		
 		DeploymentNode applicationLoadbalancerNode = model.addDeploymentNode("Application Loadbalancer", "AWS", "ALB");
 		applicationLoadbalancerNode.add(loadBalancerContainer);
-
+		wafNode.uses(applicationLoadbalancerNode, "Protects", "filter rules");
+		
 		DeploymentNode webNode = model.addDeploymentNode("Application", "AWS", "EC2",2);
-		webNode.add(ciaWebContainer);
+		webNode.addDeploymentNode("Jetty", "Jetty", "JVM").add(ciaWebContainer);
 		applicationLoadbalancerNode.uses(webNode, "Uses", "https");
 
 		DeploymentNode databaseNode = model.addDeploymentNode("Database", "AWS", "RDS",2);
@@ -170,6 +174,8 @@ public class AppPublicSystemDocumentation {
 		
 		DeploymentView developmentDeploymentView = viewSet.createDeploymentView(ciaSystem, "Deployment",
 				"Deployment Aws.");
+		
+		developmentDeploymentView.add(wafNode);		
 		developmentDeploymentView.add(applicationLoadbalancerNode);
 		developmentDeploymentView.add(webNode);
 		developmentDeploymentView.add(databaseNode);
