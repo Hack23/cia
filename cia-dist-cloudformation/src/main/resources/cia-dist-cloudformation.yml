@@ -466,6 +466,8 @@ Resources:
             - "\n"
             - '    assessmentTemplateArn=existingTemplates.get(''assessmentTemplateArns'')[0]'
             - "\n"
+            - '    millis = int(round(time.time() * 1000))'
+            - "\n"
             - '    run = inspector.start_assessment_run(assessmentTemplateArn=assessmentTemplateArn,assessmentRunName=''ContinuousAssessment''+''-''+str(millis))'
             - "\n"
             - '    return ''Done'''
