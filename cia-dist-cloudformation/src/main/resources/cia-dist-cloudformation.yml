@@ -468,6 +468,10 @@ Resources:
             - "\n"
             - '    millis = int(round(time.time() * 1000))'
             - "\n"
+            - '    response = inspector.subscribe_to_event(event=''ASSESSMENT_RUN_COMPLETED'',resourceArn=template[''assessmentTemplateArn''],topicArn='''
+            - !Ref 'ContinuousAssessmentCompleteTopic'
+            - ''') '
+            - "\n"
             - '    run = inspector.start_assessment_run(assessmentTemplateArn=assessmentTemplateArn,assessmentRunName=''ContinuousAssessment''+''-''+str(millis))'
             - "\n"
             - '    return ''Done'''
