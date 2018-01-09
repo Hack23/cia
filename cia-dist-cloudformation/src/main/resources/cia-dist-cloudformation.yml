@@ -1440,6 +1440,19 @@ Resources:
                   - !Ref 'AWS::Region'
                   - "\n"
                   - "runas=root\n"
+            /etc/awslogs.conf:
+              content: !Join
+                - "\n"
+                - - '[general]'
+                  - '    state_file = /var/awslogs/state/agent-state'
+                  - ''
+                  - '[/var/log/syslog]'
+                  - file = /var/log/syslog
+                  - log_stream_name = {instance_id}
+                  - datetime_format = %b %d %H:%M:%S
+              mode: '000644'
+              owner: root
+              group: root
           services: {}
     Properties:
       ImageId: !Ref 'WebServerAmi'
@@ -1541,6 +1554,12 @@ Resources:
             - "sudo dpkg -i --force all amazon-ssm-agent.deb\n"
             - "sudo systemctl enable amazon-ssm-agent\n"
             - "sudo systemctl start amazon-ssm-agent\n"
+            - "sudo apt-get -y install curl python software-properties-common xz-utils\
+              \ bzip2 gnupg wget graphviz\n"
+            - "sudo wget -O /tmp/awslogs-agent-setup.py http://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py\n"
+            - "sudo chmod 775 /tmp/awslogs-agent-setup.py\n"
+            - "sudo mkdir -p /var/awslogs/etc/\n"
+            - "sudo /tmp/awslogs-agent-setup.py -n -r us-east-1 -c /etc/awslogs.conf\n"
             - "# Signal completion\n"
             - 'cfn-signal -e $? '
             - '    --stack '
