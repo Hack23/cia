@@ -2333,6 +2333,7 @@
 								"wget https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb\n",
 								"sudo dpkg -i --force all amazon-ssm-agent.deb\n",
 								"sudo systemctl enable amazon-ssm-agent\n",
+								"sudo systemctl start amazon-ssm-agent\n",
 								"# Signal completion\n",
 								"cfn-signal -e $? ",
 								"    --stack ",
