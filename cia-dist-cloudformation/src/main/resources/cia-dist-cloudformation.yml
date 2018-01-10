@@ -1326,6 +1326,27 @@ Resources:
         - Name: AutoScalingGroupName
           Value: !Ref 'WebServerFleet'
       ComparisonOperator: LessThanThreshold
+  InstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles:
+        - EC2SSMRole
+      InstanceProfileName: EC2SSMInstanceProfile
+  EC2SSMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ec2.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM
+      RoleName: EC2SSMRole
   WebServerLaunchConfig:
     Type: AWS::AutoScaling::LaunchConfiguration
     Metadata:
@@ -1383,6 +1404,7 @@ Resources:
           services: {}
     Properties:
       ImageId: !Ref 'WebServerAmi'
+      IamInstanceProfile: !Ref 'InstanceProfile'
       EbsOptimized: 'false'
       SecurityGroups:
         - !Ref 'WebServerSecurityGroup'
