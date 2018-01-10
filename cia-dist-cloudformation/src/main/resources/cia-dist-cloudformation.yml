@@ -386,7 +386,10 @@ Resources:
   PublicNetworkTarget:
     Type: AWS::Inspector::AssessmentTarget
     Properties:
-      AssessmentTargetName: MyAssessmentTarget
+      AssessmentTargetName: !Join
+        - '-'
+        - - !Ref 'AWS::StackId'
+          - MyAssessmentTarget
       ResourceGroupArn: !Ref 'PublicNetworkResourceGroup'
   PublicNetworkTemplate:
     Type: AWS::Inspector::AssessmentTemplate
@@ -1460,7 +1463,7 @@ Resources:
             - "ufw default deny incoming\n"
             - "# ufw allow 22/tcp\n"
             - "sudo /etc/init.d/ssh stop\n"
-            - "sudo apt-get -y -purge remove openssh-server\n"
+            - "sudo apt-get -y purge openssh-server\n"
             - "ufw allow 8443/tcp\n"
             - "ufw allow 53\n"
             - "ufw allow ntp\n"
@@ -1477,7 +1480,7 @@ Resources:
             - "sudo wget -O /tmp/awslogs-agent-setup.py http://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py\n"
             - "sudo chmod 775 /tmp/awslogs-agent-setup.py\n"
             - "sudo mkdir -p /var/awslogs/etc/\n"
-            - "sudo /tmp/awslogs-agent-setup.py -n -r eu-west-1 -c /etc/awslogs.conf\n"
+            - "# sudo /tmp/awslogs-agent-setup.py -n -r eu-west-1 -c /etc/awslogs.conf\n"
             - "# Signal completion\n"
             - 'cfn-signal -e $? '
             - '    --stack '
