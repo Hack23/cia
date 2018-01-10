@@ -502,7 +502,16 @@
 		"PublicNetworkTarget": {
 			"Type": "AWS::Inspector::AssessmentTarget",
 			"Properties": {
-				"AssessmentTargetName": "MyAssessmentTarget",
+				"AssessmentTargetName": {					
+					"Fn::Join": [
+						"-", [{
+								"Ref": "AWS::StackId"
+							},
+							"MyAssessmentTarget"
+						]
+					]
+				
+				},
 				"ResourceGroupArn": {
 					"Ref": "PublicNetworkResourceGroup"
 				}
