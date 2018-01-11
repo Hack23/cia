@@ -2169,7 +2169,7 @@
 				"KeyName": {
 					"Ref": "KeyName"
 				},
-				"AssociatePublicIpAddress": "true",
+				"AssociatePublicIpAddress": "false",
 				"UserData": {
 					"Fn::Base64": {
 						"Fn::Join": [
