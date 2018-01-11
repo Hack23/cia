@@ -2132,7 +2132,7 @@
 									"Fn::Join": [
 										"\n", [
 											"[general]",
-											"    state_file = /var/awslogs/state/agent-state",
+											"state_file = /var/awslogs/state/agent-state",
 											"",
 											"[/var/log/syslog]",
 											"file = /var/log/syslog",
