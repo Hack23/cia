@@ -2030,7 +2030,7 @@
 		"InstanceProfile" : {
 		  "Type": "AWS::IAM::InstanceProfile",
 		  "Properties": {
-		     "Roles": [ "EC2SSMRole" ],
+		     "Roles": [ { "Ref": "EC2SSMRole" } ],
 		     "InstanceProfileName": "EC2SSMInstanceProfile"
 		  }
 		},
