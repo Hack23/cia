@@ -2027,9 +2027,9 @@
 				        "logs:PutLogEvents",
 				        "logs:DescribeLogStreams"
 				      ],
-				      "Resource": [
-				        "arn:aws:logs:*:*:*"
-				      ]
+	                 "Principal": {
+	                    "Service": [ "ec2.amazonaws.com" ]
+	                 }
 				    }]
 		           },
 		     "ManagedPolicyArns": ["arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"],
