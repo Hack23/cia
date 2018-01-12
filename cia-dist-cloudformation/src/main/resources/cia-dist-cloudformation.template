@@ -2018,19 +2018,7 @@
 		                    "Service": [ "ec2.amazonaws.com" ]
 		                 },
 		                 "Action": [ "sts:AssumeRole" ]
-		              },		              
-		              {
-				      "Effect": "Allow",
-				      "Action": [
-				        "logs:CreateLogGroup",
-				        "logs:CreateLogStream",
-				        "logs:PutLogEvents",
-				        "logs:DescribeLogStreams"
-				      ],
-	                 "Principal": {
-	                    "Service": [ "ec2.amazonaws.com" ]
-	                 }
-				    }]
+		              }]
 		           },
 		     "ManagedPolicyArns": ["arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"],
 		     "RoleName": "EC2SSMRole"
