@@ -2048,6 +2048,9 @@
 								"ufw": [
 
 								],
+								"unzip": [
+
+								],								
 								"language-pack-en": [
 
 								]
@@ -2095,6 +2098,15 @@
 											},
 											"\n",
 											"runas=root\n"
+										]
+									]
+								}
+							},
+							"/etc/cron.d/cloudwatch-monitor": {
+								"content": {
+									"Fn::Join": [
+										"", [
+											"*/5 * * * * root /opt/aws-scripts-mon/mon-put-instance-data.pl --mem-util --mem-used --mem-avail --swap-util --swap-used --disk-space-util --disk-space-used --disk-space-avail --disk-path=/ --from-cron\n"
 										]
 									]
 								}
@@ -2274,7 +2286,15 @@
 								"sudo wget -O /tmp/awslogs-agent-setup.py http://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py\n",
 								"sudo chmod 775 /tmp/awslogs-agent-setup.py\n",
 								"sudo mkdir -p /var/awslogs/etc/\n",
-								"sudo /tmp/awslogs-agent-setup.py -n -r eu-west-1 -c /etc/awslogs.conf\n",
+								"sudo /tmp/awslogs-agent-setup.py -n -r eu-west-1 -c /etc/awslogs.conf\n",								
+								"sudo apt-get -y install libwww-perl libdatetime-perl\n",
+								"wget http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip\n",
+								"unzip CloudWatchMonitoringScripts-1.2.1.zip\n",
+								"rm CloudWatchMonitoringScripts-1.2.1.zip\n",
+								"sudo mv aws-scripts-mon /opt/aws-scripts-mon\n",
+								"sudo chmod a+x /opt/aws-scripts-mon/*\n",
+								"sudo chmod +x /etc/cron.d/cloudwatch-monitor*\n",
+								"sudo /etc/init.d/cron restart\n",
 								"# Signal completion\n",
 								"cfn-signal -e $? ",
 								"    --stack ",
