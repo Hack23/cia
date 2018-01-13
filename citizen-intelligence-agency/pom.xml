@@ -208,6 +208,25 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>com.j256.cloudwatchlogbackappender</groupId>
+      <artifactId>cloudwatchlogbackappender</artifactId>
+      <version>1.10</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>logback-classic</artifactId>
+          <groupId>ch.qos.logback</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>aws-java-sdk-logs</artifactId>
+          <groupId>com.amazonaws</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>aws-java-sdk-ec2</artifactId>
+          <groupId>com.amazonaws</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <groupId>com.gu</groupId>
       <artifactId>kinesis-logback-appender</artifactId>
       <version>1.4.2</version>

@@ -9,6 +9,15 @@
 	    </encoder>
 	</appender>
 
+	<appender name="cloudwatch" class="com.j256.cloudwatchlogbackappender.CloudWatchAppender">
+		<region>eu-west-1</region>
+		<logGroup>ec2awslogs</logGroup>
+		<logStream>ciaapplogs</logStream>
+		<layout class="com.j256.cloudwatchlogbackappender.Ec2PatternLayout">
+			<pattern>\[%instance\] \[%thread\] %level %logger{20} - %msg%n%xThrowable</pattern>
+		</layout>	
+	</appender>
+
     <appender name="elasticsearch" class="com.internetitem.logback.elasticsearch.ElasticsearchAppender">
         <url>${ELASTIC_SEARCH_URL:-http://localhost:9200/_bulk}</url>
         <index>logs-%date{yyyy-MM-dd}</index>
