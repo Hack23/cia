@@ -44,7 +44,7 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
-      <version>1.8.0-beta0</version>
+      <version>1.7.25</version>
     </dependency>
     <dependency>
       <groupId>com.hack23.cia</groupId>

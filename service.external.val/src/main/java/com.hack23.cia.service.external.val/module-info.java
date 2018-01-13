@@ -4,7 +4,7 @@ module com.hack23.cia.service.external.val {
 
 	requires java.xml.bind;
 	requires spring.beans;
-	requires org.slf4j;
+	requires slf4j.api;
 	
 	requires com.hack23.cia.service.external.common;
 

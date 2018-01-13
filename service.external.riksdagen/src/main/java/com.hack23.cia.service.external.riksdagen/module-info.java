@@ -3,7 +3,7 @@ module com.hack23.cia.service.external.riksdagen {
 	exports com.hack23.cia.service.external.riksdagen.impl;
 
 	requires java.xml.bind;
-	requires org.slf4j;
+	requires slf4j.api;
 	requires spring.context;
 	requires spring.beans;
 

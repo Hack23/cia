@@ -6,7 +6,7 @@ module com.hack23.cia.service.data.impl {
 	requires java.desktop;
 	requires java.xml.ws.annotation;
 	requires commons.beanutils;
-	requires org.slf4j;
+	requires slf4j.api;
 	requires spring.context;
 	requires spring.beans;
 	requires spring.jdbc;
