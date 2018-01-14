@@ -14,7 +14,7 @@
 		<logGroup>ec2awslogs</logGroup>
 		<logStream>ciaapplogs</logStream>
 		<layout class="com.j256.cloudwatchlogbackappender.Ec2PatternLayout">
-			<pattern>\[%instance\] \[%thread\] %level %logger{20} - %msg%n%xThrowable</pattern>
+			<pattern>[%instance] [%thread] %level %logger{20} - %msg%n%xThrowable</pattern>
 		</layout>	
 	</appender>
 
