@@ -10,15 +10,6 @@ Parameters:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instances
     Type: AWS::EC2::KeyPair::KeyName
     ConstraintDescription: must be the name of an existing EC2 KeyPair.
-  SSHLocation:
-    Description: Lockdown SSH access to the bastion host (default can be accessed
-      from anywhere)
-    Type: String
-    MinLength: '9'
-    MaxLength: '18'
-    Default: 10.40.0.0/16
-    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
-    ConstraintDescription: must be a valid CIDR range of the form x.x.x.x/x.
   WebServerInstanceType:
     Description: WebServer Server EC2 instance type
     Type: String
@@ -90,6 +81,10 @@ Parameters:
     Description: Number of EC2 instances to launch for the WebServer server
     Type: Number
     Default: '1'
+  WebServerAppLogAppender:
+    Description: App log output appender console/elasticsearch/cloudwatch/awslogs/kinesis
+    Type: String
+    Default: cloudwatch
   DomainNamePrefix:
     Description: Domain name prefix (optional), used to setup route53 dns
     Type: String
@@ -967,18 +962,6 @@ Resources:
       PortRange:
         From: '1024'
         To: '65535'
-  InboundSSHPublicNetworkAclEntry:
-    Type: AWS::EC2::NetworkAclEntry
-    Properties:
-      NetworkAclId: !Ref 'PublicNetworkAcl'
-      RuleNumber: '102'
-      Protocol: '6'
-      RuleAction: allow
-      Egress: 'false'
-      CidrBlock: !Ref 'SSHLocation'
-      PortRange:
-        From: '22'
-        To: '22'
   OutboundPublicNetworkAclEntry:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
@@ -1330,7 +1313,7 @@ Resources:
     Type: AWS::IAM::InstanceProfile
     Properties:
       Roles:
-        - EC2SSMRole
+        - !Ref 'EC2SSMRole'
       InstanceProfileName: EC2SSMInstanceProfile
   EC2SSMRole:
     Type: AWS::IAM::Role
@@ -1359,6 +1342,7 @@ Resources:
               ntp: []
               ntpdate: []
               ufw: []
+              unzip: []
               language-pack-en: []
           files:
             /etc/cfn/cfn-hup.conf:
@@ -1388,16 +1372,79 @@ Resources:
                   - !Ref 'AWS::Region'
                   - "\n"
                   - "runas=root\n"
+            /etc/cron.d/cloudwatch-monitor:
+              content: !Join
+                - ''
+                - - "*/5 * * * * root /opt/aws-scripts-mon/mon-put-instance-data.pl\
+                    \ --mem-util --mem-used --mem-avail --swap-util --swap-used --disk-space-util\
+                    \ --disk-space-used --disk-space-avail --disk-path=/ --from-cron\n"
             /etc/awslogs.conf:
               content: !Join
-                - "\n"
+                - ''
                 - - '[general]'
-                  - '    state_file = /var/awslogs/state/agent-state'
-                  - ''
-                  - '[/var/log/syslog]'
+                  - "\n"
+                  - state_file = /var/awslogs/state/agent-state
+                  - "\n"
+                  - "\n"
+                  - '[userdata]'
+                  - "\n"
+                  - datetime_format = %Y-%m-%d %H:%M:%S
+                  - "\n"
+                  - file = /var/log/user-data.log
+                  - "\n"
+                  - buffer_duration = 5000
+                  - "\n"
+                  - log_stream_name = {instance_id}-{hostname}-{ip_address}-userdata
+                  - "\n"
+                  - initial_position = start_of_file
+                  - "\n"
+                  - log_group_name = ec2awslogs
+                  - "\n"
+                  - "\n"
+                  - '[auth]'
+                  - "\n"
+                  - datetime_format = %Y-%m-%d %H:%M:%S
+                  - "\n"
+                  - file = /var/log/auth.log
+                  - "\n"
+                  - buffer_duration = 5000
+                  - "\n"
+                  - log_stream_name = {instance_id}-{hostname}-{ip_address}-auth
+                  - "\n"
+                  - initial_position = start_of_file
+                  - "\n"
+                  - log_group_name = ec2awslogs
+                  - "\n"
+                  - "\n"
+                  - '[syslog]'
+                  - "\n"
+                  - datetime_format = %Y-%m-%d %H:%M:%S
+                  - "\n"
                   - file = /var/log/syslog
-                  - log_stream_name = {instance_id}
-                  - datetime_format = %b %d %H:%M:%S
+                  - "\n"
+                  - buffer_duration = 5000
+                  - "\n"
+                  - log_stream_name = {instance_id}-{hostname}-{ip_address}-syslog
+                  - "\n"
+                  - initial_position = start_of_file
+                  - "\n"
+                  - log_group_name = ec2awslogs
+                  - "\n"
+                  - "\n"
+                  - '[kern.log]'
+                  - "\n"
+                  - datetime_format = %Y-%m-%d %H:%M:%S
+                  - "\n"
+                  - file = /var/log/kern.log
+                  - "\n"
+                  - buffer_duration = 5000
+                  - "\n"
+                  - log_stream_name = {instance_id}-{hostname}-{ip_address}-kern.log
+                  - "\n"
+                  - initial_position = start_of_file
+                  - "\n"
+                  - log_group_name = ec2awslogs
+                  - "\n"
               mode: '000644'
               owner: root
               group: root
@@ -1473,6 +1520,11 @@ Resources:
             - "TOTAL_MEM_KB=$(awk '/MemTotal:/ { print $2 }' /proc/meminfo)\n"
             - "let JAVAMEMSIZE=$TOTAL_MEM_KB-1280*1024\n"
             - "sed -i -e 's_4096m_'$JAVAMEMSIZE'k_' /opt/cia/start.ini\n"
+            - sed -i -e 's/# -DUSE_LOG_APPENDER=
+            - !Ref 'WebServerAppLogAppender'
+            - / -DUSE_LOG_APPENDER=
+            - !Ref 'WebServerAppLogAppender'
+            - "/' /opt/cia/start.ini\n"
             - "wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem\n"
             - "mkdir /opt/cia/.postgresql\n"
             - "cp rds-combined-ca-bundle.pem /opt/cia/.postgresql/root.crt\n"
@@ -1483,7 +1535,6 @@ Resources:
             - "/etc/init.d/cia restart\n"
             - "ufw default allow outgoing\n"
             - "ufw default deny incoming\n"
-            - "# ufw allow 22/tcp\n"
             - "sudo /etc/init.d/ssh stop\n"
             - "sudo apt-get -y purge openssh-server\n"
             - "ufw allow 8443/tcp\n"
@@ -1502,7 +1553,15 @@ Resources:
             - "sudo wget -O /tmp/awslogs-agent-setup.py http://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py\n"
             - "sudo chmod 775 /tmp/awslogs-agent-setup.py\n"
             - "sudo mkdir -p /var/awslogs/etc/\n"
-            - "# sudo /tmp/awslogs-agent-setup.py -n -r eu-west-1 -c /etc/awslogs.conf\n"
+            - "sudo /tmp/awslogs-agent-setup.py -n -r eu-west-1 -c /etc/awslogs.conf\n"
+            - "sudo apt-get -y install libwww-perl libdatetime-perl\n"
+            - "wget http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip\n"
+            - "unzip CloudWatchMonitoringScripts-1.2.1.zip\n"
+            - "rm CloudWatchMonitoringScripts-1.2.1.zip\n"
+            - "sudo mv aws-scripts-mon /opt/aws-scripts-mon\n"
+            - "sudo chmod a+x /opt/aws-scripts-mon/*\n"
+            - "sudo chmod +x /etc/cron.d/cloudwatch-monitor*\n"
+            - "sudo /etc/init.d/cron restart\n"
             - "# Signal completion\n"
             - 'cfn-signal -e $? '
             - '    --stack '
@@ -1522,10 +1581,6 @@ Resources:
           FromPort: '8443'
           ToPort: '8443'
           SourceSecurityGroupId: !Ref 'PublicLoadBalancerSecurityGroup'
-        - IpProtocol: tcp
-          FromPort: '22'
-          ToPort: '22'
-          CidrIp: !Ref 'SSHLocation'
   ElasticsearchDomain:
     Type: AWS::Elasticsearch::Domain
     Condition: useElasticSearch
