@@ -1278,6 +1278,43 @@
           </filesets>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>keytool-maven-plugin</artifactId>
+        <version>1.5</version>
+        <executions>
+          <execution>
+            <id>generateKeyPair</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>generateKeyPair</goal>
+            </goals>
+            <configuration>
+              <alias>jetty</alias>
+              <dname>cn=127.0.0.1, ou=None, L=None, ST=None, o=None, c=SE</dname>
+              <sigalg>SHA256withRSA</sigalg>
+              <ext></ext>
+              <validity>365</validity>
+              <keyalg>RSA</keyalg>
+              <keysize>4096</keysize>
+            </configuration>
+          </execution>
+          <execution>
+            <id>removekeystore</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <keystore>${project.build.directory}/keystore.jceks</keystore>
+          <storepass>changeit</storepass>
+          <storetype>JKS</storetype>
+          <keypass>changeit</keypass>
+          <skipIfExist>true</skipIfExist>
+        </configuration>
+      </plugin>
       <!--
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

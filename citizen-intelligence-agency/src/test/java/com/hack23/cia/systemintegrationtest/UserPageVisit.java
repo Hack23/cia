@@ -399,7 +399,7 @@ public final class UserPageVisit extends Assert {
 				.id(ViewAction.VISIT_POLITICIAN_RANKING_VIEW.name()));
 		performClickAction(politiciansViewLink, WAIT_FOR_PAGE_DELAY);
 
-		assertEquals("http://localhost:8080/#!politicianranking",
+		assertEquals("https://localhost:28443/#!politicianranking",
 				driver.getCurrentUrl());
 
 		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW });
@@ -421,7 +421,7 @@ public final class UserPageVisit extends Assert {
 		performClickAction(politicianViewLink, WAIT_FOR_PAGE_DELAY*4);
 
 		//		assertEquals(
-		//				"http://localhost:8080/#!politicia/"
+		//				"https://localhost:28443/#!politicia/"
 		//						+ URLEncoder.encode(id.replace(ViewAction.VisitPoliticianView.name() + "/", "")
 		//								.trim(),StandardCharsets.UTF_8), driver.getCurrentUrl());
 
@@ -440,7 +440,7 @@ public final class UserPageVisit extends Assert {
 				.id(ViewAction.VISIT_COMMITTEE_RANKING_VIEW.name()));
 		performClickAction(committeeViewLink, WAIT_FOR_PAGE_DELAY);
 
-		assertEquals("http://localhost:8080/#!committeeranking",
+		assertEquals("https://localhost:28443/#!committeeranking",
 				driver.getCurrentUrl());
 
 		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW });
@@ -462,7 +462,7 @@ public final class UserPageVisit extends Assert {
 		performClickAction(committeeViewLink, WAIT_FOR_PAGE_DELAY);
 
 		//		assertEquals(
-		//				"http://localhost:8080/#!committee/"
+		//				"https://localhost:28443/#!committee/"
 		//						+ URLEncoder.encode(id.replace(ViewAction.VisitCommitteeView.name() + "/", "")
 		//								.trim(),StandardCharsets.UTF_8), driver.getCurrentUrl());
 
@@ -495,7 +495,7 @@ public final class UserPageVisit extends Assert {
 				.id(ViewAction.VISIT_MINISTRY_RANKING_VIEW.name()));
 		performClickAction(ministryViewLink, WAIT_FOR_PAGE_DELAY);
 
-		assertEquals("http://localhost:8080/#!ministryranking",
+		assertEquals("https://localhost:28443/#!ministryranking",
 				driver.getCurrentUrl());
 
 		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW});
@@ -517,7 +517,7 @@ public final class UserPageVisit extends Assert {
 		performClickAction(ministryViewLink, WAIT_FOR_PAGE_DELAY);
 
 		//		assertEquals(
-		//				"http://localhost:8080/#!ministry/"
+		//				"https://localhost:28443/#!ministry/"
 		//						+ URLEncoder.encode(id.replace(ViewAction.VisitMinistryView.name() + "/", "")
 		//								.trim(),StandardCharsets.UTF_8), driver.getCurrentUrl());
 
@@ -665,7 +665,7 @@ public final class UserPageVisit extends Assert {
 		performClickAction(politicianViewLink, WAIT_FOR_PAGE_DELAY);
 
 		//		assertEquals(
-		//				"http://localhost:8080/#!party/"
+		//				"https://localhost:28443/#!party/"
 		//						+ URLEncoder.encode(id.replace(ViewAction.VisitPartyView.name() + "/", "")
 		//								.trim(),StandardCharsets.UTF_8), driver.getCurrentUrl());
 
@@ -728,7 +728,7 @@ public final class UserPageVisit extends Assert {
 				.id(ViewAction.VISIT_PARTY_RANKING_VIEW.name())),
 				WAIT_FOR_PAGE_DELAY);
 
-		assertEquals("http://localhost:8080/#!partyranking",
+		assertEquals("https://localhost:28443/#!partyranking",
 				driver.getCurrentUrl());
 		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW });
 

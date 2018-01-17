@@ -21,19 +21,24 @@ package com.hack23.cia.systemintegrationtest;
 
 import java.lang.management.ManagementFactory;
 import java.lang.reflect.Field;
+import java.security.Security;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.eclipse.jetty.http2.server.HTTP2CServerConnectionFactory;
 import org.eclipse.jetty.jmx.MBeanContainer;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.HttpConfiguration;
 import org.eclipse.jetty.server.HttpConnectionFactory;
+import org.eclipse.jetty.server.SecureRequestCustomizer;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.server.SslConnectionFactory;
 import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerList;
+import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,10 +53,10 @@ public final class CitizenIntelligenceAgencyServer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CitizenIntelligenceAgencyServer.class);
 
 	/** The Constant PORT. */
-	public static final int PORT = 8080;
+	public static final int PORT = 28443;
 
 	/** The Constant ACCESS_URL. */
-	public static final String ACCESS_URL = "http://localhost:" + PORT + "/";
+	public static final String ACCESS_URL = "https://localhost:" + PORT + "/";
 
 	/** The test server. */
 	private static CitizenIntelligenceAgencyServer testServer;
@@ -158,7 +163,9 @@ public final class CitizenIntelligenceAgencyServer {
 		System.setProperty("logback.configurationFile", "src/main/resources/logback.xml");
 		System.setProperty("slf4j", "true");
 		System.setProperty("org.eclipse.jetty.util.log.class", "org.eclipse.jetty.util.log.Slf4jLog");
-
+		//System.setProperty("javax.net.debug", "all");
+		
+		
 		LogManager.getLogManager().reset();
 		SLF4JBridgeHandler.install();
 		java.util.logging.Logger.getLogger("global").setLevel(Level.FINEST);
@@ -173,6 +180,7 @@ public final class CitizenIntelligenceAgencyServer {
 	public final void init() throws Exception {
 		initialised = true;
 		server = new Server();
+		Security.addProvider(new BouncyCastleProvider());
 		// Setup JMX
 		final MBeanContainer mbContainer = new MBeanContainer(ManagementFactory.getPlatformMBeanServer());
 		server.addBean(mbContainer);
@@ -185,13 +193,32 @@ public final class CitizenIntelligenceAgencyServer {
 		classlist.addBefore("org.eclipse.jetty.webapp.JettyWebXmlConfiguration",
 				"org.eclipse.jetty.annotations.AnnotationConfiguration");
 
-		final HttpConfiguration config = new HttpConfiguration();
-		final HttpConnectionFactory http1 = new HttpConnectionFactory(config);
-		final HTTP2CServerConnectionFactory http2c = new HTTP2CServerConnectionFactory(config);
-
-		final ServerConnector connector = new ServerConnector(server, http1,http2c);
-		connector.setPort(PORT);
-		server.setConnectors(new ServerConnector[] { connector });
+		
+		
+		
+	   HttpConfiguration http_config = new HttpConfiguration();
+	   http_config.setSecureScheme("https");
+	   http_config.setSecurePort(28443);
+	     
+	   HttpConfiguration https_config = new HttpConfiguration(http_config);
+	   https_config.addCustomizer(new SecureRequestCustomizer());
+	
+		SslContextFactory sslContextFactory = new SslContextFactory();
+		sslContextFactory.setKeyStoreType("JKS");
+		sslContextFactory.setKeyStorePath("target/keystore.jceks");
+		sslContextFactory.setTrustStorePath("target/keystore.jceks");		
+		sslContextFactory.setKeyStorePassword("changeit");
+		sslContextFactory.setTrustStorePassword("changeit");
+		sslContextFactory.setKeyManagerPassword("changeit");
+		sslContextFactory.setCertAlias("jetty");
+		sslContextFactory.setIncludeCipherSuites("TLS_DHE_RSA.*","TLS_ECDHE.*");
+		sslContextFactory.setExcludeProtocols("SSL","SSLv2","SSLv2Hello","SSLv3","TLSv1","TLSv1.1");
+		sslContextFactory.setIncludeProtocols("TLSv1.2");		
+		
+		ServerConnector sslConnector = new ServerConnector(server, new SslConnectionFactory(sslContextFactory, "http/1.1"), new HttpConnectionFactory(https_config),new HTTP2CServerConnectionFactory(https_config));
+		sslConnector.setPort(PORT);
+		
+		server.setConnectors(new ServerConnector[] { sslConnector });
 		final WebAppContext handler = new WebAppContext("src/main/webapp", "/");
 		handler.setExtraClasspath("target/classes");
 		handler.setParentLoaderPriority(true);
