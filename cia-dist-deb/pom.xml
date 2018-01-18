@@ -98,7 +98,7 @@
         <configuration>
           <keystore>${project.build.directory}/keystore.jceks</keystore>
           <storepass>changeit</storepass>
-          <storetype>JCEKS</storetype>
+          <storetype>JKS</storetype>
           <keypass>changeit</keypass>
           <skipIfExist>true</skipIfExist>
         </configuration>
