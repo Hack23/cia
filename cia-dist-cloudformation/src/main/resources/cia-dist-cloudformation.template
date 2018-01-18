@@ -2037,10 +2037,7 @@
 					"config": {
 						"packages": {
 							"apt": {
-								"openjdk-8-jdk": [
-
-								],
-								"postgresql-client-9.5": [
+								"openjdk-9-jdk": [
 
 								],
 								"ntp": [
@@ -2224,13 +2221,6 @@
 									"Ref": "AWS::Region"
 								},
 								"\n",
-								"# INSTALL ORACLE JDK\n",
-								"sudo add-apt-repository ppa:webupd8team/java \n",
-								"sudo apt-get update\n",
-								"echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections\n",
-								"sudo apt-get -y install oracle-java9-installer\n",
-								"# sudo apt-get -y install oracle-java8-unlimited-jce-policy\n",
-								"sudo apt-get -y install oracle-java9-set-default\n",
 								"wget ",
 								{
 									"Ref": "DebPackageUrl"
