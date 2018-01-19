@@ -320,10 +320,17 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <!-- 
+      <dependency>
+        <groupId>org.hibernate.javax.persistence</groupId>
+        <artifactId>hibernate-jpa-2.1-api</artifactId>
+        <version>${cia.project.versions.hibernate.jpa2}</version>
+      </dependency>
+     -->
     <dependency>
-      <groupId>org.hibernate.javax.persistence</groupId>
-      <artifactId>hibernate-jpa-2.1-api</artifactId>
-      <version>1.0.0.Final</version>
+      <groupId>javax.persistence</groupId>
+      <artifactId>javax.persistence-api</artifactId>
+      <version>2.2</version>
     </dependency>
     <dependency>
       <groupId>org.apache.poi</groupId>
