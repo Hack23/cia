@@ -37,5 +37,6 @@
 		<cve>CVE-2015-5184</cve>
 		<cve>CVE-2012-0881</cve>
 		<cve>CVE-2017-9735</cve>
+		<cve>CVE-2017-9735</cve>
     </suppress>
 </suppressions>
