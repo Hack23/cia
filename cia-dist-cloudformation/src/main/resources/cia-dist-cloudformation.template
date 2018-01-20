@@ -2037,9 +2037,6 @@
 					"config": {
 						"packages": {
 							"apt": {
-								"openjdk-9-jdk": [
-
-								],
 								"ntp": [
 
 								],
@@ -2202,7 +2199,7 @@
 								"dpkg-reconfigure --frontend=noninteractive locales \n",
 								"apt-get update\n",
 								"apt-get -y upgrade\n",								
-								"apt-get -y install python-pip unattended-upgrades\n",
+								"apt-get -y install python-pip unattended-upgrades openjdk-9-jdk\n",
 								"pip install --upgrade pip\n",
 								"pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz\n",
 								"cp /usr/local/init/ubuntu/cfn-hup /etc/init.d/cfn-hup \n",
@@ -2220,7 +2217,7 @@
 								{
 									"Ref": "AWS::Region"
 								},
-								"\n",
+								"\n",								
 								"wget ",
 								{
 									"Ref": "DebPackageUrl"
