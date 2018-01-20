@@ -2286,7 +2286,6 @@
 								"sudo chmod a+x /opt/aws-scripts-mon/*\n",
 								"sudo chmod +x /etc/cron.d/cloudwatch-monitor*\n",
 								"sudo /etc/init.d/cron restart\n",
-								"/etc/init.d/cia restart\n",								
 								"# Signal completion\n",
 								"cfn-signal -e $? ",
 								"    --stack ",
@@ -2299,6 +2298,7 @@
 									"Ref": "AWS::Region"
 								},
 								"\n"
+								"/etc/init.d/cia restart\n",								
 							]
 						]
 					}
