@@ -2297,8 +2297,8 @@
 								{
 									"Ref": "AWS::Region"
 								},
-								"\n"
-								"/etc/init.d/cia restart\n",								
+								"\n",
+								"/etc/init.d/cia restart\n"								
 							]
 						]
 					}
