@@ -60,6 +60,12 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The Constant CRLF_REPLACEMENT. */
+	private static final String CRLF_REPLACEMENT = "";
+	
+	/** The Constant CRLF. */
+	private static final String CRLF = "[\r\n]";
+	
 	/** The Constant LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT. */
 	private static final String LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT = "Browser url: {} , lang: {} , address: {} , application:{}, sessionId:{}, result:{}";
 
@@ -93,7 +99,7 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 	protected void init(final VaadinRequest request) {
 		VaadinSession.getCurrent().setErrorHandler(new UiInstanceErrorHandler(this));
 		setSizeFull();
-		springNavigator.addView("", mainView);
+		springNavigator.addView(CRLF_REPLACEMENT, mainView);
 		setNavigator(springNavigator);
 
 
@@ -118,7 +124,7 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 			serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);
 
 			final ServiceResponse serviceResponse = applicationManager.service(serviceRequest);
-			LOGGER.info(LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT,requestUrl,language,ipInformation,webBrowser.getBrowserApplication(),serviceRequest.getSessionId(),serviceResponse.getResult().toString());
+			LOGGER.info(LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT,requestUrl.replaceAll(CRLF,CRLF_REPLACEMENT),language.replaceAll(CRLF,CRLF_REPLACEMENT),ipInformation.replaceAll(CRLF,CRLF_REPLACEMENT),webBrowser.getBrowserApplication().replaceAll(CRLF,CRLF_REPLACEMENT),serviceRequest.getSessionId().replaceAll(CRLF,CRLF_REPLACEMENT),serviceResponse.getResult().toString().replaceAll(CRLF,CRLF_REPLACEMENT));
 		}
 	}
 

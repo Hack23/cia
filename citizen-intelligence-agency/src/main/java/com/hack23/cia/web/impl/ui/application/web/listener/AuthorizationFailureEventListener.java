@@ -55,6 +55,12 @@ public final class AuthorizationFailureEventListener implements ApplicationListe
 	/** The Constant AUTHORITIES. */
 	private static final String AUTHORITIES = "Authorities:";
 
+	/** The Constant CRLF_REPLACEMENT. */
+	private static final String CRLF_REPLACEMENT = "";
+	
+	/** The Constant CRLF. */
+	private static final String CRLF = "[\r\n]";
+
 	/**
 	 * The Constant
 	 * LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES.
@@ -121,8 +127,8 @@ public final class AuthorizationFailureEventListener implements ApplicationListe
 
 		applicationManager.service(serviceRequest);
 
-		LOGGER.info(LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES, requestUrl, methodInfo,
-				sessionId, authorities,
+		LOGGER.info(LOG_MSG_AUTHORIZATION_FAILURE_SESSION_ID_AUTHORITIES_REQUIRED_AUTHORITIES, requestUrl.replaceAll(CRLF,CRLF_REPLACEMENT), methodInfo.replaceAll(CRLF,CRLF_REPLACEMENT),
+				sessionId.replaceAll(CRLF,CRLF_REPLACEMENT), authorities,
 				configAttributes);
 	}
 
