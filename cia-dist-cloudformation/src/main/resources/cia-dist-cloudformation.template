@@ -2037,6 +2037,12 @@
 					"config": {
 						"packages": {
 							"apt": {
+								"openjdk-8-jdk": [
+
+								],
+								"postgresql-client-9.5": [
+
+								],							
 								"ntp": [
 
 								],
@@ -2200,7 +2206,6 @@
 								"apt-get update\n",
 								"apt-get -y upgrade\n",								
 								"apt-get -y install python-pip unattended-upgrades\n",
-								"apt-get -y -o Dpkg::Options::=--force-overwrite install openjdk-9-jdk\n",
 								"pip install --upgrade pip\n",
 								"pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz\n",
 								"cp /usr/local/init/ubuntu/cfn-hup /etc/init.d/cfn-hup \n",
@@ -2218,7 +2223,43 @@
 								{
 									"Ref": "AWS::Region"
 								},
-								"\n",								
+								"\n",
+								"ufw default allow outgoing\n",
+								"ufw default deny incoming\n",
+								"sudo /etc/init.d/ssh stop\n",
+								"sudo apt-get -y purge openssh-server\n",																
+								"ufw allow 8443/tcp\n",
+								"ufw allow 53\n",
+								"ufw allow ntp\n",
+								"ufw enable\n",
+								"ufw status verbose\n",
+								"wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install\n",
+								"sudo bash install\n",
+								"wget https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb\n",
+								"sudo dpkg -i --force all amazon-ssm-agent.deb\n",
+								"sudo systemctl enable amazon-ssm-agent\n",
+								"sudo systemctl start amazon-ssm-agent\n",								
+								"sudo apt-get -y install curl python software-properties-common xz-utils bzip2 gnupg wget graphviz\n",
+								"sudo wget -O /tmp/awslogs-agent-setup.py http://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py\n",
+								"sudo chmod 775 /tmp/awslogs-agent-setup.py\n",
+								"sudo mkdir -p /var/awslogs/etc/\n",
+								"sudo /tmp/awslogs-agent-setup.py -n -r eu-west-1 -c /etc/awslogs.conf\n",								
+								"sudo apt-get -y install libwww-perl libdatetime-perl\n",
+								"wget http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip\n",
+								"unzip CloudWatchMonitoringScripts-1.2.1.zip\n",
+								"rm CloudWatchMonitoringScripts-1.2.1.zip\n",
+								"sudo mv aws-scripts-mon /opt/aws-scripts-mon\n",
+								"sudo chmod a+x /opt/aws-scripts-mon/*\n",
+								"sudo chmod +x /etc/cron.d/cloudwatch-monitor*\n",
+								"sudo /etc/init.d/cron restart\n",
+								"# INSTALL ORACLE JDK\n",
+								"#sudo add-apt-repository ppa:webupd8team/java \n",
+								"#sudo apt-get update\n",
+								"#echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections\n",
+								"#sudo apt-get -y install oracle-java9-installer\n",
+								"# sudo apt-get -y install oracle-java8-unlimited-jce-policy\n",
+								"#sudo apt-get -y install oracle-java9-set-default\n",								
+								"apt-get -y -o Dpkg::Options::=--force-overwrite install openjdk-9-jdk\n",
 								"wget ",
 								{
 									"Ref": "DebPackageUrl"
@@ -2259,34 +2300,7 @@
 								"chown -R cia:cia /opt/cia/.postgresql\n",
 								"chmod -R 700 /opt/cia/.postgresql\n",
 								"keytool -import -keystore /etc/ssl/certs/java/cacerts -file rds-combined-ca-bundle.pem -storepass 'changeit' -noprompt -alias aws-rds-2016\n",
-								"ufw default allow outgoing\n",
-								"ufw default deny incoming\n",
-								"sudo /etc/init.d/ssh stop\n",
-								"sudo apt-get -y purge openssh-server\n",																
-								"ufw allow 8443/tcp\n",
-								"ufw allow 53\n",
-								"ufw allow ntp\n",
-								"ufw enable\n",
-								"ufw status verbose\n",
-								"wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install\n",
-								"sudo bash install\n",
-								"wget https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb\n",
-								"sudo dpkg -i --force all amazon-ssm-agent.deb\n",
-								"sudo systemctl enable amazon-ssm-agent\n",
-								"sudo systemctl start amazon-ssm-agent\n",								
-								"sudo apt-get -y install curl python software-properties-common xz-utils bzip2 gnupg wget graphviz\n",
-								"sudo wget -O /tmp/awslogs-agent-setup.py http://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py\n",
-								"sudo chmod 775 /tmp/awslogs-agent-setup.py\n",
-								"sudo mkdir -p /var/awslogs/etc/\n",
-								"sudo /tmp/awslogs-agent-setup.py -n -r eu-west-1 -c /etc/awslogs.conf\n",								
-								"sudo apt-get -y install libwww-perl libdatetime-perl\n",
-								"wget http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip\n",
-								"unzip CloudWatchMonitoringScripts-1.2.1.zip\n",
-								"rm CloudWatchMonitoringScripts-1.2.1.zip\n",
-								"sudo mv aws-scripts-mon /opt/aws-scripts-mon\n",
-								"sudo chmod a+x /opt/aws-scripts-mon/*\n",
-								"sudo chmod +x /etc/cron.d/cloudwatch-monitor*\n",
-								"sudo /etc/init.d/cron restart\n",
+								"/etc/init.d/cia restart\n",
 								"# Signal completion\n",
 								"cfn-signal -e $? ",
 								"    --stack ",
@@ -2298,8 +2312,7 @@
 								{
 									"Ref": "AWS::Region"
 								},
-								"\n",
-								"/etc/init.d/cia restart\n"								
+								"\n"
 							]
 						]
 					}
