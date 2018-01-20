@@ -1308,9 +1308,9 @@
           </execution>
         </executions>
         <configuration>
-          <keystore>${project.build.directory}/keystore.jceks</keystore>
+          <keystore>${project.build.directory}/keystore.p12</keystore>
           <storepass>changeit</storepass>
-          <storetype>JKS</storetype>
+          <storetype>PKCS12</storetype>
           <keypass>changeit</keypass>
           <skipIfExist>true</skipIfExist>
         </configuration>
