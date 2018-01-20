@@ -110,7 +110,7 @@
     <cia.project.versions.aspectj>1.9.0.RC2</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.22.0-GA</cia.project.versions.javassist>
     <cia.project.versions.asm>6.1-beta</cia.project.versions.asm>
-    <cia.project.versions.cglib>3.2.5</cia.project.versions.cglib>
+    <cia.project.versions.cglib>3.2.6</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2.redhat-2</cia.project.versions.commons.collections>
     <cia.project.versions.commons.lang>2.6.0.redhat-6</cia.project.versions.commons.lang>
     <cia.project.versions.slf4j>1.7.25</cia.project.versions.slf4j>
@@ -790,7 +790,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-plugin-plugin</artifactId>
-          <version>3.5</version>
+          <version>3.5.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
