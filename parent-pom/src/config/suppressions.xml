@@ -35,6 +35,6 @@
 		<cve>CVE-2015-2197</cve>
 		<cve>CVE-2015-5183</cve>
 		<cve>CVE-2015-5184</cve>
-		
+		<cve>CVE-2012-0881</cve>
     </suppress>
 </suppressions>
