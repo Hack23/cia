@@ -2255,7 +2255,7 @@
 								"# INSTALL OPEN JDK\n",
 								"wget https://download.java.net/java/GA/jdk9/9.0.4/binaries/openjdk-9.0.4_linux-x64_bin.tar.gz\n",
 								"tar xvfz openjdk-9.0.4_linux-x64_bin.tar.gz\n",
-								"mv jdk-9.0.4 /usr/lib/jvm/java-9-openjdk-amd64\n",
+								"sudo mv jdk-9.0.4 /usr/lib/jvm/java-9-openjdk-amd64\n",
 								"rm openjdk-9.0.4_linux-x64_bin.tar.gz\n",								
 								"wget ",
 								{
