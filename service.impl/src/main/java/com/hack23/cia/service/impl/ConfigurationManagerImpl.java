@@ -137,7 +137,7 @@ final class ConfigurationManagerImpl implements ConfigurationManager {
 			if (locale.getDisplayCountry(Locale.ENGLISH).length() == 0 && !StringUtils.isEmpty(localeString)
 					&& localeString.length() == EXPECTED_LOCALE_LENGTH) {
 				languages.add(new LanguageData().withCreatedDate(new Date()).withLanguageCode(localeString)
-						.withLanguageName(locale.getDisplayName(Locale.ENGLISH)).withLanguageEnabled(false));
+						.withLanguageName(locale.getDisplayName(Locale.ENGLISH)).withLanguageEnabled(Boolean.FALSE));
 
 			}
 		}

@@ -188,7 +188,7 @@ public final class GridFactoryImpl implements GridFactory {
 	 * @param <T>
 	 *            the generic type
 	 */
-	public class BeanNestedPropertyValueProvider<T> implements ValueProvider<T, String> {
+	public static final class BeanNestedPropertyValueProvider<T> implements ValueProvider<T, String> {
 
 		/** The Constant serialVersionUID. */
 		private static final long serialVersionUID = 1L;
