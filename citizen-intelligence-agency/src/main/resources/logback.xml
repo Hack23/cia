@@ -12,7 +12,7 @@
 	<appender name="cloudwatch" class="com.j256.cloudwatchlogbackappender.CloudWatchAppender">
 		<region>eu-west-1</region>
 		<logGroup>ec2awslogs</logGroup>
-		<logStream>ciaapplogs</logStream>
+		<logStream>ciaapplogs-%instance</logStream>
 		<layout class="com.j256.cloudwatchlogbackappender.Ec2PatternLayout">
 			<pattern>[%instance] [%thread] %level %logger{20} - %msg%n%xThrowable</pattern>
 		</layout>	
