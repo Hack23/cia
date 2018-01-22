@@ -210,7 +210,7 @@
     <dependency>
       <groupId>com.j256.cloudwatchlogbackappender</groupId>
       <artifactId>cloudwatchlogbackappender</artifactId>
-      <version>1.10</version>
+      <version>1.11</version>
       <exclusions>
         <exclusion>
           <artifactId>logback-classic</artifactId>
