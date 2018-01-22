@@ -26,6 +26,7 @@ import java.nio.charset.StandardCharsets;
 
 import javax.xml.transform.stream.StreamSource;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.oxm.Unmarshaller;
 
 /**
@@ -55,7 +56,7 @@ public abstract class AbstractUnmarshallXmlTest<T> extends AbstractFunctionalInt
 	 *             the exception
 	 */
 	protected final T unmarshallXml(final Unmarshaller unmarshaller,final String filename) throws Exception {
-		final BufferedReader inputStream= new BufferedReader(new InputStreamReader(new FileInputStream(new File(filename)),StandardCharsets.UTF_8));
+		final BufferedReader inputStream= new BufferedReader(new InputStreamReader(new FileInputStream(new File(FilenameUtils.getName(filename))),StandardCharsets.UTF_8));
 
 		return (T) unmarshaller.unmarshal(new StreamSource(inputStream));
 	}

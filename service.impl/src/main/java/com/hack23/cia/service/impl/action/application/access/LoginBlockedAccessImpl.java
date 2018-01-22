@@ -19,6 +19,7 @@
 package com.hack23.cia.service.impl.action.application.access;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -176,7 +177,7 @@ public class LoginBlockedAccessImpl implements LoginBlockedAccess {
 			final List<ApplicationActionEvent> recentFailedLogins = recentOldLoginAttemptsMap.get(Boolean.TRUE);
 			if (recentFailedLogins != null && recentFailedLogins.size() > NumberUtils.toInt(maxLoginAttemptsByUser.getPropertyValue(),DEFAULT_MAX_LOGINS)) {
 				loginBlockResultImpl.setBlocked(true);
-				loginBlockResultImpl.getMessages().add(BLOCKED_BY_MORE_THAN_5_RECENT_LOGIN_ATTEMPTS_BY_THIS_USER);
+				loginBlockResultImpl.addMessages(BLOCKED_BY_MORE_THAN_5_RECENT_LOGIN_ATTEMPTS_BY_THIS_USER);
 			}
 		}
 	}
@@ -203,7 +204,7 @@ public class LoginBlockedAccessImpl implements LoginBlockedAccess {
 					ApplicationActionEvent_.applicationMessage);
 			if (failedLoginsByThisSession.size() > NumberUtils.toInt(maxLoginAttemptsBySession.getPropertyValue(),DEFAULT_MAX_LOGINS)) {
 				loginBlockResultImpl.setBlocked(true);
-				loginBlockResultImpl.getMessages().add(BLOCKED_BY_MORE_THAN_5_LOGIN_ATTEMPTS_BY_THIS_SESSION);
+				loginBlockResultImpl.addMessages(BLOCKED_BY_MORE_THAN_5_LOGIN_ATTEMPTS_BY_THIS_SESSION);
 			}
 
 			if (!("0:0:0:0:0:0:0:1".equals(applicationSession.getIpInformation()) || "127.0.0.1".equals(applicationSession.getIpInformation()))) {
@@ -253,6 +254,16 @@ public class LoginBlockedAccessImpl implements LoginBlockedAccess {
 		}
 
 		/**
+		 * Adds the messages.
+		 *
+		 * @param msg
+		 *            the msg
+		 */
+		public void addMessages(final String msg) {
+			this.messages.add(msg);
+		}
+
+		/**
 		 * Sets the blocked.
 		 *
 		 * @param isBlocked
@@ -264,7 +275,7 @@ public class LoginBlockedAccessImpl implements LoginBlockedAccess {
 
 		@Override
 		public List<String> getMessages() {
-			return messages;
+			return Collections.unmodifiableList(messages);
 		}
 
 	}
