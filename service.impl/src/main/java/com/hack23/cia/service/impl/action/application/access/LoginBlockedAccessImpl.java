@@ -231,7 +231,7 @@ public class LoginBlockedAccessImpl implements LoginBlockedAccess {
 				final ApplicationConfiguration maxLoginAttemptsByIp = applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_IP, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_IP, DEFAULT_MAX_LOGIN_ATTEMPTS);
 				if (recentFailedLogins != null && recentFailedLogins.size() > NumberUtils.toInt(maxLoginAttemptsByIp.getPropertyValue(),DEFAULT_MAX_LOGINS_BY_IP)) {
 					loginBlockResultImpl.setBlocked(true);
-					loginBlockResultImpl.getMessages().add(BLOCKED_BY_MORE_THAN_5_RECENT_LOGIN_ATTEMPTS_BY_THIS_IP);
+					loginBlockResultImpl.addMessages(BLOCKED_BY_MORE_THAN_5_RECENT_LOGIN_ATTEMPTS_BY_THIS_IP);
 				}
 			}
 		}
