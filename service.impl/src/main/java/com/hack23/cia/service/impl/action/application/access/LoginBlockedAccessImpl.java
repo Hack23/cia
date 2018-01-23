@@ -173,7 +173,7 @@ public class LoginBlockedAccessImpl implements LoginBlockedAccess {
 
 			final Date oneHourAgo = new Date(System.currentTimeMillis() - ONE_HOUR);
 			final Map<Boolean, List<ApplicationActionEvent>> recentOldLoginAttemptsMap = failedLoginsByThisUser.stream()
-					.collect(Collectors.groupingBy(x -> x.getCreatedDate().after(oneHourAgo)));
+					.collect(Collectors.groupingBy((ApplicationActionEvent x ) -> x.getCreatedDate().after(oneHourAgo)));
 			final List<ApplicationActionEvent> recentFailedLogins = recentOldLoginAttemptsMap.get(Boolean.TRUE);
 			if (recentFailedLogins != null && recentFailedLogins.size() > NumberUtils.toInt(maxLoginAttemptsByUser.getPropertyValue(),DEFAULT_MAX_LOGINS)) {
 				loginBlockResultImpl.setBlocked(true);
@@ -222,9 +222,9 @@ public class LoginBlockedAccessImpl implements LoginBlockedAccess {
 				final Date oneHourAgo = new Date(System.currentTimeMillis() - ONE_HOUR);
 				final Map<Boolean, List<ApplicationActionEvent>> recentOldLoginAttemptsMap = applicationEventsWithIp
 						.stream()
-						.filter(x -> x.getApplicationOperation() == ApplicationOperationType.AUTHENTICATION
+						.filter((ApplicationActionEvent x) -> x.getApplicationOperation() == ApplicationOperationType.AUTHENTICATION
 								&& x.getApplicationMessage().equals(ServiceResult.FAILURE.toString()))
-						.collect(Collectors.groupingBy(x -> x.getCreatedDate().after(oneHourAgo)));
+						.collect(Collectors.groupingBy((ApplicationActionEvent x) -> x.getCreatedDate().after(oneHourAgo)));
 				final List<ApplicationActionEvent> recentFailedLogins = recentOldLoginAttemptsMap
 						.get(Boolean.TRUE);
 
