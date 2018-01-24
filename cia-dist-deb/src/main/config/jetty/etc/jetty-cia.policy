@@ -26,14 +26,6 @@ grant codeBase "file:${/}opt${/}cia${/}lib${/}*" {
         permission java.security.AllPermission;
 };
 
-grant codeBase "file:${/}opt${/}cia${/}start.jar" {
-        permission java.security.AllPermission;
-};
-
-grant codeBase "file:${/}opt${/}cia${/}lib${/}*" {
-        permission java.security.AllPermission;
-};
-
 grant codeBase "file:${/}opt${/}cia${/}lib${/}apache-jsp${/}*" {
         permission java.security.AllPermission;
 };
@@ -58,7 +50,11 @@ grant codeBase "file:${/}opt${/}cia${/}lib${/}jaspi${/}*" {
         permission java.security.AllPermission;
 };
 
-grant codeBase "file:${/}opt${/}cia${/}lib${/}jndi${/}*" {
+grant codeBase "file:${/}opt${/}cia${/}lib${/}annotations${/}*" {
+        permission java.security.AllPermission;
+};
+
+grant codeBase "file:${/}opt${/}cia${/}lib${/}mail${/}*" {
         permission java.security.AllPermission;
 };
 
@@ -74,10 +70,14 @@ grant codeBase "file:${/}opt${/}cia${/}lib${/}websocket${/}*" {
         permission java.security.AllPermission;
 };
 
+grant codeBase "file:${/}opt${/}cia${/}lib${/}transactions${/}*" {
+        permission java.security.AllPermission;
+};
+
 grant codeBase "file:${/}opt${/}cia${/}webapps${/}cia${/}WEB-INF${/}lib${/}*" {
         permission java.security.AllPermission;
 };
 
 grant {
-     permission java.security.AllPermission;
+     permission java.util.PropertyPermission "*", "read";
 };
