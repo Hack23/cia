@@ -155,7 +155,7 @@
     <cia.project.versions.activemq>5.15.2</cia.project.versions.activemq>
     <cia.project.versions.httpclient>4.5.5</cia.project.versions.httpclient>
     <cia.project.versions.guava>23.6-jre</cia.project.versions.guava>
-    <cia.project.versions.jackson>2.9.3</cia.project.versions.jackson>
+    <cia.project.versions.jackson>2.9.4</cia.project.versions.jackson>
     <cia.project.versions.xerces>2.11.0-22</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>9.4.8.v20171121</cia.project.versions.jetty>
@@ -261,7 +261,7 @@
       <dependency>
         <groupId>commons-beanutils</groupId>
         <artifactId>commons-beanutils</artifactId>
-        <version>1.9.3</version>
+        <version>1.9.3.redhat-1</version>
       </dependency>
       <dependency>
         <groupId>org.jvnet.jaxb2_commons</groupId>
@@ -982,7 +982,7 @@
             <dependency>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>extra-enforcer-rules</artifactId>
-              <version>1.0-beta-6</version>
+              <version>1.0-beta-7</version>
             </dependency>
           </dependencies>
         </plugin>
