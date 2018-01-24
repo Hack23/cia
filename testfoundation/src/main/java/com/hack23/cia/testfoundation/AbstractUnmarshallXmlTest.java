@@ -19,8 +19,6 @@
 package com.hack23.cia.testfoundation;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
@@ -56,8 +54,11 @@ public abstract class AbstractUnmarshallXmlTest<T> extends AbstractFunctionalInt
 	 * @throws Exception
 	 *             the exception
 	 */
-	protected final T unmarshallXml(final Unmarshaller unmarshaller,final String filename) throws Exception {
-		final BufferedReader inputStream= new BufferedReader(new InputStreamReader(java.nio.file.Files.newInputStream(Paths.get(FilenameUtils.getName(filename))),StandardCharsets.UTF_8));
+	protected final T unmarshallXml(final Unmarshaller unmarshaller, final String filename) throws Exception {
+		final BufferedReader inputStream = new BufferedReader(new InputStreamReader(
+				java.nio.file.Files.newInputStream(
+						Paths.get(FilenameUtils.getFullPath(filename), FilenameUtils.getName(filename))),
+				StandardCharsets.UTF_8));
 
 		return (T) unmarshaller.unmarshal(new StreamSource(inputStream));
 	}

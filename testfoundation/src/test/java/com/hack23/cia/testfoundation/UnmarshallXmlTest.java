@@ -51,7 +51,6 @@ public final class UnmarshallXmlTest extends AbstractUnmarshallXmlTest<String> {
 
 		final XStream xstream = new XStream();
 		xstream.alias("TestXml", TestXml.class);
-
-		assertEquals(content, unmarshallXml(new XStreamMarshaller(), temp.getPath()));
+		assertEquals(content, unmarshallXml(new XStreamMarshaller(), temp.getAbsolutePath()));
 	}
 }
