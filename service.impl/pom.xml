@@ -167,7 +167,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-search-orm</artifactId>
-      <version>5.9.0.phbn53-SNAPSHOT</version>
+      <version>5.9.0.CR1</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-entitymanager</artifactId>
