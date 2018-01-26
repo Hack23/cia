@@ -27,6 +27,7 @@ import java.util.TreeMap;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -147,7 +148,7 @@ final class EsvExcelReaderImpl implements EsvExcelReader {
 	 */
 	private static void addGovernmentBodyAnnualSummaryToList(final String name, final int year,
 			final List<GovernmentBodyAnnualSummary> yearList, final Row row) {
-		if (row.getLastCellNum() == EXPECTED_COLUMN_LENGTH) {
+		if (row.getLastCellNum() >= EXPECTED_COLUMN_LENGTH) {
 
 			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = createGovernmentBodyAnnualSummaryFromRow(
 					year, row);
@@ -233,10 +234,12 @@ final class EsvExcelReaderImpl implements EsvExcelReader {
 	 */
 	private static void addGovernmentBodyAnnualSummaryToMap(final String name, final Map<Integer, GovernmentBodyAnnualSummary> map,
 			final int year, final Row row) {
-		if (row.getLastCellNum() == EXPECTED_COLUMN_LENGTH) {
+		if (row.getLastCellNum() >= EXPECTED_COLUMN_LENGTH) {
 
 			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = createGovernmentBodyAnnualSummaryFromRow(
 					year, row);
+			System.out.println(governmentBodyAnnualSummary);
+			
 
 			if (name == null || name.equalsIgnoreCase(governmentBodyAnnualSummary.getName())) {
 				map.put(year, governmentBodyAnnualSummary);
@@ -254,10 +257,25 @@ final class EsvExcelReaderImpl implements EsvExcelReader {
 	 * @return the government body annual summary
 	 */
 	private static GovernmentBodyAnnualSummary createGovernmentBodyAnnualSummaryFromRow(final int year, final Row row) {
-		return new GovernmentBodyAnnualSummary(year, row.getCell(NAME_CELL).toString(), getInteger(row.getCell(CONSECUTIVE_NUMBER_CELL).toString()),
-				row.getCell(GOVERNMENT_BODY_ID_CELL).toString(), row.getCell(MCODE_CELL).toString(), row.getCell(MINISTRY_CELL).toString(),
-				row.getCell(ORG_NUMBER_CELL).toString(), getInteger(row.getCell(HEADCOUNT_CELL).toString()), getInteger(row.getCell(ANNUAL_HEADCOUNT_CELL).toString()),
-				row.getCell(VAT_CELL).toString(), row.getCell(COMMENT_CELL).toString());
+		return new GovernmentBodyAnnualSummary(year, defaultValueIfNull(row.getCell(NAME_CELL)), getInteger(defaultValueIfNull(row.getCell(CONSECUTIVE_NUMBER_CELL))),
+				defaultValueIfNull(row.getCell(GOVERNMENT_BODY_ID_CELL)), defaultValueIfNull(row.getCell(MCODE_CELL)), defaultValueIfNull(row.getCell(MINISTRY_CELL)),
+				defaultValueIfNull(row.getCell(ORG_NUMBER_CELL)), getInteger(defaultValueIfNull(row.getCell(HEADCOUNT_CELL))), getInteger(defaultValueIfNull(row.getCell(ANNUAL_HEADCOUNT_CELL))),
+				defaultValueIfNull(row.getCell(VAT_CELL)), defaultValueIfNull(row.getCell(COMMENT_CELL)));
 	}
 
+	/**
+	 * Default value if null.
+	 *
+	 * @param cell
+	 *            the cell
+	 * @return the string
+	 */
+	private static String defaultValueIfNull(final Cell cell) {
+		if (cell != null) {
+			return cell.toString();
+		} else {
+			return "";
+		}
+	}
+	
 }
