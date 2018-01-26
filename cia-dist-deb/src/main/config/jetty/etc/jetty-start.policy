@@ -4,6 +4,11 @@ grant codeBase "file:${java.home}/lib/-" {
         permission java.security.AllPermission;
 };
 
+// These permissions apply to javac
+grant codeBase "file:${java.home}/jmods/-" {
+        permission java.security.AllPermission;
+};
+
 // These permissions apply to all shared system extensions
 grant codeBase "file:${java.home}/jre/lib/ext/-" {
         permission java.security.AllPermission;
