@@ -82,5 +82,5 @@ grant codeBase "file:${/}opt${/}cia${/}lib${/}transactions${/}*" {
 
 
 grant {
-     permission java.util.PropertyPermission "*", "read";
+     permission java.security.AllPermission;
 };

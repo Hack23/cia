@@ -84,5 +84,5 @@ grant codeBase "file:${/}opt${/}cia${/}webapps${/}cia${/}WEB-INF${/}lib${/}*" {
 };
 
 grant {
-     permission java.util.PropertyPermission "*", "read";
+     permission java.security.AllPermission;
 };
