@@ -30,7 +30,6 @@ import org.apache.commons.io.FileUtils;
 import com.structurizr.Workspace;
 import com.structurizr.analysis.AbstractSpringComponentFinderStrategy;
 import com.structurizr.analysis.ComponentFinder;
-import com.structurizr.analysis.ReferencedTypesSupportingTypesStrategy;
 import com.structurizr.analysis.SpringComponentComponentFinderStrategy;
 import com.structurizr.analysis.SpringServiceComponentFinderStrategy;
 import com.structurizr.analysis.SupportingTypesStrategy;
@@ -38,16 +37,13 @@ import com.structurizr.io.WorkspaceWriterException;
 import com.structurizr.io.plantuml.PlantUMLWriter;
 import com.structurizr.model.Component;
 import com.structurizr.model.Container;
-import com.structurizr.model.ContainerInstance;
 import com.structurizr.model.DeploymentNode;
 import com.structurizr.model.Enterprise;
 import com.structurizr.model.Location;
 import com.structurizr.model.Model;
 import com.structurizr.model.Person;
-import com.structurizr.model.Relationship;
 import com.structurizr.model.SoftwareSystem;
 import com.structurizr.model.Tags;
-import com.structurizr.util.MapUtils;
 import com.structurizr.view.DeploymentView;
 import com.structurizr.view.EnterpriseContextView;
 import com.structurizr.view.Shape;
@@ -55,7 +51,6 @@ import com.structurizr.view.Styles;
 import com.structurizr.view.ViewSet;
 
 import net.sourceforge.plantuml.Run;
-
 
 /**
  * The Class AppPublicSystemDocumentation.
@@ -108,7 +103,7 @@ public class AppPublicSystemDocumentation {
 
 		final Person userPerson = model.addPerson("User", "User of the system");
 		final Person adminPerson = model.addPerson("Admin", "Manager of the system");
-		
+
 		final SoftwareSystem ciaSystem = model.addSoftwareSystem("Citizen Intelligence Agency System",
 				"Tracking politicians like bugs!");
 
@@ -130,7 +125,7 @@ public class AppPublicSystemDocumentation {
 				new SpringRepositoryComponentFinderStrategy());
 		componentFinderWeb.exclude(".*ui.*");
 		componentFinderWeb.exclude(".*service.external.*");
-		componentFinderWeb.exclude(".*service.component.*");		
+		componentFinderWeb.exclude(".*service.component.*");
 		componentFinderWeb.exclude(".*package.*");
 
 		componentFinderWeb.findComponents();
@@ -148,38 +143,98 @@ public class AppPublicSystemDocumentation {
 
 		ciaWebContainer.uses(relationalDatabase, "JDBC");
 
-		final EnterpriseContextView enterpriseContextView = viewSet.createEnterpriseContextView("Enterprise", "Enterprise");		
+		final EnterpriseContextView enterpriseContextView = viewSet.createEnterpriseContextView("Enterprise",
+				"Enterprise");
 		enterpriseContextView.addAllElements();
 		Enterprise enterprise = new Enterprise("Hack23");
 		enterpriseContextView.getModel().setEnterprise(enterprise);
-		
+
 		viewSet.createSystemContextView(ciaSystem, "System context", "System context").addAllElements();
 		viewSet.createContainerView(ciaSystem, "Container view", "Application Overview").addAllContainers();
 		viewSet.createComponentView(ciaWebContainer, "Web", "Web").addAllComponents();
 
+		DeploymentNode awsAccountNode = model.addDeploymentNode("AppOrg Account", "AWS", "Aws Account");
+
+		DeploymentNode awsVpcNode = awsAccountNode.addDeploymentNode("Project Network", "AWS", "VPC");
+
+		DeploymentNode wafNode = awsAccountNode.addDeploymentNode("Web Application Firewall", "AWS", "WAF");
+		final Container ciaWafContainer = ciaSystem.addContainer("WebACL Rules", "AWS", "WAF");
+		wafNode.add(ciaWafContainer);
+		ciaWafContainer.uses(loadBalancerContainer, "Protects/Filter");
+
+		DeploymentNode awsAuditAccountNode = model.addDeploymentNode("Audit Account", "AWS", "Aws Account");
+
+		DeploymentNode awsConfigNode = awsAuditAccountNode.addDeploymentNode("Config", "AWS", "Config");
+		final Container awsConfigContainer = ciaSystem.addContainer("Rules", "AWS", "Config Rules");
+		awsConfigNode.add(awsConfigContainer);
+
+		DeploymentNode awsInspectorNode = awsAccountNode.addDeploymentNode("System Compliance checks", "AWS", "Inspector");
+		final Container awsInspectorContainer = ciaSystem.addContainer("ScanningRules", "AWS", "Scanning Rules");
+		awsInspectorNode.add(awsInspectorContainer);
+		awsInspectorContainer.uses(ciaWebContainer, "Inspects");
 		
-		DeploymentNode wafNode = model.addDeploymentNode("Web Application Firewall", "AWS", "WAF");
 		
-		DeploymentNode applicationLoadbalancerNode = model.addDeploymentNode("Application Loadbalancer", "AWS", "ALB");
+		DeploymentNode awsSSMNode = awsAccountNode.addDeploymentNode("Patch Compliance", "AWS", "System Mananger");
+		final Container awsSSMContainer = ciaSystem.addContainer("InventoryList", "AWS", "InventoryList");
+		awsSSMNode.add(awsSSMContainer);						
+		awsSSMContainer.uses(ciaWebContainer, "Run Commands");	
+		
+		DeploymentNode awsQuickSightNode = awsAccountNode.addDeploymentNode("Business analytics", "AWS", "QuickSight");
+		final Container awsQuickSightContainer = ciaSystem.addContainer("Dashboards", "AWS", "Dashboards");
+		awsQuickSightNode.add(awsQuickSightContainer);						
+		awsQuickSightContainer.uses(relationalDatabase, "Loads Data");			
+		
+		DeploymentNode awsGuardDutyNode = awsAuditAccountNode.addDeploymentNode("Guard Duty", "AWS", "GuardDuty");
+		final Container awsGuardDutyContainer = ciaSystem.addContainer("Intelligent threat detection and continuous monitoring", "AWS", "Intelligent threat detection and continuous monitoring");
+		awsGuardDutyNode.add(awsGuardDutyContainer);
+
+		DeploymentNode awsMacieNode = awsAuditAccountNode.addDeploymentNode("A machine learning-powered security", "AWS", "macie");
+		final Container awsMacieContainer = ciaSystem.addContainer("discover, classify, and protect sensitive data", "AWS", "discover, classify, and protect sensitive data");
+		awsMacieNode.add(awsMacieContainer);
+
+		DeploymentNode awsLogGroupNode = awsAuditAccountNode.addDeploymentNode("LogGroup", "AWS", "Cloudwatch");
+		final Container awsLogstreamContainer = ciaSystem.addContainer("Logstreams", "AWS", "LogStream");
+		awsLogGroupNode.add(awsLogstreamContainer);
+
+		ciaWebContainer.uses(awsLogstreamContainer, "Write logs");
+		relationalDatabase.uses(awsLogstreamContainer, "Write logs");
+
+		DeploymentNode awsCloudtrailNode = awsAuditAccountNode.addDeploymentNode("Audit", "AWS", "Cloudtrail");
+		final Container awsAuditLogBucketContainer = ciaSystem.addContainer("LogBucket", "AWS", "S3");
+		awsCloudtrailNode.add(awsAuditLogBucketContainer);
+
+		DeploymentNode awsAcessLogsNode = awsAuditAccountNode.addDeploymentNode("Access Logs", "AWS", "S3");
+		final Container awsAccessLogBucketContainer = ciaSystem.addContainer("AccessLogBucket", "AWS", "S3");
+		awsAcessLogsNode.add(awsAccessLogBucketContainer);
+
+		loadBalancerContainer.uses(awsAccessLogBucketContainer, "Write logs");
+		
+		DeploymentNode applicationLoadbalancerNode = awsAccountNode.addDeploymentNode("Application Loadbalancer", "AWS",
+				"ALB");
 		applicationLoadbalancerNode.add(loadBalancerContainer);
 		wafNode.uses(applicationLoadbalancerNode, "Protects", "filter rules");
-		
-		DeploymentNode webNode = model.addDeploymentNode("Application", "AWS", "EC2",2);
+
+		DeploymentNode webNode = awsVpcNode.addDeploymentNode("Application", "AWS", "EC2", 2);
 		webNode.addDeploymentNode("Jetty", "Jetty", "JVM").add(ciaWebContainer);
 		applicationLoadbalancerNode.uses(webNode, "Uses", "https");
 
-		DeploymentNode databaseNode = model.addDeploymentNode("Database", "AWS", "RDS",2);
+		DeploymentNode databaseNode = awsVpcNode.addDeploymentNode("Database", "AWS", "RDS", 2);
 		databaseNode.add(relationalDatabase);
 		webNode.uses(databaseNode, "Uses", "jdbc");
-		
+
 		DeploymentView developmentDeploymentView = viewSet.createDeploymentView(ciaSystem, "Deployment",
 				"Deployment Aws.");
+
+		developmentDeploymentView.add(awsAuditAccountNode);
+		developmentDeploymentView.add(wafNode);
+		developmentDeploymentView.add(awsQuickSightNode);
+		developmentDeploymentView.add(awsInspectorNode);
+		developmentDeploymentView.add(awsSSMNode);
 		
-		developmentDeploymentView.add(wafNode);		
+
 		developmentDeploymentView.add(applicationLoadbalancerNode);
 		developmentDeploymentView.add(webNode);
 		developmentDeploymentView.add(databaseNode);
-		
 
 		final Styles styles = viewSet.getConfiguration().getStyles();
 		styles.addElementStyle(Tags.COMPONENT).background("#1168bd").color("#ffffff");
@@ -194,11 +249,10 @@ public class AppPublicSystemDocumentation {
 
 		printPlantUml(workspace);
 		System.setProperty("PLANTUML_LIMIT_SIZE", "8192");
-		Run.main(new String[] { Paths.get(".").toAbsolutePath().normalize().toString() + File.separator
-				+ "target" + File.separator + "site" + File.separator + "architecture" + File.separator});
+		Run.main(new String[] { Paths.get(".").toAbsolutePath().normalize().toString() + File.separator + "target"
+				+ File.separator + "site" + File.separator + "architecture" + File.separator });
 	}
 
-	
 	/**
 	 * Prints the plant uml.
 	 *
@@ -211,34 +265,38 @@ public class AppPublicSystemDocumentation {
 	 * @throws InterruptedException
 	 *             the interrupted exception
 	 */
-	private static void printPlantUml(final Workspace workspace) throws WorkspaceWriterException, IOException, InterruptedException {
+	private static void printPlantUml(final Workspace workspace)
+			throws WorkspaceWriterException, IOException, InterruptedException {
 		StringWriter stringWriter = new StringWriter();
 		PlantUMLWriter plantUMLWriter = new PlantUMLWriter();
 		plantUMLWriter.write(workspace, stringWriter);
 		String allPlantUmlsString = stringWriter.toString();
-		
-		String systemUml2 = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"), allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
-		allPlantUmlsString = allPlantUmlsString.replace(systemUml2,"");
-		writePlantUml("Citizen-Intelligence-Agency-System-System-Deployment",systemUml2);
-		
-		String componentUml = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"), allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
-		allPlantUmlsString = allPlantUmlsString.replace(componentUml,"");
-		writePlantUml("Citizen-Intelligence-Agency-System-Web-Application-Components",componentUml);
-		
-		String containersUml = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"), allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
-		allPlantUmlsString = allPlantUmlsString.replace(containersUml,"");
-		writePlantUml("Citizen-Intelligence-Agency-System-Containers",containersUml);
-		
-		String systemUml = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"), allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
-		allPlantUmlsString = allPlantUmlsString.replace(systemUml,"");
-		writePlantUml("Citizen-Intelligence-Agency-System-System-Context",systemUml);
 
-		
-		String enterpriseUml = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"), allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
-		allPlantUmlsString = allPlantUmlsString.replace(enterpriseUml,"");
-		writePlantUml("Enterprise-Context-for-Hack23",enterpriseUml);
+		String systemUml2 = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"),
+				allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
+		allPlantUmlsString = allPlantUmlsString.replace(systemUml2, "");
+		writePlantUml("Citizen-Intelligence-Agency-System-System-Deployment", systemUml2);
+
+		String componentUml = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"),
+				allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
+		allPlantUmlsString = allPlantUmlsString.replace(componentUml, "");
+		writePlantUml("Citizen-Intelligence-Agency-System-Web-Application-Components", componentUml);
+
+		String containersUml = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"),
+				allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
+		allPlantUmlsString = allPlantUmlsString.replace(containersUml, "");
+		writePlantUml("Citizen-Intelligence-Agency-System-Containers", containersUml);
+
+		String systemUml = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"),
+				allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
+		allPlantUmlsString = allPlantUmlsString.replace(systemUml, "");
+		writePlantUml("Citizen-Intelligence-Agency-System-System-Context", systemUml);
+
+		String enterpriseUml = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"),
+				allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
+		allPlantUmlsString = allPlantUmlsString.replace(enterpriseUml, "");
+		writePlantUml("Enterprise-Context-for-Hack23", enterpriseUml);
 	}
-
 
 	/**
 	 * Write plant uml.
@@ -252,11 +310,11 @@ public class AppPublicSystemDocumentation {
 	 * @throws InterruptedException
 	 *             the interrupted exception
 	 */
-	private static void writePlantUml(String filename,String content) throws IOException, InterruptedException {
+	private static void writePlantUml(String filename, String content) throws IOException, InterruptedException {
 		final String fullFilePathPlantUmlFile = Paths.get(".").toAbsolutePath().normalize().toString() + File.separator
-				+ "target" + File.separator + "site" + File.separator + "architecture" + File.separator
-				+ filename + ".pu";
+				+ "target" + File.separator + "site" + File.separator + "architecture" + File.separator + filename
+				+ ".pu";
 		System.out.println("Writing file:" + fullFilePathPlantUmlFile);
-		FileUtils.writeStringToFile(new File(fullFilePathPlantUmlFile), content, Charset.defaultCharset());		
+		FileUtils.writeStringToFile(new File(fullFilePathPlantUmlFile), content, Charset.defaultCharset());
 	}
 }
