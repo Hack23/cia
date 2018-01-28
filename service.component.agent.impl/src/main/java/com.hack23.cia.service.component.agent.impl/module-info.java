@@ -2,7 +2,6 @@ module com.hack23.cia.service.component.agent.impl {
 
 
 	exports com.hack23.cia.service.component.agent.impl.command;
-	exports com.hack23.cia.service.component.agent.impl.common;
 	exports com.hack23.cia.service.component.agent.impl.riksdagen;
 	exports com.hack23.cia.service.component.agent.impl.val;
 	exports com.hack23.cia.service.component.agent.impl.worldbank;
