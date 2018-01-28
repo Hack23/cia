@@ -71,7 +71,7 @@ public abstract class AbstractView extends Panel implements View {
 	private static final String ROLE_ADMIN = "ROLE_ADMIN";
 
 	/** The page mode content factory map. */
-	private final transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
+	private transient Map<String, PageModeContentFactory> pageModeContentFactoryMap;
 
 	/** The page name. */
 	private final String pageName;
