@@ -238,9 +238,6 @@ final class EsvExcelReaderImpl implements EsvExcelReader {
 
 			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = createGovernmentBodyAnnualSummaryFromRow(
 					year, row);
-			System.out.println(governmentBodyAnnualSummary);
-			
-
 			if (name == null || name.equalsIgnoreCase(governmentBodyAnnualSummary.getName())) {
 				map.put(year, governmentBodyAnnualSummary);
 			}
