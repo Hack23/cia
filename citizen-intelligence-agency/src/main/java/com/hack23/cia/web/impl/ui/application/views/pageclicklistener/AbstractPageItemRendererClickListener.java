@@ -60,14 +60,13 @@ public abstract class AbstractPageItemRendererClickListener<T> implements Render
 
 
 	@Override
-	public void selectionChange(final SelectionEvent<T> event) {
+	public final void selectionChange(final SelectionEvent<T> event) {
 		final Set<T> added =event.getAllSelectedItems();
 
 		if (!added.isEmpty()) {
 			UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + getPageId(added.iterator().next()));
 
 		}
-
 	}
 
 

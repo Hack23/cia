@@ -55,10 +55,12 @@ import com.hack23.cia.service.data.api.UserDAO;
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public class LoginBlockedAccessImpl implements LoginBlockedAccess {
+public final class LoginBlockedAccessImpl implements LoginBlockedAccess {
 
+	/** The Constant DEFAULT_MAX_LOGINS. */
 	private static final int DEFAULT_MAX_LOGINS = 5;
 
+	/** The Constant DEFAULT_MAX_LOGINS_BY_IP. */
 	private static final int DEFAULT_MAX_LOGINS_BY_IP = 10;
 
 	private static final int ONE_HOUR = 3600 * 1000;
