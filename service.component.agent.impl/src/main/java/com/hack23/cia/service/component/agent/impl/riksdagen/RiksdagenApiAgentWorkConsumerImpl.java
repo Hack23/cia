@@ -23,6 +23,7 @@ import java.util.Map;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
+import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 
 import org.slf4j.Logger;
@@ -31,14 +32,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
-import com.hack23.cia.service.component.agent.impl.common.AbstractAgentWorkConsumerImpl;
 import com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.RiksdagenDataSourcesWorkGenerator;
 
 /**
  * The Class RiksdagenApiAgentWorkConsumerImpl.
  */
 @Service("RiksdagenApiAgentWorkConsumer")
-final class RiksdagenApiAgentWorkConsumerImpl extends AbstractAgentWorkConsumerImpl {
+final class RiksdagenApiAgentWorkConsumerImpl implements MessageListener {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenApiAgentWorkConsumerImpl.class);
