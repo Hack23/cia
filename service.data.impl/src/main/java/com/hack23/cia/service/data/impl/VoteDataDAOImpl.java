@@ -58,9 +58,7 @@ AbstractGenericDAOImpl<VoteData, VoteDataEmbeddedId> implements VoteDataDAO {
 	public List<VoteDataEmbeddedId> getIdList() {
 		final CriteriaQuery<VoteDataEmbeddedId> criteria = getCriteriaBuilder().createQuery(
 				VoteDataEmbeddedId.class);
-		final Root<VoteData> root = criteria.from(VoteData.class);
-		criteria.select(getCriteriaBuilder().construct(VoteDataEmbeddedId.class,
-				root.get(VoteData_.embeddedId)));
+		criteria.select(criteria.from(VoteData.class).get(VoteData_.embeddedId));
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
