@@ -27,8 +27,6 @@ import javax.jms.Destination;
 import javax.jms.JMSException;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -44,9 +42,6 @@ import com.hack23.cia.service.data.api.ApplicationConfigurationService;
  */
 @Service("WorldBankDataWorkGeneratorImpl")
 final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesWorkGenerator {
-
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(WorldBankDataWorkGeneratorImpl.class);
 
 	/** The data workdestination. */
 	@Autowired
@@ -66,23 +61,22 @@ final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesW
 
 	@Override
 	public void generateWorkOrders() {
+		final ApplicationConfiguration importDataForCountries = applicationConfigurationService.checkValueOrLoadDefault(
+				"Countries to import data from worldbank (isocode) alt comma separated list",
+				"Load worldbank data for countries", ConfigurationGroup.AGENT,
+				WorldBankCountryWorkGeneratorImpl.class.getSimpleName(), "Worldbank country data loading",
+				"Responsible import worldlbank country data", "agent.worldbank.country.data.loadCountries",
+				"SE,NO,DK,FI,GB,US");
 
-		try {
-			final ApplicationConfiguration importDataForCountries = applicationConfigurationService.checkValueOrLoadDefault("Countries to import data from worldbank (isocode) alt comma separated list", "Load worldbank data for countries", ConfigurationGroup.AGENT, WorldBankCountryWorkGeneratorImpl.class.getSimpleName(), "Worldbank country data loading", "Responsible import worldlbank country data", "agent.worldbank.country.data.loadCountries", "SE,NO,DK,FI,GB,US");
+		final List<IndicatorElement> indicatorlist = getImportService().getAllIndicators();
+		final Map<String, String> currentSaved = getImportService().getWorldBankDataMap();
 
-			final List<IndicatorElement> indicatorlist = getImportService().getAllIndicators();
-			final Map<String, String> currentSaved = getImportService().getWorldBankDataMap();
-
-			for (final String country : getImportService().getWorldBankCountryMap().keySet()) {
-				if (StringUtils.containsIgnoreCase(importDataForCountries.getPropertyValue(),country)) {
-					for (final IndicatorElement indicator : indicatorlist) {
-						sendCountryIndicatorWorkOrder(currentSaved, indicator, country);
-					}
+		for (final String country : getImportService().getWorldBankCountryMap().keySet()) {
+			if (StringUtils.containsIgnoreCase(importDataForCountries.getPropertyValue(), country)) {
+				for (final IndicatorElement indicator : indicatorlist) {
+					sendCountryIndicatorWorkOrder(currentSaved, indicator, country);
 				}
 			}
-
-		} catch (final JMSException exception) {
-			LOGGER.warn("jms", exception);
 		}
 	}
 
@@ -99,7 +93,7 @@ final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesW
 	 *             the exception
 	 */
 	private void sendCountryIndicatorWorkOrder(final Map<String, String> currentSaved, final IndicatorElement indicator,
-			final String countryIso2Code) throws JMSException {
+			final String countryIso2Code) {
 		if (countryIso2Code != null && countryIso2Code.length() > 0
 				&& !currentSaved.containsKey(countryIso2Code + '.' + indicator.getId())) {
 			final List<String> load = new ArrayList<>();

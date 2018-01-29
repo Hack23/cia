@@ -123,11 +123,8 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 
 	@Override
 	public void updateVoteDataData(final List<VoteData> list) {
-		if (list != null && !list.isEmpty()) {
-			if (voteDataDAO.findListByEmbeddedProperty(VoteData_.embeddedId,VoteDataEmbeddedId.class,VoteDataEmbeddedId_.ballotId,
-					list.get(0).getEmbeddedId().getBallotId()).isEmpty()) {
+		if (list != null && !list.isEmpty() && voteDataDAO.findListByEmbeddedProperty(VoteData_.embeddedId,VoteDataEmbeddedId.class,VoteDataEmbeddedId_.ballotId,list.get(0).getEmbeddedId().getBallotId()).isEmpty()) {
 				voteDataDAO.persist(list);
-			}
 		}
 	}
 

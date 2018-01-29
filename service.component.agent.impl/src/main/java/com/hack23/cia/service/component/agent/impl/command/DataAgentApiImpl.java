@@ -21,8 +21,6 @@ package com.hack23.cia.service.component.agent.impl.command;
 import javax.jms.Destination;
 import javax.jms.JMSException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -41,10 +39,6 @@ import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
 @Service("DataAgentApi")
 @Transactional(propagation=Propagation.REQUIRED)
 final class DataAgentApiImpl implements DataAgentApi {
-
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(DataAgentApiImpl.class);
 
 	/** The jms template. */
 	@Autowired
@@ -69,11 +63,7 @@ final class DataAgentApiImpl implements DataAgentApi {
 
 	@Override
 	public void execute(final DataAgentWorkOrder workOrder) {
-		try {
-			sendMessage(workOrder);
-		} catch (final JMSException e) {
-			LOGGER.error("Jms exception:", e);
-		}
+		sendMessage(workOrder);
 	}
 
 	/**
@@ -84,8 +74,7 @@ final class DataAgentApiImpl implements DataAgentApi {
 	 * @throws JMSException
 	 *             the JMS exception
 	 */
-	public void sendMessage(final DataAgentWorkOrder workOrder)
-			throws JMSException {
+	private void sendMessage(final DataAgentWorkOrder workOrder) {
 
 		switch (workOrder.getTarget()) {
 		case MODEL_EXTERNAL_RIKSDAGEN:
