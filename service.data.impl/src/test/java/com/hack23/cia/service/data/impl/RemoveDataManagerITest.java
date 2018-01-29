@@ -93,7 +93,6 @@ public final class RemoveDataManagerITest extends AbstractServiceDataFunctionalI
 	 * Removes the application history test.
 	 */
 	@Test
-	@Ignore
 	public void removeApplicationHistoryTest() {
 		removeDataManager.removeApplicationHistory();
 		assertEquals("Expect no data",0,dataViewer.getAll(ApplicationActionEvent.class).size());
