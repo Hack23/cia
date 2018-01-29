@@ -105,6 +105,19 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 	}
 
+	@Override
+	public void createCountryTopicMenu(final MenuItem charts) {
+		charts.addItem(OVERVIEW_TEXT, VaadinIcons.LINE_CHART,
+				COMMAND_OVERVIEW);
+
+		final MenuItem countryIndicators = charts.addItem(COUNTRY_INDICATORS_SWEDEN, VaadinIcons.LINE_CHART, null);
+
+		addSourcesAndIndicatorsToMenu(countryIndicators, getTopicIndicatorMap());
+
+		charts.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART,	COMMAND_PAGEVISITHISTORY);
+
+	}
+
 	/**
 	 * Adds the sources and indicators to menu.
 	 *
@@ -135,19 +148,6 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 								indciatorSummary.getEmbeddedId().getIndicatorId()));
 			}
 		}
-
-	}
-
-	@Override
-	public void createCountryTopicMenu(final MenuItem charts) {
-		charts.addItem(OVERVIEW_TEXT, VaadinIcons.LINE_CHART,
-				COMMAND_OVERVIEW);
-
-		final MenuItem countryIndicators = charts.addItem(COUNTRY_INDICATORS_SWEDEN, VaadinIcons.LINE_CHART, null);
-
-		addSourcesAndIndicatorsToMenu(countryIndicators, getTopicIndicatorMap());
-
-		charts.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART,	COMMAND_PAGEVISITHISTORY);
 
 	}
 

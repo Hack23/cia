@@ -95,6 +95,28 @@ public final class LoadHelper {
 	}
 
 	/**
+	 * Recursive initliaze.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param obj
+	 *            the obj
+	 * @return the t
+	 */
+	public static <T> T recursiveInitialize(final T obj) {
+		if (obj != null) {
+
+			final Set<Object> dejaVu = Collections.newSetFromMap(new IdentityHashMap<Object, Boolean>());
+			try {
+				recursiveInitialize(obj, dejaVu);
+			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+				handleReflectionException(e);
+			}
+		}
+		return obj;
+	}
+
+	/**
 	 * Inits the proxy and collections.
 	 *
 	 * @param obj
@@ -143,28 +165,6 @@ public final class LoadHelper {
 				recursiveInitialize(item, dejaVu);
 			}
 		}
-	}
-
-	/**
-	 * Recursive initliaze.
-	 *
-	 * @param <T>
-	 *            the generic type
-	 * @param obj
-	 *            the obj
-	 * @return the t
-	 */
-	public static <T> T recursiveInitialize(final T obj) {
-		if (obj != null) {
-
-			final Set<Object> dejaVu = Collections.newSetFromMap(new IdentityHashMap<Object, Boolean>());
-			try {
-				recursiveInitialize(obj, dejaVu);
-			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-				handleReflectionException(e);
-			}
-		}
-		return obj;
 	}
 
 }
