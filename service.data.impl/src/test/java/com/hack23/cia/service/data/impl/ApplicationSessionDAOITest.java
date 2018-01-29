@@ -18,9 +18,9 @@
 */
 package com.hack23.cia.service.data.impl;
 
+import java.util.Date;
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_;
 import com.hack23.cia.service.data.api.ApplicationSessionDAO;
+import com.tc.util.UUID;
 
 /**
  * The Class ApplicationSessionDAOITest.
@@ -60,9 +61,12 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 	 *             the exception
 	 */
 	@Test
-	@Ignore
 	public void persistTest() throws Exception {
-
+		final ApplicationSession applicationSession = createApplicationSession();
+		
+		ApplicationSession loaddedApplicationSession = applicationSessionDAO.load(applicationSession.getHjid());
+		assertNotNull(loaddedApplicationSession);
+		assertEquals(applicationSession,loaddedApplicationSession);
 	}
 
 	/**
@@ -72,9 +76,23 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 	 *             the exception
 	 */
 	@Test
-	@Ignore
 	public void mergeTest() throws Exception {
+		final ApplicationSession applicationSession = createApplicationSession();
+				
+		final ApplicationSession mergedApplicationSession = applicationSessionDAO.merge(applicationSession);
+		mergedApplicationSession.setOperatingSystem("Merged");		
+		applicationSessionDAO.merge(mergedApplicationSession);
+		
+		ApplicationSession loaddedApplicationSession = applicationSessionDAO.load(applicationSession.getHjid());
+		assertNotNull(loaddedApplicationSession);
+		assertEquals(applicationSession,loaddedApplicationSession);
+	}
 
+	private ApplicationSession createApplicationSession() {
+		final ApplicationSession applicationSession = new ApplicationSession();
+		applicationSession.withCreatedDate(new Date()).withIpInformation(UUID.getUUID().toString()).withLocale("Locale").withSessionId(UUID.getUUID().toString());
+		applicationSessionDAO.persist(applicationSession);
+		return applicationSession;
 	}
 
 	/**
@@ -128,33 +146,13 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 	 *             the exception
 	 */
 	@Test
-	@Ignore
 	public void findListByPropertyInListTest() throws Exception {
-
-	}
-
-	/**
-	 * Find list by embedded property test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	@Ignore
-	public void findListByEmbeddedPropertyTest() throws Exception {
-
-	}
-
-	/**
-	 * Find ordered by property list by embedded property test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	@Ignore
-	public void findOrderedByPropertyListByEmbeddedPropertyTest() throws Exception {
-
+		final ApplicationSession applicationSession = createApplicationSession();
+		
+		List<ApplicationSession> list = applicationSessionDAO.findListByPropertyInList(ApplicationSession_.sessionId,
+				new Object[] {applicationSession.getSessionId()});
+		assertNotNull(list);
+		assertEquals(applicationSession,list.iterator().next());
 	}
 
 	/**
@@ -201,18 +199,6 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 		assertNotNull(pageList);
 		assertFalse(pageList.isEmpty());
 		assertEquals(resultPerPage,pageList.size());
-	}
-
-	/**
-	 * Search test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	@Ignore
-	public void searchTest() throws Exception {
-		applicationSessionDAO.search("12",100, "ipInformation");
 	}
 
 }
