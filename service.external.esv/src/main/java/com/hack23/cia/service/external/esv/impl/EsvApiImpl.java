@@ -97,6 +97,28 @@ final class EsvApiImpl implements EsvApi {
 		}
 		return new ArrayList<>(governmentBodyNameSet);
 	}
+	
+	@Override
+	public List<String> getGovernmentBodyNames(final String ministry) {
+		if (!governmentBodyNameSetMinistryMap.containsKey(ministry)) {
+
+			final Set<String> governmentBodyNameSetMapEntry = new HashSet<>();
+			governmentBodyNameSetMinistryMap.put(ministry, governmentBodyNameSetMapEntry);
+
+			final Map<Integer, List<GovernmentBodyAnnualSummary>> data = getData();
+
+			for (final List<GovernmentBodyAnnualSummary> list : data.values()) {
+				for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
+					if (ministry.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())
+							&& !governmentBodyNameSetMapEntry.contains(governmentBodyAnnualSummary.getName())
+							&& governmentBodyAnnualSummary.getHeadCount() > 0) {
+						governmentBodyNameSetMapEntry.add(governmentBodyAnnualSummary.getName());
+					}
+				}
+			}
+		}
+		return new ArrayList<>(governmentBodyNameSetMinistryMap.get(ministry));
+	}
 
 	@Override
 	public List<String> getMinistryNames() {
@@ -119,28 +141,6 @@ final class EsvApiImpl implements EsvApi {
 	@Override
 	public Map<Integer, GovernmentBodyAnnualSummary> getDataPerGovernmentBody(final String name) {
 		return esvExcelReader.getDataPerGovernmentBody(name);
-	}
-
-	@Override
-	public List<String> getGovernmentBodyNames(final String ministry) {
-		if (!governmentBodyNameSetMinistryMap.containsKey(ministry)) {
-
-			final Set<String> governmentBodyNameSetMapEntry = new HashSet<>();
-			governmentBodyNameSetMinistryMap.put(ministry, governmentBodyNameSetMapEntry);
-
-			final Map<Integer, List<GovernmentBodyAnnualSummary>> data = getData();
-
-			for (final List<GovernmentBodyAnnualSummary> list : data.values()) {
-				for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
-					if (ministry.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())
-							&& !governmentBodyNameSetMapEntry.contains(governmentBodyAnnualSummary.getName())
-							&& governmentBodyAnnualSummary.getHeadCount() > 0) {
-						governmentBodyNameSetMapEntry.add(governmentBodyAnnualSummary.getName());
-					}
-				}
-			}
-		}
-		return new ArrayList<>(governmentBodyNameSetMinistryMap.get(ministry));
 	}
 
 }
