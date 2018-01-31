@@ -164,6 +164,7 @@ public class AppPublicSystemDocumentation {
 
 		DeploymentNode awsAuditAccountNode = model.addDeploymentNode("Audit Account", "AWS", "Aws Account");
 
+		
 		DeploymentNode awsConfigNode = awsAuditAccountNode.addDeploymentNode("Config", "AWS", "Config");
 		final Container awsConfigContainer = ciaSystem.addContainer("Rules", "AWS", "Config Rules");
 		awsConfigNode.add(awsConfigContainer);
@@ -207,6 +208,7 @@ public class AppPublicSystemDocumentation {
 		final Container awsAccessLogBucketContainer = ciaSystem.addContainer("AccessLogBucket", "AWS", "S3");
 		awsAcessLogsNode.add(awsAccessLogBucketContainer);
 
+		
 		loadBalancerContainer.uses(awsAccessLogBucketContainer, "Write logs");
 		
 		DeploymentNode applicationLoadbalancerNode = awsAccountNode.addDeploymentNode("Application Loadbalancer", "AWS",
@@ -221,6 +223,47 @@ public class AppPublicSystemDocumentation {
 		DeploymentNode databaseNode = awsVpcNode.addDeploymentNode("Database", "AWS", "RDS", 2);
 		databaseNode.add(relationalDatabase);
 		webNode.uses(databaseNode, "Uses", "jdbc");
+		
+		DeploymentNode sumologicSecurityAccountNode = model.addDeploymentNode("Security Account", "Sumologic", "Sumologic Account");
+
+		DeploymentNode sumologicNetworkSecurityDashboardNode = sumologicSecurityAccountNode.addDeploymentNode("Nework Security Dashboard", "AWS", "Nework Security Dashboard");
+		
+		DeploymentNode sumologicServerSecurityDashboardNode = sumologicSecurityAccountNode.addDeploymentNode("Server Security Dashboard", "AWS", "Server Security Dashboard");
+
+		DeploymentNode sumologicAwsAccountSecurityDashboardNode = sumologicSecurityAccountNode.addDeploymentNode("AWS Account Security Dashboard", "AWS", "AWS Account Security Dashboard");
+
+		DeploymentNode sumologicApplicationSecurityDashboardNode = sumologicSecurityAccountNode.addDeploymentNode("Application Security Dashboard", "AWS", "Application Security Dashboard");
+		
+		final Container sumologicVpcFlowLogsContainer = ciaSystem.addContainer("VpcFlowLogs", "Sumologic", "VpcFlowLogs");
+		sumologicVpcFlowLogsContainer.uses(awsLogstreamContainer, "Recieve logs");
+		sumologicNetworkSecurityDashboardNode.add(sumologicVpcFlowLogsContainer);
+
+		final Container sumologicCloudtrailConfigContainer = ciaSystem.addContainer("CloudTrailLogs", "Sumologic", "CloudTrailLogs");
+		sumologicCloudtrailConfigContainer.uses(awsAuditLogBucketContainer, "Recieve logs");
+		sumologicAwsAccountSecurityDashboardNode.add(sumologicCloudtrailConfigContainer);
+
+		final Container sumologicAwsConfigContainer = ciaSystem.addContainer("AwsConfigLogs", "Sumologic", "AwsConfigLogs");
+		sumologicAwsConfigContainer.uses(awsConfigContainer, "Recieve logs");
+		sumologicAwsAccountSecurityDashboardNode.add(sumologicAwsConfigContainer);
+		
+		final Container sumologicEc2SystemLogsContainer = ciaSystem.addContainer("Ec2SystemLogs", "Sumologic", "Ec2SystemLogs");
+		sumologicEc2SystemLogsContainer.uses(awsLogstreamContainer, "Recieve logs");
+		sumologicServerSecurityDashboardNode.add(sumologicEc2SystemLogsContainer);
+		
+		final Container sumologicEc2ApplicationLogsContainer = ciaSystem.addContainer("Ec2ApplicationLogs", "Sumologic", "Ec2ApplicationLogs");
+		sumologicEc2ApplicationLogsContainer.uses(awsLogstreamContainer, "Recieve logs");
+		sumologicApplicationSecurityDashboardNode.add(sumologicEc2ApplicationLogsContainer);
+		
+		final Container sumologicAwsInspectorResultsContainer = ciaSystem.addContainer("AwsInspectorResults", "Sumologic", "AwsInspectorResults");
+		sumologicAwsInspectorResultsContainer.uses(awsInspectorContainer, "Recieve reports");
+		sumologicServerSecurityDashboardNode.add(sumologicAwsInspectorResultsContainer);
+		
+		final Container sumologicAwsAlbLogsContainer = ciaSystem.addContainer("AwsLoadbalancerAccessLogs", "Sumologic", "AwsLoadbalancerAccessLogs");
+		sumologicAwsAlbLogsContainer.uses(awsAccessLogBucketContainer, "Recieve logs");
+		sumologicNetworkSecurityDashboardNode.add(sumologicAwsAlbLogsContainer);
+
+		
+		
 
 		DeploymentView developmentDeploymentView = viewSet.createDeploymentView(ciaSystem, "Deployment",
 				"Deployment Aws.");
@@ -230,6 +273,7 @@ public class AppPublicSystemDocumentation {
 		developmentDeploymentView.add(awsQuickSightNode);
 		developmentDeploymentView.add(awsInspectorNode);
 		developmentDeploymentView.add(awsSSMNode);
+		developmentDeploymentView.add(sumologicSecurityAccountNode);
 		
 
 		developmentDeploymentView.add(applicationLoadbalancerNode);
