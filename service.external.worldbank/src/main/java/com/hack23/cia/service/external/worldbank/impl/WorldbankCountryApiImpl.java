@@ -42,7 +42,7 @@ final class WorldbankCountryApiImpl extends AbstractWorldBankApiImpl implements 
 	private static final Logger LOGGER = LoggerFactory.getLogger(WorldbankCountryApiImpl.class);
 
 	/** The Constant COUNTRIES. */
-	private static final String COUNTRIES = "http://api.worldbank.org/country?per_page=300";
+	private static final String COUNTRIES = "https://api.worldbank.org/country?per_page=300";
 
 	/** The Constant PROBLEM_GETTING_WORLDBANK_COUNTRY_LIST. */
 	private static final String PROBLEM_GETTING_WORLDBANK_COUNTRY_LIST = "Problem getting worldbank country list";

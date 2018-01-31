@@ -77,7 +77,7 @@ final class RiksdagenPersonsWorkGeneratorImpl extends AbstractRiksdagenDataSourc
 			}
 			for (final String personId : readMissingPersonList()) {
 				if (!currentSaved.containsKey(personId)) {
-					LOGGER.info("Send Load Order:{}{}", "http://data.riksdagen.se/person/", personId);
+					LOGGER.info("Send Load Order:{}{}", "https://data.riksdagen.se/person/", personId);
 					getJmsSender().send(personElementWorkdestination, new PersonElement().withId(personId));
 				}
 			}

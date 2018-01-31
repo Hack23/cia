@@ -71,7 +71,7 @@ final class RiksdagenBallotListWorkGeneratorImpl extends AbstractRiksdagenDataSo
 				if (!alreadySavedIdMap.containsKey(ballotDocument.getBallotId())) {
 					getJmsSender().send(voteDataWorkdestination,
 							ballotDocument.getBallotId());
-					LOGGER.info("Load : http://data.riksdagen.se/votering/{}", ballotDocument.getBallotId());
+					LOGGER.info("Load : https://data.riksdagen.se/votering/{}", ballotDocument.getBallotId());
 				}
 			}
 		} catch (final DataFailureException e) {

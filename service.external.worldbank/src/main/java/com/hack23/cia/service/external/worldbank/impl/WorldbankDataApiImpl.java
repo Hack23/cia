@@ -45,7 +45,7 @@ final class WorldbankDataApiImpl extends AbstractWorldBankApiImpl implements Wor
 	private static final String COUNTRY_KEY = "${COUNTRY_KEY}";
 
 	/** The Constant INDICATOR_COUNTRY_DATA. */
-	private static final String INDICATOR_COUNTRY_DATA ="http://api.worldbank.org/countries/${COUNTRY_KEY}/indicators/${INDICATOR_KEY}?per_page=1000";
+	private static final String INDICATOR_COUNTRY_DATA ="https://api.worldbank.org/countries/${COUNTRY_KEY}/indicators/${INDICATOR_KEY}?per_page=1000";
 
 	/** The Constant INDICATOR_KEY. */
 	private static final String INDICATOR_KEY = "${INDICATOR_KEY}";

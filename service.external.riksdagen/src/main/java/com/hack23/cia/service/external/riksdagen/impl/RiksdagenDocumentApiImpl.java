@@ -57,19 +57,19 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	private static final String DOC_ID_KEY = "${DOC_ID}";
 
 	/** The Constant DOCUMENT_CONTENT. */
-	private static final String DOCUMENT_CONTENT = "http://data.riksdagen.se/dokument/${DOC_ID}/text";
+	private static final String DOCUMENT_CONTENT = "https://data.riksdagen.se/dokument/${DOC_ID}/text";
 
 	/** The Constant DOCUMENT_LIST_CHANGED_DATE. */
-	private static final String DOCUMENT_LIST_CHANGED_DATE = "http://data.riksdagen.se/dokumentlista/?sok=&doktyp=&rm=&from=${CHANGED_SINCE}&tom=${CHANGED_TO}&ts=&bet=&tempbet=&nr=&org=&iid=&webbtv=&talare=&exakt=&planering=&sort=datum&sortorder=asc&rapport=&utformat=xml&a=";
+	private static final String DOCUMENT_LIST_CHANGED_DATE = "https://data.riksdagen.se/dokumentlista/?sok=&doktyp=&rm=&from=${CHANGED_SINCE}&tom=${CHANGED_TO}&ts=&bet=&tempbet=&nr=&org=&iid=&webbtv=&talare=&exakt=&planering=&sort=datum&sortorder=asc&rapport=&utformat=xml&a=";
 
 	/** The Constant DOCUMENT_LIST_TYPE. */
-	private static final String DOCUMENT_LIST_TYPE = "http://data.riksdagen.se/dokumentlista/?rm=&typ=${TYPE}&d=&ts=&parti=&iid=&bet=&org=&kat=&sz=200&sort=c&utformat=xml";
+	private static final String DOCUMENT_LIST_TYPE = "https://data.riksdagen.se/dokumentlista/?rm=&typ=${TYPE}&d=&ts=&parti=&iid=&bet=&org=&kat=&sz=200&sort=c&utformat=xml";
 
 	/** The Constant DOCUMENT_LIST_YEAR. */
-	private static final String DOCUMENT_LIST_YEAR = "http://data.riksdagen.se/dokumentlista/?rm=${YEAR}&typ=&d=&ts=&parti=&iid=&bet=&org=&kat=&sz=200&sort=c&utformat=xml";
+	private static final String DOCUMENT_LIST_YEAR = "https://data.riksdagen.se/dokumentlista/?rm=${YEAR}&typ=&d=&ts=&parti=&iid=&bet=&org=&kat=&sz=200&sort=c&utformat=xml";
 
 	/** The Constant DOCUMENT_STATUS. */
-	private static final String DOCUMENT_STATUS = "http://data.riksdagen.se/dokumentstatus/${ID_KEY}/xml";
+	private static final String DOCUMENT_STATUS = "https://data.riksdagen.se/dokumentstatus/${ID_KEY}/xml";
 
 	/** The Constant ERROR_PROCESSING_DOCUMENT. */
 	private static final String ERROR_PROCESSING_DOCUMENT = "Error processing document :{}";

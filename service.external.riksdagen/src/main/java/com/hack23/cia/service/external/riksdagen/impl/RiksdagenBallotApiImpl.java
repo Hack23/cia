@@ -53,10 +53,10 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi;
 final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 
 	/** The Constant BALLOT. */
-	private static final String BALLOT = "http://data.riksdagen.se/votering/${ID_KEY}/xml";
+	private static final String BALLOT = "https://data.riksdagen.se/votering/${ID_KEY}/xml";
 
 	/** The Constant BALLOT_LIST. */
-	private static final String BALLOT_LIST="http://data.riksdagen.se/voteringlista/?rm=&bet=&punkt=&iid=&parti=&valkrets=&rost=&sz=10000&utformat=xml&gruppering=votering_id";
+	private static final String BALLOT_LIST="https://data.riksdagen.se/voteringlista/?rm=&bet=&punkt=&iid=&parti=&valkrets=&rost=&sz=10000&utformat=xml&gruppering=votering_id";
 
 	/** The Constant CONTAINS_ONE. */
 	private static final int CONTAINS_ONE = 1;

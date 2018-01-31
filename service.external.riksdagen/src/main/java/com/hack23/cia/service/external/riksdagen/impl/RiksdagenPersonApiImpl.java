@@ -57,10 +57,10 @@ final class RiksdagenPersonApiImpl implements RiksdagenPersonApi {
 	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenPersonApiImpl.class);
 
 	/** The Constant PERSON. */
-	private static final String PERSON = "http://data.riksdagen.se/person/${ID_KEY}";
+	private static final String PERSON = "https://data.riksdagen.se/person/${ID_KEY}";
 
 	/** The Constant PERSON_LIST. */
-	private static final String PERSON_LIST = "http://data.riksdagen.se/personlista/?iid=&fnamn=&enamn=&f_ar=&kn=&parti=&valkrets=&rdlstatus=samtliga&org=";
+	private static final String PERSON_LIST = "https://data.riksdagen.se/personlista/?iid=&fnamn=&enamn=&f_ar=&kn=&parti=&valkrets=&rdlstatus=samtliga&org=";
 
 	/** The Constant PROBLEM_GETTING_PERSON_DATA_ID_S_FROM_DATA_RIKSDAGEN_SE. */
 	private static final String PROBLEM_GETTING_PERSON_DATA_ID_S_FROM_DATA_RIKSDAGEN_SE = "Problem getting person data id:{}  from data.riksdagen.se";

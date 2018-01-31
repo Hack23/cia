@@ -43,7 +43,7 @@ final class WorldbankIndicatorApiImpl extends AbstractWorldBankApiImpl implement
 	private static final Logger LOGGER = LoggerFactory.getLogger(WorldbankIndicatorApiImpl.class);
 
 	/** The Constant INDICATORS. */
-	private static final String INDICATORS = "http://api.worldbank.org/indicators?per_page=5000";
+	private static final String INDICATORS = "https://api.worldbank.org/indicators?per_page=5000";
 
 	private static final String PAGE_NUMBER = "&page=";
 

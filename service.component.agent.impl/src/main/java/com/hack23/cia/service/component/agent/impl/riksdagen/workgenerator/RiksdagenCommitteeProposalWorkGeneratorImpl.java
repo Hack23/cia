@@ -65,7 +65,7 @@ final class RiksdagenCommitteeProposalWorkGeneratorImpl extends AbstractRiksdage
 			if (!committeeProposalComponentDataMap.containsKey(id)) {
 				getJmsSender().send(committeeProposalComponentDataWorkdestination, id);
 
-				LOGGER.info("load http://data.riksdagen.se/utskottsforslag/{}", id);
+				LOGGER.info("load https://data.riksdagen.se/utskottsforslag/{}", id);
 			}
 		}
 	}

@@ -39,7 +39,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenCommitteeProposalA
 final class RiksdagenCommitteeProposalApiImpl implements RiksdagenCommitteeProposalApi {
 
 	/** The Constant COMMITTE_PROPOSAL. */
-	private static final String COMMITTE_PROPOSAL = "http://data.riksdagen.se/utskottsforslag/${ID_KEY}/xml";
+	private static final String COMMITTE_PROPOSAL = "https://data.riksdagen.se/utskottsforslag/${ID_KEY}/xml";
 
 	/**
 	 * The Constant
