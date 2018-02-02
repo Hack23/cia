@@ -223,7 +223,29 @@ public class AppPublicSystemDocumentation {
 		DeploymentNode databaseNode = awsVpcNode.addDeploymentNode("Database", "AWS", "RDS", 2);
 		databaseNode.add(relationalDatabase);
 		webNode.uses(databaseNode, "Uses", "jdbc");
+	
+		DeploymentNode githubAccountNode = model.addDeploymentNode("Github Org", "Github", "Github Org");
+		final Container sourceCodeContainer = ciaSystem.addContainer("SCM", "Github", "Scm");
+		githubAccountNode.add(sourceCodeContainer);
+		final Container documentationContainer = ciaSystem.addContainer("Documentation", "Github", "Documentation");
+		githubAccountNode.add(documentationContainer);
 		
+		DeploymentNode devNetworkNode = model.addDeploymentNode("Dev Network", "AWS", "Dev Network");
+
+		final Container nexusContainer = ciaSystem.addContainer("Nexus", "Dev", "Nexus");
+		devNetworkNode.addDeploymentNode("Jetty", "Jetty", "JVM").add(nexusContainer);
+
+		final Container sonarContainer = ciaSystem.addContainer("Sonarqube", "Dev", "Sonarqube");
+		devNetworkNode.add(sonarContainer);
+
+		final Container jenkinsContainer = ciaSystem.addContainer("Jenkins", "Dev", "Jenkins");
+		devNetworkNode.add(jenkinsContainer);
+		jenkinsContainer.uses(sourceCodeContainer,"builds");
+		jenkinsContainer.uses(sonarContainer, "Publish QA metrics","https");
+		jenkinsContainer.uses(nexusContainer, "publish artifacts","https");
+		jenkinsContainer.uses(documentationContainer, "publish Documentation","https");
+				
+
 		DeploymentNode sumologicSecurityAccountNode = model.addDeploymentNode("Security Account", "Sumologic", "Sumologic Account");
 
 		DeploymentNode sumologicNetworkSecurityDashboardNode = sumologicSecurityAccountNode.addDeploymentNode("Nework Security Dashboard", "AWS", "Nework Security Dashboard");
@@ -261,8 +283,6 @@ public class AppPublicSystemDocumentation {
 		final Container sumologicAwsAlbLogsContainer = ciaSystem.addContainer("AwsLoadbalancerAccessLogs", "Sumologic", "AwsLoadbalancerAccessLogs");
 		sumologicAwsAlbLogsContainer.uses(awsAccessLogBucketContainer, "Recieve logs");
 		sumologicNetworkSecurityDashboardNode.add(sumologicAwsAlbLogsContainer);
-
-		
 		
 
 		DeploymentView developmentDeploymentView = viewSet.createDeploymentView(ciaSystem, "Deployment",
@@ -274,7 +294,8 @@ public class AppPublicSystemDocumentation {
 		developmentDeploymentView.add(awsInspectorNode);
 		developmentDeploymentView.add(awsSSMNode);
 		developmentDeploymentView.add(sumologicSecurityAccountNode);
-		
+		developmentDeploymentView.add(githubAccountNode);
+		developmentDeploymentView.add(devNetworkNode);		
 
 		developmentDeploymentView.add(applicationLoadbalancerNode);
 		developmentDeploymentView.add(webNode);
