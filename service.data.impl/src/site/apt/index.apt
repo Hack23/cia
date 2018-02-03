@@ -2,6 +2,8 @@ Project Documentation
 
  * Entity model {{{./hbm2doc/entities/index.html}Hbm2Doc}}.
 
+ * Database Documentation {{{./dbDoc/index.html}Liquibase DbDoc}}.
+
  * Jenkins CI   {{{http://www.hack23.com}Latest builds}}.
 
  * Project Dependency Graph {{{./images/Project-Dependencies.png}Graph Image}}.
