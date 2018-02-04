@@ -231,6 +231,10 @@
 			<xsd:element minOccurs="0" name="userId" type="xsd:string" />
 			<xsd:element minOccurs="0" name="locale" type="xsd:string" />
 			<xsd:element minOccurs="0" name="operatingSystem" type="xsd:string" />
+			
+			<xsd:element minOccurs="0" name="screenSize" type="xsd:string" />
+			<xsd:element minOccurs="0" name="timeZone" type="xsd:string" />			
+			
 			<xsd:element minOccurs="0" name="sessionType"
 				type="system:ApplicationSessionType" />
 			<xsd:element maxOccurs="unbounded" minOccurs="0" name="events"
