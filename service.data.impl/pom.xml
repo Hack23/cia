@@ -653,16 +653,16 @@
         <groupId>org.liquibase</groupId>
         <artifactId>liquibase-maven-plugin</artifactId>
         <executions>
-        	<execution>
-        		<id>dbDoc</id>
-        		<phase>site</phase>
-        		<goals>
-        			<goal>dbDoc</goal>
-        		</goals>
-        		<configuration>
-        			<outputDirectory>${project.build.directory}/site/dbDoc</outputDirectory>
-        		</configuration>
-        	</execution>
+          <execution>
+            <id>dbDoc</id>
+            <phase>site</phase>
+            <goals>
+              <goal>dbDoc</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/site/dbDoc</outputDirectory>
+            </configuration>
+          </execution>
         </executions>
         <dependencies>
           <dependency>
