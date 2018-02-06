@@ -2268,12 +2268,12 @@
 								"sudo systemctl enable amazon-ssm-agent\n",
 								"sudo systemctl start amazon-ssm-agent\n",								
 								"sudo apt-get -y install curl python software-properties-common xz-utils bzip2 gnupg wget graphviz\n",
-								"sudo wget -O /tmp/awslogs-agent-setup.py http://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py\n",
+								"sudo wget -O /tmp/awslogs-agent-setup.py https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py\n",
 								"sudo chmod 775 /tmp/awslogs-agent-setup.py\n",
 								"sudo mkdir -p /var/awslogs/etc/\n",
 								"sudo /tmp/awslogs-agent-setup.py -n -r eu-west-1 -c /etc/awslogs.conf\n",								
 								"sudo apt-get -y install libwww-perl libdatetime-perl\n",
-								"wget http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip\n",
+								"wget https://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip\n",
 								"unzip CloudWatchMonitoringScripts-1.2.1.zip\n",
 								"rm CloudWatchMonitoringScripts-1.2.1.zip\n",
 								"sudo mv aws-scripts-mon /opt/aws-scripts-mon\n",
@@ -2413,7 +2413,7 @@
 			"Value": {
 				"Fn::Join": [
 					"", [
-						"http://",
+						"https://",
 						{
 							"Fn::GetAtt": [
 								"PublicElasticLoadBalancerV2",
