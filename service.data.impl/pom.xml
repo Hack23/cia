@@ -35,7 +35,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-search-orm</artifactId>
-      <version>5.9.0.Final</version>
+      <version>5.10.0-SNAPSHOT</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-entitymanager</artifactId>
@@ -78,7 +78,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-search-elasticsearch</artifactId>
-      <version>5.9.0.Final</version>
+      <version>5.10.0-SNAPSHOT</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-entitymanager</artifactId>
@@ -134,7 +134,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-search-all</artifactId>
-      <version>5.9.0.Final</version>
+      <version>5.10.0-SNAPSHOT</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-entitymanager</artifactId>
@@ -320,18 +320,18 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <!-- 
     <dependency>
       <groupId>org.hibernate.javax.persistence</groupId>
       <artifactId>hibernate-jpa-2.1-api</artifactId>
       <version>${cia.project.versions.hibernate.jpa2}</version>
     </dependency>
-    <!-- 
+     -->
     <dependency>
       <groupId>javax.persistence</groupId>
       <artifactId>javax.persistence-api</artifactId>
       <version>2.2</version>
     </dependency>
-     -->
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi</artifactId>
@@ -463,7 +463,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jcache</artifactId>
-      <version>5.2.12.Final</version>
+      <version>5.3.0.Beta2</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-core</artifactId>
