@@ -233,17 +233,17 @@ public class AppPublicSystemDocumentation {
 		DeploymentNode devNetworkNode = model.addDeploymentNode("Dev Network", "AWS", "Dev Network");
 
 		final Container nexusContainer = ciaSystem.addContainer("Nexus", "Dev", "Nexus");
-		devNetworkNode.addDeploymentNode("Jetty", "Jetty", "JVM").add(nexusContainer);
+		devNetworkNode.add(nexusContainer);
 
 		final Container sonarContainer = ciaSystem.addContainer("Sonarqube", "Dev", "Sonarqube");
 		devNetworkNode.add(sonarContainer);
 
 		final Container jenkinsContainer = ciaSystem.addContainer("Jenkins", "Dev", "Jenkins");
-		devNetworkNode.add(jenkinsContainer);
 		jenkinsContainer.uses(sourceCodeContainer,"builds");
 		jenkinsContainer.uses(sonarContainer, "Publish QA metrics","https");
 		jenkinsContainer.uses(nexusContainer, "publish artifacts","https");
 		jenkinsContainer.uses(documentationContainer, "publish Documentation","https");
+		devNetworkNode.add(jenkinsContainer);
 				
 
 		DeploymentNode sumologicSecurityAccountNode = model.addDeploymentNode("Security Account", "Sumologic", "Sumologic Account");
