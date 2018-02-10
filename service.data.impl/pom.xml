@@ -622,6 +622,17 @@
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>javax.mail</artifactId>
+          <groupId>com.sun.mail</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>javax.mail</artifactId>
+      <version>1.6.1</version>
     </dependency>
     <dependency>
       <groupId>commons-collections</groupId>

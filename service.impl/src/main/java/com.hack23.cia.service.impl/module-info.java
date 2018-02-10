@@ -27,7 +27,7 @@ module com.hack23.cia.service.impl {
 	requires joda.time;
 
 	requires jms;
-	requires javax.mail;
+	requires java.mail;
 
 	requires com.hack23.cia.service.api;
 
