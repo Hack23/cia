@@ -25,6 +25,8 @@ import java.net.URL;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
@@ -56,6 +58,9 @@ import com.whitestein.vaadin.widgets.wtpdfviewer.WTPdfViewer;
 @Component
 public final class DocumentAttachementsPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory.getLogger(DocumentAttachementsPageModContentFactoryImpl.class);
+	
 	private static final String PDF = "pdf";
 	private static final String[] HIDE_COLUMNS = new String[] { "hjid" };
 	private static final String[] COLUMN_ORDER = new String[] { "fileName", "fileSize", "fileType", "fileUrl" };

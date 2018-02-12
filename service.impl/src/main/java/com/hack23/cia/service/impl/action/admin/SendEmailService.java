@@ -110,14 +110,15 @@ public final class SendEmailService extends AbstractBusinessServiceImpl<SendEmai
 	 * @return true, if is valid email address
 	 */
 	public static boolean isValidEmailAddress(final String email) {
-		   boolean result = true;
-		   try {
-		      final InternetAddress emailAddr = new InternetAddress(email);
-		      emailAddr.validate();
-		   } catch (final AddressException ex) {
-		      result = false;
-		   }
-		   return result;
+		boolean result = true;
+		try {
+			final InternetAddress emailAddr = new InternetAddress(email);
+			emailAddr.validate();
+		} catch (final AddressException ex) {
+			LOGGER.info("Invalid email:{} , exception:{}", email, ex.getMessage());
+			result = false;
+		}
+		return result;
 	}
 
 }

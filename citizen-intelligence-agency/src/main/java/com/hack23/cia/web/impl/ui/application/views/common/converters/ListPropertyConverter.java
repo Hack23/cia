@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.vaadin.data.Converter;
 import com.vaadin.data.Result;
@@ -32,6 +34,9 @@ import com.vaadin.data.ValueContext;
  * The Class ListPropertyRenderer.
  */
 public final class ListPropertyConverter implements Converter<String, List> {
+	
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory.getLogger(ListPropertyConverter.class);
 
 	private static final char CONTENT_SEPARATOR = ' ';
 
@@ -124,6 +129,7 @@ public final class ListPropertyConverter implements Converter<String, List> {
 					}
 
 				} catch (final IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+					LOGGER.warn("Problem getting property {}, object {} , exception {}", property, object, e);
 				}
 				stringBuilder.append(CONTENT_SEPARATOR);
 			}

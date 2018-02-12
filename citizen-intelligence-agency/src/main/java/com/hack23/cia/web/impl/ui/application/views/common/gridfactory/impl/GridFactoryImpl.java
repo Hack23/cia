@@ -25,6 +25,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.vaadin.gridutil.cell.GridCellFilter;
 
@@ -46,6 +48,9 @@ import com.vaadin.ui.Grid.SelectionMode;
 @Service
 public final class GridFactoryImpl implements GridFactory {
 
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory.getLogger(GridFactoryImpl.class);
+
 	/**
 	 * Instantiates a new grid factory impl.
 	 */
@@ -54,24 +59,26 @@ public final class GridFactoryImpl implements GridFactory {
 	}
 
 	@Override
-	public <T extends Serializable> void createBasicBeanItemGrid(final AbstractOrderedLayout panelContent,final Class<T> dataType, final List<T> datasource,
-			final String caption, final String[] columnOrder, final String[] hideColumns,
-			final AbstractPageItemRendererClickListener<?> listener, final String actionId, final ListPropertyConverter[] collectionPropertyConverters) {
-		createBasicBeanItemNestedPropertiesGrid(panelContent,dataType,datasource, caption, null, columnOrder, hideColumns, listener, actionId, collectionPropertyConverters);
-
+	public <T extends Serializable> void createBasicBeanItemGrid(final AbstractOrderedLayout panelContent,
+			final Class<T> dataType, final List<T> datasource, final String caption, final String[] columnOrder,
+			final String[] hideColumns, final AbstractPageItemRendererClickListener<?> listener, final String actionId,
+			final ListPropertyConverter[] collectionPropertyConverters) {
+		createBasicBeanItemNestedPropertiesGrid(panelContent, dataType, datasource, caption, null, columnOrder,
+				hideColumns, listener, actionId, collectionPropertyConverters);
 
 	}
 
 	@Override
-	public <T extends Serializable> void createBasicBeanItemNestedPropertiesGrid(final AbstractOrderedLayout panelContent,final Class<T> dataType, final List<T> datasource, final String caption, final String[] nestedProperties,
-			final String[] columnOrder, final String[] hideColumns, final AbstractPageItemRendererClickListener<?> listener,
-			final String actionId, final ListPropertyConverter[] collectionPropertyConverters) {
+	public <T extends Serializable> void createBasicBeanItemNestedPropertiesGrid(
+			final AbstractOrderedLayout panelContent, final Class<T> dataType, final List<T> datasource,
+			final String caption, final String[] nestedProperties, final String[] columnOrder,
+			final String[] hideColumns, final AbstractPageItemRendererClickListener<?> listener, final String actionId,
+			final ListPropertyConverter[] collectionPropertyConverters) {
 
 		final Grid<T> grid = new Grid<T>(caption).withPropertySet(BeanPropertySet.get(dataType));
-				
-		grid.setItems(datasource.stream().filter(Objects::nonNull) 
-        .collect(Collectors.toList()));
-			
+
+		grid.setItems(datasource.stream().filter(Objects::nonNull).collect(Collectors.toList()));
+
 		grid.setSelectionMode(SelectionMode.SINGLE);
 
 		createNestedProperties(grid, nestedProperties);
@@ -86,7 +93,7 @@ public final class GridFactoryImpl implements GridFactory {
 
 		grid.setStyleName("Level2Header");
 
-		createGridCellFilter(columnOrder, grid,dataType);
+		createGridCellFilter(columnOrder, grid, dataType);
 
 		grid.setResponsive(true);
 
@@ -94,15 +101,16 @@ public final class GridFactoryImpl implements GridFactory {
 		panelContent.setExpandRatio(grid, ContentRatio.GRID);
 	}
 
-	private static <T extends Serializable> void createNestedProperties(final Grid<T> grid, final String[] nestedProperties) {
+	private static <T extends Serializable> void createNestedProperties(final Grid<T> grid,
+			final String[] nestedProperties) {
 		if (nestedProperties != null) {
-			for (final String property : nestedProperties) {			
+			for (final String property : nestedProperties) {
 				final Column<T, ?> addColumn = grid.addColumn(new BeanNestedPropertyValueProvider<T>(property));
 				addColumn.setId(property);
 			}
-		}		
+		}
 	}
-	
+
 	/**
 	 * Configure column orders and hidden fields.
 	 *
@@ -134,14 +142,12 @@ public final class GridFactoryImpl implements GridFactory {
 	 * @param grid
 	 *            the grid
 	 */
-	private static void configureListeners(final SelectionListener listener,
-			final Grid grid) {
+	private static void configureListeners(final SelectionListener listener, final Grid grid) {
 
 		if (listener != null) {
 			grid.addSelectionListener(listener);
 		}
 	}
-
 
 	/**
 	 * Creates the grid cell filter.
@@ -153,8 +159,8 @@ public final class GridFactoryImpl implements GridFactory {
 	 * @param dataType
 	 *            the data type
 	 */
-	private static void createGridCellFilter(final String[] columnOrder, final Grid grid,final Class dataType) {
-		if (columnOrder != null) {			
+	private static void createGridCellFilter(final String[] columnOrder, final Grid grid, final Class dataType) {
+		if (columnOrder != null) {
 			final GridCellFilter filter = new GridCellFilter(grid, dataType);
 			for (final String column : columnOrder) {
 				if (grid.getColumn(column) != null) {
@@ -164,7 +170,6 @@ public final class GridFactoryImpl implements GridFactory {
 		}
 	}
 
-
 	/**
 	 * Sets the column converters.
 	 *
@@ -173,7 +178,8 @@ public final class GridFactoryImpl implements GridFactory {
 	 * @param grid
 	 *            the grid
 	 */
-	private static void setColumnConverters(final ListPropertyConverter[] collectionPropertyConverter, final Grid grid) {
+	private static void setColumnConverters(final ListPropertyConverter[] collectionPropertyConverter,
+			final Grid grid) {
 		if (collectionPropertyConverter != null) {
 			for (final ListPropertyConverter converter : collectionPropertyConverter) {
 				grid.getColumn(converter.getColumn());
@@ -192,10 +198,10 @@ public final class GridFactoryImpl implements GridFactory {
 
 		/** The Constant serialVersionUID. */
 		private static final long serialVersionUID = 1L;
-		
+
 		/** The property. */
 		private final String property;
-				
+
 		/**
 		 * Instantiates a new bean nested property value provider.
 		 *
@@ -206,16 +212,17 @@ public final class GridFactoryImpl implements GridFactory {
 			super();
 			this.property = property;
 		}
-		
+
 		@Override
 		public String apply(final T source) {
 			try {
 				return BeanUtils.getProperty(source, property);
 			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+				LOGGER.warn("Problem getting property : {} from source : {} , exception: {}", property, source, e);
 				return "";
 			}
 		}
-		
+
 	}
 
 }
