@@ -94,7 +94,7 @@ public final class GridFactoryImpl implements GridFactory {
 		panelContent.setExpandRatio(grid, ContentRatio.GRID);
 	}
 
-	private <T extends Serializable> void createNestedProperties(final Grid<T> grid, final String[] nestedProperties) {
+	private static <T extends Serializable> void createNestedProperties(final Grid<T> grid, final String[] nestedProperties) {
 		if (nestedProperties != null) {
 			for (final String property : nestedProperties) {			
 				final Column<T, ?> addColumn = grid.addColumn(new BeanNestedPropertyValueProvider<T>(property));

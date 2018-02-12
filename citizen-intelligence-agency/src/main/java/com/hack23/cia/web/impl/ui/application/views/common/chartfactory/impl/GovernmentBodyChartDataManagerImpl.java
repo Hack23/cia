@@ -80,7 +80,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 
 				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
 				final Integer totalHeadcount = item.stream().filter((GovernmentBodyAnnualSummary p) -> p.getName().equalsIgnoreCase(govBodyName))
-						.collect(Collectors.summingInt(GovernmentBodyAnnualSummary::getHeadCount));
+						.mapToInt(GovernmentBodyAnnualSummary::getHeadCount).sum();
 
 				if (entry.getKey() != null && totalHeadcount > 0) {
 					dataSeries.add(FIRST_OF_JAN + entry.getKey(), totalHeadcount);
@@ -113,7 +113,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 
 				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
 				final Integer totalHeadcount = item.stream().filter((GovernmentBodyAnnualSummary p) -> p.getMinistry().equalsIgnoreCase(ministryName))
-						.collect(Collectors.summingInt(GovernmentBodyAnnualSummary::getHeadCount));
+						.mapToInt(GovernmentBodyAnnualSummary::getHeadCount).sum();
 
 				if (entry.getKey() != null && totalHeadcount > 0) {
 					dataSeries.add(FIRST_OF_JAN + entry.getKey(), totalHeadcount);
