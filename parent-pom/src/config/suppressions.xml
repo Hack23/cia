@@ -46,5 +46,7 @@
 		<cve>CVE-2017-8806</cve>
 		<cve>CVE-2017-17485</cve>
 		<cve>CVE-2014-5509</cve>
+		<cve>CVE-2018-5968</cve>
+		<cve>CVE-2017-7525</cve>
     </suppress>
 </suppressions>
