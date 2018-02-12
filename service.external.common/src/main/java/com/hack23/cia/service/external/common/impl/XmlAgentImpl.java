@@ -34,6 +34,7 @@ import javax.xml.transform.stream.StreamSource;
 
 import org.apache.http.client.fluent.Request;
 import org.jdom2.Document;
+import org.jdom2.JDOMException;
 import org.jdom2.Namespace;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.input.sax.XMLReaderSAX2Factory;
@@ -44,6 +45,7 @@ import org.springframework.oxm.Unmarshaller;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.service.external.common.api.XmlAgent;
+import com.hack23.cia.service.external.common.api.XmlAgentException;
 
 /**
  * The Class XmlAgentImpl.
@@ -52,8 +54,7 @@ import com.hack23.cia.service.external.common.api.XmlAgent;
 final class XmlAgentImpl implements XmlAgent {
 
 	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(XmlAgentImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(XmlAgentImpl.class);
 
 	/**
 	 * Instantiates a new xml agent impl.
@@ -84,13 +85,17 @@ final class XmlAgentImpl implements XmlAgent {
 	}
 
 	@Override
-	public String retriveContent(final String accessUrl) throws Exception {
-		final URL url = new URL(accessUrl.replace(" ",""));
+	public String retriveContent(final String accessUrl) throws XmlAgentException {
+		try {
+			final URL url = new URL(accessUrl.replace(" ", ""));
 
-		final BufferedReader inputStream = new BufferedReader(new InputStreamReader(
-				url.openStream(),StandardCharsets.UTF_8));
+			final BufferedReader inputStream = new BufferedReader(
+					new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
 
-		return readWithStringBuffer(inputStream);
+			return readWithStringBuffer(inputStream);
+		} catch (IOException e) {
+			throw new XmlAgentException(e);
+		}
 	}
 
 	/**
@@ -101,53 +106,60 @@ final class XmlAgentImpl implements XmlAgent {
 	 * @param nameSpace
 	 *            the name space
 	 * @return the source
-	 * @throws Exception
-	 *             the exception
+	 * @throws JDOMException
+	 *             the JDOM exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	private static Source setNameSpaceOnXmlStream(final InputStream in, final String nameSpace)
-			throws Exception {
+			throws JDOMException, IOException {
 		final SAXBuilder sb = new SAXBuilder(new XMLReaderSAX2Factory(false));
 		final Document doc = sb.build(in);
 		doc.getRootElement().setNamespace(Namespace.getNamespace(nameSpace));
 		return new JDOMSource(doc);
 	}
 
-
 	@Override
-	public Object unmarshallXml(final Unmarshaller unmarshaller, final String accessUrl) throws Exception {
-		return unmarshallXml(unmarshaller, accessUrl,null,null,null);
+	public Object unmarshallXml(final Unmarshaller unmarshaller, final String accessUrl) throws XmlAgentException {
+		return unmarshallXml(unmarshaller, accessUrl, null, null, null);
 	}
 
 	@Override
-	public Object unmarshallXml(final Unmarshaller unmarshaller, final String accessUrl,
-			final String nameSpace,final String replace, final String with) throws Exception {
+	public Object unmarshallXml(final Unmarshaller unmarshaller, final String accessUrl, final String nameSpace,
+			final String replace, final String with) throws XmlAgentException {
 
-		LOGGER.info("Calls {}", accessUrl);
+		try {
+			LOGGER.info("Calls {}", accessUrl);
 
-		final boolean isWeb = accessUrl.toLowerCase(Locale.ENGLISH).startsWith("http://") || accessUrl.toLowerCase(Locale.ENGLISH).startsWith("https://");
+			final boolean isWeb = accessUrl.toLowerCase(Locale.ENGLISH).startsWith("http://")
+					|| accessUrl.toLowerCase(Locale.ENGLISH).startsWith("https://");
 
-		String xmlContent;
-		if (isWeb) {
-			xmlContent = Request.Get(accessUrl.replace(" ","")).execute().returnContent().asString(StandardCharsets.UTF_8);
-		} else {
-			xmlContent = readInputStream(accessUrl.replace(" ",""));
+			String xmlContent;
+			if (isWeb) {
+				xmlContent = Request.Get(accessUrl.replace(" ", "")).execute().returnContent()
+						.asString(StandardCharsets.UTF_8);
+			} else {
+				xmlContent = readInputStream(accessUrl.replace(" ", ""));
+			}
+
+			if (replace != null) {
+				xmlContent = xmlContent.replace(replace, with);
+			}
+
+			final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(
+					xmlContent.getBytes(StandardCharsets.UTF_8));
+
+			Source source;
+			if (nameSpace != null) {
+				source = setNameSpaceOnXmlStream(byteArrayInputStream, nameSpace);
+			} else {
+				source = new StreamSource(byteArrayInputStream);
+			}
+
+			return unmarshaller.unmarshal(source);
+		} catch (IOException | JDOMException e) {
+			throw new XmlAgentException(e);
 		}
-
-		if (replace != null) {
-			xmlContent = xmlContent.replace(replace, with);
-		}
-
-		final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(
-				xmlContent.getBytes(StandardCharsets.UTF_8));
-
-		Source source;
-		if (nameSpace != null) {
-			source = setNameSpaceOnXmlStream(byteArrayInputStream, nameSpace);
-		} else {
-			source = new StreamSource(byteArrayInputStream);
-		}
-
-		return unmarshaller.unmarshal(source);
 	}
 
 	/**
@@ -156,19 +168,17 @@ final class XmlAgentImpl implements XmlAgent {
 	 * @param accessUrl
 	 *            the access url
 	 * @return the string
-	 * @throws Exception
-	 *             the exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
-	private static String readInputStream(final String accessUrl) throws Exception{
-		final URL url = new URL(accessUrl.replace(" ",""));
+	private static String readInputStream(final String accessUrl) throws IOException {
+		final URL url = new URL(accessUrl.replace(" ", ""));
 
 		final URLConnection connection = url.openConnection();
 
 		final InputStream stream = connection.getInputStream();
 
-
-		final BufferedReader inputStream = new BufferedReader(new InputStreamReader(
-				stream,StandardCharsets.UTF_8));
+		final BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
 
 		return readWithStringBuffer(inputStream);
 	}

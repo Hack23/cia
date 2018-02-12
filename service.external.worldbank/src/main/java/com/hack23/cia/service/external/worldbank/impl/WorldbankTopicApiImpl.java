@@ -29,6 +29,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.worldbank.topic.impl.TopicElement;
 import com.hack23.cia.model.external.worldbank.topic.impl.TopicsElement;
+import com.hack23.cia.service.external.common.api.XmlAgentException;
 import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankTopicApi;
 
@@ -71,7 +72,7 @@ final class WorldbankTopicApiImpl extends AbstractWorldBankApiImpl implements Wo
 			return ((TopicsElement) getXmlAgent().unmarshallXml(topicsUnmarshaller, TOPICS, null,
 					XMLNS_WB_HTTP_WWW_WORLDBANK_ORG, XMLNS_WB_HTTP_TOPIC_WORLDBANK_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL))
 							.getTopic();
-		} catch (final Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_GETTING_WORLDBANK_TOPIC_LIST);
 			throw new DataFailureException(e);
 		}

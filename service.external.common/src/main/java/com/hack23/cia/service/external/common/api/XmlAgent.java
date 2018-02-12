@@ -33,11 +33,11 @@ public interface XmlAgent {
 	 * @param accessUrl
 	 *            the access url
 	 * @return the object
-	 * @throws Exception
-	 *             the exception
+	 * @throws XmlAgentException
+	 *             the xml agent exception
 	 */
 	Object unmarshallXml(Unmarshaller unmarshaller, String accessUrl)
-			throws Exception;
+			throws XmlAgentException;
 
 	/**
 	 * Unmarshall xml.
@@ -53,11 +53,11 @@ public interface XmlAgent {
 	 * @param with
 	 *            the with
 	 * @return the object
-	 * @throws Exception
-	 *             the exception
+	 * @throws XmlAgentException
+	 *             the xml agent exception
 	 */
 	Object unmarshallXml(Unmarshaller unmarshaller, String accessUrl,
-			String nameSpace, String replace, String with) throws Exception;
+			String nameSpace, String replace, String with) throws XmlAgentException;
 
 	/**
 	 * Retrive content.
@@ -65,9 +65,9 @@ public interface XmlAgent {
 	 * @param accessUrl
 	 *            the access url
 	 * @return the string
-	 * @throws Exception
-	 *             the exception
+	 * @throws XmlAgentException
+	 *             the xml agent exception
 	 */
-	String retriveContent(String accessUrl) throws Exception;
+	String retriveContent(String accessUrl) throws XmlAgentException;
 
 }

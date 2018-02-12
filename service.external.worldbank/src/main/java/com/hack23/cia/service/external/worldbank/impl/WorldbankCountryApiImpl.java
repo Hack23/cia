@@ -29,6 +29,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.worldbank.countries.impl.CountriesElement;
 import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
+import com.hack23.cia.service.external.common.api.XmlAgentException;
 import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankCountryApi;
 
@@ -71,7 +72,7 @@ final class WorldbankCountryApiImpl extends AbstractWorldBankApiImpl implements 
 			return ((CountriesElement) getXmlAgent().unmarshallXml(countriesUnmarshaller, COUNTRIES, null,
 					XMLNS_WB_HTTP_WWW_WORLDBANK_ORG,
 					XMLNS_WB_HTTP_COUNTRIES_WORLDBANK_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL)).getCountry();
-		} catch (final Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_GETTING_WORLDBANK_COUNTRY_LIST);
 			throw new DataFailureException(e);
 		}

@@ -29,6 +29,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.worldbank.data.impl.DataElement;
 import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
+import com.hack23.cia.service.external.common.api.XmlAgentException;
 import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankDataApi;
 
@@ -79,7 +80,7 @@ final class WorldbankDataApiImpl extends AbstractWorldBankApiImpl implements Wor
 		try {
 			final String url = INDICATOR_COUNTRY_DATA.replace(COUNTRY_KEY,countryCode);
 			return ((DataElement) getXmlAgent().unmarshallXml(dataUnmarshaller, url.replace(INDICATOR_KEY, indicatorId),null,XMLNS_WB_HTTP_WWW_WORLDBANK_ORG, XMLNS_WB_HTTP_DATA_WORLDBANK_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL)).getData();
-		} catch (final Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_GETTING_WORLDBANK_DATA_FOR_COUNTRY_CODE_S_INDICATOR_ID_S,countryCode,indicatorId);
 			throw new DataFailureException(e);
 		}

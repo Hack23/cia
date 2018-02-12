@@ -41,6 +41,7 @@ import com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty;
 import com.hack23.cia.model.external.val.riksdagsvalkrets.impl.SwedenParliamentElectoralRegion;
 import com.hack23.cia.model.external.val.riksdagsvalkrets.impl.SwedenParliamentElectoralRegionContainer;
 import com.hack23.cia.service.external.common.api.XmlAgent;
+import com.hack23.cia.service.external.common.api.XmlAgentException;
 import com.hack23.cia.service.external.val.api.ValApi;
 import com.hack23.cia.service.external.val.api.ValApiException;
 
@@ -92,7 +93,7 @@ final class ValApiImpl implements ValApi {
 			return ((JAXBElement<SwedenElectionTypeContainerElement>) xmlAgent.unmarshallXml(valPartierMarshaller,
 					resource.toString(), "http://partier.val.external.model.cia.hack23.com/impl", null, null))
 							.getValue().getElectionTypes();
-		} catch (Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn("Problem getElectionTypes", e);
 			throw new ValApiException(e);
 		}
@@ -106,7 +107,7 @@ final class ValApiImpl implements ValApi {
 			return ((JAXBElement<SwedenParliamentElectoralRegionContainer>) xmlAgent.unmarshallXml(valRiksdagMarshaller,
 					resource.toString(), "http://riksdagsvalkrets.val.external.model.cia.hack23.com/impl", null, null))
 							.getValue().getParliamentElectoralRegions();
-		} catch (Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn("Problem getParliamentElectoralRegions", e);
 			throw new ValApiException(e);
 		}
@@ -121,7 +122,7 @@ final class ValApiImpl implements ValApi {
 			return ((JAXBElement<SwedenCountyElectoralRegionContainer>) xmlAgent.unmarshallXml(valLandstingMarshaller,
 					resource.toString(), "http://landstingvalkrets.val.external.model.cia.hack23.com/impl", null, null))
 							.getValue().getCountyElectoralRegions();
-		} catch (Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn("Problem getCountyElectoralRegions", e);
 			throw new ValApiException(e);
 		}
@@ -136,7 +137,7 @@ final class ValApiImpl implements ValApi {
 			return ((JAXBElement<SwedenCountyDataContainer>) xmlAgent.unmarshallXml(valKommunMarshaller,
 					resource.toString(), "http://kommunvalkrets.val.external.model.cia.hack23.com/impl", null, null))
 							.getValue().getCountyRegions();
-		} catch (Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn("Problem getCountyRegions", e);
 			throw new ValApiException(e);
 		}
@@ -150,7 +151,7 @@ final class ValApiImpl implements ValApi {
 			return ((JAXBElement<SwedenElectionTypeContainerElement>) xmlAgent.unmarshallXml(valPartierMarshaller,
 					resource.toString(), "http://partier.val.external.model.cia.hack23.com/impl", null, null))
 							.getValue().getElectionTypes().get(0).getRegion();
-		} catch (final Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn("Problem getSwedenElectionRegion", e);
 			throw new ValApiException(e);
 		}

@@ -43,6 +43,7 @@ import com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId;
 import com.hack23.cia.model.external.riksdagen.voteringlista.impl.BallotDocumentElement;
 import com.hack23.cia.model.external.riksdagen.voteringlista.impl.VoteListContainerElement;
 import com.hack23.cia.service.external.common.api.XmlAgent;
+import com.hack23.cia.service.external.common.api.XmlAgentException;
 import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi;
 
@@ -236,7 +237,7 @@ final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 
 			return result;
 
-		} catch (final Exception e) {
+		} catch (final XmlAgentException | ParseException e) {
 			LOGGER.warn(PROBLEM_GETTING_BALLOT_ID_S_FROM_DATA_RIKSDAGEN_SE,id);
 			throw new DataFailureException(e);
 		}
@@ -253,7 +254,7 @@ final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 			return ((JAXBElement<VoteListContainerElement>) xmlAgent.unmarshallXml(riksdagenBallotListMarshaller, url,
 							HTTP_VOTERINGLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL,null,null))
 							.getValue().getVotering();
-		} catch (final Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_GETTING_BALLOT_LIST_FROM_DATA_RIKSDAGEN_SE);
 			throw new DataFailureException(e);
 		}

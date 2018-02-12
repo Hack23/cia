@@ -38,6 +38,7 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatu
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentType;
 import com.hack23.cia.service.external.common.api.ProcessDataStrategy;
 import com.hack23.cia.service.external.common.api.XmlAgent;
+import com.hack23.cia.service.external.common.api.XmlAgentException;
 import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
 
@@ -200,7 +201,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 		try {
 			return new DocumentContentData().withId(id)
 					.withContent(xmlAgent.retriveContent(DOCUMENT_CONTENT.replace(DOC_ID_KEY, id)));
-		} catch (final Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_CONTENT_FOR_ID_S_FROM_DATA_RIKSDAGEN_SE, id);
 			throw new DataFailureException(e);
 		}
@@ -211,7 +212,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 			throws DataFailureException {
 		try {
 			return loadDocumentList(DOCUMENT_LIST_TYPE.replace(TYPE_KEY, documentType.value()), maxNumberPages);
-		} catch (final Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_LIST_FOR_DOCUMENT_TYPE_S_MAX_NUMBER_PAGES_S_FROM_DATA_RIKSDAGEN_SE,
 					documentType.toString(), Integer.toString(maxNumberPages));
 			throw new DataFailureException(e);
@@ -223,7 +224,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 			throws DataFailureException {
 		try {
 			return loadDocumentList(DOCUMENT_LIST_YEAR.replace(YEAR_KEY, year.toString()), maxNumberPages);
-		} catch (final Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_LIST_FOR_YEAR_S_FROM_DATA_RIKSDAGEN_SE, year.toString());
 			throw new DataFailureException(e);
 		}
@@ -235,7 +236,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 		try {
 			return loadDocumentList(DOCUMENT_LIST_CHANGED_DATE.replace(CHANGED_SINCE_KEY, changedSinceDate)
 					.replace(CHANGED_TO_KEY, changedToDate), maxNumberPages);
-		} catch (final Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_LIST_CHANGED_SINCE_DATE_S_CHANGED_TO_DATE_S_FROM_DATA_RIKSDAGEN_SE,
 					changedSinceDate, changedToDate);
 			throw new DataFailureException(e);
@@ -248,7 +249,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 			final String url = DOCUMENT_STATUS.replace(ID_KEY, id);
 			return ((JAXBElement<DocumentStatusContainer>) xmlAgent.unmarshallXml(riksdagenDocumentStatusMarshaller,
 					url, HTTP_DOKUMENTSTATUS_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL, null, null)).getValue();
-		} catch (final Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_STATUS_ID_S_FROM_DATA_RIKSDAGEN_SE, id);
 			throw new DataFailureException(e);
 		}
@@ -265,7 +266,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	 *             the exception
 	 */
 	private void loadAndProcessDocumentList(final String url,
-			final ProcessDataStrategy<DocumentElement> processStrategy) throws Exception {
+			final ProcessDataStrategy<DocumentElement> processStrategy) throws XmlAgentException {
 		final DocumentContainerElement dokumentLista = ((JAXBElement<DocumentContainerElement>) xmlAgent.unmarshallXml(
 				riksdagenDocumentListMarshaller, url, HTTP_DOKUMENTLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL,
 				null, null)).getValue();
@@ -294,7 +295,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	 * @throws Exception
 	 *             the exception
 	 */
-	private List<DocumentElement> loadDocumentList(final String url, final int maxNumberPages) throws Exception {
+	private List<DocumentElement> loadDocumentList(final String url, final int maxNumberPages) throws XmlAgentException {
 		final List<DocumentElement> result = new ArrayList<>();
 
 		DocumentContainerElement dokumentLista = ((JAXBElement<DocumentContainerElement>) xmlAgent.unmarshallXml(
@@ -319,7 +320,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 		try {
 			loadAndProcessDocumentList(DOCUMENT_LIST_CHANGED_DATE.replace(CHANGED_SINCE_KEY, changedSinceDate)
 					.replace(CHANGED_TO_KEY, changedToDate), processStrategy);
-		} catch (final Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_PROCCESSING_DOCUMENT_BETWEEN_CHANGED_SINCE_DATE_S_AND_CHANGE_TO_DATE, changedSinceDate,
 					changedToDate);
 			throw new DataFailureException(e);

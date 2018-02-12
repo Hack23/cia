@@ -30,6 +30,7 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.external.riksdagen.personlista.impl.PersonContainerElement;
 import com.hack23.cia.service.external.common.api.XmlAgent;
+import com.hack23.cia.service.external.common.api.XmlAgentException;
 import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
 
@@ -96,7 +97,7 @@ final class RiksdagenPersonApiImpl implements RiksdagenPersonApi {
 			return ((JAXBElement<com.hack23.cia.model.external.riksdagen.person.impl.PersonContainerData>) xmlAgent
 					.unmarshallXml(personUnmarshaller, url, HTTP_PERSON_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL,
 							null, null)).getValue().getPerson();
-		} catch (final Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_GETTING_PERSON_DATA_ID_S_FROM_DATA_RIKSDAGEN_SE, id);
 			throw new DataFailureException(e);
 		}
@@ -107,7 +108,7 @@ final class RiksdagenPersonApiImpl implements RiksdagenPersonApi {
 		try {
 			return ((JAXBElement<PersonContainerElement>) xmlAgent.unmarshallXml(personListUnmarshaller, PERSON_LIST,
 					HTTP_PERSONLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL, null, null)).getValue();
-		} catch (final Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_GETTING_PERSON_LIST_FROM_DATA_RIKSDAGEN_SE);
 			throw new DataFailureException(e);
 		}

@@ -30,6 +30,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
 import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorsElement;
+import com.hack23.cia.service.external.common.api.XmlAgentException;
 import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankIndicatorApi;
 
@@ -91,7 +92,7 @@ final class WorldbankIndicatorApiImpl extends AbstractWorldBankApiImpl implement
 				result.addAll(otherPageResult.getIndicator());
 			}
 
-		} catch (final Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_GETTING_WORLDBANK_INDICATOR_LIST);
 			throw new DataFailureException(e);
 		}

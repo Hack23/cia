@@ -29,6 +29,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
 import com.hack23.cia.service.external.common.api.XmlAgent;
+import com.hack23.cia.service.external.common.api.XmlAgentException;
 import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenCommitteeProposalApi;
 
@@ -82,7 +83,7 @@ final class RiksdagenCommitteeProposalApiImpl implements RiksdagenCommitteePropo
 			return ((JAXBElement<CommitteeProposalComponentData>) xmlAgent.unmarshallXml(
 					riksdagenCommitteeProposalMarshaller, url,
 					HTTP_UTSKOTTSFORSLAG_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL, null, null)).getValue();
-		} catch (final Exception e) {
+		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_GETTING_COMMITTEE_PROPOSAL_FOR_ID_S_FROM_DATA_RIKSDAGEN_SE, id);
 			throw new DataFailureException(e);
 		}
