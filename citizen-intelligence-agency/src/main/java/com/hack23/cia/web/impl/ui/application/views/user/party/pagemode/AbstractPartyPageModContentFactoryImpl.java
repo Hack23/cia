@@ -33,6 +33,9 @@ import com.vaadin.ui.Component;
  */
 abstract class AbstractPartyPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
+	/** The Constant CAPTION_SEPARATOR. */
+	private static final String CAPTION_SEPARATOR = "::";
+
 	/** The Constant PARTY. */
 	private static final String PARTY = "Party:";
 
@@ -64,7 +67,7 @@ abstract class AbstractPartyPageModContentFactoryImpl extends AbstractPageModCon
 	 */
 	protected final void pageCompleted(final String parameters, final Component panel, final String pageId,
 			final ViewRiksdagenParty viewRiksdagenParty) {
-		panel.setCaption(NAME + "::" + new StringBuilder().append(PARTY).append(viewRiksdagenParty.getPartyName()).toString());
+		panel.setCaption(new StringBuilder().append(NAME).append(CAPTION_SEPARATOR).append(PARTY).append(viewRiksdagenParty.getPartyName()).toString());
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,
 				pageId);

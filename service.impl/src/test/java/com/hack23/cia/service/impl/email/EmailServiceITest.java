@@ -67,11 +67,11 @@ public final class EmailServiceITest extends AbstractServiceFunctionalIntegratio
 		emailService.sendEmail("test@email.com", "subject", "content");
 
 		final List<SmtpMessage> emails = dumbster.getReceivedEmails();
-		assertEquals(emails.size(), 1);
+		assertEquals(1, emails.size());
 		final SmtpMessage email = emails.get(0);
-		assertEquals(email.getHeaderValue("Subject"), "subject");
-		assertEquals(email.getBody(), "content");
-		assertEquals(email.getHeaderValue("To"), "test@email.com");
+		assertEquals("subject", email.getHeaderValue("Subject"));
+		assertEquals("content", email.getBody());
+		assertEquals("test@email.com", email.getHeaderValue("To"));
 	}
 
 }

@@ -133,6 +133,13 @@ public final class LoginBlockedAccessImpl implements LoginBlockedAccess {
 	/** The application configuration service. */
 	@Autowired
 	private ApplicationConfigurationService applicationConfigurationService;
+	
+	/**
+	 * Instantiates a new login blocked access impl.
+	 */
+	public LoginBlockedAccessImpl() {
+		super();
+	}
 
 	/**
 	 * Inits the settings.
@@ -250,6 +257,13 @@ public final class LoginBlockedAccessImpl implements LoginBlockedAccess {
 		/** The messages. */
 		private final List<String> messages = new ArrayList<>();
 
+		/**
+		 * Instantiates a new login block result impl.
+		 */
+		public LoginBlockResultImpl() {
+			super();
+		}
+		
 		@Override
 		public boolean isBlocked() {
 			return isBlocked;

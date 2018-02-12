@@ -76,7 +76,7 @@ public final class SendEmailServiceITest extends AbstractServiceFunctionalIntegr
 		assertNotNull(EXPECT_A_RESULT, response);
 
 		final List<SmtpMessage> emails = dumbster.getReceivedEmails();
-		assertEquals(emails.size(), 1);
+		assertEquals(1, emails.size());
 		final SmtpMessage email = emails.get(0);
 		assertEquals(email.getHeaderValue("Subject"), serviceRequest.getSubject());
 		assertEquals(email.getBody(), serviceRequest.getContent());
