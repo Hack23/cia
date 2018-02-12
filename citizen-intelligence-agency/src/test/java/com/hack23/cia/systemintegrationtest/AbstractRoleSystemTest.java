@@ -168,7 +168,6 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 	 *
 	 * @param userPageVisit
 	 *            the user page visit
-	 * @return the string
 	 * @throws InterruptedException
 	 *             the interrupted exception
 	 */
