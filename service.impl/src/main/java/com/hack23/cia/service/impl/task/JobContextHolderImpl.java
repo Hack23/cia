@@ -34,13 +34,13 @@ import com.hack23.cia.service.data.api.ViewDataManager;
 public final class JobContextHolderImpl implements JobContextHolder {
 
 	/** The data agent api. */
-	private static DataAgentApi dataAgentApi;
+	private final DataAgentApi dataAgentApi;
 
 	/** The search indexer. */
-	private static SearchIndexer searchIndexer;
+	private final SearchIndexer searchIndexer;
 
 	/** The view data manager. */
-	private static ViewDataManager viewDataManager;
+	private final ViewDataManager viewDataManager;
 
 	/**
 	 * Instantiates a new job context holder impl.
@@ -55,25 +55,25 @@ public final class JobContextHolderImpl implements JobContextHolder {
 	@Autowired
 	public JobContextHolderImpl(final DataAgentApi dataAgentApi,final SearchIndexer searchIndexer, final ViewDataManager viewDataManager) {
 		super();
-		JobContextHolderImpl.dataAgentApi = dataAgentApi;
-		JobContextHolderImpl.searchIndexer = searchIndexer;
-		JobContextHolderImpl.viewDataManager = viewDataManager;
+		this.dataAgentApi = dataAgentApi;
+		this.searchIndexer = searchIndexer;
+		this.viewDataManager = viewDataManager;
 	}
 
 
 	@Override
 	public DataAgentApi getDataAgentApi() {
-		return JobContextHolderImpl.dataAgentApi;
+		return this.dataAgentApi;
 	}
 
 	@Override
 	public void updateSearchIndex() throws InterruptedException {
-		JobContextHolderImpl.searchIndexer.updateSearchIndex();
+		this.searchIndexer.updateSearchIndex();
 	}
 
 	@Override
 	public void refreshViews() {
-		JobContextHolderImpl.viewDataManager.refreshViews();
+		this.viewDataManager.refreshViews();
 	}
 
 }
