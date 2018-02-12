@@ -46,7 +46,8 @@ public final class DisableGoogleAuthenticatorCredentialClickListener implements 
 	private static final long serialVersionUID = 1L;
 
 	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(DisableGoogleAuthenticatorCredentialClickListener.class);
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(DisableGoogleAuthenticatorCredentialClickListener.class);
 
 	/** The google auth request. */
 	private final DisableGoogleAuthenticatorCredentialRequest googleAuthRequest;
@@ -57,22 +58,19 @@ public final class DisableGoogleAuthenticatorCredentialClickListener implements 
 	 * @param googleAuthRequest
 	 *            the google auth request
 	 */
-	public DisableGoogleAuthenticatorCredentialClickListener(final DisableGoogleAuthenticatorCredentialRequest googleAuthRequest) {
+	public DisableGoogleAuthenticatorCredentialClickListener(
+			final DisableGoogleAuthenticatorCredentialRequest googleAuthRequest) {
 		this.googleAuthRequest = googleAuthRequest;
 	}
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-		final DisableGoogleAuthenticatorCredentialResponse response = (DisableGoogleAuthenticatorCredentialResponse) ApplicationMangerAccess.getApplicationManager().service(googleAuthRequest);
+		final DisableGoogleAuthenticatorCredentialResponse response = (DisableGoogleAuthenticatorCredentialResponse) ApplicationMangerAccess
+				.getApplicationManager().service(googleAuthRequest);
 
-		if (ServiceResult.SUCCESS == response.getResult()) {
-
-
-		} else {
-			Notification.show(PROBLEM_DISABLE_GOOGLE_AUTHENTICATOR,
-	                  ERROR_MESSAGE,
-	                  Notification.Type.WARNING_MESSAGE);
-			LOGGER.info(PROBLEM_DISABLE_GOOGLE_AUTHENTICATOR_SESSIONID,googleAuthRequest.getSessionId());
+		if (ServiceResult.FAILURE == response.getResult()) {
+			Notification.show(PROBLEM_DISABLE_GOOGLE_AUTHENTICATOR, ERROR_MESSAGE, Notification.Type.WARNING_MESSAGE);
+			LOGGER.info(PROBLEM_DISABLE_GOOGLE_AUTHENTICATOR_SESSIONID, googleAuthRequest.getSessionId());
 		}
 	}
 }

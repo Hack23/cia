@@ -114,7 +114,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 		addSourcesAndIndicatorsToMenu(countryIndicators, getTopicIndicatorMap());
 
-		charts.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART,	COMMAND_PAGEVISITHISTORY);
+		charts.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART, COMMAND_PAGEVISITHISTORY);
 
 	}
 
