@@ -72,6 +72,8 @@ public final class CreateApplicationSessionService
 		applicationSession.setSessionId(serviceRequest.getSessionId());
 		applicationSession.setIpInformation(serviceRequest.getIpInformation());
 		applicationSession.setLocale(serviceRequest.getLocale());
+		applicationSession.setTimeZone(serviceRequest.getTimeZone());
+		applicationSession.setScreenSize(serviceRequest.getScreenSize());		
 		applicationSession.setOperatingSystem(serviceRequest.getOperatingSystem());
 		applicationSession.setUserAgentInformation(serviceRequest.getUserAgentInformation());
 		applicationSession.setSessionType(serviceRequest.getSessionType());

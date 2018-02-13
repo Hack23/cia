@@ -43,6 +43,16 @@ public final class CreateApplicationSessionRequest extends AbstractRequest {
 
 	/** The user agent information. */
 	private String userAgentInformation;
+	
+	/** The screen size. */
+	private String screenSize;
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	/** The time zone. */
+	private String timeZone;
 
 	/** The session type. */
 	private ApplicationSessionType sessionType;
@@ -167,4 +177,43 @@ public final class CreateApplicationSessionRequest extends AbstractRequest {
 	public void setOperatingSystem(final String operatingSystem) {
 		this.operatingSystem = operatingSystem;
 	}
+	
+	/**
+	 * Gets the screen size.
+	 *
+	 * @return the screen size
+	 */
+	public String getScreenSize() {
+		return screenSize;
+	}
+
+	/**
+	 * Sets the screen size.
+	 *
+	 * @param screenSize
+	 *            the new screen size
+	 */
+	public void setScreenSize(final String screenSize) {
+		this.screenSize = screenSize;
+	}
+
+	/**
+	 * Gets the time zone.
+	 *
+	 * @return the time zone
+	 */
+	public String getTimeZone() {
+		return timeZone;
+	}
+
+	/**
+	 * Sets the time zone.
+	 *
+	 * @param timeZone
+	 *            the new time zone
+	 */
+	public void setTimeZone(final String timeZone) {
+		this.timeZone = timeZone;
+	}
+
 }

@@ -118,6 +118,8 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 
 			final String ipInformation = WebBrowserUtil.getIpInformation(webBrowser);
 			serviceRequest.setIpInformation(ipInformation);
+			serviceRequest.setTimeZone(webBrowser.getTimeZoneId());
+			serviceRequest.setScreenSize(webBrowser.getScreenWidth() + "x" + webBrowser.getScreenHeight());
 			serviceRequest.setUserAgentInformation(webBrowser.getBrowserApplication());
 			serviceRequest.setLocale(webBrowser.getLocale().toString());
 			serviceRequest.setOperatingSystem(WebBrowserUtil.getOperatingSystem(webBrowser));
