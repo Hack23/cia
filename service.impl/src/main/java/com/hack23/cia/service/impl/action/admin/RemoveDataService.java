@@ -39,7 +39,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 /**
  * The Class RemoveDataService.
  */
-@Service
+@Service("RemoveDataService")
 @Transactional(propagation = Propagation.REQUIRED,timeout=1200)
 @Secured({ "ROLE_ADMIN" })
 public final class RemoveDataService extends
