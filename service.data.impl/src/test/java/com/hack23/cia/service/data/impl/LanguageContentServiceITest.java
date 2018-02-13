@@ -20,8 +20,6 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.UUID;
 
-import org.databene.contiperf.junit.ContiPerfRule;
-import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -31,10 +29,6 @@ import com.hack23.cia.service.data.api.LanguageContentService;
  * The Class LanguageContentServiceITest.
  */
 public final class LanguageContentServiceITest extends AbstractServiceDataFunctionalIntegrationTest {
-
-	/** The i. */
-	@Rule
-	public ContiPerfRule i = new ContiPerfRule();
 
 	/** The application configuration service. */
 	@Autowired

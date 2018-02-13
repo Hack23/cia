@@ -20,10 +20,6 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.List;
 
-import org.databene.contiperf.PerfTest;
-import org.databene.contiperf.Required;
-import org.databene.contiperf.junit.ContiPerfRule;
-import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -32,13 +28,7 @@ import com.hack23.cia.service.data.api.DocumentElementDAO;
 /**
  * The Class DocumentElementDAOITest.
  */
-@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
-@Required(max = 1200,average = 600,percentile95=700,throughput=2)
 public final class DocumentElementDAOITest extends AbstractServiceDataFunctionalIntegrationTest {
-
-	/** The i. */
-	@Rule
-	public ContiPerfRule i = new ContiPerfRule();
 
 	/** The document element DAO. */
 	@Autowired

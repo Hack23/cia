@@ -18,10 +18,6 @@
 */
 package com.hack23.cia.service.data.impl;
 
-import org.databene.contiperf.PerfTest;
-import org.databene.contiperf.Required;
-import org.databene.contiperf.junit.ContiPerfRule;
-import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -30,13 +26,7 @@ import com.hack23.cia.service.data.api.PersonDataDAO;
 /**
  * The Class PersonDataDAOITest.
  */
-@PerfTest(threads = 10, duration = 3000, warmUp = 1500)
-@Required(max = 1000,average = 20,percentile95=40,throughput=500)
 public final class PersonDataDAOITest extends AbstractServiceDataFunctionalIntegrationTest {
-
-	/** The i. */
-	@Rule
-	public ContiPerfRule i = new ContiPerfRule();
 
 	/** The person data dao. */
 	@Autowired
@@ -50,7 +40,6 @@ public final class PersonDataDAOITest extends AbstractServiceDataFunctionalInteg
 	 */
 	@Test
 	public void testGetSize() throws Exception {
-
 		assertTrue("Expect some persons in database",personDataDAO.getSize() >= 0);
 	}
 

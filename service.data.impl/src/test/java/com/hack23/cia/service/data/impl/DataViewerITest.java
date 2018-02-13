@@ -46,8 +46,6 @@ import com.hack23.cia.service.data.api.DataViewer;
 /**
  * The Class DataViewerITest.
  */
-// @PerfTest(threads = 10, duration = 3000, warmUp = 1000)
-// @Required(max = 2000,average = 20,percentile95=20,throughput=4000)
 public final class DataViewerITest extends
 		AbstractServiceDataFunctionalIntegrationTest {
 
@@ -63,9 +61,6 @@ public final class DataViewerITest extends
 	/** The data viewer. */
 	@Autowired
 	private DataViewer dataViewer;
-
-	// @Rule
-	// public ContiPerfRule i = new ContiPerfRule();
 
 	/**
 	 * View riksdagen committee.
