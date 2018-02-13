@@ -22,7 +22,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.WebDriver;
@@ -443,7 +442,6 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 *             the exception
 	 */
 	@Test
-	@Ignore
 	public void visitAdminDataSummaryViewRemovePoliticianTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -457,7 +455,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		final WebElement removePoliticiansButton =userPageVisit.findButton("Remove Politicians");
 		assertNotNull("Expect to find a Button",removePoliticiansButton);
 
-		userPageVisit.performClickAction(removePoliticiansButton);
+		// userPageVisit.performClickAction(removePoliticiansButton);
 	}
 	
 	/**
@@ -467,7 +465,6 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 *             the exception
 	 */
 	@Test
-	@Ignore
 	public void visitAdminDataSummaryViewRemoveDocumentsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -481,8 +478,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		final WebElement removeDocumentsButton =userPageVisit.findButton("Remove Documents");
 		assertNotNull("Expect to find a Button",removeDocumentsButton);
 
-		userPageVisit.performClickAction(removeDocumentsButton);
-
+		// userPageVisit.performClickAction(removeDocumentsButton);
 	}
 
 	
@@ -493,7 +489,6 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 *             the exception
 	 */
 	@Test
-	@Ignore
 	public void visitAdminDataSummaryViewRemoveApplicationHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -507,7 +502,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		final WebElement removeApplicationHistoryButton =userPageVisit.findButton("Remove Application History");
 		assertNotNull("Expect to find a Button",removeApplicationHistoryButton);
 
-		userPageVisit.performClickAction(removeApplicationHistoryButton);
+		// userPageVisit.performClickAction(removeApplicationHistoryButton);
 
 	}
 
