@@ -18,9 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.vaadin.data.Binder;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -32,9 +29,6 @@ public final class CommitFormWrapperClickListener implements ClickListener {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(CommitFormWrapperClickListener.class);
 
 	/** The field group. */
 	private final Binder<?> binder;

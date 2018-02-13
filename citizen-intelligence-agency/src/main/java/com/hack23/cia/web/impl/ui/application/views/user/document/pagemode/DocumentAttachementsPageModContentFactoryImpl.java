@@ -58,13 +58,15 @@ import com.whitestein.vaadin.widgets.wtpdfviewer.WTPdfViewer;
 @Component
 public final class DocumentAttachementsPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(DocumentAttachementsPageModContentFactoryImpl.class);
-	
+	/** The Constant PDF. */
 	private static final String PDF = "pdf";
+	
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = new String[] { "hjid" };
+	
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = new String[] { "fileName", "fileSize", "fileType", "fileUrl" };
-	private static final String DOCUMENT_ATTACHEMENTS = "Document attachements";
+	
 	/** The Constant DOCUMENT_ATTACHMENTS. */
 	private static final String DOCUMENT_ATTACHMENTS = "Document Attachments";
 
@@ -114,46 +116,10 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 
 				getGridFactory().createBasicBeanItemGrid(
 						panelContent, DocumentAttachment.class, documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList(),
-						DOCUMENT_ATTACHEMENTS, COLUMN_ORDER, HIDE_COLUMNS,
+						DOCUMENT_ATTACHMENTS, COLUMN_ORDER, HIDE_COLUMNS,
 						null, null, null);
 
-				final List<DocumentAttachment> documentAttachmentList = documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList();
-
-				for (final DocumentAttachment documentAttachment : documentAttachmentList) {
-					
-					if (PDF.equalsIgnoreCase(documentAttachment.getFileType())) {
-						final WTPdfViewer wtPdfViewer = new WTPdfViewer();
-						wtPdfViewer.setSizeFull();
-
-						final StreamResource.StreamSource source = new StreamResource.StreamSource() {
-
-							/** The Constant serialVersionUID. */
-							private static final long serialVersionUID = 1L;
-
-							@Override
-							public InputStream getStream() {
-
-								try {
-									return new URL(documentAttachment.getFileUrl()).openStream();
-								} catch (final IOException e) {
-									return new ByteArrayInputStream(new byte[0]);
-								}
-							}
-						};
-
-						
-						wtPdfViewer.setResource(new StreamResource(source, documentAttachment.getFileName()));
-						
-						panelContent.addComponent(wtPdfViewer);						
-						panelContent.setExpandRatio(wtPdfViewer,ContentRatio.LARGE);
-					} else {
-						final VerticalLayout verticalLayout = new VerticalLayout();
-						panelContent.addComponent(verticalLayout);
-						panelContent.setExpandRatio(verticalLayout,ContentRatio.SMALL);
-						final ExternalAttachmentDownloadLink link = new ExternalAttachmentDownloadLink(documentAttachment.getFileName(), documentAttachment.getFileType(), documentAttachment.getFileUrl());
-						verticalLayout.addComponent(link);
-					}
-				}
+				displayDocumentAttachements(panelContent, documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList());
 			}
 
 			panel.setContent(panelContent);
@@ -163,6 +129,73 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 
 		return panelContent;
 
+	}
+
+	/**
+	 * Display document attachements.
+	 *
+	 * @param panelContent
+	 *            the panel content
+	 * @param documentAttachmentList
+	 *            the document attachment list
+	 */
+	private void displayDocumentAttachements(final VerticalLayout panelContent,
+			final List<DocumentAttachment> documentAttachmentList) {
+		for (final DocumentAttachment documentAttachment : documentAttachmentList) {
+			
+			if (PDF.equalsIgnoreCase(documentAttachment.getFileType())) {
+				final WTPdfViewer wtPdfViewer = new WTPdfViewer();
+				wtPdfViewer.setSizeFull();
+
+				final StreamResource.StreamSource source = new StreamSourceImplementation(documentAttachment);
+
+				
+				wtPdfViewer.setResource(new StreamResource(source, documentAttachment.getFileName()));
+				
+				panelContent.addComponent(wtPdfViewer);						
+				panelContent.setExpandRatio(wtPdfViewer,ContentRatio.LARGE);
+			} else {
+				final VerticalLayout verticalLayout = new VerticalLayout();
+				panelContent.addComponent(verticalLayout);
+				panelContent.setExpandRatio(verticalLayout,ContentRatio.SMALL);
+				final ExternalAttachmentDownloadLink link = new ExternalAttachmentDownloadLink(documentAttachment.getFileName(), documentAttachment.getFileType(), documentAttachment.getFileUrl());
+				verticalLayout.addComponent(link);
+			}
+		}
+	}
+
+	/**
+	 * The Class StreamSourceImplementation.
+	 */
+	private final static class StreamSourceImplementation implements StreamResource.StreamSource {
+
+		/** The Constant LOGGER. */
+		private static final Logger LOGGER = LoggerFactory.getLogger(StreamSourceImplementation.class);		
+
+		/** The document attachment. */
+		private final DocumentAttachment documentAttachment;
+		/** The Constant serialVersionUID. */
+		private static final long serialVersionUID = 1L;
+
+		/**
+		 * Instantiates a new stream source implementation.
+		 *
+		 * @param documentAttachment
+		 *            the document attachment
+		 */
+		private StreamSourceImplementation(final DocumentAttachment documentAttachment) {
+			this.documentAttachment = documentAttachment;
+		}
+
+		@Override
+		public InputStream getStream() {
+			try {
+				return new URL(documentAttachment.getFileUrl()).openStream();
+			} catch (final IOException e) {
+				LOGGER.warn(documentAttachment.getFileUrl(),e);
+				return new ByteArrayInputStream(new byte[0]);
+			}
+		}
 	}
 
 }

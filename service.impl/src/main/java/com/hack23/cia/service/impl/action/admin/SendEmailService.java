@@ -115,7 +115,7 @@ public final class SendEmailService extends AbstractBusinessServiceImpl<SendEmai
 			final InternetAddress emailAddr = new InternetAddress(email);
 			emailAddr.validate();
 		} catch (final AddressException ex) {
-			LOGGER.info("Invalid email:{} , exception:{}", email, ex.getMessage());
+			LOGGER.info("Invalid email:{} , exception:{}", email, ex);
 			result = false;
 		}
 		return result;

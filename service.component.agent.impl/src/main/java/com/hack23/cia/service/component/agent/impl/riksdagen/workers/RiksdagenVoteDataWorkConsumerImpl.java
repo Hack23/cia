@@ -60,16 +60,24 @@ final class RiksdagenVoteDataWorkConsumerImpl implements MessageListener {
 
 	@Override
 	public void onMessage(final Message message) {
-		final String ballotId;
 		try {
-			ballotId = (String) ((ObjectMessage) message).getObject();
-			try {
-				updateService.updateVoteDataData(riksdagenApi.getBallot(ballotId));
-			} catch (final DataFailureException e) {
-				LOGGER.warn("Eror loading riksdagen voteData:" + ballotId + " errorMessage:", e);
-			}
+			updateBallot((String) ((ObjectMessage) message).getObject());
 		} catch (final JMSException e) {
 			LOGGER.warn("No Valid input", e);
+		}
+	}
+
+	/**
+	 * Update ballot.
+	 *
+	 * @param ballotId
+	 *            the ballot id
+	 */
+	private void updateBallot(final String ballotId) {
+		try {
+			updateService.updateVoteDataData(riksdagenApi.getBallot(ballotId));
+		} catch (final DataFailureException e) {
+			LOGGER.warn("Eror loading riksdagen voteData:" + ballotId + " errorMessage:", e);
 		}
 	}
 }

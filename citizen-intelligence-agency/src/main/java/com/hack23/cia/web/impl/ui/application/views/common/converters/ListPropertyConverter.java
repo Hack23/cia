@@ -112,32 +112,44 @@ public final class ListPropertyConverter implements Converter<String, List> {
 
 		if (value != null) {
 			for (final Object object : value) {
-				try {
-					final String beanProperty = BeanUtils.getProperty(object, property);
-
-					if (beanProperty != null) {
-						stringBuilder.append(beanProperty);
-					} else {
-						if (fallbackColumn != null) {
-							final String beanPropertyFallBack = BeanUtils.getProperty(object, fallbackColumn);
-							if (beanPropertyFallBack != null) {
-								stringBuilder.append(beanPropertyFallBack);
-							}
-						}
-
-
-					}
-
-				} catch (final IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-					LOGGER.warn("Problem getting property {}, object {} , exception {}", property, object, e);
-				}
-				stringBuilder.append(CONTENT_SEPARATOR);
+				appendObjectPresentation(stringBuilder, object);
 			}
 		}
 
 		stringBuilder.append(END_TAG);
 
 		return stringBuilder.toString();
+	}
+
+	/**
+	 * Append object presentation.
+	 *
+	 * @param stringBuilder
+	 *            the string builder
+	 * @param object
+	 *            the object
+	 */
+	private void appendObjectPresentation(final StringBuilder stringBuilder, final Object object) {
+		try {
+			final String beanProperty = BeanUtils.getProperty(object, property);
+
+			if (beanProperty != null) {
+				stringBuilder.append(beanProperty);
+			} else {
+				if (fallbackColumn != null) {
+					final String beanPropertyFallBack = BeanUtils.getProperty(object, fallbackColumn);
+					if (beanPropertyFallBack != null) {
+						stringBuilder.append(beanPropertyFallBack);
+					}
+				}
+
+
+			}
+
+		} catch (final IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+			LOGGER.warn("Problem getting property {}, object {} , exception {}", property, object, e);
+		}
+		stringBuilder.append(CONTENT_SEPARATOR);
 	}
 
 }

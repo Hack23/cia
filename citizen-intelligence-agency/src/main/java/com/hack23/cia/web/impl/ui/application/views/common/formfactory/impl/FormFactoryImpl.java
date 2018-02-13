@@ -149,6 +149,25 @@ public final class FormFactoryImpl implements FormFactory {
 		}
 
 
+		createDisplayPropertyConverters(displayProperties, formContent, binder, propertyDescriptors);
+	}
+
+	/**
+	 * Creates the display property converters.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param displayProperties
+	 *            the display properties
+	 * @param formContent
+	 *            the form content
+	 * @param binder
+	 *            the binder
+	 * @param propertyDescriptors
+	 *            the property descriptors
+	 */
+	private <T extends Serializable> void createDisplayPropertyConverters(final List<String> displayProperties,
+			final FormLayout formContent, final Binder<T> binder, PropertyDescriptor[] propertyDescriptors) {
 		for (final String property : displayProperties) {
 			final Class<?> typeOfProperty = getTypeOfProperty(propertyDescriptors, property);
 
@@ -202,6 +221,15 @@ public final class FormFactoryImpl implements FormFactory {
 		}
 	}
 
+	/**
+	 * Gets the type of property.
+	 *
+	 * @param propertyDescriptors
+	 *            the property descriptors
+	 * @param property
+	 *            the property
+	 * @return the type of property
+	 */
 	private static Class<?> getTypeOfProperty(final PropertyDescriptor[] propertyDescriptors, final String property) {
 
 		for (final PropertyDescriptor propertyDescriptor : propertyDescriptors) {

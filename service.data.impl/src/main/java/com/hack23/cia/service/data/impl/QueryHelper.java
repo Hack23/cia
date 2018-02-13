@@ -32,6 +32,13 @@ import javax.persistence.metamodel.SingularAttribute;
 public final class QueryHelper {
 
 	/**
+	 * Instantiates a new query helper.
+	 */
+	private QueryHelper() {
+		super();
+	}
+
+	/**
 	 * Equals ignore case if string predicate.
 	 *
 	 * @param <T>

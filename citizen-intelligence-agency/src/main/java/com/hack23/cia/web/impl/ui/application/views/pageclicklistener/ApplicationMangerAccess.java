@@ -30,6 +30,13 @@ import com.hack23.cia.service.api.ApplicationManager;
 public final class ApplicationMangerAccess {
 
 	/**
+	 * Instantiates a new application manger access.
+	 */
+	private ApplicationMangerAccess() {
+		super();
+	}
+
+	/**
 	 * Gets the application manager.
 	 *
 	 * @return the application manager
