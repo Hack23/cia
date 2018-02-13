@@ -23,10 +23,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-import org.databene.contiperf.PerfTest;
-import org.databene.contiperf.Required;
-import org.databene.contiperf.junit.ContiPerfRule;
-import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -42,18 +38,12 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	@Autowired
 	private EsvApi esvApi;
 
-	/** The i. */
-	@Rule
-	public ContiPerfRule i = new ContiPerfRule();
-
 	/**
 	 * Gets the data defence ministry success test.
 	 *
 	 * @return the data defence ministry success test
 	 */
 	@Test
-	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
 	public void getDataDefenceMinistrySuccessTest() {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> governmentBodyAnnualSummaryData = esvApi
 				.getDataPerMinistry("Försvarsdepartementet");
@@ -72,8 +62,6 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	 * @return the data finance ministry 1900 failure test
 	 */
 	@Test
-	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
 	public void getDataFinanceMinistry1900FailureTest() {
 		final List<GovernmentBodyAnnualSummary> list = esvApi.getDataPerMinistryAndYear("Finansdepartementet", 1900);
 		assertNotNull(list);
@@ -86,8 +74,6 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	 * @return the data finance ministry 1999 success test
 	 */
 	@Test
-	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
 	public void getDataFinanceMinistry1999SuccessTest() {
 		final List<GovernmentBodyAnnualSummary> list = esvApi.getDataPerMinistryAndYear("Finansdepartementet", 1999);
 		assertNotNull(list);
@@ -103,8 +89,6 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	 * @return the data finance ministry 2016 success test
 	 */
 	@Test
-	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
 	public void getDataFinanceMinistry2016SuccessTest() {
 		final List<GovernmentBodyAnnualSummary> list = esvApi.getDataPerMinistryAndYear("Finansdepartementet", 2016);
 		assertNotNull(list);
@@ -115,8 +99,6 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	}
 
 	@Test
-	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
 	public void getDataFinanceMinistry2017SuccessTest() {
 		final List<GovernmentBodyAnnualSummary> list = esvApi.getDataPerMinistryAndYear("Finansdepartementet", 2017);
 		assertNotNull(list);
@@ -133,8 +115,6 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	 * @return the data finance ministry success test
 	 */
 	@Test
-	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
 	public void getDataFinanceMinistrySuccessTest() {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> governmentBodyAnnualSummaryData = esvApi
 				.getDataPerMinistry("Finansdepartementet");
@@ -153,8 +133,6 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	 * @return the data foreign ministry success test
 	 */
 	@Test
-	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
 	public void getDataForeignMinistrySuccessTest() {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> governmentBodyAnnualSummaryData = esvApi
 				.getDataPerMinistry("Utrikesdepartementet");
@@ -173,8 +151,6 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	 * @return the data per government body success test
 	 */
 	@Test
-	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
 	public void getDataPerGovernmentBodySuccessTest() {
 		final Map<Integer, GovernmentBodyAnnualSummary> governmentBodyAnnualSummaryData = esvApi
 				.getDataPerGovernmentBody("Exportkreditnämnden");
@@ -191,8 +167,6 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	 * @return the data success test
 	 */
 	@Test
-	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 800, percentile95 = 900, throughput = 2)
 	public void getDataSuccessTest() {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> governmentBodyAnnualSummaryData = esvApi.getData();
 		assertNotNull(governmentBodyAnnualSummaryData);
@@ -211,8 +185,6 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	 * @return the government body names success test
 	 */
 	@Test
-	@PerfTest(threads = 2, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 20, percentile95 = 50, throughput = 50)
 	public void getGovernmentBodyNamesSuccessTest() {
 		final List<String> list = esvApi.getGovernmentBodyNames();
 		assertNotNull(list);
@@ -225,8 +197,6 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	 * @return the ministry names success test
 	 */
 	@Test
-	@PerfTest(threads = 2, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 20, percentile95 = 50, throughput = 50)
 	public void getMinistryNamesSuccessTest() {
 		final List<String> list = esvApi.getMinistryNames();		
 		assertNotNull(list);
@@ -239,19 +209,14 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	 * @return the government body names foreign ministry success test
 	 */
 	@Test
-	@PerfTest(threads = 1, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 40, percentile95 = 50, throughput = 50)
 	public void getGovernmentBodyNamesForeignMinistrySuccessTest() {
 		final List<String> list = esvApi.getGovernmentBodyNames("Utrikesdepartementet");
 		assertNotNull(list);
 		assertEquals(14, list.size());
 	}
 
-	/**
-	 * Prints the ministry annual summary test.
-	 */
 	@Test
-	public void printMinistryAnnualSummaryTest() {
+	public void verifyMinistryAnnualSummaryTest() {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi
 				.getDataPerMinistry("Landsbygdsdepartementet");
 		assertNotNull(map);
@@ -260,67 +225,59 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 			final List<GovernmentBodyAnnualSummary> item = entry.getValue();
 			final Integer totalHeadcount = item.stream().collect(Collectors.summingInt(p -> p.getHeadCount()));
 
-			if (entry.getKey() != null) {
-				if (item != null && totalHeadcount > 0) {
-					System.out.println("year:" + entry.getKey() + "" + totalHeadcount);
-				}
+			if (entry.getKey() != null && item != null) {
+				assertNotNull(totalHeadcount);
 			}
 		}
 	}
 
 	/**
-	 * Prints the ministry government body annual summary test.
+	 * Verify ministry government body annual summary test.
 	 */
 	@Test
-	public void printMinistryGovernmentBodyAnnualSummaryTest() {
+	public void verifyMinistryGovernmentBodyAnnualSummaryTest() {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getDataPerMinistry("Försvarsdepartementet");
 
 		final List<String> govBodyNames = esvApi.getGovernmentBodyNames("Försvarsdepartementet");
 		assertNotNull(govBodyNames);
 
 		for (final String govBodyName : govBodyNames) {
-			System.out.println(govBodyName);
+			assertNotNull(govBodyName);
 
 			for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
 
 				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
 				final Integer totalHeadcount = item.stream().filter(p -> p.getName().equalsIgnoreCase(govBodyName)).collect(Collectors.summingInt(p -> p.getHeadCount()));
 
-				if (entry.getKey() != null) {
-					if (item != null && totalHeadcount > 0) {
-						System.out.println("year:" + entry.getKey() + "" + totalHeadcount);
-					}
+				if (entry.getKey() != null && item != null) {
+					assertNotNull(totalHeadcount);
 				}
 			}
 		}
 	}
 
 	/**
-	 * Prints the all ministry annual summary test.
+	 * Verify all ministry annual summary test.
 	 */
 	@Test
-	public void printAllMinistryAnnualSummaryTest() {
+	public void verifyAllMinistryAnnualSummaryTest() {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getData();
 		final List<String> ministryNames = esvApi.getMinistryNames();
 		assertNotNull(ministryNames);
 		for (final String ministryName : ministryNames) {
 
-			System.out.println(ministryName);
+			assertNotNull(ministryName);
 			for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
 
 				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
 				final Integer totalHeadcount = item.stream().filter(p -> p.getMinistry().equalsIgnoreCase(ministryName))
 						.collect(Collectors.summingInt(p -> p.getHeadCount()));
 
-				if (entry.getKey() != null) {
-					if (item != null && totalHeadcount > 0) {
-						System.out.println("year:" + entry.getKey() + "" + totalHeadcount);
-					}
-
+				if (entry.getKey() != null && item != null) {
+					assertNotNull(totalHeadcount);
 				}
 			}
 		}
-
 	}
 
 }

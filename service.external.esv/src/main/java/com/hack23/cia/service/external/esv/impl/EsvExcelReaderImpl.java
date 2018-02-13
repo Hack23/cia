@@ -88,21 +88,22 @@ final class EsvExcelReaderImpl implements EsvExcelReader {
 	public Map<Integer, List<GovernmentBodyAnnualSummary>> getDataPerMinistry(final String name) {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = new TreeMap<>();
 		try {
-			final HSSFWorkbook myWorkBook = new HSSFWorkbook(
-					EsvExcelReaderImpl.class.getResourceAsStream("/Myndighetsinformation.xls"));
+			final HSSFWorkbook myWorkBook = createGovermentBodyWorkBook();
 
 			for (int sheetNr = 0; sheetNr < myWorkBook.getNumberOfSheets(); sheetNr++) {
 				addMinistryPerYearToMap(name, map, myWorkBook.getSheetAt(sheetNr));
 			}
 
 			myWorkBook.close();
-		} catch (
-
-		final IOException e) {
+		} catch (final IOException e) {
 			LOGGER.warn("Problem loading", e);
 		}
 
 		return map;
+	}
+
+	private HSSFWorkbook createGovermentBodyWorkBook() throws IOException {
+		return new HSSFWorkbook(EsvExcelReaderImpl.class.getResourceAsStream("/Myndighetsinformation.xls"));
 	}
 
 	/**
@@ -178,8 +179,7 @@ final class EsvExcelReaderImpl implements EsvExcelReader {
 	public Map<Integer, GovernmentBodyAnnualSummary> getDataPerGovernmentBody(final String name) {
 		final Map<Integer, GovernmentBodyAnnualSummary> map = new TreeMap<>();
 		try {
-			final HSSFWorkbook myWorkBook = new HSSFWorkbook(
-					EsvExcelReaderImpl.class.getResourceAsStream("/Myndighetsinformation.xls"));
+			final HSSFWorkbook myWorkBook = createGovermentBodyWorkBook();
 
 			for (int sheetNr = 0; sheetNr < myWorkBook.getNumberOfSheets(); sheetNr++) {
 				final HSSFSheet mySheet = myWorkBook.getSheetAt(sheetNr);

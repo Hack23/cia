@@ -40,17 +40,10 @@ final class EsvApiImpl implements EsvApi {
 	/** The Constant NO_MINISTRY. */
 	private static final String NO_MINISTRY = "Inget departement";
 
-	/** The Constant ministryNameSet. */
-	private static final Set<String> ministryNameSet = new HashSet<>();
-
-	/** The Constant governmentBodyNameSet. */
-	private static final Set<String> governmentBodyNameSet = new HashSet<>();
-
-	/** The Constant governmentBodyNameSetMinistryMap. */
-	private static final Map<String, Set<String>> governmentBodyNameSetMinistryMap = new HashMap<>();
-
 	@Autowired
 	private EsvExcelReader esvExcelReader;
+
+	private Map<Integer, List<GovernmentBodyAnnualSummary>> allData;
 
 	/**
 	 * Instantiates a new esv api impl.
@@ -60,8 +53,11 @@ final class EsvApiImpl implements EsvApi {
 	}
 
 	@Override
-	public Map<Integer, List<GovernmentBodyAnnualSummary>> getData() {
-		return esvExcelReader.getDataPerMinistry(null);
+	public synchronized Map<Integer, List<GovernmentBodyAnnualSummary>> getData() {
+	  if (allData == null) {
+		allData = esvExcelReader.getDataPerMinistry(null);
+	  }		
+	  return allData;
 	}
 
 	@Override
@@ -82,38 +78,36 @@ final class EsvApiImpl implements EsvApi {
 
 	@Override
 	public List<String> getGovernmentBodyNames() {
-		if (governmentBodyNameSet.isEmpty()) {
+		final Set<String> governmentBodyNameSet = new HashSet<>();
 
-			final Map<Integer, List<GovernmentBodyAnnualSummary>> data = getData();
+		final Map<Integer, List<GovernmentBodyAnnualSummary>> data = getData();
 
-			for (final List<GovernmentBodyAnnualSummary> list : data.values()) {
-				for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
-					if (!governmentBodyNameSet.contains(governmentBodyAnnualSummary.getName())
-							&& governmentBodyAnnualSummary.getHeadCount() > 0) {
-						governmentBodyNameSet.add(governmentBodyAnnualSummary.getName());
-					}
+		for (final List<GovernmentBodyAnnualSummary> list : data.values()) {
+			for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
+				if (!governmentBodyNameSet.contains(governmentBodyAnnualSummary.getName())
+						&& governmentBodyAnnualSummary.getHeadCount() > 0) {
+					governmentBodyNameSet.add(governmentBodyAnnualSummary.getName());
 				}
 			}
 		}
 		return new ArrayList<>(governmentBodyNameSet);
 	}
-	
+
 	@Override
 	public List<String> getGovernmentBodyNames(final String ministry) {
-		if (!governmentBodyNameSetMinistryMap.containsKey(ministry)) {
+		Map<String, Set<String>> governmentBodyNameSetMinistryMap = new HashMap<>();
 
-			final Set<String> governmentBodyNameSetMapEntry = new HashSet<>();
-			governmentBodyNameSetMinistryMap.put(ministry, governmentBodyNameSetMapEntry);
+		final Set<String> governmentBodyNameSetMapEntry = new HashSet<>();
+		governmentBodyNameSetMinistryMap.put(ministry, governmentBodyNameSetMapEntry);
 
-			final Map<Integer, List<GovernmentBodyAnnualSummary>> data = getData();
+		final Map<Integer, List<GovernmentBodyAnnualSummary>> data = getData();
 
-			for (final List<GovernmentBodyAnnualSummary> list : data.values()) {
-				for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
-					if (ministry.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())
-							&& !governmentBodyNameSetMapEntry.contains(governmentBodyAnnualSummary.getName())
-							&& governmentBodyAnnualSummary.getHeadCount() > 0) {
-						governmentBodyNameSetMapEntry.add(governmentBodyAnnualSummary.getName());
-					}
+		for (final List<GovernmentBodyAnnualSummary> list : data.values()) {
+			for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
+				if (ministry.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())
+						&& !governmentBodyNameSetMapEntry.contains(governmentBodyAnnualSummary.getName())
+						&& governmentBodyAnnualSummary.getHeadCount() > 0) {
+					governmentBodyNameSetMapEntry.add(governmentBodyAnnualSummary.getName());
 				}
 			}
 		}
@@ -122,16 +116,16 @@ final class EsvApiImpl implements EsvApi {
 
 	@Override
 	public List<String> getMinistryNames() {
-		if (ministryNameSet.isEmpty()) {
-			final Map<Integer, List<GovernmentBodyAnnualSummary>> data = getData();
+		final Set<String> ministryNameSet = new HashSet<>();
 
-			for (final List<GovernmentBodyAnnualSummary> list : data.values()) {
-				for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
-					if (!ministryNameSet.contains(governmentBodyAnnualSummary.getMinistry())
-							&& governmentBodyAnnualSummary.getHeadCount() > 0
-							&& !NO_MINISTRY.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())) {
-						ministryNameSet.add(governmentBodyAnnualSummary.getMinistry());
-					}
+		final Map<Integer, List<GovernmentBodyAnnualSummary>> data = getData();
+
+		for (final List<GovernmentBodyAnnualSummary> list : data.values()) {
+			for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {
+				if (!ministryNameSet.contains(governmentBodyAnnualSummary.getMinistry())
+						&& governmentBodyAnnualSummary.getHeadCount() > 0
+						&& !NO_MINISTRY.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())) {
+					ministryNameSet.add(governmentBodyAnnualSummary.getMinistry());
 				}
 			}
 		}
