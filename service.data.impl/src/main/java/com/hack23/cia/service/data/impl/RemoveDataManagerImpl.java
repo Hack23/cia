@@ -35,14 +35,18 @@ import com.hack23.cia.service.data.api.RemoveDataManager;
 final class RemoveDataManagerImpl implements RemoveDataManager {
 
 	/** The data source. */
-	@Autowired
-	private DataSource dataSource;
+	private final DataSource dataSource;
 
 	/**
 	 * Instantiates a new removes the data manager impl.
+	 *
+	 * @param dataSource
+	 *            the data source
 	 */
-	public RemoveDataManagerImpl() {
+	@Autowired
+	public RemoveDataManagerImpl(final DataSource dataSource) {
 		super();
+		this.dataSource = dataSource;
 	}
 	
 	@Override
