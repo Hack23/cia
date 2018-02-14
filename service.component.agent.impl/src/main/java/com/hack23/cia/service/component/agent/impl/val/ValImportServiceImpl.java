@@ -18,6 +18,8 @@
  */
 package com.hack23.cia.service.component.agent.impl.val;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty;
 import com.hack23.cia.service.data.api.SwedenPoliticalPartyDAO;
 import com.hack23.cia.service.external.val.api.ValApi;
 import com.hack23.cia.service.external.val.api.ValApiException;
@@ -61,15 +64,13 @@ final class ValImportServiceImpl implements ValImportService {
 	public void loadPoliticalParties() {
 		if (swedenPoliticalPartyDAO.getSize() ==0) {
 			try {
-				swedenPoliticalPartyDAO.persist(valApi.getSwedenPoliticalParties());
+				List<SwedenPoliticalParty> swedenPoliticalParties = valApi.getSwedenPoliticalParties();
+				swedenPoliticalPartyDAO.persist(swedenPoliticalParties);
+				LOGGER.info("Sweden political persisted to database:{}",swedenPoliticalParties.size());
 			} catch (final ValApiException e) {
 				LOGGER.warn("Problem loading Sweden political parties",e);
 			}
-			LOGGER.info("Sweden political persisted to database");
-		} else {
-			LOGGER.info("Sweden political parties already in database");
-		}
-
+		} 
 	}
 
 }
