@@ -47,10 +47,6 @@ public final class CreateApplicationSessionRequest extends AbstractRequest {
 	/** The screen size. */
 	private String screenSize;
 	
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	/** The time zone. */
 	private String timeZone;
 
