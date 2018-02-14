@@ -166,7 +166,7 @@ public final class FormFactoryImpl implements FormFactory {
 	 * @param propertyDescriptors
 	 *            the property descriptors
 	 */
-	private <T extends Serializable> void createDisplayPropertyConverters(final List<String> displayProperties,
+	private static <T extends Serializable> void createDisplayPropertyConverters(final List<String> displayProperties,
 			final FormLayout formContent, final Binder<T> binder, PropertyDescriptor[] propertyDescriptors) {
 		for (final String property : displayProperties) {
 			final Class<?> typeOfProperty = getTypeOfProperty(propertyDescriptors, property);

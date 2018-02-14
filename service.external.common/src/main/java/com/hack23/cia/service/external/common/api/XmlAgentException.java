@@ -26,7 +26,13 @@ public class XmlAgentException extends Exception {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
-	public XmlAgentException(Exception e) {
-		super(e);
+	/**
+	 * Instantiates a new xml agent exception.
+	 *
+	 * @param exception
+	 *            the exception
+	 */
+	public XmlAgentException(Exception exception) {
+		super(exception);
 	}
 }

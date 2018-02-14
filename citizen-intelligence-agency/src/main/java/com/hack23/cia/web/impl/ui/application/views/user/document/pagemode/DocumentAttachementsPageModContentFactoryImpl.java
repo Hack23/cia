@@ -139,7 +139,7 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 	 * @param documentAttachmentList
 	 *            the document attachment list
 	 */
-	private void displayDocumentAttachements(final VerticalLayout panelContent,
+	private static void displayDocumentAttachements(final VerticalLayout panelContent,
 			final List<DocumentAttachment> documentAttachmentList) {
 		for (final DocumentAttachment documentAttachment : documentAttachmentList) {
 			
@@ -167,7 +167,7 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 	/**
 	 * The Class StreamSourceImplementation.
 	 */
-	private final static class StreamSourceImplementation implements StreamResource.StreamSource {
+	private static final class StreamSourceImplementation implements StreamResource.StreamSource {
 
 		/** The Constant LOGGER. */
 		private static final Logger LOGGER = LoggerFactory.getLogger(StreamSourceImplementation.class);		

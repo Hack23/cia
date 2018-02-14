@@ -102,7 +102,7 @@ final class EsvExcelReaderImpl implements EsvExcelReader {
 		return map;
 	}
 
-	private HSSFWorkbook createGovermentBodyWorkBook() throws IOException {
+	private static HSSFWorkbook createGovermentBodyWorkBook() throws IOException {
 		return new HSSFWorkbook(EsvExcelReaderImpl.class.getResourceAsStream("/Myndighetsinformation.xls"));
 	}
 
