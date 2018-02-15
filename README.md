@@ -172,7 +172,7 @@ $ sudo dpkg -i cia-dist-deb-2018.1.27.deb
 ```
 
 
-9. Access the server at [http://localhost:2323/cia/](http://localhost:2323/cia/) .
+9. Access the server at [https://localhost:28443/cia/](https://localhost:28443/cia/) .
 
 
 # Application package diagram overview
