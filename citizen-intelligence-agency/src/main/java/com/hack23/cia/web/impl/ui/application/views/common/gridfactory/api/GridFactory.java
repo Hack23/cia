@@ -28,7 +28,7 @@ import com.vaadin.ui.AbstractOrderedLayout;
 /**
  * A factory for creating Grid objects.
  */
-public interface GridFactory {
+public interface GridFactory extends Serializable {
 
 	/**
 	 * Creates a new Grid object.

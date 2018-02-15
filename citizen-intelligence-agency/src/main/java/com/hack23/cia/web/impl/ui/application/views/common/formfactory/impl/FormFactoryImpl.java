@@ -172,46 +172,12 @@ public final class FormFactoryImpl implements FormFactory {
 			final Class<?> typeOfProperty = getTypeOfProperty(propertyDescriptors, property);
 
 			if (typeOfProperty != null) {
-				AbstractField<?> field=null;
-				Converter converter = null;
-				if (typeOfProperty.equals(String.class)) {
-					field = new TextField();
-				} else if (Date.class.equals(typeOfProperty)) {
-					field = new TextField();
-					converter = new StringToDateConverter();
-				} else if (Integer.class.equals(typeOfProperty) || "int".equalsIgnoreCase(typeOfProperty.getName())) {
-					field = new TextField();
-					converter = new StringToIntegerConverter("Input value should be an integer");
-				} else if (Float.class.equals(typeOfProperty)) {
-					field = new TextField();
-					converter = new StringToFloatConverter("Input value should be an float");
-				} else if (Double.class.equals(typeOfProperty)) {
-					field = new TextField();
-					converter = new StringToDoubleConverter("Input value should be an double");
-				} else if (Long.class.equals(typeOfProperty) || "long".equalsIgnoreCase(typeOfProperty.getName())) {
-					field = new TextField();
-					converter = new StringToLongConverter("Input value should be an long");
-				} else if (BigInteger.class.equals(typeOfProperty)) {
-					field = new TextField();
-					converter = new StringToBigIntegerConverter("Input value should be an biginteger");
-				} else if (BigDecimal.class.equals(typeOfProperty)) {
-					field = new TextField();
-					converter = new StringToBigDecimalConverter("Input value should be an bigdecimal");
-				} else if (Boolean.class.equals(typeOfProperty) || "boolean".equalsIgnoreCase(typeOfProperty.getName())) {
-					field = new TextField();
-					converter = new StringToBooleanConverter("Input value should be an boolean");
-				} else if (typeOfProperty.isEnum()) {
-					field = new TextField();
-					converter = new StringToEnumConverter();
-				}
+				final AbstractField<?> field = new TextField();
+				Converter converter = getConverterForType(typeOfProperty);
 
-				if (field != null) {
+				if (converter != null) {
+					binder.forField(field).withConverter(converter).bind(property);
 					field.setCaption(property);
-					if (converter != null) {
-						binder.forField(field).withConverter(converter).bind(property);
-					} else {
-						binder.forField(field).bind(property);
-					}
 					field.setWidth(ContentSize.FULL_SIZE);
 					formContent.addComponent(field);
 				} else {
@@ -219,6 +185,38 @@ public final class FormFactoryImpl implements FormFactory {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Gets the converter for type.
+	 *
+	 * @param typeOfProperty
+	 *            the type of property
+	 * @return the converter for type
+	 */
+	private static Converter getConverterForType(final Class<?> typeOfProperty) {
+		Converter converter = null;
+		if (typeOfProperty.equals(String.class)) {
+		} else if (Date.class.equals(typeOfProperty)) {
+			converter = new StringToDateConverter();
+		} else if (Integer.class.equals(typeOfProperty) || "int".equalsIgnoreCase(typeOfProperty.getName())) {
+			converter = new StringToIntegerConverter("Input value should be an integer");
+		} else if (Float.class.equals(typeOfProperty)) {
+			converter = new StringToFloatConverter("Input value should be an float");
+		} else if (Double.class.equals(typeOfProperty)) {
+			converter = new StringToDoubleConverter("Input value should be an double");
+		} else if (Long.class.equals(typeOfProperty) || "long".equalsIgnoreCase(typeOfProperty.getName())) {
+			converter = new StringToLongConverter("Input value should be an long");
+		} else if (BigInteger.class.equals(typeOfProperty)) {
+			converter = new StringToBigIntegerConverter("Input value should be an biginteger");
+		} else if (BigDecimal.class.equals(typeOfProperty)) {
+			converter = new StringToBigDecimalConverter("Input value should be an bigdecimal");
+		} else if (Boolean.class.equals(typeOfProperty) || "boolean".equalsIgnoreCase(typeOfProperty.getName())) {
+			converter = new StringToBooleanConverter("Input value should be an boolean");
+		} else if (typeOfProperty.isEnum()) {
+			converter = new StringToEnumConverter();
+		}
+		return converter;
 	}
 
 	/**

@@ -48,6 +48,9 @@ import com.vaadin.ui.Grid.SelectionMode;
 @Service
 public final class GridFactoryImpl implements GridFactory {
 
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+	
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(GridFactoryImpl.class);
 
