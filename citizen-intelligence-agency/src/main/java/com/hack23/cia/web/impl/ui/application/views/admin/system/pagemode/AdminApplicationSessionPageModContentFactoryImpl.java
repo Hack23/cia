@@ -109,7 +109,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 		getGridFactory().createBasicBeanItemGrid(content, ApplicationSession.class, pageOrderBy,
 				APPLICATION_SESSION,
 				COLUMN_ORDER, HIDE_COLUMNS,
-				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid"), null, new ListPropertyConverter[] { new ListPropertyConverter(List.class, "page", "events","actionName")});
+				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid"), null, new ListPropertyConverter[] { new ListPropertyConverter("page", "events", "actionName")});
 
 		if (pageId != null && !pageId.isEmpty()) {
 

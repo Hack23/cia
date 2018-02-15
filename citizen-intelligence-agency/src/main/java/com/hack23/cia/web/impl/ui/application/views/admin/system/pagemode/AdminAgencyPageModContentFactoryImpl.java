@@ -49,7 +49,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
 	/** The Constant AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS. */
-	private static final ListPropertyConverter[] AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS = new ListPropertyConverter[] { new ListPropertyConverter(List.class, "portalName", "portals")};
+	private static final ListPropertyConverter[] AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS = new ListPropertyConverter[] { new ListPropertyConverter("portalName", "portals")};
 
 	/** The Constant AGENCY_GRID_LISTENER. */
 	private static final PageItemPropertyClickListener AGENCY_GRID_LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid");

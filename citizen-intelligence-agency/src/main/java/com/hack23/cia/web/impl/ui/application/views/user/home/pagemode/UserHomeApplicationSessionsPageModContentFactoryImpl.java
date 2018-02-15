@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.home.pagemode;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -51,7 +49,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class UserHomeApplicationSessionsPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
 
-	private static final ListPropertyConverter[] COLLECTION_PROPERTY_CONVERTERS = new ListPropertyConverter[] { new ListPropertyConverter(List.class, "page", "events","actionName")};
+	private static final ListPropertyConverter[] COLLECTION_PROPERTY_CONVERTERS = new ListPropertyConverter[] { new ListPropertyConverter("page", "events", "actionName")};
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid");
 

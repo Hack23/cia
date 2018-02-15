@@ -57,15 +57,12 @@ public final class ListPropertyConverter implements Converter<String, List> {
 
 	/**
 	 * Instantiates a new collection property converter.
-	 *
-	 * @param modelType
-	 *            the model type
 	 * @param property
 	 *            the property
 	 * @param column
 	 *            the column
 	 */
-	public ListPropertyConverter(final Class<List> modelType, final String property, final String column) {
+	public ListPropertyConverter(final String property, final String column) {
 		super();
 		this.property = property;
 		this.column = column;
@@ -74,9 +71,6 @@ public final class ListPropertyConverter implements Converter<String, List> {
 
 	/**
 	 * Instantiates a new list property converter.
-	 *
-	 * @param modelType
-	 *            the model type
 	 * @param property
 	 *            the property
 	 * @param column
@@ -84,7 +78,7 @@ public final class ListPropertyConverter implements Converter<String, List> {
 	 * @param fallbackColumn
 	 *            the fallback column
 	 */
-	public ListPropertyConverter(final Class<List> modelType, final String property, final String column,final String fallbackColumn) {
+	public ListPropertyConverter(final String property, final String column, final String fallbackColumn) {
 		super();
 		this.property = property;
 		this.column = column;
