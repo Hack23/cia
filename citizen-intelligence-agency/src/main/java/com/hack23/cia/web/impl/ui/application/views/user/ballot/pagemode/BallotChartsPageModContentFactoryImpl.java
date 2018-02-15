@@ -137,7 +137,7 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 				}
 
 
-				panel.setCaption(NAME + "::" + BALLOT + pageId);
+				panel.setCaption(new StringBuilder().append(NAME).append("::").append(BALLOT).append(pageId).toString());
 				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
 		}
 		return panelContent;
@@ -160,7 +160,9 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 				if (concernIssuePartyBallotSummaryMap.get(key) == null) {
 					concernIssuePartyBallotSummaryMap.put(key, new ArrayList<>());
 				}
-				concernIssuePartyBallotSummaryMap.get(key).add(partySummary);
+				
+				final List<ViewRiksdagenVoteDataBallotPartySummary> partySummarList = concernIssuePartyBallotSummaryMap.computeIfAbsent(key, k -> new ArrayList<>());				
+				partySummarList.add(partySummary);
 			}
 		}
 

@@ -78,7 +78,8 @@ public final class GridFactoryImpl implements GridFactory {
 			final String[] hideColumns, final AbstractPageItemRendererClickListener<?> listener, final String actionId,
 			final ListPropertyConverter[] collectionPropertyConverters) {
 
-		final Grid<T> grid = new Grid<T>(caption).withPropertySet(BeanPropertySet.get(dataType));
+		final Grid<T> grid = Grid.withPropertySet(BeanPropertySet.get(dataType));
+		grid.setCaption(caption);
 
 		grid.setItems(datasource.stream().filter(Objects::nonNull).collect(Collectors.toList()));
 
