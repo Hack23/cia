@@ -144,8 +144,8 @@ public final class FormFactoryImpl implements FormFactory {
 		try {
 			final BeanInfo info = Introspector.getBeanInfo(item.getClass());
 			propertyDescriptors = info.getPropertyDescriptors();
-		} catch (final IntrospectionException e1) {
-			LOGGER.error("No able to getfieldtypes for type:+ item.getClass()", e1);
+		} catch (final IntrospectionException exception) {
+			LOGGER.error("No able to getfieldtypes for type:+ item.getClass()", exception);
 		}
 
 
