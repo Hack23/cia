@@ -10,7 +10,7 @@
 		<xsd:sequence>
 			<xsd:element name="modelObjectId" type="xsd:int"
 				minOccurs="0" />
-			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="0" >
+			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="1" >
 				<xsd:annotation><xsd:appinfo><hj:version /></xsd:appinfo></xsd:annotation></xsd:element>
 			<xsd:element minOccurs="0" name="agencyName" type="xsd:string" />
 			<xsd:element minOccurs="0" name="description" type="xsd:string" />
@@ -23,7 +23,7 @@
 		<xsd:sequence>
 			<xsd:element name="modelObjectId" type="xsd:int"
 				minOccurs="0" />
-			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="0" >
+			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="1" >
 				<xsd:annotation><xsd:appinfo><hj:version /></xsd:appinfo></xsd:annotation></xsd:element>
 			<xsd:element minOccurs="0" name="portalName" type="xsd:string" />
 			<xsd:element minOccurs="0" name="portalType" type="system:PortalType" />
@@ -54,7 +54,7 @@
 		<xsd:sequence>
 			<xsd:element name="modelObjectId" type="xsd:int"
 				minOccurs="0" />
-			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="0" >
+			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="1" >
 				<xsd:annotation><xsd:appinfo><hj:version /></xsd:appinfo></xsd:annotation></xsd:element>
 			<xsd:element minOccurs="0" name="createdDate" type="xsd:dateTime" />
 			<xsd:element minOccurs="0" name="languageName" type="xsd:string" />
@@ -70,7 +70,7 @@
 		<xsd:sequence>
 			<xsd:element name="modelObjectId" type="xsd:int"
 				minOccurs="0" />
-			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="0" >
+			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="1" >
 				<xsd:annotation><xsd:appinfo><hj:version /></xsd:appinfo></xsd:annotation></xsd:element>
 			<xsd:element minOccurs="0" name="fromLanguage" type="xsd:string" />
 			<xsd:element minOccurs="0" name="toLanguage" type="xsd:string" />
@@ -124,7 +124,7 @@
 		<xsd:sequence>
 			<xsd:element name="modelObjectId" type="xsd:int"
 				minOccurs="0" />
-			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="0" >
+			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="1" >
 				<xsd:annotation><xsd:appinfo><hj:version /></xsd:appinfo></xsd:annotation></xsd:element>
 			<xsd:element name="applicationOperation" type="system:ApplicationOperationType"
 				minOccurs="0" />
@@ -167,7 +167,7 @@
 		<xsd:sequence>
 			<xsd:element name="modelObjectId" type="xsd:int"
 				minOccurs="0" />
-			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="0" >
+			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="1" >
 				<xsd:annotation><xsd:appinfo><hj:version /></xsd:appinfo></xsd:annotation></xsd:element>
 			<xsd:element minOccurs="0" name="configTitle" type="xsd:string" />
 			<xsd:element minOccurs="0" name="configDescription" type="xsd:string" />
@@ -221,7 +221,7 @@
 		<xsd:sequence>
 			<xsd:element name="modelObjectId" type="xsd:int"
 				minOccurs="0" />
-			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="0" >
+			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="1" >
 				<xsd:annotation><xsd:appinfo><hj:version /></xsd:appinfo></xsd:annotation></xsd:element>
 			<xsd:element minOccurs="0" name="createdDate" type="xsd:dateTime" />
 			<xsd:element minOccurs="0" name="destroyedDate" type="xsd:dateTime" />

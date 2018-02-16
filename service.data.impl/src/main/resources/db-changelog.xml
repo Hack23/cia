@@ -19,5 +19,6 @@
   <include file="db-changelog-1.11.xml"/> 
   <include file="db-changelog-1.12.xml"/>    
   <include file="db-changelog-1.13.xml"/> 
+  <include file="db-changelog-1.14.xml"/> 
 
 </databaseChangeLog>

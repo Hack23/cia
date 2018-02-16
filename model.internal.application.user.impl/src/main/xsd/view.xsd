@@ -27,7 +27,7 @@
 		<xsd:sequence>
 			<xsd:element name="modelObjectId" type="xsd:int"
 				minOccurs="0" />
-			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="0" >
+			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="1" >
 				<xsd:annotation><xsd:appinfo><hj:version /></xsd:appinfo></xsd:annotation></xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
@@ -36,7 +36,7 @@
 		<xsd:sequence>
 			<xsd:element name="modelObjectId" type="xsd:int"
 				minOccurs="0" />
-			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="0" >
+			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="1" >
 				<xsd:annotation><xsd:appinfo><hj:version /></xsd:appinfo></xsd:annotation></xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>	
@@ -45,7 +45,7 @@
 		<xsd:sequence>
 			<xsd:element name="modelObjectId" type="xsd:int"
 				minOccurs="0" />
-			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="0" >
+			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="1" >
 				<xsd:annotation><xsd:appinfo><hj:version /></xsd:appinfo></xsd:annotation></xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
@@ -54,7 +54,7 @@
 		<xsd:sequence>
 			<xsd:element name="modelObjectId" type="xsd:int"
 				minOccurs="0" />
-			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="0" >
+			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="1" >
 				<xsd:annotation><xsd:appinfo><hj:version /></xsd:appinfo></xsd:annotation></xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
@@ -63,7 +63,7 @@
 		<xsd:sequence>
 			<xsd:element name="modelObjectId" type="xsd:int"
 				minOccurs="0" />
-			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="0" >
+			<xsd:element name="modelObjectVersion" type="xsd:int" minOccurs="1" >
 				<xsd:annotation><xsd:appinfo><hj:version /></xsd:appinfo></xsd:annotation></xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
