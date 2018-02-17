@@ -29,6 +29,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
+import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement_;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.service.api.ApplicationManager;
@@ -158,7 +159,7 @@ public final class ParliamentDecisionSankeyDataITest extends AbstractServiceFunc
 		final DataContainer<DocumentElement, String> dataContainer = applicationManager
 				.getDataContainer(DocumentElement.class);
 
-		for (final DocumentElement data : dataContainer.getAll()) {
+		for (final DocumentElement data : dataContainer.getAllBy(DocumentElement_.documentType, "utskottsmöte")) {
 			if (data.getRm().length() > 5 && data.getDocumentType().toLowerCase(Locale.ENGLISH).contains("utskottsmöte")
 					&& !"planerat".equalsIgnoreCase(data.getStatus())) {
 
