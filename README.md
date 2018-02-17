@@ -90,7 +90,13 @@ Italy
 [http://parlamento17.openpolis.it/](http://parlamento17.openpolis.it/)
 
 France
-[http://mon-depute.fr/](http://mon-depute.fr/)
+[https://www.nosdeputes.fr/](https://www.nosdeputes.fr/)
+
+Colombia
+[http://www.congresovisible.org/](http://www.congresovisible.org/)
+
+Jordanian
+[http://www.jpm.jo/](http://www.jpm.jo/)
 
 South Korea
 [http://pokr.kr/](http://pokr.kr/)
