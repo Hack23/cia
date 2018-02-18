@@ -39,6 +39,33 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements ParliamentMenuItemFactory {
 
+	/** The Constant CHART_PARTY_AVERAGE_GENDER_ALL_BALLOTS. */
+	private static final String CHART_PARTY_AVERAGE_GENDER_ALL_BALLOTS = "Chart Party average gender all ballots";
+
+	/** The Constant CHART_PARTY_AGE_ALL_BALLOTS. */
+	private static final String CHART_PARTY_AGE_ALL_BALLOTS = "Chart party age  all ballots";
+
+	/** The Constant CHART_DOCUMENT_ACTIVITY_BY_TYPE. */
+	private static final String CHART_DOCUMENT_ACTIVITY_BY_TYPE = "Chart document activity by type";
+
+	/** The Constant CHART_DECISIONS_BY_DECISION_TYPE. */
+	private static final String CHART_DECISIONS_BY_DECISION_TYPE = "Chart decisions by decision type";
+
+	/**
+	 * The Constant
+	 * CHART_DAILY_BALLOT_SUMMARY_PERCENTAGE_BALLOTS_THAT_DAY_THE_VOTED_IN_WINNING_SIDE.
+	 */
+	private static final String CHART_DAILY_BALLOT_SUMMARY_PERCENTAGE_BALLOTS_THAT_DAY_THE_VOTED_IN_WINNING_SIDE = "Chart daily ballot summary, percentage ballots that day the voted in winning side";
+
+	/** The Constant VIEW_HISTORY_OF_PAGE_VISIT_FOR_THIS_PAGE. */
+	private static final String VIEW_HISTORY_OF_PAGE_VISIT_FOR_THIS_PAGE = "View history of page visit for this page.";
+
+	/** The Constant DECISION_FLOW_DESCRIPTION. */
+	private static final String DECISION_FLOW_DESCRIPTION = "Decision flow description";
+
+	/** The Constant DECISION_FLOW. */
+	private static final String DECISION_FLOW = "Decision flow";
+
 	/** The Constant AVERAGE_AGE. */
 	private static final String AVERAGE_AGE = "Average age";
 
@@ -73,6 +100,10 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 	/** The Constant COMMAND_CHARTS_PARTY_AGE. */
 	private static final PageModeMenuCommand COMMAND_CHARTS_PARTY_AGE = new PageModeMenuCommand(
 			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.PARTYAGE.toString());
+
+	/** The Constant COMMAND_CHARTS_DECISION_FLOW. */
+	private static final PageModeMenuCommand COMMAND_CHARTS_DECISION_FLOW = new PageModeMenuCommand(
+			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DECISION_FLOW_CHART.toString());
 
 
 	/** The Constant COMMAND_OVERVIEW. */
@@ -150,7 +181,9 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 		addItem4.setDescription(DAILY_TOTAL_OF_NUMBER_PUBLISHED_DOCUMENTS);
 		final MenuItem addItem5 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,COMMAND_DECISION_ACTIVITY);
 		addItem5.setDescription(DAILY_TOTAL_OF_NUMBER_OF_DECSIONS_MADE);
-
+		
+		final MenuItem addItem6 = chartIndicators.addItem(DECISION_FLOW, VaadinIcons.INSTITUTION,COMMAND_CHARTS_DECISION_FLOW);
+		addItem6.setDescription(DECISION_FLOW_DESCRIPTION);
 
 		charts.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.INSTITUTION,
 				COMMAND_PAGEVISITHISTORY);
@@ -160,19 +193,21 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 	public void createOverviewPage(final VerticalLayout panelContent) {
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
-		createButtonLink(grid,PARTY_WINNER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER, "Chart daily ballot summary, percentage ballots that day the voted in winning side");
+		createButtonLink(grid,PARTY_WINNER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER, CHART_DAILY_BALLOT_SUMMARY_PERCENTAGE_BALLOTS_THAT_DAY_THE_VOTED_IN_WINNING_SIDE);
 
-		createButtonLink(grid,PARTY_GENDER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER, "Chart Party average gender all ballots");
+		createButtonLink(grid,PARTY_GENDER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER, CHART_PARTY_AVERAGE_GENDER_ALL_BALLOTS);
 
-		createButtonLink(grid,PARTY_AGE, VaadinIcons.INSTITUTION,COMMAND_CHARTS_PARTY_AGE, "Chart party age  all ballots");
+		createButtonLink(grid,PARTY_AGE, VaadinIcons.INSTITUTION,COMMAND_CHARTS_PARTY_AGE, CHART_PARTY_AGE_ALL_BALLOTS);
 
 
-		createButtonLink(grid,DOCUMENT_ACTIVITY_BY_TYPE,VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY, "Chart document activity by type");
-		createButtonLink(grid,DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,COMMAND_DECISION_ACTIVITY, "Chart decisions by decision type");
+		createButtonLink(grid,DOCUMENT_ACTIVITY_BY_TYPE,VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY, CHART_DOCUMENT_ACTIVITY_BY_TYPE);
+		createButtonLink(grid,DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,COMMAND_DECISION_ACTIVITY, CHART_DECISIONS_BY_DECISION_TYPE);
 
+		createButtonLink(grid,DECISION_FLOW, VaadinIcons.INSTITUTION,COMMAND_CHARTS_DECISION_FLOW,DECISION_FLOW_DESCRIPTION);
+		
 
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.INSTITUTION,
-				COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
+				COMMAND_PAGEVISITHISTORY, VIEW_HISTORY_OF_PAGE_VISIT_FOR_THIS_PAGE);
 
 	}
 
