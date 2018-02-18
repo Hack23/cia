@@ -18,11 +18,22 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
+import java.util.List;
+import java.util.LongSummaryStatistics;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
+import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeOrgDailySummary;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -65,12 +76,20 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 		final String pageId = getPageId(parameters);
 
 		
+		
+		final DataContainer<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary, String> dataContainer = getApplicationManager().getDataContainer(ViewRiksdagenCommitteeDecisionTypeOrgDailySummary.class);
+		
+		Map<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> summaryMap = dataContainer.getAll()
+			    .stream()
+			    .collect(Collectors.groupingBy(p -> p.getEmbeddedId().getOrg()));
+		
+		
 		SankeyChart chart = new SankeyChart();
-        
-		chart.addDataRow("A","X",2);
-		chart.addDataRow("B","Y",4);
-		chart.addDataRow("X","XX",2);
-		chart.addDataRow("Y","XX",4);
+		
+		for (Entry<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> entry : summaryMap.entrySet()) {
+			long  total = entry.getValue().stream().collect(Collectors.summarizingLong(p -> p.getTotal())).getSum();
+			chart.addDataRow(entry.getKey(),"Decision",(int)total);
+		}
 		
         chart.drawChart();
 
