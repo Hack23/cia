@@ -1000,6 +1000,56 @@
     </pluginManagement>
     <plugins>
       <plugin>
+        <groupId>de.thetaphi</groupId>
+        <artifactId>forbiddenapis</artifactId>
+        <version>2.4.1</version>
+        <executions>
+          <execution>
+            <id>verify-forbidden-apis</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <targetVersion>1.8</targetVersion>
+              <failOnUnsupportedJava>false</failOnUnsupportedJava>
+              <bundledSignatures>
+                <!-- <bundledSignature>jdk-unsafe</bundledSignature>
+                <bundledSignature>jdk-deprecated</bundledSignature>
+                <bundledSignature>jdk-system-out</bundledSignature>
+                <bundledSignature>jdk-non-portable</bundledSignature>-->
+                <bundledSignature>jdk-internal</bundledSignature>
+                <bundledSignature>jdk-reflection</bundledSignature>
+              </bundledSignatures>
+              <excludes>
+                <exclude>**/EncryptProperty*</exclude>
+                <exclude>**/*TypeAdapter*</exclude>
+              </excludes>
+              <failOnMissingClasses>false</failOnMissingClasses>
+              <failOnUnresolvableSignatures>false</failOnUnresolvableSignatures>
+            </configuration>
+          </execution>
+          <execution>
+            <id>verify-forbidden-test-apis</id>
+            <phase>test-compile</phase>
+            <goals>
+              <goal>testCheck</goal>
+            </goals>
+            <configuration>
+              <targetVersion>1.8</targetVersion>
+              <failOnUnsupportedJava>false</failOnUnsupportedJava>
+              <failOnUnresolvableSignatures>false</failOnUnresolvableSignatures>
+              <bundledSignatures>
+                <!--<bundledSignature>jdk-unsafe</bundledSignature>
+                <bundledSignature>jdk-deprecated</bundledSignature>
+                <bundledSignature>jdk-non-portable</bundledSignature>-->
+                <bundledSignature>jdk-internal</bundledSignature>
+              </bundledSignatures>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.walkmod.maven.plugins</groupId>
         <artifactId>walkmod-maven-plugin</artifactId>
       </plugin>

@@ -18,9 +18,10 @@
 */
 package com.hack23.cia.testfoundation;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 
 import org.junit.Test;
 import org.springframework.oxm.xstream.XStreamMarshaller;
@@ -45,7 +46,7 @@ public final class UnmarshallXmlTest extends AbstractUnmarshallXmlTest<String> {
 		File temp;
 		temp = File.createTempFile("UnmarshallXmlTestTempFile", ".xml");
 
-		final BufferedWriter bw = new BufferedWriter(new FileWriter(temp));
+		final OutputStreamWriter bw = new OutputStreamWriter(new FileOutputStream(temp), StandardCharsets.UTF_8);
 		bw.write(xmlContent);
 		bw.close();
 
