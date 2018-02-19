@@ -31,6 +31,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
@@ -75,10 +76,14 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 		final String pageId = getPageId(parameters);
 
 		
+		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenCommittee.class);
+		List<ViewRiksdagenCommittee> allCommittess = dataContainer.getAll();
+
+		Map<String, List<ViewRiksdagenCommittee>> committeeMap = allCommittess.stream().collect(Collectors.groupingBy(c -> c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));
+		
 		
 		List<ProposalCommitteeeSummary> createCommitteeSummary = createCommitteeSummary("20");
-		
-		
 		
 		
 		SankeyChart chart = new SankeyChart();
@@ -87,20 +92,25 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 		
 		for (Entry<String, List<ProposalCommitteeeSummary>> entry : orgProposalMap.entrySet()) {
 			
-			Map<String, List<ProposalCommitteeeSummary>> docTypeMap = entry.getValue().stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
-
-			for (Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
-				if (docEntry.getKey().trim().length()> 0 && entry.getKey().trim().length() >0) {
-					chart.addDataRow(docEntry.getKey(),entry.getKey(),docEntry.getValue().size());
-
-				}
-			}
-						
-			Map<String, List<ProposalCommitteeeSummary>> decisionMap = entry.getValue().stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
+			if(committeeMap.containsKey(entry.getKey())) {
+				
+				ViewRiksdagenCommittee vewRiksdagenCommittee = committeeMap.get(entry.getKey()).iterator().next();
 			
-			for (Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
-				if (decisionEntry.getKey().trim().length()> 0 && entry.getKey().trim().length() >0) {
-					chart.addDataRow(entry.getKey(),decisionEntry.getKey(),decisionEntry.getValue().size());
+				Map<String, List<ProposalCommitteeeSummary>> docTypeMap = entry.getValue().stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
+	
+				for (Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
+					if (docEntry.getKey().trim().length()> 0 && entry.getKey().trim().length() >0) {
+						chart.addDataRow(docEntry.getKey(),vewRiksdagenCommittee.getEmbeddedId().getDetail(),docEntry.getValue().size());
+	
+					}
+				}
+							
+				Map<String, List<ProposalCommitteeeSummary>> decisionMap = entry.getValue().stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
+				
+				for (Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
+					if (decisionEntry.getKey().trim().length()> 0 && entry.getKey().trim().length() >0) {
+						chart.addDataRow(vewRiksdagenCommittee.getEmbeddedId().getDetail(),decisionEntry.getKey(),decisionEntry.getValue().size());
+					}
 				}
 			}
 		}
@@ -131,10 +141,9 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 
 				if (proposal.getProcessedIn() != null && !proposal.getProcessedIn().trim().isEmpty()
 						&& proposal.getCommittee() != null && !proposal.getCommittee().trim().isEmpty()
-						&& proposal.getProcessedIn().contains(processedIn)) {
+						&& proposal.getProcessedIn().contains(processedIn) && !(proposal.getChamber().length() > "återförvisning till utskottet".length()) && proposal.getChamber().length() >= "avslag".length()) {
 					
-					summary.add(new ProposalCommitteeeSummary(proposal.getProcessedIn().replaceAll("\\d","").replace("/:","").trim().toUpperCase(Locale.ENGLISH), document.getDocument().getDocumentType()
-							+ "." + document.getDocument().getSubType() , proposal.getChamber() , document.getDocument().getHangarId()));
+					summary.add(new ProposalCommitteeeSummary(getCommittteeShortName(proposal), getDocumentName(document) , cleanupDecision(proposal.getChamber()) , document.getDocument().getHangarId()));
 
 				}
 			}
@@ -142,6 +151,30 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 		return summary;
 	}
 
+	private String cleanupDecision(String chamber) {
+		return chamber.toUpperCase(Locale.ENGLISH).replace("(UTSKOTTET)", "").replace("UTKOTTET", "UTSKOTTET").replace("UTBSKOTTET", "UTSKOTTET").replace("UBTSKOTTET", "UTSKOTTET").trim().replace("(", "").replace(")","").trim();
+	}
+
+	private String getDocumentName(final DocumentStatusContainer document) {
+		if ("prop".equalsIgnoreCase(document.getDocument().getDocumentType())) {
+			return "Proposition";
+		} else if (document.getDocument().getSubType() != null & document.getDocument().getSubType().trim().length() > "motion".length()) {
+			return document.getDocument().getSubType();
+		} else {
+			return "Motion";
+		}
+		
+	}
+
+	private String getCommittteeShortName(DocumentProposalData proposal) {
+		String upperCase = proposal.getProcessedIn().replaceAll("\\d","").replace("/:","").trim().toUpperCase(Locale.ENGLISH);
+				
+		if (upperCase.contains(",")) {
+			return upperCase.substring(0, upperCase.indexOf(","));
+		} else {
+			return upperCase;
+		}
+	}
 	
 	/**
 	 * The Class ProposalCommitteeeSummary.
@@ -155,8 +188,8 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 		public ProposalCommitteeeSummary(String org, String docType, String decision, String hangarId) {
 			super();
 			this.org = org.trim().toUpperCase(Locale.ENGLISH);
-			this.docType = docType;
-			this.decision = decision;
+			this.docType = docType.toUpperCase(Locale.ENGLISH);
+			this.decision = decision.replace("=", "").replaceAll(",", "").trim().toUpperCase(Locale.ENGLISH);
 			this.hangarId = hangarId;
 		}
 
