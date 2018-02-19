@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,7 +85,7 @@ public final class ParliamentDecisionSankeyDataITest extends AbstractServiceFunc
 
 		for (Entry<String, Map<String, List<String>>> rmEntrySet : rmOrgDocListMap.entrySet()) {
 			assertNotNull(rmEntrySet.getValue());
-			List<String> createCommitteeSummary = createCommitteeSummary(rmEntrySet.getKey());
+			List<ProposalCommitteeeSummary> createCommitteeSummary = createCommitteeSummary(rmEntrySet.getKey());
 			System.out.println("rm:" + rmEntrySet.getKey() +", decisions:"+ createCommitteeSummary.size());
 		}
 	}
@@ -110,7 +111,7 @@ public final class ParliamentDecisionSankeyDataITest extends AbstractServiceFunc
 				assertNotNull(rmEntrySet.getKey());
 				assertNotNull(orgEntry.getKey());
 				assertNotNull(orgEntry.getValue().size());
-				List<String> createCommitteeSummary = createCommitteeSummary(rmEntrySet.getKey()+":" + orgEntry.getKey());
+				List<ProposalCommitteeeSummary> createCommitteeSummary = createCommitteeSummary(rmEntrySet.getKey()+":" + orgEntry.getKey());
 				System.out.println("rm:" + rmEntrySet.getKey() +" org:" + orgEntry.getKey()  +", decisions:"+ createCommitteeSummary.size());
 			}
 			return;
@@ -128,9 +129,10 @@ public final class ParliamentDecisionSankeyDataITest extends AbstractServiceFunc
 	public void createDocumentProposalSummaryOneReportTest() throws Exception {
 		setAuthenticatedAnonymousUser();
 
-		List<String> createCommitteeSummary = createCommitteeSummary("2013/14:KrU10");
+		List<ProposalCommitteeeSummary> createCommitteeSummary = createCommitteeSummary("2013/14:KrU10");
 		assertNotNull(createCommitteeSummary);
 		assertFalse(createCommitteeSummary.isEmpty());		
+				
 	}
 
 	/**
@@ -143,9 +145,33 @@ public final class ParliamentDecisionSankeyDataITest extends AbstractServiceFunc
 	public void createDocumentProposalSummaryOneRmTest() throws Exception {
 		setAuthenticatedAnonymousUser();
 
-		List<String> createCommitteeSummary = createCommitteeSummary("2013/14");
+		List<ProposalCommitteeeSummary> createCommitteeSummary = createCommitteeSummary("2013/14");
 		assertNotNull(createCommitteeSummary);
 		assertFalse(createCommitteeSummary.isEmpty());		
+		
+		
+		Map<String, List<ProposalCommitteeeSummary>> orgProposalMap = createCommitteeSummary.stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
+		
+		for (Entry<String, List<ProposalCommitteeeSummary>> entry : orgProposalMap.entrySet()) {
+			
+			Map<String, List<ProposalCommitteeeSummary>> docTypeMap = entry.getValue().stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
+
+			for (Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
+				if (docEntry.getKey().trim().length()> 0 && entry.getKey().trim().length() >0) {
+					System.out.println(docEntry.getKey() + "->" + entry.getKey() +":"+ docEntry.getValue().size());
+				}
+			}
+						
+			Map<String, List<ProposalCommitteeeSummary>> decisionMap = entry.getValue().stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
+			
+			for (Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
+				if (decisionEntry.getKey().trim().length()> 0 && entry.getKey().trim().length() >0) {
+					System.out.println(entry.getKey() + "->" + decisionEntry.getKey() +":"+ decisionEntry.getValue().size());
+				}
+			}
+
+		}
+		
 	}
 
 	/**
@@ -181,8 +207,8 @@ public final class ParliamentDecisionSankeyDataITest extends AbstractServiceFunc
 	 *            the processed in
 	 * @return the list
 	 */
-	private List<String> createCommitteeSummary(final String processedIn) {
-		List<String> summary = new ArrayList<>();
+	private List<ProposalCommitteeeSummary> createCommitteeSummary(final String processedIn) {
+		List<ProposalCommitteeeSummary> summary = new ArrayList<>();
 
 		final DataContainer<DocumentStatusContainer, Long> dataContainer = applicationManager
 				.getDataContainer(DocumentStatusContainer.class);
@@ -197,14 +223,57 @@ public final class ParliamentDecisionSankeyDataITest extends AbstractServiceFunc
 						&& proposal.getCommittee() != null && !proposal.getCommittee().trim().isEmpty()
 						&& proposal.getProcessedIn().contains(processedIn)) {
 
-					summary.add(document.getDocument().getHangarId() + ":" + document.getDocument().getDocumentType()
-							+ "." + document.getDocument().getSubType() + "," + proposal.getProcessedIn() + ","
-							+ proposal.getCommittee() + "/" + proposal.getChamber() + "," + proposal.getDecisionType());
+					summary.add(new ProposalCommitteeeSummary(document.getDocument().getOrg(), document.getDocument().getDocumentType()
+							+ "." + document.getDocument().getSubType() , proposal.getChamber() , document.getDocument().getHangarId()));
 
 				}
 			}
 		}
 		return summary;
 	}
+
+	
+	/**
+	 * The Class ProposalCommitteeeSummary.
+	 */
+	public static class ProposalCommitteeeSummary {
+		private final String org;
+		private final String docType;
+		private final String decision;
+		private final String hangarId;
+		
+		public ProposalCommitteeeSummary(String org, String docType, String decision, String hangarId) {
+			super();
+			this.org = org;
+			this.docType = docType;
+			this.decision = decision;
+			this.hangarId = hangarId;
+		}
+
+		public String getOrg() {
+			return org;
+		}
+
+		public String getDocType() {
+			return docType;
+		}
+
+		public String getDecision() {
+			return decision;
+		}
+
+		public String getHangarId() {
+			return hangarId;
+		}
+
+		@Override
+		public String toString() {
+			return String.format("ProposalCommitteeeSummary [org=%s, docType=%s, decision=%s, hangarId=%s]", org,
+					docType, decision, hangarId);
+		}
+		
+		
+	}
+	
 
 }
