@@ -18,7 +18,9 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
@@ -27,7 +29,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeOrgDailySummary;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalData;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
@@ -73,20 +76,35 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 
 		
 		
-		final DataContainer<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary, String> dataContainer = getApplicationManager().getDataContainer(ViewRiksdagenCommitteeDecisionTypeOrgDailySummary.class);
+		List<ProposalCommitteeeSummary> createCommitteeSummary = createCommitteeSummary("20");
 		
-		Map<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> summaryMap = dataContainer.getAll()
-			    .stream()
-			    .collect(Collectors.groupingBy(p -> p.getEmbeddedId().getOrg()));
+		
 		
 		
 		SankeyChart chart = new SankeyChart();
 		
-		for (Entry<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> entry : summaryMap.entrySet()) {
-			long  total = entry.getValue().stream().collect(Collectors.summarizingLong(p -> p.getTotal())).getSum();
-			chart.addDataRow(entry.getKey(),"Decision",(int)total);
-		}
+		Map<String, List<ProposalCommitteeeSummary>> orgProposalMap = createCommitteeSummary.stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
 		
+		for (Entry<String, List<ProposalCommitteeeSummary>> entry : orgProposalMap.entrySet()) {
+			
+			Map<String, List<ProposalCommitteeeSummary>> docTypeMap = entry.getValue().stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
+
+			for (Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
+				if (docEntry.getKey().trim().length()> 0 && entry.getKey().trim().length() >0) {
+					chart.addDataRow(docEntry.getKey(),entry.getKey(),docEntry.getValue().size());
+
+				}
+			}
+						
+			Map<String, List<ProposalCommitteeeSummary>> decisionMap = entry.getValue().stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
+			
+			for (Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
+				if (decisionEntry.getKey().trim().length()> 0 && entry.getKey().trim().length() >0) {
+					chart.addDataRow(entry.getKey(),decisionEntry.getKey(),decisionEntry.getValue().size());
+				}
+			}
+		}
+				
         chart.drawChart();
 
         panelContent.addComponent(chart);		
@@ -97,6 +115,74 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 
 		return panelContent;
 
+	}
+
+	private List<ProposalCommitteeeSummary> createCommitteeSummary(final String processedIn) {
+		List<ProposalCommitteeeSummary> summary = new ArrayList<>();
+
+		final DataContainer<DocumentStatusContainer, Long> dataContainer = getApplicationManager()
+				.getDataContainer(DocumentStatusContainer.class);
+
+		for (final DocumentStatusContainer document : dataContainer.getAll()) {
+
+			if (document.getDocumentProposal() != null && document.getDocumentProposal().getProposal() != null) {
+
+				DocumentProposalData proposal = document.getDocumentProposal().getProposal();
+
+				if (proposal.getProcessedIn() != null && !proposal.getProcessedIn().trim().isEmpty()
+						&& proposal.getCommittee() != null && !proposal.getCommittee().trim().isEmpty()
+						&& proposal.getProcessedIn().contains(processedIn)) {
+					
+					summary.add(new ProposalCommitteeeSummary(proposal.getProcessedIn().replaceAll("\\d","").replace("/:","").trim().toUpperCase(Locale.ENGLISH), document.getDocument().getDocumentType()
+							+ "." + document.getDocument().getSubType() , proposal.getChamber() , document.getDocument().getHangarId()));
+
+				}
+			}
+		}
+		return summary;
+	}
+
+	
+	/**
+	 * The Class ProposalCommitteeeSummary.
+	 */
+	public static class ProposalCommitteeeSummary {
+		private final String org;
+		private final String docType;
+		private final String decision;
+		private final String hangarId;
+		
+		public ProposalCommitteeeSummary(String org, String docType, String decision, String hangarId) {
+			super();
+			this.org = org.trim().toUpperCase(Locale.ENGLISH);
+			this.docType = docType;
+			this.decision = decision;
+			this.hangarId = hangarId;
+		}
+
+		public String getOrg() {
+			return org;
+		}
+
+		public String getDocType() {
+			return docType;
+		}
+
+		public String getDecision() {
+			return decision;
+		}
+
+		public String getHangarId() {
+			return hangarId;
+		}
+
+		@Override
+		public String toString() {
+			return String.format("ProposalCommitteeeSummary [org=%s, docType=%s, decision=%s, hangarId=%s]", org,
+					docType, decision, hangarId);
+		}
+		
+		
 	}
 
 }

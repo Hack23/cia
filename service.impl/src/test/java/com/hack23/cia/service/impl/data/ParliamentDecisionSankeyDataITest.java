@@ -222,7 +222,7 @@ public final class ParliamentDecisionSankeyDataITest extends AbstractServiceFunc
 				if (proposal.getProcessedIn() != null && !proposal.getProcessedIn().trim().isEmpty()
 						&& proposal.getCommittee() != null && !proposal.getCommittee().trim().isEmpty()
 						&& proposal.getProcessedIn().contains(processedIn)) {
-
+					
 					summary.add(new ProposalCommitteeeSummary(document.getDocument().getOrg(), document.getDocument().getDocumentType()
 							+ "." + document.getDocument().getSubType() , proposal.getChamber() , document.getDocument().getHangarId()));
 
