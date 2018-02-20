@@ -374,6 +374,10 @@
           <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>spring-jcl</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>

@@ -104,6 +104,10 @@
           <artifactId>commons-codec</artifactId>
           <groupId>commons-codec</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>spring-jcl</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -292,6 +296,10 @@
         <exclusion>
           <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-jcl</artifactId>
+          <groupId>org.springframework</groupId>
         </exclusion>
       </exclusions>
     </dependency>

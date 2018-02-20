@@ -48,6 +48,12 @@
       <groupId>com.hack23.cia</groupId>
       <artifactId>testfoundation</artifactId>
       <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>spring-jcl</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
   <build>

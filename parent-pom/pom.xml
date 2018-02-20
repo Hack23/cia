@@ -1138,6 +1138,7 @@
                     <exclude>commons-logging:commons-logging</exclude>
                     <exclude>log4j:log4j</exclude>
                     <exclude>stax:stax-api</exclude>
+                    <exclude>org.springframework:spring-jcl</exclude>
                   </excludes>
                 </bannedDependencies>
                 <!-- do not support jdk9, issue

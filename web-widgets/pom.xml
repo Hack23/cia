@@ -41,6 +41,10 @@
           <artifactId>vaadin-server</artifactId>
           <groupId>com.vaadin</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>spring-jcl</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <!-- <dependency> <groupId>org.vaadin.addons</groupId> <artifactId>vaadin-grid-util</artifactId>
