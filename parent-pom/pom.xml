@@ -1014,16 +1014,22 @@
               <targetVersion>1.8</targetVersion>
               <failOnUnsupportedJava>false</failOnUnsupportedJava>
               <bundledSignatures>
-                <!-- <bundledSignature>jdk-unsafe</bundledSignature>
+                <bundledSignature>jdk-unsafe</bundledSignature>
                 <bundledSignature>jdk-deprecated</bundledSignature>
                 <bundledSignature>jdk-system-out</bundledSignature>
-                <bundledSignature>jdk-non-portable</bundledSignature>-->
+                <bundledSignature>jdk-non-portable</bundledSignature>
                 <bundledSignature>jdk-internal</bundledSignature>
                 <bundledSignature>jdk-reflection</bundledSignature>
               </bundledSignatures>
               <excludes>
                 <exclude>**/EncryptProperty*</exclude>
+                <!-- Fix Below -->
                 <exclude>**/*TypeAdapter*</exclude>
+                <exclude>**/DecisionChartDataManagerImpl*</exclude>
+                <exclude>**/ParliamentDecisionFlowPageModContentFactoryImpl*</exclude>
+                <exclude>**/FormFactoryImpl*</exclude>
+                <exclude>**/AuthorizationFailureEventListener*</exclude>
+                <exclude>**/ParliamentDecisionFlowPageModContentFactoryImpl*</exclude>
               </excludes>
               <failOnMissingClasses>false</failOnMissingClasses>
               <failOnUnresolvableSignatures>false</failOnUnresolvableSignatures>
@@ -1040,9 +1046,9 @@
               <failOnUnsupportedJava>false</failOnUnsupportedJava>
               <failOnUnresolvableSignatures>false</failOnUnresolvableSignatures>
               <bundledSignatures>
-                <!--<bundledSignature>jdk-unsafe</bundledSignature>
+                <bundledSignature>jdk-unsafe</bundledSignature>
                 <bundledSignature>jdk-deprecated</bundledSignature>
-                <bundledSignature>jdk-non-portable</bundledSignature>-->
+                <bundledSignature>jdk-non-portable</bundledSignature>
                 <bundledSignature>jdk-internal</bundledSignature>
               </bundledSignatures>
             </configuration>

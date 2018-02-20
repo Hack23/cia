@@ -87,7 +87,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 	public void createDocumentTypeChart(final AbstractOrderedLayout content) {
 		final Map<String, List<ViewRiksdagenDocumentTypeDailySummary>> map = getDocumentTypeMap();
 		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
-		final SimpleDateFormat parseInputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		final SimpleDateFormat parseInputDateFormat = new SimpleDateFormat("yyyy-MM-dd",Locale.ENGLISH);
 
 		final DataSeries dataSeries = new DataSeries();
 		final Series series = new Series();
