@@ -84,22 +84,6 @@
         </includes>
       </resource>
     </resources>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <inherited>true</inherited>
-        <configuration>
-          <instructions>
-            <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
-            <Bundle-Name>${project.artifactId}</Bundle-Name>
-            <Bundle-Version>${project.version}</Bundle-Version>
-            <Include-Resource>{maven-resources}</Include-Resource>
-          </instructions>
-        </configuration>
-      </plugin>
-    </plugins>
   </build>
   <reporting></reporting>
 </project>

@@ -773,11 +773,6 @@
           <version>1.5</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.felix</groupId>
-          <artifactId>maven-bundle-plugin</artifactId>
-          <version>3.5.0</version>
-        </plugin>
-        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>versions-maven-plugin</artifactId>
           <version>2.5</version>
@@ -1051,6 +1046,12 @@
                 <bundledSignature>jdk-non-portable</bundledSignature>
                 <bundledSignature>jdk-internal</bundledSignature>
               </bundledSignatures>
+              <excludes>
+                <exclude>**/RiksdagenLoadDocumentWorkConsumerImplITest*</exclude>
+                <exclude>**/DataAgentApiITest*</exclude>
+                <exclude>**/ParliamentDecisionSankeyDataITest*</exclude>
+                <exclude>**/UserPageVisit*</exclude>
+              </excludes>
             </configuration>
           </execution>
         </executions>
@@ -1309,19 +1310,6 @@
           </jdkToolchain>
           <source>${jdk.src.version}</source>
           <target>${jdk.target.version}</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <inherited>true</inherited>
-        <configuration>
-          <instructions>
-            <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
-            <Bundle-Name>${project.artifactId}</Bundle-Name>
-            <Include-Resource>{maven-resources}</Include-Resource>
-          </instructions>
         </configuration>
       </plugin>
       <plugin>

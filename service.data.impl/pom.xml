@@ -660,20 +660,6 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <inherited>true</inherited>
-        <configuration>
-          <instructions>
-            <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
-            <Bundle-Name>${project.artifactId}</Bundle-Name>
-            <Bundle-Version>${project.version}</Bundle-Version>
-            <Include-Resource>src/main/resources</Include-Resource>
-          </instructions>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>org.liquibase</groupId>
         <artifactId>liquibase-maven-plugin</artifactId>
         <executions>

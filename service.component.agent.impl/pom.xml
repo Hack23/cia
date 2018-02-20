@@ -204,19 +204,4 @@
     </dependency>
      -->
   </dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Export-Package>com.hack23.cia.service.component.agent.impl.*</Export-Package>
-            <Import-Package>!com.hack23.cia.service.component.agent.impl.*,*</Import-Package>
-          </instructions>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 </project>
