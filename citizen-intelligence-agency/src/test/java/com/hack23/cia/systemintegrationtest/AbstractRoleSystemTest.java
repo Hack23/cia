@@ -59,7 +59,11 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 
 	/** The Constant usingExternalServer. */
 	private static final boolean usingExternalServer;
+	
+	private static String systemTestTargetAdminEmail;
 
+	private static String systemTestTargetAdminPassword;
+	
 	static {
 		 final String systemTestTargetUrlProperty = System.getProperty("system.test.target.url");
 		 if (systemTestTargetUrlProperty != null && systemTestTargetUrlProperty.trim().length() > 0) {
@@ -67,6 +71,17 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 		 } else {
 			 usingExternalServer=false;
 		 }
+		 
+		 systemTestTargetAdminEmail = System.getProperty("system.test.target.admin.email");
+		 if (systemTestTargetAdminEmail != null && systemTestTargetAdminEmail.trim().length() > 0) {
+			 systemTestTargetAdminEmail = "admin@admin.com";
+		 }
+		 
+		 systemTestTargetAdminPassword = System.getProperty("system.test.target.admin.password");
+		 if (systemTestTargetAdminPassword != null && systemTestTargetAdminPassword.trim().length() > 0) {
+			 systemTestTargetAdminPassword = "admin";
+		 }
+		 
 		CitizenIntelligenceAgencyServer.setEnv("CIA_APP_ENCRYPTION_PASSWORD", "allhaildiscordia");
 	}
 
@@ -195,7 +210,7 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 	 */
 	protected final void loginAsAdmin(final UserPageVisit userPageVisit) throws Exception {
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
-		userPageVisit.loginUser("admin@admin.com", "admin");
+		userPageVisit.loginUser(systemTestTargetAdminEmail, systemTestTargetAdminPassword);
 	}
 
 }
