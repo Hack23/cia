@@ -180,8 +180,8 @@
           <groupId>commons-logging</groupId>
         </exclusion>
         <exclusion>
-        	<groupId>org.springframework</groupId>
-        	<artifactId>spring-jcl</artifactId>
+          <artifactId>spring-jcl</artifactId>
+          <groupId>org.springframework</groupId>
         </exclusion>
       </exclusions>
     </dependency>

@@ -5,6 +5,7 @@ module com.hack23.cia.service.api {
 	exports com.hack23.cia.service.api.action.application;
 	exports com.hack23.cia.service.api.action.common;
 	exports com.hack23.cia.service.api.action.user;
+	exports com.hack23.cia.service.api.action.kpi;
 
 
 	requires org.apache.commons.lang3;
