@@ -645,6 +645,26 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	}
 
 	/**
+	 * Site committe decision flow test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteCommitteDecisionFlowTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS +"/"+
+						ChartIndicators.DECISION_FLOW_CHART.toString(), "UU"));
+
+	}
+	
+	
+	/**
 	 * Site main view test.
 	 *
 	 * @throws Exception
