@@ -62,22 +62,22 @@ public class AwsPublicSystemDocumentation {
 		final SoftwareSystem ciaSystem = model.addSoftwareSystem("Citizen Intelligence Agency",
 				"Tracking politicians like bugs!");
 
-		DeploymentNode masterAccountNode = model.addDeploymentNode("Master Account", "AWS", "Aws Account");
+		final DeploymentNode masterAccountNode = model.addDeploymentNode("Master Account", "AWS", "Aws Account");
 		final Container awsAccountContainer = ciaSystem.addContainer("Master Account", "AWS", "Aws Account");
 
-		DeploymentNode iamAccountNode = model.addDeploymentNode("IAM Account", "AWS", "Aws Account");
+		final DeploymentNode iamAccountNode = model.addDeploymentNode("IAM Account", "AWS", "Aws Account");
 		final Container iamAccountContainer = ciaSystem.addContainer("IAM Account", "AWS", "Aws Account");
 		
-		DeploymentNode devAccountNode = model.addDeploymentNode("Development Account", "AWS", "Aws Account");
+		final DeploymentNode devAccountNode = model.addDeploymentNode("Development Account", "AWS", "Aws Account");
 		final Container devAccountContainer = ciaSystem.addContainer("Development Account", "AWS", "Aws Account");
 
-		DeploymentNode opCenterAccountNode = model.addDeploymentNode("Operation Center Account", "AWS", "Aws Account");
+		final DeploymentNode opCenterAccountNode = model.addDeploymentNode("Operation Center Account", "AWS", "Aws Account");
 		final Container opCenterAccountContainer = ciaSystem.addContainer("Operation Center Account", "AWS", "Aws Account");
 
-		DeploymentNode auditAccountNode = model.addDeploymentNode("Audit Account", "AWS", "Aws Account");
+		final DeploymentNode auditAccountNode = model.addDeploymentNode("Audit Account", "AWS", "Aws Account");
 		final Container auditAccountContainer = ciaSystem.addContainer("Audit Account", "AWS", "Aws Account");
 		
-		DeploymentNode appAccountNode = model.addDeploymentNode("Application Account", "AWS", "Aws Account");
+		final DeploymentNode appAccountNode = model.addDeploymentNode("Application Account", "AWS", "Aws Account");
 		final Container appAccountContainer = ciaSystem.addContainer("Application Account", "AWS", "Aws Account");
 		
 		awsAccountContainer.uses(iamAccountContainer, "create/restrict");
@@ -105,7 +105,7 @@ public class AwsPublicSystemDocumentation {
 		iamAccountNode.add(iamAccountContainer);
 		masterAccountNode.add(awsAccountContainer);
 		
-		DeploymentView developmentDeploymentView = viewSet.createDeploymentView(ciaSystem, "Production Aws Account structure",
+		final DeploymentView developmentDeploymentView = viewSet.createDeploymentView(ciaSystem, "Production Aws Account structure",
 				"Production Aws Account structure");
 
 		developmentDeploymentView.add(masterAccountNode);
@@ -143,12 +143,12 @@ public class AwsPublicSystemDocumentation {
 	 */
 	private static void printPlantUml(final Workspace workspace)
 			throws WorkspaceWriterException, IOException, InterruptedException {
-		StringWriter stringWriter = new StringWriter();
-		PlantUMLWriter plantUMLWriter = new PlantUMLWriter();
+		final StringWriter stringWriter = new StringWriter();
+		final PlantUMLWriter plantUMLWriter = new PlantUMLWriter();
 		plantUMLWriter.write(workspace, stringWriter);
-		String allPlantUmlsString = stringWriter.toString();
+		final String allPlantUmlsString = stringWriter.toString();
 
-		String awsSystem = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"),
+		final String awsSystem = allPlantUmlsString.substring(allPlantUmlsString.lastIndexOf("@startuml"),
 				allPlantUmlsString.lastIndexOf("@enduml") + "@enduml".length());
 
 		writePlantUml("Citizen-Intelligence-Agency-Prod-Aws-Account-Structure", awsSystem);
@@ -167,7 +167,7 @@ public class AwsPublicSystemDocumentation {
 	 * @throws InterruptedException
 	 *             the interrupted exception
 	 */
-	private static void writePlantUml(String filename, String content) throws IOException, InterruptedException {
+	private static void writePlantUml(final String filename, final String content) throws IOException, InterruptedException {
 		final String fullFilePathPlantUmlFile = Paths.get(".").toAbsolutePath().normalize().toString() + File.separator
 				+ "target" + File.separator + "site" + File.separator + "architecture" + File.separator + filename
 				+ ".pu";

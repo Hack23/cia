@@ -167,13 +167,13 @@ public final class FormFactoryImpl implements FormFactory {
 	 *            the property descriptors
 	 */
 	private static <T extends Serializable> void createDisplayPropertyConverters(final List<String> displayProperties,
-			final FormLayout formContent, final Binder<T> binder, PropertyDescriptor[] propertyDescriptors) {
+			final FormLayout formContent, final Binder<T> binder, final PropertyDescriptor[] propertyDescriptors) {
 		for (final String property : displayProperties) {
 			final Class<?> typeOfProperty = getTypeOfProperty(propertyDescriptors, property);
 
 			if (typeOfProperty != null) {
 				final AbstractField<?> field = new TextField();
-				Converter converter = getConverterForType(typeOfProperty);
+				final Converter converter = getConverterForType(typeOfProperty);
 
 				if (converter != null) {
 					binder.forField(field).withConverter(converter).bind(property);

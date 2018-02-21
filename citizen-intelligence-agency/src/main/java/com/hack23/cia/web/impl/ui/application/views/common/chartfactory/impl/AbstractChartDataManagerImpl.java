@@ -182,7 +182,7 @@ public abstract class AbstractChartDataManagerImpl {
 				.getDataContainer(ViewRiksdagenParty.class);
 
 		final Optional<ViewRiksdagenParty> matchingObjects =dataContainer.getAll().stream().
-			    filter((ViewRiksdagenParty p) -> p.getPartyId().equalsIgnoreCase(party)).
+			    filter((final ViewRiksdagenParty p) -> p.getPartyId().equalsIgnoreCase(party)).
 			    findFirst();
 
 		if (matchingObjects.isPresent()) {

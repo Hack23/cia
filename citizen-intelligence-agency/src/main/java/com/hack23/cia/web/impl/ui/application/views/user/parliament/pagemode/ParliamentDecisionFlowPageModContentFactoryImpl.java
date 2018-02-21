@@ -77,9 +77,9 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 		
 		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommittee.class);
-		List<ViewRiksdagenCommittee> allCommittess = dataContainer.getAll();
+		final List<ViewRiksdagenCommittee> allCommittess = dataContainer.getAll();
 
-		Map<String, List<ViewRiksdagenCommittee>> committeeMap = allCommittess.stream().collect(Collectors.groupingBy(c -> c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));
+		final Map<String, List<ViewRiksdagenCommittee>> committeeMap = allCommittess.stream().collect(Collectors.groupingBy(c -> c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));
 		
 		
 		panelContent.addComponent(decisionFlowChartManager.createAllDecisionFlow(committeeMap));		

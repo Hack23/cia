@@ -196,14 +196,14 @@ public final class CitizenIntelligenceAgencyServer {
 		
 		
 		
-	   HttpConfiguration http_config = new HttpConfiguration();
+	   final HttpConfiguration http_config = new HttpConfiguration();
 	   http_config.setSecureScheme("https");
 	   http_config.setSecurePort(28443);
 	     
-	   HttpConfiguration https_config = new HttpConfiguration(http_config);
+	   final HttpConfiguration https_config = new HttpConfiguration(http_config);
 	   https_config.addCustomizer(new SecureRequestCustomizer());
 	
-		SslContextFactory sslContextFactory = new SslContextFactory();
+		final SslContextFactory sslContextFactory = new SslContextFactory();
 		sslContextFactory.setKeyStoreType("JKS");
 		sslContextFactory.setKeyStorePath("target/keystore.jks");
 		sslContextFactory.setTrustStorePath("target/keystore.jks");		
@@ -215,7 +215,7 @@ public final class CitizenIntelligenceAgencyServer {
 		sslContextFactory.setExcludeProtocols("SSL","SSLv2","SSLv2Hello","SSLv3","TLSv1","TLSv1.1");
 		sslContextFactory.setIncludeProtocols("TLSv1.2");		
 		
-		ServerConnector sslConnector = new ServerConnector(server, new SslConnectionFactory(sslContextFactory, "http/1.1"), new HttpConnectionFactory(https_config),new HTTP2CServerConnectionFactory(https_config));
+		final ServerConnector sslConnector = new ServerConnector(server, new SslConnectionFactory(sslContextFactory, "http/1.1"), new HttpConnectionFactory(https_config),new HTTP2CServerConnectionFactory(https_config));
 		sslConnector.setPort(PORT);
 		
 		server.setConnectors(new ServerConnector[] { sslConnector });

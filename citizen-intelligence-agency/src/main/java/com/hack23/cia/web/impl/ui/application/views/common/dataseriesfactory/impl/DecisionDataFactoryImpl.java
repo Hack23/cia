@@ -54,7 +54,7 @@ public class DecisionDataFactoryImpl implements DecisionDataFactory {
 	
 	@Override
 	public List<ProposalCommitteeeSummary> createCommitteeSummary(final String processedIn) {
-		List<ProposalCommitteeeSummary> summary = new ArrayList<>();
+		final List<ProposalCommitteeeSummary> summary = new ArrayList<>();
 
 		final DataContainer<DocumentStatusContainer, Long> dataContainer = applicationManager
 				.getDataContainer(DocumentStatusContainer.class);
@@ -63,7 +63,7 @@ public class DecisionDataFactoryImpl implements DecisionDataFactory {
 
 			if (document.getDocumentProposal() != null && document.getDocumentProposal().getProposal() != null) {
 
-				DocumentProposalData proposal = document.getDocumentProposal().getProposal();
+				final DocumentProposalData proposal = document.getDocumentProposal().getProposal();
 
 				if (proposal.getProcessedIn() != null && !proposal.getProcessedIn().trim().isEmpty()
 						&& proposal.getCommittee() != null && !proposal.getCommittee().trim().isEmpty()
@@ -84,7 +84,7 @@ public class DecisionDataFactoryImpl implements DecisionDataFactory {
 	 *            the chamber
 	 * @return the string
 	 */
-	private static String cleanupDecision(String chamber) {
+	private static String cleanupDecision(final String chamber) {
 		return chamber.toUpperCase(Locale.ENGLISH).replace("(UTSKOTTET)", "").replace("UTKOTTET", "UTSKOTTET").replace("UTBSKOTTET", "UTSKOTTET").replace("UBTSKOTTET", "UTSKOTTET").trim().replace("(", "").replace(")","").trim();
 	}
 
@@ -114,7 +114,7 @@ public class DecisionDataFactoryImpl implements DecisionDataFactory {
 	 * @return the committtee short name
 	 */
 	private static String getCommittteeShortName(final DocumentProposalData proposal) {
-		String upperCase = proposal.getProcessedIn().replaceAll("\\d","").replace("/:","").trim().toUpperCase(Locale.ENGLISH);
+		final String upperCase = proposal.getProcessedIn().replaceAll("\\d","").replace("/:","").trim().toUpperCase(Locale.ENGLISH);
 				
 		if (upperCase.contains(",")) {
 			return upperCase.substring(0, upperCase.indexOf(","));

@@ -24,30 +24,30 @@ public class DecisionFlowChartManagerImpl implements DecisionFlowChartManager {
 	
 	@Override
 	public SankeyChart createAllDecisionFlow(final Map<String, List<ViewRiksdagenCommittee>> committeeMap) {
-		List<ProposalCommitteeeSummary> createCommitteeSummary = decisionDataFactory.createCommitteeSummary("20");
+		final List<ProposalCommitteeeSummary> createCommitteeSummary = decisionDataFactory.createCommitteeSummary("20");
 				
-		SankeyChart chart = new SankeyChart();
+		final SankeyChart chart = new SankeyChart();
 		
-		Map<String, List<ProposalCommitteeeSummary>> orgProposalMap = createCommitteeSummary.stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
+		final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap = createCommitteeSummary.stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
 		
-		for (Entry<String, List<ProposalCommitteeeSummary>> entry : orgProposalMap.entrySet()) {
+		for (final Entry<String, List<ProposalCommitteeeSummary>> entry : orgProposalMap.entrySet()) {
 			
 			if(committeeMap.containsKey(entry.getKey())) {
 				
-				ViewRiksdagenCommittee vewRiksdagenCommittee = committeeMap.get(entry.getKey()).iterator().next();
+				final ViewRiksdagenCommittee vewRiksdagenCommittee = committeeMap.get(entry.getKey()).iterator().next();
 			
-				Map<String, List<ProposalCommitteeeSummary>> docTypeMap = entry.getValue().stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
+				final Map<String, List<ProposalCommitteeeSummary>> docTypeMap = entry.getValue().stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
 	
-				for (Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
+				for (final Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
 					if (docEntry.getKey().trim().length()> 0 && entry.getKey().trim().length() >0) {
 						chart.addDataRow(docEntry.getKey(),vewRiksdagenCommittee.getEmbeddedId().getDetail(),docEntry.getValue().size());
 	
 					}
 				}
 							
-				Map<String, List<ProposalCommitteeeSummary>> decisionMap = entry.getValue().stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
+				final Map<String, List<ProposalCommitteeeSummary>> decisionMap = entry.getValue().stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
 				
-				for (Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
+				for (final Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
 					if (decisionEntry.getKey().trim().length()> 0 && entry.getKey().trim().length() >0) {
 						chart.addDataRow(vewRiksdagenCommittee.getEmbeddedId().getDetail(),decisionEntry.getKey(),decisionEntry.getValue().size());
 					}
@@ -61,25 +61,25 @@ public class DecisionFlowChartManagerImpl implements DecisionFlowChartManager {
 
 	@Override
 	public SankeyChart createCommitteeDecisionFlow(final ViewRiksdagenCommittee viewRiksdagenCommittee,
-			Map<String, List<ViewRiksdagenCommittee>> committeeMap) {
-		List<ProposalCommitteeeSummary> createCommitteeSummary = decisionDataFactory.createCommitteeSummary("20");		
+			final Map<String, List<ViewRiksdagenCommittee>> committeeMap) {
+		final List<ProposalCommitteeeSummary> createCommitteeSummary = decisionDataFactory.createCommitteeSummary("20");		
 		
-		SankeyChart chart = new SankeyChart();
+		final SankeyChart chart = new SankeyChart();
 		
-		Map<String, List<ProposalCommitteeeSummary>> orgProposalMap = createCommitteeSummary.stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
+		final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap = createCommitteeSummary.stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
 		
 		
-		for (Entry<String, List<ProposalCommitteeeSummary>> entry : orgProposalMap.entrySet()) {
+		for (final Entry<String, List<ProposalCommitteeeSummary>> entry : orgProposalMap.entrySet()) {
 							
 			if(committeeMap.containsKey(entry.getKey()) && viewRiksdagenCommittee.getEmbeddedId().getOrgCode().equals(entry.getKey())) {
 								
-				Map<String, List<ProposalCommitteeeSummary>> docTypeMap = entry.getValue().stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
+				final Map<String, List<ProposalCommitteeeSummary>> docTypeMap = entry.getValue().stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
 
-				for (Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
+				for (final Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
 					
-					Map<String, List<ProposalCommitteeeSummary>> decisionMap = docEntry.getValue().stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
+					final Map<String, List<ProposalCommitteeeSummary>> decisionMap = docEntry.getValue().stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
 					
-					for (Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
+					for (final Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
 						if (decisionEntry.getKey().trim().length()> 0 && entry.getKey().trim().length() >0) {
 							chart.addDataRow(docEntry.getKey(),decisionEntry.getKey(),decisionEntry.getValue().size());
 						}

@@ -81,7 +81,7 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 
 		if (viewRiksdagenCommittee != null) {	
 			
-			Map<String, List<ViewRiksdagenCommittee>> committeeMap = dataContainer.getAll().stream().collect(Collectors.groupingBy(c -> c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));			
+			final Map<String, List<ViewRiksdagenCommittee>> committeeMap = dataContainer.getAll().stream().collect(Collectors.groupingBy(c -> c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));			
 		
 			panelContent.addComponent(decisionFlowChartManager.createCommitteeDecisionFlow(viewRiksdagenCommittee, committeeMap));		
 
