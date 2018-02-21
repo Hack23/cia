@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
 
 import java.util.List;
 import java.util.Locale;
@@ -44,19 +44,19 @@ import com.vaadin.ui.VerticalLayout;
  * The Class ParliamentDecisionFlowPageModContentFactoryImpl.
  */
 @Component
-public final class ParliamentDecisionFlowPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
+public final class CommitteeDecisionFlowPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
 
 
 	/** The Constant PARLIAMENT_DECISION_FLOW. */
-	private static final String PARLIAMENT_DECISION_FLOW = "Parliament decision flow";
-	
+	private static final String COMMITTEE_DECISION_FLOW = "Committee decision flow";
+
 	@Autowired
 	private DecisionFlowChartManager decisionFlowChartManager;
 	
 	/**
 	 * Instantiates a new parliament decision flow page mod content factory impl.
 	 */
-	public ParliamentDecisionFlowPageModContentFactoryImpl() {
+	public CommitteeDecisionFlowPageModContentFactoryImpl() {
 		super();
 	}
 
@@ -70,23 +70,26 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
-		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
-
 		final String pageId = getPageId(parameters);
-
+		
+		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 		
 		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommittee.class);
-		List<ViewRiksdagenCommittee> allCommittess = dataContainer.getAll();
 
-		Map<String, List<ViewRiksdagenCommittee>> committeeMap = allCommittess.stream().collect(Collectors.groupingBy(c -> c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));
-		
-		
-		panelContent.addComponent(decisionFlowChartManager.createAllDecisionFlow(committeeMap));		
+		final ViewRiksdagenCommittee viewRiksdagenCommittee = dataContainer.load(pageId);
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
+		if (viewRiksdagenCommittee != null) {	
+			
+			Map<String, List<ViewRiksdagenCommittee>> committeeMap = dataContainer.getAll().stream().collect(Collectors.groupingBy(c -> c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));			
+		
+			panelContent.addComponent(decisionFlowChartManager.createCommitteeDecisionFlow(viewRiksdagenCommittee, committeeMap));		
+
+		}
+        
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
-		panel.setCaption(new StringBuilder().append(NAME).append("::").append(PARLIAMENT_DECISION_FLOW).toString());
+		panel.setCaption(new StringBuilder().append(NAME).append("::").append(COMMITTEE_DECISION_FLOW).toString());
 
 		return panelContent;
 
