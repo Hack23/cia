@@ -92,7 +92,7 @@ public class ProposalCommitteeeSummary {
 
 	@Override
 	public String toString() {
-		return String.format("ProposalCommitteeeSummary [org=%s, docType=%s, decision=%s, hangarId=%s]", org,
+		return String.format(Locale.ENGLISH,"ProposalCommitteeeSummary [org=%s, docType=%s, decision=%s, hangarId=%s]", org,
 				docType, decision, hangarId);
 	}				
 }
