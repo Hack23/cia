@@ -109,7 +109,7 @@ public class AppPublicSystemDocumentation {
 
 		final SoftwareSystem riksdagenApiSystem = model.addSoftwareSystem(Location.External, "data.riksdagen.se",
 				"Public API Swedish Parliament data");
-		final SoftwareSystem worldBankApiSystem = model.addSoftwareSystem(Location.External, "data.wordbank.org",
+		final SoftwareSystem worldBankApiSystem = model.addSoftwareSystem(Location.External, "data.worldbank.org",
 				"Public API Country indicators");
 		final SoftwareSystem valApiSystem = model.addSoftwareSystem(Location.External, "www.val.se",
 				"Public API Swedish Election data");
