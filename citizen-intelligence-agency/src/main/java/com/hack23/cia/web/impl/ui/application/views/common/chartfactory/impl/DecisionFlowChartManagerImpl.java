@@ -32,6 +32,9 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.ProposalCommitteeeSummary;
 import com.hack23.cia.web.widgets.charts.SankeyChart;
 
+/**
+ * The Class DecisionFlowChartManagerImpl.
+ */
 @Service
 public class DecisionFlowChartManagerImpl implements DecisionFlowChartManager {
 	
@@ -40,6 +43,13 @@ public class DecisionFlowChartManagerImpl implements DecisionFlowChartManager {
 	private DecisionDataFactory decisionDataFactory;
 
 	
+	/**
+	 * Instantiates a new decision flow chart manager impl.
+	 */
+	public DecisionFlowChartManagerImpl() {
+		super();
+	}
+
 	@Override
 	public SankeyChart createAllDecisionFlow(final Map<String, List<ViewRiksdagenCommittee>> committeeMap) {
 		final List<ProposalCommitteeeSummary> createCommitteeSummary = decisionDataFactory.createCommitteeSummary("20");

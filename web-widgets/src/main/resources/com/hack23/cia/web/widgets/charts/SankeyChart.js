@@ -30,7 +30,7 @@ function com_hack23_cia_web_widgets_charts_SankeyChart() {
         
         var dataValueList = this.getState().values;
         var rowData = new Array();
-        
+
          for (index = 0; index < dataValueList.length; index++ ) {
             var tempData = new Array();
             tempData[0] = dataValueList[index][0];
@@ -40,11 +40,11 @@ function com_hack23_cia_web_widgets_charts_SankeyChart() {
         }
 
 		data.addRows(rowData);
-		
+
         var options = {
           width: '100%',
         };
-        
+
         var chart = new google.visualization.Sankey(document.getElementById(this.getState().myId));
         chart.draw(data, options);
     }
