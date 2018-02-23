@@ -1,0 +1,32 @@
+package com.hack23.cia.service.impl.rules
+ 
+import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
+import com.hack23.cia.model.external.riksdagen.person.impl.SexType
+ 
+rule "We have an old PersonData"
+    when
+        exists( PersonData(bornYear < 1970) )
+    then
+        System.out.println("old");
+end
+
+rule "We have an young PersonData"
+    when
+        exists( PersonData(bornYear > 1970) )
+    then
+        System.out.println("young");
+end
+
+rule "We have an male PersonData"
+    when
+        exists( PersonData(gender == SexType.MAN) )
+    then
+        System.out.println("male");
+end
+
+rule "We have an female PersonData"
+    when
+        exists( PersonData(gender == SexType.KVINNA) )
+    then
+        System.out.println("female");
+end
