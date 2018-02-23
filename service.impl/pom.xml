@@ -42,6 +42,7 @@
           <groupId>org.mvel</groupId>
         </exclusion>
       </exclusions>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mvel</groupId>
@@ -62,6 +63,7 @@
           <groupId>org.springframework</groupId>
         </exclusion>
       </exclusions>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.quartz-scheduler</groupId>
