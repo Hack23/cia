@@ -2,14 +2,14 @@ package com.hack23.cia.service.impl.rules
  
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary
  
-rule "We have an inactive ViewRiksdagenPartySummary"
+rule "We have an inactive Party"
     when
         exists( ViewRiksdagenPartySummary(currentAssignments == 0) )
     then
         System.out.println("inactive");
 end
 
-rule "We have an active ViewRiksdagenPartySummary"
+rule "We have an active Party"
     when
         exists( ViewRiksdagenPartySummary(currentAssignments > 0) )
     then
