@@ -36,13 +36,13 @@
       <groupId>org.drools</groupId>
       <artifactId>drools-core</artifactId>
       <version>7.6.0.Final</version>
+      <scope>test</scope>
       <exclusions>
         <exclusion>
           <artifactId>mvel2</artifactId>
           <groupId>org.mvel</groupId>
         </exclusion>
       </exclusions>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mvel</groupId>
@@ -53,6 +53,7 @@
       <groupId>org.kie</groupId>
       <artifactId>kie-spring</artifactId>
       <version>7.6.0.Final</version>
+      <scope>test</scope>
       <exclusions>
         <exclusion>
           <artifactId>spring-tx</artifactId>
@@ -63,7 +64,6 @@
           <groupId>org.springframework</groupId>
         </exclusion>
       </exclusions>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.quartz-scheduler</groupId>
