@@ -4,6 +4,7 @@ install: true
 addons:
   sonarcloud:
     organization: "hack23"
+    github_token: "$GITHUB_TOKEN"
   apt:
     packages:
       - oracle-java8-installer
