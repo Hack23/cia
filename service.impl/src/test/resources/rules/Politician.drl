@@ -1,17 +1,10 @@
 package com.hack23.cia.service.impl.rules
  
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
- 
-rule "We have an old Politician"
-    when
-        exists( ViewRiksdagenPolitician(bornYear < 1970) )
-    then
-        System.out.println("old");
-end
 
-rule "We have an young Politician"
+rule "We have an politician that left the party still holding assignments"
     when
-        exists( ViewRiksdagenPolitician(bornYear > 1970) )
+        exists( ViewRiksdagenPolitician(party == "-" && active == true ) )
     then
-        System.out.println("young");
+        System.out.print("troublemaker");
 end

@@ -35,6 +35,7 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.service.api.action.kpi.Status;
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 
 public final class RuleServiceITest extends AbstractServiceFunctionalIntegrationTest {
@@ -73,7 +74,12 @@ public final class RuleServiceITest extends AbstractServiceFunctionalIntegration
 			if (politicianData != null) {
 				KieSession ksession = newKieContainer.newKieSession();			
 				ksession.insert( politicianData );
-				System.out.println("Politician Rules fired:" +ksession.fireAllRules() + ":" + politicianData.getFirstName() + " " +politicianData.getLastName());
+				int level = ksession.fireAllRules();
+				if (level == 0) {					
+					System.out.println(": detected level:" +Status.OK + ":" + politicianData.getFirstName() + " " +politicianData.getLastName());
+				} else {
+					System.out.println(": detected level:" +Status.CRITICAL + ":" + politicianData.getFirstName() + " " +politicianData.getLastName());					
+				}
 				ksession.dispose();
 			}
 		}
