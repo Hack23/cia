@@ -1277,7 +1277,7 @@
               <!-- compile everything to ensure module-info contains right entries -->
               <!-- required when JAVA_HOME is JDK 8 or below -->
               <jdkToolchain>
-                <version>10</version>
+                <version>9</version>
               </jdkToolchain>
               <release>9</release>
               <source>9</source>
