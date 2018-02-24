@@ -37,10 +37,6 @@
 		<cve>CVE-2015-5184</cve>
 		<cve>CVE-2012-0881</cve>
 		<cve>CVE-2017-9735</cve>
-		<cve>CVE-2017-9735</cve>
-		<cve>CVE-2015-5182</cve>
-		<cve>CVE-2017-5929</cve>
-		<cve>CVE-2017-8806</cve>		
 		<cve>CVE-2017-5929</cve>
 		<cve>CVE-2015-5182</cve>
 		<cve>CVE-2017-8806</cve>
@@ -48,5 +44,7 @@
 		<cve>CVE-2014-5509</cve>
 		<cve>CVE-2018-5968</cve>
 		<cve>CVE-2017-7525</cve>
+		<cve>CVE-2015-5224</cve>
+		<cve>CVE-2016-5011</cve>
     </suppress>
 </suppressions>
