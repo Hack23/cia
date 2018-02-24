@@ -21,13 +21,17 @@ package com.hack23.cia.web.widgets.charts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import com.vaadin.shared.ui.JavaScriptComponentState;
 
+/**
+ * The Class SankeyChartState.
+ */
 public class SankeyChartState extends JavaScriptComponentState {
     
-    /**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The values. */
@@ -35,4 +39,23 @@ public class SankeyChartState extends JavaScriptComponentState {
     
     /** The my id. */
     public String myId;
+    
+    
+	/**
+	 * Instantiates a new sankey chart state.
+	 */
+	public SankeyChartState() {
+		super();
+	}
+
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this, false);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
+
 }

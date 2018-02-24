@@ -20,6 +20,9 @@ package com.hack23.cia.web.widgets.charts;
 
 import java.util.ArrayList;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.ui.AbstractJavaScriptComponent;
 
@@ -33,18 +36,13 @@ public class SankeyChart extends AbstractJavaScriptComponent {
 	private static final long serialVersionUID = 1L;
 
 	/** The element id. */
-    private static int elementId = 0;
+    private static int elementId;
 
     /** The my id. */
     private String myId;
 
     /**
-	 * Instantiates a new bar chart.
-	 *
-	 * @param title
-	 *            the title
-	 * @param subtitle
-	 *            the subtitle
+	 * Instantiates a new sankey chart.
 	 */
     public SankeyChart() {
         myId = "gBarChartComponent" + (++elementId);
@@ -85,4 +83,15 @@ public class SankeyChart extends AbstractJavaScriptComponent {
     public void drawChart() {
         callFunction("doDraw");
     }
+    
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this, false);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
+	
 }
