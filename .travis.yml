@@ -8,7 +8,8 @@ addons:
       - oracle-java9-installer
       - graphviz
         
-jdk: oraclejdk8
+jdk:
+  - oraclejdk8
 
 env:
   global:
@@ -19,7 +20,8 @@ cache:
   - $HOME/.m2
 
 script:
-  - cp parent-pom/toolchain/toolchains.xml $HOME/.m2/toolchains.xml  
+  - cp parent-pom/toolchain/toolchains.xml $HOME/.m2/toolchains.xml
+  - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
 after_success:
