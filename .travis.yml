@@ -2,6 +2,8 @@ language: java
 sudo: false
 install: true
 addons:
+  sonarcloud:
+    organization: "hack23"
   apt:
     packages:
       - oracle-java8-installer
@@ -29,7 +31,8 @@ script:
   - cp parent-pom/toolchain/toolchains.xml $HOME/.m2/toolchains.xml
   - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-
+  - mvn sonar:sonar
+ 
 after_success:
   - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
 
