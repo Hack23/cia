@@ -5,7 +5,7 @@ addons:
   apt:
     packages:
       - oracle-java8-installer
-      - oracle-java-installer      
+      - oracle-java9-installer      
 jdk: oraclejdk8
 
 cache:
