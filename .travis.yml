@@ -1,0 +1,10 @@
+language: java
+sudo: false
+install: true
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+      - oracle-java-installer      
+jdk: oraclejdk8
+
