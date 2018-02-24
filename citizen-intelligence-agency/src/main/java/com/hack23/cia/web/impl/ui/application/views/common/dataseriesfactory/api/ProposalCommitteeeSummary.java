@@ -20,7 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.ap
 
 import java.util.Locale;
 
-public class ProposalCommitteeeSummary {
+public final class ProposalCommitteeeSummary {
 
 	/** The org. */
 	private final String org;

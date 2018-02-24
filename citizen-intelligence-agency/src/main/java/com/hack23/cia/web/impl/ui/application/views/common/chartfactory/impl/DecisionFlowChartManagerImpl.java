@@ -36,7 +36,7 @@ import com.hack23.cia.web.widgets.charts.SankeyChart;
  * The Class DecisionFlowChartManagerImpl.
  */
 @Service
-public class DecisionFlowChartManagerImpl implements DecisionFlowChartManager {
+public final class DecisionFlowChartManagerImpl implements DecisionFlowChartManager {
 	
 	/** The decision data factory. */
 	@Autowired

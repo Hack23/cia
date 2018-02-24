@@ -39,7 +39,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
  */
 @Service
 @Transactional(propagation=Propagation.REQUIRED)
-public class DecisionDataFactoryImpl implements DecisionDataFactory {
+public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 	
 	/** The application manager. */
 	@Autowired
