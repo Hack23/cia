@@ -7,6 +7,12 @@ addons:
       - oracle-java8-installer
       - oracle-java9-installer
       - graphviz
+      - build-essential
+      - fakeroot
+      - devscripts
+      - debhelper
+      - dh-make
+      - bzr-builddeb
         
 jdk:
   - oraclejdk8
