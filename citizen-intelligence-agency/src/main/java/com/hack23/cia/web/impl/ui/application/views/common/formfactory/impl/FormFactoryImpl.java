@@ -173,13 +173,16 @@ public final class FormFactoryImpl implements FormFactory {
 
 			if (typeOfProperty != null) {
 				final AbstractField<?> field = new TextField();
+				field.setReadOnly(true);
 				final Converter converter = getConverterForType(typeOfProperty);
+				field.setCaption(property);
+				field.setWidth(ContentSize.FULL_SIZE);
+				formContent.addComponent(field);
 
 				if (converter != null) {
 					binder.forField(field).withConverter(converter).bind(property);
-					field.setCaption(property);
-					field.setWidth(ContentSize.FULL_SIZE);
-					formContent.addComponent(field);
+				} else if (String.class.equals(typeOfProperty)) {
+					binder.forField(field).bind(property);
 				} else {
 					LOGGER.warn("No fieldtype for property: {}, type: {}", property,typeOfProperty);
 				}
@@ -237,7 +240,5 @@ public final class FormFactoryImpl implements FormFactory {
 		}
 		return null;
 	}
-
-
 
 }

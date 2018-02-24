@@ -19,17 +19,17 @@
 package com.hack23.cia.web.widgets.charts;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.ui.AbstractJavaScriptComponent;
 
+/**
+ * The Class SankeyChart.
+ */
 @JavaScript({ "https://www.gstatic.com/charts/loader.js", "SankeyChart.js" })
 public class SankeyChart extends AbstractJavaScriptComponent {
     
-    /**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The element id. */
@@ -61,16 +61,6 @@ public class SankeyChart extends AbstractJavaScriptComponent {
     }
 
 
-    /**
-	 * Adds the values.
-	 *
-	 * @param chartValues
-	 *            the chart values
-	 */
-    public void addValues(List<Object> chartValues) {
-        getState().values.add(chartValues);
-    }
-
 	/**
 	 * Adds the data row.
 	 *
@@ -86,7 +76,7 @@ public class SankeyChart extends AbstractJavaScriptComponent {
         valueData.add(from);
         valueData.add(to);
         valueData.add(weight);
-        addValues(valueData);
+        getState().values.add(valueData);
 	}
 
     /**
