@@ -26,7 +26,7 @@ function com_hack23_cia_web_widgets_charts_SankeyChart() {
 		var data = new google.visualization.DataTable();
         data.addColumn('string', 'From');
         data.addColumn('string', 'To');
-        data.addColumn('number', 'Weight');
+        data.addColumn('number', 'Total');
         
         var dataValueList = this.getState().values;
         var rowData = new Array();
@@ -43,6 +43,11 @@ function com_hack23_cia_web_widgets_charts_SankeyChart() {
 
         var options = {
           width: '100%',
+          sankey: {
+              link: {
+                colorMode: 'gradient'
+              }
+            }
         };
 
         var chart = new google.visualization.Sankey(document.getElementById(this.getState().myId));
