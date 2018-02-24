@@ -1596,7 +1596,7 @@
 					"Ref": "DBClass"
 				},
 				"Engine": "postgres",
-				"EngineVersion": "9.6.5",
+				"EngineVersion": "10.1",
 				"MultiAZ": "false",
 				"PubliclyAccessible": "true",
 				"StorageType": "gp2",
