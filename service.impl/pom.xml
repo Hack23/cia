@@ -367,7 +367,7 @@
     </dependency>
   </dependencies>
   <build>
-    <extensions />
-    <plugins />
+    <extensions></extensions>
+    <plugins></plugins>
   </build>
 </project>
