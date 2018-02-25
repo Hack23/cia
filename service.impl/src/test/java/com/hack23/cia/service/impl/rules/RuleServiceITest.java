@@ -26,6 +26,8 @@ import org.kie.api.KieServices;
 import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieFileSystem;
 import org.kie.api.builder.KieModule;
+import org.kie.api.event.rule.AfterMatchFiredEvent;
+import org.kie.api.event.rule.DefaultAgendaEventListener;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.kie.internal.io.ResourceFactory;
@@ -35,7 +37,6 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.service.api.action.kpi.Status;
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 
 public final class RuleServiceITest extends AbstractServiceFunctionalIntegrationTest {
@@ -74,12 +75,17 @@ public final class RuleServiceITest extends AbstractServiceFunctionalIntegration
 			if (politicianData != null) {
 				KieSession ksession = newKieContainer.newKieSession();			
 				ksession.insert( politicianData );
+				
+				ksession.addEventListener( new DefaultAgendaEventListener() {
+				    public void afterMatchFired(AfterMatchFiredEvent event) {
+				        super.afterMatchFired( event );
+				        System.out.println(event.getMatch().getRule() + ":" + politicianData.getFirstName() + politicianData.getLastName());
+				        
+				    }
+				});
+				
 				int level = ksession.fireAllRules();
-				if (level == 0) {					
-					System.out.println(": detected level:" +Status.OK + ":" + politicianData.getFirstName() + " " +politicianData.getLastName());
-				} else {
-					System.out.println(": detected level:" +Status.CRITICAL + ":" + politicianData.getFirstName() + " " +politicianData.getLastName());					
-				}
+				
 				ksession.dispose();
 			}
 		}
@@ -88,7 +94,16 @@ public final class RuleServiceITest extends AbstractServiceFunctionalIntegration
 			if (partyData != null) {
 				KieSession ksession = newKieContainer.newKieSession();			
 				ksession.insert( partyData );
-				System.out.println("Pary Rules fired:" +ksession.fireAllRules() + ":" + partyData.getParty());
+				
+				ksession.addEventListener( new DefaultAgendaEventListener() {
+				    public void afterMatchFired(AfterMatchFiredEvent event) {
+				        super.afterMatchFired( event );
+				        System.out.println(event.getMatch().getRule() + partyData.getParty());
+				    }
+				});			
+				
+				int level = ksession.fireAllRules();
+								
 				ksession.dispose();
 			}
 		}
