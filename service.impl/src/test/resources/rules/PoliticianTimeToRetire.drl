@@ -1,0 +1,40 @@
+package com.hack23.cia.service.impl.rules
+ 
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.service.api.action.kpi.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+import java.util.Calendar
+
+function int currentYear(){
+  return Calendar.getInstance().get(Calendar.YEAR);
+}
+
+rule "We have an politician older than 65, retirement age in Sweden"
+	dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl( politician.active == true && (currentYear() - politician.bornYear) > 65 )
+    then
+    	modify( $p ) {
+      		setStatus( Status.MINOR )
+		}
+end
+
+rule "We have an politician older than 70, passed retirement age in Sweden"
+	dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl( politician.active == true && (currentYear() - politician.bornYear) > 70 )
+    then
+    	modify( $p ) {
+      		setStatus( Status.MAJOR )
+		}
+end
+
+rule "We have an politician older than 80, way passed retirement age in Sweden"
+	dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl( politician.active == true &&  (currentYear() - politician.bornYear) > 80 )
+    then
+    	modify( $p ) {
+      		setStatus( Status.CRITICAL )
+		}
+end

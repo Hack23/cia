@@ -28,7 +28,6 @@ import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieFileSystem;
 import org.kie.api.builder.KieModule;
 import org.kie.api.event.rule.AfterMatchFiredEvent;
-import org.kie.api.event.rule.DebugAgendaEventListener;
 import org.kie.api.event.rule.DefaultAgendaEventListener;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
@@ -72,6 +71,9 @@ public final class RuleServiceITest extends AbstractServiceFunctionalIntegration
 	/** The Constant politicianDrlFile. */
 	private static final String politicianDrlFile = "rules/PoliticianLeftPartyStillHoldingPositions.drl";
 	
+	private static final String politicianDrlFile2 = "rules/PoliticianTimeToRetire.drl";
+	
+	
 	/** The Constant partyDrlFile. */
 	private static final String partyDrlFile = "rules/PartyNoGovernmentExperience.drl";
 		
@@ -102,6 +104,7 @@ public final class RuleServiceITest extends AbstractServiceFunctionalIntegration
 
 		KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
 		kieFileSystem.write(ResourceFactory.newClassPathResource(politicianDrlFile));
+		kieFileSystem.write(ResourceFactory.newClassPathResource(politicianDrlFile2));
 		kieFileSystem.write(ResourceFactory.newClassPathResource(partyDrlFile));
 		
 		KieBuilder kieBuilder = kieServices.newKieBuilder(kieFileSystem);
