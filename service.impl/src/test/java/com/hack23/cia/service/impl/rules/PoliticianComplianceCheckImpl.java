@@ -19,7 +19,13 @@
 package com.hack23.cia.service.impl.rules;
 
 import java.text.MessageFormat;
+import java.util.List;
 
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummary;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily;
+import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument;
+import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.service.api.action.kpi.ResourceIdentifier;
 import com.hack23.cia.service.api.action.kpi.ResourceType;
@@ -31,7 +37,18 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 
 	/** The politician. */
 	private final ViewRiksdagenPolitician politician;
-		
+	
+	private List<ViewRiksdagenPoliticianDocument> documents;
+	
+	private List<ViewRiksdagenPoliticianDocumentDailySummary> documentDailySummary;
+	
+	private List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> ballotDecisions;
+	
+	private List<ViewRiksdagenVoteDataBallotPoliticianSummary> ballots;
+	
+	private List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dailyBallotSummary;
+	
+	
 	/**
 	 * Instantiates a new politician compliance check impl.
 	 *
