@@ -20,6 +20,7 @@ package com.hack23.cia.service.impl.rules;
 
 import java.io.IOException;
 
+import org.drools.core.common.DefaultFactHandle;
 import org.junit.Before;
 import org.junit.Test;
 import org.kie.api.KieServices;
@@ -27,6 +28,7 @@ import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieFileSystem;
 import org.kie.api.builder.KieModule;
 import org.kie.api.event.rule.AfterMatchFiredEvent;
+import org.kie.api.event.rule.DebugAgendaEventListener;
 import org.kie.api.event.rule.DefaultAgendaEventListener;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
@@ -37,22 +39,63 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 
+/**
+ * The Class RuleServiceITest.
+ */
 public final class RuleServiceITest extends AbstractServiceFunctionalIntegrationTest {
 
-	private static final String politicianDrlFile = "rules/Politician.drl";
+	/**
+	 * The listener interface for receiving complianceCheckAgendaEvent events. The
+	 * class that is interested in processing a complianceCheckAgendaEvent event
+	 * implements this interface, and the object created with that class is
+	 * registered with a component using the component's
+	 * <code>addComplianceCheckAgendaEventListener<code> method. When the
+	 * complianceCheckAgendaEvent event occurs, that object's appropriate method is
+	 * invoked.
+	 *
+	 * @see ComplianceCheckAgendaEventEvent
+	 */
+	private final class ComplianceCheckAgendaEventListener extends DefaultAgendaEventListener {
+		public void afterMatchFired(AfterMatchFiredEvent event) {
+		    super.afterMatchFired( event );			        
+		    AbstractComplianceCheckImpl complianceCheck = (AbstractComplianceCheckImpl) ((DefaultFactHandle)event.getMatch().getFactHandles().iterator().next()).getObject();
+		    complianceCheck.setRuleName(event.getMatch().getRule().getName());
+		    complianceCheck.setRuleDescription(event.getMatch().getRule().getPackageName());
+		    
+		    System.out.println(  complianceCheck);
+		}
+	}
+
+	/** The Constant politicianDrlFile. */
+	private static final String politicianDrlFile = "rules/PoliticianLeftPartyStillHoldingPositions.drl";
 	
-	private static final String partyDrlFile = "rules/Party.drl";
+	/** The Constant partyDrlFile. */
+	private static final String partyDrlFile = "rules/PartyNoGovernmentExperience.drl";
 		
+	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
 	
+	/**
+	 * Auth admin user.
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
 	@Before
 	public void authAdminUser() throws IOException {
 		setAuthenticatedAdminuser();
 	}
 
+	/**
+	 * Rule engine test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public void ruleEngineTest() throws Exception {
 		KieServices kieServices = KieServices.Factory.get();
@@ -66,48 +109,54 @@ public final class RuleServiceITest extends AbstractServiceFunctionalIntegration
 		KieModule kieModule = kieBuilder.getKieModule();
 
 		KieContainer newKieContainer = kieServices.newKieContainer(kieModule.getReleaseId());
-		
-		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager.getDataContainer(ViewRiksdagenPolitician.class);
 
-		final DataContainer<ViewRiksdagenPartySummary, String> partyDataContainer = applicationManager.getDataContainer(ViewRiksdagenPartySummary.class);
+		KieSession ksession = newKieContainer.newKieSession();			
+		ksession.addEventListener( new ComplianceCheckAgendaEventListener());				
+		//ksession.addEventListener( new DebugAgendaEventListener() );
 
+		insertPoliticians(ksession, applicationManager.getDataContainer(ViewRiksdagenPolitician.class));
+		insertParties(ksession, applicationManager.getDataContainer(ViewRiksdagenPartySummary.class));
+
+		ksession.fireAllRules();				
+		ksession.dispose();
+
+	}
+
+	/**
+	 * Insert politicians.
+	 *
+	 * @param ksession
+	 *            the ksession
+	 * @param politicianDataContainer
+	 *            the politician data container
+	 */
+	private void insertPoliticians(KieSession ksession,
+			final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer) {
 		for (ViewRiksdagenPolitician politicianData : politicianDataContainer.getAll()) {
 			if (politicianData != null) {
-				KieSession ksession = newKieContainer.newKieSession();			
-				ksession.insert( politicianData );
-				
-				ksession.addEventListener( new DefaultAgendaEventListener() {
-				    public void afterMatchFired(AfterMatchFiredEvent event) {
-				        super.afterMatchFired( event );
-				        System.out.println(event.getMatch().getRule() + ":" + politicianData.getFirstName() + politicianData.getLastName());
-				        
-				    }
-				});
-				
-				int level = ksession.fireAllRules();
-				
-				ksession.dispose();
+				ComplianceCheck complianceCheck  = new PoliticianComplianceCheckImpl( politicianData);
+				ksession.insert( complianceCheck );				
 			}
 		}
+	}
 
+	/**
+	 * Insert parties.
+	 *
+	 * @param ksession
+	 *            the ksession
+	 * @param partyDataContainer
+	 *            the party data container
+	 */
+	private void insertParties(KieSession ksession,
+			final DataContainer<ViewRiksdagenPartySummary, String> partyDataContainer) {		
 		for (ViewRiksdagenPartySummary partyData : partyDataContainer.getAll()) {
 			if (partyData != null) {
-				KieSession ksession = newKieContainer.newKieSession();			
-				ksession.insert( partyData );
-				
-				ksession.addEventListener( new DefaultAgendaEventListener() {
-				    public void afterMatchFired(AfterMatchFiredEvent event) {
-				        super.afterMatchFired( event );
-				        System.out.println(event.getMatch().getRule() + partyData.getParty());
-				    }
-				});			
-				
-				int level = ksession.fireAllRules();
-								
-				ksession.dispose();
+				  				
+				ComplianceCheck complianceCheck = new PartyComplianceCheckImpl( partyData);
+				ksession.insert( complianceCheck );				
 			}
 		}
-
 	}
 
 }

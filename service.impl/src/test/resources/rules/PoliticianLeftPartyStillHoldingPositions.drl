@@ -2,11 +2,14 @@ package com.hack23.cia.service.impl.rules
  
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
 import com.hack23.cia.service.api.action.kpi.Status
-import com.hack23.cia.service.impl.rules.ComplianceCheckImpl
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
 
 rule "We have an politician that left the party still holding assignments"
+	dialect "java"
     when
-        exists( ViewRiksdagenPolitician(party == "-" && active == true ) )
+        $p : PoliticianComplianceCheckImpl(politician.party == "-" && politician.active == true )
     then
-        insert( new ComplianceCheckImpl() );
+    	modify( $p ) {
+      		setStatus( Status.MINOR )
+		}
 end
