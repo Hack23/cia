@@ -61,7 +61,7 @@ public final class ApiActionSanityTest extends AbstractUnitTest {
 		assertTrue(EXPECT_CLASSES_IN_PACKAGE,checkAllClassesInPackage(testSuiteProvider,"com.hack23.cia.service.api.action.application"));
 		assertTrue(EXPECT_CLASSES_IN_PACKAGE,checkAllClassesInPackage(testSuiteProvider,"com.hack23.cia.service.api.action.admin"));
 		assertTrue(EXPECT_CLASSES_IN_PACKAGE,checkAllClassesInPackage(testSuiteProvider,"com.hack23.cia.service.api.action.user"));
-
+		assertTrue(EXPECT_CLASSES_IN_PACKAGE,checkAllClassesInPackage(testSuiteProvider,"com.hack23.cia.service.api.action.kpi"));
 
 		testSuiteProvider.addClassChecker(ToStringNotNullChecker.class);
 		testSuiteProvider.addClassChecker(BijectiveCompareToChecker.class);

@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.impl;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -132,7 +133,7 @@ final class ConfigurationManagerImpl implements ConfigurationManager {
 	private static List<LanguageData> getSupportedLocalesLanguageData() {
 		final List<LanguageData> languages = new ArrayList<>();
 
-		for (final Locale locale : SimpleDateFormat.getAvailableLocales()) {
+		for (final Locale locale : DateFormat.getAvailableLocales()) {
 			final String localeString = locale.toString().trim();
 			if (locale.getDisplayCountry(Locale.ENGLISH).length() == 0 && !StringUtils.isEmpty(localeString)
 					&& localeString.length() == EXPECTED_LOCALE_LENGTH) {

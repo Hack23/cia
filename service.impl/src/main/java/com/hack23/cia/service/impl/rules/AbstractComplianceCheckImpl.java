@@ -50,6 +50,7 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 		this.resourceType = resourceType;
 	}
 
+	@Override
 	public String getRuleName() {
 		return ruleName;
 	}
@@ -64,6 +65,7 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 		this.ruleName = ruleName;
 	}
 
+	@Override
 	public String getRuleDescription() {
 		return ruleDescription;
 	}
@@ -88,10 +90,12 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 		this.status = status;
 	}
 
+	@Override
 	public ResourceType getResourceType() {
 		return resourceType;
 	}
 
+	@Override
 	public Status getStatus() {
 		return status;
 	}
