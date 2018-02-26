@@ -26,6 +26,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Parli
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.RiskIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
@@ -38,6 +39,9 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Service
 public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements ParliamentMenuItemFactory {
+
+	/** The Constant RISK_SUMMARY. */
+	private static final String RISK_SUMMARY = "Risk Summary";
 
 	/** The Constant CHART_PARTY_AVERAGE_GENDER_ALL_BALLOTS. */
 	private static final String CHART_PARTY_AVERAGE_GENDER_ALL_BALLOTS = "Chart Party average gender all ballots";
@@ -104,6 +108,9 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 	/** The Constant COMMAND_CHARTS_DECISION_FLOW. */
 	private static final PageModeMenuCommand COMMAND_CHARTS_DECISION_FLOW = new PageModeMenuCommand(
 			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DECISION_FLOW_CHART.toString());
+
+	private static final PageModeMenuCommand COMMAND_RISK_SUMMARY = new PageModeMenuCommand(
+			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.RULES, RiskIndicators.RISK_SUMMARY.toString());
 
 
 	/** The Constant COMMAND_OVERVIEW. */
@@ -176,6 +183,8 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 		final MenuItem addItem3 = chartIndicators.addItem(PARTY_AGE, VaadinIcons.INSTITUTION,COMMAND_CHARTS_PARTY_AGE);
 		addItem3.setDescription(AVERAGE_AGE);
 
+		final MenuItem addItem7 = chartIndicators.addItem(RISK_SUMMARY, VaadinIcons.INSTITUTION,COMMAND_RISK_SUMMARY);
+		addItem7.setDescription(RISK_SUMMARY);
 
 		final MenuItem addItem4 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE,VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY);
 		addItem4.setDescription(DAILY_TOTAL_OF_NUMBER_PUBLISHED_DOCUMENTS);
@@ -198,6 +207,8 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 		createButtonLink(grid,PARTY_GENDER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER, CHART_PARTY_AVERAGE_GENDER_ALL_BALLOTS);
 
 		createButtonLink(grid,PARTY_AGE, VaadinIcons.INSTITUTION,COMMAND_CHARTS_PARTY_AGE, CHART_PARTY_AGE_ALL_BALLOTS);
+
+		createButtonLink(grid,RISK_SUMMARY, VaadinIcons.INSTITUTION,COMMAND_RISK_SUMMARY,RISK_SUMMARY);
 
 
 		createButtonLink(grid,DOCUMENT_ACTIVITY_BY_TYPE,VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY, CHART_DOCUMENT_ACTIVITY_BY_TYPE);

@@ -43,6 +43,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPag
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.RiskIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 /**
@@ -1284,6 +1285,24 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS,
 				ChartIndicators.PARTYWINNER.toString()));
+
+	}
+
+	/**
+	 * Site parliament rules risk summary test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteParliamentRulesRiskSummaryTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.RULES,
+				RiskIndicators.RISK_SUMMARY.toString()));
 
 	}
 

@@ -19,26 +19,10 @@
 package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
 
 /**
- * The Enum PageMode.
+ * The Enum RiskIndicators.
  */
-public enum PageMode {
+public enum RiskIndicators {
 
-	/** The overview. */
-	OVERVIEW,
-
-	/** The charts. */
-	CHARTS,
-
-	/** The datagrid. */
-	DATAGRID,
-
-	/** The indicators. */
-	INDICATORS,
-
-	/** The pagevisithistory. */
-	PAGEVISITHISTORY,
-	
-	/** The rules. */
-	RULES
-
+	/** The risk summary. */
+	RISK_SUMMARY;
 }
