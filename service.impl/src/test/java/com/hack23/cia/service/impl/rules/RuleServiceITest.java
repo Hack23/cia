@@ -73,6 +73,9 @@ public final class RuleServiceITest extends AbstractServiceFunctionalIntegration
 	
 	private static final String politicianDrlFile2 = "rules/PoliticianTimeToRetire.drl";
 	
+	private static final String politicianDrlFile3 = "rules/PoliticianBusySchedule.drl";
+	
+	
 	
 	/** The Constant partyDrlFile. */
 	private static final String partyDrlFile = "rules/PartyNoGovernmentExperience.drl";
@@ -105,6 +108,7 @@ public final class RuleServiceITest extends AbstractServiceFunctionalIntegration
 		KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
 		kieFileSystem.write(ResourceFactory.newClassPathResource(politicianDrlFile));
 		kieFileSystem.write(ResourceFactory.newClassPathResource(politicianDrlFile2));
+		kieFileSystem.write(ResourceFactory.newClassPathResource(politicianDrlFile3));		
 		kieFileSystem.write(ResourceFactory.newClassPathResource(partyDrlFile));
 		
 		KieBuilder kieBuilder = kieServices.newKieBuilder(kieFileSystem);

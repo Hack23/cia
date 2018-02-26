@@ -1,0 +1,41 @@
+package com.hack23.cia.service.impl.rules
+ 
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.service.api.action.kpi.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+import java.util.Date
+import java.util.concurrent.TimeUnit
+
+function long busyFactor(Date firstAssignmentDate, long totalDaysServed){
+  return ( totalDaysServed / TimeUnit.MILLISECONDS.toDays(new Date().getTime() - firstAssignmentDate.getTime()) );
+}
+
+rule "We have an politician with busy schedule, at least on average more than 4 concurrent roles per day"
+	dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl( politician.active == true && ( busyFactor(politician.firstAssignmentDate, politician.totalDaysServed ) > 4 ))
+    then
+    	modify( $p ) {
+      		setStatus( Status.MINOR )
+		}
+end
+
+rule "We have an politician with busy schedule, at least on average more than 5 concurrent roles per day"
+	dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl( politician.active == true && ( busyFactor(politician.firstAssignmentDate, politician.totalDaysServed ) > 5 ))
+    then
+    	modify( $p ) {
+      		setStatus( Status.MAJOR )
+		}
+end
+
+rule "We have an politician with busy schedule, at least on average more than 7 concurrent roles per day"
+	dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl( politician.active == true && ( busyFactor(politician.firstAssignmentDate, politician.totalDaysServed ) > 6 ))
+    then
+    	modify( $p ) {
+      		setStatus( Status.CRITICAL )
+		}
+end
