@@ -10,30 +10,30 @@ function long busyFactor(Date firstAssignmentDate, long totalDaysServed){
   return ( totalDaysServed / TimeUnit.MILLISECONDS.toDays(new Date().getTime() - firstAssignmentDate.getTime()) );
 }
 
-rule "We have an politician with busy schedule, at least on average more than 4 concurrent roles per day"
+rule "We have an politician with busy schedule, more than 4 current roles and busy past"
 	dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl( politician.active == true && ( busyFactor(politician.firstAssignmentDate, politician.totalDaysServed ) > 4 ))
+        $p : PoliticianComplianceCheckImpl( politician.active == true && politician.currentAssignments > 4 && ( busyFactor(politician.firstAssignmentDate, politician.totalDaysServed ) > 4 ))
     then
     	modify( $p ) {
       		setStatus( Status.MINOR )
 		}
 end
 
-rule "We have an politician with busy schedule, at least on average more than 5 concurrent roles per day"
+rule "We have an politician with busy schedule, more than 5 current roles and busy past"
 	dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl( politician.active == true && ( busyFactor(politician.firstAssignmentDate, politician.totalDaysServed ) > 5 ))
+        $p : PoliticianComplianceCheckImpl( politician.active == true && politician.currentAssignments > 5 && ( busyFactor(politician.firstAssignmentDate, politician.totalDaysServed ) > 5 ))
     then
     	modify( $p ) {
       		setStatus( Status.MAJOR )
 		}
 end
 
-rule "We have an politician with busy schedule, at least on average more than 7 concurrent roles per day"
+rule "We have an politician with busy schedule, more than 6 current roles and busy past"
 	dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl( politician.active == true && ( busyFactor(politician.firstAssignmentDate, politician.totalDaysServed ) > 6 ))
+        $p : PoliticianComplianceCheckImpl( politician.active == true && politician.currentAssignments > 6 && ( busyFactor(politician.firstAssignmentDate, politician.totalDaysServed ) > 6 ))
     then
     	modify( $p ) {
       		setStatus( Status.CRITICAL )
