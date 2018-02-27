@@ -18,6 +18,9 @@
 */
 package com.hack23.cia.service.impl.action.kpi;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +35,12 @@ import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
+import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheckRequest;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheckResponse;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
+import com.hack23.cia.service.impl.rules.RulesEngine;
 
 /**
  * The Class ComplianceCheckService.
@@ -53,6 +58,9 @@ public final class ComplianceCheckService extends
 	/** The create application event service. */
 	@Autowired
 	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
+	
+	@Autowired
+	private RulesEngine rulesEngine;
 
 	/**
 	 * Instantiates a new compliance check service.
@@ -77,13 +85,15 @@ public final class ComplianceCheckService extends
 
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
 
-
 		if (userAccount != null) {
-
 			eventRequest.setUserId(userAccount.getUserId());
 		}
 
 		final ComplianceCheckResponse response = new ComplianceCheckResponse(ServiceResult.SUCCESS);
+		List<ComplianceCheck> list = rulesEngine.checkRulesCompliance();
+		response.setList(list);
+		response.setStatusMap(list.stream().collect(Collectors.groupingBy(ComplianceCheck::getStatus)));
+		response.setResourceTypeMap(list.stream().collect(Collectors.groupingBy(ComplianceCheck::getResourceType)));
 
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);
