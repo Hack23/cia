@@ -18,10 +18,12 @@
 */
 package com.hack23.cia.service.api.action.kpi;
 
+import java.io.Serializable;
+
 /**
  * The Interface ComplianceCheck.
  */
-public interface ComplianceCheck {
+public interface ComplianceCheck extends Serializable {
 
 	/**
 	 * Gets the rule name.
