@@ -54,9 +54,16 @@ public interface ComplianceCheck extends Serializable {
 	ResourceType getResourceType();
 	
 	/**
-	 * Gets the resource identifier.
+	 * Gets the id.
 	 *
-	 * @return the resource identifier
+	 * @return the id
 	 */
-	ResourceIdentifier getResourceIdentifier();
+	String getId();
+	
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
+	String getName();
 }

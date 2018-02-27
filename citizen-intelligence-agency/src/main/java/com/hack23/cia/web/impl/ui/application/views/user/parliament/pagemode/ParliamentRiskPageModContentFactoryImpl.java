@@ -69,9 +69,9 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 		serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 		ComplianceCheckResponse serviceResponse = (ComplianceCheckResponse) getApplicationManager()
 				.service(serviceRequest);
-
+		
 		getGridFactory().createBasicBeanItemGrid(panelContent, ComplianceCheck.class, serviceResponse.getList(), "Risk",
-				new String[] { "resourceType", "ruleName", "ruleDescription", "status" }, new String[] { "resourceIdentifier" }, null, null, null);
+				new String[] { "name", "status", "resourceType", "ruleName" }, new String[] { "id", "ruleDescription" }, null, null, null);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

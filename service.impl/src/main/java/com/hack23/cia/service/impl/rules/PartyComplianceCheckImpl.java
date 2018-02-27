@@ -22,16 +22,21 @@ import java.text.MessageFormat;
 import java.util.Locale;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
-import com.hack23.cia.service.api.action.kpi.ResourceIdentifier;
 import com.hack23.cia.service.api.action.kpi.ResourceType;
 
 /**
  * The Class PartyComplianceCheckImpl.
  */
-public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl implements ResourceIdentifier {
+public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl {
 
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+	
 	/** The party. */
 	private ViewRiksdagenPartySummary party;
+	
+	/** The name. */
+	private String name;
 
 	/**
 	 * Instantiates a new party compliance check impl.
@@ -42,6 +47,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	public PartyComplianceCheckImpl(final ViewRiksdagenPartySummary party) {
 		super(ResourceType.PARTY);
 		this.party = party;
+		this.name = party.getParty();
 	}
 
 	/**
@@ -54,13 +60,8 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	}
 
 	@Override
-	public ResourceIdentifier getResourceIdentifier() {
-		return this;
-	}
-
-	@Override
 	public String getName() {
-		return party.getParty();
+		return name;
 	}
 
 	@Override
@@ -69,5 +70,9 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 				new Object[] {getName(), getRuleName(), getRuleDescription(), getResourceType(), getStatus()});
 	}
 
+	@Override
+	public String getId() {
+		return party.getParty();
+	}
 
 }

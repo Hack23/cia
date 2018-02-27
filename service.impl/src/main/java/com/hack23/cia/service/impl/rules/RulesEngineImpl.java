@@ -19,7 +19,9 @@
 package com.hack23.cia.service.impl.rules;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
@@ -92,7 +94,7 @@ public final class RulesEngineImpl implements RulesEngine {
 	@Override
 	public List<ComplianceCheck> checkRulesCompliance() {
 		KieSession ksession = rulesContainer.newKieSession();
-		List<ComplianceCheck> complianceChecks = new ArrayList<>();
+		Set<ComplianceCheck> complianceChecks = new HashSet<>();
 		ksession.addEventListener(new ComplianceCheckAgendaEventListener(complianceChecks));
 
 		insertPoliticians(ksession, dataViewer.getAll(ViewRiksdagenPolitician.class));
@@ -100,7 +102,7 @@ public final class RulesEngineImpl implements RulesEngine {
 
 		ksession.fireAllRules();
 		ksession.dispose();
-		return complianceChecks;
+		return new ArrayList(complianceChecks);
 	}
 
 	/**
@@ -138,9 +140,9 @@ public final class RulesEngineImpl implements RulesEngine {
 	}
 
 	private final class ComplianceCheckAgendaEventListener extends DefaultAgendaEventListener {
-		private final List<ComplianceCheck> complianceChecks;
+		private final Set<ComplianceCheck> complianceChecks;
 
-		public ComplianceCheckAgendaEventListener(List<ComplianceCheck> complianceChecks) {
+		public ComplianceCheckAgendaEventListener(Set<ComplianceCheck> complianceChecks) {
 			this.complianceChecks = complianceChecks;
 		}
 

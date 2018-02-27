@@ -28,13 +28,15 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
-import com.hack23.cia.service.api.action.kpi.ResourceIdentifier;
 import com.hack23.cia.service.api.action.kpi.ResourceType;
 
 /**
  * The Class PoliticianComplianceCheckImpl.
  */
-public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheckImpl implements ResourceIdentifier {
+public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheckImpl {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
 	/** The politician. */
 	private final ViewRiksdagenPolitician politician;
@@ -49,6 +51,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	
 	private List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dailyBallotSummary;
 	
+	private String name;
 	
 	/**
 	 * Instantiates a new politician compliance check impl.
@@ -59,6 +62,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	public PoliticianComplianceCheckImpl(final ViewRiksdagenPolitician politician) {
 		super(ResourceType.POLITICIAN);
 		this.politician = politician;
+		this.name = politician.getFirstName() + " " + politician.getLastName() + " (" +politician.getParty() +")";
 	}
 
 	/**
@@ -71,19 +75,19 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	}
 
 	@Override
-	public ResourceIdentifier getResourceIdentifier() {
-		return this;
-	}
-
-	@Override
 	public String getName() {
-		return politician.getFirstName();
+		return name;
 	}
 
 	@Override
 	public String toString() {
 		return new MessageFormat("PoliticianComplianceCheckImpl [getName()={0}, getRuleName()={1}, getRuleDescription()={2}, getResourceType()={3}, getStatus()={4}]",Locale.ENGLISH).format(			
 				new Object[] {getName(), getRuleName(), getRuleDescription(), getResourceType(), getStatus()});
+	}
+
+	@Override
+	public String getId() {
+		return politician.getPersonId();
 	}
 
 	
