@@ -21,6 +21,8 @@ package com.hack23.cia.service.impl.rules;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.drools.core.common.DefaultFactHandle;
 import org.drools.core.io.impl.ClassPathResource;
 import org.kie.api.KieServices;
@@ -46,28 +48,31 @@ import com.hack23.cia.service.data.api.DataViewer;
  * The Class RulesEngineImpl.
  */
 @Service
-@Transactional(propagation=Propagation.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED)
 public final class RulesEngineImpl implements RulesEngine {
 
 	/** The Constant politicianDrlFile. */
 	private static final String politicianDrlFile = "rules/politician/PoliticianLeftPartyStillHoldingPositions.drl";
-	
+
 	private static final String politicianDrlFile2 = "rules/politician/PoliticianTimeToRetire.drl";
-	
+
 	private static final String politicianDrlFile3 = "rules/politician/PoliticianBusySchedule.drl";
 
 	private static final String politicianDrlFile4 = "rules/politician/PoliticianMinisterWithoutParliamentExperience.drl";
-		
+
 	/** The Constant partyDrlFile. */
 	private static final String partyDrlFile = "rules/party/PartyNoGovernmentExperience.drl";
-		
+
 	/** The data viewer. */
 	@Autowired
 	@Qualifier("DataViewer")
 	private DataViewer dataViewer;
 
-	@Override
-	public List<ComplianceCheck> checkRulesCompliance() {
+	/** The new kie container. */
+	private KieContainer rulesContainer;
+
+	@PostConstruct
+	public void initRules() {
 		KieServices kieServices = KieServices.Factory.get();
 
 		KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
@@ -76,21 +81,24 @@ public final class RulesEngineImpl implements RulesEngine {
 		kieFileSystem.write(new ClassPathResource(politicianDrlFile3));
 		kieFileSystem.write(new ClassPathResource(politicianDrlFile4));
 		kieFileSystem.write(new ClassPathResource(partyDrlFile));
-		
+
 		KieBuilder kieBuilder = kieServices.newKieBuilder(kieFileSystem);
 		kieBuilder.buildAll();
 		KieModule kieModule = kieBuilder.getKieModule();
 
-		KieContainer newKieContainer = kieServices.newKieContainer(kieModule.getReleaseId());
+		rulesContainer = kieServices.newKieContainer(kieModule.getReleaseId());
+	}
 
-		KieSession ksession = newKieContainer.newKieSession();			
+	@Override
+	public List<ComplianceCheck> checkRulesCompliance() {
+		KieSession ksession = rulesContainer.newKieSession();
 		List<ComplianceCheck> complianceChecks = new ArrayList<>();
-		ksession.addEventListener( new ComplianceCheckAgendaEventListener(complianceChecks));				
+		ksession.addEventListener(new ComplianceCheckAgendaEventListener(complianceChecks));
 
 		insertPoliticians(ksession, dataViewer.getAll(ViewRiksdagenPolitician.class));
 		insertParties(ksession, dataViewer.getAll(ViewRiksdagenPartySummary.class));
 
-		ksession.fireAllRules();				
+		ksession.fireAllRules();
 		ksession.dispose();
 		return complianceChecks;
 	}
@@ -104,10 +112,10 @@ public final class RulesEngineImpl implements RulesEngine {
 	 *            the list
 	 * @return the list
 	 */
-	private void insertPoliticians(KieSession ksession,final List<ViewRiksdagenPolitician> list) {
+	private void insertPoliticians(KieSession ksession, final List<ViewRiksdagenPolitician> list) {
 		for (ViewRiksdagenPolitician politicianData : list) {
 			if (politicianData != null) {
-				ksession.insert( new PoliticianComplianceCheckImpl( politicianData) );				
+				ksession.insert(new PoliticianComplianceCheckImpl(politicianData));
 			}
 		}
 	}
@@ -121,11 +129,10 @@ public final class RulesEngineImpl implements RulesEngine {
 	 *            the list
 	 * @return the list
 	 */
-	private void insertParties(KieSession ksession,
-			final List<ViewRiksdagenPartySummary> list) {
+	private void insertParties(KieSession ksession, final List<ViewRiksdagenPartySummary> list) {
 		for (ViewRiksdagenPartySummary partyData : list) {
-			if (partyData != null) {				  				
-				ksession.insert( new PartyComplianceCheckImpl( partyData) );				
+			if (partyData != null) {
+				ksession.insert(new PartyComplianceCheckImpl(partyData));
 			}
 		}
 	}
@@ -139,11 +146,12 @@ public final class RulesEngineImpl implements RulesEngine {
 
 		@Override
 		public void afterMatchFired(AfterMatchFiredEvent event) {
-		    super.afterMatchFired( event );			        
-		    AbstractComplianceCheckImpl complianceCheck = (AbstractComplianceCheckImpl) ((DefaultFactHandle)event.getMatch().getFactHandles().iterator().next()).getObject();
-		    complianceCheck.setRuleName(event.getMatch().getRule().getName());
-		    complianceCheck.setRuleDescription(event.getMatch().getRule().getPackageName());
-		    complianceChecks.add(complianceCheck);
+			super.afterMatchFired(event);
+			AbstractComplianceCheckImpl complianceCheck = (AbstractComplianceCheckImpl) ((DefaultFactHandle) event
+					.getMatch().getFactHandles().iterator().next()).getObject();
+			complianceCheck.setRuleName(event.getMatch().getRule().getName());
+			complianceCheck.setRuleDescription(event.getMatch().getRule().getPackageName());
+			complianceChecks.add(complianceCheck);
 		}
 	}
 
