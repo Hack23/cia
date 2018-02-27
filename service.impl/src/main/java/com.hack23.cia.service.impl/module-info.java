@@ -28,6 +28,10 @@ module com.hack23.cia.service.impl {
 
 	requires jms;
 	requires java.mail;
+	requires org.kie.api;
+	requires org.drools.core;
+	
+	
 
 	requires com.hack23.cia.service.api;
 

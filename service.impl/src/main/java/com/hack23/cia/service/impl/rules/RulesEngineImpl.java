@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.drools.core.common.DefaultFactHandle;
+import org.drools.core.io.impl.ClassPathResource;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieFileSystem;
@@ -30,7 +31,6 @@ import org.kie.api.event.rule.AfterMatchFiredEvent;
 import org.kie.api.event.rule.DefaultAgendaEventListener;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
-import org.kie.internal.io.ResourceFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -71,11 +71,11 @@ public final class RulesEngineImpl implements RulesEngine {
 		KieServices kieServices = KieServices.Factory.get();
 
 		KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
-		kieFileSystem.write(ResourceFactory.newClassPathResource(politicianDrlFile));
-		kieFileSystem.write(ResourceFactory.newClassPathResource(politicianDrlFile2));
-		kieFileSystem.write(ResourceFactory.newClassPathResource(politicianDrlFile3));
-		kieFileSystem.write(ResourceFactory.newClassPathResource(politicianDrlFile4));
-		kieFileSystem.write(ResourceFactory.newClassPathResource(partyDrlFile));
+		kieFileSystem.write(new ClassPathResource(politicianDrlFile));
+		kieFileSystem.write(new ClassPathResource(politicianDrlFile2));
+		kieFileSystem.write(new ClassPathResource(politicianDrlFile3));
+		kieFileSystem.write(new ClassPathResource(politicianDrlFile4));
+		kieFileSystem.write(new ClassPathResource(partyDrlFile));
 		
 		KieBuilder kieBuilder = kieServices.newKieBuilder(kieFileSystem);
 		kieBuilder.buildAll();
