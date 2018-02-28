@@ -849,7 +849,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>2.10.4</version>
+          <version>3.0.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1607,7 +1607,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>2.10.4</version>
+            <version>3.0.0</version>
             <executions>
               <execution>
                 <id>attach-javadocs</id>
@@ -1644,9 +1644,10 @@
               <version>true</version>
               <author>true</author>
               <keywords>true</keywords>
-              <additionalparam>-sourceclasspath
-								${project.build.outputDirectory} -sourceclasspath
-								${project.build.directory}/dependency</additionalparam>
+              <additionalOptions>
+                <additionalOption>-sourceclasspath ${project.build.outputDirectory}</additionalOption>
+                <additionalOption>-sourceclasspath ${project.build.directory}/dependency</additionalOption>
+              </additionalOptions>
             </configuration>
           </plugin>
           <plugin>
@@ -1776,7 +1777,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>2.10.4</version>
+            <version>3.0.0</version>
             <inherited>true</inherited>
             <configuration>
               <includeDependencySources>false</includeDependencySources>
@@ -1808,8 +1809,10 @@
               <version>true</version>
               <author>true</author>
               <keywords>true</keywords>
-              <additionalparam>-sourceclasspath
-								${project.build.outputDirectory} ${additionalRuntimeArgLine}</additionalparam>
+              <additionalOptions>
+                <additionalOption>-sourceclasspath ${project.build.outputDirectory}</additionalOption>
+                <additionalOption>${additionalRuntimeArgLine}</additionalOption>
+              </additionalOptions>
             </configuration>
             <!-- <reportSets> <reportSet> <id>non-aggregate</id> <reports> <report>javadoc</report> 
 							</reports> <configuration></configuration> </reportSet> </reportSets> -->
