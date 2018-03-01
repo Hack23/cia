@@ -125,10 +125,7 @@ public abstract class AbstractView extends Panel implements View {
 			}
 		} catch (final AccessDeniedException e ) {
 			LOGGER.warn("Access denided:" +pageName,e);
-			final VerticalLayout panelContent = new VerticalLayout();
-			panelContent.setMargin(true);
-			panelContent.setWidth(100, Unit.PERCENTAGE);
-			panelContent.setHeight(100, Unit.PERCENTAGE);
+			final VerticalLayout panelContent = createFullSizeVerticalLayout();
 			LabelFactory.createHeader2Label(panelContent,"Access denided:" +pageName);
 			getPanel().setContent(panelContent);
 			getPanel().setCaption("Access denied");
@@ -142,66 +139,58 @@ public abstract class AbstractView extends Panel implements View {
 	 *            the panel name
 	 */
 	protected final void createBasicLayoutWithPanelAndFooter(final String panelName) {
-		final VerticalLayout layout = new VerticalLayout();
-		layout.setMargin(true);
-		layout.setSpacing(true);
-		layout.setWidth(100, Unit.PERCENTAGE);
-		layout.setHeight(100, Unit.PERCENTAGE);
-
-
-		final VerticalLayout pageModeContent = new VerticalLayout();
-		pageModeContent.setMargin(false);
-		pageModeContent.setSpacing(false);
-		pageModeContent.setWidth(100, Unit.PERCENTAGE);
-		pageModeContent.setHeight(100, Unit.PERCENTAGE);
-
+		final VerticalLayout layout = createFullSizeVerticalLayout();
+		final VerticalLayout pageModeContent = createFullSizeVerticalLayout(false,false);
 		layout.addComponent(pageModeContent);
-
-		final ThemeResource ciaLogoResource = new ThemeResource("cia-logo.png");
-
-		final Image ciaLogoImage = new Image(null,ciaLogoResource);
 
 		final HorizontalLayout topHeader = new HorizontalLayout();
 
-		topHeader.addComponent(ciaLogoImage);
-		ciaLogoImage.setWidth("60px");
-		ciaLogoImage.setHeight("60px");
-		topHeader.setComponentAlignment(ciaLogoImage, Alignment.MIDDLE_LEFT);
-		topHeader.setExpandRatio(ciaLogoImage, ContentRatio.SMALL);
-
-
-		final HorizontalLayout topTitleHeadertPanel = new HorizontalLayout();
-
-
-		final Label titleLabel = new Label("Citizen Intelligence Agency");
-		titleLabel.setStyleName("Header");
-		topTitleHeadertPanel.addComponent(titleLabel);
-		topTitleHeadertPanel.setComponentAlignment(titleLabel, Alignment.MIDDLE_LEFT);
-
-		final Label sloganLabel = new Label("// Tracking politicians like bugs!");
-		sloganLabel.setStyleName("HeaderSlogan");
-		topTitleHeadertPanel.addComponent(sloganLabel);
-		topTitleHeadertPanel.setComponentAlignment(sloganLabel, Alignment.MIDDLE_RIGHT);
-
-		topHeader.addComponent(topTitleHeadertPanel);
-		topHeader.setComponentAlignment(topTitleHeadertPanel, Alignment.MIDDLE_LEFT);
-		topHeader.setExpandRatio(topTitleHeadertPanel, ContentRatio.GRID);
-
+		addLogoToHeader(topHeader);
+		createTopTitleHeader(topHeader);
 
 		topHeaderRightPanel.removeAllComponents();
 		topHeader.addComponent(topHeaderRightPanel);
 		topHeader.setComponentAlignment(topHeaderRightPanel, Alignment.MIDDLE_RIGHT);
 		topHeader.setExpandRatio(topHeaderRightPanel, ContentRatio.LARGE);
 
+		createTopHeaderActionsForUserContext();
 
+		topHeaderRightPanel.setWidth("100%");
+		topHeaderRightPanel.setHeight("50px");
 
+		topHeader.setWidth("100%");
+		topHeader.setHeight("50px");
+
+		pageModeContent.addComponent(topHeader);
+		pageModeContent.setComponentAlignment(topHeader, Alignment.TOP_CENTER);
+
+		pageModeContent.addComponent(getBarmenu());
+		pageModeContent.setComponentAlignment(getBarmenu(), Alignment.TOP_CENTER);
+
+		panel = new Panel(panelName);
+		panel.addStyleName("v-panel-page-panel");
+
+		panel.setSizeFull();
+		pageModeContent.addComponent(panel);
+		pageModeContent.setExpandRatio(panel, ContentRatio.FULL_SIZE);
+
+		pageModeContent.addComponent(pageLinkFactory.createMainViewPageLink());
+		setContent(layout);
+
+		setWidth(100, Unit.PERCENTAGE);
+		setHeight(100, Unit.PERCENTAGE);
+		setSizeFull();
+
+	}
+
+	/**
+	 * Creates the top header actions for user context.
+	 */
+	private void createTopHeaderActionsForUserContext() {
 		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {
-
-
 			final Link userHomePageLink = pageLinkFactory.createUserHomeViewPageLink();
 			topHeaderRightPanel.addComponent(userHomePageLink);
 			topHeaderRightPanel.setComponentAlignment(userHomePageLink, Alignment.MIDDLE_RIGHT);
-
 
 			final Button logoutButton = new Button(LOGOUT,VaadinIcons.SIGN_OUT);
 
@@ -221,35 +210,74 @@ public abstract class AbstractView extends Panel implements View {
 			topHeaderRightPanel.addComponent(createLoginPageLink);
 			topHeaderRightPanel.setComponentAlignment(createLoginPageLink, Alignment.MIDDLE_RIGHT);
 		}
+	}
+
+	/**
+	 * Creates the full size vertical layout.
+	 *
+	 * @param margin
+	 *            the margin
+	 * @param spacing
+	 *            the spacing
+	 * @return the vertical layout
+	 */
+	private static VerticalLayout createFullSizeVerticalLayout(boolean margin, boolean spacing) {
+		final VerticalLayout layout = new VerticalLayout();
+		layout.setMargin(margin);
+		layout.setSpacing(spacing);
+		layout.setWidth(100, Unit.PERCENTAGE);
+		layout.setHeight(100, Unit.PERCENTAGE);
+		return layout;
+	}
+	
+	/**
+	 * Creates the full size vertical layout.
+	 *
+	 * @return the vertical layout
+	 */
+	private static VerticalLayout createFullSizeVerticalLayout() {
+		return createFullSizeVerticalLayout(true,true);
+	}
+
+	/**
+	 * Adds the logo to header.
+	 *
+	 * @param topHeader
+	 *            the top header
+	 */
+	private void addLogoToHeader(final HorizontalLayout topHeader) {
+		final ThemeResource ciaLogoResource = new ThemeResource("cia-logo.png");
+		final Image ciaLogoImage = new Image(null,ciaLogoResource);
+		topHeader.addComponent(ciaLogoImage);
+		ciaLogoImage.setWidth("60px");
+		ciaLogoImage.setHeight("60px");
+		topHeader.setComponentAlignment(ciaLogoImage, Alignment.MIDDLE_LEFT);
+		topHeader.setExpandRatio(ciaLogoImage, ContentRatio.SMALL);
+	}
+
+	/**
+	 * Creates the top title header.
+	 *
+	 * @param topHeader
+	 *            the top header
+	 */
+	private void createTopTitleHeader(final HorizontalLayout topHeader) {
+		final HorizontalLayout topTitleHeadertPanel = new HorizontalLayout();
 
 
-		topHeaderRightPanel.setWidth("100%");
-		topHeaderRightPanel.setHeight("50px");
+		final Label titleLabel = new Label("Citizen Intelligence Agency");
+		titleLabel.setStyleName("Header");
+		topTitleHeadertPanel.addComponent(titleLabel);
+		topTitleHeadertPanel.setComponentAlignment(titleLabel, Alignment.MIDDLE_LEFT);
 
-		topHeader.setWidth("100%");
-		topHeader.setHeight("50px");
+		final Label sloganLabel = new Label("// Tracking politicians like bugs!");
+		sloganLabel.setStyleName("HeaderSlogan");
+		topTitleHeadertPanel.addComponent(sloganLabel);
+		topTitleHeadertPanel.setComponentAlignment(sloganLabel, Alignment.MIDDLE_RIGHT);
 
-		pageModeContent.addComponent(topHeader);
-		pageModeContent.setComponentAlignment(topHeader, Alignment.TOP_CENTER);
-
-
-		pageModeContent.addComponent(getBarmenu());
-		pageModeContent.setComponentAlignment(getBarmenu(), Alignment.TOP_CENTER);
-
-		panel = new Panel(panelName);
-		panel.addStyleName("v-panel-page-panel");
-
-		panel.setSizeFull();
-		pageModeContent.addComponent(panel);
-		pageModeContent.setExpandRatio(panel, ContentRatio.FULL_SIZE);
-
-		pageModeContent.addComponent(pageLinkFactory.createMainViewPageLink());
-		setContent(layout);
-
-		setWidth(100, Unit.PERCENTAGE);
-		setHeight(100, Unit.PERCENTAGE);
-		setSizeFull();
-
+		topHeader.addComponent(topTitleHeadertPanel);
+		topHeader.setComponentAlignment(topTitleHeadertPanel, Alignment.MIDDLE_LEFT);
+		topHeader.setExpandRatio(topTitleHeadertPanel, ContentRatio.GRID);
 	}
 
 	/**
