@@ -19,8 +19,15 @@
 package com.hack23.cia.service.impl.rules;
 
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.Locale;
 
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly;
+import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPartyDocumentDailySummary;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
 import com.hack23.cia.service.api.action.kpi.ResourceType;
 
@@ -33,10 +40,31 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	private static final long serialVersionUID = 1L;
 	
 	/** The party. */
-	private ViewRiksdagenPartySummary party;
+	private final ViewRiksdagenPartySummary party;
 	
 	/** The name. */
-	private String name;
+	private final String name;
+	
+	/** The document daily summary. */
+	private List<ViewRiksdagenPartyDocumentDailySummary> documentDailySummary;
+	
+	/** The ballot decisions. */
+	private List<ViewRiksdagenCommitteeBallotDecisionPartySummary> ballotDecisions;
+	
+	/** The ballots. */
+	private List<ViewRiksdagenVoteDataBallotPartySummary> ballots;
+	
+	/** The daily ballot summary. */
+	private List<ViewRiksdagenVoteDataBallotPartySummaryDaily> dailyBallotSummary;
+
+	/** The daily summary. */
+	private ViewRiksdagenVoteDataBallotPartySummaryDaily dailySummary;
+	
+	/** The monthly summary. */
+	private ViewRiksdagenVoteDataBallotPartySummaryMonthly monthlySummary;
+	
+	/** The annual summary. */
+	private ViewRiksdagenVoteDataBallotPartySummaryAnnual annualSummary;
 
 	/**
 	 * Instantiates a new party compliance check impl.
@@ -65,14 +93,128 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	}
 
 	@Override
+	public String getId() {
+		return party.getParty();
+	}
+
+	@Override
 	public String toString() {
 		return new MessageFormat("PartyComplianceCheckImpl [getName()={0}, getRuleName()={1}, getRuleDescription()={2}, getResourceType()={3}, getStatus()={4}]",Locale.ENGLISH).format(			
 				new Object[] {getName(), getRuleName(), getRuleDescription(), getResourceType(), getStatus()});
 	}
 
-	@Override
-	public String getId() {
-		return party.getParty();
+	/**
+	 * Gets the document daily summary.
+	 *
+	 * @return the document daily summary
+	 */
+	public List<ViewRiksdagenPartyDocumentDailySummary> getDocumentDailySummary() {
+		return documentDailySummary;
 	}
+
+	/**
+	 * Sets the document daily summary.
+	 *
+	 * @param documentDailySummary
+	 *            the new document daily summary
+	 */
+	public void setDocumentDailySummary(List<ViewRiksdagenPartyDocumentDailySummary> documentDailySummary) {
+		this.documentDailySummary = documentDailySummary;
+	}
+
+	/**
+	 * Gets the ballots.
+	 *
+	 * @return the ballots
+	 */
+	public List<ViewRiksdagenVoteDataBallotPartySummary> getBallots() {
+		return ballots;
+	}
+
+	/**
+	 * Sets the ballots.
+	 *
+	 * @param ballots
+	 *            the new ballots
+	 */
+	public void setBallots(List<ViewRiksdagenVoteDataBallotPartySummary> ballots) {
+		this.ballots = ballots;
+	}
+
+	/**
+	 * Gets the daily ballot summary.
+	 *
+	 * @return the daily ballot summary
+	 */
+	public List<ViewRiksdagenVoteDataBallotPartySummaryDaily> getDailyBallotSummary() {
+		return dailyBallotSummary;
+	}
+
+	/**
+	 * Sets the daily ballot summary.
+	 *
+	 * @param dailyBallotSummary
+	 *            the new daily ballot summary
+	 */
+	public void setDailyBallotSummary(List<ViewRiksdagenVoteDataBallotPartySummaryDaily> dailyBallotSummary) {
+		this.dailyBallotSummary = dailyBallotSummary;
+	}
+
+	/**
+	 * Gets the daily summary.
+	 *
+	 * @return the daily summary
+	 */
+	public ViewRiksdagenVoteDataBallotPartySummaryDaily getDailySummary() {
+		return dailySummary;
+	}
+
+	/**
+	 * Sets the daily summary.
+	 *
+	 * @param dailySummary
+	 *            the new daily summary
+	 */
+	public void setDailySummary(ViewRiksdagenVoteDataBallotPartySummaryDaily dailySummary) {
+		this.dailySummary = dailySummary;
+	}
+
+	/**
+	 * Gets the monthly summary.
+	 *
+	 * @return the monthly summary
+	 */
+	public ViewRiksdagenVoteDataBallotPartySummaryMonthly getMonthlySummary() {
+		return monthlySummary;
+	}
+
+	/**
+	 * Sets the monthly summary.
+	 *
+	 * @param monthlySummary
+	 *            the new monthly summary
+	 */
+	public void setMonthlySummary(ViewRiksdagenVoteDataBallotPartySummaryMonthly monthlySummary) {
+		this.monthlySummary = monthlySummary;
+	}
+
+	/**
+	 * Gets the annual summary.
+	 *
+	 * @return the annual summary
+	 */
+	public ViewRiksdagenVoteDataBallotPartySummaryAnnual getAnnualSummary() {
+		return annualSummary;
+	}
+
+	/**
+	 * Sets the annual summary.
+	 *
+	 * @param annualSummary
+	 *            the new annual summary
+	 */
+	public void setAnnualSummary(ViewRiksdagenVoteDataBallotPartySummaryAnnual annualSummary) {
+		this.annualSummary = annualSummary;
+	}	
 
 }
