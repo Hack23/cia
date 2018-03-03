@@ -19,6 +19,7 @@
 package com.hack23.cia.service.api.action.kpi;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * The Interface ComplianceCheck.
@@ -52,6 +53,13 @@ public interface ComplianceCheck extends Serializable {
 	 * @return the resource type
 	 */
 	ResourceType getResourceType();
+	
+	/**
+	 * Gets the rule violations.
+	 *
+	 * @return the rule violations
+	 */
+	List<RuleViolation> getRuleViolations();
 	
 	/**
 	 * Gets the id.

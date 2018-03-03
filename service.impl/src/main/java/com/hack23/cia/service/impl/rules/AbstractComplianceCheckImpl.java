@@ -18,8 +18,12 @@
 */
 package com.hack23.cia.service.impl.rules;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
 import com.hack23.cia.service.api.action.kpi.ResourceType;
+import com.hack23.cia.service.api.action.kpi.RuleViolation;
 import com.hack23.cia.service.api.action.kpi.Status;
 
 /**
@@ -38,6 +42,9 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 
 	/** The status. */
 	private Status status = Status.OK;
+	
+	/** The violations. */
+	private List<RuleViolation> violations = new ArrayList();
 	
 	/**
 	 * Instantiates a new abstract compliance check impl.
@@ -99,4 +106,27 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	public Status getStatus() {
 		return status;
 	}
+	
+	/**
+	 * Gets the violations.
+	 *
+	 * @return the violations
+	 */
+	public List<RuleViolation> getViolations() {
+		return violations;
+	}
+
+	/**
+	 * Adds the violation.
+	 *
+	 * @param status
+	 *            the status
+	 * @param violation
+	 *            the violation
+	 */
+	public void addViolation(final Status status,final String violation) {
+		setStatus(status);
+		this.violations.add(new RuleViolation(violation,null,null,status));
+	}
+
 }

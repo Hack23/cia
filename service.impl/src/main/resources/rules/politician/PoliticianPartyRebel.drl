@@ -1,5 +1,7 @@
 package com.hack23.cia.service.impl.rules
- 
+
+import org.kie.api.runtime.KieRuntime
+
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
@@ -14,9 +16,7 @@ rule "We have a party rebel politician, voted against party majority at least on
     when
         $p : PoliticianComplianceCheckImpl(politician.activeParliament == true && politician.party != "-" && dailySummary != null && dailySummary.rebelTotal > 0)
     then
-    	modify( $p ) {
-      		setStatus( Status.MINOR )
-		}
+    	$p.addViolation( Status.MINOR, kcontext.getRule().getName());
 end
 
 rule "We have a party rebel politician, voted against party majority at least 1% of ballots last month"
@@ -25,9 +25,7 @@ rule "We have a party rebel politician, voted against party majority at least 1%
     when
         $p : PoliticianComplianceCheckImpl( politician.activeParliament == true && politician.party != "-" && monthlySummary != null && monthlySummary.rebelPercentage > 1)
     then
-    	modify( $p ) {
-      		setStatus( Status.MAJOR )
-		}
+    	$p.addViolation( Status.MAJOR, kcontext.getRule().getName());
 end
 
 rule "We have a party rebel politician, voted against party majority at least 1% of ballots last year"
@@ -36,7 +34,5 @@ rule "We have a party rebel politician, voted against party majority at least 1%
     when
         $p : PoliticianComplianceCheckImpl( politician.activeParliament == true && politician.party != "-" && annualSummary != null && annualSummary.rebelPercentage >= 1)
     then
-    	modify( $p ) {
-      		setStatus( Status.CRITICAL )
-		}
+    	$p.addViolation( Status.CRITICAL, kcontext.getRule().getName());
 end

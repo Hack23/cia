@@ -1,5 +1,7 @@
 package com.hack23.cia.service.impl.rules
- 
+
+import org.kie.api.runtime.KieRuntime
+
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
 import com.hack23.cia.service.api.action.kpi.Status
 import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
@@ -14,9 +16,7 @@ rule "We have an politician older than 65, retirement age in Sweden"
     when
         $p : PoliticianComplianceCheckImpl( politician.active == true && (currentYear() - politician.bornYear) > 65 )
     then
-    	modify( $p ) {
-      		setStatus( Status.MINOR )
-		}
+    	$p.addViolation( Status.MINOR, kcontext.getRule().getName());
 end
 
 rule "We have an politician older than 70, passed retirement age in Sweden"
@@ -24,9 +24,7 @@ rule "We have an politician older than 70, passed retirement age in Sweden"
     when
         $p : PoliticianComplianceCheckImpl( politician.active == true && (currentYear() - politician.bornYear) > 70 )
     then
-    	modify( $p ) {
-      		setStatus( Status.MAJOR )
-		}
+    	$p.addViolation( Status.MAJOR, kcontext.getRule().getName());
 end
 
 rule "We have an politician older than 80, way passed retirement age in Sweden"
@@ -34,7 +32,5 @@ rule "We have an politician older than 80, way passed retirement age in Sweden"
     when
         $p : PoliticianComplianceCheckImpl( politician.active == true &&  (currentYear() - politician.bornYear) > 80 )
     then
-    	modify( $p ) {
-      		setStatus( Status.CRITICAL )
-		}
+    	$p.addViolation( Status.CRITICAL, kcontext.getRule().getName());
 end

@@ -1,5 +1,7 @@
 package com.hack23.cia.service.impl.rules
- 
+
+import org.kie.api.runtime.KieRuntime
+
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
@@ -14,9 +16,7 @@ rule "We have a lazy politician, absent 100 % last day of ballots in parliament"
     when
         $p : PoliticianComplianceCheckImpl(politician.activeParliament == true && dailySummary != null && dailySummary.politicianPercentageAbsent == 100)
     then
-    	modify( $p ) {
-      		setStatus( Status.MINOR )
-		}
+    	$p.addViolation( Status.MINOR, kcontext.getRule().getName());
 end
 
 rule "We have a lazy politician, absent more than 20 % of ballots last month"
@@ -25,9 +25,7 @@ rule "We have a lazy politician, absent more than 20 % of ballots last month"
     when
         $p : PoliticianComplianceCheckImpl( politician.activeParliament == true && monthlySummary != null && monthlySummary.politicianPercentageAbsent >= 20)
     then
-    	modify( $p ) {
-      		setStatus( Status.MAJOR )
-		}
+    	$p.addViolation( Status.MAJOR, kcontext.getRule().getName());
 end
 
 rule "We have a lazy politician, absent more than 20 % of ballots last year"
@@ -36,7 +34,5 @@ rule "We have a lazy politician, absent more than 20 % of ballots last year"
     when
         $p : PoliticianComplianceCheckImpl( politician.activeParliament == true && annualSummary != null && annualSummary.politicianPercentageAbsent >= 20)
     then
-    	modify( $p ) {
-      		setStatus( Status.CRITICAL )
-		}
+    	$p.addViolation( Status.CRITICAL, kcontext.getRule().getName());
 end

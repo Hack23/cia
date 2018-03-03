@@ -1,5 +1,7 @@
 package com.hack23.cia.service.impl.rules
- 
+
+import org.kie.api.runtime.KieRuntime
+
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
 import com.hack23.cia.service.api.action.kpi.Status
 import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
@@ -12,30 +14,27 @@ function long busyFactor(Date firstAssignmentDate, long totalDaysServed){
 
 rule "We have an politician with busy schedule, more than 4 current roles and busy past"
 	dialect "java"
+	salience 1000
     when
         $p : PoliticianComplianceCheckImpl( politician.active == true && politician.currentAssignments > 4 && ( busyFactor(politician.firstAssignmentDate, politician.totalDaysServed ) > 4 ))
     then
-    	modify( $p ) {
-      		setStatus( Status.MINOR )
-		}
+    	$p.addViolation( Status.MINOR, kcontext.getRule().getName());
 end
 
 rule "We have an politician with busy schedule, more than 5 current roles and busy past"
 	dialect "java"
+	salience 100
     when
         $p : PoliticianComplianceCheckImpl( politician.active == true && politician.currentAssignments > 5 && ( busyFactor(politician.firstAssignmentDate, politician.totalDaysServed ) > 5 ))
     then
-    	modify( $p ) {
-      		setStatus( Status.MAJOR )
-		}
+    	$p.addViolation( Status.MAJOR, kcontext.getRule().getName());
 end
 
 rule "We have an politician with busy schedule, more than 6 current roles and busy past"
 	dialect "java"
+	salience 10
     when
         $p : PoliticianComplianceCheckImpl( politician.active == true && politician.currentAssignments > 6 && ( busyFactor(politician.firstAssignmentDate, politician.totalDaysServed ) > 6 ))
     then
-    	modify( $p ) {
-      		setStatus( Status.CRITICAL )
-		}
+    	$p.addViolation( Status.CRITICAL, kcontext.getRule().getName());
 end
