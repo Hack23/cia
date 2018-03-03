@@ -76,9 +76,12 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @param politician
 	 *            the politician
 	 */
-	public PoliticianComplianceCheckImpl(final ViewRiksdagenPolitician politician) {
+	public PoliticianComplianceCheckImpl(final ViewRiksdagenPolitician politician,final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily dailySummary, final ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly monthlySummary,final ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual annualSummary) {
 		super(ResourceType.POLITICIAN);
 		this.politician = politician;
+		this.dailySummary = dailySummary;
+		this.monthlySummary = monthlySummary;
+		this.annualSummary = annualSummary;
 		this.name = politician.getFirstName() + " " + politician.getLastName() + " (" +politician.getParty() +")";
 	}
 

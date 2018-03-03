@@ -1,0 +1,42 @@
+package com.hack23.cia.service.impl.rules
+ 
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly
+
+import com.hack23.cia.service.api.action.kpi.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "We have a lazy politician, absent 100 % last day of ballots in parliament"
+	dialect "java"
+	salience 10
+    when
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament == true && dailySummary != null && dailySummary.politicianPercentageAbsent == 100)
+    then
+    	modify( $p ) {
+      		setStatus( Status.MINOR )
+		}
+end
+
+rule "We have a lazy politician, absent more than 20 % of ballots last month"
+	dialect "java"
+	salience 50
+    when
+        $p : PoliticianComplianceCheckImpl( politician.activeParliament == true && monthlySummary != null && monthlySummary.politicianPercentageAbsent >= 20)
+    then
+    	modify( $p ) {
+      		setStatus( Status.MAJOR )
+		}
+end
+
+rule "We have a lazy politician, absent more than 20 % of ballots last year"
+	dialect "java"
+	salience 100
+    when
+        $p : PoliticianComplianceCheckImpl( politician.activeParliament == true && annualSummary != null && annualSummary.politicianPercentageAbsent >= 20)
+    then
+    	modify( $p ) {
+      		setStatus( Status.CRITICAL )
+		}
+end

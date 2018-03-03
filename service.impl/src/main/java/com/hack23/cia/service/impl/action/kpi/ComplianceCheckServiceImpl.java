@@ -49,13 +49,13 @@ import com.hack23.cia.service.impl.rules.RulesEngine;
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED,timeout=600)
-public final class ComplianceCheckService extends
+public final class ComplianceCheckServiceImpl extends
 		AbstractBusinessServiceImpl<ComplianceCheckRequest, ComplianceCheckResponse>
 		implements BusinessService<ComplianceCheckRequest, ComplianceCheckResponse> {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(ComplianceCheckService.class);
+			.getLogger(ComplianceCheckServiceImpl.class);
 
 	/** The create application event service. */
 	@Autowired
@@ -67,7 +67,7 @@ public final class ComplianceCheckService extends
 	/**
 	 * Instantiates a new compliance check service.
 	 */
-	public ComplianceCheckService() {
+	public ComplianceCheckServiceImpl() {
 		super(ComplianceCheckRequest.class);
 	}
 
