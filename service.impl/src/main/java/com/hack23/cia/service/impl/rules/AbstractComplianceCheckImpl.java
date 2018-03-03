@@ -31,6 +31,11 @@ import com.hack23.cia.service.api.action.kpi.Status;
  */
 public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/** The resource type. */
 	private final ResourceType resourceType;
 	
@@ -44,7 +49,7 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	private Status status = Status.OK;
 	
 	/** The violations. */
-	private List<RuleViolation> violations = new ArrayList();
+	private List<RuleViolation> ruleViolations = new ArrayList();
 	
 	/**
 	 * Instantiates a new abstract compliance check impl.
@@ -107,13 +112,9 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 		return status;
 	}
 	
-	/**
-	 * Gets the violations.
-	 *
-	 * @return the violations
-	 */
-	public List<RuleViolation> getViolations() {
-		return violations;
+	@Override
+	public List<RuleViolation> getRuleViolations() {
+		return ruleViolations;
 	}
 
 	/**
@@ -126,7 +127,7 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	 */
 	public void addViolation(final Status status,final String violation) {
 		setStatus(status);
-		this.violations.add(new RuleViolation(violation,null,null,status));
+		this.ruleViolations.add(new RuleViolation(violation,null,null,status));
 	}
 
 }

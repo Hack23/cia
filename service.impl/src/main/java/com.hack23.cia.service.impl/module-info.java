@@ -15,6 +15,7 @@ module com.hack23.cia.service.impl {
 	requires spring.context.support;
 	requires quartz;
 	requires commons.lang;
+	requires com.google.common;
 
 	requires googleauth;
 
