@@ -124,7 +124,6 @@
     <cia.project.versions.h2>1.4.196</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.2.1</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.4.4.8</cia.project.versions.ehcache>
-    <cia.project.versions.ehcache3>3.4.0</cia.project.versions.ehcache3>
     <cia.project.versions.poi>3.17</cia.project.versions.poi>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.ant>1.10.2</cia.project.versions.ant>
@@ -510,21 +509,6 @@
             <groupId>org.slf4j</groupId>
           </exclusion>
         </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>org.ehcache</groupId>
-        <artifactId>ehcache</artifactId>
-        <version>${cia.project.versions.ehcache3}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.ehcache</groupId>
-        <artifactId>ehcache-transactions</artifactId>
-        <version>${cia.project.versions.ehcache3}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.ehcache</groupId>
-        <artifactId>ehcache-clustered</artifactId>
-        <version>${cia.project.versions.ehcache3}</version>
       </dependency>
       <dependency>
         <groupId>cglib</groupId>

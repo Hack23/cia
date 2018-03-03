@@ -9,16 +9,6 @@
        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
 	<context:mbean-export />
-	<cache:annotation-driven />
-
-	<bean id="cacheManager" class="org.springframework.cache.jcache.JCacheCacheManager">
-		<property name="cacheManager" ref="jCacheManager" />
-	</bean>
-
-	<bean id="jCacheManager"
-		class="org.springframework.cache.jcache.JCacheManagerFactoryBean">
-		<property name="cacheManagerUri" value="classpath:ehcache3.xml" />
-	</bean>
 
 	<bean id="databasePropertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -65,7 +55,7 @@
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-		depends-on="dataCacheManager,liquibase,transactionManager,jCacheManager">
+		depends-on="dataCacheManager,liquibase,transactionManager">
 		<property name="dataSource" ref="dataSource" />
 		<property name="persistenceUnitName" value="ciaPersistenceUnit" />
 		<property name="jpaVendorAdapter">
