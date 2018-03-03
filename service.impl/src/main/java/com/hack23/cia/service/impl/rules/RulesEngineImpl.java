@@ -71,6 +71,8 @@ public final class RulesEngineImpl implements RulesEngine {
 
 	private static final String POLITICAN_RULE_5 = "rules/politician/PoliticianLazy.drl";
 	
+	private static final String POLITICAN_RULE_6 = "rules/politician/PoliticianPartyRebel.drl";	
+	
 
 	/** The Constant partyDrlFile. */
 	private static final String PARTY_RULE_1 = "rules/party/PartyNoGovernmentExperience.drl";
@@ -92,7 +94,8 @@ public final class RulesEngineImpl implements RulesEngine {
 		kieFileSystem.write(new ClassPathResource(POLITICAN_RULE_2));
 		kieFileSystem.write(new ClassPathResource(POLITICAN_RULE_3));
 		kieFileSystem.write(new ClassPathResource(POLITICAN_RULE_4));
-		kieFileSystem.write(new ClassPathResource(POLITICAN_RULE_5));		
+		kieFileSystem.write(new ClassPathResource(POLITICAN_RULE_5));	
+		kieFileSystem.write(new ClassPathResource(POLITICAN_RULE_6));			
 		kieFileSystem.write(new ClassPathResource(PARTY_RULE_1));
 
 		KieBuilder kieBuilder = kieServices.newKieBuilder(kieFileSystem);

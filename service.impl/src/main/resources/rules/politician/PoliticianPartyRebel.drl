@@ -1,0 +1,42 @@
+package com.hack23.cia.service.impl.rules
+ 
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly
+
+import com.hack23.cia.service.api.action.kpi.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "We have a party rebel politician, voted against party majority at least once last day of ballots in parliament"
+	dialect "java"
+	salience 10
+    when
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament == true && politician.party != "-" && dailySummary != null && dailySummary.rebelTotal > 0)
+    then
+    	modify( $p ) {
+      		setStatus( Status.MINOR )
+		}
+end
+
+rule "We have a party rebel politician, voted against party majority at least 1% of ballots last month"
+	dialect "java"
+	salience 50
+    when
+        $p : PoliticianComplianceCheckImpl( politician.activeParliament == true && politician.party != "-" && monthlySummary != null && monthlySummary.rebelPercentage > 1)
+    then
+    	modify( $p ) {
+      		setStatus( Status.MAJOR )
+		}
+end
+
+rule "We have a party rebel politician, voted against party majority at least 1% of ballots last year"
+	dialect "java"
+	salience 100
+    when
+        $p : PoliticianComplianceCheckImpl( politician.activeParliament == true && politician.party != "-" && annualSummary != null && annualSummary.rebelPercentage >= 1)
+    then
+    	modify( $p ) {
+      		setStatus( Status.CRITICAL )
+		}
+end
