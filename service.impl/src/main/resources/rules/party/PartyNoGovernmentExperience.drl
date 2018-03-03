@@ -12,5 +12,5 @@ rule "We have an active Party with no government experience"
     when
         $p : PartyComplianceCheckImpl( party.active == true && party.totalDaysServedGovernment == 0 )
     then
-    	$p.addViolation( Status.MINOR, kcontext.getRule().getName());
+    	$p.addViolation( Status.MINOR, "PartyNoGovernmentExperience","Experience", kcontext.getRule().getName());
 end

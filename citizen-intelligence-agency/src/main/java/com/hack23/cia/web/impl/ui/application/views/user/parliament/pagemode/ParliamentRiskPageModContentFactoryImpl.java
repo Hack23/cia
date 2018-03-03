@@ -19,7 +19,6 @@
 package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.commons.lang3.StringUtils;
@@ -35,6 +34,7 @@ import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheckRequest;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheckResponse;
 import com.hack23.cia.service.api.action.kpi.ResourceType;
+import com.hack23.cia.service.api.action.kpi.RuleViolation;
 import com.hack23.cia.service.api.action.kpi.Status;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -83,13 +83,13 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 		
 		HorizontalLayout horizontalLayout = new HorizontalLayout();
 
-		for (Entry<Status, List<ComplianceCheck>> statusEntry : serviceResponse.getStatusMap().entrySet()) {
+		for (Entry<Status, List<RuleViolation>> statusEntry : serviceResponse.getStatusMap().entrySet()) {
 			horizontalLayout.addComponent(new CounterStatisticsCard(
 					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey().toString(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
                     .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey().toString()));			
 		}
 
-		for (Entry<ResourceType, List<ComplianceCheck>> statusEntry : serviceResponse.getResourceTypeMap().entrySet()) {
+		for (Entry<ResourceType, List<RuleViolation>> statusEntry : serviceResponse.getResourceTypeMap().entrySet()) {
 			horizontalLayout.addComponent(new CounterStatisticsCard(
 					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey().toString(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
                     .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey().toString()));			
@@ -99,7 +99,7 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 		panelContent.addComponent(horizontalLayout);		
 		
 		getGridFactory().createBasicBeanItemGrid(panelContent, ComplianceCheck.class, serviceResponse.getList(), "Risk",
-				new String[] { "name", "status", "resourceType", "ruleName" }, new String[] { "id", "ruleDescription" }, null, null, null);
+				new String[] { "name", "resourceType", "numberRuleViolations", "ruleSummary" }, new String[] { "id", "ruleViolations" }, null, null, null);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

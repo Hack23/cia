@@ -19,7 +19,15 @@
 package com.hack23.cia.service.impl.rules;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
 import com.hack23.cia.service.api.action.kpi.ResourceType;
@@ -31,25 +39,14 @@ import com.hack23.cia.service.api.action.kpi.Status;
  */
 public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The resource type. */
 	private final ResourceType resourceType;
-	
-	/** The rule name. */
-	private String ruleName;
-
-	/** The rule description. */
-	private String ruleDescription;	
-
-	/** The status. */
-	private Status status = Status.OK;
-	
-	/** The violations. */
-	private List<RuleViolation> ruleViolations = new ArrayList();
+			
+	/** The rule violation map. */
+	private Map<String,RuleViolation> ruleViolationMap = new HashMap<>();
 	
 	/**
 	 * Instantiates a new abstract compliance check impl.
@@ -62,72 +59,81 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 		this.resourceType = resourceType;
 	}
 
-	@Override
-	public String getRuleName() {
-		return ruleName;
-	}
 
 	/**
-	 * Sets the rule name.
+	 * Gets the resource type.
 	 *
-	 * @param ruleName
-	 *            the new rule name
+	 * @return the resource type
 	 */
-	public void setRuleName(String ruleName) {
-		this.ruleName = ruleName;
-	}
-
-	@Override
-	public String getRuleDescription() {
-		return ruleDescription;
-	}
-
-	/**
-	 * Sets the rule description.
-	 *
-	 * @param ruleDescription
-	 *            the new rule description
-	 */
-	public void setRuleDescription(String ruleDescription) {
-		this.ruleDescription = ruleDescription;
-	}
-
-	/**
-	 * Sets the status.
-	 *
-	 * @param status
-	 *            the new status
-	 */
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
 	@Override
 	public ResourceType getResourceType() {
 		return resourceType;
 	}
-
+	
+	/**
+	 * Gets the rule violations.
+	 *
+	 * @return the rule violations
+	 */
 	@Override
-	public Status getStatus() {
-		return status;
+	public final List<RuleViolation> getRuleViolations() {
+		return new ArrayList<RuleViolation>(ruleViolationMap.values());
+	}
+
+	/**
+	 * Gets the number rule violations.
+	 *
+	 * @return the number rule violations
+	 */
+	@Override
+	public int getNumberRuleViolations() {
+		return ruleViolationMap.values().size();
 	}
 	
+	/**
+	 * Gets the rule summary.
+	 *
+	 * @return the rule summary
+	 */
 	@Override
-	public List<RuleViolation> getRuleViolations() {
-		return ruleViolations;
+	public final String getRuleSummary() {
+		Collection<RuleViolation> values = ruleViolationMap.values();
+		StringBuilder builder = new StringBuilder();
+		for (RuleViolation ruleViolation : values) {
+			builder.append("[").append(ruleViolation.getRuleName()).append("/").append(ruleViolation.getStatus()) .append("]");
+		}		
+		return builder.toString();
 	}
-
+	
 	/**
 	 * Adds the violation.
 	 *
 	 * @param status
 	 *            the status
-	 * @param violation
-	 *            the violation
+	 * @param ruleName
+	 *            the rule name
+	 * @param ruleGroup
+	 *            the rule group
+	 * @param ruleDescription
+	 *            the rule description
 	 */
-	public void addViolation(final Status status,final String violation) {
-		setStatus(status);
-		this.ruleViolations.add(new RuleViolation(violation,null,null,status));
+	public final void addViolation(final Status status,final String ruleName,final String ruleGroup,final String ruleDescription) {		
+		ruleViolationMap.put(ruleName, new RuleViolation(getId(),getName(),resourceType,ruleName,ruleDescription,ruleGroup,status));
+	}
+
+	@Override
+	public final boolean equals(Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
+
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
+
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
 	}
 
 }

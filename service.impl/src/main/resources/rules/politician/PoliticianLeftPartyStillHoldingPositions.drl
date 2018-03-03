@@ -11,5 +11,5 @@ rule "We have an politician that left the party still holding assignments"
     when
         $p : PoliticianComplianceCheckImpl(politician.party == "-" && politician.active == true )
     then
-    	$p.addViolation( Status.CRITICAL, kcontext.getRule().getName());
+    	$p.addViolation( Status.CRITICAL, "PoliticianLeftPartyStillHoldingPositions","Behavior", kcontext.getRule().getName());
 end

@@ -26,26 +26,6 @@ import java.util.List;
  */
 public interface ComplianceCheck extends Serializable {
 
-	/**
-	 * Gets the rule name.
-	 *
-	 * @return the rule name
-	 */
-	String getRuleName();
-
-	/**
-	 * Gets the rule description.
-	 *
-	 * @return the rule description
-	 */
-	String getRuleDescription();	
-	
-	/**
-	 * Gets the status.
-	 *
-	 * @return the status
-	 */
-	Status getStatus();
 	
 	/**
 	 * Gets the resource type.
@@ -60,6 +40,20 @@ public interface ComplianceCheck extends Serializable {
 	 * @return the rule violations
 	 */
 	List<RuleViolation> getRuleViolations();
+	
+	/**
+	 * Gets the number rule violations.
+	 *
+	 * @return the number rule violations
+	 */
+	int getNumberRuleViolations();
+	
+	/**
+	 * Gets the rule summary.
+	 *
+	 * @return the rule summary
+	 */
+	String getRuleSummary();
 	
 	/**
 	 * Gets the id.

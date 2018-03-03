@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.impl.action.kpi;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -40,6 +41,7 @@ import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheckRequest;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheckResponse;
+import com.hack23.cia.service.api.action.kpi.RuleViolation;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
 import com.hack23.cia.service.impl.rules.RulesEngine;
@@ -92,24 +94,24 @@ public final class ComplianceCheckServiceImpl extends
 		}
 
 		final ComplianceCheckResponse response = new ComplianceCheckResponse(ServiceResult.SUCCESS);
-		List<ComplianceCheck> list = rulesEngine.checkRulesCompliance();
+		List<ComplianceCheck> complianceList = rulesEngine.checkRulesCompliance();
 		
-		Collections.sort(list, new Comparator<ComplianceCheck>() {
+		List<RuleViolation> ruleViolations = new ArrayList<RuleViolation>();
+		
+		for (ComplianceCheck check : complianceList) {
+			ruleViolations.addAll(check.getRuleViolations());
+		}
+		
+		Collections.sort(complianceList, new Comparator<ComplianceCheck>() {
             @Override
             public int compare(ComplianceCheck o1, ComplianceCheck o2) {
-                int status = o2.getStatus().compareTo(o1.getStatus());
-                if (status == 0) {
-                	return o2.getRuleName().compareTo(o1.getRuleName());
-                } else {
-                	return status;
-                }
-                
+            	return Integer.compare(o2.getRuleViolations().size(), o1.getRuleViolations().size());                
             }
         });
 
-		response.setList(list);
-		response.setStatusMap(list.stream().collect(Collectors.groupingBy(ComplianceCheck::getStatus)));
-		response.setResourceTypeMap(list.stream().collect(Collectors.groupingBy(ComplianceCheck::getResourceType)));
+		response.setList(complianceList);
+		response.setStatusMap(ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getStatus)));
+		response.setResourceTypeMap(ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getResourceType)));
 
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);

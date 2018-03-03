@@ -18,9 +18,7 @@
 */
 package com.hack23.cia.service.impl.rules;
 
-import java.text.MessageFormat;
 import java.util.List;
-import java.util.Locale;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummary;
@@ -97,12 +95,6 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	@Override
 	public String getName() {
 		return name;
-	}
-
-	@Override
-	public String toString() {
-		return new MessageFormat("PoliticianComplianceCheckImpl [getName()={0}, getRuleName()={1}, getRuleDescription()={2}, getResourceType()={3}, getStatus()={4}]",Locale.ENGLISH).format(			
-				new Object[] {getName(), getRuleName(), getRuleDescription(), getResourceType(), getStatus()});
 	}
 
 	@Override

@@ -20,6 +20,7 @@ package com.hack23.cia.service.impl.rules;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -60,21 +61,26 @@ import com.hack23.cia.service.data.api.DataViewer;
 @Transactional(propagation = Propagation.REQUIRED, timeout = 1200)
 public final class RulesEngineImpl implements RulesEngine {
 
-	/** The Constant politicianDrlFile. */
+	/** The Constant POLITICAN_RULE_1. */
 	private static final String POLITICAN_RULE_1 = "rules/politician/PoliticianLeftPartyStillHoldingPositions.drl";
 
+	/** The Constant POLITICAN_RULE_2. */
 	private static final String POLITICAN_RULE_2 = "rules/politician/PoliticianTimeToRetire.drl";
 
+	/** The Constant POLITICAN_RULE_3. */
 	private static final String POLITICAN_RULE_3 = "rules/politician/PoliticianBusySchedule.drl";
 
+	/** The Constant POLITICAN_RULE_4. */
 	private static final String POLITICAN_RULE_4 = "rules/politician/PoliticianMinisterWithoutParliamentExperience.drl";
 
+	/** The Constant POLITICAN_RULE_5. */
 	private static final String POLITICAN_RULE_5 = "rules/politician/PoliticianLazy.drl";
 	
+	/** The Constant POLITICAN_RULE_6. */
 	private static final String POLITICAN_RULE_6 = "rules/politician/PoliticianPartyRebel.drl";	
 	
 
-	/** The Constant partyDrlFile. */
+	/** The Constant PARTY_RULE_1. */
 	private static final String PARTY_RULE_1 = "rules/party/PartyNoGovernmentExperience.drl";
 
 	/** The data viewer. */
@@ -82,9 +88,12 @@ public final class RulesEngineImpl implements RulesEngine {
 	@Qualifier("DataViewer")
 	private DataViewer dataViewer;
 
-	/** The new kie container. */
+	/** The rules container. */
 	private KieContainer rulesContainer;
 
+	/**
+	 * Inits the rules.
+	 */
 	@PostConstruct
 	public void initRules() {
 		KieServices kieServices = KieServices.Factory.get();
@@ -108,7 +117,7 @@ public final class RulesEngineImpl implements RulesEngine {
 	@Override
 	public List<ComplianceCheck> checkRulesCompliance() {
 		KieSession ksession = rulesContainer.newKieSession();
-		Set<ComplianceCheck> complianceChecks = new HashSet<>();
+		Map<String,ComplianceCheck> complianceChecks = new HashMap<>();
 		ksession.addEventListener(new ComplianceCheckAgendaEventListener(complianceChecks));
 
 		insertPoliticians(ksession, dataViewer.getAll(ViewRiksdagenPolitician.class));
@@ -116,7 +125,7 @@ public final class RulesEngineImpl implements RulesEngine {
 
 		ksession.fireAllRules();
 		ksession.dispose();
-		return new ArrayList(complianceChecks);
+		return new ArrayList(complianceChecks.values());
 	}
 
 	/**
@@ -126,7 +135,6 @@ public final class RulesEngineImpl implements RulesEngine {
 	 *            the ksession
 	 * @param list
 	 *            the list
-	 * @return the list
 	 */
 	private void insertPoliticians(KieSession ksession, final List<ViewRiksdagenPolitician> list) {
 
@@ -194,7 +202,6 @@ public final class RulesEngineImpl implements RulesEngine {
 	 *            the ksession
 	 * @param list
 	 *            the list
-	 * @return the list
 	 */
 	private void insertParties(KieSession ksession, final List<ViewRiksdagenPartySummary> list) {
 		for (ViewRiksdagenPartySummary partyData : list) {
@@ -204,22 +211,37 @@ public final class RulesEngineImpl implements RulesEngine {
 		}
 	}
 
+	/**
+	 * The listener interface for receiving complianceCheckAgendaEvent events. The
+	 * class that is interested in processing a complianceCheckAgendaEvent event
+	 * implements this interface, and the object created with that class is
+	 * registered with a component using the component's
+	 * <code>addComplianceCheckAgendaEventListener<code> method. When the
+	 * complianceCheckAgendaEvent event occurs, that object's appropriate method is
+	 * invoked.
+	 *
+	 * @see ComplianceCheckAgendaEventEvent
+	 */
 	private final class ComplianceCheckAgendaEventListener extends DefaultAgendaEventListener {
-		private final Set<ComplianceCheck> complianceChecks;
+		
+		/** The compliance checks. */
+		private final Map<String, ComplianceCheck> complianceChecks;
 
-		public ComplianceCheckAgendaEventListener(Set<ComplianceCheck> complianceChecks) {
+		/**
+		 * Instantiates a new compliance check agenda event listener.
+		 *
+		 * @param complianceChecks
+		 *            the compliance checks
+		 */
+		public ComplianceCheckAgendaEventListener(Map<String, ComplianceCheck> complianceChecks) {
 			this.complianceChecks = complianceChecks;
 		}
 
 		@Override
 		public void afterMatchFired(AfterMatchFiredEvent event) {
-			super.afterMatchFired(event);
-			AbstractComplianceCheckImpl complianceCheck = (AbstractComplianceCheckImpl) ((DefaultFactHandle) event
-					.getMatch().getFactHandles().iterator().next()).getObject();
-			complianceCheck.setRuleName(event.getMatch().getRule().getName());
-			complianceCheck.setRuleDescription(event.getMatch().getRule().getPackageName());
-			complianceChecks.add(complianceCheck);
+			super.afterMatchFired(event);			
+			AbstractComplianceCheckImpl check = (AbstractComplianceCheckImpl) ((DefaultFactHandle) event.getMatch().getFactHandles().iterator().next()).getObject();			
+			complianceChecks.put(check.getId(), check);
 		}
 	}
-
 }

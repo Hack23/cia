@@ -37,10 +37,10 @@ public final class ComplianceCheckResponse extends AbstractResponse {
 	private List<ComplianceCheck> list;
 
 	/** The status map. */
-	private Map<Status,List<ComplianceCheck>> statusMap;
+	private Map<Status,List<RuleViolation>> statusMap;
 
 	/** The resource type map. */
-	private Map<ResourceType,List<ComplianceCheck>> resourceTypeMap;	
+	private Map<ResourceType,List<RuleViolation>> resourceTypeMap;	
 	
 	/**
 	 * Instantiates a new compliance check response.
@@ -76,7 +76,7 @@ public final class ComplianceCheckResponse extends AbstractResponse {
 	 *
 	 * @return the status map
 	 */
-	public Map<Status, List<ComplianceCheck>> getStatusMap() {
+	public Map<Status, List<RuleViolation>> getStatusMap() {
 		return statusMap;
 	}
 
@@ -84,9 +84,9 @@ public final class ComplianceCheckResponse extends AbstractResponse {
 	 * Sets the status map.
 	 *
 	 * @param statusMap
-	 *            the status map
+	 *            the new status map
 	 */
-	public void setStatusMap(final Map<Status, List<ComplianceCheck>> statusMap) {
+	public void setStatusMap(final Map<Status, List<RuleViolation>> statusMap) {
 		this.statusMap = statusMap;
 	}
 
@@ -95,7 +95,7 @@ public final class ComplianceCheckResponse extends AbstractResponse {
 	 *
 	 * @return the resource type map
 	 */
-	public Map<ResourceType, List<ComplianceCheck>> getResourceTypeMap() {
+	public Map<ResourceType, List<RuleViolation>> getResourceTypeMap() {
 		return resourceTypeMap;
 	}
 
@@ -103,9 +103,9 @@ public final class ComplianceCheckResponse extends AbstractResponse {
 	 * Sets the resource type map.
 	 *
 	 * @param resourceTypeMap
-	 *            the resource type map
+	 *            the new resource type map
 	 */
-	public void setResourceTypeMap(final Map<ResourceType, List<ComplianceCheck>> resourceTypeMap) {
+	public void setResourceTypeMap(final Map<ResourceType, List<RuleViolation>> resourceTypeMap) {
 		this.resourceTypeMap = resourceTypeMap;
 	}
 

@@ -18,9 +18,7 @@
 */
 package com.hack23.cia.service.impl.rules;
 
-import java.text.MessageFormat;
 import java.util.List;
-import java.util.Locale;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
@@ -95,12 +93,6 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	@Override
 	public String getId() {
 		return party.getParty();
-	}
-
-	@Override
-	public String toString() {
-		return new MessageFormat("PartyComplianceCheckImpl [getName()={0}, getRuleName()={1}, getRuleDescription()={2}, getResourceType()={3}, getStatus()={4}]",Locale.ENGLISH).format(			
-				new Object[] {getName(), getRuleName(), getRuleDescription(), getResourceType(), getStatus()});
 	}
 
 	/**
