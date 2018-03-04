@@ -5,6 +5,7 @@
 	xmlns:task="http://www.springframework.org/schema/task"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:kie="http://drools.org/schema/kie-spring"
 	xsi:schemaLocation="
      http://www.springframework.org/schema/beans
      http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -16,7 +17,8 @@
      http://www.springframework.org/schema/cache/spring-cache.xsd
      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
      http://www.springframework.org/schema/security
-     http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+     http://www.springframework.org/schema/security/spring-security-4.2.xsd
+     http://drools.org/schema/kie-spring http://drools.org/schema/kie-spring.xsd">
 
 	<bean id="servicePropertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -113,16 +115,7 @@
 
 	<security:global-method-security secured-annotations="enabled"/>
 
-	<security:authentication-manager alias="authenticationManager">
-		<!-- <security:authentication-provider>
-			<security:user-service>
-				<security:user name="sysop" password="password"
-					authorities="ROLE_USER, ROLE_ADMIN" />
-				<security:user name="user" password="password"
-					authorities="ROLE_USER" />
-			</security:user-service>
-		</security:authentication-provider>-->
-	</security:authentication-manager>
+	<security:authentication-manager alias="authenticationManager"/>
 
 	<import resource="classpath:META-INF/cia-jms-broker.xml" />
 
@@ -155,6 +148,7 @@
 		<constructor-arg index="5" value="true" />
 		<constructor-arg index="6" value="true" />
 	</bean>
-
+	
+	<bean id="kiePostProcessor" class="org.kie.spring.KModuleBeanFactoryPostProcessor"/>
 
 </beans>

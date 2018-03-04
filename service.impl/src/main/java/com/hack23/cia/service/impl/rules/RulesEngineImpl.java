@@ -26,7 +26,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.drools.core.common.DefaultFactHandle;
-import org.kie.api.KieServices;
 import org.kie.api.event.rule.AfterMatchFiredEvent;
 import org.kie.api.event.rule.DefaultAgendaEventListener;
 import org.kie.api.runtime.KieContainer;
@@ -59,23 +58,12 @@ public final class RulesEngineImpl implements RulesEngine {
 	@Qualifier("DataViewer")
 	private DataViewer dataViewer;
 
-	/** The rules container. */
+	@Autowired
 	private KieContainer rulesContainer;
-
-	/**
-	 * Inits the rules.
-	 */
-	public synchronized void initRules() {		
-		 if (rulesContainer == null) {
-			KieServices kieServices = KieServices.Factory.get();			
-			rulesContainer = kieServices.getKieClasspathContainer();			
-		 }
-	}
-
+	
 	@Override
 	@Cacheable("checkRulesCompliance")
 	public List<ComplianceCheck> checkRulesCompliance() {
-		initRules();
 		KieSession ksession = rulesContainer.newKieSession();
 		Map<String,ComplianceCheck> complianceChecks = new HashMap<>();
 		ksession.addEventListener(new ComplianceCheckAgendaEventListener(complianceChecks));
