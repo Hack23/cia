@@ -20,6 +20,7 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_;
 import com.hack23.cia.service.data.api.ApplicationSessionDAO;
-import com.tc.util.UUID;
 
 /**
  * The Class ApplicationSessionDAOITest.
@@ -91,7 +91,7 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 
 	private ApplicationSession createApplicationSession() {
 		final ApplicationSession applicationSession = new ApplicationSession();
-		applicationSession.withCreatedDate(new Date()).withIpInformation(UUID.getUUID().toString()).withLocale("Locale").withSessionId(UUID.getUUID().toString());
+		applicationSession.withCreatedDate(new Date()).withIpInformation(UUID.randomUUID().toString()).withLocale("Locale").withSessionId(UUID.randomUUID().toString());
 		applicationSessionDAO.persist(applicationSession);
 		return applicationSession;
 	}
