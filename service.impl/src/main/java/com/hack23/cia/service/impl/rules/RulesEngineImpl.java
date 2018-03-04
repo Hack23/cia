@@ -25,14 +25,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
-
 import org.drools.core.common.DefaultFactHandle;
-import org.drools.core.io.impl.ClassPathResource;
 import org.kie.api.KieServices;
-import org.kie.api.builder.KieBuilder;
-import org.kie.api.builder.KieFileSystem;
-import org.kie.api.builder.KieModule;
 import org.kie.api.event.rule.AfterMatchFiredEvent;
 import org.kie.api.event.rule.DefaultAgendaEventListener;
 import org.kie.api.runtime.KieContainer;
@@ -60,28 +54,6 @@ import com.hack23.cia.service.data.api.DataViewer;
 @Transactional(propagation = Propagation.REQUIRED, timeout = 1200)
 public final class RulesEngineImpl implements RulesEngine {
 
-	/** The Constant POLITICAN_RULE_1. */
-	private static final String POLITICAN_RULE_1 = "rules/politician/PoliticianLeftPartyStillHoldingPositions.drl";
-
-	/** The Constant POLITICAN_RULE_2. */
-	private static final String POLITICAN_RULE_2 = "rules/politician/PoliticianTimeToRetire.drl";
-
-	/** The Constant POLITICAN_RULE_3. */
-	private static final String POLITICAN_RULE_3 = "rules/politician/PoliticianBusySchedule.drl";
-
-	/** The Constant POLITICAN_RULE_4. */
-	private static final String POLITICAN_RULE_4 = "rules/politician/PoliticianMinisterWithoutParliamentExperience.drl";
-
-	/** The Constant POLITICAN_RULE_5. */
-	private static final String POLITICAN_RULE_5 = "rules/politician/PoliticianLazy.drl";
-	
-	/** The Constant POLITICAN_RULE_6. */
-	private static final String POLITICAN_RULE_6 = "rules/politician/PoliticianPartyRebel.drl";	
-	
-
-	/** The Constant PARTY_RULE_1. */
-	private static final String PARTY_RULE_1 = "rules/party/PartyNoGovernmentExperience.drl";
-
 	/** The data viewer. */
 	@Autowired
 	@Qualifier("DataViewer")
@@ -93,29 +65,17 @@ public final class RulesEngineImpl implements RulesEngine {
 	/**
 	 * Inits the rules.
 	 */
-	@PostConstruct
-	public void initRules() {
-		KieServices kieServices = KieServices.Factory.get();
-
-		KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
-		kieFileSystem.write(new ClassPathResource(POLITICAN_RULE_1));
-		kieFileSystem.write(new ClassPathResource(POLITICAN_RULE_2));
-		kieFileSystem.write(new ClassPathResource(POLITICAN_RULE_3));
-		kieFileSystem.write(new ClassPathResource(POLITICAN_RULE_4));
-		kieFileSystem.write(new ClassPathResource(POLITICAN_RULE_5));	
-		kieFileSystem.write(new ClassPathResource(POLITICAN_RULE_6));			
-		kieFileSystem.write(new ClassPathResource(PARTY_RULE_1));
-
-		KieBuilder kieBuilder = kieServices.newKieBuilder(kieFileSystem);
-		kieBuilder.buildAll();
-		KieModule kieModule = kieBuilder.getKieModule();
-
-		rulesContainer = kieServices.newKieContainer(kieModule.getReleaseId());
+	public synchronized void initRules() {		
+		 if (rulesContainer == null) {
+			KieServices kieServices = KieServices.Factory.get();			
+			rulesContainer = kieServices.getKieClasspathContainer();			
+		 }
 	}
 
 	@Override
 	@Cacheable("checkRulesCompliance")
 	public List<ComplianceCheck> checkRulesCompliance() {
+		initRules();
 		KieSession ksession = rulesContainer.newKieSession();
 		Map<String,ComplianceCheck> complianceChecks = new HashMap<>();
 		ksession.addEventListener(new ComplianceCheckAgendaEventListener(complianceChecks));

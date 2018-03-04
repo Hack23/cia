@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns="http://www.drools.org/xsd/kmodule">
+  <kbase name="base" default="true" packages="party, politician">
+      <ksession name="KieSession" default="true"/>
+  </kbase>  
+</kmodule>
