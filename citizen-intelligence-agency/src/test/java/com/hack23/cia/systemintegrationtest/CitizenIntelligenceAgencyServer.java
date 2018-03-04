@@ -204,9 +204,9 @@ public final class CitizenIntelligenceAgencyServer {
 	   https_config.addCustomizer(new SecureRequestCustomizer());
 	
 		final SslContextFactory sslContextFactory = new SslContextFactory();
-		sslContextFactory.setKeyStoreType("JKS");
-		sslContextFactory.setKeyStorePath("target/keystore.jks");
-		sslContextFactory.setTrustStorePath("target/keystore.jks");		
+		sslContextFactory.setKeyStoreType("PKCS12");
+		sslContextFactory.setKeyStorePath("target/keystore.p12");
+		sslContextFactory.setTrustStorePath("target/keystore.p12");		
 		sslContextFactory.setKeyStorePassword("changeit");
 		sslContextFactory.setTrustStorePassword("changeit");
 		sslContextFactory.setKeyManagerPassword("changeit");

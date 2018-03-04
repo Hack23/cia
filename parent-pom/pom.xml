@@ -612,6 +612,7 @@
         <directory>src/main/resources</directory>
         <excludes>
           <exclude>*.xlsx</exclude>
+          <exclude>*.p12</exclude>
         </excludes>
       </resource>
       <resource>
@@ -619,6 +620,7 @@
         <directory>src/main/resources</directory>
         <includes>
           <include>*.xlsx</include>
+          <include>*.p12</include>          
         </includes>
       </resource>
     </resources>
