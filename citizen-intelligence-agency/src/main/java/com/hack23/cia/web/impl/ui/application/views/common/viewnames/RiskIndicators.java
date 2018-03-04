@@ -24,5 +24,8 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
 public enum RiskIndicators {
 
 	/** The risk summary. */
-	RISK_SUMMARY;
+	RISK_SUMMARY,
+	
+	/** The rule violations. */
+	RULE_VIOLATIONS;
 }

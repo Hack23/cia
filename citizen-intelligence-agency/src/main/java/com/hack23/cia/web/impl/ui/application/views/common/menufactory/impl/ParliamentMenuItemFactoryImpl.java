@@ -40,6 +40,9 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements ParliamentMenuItemFactory {
 
+	/** The Constant RULE_VIOLATIONS. */
+	private static final String RULE_VIOLATIONS = "Rule Violations";
+
 	/** The Constant RISK_SUMMARY. */
 	private static final String RISK_SUMMARY = "Risk Summary";
 
@@ -109,9 +112,13 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 	private static final PageModeMenuCommand COMMAND_CHARTS_DECISION_FLOW = new PageModeMenuCommand(
 			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DECISION_FLOW_CHART.toString());
 
+	/** The Constant COMMAND_RISK_SUMMARY. */
 	private static final PageModeMenuCommand COMMAND_RISK_SUMMARY = new PageModeMenuCommand(
 			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.RULES, RiskIndicators.RISK_SUMMARY.toString());
 
+	/** The Constant COMMAND_RULE_VIOLATION. */
+	private static final PageModeMenuCommand COMMAND_RULE_VIOLATION = new PageModeMenuCommand(
+			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.RULES, RiskIndicators.RULE_VIOLATIONS.toString());
 
 	/** The Constant COMMAND_OVERVIEW. */
 	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.OVERVIEW);
@@ -186,8 +193,13 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 		final MenuItem addItem7 = chartIndicators.addItem(RISK_SUMMARY, VaadinIcons.INSTITUTION,COMMAND_RISK_SUMMARY);
 		addItem7.setDescription(RISK_SUMMARY);
 
+		final MenuItem addItem8 = chartIndicators.addItem(RULE_VIOLATIONS, VaadinIcons.INSTITUTION,COMMAND_RULE_VIOLATION);
+		addItem8.setDescription(RULE_VIOLATIONS);
+
+		
 		final MenuItem addItem4 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE,VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY);
 		addItem4.setDescription(DAILY_TOTAL_OF_NUMBER_PUBLISHED_DOCUMENTS);
+		
 		final MenuItem addItem5 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,COMMAND_DECISION_ACTIVITY);
 		addItem5.setDescription(DAILY_TOTAL_OF_NUMBER_OF_DECSIONS_MADE);
 		
@@ -210,6 +222,7 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 		createButtonLink(grid,RISK_SUMMARY, VaadinIcons.INSTITUTION,COMMAND_RISK_SUMMARY,RISK_SUMMARY);
 
+		createButtonLink(grid,RULE_VIOLATIONS, VaadinIcons.INSTITUTION,COMMAND_RULE_VIOLATION,RULE_VIOLATIONS);
 
 		createButtonLink(grid,DOCUMENT_ACTIVITY_BY_TYPE,VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY, CHART_DOCUMENT_ACTIVITY_BY_TYPE);
 		createButtonLink(grid,DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,COMMAND_DECISION_ACTIVITY, CHART_DECISIONS_BY_DECISION_TYPE);

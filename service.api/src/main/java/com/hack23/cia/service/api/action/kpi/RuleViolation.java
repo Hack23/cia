@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.service.api.action.kpi;
 
+import java.io.Serializable;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -26,7 +28,12 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * The Class RuleViolation.
  */
-public final class RuleViolation {
+public final class RuleViolation implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/** The id. */
 	private final String id;

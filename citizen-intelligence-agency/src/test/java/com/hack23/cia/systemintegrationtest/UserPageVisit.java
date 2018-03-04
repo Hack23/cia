@@ -57,7 +57,7 @@ public final class UserPageVisit extends Assert {
 	private static final int WAIT_FOR_TEXT = 5000;
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
-	private static final int WAIT_FOR_PAGE_ELEMENT = 25000;
+	private static final int WAIT_FOR_PAGE_ELEMENT = 45000;
 
 	/** The screen shot number. */
 	private static int screenShotNumber;
