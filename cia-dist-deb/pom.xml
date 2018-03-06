@@ -185,12 +185,12 @@
               <toFile>/opt/cia/etc/jetty-gzip.xml</toFile>
             </copyFile>
             <copyFile>
-              <path>src/main/config/jetty/etc/jetty-start.policy</path>
-              <toFile>/opt/cia/etc/jetty-start.policy</toFile>
-            </copyFile>
-            <copyFile>
               <path>src/main/config/jetty/etc/jetty-cia.policy</path>
               <toFile>/opt/cia/etc/jetty-cia.policy</toFile>
+            </copyFile>
+            <copyFile>
+              <path>src/main/config/jetty/etc/jetty-cia-kie-engine.policy</path>
+              <toFile>/opt/cia/etc/jetty-cia-kie-engine.policy</toFile>
             </copyFile>
           </assembly>
         </configuration>

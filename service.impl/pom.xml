@@ -46,7 +46,7 @@
     <dependency>
       <groupId>org.mvel</groupId>
       <artifactId>mvel2</artifactId>
-      <version>2.4.0.Final</version>
+      <version>2.4.0.Final-redhat-1</version>
     </dependency>
     <dependency>
       <groupId>org.kie</groupId>
@@ -60,6 +60,10 @@
         <exclusion>
           <artifactId>spring-core</artifactId>
           <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>mvel2</artifactId>
+          <groupId>org.mvel</groupId>
         </exclusion>
       </exclusions>
     </dependency>

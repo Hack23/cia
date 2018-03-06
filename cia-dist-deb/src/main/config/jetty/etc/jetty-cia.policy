@@ -1,88 +1,15 @@
-
-// These permissions apply to javac
-grant codeBase "file:${java.home}/lib/-" {
+grant codeBase "file:${jetty.home}/start.jar" {
         permission java.security.AllPermission;
 };
 
-// These permissions apply to javac
-grant codeBase "file:${java.home}/jmods/-" {
+grant codeBase "file:${jetty.home}/lib/-" {
         permission java.security.AllPermission;
 };
 
-// These permissions apply to all shared system extensions
-grant codeBase "file:${java.home}/jre/lib/ext/-" {
+grant codeBase "file:${jetty.home}/webapps/cia/WEB-INF/lib/-" {
         permission java.security.AllPermission;
 };
 
-// These permissions apply to javac when ${java.home] points at $JAVA_HOME/jre
-grant codeBase "file:${java.home}/../lib/-" {
+grant codeBase "file:${jetty.home}/webapps/cia/WEB-INF/classes/-" {
         permission java.security.AllPermission;
-};
-
-grant codeBase "file:${{java.ext.dirs}}/*" {
-        permission java.security.AllPermission;
-};
-
-grant codeBase "file:${/}opt${/}cia${/}start.jar" {
-        permission java.security.AllPermission;
-};
-
-grant codeBase "file:${/}opt${/}cia${/}lib${/}*" {
-        permission java.security.AllPermission;
-};
-
-grant codeBase "file:${/}opt${/}cia${/}lib${/}apache-jsp${/}*" {
-        permission java.security.AllPermission;
-};
-
-grant codeBase "file:${/}opt${/}cia${/}lib${/}apache-jstl${/}*" {
-        permission java.security.AllPermission;
-};
-
-grant codeBase "file:${/}opt${/}cia${/}lib${/}ext${/}*" {
-        permission java.security.AllPermission;
-};
-
-grant codeBase "file:${/}opt${/}cia${/}lib${/}fcgi${/}*" {
-        permission java.security.AllPermission;
-};
-
-grant codeBase "file:${/}opt${/}cia${/}lib${/}http2${/}*" {
-        permission java.security.AllPermission;
-};
-
-grant codeBase "file:${/}opt${/}cia${/}lib${/}jaspi${/}*" {
-        permission java.security.AllPermission;
-};
-
-grant codeBase "file:${/}opt${/}cia${/}lib${/}annotations${/}*" {
-        permission java.security.AllPermission;
-};
-
-grant codeBase "file:${/}opt${/}cia${/}lib${/}mail${/}*" {
-        permission java.security.AllPermission;
-};
-
-grant codeBase "file:${/}opt${/}cia${/}lib${/}setuid${/}*" {
-        permission java.security.AllPermission;
-};
-
-grant codeBase "file:${/}opt${/}cia${/}lib${/}spring${/}*" {
-        permission java.security.AllPermission;
-};
-
-grant codeBase "file:${/}opt${/}cia${/}lib${/}websocket${/}*" {
-        permission java.security.AllPermission;
-};
-
-grant codeBase "file:${/}opt${/}cia${/}lib${/}transactions${/}*" {
-        permission java.security.AllPermission;
-};
-
-grant codeBase "file:${/}opt${/}cia${/}webapps${/}cia${/}WEB-INF${/}lib${/}*" {
-        permission java.security.AllPermission;
-};
-
-grant {
-     permission java.security.AllPermission;
 };
