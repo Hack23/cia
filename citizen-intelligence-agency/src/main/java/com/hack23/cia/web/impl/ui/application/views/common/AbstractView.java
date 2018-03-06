@@ -245,7 +245,7 @@ public abstract class AbstractView extends Panel implements View {
 	 * @param topHeader
 	 *            the top header
 	 */
-	private void addLogoToHeader(final HorizontalLayout topHeader) {
+	private static void addLogoToHeader(final HorizontalLayout topHeader) {
 		final ThemeResource ciaLogoResource = new ThemeResource("cia-logo.png");
 		final Image ciaLogoImage = new Image(null,ciaLogoResource);
 		topHeader.addComponent(ciaLogoImage);
@@ -261,7 +261,7 @@ public abstract class AbstractView extends Panel implements View {
 	 * @param topHeader
 	 *            the top header
 	 */
-	private void createTopTitleHeader(final HorizontalLayout topHeader) {
+	private static void createTopTitleHeader(final HorizontalLayout topHeader) {
 		final HorizontalLayout topTitleHeadertPanel = new HorizontalLayout();
 
 

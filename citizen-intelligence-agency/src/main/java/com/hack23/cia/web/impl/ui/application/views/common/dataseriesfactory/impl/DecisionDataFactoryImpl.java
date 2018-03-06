@@ -61,20 +61,35 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 
 		for (final DocumentStatusContainer document : dataContainer.getAll()) {
 
-			if (document.getDocumentProposal() != null && document.getDocumentProposal().getProposal() != null) {
-
-				final DocumentProposalData proposal = document.getDocumentProposal().getProposal();
-
-				if (proposal.getProcessedIn() != null && !proposal.getProcessedIn().trim().isEmpty()
-						&& proposal.getCommittee() != null && !proposal.getCommittee().trim().isEmpty()
-						&& proposal.getProcessedIn().contains(processedIn) && proposal.getChamber().length() <= "återförvisning till utskottet".length() && proposal.getChamber().length() >= "avslag".length()) {
-					
-					summary.add(new ProposalCommitteeeSummary(getCommittteeShortName(proposal), getDocumentName(document) , cleanupDecision(proposal.getChamber()) , document.getDocument().getHangarId()));
-
-				}
-			}
+			addProposalCommitteeeSummary(processedIn, summary, document);
 		}
 		return summary;
+	}
+
+	/**
+	 * Adds the proposal committeee summary.
+	 *
+	 * @param processedIn
+	 *            the processed in
+	 * @param summary
+	 *            the summary
+	 * @param document
+	 *            the document
+	 */
+	private static void addProposalCommitteeeSummary(final String processedIn, final List<ProposalCommitteeeSummary> summary,
+			final DocumentStatusContainer document) {
+		if (document.getDocumentProposal() != null && document.getDocumentProposal().getProposal() != null) {
+
+			final DocumentProposalData proposal = document.getDocumentProposal().getProposal();
+
+			if (proposal.getProcessedIn() != null && !proposal.getProcessedIn().trim().isEmpty()
+					&& proposal.getCommittee() != null && !proposal.getCommittee().trim().isEmpty()
+					&& proposal.getProcessedIn().contains(processedIn) && proposal.getChamber().length() <= "återförvisning till utskottet".length() && proposal.getChamber().length() >= "avslag".length()) {
+				
+				summary.add(new ProposalCommitteeeSummary(getCommittteeShortName(proposal), getDocumentName(document) , cleanupDecision(proposal.getChamber()) , document.getDocument().getHangarId()));
+
+			}
+		}
 	}
 
 	/**

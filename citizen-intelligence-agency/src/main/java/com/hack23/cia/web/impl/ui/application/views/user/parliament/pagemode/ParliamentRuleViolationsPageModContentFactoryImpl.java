@@ -33,7 +33,6 @@ import com.github.markash.ui.component.card.CounterStatisticModel;
 import com.github.markash.ui.component.card.CounterStatisticsCard;
 import com.github.markash.ui.component.card.StatisticShow;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheckRequest;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheckResponse;
 import com.hack23.cia.service.api.action.kpi.ResourceType;
@@ -77,7 +76,6 @@ public final class ParliamentRuleViolationsPageModContentFactoryImpl extends Abs
 		final VerticalLayout panelContent = createPanelContent();
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 
-		final String pageId = getPageId(parameters);
 
 		ComplianceCheckRequest serviceRequest = new ComplianceCheckRequest();
 		serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
@@ -113,6 +111,7 @@ public final class ParliamentRuleViolationsPageModContentFactoryImpl extends Abs
 		getGridFactory().createBasicBeanItemGrid(panelContent, RuleViolation.class, ruleViolations, "Risk",
 				new String[] { "name", "status", "resourceType", "ruleName", "ruleGroup", "ruleDescription" }, new String[] { "id" }, null, null, null);
 
+		final String pageId = getPageId(parameters);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);
 		panel.setCaption(new StringBuilder().append(NAME).append("::").append(PARLIAMENT_RULE_VIOLATIONS).toString());

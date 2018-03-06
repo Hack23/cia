@@ -73,6 +73,12 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 *
 	 * @param politician
 	 *            the politician
+	 * @param dailySummary
+	 *            the daily summary
+	 * @param monthlySummary
+	 *            the monthly summary
+	 * @param annualSummary
+	 *            the annual summary
 	 */
 	public PoliticianComplianceCheckImpl(final ViewRiksdagenPolitician politician,final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily dailySummary, final ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly monthlySummary,final ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual annualSummary) {
 		super(ResourceType.POLITICIAN);

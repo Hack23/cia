@@ -93,10 +93,9 @@ public final class ComplianceCheckServiceImpl extends
 			eventRequest.setUserId(userAccount.getUserId());
 		}
 
-		final ComplianceCheckResponse response = new ComplianceCheckResponse(ServiceResult.SUCCESS);
 		List<ComplianceCheck> complianceList = rulesEngine.checkRulesCompliance();
 		
-		List<RuleViolation> ruleViolations = new ArrayList<RuleViolation>();
+		List<RuleViolation> ruleViolations = new ArrayList<>();
 		
 		for (ComplianceCheck check : complianceList) {
 			ruleViolations.addAll(check.getRuleViolations());
@@ -109,6 +108,7 @@ public final class ComplianceCheckServiceImpl extends
             }
         });
 
+		final ComplianceCheckResponse response = new ComplianceCheckResponse(ServiceResult.SUCCESS);
 		response.setList(complianceList);
 		response.setStatusMap(ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getStatus)));
 		response.setResourceTypeMap(ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getResourceType)));

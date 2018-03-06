@@ -620,7 +620,7 @@
         <directory>src/main/resources</directory>
         <includes>
           <include>*.xlsx</include>
-          <include>*.p12</include>          
+          <include>*.p12</include>
         </includes>
       </resource>
     </resources>

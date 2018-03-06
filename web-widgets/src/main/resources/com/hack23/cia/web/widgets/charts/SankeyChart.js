@@ -1,6 +1,5 @@
 function com_hack23_cia_web_widgets_charts_SankeyChart() {
     var connector;
-    var loaded = false;
 
     function init() {
         google.charts.load('current', {'packages':['sankey']});
@@ -27,12 +26,12 @@ function com_hack23_cia_web_widgets_charts_SankeyChart() {
         data.addColumn('string', 'From');
         data.addColumn('string', 'To');
         data.addColumn('number', 'Total');
-        
-        var dataValueList = this.getState().values;
-        var rowData = new Array();
 
-         for (index = 0; index < dataValueList.length; index++ ) {
-            var tempData = new Array();
+        var dataValueList = this.getState().values;
+        var rowData =  Array.from({length: dataValueList.length});
+
+         for (var index = 0; index < dataValueList.length; index++ ) {
+            var tempData =  Array.from({length: 3});
             tempData[0] = dataValueList[index][0];
             tempData[1] = dataValueList[index][1];
             tempData[2] = dataValueList[index][2];

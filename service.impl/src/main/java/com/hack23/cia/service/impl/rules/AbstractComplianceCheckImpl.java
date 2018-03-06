@@ -77,7 +77,7 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	 */
 	@Override
 	public final List<RuleViolation> getRuleViolations() {
-		return new ArrayList<RuleViolation>(ruleViolationMap.values());
+		return new ArrayList<>(ruleViolationMap.values());
 	}
 
 	/**

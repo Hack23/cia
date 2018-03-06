@@ -151,7 +151,7 @@ public final class RulesEngineImpl implements RulesEngine {
 	 * @param list
 	 *            the list
 	 */
-	private void insertParties(KieSession ksession, final List<ViewRiksdagenPartySummary> list) {
+	private static void insertParties(KieSession ksession, final List<ViewRiksdagenPartySummary> list) {
 		for (ViewRiksdagenPartySummary partyData : list) {
 			if (partyData != null) {
 				ksession.insert(new PartyComplianceCheckImpl(partyData));
