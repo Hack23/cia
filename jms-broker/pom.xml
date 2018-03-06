@@ -33,6 +33,11 @@
   </distributionManagement>
   <dependencies>
     <dependency>
+      <groupId>javax.jms</groupId>
+      <artifactId>jms</artifactId>
+      <version>1.1</version>
+    </dependency>
+    <dependency>
       <groupId>org.apache.activemq</groupId>
       <artifactId>activemq-spring</artifactId>
       <version>${cia.project.versions.activemq}</version>
@@ -112,6 +117,10 @@
         <exclusion>
           <artifactId>commons-pool2</artifactId>
           <groupId>org.apache.commons</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>geronimo-jms_1.1_spec</artifactId>
+          <groupId>org.apache.geronimo.specs</groupId>
         </exclusion>
       </exclusions>
     </dependency>

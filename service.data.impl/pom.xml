@@ -241,11 +241,6 @@
       <version>5.5.5</version>
     </dependency>
     <dependency>
-      <groupId>javax.transaction</groupId>
-      <artifactId>jta</artifactId>
-      <version>1.1</version>
-    </dependency>
-    <dependency>
       <groupId>antlr</groupId>
       <artifactId>antlr</artifactId>
       <version>2.7.7.redhat-7</version>
@@ -514,6 +509,10 @@
         <exclusion>
           <artifactId>hibernate-commons-annotations</artifactId>
           <groupId>org.hibernate.common</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+          <groupId>org.jboss.spec.javax.transaction</groupId>
         </exclusion>
       </exclusions>
     </dependency>

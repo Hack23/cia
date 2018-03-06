@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.widgets.charts;
 
-import java.util.ArrayList;
-
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -50,7 +48,7 @@ public final class SankeyChart extends AbstractJavaScriptComponent {
 		setSizeFull();
 		setHeight("100%");
 		setId(myId);
-		getState().myId = myId;
+		getState().myId=myId;
 	}
 
 	@Override
@@ -69,11 +67,7 @@ public final class SankeyChart extends AbstractJavaScriptComponent {
 	 *            the weight
 	 */
 	public void addDataRow(final String from, final String to, int weight) {
-		final ArrayList<Object> valueData = new ArrayList<>();
-		valueData.add(from);
-		valueData.add(to);
-		valueData.add(weight);
-		getState().values.add(valueData);
+		getState().addDataRow(from, to, weight);
 	}
 
 	/**

@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.impl.rules;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary;
@@ -114,7 +115,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @return the documents
 	 */
 	public List<ViewRiksdagenPoliticianDocument> getDocuments() {
-		return documents;
+		return Collections.unmodifiableList(documents);
 	}
 
 	/**
@@ -124,7 +125,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 *            the new documents
 	 */
 	public void setDocuments(List<ViewRiksdagenPoliticianDocument> documents) {
-		this.documents = documents;
+		this.documents = Collections.unmodifiableList(documents);
 	}
 
 	/**
@@ -133,7 +134,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @return the document daily summary
 	 */
 	public List<ViewRiksdagenPoliticianDocumentDailySummary> getDocumentDailySummary() {
-		return documentDailySummary;
+		return Collections.unmodifiableList(documentDailySummary);
 	}
 
 	/**
@@ -143,7 +144,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 *            the new document daily summary
 	 */
 	public void setDocumentDailySummary(List<ViewRiksdagenPoliticianDocumentDailySummary> documentDailySummary) {
-		this.documentDailySummary = documentDailySummary;
+		this.documentDailySummary = Collections.unmodifiableList(documentDailySummary);
 	}
 
 	/**
@@ -152,7 +153,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @return the ballot decisions
 	 */
 	public List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> getBallotDecisions() {
-		return ballotDecisions;
+		return Collections.unmodifiableList(ballotDecisions);
 	}
 
 	/**
@@ -162,7 +163,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 *            the new ballot decisions
 	 */
 	public void setBallotDecisions(List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> ballotDecisions) {
-		this.ballotDecisions = ballotDecisions;
+		this.ballotDecisions = Collections.unmodifiableList(ballotDecisions);
 	}
 
 	/**
@@ -171,7 +172,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @return the ballots
 	 */
 	public List<ViewRiksdagenVoteDataBallotPoliticianSummary> getBallots() {
-		return ballots;
+		return Collections.unmodifiableList(ballots);
 	}
 
 	/**
@@ -181,7 +182,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 *            the new ballots
 	 */
 	public void setBallots(List<ViewRiksdagenVoteDataBallotPoliticianSummary> ballots) {
-		this.ballots = ballots;
+		this.ballots = Collections.unmodifiableList(ballots);
 	}
 
 	/**
@@ -190,7 +191,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @return the daily ballot summary
 	 */
 	public List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> getDailyBallotSummary() {
-		return dailyBallotSummary;
+		return Collections.unmodifiableList(dailyBallotSummary);
 	}
 
 	/**
@@ -200,7 +201,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 *            the new daily ballot summary
 	 */
 	public void setDailyBallotSummary(List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dailyBallotSummary) {
-		this.dailyBallotSummary = dailyBallotSummary;
+		this.dailyBallotSummary = Collections.unmodifiableList(dailyBallotSummary);
 	}
 
 	/**

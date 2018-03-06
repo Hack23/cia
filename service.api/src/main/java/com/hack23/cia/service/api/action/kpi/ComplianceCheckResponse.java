@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.api.action.kpi;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -58,7 +59,7 @@ public final class ComplianceCheckResponse extends AbstractResponse {
 	 * @return the list
 	 */
 	public List<ComplianceCheck> getList() {
-		return list;
+		return Collections.unmodifiableList(list);
 	}
 
 	/**
@@ -68,7 +69,7 @@ public final class ComplianceCheckResponse extends AbstractResponse {
 	 *            the new list
 	 */
 	public void setList(final List<ComplianceCheck> list) {
-		this.list = list;
+		this.list = Collections.unmodifiableList(list);
 	}
 
 	/**
@@ -77,7 +78,7 @@ public final class ComplianceCheckResponse extends AbstractResponse {
 	 * @return the status map
 	 */
 	public Map<Status, List<RuleViolation>> getStatusMap() {
-		return statusMap;
+		return Collections.unmodifiableMap(statusMap);
 	}
 
 	/**
@@ -87,7 +88,7 @@ public final class ComplianceCheckResponse extends AbstractResponse {
 	 *            the new status map
 	 */
 	public void setStatusMap(final Map<Status, List<RuleViolation>> statusMap) {
-		this.statusMap = statusMap;
+		this.statusMap = Collections.unmodifiableMap(statusMap);
 	}
 
 	/**
@@ -96,7 +97,7 @@ public final class ComplianceCheckResponse extends AbstractResponse {
 	 * @return the resource type map
 	 */
 	public Map<ResourceType, List<RuleViolation>> getResourceTypeMap() {
-		return resourceTypeMap;
+		return Collections.unmodifiableMap(resourceTypeMap);
 	}
 
 	/**
@@ -106,7 +107,7 @@ public final class ComplianceCheckResponse extends AbstractResponse {
 	 *            the new resource type map
 	 */
 	public void setResourceTypeMap(final Map<ResourceType, List<RuleViolation>> resourceTypeMap) {
-		this.resourceTypeMap = resourceTypeMap;
+		this.resourceTypeMap = Collections.unmodifiableMap(resourceTypeMap);
 	}
 
 }

@@ -1135,6 +1135,8 @@
                     <exclude>log4j:log4j</exclude>
                     <exclude>stax:stax-api</exclude>
                     <exclude>org.springframework:spring-jcl</exclude>
+                    <exclude>javax.transaction:jta</exclude>
+                    <exclude>org.apache.geronimo.specs:geronimo-jms_1.1_spec</exclude>
                   </excludes>
                 </bannedDependencies>
                 <!-- do not support jdk9, issue <banDuplicateClasses> <findAllDuplicates>true</findAllDuplicates> 

@@ -40,12 +40,19 @@ public final class SankeyChartState extends JavaScriptComponentState {
     /** The my id. */
     public String myId;
     
-    
 	/**
 	 * Instantiates a new sankey chart state.
 	 */
 	public SankeyChartState() {
 		super();
+	}
+	
+	public void addDataRow(final String from, final String to, int weight) {
+		final ArrayList<Object> valueData = new ArrayList<>();
+		valueData.add(from);
+		valueData.add(to);
+		valueData.add(weight);
+		values.add(valueData);
 	}
 
 	@Override
