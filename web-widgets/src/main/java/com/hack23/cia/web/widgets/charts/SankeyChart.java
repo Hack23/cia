@@ -30,34 +30,33 @@ import com.vaadin.ui.AbstractJavaScriptComponent;
  * The Class SankeyChart.
  */
 @JavaScript({ "https://www.gstatic.com/charts/loader.js", "SankeyChart.js" })
-public class SankeyChart extends AbstractJavaScriptComponent {
-    
+public final class SankeyChart extends AbstractJavaScriptComponent {
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The element id. */
-    private static int elementId;
+	private static int elementId;
 
-    /** The my id. */
-    private String myId;
+	/** The my id. */
+	private String myId;
 
-    /**
+	/**
 	 * Instantiates a new sankey chart.
 	 */
-    public SankeyChart() {
-        myId = "gBarChartComponent" + (++elementId);
-        callFunction("setId", myId);
-        setSizeFull();
-        setHeight("100%");
-        setId(myId);
-        getState().myId = myId;
-    }
+	public SankeyChart() {
+		myId = "gBarChartComponent" + (++elementId);
+		callFunction("setId", myId);
+		setSizeFull();
+		setHeight("100%");
+		setId(myId);
+		getState().myId = myId;
+	}
 
-    @Override
-    protected SankeyChartState getState() {
-        return (SankeyChartState) super.getState();
-    }
-
+	@Override
+	protected SankeyChartState getState() {
+		return (SankeyChartState) super.getState();
+	}
 
 	/**
 	 * Adds the data row.
@@ -71,19 +70,19 @@ public class SankeyChart extends AbstractJavaScriptComponent {
 	 */
 	public void addDataRow(final String from, final String to, int weight) {
 		final ArrayList<Object> valueData = new ArrayList<>();
-        valueData.add(from);
-        valueData.add(to);
-        valueData.add(weight);
-        getState().values.add(valueData);
+		valueData.add(from);
+		valueData.add(to);
+		valueData.add(weight);
+		getState().values.add(valueData);
 	}
 
-    /**
+	/**
 	 * Draw chart.
 	 */
-    public void drawChart() {
-        callFunction("doDraw");
-    }
-    
+	public void drawChart() {
+		callFunction("doDraw");
+	}
+
 	@Override
 	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this, false);
@@ -93,5 +92,5 @@ public class SankeyChart extends AbstractJavaScriptComponent {
 	public boolean equals(Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
-	
+
 }

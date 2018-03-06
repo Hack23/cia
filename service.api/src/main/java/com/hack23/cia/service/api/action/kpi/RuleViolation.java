@@ -148,27 +148,18 @@ public final class RuleViolation implements Serializable {
 		return resourceType;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
-	public final boolean equals(Object obj) {
+	public boolean equals(Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
-	public final String toString() {
+	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
-	public final int hashCode() {
+	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);
 	}
 	

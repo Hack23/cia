@@ -29,7 +29,7 @@ import com.vaadin.shared.ui.JavaScriptComponentState;
 /**
  * The Class SankeyChartState.
  */
-public class SankeyChartState extends JavaScriptComponentState {
+public final class SankeyChartState extends JavaScriptComponentState {
     
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
