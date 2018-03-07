@@ -38,6 +38,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.collect.Iterables;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly;
@@ -60,20 +63,20 @@ public final class RulesEngineImpl implements RulesEngine {
 
 	@Autowired
 	private KieContainer rulesContainer;
-	
+
 	@Override
 	@Cacheable("checkRulesCompliance")
 	public List<ComplianceCheck> checkRulesCompliance() {
 		KieSession ksession = rulesContainer.newKieSession();
-		Map<String,ComplianceCheck> complianceChecks = new HashMap<>();
+		Map<String, ComplianceCheck> complianceChecks = new HashMap<>();
 		ksession.addEventListener(new ComplianceCheckAgendaEventListener(complianceChecks));
 
 		insertPoliticians(ksession, dataViewer.getAll(ViewRiksdagenPolitician.class));
-		insertParties(ksession, dataViewer.getAll(ViewRiksdagenPartySummary.class));
+		//insertParties(ksession, dataViewer.getAll(ViewRiksdagenPartySummary.class));
 
 		ksession.fireAllRules();
 		ksession.dispose();
-		return new ArrayList(complianceChecks.values());
+		return new ArrayList<>(complianceChecks.values());
 	}
 
 	/**
@@ -95,21 +98,6 @@ public final class RulesEngineImpl implements RulesEngine {
 		Map<String, List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily>> politicanBallotSummaryDailyMap = dataViewer
 				.getAll(ViewRiksdagenVoteDataBallotPoliticianSummaryDaily.class).stream()
 				.collect(Collectors.groupingBy(p -> p.getEmbeddedId().getIntressentId()));
-		// Map<String, List<ViewRiksdagenVoteDataBallotPoliticianSummary>>
-		// politicanBallotSummaryMap =
-		// dataViewer.getAll(ViewRiksdagenVoteDataBallotPoliticianSummary.class).stream().collect(Collectors.groupingBy(p
-		// -> p.getEmbeddedId().getIntressentId()));
-		// Map<String, List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary>>
-		// politicanCommitteeDecisionSummaryMap =
-		// dataViewer.getAll(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class).stream().collect(Collectors.groupingBy(p
-		// -> p.getEmbeddedId().getIntressentId()));
-		// Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>>
-		// politicanDocumentSummaryDailyMap =
-		// dataViewer.getAll(ViewRiksdagenPoliticianDocumentDailySummary.class).stream().collect(Collectors.groupingBy(p
-		// -> p.getEmbeddedId().getPersonId()));
-		// Map<String, List<ViewRiksdagenPoliticianDocument>> politicanDocumentMap =
-		// dataViewer.getAll(ViewRiksdagenPoliticianDocument.class).stream().collect(Collectors.groupingBy(p
-		// -> p.getPersonReferenceId()));
 
 		for (ViewRiksdagenPolitician politicianData : list) {
 			if (politicianData != null) {
@@ -151,10 +139,44 @@ public final class RulesEngineImpl implements RulesEngine {
 	 * @param list
 	 *            the list
 	 */
-	private static void insertParties(KieSession ksession, final List<ViewRiksdagenPartySummary> list) {
+	private void insertParties(KieSession ksession, final List<ViewRiksdagenPartySummary> list) {
+		Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> politicanBallotSummaryAnnualMap = dataViewer
+				.getAll(ViewRiksdagenVoteDataBallotPartySummaryDaily.class).stream()
+				.collect(Collectors.groupingBy(p -> p.getEmbeddedId().getParty()));
+		Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryMonthly>> politicanBallotSummaryMontlyMap = dataViewer
+				.getAll(ViewRiksdagenVoteDataBallotPartySummaryMonthly.class).stream()
+				.collect(Collectors.groupingBy(p -> p.getEmbeddedId().getParty()));
+		Map<String, List<ViewRiksdagenVoteDataBallotPartySummaryAnnual>> politicanBallotSummaryDailyMap = dataViewer
+				.getAll(ViewRiksdagenVoteDataBallotPartySummaryAnnual.class).stream()
+				.collect(Collectors.groupingBy(p -> p.getEmbeddedId().getParty()));
+
 		for (ViewRiksdagenPartySummary partyData : list) {
-			if (partyData != null) {
-				ksession.insert(new PartyComplianceCheckImpl(partyData));
+			if (partyData != null) {				
+				List<ViewRiksdagenVoteDataBallotPartySummaryAnnual> dailyList = politicanBallotSummaryDailyMap
+						.get(partyData.getParty());
+				List<ViewRiksdagenVoteDataBallotPartySummaryMonthly> monthlyList = politicanBallotSummaryMontlyMap
+						.get(partyData.getParty());
+				List<ViewRiksdagenVoteDataBallotPartySummaryDaily> annualList = politicanBallotSummaryAnnualMap
+						.get(partyData.getParty());
+
+				if (partyData.isActiveParliament() && dailyList != null && monthlyList != null
+						&& annualList != null) {
+					Collections.sort(dailyList,
+							(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
+					Collections.sort(monthlyList,
+							(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
+					Collections.sort(annualList,
+							(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
+
+					PartyComplianceCheckImpl politicianComplianceCheckImpl = new PartyComplianceCheckImpl(
+							partyData, Iterables.getFirst(dailyList, null), Iterables.getFirst(monthlyList, null),
+							Iterables.getFirst(annualList, null));
+					ksession.insert(politicianComplianceCheckImpl);
+				} else {
+					PartyComplianceCheckImpl politicianComplianceCheckImpl = new PartyComplianceCheckImpl(
+							partyData, null, null, null);
+					ksession.insert(politicianComplianceCheckImpl);
+				}
 			}
 		}
 	}
@@ -171,7 +193,7 @@ public final class RulesEngineImpl implements RulesEngine {
 	 * @see ComplianceCheckAgendaEventEvent
 	 */
 	private static final class ComplianceCheckAgendaEventListener extends DefaultAgendaEventListener {
-		
+
 		/** The compliance checks. */
 		private final Map<String, ComplianceCheck> complianceChecks;
 
@@ -187,8 +209,9 @@ public final class RulesEngineImpl implements RulesEngine {
 
 		@Override
 		public void afterMatchFired(AfterMatchFiredEvent event) {
-			super.afterMatchFired(event);			
-			AbstractComplianceCheckImpl check = (AbstractComplianceCheckImpl) ((DefaultFactHandle) event.getMatch().getFactHandles().stream().findFirst().orElse(null)).getObject();			
+			super.afterMatchFired(event);
+			AbstractComplianceCheckImpl check = (AbstractComplianceCheckImpl) ((DefaultFactHandle) event.getMatch()
+					.getFactHandles().stream().findFirst().orElse(null)).getObject();
 			complianceChecks.put(check.getId(), check);
 		}
 	}

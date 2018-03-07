@@ -58,23 +58,29 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	private List<ViewRiksdagenVoteDataBallotPartySummaryDaily> dailyBallotSummary = new ArrayList<>();
 
 	/** The daily summary. */
-	private ViewRiksdagenVoteDataBallotPartySummaryDaily dailySummary;
+	private final ViewRiksdagenVoteDataBallotPartySummaryDaily dailySummary;
 	
 	/** The monthly summary. */
-	private ViewRiksdagenVoteDataBallotPartySummaryMonthly monthlySummary;
+	private final ViewRiksdagenVoteDataBallotPartySummaryMonthly monthlySummary;
 	
 	/** The annual summary. */
-	private ViewRiksdagenVoteDataBallotPartySummaryAnnual annualSummary;
+	private final ViewRiksdagenVoteDataBallotPartySummaryAnnual annualSummary;
 
 	/**
 	 * Instantiates a new party compliance check impl.
 	 *
 	 * @param party
 	 *            the party
+	 * @param dailySummary 
+	 * @param monthlySummary 
+	 * @param annualSummary 
 	 */
-	public PartyComplianceCheckImpl(final ViewRiksdagenPartySummary party) {
+	public PartyComplianceCheckImpl(final ViewRiksdagenPartySummary party,final ViewRiksdagenVoteDataBallotPartySummaryAnnual annualSummary,final ViewRiksdagenVoteDataBallotPartySummaryMonthly monthlySummary,final ViewRiksdagenVoteDataBallotPartySummaryDaily dailySummary) {
 		super(ResourceType.PARTY);
 		this.party = party;
+		this.annualSummary = annualSummary;
+		this.monthlySummary = monthlySummary;
+		this.dailySummary = dailySummary;
 		this.name = party.getParty();
 	}
 
@@ -164,16 +170,6 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	}
 
 	/**
-	 * Sets the daily summary.
-	 *
-	 * @param dailySummary
-	 *            the new daily summary
-	 */
-	public void setDailySummary(ViewRiksdagenVoteDataBallotPartySummaryDaily dailySummary) {
-		this.dailySummary = dailySummary;
-	}
-
-	/**
 	 * Gets the monthly summary.
 	 *
 	 * @return the monthly summary
@@ -182,15 +178,6 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 		return monthlySummary;
 	}
 
-	/**
-	 * Sets the monthly summary.
-	 *
-	 * @param monthlySummary
-	 *            the new monthly summary
-	 */
-	public void setMonthlySummary(ViewRiksdagenVoteDataBallotPartySummaryMonthly monthlySummary) {
-		this.monthlySummary = monthlySummary;
-	}
 
 	/**
 	 * Gets the annual summary.
@@ -200,15 +187,5 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	public ViewRiksdagenVoteDataBallotPartySummaryAnnual getAnnualSummary() {
 		return annualSummary;
 	}
-
-	/**
-	 * Sets the annual summary.
-	 *
-	 * @param annualSummary
-	 *            the new annual summary
-	 */
-	public void setAnnualSummary(ViewRiksdagenVoteDataBallotPartySummaryAnnual annualSummary) {
-		this.annualSummary = annualSummary;
-	}	
 
 }
