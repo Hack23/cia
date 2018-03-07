@@ -72,7 +72,7 @@ public final class RulesEngineImpl implements RulesEngine {
 		ksession.addEventListener(new ComplianceCheckAgendaEventListener(complianceChecks));
 
 		insertPoliticians(ksession, dataViewer.getAll(ViewRiksdagenPolitician.class));
-		//insertParties(ksession, dataViewer.getAll(ViewRiksdagenPartySummary.class));
+		insertParties(ksession, dataViewer.getAll(ViewRiksdagenPartySummary.class));
 
 		ksession.fireAllRules();
 		ksession.dispose();
