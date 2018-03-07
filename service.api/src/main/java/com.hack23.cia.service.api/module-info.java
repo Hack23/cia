@@ -9,6 +9,7 @@ module com.hack23.cia.service.api {
 
 
 	requires org.apache.commons.lang3;
+	requires commons.collections4;
 
 	requires com.hack23.cia.service.data.api;
 

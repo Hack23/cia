@@ -170,7 +170,7 @@ public final class RulesEngineImpl implements RulesEngine {
 	 *
 	 * @see ComplianceCheckAgendaEventEvent
 	 */
-	private final class ComplianceCheckAgendaEventListener extends DefaultAgendaEventListener {
+	private static final class ComplianceCheckAgendaEventListener extends DefaultAgendaEventListener {
 		
 		/** The compliance checks. */
 		private final Map<String, ComplianceCheck> complianceChecks;
@@ -188,7 +188,7 @@ public final class RulesEngineImpl implements RulesEngine {
 		@Override
 		public void afterMatchFired(AfterMatchFiredEvent event) {
 			super.afterMatchFired(event);			
-			AbstractComplianceCheckImpl check = (AbstractComplianceCheckImpl) ((DefaultFactHandle) event.getMatch().getFactHandles().iterator().next()).getObject();			
+			AbstractComplianceCheckImpl check = (AbstractComplianceCheckImpl) ((DefaultFactHandle) event.getMatch().getFactHandles().stream().findFirst().orElse(null)).getObject();			
 			complianceChecks.put(check.getId(), check);
 		}
 	}

@@ -24,6 +24,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections4.ListUtils;
+import org.apache.commons.collections4.MapUtils;
+
 import com.hack23.cia.service.api.action.common.AbstractResponse;
 
 
@@ -71,7 +74,7 @@ public final class ComplianceCheckResponse extends AbstractResponse {
 	 *            the new list
 	 */
 	public void setList(final List<ComplianceCheck> list) {
-		this.list = Collections.unmodifiableList(list);
+		this.list = Collections.unmodifiableList(ListUtils.emptyIfNull(list));
 	}
 
 	/**
@@ -90,7 +93,7 @@ public final class ComplianceCheckResponse extends AbstractResponse {
 	 *            the new status map
 	 */
 	public void setStatusMap(final Map<Status, List<RuleViolation>> statusMap) {
-		this.statusMap = Collections.unmodifiableMap(statusMap);
+		this.statusMap = Collections.unmodifiableMap(MapUtils.emptyIfNull(statusMap));
 	}
 
 	/**
@@ -109,7 +112,7 @@ public final class ComplianceCheckResponse extends AbstractResponse {
 	 *            the new resource type map
 	 */
 	public void setResourceTypeMap(final Map<ResourceType, List<RuleViolation>> resourceTypeMap) {
-		this.resourceTypeMap = Collections.unmodifiableMap(resourceTypeMap);
+		this.resourceTypeMap = Collections.unmodifiableMap(MapUtils.emptyIfNull(resourceTypeMap));
 	}
 
 }

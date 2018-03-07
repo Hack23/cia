@@ -62,7 +62,7 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 
 			if (committeeMap.containsKey(entry.getKey())) {
 
-				final ViewRiksdagenCommittee vewRiksdagenCommittee = committeeMap.get(entry.getKey()).iterator().next();
+				final ViewRiksdagenCommittee vewRiksdagenCommittee = committeeMap.get(entry.getKey()).stream().findFirst().orElse(null);
 				addDocTypeDataRows(chart, entry, vewRiksdagenCommittee);
 				addDecisionDataRows(chart, entry, vewRiksdagenCommittee);
 			}
