@@ -85,14 +85,14 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 
 		for (Entry<Status, List<RuleViolation>> statusEntry : serviceResponse.getStatusMap().entrySet()) {
 			horizontalLayout.addComponent(new CounterStatisticsCard(
-					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey().toString(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
-                    .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey().toString()));			
+					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
+                    .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey()));			
 		}
 
 		for (Entry<ResourceType, List<RuleViolation>> statusEntry : serviceResponse.getResourceTypeMap().entrySet()) {
 			horizontalLayout.addComponent(new CounterStatisticsCard(
-					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey().toString(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
-                    .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey().toString()));			
+					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
+                    .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey()));			
 		}
 
 		

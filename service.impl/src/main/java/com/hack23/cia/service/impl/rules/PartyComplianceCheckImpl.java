@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.service.impl.rules;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary;
@@ -44,16 +46,16 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	private final String name;
 	
 	/** The document daily summary. */
-	private List<ViewRiksdagenPartyDocumentDailySummary> documentDailySummary;
+	private List<ViewRiksdagenPartyDocumentDailySummary> documentDailySummary = new ArrayList<>();
 	
 	/** The ballot decisions. */
-	private List<ViewRiksdagenCommitteeBallotDecisionPartySummary> ballotDecisions;
+	private List<ViewRiksdagenCommitteeBallotDecisionPartySummary> ballotDecisions = new ArrayList<>();
 	
 	/** The ballots. */
-	private List<ViewRiksdagenVoteDataBallotPartySummary> ballots;
+	private List<ViewRiksdagenVoteDataBallotPartySummary> ballots = new ArrayList<>();
 	
 	/** The daily ballot summary. */
-	private List<ViewRiksdagenVoteDataBallotPartySummaryDaily> dailyBallotSummary;
+	private List<ViewRiksdagenVoteDataBallotPartySummaryDaily> dailyBallotSummary = new ArrayList<>();
 
 	/** The daily summary. */
 	private ViewRiksdagenVoteDataBallotPartySummaryDaily dailySummary;
@@ -101,7 +103,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @return the document daily summary
 	 */
 	public List<ViewRiksdagenPartyDocumentDailySummary> getDocumentDailySummary() {
-		return documentDailySummary;
+		return Collections.unmodifiableList(documentDailySummary);
 	}
 
 	/**
@@ -111,7 +113,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 *            the new document daily summary
 	 */
 	public void setDocumentDailySummary(List<ViewRiksdagenPartyDocumentDailySummary> documentDailySummary) {
-		this.documentDailySummary = documentDailySummary;
+		this.documentDailySummary = Collections.unmodifiableList(documentDailySummary);
 	}
 
 	/**
@@ -120,7 +122,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @return the ballots
 	 */
 	public List<ViewRiksdagenVoteDataBallotPartySummary> getBallots() {
-		return ballots;
+		return Collections.unmodifiableList(ballots);
 	}
 
 	/**
@@ -130,7 +132,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 *            the new ballots
 	 */
 	public void setBallots(List<ViewRiksdagenVoteDataBallotPartySummary> ballots) {
-		this.ballots = ballots;
+		this.ballots = Collections.unmodifiableList(ballots);
 	}
 
 	/**
@@ -139,7 +141,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @return the daily ballot summary
 	 */
 	public List<ViewRiksdagenVoteDataBallotPartySummaryDaily> getDailyBallotSummary() {
-		return dailyBallotSummary;
+		return Collections.unmodifiableList(dailyBallotSummary);
 	}
 
 	/**
@@ -149,7 +151,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 *            the new daily ballot summary
 	 */
 	public void setDailyBallotSummary(List<ViewRiksdagenVoteDataBallotPartySummaryDaily> dailyBallotSummary) {
-		this.dailyBallotSummary = dailyBallotSummary;
+		this.dailyBallotSummary = Collections.unmodifiableList(dailyBallotSummary);
 	}
 
 	/**

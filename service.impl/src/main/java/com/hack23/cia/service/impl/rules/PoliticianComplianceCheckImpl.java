@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.impl.rules;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,19 +44,19 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	private final ViewRiksdagenPolitician politician;
 	
 	/** The documents. */
-	private List<ViewRiksdagenPoliticianDocument> documents;
+	private List<ViewRiksdagenPoliticianDocument> documents = new ArrayList<>();
 	
 	/** The document daily summary. */
-	private List<ViewRiksdagenPoliticianDocumentDailySummary> documentDailySummary;
+	private List<ViewRiksdagenPoliticianDocumentDailySummary> documentDailySummary = new ArrayList<>();
 	
 	/** The ballot decisions. */
-	private List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> ballotDecisions;
+	private List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> ballotDecisions = new ArrayList<>();
 	
 	/** The ballots. */
-	private List<ViewRiksdagenVoteDataBallotPoliticianSummary> ballots;
+	private List<ViewRiksdagenVoteDataBallotPoliticianSummary> ballots = new ArrayList<>();
 	
 	/** The daily ballot summary. */
-	private List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dailyBallotSummary;
+	private List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dailyBallotSummary = new ArrayList<>();
 	
 	/** The daily summary. */
 	private ViewRiksdagenVoteDataBallotPoliticianSummaryDaily dailySummary;

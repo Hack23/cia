@@ -18,7 +18,9 @@
 */
 package com.hack23.cia.service.api.action.kpi;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,13 +37,13 @@ public final class ComplianceCheckResponse extends AbstractResponse {
 	private static final long serialVersionUID = 1L;
 
 	/** The list. */
-	private List<ComplianceCheck> list;
+	private List<ComplianceCheck> list = new ArrayList();
 
 	/** The status map. */
-	private Map<Status,List<RuleViolation>> statusMap;
+	private Map<Status,List<RuleViolation>> statusMap = new HashMap();
 
 	/** The resource type map. */
-	private Map<ResourceType,List<RuleViolation>> resourceTypeMap;	
+	private Map<ResourceType,List<RuleViolation>> resourceTypeMap = new HashMap();	
 	
 	/**
 	 * Instantiates a new compliance check response.

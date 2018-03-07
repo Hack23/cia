@@ -86,16 +86,16 @@ public final class ParliamentRuleViolationsPageModContentFactoryImpl extends Abs
 
 		for (Entry<Status, List<RuleViolation>> statusEntry : serviceResponse.getStatusMap().entrySet()) {
 			horizontalLayout.addComponent(new CounterStatisticsCard(
-					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey().toString(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
-                    .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey().toString()));			
+					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
+                    .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey()));			
 		}
 
 		List<RuleViolation> ruleViolations = new ArrayList<>();
 		
 		for (Entry<ResourceType, List<RuleViolation>> statusEntry : serviceResponse.getResourceTypeMap().entrySet()) {
 			horizontalLayout.addComponent(new CounterStatisticsCard(
-					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey().toString(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
-                    .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey().toString()));
+					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
+                    .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey()));
 			ruleViolations.addAll(statusEntry.getValue());
 		}			
 		panelContent.addComponent(horizontalLayout);		
