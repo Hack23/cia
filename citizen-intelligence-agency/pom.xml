@@ -1138,6 +1138,10 @@
           <artifactId>geronimo-jta_1.0.1B_spec</artifactId>
           <groupId>org.apache.geronimo.specs</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>ecj</artifactId>
+          <groupId>org.eclipse.jdt</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
