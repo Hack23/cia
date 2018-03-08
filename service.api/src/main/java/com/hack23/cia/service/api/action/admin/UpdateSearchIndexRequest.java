@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.service.api.action.admin;
 
+import javax.validation.constraints.NotNull;
+
 import com.hack23.cia.service.api.action.common.AbstractRequest;
 
 
@@ -30,6 +32,7 @@ public final class UpdateSearchIndexRequest extends AbstractRequest {
 	private static final long serialVersionUID = 1L;
 
     /** The session id. */
+	@NotNull
     private String sessionId;
 
 	/**

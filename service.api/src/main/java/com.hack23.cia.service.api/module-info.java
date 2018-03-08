@@ -7,7 +7,7 @@ module com.hack23.cia.service.api {
 	exports com.hack23.cia.service.api.action.user;
 	exports com.hack23.cia.service.api.action.kpi;
 
-
+	requires java.validation;
 	requires org.apache.commons.lang3;
 	requires commons.collections4;
 

@@ -18,6 +18,12 @@
 */
 package com.hack23.cia.service.impl.action.common;
 
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.ValidatorFactory;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -76,5 +82,16 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 		return null;
 	}
 
+	/**
+	 * Validate request.
+	 *
+	 * @param request
+	 *            the request
+	 * @return the sets the
+	 */
+	protected final Set<ConstraintViolation<T>> validateRequest(final T request) {
+        final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        return factory.getValidator().validate( request );
+	}
 
 }

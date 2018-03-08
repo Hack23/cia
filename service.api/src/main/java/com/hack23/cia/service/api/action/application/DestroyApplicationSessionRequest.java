@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.service.api.action.application;
 
+import javax.validation.constraints.NotNull;
+
 import com.hack23.cia.service.api.action.common.AbstractRequest;
 
 /**
@@ -29,6 +31,7 @@ public final class DestroyApplicationSessionRequest extends AbstractRequest {
 	private static final long serialVersionUID = 1L;
 
 	/** The session id. */
+	@NotNull
 	private String sessionId;
 
 	/**

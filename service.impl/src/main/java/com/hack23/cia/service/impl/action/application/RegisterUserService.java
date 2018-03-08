@@ -21,7 +21,10 @@ package com.hack23.cia.service.impl.action.application;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import java.util.UUID;
+
+import javax.validation.ConstraintViolation;
 
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
@@ -109,7 +112,7 @@ public final class RegisterUserService extends
 	@Override
 	public RegisterUserResponse processService(
 			final RegisterUserRequest serviceRequest) {
-
+		
 		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.USER);
 		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);
@@ -117,6 +120,16 @@ public final class RegisterUserService extends
 		eventRequest.setSessionId(serviceRequest.getSessionId());
 		eventRequest.setElementId(serviceRequest.getEmail());
 
+		RegisterUserResponse response;
+		Set<ConstraintViolation<RegisterUserRequest>> requestConstraintViolations = validateRequest(serviceRequest);
+		if (!requestConstraintViolations.isEmpty()) {
+			response = new RegisterUserResponse(ServiceResult.FAILURE);
+			final String errorMessage = requestConstraintViolations.toString();
+			response.setErrorMessage(errorMessage);
+			eventRequest.setErrorMessage(requestConstraintViolations.toString());
+		} else {
+
+		
 		final ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService.checkValueOrLoadDefault("Registered User All get Role Admin", "Registered User All get Role Admin", ConfigurationGroup.AUTHORIZATION, RegisterUserService.class.getSimpleName(), "Register User Service", "Responsible for create of useraccounts", "registered.users.get.admin", "true");
 
 		final UserAccount userNameExist = userDAO.findFirstByProperty(UserAccount_.username, serviceRequest.getUsername());
@@ -124,7 +137,6 @@ public final class RegisterUserService extends
 
 		final RuleResult passwordRuleResults = passwordValidator.validate(new PasswordData(serviceRequest.getUserpassword()));
 
-		RegisterUserResponse response;
 		if (userEmailExist == null && userNameExist == null && passwordRuleResults.isValid()) {
 			final UserAccount userAccount = new UserAccount();
 			userAccount.setCountry(serviceRequest.getCountry());
@@ -165,6 +177,7 @@ public final class RegisterUserService extends
 				response.setErrorMessage(errorMessage);
 				eventRequest.setErrorMessage(errorMessage);
 			}
+		}
 		}
 
 		eventRequest.setApplicationMessage(response.getResult().toString());

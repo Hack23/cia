@@ -18,6 +18,10 @@
 */
 package com.hack23.cia.service.api.action.application;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import com.hack23.cia.model.internal.application.user.impl.UserType;
 import com.hack23.cia.service.api.action.common.AbstractRequest;
 
@@ -31,21 +35,30 @@ public final class RegisterUserRequest extends AbstractRequest {
 	private static final long serialVersionUID = 1L;
 
     /** The session id. */
+	@NotNull
     private String sessionId;
 
     /** The country. */
+    @NotNull
+    @Size(min = 4, max = 64)
     private String country;
 
     /** The username. */
+    @NotNull
+    @Size(min = 4, max = 64)
     private String username;
 
     /** The email. */
+    @Email
     private String email;
 
     /** The userpassword. */
+    @NotNull
+    @Size(min = 4, max = 64)
     private String userpassword;
 
     /** The user type. */
+    @NotNull
     private UserType userType;
 
 	/**

@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.service.api.action.admin;
 
+import javax.validation.constraints.NotNull;
+
 import com.hack23.cia.service.api.action.common.AbstractRequest;
 
 
@@ -37,9 +39,11 @@ public final class RemoveDataRequest extends AbstractRequest {
 	}
 
     /** The session id. */
+	@NotNull
     private String sessionId;
     
     /** The data type. */
+	@NotNull
     private DataType dataType;
 
 	/**

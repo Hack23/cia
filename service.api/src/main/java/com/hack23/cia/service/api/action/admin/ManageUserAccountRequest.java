@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.service.api.action.admin;
 
+import javax.validation.constraints.NotNull;
+
 import com.hack23.cia.service.api.action.common.AbstractRequest;
 
 
@@ -54,9 +56,11 @@ RESET_MFA;
 	}
 
     /** The session id. */
+	@NotNull
     private String sessionId;
 
     /** The user acount id. */
+	@NotNull
     private String userAcountId;
     
     /** The account operation. */

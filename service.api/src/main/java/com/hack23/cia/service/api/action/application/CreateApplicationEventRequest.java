@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.service.api.action.application;
 
+import javax.validation.constraints.NotNull;
+
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
 import com.hack23.cia.service.api.action.common.AbstractRequest;
@@ -49,6 +51,7 @@ public final class CreateApplicationEventRequest extends AbstractRequest {
     private String actionName;
 
     /** The session id. */
+    @NotNull
     private String sessionId;
 
     /** The user id. */
