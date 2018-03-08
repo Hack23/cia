@@ -23,6 +23,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.validation.ConstraintViolation;
 
@@ -68,14 +69,11 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public final class RegisterUserService extends
-		AbstractBusinessServiceImpl<RegisterUserRequest, RegisterUserResponse>
+public final class RegisterUserService extends AbstractBusinessServiceImpl<RegisterUserRequest, RegisterUserResponse>
 		implements BusinessService<RegisterUserRequest, RegisterUserResponse> {
 
 	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(RegisterUserService.class);
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(RegisterUserService.class);
 
 	/** The create application event service. */
 	@Autowired
@@ -94,12 +92,9 @@ public final class RegisterUserService extends
 
 	/** The password validator. */
 	private final PasswordValidator passwordValidator = new PasswordValidator(new LengthRule(8, 64),
-			  new CharacterRule(EnglishCharacterData.UpperCase, 1),
-			  new CharacterRule(EnglishCharacterData.LowerCase, 1),
-			  new CharacterRule(EnglishCharacterData.Digit, 1),
-			  new CharacterRule(EnglishCharacterData.Special, 1),
-			  new WhitespaceRule());
-
+			new CharacterRule(EnglishCharacterData.UpperCase, 1), new CharacterRule(EnglishCharacterData.LowerCase, 1),
+			new CharacterRule(EnglishCharacterData.Digit, 1), new CharacterRule(EnglishCharacterData.Special, 1),
+			new WhitespaceRule());
 
 	/**
 	 * Instantiates a new register user service.
@@ -108,11 +103,10 @@ public final class RegisterUserService extends
 		super(RegisterUserRequest.class);
 	}
 
-	@Secured({"ROLE_ANONYMOUS"})
+	@Secured({ "ROLE_ANONYMOUS" })
 	@Override
-	public RegisterUserResponse processService(
-			final RegisterUserRequest serviceRequest) {
-		
+	public RegisterUserResponse processService(final RegisterUserRequest serviceRequest) {
+
 		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.USER);
 		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);
@@ -124,65 +118,75 @@ public final class RegisterUserService extends
 		Set<ConstraintViolation<RegisterUserRequest>> requestConstraintViolations = validateRequest(serviceRequest);
 		if (!requestConstraintViolations.isEmpty()) {
 			response = new RegisterUserResponse(ServiceResult.FAILURE);
-			final String errorMessage = requestConstraintViolations.toString();
+			final String errorMessage = requestConstraintViolations.stream()
+					.sorted((p1, p2) -> p1.getPropertyPath().toString().compareTo(p2.getPropertyPath().toString()))
+					.map(p -> p.getPropertyPath().toString() + " " + p.getMessage()).collect(Collectors.joining(", "));
 			response.setErrorMessage(errorMessage);
-			eventRequest.setErrorMessage(requestConstraintViolations.toString());
+			eventRequest.setErrorMessage(errorMessage);
 		} else {
 
-		
-		final ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService.checkValueOrLoadDefault("Registered User All get Role Admin", "Registered User All get Role Admin", ConfigurationGroup.AUTHORIZATION, RegisterUserService.class.getSimpleName(), "Register User Service", "Responsible for create of useraccounts", "registered.users.get.admin", "true");
+			final ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService
+					.checkValueOrLoadDefault("Registered User All get Role Admin", "Registered User All get Role Admin",
+							ConfigurationGroup.AUTHORIZATION, RegisterUserService.class.getSimpleName(),
+							"Register User Service", "Responsible for create of useraccounts",
+							"registered.users.get.admin", "true");
 
-		final UserAccount userNameExist = userDAO.findFirstByProperty(UserAccount_.username, serviceRequest.getUsername());
-		final UserAccount userEmailExist = userDAO.findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
+			final UserAccount userNameExist = userDAO.findFirstByProperty(UserAccount_.username,
+					serviceRequest.getUsername());
+			final UserAccount userEmailExist = userDAO.findFirstByProperty(UserAccount_.email,
+					serviceRequest.getEmail());
 
-		final RuleResult passwordRuleResults = passwordValidator.validate(new PasswordData(serviceRequest.getUserpassword()));
+			final RuleResult passwordRuleResults = passwordValidator
+					.validate(new PasswordData(serviceRequest.getUserpassword()));
 
-		if (userEmailExist == null && userNameExist == null && passwordRuleResults.isValid()) {
-			final UserAccount userAccount = new UserAccount();
-			userAccount.setCountry(serviceRequest.getCountry());
-			userAccount.setEmail(serviceRequest.getEmail());
-			userAccount.setUsername(serviceRequest.getUsername());
-			userAccount.setUserId(UUID.randomUUID().toString());
-			userAccount.setUserpassword(passwordEncoder.encode(userAccount.getUserId()+".uuid"+ serviceRequest.getUserpassword()));
-			userAccount.setNumberOfVisits(1);
-			userAccount.setUserType(serviceRequest.getUserType());
-			userAccount.setCreatedDate(new Date());
-			userDAO.persist(userAccount);
+			if (userEmailExist == null && userNameExist == null && passwordRuleResults.isValid()) {
+				final UserAccount userAccount = new UserAccount();
+				userAccount.setCountry(serviceRequest.getCountry());
+				userAccount.setEmail(serviceRequest.getEmail());
+				userAccount.setUsername(serviceRequest.getUsername());
+				userAccount.setUserId(UUID.randomUUID().toString());
+				userAccount.setUserpassword(
+						passwordEncoder.encode(userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword()));
+				userAccount.setNumberOfVisits(1);
+				userAccount.setUserType(serviceRequest.getUserType());
+				userAccount.setCreatedDate(new Date());
+				userDAO.persist(userAccount);
 
-			if ("true".equals(registeredUsersGetAdminConfig.getPropertyValue())) {
-				userAccount.setUserRole(UserRole.ADMIN);
+				if ("true".equals(registeredUsersGetAdminConfig.getPropertyValue())) {
+					userAccount.setUserRole(UserRole.ADMIN);
+				} else {
+					userAccount.setUserRole(UserRole.USER);
+				}
+
+				final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+				if (UserRole.ADMIN == userAccount.getUserRole()) {
+					authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+				} else if (UserRole.USER == userAccount.getUserRole()) {
+					authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+				}
+
+				SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(
+						userAccount, userAccount.getUserpassword(), authorities));
+
+				eventRequest.setUserId(userAccount.getUserId());
+				response = new RegisterUserResponse(ServiceResult.SUCCESS);
 			} else {
-				userAccount.setUserRole(UserRole.USER);
+				response = new RegisterUserResponse(ServiceResult.FAILURE);
+				if (passwordRuleResults.isValid()) {
+					response.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());
+					eventRequest.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());
+				} else {
+					final String errorMessage = passwordValidator.getMessages(passwordRuleResults).toString();
+					response.setErrorMessage(errorMessage);
+					eventRequest.setErrorMessage(errorMessage);
+				}
 			}
-
-			final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-
-			if (UserRole.ADMIN == userAccount.getUserRole()) {
-				authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-			} else if (UserRole.USER == userAccount.getUserRole()) {
-				authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-			}
-
-			SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(userAccount, userAccount.getUserpassword(), authorities));
-
-			eventRequest.setUserId(userAccount.getUserId());
-			response = new RegisterUserResponse(ServiceResult.SUCCESS);
-		} else {
-			response = new RegisterUserResponse(ServiceResult.FAILURE);
-			if (passwordRuleResults.isValid()) {
-				response.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());
-				eventRequest.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());
-			} else {
-				final String errorMessage = passwordValidator.getMessages(passwordRuleResults).toString();
-				response.setErrorMessage(errorMessage);
-				eventRequest.setErrorMessage(errorMessage);
-			}
-		}
 		}
 
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);
-		LOGGER.info("Event: {}",eventRequest);
+		LOGGER.info("Event: {}", eventRequest);
 		return response;
 	}
 

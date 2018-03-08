@@ -145,4 +145,26 @@ public final class RegisterUserServiceITest extends AbstractServiceFunctionalInt
 		assertEquals(0, allBy.size());
 	}
 
+	/**
+	 * Service register user request invalid request failure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void serviceRegisterUserRequestInvalidRequestFailureTest() throws Exception {
+		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
+
+		final RegisterUserRequest serviceRequest = new RegisterUserRequest();
+		serviceRequest.setCountry("Sweden");
+		serviceRequest.setUsername(UUID.randomUUID().toString());
+		serviceRequest.setEmail(serviceRequest.getUsername() + "NoValidEmail");
+		serviceRequest.setUserType(UserType.PRIVATE);
+		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
+		
+		final RegisterUserResponse errorResponse = (RegisterUserResponse) applicationManager.service(serviceRequest);
+		assertNotNull(EXPECT_A_RESULT, errorResponse);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.FAILURE, errorResponse.getResult());
+		assertEquals("email must be a well-formed email address, userpassword must not be null", errorResponse.getErrorMessage());
+	}
 }
