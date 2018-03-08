@@ -1235,7 +1235,7 @@
               <version>1.8</version>
             </jdk>
             <jdk>
-              <version>10</version>
+              <version>9</version>
             </jdk>
           </toolchains>
         </configuration>
