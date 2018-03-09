@@ -58,7 +58,6 @@ public final class RegisterUserRequest extends AbstractRequest {
     private String userpassword;
 
     /** The user type. */
-    @NotNull
     private UserType userType;
 
 	/**
