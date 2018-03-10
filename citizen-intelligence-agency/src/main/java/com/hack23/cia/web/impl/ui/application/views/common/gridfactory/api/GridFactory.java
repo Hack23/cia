@@ -22,7 +22,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemRendererClickListener;
 import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
@@ -55,7 +55,7 @@ public interface GridFactory extends Serializable {
 	 *            the collection property converters
 	 */
 	<T extends Serializable> void createBasicBeanItemGrid(AbstractOrderedLayout panelContent,Class<T> dataType, List<T> datasource, String caption, String[] columnOrder,
-			String[] hideColumns, AbstractPageItemRendererClickListener<?> listener, String actionId, ListPropertyConverter[] collectionPropertyConverters);
+			String[] hideColumns, PageItemRendererClickListener<?> listener, String actionId, ListPropertyConverter[] collectionPropertyConverters);
 
 	/**
 	 * Creates a new Grid object.
@@ -84,6 +84,6 @@ public interface GridFactory extends Serializable {
 	 *            the collection property converters
 	 */
 	<T extends Serializable> void createBasicBeanItemNestedPropertiesGrid(AbstractOrderedLayout panelContent,Class<T> dataType,List<T> datasource, String caption, String[] nestedProperties,String[] columnOrder, String[] hideColumns,
-			AbstractPageItemRendererClickListener<?> listener, String actionId, ListPropertyConverter[] collectionPropertyConverters);
+			PageItemRendererClickListener<?> listener, String actionId, ListPropertyConverter[] collectionPropertyConverters);
 
 }

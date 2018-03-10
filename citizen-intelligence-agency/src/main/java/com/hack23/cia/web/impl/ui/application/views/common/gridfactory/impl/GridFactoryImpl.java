@@ -33,7 +33,7 @@ import org.vaadin.gridutil.cell.GridCellFilter;
 import com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.AbstractPageItemRendererClickListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemRendererClickListener;
 import com.vaadin.data.BeanPropertySet;
 import com.vaadin.data.ValueProvider;
 import com.vaadin.event.selection.SelectionListener;
@@ -64,7 +64,7 @@ public final class GridFactoryImpl implements GridFactory {
 	@Override
 	public <T extends Serializable> void createBasicBeanItemGrid(final AbstractOrderedLayout panelContent,
 			final Class<T> dataType, final List<T> datasource, final String caption, final String[] columnOrder,
-			final String[] hideColumns, final AbstractPageItemRendererClickListener<?> listener, final String actionId,
+			final String[] hideColumns, final PageItemRendererClickListener<?> listener, final String actionId,
 			final ListPropertyConverter[] collectionPropertyConverters) {
 		createBasicBeanItemNestedPropertiesGrid(panelContent, dataType, datasource, caption, null, columnOrder,
 				hideColumns, listener, actionId, collectionPropertyConverters);
@@ -75,7 +75,7 @@ public final class GridFactoryImpl implements GridFactory {
 	public <T extends Serializable> void createBasicBeanItemNestedPropertiesGrid(
 			final AbstractOrderedLayout panelContent, final Class<T> dataType, final List<T> datasource,
 			final String caption, final String[] nestedProperties, final String[] columnOrder,
-			final String[] hideColumns, final AbstractPageItemRendererClickListener<?> listener, final String actionId,
+			final String[] hideColumns, final PageItemRendererClickListener<?> listener, final String actionId,
 			final ListPropertyConverter[] collectionPropertyConverters) {
 
 		final Grid<T> grid = Grid.withPropertySet(BeanPropertySet.get(dataType));

@@ -41,6 +41,7 @@ import com.hack23.cia.service.api.action.kpi.Status;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.RiskIndicators;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RuleViolationPageItemRendererClickListener;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
@@ -54,6 +55,9 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class ParliamentRuleViolationsPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
+	/** The Constant CLICK_LISTENER. */
+	private static final RuleViolationPageItemRendererClickListener CLICK_LISTENER = new RuleViolationPageItemRendererClickListener();
+	
 	/** The Constant PARLIAMENT_DECISION_FLOW. */
 	private static final String PARLIAMENT_RULE_VIOLATIONS = "Parliament Rules violations";
 
@@ -109,7 +113,7 @@ public final class ParliamentRuleViolationsPageModContentFactoryImpl extends Abs
         });
 		
 		getGridFactory().createBasicBeanItemGrid(panelContent, RuleViolation.class, ruleViolations, "Risk",
-				new String[] { "name", "status", "resourceType", "ruleName", "ruleGroup", "ruleDescription", "positive" }, new String[] { "id" }, null, null, null);
+				new String[] { "name", "status", "resourceType", "ruleName", "ruleGroup", "ruleDescription", "positive" }, new String[] { "id" }, CLICK_LISTENER, null, null);
 
 		final String pageId = getPageId(parameters);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER,

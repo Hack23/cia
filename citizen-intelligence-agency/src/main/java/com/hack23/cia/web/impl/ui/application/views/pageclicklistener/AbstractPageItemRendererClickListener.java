@@ -21,10 +21,8 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 import java.util.Set;
 
 import com.vaadin.event.selection.SelectionEvent;
-import com.vaadin.event.selection.SelectionListener;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
-import com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener;
 
 /**
  * The class AbstractPageItemRendererClickListener.
@@ -32,7 +30,7 @@ import com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener;
  * @param <T>
  *            the generic type
  */
-public abstract class AbstractPageItemRendererClickListener<T> implements RendererClickListener<T>, SelectionListener<T> {
+public abstract class AbstractPageItemRendererClickListener<T> implements PageItemRendererClickListener<T> {
 
 	/** The Constant PAGE_SEPARATOR. */
 	private static final Character PAGE_SEPARATOR = '/';
