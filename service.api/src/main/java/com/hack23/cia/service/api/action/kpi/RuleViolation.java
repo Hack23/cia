@@ -55,6 +55,9 @@ public final class RuleViolation implements Serializable {
 	
 	/** The status. */
 	private Status status = Status.OK;
+	
+	/** The positive. */
+	private String positive;
 
 	/**
 	 * Instantiates a new rule violation.
@@ -73,8 +76,10 @@ public final class RuleViolation implements Serializable {
 	 *            the rule group
 	 * @param status
 	 *            the status
+	 * @param positive
+	 *            the positive
 	 */
-	public RuleViolation(final String id,final String name,final ResourceType resourceType,final String ruleName, final String ruleDescription, final String ruleGroup, final Status status) {
+	public RuleViolation(final String id,final String name,final ResourceType resourceType,final String ruleName, final String ruleDescription, final String ruleGroup, final Status status, final String positive) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -83,6 +88,7 @@ public final class RuleViolation implements Serializable {
 		this.ruleDescription = ruleDescription;
 		this.ruleGroup = ruleGroup;
 		this.status = status;
+		this.positive = positive;
 	}
 
 	/**
@@ -146,6 +152,17 @@ public final class RuleViolation implements Serializable {
 	 */
 	public ResourceType getResourceType() {
 		return resourceType;
+	}
+
+	
+	
+	/**
+	 * Gets the positive.
+	 *
+	 * @return the positive
+	 */
+	public String getPositive() {
+		return positive;
 	}
 
 	@Override

@@ -16,7 +16,7 @@ rule "We have a party rebel politician, voted against party majority at least on
     when
         $p : PoliticianComplianceCheckImpl(politician.activeParliament && politician.party != "-" && dailySummary != null && dailySummary.rebelTotal > 0)
     then
-    	$p.addViolation( Status.MINOR, "PoliticianPartyRebel","Behavior", kcontext.getRule().getName());
+    	$p.addViolation( Status.MINOR, "PoliticianPartyRebel","Behavior", kcontext.getRule().getName(),"CanIgnorePartyMajority");
 end
 
 rule "We have a party rebel politician, voted against party majority at least 1% of ballots last month"
@@ -25,7 +25,7 @@ rule "We have a party rebel politician, voted against party majority at least 1%
     when
         $p : PoliticianComplianceCheckImpl( politician.activeParliament && politician.party != "-" && monthlySummary != null && monthlySummary.rebelPercentage > 1)
     then
-    	$p.addViolation( Status.MAJOR, "PoliticianPartyRebel","Behavior", kcontext.getRule().getName());
+    	$p.addViolation( Status.MAJOR, "PoliticianPartyRebel","Behavior", kcontext.getRule().getName(),"CanIgnorePartyMajority");
 end
 
 rule "We have a party rebel politician, voted against party majority at least 1% of ballots last year"
@@ -34,5 +34,5 @@ rule "We have a party rebel politician, voted against party majority at least 1%
     when
         $p : PoliticianComplianceCheckImpl( politician.activeParliament && politician.party != "-" && annualSummary != null && annualSummary.rebelPercentage >= 1)
     then
-    	$p.addViolation( Status.CRITICAL, "PoliticianPartyRebel","Behavior", kcontext.getRule().getName());
+    	$p.addViolation( Status.CRITICAL, "PoliticianPartyRebel","Behavior", kcontext.getRule().getName(),"CanIgnorePartyMajority");
 end

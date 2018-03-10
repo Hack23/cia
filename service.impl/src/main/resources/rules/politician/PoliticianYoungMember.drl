@@ -11,7 +11,7 @@ rule "We have an politician 24-30, no adult experience outside of parliament"
     when
         $p : PoliticianComplianceCheckImpl( politician.active && age >= 24 && age <= 30 )
     then
-        $p.addViolation( Status.MINOR, "PoliticianYoungMember","Attribute", kcontext.getRule().getName());
+        $p.addViolation( Status.MINOR, "PoliticianYoungMember","Attribute", kcontext.getRule().getName(),"NewComer");
 end
 
 rule "We have an politician 18-24, no adult experience outside of parliament"
@@ -20,5 +20,5 @@ rule "We have an politician 18-24, no adult experience outside of parliament"
     when
         $p : PoliticianComplianceCheckImpl( politician.active && age >= 18 && age <= 24)
     then
-        $p.addViolation( Status.MAJOR, "PoliticianYoungMember","Attribute", kcontext.getRule().getName());
+        $p.addViolation( Status.MAJOR, "PoliticianYoungMember","Attribute", kcontext.getRule().getName(),"NewComer");
 end
