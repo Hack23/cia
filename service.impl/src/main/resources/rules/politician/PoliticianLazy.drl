@@ -14,7 +14,7 @@ rule "We have a lazy politician, absent 100 % last day of ballots in parliament"
 	dialect "java"
 	salience 10
     when
-        $p : PoliticianComplianceCheckImpl(politician.activeParliament == true && dailySummary != null && dailySummary.politicianPercentageAbsent == 100)
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && dailySummary != null && dailySummary.politicianPercentageAbsent == 100)
     then
     	$p.addViolation( Status.MINOR, "PoliticianLazy","Behavior", kcontext.getRule().getName());
 end
@@ -23,7 +23,7 @@ rule "We have a lazy politician, absent more than 20 % of ballots last month"
 	dialect "java"
 	salience 50
     when
-        $p : PoliticianComplianceCheckImpl( politician.activeParliament == true && monthlySummary != null && monthlySummary.politicianPercentageAbsent >= 20)
+        $p : PoliticianComplianceCheckImpl( politician.activeParliament && monthlySummary != null && monthlySummary.politicianPercentageAbsent >= 20)
     then
     	$p.addViolation( Status.MAJOR, "PoliticianLazy","Behavior", kcontext.getRule().getName());
 end
@@ -32,7 +32,7 @@ rule "We have a lazy politician, absent more than 20 % of ballots last year"
 	dialect "java"
 	salience 100
     when
-        $p : PoliticianComplianceCheckImpl( politician.activeParliament == true && annualSummary != null && annualSummary.politicianPercentageAbsent >= 20)
+        $p : PoliticianComplianceCheckImpl( politician.activeParliament && annualSummary != null && annualSummary.politicianPercentageAbsent >= 20)
     then
     	$p.addViolation( Status.CRITICAL, "PoliticianLazy","Behavior", kcontext.getRule().getName());
 end

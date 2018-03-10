@@ -14,7 +14,7 @@ rule "We have a party with no opinion, abstain 10 % last day of ballots in parli
 	dialect "java"
 	salience 10
     when
-        $p : PartyComplianceCheckImpl(party.activeParliament == true && party.party != "-" && dailySummary != null && dailySummary.partyPercentageAbstain >= 10)
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && dailySummary != null && dailySummary.partyPercentageAbstain >= 10)
     then
     	$p.addViolation( Status.MINOR, "PartyNoOpinion","Behavior", kcontext.getRule().getName());
 end
@@ -23,7 +23,7 @@ rule "We have a party with no opinion, abstain more than 10 % of ballots last mo
 	dialect "java"
 	salience 50
     when
-        $p : PartyComplianceCheckImpl( party.activeParliament == true && party.party != "-" && monthlySummary != null && monthlySummary.partyPercentageAbstain >= 10)
+        $p : PartyComplianceCheckImpl( party.activeParliament && party.party != "-" && monthlySummary != null && monthlySummary.partyPercentageAbstain >= 10)
     then
     	$p.addViolation( Status.MAJOR, "PartyNoOpinion","Behavior", kcontext.getRule().getName());
 end
@@ -32,7 +32,7 @@ rule "We have a party with no opinion, abstain more than 10 % of ballots last ye
 	dialect "java"
 	salience 100
     when
-        $p : PartyComplianceCheckImpl( party.activeParliament == true && party.party != "-" && annualSummary != null && annualSummary.partyPercentageAbstain >= 10)
+        $p : PartyComplianceCheckImpl( party.activeParliament && party.party != "-" && annualSummary != null && annualSummary.partyPercentageAbstain >= 10)
     then
     	$p.addViolation( Status.CRITICAL, "PartyNoOpinion","Behavior", kcontext.getRule().getName());
 end

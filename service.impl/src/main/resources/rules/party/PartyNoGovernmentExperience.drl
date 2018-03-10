@@ -13,7 +13,7 @@ import com.hack23.cia.service.api.action.kpi.ComplianceCheck
 rule "We have an active Party with no government experience"
 	dialect "java"
     when
-        $p : PartyComplianceCheckImpl( party.active == true && party.party != "-" && party.totalDaysServedGovernment == 0 )
+        $p : PartyComplianceCheckImpl( party.active && party.party != "-" && party.totalDaysServedGovernment == 0 )
     then
     	$p.addViolation( Status.MINOR, "PartyNoGovernmentExperience","Experience", kcontext.getRule().getName());
 end

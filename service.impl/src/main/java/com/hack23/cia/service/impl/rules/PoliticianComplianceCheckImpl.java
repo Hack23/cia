@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.service.impl.rules;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -263,18 +265,22 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 		this.annualSummary = annualSummary;
 	}
 	
+	/**
+	 * Gets the year.
+	 *
+	 * @return the year
+	 */
 	public int getYear() {
-		return Calendar.getInstance().get(Calendar.YEAR);
+		return LocalDate.now(ZoneId.of("UTC")).getYear();
 	}
 	
+	/**
+	 * Gets the age.
+	 *
+	 * @return the age
+	 */
 	public int getAge() {
-		return Calendar.getInstance().get(Calendar.YEAR) - politician.getBornYear();
-	}
-	
-	public long getAdultYearsOutSideParliament() {
-		long l = (getAge() ) - (politician.getTotalDaysServedParliament() / 365);
-		System.out.println(getAge() + ":" + l);
-		return l;
+		return getYear() - politician.getBornYear();
 	}
 	
 }

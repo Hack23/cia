@@ -14,7 +14,7 @@ rule "We have a party rebel politician, voted against party majority at least on
 	dialect "java"
 	salience 10
     when
-        $p : PoliticianComplianceCheckImpl(politician.activeParliament == true && politician.party != "-" && dailySummary != null && dailySummary.rebelTotal > 0)
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && politician.party != "-" && dailySummary != null && dailySummary.rebelTotal > 0)
     then
     	$p.addViolation( Status.MINOR, "PoliticianPartyRebel","Behavior", kcontext.getRule().getName());
 end
@@ -23,7 +23,7 @@ rule "We have a party rebel politician, voted against party majority at least 1%
 	dialect "java"
 	salience 50
     when
-        $p : PoliticianComplianceCheckImpl( politician.activeParliament == true && politician.party != "-" && monthlySummary != null && monthlySummary.rebelPercentage > 1)
+        $p : PoliticianComplianceCheckImpl( politician.activeParliament && politician.party != "-" && monthlySummary != null && monthlySummary.rebelPercentage > 1)
     then
     	$p.addViolation( Status.MAJOR, "PoliticianPartyRebel","Behavior", kcontext.getRule().getName());
 end
@@ -32,7 +32,7 @@ rule "We have a party rebel politician, voted against party majority at least 1%
 	dialect "java"
 	salience 100
     when
-        $p : PoliticianComplianceCheckImpl( politician.activeParliament == true && politician.party != "-" && annualSummary != null && annualSummary.rebelPercentage >= 1)
+        $p : PoliticianComplianceCheckImpl( politician.activeParliament && politician.party != "-" && annualSummary != null && annualSummary.rebelPercentage >= 1)
     then
     	$p.addViolation( Status.CRITICAL, "PoliticianPartyRebel","Behavior", kcontext.getRule().getName());
 end

@@ -14,7 +14,7 @@ rule "We have a lazy party, absent 15 % last day of ballots in parliament"
 	dialect "java"
 	salience 10
     when
-        $p : PartyComplianceCheckImpl(party.activeParliament == true && party.party != "-" && dailySummary != null && dailySummary.partyPercentageAbsent >= 15)
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && dailySummary != null && dailySummary.partyPercentageAbsent >= 15)
     then
     	$p.addViolation( Status.MINOR, "PartyLazy","Behavior", kcontext.getRule().getName());
 end
@@ -23,7 +23,7 @@ rule "We have a lazy party, absent more than 15 % of ballots last month"
 	dialect "java"
 	salience 50
     when
-        $p : PartyComplianceCheckImpl( party.activeParliament == true && party.party != "-" && monthlySummary != null && monthlySummary.partyPercentageAbsent >= 15)
+        $p : PartyComplianceCheckImpl( party.activeParliament && party.party != "-" && monthlySummary != null && monthlySummary.partyPercentageAbsent >= 15)
     then
     	$p.addViolation( Status.MAJOR, "PartyLazy","Behavior", kcontext.getRule().getName());
 end
@@ -32,7 +32,7 @@ rule "We have a lazy party, absent more than 15 % of ballots last year"
 	dialect "java"
 	salience 100
     when
-        $p : PartyComplianceCheckImpl( party.activeParliament == true && party.party != "-" && annualSummary != null && annualSummary.partyPercentageAbsent >= 15)
+        $p : PartyComplianceCheckImpl( party.activeParliament && party.party != "-" && annualSummary != null && annualSummary.partyPercentageAbsent >= 15)
     then
     	$p.addViolation( Status.CRITICAL, "PartyLazy","Behavior", kcontext.getRule().getName());
 end

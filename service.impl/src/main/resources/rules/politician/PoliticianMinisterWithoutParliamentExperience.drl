@@ -9,7 +9,7 @@ import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
 rule "We have an politician minister that has no experience from parliament"
 	dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl(politician.activeGovernment == true && politician.totalDaysServedCommittee == 0)
+        $p : PoliticianComplianceCheckImpl(politician.activeGovernment && politician.totalDaysServedCommittee == 0)
     then
     	$p.addViolation( Status.MINOR, "PoliticianMinisterWithoutParliamentExperience","Experience", kcontext.getRule().getName());
 end

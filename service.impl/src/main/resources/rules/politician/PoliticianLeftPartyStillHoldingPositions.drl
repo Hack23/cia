@@ -9,7 +9,7 @@ import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
 rule "We have an politician that left the party still holding assignments"
 	dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl(politician.party == "-" && politician.active == true )
+        $p : PoliticianComplianceCheckImpl(politician.party == "-" && politician.active )
     then
     	$p.addViolation( Status.CRITICAL, "PoliticianLeftPartyStillHoldingPositions","Behavior", kcontext.getRule().getName());
 end

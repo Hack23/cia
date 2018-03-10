@@ -16,7 +16,7 @@ rule "We have an politician with busy schedule, more than 4 current roles and bu
 	dialect "java"
 	salience 1000
     when
-        $p : PoliticianComplianceCheckImpl( politician.active == true && politician.currentAssignments > 4 && ( busyFactor(politician.firstAssignmentDate, politician.totalDaysServed ) > 4 ))
+        $p : PoliticianComplianceCheckImpl( politician.active && politician.currentAssignments > 4 && ( busyFactor(politician.firstAssignmentDate, politician.totalDaysServed ) > 4 ))
     then
     	$p.addViolation( Status.MINOR, "PoliticianBusySchedule","Behavior", kcontext.getRule().getName());
 end
@@ -25,7 +25,7 @@ rule "We have an politician with busy schedule, more than 5 current roles and bu
 	dialect "java"
 	salience 100
     when
-        $p : PoliticianComplianceCheckImpl( politician.active == true && politician.currentAssignments > 5 && ( busyFactor(politician.firstAssignmentDate, politician.totalDaysServed ) > 5 ))
+        $p : PoliticianComplianceCheckImpl( politician.active && politician.currentAssignments > 5 && ( busyFactor(politician.firstAssignmentDate, politician.totalDaysServed ) > 5 ))
     then
     	$p.addViolation( Status.MAJOR, "PoliticianBusySchedule","Behavior", kcontext.getRule().getName());
 end
@@ -34,7 +34,7 @@ rule "We have an politician with busy schedule, more than 6 current roles and bu
 	dialect "java"
 	salience 10
     when
-        $p : PoliticianComplianceCheckImpl( politician.active == true && politician.currentAssignments > 6 && ( busyFactor(politician.firstAssignmentDate, politician.totalDaysServed ) > 6 ))
+        $p : PoliticianComplianceCheckImpl( politician.active && politician.currentAssignments > 6 && ( busyFactor(politician.firstAssignmentDate, politician.totalDaysServed ) > 6 ))
     then
     	$p.addViolation( Status.CRITICAL, "PoliticianBusySchedule","Behavior", kcontext.getRule().getName());
 end
