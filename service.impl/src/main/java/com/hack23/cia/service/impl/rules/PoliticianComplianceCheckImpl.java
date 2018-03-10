@@ -19,6 +19,7 @@
 package com.hack23.cia.service.impl.rules;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -260,6 +261,20 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 */
 	public void setAnnualSummary(ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual annualSummary) {
 		this.annualSummary = annualSummary;
+	}
+	
+	public int getYear() {
+		return Calendar.getInstance().get(Calendar.YEAR);
+	}
+	
+	public int getAge() {
+		return Calendar.getInstance().get(Calendar.YEAR) - politician.getBornYear();
+	}
+	
+	public long getAdultYearsOutSideParliament() {
+		long l = (getAge() ) - (politician.getTotalDaysServedParliament() / 365);
+		System.out.println(getAge() + ":" + l);
+		return l;
 	}
 	
 }

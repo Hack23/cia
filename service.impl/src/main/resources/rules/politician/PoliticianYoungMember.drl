@@ -1,0 +1,24 @@
+package com.hack23.cia.service.impl.rules
+import org.kie.api.runtime.KieRuntime
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.service.api.action.kpi.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+import java.util.Calendar
+ 
+rule "We have an politician 24-30, no adult experience outside of parliament"
+    dialect "java"
+    salience 50
+    when
+        $p : PoliticianComplianceCheckImpl( politician.active == true && age >= 24 && age <= 30 )
+    then
+        $p.addViolation( Status.MINOR, "PoliticianYoungMember","Attribute", kcontext.getRule().getName());
+end
+
+rule "We have an politician 18-24, no adult experience outside of parliament"
+    dialect "java"
+    salience 100
+    when
+        $p : PoliticianComplianceCheckImpl( politician.active == true && age >= 18 && age <= 24)
+    then
+        $p.addViolation( Status.MAJOR, "PoliticianYoungMember","Attribute", kcontext.getRule().getName());
+end

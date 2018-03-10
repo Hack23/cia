@@ -7,14 +7,10 @@ import com.hack23.cia.service.api.action.kpi.Status
 import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
 import java.util.Calendar
 
-function int currentYear(){
-  return Calendar.getInstance().get(Calendar.YEAR);
-}
-
 rule "We have an politician older than 65, retirement age in Sweden"
 	dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl( politician.active == true && (currentYear() - politician.bornYear) > 65 )
+        $p : PoliticianComplianceCheckImpl( politician.active == true && age > 65 )
     then
     	$p.addViolation( Status.MINOR, "PoliticianTimeToRetire","Attribute", kcontext.getRule().getName());
 end
@@ -22,7 +18,7 @@ end
 rule "We have an politician older than 70, passed retirement age in Sweden"
 	dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl( politician.active == true && (currentYear() - politician.bornYear) > 70 )
+        $p : PoliticianComplianceCheckImpl( politician.active == true && age > 70 )
     then
     	$p.addViolation( Status.MAJOR, "PoliticianTimeToRetire","Attribute", kcontext.getRule().getName());
 end
@@ -30,7 +26,7 @@ end
 rule "We have an politician older than 80, way passed retirement age in Sweden"
 	dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl( politician.active == true &&  (currentYear() - politician.bornYear) > 80 )
+        $p : PoliticianComplianceCheckImpl( politician.active == true &&  age > 80 )
     then
     	$p.addViolation( Status.CRITICAL, "PoliticianTimeToRetire","Attribute", kcontext.getRule().getName());
 end
