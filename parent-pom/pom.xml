@@ -2002,6 +2002,7 @@
                 <include>*:*</include>
               </includes>
               <excludes>
+              	<exclude>org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec</exclude>
                 <exclude>com.thoughtworks.xstream:xstream</exclude>
                 <exclude>org.codehaus.jackson:jackson-core-asl</exclude>
                 <exclude>com.sun.xml.bind:*</exclude>
@@ -2115,6 +2116,7 @@
                 <include>*:*</include>
               </includes>
               <excludes>
+              	<exclude>org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec</exclude>
                 <exclude>com.sun.xml.bind:*</exclude>
                 <exclude>javax.xml.bind:*</exclude>
                 <exclude>commons-collections:commons-collections</exclude>
