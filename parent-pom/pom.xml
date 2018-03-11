@@ -105,7 +105,7 @@
     <cia.project.versions.spring.security>5.0.3.RELEASE</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.0.RC4</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.22.0-GA</cia.project.versions.javassist>
-    <cia.project.versions.asm>6.1-beta2</cia.project.versions.asm>
+    <cia.project.versions.asm>6.1</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.6</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2.redhat-2</cia.project.versions.commons.collections>
     <cia.project.versions.commons.lang>2.6.0.redhat-6</cia.project.versions.commons.lang>
