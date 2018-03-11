@@ -903,11 +903,45 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-report-plugin</artifactId>
           <version>${surefire.version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-java</artifactId>
+              <version>0.9.6</version>
+            </dependency>
+            <dependency>
+              <groupId>org.ow2.asm</groupId>
+              <artifactId>asm</artifactId>
+              <version>${cia.project.versions.asm}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.ow2.asm</groupId>
+              <artifactId>asm-tree</artifactId>
+              <version>${cia.project.versions.asm}</version>
+            </dependency>            
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${surefire.version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-java</artifactId>
+              <version>0.9.6</version>
+            </dependency>
+            <dependency>
+              <groupId>org.ow2.asm</groupId>
+              <artifactId>asm</artifactId>
+              <version>${cia.project.versions.asm}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.ow2.asm</groupId>
+              <artifactId>asm-tree</artifactId>
+              <version>${cia.project.versions.asm}</version>
+            </dependency>            
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1097,8 +1131,6 @@
         <inherited>true</inherited>
         <configuration>
           <argLine>@{surefireArgLine} @{additionalRuntimeArgLine}</argLine>
-          <!-- <skipAfterFailureCount>1</skipAfterFailureCount> <testFailureIgnore>true</testFailureIgnore> 
-						<forkCount>1</forkCount> -->
         </configuration>
       </plugin>
       <plugin>
