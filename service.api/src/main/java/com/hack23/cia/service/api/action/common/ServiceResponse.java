@@ -19,7 +19,6 @@
 
 package com.hack23.cia.service.api.action.common;
 
-
 /**
  * The Interface ServiceResponse.
  */

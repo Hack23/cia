@@ -22,7 +22,6 @@ import javax.validation.constraints.NotNull;
 
 import com.hack23.cia.service.api.action.common.AbstractRequest;
 
-
 /**
  * The Class RemoveDataRequest.
  */
@@ -30,21 +29,21 @@ public final class RemoveDataRequest extends AbstractRequest {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * The Enum DataType.
 	 */
 	public enum DataType {
-		POLITICIAN,DOCUMENTS,APPLICATION_HISTORY;
+		POLITICIAN, DOCUMENTS, APPLICATION_HISTORY;
 	}
 
-    /** The session id. */
+	/** The session id. */
 	@NotNull
-    private String sessionId;
-    
-    /** The data type. */
+	private String sessionId;
+
+	/** The data type. */
 	@NotNull
-    private DataType dataType;
+	private DataType dataType;
 
 	/**
 	 * Instantiates a new removes the data request.
@@ -68,10 +67,10 @@ public final class RemoveDataRequest extends AbstractRequest {
 	 * @param dataType
 	 *            the new data type
 	 */
-	public void setDataType(DataType dataType) {
+	public void setDataType(final DataType dataType) {
 		this.dataType = dataType;
 	}
-	
+
 	/**
 	 * Gets the session id.
 	 *
@@ -90,6 +89,5 @@ public final class RemoveDataRequest extends AbstractRequest {
 	public void setSessionId(final String sessionId) {
 		this.sessionId = sessionId;
 	}
-
 
 }

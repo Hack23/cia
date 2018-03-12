@@ -23,7 +23,6 @@ import javax.validation.constraints.NotNull;
 
 import com.hack23.cia.service.api.action.common.AbstractRequest;
 
-
 /**
  * The Class SendEmailRequest.
  */
@@ -32,22 +31,22 @@ public final class SendEmailRequest extends AbstractRequest {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-    /** The session id. */
+	/** The session id. */
 	@NotNull
-    private String sessionId;
+	private String sessionId;
 
-    /** The email. */
+	/** The email. */
 	@Email
-    private String email;
-    
-    /** The subject. */
+	private String email;
+
+	/** The subject. */
 	@NotNull
-    private String subject;
-    
-    /** The content. */
+	private String subject;
+
+	/** The content. */
 	@NotNull
-    private String content;
-    
+	private String content;
+
 	/**
 	 * Instantiates a new send email request.
 	 */
@@ -130,6 +129,5 @@ public final class SendEmailRequest extends AbstractRequest {
 	public void setContent(final String content) {
 		this.content = content;
 	}
-
 
 }

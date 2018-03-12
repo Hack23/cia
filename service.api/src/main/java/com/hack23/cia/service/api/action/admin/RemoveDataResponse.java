@@ -20,12 +20,10 @@ package com.hack23.cia.service.api.action.admin;
 
 import com.hack23.cia.service.api.action.common.AbstractResponse;
 
-
 /**
  * The Class RemoveDataResponse.
  */
 public final class RemoveDataResponse extends AbstractResponse {
-
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -39,6 +37,5 @@ public final class RemoveDataResponse extends AbstractResponse {
 	public RemoveDataResponse(final ServiceResult result) {
 		super(result);
 	}
-
 
 }

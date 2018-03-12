@@ -30,23 +30,23 @@ import com.vaadin.shared.ui.JavaScriptComponentState;
  * The Class SankeyChartState.
  */
 public final class SankeyChartState extends JavaScriptComponentState {
-    
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The values. */
-    public List<List<Object>> values = new ArrayList<>();
-    
-    /** The my id. */
-    public String myId;
-    
+	public List<List<Object>> values = new ArrayList<>();
+
+	/** The my id. */
+	public String myId;
+
 	/**
 	 * Instantiates a new sankey chart state.
 	 */
 	public SankeyChartState() {
 		super();
 	}
-	
+
 	public void addDataRow(final String from, final String to, int weight) {
 		final ArrayList<Object> valueData = new ArrayList<>();
 		valueData.add(from);

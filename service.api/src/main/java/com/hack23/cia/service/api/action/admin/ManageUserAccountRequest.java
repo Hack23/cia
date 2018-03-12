@@ -22,7 +22,6 @@ import javax.validation.constraints.NotNull;
 
 import com.hack23.cia.service.api.action.common.AbstractRequest;
 
-
 /**
  * The Class ManageUserAccountRequest.
  */
@@ -30,42 +29,42 @@ public final class ManageUserAccountRequest extends AbstractRequest {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * The Enum AccountOperation.
 	 */
 	public enum AccountOperation {
-		
+
 		/** The delete. */
 		DELETE,
 
-/** The lock. */
-LOCK,
+		/** The lock. */
+		LOCK,
 
-/** The unlock. */
-UNLOCK,
+		/** The unlock. */
+		UNLOCK,
 
-/** The verify email. */
-VERIFY_EMAIL,
+		/** The verify email. */
+		VERIFY_EMAIL,
 
-/** The password recovery. */
-PASSWORD_RECOVERY,
+		/** The password recovery. */
+		PASSWORD_RECOVERY,
 
-/** The reset mfa. */
-RESET_MFA;
+		/** The reset mfa. */
+		RESET_MFA;
 	}
 
-    /** The session id. */
+	/** The session id. */
 	@NotNull
-    private String sessionId;
+	private String sessionId;
 
-    /** The user acount id. */
+	/** The user acount id. */
 	@NotNull
-    private String userAcountId;
-    
-    /** The account operation. */
-    private AccountOperation accountOperation;
-    
+	private String userAcountId;
+
+	/** The account operation. */
+	private AccountOperation accountOperation;
+
 	/**
 	 * Instantiates a new manage user account request.
 	 */
@@ -73,7 +72,6 @@ RESET_MFA;
 		super();
 	}
 
-	
 	/**
 	 * Gets the session id.
 	 *
@@ -93,7 +91,6 @@ RESET_MFA;
 		this.sessionId = sessionId;
 	}
 
-
 	/**
 	 * Gets the user acount id.
 	 *
@@ -103,17 +100,15 @@ RESET_MFA;
 		return userAcountId;
 	}
 
-
 	/**
 	 * Sets the user acount id.
 	 *
 	 * @param userAcountId
 	 *            the new user acount id
 	 */
-	public void setUserAcountId(String userAcountId) {
+	public void setUserAcountId(final String userAcountId) {
 		this.userAcountId = userAcountId;
 	}
-
 
 	/**
 	 * Gets the account operation.
@@ -124,16 +119,14 @@ RESET_MFA;
 		return accountOperation;
 	}
 
-
 	/**
 	 * Sets the account operation.
 	 *
 	 * @param accountOperation
 	 *            the new account operation
 	 */
-	public void setAccountOperation(AccountOperation accountOperation) {
+	public void setAccountOperation(final AccountOperation accountOperation) {
 		this.accountOperation = accountOperation;
 	}
-
 
 }

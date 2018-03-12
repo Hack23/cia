@@ -22,7 +22,6 @@ import javax.validation.constraints.NotNull;
 
 import com.hack23.cia.service.api.action.common.AbstractRequest;
 
-
 /**
  * The Class UpdateLanguageContentDataRequest.
  */
@@ -31,15 +30,15 @@ public final class UpdateLanguageContentDataRequest extends AbstractRequest {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-    /** The session id. */
+	/** The session id. */
 	@NotNull
-    private String sessionId;
+	private String sessionId;
 
 	/** The language content id. */
 	private Long languageContentId;
 
-    /** The language value. */
-    private String languageValue;
+	/** The language value. */
+	private String languageValue;
 
 	/**
 	 * Instantiates a new update language content data request.
@@ -82,7 +81,7 @@ public final class UpdateLanguageContentDataRequest extends AbstractRequest {
 	 * @param languageContentId
 	 *            the new language content id
 	 */
-	public void setLanguageContentId(Long languageContentId) {
+	public void setLanguageContentId(final Long languageContentId) {
 		this.languageContentId = languageContentId;
 	}
 
@@ -101,7 +100,7 @@ public final class UpdateLanguageContentDataRequest extends AbstractRequest {
 	 * @param languageValue
 	 *            the new language value
 	 */
-	public void setLanguageValue(String languageValue) {
+	public void setLanguageValue(final String languageValue) {
 		this.languageValue = languageValue;
 	}
 

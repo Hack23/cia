@@ -28,7 +28,6 @@ import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElemen
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.service.api.action.common.AbstractResponse;
 
-
 /**
  * The Class SearchDocumentResponse.
  */
@@ -41,11 +40,10 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	private List<DocumentElement> resultElement = new ArrayList<>();
 
 	/** The status map. */
-	private Map<String,DocumentStatusContainer> statusMap;
+	private Map<String, DocumentStatusContainer> statusMap;
 
 	/** The data map. */
-	private Map<String,DocumentContentData> dataMap;
-
+	private Map<String, DocumentContentData> dataMap;
 
 	/**
 	 * Instantiates a new search document response.
@@ -57,7 +55,6 @@ public final class SearchDocumentResponse extends AbstractResponse {
 		super(result);
 	}
 
-
 	/**
 	 * Gets the result element.
 	 *
@@ -66,7 +63,6 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	public List<DocumentElement> getResultElement() {
 		return resultElement.stream().collect(Collectors.toList());
 	}
-
 
 	/**
 	 * Sets the result element.
@@ -80,7 +76,6 @@ public final class SearchDocumentResponse extends AbstractResponse {
 		}
 	}
 
-
 	/**
 	 * Gets the status map.
 	 *
@@ -89,7 +84,6 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	public Map<String, DocumentStatusContainer> getStatusMap() {
 		return statusMap;
 	}
-
 
 	/**
 	 * Sets the status map.
@@ -101,7 +95,6 @@ public final class SearchDocumentResponse extends AbstractResponse {
 		this.statusMap = statusMap;
 	}
 
-
 	/**
 	 * Gets the data map.
 	 *
@@ -110,7 +103,6 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	public Map<String, DocumentContentData> getDataMap() {
 		return dataMap;
 	}
-
 
 	/**
 	 * Sets the data map.

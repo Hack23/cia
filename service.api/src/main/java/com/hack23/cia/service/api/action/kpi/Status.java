@@ -22,15 +22,15 @@ package com.hack23.cia.service.api.action.kpi;
  * The Enum Status.
  */
 public enum Status {
-	
+
 	/** The ok. */
 	OK,
-/** The minor. */
-MINOR,
-/** The major. */
-MAJOR,
-/** The critical. */
-CRITICAL,
-/** The na. */
-NA;
+	/** The minor. */
+	MINOR,
+	/** The major. */
+	MAJOR,
+	/** The critical. */
+	CRITICAL,
+	/** The na. */
+	NA;
 }

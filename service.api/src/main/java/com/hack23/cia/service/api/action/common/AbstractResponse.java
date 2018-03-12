@@ -37,7 +37,6 @@ public abstract class AbstractResponse implements ServiceResponse {
 	/** The error message. */
 	private String errorMessage;
 
-
 	/**
 	 * Instantiates a new abstract response.
 	 *
@@ -60,7 +59,7 @@ public abstract class AbstractResponse implements ServiceResponse {
 	 * @param errorMessage
 	 *            the new error message
 	 */
-	public final void setErrorMessage(String errorMessage) {
+	public final void setErrorMessage(final String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
 
@@ -70,7 +69,7 @@ public abstract class AbstractResponse implements ServiceResponse {
 	}
 
 	@Override
-	public final boolean equals(Object obj) {
+	public final boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 

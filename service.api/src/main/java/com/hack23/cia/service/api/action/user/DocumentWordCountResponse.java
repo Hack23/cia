@@ -22,17 +22,16 @@ import java.util.Map;
 
 import com.hack23.cia.service.api.action.common.AbstractResponse;
 
-
 /**
  * The Class DocumentWordCountResponse.
  */
 public final class DocumentWordCountResponse extends AbstractResponse {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The word count map. */
-	private Map<String,Integer> wordCountMap;
+	private Map<String, Integer> wordCountMap;
 
 	/**
 	 * Instantiates a new document word count response.
@@ -59,7 +58,7 @@ public final class DocumentWordCountResponse extends AbstractResponse {
 	 * @param wordCountMap
 	 *            the new word count map
 	 */
-	public void setWordCountMap(Map<String, Integer> wordCountMap) {
+	public void setWordCountMap(final Map<String, Integer> wordCountMap) {
 		this.wordCountMap = wordCountMap;
 	}
 

@@ -22,7 +22,6 @@ import javax.validation.constraints.NotNull;
 
 import com.hack23.cia.service.api.action.common.AbstractRequest;
 
-
 /**
  * The Class SearchDocumentRequest.
  */
@@ -31,15 +30,15 @@ public final class SearchDocumentRequest extends AbstractRequest {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-    /** The session id. */
+	/** The session id. */
 	@NotNull
-    private String sessionId;
+	private String sessionId;
 
-    /** The search expression. */
-    private String searchExpression;
+	/** The search expression. */
+	private String searchExpression;
 
-    /** The max results. */
-    private Integer maxResults;
+	/** The max results. */
+	private Integer maxResults;
 
 	/**
 	 * Instantiates a new search document request.

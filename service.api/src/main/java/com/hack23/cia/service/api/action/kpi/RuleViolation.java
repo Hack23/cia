@@ -37,27 +37,27 @@ public final class RuleViolation implements Serializable {
 
 	/** The id. */
 	private final String id;
-	
+
 	/** The name. */
 	private final String name;
-	
+
 	/** The resource type. */
 	private final ResourceType resourceType;
-	
+
 	/** The rule name. */
-	private String ruleName;
+	private final String ruleName;
 
 	/** The rule description. */
-	private String ruleDescription;	
+	private final String ruleDescription;
 
 	/** The rule group. */
-	private String ruleGroup;
-	
+	private final String ruleGroup;
+
 	/** The status. */
 	private Status status = Status.OK;
-	
+
 	/** The positive. */
-	private String positive;
+	private final String positive;
 
 	/**
 	 * Instantiates a new rule violation.
@@ -79,7 +79,8 @@ public final class RuleViolation implements Serializable {
 	 * @param positive
 	 *            the positive
 	 */
-	public RuleViolation(final String id,final String name,final ResourceType resourceType,final String ruleName, final String ruleDescription, final String ruleGroup, final Status status, final String positive) {
+	public RuleViolation(final String id, final String name, final ResourceType resourceType, final String ruleName,
+			final String ruleDescription, final String ruleGroup, final Status status, final String positive) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -154,8 +155,6 @@ public final class RuleViolation implements Serializable {
 		return resourceType;
 	}
 
-	
-	
 	/**
 	 * Gets the positive.
 	 *
@@ -166,7 +165,7 @@ public final class RuleViolation implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
@@ -179,5 +178,5 @@ public final class RuleViolation implements Serializable {
 	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);
 	}
-	
+
 }

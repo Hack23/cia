@@ -22,7 +22,6 @@ import javax.validation.constraints.NotNull;
 
 import com.hack23.cia.service.api.action.common.AbstractRequest;
 
-
 /**
  * The Class DocumentWordCountRequest.
  */
@@ -31,16 +30,16 @@ public final class DocumentWordCountRequest extends AbstractRequest {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-    /** The session id. */
+	/** The session id. */
 	@NotNull
-    private String sessionId;
+	private String sessionId;
 
-    /** The document id. */
+	/** The document id. */
 	@NotNull
-    private String documentId;
+	private String documentId;
 
-    /** The max results. */
-    private int maxResults;
+	/** The max results. */
+	private int maxResults;
 
 	/**
 	 * Instantiates a new document word count request.
@@ -64,7 +63,7 @@ public final class DocumentWordCountRequest extends AbstractRequest {
 	 * @param sessionId
 	 *            the new session id
 	 */
-	public void setSessionId(String sessionId) {
+	public void setSessionId(final String sessionId) {
 		this.sessionId = sessionId;
 	}
 
@@ -83,7 +82,7 @@ public final class DocumentWordCountRequest extends AbstractRequest {
 	 * @param maxResults
 	 *            the new max results
 	 */
-	public void setMaxResults(int maxResults) {
+	public void setMaxResults(final int maxResults) {
 		this.maxResults = maxResults;
 	}
 
@@ -102,7 +101,7 @@ public final class DocumentWordCountRequest extends AbstractRequest {
 	 * @param documentId
 	 *            the new document content
 	 */
-	public void setDocumentId(String documentId) {
+	public void setDocumentId(final String documentId) {
 		this.documentId = documentId;
 	}
 

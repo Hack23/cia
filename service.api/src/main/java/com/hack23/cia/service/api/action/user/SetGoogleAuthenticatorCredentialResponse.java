@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
 
 import com.hack23.cia.service.api.action.common.AbstractResponse;
 
-
 /**
  * The Class SetGoogleAuthenticatorCredentialResponse.
  */
@@ -33,18 +32,17 @@ public final class SetGoogleAuthenticatorCredentialResponse extends AbstractResp
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The google auth key. */
+	private String googleAuthKey;
 
-    /** The google auth key. */
-    private String googleAuthKey;
+	/** The google auth verification code. */
+	private Integer googleAuthVerificationCode;
 
-    /** The google auth verification code. */
-    private Integer googleAuthVerificationCode;
+	/** The google auth scratch codes. */
+	private List<Integer> googleAuthScratchCodes = new ArrayList<>();
 
-    /** The google auth scratch codes. */
-    private List<Integer> googleAuthScratchCodes = new ArrayList<>();
-
-    /** The otp auth totp url. */
-    private String otpAuthTotpURL;
+	/** The otp auth totp url. */
+	private String otpAuthTotpURL;
 
 	/**
 	 * Instantiates a new sets the google authenticator credential response.
@@ -71,7 +69,7 @@ public final class SetGoogleAuthenticatorCredentialResponse extends AbstractResp
 	 * @param googleAuthKey
 	 *            the new google auth key
 	 */
-	public void setGoogleAuthKey(String googleAuthKey) {
+	public void setGoogleAuthKey(final String googleAuthKey) {
 		this.googleAuthKey = googleAuthKey;
 	}
 
@@ -90,7 +88,7 @@ public final class SetGoogleAuthenticatorCredentialResponse extends AbstractResp
 	 * @param googleAuthVerificationCode
 	 *            the new google auth verification code
 	 */
-	public void setGoogleAuthVerificationCode(Integer googleAuthVerificationCode) {
+	public void setGoogleAuthVerificationCode(final Integer googleAuthVerificationCode) {
 		this.googleAuthVerificationCode = googleAuthVerificationCode;
 	}
 
@@ -109,7 +107,7 @@ public final class SetGoogleAuthenticatorCredentialResponse extends AbstractResp
 	 * @param googleAuthScratchCodes
 	 *            the new google auth scratch codes
 	 */
-	public void setGoogleAuthScratchCodes(List<Integer> googleAuthScratchCodes) {
+	public void setGoogleAuthScratchCodes(final List<Integer> googleAuthScratchCodes) {
 		if (googleAuthScratchCodes != null) {
 			this.googleAuthScratchCodes = googleAuthScratchCodes.stream().collect(Collectors.toList());
 		}
@@ -130,7 +128,7 @@ public final class SetGoogleAuthenticatorCredentialResponse extends AbstractResp
 	 * @param otpAuthTotpURL
 	 *            the new otp auth totp url
 	 */
-	public void setOtpAuthTotpURL(String otpAuthTotpURL) {
+	public void setOtpAuthTotpURL(final String otpAuthTotpURL) {
 		this.otpAuthTotpURL = otpAuthTotpURL;
 	}
 

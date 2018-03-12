@@ -31,7 +31,7 @@ import javax.persistence.metamodel.SingularAttribute;
  * @param <I>
  *            the generic type
  */
-public interface DataContainer<T extends Serializable,I extends Serializable> {
+public interface DataContainer<T extends Serializable, I extends Serializable> {
 
 	/**
 	 * Gets the all.
@@ -49,7 +49,6 @@ public interface DataContainer<T extends Serializable,I extends Serializable> {
 	 */
 	List<T> getAllOrderBy(final SingularAttribute<T, ? extends Object> property);
 
-
 	/**
 	 * Gets the page.
 	 *
@@ -59,7 +58,7 @@ public interface DataContainer<T extends Serializable,I extends Serializable> {
 	 *            the result per page
 	 * @return the page
 	 */
-	List<T> getPage(int pageNr,int resultPerPage);
+	List<T> getPage(int pageNr, int resultPerPage);
 
 	/**
 	 * Gets the page order by.
@@ -72,8 +71,7 @@ public interface DataContainer<T extends Serializable,I extends Serializable> {
 	 *            the order by
 	 * @return the page order by
 	 */
-	List<T> getPageOrderBy(int pageNr,int resultPerPage,final SingularAttribute<T, ? extends Object> orderBy);
-
+	List<T> getPageOrderBy(int pageNr, int resultPerPage, final SingularAttribute<T, ? extends Object> orderBy);
 
 	/**
 	 * Gets the all by.
@@ -95,7 +93,7 @@ public interface DataContainer<T extends Serializable,I extends Serializable> {
 	 *            the properties
 	 * @return the list
 	 */
-	List<T> findListByProperty(final Object[] values,final SingularAttribute<T, ? extends Object>... properties);
+	List<T> findListByProperty(final Object[] values, final SingularAttribute<T, ? extends Object>... properties);
 
 	/**
 	 * Find ordered list by property.
@@ -108,7 +106,8 @@ public interface DataContainer<T extends Serializable,I extends Serializable> {
 	 *            the order by property
 	 * @return the list
 	 */
-	List<T> findOrderedListByProperty(final SingularAttribute<T, ? extends Object> property, final Object value,SingularAttribute<T, ? extends Object> orderByProperty);
+	List<T> findOrderedListByProperty(final SingularAttribute<T, ? extends Object> property, final Object value,
+			SingularAttribute<T, ? extends Object> orderByProperty);
 
 	/**
 	 * Find ordered list by property.
@@ -121,8 +120,8 @@ public interface DataContainer<T extends Serializable,I extends Serializable> {
 	 *            the properties
 	 * @return the list
 	 */
-	List<T> findOrderedListByProperty(SingularAttribute<T, ? extends Object> orderByProperty,final Object[] values,final SingularAttribute<T, ? extends Object>... properties);
-
+	List<T> findOrderedListByProperty(SingularAttribute<T, ? extends Object> orderByProperty, final Object[] values,
+			final SingularAttribute<T, ? extends Object>... properties);
 
 	/**
 	 * Find by query property.
@@ -143,8 +142,7 @@ public interface DataContainer<T extends Serializable,I extends Serializable> {
 	 *            the value
 	 * @return the t
 	 */
-	<T,V> T findByQueryProperty(Class<T> clazz,
-			SingularAttribute<T, ? extends Object> property,Class<V> clazz2,
+	<T, V> T findByQueryProperty(Class<T> clazz, SingularAttribute<T, ? extends Object> property, Class<V> clazz2,
 			SingularAttribute<V, ? extends Object> property2, Object value);
 
 	/**
@@ -166,8 +164,7 @@ public interface DataContainer<T extends Serializable,I extends Serializable> {
 	 *            the value
 	 * @return the list
 	 */
-	<T,V> List<T> findListByEmbeddedProperty(Class<T> clazz,
-			SingularAttribute<T, V> property,Class<V> clazz2,
+	<T, V> List<T> findListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property, Class<V> clazz2,
 			SingularAttribute<V, ? extends Object> property2, Object value);
 
 	/**
@@ -191,9 +188,9 @@ public interface DataContainer<T extends Serializable,I extends Serializable> {
 	 *            the order by property
 	 * @return the list
 	 */
-	<T,V> List<T> findOrderedListByEmbeddedProperty(Class<T> clazz,
-			SingularAttribute<T, V> property,Class<V> clazz2,
-			SingularAttribute<V, ? extends Object> property2, Object value,SingularAttribute<V, ? extends Object> orderByProperty);
+	<T, V> List<T> findOrderedListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property, Class<V> clazz2,
+			SingularAttribute<V, ? extends Object> property2, Object value,
+			SingularAttribute<V, ? extends Object> orderByProperty);
 
 	/**
 	 * Find ordered by property list by embedded property.
@@ -216,10 +213,9 @@ public interface DataContainer<T extends Serializable,I extends Serializable> {
 	 *            the order by property
 	 * @return the list
 	 */
-	<T,V> List<T> findOrderedByPropertyListByEmbeddedProperty(Class<T> clazz,
-			SingularAttribute<T, V> property,Class<V> clazz2,
-			SingularAttribute<V, ? extends Object> property2, Object value,SingularAttribute<T, ? extends Object> orderByProperty);
-
+	<T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property,
+			Class<V> clazz2, SingularAttribute<V, ? extends Object> property2, Object value,
+			SingularAttribute<T, ? extends Object> orderByProperty);
 
 	/**
 	 * Load.

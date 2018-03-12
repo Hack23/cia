@@ -39,7 +39,7 @@ public abstract class AbstractRequest implements ServiceRequest {
 	}
 
 	@Override
-	public final boolean equals(Object obj) {
+	public final boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
