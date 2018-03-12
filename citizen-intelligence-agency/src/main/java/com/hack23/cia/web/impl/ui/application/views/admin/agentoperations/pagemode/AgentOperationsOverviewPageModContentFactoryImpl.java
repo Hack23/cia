@@ -18,24 +18,21 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.agentoperations.pagemode;
 
-import java.util.Arrays;
+import java.text.MessageFormat;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
-import com.hack23.cia.service.api.AgentContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.StartAgentClickListener;
+import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -48,30 +45,20 @@ import com.vaadin.ui.VerticalLayout;
 public final class AgentOperationsOverviewPageModContentFactoryImpl
 		extends AbstractAgentOperationsPageModContentFactoryImpl {
 
+	/** The Constant WILL_FETCH_DATA_FROM_SOURCE. */
+	private static final String WILL_FETCH_DATA_FROM_SOURCE = "Will fetch data from source";
+
+	/** The Constant BUTTON_ID_PATTERN. */
+	private static final String BUTTON_ID_PATTERN = "{0}.{1}.{2}";
+
+	/** The Constant BUTTON_PATTERN. */
+	private static final String BUTTON_PATTERN = "Start {0} {1}";
+
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME;
 
-	/** The Constant OPERATION2. */
-	private static final String OPERATION2 = "/Operation";
-
-	/** The Constant TARGET2. */
-	private static final String TARGET2 = "/Target";
-
-	/** The Constant START. */
-	private static final String START = "Start";
-
-	/** The Constant OPERATION. */
-	private static final String OPERATION = "Operation";
-
-	/** The Constant TARGET. */
-	private static final String TARGET = "Target";
-
 	/** The Constant ADMIN_AGENT_OPERATION. */
 	private static final String ADMIN_AGENT_OPERATION = "Admin Agent Operation";
-
-	/** The agent container. */
-	@Autowired
-	private AgentContainer agentContainer;
 
 	/**
 	 * Instantiates a new agent operations overview page mod content factory
@@ -94,30 +81,20 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
 		LabelFactory.createHeader2Label(content,ADMIN_AGENT_OPERATION);
+				
+		final VerticalLayout overviewLayout = new VerticalLayout();
+		overviewLayout.setSizeFull();
+		content.addComponent(overviewLayout);
+		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
-		final ComboBox targetSelect = new ComboBox(TARGET, Arrays.asList(DataAgentTarget.values()));
-		targetSelect.setId(ViewAction.START_AGENT_BUTTON + TARGET2);
-		content.addComponent(targetSelect);
-		content.setExpandRatio(targetSelect, ContentRatio.SMALL2);
-
-		final ComboBox operationSelect = new ComboBox(OPERATION, Arrays.asList(DataAgentOperation.values()));
-		operationSelect.setId(ViewAction.START_AGENT_BUTTON + OPERATION2);
-		content.addComponent(operationSelect);
-		content.setExpandRatio(operationSelect, ContentRatio.SMALL2);
-
-		final Button startAgentButton = new Button(START,
-				new StartAgentClickListener(targetSelect, operationSelect, agentContainer));
-		startAgentButton.setId(ViewAction.START_AGENT_BUTTON.name());
-		startAgentButton.setIcon(VaadinIcons.CROSSHAIRS);
-		content.addComponent(startAgentButton);
-		content.setExpandRatio(startAgentButton, ContentRatio.SMALL3);
-
-		content.setSizeFull();
-		content.setMargin(false);
-		content.setSpacing(true);
-
-		content.setWidth(100, Unit.PERCENTAGE);
-		content.setHeight(100, Unit.PERCENTAGE);
+		final ResponsiveRow grid = createGridLayout(overviewLayout);
+	
+		for (DataAgentTarget dataAgentTarget : DataAgentTarget.values()) {
+			final Button refreshViewsButton = new Button(MessageFormat.format(BUTTON_PATTERN, DataAgentOperation.IMPORT, dataAgentTarget) , VaadinIcons.BULLSEYE);
+			refreshViewsButton.addClickListener(new StartAgentClickListener(dataAgentTarget, DataAgentOperation.IMPORT));
+			refreshViewsButton.setId(MessageFormat.format(BUTTON_ID_PATTERN, ViewAction.START_AGENT_BUTTON, DataAgentOperation.IMPORT, dataAgentTarget));
+			createRowItem(grid, refreshViewsButton, WILL_FETCH_DATA_FROM_SOURCE);
+		}
 
 		return content;
 	}

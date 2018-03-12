@@ -20,15 +20,12 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder;
-import com.hack23.cia.service.api.AgentContainer;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.ComboBox;
 
 /**
  * The Class StartAgentClickListener.
@@ -44,44 +41,35 @@ public final class StartAgentClickListener implements ClickListener {
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(StartAgentClickListener.class);
 
-	/** The target select. */
-	private final ComboBox targetSelect;
+	/** The data agent target. */
+	private DataAgentTarget dataAgentTarget;
 
-	/** The operation select. */
-	private final ComboBox operationSelect;
-
-	/** The agent container. */
-	@Autowired
-	private transient AgentContainer agentContainer;
+	/** The data agent operation. */
+	private DataAgentOperation dataAgentOperation;
 
 	/**
 	 * Instantiates a new start agent click listener.
 	 *
-	 * @param targetSelect
-	 *            the target select
-	 * @param operationSelect
-	 *            the operation select
+	 * @param dataAgentTarget
+	 *            the data agent target
+	 * @param dataAgentOperation
+	 *            the data agent operation
 	 * @param agentContainer
 	 *            the agent container
 	 */
-	public StartAgentClickListener(final ComboBox targetSelect, final ComboBox operationSelect, final AgentContainer agentContainer) {
+	public StartAgentClickListener(final DataAgentTarget dataAgentTarget, final DataAgentOperation dataAgentOperation) {
 		super();
-		this.targetSelect = targetSelect;
-		this.operationSelect = operationSelect;
-		this.agentContainer = agentContainer;
+		this.dataAgentTarget = dataAgentTarget;
+		this.dataAgentOperation = dataAgentOperation;
 	}
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-		if (targetSelect.getValue() != null && operationSelect.getValue() != null) {
-			final DataAgentWorkOrder dataAgentWorkOrder = new DataAgentWorkOrder();
-			final DataAgentTarget target = DataAgentTarget.valueOf(targetSelect.getValue().toString());
-			dataAgentWorkOrder.setTarget(target);
-			dataAgentWorkOrder.setOperation(DataAgentOperation.valueOf(operationSelect.getValue().toString()));
-			LOGGER.info(LOG_MSG_EXECUTE_WORKORDER, dataAgentWorkOrder);
-			agentContainer.execute(dataAgentWorkOrder);
-		}
+		final DataAgentWorkOrder dataAgentWorkOrder = new DataAgentWorkOrder();
+		dataAgentWorkOrder.setTarget(dataAgentTarget);
+		dataAgentWorkOrder.setOperation(dataAgentOperation);
+		LOGGER.info(LOG_MSG_EXECUTE_WORKORDER, dataAgentWorkOrder);
+		ApplicationMangerAccess.getApplicationManager().getAgentContainer().execute(dataAgentWorkOrder);
 	}
-
 
 }
