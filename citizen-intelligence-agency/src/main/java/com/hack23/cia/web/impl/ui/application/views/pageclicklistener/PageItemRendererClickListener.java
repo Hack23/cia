@@ -23,6 +23,9 @@ import com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener;
 
 /**
  * The Class PageItemRendererClickListener.
+ * 
+ * @param <T>
+ *            the generic type
  */
 public interface PageItemRendererClickListener<T> extends RendererClickListener<T>, SelectionListener<T> {
 

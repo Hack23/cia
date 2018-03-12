@@ -21,6 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.function.Function;
 
 import org.springframework.stereotype.Service;
@@ -63,7 +64,7 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 
 			@Override
 			public Date getToDate(final ViewRiksdagenPartyRoleMember t) {
-				return t.getToDate();
+				return Optional.ofNullable(t.getToDate()).orElse(new Date());
 			}
 
 			@Override

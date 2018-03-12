@@ -21,7 +21,6 @@ package com.hack23.cia.service.impl.rules;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 

@@ -71,9 +71,12 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 *
 	 * @param party
 	 *            the party
-	 * @param dailySummary 
-	 * @param monthlySummary 
-	 * @param annualSummary 
+	 * @param annualSummary
+	 *            the annual summary
+	 * @param monthlySummary
+	 *            the monthly summary
+	 * @param dailySummary
+	 *            the daily summary
 	 */
 	public PartyComplianceCheckImpl(final ViewRiksdagenPartySummary party,final ViewRiksdagenVoteDataBallotPartySummaryAnnual annualSummary,final ViewRiksdagenVoteDataBallotPartySummaryMonthly monthlySummary,final ViewRiksdagenVoteDataBallotPartySummaryDaily dailySummary) {
 		super(ResourceType.PARTY);
@@ -186,6 +189,25 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 */
 	public ViewRiksdagenVoteDataBallotPartySummaryAnnual getAnnualSummary() {
 		return annualSummary;
+	}
+
+	/**
+	 * Gets the ballot decisions.
+	 *
+	 * @return the ballot decisions
+	 */
+	public List<ViewRiksdagenCommitteeBallotDecisionPartySummary> getBallotDecisions() {
+		return Collections.unmodifiableList(ballotDecisions);
+	}
+
+	/**
+	 * Sets the ballot decisions.
+	 *
+	 * @param ballotDecisions
+	 *            the new ballot decisions
+	 */
+	public void setBallotDecisions(final List<ViewRiksdagenCommitteeBallotDecisionPartySummary> ballotDecisions) {
+		this.ballotDecisions = Collections.unmodifiableList(ballotDecisions);
 	}
 
 }
