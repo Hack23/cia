@@ -1056,6 +1056,7 @@
                 <exclude>**/FormFactoryImpl*</exclude>
                 <exclude>**/AuthorizationFailureEventListener*</exclude>
                 <exclude>**/ParliamentDecisionFlowPageModContentFactoryImpl*</exclude>
+                <exclude>**/AgentOperationsOverviewPageModContentFactoryImpl*</exclude>
               </excludes>
               <failOnMissingClasses>false</failOnMissingClasses>
               <failOnUnresolvableSignatures>false</failOnUnresolvableSignatures>
