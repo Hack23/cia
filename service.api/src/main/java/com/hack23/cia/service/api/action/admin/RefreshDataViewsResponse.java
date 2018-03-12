@@ -20,12 +20,10 @@ package com.hack23.cia.service.api.action.admin;
 
 import com.hack23.cia.service.api.action.common.AbstractResponse;
 
-
 /**
  * The Class RefreshDataViewsResponse.
  */
 public final class RefreshDataViewsResponse extends AbstractResponse {
-
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -39,6 +37,5 @@ public final class RefreshDataViewsResponse extends AbstractResponse {
 	public RefreshDataViewsResponse(final ServiceResult result) {
 		super(result);
 	}
-
 
 }

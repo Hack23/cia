@@ -46,10 +46,10 @@ public final class CreateApplicationSessionRequest extends AbstractRequest {
 
 	/** The user agent information. */
 	private String userAgentInformation;
-	
+
 	/** The screen size. */
 	private String screenSize;
-	
+
 	/** The time zone. */
 	private String timeZone;
 
@@ -176,7 +176,7 @@ public final class CreateApplicationSessionRequest extends AbstractRequest {
 	public void setOperatingSystem(final String operatingSystem) {
 		this.operatingSystem = operatingSystem;
 	}
-	
+
 	/**
 	 * Gets the screen size.
 	 *

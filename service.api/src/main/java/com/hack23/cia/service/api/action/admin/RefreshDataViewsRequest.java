@@ -22,7 +22,6 @@ import javax.validation.constraints.NotNull;
 
 import com.hack23.cia.service.api.action.common.AbstractRequest;
 
-
 /**
  * The Class RefreshDataViewsRequest.
  */
@@ -31,9 +30,9 @@ public final class RefreshDataViewsRequest extends AbstractRequest {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-    /** The session id. */
+	/** The session id. */
 	@NotNull
-    private String sessionId;
+	private String sessionId;
 
 	/**
 	 * Instantiates a new refresh data views request.
@@ -60,6 +59,5 @@ public final class RefreshDataViewsRequest extends AbstractRequest {
 	public void setSessionId(final String sessionId) {
 		this.sessionId = sessionId;
 	}
-
 
 }

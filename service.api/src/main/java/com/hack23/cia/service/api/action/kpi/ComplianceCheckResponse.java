@@ -29,12 +29,10 @@ import org.apache.commons.collections4.MapUtils;
 
 import com.hack23.cia.service.api.action.common.AbstractResponse;
 
-
 /**
  * The Class ComplianceCheckResponse.
  */
 public final class ComplianceCheckResponse extends AbstractResponse {
-
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -43,11 +41,11 @@ public final class ComplianceCheckResponse extends AbstractResponse {
 	private List<ComplianceCheck> list = new ArrayList();
 
 	/** The status map. */
-	private Map<Status,List<RuleViolation>> statusMap = new HashMap();
+	private Map<Status, List<RuleViolation>> statusMap = new HashMap();
 
 	/** The resource type map. */
-	private Map<ResourceType,List<RuleViolation>> resourceTypeMap = new HashMap();	
-	
+	private Map<ResourceType, List<RuleViolation>> resourceTypeMap = new HashMap();
+
 	/**
 	 * Instantiates a new compliance check response.
 	 *

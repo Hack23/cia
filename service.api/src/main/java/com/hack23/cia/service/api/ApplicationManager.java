@@ -25,9 +25,6 @@ import java.util.concurrent.Future;
 import com.hack23.cia.service.api.action.common.ServiceRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse;
 
-
-
-
 /**
  * The Interface ApplicationManager.
  */
@@ -51,8 +48,7 @@ public interface ApplicationManager {
 	 *            the data object
 	 * @return the data container
 	 */
-	<T extends Serializable,V extends Serializable> DataContainer<T,V> getDataContainer(Class<T> dataObject);
-
+	<T extends Serializable, V extends Serializable> DataContainer<T, V> getDataContainer(Class<T> dataObject);
 
 	/**
 	 * Service.
@@ -62,7 +58,6 @@ public interface ApplicationManager {
 	 * @return the service response
 	 */
 	ServiceResponse service(ServiceRequest serviceRequest);
-
 
 	/**
 	 * Async service.

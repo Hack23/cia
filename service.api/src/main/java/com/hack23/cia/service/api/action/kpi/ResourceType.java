@@ -22,25 +22,25 @@ package com.hack23.cia.service.api.action.kpi;
  * The Enum ResourceType.
  */
 public enum ResourceType {
-	
+
 	/** The politician. */
 	POLITICIAN,
-	
+
 	/** The party. */
 	PARTY,
-	
+
 	/** The party leader. */
 	PARTY_LEADER,
-	
+
 	/** The committee. */
 	COMMITTEE,
-	
+
 	/** The ministry. */
 	MINISTRY,
-	
+
 	/** The government. */
 	GOVERNMENT,
-	
+
 	/** The minister. */
 	MINISTER;
 }

@@ -32,21 +32,21 @@ public final class LoginRequest extends AbstractRequest {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-    /** The session id. */
+	/** The session id. */
 	@NotNull
-    private String sessionId;
+	private String sessionId;
 
-    /** The email. */
+	/** The email. */
 	@Email
-    private String email;
+	private String email;
 
-    /** The userpassword. */
-    @NotNull
-    @Size(min = 4, max = 64)
-    private String userpassword;
+	/** The userpassword. */
+	@NotNull
+	@Size(min = 4, max = 64)
+	private String userpassword;
 
-    /** The otp code. */
-    private String otpCode;
+	/** The otp code. */
+	private String otpCode;
 
 	/**
 	 * Instantiates a new login request.
@@ -127,7 +127,7 @@ public final class LoginRequest extends AbstractRequest {
 	 * @param otpCode
 	 *            the new otp code
 	 */
-	public void setOtpCode(String otpCode) {
+	public void setOtpCode(final String otpCode) {
 		this.otpCode = otpCode;
 	}
 

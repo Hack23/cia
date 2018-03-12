@@ -20,7 +20,6 @@ package com.hack23.cia.service.api.action.application;
 
 import com.hack23.cia.service.api.action.common.AbstractResponse;
 
-
 /**
  * The Class LoginResponse.
  */

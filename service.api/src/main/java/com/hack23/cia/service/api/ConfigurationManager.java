@@ -19,7 +19,6 @@
 
 package com.hack23.cia.service.api;
 
-
 /**
  * The Interface ConfigurationManager.
  */
@@ -34,7 +33,7 @@ public interface ConfigurationManager {
 	 *            the locale
 	 * @return the user configuration
 	 */
-	UserConfiguration getUserConfiguration(String url,String locale);
+	UserConfiguration getUserConfiguration(String url, String locale);
 
 	/**
 	 * Creates the default config if empty.

@@ -20,7 +20,6 @@ package com.hack23.cia.service.api.action.user;
 
 import com.hack23.cia.service.api.action.common.AbstractResponse;
 
-
 /**
  * The Class DisableGoogleAuthenticatorCredentialResponse.
  */

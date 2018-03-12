@@ -46,7 +46,7 @@ public final class ComplianceCheckPageItemRendererClickListener implements PageI
 	}
 
 	@Override
-	public final void click(final RendererClickEvent<ComplianceCheck> event) {
+	public void click(final RendererClickEvent<ComplianceCheck> event) {
 		navigateToPage(event.getItem());
 		
 	}
@@ -67,7 +67,7 @@ public final class ComplianceCheckPageItemRendererClickListener implements PageI
 
 
 	@Override
-	public final void selectionChange(final SelectionEvent<ComplianceCheck> event) {
+	public void selectionChange(final SelectionEvent<ComplianceCheck> event) {
 		final Set<ComplianceCheck> added =event.getAllSelectedItems();
 
 		if (!added.isEmpty()) {

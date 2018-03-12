@@ -56,12 +56,16 @@ public final class ApiActionSanityTest extends AbstractUnitTest {
 	 * @return the test suite
 	 */
 	public static TestSuite suite() {
-		JUnitTestSuiteProvider testSuiteProvider = new JUnitTestSuiteProvider();
+		final JUnitTestSuiteProvider testSuiteProvider = new JUnitTestSuiteProvider();
 
-		assertTrue(EXPECT_CLASSES_IN_PACKAGE,checkAllClassesInPackage(testSuiteProvider,"com.hack23.cia.service.api.action.application"));
-		assertTrue(EXPECT_CLASSES_IN_PACKAGE,checkAllClassesInPackage(testSuiteProvider,"com.hack23.cia.service.api.action.admin"));
-		assertTrue(EXPECT_CLASSES_IN_PACKAGE,checkAllClassesInPackage(testSuiteProvider,"com.hack23.cia.service.api.action.user"));
-		assertTrue(EXPECT_CLASSES_IN_PACKAGE,checkAllClassesInPackage(testSuiteProvider,"com.hack23.cia.service.api.action.kpi"));
+		assertTrue(EXPECT_CLASSES_IN_PACKAGE,
+				checkAllClassesInPackage(testSuiteProvider, "com.hack23.cia.service.api.action.application"));
+		assertTrue(EXPECT_CLASSES_IN_PACKAGE,
+				checkAllClassesInPackage(testSuiteProvider, "com.hack23.cia.service.api.action.admin"));
+		assertTrue(EXPECT_CLASSES_IN_PACKAGE,
+				checkAllClassesInPackage(testSuiteProvider, "com.hack23.cia.service.api.action.user"));
+		assertTrue(EXPECT_CLASSES_IN_PACKAGE,
+				checkAllClassesInPackage(testSuiteProvider, "com.hack23.cia.service.api.action.kpi"));
 
 		testSuiteProvider.addClassChecker(ToStringNotNullChecker.class);
 		testSuiteProvider.addClassChecker(BijectiveCompareToChecker.class);
@@ -85,9 +89,10 @@ public final class ApiActionSanityTest extends AbstractUnitTest {
 	 * @param string
 	 *            the string
 	 */
-	private static boolean checkAllClassesInPackage(JUnitTestSuiteProvider testSuiteProvider, String string) {
-		List<Class<?>> allClasses = getAllClasses(string);
-		for (Class<?> class1 : allClasses) {
+	private static boolean checkAllClassesInPackage(final JUnitTestSuiteProvider testSuiteProvider,
+			final String string) {
+		final List<Class<?>> allClasses = getAllClasses(string);
+		for (final Class<?> class1 : allClasses) {
 			testSuiteProvider.addClass(class1);
 		}
 		return !allClasses.isEmpty();
@@ -100,21 +105,21 @@ public final class ApiActionSanityTest extends AbstractUnitTest {
 	 *            the pckgname
 	 * @return the all classes
 	 */
-	private static List<Class<?>> getAllClasses(String pckgname) {
+	private static List<Class<?>> getAllClasses(final String pckgname) {
 		final List<Class<?>> classes = new ArrayList<>();
-		File directory = new File(
-				Thread.currentThread().getContextClassLoader().getResource(pckgname.replace(PACKAGE_SEPARATOR, CLASS_FILE_DIRECTORY_SEPARATOR)).getFile());
+		final File directory = new File(Thread.currentThread().getContextClassLoader()
+				.getResource(pckgname.replace(PACKAGE_SEPARATOR, CLASS_FILE_DIRECTORY_SEPARATOR)).getFile());
 		if (directory.exists()) {
-			String[] files = directory.list();
-			for (int i = 0; i < files.length; i++) {
-				if (files[i].endsWith(CLASS_SUFFIX)) {
+			final String[] files = directory.list();
+			for (final String file : files) {
+				if (file.endsWith(CLASS_SUFFIX)) {
 					try {
-						StringBuilder stringBuilder = new StringBuilder();
+						final StringBuilder stringBuilder = new StringBuilder();
 						stringBuilder.append(pckgname);
 						stringBuilder.append(PACKAGE_SEPARATOR);
-						stringBuilder.append(files[i].substring(0, files[i].length() - 6));
+						stringBuilder.append(file.substring(0, file.length() - 6));
 						classes.add(Class.forName(stringBuilder.toString()));
-					} catch (ClassNotFoundException e) {
+					} catch (final ClassNotFoundException e) {
 					}
 				}
 			}

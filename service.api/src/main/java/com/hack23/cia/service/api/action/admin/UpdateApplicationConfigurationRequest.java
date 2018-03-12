@@ -22,7 +22,6 @@ import javax.validation.constraints.NotNull;
 
 import com.hack23.cia.service.api.action.common.AbstractRequest;
 
-
 /**
  * The Class UpdateApplicationConfigurationRequest.
  */
@@ -31,27 +30,27 @@ public final class UpdateApplicationConfigurationRequest extends AbstractRequest
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-    /** The session id. */
+	/** The session id. */
 	@NotNull
-    private String sessionId;
+	private String sessionId;
 
 	/** The application configuration id. */
 	private Long applicationConfigurationId;
 
-    /** The config title. */
-    private String configTitle;
+	/** The config title. */
+	private String configTitle;
 
-    /** The config description. */
-    private String configDescription;
+	/** The config description. */
+	private String configDescription;
 
-    /** The component title. */
-    private String componentTitle;
+	/** The component title. */
+	private String componentTitle;
 
-    /** The component description. */
-    private String componentDescription;
+	/** The component description. */
+	private String componentDescription;
 
-    /** The property value. */
-    private String propertyValue;
+	/** The property value. */
+	private String propertyValue;
 
 	/**
 	 * Instantiates a new update application configuration request.

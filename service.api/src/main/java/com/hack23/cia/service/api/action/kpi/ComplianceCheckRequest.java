@@ -22,7 +22,6 @@ import javax.validation.constraints.NotNull;
 
 import com.hack23.cia.service.api.action.common.AbstractRequest;
 
-
 /**
  * The Class ComplianceCheckRequest.
  */
@@ -30,18 +29,18 @@ public final class ComplianceCheckRequest extends AbstractRequest {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	
-    /** The session id. */
+
+	/** The session id. */
 	@NotNull
-    private String sessionId;
-    
+	private String sessionId;
+
 	/**
 	 * Instantiates a new compliance check request.
 	 */
 	public ComplianceCheckRequest() {
 		super();
 	}
-	
+
 	/**
 	 * Gets the session id.
 	 *
@@ -60,6 +59,5 @@ public final class ComplianceCheckRequest extends AbstractRequest {
 	public void setSessionId(final String sessionId) {
 		this.sessionId = sessionId;
 	}
-
 
 }

@@ -22,7 +22,6 @@ import javax.validation.constraints.NotNull;
 
 import com.hack23.cia.service.api.action.common.AbstractRequest;
 
-
 /**
  * The Class DisableGoogleAuthenticatorCredentialRequest.
  */
@@ -31,9 +30,9 @@ public final class DisableGoogleAuthenticatorCredentialRequest extends AbstractR
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-    /** The session id. */
+	/** The session id. */
 	@NotNull
-    private String sessionId;
+	private String sessionId;
 
 	/**
 	 * Instantiates a new disable google authenticator credential request.

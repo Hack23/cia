@@ -46,7 +46,7 @@ public final class RuleViolationPageItemRendererClickListener implements PageIte
 	}
 
 	@Override
-	public final void click(final RendererClickEvent<RuleViolation> event) {
+	public void click(final RendererClickEvent<RuleViolation> event) {
 		navigateToPage(event.getItem());
 		
 	}
@@ -67,7 +67,7 @@ public final class RuleViolationPageItemRendererClickListener implements PageIte
 
 
 	@Override
-	public final void selectionChange(final SelectionEvent<RuleViolation> event) {
+	public void selectionChange(final SelectionEvent<RuleViolation> event) {
 		final Set<RuleViolation> added =event.getAllSelectedItems();
 
 		if (!added.isEmpty()) {

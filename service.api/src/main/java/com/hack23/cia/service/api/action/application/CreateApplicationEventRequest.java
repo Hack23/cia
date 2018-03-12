@@ -38,31 +38,30 @@ public final class CreateApplicationEventRequest extends AbstractRequest {
 	/** The application operation. */
 	private ApplicationOperationType applicationOperation;
 
-    /** The page. */
-    private String page;
+	/** The page. */
+	private String page;
 
-    /** The page mode. */
-    private String pageMode;
+	/** The page mode. */
+	private String pageMode;
 
-    /** The element id. */
-    private String elementId;
+	/** The element id. */
+	private String elementId;
 
-    /** The action name. */
-    private String actionName;
+	/** The action name. */
+	private String actionName;
 
-    /** The session id. */
-    @NotNull
-    private String sessionId;
+	/** The session id. */
+	@NotNull
+	private String sessionId;
 
-    /** The user id. */
-    private String userId;
+	/** The user id. */
+	private String userId;
 
-    /** The error message. */
-    private String errorMessage;
+	/** The error message. */
+	private String errorMessage;
 
-    /** The application message. */
-    private String applicationMessage;
-
+	/** The application message. */
+	private String applicationMessage;
 
 	/**
 	 * Instantiates a new creates the application event request.

@@ -70,7 +70,9 @@ public final class DataSummary implements DataModel {
 	 * @param committeeProposalSize
 	 *            the committee proposal size
 	 */
-	public DataSummary(final long personSize,final long voteSize, final long totalBallotVotes,final long documentElementSize,final long documentContentSize,final long documentStatusSize,final long committeeProposalSize) {
+	public DataSummary(final long personSize, final long voteSize, final long totalBallotVotes,
+			final long documentElementSize, final long documentContentSize, final long documentStatusSize,
+			final long committeeProposalSize) {
 		this.personSize = personSize;
 		this.voteSize = voteSize;
 		this.totalBallotVotes = totalBallotVotes;
@@ -153,7 +155,7 @@ public final class DataSummary implements DataModel {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
@@ -166,5 +168,5 @@ public final class DataSummary implements DataModel {
 	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);
 	}
-	
+
 }

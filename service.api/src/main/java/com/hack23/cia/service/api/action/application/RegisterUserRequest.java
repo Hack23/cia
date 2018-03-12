@@ -25,7 +25,6 @@ import javax.validation.constraints.Size;
 import com.hack23.cia.model.internal.application.user.impl.UserType;
 import com.hack23.cia.service.api.action.common.AbstractRequest;
 
-
 /**
  * The Class RegisterUserRequest.
  */
@@ -34,31 +33,31 @@ public final class RegisterUserRequest extends AbstractRequest {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-    /** The session id. */
+	/** The session id. */
 	@NotNull
-    private String sessionId;
+	private String sessionId;
 
-    /** The country. */
-    @NotNull
-    @Size(min = 4, max = 64)
-    private String country;
+	/** The country. */
+	@NotNull
+	@Size(min = 4, max = 64)
+	private String country;
 
-    /** The username. */
-    @NotNull
-    @Size(min = 4, max = 64)
-    private String username;
+	/** The username. */
+	@NotNull
+	@Size(min = 4, max = 64)
+	private String username;
 
-    /** The email. */
-    @Email
-    private String email;
+	/** The email. */
+	@Email
+	private String email;
 
-    /** The userpassword. */
-    @NotNull
-    @Size(min = 4, max = 64)
-    private String userpassword;
+	/** The userpassword. */
+	@NotNull
+	@Size(min = 4, max = 64)
+	private String userpassword;
 
-    /** The user type. */
-    private UserType userType;
+	/** The user type. */
+	private UserType userType;
 
 	/**
 	 * Instantiates a new register user request.
@@ -180,6 +179,5 @@ public final class RegisterUserRequest extends AbstractRequest {
 	public void setSessionId(final String sessionId) {
 		this.sessionId = sessionId;
 	}
-
 
 }
