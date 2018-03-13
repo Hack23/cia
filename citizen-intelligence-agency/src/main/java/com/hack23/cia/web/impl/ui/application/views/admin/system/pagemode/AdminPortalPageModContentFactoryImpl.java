@@ -89,7 +89,7 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 
 		final List<Portal> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,Portal_.portalName);
 
-		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 
 		getGridFactory().createBasicBeanItemGrid(content, Portal.class,

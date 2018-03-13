@@ -306,13 +306,13 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @param resultPerPage
 	 *            the result per page
 	 */
-	protected final void createPagingControls(final AbstractOrderedLayout content, final String name, final String pageId, final int size, final int pageNr,
+	protected final void createPagingControls(final AbstractOrderedLayout content, final String name, final String pageId, final Long size, final int pageNr,
 			final int resultPerPage) {
 				final HorizontalLayout pagingControls = new HorizontalLayout();
 				pagingControls.setSpacing(true);
 				pagingControls.setMargin(true);
 
-				final int maxPages = (size +resultPerPage-1) / resultPerPage;
+				final long maxPages = (size +resultPerPage-1) / resultPerPage;
 
 				final StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.append(PAGE_HEADER)
@@ -359,13 +359,13 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 *            the name
 	 * @param pageId
 	 *            the page id
-	 * @param pageNr
+	 * @param maxPages
 	 *            the page nr
 	 * @param pagingControls
 	 *            the paging controls
 	 */
-	private void addPagingLink(final String label, final String name, final String pageId, final int pageNr, final HorizontalLayout pagingControls) {
-		final Link previousPageLink = getPageLinkFactory().createAdminPagingLink(label,name, pageId, String.valueOf(pageNr));
+	private void addPagingLink(final String label, final String name, final String pageId, final long maxPages, final HorizontalLayout pagingControls) {
+		final Link previousPageLink = getPageLinkFactory().createAdminPagingLink(label,name, pageId, String.valueOf(maxPages));
 		pagingControls.addComponent(previousPageLink);
 		pagingControls.setExpandRatio(previousPageLink, ContentRatio.SMALL);
 	}

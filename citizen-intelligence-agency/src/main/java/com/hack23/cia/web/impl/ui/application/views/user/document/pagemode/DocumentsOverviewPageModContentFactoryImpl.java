@@ -84,7 +84,7 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 
 		final List<DocumentElement> pageOrderBy = documentElementDataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, DocumentElement_.createdDate);
 
-		createPagingControls(panelContent,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		createPagingControls(panelContent,NAME,pageId, documentElementDataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(panelContent, DocumentElement.class, pageOrderBy, DOCUMENT,
 				COLUMN_ORDER,

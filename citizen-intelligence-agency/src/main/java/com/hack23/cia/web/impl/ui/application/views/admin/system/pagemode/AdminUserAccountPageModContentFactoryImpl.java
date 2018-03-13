@@ -94,7 +94,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 
 		final List<UserAccount> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,UserAccount_.createdDate);
 
-		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(content, UserAccount.class,
 				pageOrderBy,

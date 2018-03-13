@@ -92,7 +92,7 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 
 		final List<CountryElement> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,CountryElement_.countryName);
 
-		createPagingControls(content,NAME,pageId, pageOrderBy.size(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory()
 				.createBasicBeanItemNestedPropertiesGrid(content, CountryElement.class, pageOrderBy,
