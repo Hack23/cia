@@ -42,10 +42,10 @@ public final class StartAgentClickListener implements ClickListener {
 	private static final Logger LOGGER = LoggerFactory.getLogger(StartAgentClickListener.class);
 
 	/** The data agent target. */
-	private DataAgentTarget dataAgentTarget;
+	private final DataAgentTarget dataAgentTarget;
 
 	/** The data agent operation. */
-	private DataAgentOperation dataAgentOperation;
+	private final DataAgentOperation dataAgentOperation;
 
 	/**
 	 * Instantiates a new start agent click listener.

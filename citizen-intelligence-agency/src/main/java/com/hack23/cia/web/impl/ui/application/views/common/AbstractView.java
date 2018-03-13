@@ -221,7 +221,7 @@ public abstract class AbstractView extends Panel implements View {
 	 *            the spacing
 	 * @return the vertical layout
 	 */
-	private static VerticalLayout createFullSizeVerticalLayout(boolean margin, boolean spacing) {
+	private static VerticalLayout createFullSizeVerticalLayout(final boolean margin, final boolean spacing) {
 		final VerticalLayout layout = new VerticalLayout();
 		layout.setMargin(margin);
 		layout.setSpacing(spacing);

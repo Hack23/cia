@@ -78,20 +78,20 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 
 		final String pageId = getPageId(parameters);
 
-		ComplianceCheckRequest serviceRequest = new ComplianceCheckRequest();
+		final ComplianceCheckRequest serviceRequest = new ComplianceCheckRequest();
 		serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-		ComplianceCheckResponse serviceResponse = (ComplianceCheckResponse) getApplicationManager()
+		final ComplianceCheckResponse serviceResponse = (ComplianceCheckResponse) getApplicationManager()
 				.service(serviceRequest);
 		
-		HorizontalLayout horizontalLayout = new HorizontalLayout();
+		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 
-		for (Entry<Status, List<RuleViolation>> statusEntry : serviceResponse.getStatusMap().entrySet()) {
+		for (final Entry<Status, List<RuleViolation>> statusEntry : serviceResponse.getStatusMap().entrySet()) {
 			horizontalLayout.addComponent(new CounterStatisticsCard(
 					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
                     .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey()));			
 		}
 
-		for (Entry<ResourceType, List<RuleViolation>> statusEntry : serviceResponse.getResourceTypeMap().entrySet()) {
+		for (final Entry<ResourceType, List<RuleViolation>> statusEntry : serviceResponse.getResourceTypeMap().entrySet()) {
 			horizontalLayout.addComponent(new CounterStatisticsCard(
 					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
                     .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey()));			

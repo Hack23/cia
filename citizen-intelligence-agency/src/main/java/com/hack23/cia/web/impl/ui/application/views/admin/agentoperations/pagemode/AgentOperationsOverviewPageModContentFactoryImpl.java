@@ -25,6 +25,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -89,12 +90,17 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 
 		final ResponsiveRow grid = createGridLayout(overviewLayout);
 	
-		for (DataAgentTarget dataAgentTarget : DataAgentTarget.values()) {
-			final Button refreshViewsButton = new Button(MessageFormat.format(BUTTON_PATTERN, DataAgentOperation.IMPORT, dataAgentTarget) , VaadinIcons.BULLSEYE);
-			refreshViewsButton.addClickListener(new StartAgentClickListener(dataAgentTarget, DataAgentOperation.IMPORT));
-			refreshViewsButton.setId(MessageFormat.format(BUTTON_ID_PATTERN, ViewAction.START_AGENT_BUTTON, DataAgentOperation.IMPORT, dataAgentTarget));
-			createRowItem(grid, refreshViewsButton, WILL_FETCH_DATA_FROM_SOURCE);
+		for (final DataAgentTarget dataAgentTarget : DataAgentTarget.values()) {
+			final Button importDataButton = new Button(MessageFormat.format(BUTTON_PATTERN, DataAgentOperation.IMPORT, dataAgentTarget) , VaadinIcons.BULLSEYE);
+			importDataButton.addClickListener(new StartAgentClickListener(dataAgentTarget, DataAgentOperation.IMPORT));
+			importDataButton.setId(MessageFormat.format(BUTTON_ID_PATTERN, ViewAction.START_AGENT_BUTTON, DataAgentOperation.IMPORT, dataAgentTarget));
+			createRowItem(grid, importDataButton, WILL_FETCH_DATA_FROM_SOURCE);
 		}
+		
+		final String pageId = getPageId(parameters);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_AGENT_OPERATION_VIEW, ApplicationEventGroup.ADMIN,
+				NAME, null, pageId);
+
 
 		return content;
 	}

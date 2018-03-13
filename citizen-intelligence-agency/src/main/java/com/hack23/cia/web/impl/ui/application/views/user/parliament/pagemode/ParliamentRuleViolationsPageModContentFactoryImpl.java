@@ -81,22 +81,22 @@ public final class ParliamentRuleViolationsPageModContentFactoryImpl extends Abs
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 
 
-		ComplianceCheckRequest serviceRequest = new ComplianceCheckRequest();
+		final ComplianceCheckRequest serviceRequest = new ComplianceCheckRequest();
 		serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-		ComplianceCheckResponse serviceResponse = (ComplianceCheckResponse) getApplicationManager()
+		final ComplianceCheckResponse serviceResponse = (ComplianceCheckResponse) getApplicationManager()
 				.service(serviceRequest);
 		
-		HorizontalLayout horizontalLayout = new HorizontalLayout();
+		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 
-		for (Entry<Status, List<RuleViolation>> statusEntry : serviceResponse.getStatusMap().entrySet()) {
+		for (final Entry<Status, List<RuleViolation>> statusEntry : serviceResponse.getStatusMap().entrySet()) {
 			horizontalLayout.addComponent(new CounterStatisticsCard(
 					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
                     .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey()));			
 		}
 
-		List<RuleViolation> ruleViolations = new ArrayList<>();
+		final List<RuleViolation> ruleViolations = new ArrayList<>();
 		
-		for (Entry<ResourceType, List<RuleViolation>> statusEntry : serviceResponse.getResourceTypeMap().entrySet()) {
+		for (final Entry<ResourceType, List<RuleViolation>> statusEntry : serviceResponse.getResourceTypeMap().entrySet()) {
 			horizontalLayout.addComponent(new CounterStatisticsCard(
 					VaadinIcons.WARNING,new CounterStatisticModel("ALL:" +statusEntry.getKey(),statusEntry.getValue().size()).withShow(StatisticShow.Sum)
                     .withIconHidden().withShowOnlyStatistic(true),"ALL:" +statusEntry.getKey()));
@@ -107,7 +107,7 @@ public final class ParliamentRuleViolationsPageModContentFactoryImpl extends Abs
 		
 		Collections.sort(ruleViolations, new Comparator<RuleViolation>() {
             @Override
-            public int compare(RuleViolation o1, RuleViolation o2) {
+            public int compare(final RuleViolation o1, final RuleViolation o2) {
             	return o2.getStatus().compareTo(o1.getStatus());                
             }
         });
