@@ -46,7 +46,7 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	private final ResourceType resourceType;
 			
 	/** The rule violation map. */
-	private Map<String,RuleViolation> ruleViolationMap = new HashMap<>();
+	private final Map<String,RuleViolation> ruleViolationMap = new HashMap<>();
 	
 	/**
 	 * Instantiates a new abstract compliance check impl.
@@ -97,9 +97,9 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	 */
 	@Override
 	public final String getRuleSummary() {
-		Collection<RuleViolation> values = ruleViolationMap.values();
-		StringBuilder builder = new StringBuilder();
-		for (RuleViolation ruleViolation : values) {
+		final Collection<RuleViolation> values = ruleViolationMap.values();
+		final StringBuilder builder = new StringBuilder();
+		for (final RuleViolation ruleViolation : values) {
 			builder.append("[").append(ruleViolation.getRuleName()).append("/").append(ruleViolation.getStatus()) .append("]");
 		}		
 		return builder.toString();
@@ -120,7 +120,7 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	 *            the positive
 	 */
 	public final void addViolation(final Status status,final String ruleName,final String ruleGroup,final String ruleDescription,final String positive) {	
-		RuleViolation currentRuleViolation = ruleViolationMap.get(ruleName);
+		final RuleViolation currentRuleViolation = ruleViolationMap.get(ruleName);
 		if (currentRuleViolation == null) {		
 			ruleViolationMap.put(ruleName, new RuleViolation(getId(),getName(),resourceType,ruleName,ruleDescription,ruleGroup,status,positive));
 		} else if (status.ordinal() > currentRuleViolation.getStatus().ordinal()) {
@@ -129,7 +129,7 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	}
 
 	@Override
-	public final boolean equals(Object obj) {
+	public final boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 

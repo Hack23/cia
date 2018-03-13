@@ -93,17 +93,17 @@ public final class ComplianceCheckServiceImpl extends
 			eventRequest.setUserId(userAccount.getUserId());
 		}
 
-		List<ComplianceCheck> complianceList = rulesEngine.checkRulesCompliance();
+		final List<ComplianceCheck> complianceList = rulesEngine.checkRulesCompliance();
 		
-		List<RuleViolation> ruleViolations = new ArrayList<>();
+		final List<RuleViolation> ruleViolations = new ArrayList<>();
 		
-		for (ComplianceCheck check : complianceList) {
+		for (final ComplianceCheck check : complianceList) {
 			ruleViolations.addAll(check.getRuleViolations());
 		}
 		
 		Collections.sort(complianceList, new Comparator<ComplianceCheck>() {
             @Override
-            public int compare(ComplianceCheck o1, ComplianceCheck o2) {
+            public int compare(final ComplianceCheck o1, final ComplianceCheck o2) {
             	return Integer.compare(o2.getRuleViolations().size(), o1.getRuleViolations().size());                
             }
         });

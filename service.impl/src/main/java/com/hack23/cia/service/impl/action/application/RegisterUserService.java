@@ -115,7 +115,7 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 		eventRequest.setElementId(serviceRequest.getEmail());
 
 		RegisterUserResponse response;
-		Set<ConstraintViolation<RegisterUserRequest>> requestConstraintViolations = validateRequest(serviceRequest);
+		final Set<ConstraintViolation<RegisterUserRequest>> requestConstraintViolations = validateRequest(serviceRequest);
 		if (!requestConstraintViolations.isEmpty()) {
 			response = new RegisterUserResponse(ServiceResult.FAILURE);
 			final String errorMessage = requestConstraintViolations.stream()

@@ -121,7 +121,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @param documentDailySummary
 	 *            the new document daily summary
 	 */
-	public void setDocumentDailySummary(List<ViewRiksdagenPartyDocumentDailySummary> documentDailySummary) {
+	public void setDocumentDailySummary(final List<ViewRiksdagenPartyDocumentDailySummary> documentDailySummary) {
 		this.documentDailySummary = Collections.unmodifiableList(documentDailySummary);
 	}
 
@@ -140,7 +140,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @param ballots
 	 *            the new ballots
 	 */
-	public void setBallots(List<ViewRiksdagenVoteDataBallotPartySummary> ballots) {
+	public void setBallots(final List<ViewRiksdagenVoteDataBallotPartySummary> ballots) {
 		this.ballots = Collections.unmodifiableList(ballots);
 	}
 
@@ -159,7 +159,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @param dailyBallotSummary
 	 *            the new daily ballot summary
 	 */
-	public void setDailyBallotSummary(List<ViewRiksdagenVoteDataBallotPartySummaryDaily> dailyBallotSummary) {
+	public void setDailyBallotSummary(final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> dailyBallotSummary) {
 		this.dailyBallotSummary = Collections.unmodifiableList(dailyBallotSummary);
 	}
 

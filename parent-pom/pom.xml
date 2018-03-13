@@ -1057,6 +1057,7 @@
                 <exclude>**/AuthorizationFailureEventListener*</exclude>
                 <exclude>**/ParliamentDecisionFlowPageModContentFactoryImpl*</exclude>
                 <exclude>**/AgentOperationsOverviewPageModContentFactoryImpl*</exclude>
+                <exclude>**/AdminUserAccountPageModContentFactoryImpl*</exclude>
               </excludes>
               <failOnMissingClasses>false</failOnMissingClasses>
               <failOnUnresolvableSignatures>false</failOnUnresolvableSignatures>

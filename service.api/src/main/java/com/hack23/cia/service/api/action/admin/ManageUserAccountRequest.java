@@ -63,6 +63,7 @@ public final class ManageUserAccountRequest extends AbstractRequest {
 	private String userAcountId;
 
 	/** The account operation. */
+	@NotNull
 	private AccountOperation accountOperation;
 
 	/**

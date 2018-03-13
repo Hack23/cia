@@ -43,10 +43,10 @@ public final class RuleEngineITest extends AbstractServiceFunctionalIntegrationT
 	 */
 	@Test
 	public void checkRulesComplianceTest() throws Exception {
-		List<ComplianceCheck> checkRulesCompliance = rulesEngine.checkRulesCompliance();
+		final List<ComplianceCheck> checkRulesCompliance = rulesEngine.checkRulesCompliance();
 		assertNotNull(checkRulesCompliance);
 		assertFalse(checkRulesCompliance.isEmpty());
-		for (ComplianceCheck complianceCheck : checkRulesCompliance) {
+		for (final ComplianceCheck complianceCheck : checkRulesCompliance) {
 			System.out.println(complianceCheck.getName() +"" + complianceCheck.getRuleViolations());
 		}
 	}

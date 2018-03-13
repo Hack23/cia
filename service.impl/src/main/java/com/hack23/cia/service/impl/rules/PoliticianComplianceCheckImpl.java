@@ -70,7 +70,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	private ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual annualSummary;
 	
 	/** The name. */
-	private String name;
+	private final String name;
 	
 	/**
 	 * Instantiates a new politician compliance check impl.
@@ -127,7 +127,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @param documents
 	 *            the new documents
 	 */
-	public void setDocuments(List<ViewRiksdagenPoliticianDocument> documents) {
+	public void setDocuments(final List<ViewRiksdagenPoliticianDocument> documents) {
 		this.documents = Collections.unmodifiableList(documents);
 	}
 
@@ -146,7 +146,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @param documentDailySummary
 	 *            the new document daily summary
 	 */
-	public void setDocumentDailySummary(List<ViewRiksdagenPoliticianDocumentDailySummary> documentDailySummary) {
+	public void setDocumentDailySummary(final List<ViewRiksdagenPoliticianDocumentDailySummary> documentDailySummary) {
 		this.documentDailySummary = Collections.unmodifiableList(documentDailySummary);
 	}
 
@@ -165,7 +165,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @param ballotDecisions
 	 *            the new ballot decisions
 	 */
-	public void setBallotDecisions(List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> ballotDecisions) {
+	public void setBallotDecisions(final List<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary> ballotDecisions) {
 		this.ballotDecisions = Collections.unmodifiableList(ballotDecisions);
 	}
 
@@ -184,7 +184,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @param ballots
 	 *            the new ballots
 	 */
-	public void setBallots(List<ViewRiksdagenVoteDataBallotPoliticianSummary> ballots) {
+	public void setBallots(final List<ViewRiksdagenVoteDataBallotPoliticianSummary> ballots) {
 		this.ballots = Collections.unmodifiableList(ballots);
 	}
 
@@ -203,7 +203,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @param dailyBallotSummary
 	 *            the new daily ballot summary
 	 */
-	public void setDailyBallotSummary(List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dailyBallotSummary) {
+	public void setDailyBallotSummary(final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dailyBallotSummary) {
 		this.dailyBallotSummary = Collections.unmodifiableList(dailyBallotSummary);
 	}
 
@@ -222,7 +222,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @param dailySummary
 	 *            the new daily summary
 	 */
-	public void setDailySummary(ViewRiksdagenVoteDataBallotPoliticianSummaryDaily dailySummary) {
+	public void setDailySummary(final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily dailySummary) {
 		this.dailySummary = dailySummary;
 	}
 
@@ -241,7 +241,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @param monthlySummary
 	 *            the new monthly summary
 	 */
-	public void setMonthlySummary(ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly monthlySummary) {
+	public void setMonthlySummary(final ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly monthlySummary) {
 		this.monthlySummary = monthlySummary;
 	}
 
@@ -260,7 +260,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	 * @param annualSummary
 	 *            the new annual summary
 	 */
-	public void setAnnualSummary(ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual annualSummary) {
+	public void setAnnualSummary(final ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual annualSummary) {
 		this.annualSummary = annualSummary;
 	}
 	

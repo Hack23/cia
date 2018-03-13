@@ -19,11 +19,13 @@
 package com.hack23.cia.service.data.impl;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.sql.DataSource;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -47,6 +49,9 @@ public final class RemoveDataManagerTest extends AbstractUnitTest {
 	
 	@Mock
 	private Statement statement;
+
+	@Mock
+	private PreparedStatement preparedStatement;
 	
 	/**
 	 * Removes the person data test.
@@ -112,6 +117,22 @@ public final class RemoveDataManagerTest extends AbstractUnitTest {
 		new RemoveDataManagerImpl(dataSource).removeApplicationHistory();
 		ArgumentCaptor<String> argCaptor = ArgumentCaptor.forClass(String.class);
 		Mockito.verify(statement,Mockito.times(2)).execute(argCaptor.capture());
+	}
+
+	/**
+	 * Removes the user account application history test.
+	 *
+	 * @throws SQLException
+	 *             the SQL exception
+	 */
+	@Test
+	@Ignore
+	public void removeUserAccountApplicationHistoryTest() throws SQLException {
+		Mockito.when(dataSource.getConnection()).thenReturn(connection);
+		ArgumentCaptor<String> sqlCaptor = ArgumentCaptor.forClass(String.class);
+		Mockito.when(connection.prepareStatement(sqlCaptor.capture())).thenReturn(preparedStatement);		
+		new RemoveDataManagerImpl(dataSource).removeUserAccountApplicationHistory("userid");
+		//Mockito.verify(preparedStatement,Mockito.times(2)).execute(argCaptor.capture());
 	}
 
 }

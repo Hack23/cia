@@ -102,6 +102,13 @@ final class RemoveDataManagerImpl implements RemoveDataManager {
 		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		jdbcTemplate.execute("delete from application_action_event");
 		jdbcTemplate.execute("delete from application_session");
+	}
+
+	@Override
+	public void removeUserAccountApplicationHistory(String userId) {
+		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate.update("delete from application_action_event WHERE user_id = ?", new Object[] {userId });
+		jdbcTemplate.update("delete from application_session WHERE user_id = ?", new Object[] {userId });
 	}	
 		
 }

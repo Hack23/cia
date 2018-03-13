@@ -54,7 +54,7 @@ public abstract class AbstractJob extends QuartzJobBean implements Serializable{
 		final Scheduler scheduler = jobContext.getScheduler();
 		    JobContextHolder bean = null;
 		    try {
-		    	SchedulerContext schedulerContext = scheduler.getContext();
+		    	final SchedulerContext schedulerContext = scheduler.getContext();
 		        final ApplicationContext appContext = (ApplicationContext) schedulerContext.get(APPLICATION_CONTEXT);
 		        bean = appContext.getBean(JobContextHolder.class);
 		    } catch (final SchedulerException e) {

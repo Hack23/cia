@@ -45,19 +45,19 @@ public class RulesConfiguration {
 	 */
 	@Bean
 	public KieContainer kieContainer() {
-		KieServices kieServices = KieServices.Factory.get();
+		final KieServices kieServices = KieServices.Factory.get();
 
-		KieContainer kContainer = kieServices.getKieClasspathContainer();
+		final KieContainer kContainer = kieServices.getKieClasspathContainer();
 		LOGGER.info("Using classloader {}, parent {}",kContainer.getClassLoader(),kContainer.getClassLoader().getParent());
 		
-		Results verifyResults = kContainer.verify();
-		for (Message m : verifyResults.getMessages()) {
+		final Results verifyResults = kContainer.verify();
+		for (final Message m : verifyResults.getMessages()) {
 			LOGGER.warn("Kie container message: {}", m);
 		}
 
-		KieBase kieBase = kContainer.getKieBase();
-		for (KiePackage kp : kieBase.getKiePackages()) {
-			for (Rule rule : kp.getRules()) {
+		final KieBase kieBase = kContainer.getKieBase();
+		for (final KiePackage kp : kieBase.getKiePackages()) {
+			for (final Rule rule : kp.getRules()) {
 				LOGGER.info("Loadded Rule: {} {}", kp, rule.getName());
 			}
 		}

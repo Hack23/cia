@@ -48,4 +48,12 @@ public interface RemoveDataManager {
 	 */
 	void removeApplicationHistory();
 
+	/**
+	 * Removes the user account application history.
+	 *
+	 * @param userId
+	 *            the user id
+	 */
+	void removeUserAccountApplicationHistory(String userId);
+
 }

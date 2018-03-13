@@ -57,14 +57,14 @@ public final class RemoveDataServiceITest extends AbstractServiceFunctionalInteg
 	 */
 	@Test
 	public void Test() throws Exception {
-		RemoveDataManager removeDataManager = Mockito.mock(RemoveDataManager.class);
+		final RemoveDataManager removeDataManager = Mockito.mock(RemoveDataManager.class);
 		ReflectionTestUtils.setField(removeDataService, "removeDataManager", removeDataManager);
 		
 		setAuthenticatedAdminuser();
 		
 		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
 		
-		for (DataType dataType : RemoveDataRequest.DataType.values()) {
+		for (final DataType dataType : RemoveDataRequest.DataType.values()) {
 			final RemoveDataRequest serviceRequest = new RemoveDataRequest();
 			serviceRequest.setSessionId(createSessionRequest.getSessionId());
 			serviceRequest.setDataType(dataType);
