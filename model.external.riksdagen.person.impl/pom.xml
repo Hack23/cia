@@ -150,6 +150,8 @@
             <hbm2ddl export="false" outputfilename="schema-mysql.sql"></hbm2ddl>
             <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
             <property key="dot.executable" value="${graphviz.dot.executable}"></property>
+            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"></property>
+
           </hibernatetool>
         </configuration>
       </plugin>
