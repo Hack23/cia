@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.WebDriver;
@@ -541,6 +542,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 *             the exception
 	 */
 	@Test
+	@Ignore
 	public void siteAdminAgentOperationTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -550,7 +552,6 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 		loginAsAdmin(userPageVisit);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, ""));
-
 
 		userPageVisit.verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW,ViewAction.START_AGENT_BUTTON });
 
