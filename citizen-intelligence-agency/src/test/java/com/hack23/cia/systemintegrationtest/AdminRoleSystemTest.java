@@ -20,16 +20,12 @@ package com.hack23.cia.systemintegrationtest;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
-import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
@@ -542,7 +538,6 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 *             the exception
 	 */
 	@Test
-	@Ignore
 	public void siteAdminAgentOperationTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -553,14 +548,14 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, ""));
 
-		userPageVisit.verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW,ViewAction.START_AGENT_BUTTON });
+		userPageVisit.verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW});
+		final WebElement importWorldBankDataButton =userPageVisit.findButton("Start IMPORT MODEL_EXTERNAL_WORLDBANK");
+		assertNotNull("Start IMPORT MODEL_EXTERNAL_WORLDBANK Button",importWorldBankDataButton);
 
-		final List<String> actionIdsBy = userPageVisit.getActionIdsBy(ViewAction.START_AGENT_BUTTON);
-		assertTrue(actionIdsBy.size() > 0);
-
-
-		userPageVisit.performAdminAgentOperation(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN, DataAgentOperation.IMPORT);
-
+		final WebElement importRiksdagenDataButton =userPageVisit.findButton("Start IMPORT MODEL_EXTERNAL_RIKSDAGEN");
+		assertNotNull("Start IMPORT MODEL_EXTERNAL_RIKSDAGEN Button",importRiksdagenDataButton);
+		
+		userPageVisit.performClickAction(importRiksdagenDataButton);
 	}
 
 

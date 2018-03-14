@@ -38,8 +38,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
-import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
@@ -522,44 +520,6 @@ public final class UserPageVisit extends Assert {
 		//								.trim(),StandardCharsets.UTF_8), driver.getCurrentUrl());
 
 		verifyViewActions(new ViewAction[] {ViewAction.VISIT_MAIN_VIEW });
-	}
-
-
-
-	/**
-	 * Perform admin agent operation.
-	 *
-	 * @param target
-	 *            the target
-	 * @param operation
-	 *            the operation
-	 * @throws Exception
-	 *             the exception
-	 */
-	public void performAdminAgentOperation(final DataAgentTarget target,final DataAgentOperation operation) throws Exception {
-		setValueForSelectField(ViewAction.START_AGENT_BUTTON.name() +"/Target",target.name().replace("_", " ").toLowerCase().replaceFirst("m", "M"));
-		setValueForSelectField(ViewAction.START_AGENT_BUTTON.name() +"/Operation",operation.name());
-
-		final WebElement startButtion = driver.findElement(By
-				.id(ViewAction.START_AGENT_BUTTON.name()));
-
-		performClickAction(startButtion, WAIT_FOR_PAGE_DELAY);
-	}
-
-	/**
-	 * Sets the value for select field.
-	 *
-	 * @param selectId
-	 *            the select id
-	 * @param value
-	 *            the value
-	 */
-	private void setValueForSelectField(final String selectId, final String value) {
-		final WebElement selectField = driver.findElement(By.id(selectId));
-
-		final WebElement selectInputField = selectField.findElement(By.className("v-filterselect-input"));
-		selectInputField.sendKeys(value);
-		selectInputField.sendKeys(Keys.ENTER);
 	}
 
 
