@@ -1334,6 +1334,9 @@
         <configuration>
           <archive>
             <index>true</index>
+            <manifestEntries>
+              <Sealed>true</Sealed>
+            </manifestEntries>
           </archive>
         </configuration>
       </plugin>
