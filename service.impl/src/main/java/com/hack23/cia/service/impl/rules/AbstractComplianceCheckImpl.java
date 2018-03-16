@@ -121,9 +121,7 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	 */
 	public final void addViolation(final Status status,final String ruleName,final String ruleGroup,final String ruleDescription,final String positive) {	
 		final RuleViolation currentRuleViolation = ruleViolationMap.get(ruleName);
-		if (currentRuleViolation == null) {		
-			ruleViolationMap.put(ruleName, new RuleViolation(getId(),getName(),resourceType,ruleName,ruleDescription,ruleGroup,status,positive));
-		} else if (status.ordinal() > currentRuleViolation.getStatus().ordinal()) {
+		if (currentRuleViolation == null || status.ordinal() > currentRuleViolation.getStatus().ordinal()) {		
 			ruleViolationMap.put(ruleName, new RuleViolation(getId(),getName(),resourceType,ruleName,ruleDescription,ruleGroup,status,positive));
 		}
 	}
