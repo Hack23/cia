@@ -63,6 +63,14 @@ public final class RulesEngineImpl implements RulesEngine {
 
 	@Autowired
 	private KieContainer rulesContainer;
+	
+
+	/**
+	 * Instantiates a new rules engine impl.
+	 */
+	public RulesEngineImpl() {
+		super();
+	}
 
 	@Override
 	@Cacheable("checkRulesCompliance")
@@ -182,15 +190,7 @@ public final class RulesEngineImpl implements RulesEngine {
 	}
 
 	/**
-	 * The listener interface for receiving complianceCheckAgendaEvent events. The
-	 * class that is interested in processing a complianceCheckAgendaEvent event
-	 * implements this interface, and the object created with that class is
-	 * registered with a component using the component's
-	 * <code>addComplianceCheckAgendaEventListener<code> method. When the
-	 * complianceCheckAgendaEvent event occurs, that object's appropriate method is
-	 * invoked.
-	 *
-	 * @see ComplianceCheckAgendaEventEvent
+	 * The Class ComplianceCheckAgendaEventListener.
 	 */
 	private static final class ComplianceCheckAgendaEventListener extends DefaultAgendaEventListener {
 

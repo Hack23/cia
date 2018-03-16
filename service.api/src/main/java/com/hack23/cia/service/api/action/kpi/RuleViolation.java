@@ -30,9 +30,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public final class RuleViolation implements Serializable {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The id. */

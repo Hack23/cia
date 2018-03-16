@@ -214,7 +214,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 			return loadDocumentList(DOCUMENT_LIST_TYPE.replace(TYPE_KEY, documentType.value()), maxNumberPages);
 		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_LIST_FOR_DOCUMENT_TYPE_S_MAX_NUMBER_PAGES_S_FROM_DATA_RIKSDAGEN_SE,
-					documentType.toString(), Integer.toString(maxNumberPages));
+					documentType, Integer.toString(maxNumberPages));
 			throw new DataFailureException(e);
 		}
 	}
@@ -224,8 +224,8 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 			throws DataFailureException {
 		try {
 			return loadDocumentList(DOCUMENT_LIST_YEAR.replace(YEAR_KEY, year.toString()), maxNumberPages);
-		} catch (final XmlAgentException e) {
-			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_LIST_FOR_YEAR_S_FROM_DATA_RIKSDAGEN_SE, year.toString());
+		} catch (final XmlAgentException e) {	
+			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_LIST_FOR_YEAR_S_FROM_DATA_RIKSDAGEN_SE, year);
 			throw new DataFailureException(e);
 		}
 	}
