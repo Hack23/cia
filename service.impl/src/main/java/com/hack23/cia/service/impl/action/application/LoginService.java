@@ -84,17 +84,16 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 		super(LoginRequest.class);
 	}
 
-	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
+	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	public LoginResponse processService(final LoginRequest serviceRequest) {
-
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
-		eventRequest.setEventGroup(ApplicationEventGroup.USER);
-		eventRequest.setApplicationOperation(ApplicationOperationType.AUTHENTICATION);
-		eventRequest.setActionName(LoginRequest.class.getSimpleName());
-		eventRequest.setSessionId(serviceRequest.getSessionId());
-		eventRequest.setElementId(serviceRequest.getEmail());
-
+		final LoginResponse inputValidation = inputValidation(serviceRequest);
+		if (inputValidation != null) {
+			return inputValidation;
+		}
+		
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
+		
 		final UserAccount userExist = userDAO.findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
 
 		final LoginBlockResult loginBlockResult = loginBlockedAccess.isBlocked(serviceRequest.getSessionId(), serviceRequest.getEmail());
@@ -152,6 +151,22 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 			}
 		}
 		return authorizedOtp;
+	}
+
+	@Override
+	protected CreateApplicationEventRequest createApplicationEventForService(final LoginRequest serviceRequest) {
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		eventRequest.setEventGroup(ApplicationEventGroup.USER);
+		eventRequest.setApplicationOperation(ApplicationOperationType.AUTHENTICATION);
+		eventRequest.setActionName(LoginRequest.class.getSimpleName());
+		eventRequest.setSessionId(serviceRequest.getSessionId());
+		eventRequest.setElementId(serviceRequest.getEmail());
+		return eventRequest;
+	}
+
+	@Override
+	protected LoginResponse createErrorResponse() {
+		return new LoginResponse(ServiceResult.FAILURE);
 	}
 
 }

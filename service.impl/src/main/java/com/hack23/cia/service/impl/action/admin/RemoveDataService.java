@@ -41,7 +41,6 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
  */
 @Service("RemoveDataService")
 @Transactional(propagation = Propagation.REQUIRED,timeout=1200)
-@Secured({ "ROLE_ADMIN" })
 public final class RemoveDataService extends
 		AbstractBusinessServiceImpl<RemoveDataRequest, RemoveDataResponse>
 		implements BusinessService<RemoveDataRequest, RemoveDataResponse> {
@@ -63,15 +62,16 @@ public final class RemoveDataService extends
 
 
 	@Override
+	@Secured({ "ROLE_ADMIN" })
 	public RemoveDataResponse processService(
 			final RemoveDataRequest serviceRequest) {
 
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
-		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
-		eventRequest.setApplicationOperation(ApplicationOperationType.DELETE);
-		eventRequest.setActionName(RemoveDataRequest.class.getSimpleName() + ":" + serviceRequest.getDataType());
-		eventRequest.setSessionId(serviceRequest.getSessionId());
+		final RemoveDataResponse inputValidation = inputValidation(serviceRequest);
+		if (inputValidation != null) {
+			return inputValidation;
+		}
 
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
 
 		if (userAccount != null) {
@@ -99,6 +99,23 @@ public final class RemoveDataService extends
 		createApplicationEventService.processService(eventRequest);
 
 		return response;
+	}
+
+
+	@Override
+	protected CreateApplicationEventRequest createApplicationEventForService(final RemoveDataRequest serviceRequest) {
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
+		eventRequest.setApplicationOperation(ApplicationOperationType.DELETE);
+		eventRequest.setActionName(RemoveDataRequest.class.getSimpleName() + ":" + serviceRequest.getDataType());
+		eventRequest.setSessionId(serviceRequest.getSessionId());
+		return eventRequest;
+	}
+
+
+	@Override
+	protected RemoveDataResponse createErrorResponse() {
+		return new RemoveDataResponse(ServiceResult.FAILURE);
 	}
 
 }

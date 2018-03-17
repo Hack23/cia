@@ -48,7 +48,6 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-@Secured({ "ROLE_ADMIN" })
 public final class ManageUserAccountService
 		extends AbstractBusinessServiceImpl<ManageUserAccountRequest, ManageUserAccountResponse>
 		implements BusinessService<ManageUserAccountRequest, ManageUserAccountResponse> {
@@ -73,13 +72,14 @@ public final class ManageUserAccountService
 	}
 
 	@Override
+	@Secured({ "ROLE_ADMIN" })
 	public ManageUserAccountResponse processService(final ManageUserAccountRequest serviceRequest) {
+		final ManageUserAccountResponse inputValidation = inputValidation(serviceRequest);
+		if (inputValidation != null) {
+			return inputValidation;
+		}
 
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
-		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
-		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
-		eventRequest.setActionName(ManageUserAccountRequest.class.getSimpleName());
-		eventRequest.setSessionId(serviceRequest.getSessionId());
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
 
@@ -121,6 +121,21 @@ public final class ManageUserAccountService
 
 		return response;
 
+	}
+
+	@Override
+	protected CreateApplicationEventRequest createApplicationEventForService(final ManageUserAccountRequest serviceRequest) {
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
+		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
+		eventRequest.setActionName(ManageUserAccountRequest.class.getSimpleName());
+		eventRequest.setSessionId(serviceRequest.getSessionId());
+		return eventRequest;
+	}
+
+	@Override
+	protected ManageUserAccountResponse createErrorResponse() {
+		return new ManageUserAccountResponse(ServiceResult.FAILURE);
 	}
 
 }

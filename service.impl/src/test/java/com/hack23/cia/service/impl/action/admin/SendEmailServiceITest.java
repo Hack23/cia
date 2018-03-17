@@ -104,7 +104,7 @@ public final class SendEmailServiceITest extends AbstractServiceFunctionalIntegr
 				.service(serviceRequest);
 		assertNotNull(EXPECT_A_RESULT, response);
 		assertEquals(ServiceResult.FAILURE, response.getResult());
-		assertEquals("Email is not a valid email address", response.getErrorMessage());
+		assertEquals("email must be a well-formed email address", response.getErrorMessage());
 	}
 
 }

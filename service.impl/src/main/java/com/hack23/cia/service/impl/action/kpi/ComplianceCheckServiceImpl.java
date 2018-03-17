@@ -22,7 +22,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+
+import javax.validation.ConstraintViolation;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,19 +53,18 @@ import com.hack23.cia.service.impl.rules.RulesEngine;
  * The Class ComplianceCheckService.
  */
 @Service
-@Transactional(propagation = Propagation.REQUIRED,timeout=600)
-public final class ComplianceCheckServiceImpl extends
-		AbstractBusinessServiceImpl<ComplianceCheckRequest, ComplianceCheckResponse>
+@Transactional(propagation = Propagation.REQUIRED, timeout = 600)
+public final class ComplianceCheckServiceImpl
+		extends AbstractBusinessServiceImpl<ComplianceCheckRequest, ComplianceCheckResponse>
 		implements BusinessService<ComplianceCheckRequest, ComplianceCheckResponse> {
 
 	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(ComplianceCheckServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ComplianceCheckServiceImpl.class);
 
 	/** The create application event service. */
 	@Autowired
 	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
-	
+
 	@Autowired
 	private RulesEngine rulesEngine;
 
@@ -73,19 +75,16 @@ public final class ComplianceCheckServiceImpl extends
 		super(ComplianceCheckRequest.class);
 	}
 
-
-	@Secured({ "ROLE_USER", "ROLE_ADMIN", "ROLE_ANONYMOUS" })
 	@Override
-	public ComplianceCheckResponse processService(
-			final ComplianceCheckRequest serviceRequest) {
-
-		LOGGER.info("{}",serviceRequest.getClass().getSimpleName());
-
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
-		eventRequest.setEventGroup(ApplicationEventGroup.USER);
-		eventRequest.setApplicationOperation(ApplicationOperationType.READ);
-		eventRequest.setActionName(ComplianceCheckRequest.class.getSimpleName());
-		eventRequest.setSessionId(serviceRequest.getSessionId());
+	@Secured({ "ROLE_USER", "ROLE_ADMIN", "ROLE_ANONYMOUS" })
+	public ComplianceCheckResponse processService(final ComplianceCheckRequest serviceRequest) {
+		final ComplianceCheckResponse inputValidation = inputValidation(serviceRequest);
+		if (inputValidation != null) {
+			return inputValidation;
+		}
+		
+		LOGGER.info("{}", serviceRequest.getClass().getSimpleName());
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
 
@@ -93,30 +92,57 @@ public final class ComplianceCheckServiceImpl extends
 			eventRequest.setUserId(userAccount.getUserId());
 		}
 
-		final List<ComplianceCheck> complianceList = rulesEngine.checkRulesCompliance();
-		
-		final List<RuleViolation> ruleViolations = new ArrayList<>();
-		
-		for (final ComplianceCheck check : complianceList) {
-			ruleViolations.addAll(check.getRuleViolations());
+		final ComplianceCheckResponse response;
+
+		final Set<ConstraintViolation<ComplianceCheckRequest>> requestConstraintViolations = validateRequest(
+				serviceRequest);
+		if (!requestConstraintViolations.isEmpty()) {
+			response = handleInputViolations(eventRequest, requestConstraintViolations,
+					new ComplianceCheckResponse(ServiceResult.FAILURE));
+		} else {
+
+			final List<ComplianceCheck> complianceList = rulesEngine.checkRulesCompliance();
+
+			final List<RuleViolation> ruleViolations = new ArrayList<>();
+
+			for (final ComplianceCheck check : complianceList) {
+				ruleViolations.addAll(check.getRuleViolations());
+			}
+
+			Collections.sort(complianceList, new Comparator<ComplianceCheck>() {
+				@Override
+				public int compare(final ComplianceCheck o1, final ComplianceCheck o2) {
+					return Integer.compare(o2.getRuleViolations().size(), o1.getRuleViolations().size());
+				}
+			});
+
+			response = new ComplianceCheckResponse(ServiceResult.SUCCESS);
+			response.setList(complianceList);
+			response.setStatusMap(ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getStatus)));
+			response.setResourceTypeMap(
+					ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getResourceType)));
+
+			eventRequest.setApplicationMessage(response.getResult().toString());
+
 		}
-		
-		Collections.sort(complianceList, new Comparator<ComplianceCheck>() {
-            @Override
-            public int compare(final ComplianceCheck o1, final ComplianceCheck o2) {
-            	return Integer.compare(o2.getRuleViolations().size(), o1.getRuleViolations().size());                
-            }
-        });
 
-		final ComplianceCheckResponse response = new ComplianceCheckResponse(ServiceResult.SUCCESS);
-		response.setList(complianceList);
-		response.setStatusMap(ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getStatus)));
-		response.setResourceTypeMap(ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getResourceType)));
-
-		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);
-
 		return response;
+	}
+
+	@Override
+	protected CreateApplicationEventRequest createApplicationEventForService(final ComplianceCheckRequest serviceRequest) {
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		eventRequest.setEventGroup(ApplicationEventGroup.USER);
+		eventRequest.setApplicationOperation(ApplicationOperationType.READ);
+		eventRequest.setActionName(ComplianceCheckRequest.class.getSimpleName());
+		eventRequest.setSessionId(serviceRequest.getSessionId());
+		return eventRequest;
+	}
+
+	@Override
+	protected ComplianceCheckResponse createErrorResponse() {
+		return new ComplianceCheckResponse(ServiceResult.FAILURE);
 	}
 
 }

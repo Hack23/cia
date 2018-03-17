@@ -18,10 +18,6 @@
 */
 package com.hack23.cia.service.impl;
 
-import org.databene.contiperf.PerfTest;
-import org.databene.contiperf.Required;
-import org.databene.contiperf.junit.ContiPerfRule;
-import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -31,16 +27,10 @@ import com.hack23.cia.service.api.UserConfiguration;
 /**
  * The Class ConfigurationManagerITest.
  */
-@PerfTest(threads = 10, duration = 3000, warmUp = 1500)
-@Required(max = 200, average = 100, percentile95 = 150, throughput = 100)
 public final class ConfigurationManagerITest extends AbstractServiceFunctionalIntegrationTest {
 
 	/** The Constant WWW_HACK23_COM. */
 	private static final String WWW_HACK23_COM = "www.hack23.com";
-
-	/** The i. */
-	@Rule
-	public ContiPerfRule i = new ContiPerfRule();
 
 	/** The configuration manager. */
 	@Autowired

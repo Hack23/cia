@@ -42,6 +42,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
+@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 public final class CreateApplicationEventService
 		extends AbstractBusinessServiceImpl<CreateApplicationEventRequest, CreateApplicationEventResponse>
 		implements BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> {
@@ -57,10 +58,15 @@ public final class CreateApplicationEventService
 		super(CreateApplicationEventRequest.class);
 	}
 
-	@Secured({ "ROLE_ANONYMOUS","ROLE_USER","ROLE_ADMIN" })
 	@Override
 	public CreateApplicationEventResponse processService(final CreateApplicationEventRequest serviceRequest) {
-		final ApplicationSession applicationSession = applicationSessionDAO.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
+		final CreateApplicationEventResponse inputValidation = inputValidation(serviceRequest);
+		if (inputValidation != null) {
+			return inputValidation;
+		}
+		
+		final ApplicationSession applicationSession = applicationSessionDAO
+				.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
 
 		if (applicationSession != null) {
 			final ApplicationActionEvent applicationActionEvent = new ApplicationActionEvent();
@@ -72,15 +78,16 @@ public final class CreateApplicationEventService
 			applicationActionEvent.setPage(serviceRequest.getPage());
 			applicationActionEvent.setPageMode(serviceRequest.getPageMode());
 			applicationActionEvent.setElementId(serviceRequest.getElementId());
+			applicationActionEvent.setApplicationOperation(serviceRequest.getApplicationOperation());
+			applicationActionEvent.setActionName(serviceRequest.getActionName());
 
 			applicationActionEvent.setUserId(serviceRequest.getUserId());
-			if (serviceRequest.getUserId() != null && ApplicationSessionType.ANONYMOUS == applicationSession.getSessionType()) {
+			if (serviceRequest.getUserId() != null
+					&& ApplicationSessionType.ANONYMOUS == applicationSession.getSessionType()) {
 				applicationSession.setSessionType(ApplicationSessionType.REGISTERED_USER);
 				applicationSession.setUserId(serviceRequest.getUserId());
 			}
 
-			applicationActionEvent.setApplicationOperation(serviceRequest.getApplicationOperation());
-			applicationActionEvent.setActionName(serviceRequest.getActionName());
 
 			applicationActionEvent.setApplicationMessage(serviceRequest.getApplicationMessage());
 			applicationActionEvent.setErrorMessage(serviceRequest.getErrorMessage());
@@ -92,6 +99,17 @@ public final class CreateApplicationEventService
 		} else {
 			return new CreateApplicationEventResponse(ServiceResult.FAILURE);
 		}
+	}
+
+	@Override
+	protected CreateApplicationEventRequest createApplicationEventForService(
+			final CreateApplicationEventRequest serviceRequest) {
+		return new CreateApplicationEventRequest();
+	}
+
+	@Override
+	protected CreateApplicationEventResponse createErrorResponse() {
+		return new CreateApplicationEventResponse(ServiceResult.FAILURE);
 	}
 
 }

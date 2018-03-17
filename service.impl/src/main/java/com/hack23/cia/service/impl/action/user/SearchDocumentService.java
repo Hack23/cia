@@ -76,19 +76,17 @@ public final class SearchDocumentService extends
 	}
 
 
-	@Secured({ "ROLE_USER", "ROLE_ADMIN", "ROLE_ANONYMOUS" })
 	@Override
+	@Secured({ "ROLE_USER", "ROLE_ADMIN", "ROLE_ANONYMOUS" })
 	public SearchDocumentResponse processService(
 			final SearchDocumentRequest serviceRequest) {
+		final SearchDocumentResponse inputValidation = inputValidation(serviceRequest);
+		if (inputValidation != null) {
+			return inputValidation;
+		}
 
 		LOGGER.info("{}:{}",serviceRequest.getClass().getSimpleName(),serviceRequest.getSearchExpression());
-
-
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
-		eventRequest.setEventGroup(ApplicationEventGroup.USER);
-		eventRequest.setApplicationOperation(ApplicationOperationType.READ);
-		eventRequest.setActionName(SearchDocumentRequest.class.getSimpleName());
-		eventRequest.setSessionId(serviceRequest.getSessionId());
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
 
@@ -125,5 +123,20 @@ public final class SearchDocumentService extends
 	}
 
 
+	@Override
+	protected CreateApplicationEventRequest createApplicationEventForService(final SearchDocumentRequest serviceRequest) {
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		eventRequest.setEventGroup(ApplicationEventGroup.USER);
+		eventRequest.setApplicationOperation(ApplicationOperationType.READ);
+		eventRequest.setActionName(SearchDocumentRequest.class.getSimpleName());
+		eventRequest.setSessionId(serviceRequest.getSessionId());
+		return eventRequest;
+	}
+
+
+	@Override
+	protected SearchDocumentResponse createErrorResponse() {
+		return new SearchDocumentResponse(ServiceResult.FAILURE);
+	}
 
 }

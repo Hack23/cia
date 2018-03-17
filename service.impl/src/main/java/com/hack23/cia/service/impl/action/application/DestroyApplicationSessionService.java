@@ -30,6 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_;
+import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.application.DestroyApplicationSessionRequest;
 import com.hack23.cia.service.api.action.application.DestroyApplicationSessionResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
@@ -47,9 +48,7 @@ public final class DestroyApplicationSessionService
 		implements BusinessService<DestroyApplicationSessionRequest, DestroyApplicationSessionResponse> {
 
 	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(DestroyApplicationSessionService.class);
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(DestroyApplicationSessionService.class);
 
 	/** The application session dao. */
 	@Autowired
@@ -62,20 +61,39 @@ public final class DestroyApplicationSessionService
 		super(DestroyApplicationSessionRequest.class);
 	}
 
-	@Secured({ "ROLE_ANONYMOUS" })
 	@Override
+	@Secured({ "ROLE_ANONYMOUS" })
 	public DestroyApplicationSessionResponse processService(final DestroyApplicationSessionRequest serviceRequest) {
-		final ApplicationSession applicationSession = applicationSessionDAO.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
+		final DestroyApplicationSessionResponse inputValidation = inputValidation(serviceRequest);
+		if (inputValidation != null) {
+			return inputValidation;
+		}
+
+		
+		final ApplicationSession applicationSession = applicationSessionDAO
+				.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
 
 		if (applicationSession != null) {
-			LOGGER.info("Destroy Application session: {}",applicationSession.getSessionId());
+			LOGGER.info("Destroy Application session: {}", applicationSession.getSessionId());
 			applicationSession.setDestroyedDate(new Date());
 			applicationSessionDAO.persist(applicationSession);
 			return new DestroyApplicationSessionResponse(ServiceResult.SUCCESS);
 		} else {
-			LOGGER.warn("Failed to destroy Application session, no session found for id: {}",serviceRequest.getSessionId());
+			LOGGER.warn("Failed to destroy Application session, no session found for id: {}",
+					serviceRequest.getSessionId());
 			return new DestroyApplicationSessionResponse(ServiceResult.FAILURE);
 		}
+	}
+
+	@Override
+	protected CreateApplicationEventRequest createApplicationEventForService(
+			final DestroyApplicationSessionRequest serviceRequest) {
+		return new CreateApplicationEventRequest();
+	}
+
+	@Override
+	protected DestroyApplicationSessionResponse createErrorResponse() {
+		return new DestroyApplicationSessionResponse(ServiceResult.FAILURE);
 	}
 
 }

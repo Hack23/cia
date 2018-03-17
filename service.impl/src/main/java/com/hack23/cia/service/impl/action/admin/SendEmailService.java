@@ -73,12 +73,12 @@ public final class SendEmailService extends AbstractBusinessServiceImpl<SendEmai
 	@Override
 	@Secured({ "ROLE_ADMIN" })
 	public SendEmailResponse processService(final SendEmailRequest serviceRequest) {
+		final SendEmailResponse inputValidation = inputValidation(serviceRequest);
+		if (inputValidation != null) {
+			return inputValidation;
+		}
 
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
-		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
-		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);
-		eventRequest.setActionName(SendEmailRequest.class.getSimpleName());
-		eventRequest.setSessionId(serviceRequest.getSessionId());
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
 
@@ -119,6 +119,21 @@ public final class SendEmailService extends AbstractBusinessServiceImpl<SendEmai
 			result = false;
 		}
 		return result;
+	}
+
+	@Override
+	protected CreateApplicationEventRequest createApplicationEventForService(final SendEmailRequest serviceRequest) {
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
+		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);
+		eventRequest.setActionName(SendEmailRequest.class.getSimpleName());
+		eventRequest.setSessionId(serviceRequest.getSessionId());
+		return eventRequest;
+	}
+
+	@Override
+	protected SendEmailResponse createErrorResponse() {
+		return new SendEmailResponse(ServiceResult.FAILURE);
 	}
 
 }

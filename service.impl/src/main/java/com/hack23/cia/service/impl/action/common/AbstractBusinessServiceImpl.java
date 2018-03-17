@@ -19,16 +19,23 @@
 package com.hack23.cia.service.impl.action.common;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.ValidatorFactory;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
+import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
+import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
+import com.hack23.cia.service.api.action.common.AbstractResponse;
 import com.hack23.cia.service.api.action.common.ServiceRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse;
 
@@ -40,11 +47,18 @@ import com.hack23.cia.service.api.action.common.ServiceResponse;
  * @param <V>
  *            the value type
  */
+@Transactional(propagation = Propagation.REQUIRED,timeout=1200)
 public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V extends ServiceResponse>
 		implements BusinessService<T, V> {
 
+	/** The create application event service. */
+	@Autowired
+	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
+
+	
 	/** The clazz. */
 	private final Class<T> clazz;
+
 
 	/**
 	 * Instantiates a new abstract business service impl.
@@ -81,7 +95,35 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 
 		return null;
 	}
-
+		
+	protected final V inputValidation(final T serviceRequest) {
+		final Set<ConstraintViolation<T>> validateRequest = validateRequest(serviceRequest);
+		if (!validateRequest.isEmpty()) {
+			final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
+			final V response = handleInputViolations(eventRequest, validateRequest, createErrorResponse());
+			createApplicationEventService.processService(eventRequest);
+			return response;
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Creates the application event for service.
+	 *
+	 * @param serviceRequest
+	 *            the service request
+	 * @return the creates the application event request
+	 */
+	protected abstract CreateApplicationEventRequest createApplicationEventForService(final T serviceRequest);
+	
+	/**
+	 * Creates the error response.
+	 *
+	 * @return the v
+	 */
+	protected abstract V createErrorResponse();
+	
 	/**
 	 * Validate request.
 	 *
@@ -92,6 +134,39 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 	protected final Set<ConstraintViolation<T>> validateRequest(final T request) {
         final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         return factory.getValidator().validate( request );
+	}
+
+	/**
+	 * Gets the human message.
+	 *
+	 * @param requestConstraintViolations
+	 *            the request constraint violations
+	 * @return the human message
+	 */
+	protected final String getHumanMessage(final Set<ConstraintViolation<T>> requestConstraintViolations) {
+		final String errorMessage = requestConstraintViolations.stream()
+				.sorted((p1, p2) -> p1.getPropertyPath().toString().compareTo(p2.getPropertyPath().toString()))
+				.map(p -> p.getPropertyPath().toString() + " " + p.getMessage()).collect(Collectors.joining(", "));
+		return errorMessage;
+	}
+
+	/**
+	 * Handle input violations.
+	 *
+	 * @param eventRequest
+	 *            the event request
+	 * @param requestConstraintViolations
+	 *            the request constraint violations
+	 * @param response
+	 *            the response
+	 * @return the v
+	 */
+	protected final V handleInputViolations(final CreateApplicationEventRequest eventRequest,
+			final Set<ConstraintViolation<T>> requestConstraintViolations,final V response) {
+		final String errorMessage = getHumanMessage(requestConstraintViolations);
+		((AbstractResponse) response).setErrorMessage(errorMessage);
+		eventRequest.setErrorMessage(errorMessage);
+		return response;
 	}
 
 }

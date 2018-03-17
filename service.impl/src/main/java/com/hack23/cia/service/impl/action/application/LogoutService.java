@@ -68,18 +68,17 @@ public final class LogoutService extends AbstractBusinessServiceImpl<LogoutReque
 		super(LogoutRequest.class);
 	}
 
-	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	@Override
+	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	public LogoutResponse processService(final LogoutRequest serviceRequest) {
-
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
-		eventRequest.setEventGroup(ApplicationEventGroup.USER);
-		eventRequest.setApplicationOperation(ApplicationOperationType.AUTHENTICATION);
-		eventRequest.setActionName(LogoutRequest.class.getSimpleName());
-		eventRequest.setSessionId(serviceRequest.getSessionId());
-
+		final LogoutResponse inputValidation = inputValidation(serviceRequest);
+		if (inputValidation != null) {
+			return inputValidation;
+		}
+		
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
-
+		
 		LogoutResponse response;
 		if (userAccount != null) {
 			eventRequest.setElementId(userAccount.getEmail());
@@ -102,6 +101,21 @@ public final class LogoutService extends AbstractBusinessServiceImpl<LogoutReque
 		createApplicationEventService.processService(eventRequest);
 		LOGGER.info("Event: {}",eventRequest);
 		return response;
+	}
+
+	@Override
+	protected CreateApplicationEventRequest createApplicationEventForService(final LogoutRequest serviceRequest) {
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		eventRequest.setEventGroup(ApplicationEventGroup.USER);
+		eventRequest.setApplicationOperation(ApplicationOperationType.AUTHENTICATION);
+		eventRequest.setActionName(LogoutRequest.class.getSimpleName());
+		eventRequest.setSessionId(serviceRequest.getSessionId());
+		return eventRequest;
+	}
+
+	@Override
+	protected LogoutResponse createErrorResponse() {
+		return new LogoutResponse(ServiceResult.FAILURE);
 	}
 
 }

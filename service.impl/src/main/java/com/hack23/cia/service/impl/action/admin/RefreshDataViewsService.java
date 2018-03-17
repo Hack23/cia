@@ -41,7 +41,6 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED,timeout=1200)
-@Secured({ "ROLE_ADMIN" })
 public final class RefreshDataViewsService extends
 		AbstractBusinessServiceImpl<RefreshDataViewsRequest, RefreshDataViewsResponse>
 		implements BusinessService<RefreshDataViewsRequest, RefreshDataViewsResponse> {
@@ -63,20 +62,19 @@ public final class RefreshDataViewsService extends
 
 
 	@Override
+	@Secured({ "ROLE_ADMIN" })
 	public RefreshDataViewsResponse processService(
 			final RefreshDataViewsRequest serviceRequest) {
-
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
-		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
-		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
-		eventRequest.setActionName(RefreshDataViewsRequest.class.getSimpleName());
-		eventRequest.setSessionId(serviceRequest.getSessionId());
+		final RefreshDataViewsResponse inputValidation = inputValidation(serviceRequest);
+		if (inputValidation != null) {
+			return inputValidation;
+		}
+		
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
 
-
 		if (userAccount != null) {
-
 			eventRequest.setUserId(userAccount.getUserId());
 		}
 
@@ -90,5 +88,20 @@ public final class RefreshDataViewsService extends
 	}
 
 
+	@Override
+	protected CreateApplicationEventRequest createApplicationEventForService(final RefreshDataViewsRequest serviceRequest) {
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
+		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
+		eventRequest.setActionName(RefreshDataViewsRequest.class.getSimpleName());
+		eventRequest.setSessionId(serviceRequest.getSessionId());
+		return eventRequest;
+	}
+
+
+	@Override
+	protected RefreshDataViewsResponse createErrorResponse() {
+		return new RefreshDataViewsResponse(ServiceResult.FAILURE);
+	}
 
 }

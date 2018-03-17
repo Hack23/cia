@@ -54,7 +54,7 @@ public final class RefreshDataViewsServiceITest extends AbstractServiceFunctiona
 		final RefreshDataViewsRequest serviceRequest = new RefreshDataViewsRequest();
 		serviceRequest.setSessionId(createSessionRequest.getSessionId());
 
-		final RefreshDataViewsResponse  response = (RefreshDataViewsResponse) applicationManager.service(new RefreshDataViewsRequest());
+		final RefreshDataViewsResponse  response = (RefreshDataViewsResponse) applicationManager.service(serviceRequest);
 		assertNotNull(EXPECT_A_RESULT,response);
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, response.getResult());
 

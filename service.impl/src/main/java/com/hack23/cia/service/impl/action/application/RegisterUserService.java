@@ -21,11 +21,7 @@ package com.hack23.cia.service.impl.action.application;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
-
-import javax.validation.ConstraintViolation;
 
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
@@ -103,84 +99,72 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 		super(RegisterUserRequest.class);
 	}
 
-	@Secured({ "ROLE_ANONYMOUS" })
 	@Override
+	@Secured({ "ROLE_ANONYMOUS" })
 	public RegisterUserResponse processService(final RegisterUserRequest serviceRequest) {
+		final RegisterUserResponse inputValidation = inputValidation(serviceRequest);
+		if (inputValidation != null) {
+			return inputValidation;
+		}
 
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
-		eventRequest.setEventGroup(ApplicationEventGroup.USER);
-		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);
-		eventRequest.setActionName(RegisterUserRequest.class.getSimpleName());
-		eventRequest.setSessionId(serviceRequest.getSessionId());
-		eventRequest.setElementId(serviceRequest.getEmail());
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 
 		RegisterUserResponse response;
-		final Set<ConstraintViolation<RegisterUserRequest>> requestConstraintViolations = validateRequest(serviceRequest);
-		if (!requestConstraintViolations.isEmpty()) {
-			response = new RegisterUserResponse(ServiceResult.FAILURE);
-			final String errorMessage = requestConstraintViolations.stream()
-					.sorted((p1, p2) -> p1.getPropertyPath().toString().compareTo(p2.getPropertyPath().toString()))
-					.map(p -> p.getPropertyPath().toString() + " " + p.getMessage()).collect(Collectors.joining(", "));
-			response.setErrorMessage(errorMessage);
-			eventRequest.setErrorMessage(errorMessage);
-		} else {
 
-			final ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService
-					.checkValueOrLoadDefault("Registered User All get Role Admin", "Registered User All get Role Admin",
-							ConfigurationGroup.AUTHORIZATION, RegisterUserService.class.getSimpleName(),
-							"Register User Service", "Responsible for create of useraccounts",
-							"registered.users.get.admin", "true");
+		final ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService
+				.checkValueOrLoadDefault("Registered User All get Role Admin", "Registered User All get Role Admin",
+						ConfigurationGroup.AUTHORIZATION, RegisterUserService.class.getSimpleName(),
+						"Register User Service", "Responsible for create of useraccounts", "registered.users.get.admin",
+						"true");
 
-			final UserAccount userNameExist = userDAO.findFirstByProperty(UserAccount_.username,
-					serviceRequest.getUsername());
-			final UserAccount userEmailExist = userDAO.findFirstByProperty(UserAccount_.email,
-					serviceRequest.getEmail());
+		final UserAccount userNameExist = userDAO.findFirstByProperty(UserAccount_.username,
+				serviceRequest.getUsername());
+		final UserAccount userEmailExist = userDAO.findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
 
-			final RuleResult passwordRuleResults = passwordValidator
-					.validate(new PasswordData(serviceRequest.getUserpassword()));
+		final RuleResult passwordRuleResults = passwordValidator
+				.validate(new PasswordData(serviceRequest.getUserpassword()));
 
-			if (userEmailExist == null && userNameExist == null && passwordRuleResults.isValid()) {
-				final UserAccount userAccount = new UserAccount();
-				userAccount.setCountry(serviceRequest.getCountry());
-				userAccount.setEmail(serviceRequest.getEmail());
-				userAccount.setUsername(serviceRequest.getUsername());
-				userAccount.setUserId(UUID.randomUUID().toString());
-				userAccount.setUserpassword(
-						passwordEncoder.encode(userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword()));
-				userAccount.setNumberOfVisits(1);
-				userAccount.setUserType(serviceRequest.getUserType());
-				userAccount.setCreatedDate(new Date());
-				userDAO.persist(userAccount);
+		if (userEmailExist == null && userNameExist == null && passwordRuleResults.isValid()) {
+			final UserAccount userAccount = new UserAccount();
+			userAccount.setCountry(serviceRequest.getCountry());
+			userAccount.setEmail(serviceRequest.getEmail());
+			userAccount.setUsername(serviceRequest.getUsername());
+			userAccount.setUserId(UUID.randomUUID().toString());
+			userAccount.setUserpassword(
+					passwordEncoder.encode(userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword()));
+			userAccount.setNumberOfVisits(1);
+			userAccount.setUserType(serviceRequest.getUserType());
+			userAccount.setCreatedDate(new Date());
+			userDAO.persist(userAccount);
 
-				if ("true".equals(registeredUsersGetAdminConfig.getPropertyValue())) {
-					userAccount.setUserRole(UserRole.ADMIN);
-				} else {
-					userAccount.setUserRole(UserRole.USER);
-				}
-
-				final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-
-				if (UserRole.ADMIN == userAccount.getUserRole()) {
-					authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-				} else if (UserRole.USER == userAccount.getUserRole()) {
-					authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-				}
-
-				SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(
-						userAccount, userAccount.getUserpassword(), authorities));
-
-				eventRequest.setUserId(userAccount.getUserId());
-				response = new RegisterUserResponse(ServiceResult.SUCCESS);
+			if ("true".equals(registeredUsersGetAdminConfig.getPropertyValue())) {
+				userAccount.setUserRole(UserRole.ADMIN);
 			} else {
-				response = new RegisterUserResponse(ServiceResult.FAILURE);
-				if (passwordRuleResults.isValid()) {
-					response.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());
-					eventRequest.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());
-				} else {
-					final String errorMessage = passwordValidator.getMessages(passwordRuleResults).toString();
-					response.setErrorMessage(errorMessage);
-					eventRequest.setErrorMessage(errorMessage);
-				}
+				userAccount.setUserRole(UserRole.USER);
+			}
+
+			final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+			if (UserRole.ADMIN == userAccount.getUserRole()) {
+				authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+			} else if (UserRole.USER == userAccount.getUserRole()) {
+				authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+			}
+
+			SecurityContextHolder.getContext().setAuthentication(
+					new UsernamePasswordAuthenticationToken(userAccount, userAccount.getUserpassword(), authorities));
+
+			eventRequest.setUserId(userAccount.getUserId());
+			response = new RegisterUserResponse(ServiceResult.SUCCESS);
+		} else {
+			response = new RegisterUserResponse(ServiceResult.FAILURE);
+			if (passwordRuleResults.isValid()) {
+				response.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());
+				eventRequest.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());
+			} else {
+				final String errorMessage = passwordValidator.getMessages(passwordRuleResults).toString();
+				response.setErrorMessage(errorMessage);
+				eventRequest.setErrorMessage(errorMessage);
 			}
 		}
 
@@ -188,6 +172,23 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 		createApplicationEventService.processService(eventRequest);
 		LOGGER.info("Event: {}", eventRequest);
 		return response;
+	}
+
+	@Override
+	protected final CreateApplicationEventRequest createApplicationEventForService(
+			final RegisterUserRequest serviceRequest) {
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		eventRequest.setEventGroup(ApplicationEventGroup.USER);
+		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);
+		eventRequest.setActionName(RegisterUserRequest.class.getSimpleName());
+		eventRequest.setSessionId(serviceRequest.getSessionId());
+		eventRequest.setElementId(serviceRequest.getEmail());
+		return eventRequest;
+	}
+
+	@Override
+	protected RegisterUserResponse createErrorResponse() {
+		return new RegisterUserResponse(ServiceResult.FAILURE);
 	}
 
 }

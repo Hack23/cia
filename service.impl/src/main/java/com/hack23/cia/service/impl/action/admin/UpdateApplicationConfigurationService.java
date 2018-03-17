@@ -42,7 +42,6 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-@Secured({ "ROLE_ADMIN" })
 public final class UpdateApplicationConfigurationService extends
 		AbstractBusinessServiceImpl<UpdateApplicationConfigurationRequest, UpdateApplicationConfigurationResponse>
 		implements BusinessService<UpdateApplicationConfigurationRequest, UpdateApplicationConfigurationResponse> {
@@ -63,18 +62,18 @@ public final class UpdateApplicationConfigurationService extends
 	}
 
 	@Override
+	@Secured({ "ROLE_ADMIN" })
 	public UpdateApplicationConfigurationResponse processService(final UpdateApplicationConfigurationRequest serviceRequest) {
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
-		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
-		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
-		eventRequest.setActionName(UpdateApplicationConfigurationRequest.class.getSimpleName());
-		eventRequest.setSessionId(serviceRequest.getSessionId());
+		final UpdateApplicationConfigurationResponse inputValidation = inputValidation(serviceRequest);
+		if (inputValidation != null) {
+			return inputValidation;
+		}
 
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
 
 		if (userAccount != null) {
-
 			eventRequest.setUserId(userAccount.getUserId());
 		}
 
@@ -104,6 +103,22 @@ public final class UpdateApplicationConfigurationService extends
 
 		return response;
 
+	}
+
+	@Override
+	protected CreateApplicationEventRequest createApplicationEventForService(
+			final UpdateApplicationConfigurationRequest serviceRequest) {
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
+		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
+		eventRequest.setActionName(UpdateApplicationConfigurationRequest.class.getSimpleName());
+		eventRequest.setSessionId(serviceRequest.getSessionId());
+		return eventRequest;
+	}
+
+	@Override
+	protected UpdateApplicationConfigurationResponse createErrorResponse() {
+		return new UpdateApplicationConfigurationResponse(ServiceResult.FAILURE);
 	}
 
 }

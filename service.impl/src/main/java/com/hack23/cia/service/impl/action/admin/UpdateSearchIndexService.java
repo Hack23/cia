@@ -70,20 +70,17 @@ public final class UpdateSearchIndexService extends
 	@Secured({ "ROLE_ADMIN" })
 	public UpdateSearchIndexResponse processService(
 			final UpdateSearchIndexRequest serviceRequest) {
+		final UpdateSearchIndexResponse inputValidation = inputValidation(serviceRequest);
+		if (inputValidation != null) {
+			return inputValidation;
+		}
 
-
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
-		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
-		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
-		eventRequest.setActionName(UpdateSearchIndexRequest.class.getSimpleName());
-		eventRequest.setSessionId(serviceRequest.getSessionId());
-
+		
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
-
 
 		if (userAccount != null) {
 			LOGGER.info("{} started:{}", serviceRequest.getClass().getSimpleName(),userAccount.getEmail());
-
 			eventRequest.setUserId(userAccount.getUserId());
 		}
 
@@ -103,6 +100,19 @@ public final class UpdateSearchIndexService extends
 		return response;
 	}
 
+	@Override
+	protected CreateApplicationEventRequest createApplicationEventForService(final UpdateSearchIndexRequest serviceRequest) {
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
+		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
+		eventRequest.setActionName(UpdateSearchIndexRequest.class.getSimpleName());
+		eventRequest.setSessionId(serviceRequest.getSessionId());
+		return eventRequest;
+	}
 
+	@Override
+	protected UpdateSearchIndexResponse createErrorResponse() {
+		return new UpdateSearchIndexResponse(ServiceResult.FAILURE);
+	}
 
 }

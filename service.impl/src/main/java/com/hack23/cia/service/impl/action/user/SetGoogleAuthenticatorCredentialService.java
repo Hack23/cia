@@ -74,19 +74,18 @@ public final class SetGoogleAuthenticatorCredentialService extends
 	}
 
 
-	@Secured({ "ROLE_USER", "ROLE_ADMIN"})
 	@Override
+	@Secured({ "ROLE_USER", "ROLE_ADMIN"})
 	public SetGoogleAuthenticatorCredentialResponse processService(
 			final SetGoogleAuthenticatorCredentialRequest serviceRequest) {
 
+		final SetGoogleAuthenticatorCredentialResponse inputValidation = inputValidation(serviceRequest);
+		if (inputValidation != null) {
+			return inputValidation;
+		}
+
 		LOGGER.info("{}:{}",serviceRequest.getClass().getSimpleName(),serviceRequest.getSessionId());
-
-
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
-		eventRequest.setEventGroup(ApplicationEventGroup.USER);
-		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);
-		eventRequest.setActionName(SetGoogleAuthenticatorCredentialRequest.class.getSimpleName());
-		eventRequest.setSessionId(serviceRequest.getSessionId());
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
 
@@ -117,6 +116,24 @@ public final class SetGoogleAuthenticatorCredentialService extends
 		createApplicationEventService.processService(eventRequest);
 
 		return response;
+	}
+
+
+	@Override
+	protected CreateApplicationEventRequest createApplicationEventForService(
+			final SetGoogleAuthenticatorCredentialRequest serviceRequest) {
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		eventRequest.setEventGroup(ApplicationEventGroup.USER);
+		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);
+		eventRequest.setActionName(SetGoogleAuthenticatorCredentialRequest.class.getSimpleName());
+		eventRequest.setSessionId(serviceRequest.getSessionId());
+		return eventRequest;
+	}
+
+
+	@Override
+	protected SetGoogleAuthenticatorCredentialResponse createErrorResponse() {
+		return new SetGoogleAuthenticatorCredentialResponse(ServiceResult.FAILURE);
 	}
 
 

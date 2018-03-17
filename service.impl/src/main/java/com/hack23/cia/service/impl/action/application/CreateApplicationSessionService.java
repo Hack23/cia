@@ -31,6 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
+import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
@@ -84,6 +85,17 @@ public final class CreateApplicationSessionService
 		LOGGER.info("Create application session:{}",applicationSession);
 
 		return new CreateApplicationSessionResponse(ServiceResult.SUCCESS);
+	}
+
+	@Override
+	protected CreateApplicationEventRequest createApplicationEventForService(
+			final CreateApplicationSessionRequest serviceRequest) {
+		return new CreateApplicationEventRequest();
+	}
+
+	@Override
+	protected CreateApplicationSessionResponse createErrorResponse() {
+		return new CreateApplicationSessionResponse(ServiceResult.FAILURE);
 	}
 
 }

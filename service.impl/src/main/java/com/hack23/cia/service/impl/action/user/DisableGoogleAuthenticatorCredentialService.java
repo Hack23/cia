@@ -42,14 +42,14 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
  * The Class DisableGoogleAuthenticatorCredentialService.
  */
 @Service
-@Transactional(propagation = Propagation.REQUIRED,timeout=600)
+@Transactional(propagation = Propagation.REQUIRED, timeout = 600)
 public final class DisableGoogleAuthenticatorCredentialService extends
 		AbstractBusinessServiceImpl<DisableGoogleAuthenticatorCredentialRequest, DisableGoogleAuthenticatorCredentialResponse>
-		implements BusinessService<DisableGoogleAuthenticatorCredentialRequest, DisableGoogleAuthenticatorCredentialResponse> {
+		implements
+		BusinessService<DisableGoogleAuthenticatorCredentialRequest, DisableGoogleAuthenticatorCredentialResponse> {
 
 	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(DisableGoogleAuthenticatorCredentialService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(DisableGoogleAuthenticatorCredentialService.class);
 
 	/** The create application event service. */
 	@Autowired
@@ -66,23 +66,23 @@ public final class DisableGoogleAuthenticatorCredentialService extends
 		super(DisableGoogleAuthenticatorCredentialRequest.class);
 	}
 
-
-	@Secured({ "ROLE_USER", "ROLE_ADMIN"})
 	@Override
+	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	public DisableGoogleAuthenticatorCredentialResponse processService(
 			final DisableGoogleAuthenticatorCredentialRequest serviceRequest) {
+		final DisableGoogleAuthenticatorCredentialResponse inputValidation = inputValidation(serviceRequest);
+		if (inputValidation != null) {
+			return inputValidation;
+		}
 
-		LOGGER.info("{}:{}",serviceRequest.getClass().getSimpleName(),serviceRequest.getSessionId());
 
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
-		eventRequest.setEventGroup(ApplicationEventGroup.USER);
-		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);
-		eventRequest.setActionName(DisableGoogleAuthenticatorCredentialRequest.class.getSimpleName());
-		eventRequest.setSessionId(serviceRequest.getSessionId());
+		LOGGER.info("{}:{}", serviceRequest.getClass().getSimpleName(), serviceRequest.getSessionId());
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
 
-		final DisableGoogleAuthenticatorCredentialResponse response = new DisableGoogleAuthenticatorCredentialResponse(ServiceResult.SUCCESS);
+		final DisableGoogleAuthenticatorCredentialResponse response = new DisableGoogleAuthenticatorCredentialResponse(
+				ServiceResult.SUCCESS);
 		if (userAccount != null) {
 
 			eventRequest.setUserId(userAccount.getUserId());
@@ -102,6 +102,20 @@ public final class DisableGoogleAuthenticatorCredentialService extends
 		return response;
 	}
 
+	@Override
+	protected CreateApplicationEventRequest createApplicationEventForService(
+			final DisableGoogleAuthenticatorCredentialRequest serviceRequest) {
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		eventRequest.setEventGroup(ApplicationEventGroup.USER);
+		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);
+		eventRequest.setActionName(DisableGoogleAuthenticatorCredentialRequest.class.getSimpleName());
+		eventRequest.setSessionId(serviceRequest.getSessionId());
+		return eventRequest;
+	}
 
+	@Override
+	protected DisableGoogleAuthenticatorCredentialResponse createErrorResponse() {
+		return new DisableGoogleAuthenticatorCredentialResponse(ServiceResult.FAILURE);
+	}
 
 }
