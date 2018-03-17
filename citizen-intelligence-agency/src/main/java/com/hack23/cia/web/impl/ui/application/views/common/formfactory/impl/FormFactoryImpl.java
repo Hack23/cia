@@ -37,6 +37,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.formfactory.api.FormF
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.CommitFormWrapperClickListener;
+import com.vaadin.data.BeanValidationBinder;
 import com.vaadin.data.Binder;
 import com.vaadin.data.Converter;
 import com.vaadin.data.converter.StringToBigDecimalConverter;
@@ -77,7 +78,7 @@ public final class FormFactoryImpl implements FormFactory {
 	@Override
 	public <T extends Serializable> void addRequestInputFormFields(final FormLayout panelContent, final T item,
 			final Class<T> beanType, final List<String> displayProperties,final String buttonLabel,final ClickListener buttonListener) {
-		final Binder<T> binder = new Binder<>(beanType);
+		final BeanValidationBinder<T> binder = new BeanValidationBinder<>(beanType);
 		binder.setBean(item);
 		binder.setReadOnly(true);
 
@@ -107,7 +108,15 @@ public final class FormFactoryImpl implements FormFactory {
 		button.setId(buttonLabel);
 		button.setWidth("25%");
 		button.setIcon(VaadinIcons.BULLSEYE);
-
+		button.setEnabled(false);
+		binder.addStatusChangeListener( event -> {
+	            final boolean hasChanges, isValid;
+	            hasChanges = event.getBinder().hasChanges();
+	            isValid = event.getBinder().isValid();
+	            button.setEnabled(isValid );
+	    } );
+		
+		
 		verticalLayout.addComponent(button);
 		verticalLayout.setComponentAlignment(button, Alignment.MIDDLE_RIGHT);
 
