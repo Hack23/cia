@@ -21,6 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,9 +63,11 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 
 			if (committeeMap.containsKey(entry.getKey())) {
 
-				final ViewRiksdagenCommittee vewRiksdagenCommittee = committeeMap.get(entry.getKey()).stream().findFirst().orElse(null);
-				addDocTypeDataRows(chart, entry, vewRiksdagenCommittee);
-				addDecisionDataRows(chart, entry, vewRiksdagenCommittee);
+				final Optional<ViewRiksdagenCommittee> vewRiksdagenCommittee = committeeMap.get(entry.getKey()).stream().findFirst();
+				if (vewRiksdagenCommittee.isPresent()) {
+					addDocTypeDataRows(chart, entry, vewRiksdagenCommittee.get());
+					addDecisionDataRows(chart, entry, vewRiksdagenCommittee.get());
+				}
 			}
 		}
 
