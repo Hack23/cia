@@ -25,6 +25,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang.WordUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -86,12 +87,13 @@ public final class GridFactoryImpl implements GridFactory {
 		grid.setSelectionMode(SelectionMode.SINGLE);
 
 		createNestedProperties(grid, nestedProperties);
+		
+		setColumnConverters(collectionPropertyConverters, grid);
 
 		configureColumnOrdersAndHiddenFields(columnOrder, hideColumns, grid);
 
 		configureListeners(listener, grid);
 
-		setColumnConverters(collectionPropertyConverters, grid);
 
 		grid.setSizeFull();
 
@@ -186,8 +188,10 @@ public final class GridFactoryImpl implements GridFactory {
 			final Grid grid) {
 		if (collectionPropertyConverter != null) {
 			for (final ListPropertyConverter converter : collectionPropertyConverter) {
-				grid.getColumn(converter.getColumn());
-
+				grid.removeColumn(converter.getColumn());
+				Column column = grid.addColumn(converter);
+				column.setCaption(WordUtils.capitalize(converter.getColumn()));
+				column.setId(converter.getColumn());
 			}
 		}
 	}

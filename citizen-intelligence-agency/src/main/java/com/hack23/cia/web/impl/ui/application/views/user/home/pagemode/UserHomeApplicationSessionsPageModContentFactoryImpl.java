@@ -55,7 +55,7 @@ public final class UserHomeApplicationSessionsPageModContentFactoryImpl extends 
 
 	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion", "sessionId", "sessionType", "userId", "locale"};
 
-	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate","operatingSystem", "userAgentInformation", "ipInformation", "events"};
+	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate","operatingSystem", "ipInformation", "events", "userAgentInformation"};
 
 	private static final String APPLICATION_SESSION = "ApplicationSession";
 

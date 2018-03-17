@@ -23,21 +23,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.PropertyUtilsBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.vaadin.data.Converter;
 import com.vaadin.data.Result;
 import com.vaadin.data.ValueContext;
+import com.vaadin.data.ValueProvider;
 
 /**
  * The Class ListPropertyRenderer.
  */
-public final class ListPropertyConverter implements Converter<String, List> {
+public final class ListPropertyConverter implements Converter<String, List<?>>,ValueProvider<Object, String> {
 	
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ListPropertyConverter.class);
 
+	private static final PropertyUtilsBean PROPERTY_UTILS_BEAN= new PropertyUtilsBean();
+	
 	private static final char CONTENT_SEPARATOR = ' ';
 
 	private static final String START_TAG = "[ ";
@@ -96,7 +100,7 @@ public final class ListPropertyConverter implements Converter<String, List> {
 	}
 
 	@Override
-	public Result<List> convertToModel(final String value, final ValueContext context) {
+	public Result<List<?>> convertToModel(final String value, final ValueContext context) {
 		return Result.ok(new ArrayList<>());
 	}
 
@@ -144,6 +148,18 @@ public final class ListPropertyConverter implements Converter<String, List> {
 			LOGGER.warn("Problem getting property {}, object {} , exception {}", property, object, e);
 		}
 		stringBuilder.append(CONTENT_SEPARATOR);
+	}
+
+	@Override
+	public String apply(Object source) {
+		List<?> list;
+		try {
+			list = (List<?>) PROPERTY_UTILS_BEAN.getProperty(source, column);
+			return convertToPresentation(list,null);
+		} catch (final IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+			LOGGER.warn("Problem getting list {}, object {} , exception {}", property, column, e);
+		} 
+		return "";
 	}
 
 }

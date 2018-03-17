@@ -92,7 +92,7 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
 
 		for (final Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
-			if (decisionEntry.getKey().trim().length() > 0 && entry.getKey().trim().length() > 0) {
+			if (decisionEntry.getKey().length() > 0 && entry.getKey().length() > 0) {
 				chart.addDataRow(vewRiksdagenCommittee.getEmbeddedId().getDetail(), decisionEntry.getKey(),
 						decisionEntry.getValue().size());
 			}
@@ -116,7 +116,7 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
 
 		for (final Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
-			if (docEntry.getKey().trim().length() > 0 && entry.getKey().trim().length() > 0) {
+			if (docEntry.getKey().length() > 0 && entry.getKey().length() > 0) {
 				chart.addDataRow(docEntry.getKey(), vewRiksdagenCommittee.getEmbeddedId().getDetail(),
 						docEntry.getValue().size());
 
@@ -164,7 +164,7 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 					.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
 
 			for (final Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
-				if (decisionEntry.getKey().trim().length() > 0 && entry.getKey().trim().length() > 0) {
+				if (decisionEntry.getKey().length() > 0 && entry.getKey().length() > 0) {
 					chart.addDataRow(docEntry.getKey(), decisionEntry.getKey(), decisionEntry.getValue().size());
 				}
 			}

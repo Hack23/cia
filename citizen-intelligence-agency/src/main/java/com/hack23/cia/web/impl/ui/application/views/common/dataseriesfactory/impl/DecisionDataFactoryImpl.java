@@ -82,8 +82,8 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 
 			final DocumentProposalData proposal = document.getDocumentProposal().getProposal();
 
-			if (proposal.getProcessedIn() != null && !proposal.getProcessedIn().trim().isEmpty()
-					&& proposal.getCommittee() != null && !proposal.getCommittee().trim().isEmpty()
+			if (proposal.getProcessedIn() != null && !proposal.getProcessedIn().isEmpty()
+					&& proposal.getCommittee() != null && !proposal.getCommittee().isEmpty()
 					&& proposal.getProcessedIn().contains(processedIn) && proposal.getChamber().length() <= "återförvisning till utskottet".length() && proposal.getChamber().length() >= "avslag".length()) {
 				
 				summary.add(new ProposalCommitteeeSummary(getCommittteeShortName(proposal), getDocumentName(document) , cleanupDecision(proposal.getChamber()) , document.getDocument().getHangarId()));
@@ -100,7 +100,7 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 	 * @return the string
 	 */
 	private static String cleanupDecision(final String chamber) {
-		return chamber.toUpperCase(Locale.ENGLISH).replace("(UTSKOTTET)", "").replace("UTKOTTET", "UTSKOTTET").replace("UTBSKOTTET", "UTSKOTTET").replace("UBTSKOTTET", "UTSKOTTET").trim().replace("(", "").replace(")","").trim();
+		return chamber.toUpperCase(Locale.ENGLISH).replace("(UTSKOTTET)", "").replace("UTKOTTET", "UTSKOTTET").replace("UTBSKOTTET", "UTSKOTTET").replace("UBTSKOTTET", "UTSKOTTET").replace("(", "").replace(")","");
 	}
 
 	/**
@@ -113,7 +113,7 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 	private static String getDocumentName(final DocumentStatusContainer document) {
 		if ("prop".equalsIgnoreCase(document.getDocument().getDocumentType())) {
 			return "Proposition";
-		} else if (document.getDocument().getSubType() != null && document.getDocument().getSubType().trim().length() > "motion".length()) {
+		} else if (document.getDocument().getSubType() != null && document.getDocument().getSubType().length() > "motion".length()) {
 			return document.getDocument().getSubType();
 		} else {
 			return "Motion";
@@ -129,7 +129,7 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 	 * @return the committtee short name
 	 */
 	private static String getCommittteeShortName(final DocumentProposalData proposal) {
-		final String upperCase = proposal.getProcessedIn().replaceAll("\\d","").replace("/:","").trim().toUpperCase(Locale.ENGLISH);
+		final String upperCase = proposal.getProcessedIn().replaceAll("\\d","").replace("/:","").toUpperCase(Locale.ENGLISH);
 				
 		if (upperCase.contains(",")) {
 			return upperCase.substring(0, upperCase.indexOf(','));
