@@ -35,7 +35,6 @@ import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.action.admin.SendEmailRequest;
 import com.hack23.cia.service.api.action.admin.SendEmailResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
-import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
@@ -58,10 +57,6 @@ public final class SendEmailService extends AbstractBusinessServiceImpl<SendEmai
 	/** The email service. */
 	@Autowired
 	private EmailService emailService;
-
-	/** The create application event service. */
-	@Autowired
-	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
 
 	/**
 	 * Instantiates a new send email service.

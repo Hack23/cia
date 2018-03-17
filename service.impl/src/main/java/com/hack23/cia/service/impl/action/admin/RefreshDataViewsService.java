@@ -30,7 +30,6 @@ import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
 import com.hack23.cia.service.api.action.admin.RefreshDataViewsResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
-import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ViewDataManager;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
@@ -48,10 +47,6 @@ public final class RefreshDataViewsService extends
 	/** The View data manager. */
 	@Autowired
 	private ViewDataManager viewDataManager;
-
-	/** The create application event service. */
-	@Autowired
-	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
 
 	/**
 	 * Instantiates a new refresh data views service.

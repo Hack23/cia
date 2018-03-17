@@ -42,7 +42,6 @@ import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
 import com.hack23.cia.model.internal.application.user.impl.UserLockStatus;
 import com.hack23.cia.model.internal.application.user.impl.UserRole;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
-import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.application.LoginRequest;
 import com.hack23.cia.service.api.action.application.LoginResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
@@ -67,10 +66,6 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 	/** The user dao. */
 	@Autowired
 	private UserDAO userDAO;
-
-	/** The create application event service. */
-	@Autowired
-	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
 
 	@Autowired
 	private LoginBlockedAccess loginBlockedAccess;

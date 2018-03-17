@@ -36,7 +36,6 @@ import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
 import com.hack23.cia.service.api.action.admin.ManageUserAccountRequest;
 import com.hack23.cia.service.api.action.admin.ManageUserAccountResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
-import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.RemoveDataManager;
 import com.hack23.cia.service.data.api.UserDAO;
@@ -51,10 +50,6 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 public final class ManageUserAccountService
 		extends AbstractBusinessServiceImpl<ManageUserAccountRequest, ManageUserAccountResponse>
 		implements BusinessService<ManageUserAccountRequest, ManageUserAccountResponse> {
-
-	/** The create application event service. */
-	@Autowired
-	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
 
 	/** The user dao. */
 	@Autowired

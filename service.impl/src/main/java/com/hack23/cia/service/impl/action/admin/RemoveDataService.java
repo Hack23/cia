@@ -30,7 +30,6 @@ import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.action.admin.RemoveDataRequest;
 import com.hack23.cia.service.api.action.admin.RemoveDataResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
-import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.RemoveDataManager;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
@@ -48,10 +47,6 @@ public final class RemoveDataService extends
 	/** The remove data manager. */
 	@Autowired
 	private RemoveDataManager removeDataManager;
-
-	/** The create application event service. */
-	@Autowired
-	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
 
 	/**
 	 * Instantiates a new removes the data service.

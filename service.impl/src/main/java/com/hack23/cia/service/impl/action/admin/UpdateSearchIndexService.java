@@ -32,7 +32,6 @@ import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.action.admin.UpdateSearchIndexRequest;
 import com.hack23.cia.service.api.action.admin.UpdateSearchIndexResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
-import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.SearchIndexer;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
@@ -54,10 +53,6 @@ public final class UpdateSearchIndexService extends
 	/** The search indexer. */
 	@Autowired
 	private SearchIndexer searchIndexer;
-
-	/** The create application event service. */
-	@Autowired
-	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
 
 	/**
 	 * Instantiates a new update search index service.

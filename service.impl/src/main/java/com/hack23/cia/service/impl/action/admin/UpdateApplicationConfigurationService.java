@@ -31,7 +31,6 @@ import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationRequest;
 import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
-import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ApplicationConfigurationDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
@@ -45,10 +44,6 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 public final class UpdateApplicationConfigurationService extends
 		AbstractBusinessServiceImpl<UpdateApplicationConfigurationRequest, UpdateApplicationConfigurationResponse>
 		implements BusinessService<UpdateApplicationConfigurationRequest, UpdateApplicationConfigurationResponse> {
-
-	/** The create application event service. */
-	@Autowired
-	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
 
 	/** The application configuration dao. */
 	@Autowired

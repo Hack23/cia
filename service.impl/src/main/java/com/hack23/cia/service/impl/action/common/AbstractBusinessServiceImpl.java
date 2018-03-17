@@ -29,8 +29,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
@@ -47,13 +45,13 @@ import com.hack23.cia.service.api.action.common.ServiceResponse;
  * @param <V>
  *            the value type
  */
-@Transactional(propagation = Propagation.REQUIRED,timeout=1200)
 public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V extends ServiceResponse>
 		implements BusinessService<T, V> {
 
+
 	/** The create application event service. */
 	@Autowired
-	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
+	protected BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
 
 	
 	/** The clazz. */
@@ -75,6 +73,15 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 		return clazz;
 	}
 
+	/**
+	 * Gets the create application event service.
+	 *
+	 * @return the create application event service
+	 */
+	protected final BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> getCreateApplicationEventService() {
+		return createApplicationEventService;
+	}
+	
 	/**
 	 * Gets the user account from security context.
 	 *

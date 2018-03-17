@@ -54,7 +54,6 @@ import com.hack23.cia.model.internal.application.user.impl.UserLockStatus;
 import com.hack23.cia.model.internal.application.user.impl.UserRole;
 import com.hack23.cia.model.internal.application.user.impl.UserType;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
-import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.application.RegisterUserRequest;
 import com.hack23.cia.service.api.action.application.RegisterUserResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
@@ -73,10 +72,6 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(RegisterUserService.class);
-
-	/** The create application event service. */
-	@Autowired
-	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
 
 	/** The application configuration service. */
 	@Autowired

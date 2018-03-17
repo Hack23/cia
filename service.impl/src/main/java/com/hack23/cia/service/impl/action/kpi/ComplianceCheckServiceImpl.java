@@ -39,7 +39,6 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
-import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheckRequest;
@@ -60,10 +59,6 @@ public final class ComplianceCheckServiceImpl
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ComplianceCheckServiceImpl.class);
-
-	/** The create application event service. */
-	@Autowired
-	private BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
 
 	@Autowired
 	private RulesEngine rulesEngine;
@@ -126,7 +121,7 @@ public final class ComplianceCheckServiceImpl
 
 		}
 
-		createApplicationEventService.processService(eventRequest);
+		getCreateApplicationEventService().processService(eventRequest);
 		return response;
 	}
 
