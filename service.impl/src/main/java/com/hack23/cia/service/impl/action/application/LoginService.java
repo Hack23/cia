@@ -39,6 +39,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
+import com.hack23.cia.model.internal.application.user.impl.UserLockStatus;
 import com.hack23.cia.model.internal.application.user.impl.UserRole;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
@@ -99,7 +100,7 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 		final LoginBlockResult loginBlockResult = loginBlockedAccess.isBlocked(serviceRequest.getSessionId(), serviceRequest.getEmail());
 
 		LoginResponse response;
-		if (!loginBlockResult.isBlocked() && userExist != null && verifyOtp(serviceRequest, userExist) && passwordEncoder.matches(
+		if (!loginBlockResult.isBlocked() && userExist != null && userExist.getUserLockStatus() == UserLockStatus.UNLOCKED && verifyOtp(serviceRequest, userExist) && passwordEncoder.matches(
 				userExist.getUserId() + ".uuid" + serviceRequest.getUserpassword(), userExist.getUserpassword())) {
 
 			final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();

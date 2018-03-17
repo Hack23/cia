@@ -49,7 +49,10 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationOperatio
 import com.hack23.cia.model.internal.application.system.impl.ConfigurationGroup;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
+import com.hack23.cia.model.internal.application.user.impl.UserEmailStatus;
+import com.hack23.cia.model.internal.application.user.impl.UserLockStatus;
 import com.hack23.cia.model.internal.application.user.impl.UserRole;
+import com.hack23.cia.model.internal.application.user.impl.UserType;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.application.RegisterUserRequest;
@@ -133,7 +136,15 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 			userAccount.setUserpassword(
 					passwordEncoder.encode(userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword()));
 			userAccount.setNumberOfVisits(1);
-			userAccount.setUserType(serviceRequest.getUserType());
+			
+			if ( serviceRequest.getUserType() == null) {
+				userAccount.setUserType(UserType.PRIVATE);
+			} else {
+				userAccount.setUserType(serviceRequest.getUserType());
+			}
+				
+			userAccount.setUserEmailStatus(UserEmailStatus.UNKNOWN);
+			userAccount.setUserLockStatus(UserLockStatus.UNLOCKED);
 			userAccount.setCreatedDate(new Date());
 			userDAO.persist(userAccount);
 

@@ -54,7 +54,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
 
-	private static final List<String> AS_LIST = Arrays.asList("username","createdDate","email","country","numberOfVisits");
+	private static final List<String> AS_LIST = Arrays.asList("username","createdDate","email","country","userType","userRole","userEmailStatus", "numberOfVisits");
 
 	/** The Constant LOGOUT. */
 	private static final String LOGOUT = "Logout";

@@ -31,6 +31,9 @@
 				nillable="true" type="xsd:string" />
 			<xsd:element minOccurs="0" name="userType" type="user:UserType" />
 			<xsd:element minOccurs="0" name="userRole" type="user:UserRole" />
+			<xsd:element minOccurs="0" name="userLockStatus" type="user:UserLockStatus" />
+			<xsd:element minOccurs="0" name="userEmailStatus" type="user:UserEmailStatus" />
+			
 			<xsd:element minOccurs="0" name="createdDate" type="xsd:dateTime" />
 
 			<xsd:element minOccurs="0" name="googleAuthKey" type="xsd:string" />
@@ -55,6 +58,19 @@
 		</xsd:restriction>
 	</xsd:simpleType>
 
+	<xsd:simpleType name="UserLockStatus">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="UNLOCKED" />
+			<xsd:enumeration value="LOCKED" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="UserEmailStatus">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="VERIFIED" />
+			<xsd:enumeration value="UNKNOWN" />
+		</xsd:restriction>
+	</xsd:simpleType>
 
 
 </xsd:schema>
