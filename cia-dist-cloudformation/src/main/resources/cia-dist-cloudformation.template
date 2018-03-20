@@ -2285,7 +2285,7 @@
 								"tar xvfz openjdk-10_linux-x64_bin.tar.gz\n",
 								"sudo mv jdk-10 /usr/lib/jvm/java-10-openjdk-amd64\n",
 								"sudo ln -s /usr/lib/jvm/java-10-openjdk-amd64 /usr/lib/jvm/java-10-oracle\n",
-								"rm openjdk-10+46_linux-x64_bin.tar.gz\n",								
+								"rm openjdk-10_linux-x64_bin.tar.gz\n",								
 								"wget ",
 								{
 									"Ref": "DebPackageUrl"
