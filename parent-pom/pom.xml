@@ -1121,9 +1121,12 @@
           </execution>
         </executions>
         <configuration>
+          <includes>
+          	<include>com.hack23.*</include>          	
+          </includes>
           <excludes>
             <exclude>module-info.*</exclude>
-            <exclude>**/module-info.*</exclude>
+            <exclude>*.module-info.*</exclude>
           </excludes>
         </configuration>
       </plugin>
