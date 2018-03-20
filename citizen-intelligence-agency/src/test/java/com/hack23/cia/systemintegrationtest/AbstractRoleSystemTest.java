@@ -33,6 +33,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -43,6 +44,8 @@ import com.hack23.cia.testfoundation.Parallelized;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
+
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 
 /**
  * The Class UserRoleSystemTest.
@@ -111,6 +114,7 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 		if (!usingExternalServer) {
 			CitizenIntelligenceAgencyServer.startTestServer();
 		}
+		ChromeDriverManager.getInstance().setup();
 	}
 
 	/**
@@ -146,8 +150,11 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 			final DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 			capabilities.setCapability("marionette", true);
 			driver = new FirefoxDriver(capabilities);
+			driver.manage().window().maximize();
 		} else if ("chrome".equals(browser)) {
-			driver = new ChromeDriver();
+			ChromeOptions chromeOptions = new ChromeOptions();
+		    chromeOptions.addArguments("--allow-insecure-localhost","--start-maximized");		
+			driver = new ChromeDriver(chromeOptions);
 		} else if ("htmlunit-firefox".equals(browser)) {
 			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.FIREFOX_45);
 			htmlUnitDriver.setJavascriptEnabled(true);
@@ -172,8 +179,7 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 	    driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
 
 
-		webDriverMap.put(browser, driver);
-		driver.manage().window().maximize();
+	    webDriverMap.put(browser, driver);
 		return driver;
 	}
 
