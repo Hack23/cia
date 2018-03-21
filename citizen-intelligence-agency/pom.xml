@@ -233,7 +233,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-logs</artifactId>
-      <version>1.11.297</version>
+      <version>1.11.298</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -256,7 +256,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-ec2</artifactId>
-      <version>1.11.297</version>
+      <version>1.11.298</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -602,7 +602,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit-driver</artifactId>
-      <version>2.29.2</version>
+      <version>2.29.3</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
