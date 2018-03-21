@@ -10,13 +10,13 @@ module com.hack23.cia.service.external.riksdagen {
 
 	requires com.hack23.cia.service.external.common;
 
-	requires model.external.riksdagen.voteringlista.impl;
-	requires model.external.riksdagen.documentcontent.impl;
-	requires model.external.riksdagen.person.impl;
-	requires model.external.riksdagen.dokumentstatus.impl;
-	requires model.external.riksdagen.dokumentlista.impl;
-	requires model.external.riksdagen.utskottsforslag.impl;
-	requires model.external.riksdagen.personlista.impl;
-	requires model.external.riksdagen.votering.impl;
+	requires com.hack23.cia.model.external.riksdagen.voteringlista.impl;
+	requires com.hack23.cia.model.external.riksdagen.documentcontent.impl;
+	requires com.hack23.cia.model.external.riksdagen.person.impl;
+	requires com.hack23.cia.model.external.riksdagen.dokumentstatus.impl;
+	requires com.hack23.cia.model.external.riksdagen.dokumentlista.impl;
+	requires com.hack23.cia.model.external.riksdagen.utskottsforslag.impl;
+	requires com.hack23.cia.model.external.riksdagen.personlista.impl;
+	requires com.hack23.cia.model.external.riksdagen.votering.impl;
 
 }

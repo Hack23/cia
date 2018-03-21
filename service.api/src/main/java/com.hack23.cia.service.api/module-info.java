@@ -13,22 +13,22 @@ module com.hack23.cia.service.api {
 
 	requires com.hack23.cia.service.data.api;
 
-	requires model.internal.application.user.impl;
+	requires com.hack23.cia.model.internal.application.user.impl;
 
-	requires model.external.val.riksdagsvalkrets.impl;
-	requires model.external.riksdagen.voteringlista.impl;
-	requires model.external.val.kommunvalkrets.impl;
-	requires model.external.worldbank.topic.impl;
-	requires model.external.worldbank.indicators.impl;
-	requires model.external.riksdagen.documentcontent.impl;
-	requires model.external.worldbank.data.impl;
-	requires model.external.riksdagen.person.impl;
-	requires model.external.riksdagen.dokumentstatus.impl;
-	requires model.external.riksdagen.dokumentlista.impl;
-	requires model.external.riksdagen.utskottsforslag.impl;
-	requires model.external.val.partier.impl;
-	requires model.external.riksdagen.personlista.impl;
-	requires model.external.val.landstingvalkrets.impl;
-	requires model.external.riksdagen.votering.impl;
+	requires com.hack23.cia.model.external.val.riksdagsvalkrets.impl;
+	requires com.hack23.cia.model.external.riksdagen.voteringlista.impl;
+	requires com.hack23.cia.model.external.val.kommunvalkrets.impl;
+	requires com.hack23.cia.model.external.worldbank.topic.impl;
+	requires com.hack23.cia.model.external.worldbank.indicators.impl;
+	requires com.hack23.cia.model.external.riksdagen.documentcontent.impl;
+	requires com.hack23.cia.model.external.worldbank.data.impl;
+	requires com.hack23.cia.model.external.riksdagen.person.impl;
+	requires com.hack23.cia.model.external.riksdagen.dokumentstatus.impl;
+	requires com.hack23.cia.model.external.riksdagen.dokumentlista.impl;
+	requires com.hack23.cia.model.external.riksdagen.utskottsforslag.impl;
+	requires com.hack23.cia.model.external.val.partier.impl;
+	requires com.hack23.cia.model.external.riksdagen.personlista.impl;
+	requires com.hack23.cia.model.external.val.landstingvalkrets.impl;
+	requires com.hack23.cia.model.external.riksdagen.votering.impl;
 
 }

@@ -1340,6 +1340,7 @@
             <index>true</index>
             <manifestEntries>
               <Sealed>true</Sealed>
+              <Automatic-Module-Name>com.hack23.cia.${project.artifactId}</Automatic-Module-Name>
             </manifestEntries>
           </archive>
         </configuration>
@@ -1903,10 +1904,6 @@
             <configuration>
               <dataFile>${sonar.jacoco.reportPath}</dataFile>
               <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
-              <excludes>
-                <exclude>module-info.*</exclude>
-                <exclude>**/module-info.*</exclude>
-              </excludes>
             </configuration>
           </plugin>
           <plugin>
