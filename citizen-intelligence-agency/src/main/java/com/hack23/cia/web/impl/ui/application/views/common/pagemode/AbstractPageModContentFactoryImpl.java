@@ -330,11 +330,11 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 
 
 				if (pageNr > PAGE_ONE) {
-					addPagingLink(PREVIOUS_PAGE,name, pageId, pageNr -1,pagingControls);
+					addPagingLink(PREVIOUS_PAGE,name, pageId, pageNr -1L,pagingControls);
 				}
 
 				if (maxPages > PAGE_ONE && pageNr < maxPages) {
-					addPagingLink(NEXT_PAGE,name, pageId, pageNr +1,pagingControls);
+					addPagingLink(NEXT_PAGE,name, pageId, pageNr +1L,pagingControls);
 				}
 
 				if (maxPages > LIMIT_FOR_DISPLAYING_START_END_LINKS && pageNr > PAGE_ONE) {

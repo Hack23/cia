@@ -64,7 +64,7 @@ public final class CommitteeGhantChartManagerImpl
 
 			@Override
 			public Date getToDate(final ViewRiksdagenCommitteeRoleMember t) {
-				return Optional.ofNullable(t.getToDate()).orElse(new Date());
+				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);
 			}
 
 			@Override

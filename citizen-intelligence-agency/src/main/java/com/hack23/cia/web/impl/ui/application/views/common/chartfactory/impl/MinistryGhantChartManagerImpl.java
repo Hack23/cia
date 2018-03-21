@@ -64,7 +64,7 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 
 			@Override
 			public Date getToDate(final ViewRiksdagenGovermentRoleMember t) {
-				return Optional.ofNullable(t.getToDate()).orElse(new Date());
+				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);
 			}
 
 			@Override

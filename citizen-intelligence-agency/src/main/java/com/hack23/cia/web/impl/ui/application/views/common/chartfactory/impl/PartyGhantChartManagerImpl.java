@@ -64,7 +64,7 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 
 			@Override
 			public Date getToDate(final ViewRiksdagenPartyRoleMember t) {
-				return Optional.ofNullable(t.getToDate()).orElse(new Date());
+				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);
 			}
 
 			@Override

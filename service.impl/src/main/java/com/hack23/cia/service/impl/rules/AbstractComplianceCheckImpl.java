@@ -100,7 +100,7 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 		final Collection<RuleViolation> values = ruleViolationMap.values();
 		final StringBuilder builder = new StringBuilder();
 		for (final RuleViolation ruleViolation : values) {
-			builder.append("[").append(ruleViolation.getRuleName()).append("/").append(ruleViolation.getStatus()) .append("]");
+			builder.append('[').append(ruleViolation.getRuleName()).append('/').append(ruleViolation.getStatus()) .append(']');
 		}		
 		return builder.toString();
 	}
