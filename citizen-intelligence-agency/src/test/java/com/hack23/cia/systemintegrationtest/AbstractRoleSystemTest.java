@@ -77,7 +77,7 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 		 
 		 systemTestTargetAdminEmail = System.getProperty("system.test.target.admin.email");
 		 if (systemTestTargetAdminEmail == null) {
-			 systemTestTargetAdminEmail = "admin@admin.com";
+			 systemTestTargetAdminEmail = "admin@hack23.com";
 		 }
 		 
 		 systemTestTargetAdminPassword = System.getProperty("system.test.target.admin.password");
