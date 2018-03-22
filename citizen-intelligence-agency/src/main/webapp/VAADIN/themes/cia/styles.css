@@ -17659,11 +17659,35 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .cia .v-menubar-submenu-Header {
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .cia .v-menubar-selected-Header {
-	font-size: 14px;
+	font-size: 12px;
+}
+
+.cia .v-menubar-menuitem-RestrictedHeader {
+	font-size: 12px;
+	width: 320px;
+	overflow: auto;
+}
+
+.cia .v-menubar-menuitem-caption-RestrictedHeader {
+	font-size: 12px;
+	width: 320px;
+	overflow: auto;
+}
+
+.cia .v-menubar-submenu-RestrictedHeader {
+	font-size: 12px;
+	width: 320px;
+	overflow: auto;
+}
+
+.cia .v-menubar-selected-RestrictedHeader {
+	font-size: 12px;
+	width: 320px;
+	overflow: auto;
 }
 
 @media screen and (min-resolution: 2dppx) {

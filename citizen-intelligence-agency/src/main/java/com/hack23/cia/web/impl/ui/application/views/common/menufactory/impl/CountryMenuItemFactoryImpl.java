@@ -128,7 +128,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 	 */
 	private static void addSourcesAndIndicatorsToMenu(final MenuItem countryIndicators,
 			final Map<String, List<ViewWorldbankIndicatorDataCountrySummary>> sourceIndicatorMap) {
-
+		
 		final Map<String, List<ViewWorldbankIndicatorDataCountrySummary>> sortedIndicatorMap = sourceIndicatorMap
 				.entrySet().stream().sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey()))
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
@@ -137,15 +137,16 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 				.entrySet()) {
 
 			final MenuItem sourceItems = countryIndicators.addItem(entry.getKey(), null, null);
-
+			
 			final List<ViewWorldbankIndicatorDataCountrySummary> sortedEntries = entry.getValue().stream()
 					.sorted((e1, e2) -> e1.getIndicatorName().compareTo(e2.getIndicatorName()))
 					.collect(Collectors.toList());
 
 			for (final ViewWorldbankIndicatorDataCountrySummary indciatorSummary : sortedEntries) {
-				sourceItems.addItem(indciatorSummary.getIndicatorName(),
+				MenuItem addItem = sourceItems.addItem(indciatorSummary.getIndicatorName(),
 						new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.INDICATORS,
 								indciatorSummary.getEmbeddedId().getIndicatorId()));
+				addItem.setStyleName("RestrictedHeader");
 			}
 		}
 

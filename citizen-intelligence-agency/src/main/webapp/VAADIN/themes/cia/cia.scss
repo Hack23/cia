@@ -175,11 +175,35 @@
 	}
 
 	.v-menubar-submenu-Header {
-	 font-size: 14px;
+	 font-size: 12px;
 	}
 
 	.v-menubar-selected-Header {
-	 font-size: 14px;
+	 font-size: 12px;
 	}
 
+	.v-menubar-menuitem-RestrictedHeader {
+	 font-size: 12px;
+     width:320px;
+     overflow: auto;
+	}
+
+	.v-menubar-menuitem-caption-RestrictedHeader {
+	 font-size: 12px;
+	 width:320px;
+	 overflow: auto;
+	}
+	
+	.v-menubar-submenu-RestrictedHeader {
+	 font-size: 12px;
+	 width:320px;
+	 overflow: auto;
+	}
+
+	.v-menubar-selected-RestrictedHeader {
+	 font-size: 12px;
+	 width:320px;
+	 overflow: auto;
+	}
+	
 }
