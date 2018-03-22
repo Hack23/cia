@@ -164,7 +164,7 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>jul-to-slf4j</artifactId>
-      <version>1.8.0-beta1</version>
+      <version>1.8.0-beta2</version>
     </dependency>
     <dependency>
       <groupId>org.ow2.asm</groupId>
@@ -233,7 +233,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-logs</artifactId>
-      <version>1.11.298</version>
+      <version>1.11.299</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -256,7 +256,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-ec2</artifactId>
-      <version>1.11.298</version>
+      <version>1.11.299</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
