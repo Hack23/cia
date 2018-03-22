@@ -82,7 +82,7 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 		 
 		 systemTestTargetAdminPassword = System.getProperty("system.test.target.admin.password");
 		 if (systemTestTargetAdminPassword == null) {
-			 systemTestTargetAdminPassword = "admin";
+			 systemTestTargetAdminPassword = "Admin4hack23!";
 		 }
 		 
 		CitizenIntelligenceAgencyServer.setEnv("CIA_APP_ENCRYPTION_PASSWORD", "allhaildiscordia");

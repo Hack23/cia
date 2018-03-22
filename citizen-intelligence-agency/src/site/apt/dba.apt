@@ -1,0 +1,16 @@
+DBA Guide
+
+ This dba guide provides documentation on how to backup/restore the database.
+
+Backup the database
+
+ Backup the database with this command:
+
+ $ pg_dump --encoding utf8 cia_dev -f cia_dev.sql
+
+
+Restore the database
+
+ Restore the database with this command:
+
+ $ psql -f cia_dev.sql -d cia_dev
