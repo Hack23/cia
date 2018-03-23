@@ -47,5 +47,6 @@
 		<cve>CVE-2015-5224</cve>
 		<cve>CVE-2016-5011</cve>
 		<cve>CVE-2017-15095</cve>
+		<cve>CVE-2018-7489</cve>
     </suppress>
 </suppressions>
