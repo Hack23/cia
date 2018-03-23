@@ -69,7 +69,16 @@
           <artifactId>ecj</artifactId>
           <groupId>org.eclipse.jdt.core.compiler</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>protobuf-java</artifactId>
+          <groupId>com.google.protobuf</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+      <version>3.5.1</version>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jdt</groupId>
