@@ -907,7 +907,7 @@
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-java</artifactId>
-              <version>0.9.6</version>
+              <version>0.9.7</version>
             </dependency>
             <dependency>
               <groupId>org.ow2.asm</groupId>
@@ -929,7 +929,7 @@
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-java</artifactId>
-              <version>0.9.6</version>
+              <version>0.9.7</version>
             </dependency>
             <dependency>
               <groupId>org.ow2.asm</groupId>
@@ -962,7 +962,7 @@
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-java</artifactId>
-              <version>0.9.6</version>
+              <version>0.9.7</version>
             </dependency>
           </dependencies>
         </plugin>
