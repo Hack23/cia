@@ -31,6 +31,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
+import com.hack23.cia.model.internal.application.user.impl.UserLockStatus;
 import com.hack23.cia.model.internal.application.user.impl.UserType;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
@@ -53,7 +54,7 @@ public final class ManageUserAccountServiceITest extends AbstractServiceFunction
 	private ApplicationManager applicationManager;
 
 	@Test
-	public void manageUserAccountSuccessTest() throws Exception {
+	public void manageUserAccountSuccessDeleteTest() throws Exception {
 		setAuthenticatedAnonymousUser();
 		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
 		final RegisterUserRequest createAccountRequest = new RegisterUserRequest();
@@ -100,6 +101,85 @@ public final class ManageUserAccountServiceITest extends AbstractServiceFunction
 		assertEquals(0, sessions.size());
 	}
 
+	@Test
+	public void manageUserAccountSuccessLockTest() throws Exception {
+		setAuthenticatedAnonymousUser();
+		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
+		final RegisterUserRequest createAccountRequest = new RegisterUserRequest();
+		createAccountRequest.setCountry("Sweden");
+		createAccountRequest.setUsername(UUID.randomUUID().toString());
+		createAccountRequest.setEmail(createAccountRequest.getUsername() + "@email.com");
+		createAccountRequest.setUserpassword("Userpassword1!");
+		createAccountRequest.setUserType(UserType.PRIVATE);
+		createAccountRequest.setSessionId(createSessionRequest.getSessionId());
+
+		final RegisterUserResponse response = (RegisterUserResponse) applicationManager.service(createAccountRequest);
+		assertNotNull("Expect a result", response);
+		assertEquals(EXPECT_SUCCESS, ServiceResult.SUCCESS, response.getResult());
+		setAuthenticatedAdminuser();
+
+		final DataContainer<UserAccount, Long> userContainer = applicationManager.getDataContainer(UserAccount.class);
+		final List<UserAccount> firstCreatedUsed = userContainer.getAllBy(UserAccount_.username,
+				createAccountRequest.getUsername());
+		assertEquals(1, firstCreatedUsed.size());
+
+		final ManageUserAccountRequest deleteAccountRequest = new ManageUserAccountRequest();
+		deleteAccountRequest.setSessionId(createSessionRequest.getSessionId());
+		deleteAccountRequest.setAccountOperation(AccountOperation.LOCK);
+		deleteAccountRequest.setUserAcountId(firstCreatedUsed.get(0).getUserId());
+
+		final ManageUserAccountResponse deleteAccountResponse = (ManageUserAccountResponse) applicationManager
+				.service(deleteAccountRequest);
+		assertNotNull(EXPECT_A_RESULT, deleteAccountResponse);
+		assertEquals(EXPECT_SUCCESS, ServiceResult.SUCCESS, deleteAccountResponse.getResult());
+
+		final List<UserAccount> allByAfterDelete = userContainer.getAllBy(UserAccount_.username,
+				createAccountRequest.getUsername());
+		assertEquals(1, allByAfterDelete.size());
+		assertEquals(allByAfterDelete.get(0).getUserLockStatus(),UserLockStatus.LOCKED);
+		
+	}
+
+	@Test
+	public void manageUserAccountSuccessUnLockTest() throws Exception {
+		setAuthenticatedAnonymousUser();
+		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
+		final RegisterUserRequest createAccountRequest = new RegisterUserRequest();
+		createAccountRequest.setCountry("Sweden");
+		createAccountRequest.setUsername(UUID.randomUUID().toString());
+		createAccountRequest.setEmail(createAccountRequest.getUsername() + "@email.com");
+		createAccountRequest.setUserpassword("Userpassword1!");
+		createAccountRequest.setUserType(UserType.PRIVATE);
+		createAccountRequest.setSessionId(createSessionRequest.getSessionId());
+
+		final RegisterUserResponse response = (RegisterUserResponse) applicationManager.service(createAccountRequest);
+		assertNotNull("Expect a result", response);
+		assertEquals(EXPECT_SUCCESS, ServiceResult.SUCCESS, response.getResult());
+		setAuthenticatedAdminuser();
+
+		final DataContainer<UserAccount, Long> userContainer = applicationManager.getDataContainer(UserAccount.class);
+		final List<UserAccount> firstCreatedUsed = userContainer.getAllBy(UserAccount_.username,
+				createAccountRequest.getUsername());
+		assertEquals(1, firstCreatedUsed.size());
+
+		final ManageUserAccountRequest deleteAccountRequest = new ManageUserAccountRequest();
+		deleteAccountRequest.setSessionId(createSessionRequest.getSessionId());
+		deleteAccountRequest.setAccountOperation(AccountOperation.UNLOCK);
+		deleteAccountRequest.setUserAcountId(firstCreatedUsed.get(0).getUserId());
+
+		final ManageUserAccountResponse deleteAccountResponse = (ManageUserAccountResponse) applicationManager
+				.service(deleteAccountRequest);
+		assertNotNull(EXPECT_A_RESULT, deleteAccountResponse);
+		assertEquals(EXPECT_SUCCESS, ServiceResult.SUCCESS, deleteAccountResponse.getResult());
+
+		final List<UserAccount> allByAfterDelete = userContainer.getAllBy(UserAccount_.username,
+				createAccountRequest.getUsername());
+		assertEquals(1, allByAfterDelete.size());
+		assertEquals(allByAfterDelete.get(0).getUserLockStatus(),UserLockStatus.UNLOCKED);
+		
+	}
+
+	
 	@Test
 	public void manageUserAccountFailureTest() throws Exception {
 		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();

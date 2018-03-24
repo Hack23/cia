@@ -33,6 +33,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
+import com.hack23.cia.model.internal.application.user.impl.UserLockStatus;
 import com.hack23.cia.service.api.action.admin.ManageUserAccountRequest;
 import com.hack23.cia.service.api.action.admin.ManageUserAccountResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
@@ -105,6 +106,16 @@ public final class ManageUserAccountService
 
 				removeDataManager.removeUserAccountApplicationHistory(accountToModify.getUserId());
 				userDAO.delete(accountToModify);
+				response = new ManageUserAccountResponse(ServiceResult.SUCCESS);
+			} else if  (accountToModify != null
+					&& serviceRequest.getAccountOperation() == ManageUserAccountRequest.AccountOperation.LOCK) {
+				accountToModify.setUserLockStatus(UserLockStatus.LOCKED);
+				userDAO.persist(accountToModify);
+				response = new ManageUserAccountResponse(ServiceResult.SUCCESS);
+			} else if  (accountToModify != null
+					&& serviceRequest.getAccountOperation() == ManageUserAccountRequest.AccountOperation.UNLOCK) {
+				accountToModify.setUserLockStatus(UserLockStatus.UNLOCKED);
+				userDAO.persist(accountToModify);
 				response = new ManageUserAccountResponse(ServiceResult.SUCCESS);
 			} else {
 				response = new ManageUserAccountResponse(ServiceResult.FAILURE);
