@@ -231,6 +231,34 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	}
 
 	/**
+	 * Site admin useraccount delete test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteAdminUseraccountDeleteTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Useraccount"));
+
+		clickFirstRowInGrid(userPageVisit);
+
+		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
+		
+		final WebElement deleteButton =userPageVisit.findButton("Perform DELETE");
+		assertNotNull("Expect to find a Delete Button",deleteButton);
+
+		userPageVisit.performClickAction(deleteButton);
+		userPageVisit.checkNotificationMessage("Operation completed");
+	}
+	
+	/**
 	 * Site admin language test.
 	 *
 	 * @throws Exception
