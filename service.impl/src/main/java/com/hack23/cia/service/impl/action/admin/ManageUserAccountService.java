@@ -166,7 +166,7 @@ public final class ManageUserAccountService
 				serviceRequest.getUserAcountId());
 
 		final UserCommand userCommand = userCommandMap.get(serviceRequest.getAccountOperation());			
-		if (accountToModify != null && userCommand !=null) {
+		if (accountToModify != null && userCommand != null) {
 			response = userCommand.execute(accountToModify);
 		} else {
 			response = new ManageUserAccountResponse(ServiceResult.FAILURE);
