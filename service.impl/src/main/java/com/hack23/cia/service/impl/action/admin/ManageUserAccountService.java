@@ -18,9 +18,12 @@
 */
 package com.hack23.cia.service.impl.action.admin;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 import javax.validation.ConstraintViolation;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +62,47 @@ public final class ManageUserAccountService
 	/** The remove data manager. */
 	@Autowired
 	private RemoveDataManager removeDataManager;
+	
+	/** The user command map. */
+	private final Map<ManageUserAccountRequest.AccountOperation,UserCommand> userCommandMap = new HashMap<>();
+	
+	/**
+	 * The Interface UserCommand.
+	 */
+	interface UserCommand {
+		ManageUserAccountResponse execute(UserAccount account);		
+	}	
+	
+	@PostConstruct
+	public void initUserCommandMap() {
+		userCommandMap.put(ManageUserAccountRequest.AccountOperation.DELETE, new UserCommand() {
+
+			@Override
+			public ManageUserAccountResponse execute(UserAccount account) {
+				removeDataManager.removeUserAccountApplicationHistory(account.getUserId());
+				userDAO.delete(account);
+				return new ManageUserAccountResponse(ServiceResult.SUCCESS);
+			}});
+
+		userCommandMap.put(ManageUserAccountRequest.AccountOperation.UNLOCK, new UserCommand() {
+
+			@Override
+			public ManageUserAccountResponse execute(UserAccount account) {
+				account.setUserLockStatus(UserLockStatus.UNLOCKED);
+				userDAO.persist(account);
+				return new ManageUserAccountResponse(ServiceResult.SUCCESS);
+			}});
+
+		userCommandMap.put(ManageUserAccountRequest.AccountOperation.LOCK, new UserCommand() {
+
+			@Override
+			public ManageUserAccountResponse execute(UserAccount account) {
+				account.setUserLockStatus(UserLockStatus.LOCKED);
+				userDAO.persist(account);
+				return new ManageUserAccountResponse(ServiceResult.SUCCESS);
+			}});
+
+	}
 
 	/**
 	 * Instantiates a new update application configuration service.
@@ -95,38 +139,41 @@ public final class ManageUserAccountService
 			response.setErrorMessage(errorMessage);
 			eventRequest.setErrorMessage(errorMessage);
 		} else {
-
-			final UserAccount accountToModify = userDAO.findFirstByProperty(UserAccount_.userId,
-					serviceRequest.getUserAcountId());
-
-			if (accountToModify != null
-					&& serviceRequest.getAccountOperation() == ManageUserAccountRequest.AccountOperation.DELETE) {
-				eventRequest.setElementId(serviceRequest.getUserAcountId());
-				eventRequest.setApplicationMessage(serviceRequest.getAccountOperation().toString());
-
-				removeDataManager.removeUserAccountApplicationHistory(accountToModify.getUserId());
-				userDAO.delete(accountToModify);
-				response = new ManageUserAccountResponse(ServiceResult.SUCCESS);
-			} else if  (accountToModify != null
-					&& serviceRequest.getAccountOperation() == ManageUserAccountRequest.AccountOperation.LOCK) {
-				accountToModify.setUserLockStatus(UserLockStatus.LOCKED);
-				userDAO.persist(accountToModify);
-				response = new ManageUserAccountResponse(ServiceResult.SUCCESS);
-			} else if  (accountToModify != null
-					&& serviceRequest.getAccountOperation() == ManageUserAccountRequest.AccountOperation.UNLOCK) {
-				accountToModify.setUserLockStatus(UserLockStatus.UNLOCKED);
-				userDAO.persist(accountToModify);
-				response = new ManageUserAccountResponse(ServiceResult.SUCCESS);
-			} else {
-				response = new ManageUserAccountResponse(ServiceResult.FAILURE);
-			}
-
-			eventRequest.setApplicationMessage(response.getResult().toString());
+			response = performOperation(serviceRequest, eventRequest);
 		}
 		createApplicationEventService.processService(eventRequest);
 
 		return response;
 
+	}
+
+	/**
+	 * Perform operation.
+	 *
+	 * @param serviceRequest
+	 *            the service request
+	 * @param eventRequest
+	 *            the event request
+	 * @return the manage user account response
+	 */
+	private ManageUserAccountResponse performOperation(final ManageUserAccountRequest serviceRequest,
+			final CreateApplicationEventRequest eventRequest) {
+		ManageUserAccountResponse response;
+		eventRequest.setElementId(serviceRequest.getUserAcountId());
+		eventRequest.setApplicationMessage(serviceRequest.getAccountOperation().toString());
+
+		final UserAccount accountToModify = userDAO.findFirstByProperty(UserAccount_.userId,
+				serviceRequest.getUserAcountId());
+
+		final UserCommand userCommand = userCommandMap.get(serviceRequest.getAccountOperation());			
+		if (accountToModify != null && userCommand !=null) {
+			response = userCommand.execute(accountToModify);
+		} else {
+			response = new ManageUserAccountResponse(ServiceResult.FAILURE);
+		}
+		
+		eventRequest.setApplicationMessage(response.getResult().toString());
+		return response;
 	}
 
 	@Override
