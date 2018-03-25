@@ -18,7 +18,7 @@
 */
 package com.hack23.cia.service.impl.action.admin;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -64,15 +64,11 @@ public final class ManageUserAccountService
 	private RemoveDataManager removeDataManager;
 	
 	/** The user command map. */
-	private final Map<ManageUserAccountRequest.AccountOperation,UserCommand> userCommandMap = new HashMap<>();
-	
+	private final Map<ManageUserAccountRequest.AccountOperation,UserCommand> userCommandMap = new EnumMap<>(ManageUserAccountRequest.AccountOperation.class);
+		
 	/**
-	 * The Interface UserCommand.
+	 * Inits the user command map.
 	 */
-	interface UserCommand {
-		ManageUserAccountResponse execute(UserAccount account);		
-	}	
-	
 	@PostConstruct
 	public void initUserCommandMap() {
 		userCommandMap.put(ManageUserAccountRequest.AccountOperation.DELETE, new UserCommand() {
@@ -190,5 +186,12 @@ public final class ManageUserAccountService
 	protected ManageUserAccountResponse createErrorResponse() {
 		return new ManageUserAccountResponse(ServiceResult.FAILURE);
 	}
+
+	/**
+	 * The Interface UserCommand.
+	 */
+	interface UserCommand {
+		ManageUserAccountResponse execute(UserAccount account);		
+	}	
 
 }

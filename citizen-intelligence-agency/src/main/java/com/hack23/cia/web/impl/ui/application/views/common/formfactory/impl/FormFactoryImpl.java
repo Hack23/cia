@@ -110,10 +110,7 @@ public final class FormFactoryImpl implements FormFactory {
 		button.setIcon(VaadinIcons.BULLSEYE);
 		button.setEnabled(false);
 		binder.addStatusChangeListener( event -> {
-	            final boolean hasChanges, isValid;
-	            hasChanges = event.getBinder().hasChanges();
-	            isValid = event.getBinder().isValid();
-	            button.setEnabled(isValid );
+	            button.setEnabled(event.getBinder().isValid());
 	    } );
 		
 		
@@ -183,10 +180,10 @@ public final class FormFactoryImpl implements FormFactory {
 			if (typeOfProperty != null) {
 				final AbstractField<?> field = new TextField();
 				field.setReadOnly(true);
-				final Converter converter = getConverterForType(typeOfProperty);
 				field.setCaption(property);
 				field.setWidth(ContentSize.FULL_SIZE);
 				formContent.addComponent(field);
+				final Converter converter = getConverterForType(typeOfProperty);
 
 				if (converter != null) {
 					binder.forField(field).withConverter(converter).bind(property);
@@ -208,8 +205,8 @@ public final class FormFactoryImpl implements FormFactory {
 	 */
 	private static Converter getConverterForType(final Class<?> typeOfProperty) {
 		Converter converter = null;
-		if (typeOfProperty.equals(String.class)) {
-		} else if (Date.class.equals(typeOfProperty)) {
+		
+		if (Date.class.equals(typeOfProperty)) {
 			converter = new StringToDateConverter();
 		} else if (Integer.class.equals(typeOfProperty) || "int".equalsIgnoreCase(typeOfProperty.getName())) {
 			converter = new StringToIntegerConverter("Input value should be an integer");
