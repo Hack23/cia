@@ -179,6 +179,10 @@
           <artifactId>core</artifactId>
           <groupId>com.github.fommil.netlib</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>bounce</artifactId>
+          <groupId>nz.ac.waikato.cms.weka.thirdparty</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
