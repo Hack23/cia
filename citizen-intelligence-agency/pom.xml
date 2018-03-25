@@ -814,6 +814,12 @@
       <groupId>org.jrobin</groupId>
       <artifactId>jrobin</artifactId>
       <version>1.6.0</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>junit</artifactId>
+          <groupId>junit</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.github.librepdf</groupId>
