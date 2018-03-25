@@ -21,10 +21,6 @@ package com.hack23.cia.service.impl.action.application;
 import java.util.List;
 import java.util.UUID;
 
-import org.databene.contiperf.PerfTest;
-import org.databene.contiperf.Required;
-import org.databene.contiperf.junit.ContiPerfRule;
-import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -43,10 +39,6 @@ import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
  */
 public final class CreateApplicationSessionServiceITest extends AbstractServiceFunctionalIntegrationTest {
 
-	/** The i. */
-	@Rule
-	public ContiPerfRule i = new ContiPerfRule();
-
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
@@ -62,8 +54,6 @@ public final class CreateApplicationSessionServiceITest extends AbstractServiceF
 	 *             the exception
 	 */
 	@Test
-	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 400, percentile95 = 450, throughput = 20)
 	public void serviceCreateApplicationSessionRequestSuccessTest() throws Exception {
 		setAuthenticatedAnonymousUser();
 
@@ -92,9 +82,6 @@ public final class CreateApplicationSessionServiceITest extends AbstractServiceF
 		assertEquals(serviceRequest.getLocale(), applicationSession.getLocale());
 		assertEquals(serviceRequest.getUserAgentInformation(), applicationSession.getUserAgentInformation());
 		assertEquals(serviceRequest.getSessionType(), applicationSession.getSessionType());
-
-
-
 	}
 
 }
