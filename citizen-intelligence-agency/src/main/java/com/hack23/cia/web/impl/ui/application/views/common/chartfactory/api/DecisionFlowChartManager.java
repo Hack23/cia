@@ -30,24 +30,28 @@ import com.hack23.cia.web.widgets.charts.SankeyChart;
 public interface DecisionFlowChartManager {
 
 	/**
-	 * Creates the all decision flow.
-	 *
-	 * @param committeeMap
-	 *            the committee map
-	 * @return the sankey chart
-	 */
-	SankeyChart createAllDecisionFlow(Map<String, List<ViewRiksdagenCommittee>> committeeMap);
-
-	/**
 	 * Creates the committee decision flow.
 	 *
 	 * @param viewRiksdagenCommittee
 	 *            the view riksdagen committee
 	 * @param committeeMap
 	 *            the committee map
+	 * @param rm
+	 *            the rm
 	 * @return the sankey chart
 	 */
 	SankeyChart createCommitteeDecisionFlow(ViewRiksdagenCommittee viewRiksdagenCommittee,
-			Map<String, List<ViewRiksdagenCommittee>> committeeMap);
+			Map<String, List<ViewRiksdagenCommittee>> committeeMap, String rm);
+
+	/**
+	 * Creates the all decision flow.
+	 *
+	 * @param committeeMap
+	 *            the committee map
+	 * @param rm
+	 *            the rm
+	 * @return the sankey chart
+	 */
+	SankeyChart createAllDecisionFlow(Map<String, List<ViewRiksdagenCommittee>> committeeMap, String rm);
 
 }

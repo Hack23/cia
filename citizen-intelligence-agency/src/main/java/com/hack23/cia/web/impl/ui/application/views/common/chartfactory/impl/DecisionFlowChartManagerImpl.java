@@ -51,8 +51,8 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 	}
 
 	@Override
-	public SankeyChart createAllDecisionFlow(final Map<String, List<ViewRiksdagenCommittee>> committeeMap) {
-		final List<ProposalCommitteeeSummary> createCommitteeSummary = decisionDataFactory.createCommitteeSummary("20");
+	public SankeyChart createAllDecisionFlow(final Map<String, List<ViewRiksdagenCommittee>> committeeMap,final String rm) {
+		final List<ProposalCommitteeeSummary> createCommitteeSummary = decisionDataFactory.createCommitteeSummary(rm);
 
 		final SankeyChart chart = new SankeyChart();
 
@@ -126,8 +126,8 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 
 	@Override
 	public SankeyChart createCommitteeDecisionFlow(final ViewRiksdagenCommittee viewRiksdagenCommittee,
-			final Map<String, List<ViewRiksdagenCommittee>> committeeMap) {
-		final List<ProposalCommitteeeSummary> createCommitteeSummary = decisionDataFactory.createCommitteeSummary("20");
+			final Map<String, List<ViewRiksdagenCommittee>> committeeMap, final String rm) {
+		final List<ProposalCommitteeeSummary> createCommitteeSummary = decisionDataFactory.createCommitteeSummary(rm);
 
 		final SankeyChart chart = new SankeyChart();
 

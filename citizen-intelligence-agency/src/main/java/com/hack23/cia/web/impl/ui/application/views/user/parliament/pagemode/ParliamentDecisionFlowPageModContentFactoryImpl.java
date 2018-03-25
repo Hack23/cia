@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -33,8 +35,11 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionFlowChartManager;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.widgets.charts.SankeyChart;
+import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -81,8 +86,13 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 
 		final Map<String, List<ViewRiksdagenCommittee>> committeeMap = allCommittess.stream().collect(Collectors.groupingBy(c -> c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));
 		
+		ComboBox<String> comboBox = new ComboBox<>("Select year", Collections.unmodifiableList(Arrays.asList("2017/18","2016/17","2015/16","2014/15")));
+		panelContent.addComponent(comboBox);
+		panelContent.setExpandRatio(comboBox, ContentRatio.SMALL);
 		
-		panelContent.addComponent(decisionFlowChartManager.createAllDecisionFlow(committeeMap));		
+		SankeyChart chart = decisionFlowChartManager.createAllDecisionFlow(committeeMap,comboBox.getSelectedItem().orElse("2017/18"));
+		panelContent.addComponent(chart);
+		panelContent.setExpandRatio(chart, ContentRatio.LARGE);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
