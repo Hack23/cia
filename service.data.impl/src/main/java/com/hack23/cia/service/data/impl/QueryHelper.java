@@ -22,8 +22,8 @@ import java.util.Locale;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.SingularAttribute;
 
 /**
@@ -45,23 +45,23 @@ public final class QueryHelper {
 	 *            the generic type
 	 * @param criteriaBuilder
 	 *            the criteria builder
-	 * @param root
-	 *            the root
+	 * @param path
+	 *            the path
 	 * @param value
 	 *            the value
 	 * @param property
 	 *            the property
 	 * @return the predicate
 	 */
-	public static <T> Predicate equalsIgnoreCaseIfStringPredicate(final CriteriaBuilder criteriaBuilder,final Root<T> root,
+	public static <T> Predicate equalsIgnoreCaseIfStringPredicate(final CriteriaBuilder criteriaBuilder,final Path<T> path,
 			final Object value, final SingularAttribute<T, ? extends Object> property) {
 		Predicate condition;
 		if (value instanceof String) {
-			final Expression<String> propertyObject = (Expression<String>) root.get(property);
+			final Expression<String> propertyObject = (Expression<String>) path.get(property);
 			condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject), ((String) value).toUpperCase(Locale.ENGLISH));
 
 		} else {
-			condition = criteriaBuilder.equal(root.get(property), value);
+			condition = criteriaBuilder.equal(path.get(property), value);
 		}
 		return condition;
 	}
