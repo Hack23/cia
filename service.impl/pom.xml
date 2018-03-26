@@ -223,6 +223,10 @@
           <artifactId>lucene-analyzers-common</artifactId>
           <groupId>org.apache.lucene</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>hibernate-commons-annotations</artifactId>
+          <groupId>org.hibernate.common</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
