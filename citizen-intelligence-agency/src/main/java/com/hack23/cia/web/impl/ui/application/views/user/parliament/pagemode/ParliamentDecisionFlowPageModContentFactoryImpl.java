@@ -43,6 +43,7 @@ import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -77,8 +78,10 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 		final VerticalLayout panelContent = createPanelContent();
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 
-		final String pageId = getPageId(parameters);
-
+		String selectedYear = "2017/18";
+		if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
+			selectedYear = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));
+		} 
 		
 		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommittee.class);
@@ -86,16 +89,23 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 
 		final Map<String, List<ViewRiksdagenCommittee>> committeeMap = allCommittess.stream().collect(Collectors.groupingBy(c -> c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));
 		
-		ComboBox<String> comboBox = new ComboBox<>("Select year", Collections.unmodifiableList(Arrays.asList("2017/18","2016/17","2015/16","2014/15")));
+		ComboBox<String> comboBox = new ComboBox<>("Select year", Collections.unmodifiableList(Arrays.asList("2017/18","2016/17","2015/16","2014/15","2013/14","2012/13","2011/12","2010/11")));
 		panelContent.addComponent(comboBox);
 		panelContent.setExpandRatio(comboBox, ContentRatio.SMALL);
+		comboBox.setSelectedItem(selectedYear);
+		comboBox.addValueChangeListener(event -> {
+			if (!event.getSource().isEmpty()) {
+				UI.getCurrent().getNavigator().navigateTo(NAME + "/" + PageMode.CHARTS.toString() + "/" + ChartIndicators.DECISION_FLOW_CHART.toString() +"[" + event.getValue() +"]");
+			}
+		});
 		
-		SankeyChart chart = decisionFlowChartManager.createAllDecisionFlow(committeeMap,comboBox.getSelectedItem().orElse("2017/18"));
+		SankeyChart chart = decisionFlowChartManager.createAllDecisionFlow(committeeMap,comboBox.getSelectedItem().orElse(selectedYear));
 		panelContent.addComponent(chart);
 		panelContent.setExpandRatio(chart, ContentRatio.LARGE);
+		
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
-				parameters, pageId);
+				parameters, selectedYear);
 		panel.setCaption(new StringBuilder().append(NAME).append("::").append(PARLIAMENT_DECISION_FLOW).toString());
 
 		return panelContent;
