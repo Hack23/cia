@@ -72,7 +72,7 @@
 			"ConstraintDescription": "must be a valid EC2 instance type."
 		},
 		"WebServerAmi": {
-			"Description": "Web server ami ubuntu 16.04+, recommend ebs encrypted ami based on ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server",
+			"Description": "Web server ami ubuntu 18.04+, recommend ebs encrypted ami based on ubuntu hvm-ssd/ubuntu-bionic server",
 			"Type": "String",
 			"Default": ""
 		},
