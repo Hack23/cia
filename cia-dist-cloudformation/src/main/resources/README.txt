@@ -1,10 +1,6 @@
 Will use latest hvm-ssd ubuntu image:Current: ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20180126 : ami-1b791862
 
-17.04
-ubuntu/images/hvm-ssd/ubuntu-zesty-17.04-amd64-server-20170811 : ami-1446b66d
-
-18.04
-hvm-ssd/ubuntu-bionic
+Prepare use 18.04 hvm-ssd/ubuntu-bionic
 
 http://www.ec2instances.info/
 
