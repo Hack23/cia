@@ -72,7 +72,7 @@
 			"ConstraintDescription": "must be a valid EC2 instance type."
 		},
 		"WebServerAmi": {
-			"Description": "Web server ami ubuntu 18.04+, recommend ebs encrypted ami based on ubuntu hvm-ssd/ubuntu-bionic server",
+			"Description": "Web server ami ubuntu 16.04+, recommend ebs encrypted ami based on ubuntu hvm-ssd server",
 			"Type": "String",
 			"Default": ""
 		},
@@ -2044,12 +2044,9 @@
 					"config": {
 						"packages": {
 							"apt": {
-								"openjdk-9-jdk": [
+								"openjdk-8-jdk": [
 
 								],
-								"postgresql-client-10": [
-
-								],							
 								"ntp": [
 
 								],
