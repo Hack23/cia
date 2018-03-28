@@ -40,6 +40,17 @@
     <dependency>
       <groupId>org.hibernate.validator</groupId>
       <artifactId>hibernate-validator</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>classmate</artifactId>
+          <groupId>com.fasterxml</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml</groupId>
+      <artifactId>classmate</artifactId>
+      <version>1.4.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>

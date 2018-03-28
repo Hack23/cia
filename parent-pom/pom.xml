@@ -99,9 +99,9 @@
     <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
-    <!-- <cia.project.versions.spring>4.3.8.RELEASE/5.0.0.RELEASE/5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring> -->
+    <!-- <cia.project.versions.spring>5.0.5.RELEASE/5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring> -->
     <cia.project.versions.spring>5.0.4.RELEASE</cia.project.versions.spring>
-    <!-- <cia.project.versions.spring.security>5.0.0.M1/4.2.2.RELEASE/4.2.3.BUILD-SNAPSHOT</cia.project.versions.spring.security> -->
+    <!-- <cia.project.versions.spring.security>5.0.4.RELEASE/5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring.security> -->
     <cia.project.versions.spring.security>5.0.3.RELEASE</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.0.RC4</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.22.0-GA</cia.project.versions.javassist>
@@ -116,17 +116,17 @@
     <cia.project.versions.hibernate>5.3.0.CR1</cia.project.versions.hibernate>
     <cia.project.versions.hibernate.jpamodelgen>5.3.0.CR1</cia.project.versions.hibernate.jpamodelgen>
     <cia.project.versions.hibernate.build>5.3.0.CR1</cia.project.versions.hibernate.build>
-    <cia.project.versions.hibernate.tools>5.3.0.Beta1</cia.project.versions.hibernate.tools>
+    <cia.project.versions.hibernate.tools>5.3.0.Beta2</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.2</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.0.9.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>6.0.9.Final</cia.project.versions.hibernate.build.validator>
-    <cia.project.versions.bytebuddy>1.8.0</cia.project.versions.bytebuddy>
+    <cia.project.versions.bytebuddy>1.8.1</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.197</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.2.2</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.4.4.8</cia.project.versions.ehcache>
     <cia.project.versions.poi>3.17</cia.project.versions.poi>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
-    <cia.project.versions.ant>1.10.2</cia.project.versions.ant>
+    <cia.project.versions.ant>1.10.3</cia.project.versions.ant>
     <cia.project.versions.junit>4.12</cia.project.versions.junit>
     <cia.project.versions.junit.dep>4.11</cia.project.versions.junit.dep>
     <cia.project.versions.easymock>3.5.1</cia.project.versions.easymock>
@@ -177,7 +177,7 @@
       <dependency>
         <groupId>org.apache.ant</groupId>
         <artifactId>ant</artifactId>
-        <version>1.10.2</version>
+        <version>1.10.3</version>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
