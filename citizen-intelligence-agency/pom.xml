@@ -118,6 +118,10 @@
           <artifactId>spring-data-jpa</artifactId>
           <groupId>org.springframework.data</groupId>
         </exclusion>
+        <exclusion>
+          <groupId>org.reflections</groupId>
+          <artifactId>reflections</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
