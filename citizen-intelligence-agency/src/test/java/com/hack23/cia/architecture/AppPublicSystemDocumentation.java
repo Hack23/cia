@@ -45,9 +45,9 @@ import com.structurizr.model.Person;
 import com.structurizr.model.SoftwareSystem;
 import com.structurizr.model.Tags;
 import com.structurizr.view.DeploymentView;
-import com.structurizr.view.EnterpriseContextView;
 import com.structurizr.view.Shape;
 import com.structurizr.view.Styles;
+import com.structurizr.view.SystemLandscapeView;
 import com.structurizr.view.ViewSet;
 
 import net.sourceforge.plantuml.Run;
@@ -82,7 +82,7 @@ public class AppPublicSystemDocumentation {
 		}
 
 		@Override
-		protected Set<Component> doFindComponents() throws Exception {
+		protected Set<Component> doFindComponents() {
 			return findInterfacesForImplementationClassesWithAnnotation(org.springframework.stereotype.Repository.class,
 					SPRING_REPOSITORY);
 		}
@@ -127,6 +127,8 @@ public class AppPublicSystemDocumentation {
 		componentFinderWeb.exclude(".*service.external.*");
 		componentFinderWeb.exclude(".*service.component.*");
 		componentFinderWeb.exclude(".*package.*");
+		componentFinderWeb.exclude(".*service.impl.*");
+		
 
 		componentFinderWeb.findComponents();
 
@@ -143,7 +145,7 @@ public class AppPublicSystemDocumentation {
 
 		ciaWebContainer.uses(relationalDatabase, "JDBC");
 
-		final EnterpriseContextView enterpriseContextView = viewSet.createEnterpriseContextView("Enterprise",
+		final SystemLandscapeView enterpriseContextView = viewSet.createSystemLandscapeView("Enterprise",
 				"Enterprise");
 		enterpriseContextView.addAllElements();
 		final Enterprise enterprise = new Enterprise("Hack23");
