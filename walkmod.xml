@@ -1,7 +1,12 @@
 <!DOCTYPE walkmod PUBLIC "-//WALKMOD//DTD" "http://www.walkmod.com/dtd/walkmod-1.1.dtd">
 <walkmod>
     <plugins>
+        <plugin artifactId="walkmod-javalang-plugin" groupId="org.walkmod" version="latest.integration"/>
         <plugin artifactId="walkmod-sonar-plugin" groupId="org.walkmod" version="latest.integration"/>
+        <plugin artifactId="walkmod-findbugs-plugin" groupId="org.walkmod" version="latest.integration"/>
         <plugin artifactId="walkmod-pmd-plugin" groupId="org.walkmod" version="latest.integration"/>
+        <plugin artifactId="walkmod-dead-code-cleaner-plugin" groupId="org.walkmod" version="latest.integration"/>        
+        <plugin artifactId="walkmod-override-plugin" groupId="org.walkmod" version="latest.integration"/>
+        <plugin artifactId="walkmod-imports-cleaner-plugin" groupId="org.walkmod" version="latest.integration"/>        
     </plugins>
 </walkmod>
