@@ -90,7 +90,7 @@
     <scm-publish.scmBranch>gh-pages</scm-publish.scmBranch>
     <scm-publish.pubScmUrl>scm:git:https://github.com/Hack23/cia.git</scm-publish.pubScmUrl>
     <scm-publish.siteDocOuputDirectory>${project.build.directory}/staging</scm-publish.siteDocOuputDirectory>
-    <sonar.host.url>http://localhost:9000</sonar.host.url>
+    <sonar.host.url>https://www.hack23.com/sonar/</sonar.host.url>
     <sonar.sources>.</sonar.sources>
     <sonar.inclusions>src/main/**</sonar.inclusions>
     <sonar.dependencyCheck.reportPath>${project.basedir}/../dependency-check-report.xml</sonar.dependencyCheck.reportPath>
