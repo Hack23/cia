@@ -1680,82 +1680,10 @@
   </reporting>
   <profiles>
     <profile>
-      <id>dev</id>
-      <properties>
-        <wizard.mode>true</wizard.mode>
-        <itsyourparliament.eu.access.key>${itsyourparliament.key}</itsyourparliament.eu.access.key>
-        <jetty.port>9090</jetty.port>
-        <skip.database.recreate>false</skip.database.recreate>
-        <database.build.driver_class>com.mysql.jdbc.Driver</database.build.driver_class>
-        <database.build.base.url>jdbc:mysql://localhost:3306</database.build.base.url>
-        <database.driver_class>net.bull.javamelody.JdbcDriver</database.driver_class>
-        <database.base.url>jdbc:mysql://localhost:3306/cia_dev</database.base.url>
-        <database.name>cia_dev</database.name>
-        <database.username>eris</database.username>
-        <database.password>discord</database.password>
-        <database.ddl>update</database.ddl>
-        <server.automatic.deploy>false</server.automatic.deploy>
-        <cia.disable.import>true</cia.disable.import>
-      </properties>
-    </profile>
-    <profile>
       <id>release</id>
       <properties>
         <maven.test.skip>true</maven.test.skip>
       </properties>
-    </profile>
-    <profile>
-      <id>database-validate</id>
-      <properties>
-        <database.ddl>validate</database.ddl>
-      </properties>
-    </profile>
-    <profile>
-      <id>database-update</id>
-      <properties>
-        <database.ddl>update</database.ddl>
-      </properties>
-    </profile>
-    <profile>
-      <id>database-create</id>
-      <properties>
-        <database.ddl>create</database.ddl>
-      </properties>
-    </profile>
-    <profile>
-      <id>database-create-drop</id>
-      <properties>
-        <database.ddl>create-drop</database.ddl>
-      </properties>
-    </profile>
-    <profile>
-      <id>google-translate-resources</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.systemsplanet.plugin</groupId>
-            <artifactId>google-api-translate-java-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>generate-projects</id>
-                <phase>process-classes</phase>
-                <goals>
-                  <goal>localize</goal>
-                </goals>
-              </execution>
-            </executions>
-            <inherited>false</inherited>
-            <configuration>
-              <debug>true</debug>
-              <sourceTranslationPath>${basedir}/src/main/resources/</sourceTranslationPath>
-              <languageFilePattern>IAResources_{0}.properties</languageFilePattern>
-              <sourceLanguage>en</sourceLanguage>
-              <destinationPath>${project.build.directory}/</destinationPath>
-              <targetLanguages>nl,fr,de,it,es,da,fi,no</targetLanguages>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
   </profiles>
 </project>
