@@ -103,7 +103,7 @@
     <cia.project.versions.spring>5.0.4.RELEASE</cia.project.versions.spring>
     <!-- <cia.project.versions.spring.security>5.0.4.RELEASE/5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring.security> -->
     <cia.project.versions.spring.security>5.0.3.RELEASE</cia.project.versions.spring.security>
-    <cia.project.versions.aspectj>1.9.0.RC4</cia.project.versions.aspectj>
+    <cia.project.versions.aspectj>1.9.0</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.22.0-GA</cia.project.versions.javassist>
     <cia.project.versions.asm>6.1.1</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.6</cia.project.versions.cglib>
@@ -786,7 +786,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.0.2</version>
+          <version>3.1.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1657,7 +1657,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
-            <version>3.0.2</version>
+            <version>3.1.0</version>
             <executions>
               <execution>
                 <id>unpack-dependencies</id>
