@@ -74,7 +74,7 @@ Parameters:
     ConstraintDescription: must be a valid EC2 instance type.
   WebServerAmi:
     Description: Web server ami ubuntu 16.04+, recommend ebs encrypted ami based on
-      ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server
+      ubuntu hvm-ssd server
     Type: String
     Default: ''
   WebServerCount:
@@ -138,7 +138,7 @@ Parameters:
     Default: ''
     Type: String
   DebPackageUrl:
-    Default: https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2017.12.24/cia-dist-deb-2017.12.24.deb
+    Default: https://repo1.maven.org/maven2/com/hack23/cia/cia-dist-deb/2018.2.25/cia-dist-deb-2018.2.25.deb
     Description: The debian package url
     Type: String
     MinLength: '8'
@@ -1049,12 +1049,18 @@ Resources:
     Type: AWS::RDS::DBParameterGroup
     Properties:
       Description: Database Parameter Group + pg_stat_statements
-      Family: postgres9.6
+      Family: postgres10
       Parameters:
-        shared_preload_libraries: pg_stat_statements
         max_prepared_transactions: LEAST({DBInstanceClassMemory/9531392},5000)
         max_parallel_workers_per_gather: '4'
         rds.force_ssl: '1'
+        rds.force_admin_logging_level: notice
+        rds.force_autovacuum_logging_level: notice
+        rds.log_retention_period: '2400'
+        shared_preload_libraries: pg_stat_statements, pgaudit
+        pgaudit.log: ddl
+        pg_stat_statements.track: all
+        pg_stat_statements.max: '10000'
   myDBSubnetGroup:
     Type: AWS::RDS::DBSubnetGroup
     Properties:
@@ -1082,7 +1088,7 @@ Resources:
       AllocatedStorage: !Ref 'DBAllocatedStorage'
       DBInstanceClass: !Ref 'DBClass'
       Engine: postgres
-      EngineVersion: 9.6.5
+      EngineVersion: '10.1'
       MultiAZ: 'false'
       PubliclyAccessible: 'true'
       StorageType: gp2
@@ -1179,6 +1185,7 @@ Resources:
         - CertificateArn: !Ref 'CertificateArn'
       Port: 443
       Protocol: HTTPS
+      SslPolicy: ELBSecurityPolicy-TLS-1-2-2017-01
   TargetGroupHttps:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Condition: useCertificate
@@ -1338,7 +1345,6 @@ Resources:
           packages:
             apt:
               openjdk-8-jdk: []
-              postgresql-client-9.5: []
               ntp: []
               ntpdate: []
               ufw: []
@@ -1445,6 +1451,48 @@ Resources:
                   - "\n"
                   - log_group_name = ec2awslogs
                   - "\n"
+                  - '[rkhunter.log]'
+                  - "\n"
+                  - datetime_format = %Y-%m-%d %H:%M:%S
+                  - "\n"
+                  - file = /var/log/rkhunter.log
+                  - "\n"
+                  - buffer_duration = 5000
+                  - "\n"
+                  - log_stream_name = {instance_id}-{hostname}-{ip_address}-rkhunter.log
+                  - "\n"
+                  - initial_position = start_of_file
+                  - "\n"
+                  - log_group_name = ec2awslogs
+                  - "\n"
+                  - '[lynis.log]'
+                  - "\n"
+                  - datetime_format = %Y-%m-%d %H:%M:%S
+                  - "\n"
+                  - file = /var/log/lynis.log
+                  - "\n"
+                  - buffer_duration = 5000
+                  - "\n"
+                  - log_stream_name = {instance_id}-{hostname}-{ip_address}-lynis.log
+                  - "\n"
+                  - initial_position = start_of_file
+                  - "\n"
+                  - log_group_name = ec2awslogs
+                  - "\n"
+                  - '[ciaapp.log]'
+                  - "\n"
+                  - datetime_format = %Y-%m-%d %H:%M:%S
+                  - "\n"
+                  - file = /opt/cia/logs/*.log
+                  - "\n"
+                  - buffer_duration = 5000
+                  - "\n"
+                  - log_stream_name = {instance_id}-{hostname}-{ip_address}-ciaapp.log
+                  - "\n"
+                  - initial_position = start_of_file
+                  - "\n"
+                  - log_group_name = ec2awslogs
+                  - "\n"
               mode: '000644'
               owner: root
               group: root
@@ -1492,14 +1540,41 @@ Resources:
             - '    --region '
             - !Ref 'AWS::Region'
             - "\n"
-            - "# INSTALL ORACLE JDK\n"
-            - "sudo add-apt-repository ppa:webupd8team/java \n"
-            - "sudo apt-get update\n"
-            - "echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select\
-              \ true | sudo /usr/bin/debconf-set-selections\n"
-            - "sudo apt-get -y install oracle-java9-installer\n"
-            - "# sudo apt-get -y install oracle-java8-unlimited-jce-policy\n"
-            - "sudo apt-get -y install oracle-java9-set-default\n"
+            - "ufw default allow outgoing\n"
+            - "ufw default deny incoming\n"
+            - "sudo /etc/init.d/ssh stop\n"
+            - "sudo apt-get -y purge openssh-server\n"
+            - "ufw allow 8443/tcp\n"
+            - "ufw allow 53\n"
+            - "ufw allow ntp\n"
+            - "ufw enable\n"
+            - "ufw status verbose\n"
+            - "wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install\n"
+            - "sudo bash install\n"
+            - "wget https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb\n"
+            - "sudo dpkg -i --force all amazon-ssm-agent.deb\n"
+            - "sudo systemctl enable amazon-ssm-agent\n"
+            - "sudo systemctl start amazon-ssm-agent\n"
+            - "sudo apt-get -y install curl python software-properties-common xz-utils\
+              \ bzip2 gnupg wget graphviz\n"
+            - "sudo wget -O /tmp/awslogs-agent-setup.py https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py\n"
+            - "sudo chmod 775 /tmp/awslogs-agent-setup.py\n"
+            - "sudo mkdir -p /var/awslogs/etc/\n"
+            - "sudo /tmp/awslogs-agent-setup.py -n -r eu-west-1 -c /etc/awslogs.conf\n"
+            - "sudo apt-get -y install libwww-perl libdatetime-perl\n"
+            - "wget https://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip\n"
+            - "unzip CloudWatchMonitoringScripts-1.2.1.zip\n"
+            - "rm CloudWatchMonitoringScripts-1.2.1.zip\n"
+            - "sudo mv aws-scripts-mon /opt/aws-scripts-mon\n"
+            - "sudo chmod a+x /opt/aws-scripts-mon/*\n"
+            - "sudo chmod +x /etc/cron.d/cloudwatch-monitor*\n"
+            - "sudo /etc/init.d/cron restart\n"
+            - "# INSTALL OPEN JDK\n"
+            - "wget https://download.java.net/java/GA/jdk10/10/binaries/openjdk-10_linux-x64_bin.tar.gz\n"
+            - "tar xvfz openjdk-10_linux-x64_bin.tar.gz\n"
+            - "sudo mv jdk-10 /usr/lib/jvm/java-10-openjdk-amd64\n"
+            - "sudo ln -s /usr/lib/jvm/java-10-openjdk-amd64 /usr/lib/jvm/java-10-oracle\n"
+            - "rm openjdk-10_linux-x64_bin.tar.gz\n"
             - 'wget '
             - !Ref 'DebPackageUrl'
             - " -O cia-dist-deb.deb \n"
@@ -1520,7 +1595,7 @@ Resources:
             - "TOTAL_MEM_KB=$(awk '/MemTotal:/ { print $2 }' /proc/meminfo)\n"
             - "let JAVAMEMSIZE=$TOTAL_MEM_KB-1280*1024\n"
             - "sed -i -e 's_4096m_'$JAVAMEMSIZE'k_' /opt/cia/start.ini\n"
-            - sed -i -e 's/# -DUSE_LOG_APPENDER=
+            - '# sed -i -e ''s/# -DUSE_LOG_APPENDER='
             - !Ref 'WebServerAppLogAppender'
             - / -DUSE_LOG_APPENDER=
             - !Ref 'WebServerAppLogAppender'
@@ -1533,35 +1608,19 @@ Resources:
             - "keytool -import -keystore /etc/ssl/certs/java/cacerts -file rds-combined-ca-bundle.pem\
               \ -storepass 'changeit' -noprompt -alias aws-rds-2016\n"
             - "/etc/init.d/cia restart\n"
-            - "ufw default allow outgoing\n"
-            - "ufw default deny incoming\n"
-            - "sudo /etc/init.d/ssh stop\n"
-            - "sudo apt-get -y purge openssh-server\n"
-            - "ufw allow 8443/tcp\n"
-            - "ufw allow 53\n"
-            - "ufw allow ntp\n"
-            - "ufw enable\n"
-            - "ufw status verbose\n"
-            - "wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install\n"
-            - "sudo bash install\n"
-            - "wget https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb\n"
-            - "sudo dpkg -i --force all amazon-ssm-agent.deb\n"
-            - "sudo systemctl enable amazon-ssm-agent\n"
-            - "sudo systemctl start amazon-ssm-agent\n"
-            - "sudo apt-get -y install curl python software-properties-common xz-utils\
-              \ bzip2 gnupg wget graphviz\n"
-            - "sudo wget -O /tmp/awslogs-agent-setup.py http://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py\n"
-            - "sudo chmod 775 /tmp/awslogs-agent-setup.py\n"
-            - "sudo mkdir -p /var/awslogs/etc/\n"
-            - "sudo /tmp/awslogs-agent-setup.py -n -r eu-west-1 -c /etc/awslogs.conf\n"
-            - "sudo apt-get -y install libwww-perl libdatetime-perl\n"
-            - "wget http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip\n"
-            - "unzip CloudWatchMonitoringScripts-1.2.1.zip\n"
-            - "rm CloudWatchMonitoringScripts-1.2.1.zip\n"
-            - "sudo mv aws-scripts-mon /opt/aws-scripts-mon\n"
-            - "sudo chmod a+x /opt/aws-scripts-mon/*\n"
-            - "sudo chmod +x /etc/cron.d/cloudwatch-monitor*\n"
-            - "sudo /etc/init.d/cron restart\n"
+            - "# TODO setup  cron jobs for security auditing, intrusion detection,\
+              \ system hardening#\n"
+            - "sudo apt-get -y install lsb-invalid-mta\n"
+            - "sudo apt-get -y install acct auditd audispd-plugins\n"
+            - "sudo apt-get -y install rkhunter chkrootkit lynis\n"
+            - "sudo chkrootkit\n"
+            - "#sudo rkhunter --update --cronjob\n"
+            - "#sudo rkhunter --propupd --cronjob\n"
+            - "#sudo rkhunter --cronjob --check --quiet\n"
+            - "sudo lynis -c --cronjob\n"
+            - "# Baseline processes open sockets #\n"
+            - "sudo apt-get -y install procinfo\n"
+            - "sudo socklist\n"
             - "# Signal completion\n"
             - 'cfn-signal -e $? '
             - '    --stack '
@@ -1608,7 +1667,7 @@ Outputs:
     Description: URL of the website
     Value: !Join
       - ''
-      - - http://
+      - - https://
         - !GetAtt 'PublicElasticLoadBalancerV2.DNSName'
   JDBCConnectionString:
     Description: JDBC connection string for database

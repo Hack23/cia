@@ -52,6 +52,10 @@
                   <file>src/main/resources/cia-dist-cloudformation.template</file>
                   <type>template</type>
                 </artifact>
+                <artifact>
+                  <file>src/main/resources/cia-dist-cloudformation.yml</file>
+                  <type>yml</type>
+                </artifact>
               </artifacts>
             </configuration>
           </execution>
@@ -74,6 +78,13 @@
                   <artifactId>cia-dist-cloudformation</artifactId>
                   <version>${project.version}</version>
                   <type>template</type>
+                  <overWrite>false</overWrite>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>com.hack23.cia</groupId>
+                  <artifactId>cia-dist-cloudformation</artifactId>
+                  <version>${project.version}</version>
+                  <type>yml</type>
                   <overWrite>false</overWrite>
                 </artifactItem>
               </artifactItems>
