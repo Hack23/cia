@@ -134,6 +134,12 @@ $ sudo apt-get update
 $ sudo apt-get install oracle-java9-installer oracle-java8-installer oracle-java8-unlimited-jce-policy
 ```
 
+2. Installing Postgresql on Ubuntu
+
+```
+$ sudo apt-get install postgresql-10 postgresql-contrib postgresql-10-pgaudit
+```
+
 3. Create empty database
 
 Below description set the default username/password and database name used for development, recommend using custom credentials and update the configuration at /opt/cia/webapps/cia/WEB-INF/database.properties to define your own username/password and database name.
@@ -146,7 +152,7 @@ postgres=# CREATE DATABASE cia_dev;
 postgres=# GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;
 ```
 
-4. Modify postgres setting, enable prepared transactions
+4. Modify postgres setting, enable prepared transactions and extensions used pg_stat_statements, pgaudit, pgcrypto 
 
 Edit file "/etc/postgresql/9.6/main/postgresql.conf" set
 
@@ -154,6 +160,12 @@ Edit file "/etc/postgresql/9.6/main/postgresql.conf" set
 max_prepared_transactions = 100
 ```
 
+```
+shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'
+pgaudit.log = ddl
+pg_stat_statements.track = all
+pg_stat_statements.max = 10000
+```
 
 5. Modify postgres setting
 Edit file "/etc/postgresql/9.6/main/pg_hba.conf" add line

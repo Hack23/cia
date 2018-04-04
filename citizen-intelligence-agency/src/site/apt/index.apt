@@ -72,6 +72,10 @@ Installing Debian/Ubuntu package
  $ sudo apt-get update
  $ sudo apt-get install oracle-java9-installer oracle-java8-installer oracle-java8-unlimited-jce-policy
 
+ 2.1 Installing Postgresql on Ubuntu
+
+ $ sudo apt-get install postgresql-10 postgresql-contrib postgresql-10-pgaudit
+
  3. Create empty database
 
  Below description set the default username/password and database name used for development, recommend using custom credentials and update the configuration at /opt/cia/webapps/cia/WEB-INF/database.properties to define your own username/password and database name.
@@ -87,6 +91,10 @@ Installing Debian/Ubuntu package
  Edit file "/etc/postgresql/9.6/main/postgresql.conf" set
 
  max_prepared_transactions = 100
+ shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'
+ pgaudit.log = ddl
+ pg_stat_statements.track = all
+ pg_stat_statements.max = 10000
 
 
  5. Modify postgres setting

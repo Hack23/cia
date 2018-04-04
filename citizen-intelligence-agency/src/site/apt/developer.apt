@@ -10,11 +10,11 @@ Requirements
 
  * Compiler & Runtime : JDK 8 (1.8) & JDK 9 (9)  {{{http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html}download}}.
 
- * Database : PostgreSQL 9.6.x {{{http://www.postgresql.org/}download}}
+ * Database : PostgreSQL 10.x {{{http://www.postgresql.org/}download}}
 
- * Build System : Maven 3.5.0 {{{http://maven.apache.org/download.html}download}}
+ * Build System : Maven 3.5.3 {{{http://maven.apache.org/download.html}download}}
 
- * Build tool : Ant 1.9.7 {{{http://ant.apache.org/bindownload.cgi}download}}
+ * Build tool : Ant 10.x {{{http://ant.apache.org/bindownload.cgi}download}}
 
  * Documentation generation : Graphviz {{{http://www.graphviz.org/}homepage}}
 
