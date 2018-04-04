@@ -122,7 +122,7 @@
     <cia.project.versions.bytebuddy>1.8.3</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.197</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.2.2</cia.project.versions.postgresql>
-    <cia.project.versions.ehcache>2.10.4.4.8</cia.project.versions.ehcache>
+    <cia.project.versions.ehcache>2.10.4</cia.project.versions.ehcache>
     <cia.project.versions.poi>3.17</cia.project.versions.poi>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.ant>1.10.3</cia.project.versions.ant>
