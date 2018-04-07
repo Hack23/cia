@@ -5,10 +5,11 @@ module com.hack23.cia.web {
 	requires vaadin.compatibility.server;
 	requires vaadin.shared;
 	requires vaadin.server;
-
+	requires responsive.layout;
+	
 	requires java.xml.bind;
 	requires java.xml.ws.annotation;
-	requires slf4j.api;
+	requires org.slf4j;
 	requires spring.context;
 	requires spring.beans;
 	requires spring.tx;
@@ -17,13 +18,6 @@ module com.hack23.cia.web {
 	requires spring.context.support;
 	requires quartz;
 	requires commons.lang;
-
-	requires google.api.client;
-	requires google.oauth.client;
-	requires google.http.client.jackson2;
-	requires google.http.client;
-	requires googleauth;
-	requires google.api.services.translate.v2.rev51;
 
 	requires spring.security.core;
 	requires org.apache.commons.lang3;
@@ -34,7 +28,6 @@ module com.hack23.cia.web {
 	requires joda.time;
 
 	requires jms;
-	requires javax.mail;
 
 	requires com.hack23.cia.service.api;
 	requires com.hack23.cia.service.impl;
@@ -48,20 +41,20 @@ module com.hack23.cia.web {
 	requires com.hack23.cia.service.external.val;
 	requires com.hack23.cia.service.external.worldbank;
 
-	requires model.external.val.riksdagsvalkrets.impl;
-	requires model.external.riksdagen.voteringlista.impl;
-	requires model.external.val.kommunvalkrets.impl;
-	requires model.external.worldbank.topic.impl;
-	requires model.external.worldbank.indicators.impl;
-	requires model.external.riksdagen.documentcontent.impl;
-	requires model.external.worldbank.data.impl;
-	requires model.external.riksdagen.person.impl;
-	requires model.external.riksdagen.dokumentstatus.impl;
-	requires model.external.riksdagen.dokumentlista.impl;
-	requires model.external.riksdagen.utskottsforslag.impl;
-	requires model.external.val.partier.impl;
-	requires model.external.riksdagen.personlista.impl;
-	requires model.external.val.landstingvalkrets.impl;
-	requires model.external.riksdagen.votering.impl;
+	requires com.hack23.cia.model.external.val.riksdagsvalkrets.impl;
+	requires com.hack23.cia.model.external.riksdagen.voteringlista.impl;
+	requires com.hack23.cia.model.external.val.kommunvalkrets.impl;
+	requires com.hack23.cia.model.external.worldbank.topic.impl;
+	requires com.hack23.cia.model.external.worldbank.indicators.impl;
+	requires com.hack23.cia.model.external.riksdagen.documentcontent.impl;
+	requires com.hack23.cia.model.external.worldbank.data.impl;
+	requires com.hack23.cia.model.external.riksdagen.person.impl;
+	requires com.hack23.cia.model.external.riksdagen.dokumentstatus.impl;
+	requires com.hack23.cia.model.external.riksdagen.dokumentlista.impl;
+	requires com.hack23.cia.model.external.riksdagen.utskottsforslag.impl;
+	requires com.hack23.cia.model.external.val.partier.impl;
+	requires com.hack23.cia.model.external.riksdagen.personlista.impl;
+	requires com.hack23.cia.model.external.val.landstingvalkrets.impl;
+	requires com.hack23.cia.model.external.riksdagen.votering.impl;
 
 }
