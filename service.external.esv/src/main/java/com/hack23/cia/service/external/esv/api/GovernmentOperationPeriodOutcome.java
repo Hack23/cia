@@ -67,7 +67,7 @@ public class GovernmentOperationPeriodOutcome {
 	 * @param variableName
 	 *            the new variable name
 	 */
-	public void setVariableName(String variableName) {
+	public void setVariableName(final String variableName) {
 		this.variableName = variableName;
 	}
 
@@ -86,7 +86,7 @@ public class GovernmentOperationPeriodOutcome {
 	 * @param period
 	 *            the new period
 	 */
-	public void setPeriod(String period) {
+	public void setPeriod(final String period) {
 		this.period = period;
 	}
 
@@ -105,7 +105,7 @@ public class GovernmentOperationPeriodOutcome {
 	 * @param d
 	 *            the new value
 	 */
-	public void setValue(double d) {
+	public void setValue(final double d) {
 		this.value = d;
 	}
 
@@ -124,7 +124,7 @@ public class GovernmentOperationPeriodOutcome {
 	 * @param percentageChangeFromPreviousToLatest
 	 *            the new percentage change from previous to latest
 	 */
-	public void setPercentageChangeFromPreviousToLatest(double percentageChangeFromPreviousToLatest) {
+	public void setPercentageChangeFromPreviousToLatest(final double percentageChangeFromPreviousToLatest) {
 		this.percentageChangeFromPreviousToLatest = percentageChangeFromPreviousToLatest;
 	}
 
@@ -143,7 +143,7 @@ public class GovernmentOperationPeriodOutcome {
 	 * @param percentageChangeFromSamePeriodLastYearToLatest
 	 *            the new percentage change from same period last year to latest
 	 */
-	public void setPercentageChangeFromSamePeriodLastYearToLatest(double percentageChangeFromSamePeriodLastYearToLatest) {
+	public void setPercentageChangeFromSamePeriodLastYearToLatest(final double percentageChangeFromSamePeriodLastYearToLatest) {
 		PercentageChangeFromSamePeriodLastYearToLatest = percentageChangeFromSamePeriodLastYearToLatest;
 	}
 
@@ -162,7 +162,7 @@ public class GovernmentOperationPeriodOutcome {
 	 * @param observationStatus
 	 *            the new observation status
 	 */
-	public void setObservationStatus(String observationStatus) {
+	public void setObservationStatus(final String observationStatus) {
 		this.observationStatus = observationStatus;
 	}
 

@@ -24,7 +24,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -53,18 +52,18 @@ final class EsvGovernmentOperationsExcelReaderImpl implements EsvGovernmentOpera
 	@Override
 	public List<GovernmentOperationPeriodOutcome> getReport() throws IOException {
 		final List<GovernmentOperationPeriodOutcome> result = new ArrayList<>();
-		XSSFWorkbook wb = createGovermentOperationsWorkBook();
+		final XSSFWorkbook wb = createGovermentOperationsWorkBook();
 
-		XSSFSheet sheet = wb.getSheetAt(0);
+		final XSSFSheet sheet = wb.getSheetAt(0);
 		XSSFRow row;
 
-		Iterator rows = sheet.rowIterator();
+		final Iterator rows = sheet.rowIterator();
 
 		while (rows.hasNext()) {
 			row = (XSSFRow) rows.next();
 
 			if (row.getLastCellNum() == 6 && row.getCell(2).getCellType() == Cell.CELL_TYPE_NUMERIC) {
-				GovernmentOperationPeriodOutcome GovernmentOperationPeriodOutcome = new GovernmentOperationPeriodOutcome();
+				final GovernmentOperationPeriodOutcome GovernmentOperationPeriodOutcome = new GovernmentOperationPeriodOutcome();
 
 				GovernmentOperationPeriodOutcome.setVariableName(row.getCell(0).getStringCellValue());
 				GovernmentOperationPeriodOutcome.setPeriod(row.getCell(1).getStringCellValue());

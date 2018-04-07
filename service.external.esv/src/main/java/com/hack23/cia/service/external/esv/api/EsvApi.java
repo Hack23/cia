@@ -86,4 +86,10 @@ public interface EsvApi {
 	 */
 	List<String> getMinistryNames();
 
+	/**
+	 * Gets the report.
+	 *
+	 * @return the report
+	 */
+	List<GovernmentOperationPeriodOutcome> getReport();
 }

@@ -44,10 +44,10 @@ public final class EsvGovernmentOperationsExcelReaderTest extends AbstractEsvFun
 	 */
 	@Test
 	public void getReportTest() throws IOException {
-		List<GovernmentOperationPeriodOutcome> report = esvGovernmentOperationsExcelReader.getReport();
+		final List<GovernmentOperationPeriodOutcome> report = esvGovernmentOperationsExcelReader.getReport();
 		assertNotNull(report);
 		assertFalse(report.isEmpty());
-		GovernmentOperationPeriodOutcome outcome = report.get(0);
+		final GovernmentOperationPeriodOutcome outcome = report.get(0);
 		assertNotNull(outcome.getVariableName());
 		assertNotNull(outcome.getPeriod());
 		assertNotNull(outcome.getValue());

@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.external.esv.impl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -30,6 +31,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
+import com.hack23.cia.service.external.esv.api.GovernmentOperationPeriodOutcome;
 
 /**
  * The Class EsvApiImpl.
@@ -42,6 +44,9 @@ final class EsvApiImpl implements EsvApi {
 
 	@Autowired
 	private EsvExcelReader esvExcelReader;
+	
+	@Autowired
+	private EsvGovernmentOperationsExcelReader esvGovernmentOperationsExcelReader;
 
 	private Map<Integer, List<GovernmentBodyAnnualSummary>> allData;
 
@@ -95,7 +100,7 @@ final class EsvApiImpl implements EsvApi {
 
 	@Override
 	public List<String> getGovernmentBodyNames(final String ministry) {
-		Map<String, Set<String>> governmentBodyNameSetMinistryMap = new HashMap<>();
+		final Map<String, Set<String>> governmentBodyNameSetMinistryMap = new HashMap<>();
 
 		final Set<String> governmentBodyNameSetMapEntry = new HashSet<>();
 		governmentBodyNameSetMinistryMap.put(ministry, governmentBodyNameSetMapEntry);
@@ -135,6 +140,15 @@ final class EsvApiImpl implements EsvApi {
 	@Override
 	public Map<Integer, GovernmentBodyAnnualSummary> getDataPerGovernmentBody(final String name) {
 		return esvExcelReader.getDataPerGovernmentBody(name);
+	}
+
+	@Override
+	public List<GovernmentOperationPeriodOutcome> getReport() {
+		try {
+			return esvGovernmentOperationsExcelReader.getReport();
+		} catch (final IOException e) {
+			return new ArrayList<>();
+		}
 	}
 
 }

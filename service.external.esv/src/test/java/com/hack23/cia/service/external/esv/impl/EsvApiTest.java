@@ -279,5 +279,10 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 			}
 		}
 	}
+	
+	@Test
+	public void getReportTest() {
+		assertNotNull(esvApi.getReport());
+	}
 
 }
