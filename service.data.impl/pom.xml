@@ -248,7 +248,7 @@
     <dependency>
       <groupId>org.liquibase</groupId>
       <artifactId>liquibase-core</artifactId>
-      <version>3.5.5</version>
+      <version>3.6.0</version>
       <exclusions>
         <exclusion>
           <artifactId>jetty-servlet</artifactId>

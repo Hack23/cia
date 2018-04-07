@@ -31,10 +31,10 @@
     <module>../service.component.agent.impl</module>
     <module>../service.external.common</module>
     <module>../service.external.worldbank</module>
-    <!-- <module>../service.external.itsyourparliament</module> -->
     <module>../service.external.riksdagen</module>
     <module>../service.external.val</module>
-    <module>../service.external.esv</module>
+    <module>../service.external.esv/poi-all</module>
+    <module>../service.external.esv</module>    
     <module>../service.data.api</module>
     <module>../service.data.impl</module>
   </modules>
