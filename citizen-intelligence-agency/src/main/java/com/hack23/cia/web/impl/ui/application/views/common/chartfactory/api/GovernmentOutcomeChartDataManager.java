@@ -16,31 +16,21 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
+package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
+
+import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
- * The Enum MinistryPageMode.
+ * The Interface GovernmentOutcomeChartDataManager.
  */
-public enum MinistryPageMode {
+public interface GovernmentOutcomeChartDataManager {
 
-	/** The documenthistory. */
-	DOCUMENTHISTORY,
+	/**
+	 * Creates the government outcome chart.
+	 *
+	 * @param content
+	 *            the content
+	 */
+	void createGovernmentOutcomeChart(AbstractOrderedLayout content);
 
-	/** The documentactivity. */
-	DOCUMENTACTIVITY,
-
-	/** The currentmembers. */
-	CURRENTMEMBERS,
-
-	/** The memberhistory. */
-	MEMBERHISTORY,
-
-	/** The roleghant. */
-	ROLEGHANT,
-	
-	/** The government bodies. */
-	GOVERNMENT_BODIES,
-	
-	/** The government outcome. */
-	GOVERNMENT_OUTCOME;
 }

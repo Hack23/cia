@@ -41,6 +41,9 @@ import com.vaadin.ui.VerticalLayout;
 public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		implements MinistryRankingMenuItemFactory {
 
+	/** The Constant GOVERNMENT_OUTCOME. */
+	private static final String GOVERNMENT_OUTCOME = "Government outcome";
+
 	/** The Constant GOVERNMENT_ROLES_CHART. */
 	private static final String GOVERNMENT_ROLES_CHART = "Government roles chart";
 
@@ -80,6 +83,10 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODIES = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
 			MinistryPageMode.GOVERNMENT_BODIES.toString());
 
+	/** The Constant COMMAND_GOVERNMENT_OUTCOME. */
+	private static final PageModeMenuCommand COMMAND_GOVERNMENT_OUTCOME = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
+			MinistryPageMode.GOVERNMENT_OUTCOME.toString());
+	
 	/** The Constant GOVERNMENT_BODIES. */
 	private static final String GOVERNMENT_BODIES = "Government bodies";
 
@@ -160,6 +167,9 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 
 		chartByTopic.addItem(GOVERNMENT_BODIES, VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODIES);
 
+		chartByTopic.addItem(GOVERNMENT_OUTCOME, VaadinIcons.GROUP, COMMAND_GOVERNMENT_OUTCOME);
+
+		
 		chartByTopic.addItem(GOVERNMENT_ROLES_CHART, VaadinIcons.GROUP, COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT);
 
 		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISITHISTORY);
@@ -180,8 +190,11 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 		createButtonLink(grid, ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_ALLMINISTRIES_BY_TOTAL_DAYS,
 				"Chart over all parties hold positons in ministries by headcount");
 		createButtonLink(grid, ALL_MINISTRIES_TOTAL_MEMBERS_TEXT, VaadinIcons.GROUP, COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT, "Chart over all ministries by total headcount");
-		createButtonLink(grid, GOVERNMENT_BODIES, VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODIES, "Chart over total headcount for all goverment bodies governed by ministries ");
+		createButtonLink(grid, GOVERNMENT_BODIES, VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODIES, "Chart over total headcount for all goverment bodies governed by ministries");
 
+		createButtonLink(grid, GOVERNMENT_OUTCOME, VaadinIcons.GROUP, COMMAND_GOVERNMENT_OUTCOME, "Economic and financial data for Sweden, SDDS Plus");
+
+		
 		createButtonLink(grid,GOVERNMENT_ROLES_CHART, VaadinIcons.GROUP, COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT, "Gantt chart all goverment roles");
 
 		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");

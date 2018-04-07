@@ -1450,6 +1450,23 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
+	/**
+	 * Site ministry ranking government outcome test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteMinistryRankingGovernmentOutcomeTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, MinistryPageMode.GOVERNMENT_OUTCOME.toString()));
+
+	}
+
 
 	/**
 	 * Site ministry ranking page visit history test.
