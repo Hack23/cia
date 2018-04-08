@@ -91,5 +91,5 @@ public interface EsvApi {
 	 *
 	 * @return the report
 	 */
-	List<GovernmentOperationPeriodOutcome> getReport();
+	Map<String, List<GovernmentOperationPeriodOutcome>> getReport();
 }
