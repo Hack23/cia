@@ -66,7 +66,7 @@ public final class MinistryRankingGovernmentOutcomePageModContentFactoryImpl ext
 
 		final String pageId = getPageId(parameters);
 
-		panel.setCaption(NAME + "::" + GOVERNMENT_OUTCOME + parameters);
+		panel.setCaption(NAME + "::" + GOVERNMENT_OUTCOME);
 
 		governmentOutcomeChartDataManager.createGovernmentOutcomeChart(panelContent);
 

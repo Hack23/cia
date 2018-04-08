@@ -186,4 +186,48 @@ public class GovernmentOperationPeriodOutcome implements Comparable<GovernmentOp
 	public int compareTo(final GovernmentOperationPeriodOutcome o) {
 		return period.compareTo(o.getPeriod());
 	}
+	
+	/**
+	 * The Enum Variables.
+	 */
+	public enum Variables {
+	    
+    	/** The total expenditures. */
+    	TOTAL_EXPENDITURES ("Total expenditures"),
+	    
+    	/** The expenditure excl interest gov debt. */
+    	EXPENDITURE_EXCL_INTEREST_GOV_DEBT ("Expenditure, excl. interest on central government debt, etc."),
+	    
+    	/** The interest on gov debt. */
+    	INTEREST_ON_GOV_DEBT ("Interest on central government debt, etc."),
+	    
+    	/** The net lending borrowing. */
+    	NET_LENDING_BORROWING ("Net lending/borrowing by the National Debt Office"),
+	    
+    	/** The adjustment to cash basis. */
+    	ADJUSTMENT_TO_CASH_BASIS ("Adjustment to cash basis"),
+	    
+    	/** The total revenue. */
+    	TOTAL_REVENUE ("Total revenue"),
+	    
+    	/** The budget balance. */
+    	BUDGET_BALANCE ("Budget balance");
+
+	    private final String name;       
+
+	    /**
+		 * Instantiates a new variables.
+		 *
+		 * @param s
+		 *            the s
+		 */
+    	private Variables(String s) {
+	        name = s;
+	    }
+
+	    @Override
+	    public String toString() {
+	       return this.name;
+	    }
+	}
 }

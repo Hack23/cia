@@ -18,10 +18,19 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
+import org.dussan.vaadin.dcharts.DCharts;
+import org.dussan.vaadin.dcharts.base.elements.XYseries;
+import org.dussan.vaadin.dcharts.data.DataSeries;
+import org.dussan.vaadin.dcharts.options.Series;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.service.external.esv.api.EsvApi;
+import com.hack23.cia.service.external.esv.api.GovernmentOperationPeriodOutcome;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentOutcomeChartDataManager;
 import com.vaadin.ui.AbstractOrderedLayout;
 
@@ -45,6 +54,31 @@ public final class GovernmentOutcomeChartDataManagerImpl extends AbstractChartDa
 
 	@Override
 	public void createGovernmentOutcomeChart(AbstractOrderedLayout content) {
+		Map<String, List<GovernmentOperationPeriodOutcome>> map = esvApi.getReport();
+		final DataSeries dataSeries = new DataSeries();
+		final Series series = new Series();
+
+		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_REVENUE, dataSeries, series);
+		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_EXPENDITURES, dataSeries, series);		
+
+		addChart(content, "GovernmentOperationPeriodOutcome",
+				new DCharts().setDataSeries(dataSeries)
+						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
+				true);
+
+	}
+
+	private void createPeriodData(Map<String, List<GovernmentOperationPeriodOutcome>> map, final GovernmentOperationPeriodOutcome.Variables variables,final DataSeries dataSeries,
+			final Series series) {
+		series.addSeries(new XYseries().setLabel(variables.toString()));
+		dataSeries.newSeries();
+		
+		List<GovernmentOperationPeriodOutcome> list = map.get(variables.toString());		
+		Collections.sort(list);
+		for (final GovernmentOperationPeriodOutcome entry : list) {
+
+			dataSeries.add(entry.getPeriod() + "-01", entry.getValue());
+		}
 	}
 
 }

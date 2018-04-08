@@ -285,7 +285,7 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	public void getReportTest() {
 		final Map<String, List<GovernmentOperationPeriodOutcome>> report = esvApi.getReport();
 		assertNotNull(report);
-		final List<GovernmentOperationPeriodOutcome> list = report.get(GovernmentBodyAnnualSummary.Variables.BUDGET_BALANCE.toString());
+		final List<GovernmentOperationPeriodOutcome> list = report.get(GovernmentOperationPeriodOutcome.Variables.BUDGET_BALANCE.toString());
 		assertNotNull(list);
 	}
 
