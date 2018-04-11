@@ -248,7 +248,7 @@
     <dependency>
       <groupId>org.liquibase</groupId>
       <artifactId>liquibase-core</artifactId>
-      <version>3.6.0</version>
+      <version>3.6.1</version>
       <exclusions>
         <exclusion>
           <artifactId>jetty-servlet</artifactId>
@@ -603,7 +603,7 @@
     <dependency>
       <groupId>org.jboss.narayana.jta</groupId>
       <artifactId>narayana-jta</artifactId>
-      <version>5.8.0.Final</version>
+      <version>5.8.1.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>jboss-transaction-spi</artifactId>
