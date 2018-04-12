@@ -993,10 +993,6 @@
  */
 
 /**
- *
- */
-
-/**
  * @group window
  */
 
@@ -1057,7 +1053,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "8.4.0.alpha2";
+	content: "8.4.0.beta1";
 }
 
 .v-widget {
@@ -2337,10 +2333,6 @@ div.v-layout.v-horizontal.v-widget {
  * @param {string} $primary-stylename (v-upload) -
  *
  * @group upload
- */
-
-/**
- *
  */
 
 /**
