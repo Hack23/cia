@@ -35,6 +35,8 @@ import org.apache.http.client.fluent.Request;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
+
 /**
  * The Class EsvGovernmentOperationIncomeReaderTest.
  */
@@ -85,7 +87,8 @@ public final class EsvGovernmentOperationIncomeReaderTest extends AbstractEsvFun
 		List<CSVRecord> records = parser.getRecords();
 		records.remove(0);
 		for (CSVRecord csvRecord : records) {
-			System.out.print(csvRecord.get("År") + ":" + csvRecord.get("Myndighet") + ":" + csvRecord.get("Organisationsnummer") +":");
+			GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get("Myndighet"), csvRecord.get("Organisationsnummer"), Integer.valueOf(csvRecord.get("År")));
+			System.out.print(governmentBodyAnnualOutcomeSummary);
 			
 			for (String field : specificFields) {
 				System.out.print(csvRecord.get(field) + ":");
