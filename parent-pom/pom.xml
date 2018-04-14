@@ -1065,6 +1065,7 @@
                 <exclude>**/ParliamentDecisionFlowPageModContentFactoryImpl*</exclude>
                 <exclude>**/AgentOperationsOverviewPageModContentFactoryImpl*</exclude>
                 <exclude>**/AdminUserAccountPageModContentFactoryImpl*</exclude>
+                <exclude>**/GovernmentBodyAnnualOutcomeSummary*</exclude>
               </excludes>
               <failOnMissingClasses>false</failOnMissingClasses>
               <failOnUnresolvableSignatures>false</failOnUnresolvableSignatures>

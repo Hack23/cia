@@ -10,6 +10,8 @@ module com.hack23.cia.service.external.esv {
 	
 
 	requires org.apache.commons.lang3;
-
+	requires org.apache.commons.codec;
+	requires commons.csv;
+	
 	requires com.hack23.cia.service.external.common;
 }

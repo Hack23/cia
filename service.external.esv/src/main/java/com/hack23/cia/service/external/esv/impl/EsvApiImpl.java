@@ -31,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.service.external.esv.api.EsvApi;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.service.external.esv.api.GovernmentOperationPeriodOutcome;
 
@@ -48,6 +49,10 @@ final class EsvApiImpl implements EsvApi {
 	
 	@Autowired
 	private EsvGovernmentOperationsExcelReader esvGovernmentOperationsExcelReader;
+	
+	@Autowired
+	private EsvGovernmentBodyOperationOutcomeReader esvGovernmentBodyOperationOutcomeReader;
+
 
 	private Map<Integer, List<GovernmentBodyAnnualSummary>> allData;
 
@@ -150,6 +155,19 @@ final class EsvApiImpl implements EsvApi {
 		} catch (final IOException e) {
 			return new HashMap<>();
 		}		
+	}
+
+	@Override
+	public Map<String, List<GovernmentBodyAnnualOutcomeSummary>> getGovernmentBodyReport() {
+		List<GovernmentBodyAnnualOutcomeSummary> result = new ArrayList<>();
+		try {
+			result.addAll(esvGovernmentBodyOperationOutcomeReader.readIncomeCsv());
+			result.addAll(esvGovernmentBodyOperationOutcomeReader.readOutgoingCsv());
+		} catch (IOException e) {
+			return new HashMap<>();
+		}
+		
+		return result.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getGovermentBody));
 	}
 
 }

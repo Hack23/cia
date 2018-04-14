@@ -92,4 +92,12 @@ public interface EsvApi {
 	 * @return the report
 	 */
 	Map<String, List<GovernmentOperationPeriodOutcome>> getReport();
+
+	/**
+	 * Gets the government body report.
+	 *
+	 * @return the government body report
+	 */
+	Map<String, List<GovernmentBodyAnnualOutcomeSummary>> getGovernmentBodyReport();
+
 }

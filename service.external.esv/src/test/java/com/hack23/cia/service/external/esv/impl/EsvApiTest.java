@@ -27,6 +27,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.service.external.esv.api.EsvApi;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.service.external.esv.api.GovernmentOperationPeriodOutcome;
 
@@ -287,6 +288,13 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 		assertNotNull(report);
 		final List<GovernmentOperationPeriodOutcome> list = report.get(GovernmentOperationPeriodOutcome.Variables.BUDGET_BALANCE.toString());
 		assertNotNull(list);
+	}
+	
+
+	@Test
+	public void getGovernmentBodyReportTest() {
+		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi.getGovernmentBodyReport();
+		assertNotNull(report);
 	}
 
 }

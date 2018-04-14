@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -31,49 +31,53 @@ import org.apache.commons.codec.Charsets;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import org.apache.http.client.fluent.Content;
-import org.apache.http.client.fluent.Request;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.springframework.stereotype.Component;
 
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
 
 /**
- * The Class EsvGovernmentOperationIncomeReaderTest.
+ * The Class EsvGovernmentBodyOperationOutcomeReaderImpl.
  */
-public final class EsvGovernmentOperationIncomeReaderTest extends AbstractEsvFunctionalIntegrationTest {
+@Component
+public class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernmentBodyOperationOutcomeReader {
 
-	@Test
-	@Ignore
-	public void downloadIncomeCsvZipTest() throws IOException {
-		Content returnContent = Request.Get(
-				"https://www.esv.se/psidata/manadsutfall/GetFile/?documentType=Inkomst&fileType=Zip&fileName=M%C3%A5nadsutfall%20inkomster%20januari%202006%20-%20februari%202018,%20definitivt.zip&year=2018&month=2&status=Definitiv")
-				.execute().returnContent();
-		//readUsingZipInputStream(returnContent.asStream());
+	public static final String[] incomeFields = new String[] { "Inkomsttyp", "Inkomsttypsnamn", "Inkomsthuvudgrupp",
+			"Inkomsthuvudgruppsnamn", "Inkomsttitelgrupp", "Inkomsttitelgruppsnamn", "Inkomsttitel",
+			"Inkomsttitelsnamn", "Inkomstundertitel", "Inkomstundertitelsnamn", "Myndighet", "Organisationsnummer",
+			"År", "Utfall januari", "Utfall februari", "Utfall mars", "Utfall april", "Utfall maj", "Utfall juni",
+			"Utfall juli", "Utfall augusti", "Utfall september", "Utfall oktober", "Utfall november", "Utfall december",
+			"Inkomsttyp utfallsår", "Inkomsttypsnamn utfallsår", "Inkomsthuvudgrupp utfallsår",
+			"Inkomsthuvudgruppsnamn utfallsår", "Inkomsttitelgrupp utfallsår", "Inkomsttitelgruppsnamn utfallsår",
+			"Inkomsttitel utfallsår", "Inkomsttitelsnamn utfallsår", "Inkomstundertitel utfallsår",
+			"Inkomstundertitelsnamn utfallsår" };
+	public static final String[] outgoingFields = new String[] { "Utgiftsområde", "Utgiftsområdesnamn", "Anslag",
+			"Anslagsnamn", "Anslagspost", "Anslagspostsnamn", "Anslagsdelpost", "Anslagsdelpostsnamn", "Myndighet",
+			"Organisationsnummer", "År", "Utfall januari", "Utfall februari", "Utfall mars", "Utfall april",
+			"Utfall maj", "Utfall juni", "Utfall juli", "Utfall augusti", "Utfall september", "Utfall oktober",
+			"Utfall november", "Utfall december", "Utgiftsområde utfallsår", "Utgiftsområdesnamn utfallsår",
+			"Anslag utfallsår", "Anslagsnamn utfallsår", "Anslagspost utfallsår", "Anslagspostsnamn utfallsår",
+			"Anslagsdelpost utfallsår", "Anslagsdelpostsnamn utfallsår" };
 
+	/**
+	 * Instantiates a new esv government body operation outcome reader impl.
+	 */
+	public EsvGovernmentBodyOperationOutcomeReaderImpl() {
+		super();
 	}
 
-	@Test
-	public void readIncomeCsvZipTest() throws IOException {
+	@Override
+	public List<GovernmentBodyAnnualOutcomeSummary> readIncomeCsv() throws IOException {
 		String[] specificFields = new String[] { "Inkomsttyp", "Inkomsttypsnamn", "Inkomsthuvudgrupp", "Inkomsthuvudgruppsnamn", "Inkomsttitelgrupp", "Inkomsttitelgruppsnamn", "Inkomsttitel", "Inkomsttitelsnamn", "Inkomstundertitel", "Inkomstundertitelsnamn"};
-		List<GovernmentBodyAnnualOutcomeSummary> list = readUsingZipInputStream(EsvGovernmentOperationIncomeReaderTest.class.getResourceAsStream("/Månadsutfall inkomster januari 2006 - februari 2018%2c definitivt.zip"),specificFields);
-		assertNotNull(list);
-		assertFalse(list.isEmpty());		
+		return readUsingZipInputStream(EsvGovernmentBodyOperationOutcomeReaderImpl.class.getResourceAsStream("/Månadsutfall inkomster januari 2006 - februari 2018%2c definitivt.zip"),specificFields);
 	}
-
-	private static String[] incomeFields = new String[] {"Inkomsttyp", "Inkomsttypsnamn", "Inkomsthuvudgrupp", "Inkomsthuvudgruppsnamn", "Inkomsttitelgrupp", "Inkomsttitelgruppsnamn", "Inkomsttitel", "Inkomsttitelsnamn", "Inkomstundertitel", "Inkomstundertitelsnamn", "Myndighet", "Organisationsnummer", "År", "Utfall januari", "Utfall februari", "Utfall mars", "Utfall april", "Utfall maj", "Utfall juni", "Utfall juli", "Utfall augusti", "Utfall september", "Utfall oktober", "Utfall november", "Utfall december", "Inkomsttyp utfallsår", "Inkomsttypsnamn utfallsår", "Inkomsthuvudgrupp utfallsår", "Inkomsthuvudgruppsnamn utfallsår", "Inkomsttitelgrupp utfallsår", "Inkomsttitelgruppsnamn utfallsår", "Inkomsttitel utfallsår", "Inkomsttitelsnamn utfallsår", "Inkomstundertitel utfallsår", "Inkomstundertitelsnamn utfallsår"};
-	private static String[] outgoingFields = new String[] {"Utgiftsområde", "Utgiftsområdesnamn", "Anslag", "Anslagsnamn", "Anslagspost", "Anslagspostsnamn", "Anslagsdelpost", "Anslagsdelpostsnamn", "Myndighet", "Organisationsnummer", "År", "Utfall januari", "Utfall februari", "Utfall mars", "Utfall april", "Utfall maj", "Utfall juni", "Utfall juli", "Utfall augusti", "Utfall september", "Utfall oktober", "Utfall november", "Utfall december", "Utgiftsområde utfallsår", "Utgiftsområdesnamn utfallsår", "Anslag utfallsår", "Anslagsnamn utfallsår", "Anslagspost utfallsår", "Anslagspostsnamn utfallsår", "Anslagsdelpost utfallsår", "Anslagsdelpostsnamn utfallsår"};
 	
-	@Test
-	public void readOutgoingCsvZipTest() throws IOException {		
+	@Override
+	public List<GovernmentBodyAnnualOutcomeSummary> readOutgoingCsv() throws IOException {		
 		String[] specificFields = new String[] { "Utgiftsområde", "Utgiftsområdesnamn", "Anslag", "Anslagsnamn", "Anslagspost", "Anslagspostsnamn", "Anslagsdelpost", "Anslagsdelpostsnamn"};
-		List<GovernmentBodyAnnualOutcomeSummary> list = readUsingZipInputStream(EsvGovernmentOperationIncomeReaderTest.class.getResourceAsStream("/Månadsutfall utgifter januari 2006 - februari 2018%2c definitivt.zip"),specificFields);
-		assertNotNull(list);
-		assertFalse(list.isEmpty());		
+		return readUsingZipInputStream(EsvGovernmentBodyOperationOutcomeReaderImpl.class.getResourceAsStream("/Månadsutfall utgifter januari 2006 - februari 2018%2c definitivt.zip"),specificFields);
 	}
 
-	private static List<GovernmentBodyAnnualOutcomeSummary> readUsingZipInputStream(InputStream inputStream,String[] specificFields) throws IOException {
-		
+	private static List<GovernmentBodyAnnualOutcomeSummary> readUsingZipInputStream(InputStream inputStream,String[] specificFields) throws IOException {		
 		BufferedInputStream bis = new BufferedInputStream(inputStream);
 		final ZipInputStream is = new ZipInputStream(bis);
 
@@ -86,7 +90,6 @@ public final class EsvGovernmentOperationIncomeReaderTest extends AbstractEsvFun
 		} finally {
 			is.close();
 		}
-
 		return list;
 	}
 
