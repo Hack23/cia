@@ -18,6 +18,11 @@
 */
 package com.hack23.cia.service.external.esv.api;
 
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -36,7 +41,11 @@ public final class GovernmentBodyAnnualOutcomeSummary {
 
 	/** The year. */
 	private final int year;
-	
+
+	private final Map<Date, Double> valueMap = new HashMap<>();
+
+	private final Map<String, String> descriptionFields = new HashMap<>();
+
 	public GovernmentBodyAnnualOutcomeSummary(String govermentBody, String orgNumber, int year) {
 		super();
 		this.govermentBody = govermentBody;
@@ -54,6 +63,24 @@ public final class GovernmentBodyAnnualOutcomeSummary {
 
 	public int getYear() {
 		return year;
+	}
+
+	public void addData(int month, Double value) {
+		Date date = new GregorianCalendar(year, month, 1).getTime();
+		valueMap.put(date, value);
+	}
+
+	public void addDescriptionField(String field, String value) {
+		descriptionFields.put(field, value);
+	}
+
+	
+	public Map<Date, Double> getValueMap() {
+		return valueMap;
+	}
+
+	public Map<String, String> getDescriptionFields() {
+		return descriptionFields;
 	}
 
 	@Override
