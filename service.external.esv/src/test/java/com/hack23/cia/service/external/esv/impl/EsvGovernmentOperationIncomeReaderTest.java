@@ -22,6 +22,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -45,23 +46,33 @@ public final class EsvGovernmentOperationIncomeReaderTest extends AbstractEsvFun
 		Content returnContent = Request.Get(
 				"https://www.esv.se/psidata/manadsutfall/GetFile/?documentType=Inkomst&fileType=Zip&fileName=M%C3%A5nadsutfall%20inkomster%20januari%202006%20-%20februari%202018,%20definitivt.zip&year=2018&month=2&status=Definitiv")
 				.execute().returnContent();
-		readUsingZipInputStream(returnContent.asStream());
+		//readUsingZipInputStream(returnContent.asStream());
 
 	}
 
 	@Test
 	public void readIncomeCsvZipTest() throws IOException {
-		readUsingZipInputStream(EsvGovernmentOperationIncomeReaderTest.class.getResourceAsStream("/Månadsutfall inkomster januari 2006 - februari 2018%2c definitivt.zip"));
+		String[] specificFields = new String[] { "Inkomsttyp", "Inkomsttypsnamn", "Inkomsthuvudgrupp", "Inkomsthuvudgruppsnamn", "Inkomsttitelgrupp", "Inkomsttitelgruppsnamn", "Inkomsttitel", "Inkomsttitelsnamn", "Inkomstundertitel", "Inkomstundertitelsnamn"};
+		readUsingZipInputStream(EsvGovernmentOperationIncomeReaderTest.class.getResourceAsStream("/Månadsutfall inkomster januari 2006 - februari 2018%2c definitivt.zip"),specificFields);
 	}
 
-	private static void readUsingZipInputStream(InputStream inputStream) throws IOException {
+	private static String[] incomeFields = new String[] {"Inkomsttyp", "Inkomsttypsnamn", "Inkomsthuvudgrupp", "Inkomsthuvudgruppsnamn", "Inkomsttitelgrupp", "Inkomsttitelgruppsnamn", "Inkomsttitel", "Inkomsttitelsnamn", "Inkomstundertitel", "Inkomstundertitelsnamn", "Myndighet", "Organisationsnummer", "År", "Utfall januari", "Utfall februari", "Utfall mars", "Utfall april", "Utfall maj", "Utfall juni", "Utfall juli", "Utfall augusti", "Utfall september", "Utfall oktober", "Utfall november", "Utfall december", "Inkomsttyp utfallsår", "Inkomsttypsnamn utfallsår", "Inkomsthuvudgrupp utfallsår", "Inkomsthuvudgruppsnamn utfallsår", "Inkomsttitelgrupp utfallsår", "Inkomsttitelgruppsnamn utfallsår", "Inkomsttitel utfallsår", "Inkomsttitelsnamn utfallsår", "Inkomstundertitel utfallsår", "Inkomstundertitelsnamn utfallsår"};
+	private static String[] outgoingFields = new String[] {"Utgiftsområde", "Utgiftsområdesnamn", "Anslag", "Anslagsnamn", "Anslagspost", "Anslagspostsnamn", "Anslagsdelpost", "Anslagsdelpostsnamn", "Myndighet", "Organisationsnummer", "År", "Utfall januari", "Utfall februari", "Utfall mars", "Utfall april", "Utfall maj", "Utfall juni", "Utfall juli", "Utfall augusti", "Utfall september", "Utfall oktober", "Utfall november", "Utfall december", "Utgiftsområde utfallsår", "Utgiftsområdesnamn utfallsår", "Anslag utfallsår", "Anslagsnamn utfallsår", "Anslagspost utfallsår", "Anslagspostsnamn utfallsår", "Anslagsdelpost utfallsår", "Anslagsdelpostsnamn utfallsår"};
+	
+	@Test
+	public void readOutgoingCsvZipTest() throws IOException {		
+		String[] specificFields = new String[] { "Utgiftsområde", "Utgiftsområdesnamn", "Anslag", "Anslagsnamn", "Anslagspost", "Anslagspostsnamn", "Anslagsdelpost", "Anslagsdelpostsnamn"};
+		readUsingZipInputStream(EsvGovernmentOperationIncomeReaderTest.class.getResourceAsStream("/Månadsutfall utgifter januari 2006 - februari 2018%2c definitivt.zip"),specificFields);
+	}
+
+	private static void readUsingZipInputStream(InputStream inputStream,String[] specificFields) throws IOException {
 		BufferedInputStream bis = new BufferedInputStream(inputStream);
 		final ZipInputStream is = new ZipInputStream(bis);
 
 		try {
 			ZipEntry entry;
 			while ((entry = is.getNextEntry()) != null) {
-				readCsvContent(entry, is);
+				readCsvContent(entry, is,specificFields);
 			}
 		} finally {
 			is.close();
@@ -69,10 +80,22 @@ public final class EsvGovernmentOperationIncomeReaderTest extends AbstractEsvFun
 
 	}
 
-	private static void readCsvContent(final ZipEntry entry, InputStream is) throws IOException {
-		CSVParser parser = CSVParser.parse(new InputStreamReader(is,Charsets.UTF_8), CSVFormat.RFC4180.withDelimiter(';'));
-		for (CSVRecord csvRecord : parser) {
-			System.out.println(csvRecord.toString());
+	private static void readCsvContent(final ZipEntry entry, InputStream is,String[] specificFields) throws IOException {
+		CSVParser parser = CSVParser.parse(new InputStreamReader(is,Charsets.UTF_8), CSVFormat.EXCEL.withHeader().withDelimiter(';'));
+		List<CSVRecord> records = parser.getRecords();
+		records.remove(0);
+		for (CSVRecord csvRecord : records) {
+			System.out.print(csvRecord.get("År") + ":" + csvRecord.get("Myndighet") + ":" + csvRecord.get("Organisationsnummer") +":");
+			
+			for (String field : specificFields) {
+				System.out.print(csvRecord.get(field) + ":");
+			}
+			
+			System.out.print(csvRecord.get("Utfall januari") + ":" + csvRecord.get("Utfall februari") + ":" + csvRecord.get("Utfall mars")+":");
+			System.out.print(csvRecord.get("Utfall april") + ":" + csvRecord.get("Utfall maj") + ":" + csvRecord.get("Utfall juni")+":");
+			System.out.print(csvRecord.get("Utfall juli") + ":" + csvRecord.get("Utfall augusti") + ":" + csvRecord.get("Utfall september")+":");
+			System.out.println(csvRecord.get("Utfall oktober") + ":" + csvRecord.get("Utfall november") + ":" + csvRecord.get("Utfall december"));			
+			
 		}
 	}
 
