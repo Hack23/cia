@@ -95,7 +95,7 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 		comboBox.setSelectedItem(selectedYear);
 		comboBox.addValueChangeListener(event -> {
 			if (!event.getSource().isEmpty()) {
-				UI.getCurrent().getNavigator().navigateTo(NAME + "/" + PageMode.CHARTS.toString() + "/" + ChartIndicators.DECISION_FLOW_CHART.toString() +"[" + event.getValue() +"]");
+				UI.getCurrent().getNavigator().navigateTo(NAME + "/" + PageMode.CHARTS + "/" + ChartIndicators.DECISION_FLOW_CHART +"[" + event.getValue() +"]");
 			}
 		});
 		

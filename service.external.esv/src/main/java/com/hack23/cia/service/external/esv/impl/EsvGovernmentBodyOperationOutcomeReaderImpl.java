@@ -22,6 +22,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
@@ -41,22 +42,76 @@ import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummar
 @Component
 public class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernmentBodyOperationOutcomeReader {
 
-	public static final String[] incomeFields = new String[] { "Inkomsttyp", "Inkomsttypsnamn", "Inkomsthuvudgrupp",
+	/** The Constant ORGANISATIONSNUMMER. */
+	private static final String ORGANISATIONSNUMMER = "Organisationsnummer";
+
+	/** The Constant MYNDIGHET. */
+	private static final String MYNDIGHET = "Myndighet";
+
+	/** The Constant ÅR. */
+	private static final String ÅR = "År";
+
+	/** The Constant UTFALL_DECEMBER. */
+	private static final String UTFALL_DECEMBER = "Utfall december";
+
+	/** The Constant UTFALL_NOVEMBER. */
+	private static final String UTFALL_NOVEMBER = "Utfall november";
+
+	/** The Constant UTFALL_OKTOBER. */
+	private static final String UTFALL_OKTOBER = "Utfall oktober";
+
+	/** The Constant UTFALL_SEPTEMBER. */
+	private static final String UTFALL_SEPTEMBER = "Utfall september";
+
+	/** The Constant UTFALL_AUGUSTI. */
+	private static final String UTFALL_AUGUSTI = "Utfall augusti";
+
+	/** The Constant UTFALL_JULI. */
+	private static final String UTFALL_JULI = "Utfall juli";
+
+	/** The Constant UTFALL_JUNI. */
+	private static final String UTFALL_JUNI = "Utfall juni";
+
+	/** The Constant UTFALL_MAJ. */
+	private static final String UTFALL_MAJ = "Utfall maj";
+
+	/** The Constant UTFALL_APRIL. */
+	private static final String UTFALL_APRIL = "Utfall april";
+
+	/** The Constant UTFALL_MARS. */
+	private static final String UTFALL_MARS = "Utfall mars";
+
+	/** The Constant UTFALL_FEBRUARI. */
+	private static final String UTFALL_FEBRUARI = "Utfall februari";
+
+	/** The Constant UTFALL_JANUARI. */
+	private static final String UTFALL_JANUARI = "Utfall januari";
+
+	/** The Constant INCOME_FIELDS. */
+	protected static final String[] INCOME_FIELDS = new String[] { "Inkomsttyp", "Inkomsttypsnamn", "Inkomsthuvudgrupp",
 			"Inkomsthuvudgruppsnamn", "Inkomsttitelgrupp", "Inkomsttitelgruppsnamn", "Inkomsttitel",
-			"Inkomsttitelsnamn", "Inkomstundertitel", "Inkomstundertitelsnamn", "Myndighet", "Organisationsnummer",
-			"År", "Utfall januari", "Utfall februari", "Utfall mars", "Utfall april", "Utfall maj", "Utfall juni",
-			"Utfall juli", "Utfall augusti", "Utfall september", "Utfall oktober", "Utfall november", "Utfall december",
+			"Inkomsttitelsnamn", "Inkomstundertitel", "Inkomstundertitelsnamn", MYNDIGHET, ORGANISATIONSNUMMER,
+			ÅR, UTFALL_JANUARI, UTFALL_FEBRUARI, UTFALL_MARS, UTFALL_APRIL, UTFALL_MAJ, UTFALL_JUNI,
+			UTFALL_JULI, UTFALL_AUGUSTI, UTFALL_SEPTEMBER, UTFALL_OKTOBER, UTFALL_NOVEMBER, UTFALL_DECEMBER,
 			"Inkomsttyp utfallsår", "Inkomsttypsnamn utfallsår", "Inkomsthuvudgrupp utfallsår",
 			"Inkomsthuvudgruppsnamn utfallsår", "Inkomsttitelgrupp utfallsår", "Inkomsttitelgruppsnamn utfallsår",
 			"Inkomsttitel utfallsår", "Inkomsttitelsnamn utfallsår", "Inkomstundertitel utfallsår",
 			"Inkomstundertitelsnamn utfallsår" };
-	public static final String[] outgoingFields = new String[] { "Utgiftsområde", "Utgiftsområdesnamn", "Anslag",
-			"Anslagsnamn", "Anslagspost", "Anslagspostsnamn", "Anslagsdelpost", "Anslagsdelpostsnamn", "Myndighet",
-			"Organisationsnummer", "År", "Utfall januari", "Utfall februari", "Utfall mars", "Utfall april",
-			"Utfall maj", "Utfall juni", "Utfall juli", "Utfall augusti", "Utfall september", "Utfall oktober",
-			"Utfall november", "Utfall december", "Utgiftsområde utfallsår", "Utgiftsområdesnamn utfallsår",
+	
+	/** The Constant OUTGOING_FIELDS. */
+	protected static final String[] OUTGOING_FIELDS = new String[] { "Utgiftsområde", "Utgiftsområdesnamn", "Anslag",
+			"Anslagsnamn", "Anslagspost", "Anslagspostsnamn", "Anslagsdelpost", "Anslagsdelpostsnamn", MYNDIGHET,
+			ORGANISATIONSNUMMER, ÅR, UTFALL_JANUARI, UTFALL_FEBRUARI, UTFALL_MARS, UTFALL_APRIL,
+			UTFALL_MAJ, UTFALL_JUNI, UTFALL_JULI, UTFALL_AUGUSTI, UTFALL_SEPTEMBER, UTFALL_OKTOBER,
+			UTFALL_NOVEMBER, UTFALL_DECEMBER, "Utgiftsområde utfallsår", "Utgiftsområdesnamn utfallsår",
 			"Anslag utfallsår", "Anslagsnamn utfallsår", "Anslagspost utfallsår", "Anslagspostsnamn utfallsår",
 			"Anslagsdelpost utfallsår", "Anslagsdelpostsnamn utfallsår" };
+
+	/** The Constant SPECIFIC_OUTGOING_FIELDS. */
+	private static final String[] SPECIFIC_OUTGOING_FIELDS = new String[] { "Inkomsttyp", "Inkomsttypsnamn", "Inkomsthuvudgrupp", "Inkomsthuvudgruppsnamn", "Inkomsttitelgrupp", "Inkomsttitelgruppsnamn", "Inkomsttitel", "Inkomsttitelsnamn", "Inkomstundertitel", "Inkomstundertitelsnamn"};
+
+	/** The Constant SPECIFIC_INCOMING_FIELDS. */
+	private static final String[] SPECIFIC_INCOMING_FIELDS = new String[] { "Utgiftsområde", "Utgiftsområdesnamn", "Anslag", "Anslagsnamn", "Anslagspost", "Anslagspostsnamn", "Anslagsdelpost", "Anslagsdelpostsnamn"};
 
 	/**
 	 * Instantiates a new esv government body operation outcome reader impl.
@@ -67,16 +122,25 @@ public class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernmen
 
 	@Override
 	public List<GovernmentBodyAnnualOutcomeSummary> readIncomeCsv() throws IOException {
-		String[] specificFields = new String[] { "Inkomsttyp", "Inkomsttypsnamn", "Inkomsthuvudgrupp", "Inkomsthuvudgruppsnamn", "Inkomsttitelgrupp", "Inkomsttitelgruppsnamn", "Inkomsttitel", "Inkomsttitelsnamn", "Inkomstundertitel", "Inkomstundertitelsnamn"};
-		return readUsingZipInputStream(EsvGovernmentBodyOperationOutcomeReaderImpl.class.getResourceAsStream("/Månadsutfall inkomster januari 2006 - februari 2018%2c definitivt.zip"),specificFields);
+		return readUsingZipInputStream(EsvGovernmentBodyOperationOutcomeReaderImpl.class.getResourceAsStream("/Månadsutfall inkomster januari 2006 - februari 2018%2c definitivt.zip"),SPECIFIC_OUTGOING_FIELDS);
 	}
 	
 	@Override
 	public List<GovernmentBodyAnnualOutcomeSummary> readOutgoingCsv() throws IOException {		
-		String[] specificFields = new String[] { "Utgiftsområde", "Utgiftsområdesnamn", "Anslag", "Anslagsnamn", "Anslagspost", "Anslagspostsnamn", "Anslagsdelpost", "Anslagsdelpostsnamn"};
-		return readUsingZipInputStream(EsvGovernmentBodyOperationOutcomeReaderImpl.class.getResourceAsStream("/Månadsutfall utgifter januari 2006 - februari 2018%2c definitivt.zip"),specificFields);
+		return readUsingZipInputStream(EsvGovernmentBodyOperationOutcomeReaderImpl.class.getResourceAsStream("/Månadsutfall utgifter januari 2006 - februari 2018%2c definitivt.zip"),SPECIFIC_INCOMING_FIELDS);
 	}
 
+	/**
+	 * Read using zip input stream.
+	 *
+	 * @param inputStream
+	 *            the input stream
+	 * @param specificFields
+	 *            the specific fields
+	 * @return the list
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
 	private static List<GovernmentBodyAnnualOutcomeSummary> readUsingZipInputStream(InputStream inputStream,String[] specificFields) throws IOException {		
 		BufferedInputStream bis = new BufferedInputStream(inputStream);
 		final ZipInputStream is = new ZipInputStream(bis);
@@ -93,6 +157,19 @@ public class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernmen
 		return list;
 	}
 
+	/**
+	 * Read csv content.
+	 *
+	 * @param entry
+	 *            the entry
+	 * @param is
+	 *            the is
+	 * @param specificFields
+	 *            the specific fields
+	 * @return the list
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
 	private static List<GovernmentBodyAnnualOutcomeSummary> readCsvContent(final ZipEntry entry, InputStream is,String[] specificFields) throws IOException {
 		CSVParser parser = CSVParser.parse(new InputStreamReader(is,Charsets.UTF_8), CSVFormat.EXCEL.withHeader().withDelimiter(';'));
 		List<CSVRecord> records = parser.getRecords();
@@ -101,27 +178,27 @@ public class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernmen
 		List<GovernmentBodyAnnualOutcomeSummary> list = new ArrayList<>();
 		
 		for (CSVRecord csvRecord : records) {
-			GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get("Myndighet"), csvRecord.get("Organisationsnummer"), Integer.valueOf(csvRecord.get("År")));
+			GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get(MYNDIGHET), csvRecord.get(ORGANISATIONSNUMMER), Integer.valueOf(csvRecord.get(ÅR)));
 			
 			for (String field : specificFields) {				
 				governmentBodyAnnualOutcomeSummary.addDescriptionField(field,csvRecord.get(field));
 			}
 			
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,1,csvRecord.get("Utfall januari"));
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,2,csvRecord.get("Utfall februari"));
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,3,csvRecord.get("Utfall mars"));
+			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.JANUARY.getValue(),csvRecord.get(UTFALL_JANUARI));
+			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.FEBRUARY.getValue(),csvRecord.get(UTFALL_FEBRUARI));
+			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.MARCH.getValue(),csvRecord.get(UTFALL_MARS));
 			
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,4,csvRecord.get("Utfall april"));
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,5,csvRecord.get("Utfall maj"));
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,6,csvRecord.get("Utfall juni"));
+			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.APRIL.getValue(),csvRecord.get(UTFALL_APRIL));
+			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.MAY.getValue(),csvRecord.get(UTFALL_MAJ));
+			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.JUNE.getValue(),csvRecord.get(UTFALL_JUNI));
 			
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,7,csvRecord.get("Utfall juli"));
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,8,csvRecord.get("Utfall augusti"));
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,9,csvRecord.get("Utfall september"));
+			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.JULY.getValue(),csvRecord.get(UTFALL_JULI));
+			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.AUGUST.getValue(),csvRecord.get(UTFALL_AUGUSTI));
+			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.SEPTEMBER.getValue(),csvRecord.get(UTFALL_SEPTEMBER));
 			
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,10,csvRecord.get("Utfall oktober"));
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,11,csvRecord.get("Utfall november"));
-			addResultForMonth(governmentBodyAnnualOutcomeSummary,12,csvRecord.get("Utfall december"));
+			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.OCTOBER.getValue(),csvRecord.get(UTFALL_OKTOBER));
+			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.NOVEMBER.getValue(),csvRecord.get(UTFALL_NOVEMBER));
+			addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.DECEMBER.getValue(),csvRecord.get(UTFALL_DECEMBER));
 			
 			list.add(governmentBodyAnnualOutcomeSummary);
 		}
@@ -129,6 +206,16 @@ public class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernmen
 		return list;
 	}
 
+	/**
+	 * Adds the result for month.
+	 *
+	 * @param governmentBodyAnnualOutcomeSummary
+	 *            the government body annual outcome summary
+	 * @param month
+	 *            the month
+	 * @param value
+	 *            the value
+	 */
 	private static void addResultForMonth(GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary, int month,
 			String value) {
 		if (value != null && value.length() >0 ) {

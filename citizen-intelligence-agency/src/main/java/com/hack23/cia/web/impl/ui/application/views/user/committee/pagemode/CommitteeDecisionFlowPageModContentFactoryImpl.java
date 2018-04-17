@@ -98,7 +98,7 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 			comboBox.setSelectedItem(selectedYear);
 			comboBox.addValueChangeListener(event -> {
 			    if (!event.getSource().isEmpty()) {
-			    	UI.getCurrent().getNavigator().navigateTo(NAME + "/" + PageMode.CHARTS.toString() + "/" + ChartIndicators.DECISION_FLOW_CHART.toString() +"/" +pageId +"[" + event.getValue() +"]");
+			    	UI.getCurrent().getNavigator().navigateTo(NAME + "/" + PageMode.CHARTS + "/" + ChartIndicators.DECISION_FLOW_CHART +"/" +pageId +"[" + event.getValue() +"]");
 			    }
 			});
 
