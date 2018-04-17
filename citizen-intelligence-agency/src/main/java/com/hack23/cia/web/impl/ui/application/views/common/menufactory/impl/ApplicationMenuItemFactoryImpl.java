@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CountryMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.GovernmentBodyRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ParliamentMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyRankingMenuItemFactory;
@@ -56,6 +57,9 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	private static final PageModeMenuCommand COMMAND_MINISTRY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
 
+	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
+			PageMode.OVERVIEW);
+	
 	/** The Constant COMMAND_MINISTRY_RANKING_DATAGRID. */
 	private static final PageModeMenuCommand COMMAND_MINISTRY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
 			PageMode.DATAGRID);
@@ -129,6 +133,9 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	/** The Constant MINISTRIES_LINK_TEXT. */
 	private static final String MINISTRIES_LINK_TEXT = "Ministries";
 
+	/** The Constant GOVERNMENT_BODY_LINK_TEXT. */
+	private static final String GOVERNMENT_BODY_LINK_TEXT = "Government bodies";
+
 	/** The Constant COMMITTEES_LINK_TEXT. */
 	private static final String COMMITTEES_LINK_TEXT = "Committees";
 
@@ -168,6 +175,10 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	/** The parliament menu item factory. */
 	@Autowired
 	private ParliamentMenuItemFactory parliamentMenuItemFactory;
+	
+	/** The government body ranking menu item factory. */
+	@Autowired
+	private GovernmentBodyRankingMenuItemFactory governmentBodyRankingMenuItemFactory;
 
 	/**
 	 * Instantiates a new application menu item factory impl.
@@ -214,6 +225,9 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 		ministryRankingMenuItemFactory.createMinistryRankingTopics(ministryMenuItem);
 
+		final MenuItem govbodyMenuItem = rankingsMenuItem.addItem(GOVERNMENT_BODY_LINK_TEXT,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);
+
+		governmentBodyRankingMenuItemFactory.createGovernmentBodyRankingTopics(govbodyMenuItem);
 
 		final MenuItem documentsMenuItem = rankingsMenuItem.addItem(DOCUMENTS,VaadinIcons.GROUP, COMMAND_DOCUMENTS);
 		documentsMenuItem.addItem("List all",VaadinIcons.GROUP, COMMAND_DOCUMENTS);

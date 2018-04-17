@@ -106,5 +106,11 @@ public enum ViewAction {
 	VISIT_ADMIN_APPLICATION_CONFIGURATION_VIEW, VISIT_REGISTER, VISIT_LOGIN,
 
 	/** The visit admin email view. */
-	VISIT_ADMIN_EMAIL_VIEW, VISIT_DOCUMENTS_VIEW;
+	VISIT_ADMIN_EMAIL_VIEW, VISIT_DOCUMENTS_VIEW,
+	
+	/** The visit government body view. */
+	VISIT_GOVERNMENT_BODY_VIEW,
+	
+	/** The visit government body ranking view. */
+	VISIT_GOVERNMENT_BODY_RANKING_VIEW;
 }

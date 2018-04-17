@@ -467,6 +467,23 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW, "N%C3%A4ringsdepartementet"));
 	}
+	
+	/**
+	 * Site government body overview test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteGovernmentBodyOverviewTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.OVERVIEW, "202100-5026"));
+	}
 
 	/**
 	 * Site ministry government body test.
@@ -1430,6 +1447,23 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW));
+
+	}
+
+	/**
+	 * Site government body ranking overview test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteGovernmentBodyRankingOverviewTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME, PageMode.OVERVIEW));
 
 	}
 

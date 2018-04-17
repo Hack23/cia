@@ -44,6 +44,12 @@ public final class UserViews {
 	/** The Constant MINISTRY_VIEW_NAME. */
 	public static final String MINISTRY_VIEW_NAME = "ministry";
 
+	/** The Constant GOVERNMENT_BODY_VIEW_NAME. */
+	public static final String GOVERNMENT_BODY_VIEW_NAME = "governmentbody";
+
+	/** The Constant GOVERNMENT_BODY_RANKING_VIEW_NAME. */
+	public static final String GOVERNMENT_BODY_RANKING_VIEW_NAME = "governmentbodyranking";
+	
 	/** The Constant PARTY_RANKING_VIEW_NAME. */
 	public static final String PARTY_RANKING_VIEW_NAME = "partyranking";
 
