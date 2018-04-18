@@ -39,6 +39,9 @@ import com.vaadin.ui.VerticalLayout;
 public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		implements GovernmentBodyRankingMenuItemFactory {
 
+	/** The Constant GOVERNMENT_BODIES. */
+	private static final String GOVERNMENT_BODIES = "Government bodies";
+
 	/** The Constant COMMAND_PAGEVISITHISTORY. */
 	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
 			PageMode.PAGEVISITHISTORY);
@@ -46,6 +49,9 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
 	/** The Constant COMMAN_OVERVIEW. */
 	private static final PageModeMenuCommand COMMAN_OVERVIEW = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
+	
+	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
+			PageMode.DATAGRID);
 
 	/** The Constant GOVERNMENT_BODY_RANKING. */
 	private static final String GOVERNMENT_BODY_RANKING = "GovernmentBody Ranking";
@@ -82,6 +88,8 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
 
 		ministryMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP, COMMAN_OVERVIEW);
 
+		ministryMenuItem.addItem(GOVERNMENT_BODIES, VaadinIcons.GROUP, COMMAND_DATAGRID);
+
 		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISITHISTORY);
 
 	}
@@ -90,6 +98,8 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
 	public void createOverviewPage(final VerticalLayout panelContent) {
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
+		createButtonLink(grid, GOVERNMENT_BODIES, VaadinIcons.GROUP, COMMAND_DATAGRID, "Current government bodies");
+		
 		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
 
 	}

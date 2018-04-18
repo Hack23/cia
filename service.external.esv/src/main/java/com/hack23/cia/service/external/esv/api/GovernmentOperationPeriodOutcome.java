@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.service.external.esv.api;
 
+import java.io.Serializable;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -26,8 +28,11 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * The Class GovernmentOperationPeriodOutcome.
  */
-public class GovernmentOperationPeriodOutcome implements Comparable<GovernmentOperationPeriodOutcome>{
+public class GovernmentOperationPeriodOutcome implements Comparable<GovernmentOperationPeriodOutcome>, Serializable {
 	
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
 	/** The variable name. */
 	private String variableName;
 	

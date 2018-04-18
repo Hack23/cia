@@ -18,18 +18,17 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hack23.cia.model.common.api.ModelObject;
-
 /**
  * The Class PageItemPropertyClickListener.
  */
-public final class PageItemPropertyClickListener extends AbstractPageItemRendererClickListener<ModelObject> {
+public final class PageItemPropertyClickListener extends AbstractPageItemRendererClickListener<Serializable> {
 
 	/** The Constant ERROR_GETTING_PAGE_ID. */
 	private static final String ERROR_GETTING_PAGE_ID = "ErrorGettingPageId";
@@ -62,7 +61,7 @@ public final class PageItemPropertyClickListener extends AbstractPageItemRendere
 	}
 
 	@Override
-	protected String getPageId(final ModelObject t) {
+	protected String getPageId(final Serializable t) {
 		try {
 			return BeanUtils.getProperty(t, property);
 		} catch (IllegalAccessException | InvocationTargetException |

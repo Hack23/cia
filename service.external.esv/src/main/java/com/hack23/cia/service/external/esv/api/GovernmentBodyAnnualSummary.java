@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.service.external.esv.api;
 
+import java.io.Serializable;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -26,7 +28,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * The Class GovernmentBodyAnnualSummary.
  */
-public final class GovernmentBodyAnnualSummary {
+public final class GovernmentBodyAnnualSummary implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
 	/** The annual work head count. */
 	private final int annualWorkHeadCount;

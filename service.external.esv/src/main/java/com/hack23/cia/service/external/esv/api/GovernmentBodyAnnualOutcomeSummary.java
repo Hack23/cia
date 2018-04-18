@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.external.esv.api;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -31,7 +32,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * The Class GovernmentBodyAnnualOutcomeSummary.
  */
-public final class GovernmentBodyAnnualOutcomeSummary {
+public final class GovernmentBodyAnnualOutcomeSummary implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
 	/** The goverment body id. */
 	private final String govermentBody;
