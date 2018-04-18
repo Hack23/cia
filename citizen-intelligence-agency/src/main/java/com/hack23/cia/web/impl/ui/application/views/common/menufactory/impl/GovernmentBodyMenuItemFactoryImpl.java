@@ -25,6 +25,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Appli
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.GovernmentBodyMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.GovernmentBodyRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.GovernmentBodyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
@@ -38,6 +39,15 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Service
 public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements GovernmentBodyMenuItemFactory {
+
+	/** The Constant HEADCOUNT_CHART. */
+	private static final String HEADCOUNT_CHART = "Headcount chart";
+
+	/** The Constant INCOME. */
+	private static final String INCOME = "Income";
+
+	/** The Constant EXPENDITURE. */
+	private static final String EXPENDITURE = "Expenditure";
 
 	/** The Constant GOVERNMENT_BODY_RANKING. */
 	private static final String GOVERNMENT_BODY_RANKING = "GovernmentBody Ranking";
@@ -77,6 +87,15 @@ public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFac
 		governmentBodyItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
+		governmentBodyItem.addItem(HEADCOUNT_CHART, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.HEADCOUNT.toString(), pageId));
+
+		governmentBodyItem.addItem(INCOME, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString(), pageId));
+
+		governmentBodyItem.addItem(EXPENDITURE, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), pageId));
+
 
 		governmentBodyItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
@@ -87,6 +106,15 @@ public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFac
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
+		createButtonLink(grid,HEADCOUNT_CHART, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.HEADCOUNT.toString(), pageId), "Desc.");
+		
+		createButtonLink(grid,INCOME, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString(), pageId), "Desc.");
+
+		createButtonLink(grid,EXPENDITURE, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), pageId), "Desc");
+		
 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), "View history of page visit for this page.");
 

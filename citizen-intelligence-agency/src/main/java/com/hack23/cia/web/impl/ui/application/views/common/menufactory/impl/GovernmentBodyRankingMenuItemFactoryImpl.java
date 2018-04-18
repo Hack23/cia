@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.GovernmentBodyRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.GovernmentBodyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
@@ -39,6 +40,12 @@ import com.vaadin.ui.VerticalLayout;
 public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		implements GovernmentBodyRankingMenuItemFactory {
 
+	private static final String EXPENDITURE = "Expenditure";
+
+	private static final String INCOME = "Income";
+
+	private static final String HEADCOUNT = "Headcount";
+
 	/** The Constant GOVERNMENT_BODIES. */
 	private static final String GOVERNMENT_BODIES = "Government bodies";
 
@@ -53,6 +60,16 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
 	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
 			PageMode.DATAGRID);
 
+	private static final PageModeMenuCommand COMMAND_HEADCOUNT = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
+			GovernmentBodyPageMode.HEADCOUNT.toString());
+
+	private static final PageModeMenuCommand COMMAND_INCOME = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
+			GovernmentBodyPageMode.INCOME.toString());
+
+	private static final PageModeMenuCommand COMMAND_EXPENDITURE = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
+			GovernmentBodyPageMode.EXPENDITURE.toString());
+
+	
 	/** The Constant GOVERNMENT_BODY_RANKING. */
 	private static final String GOVERNMENT_BODY_RANKING = "GovernmentBody Ranking";
 
@@ -90,6 +107,10 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
 
 		ministryMenuItem.addItem(GOVERNMENT_BODIES, VaadinIcons.GROUP, COMMAND_DATAGRID);
 
+		ministryMenuItem.addItem(HEADCOUNT, VaadinIcons.GROUP, COMMAND_HEADCOUNT);
+		ministryMenuItem.addItem(INCOME, VaadinIcons.GROUP, COMMAND_INCOME);
+		ministryMenuItem.addItem(EXPENDITURE, VaadinIcons.GROUP, COMMAND_EXPENDITURE);
+		
 		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISITHISTORY);
 
 	}
@@ -99,6 +120,10 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
 		final ResponsiveRow grid = createGridLayout(panelContent);
 
 		createButtonLink(grid, GOVERNMENT_BODIES, VaadinIcons.GROUP, COMMAND_DATAGRID, "Current government bodies");
+		
+		createButtonLink(grid, HEADCOUNT, VaadinIcons.GROUP, COMMAND_HEADCOUNT, "Desc");
+		createButtonLink(grid, INCOME, VaadinIcons.GROUP, COMMAND_INCOME, "Desc");
+		createButtonLink(grid, EXPENDITURE, VaadinIcons.GROUP, COMMAND_EXPENDITURE , "Desc");		
 		
 		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISITHISTORY, "View history of page visit for this page.");
 

@@ -33,12 +33,14 @@ import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
 import com.vaadin.ui.AbstractOrderedLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class GovernmentBodyChartDataManagerImpl.
  */
 @Service
-public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManagerImpl implements GovernmentBodyChartDataManager {
+public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManagerImpl
+		implements GovernmentBodyChartDataManager {
 
 	/** The Constant ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES. */
 	private static final String ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES = " Annual headcount summary, all government bodies";
@@ -78,7 +80,8 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 			for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
 
 				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
-				final Integer totalHeadcount = item.stream().filter((final GovernmentBodyAnnualSummary p) -> p.getName().equalsIgnoreCase(govBodyName))
+				final Integer totalHeadcount = item.stream()
+						.filter((final GovernmentBodyAnnualSummary p) -> p.getName().equalsIgnoreCase(govBodyName))
 						.mapToInt(GovernmentBodyAnnualSummary::getHeadCount).sum();
 
 				if (entry.getKey() != null && totalHeadcount > 0) {
@@ -89,7 +92,8 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 
 		addChart(content, name + ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES,
 				new DCharts().setDataSeries(dataSeries)
-						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(), true);
+						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
+				true);
 
 	}
 
@@ -111,7 +115,8 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 			for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
 
 				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
-				final Integer totalHeadcount = item.stream().filter((final GovernmentBodyAnnualSummary p) -> p.getMinistry().equalsIgnoreCase(ministryName))
+				final Integer totalHeadcount = item.stream()
+						.filter((final GovernmentBodyAnnualSummary p) -> p.getMinistry().equalsIgnoreCase(ministryName))
 						.mapToInt(GovernmentBodyAnnualSummary::getHeadCount).sum();
 
 				if (entry.getKey() != null && totalHeadcount > 0) {
@@ -120,9 +125,67 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 			}
 		}
 
-		addChart(content, ANNUAL_HEADCOUNT_ALL_MINISTRIES, new DCharts().setDataSeries(dataSeries)
-				.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(), true);
+		addChart(content, ANNUAL_HEADCOUNT_ALL_MINISTRIES,
+				new DCharts().setDataSeries(dataSeries)
+						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
+				true);
 
+	}
+
+	@Override
+	public void createGovernmentBodyHeadcountSummaryChart(VerticalLayout content) {
+		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getData();
+
+		final DataSeries dataSeries = new DataSeries();
+
+		final Series series = new Series();
+
+		series.addSeries(new XYseries().setLabel("All government bodies"));
+
+		dataSeries.newSeries();
+
+		for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
+
+			final List<GovernmentBodyAnnualSummary> item = entry.getValue();
+			final Integer totalHeadcount = item.stream().mapToInt(GovernmentBodyAnnualSummary::getHeadCount).sum();
+
+			if (entry.getKey() != null && totalHeadcount > 0) {
+				dataSeries.add(FIRST_OF_JAN + entry.getKey(), totalHeadcount);
+			}
+		}
+
+		addChart(content, "Annual headcount total all government bodies",
+				new DCharts().setDataSeries(dataSeries)
+						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
+				true);
+
+	}
+
+	@Override
+	public void createGovernmentBodyHeadcountSummaryChart(VerticalLayout content, String name) {
+		Map<Integer, GovernmentBodyAnnualSummary> map = esvApi.getDataPerGovernmentBody(name);
+
+		final DataSeries dataSeries = new DataSeries();
+		final Series series = new Series();
+
+		series.addSeries(new XYseries().setLabel(name));
+
+		dataSeries.newSeries();
+
+		for (final Entry<Integer, GovernmentBodyAnnualSummary> entry : map.entrySet()) {
+
+			final GovernmentBodyAnnualSummary item = entry.getValue();
+			final Integer totalHeadcount = item.getHeadCount();
+
+			if (entry.getKey() != null && totalHeadcount > 0) {
+				dataSeries.add(FIRST_OF_JAN + entry.getKey(), totalHeadcount);
+			}
+		}
+
+		addChart(content, name + "Annual headcount",
+				new DCharts().setDataSeries(dataSeries)
+						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
+				true);
 	}
 
 }

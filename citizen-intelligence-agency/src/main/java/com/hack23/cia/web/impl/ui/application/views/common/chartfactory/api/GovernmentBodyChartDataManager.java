@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
 
 import com.vaadin.ui.AbstractOrderedLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Interface GovernmentBodyChartDataManager.
@@ -42,5 +43,9 @@ public interface GovernmentBodyChartDataManager {
 	 *            the content
 	 */
 	void createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout content);
+
+	void createGovernmentBodyHeadcountSummaryChart(VerticalLayout panelContent);
+
+	void createGovernmentBodyHeadcountSummaryChart(VerticalLayout panelContent, String name);
 
 }
