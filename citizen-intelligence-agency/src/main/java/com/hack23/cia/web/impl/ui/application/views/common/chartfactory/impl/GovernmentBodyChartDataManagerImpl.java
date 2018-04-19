@@ -194,20 +194,12 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 	public void createGovernmentBodyIncomeSummaryChart(VerticalLayout panelContent) {
 		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi
 				.getGovernmentBodyReportByField("Inkomsttitelgruppsnamn");
-
-		for (Entry<String, List<GovernmentBodyAnnualOutcomeSummary>> entry : report.entrySet()) {
-			System.out.println(entry.getKey());
-		}
 	}
 
 	@Override
 	public void createGovernmentBodyExpenditureSummaryChart(VerticalLayout panelContent) {
 		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi
 				.getGovernmentBodyReportByField("Utgiftsområdesnamn");
-
-		for (Entry<String, List<GovernmentBodyAnnualOutcomeSummary>> entry : report.entrySet()) {
-			System.out.println(entry.getKey());
-		}
 	}
 
 	@Override
