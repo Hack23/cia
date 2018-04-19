@@ -40,7 +40,7 @@ public final class EsvGovernmentBodyOperationOutcomeReaderTest extends AbstractE
 	@Test
 	@Ignore
 	public void downloadIncomeCsvZipTest() throws IOException {
-		Content returnContent = Request.Get(
+		final Content returnContent = Request.Get(
 				"https://www.esv.se/psidata/manadsutfall/GetFile/?documentType=Inkomst&fileType=Zip&fileName=M%C3%A5nadsutfall%20inkomster%20januari%202006%20-%20februari%202018,%20definitivt.zip&year=2018&month=2&status=Definitiv")
 				.execute().returnContent();
 		//readUsingZipInputStream(returnContent.asStream());
@@ -48,14 +48,14 @@ public final class EsvGovernmentBodyOperationOutcomeReaderTest extends AbstractE
 
 	@Test
 	public void readIncomeCsvTest() throws IOException {
-		List<GovernmentBodyAnnualOutcomeSummary> list = esvGovernmentBodyOperationOutcomeReader.readIncomeCsv();
+		final List<GovernmentBodyAnnualOutcomeSummary> list = esvGovernmentBodyOperationOutcomeReader.readIncomeCsv();
 		assertNotNull(list);
 		assertFalse(list.isEmpty());		
 	}
 
 	@Test
 	public void readOutgoingCsvTest() throws IOException {
-		List<GovernmentBodyAnnualOutcomeSummary> list = esvGovernmentBodyOperationOutcomeReader.readOutgoingCsv();
+		final List<GovernmentBodyAnnualOutcomeSummary> list = esvGovernmentBodyOperationOutcomeReader.readOutgoingCsv();
 		assertNotNull(list);
 		assertFalse(list.isEmpty());		
 	}

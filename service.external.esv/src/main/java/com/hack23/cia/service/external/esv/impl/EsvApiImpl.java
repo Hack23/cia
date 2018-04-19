@@ -159,15 +159,25 @@ final class EsvApiImpl implements EsvApi {
 
 	@Override
 	public Map<String, List<GovernmentBodyAnnualOutcomeSummary>> getGovernmentBodyReport() {
-		List<GovernmentBodyAnnualOutcomeSummary> result = new ArrayList<>();
+		final List<GovernmentBodyAnnualOutcomeSummary> result = getGovernmentBodyList();		
+		return result.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getGovermentBody));
+	}
+
+	private List<GovernmentBodyAnnualOutcomeSummary> getGovernmentBodyList() {
+		final List<GovernmentBodyAnnualOutcomeSummary> result = new ArrayList<>();
 		try {
 			result.addAll(esvGovernmentBodyOperationOutcomeReader.readIncomeCsv());
 			result.addAll(esvGovernmentBodyOperationOutcomeReader.readOutgoingCsv());
-		} catch (IOException e) {
-			return new HashMap<>();
+		} catch (final IOException e) {
+			return result;
 		}
-		
-		return result.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getGovermentBody));
+		return result;
+	}
+
+	@Override
+	public Map<String, List<GovernmentBodyAnnualOutcomeSummary>> getGovernmentBodyReportByField(final String string) {
+		final List<GovernmentBodyAnnualOutcomeSummary> result = getGovernmentBodyList();		
+		return result.stream().filter(p -> p.getDescriptionFields().get(string) != null) .collect(Collectors.groupingBy(t -> t.getDescriptionFields().get(string)));
 	}
 
 }

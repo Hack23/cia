@@ -37,7 +37,7 @@ public final class GovernmentBodyAnnualOutcomeSummary implements Serializable {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The goverment body id. */
+	/** The goverment body. */
 	private final String govermentBody;
 
 	/** The org number. */
@@ -45,48 +45,117 @@ public final class GovernmentBodyAnnualOutcomeSummary implements Serializable {
 
 	/** The year. */
 	private final int year;
+	
+	/** The year total. */
+	private double yearTotal;
 
+	/** The value map. */
 	private final Map<Date, Double> valueMap = new HashMap<>();
 
+	/** The description fields. */
 	private final Map<String, String> descriptionFields = new HashMap<>();
 
-	public GovernmentBodyAnnualOutcomeSummary(String govermentBody, String orgNumber, int year) {
+	/**
+	 * Instantiates a new government body annual outcome summary.
+	 *
+	 * @param govermentBody
+	 *            the goverment body
+	 * @param orgNumber
+	 *            the org number
+	 * @param year
+	 *            the year
+	 */
+	public GovernmentBodyAnnualOutcomeSummary(final String govermentBody, final String orgNumber, final int year) {
 		super();
 		this.govermentBody = govermentBody;
 		this.orgNumber = orgNumber;
 		this.year = year;
 	}
 
+	/**
+	 * Gets the goverment body id.
+	 *
+	 * @return the goverment body id
+	 */
 	public String getGovermentBody() {
 		return govermentBody;
 	}
 
+	/**
+	 * Gets the org number.
+	 *
+	 * @return the org number
+	 */
 	public String getOrgNumber() {
 		return orgNumber;
 	}
 
+	/**
+	 * Gets the year.
+	 *
+	 * @return the year
+	 */
 	public int getYear() {
 		return year;
 	}
 
-	public void addData(int month, Double value) {
-		Date date = new GregorianCalendar(year, month, 1).getTime();
+	/**
+	 * Adds the data.
+	 *
+	 * @param month
+	 *            the month
+	 * @param value
+	 *            the value
+	 */
+	public void addData(final int month, final Double value) {
+		yearTotal = yearTotal + value;
+		final Date date = new GregorianCalendar(year, month, 1).getTime();
 		valueMap.put(date, value);
 	}
 
-	public void addDescriptionField(String field, String value) {
+	/**
+	 * Gets the year total.
+	 *
+	 * @return the year total
+	 */
+	public Double getYearTotal() {
+		return yearTotal;
+	}
+
+	/**
+	 * Adds the description field.
+	 *
+	 * @param field
+	 *            the field
+	 * @param value
+	 *            the value
+	 */
+	public void addDescriptionField(final String field, final String value) {
 		descriptionFields.put(field, value);
 	}
 
 	
+	/**
+	 * Gets the value map.
+	 *
+	 * @return the value map
+	 */
 	public Map<Date, Double> getValueMap() {
 		return valueMap;
 	}
 
+	/**
+	 * Gets the description fields.
+	 *
+	 * @return the description fields
+	 */
 	public Map<String, String> getDescriptionFields() {
 		return descriptionFields;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);

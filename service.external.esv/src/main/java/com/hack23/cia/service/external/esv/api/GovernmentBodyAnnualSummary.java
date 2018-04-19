@@ -109,11 +109,6 @@ public final class GovernmentBodyAnnualSummary implements Serializable {
 		this.comment = comment;
 	}
 
-	@Override
-	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj);
-	}
-
 	/**
 	 * Gets the annual work head count.
 	 *
@@ -211,6 +206,11 @@ public final class GovernmentBodyAnnualSummary implements Serializable {
 	 */
 	public int getYear() {
 		return year;
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
 	@Override

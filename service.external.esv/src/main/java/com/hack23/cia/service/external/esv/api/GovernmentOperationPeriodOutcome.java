@@ -218,7 +218,8 @@ public class GovernmentOperationPeriodOutcome implements Comparable<GovernmentOp
     	/** The budget balance. */
     	BUDGET_BALANCE ("Budget balance");
 
-	    private final String name;       
+	    /** The name. */
+    	private final String name;       
 
 	    /**
 		 * Instantiates a new variables.
@@ -226,11 +227,11 @@ public class GovernmentOperationPeriodOutcome implements Comparable<GovernmentOp
 		 * @param s
 		 *            the s
 		 */
-    	private Variables(String s) {
+    	private Variables(final String s) {
 	        name = s;
 	    }
 
-	    @Override
+    	@Override
 	    public String toString() {
 	       return this.name;
 	    }

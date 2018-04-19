@@ -141,11 +141,11 @@ public class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernmen
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	private static List<GovernmentBodyAnnualOutcomeSummary> readUsingZipInputStream(InputStream inputStream,String[] specificFields) throws IOException {		
-		BufferedInputStream bis = new BufferedInputStream(inputStream);
+	private static List<GovernmentBodyAnnualOutcomeSummary> readUsingZipInputStream(final InputStream inputStream,final String[] specificFields) throws IOException {		
+		final BufferedInputStream bis = new BufferedInputStream(inputStream);
 		final ZipInputStream is = new ZipInputStream(bis);
 
-		List<GovernmentBodyAnnualOutcomeSummary> list = new ArrayList<>();
+		final List<GovernmentBodyAnnualOutcomeSummary> list = new ArrayList<>();
 		try {
 			ZipEntry entry;
 			while ((entry = is.getNextEntry()) != null) {
@@ -170,17 +170,17 @@ public class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernmen
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	private static List<GovernmentBodyAnnualOutcomeSummary> readCsvContent(final ZipEntry entry, InputStream is,String[] specificFields) throws IOException {
-		CSVParser parser = CSVParser.parse(new InputStreamReader(is,Charsets.UTF_8), CSVFormat.EXCEL.withHeader().withDelimiter(';'));
-		List<CSVRecord> records = parser.getRecords();
+	private static List<GovernmentBodyAnnualOutcomeSummary> readCsvContent(final ZipEntry entry, final InputStream is,final String[] specificFields) throws IOException {
+		final CSVParser parser = CSVParser.parse(new InputStreamReader(is,Charsets.UTF_8), CSVFormat.EXCEL.withHeader().withDelimiter(';'));
+		final List<CSVRecord> records = parser.getRecords();
 		records.remove(0);
 		
-		List<GovernmentBodyAnnualOutcomeSummary> list = new ArrayList<>();
+		final List<GovernmentBodyAnnualOutcomeSummary> list = new ArrayList<>();
 		
-		for (CSVRecord csvRecord : records) {
-			GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get(MYNDIGHET), csvRecord.get(ORGANISATIONSNUMMER), Integer.valueOf(csvRecord.get(ÅR)));
+		for (final CSVRecord csvRecord : records) {
+			final GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get(MYNDIGHET), csvRecord.get(ORGANISATIONSNUMMER), Integer.valueOf(csvRecord.get(ÅR)));
 			
-			for (String field : specificFields) {				
+			for (final String field : specificFields) {				
 				governmentBodyAnnualOutcomeSummary.addDescriptionField(field,csvRecord.get(field));
 			}
 			
@@ -216,8 +216,8 @@ public class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernmen
 	 * @param value
 	 *            the value
 	 */
-	private static void addResultForMonth(GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary, int month,
-			String value) {
+	private static void addResultForMonth(final GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary, final int month,
+			final String value) {
 		if (value != null && value.length() >0 ) {
 			governmentBodyAnnualOutcomeSummary.addData(month,Double.valueOf(value.replaceAll(",", ".")));
 		}

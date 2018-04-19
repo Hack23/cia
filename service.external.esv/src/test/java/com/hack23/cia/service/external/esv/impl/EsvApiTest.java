@@ -286,8 +286,10 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	public void getReportTest() {
 		final Map<String, List<GovernmentOperationPeriodOutcome>> report = esvApi.getReport();
 		assertNotNull(report);
+		assertFalse(report.isEmpty());
 		final List<GovernmentOperationPeriodOutcome> list = report.get(GovernmentOperationPeriodOutcome.Variables.BUDGET_BALANCE.toString());
 		assertNotNull(list);
+		assertFalse(list.isEmpty());
 	}
 	
 
@@ -295,6 +297,21 @@ public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
 	public void getGovernmentBodyReportTest() {
 		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi.getGovernmentBodyReport();
 		assertNotNull(report);
+		assertFalse(report.isEmpty());
+	}
+	
+	@Test
+	public void getGovernmentBodyReportMapByFieldIncomeGroupTest() {
+		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi.getGovernmentBodyReportByField("Inkomsttitelgruppsnamn");
+		assertNotNull(report);
+		assertFalse(report.isEmpty());
 	}
 
+	@Test
+	public void getGovernmentBodyReportMapByFieldOutcomeGroupTest() {
+		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi.getGovernmentBodyReportByField("Utgiftsområdesnamn");
+		assertNotNull(report);
+		assertFalse(report.isEmpty());
+	}
+	
 }

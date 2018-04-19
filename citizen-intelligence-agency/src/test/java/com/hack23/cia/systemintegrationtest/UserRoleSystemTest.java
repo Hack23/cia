@@ -504,6 +504,40 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	}
 
 	/**
+	 * Site government body income test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteGovernmentBodyIncomeTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString(), "202100-5026"));
+	}
+
+	/**
+	 * Site government body expenditure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteGovernmentBodyExpenditureTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), "202100-5026"));
+	}
+
+	/**
 	 * Site ministry government body test.
 	 *
 	 * @throws Exception
@@ -1499,7 +1533,38 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME, GovernmentBodyPageMode.HEADCOUNT.toString()));
+	}
 
+	/**
+	 * Site government body ranking income test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteGovernmentBodyRankingIncomeTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString()));
+	}
+
+	/**
+	 * Site government body ranking expenditure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void siteGovernmentBodyRankingExpenditureTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString()));
 	}
 
 	/**

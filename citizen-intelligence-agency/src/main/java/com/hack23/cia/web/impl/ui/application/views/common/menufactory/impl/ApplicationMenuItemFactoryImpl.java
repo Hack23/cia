@@ -45,6 +45,9 @@ import com.vaadin.ui.VerticalLayout;
 public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		implements ApplicationMenuItemFactory {
 
+	/** The Constant GOVERNMENT_BODIES. */
+	private static final String GOVERNMENT_BODIES = "Government bodies";
+
 	/** The Constant COMMAND_PARLIAMENT_RANKING_OVERVIEW. */
 	private static final PageModeMenuCommand COMMAND_PARLIAMENT_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME,
 			PageMode.OVERVIEW);
@@ -64,6 +67,9 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	private static final PageModeMenuCommand COMMAND_MINISTRY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
 			PageMode.DATAGRID);
 
+	/** The Constant COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID. */
+	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
+			PageMode.DATAGRID);
 
 	/** The Constant COMMAND_COMMITTEE_RANKING_OVERVIEW. */
 	private static final PageModeMenuCommand COMMAND_COMMITTEE_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
@@ -134,7 +140,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	private static final String MINISTRIES_LINK_TEXT = "Ministries";
 
 	/** The Constant GOVERNMENT_BODY_LINK_TEXT. */
-	private static final String GOVERNMENT_BODY_LINK_TEXT = "Government bodies";
+	private static final String GOVERNMENT_BODY_LINK_TEXT = GOVERNMENT_BODIES;
 
 	/** The Constant COMMITTEES_LINK_TEXT. */
 	private static final String COMMITTEES_LINK_TEXT = "Committees";
@@ -260,6 +266,8 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 		createButtonLink(grid,MINISTRY_RANKING_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_OVERVIEW,"Ministry ranking overiew, contains data and charts.");
 
 		createButtonLink(grid,MINISTRIES_LINK_TEXT,VaadinIcons.GROUP, COMMAND_MINISTRY_RANKING_DATAGRID,"All ministries, scoreboard assignments and days served in committees");
+		
+		createButtonLink(grid,GOVERNMENT_BODIES,VaadinIcons.GROUP, COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID,"All government bodies current headcount");	
 
 		createButtonLink(grid,SEARCH_DOCUMENTS,VaadinIcons.GROUP, COMMAND_SEARCH_DOCUMENT,"Search parliament documents");
 

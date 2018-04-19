@@ -188,4 +188,28 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 				true);
 	}
 
+	@Override
+	public void createGovernmentBodyIncomeSummaryChart(VerticalLayout panelContent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void createGovernmentBodyExpenditureSummaryChart(VerticalLayout panelContent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void createGovernmentBodyIncomeSummaryChart(VerticalLayout panelContent, String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void createGovernmentBodyExpenditureSummaryChart(VerticalLayout panelContent, String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
