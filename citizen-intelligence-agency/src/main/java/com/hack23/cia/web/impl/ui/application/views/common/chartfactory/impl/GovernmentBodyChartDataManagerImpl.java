@@ -21,6 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
@@ -30,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.service.external.esv.api.EsvApi;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
 import com.vaadin.ui.AbstractOrderedLayout;
@@ -190,26 +192,80 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 
 	@Override
 	public void createGovernmentBodyIncomeSummaryChart(VerticalLayout panelContent) {
-		// TODO Auto-generated method stub
-		
+		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi
+				.getGovernmentBodyReportByField("Inkomsttitelgruppsnamn");
+
+		for (Entry<String, List<GovernmentBodyAnnualOutcomeSummary>> entry : report.entrySet()) {
+			System.out.println(entry.getKey());
+		}
 	}
 
 	@Override
 	public void createGovernmentBodyExpenditureSummaryChart(VerticalLayout panelContent) {
-		// TODO Auto-generated method stub
-		
+		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi
+				.getGovernmentBodyReportByField("Utgiftsområdesnamn");
+
+		for (Entry<String, List<GovernmentBodyAnnualOutcomeSummary>> entry : report.entrySet()) {
+			System.out.println(entry.getKey());
+		}
 	}
 
 	@Override
-	public void createGovernmentBodyIncomeSummaryChart(VerticalLayout panelContent, String name) {
-		// TODO Auto-generated method stub
-		
+	public void createGovernmentBodyIncomeSummaryChart(VerticalLayout content, String name) {
+		List<GovernmentBodyAnnualOutcomeSummary> report = esvApi.getGovernmentBodyReport().get(name);
+
+		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> collect = report.stream()
+				.filter(p -> p.getDescriptionFields().get("Inkomsttitelsnamn") != null)
+				.collect(Collectors.groupingBy(t -> t.getDescriptionFields().get("Inkomsttitelsnamn")));
+
+		final DataSeries dataSeries = new DataSeries();
+		final Series series = new Series();
+
+		for (Entry<String, List<GovernmentBodyAnnualOutcomeSummary>> entry : collect.entrySet()) {
+			series.addSeries(new XYseries().setLabel(entry.getKey()));
+			dataSeries.newSeries();
+
+			for (GovernmentBodyAnnualOutcomeSummary data : entry.getValue()) {
+				if (data != null && data.getYearTotal().intValue() > 0) {
+					dataSeries.add(data.getYear() + "-01-01", data.getYearTotal().intValue());
+				}
+			}
+		}
+
+		addChart(content, name + "Annual Income",
+				new DCharts().setDataSeries(dataSeries)
+						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
+				true);
+
 	}
 
 	@Override
-	public void createGovernmentBodyExpenditureSummaryChart(VerticalLayout panelContent, String name) {
-		// TODO Auto-generated method stub
-		
+	public void createGovernmentBodyExpenditureSummaryChart(VerticalLayout content, String name) {
+		List<GovernmentBodyAnnualOutcomeSummary> report = esvApi.getGovernmentBodyReport().get(name);
+
+		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> collect = report.stream()
+				.filter(p -> p.getDescriptionFields().get("Anslagspostsnamn") != null)
+				.collect(Collectors.groupingBy(t -> t.getDescriptionFields().get("Anslagspostsnamn")));
+
+		final DataSeries dataSeries = new DataSeries();
+		final Series series = new Series();
+
+		for (Entry<String, List<GovernmentBodyAnnualOutcomeSummary>> entry : collect.entrySet()) {
+			series.addSeries(new XYseries().setLabel(entry.getKey()));
+			dataSeries.newSeries();
+
+			for (GovernmentBodyAnnualOutcomeSummary data : entry.getValue()) {
+				if (data != null && data.getYearTotal().intValue() > 0) {
+					dataSeries.add(data.getYear() + "-01-01", data.getYearTotal().intValue());
+				}
+			}
+		}
+
+		addChart(content, name + "Annual Expenditure",
+				new DCharts().setDataSeries(dataSeries)
+						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
+				true);
+
 	}
 
 }
