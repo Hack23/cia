@@ -115,11 +115,11 @@
     <cia.project.versions.hibernate>5.3.0.CR1</cia.project.versions.hibernate>
     <cia.project.versions.hibernate.jpamodelgen>5.3.0.CR1</cia.project.versions.hibernate.jpamodelgen>
     <cia.project.versions.hibernate.build>5.3.0.CR1</cia.project.versions.hibernate.build>
-    <cia.project.versions.hibernate.tools>5.3.0.Beta2</cia.project.versions.hibernate.tools>
+    <cia.project.versions.hibernate.tools>5.3.0.Beta3</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.2</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.0.9.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>6.0.9.Final</cia.project.versions.hibernate.build.validator>
-    <cia.project.versions.bytebuddy>1.8.6</cia.project.versions.bytebuddy>
+    <cia.project.versions.bytebuddy>1.8.8</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.197</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.2.2</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.4</cia.project.versions.ehcache>
