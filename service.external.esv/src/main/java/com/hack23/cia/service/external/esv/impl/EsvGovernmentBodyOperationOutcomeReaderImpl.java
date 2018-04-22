@@ -32,6 +32,7 @@ import org.apache.commons.codec.Charsets;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.http.client.fluent.Request;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
@@ -122,12 +123,16 @@ public class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernmen
 
 	@Override
 	public List<GovernmentBodyAnnualOutcomeSummary> readIncomeCsv() throws IOException {
-		return readUsingZipInputStream(EsvGovernmentBodyOperationOutcomeReaderImpl.class.getResourceAsStream("/Månadsutfall inkomster januari 2006 - februari 2018%2c definitivt.zip"),SPECIFIC_OUTGOING_FIELDS);
+		return readUsingZipInputStream(Request.Get(
+				"https://www.esv.se/psidata/manadsutfall/GetFile/?documentType=Inkomst&fileType=Zip&fileName=M%C3%A5nadsutfall%20inkomster%20januari%202006%20-%20februari%202018,%20definitivt.zip&year=2018&month=2&status=Definitiv")
+				.execute().returnContent().asStream(),SPECIFIC_OUTGOING_FIELDS);
 	}
 	
 	@Override
 	public List<GovernmentBodyAnnualOutcomeSummary> readOutgoingCsv() throws IOException {		
-		return readUsingZipInputStream(EsvGovernmentBodyOperationOutcomeReaderImpl.class.getResourceAsStream("/Månadsutfall utgifter januari 2006 - februari 2018%2c definitivt.zip"),SPECIFIC_INCOMING_FIELDS);
+		return readUsingZipInputStream(Request.Get(
+				"https://www.esv.se/psidata/manadsutfall/GetFile/?documentType=Utgift&fileType=Zip&fileName=M%C3%A5nadsutfall%20utgifter%20januari%202006%20-%20februari%202018,%20definitivt.zip&year=2018&month=2&status=Definitiv")
+				.execute().returnContent().asStream(),SPECIFIC_INCOMING_FIELDS);
 	}
 
 	/**

@@ -38,7 +38,6 @@ public final class EsvGovernmentBodyOperationOutcomeReaderTest extends AbstractE
 	private EsvGovernmentBodyOperationOutcomeReader esvGovernmentBodyOperationOutcomeReader;
 	
 	@Test
-	@Ignore
 	public void downloadIncomeCsvZipTest() throws IOException {
 		final Content returnContent = Request.Get(
 				"https://www.esv.se/psidata/manadsutfall/GetFile/?documentType=Inkomst&fileType=Zip&fileName=M%C3%A5nadsutfall%20inkomster%20januari%202006%20-%20februari%202018,%20definitivt.zip&year=2018&month=2&status=Definitiv")
