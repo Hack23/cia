@@ -21,9 +21,6 @@ package com.hack23.cia.service.external.esv.impl;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.http.client.fluent.Content;
-import org.apache.http.client.fluent.Request;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -37,14 +34,6 @@ public final class EsvGovernmentBodyOperationOutcomeReaderTest extends AbstractE
 	@Autowired
 	private EsvGovernmentBodyOperationOutcomeReader esvGovernmentBodyOperationOutcomeReader;
 	
-	@Test
-	public void downloadIncomeCsvZipTest() throws IOException {
-		final Content returnContent = Request.Get(
-				"https://www.esv.se/psidata/manadsutfall/GetFile/?documentType=Inkomst&fileType=Zip&fileName=M%C3%A5nadsutfall%20inkomster%20januari%202006%20-%20februari%202018,%20definitivt.zip&year=2018&month=2&status=Definitiv")
-				.execute().returnContent();
-		//readUsingZipInputStream(returnContent.asStream());
-	}
-
 	@Test
 	public void readIncomeCsvTest() throws IOException {
 		final List<GovernmentBodyAnnualOutcomeSummary> list = esvGovernmentBodyOperationOutcomeReader.readIncomeCsv();
