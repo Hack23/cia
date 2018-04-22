@@ -114,6 +114,10 @@ public class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernmen
 	/** The Constant SPECIFIC_INCOMING_FIELDS. */
 	private static final String[] SPECIFIC_INCOMING_FIELDS = new String[] { "Utgiftsområde", "Utgiftsområdesnamn", "Anslag", "Anslagsnamn", "Anslagspost", "Anslagspostsnamn", "Anslagsdelpost", "Anslagsdelpostsnamn"};
 
+	private List<GovernmentBodyAnnualOutcomeSummary> incomeCsvValues;
+
+	private List<GovernmentBodyAnnualOutcomeSummary> outGoingCsvValues;
+
 	/**
 	 * Instantiates a new esv government body operation outcome reader impl.
 	 */
@@ -122,17 +126,23 @@ public class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernmen
 	}
 
 	@Override
-	public List<GovernmentBodyAnnualOutcomeSummary> readIncomeCsv() throws IOException {
-		return readUsingZipInputStream(Request.Get(
+	public synchronized List<GovernmentBodyAnnualOutcomeSummary> readIncomeCsv() throws IOException {
+		if (incomeCsvValues == null) {
+			incomeCsvValues = readUsingZipInputStream(Request.Get(
 				"https://www.esv.se/psidata/manadsutfall/GetFile/?documentType=Inkomst&fileType=Zip&fileName=M%C3%A5nadsutfall%20inkomster%20januari%202006%20-%20februari%202018,%20definitivt.zip&year=2018&month=2&status=Definitiv")
 				.execute().returnContent().asStream(),SPECIFIC_OUTGOING_FIELDS);
+		}
+		return incomeCsvValues;
 	}
 	
 	@Override
-	public List<GovernmentBodyAnnualOutcomeSummary> readOutgoingCsv() throws IOException {		
-		return readUsingZipInputStream(Request.Get(
+	public synchronized List<GovernmentBodyAnnualOutcomeSummary> readOutgoingCsv() throws IOException {		
+		if (outGoingCsvValues == null) {
+			outGoingCsvValues = readUsingZipInputStream(Request.Get(
 				"https://www.esv.se/psidata/manadsutfall/GetFile/?documentType=Utgift&fileType=Zip&fileName=M%C3%A5nadsutfall%20utgifter%20januari%202006%20-%20februari%202018,%20definitivt.zip&year=2018&month=2&status=Definitiv")
 				.execute().returnContent().asStream(),SPECIFIC_INCOMING_FIELDS);
+		}
+		return outGoingCsvValues;
 	}
 
 	/**
