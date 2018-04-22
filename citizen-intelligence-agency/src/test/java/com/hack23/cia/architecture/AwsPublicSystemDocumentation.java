@@ -105,8 +105,8 @@ public class AwsPublicSystemDocumentation {
 		iamAccountNode.add(iamAccountContainer);
 		masterAccountNode.add(awsAccountContainer);
 		
-		final DeploymentView developmentDeploymentView = viewSet.createDeploymentView(ciaSystem, "Production Aws Account structure",
-				"Production Aws Account structure");
+		final DeploymentView developmentDeploymentView = viewSet.createDeploymentView(ciaSystem, "\"Production Aws Account structure\"",
+				"\"Production Aws Account structure\"");
 
 		developmentDeploymentView.add(masterAccountNode);
 		developmentDeploymentView.add(iamAccountNode);
@@ -171,7 +171,6 @@ public class AwsPublicSystemDocumentation {
 		final String fullFilePathPlantUmlFile = Paths.get(".").toAbsolutePath().normalize().toString() + File.separator
 				+ "target" + File.separator + "site" + File.separator + "architecture" + File.separator + filename
 				+ ".pu";
-		System.out.println("Writing file:" + fullFilePathPlantUmlFile);
 		FileUtils.writeStringToFile(new File(fullFilePathPlantUmlFile), content, Charset.defaultCharset());
 	}
 }

@@ -145,15 +145,15 @@ public class AppPublicSystemDocumentation {
 
 		ciaWebContainer.uses(relationalDatabase, "JDBC");
 
-		final SystemLandscapeView enterpriseContextView = viewSet.createSystemLandscapeView("Enterprise",
-				"Enterprise");
+		final SystemLandscapeView enterpriseContextView = viewSet.createSystemLandscapeView("\"Enterprise\"",
+				"\"Enterprise\"");
 		enterpriseContextView.addAllElements();
 		final Enterprise enterprise = new Enterprise("Hack23");
 		enterpriseContextView.getModel().setEnterprise(enterprise);
 
-		viewSet.createSystemContextView(ciaSystem, "System context", "System context").addAllElements();
-		viewSet.createContainerView(ciaSystem, "Container view", "Application Overview").addAllContainers();
-		viewSet.createComponentView(ciaWebContainer, "Web", "Web").addAllComponents();
+		viewSet.createSystemContextView(ciaSystem, "\"System context\"", "\"System context\"").addAllElements();
+		viewSet.createContainerView(ciaSystem, "\"Container view\"", "\"Application Overview\"").addAllContainers();
+		viewSet.createComponentView(ciaWebContainer, "\"Web\"", "\"Web\"").addAllComponents();
 
 		final DeploymentNode awsAccountNode = model.addDeploymentNode("AppOrg Account", "AWS", "Aws Account");
 
@@ -287,8 +287,8 @@ public class AppPublicSystemDocumentation {
 		sumologicNetworkSecurityDashboardNode.add(sumologicAwsAlbLogsContainer);
 		
 
-		final DeploymentView developmentDeploymentView = viewSet.createDeploymentView(ciaSystem, "Deployment",
-				"Deployment Aws.");
+		final DeploymentView developmentDeploymentView = viewSet.createDeploymentView(ciaSystem, "\"Deployment\"",
+				"\"Deployment Aws.\"");
 
 		developmentDeploymentView.add(awsAuditAccountNode);
 		developmentDeploymentView.add(wafNode);
@@ -381,7 +381,6 @@ public class AppPublicSystemDocumentation {
 		final String fullFilePathPlantUmlFile = Paths.get(".").toAbsolutePath().normalize().toString() + File.separator
 				+ "target" + File.separator + "site" + File.separator + "architecture" + File.separator + filename
 				+ ".pu";
-		System.out.println("Writing file:" + fullFilePathPlantUmlFile);
 		FileUtils.writeStringToFile(new File(fullFilePathPlantUmlFile), content, Charset.defaultCharset());
 	}
 }
