@@ -1372,7 +1372,8 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.RULES,
 				RiskIndicators.RISK_SUMMARY.toString()));
-
+		
+		clickFirstRowInGrid(userPageVisit);
 	}
 
 	/**
@@ -1390,6 +1391,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.RULES,
 				RiskIndicators.RULE_VIOLATIONS.toString()));
+		clickFirstRowInGrid(userPageVisit);
 	}
 
 	
