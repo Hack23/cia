@@ -28,7 +28,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * The Class GovernmentOperationPeriodOutcome.
  */
-public class GovernmentOperationPeriodOutcome implements Comparable<GovernmentOperationPeriodOutcome>, Serializable {
+public final class GovernmentOperationPeriodOutcome implements Comparable<GovernmentOperationPeriodOutcome>, Serializable {
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;

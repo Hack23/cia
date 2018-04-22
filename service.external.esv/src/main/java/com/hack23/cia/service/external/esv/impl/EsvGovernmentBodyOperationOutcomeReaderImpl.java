@@ -41,7 +41,7 @@ import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummar
  * The Class EsvGovernmentBodyOperationOutcomeReaderImpl.
  */
 @Component
-public class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernmentBodyOperationOutcomeReader {
+final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernmentBodyOperationOutcomeReader {
 
 	/** The Constant ORGANISATIONSNUMMER. */
 	private static final String ORGANISATIONSNUMMER = "Organisationsnummer";
