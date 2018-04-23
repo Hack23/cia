@@ -73,6 +73,14 @@
           <artifactId>protobuf-java</artifactId>
           <groupId>com.google.protobuf</groupId>
         </exclusion>
+        <exclusion>
+        	<groupId>org.apache.poi</groupId>
+        	<artifactId>poi-ooxml</artifactId>
+        </exclusion>
+        <exclusion>
+        	<groupId>org.apache.poi</groupId>
+        	<artifactId>poi</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -159,6 +167,18 @@
         <exclusion>
           <artifactId>spring-jcl</artifactId>
           <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+        	<groupId>org.apache.poi</groupId>
+        	<artifactId>poi-ooxml</artifactId>
+        </exclusion>
+        <exclusion>
+        	<groupId>org.apache.poi</groupId>
+        	<artifactId>poi-ooxml-schemas</artifactId>
+        </exclusion>
+        <exclusion>
+        	<groupId>org.apache.poi</groupId>
+        	<artifactId>poi</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -304,6 +324,14 @@
         <exclusion>
           <artifactId>jboss-interceptors-api_1.1_spec</artifactId>
           <groupId>org.jboss.spec.javax.interceptor</groupId>
+        </exclusion>
+        <exclusion>
+        	<groupId>org.apache.poi</groupId>
+        	<artifactId>poi-ooxml</artifactId>
+        </exclusion>
+        <exclusion>
+        	<groupId>org.apache.poi</groupId>
+        	<artifactId>poi</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
