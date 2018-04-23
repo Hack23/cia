@@ -1053,7 +1053,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "8.4.0.beta1";
+	content: "8.4.0.rc1";
 }
 
 .v-widget {
@@ -15131,6 +15131,7 @@ div.v-layout.v-horizontal.v-widget {
 	width: 100% !important;
 	height: auto !important;
 	padding: 5px;
+	display: inline-flex;
 }
 
 .cia .v-colorpicker-preview-textfield {
