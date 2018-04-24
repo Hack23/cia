@@ -21,6 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
@@ -311,7 +312,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 		final DataSeries dataSeries = new DataSeries();
 		final Series series = new Series();
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd",Locale.ENGLISH);
 		for (Entry<String, List<GovernmentBodyAnnualOutcomeSummary>> entry : collect.entrySet()) {
 			series.addSeries(new XYseries().setLabel(entry.getKey()));
 			dataSeries.newSeries();
