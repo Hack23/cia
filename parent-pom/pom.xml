@@ -127,7 +127,6 @@
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.ant>1.10.3</cia.project.versions.ant>
     <cia.project.versions.junit>4.12</cia.project.versions.junit>
-    <cia.project.versions.junit.dep>4.11</cia.project.versions.junit.dep>
     <cia.project.versions.easymock>3.6</cia.project.versions.easymock>
     <cia.project.versions.dbunit>2.5.4</cia.project.versions.dbunit>
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
@@ -177,11 +176,6 @@
         <groupId>org.apache.ant</groupId>
         <artifactId>ant</artifactId>
         <version>1.10.3</version>
-      </dependency>
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit-dep</artifactId>
-        <version>${cia.project.versions.junit.dep}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>
@@ -1982,7 +1976,7 @@
               </execution>
             </executions>
             <configuration>
-              <excludeProperties>cia.project.versions.spring,cia.project.versions.spring.security,cia.project.versions.slf4j,cia.project.versions.guava,cia.project.versions.junit.dep,cia.project.versions.aspectj,cia.project.versions.slf4j,cia.project.versions.commons.lang,cia.project.versions.jaxb2.commons</excludeProperties>
+              <excludeProperties>cia.project.versions.spring,cia.project.versions.spring.security,cia.project.versions.slf4j,cia.project.versions.guava,cia.project.versions.aspectj,cia.project.versions.slf4j,cia.project.versions.commons.lang,cia.project.versions.jaxb2.commons</excludeProperties>
               <properties>
                 <property>
                   <name>cia.project.versions.spring.security</name>
