@@ -1598,6 +1598,7 @@
 				"EngineVersion": "10.3",
 				"MultiAZ": "false",
 				"PubliclyAccessible": "true",
+				"BackupRetentionPeriod": "7",
 				"StorageType": "gp2",
 				"MasterUsername": {
 					"Fn::If": [
