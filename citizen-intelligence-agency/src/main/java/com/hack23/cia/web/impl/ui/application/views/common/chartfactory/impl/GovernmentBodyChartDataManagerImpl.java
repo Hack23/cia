@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -222,13 +224,12 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 
 	@Override
 	public void createGovernmentBodyIncomeSummaryChart(VerticalLayout content) {
-		addAnnualSummary(esvApi
-				.getGovernmentBodyReportByField(INKOMSTTITELGRUPPSNAMN), content,ANNUAL_INCOME);
+		addAnnualSummary(esvApi.getGovernmentBodyReportByField(INKOMSTTITELGRUPPSNAMN), content, ANNUAL_INCOME);
 	}
 
 	@Override
-	public void createGovernmentBodyExpenditureSummaryChart(VerticalLayout content) {		
-		addAnnualSummary(esvApi.getGovernmentBodyReportByField(UTGIFTSOMRÅDESNAMN), content,ANNUAL_EXPENDITURE);
+	public void createGovernmentBodyExpenditureSummaryChart(VerticalLayout content) {
+		addAnnualSummary(esvApi.getGovernmentBodyReportByField(UTGIFTSOMRÅDESNAMN), content, ANNUAL_EXPENDITURE);
 	}
 
 	/**
@@ -241,56 +242,56 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 	 * @param label
 	 *            the label
 	 */
-	private void addAnnualSummary(Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report,
-			VerticalLayout content,String label) {
-		
+	private void addAnnualSummary(Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report, VerticalLayout content,
+			String label) {
+
 		final DataSeries dataSeries = new DataSeries();
 		final Series series = new Series();
 
-		for (Entry<String, List<GovernmentBodyAnnualOutcomeSummary>> entry : report.entrySet()) {	
+		for (Entry<String, List<GovernmentBodyAnnualOutcomeSummary>> entry : report.entrySet()) {
 
 			List<GovernmentBodyAnnualOutcomeSummary> allValues = entry.getValue();
 
 			if (!allValues.isEmpty()) {
-				series.addSeries(new XYseries().setLabel(entry.getKey()));
+				series.addSeries(new XYseries().setLabel(entry.getKey()).setShowLabel(true));
 				dataSeries.newSeries();
-				
-				Map<Integer, List<GovernmentBodyAnnualOutcomeSummary>> map = allValues.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear));
-				
+
+				Map<Integer, List<GovernmentBodyAnnualOutcomeSummary>> map = allValues.stream()
+						.collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear));
+
 				for (Entry<Integer, List<GovernmentBodyAnnualOutcomeSummary>> data : map.entrySet()) {
 					List<GovernmentBodyAnnualOutcomeSummary> values = data.getValue();
 					Double sum = values.stream().mapToDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal).sum();
-					if (sum.intValue() > 0 ) {
+					if (sum.intValue() > 0) {
 						dataSeries.add(data.getKey() + _01_01, sum.intValue());
 					}
 				}
 			}
 		}
-	
+
 		addChart(content, label,
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 				true);
 	}
 
-	
 	@Override
 	public void createGovernmentBodyIncomeSummaryChart(VerticalLayout content, String name) {
-		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> collect = esvApi.getGovernmentBodyReport().get(name).stream()
-				.filter(p -> p.getDescriptionFields().get(INKOMSTTITELSNAMN) != null)
+		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> collect = esvApi.getGovernmentBodyReport().get(name)
+				.stream().filter(p -> p.getDescriptionFields().get(INKOMSTTITELSNAMN) != null)
 				.collect(Collectors.groupingBy(t -> t.getDescriptionFields().get(INKOMSTTITELSNAMN)));
 
-		addAnnualData(content, name,ANNUAL_INCOME, collect);
+		addAnnualData(content, name, ANNUAL_INCOME, collect);
 
 	}
 
 	@Override
 	public void createGovernmentBodyExpenditureSummaryChart(VerticalLayout content, String name) {
-		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> collect = esvApi.getGovernmentBodyReport().get(name).stream()
-				.filter(p -> p.getDescriptionFields().get(ANSLAGSPOSTSNAMN) != null)
+		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> collect = esvApi.getGovernmentBodyReport().get(name)
+				.stream().filter(p -> p.getDescriptionFields().get(ANSLAGSPOSTSNAMN) != null)
 				.collect(Collectors.groupingBy(t -> t.getDescriptionFields().get(ANSLAGSPOSTSNAMN)));
 
-		addAnnualData(content, name,ANNUAL_EXPENDITURE, collect);
+		addAnnualData(content, name, ANNUAL_EXPENDITURE, collect);
 	}
 
 	/**
@@ -305,18 +306,23 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 	 * @param collect
 	 *            the collect
 	 */
-	private void addAnnualData(VerticalLayout content, String name,String label,
+	private void addAnnualData(VerticalLayout content, String name, String label,
 			Map<String, List<GovernmentBodyAnnualOutcomeSummary>> collect) {
 		final DataSeries dataSeries = new DataSeries();
 		final Series series = new Series();
 
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		for (Entry<String, List<GovernmentBodyAnnualOutcomeSummary>> entry : collect.entrySet()) {
 			series.addSeries(new XYseries().setLabel(entry.getKey()));
 			dataSeries.newSeries();
-
+			
 			for (GovernmentBodyAnnualOutcomeSummary data : entry.getValue()) {
-				if (data != null && data.getYearTotal().intValue() > 0) {
-					dataSeries.add(data.getYear() + _01_01, data.getYearTotal().intValue());
+				Map<Date, Double> valueMap = data.getValueMap();
+
+				for (Entry<Date, Double> entryData : valueMap.entrySet()) {
+					if (entryData.getValue() != null && entryData.getValue().intValue() > 0) {
+						dataSeries.add(simpleDateFormat.format(entryData.getKey()) , entryData.getValue().intValue());
+					}
 				}
 			}
 		}

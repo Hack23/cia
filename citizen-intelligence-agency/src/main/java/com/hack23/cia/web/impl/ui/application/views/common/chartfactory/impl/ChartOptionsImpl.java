@@ -245,7 +245,7 @@ public final class ChartOptionsImpl implements ChartOptions {
 	private static Highlighter createHighLighterNorth() {
 		return new Highlighter().setShow(true).setShowTooltip(true).setTooltipAlwaysVisible(true)
 				.setKeepTooltipInsideChart(true).setTooltipLocation(TooltipLocations.NORTH)
-				.setTooltipAxes(TooltipAxes.XY_BAR).setShowMarker(true);
+				.setTooltipAxes(TooltipAxes.XY_BAR).setShowMarker(true).setBringSeriesToFront(true);
 	}
 
 	/**
@@ -339,8 +339,8 @@ public final class ChartOptionsImpl implements ChartOptions {
 
 	@Override
 	public Options createOptionsXYDateFloatLogYAxisLegendOutside(final Series series) {
-		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloatLog())
-				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutside())
+		return new Options().addOption(new SeriesDefaults()).addOption(series).addOption(createAxesXYDateFloatLog())
+				.addOption(createHighLighterNorth()).addOption(createLegendOutside())
 				.addOption(createDefaultGrid()).addOption(createCursor());
 	}
 
