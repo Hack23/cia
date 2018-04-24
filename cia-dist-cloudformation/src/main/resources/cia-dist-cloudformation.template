@@ -1532,7 +1532,7 @@
 					"rds.force_admin_logging_level": "notice",
 					"rds.force_autovacuum_logging_level" : "notice",
 					"rds.log_retention_period": "2400",					
-					"shared_preload_libraries": "pg_stat_statements, pgaudit, pgcrypto",
+					"shared_preload_libraries": "pg_stat_statements, pgaudit",
 					"pgaudit.log" : "ddl",
 					"pg_stat_statements.track" : "all",
 					"pg_stat_statements.max" : "10000"
@@ -1595,7 +1595,7 @@
 					"Ref": "DBClass"
 				},
 				"Engine": "postgres",
-				"EngineVersion": "10.1",
+				"EngineVersion": "10.3",
 				"MultiAZ": "false",
 				"PubliclyAccessible": "true",
 				"StorageType": "gp2",

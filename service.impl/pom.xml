@@ -74,12 +74,12 @@
           <groupId>com.google.protobuf</groupId>
         </exclusion>
         <exclusion>
-        	<groupId>org.apache.poi</groupId>
-        	<artifactId>poi-ooxml</artifactId>
+          <artifactId>poi-ooxml</artifactId>
+          <groupId>org.apache.poi</groupId>
         </exclusion>
         <exclusion>
-        	<groupId>org.apache.poi</groupId>
-        	<artifactId>poi</artifactId>
+          <artifactId>poi</artifactId>
+          <groupId>org.apache.poi</groupId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -169,16 +169,16 @@
           <groupId>org.springframework</groupId>
         </exclusion>
         <exclusion>
-        	<groupId>org.apache.poi</groupId>
-        	<artifactId>poi-ooxml</artifactId>
+          <artifactId>poi-ooxml</artifactId>
+          <groupId>org.apache.poi</groupId>
         </exclusion>
         <exclusion>
-        	<groupId>org.apache.poi</groupId>
-        	<artifactId>poi-ooxml-schemas</artifactId>
+          <artifactId>poi-ooxml-schemas</artifactId>
+          <groupId>org.apache.poi</groupId>
         </exclusion>
         <exclusion>
-        	<groupId>org.apache.poi</groupId>
-        	<artifactId>poi</artifactId>
+          <artifactId>poi</artifactId>
+          <groupId>org.apache.poi</groupId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -326,12 +326,12 @@
           <groupId>org.jboss.spec.javax.interceptor</groupId>
         </exclusion>
         <exclusion>
-        	<groupId>org.apache.poi</groupId>
-        	<artifactId>poi-ooxml</artifactId>
+          <artifactId>poi-ooxml</artifactId>
+          <groupId>org.apache.poi</groupId>
         </exclusion>
         <exclusion>
-        	<groupId>org.apache.poi</groupId>
-        	<artifactId>poi</artifactId>
+          <artifactId>poi</artifactId>
+          <groupId>org.apache.poi</groupId>
         </exclusion>
       </exclusions>
     </dependency>
