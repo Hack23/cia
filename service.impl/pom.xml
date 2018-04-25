@@ -333,6 +333,10 @@
           <artifactId>poi</artifactId>
           <groupId>org.apache.poi</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>poi-scratchpad</artifactId>
+          <groupId>org.apache.poi</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
