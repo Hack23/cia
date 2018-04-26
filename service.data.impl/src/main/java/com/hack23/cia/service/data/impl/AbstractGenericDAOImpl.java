@@ -38,6 +38,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import org.hibernate.CacheMode;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.Search;
+import org.javers.spring.annotation.JaversAuditable;
 
 import com.hack23.cia.service.data.api.AbstractGenericDAO;
 import com.hack23.cia.service.data.impl.util.LoadHelper;
@@ -66,7 +67,7 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 
 	/** The persistent class. */
 	private final Class<T> persistentClass;
-
+	
 	/**
 	 * Instantiates a new abstract generic dao impl.
 	 *
@@ -106,6 +107,7 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 	}
 
 	@Override
+	@JaversAuditable
 	public final void delete(final T entity) {
 		getEntityManager().remove(entity);
 
@@ -340,11 +342,13 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 	}
 
 	@Override
+	@JaversAuditable
 	public final T merge(final T entity) {
 		return getEntityManager().merge(entity);
 	}
 
 	@Override
+	@JaversAuditable
 	public final void persist(final List<T> list) {
 		for (final T t : list) {
 			getEntityManager().persist(t);
@@ -352,6 +356,7 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 	}
 
 	@Override
+	@JaversAuditable
 	public final void persist(final T entity) {
 		getEntityManager().persist(entity);
 	}

@@ -22,7 +22,8 @@ module com.hack23.cia.service.data.impl {
 	requires org.apache.commons.lang3;
 	requires lucene.core;
 	requires lucene.analyzers.common;
-
+	requires org.javers.all;
+	requires com.google.common;
 
     requires com.hack23.cia.service.data.api;
 }
