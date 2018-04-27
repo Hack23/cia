@@ -11,7 +11,6 @@
 			<property name="hibernate.archive.autodetection" value="class" />
 			<property name="hibernate.id.new_generator_mappings" value="true"/>
 			<property name="hibernate.cache.default_cache_concurrency_strategy" value="TRANSACTIONAL"/>
-			<property name="hibernate.cache.region.factory_class" value="net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory"/>
 		</properties>
 	</persistence-unit>
 </persistence>

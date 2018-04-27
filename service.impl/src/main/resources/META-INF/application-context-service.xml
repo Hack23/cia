@@ -118,36 +118,6 @@
 	<security:authentication-manager alias="authenticationManager"/>
 
 	<import resource="classpath:META-INF/cia-jms-broker.xml" />
-
-
-	<cache:annotation-driven cache-manager="serviceCacheManagerSpring" />
-
-	<bean id="serviceCacheManagerSpring" class="org.springframework.cache.ehcache.EhCacheCacheManager">
-
-				<property name="cacheManager" ref="serviceCacheManager" />
-
-	</bean>
-
-	<bean id="serviceCacheManager"
-		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" depends-on="dataCacheManager">
-		<property name="configLocation" value="classpath:service-ehcache.xml" />
-		<property name="shared" value="false" />
-		<property name="CacheManagerName" value="serviceCacheManager" />
-	</bean>
-
-
-
-
-	<bean id="serviceEhCacheMBeanRegistration" class="net.sf.ehcache.management.ManagementService"
-		init-method="init">
-		<constructor-arg index="0" ref="serviceCacheManager" />
-		<constructor-arg index="1" ref="mbeanServer" />
-		<constructor-arg index="2" value="true" />
-		<constructor-arg index="3" value="true" />
-		<constructor-arg index="4" value="true" />
-		<constructor-arg index="5" value="true" />
-		<constructor-arg index="6" value="true" />
-	</bean>
 	
 	<bean id="kiePostProcessor" class="org.kie.spring.KModuleBeanFactoryPostProcessor"/>
 

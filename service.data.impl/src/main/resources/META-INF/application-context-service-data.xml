@@ -10,6 +10,17 @@
 
 	<context:mbean-export />
 
+	<cache:annotation-driven cache-manager="cacheManager" />
+	
+	<bean id="cacheManager" class="org.springframework.cache.jcache.JCacheCacheManager">
+	      <property name="cacheManager" ref="jCacheManager" />
+	</bean>
+	
+	<bean id="jCacheManager" class="org.springframework.cache.jcache.JCacheManagerFactoryBean">
+	     <property name="cacheManagerUri"   value="classpath:ehcache3.xml" /> 	
+	</bean>
+
+
 	<bean id="databasePropertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location">
@@ -46,16 +57,9 @@
 		<property name="maxTotal" value="80" />
 	</bean>
 
-	<bean id="dataCacheManager"
-		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-		<property name="configLocation" value="classpath:data-ehcache.xml" />
-		<property name="shared" value="true" />
-		<property name="CacheManagerName" value="dataCacheManager" />
-	</bean>
-
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-		depends-on="dataCacheManager,liquibase,transactionManager">
+		depends-on="cacheManager,liquibase,transactionManager">
 		<property name="dataSource" ref="dataSource" />
 		<property name="persistenceUnitName" value="ciaPersistenceUnit" />
 		<property name="jpaVendorAdapter">
@@ -118,20 +122,25 @@
 
 				<prop key="hibernate.transaction.auto_close_session">false</prop>
 
+				<!-- 
 				<prop key="hibernate.cache.use_minimal_puts">true</prop>
 				<prop key="hibernate.cache.use_query_cache">true</prop>
 				<prop key="hibernate.cache.use_second_level_cache">true</prop>
 				<prop key="hibernate.cache.use_structured_entries">true</prop>
-
+				
+				<prop key="hibernate.cache.default_cache_concurrency_strategy">READ_WRITE</prop>
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.JCacheRegionFactory</prop>
+				<prop key="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</prop>				
+				-->
+				
+				<!-- 				
 				<prop key="hibernate.cache.use_minimal_puts">true</prop>
-				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
-				</prop>
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop>
 				<prop key="hibernate.cache.default_cache_concurrency_strategy">TRANSACTIONAL</prop>
-				<!-- <prop key="hibernate.cache.default_cache_concurrency_strategy">READ_WRITE</prop>
-					<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.JCacheRegionFactory</prop>
-					<prop key="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</prop> -->
+				-->
+				 
 
-				<prop key="hibernate.search.default.indexBase">${database.search.index.location}</prop>
+				<prop key="hibernate.search.default.indexBase">${database.search.index.location}</prop>				
 				<!-- Elasticsearch integration
 				<prop key="hibernate.search.default.indexmanager">elasticsearch</prop>
 				<prop key="hibernate.search.default.elasticsearch.host">http://127.0.0.1:9200</prop>
@@ -179,17 +188,6 @@
 		</property>
 	</bean>
 
-
-	<bean id="ehCacheMBeanRegistration" class="net.sf.ehcache.management.ManagementService"
-		init-method="init">
-		<constructor-arg index="0" ref="dataCacheManager" />
-		<constructor-arg index="1" ref="mbeanServer" />
-		<constructor-arg index="2" value="true" />
-		<constructor-arg index="3" value="true" />
-		<constructor-arg index="4" value="true" />
-		<constructor-arg index="5" value="true" />
-		<constructor-arg index="6" value="true" />
-	</bean>
 
 	<bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean">
 		<property name="locateExistingServerIfPossible" value="true" />

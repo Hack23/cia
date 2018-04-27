@@ -925,17 +925,6 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <!-- Web Cache -->
-    <dependency>
-      <groupId>net.sf.ehcache</groupId>
-      <artifactId>ehcache-web</artifactId>
-      <exclusions>
-        <exclusion>
-          <artifactId>ehcache-core</artifactId>
-          <groupId>net.sf.ehcache</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
     <!-- Vaadin GUI Frameworks -->
     <dependency>
       <groupId>com.hack23.cia</groupId>

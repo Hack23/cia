@@ -9,26 +9,20 @@
     </encoder>
   </appender>
 
-  <logger name="net.sf.ehcache" level="error"/>
   <logger name="com.mchange" level="warn"/>
   <logger name="org.hsqldb" level="warn"/>
-  <logger name="org.hibernate.cache.ehcache" level="error"/>
   <logger name="com.gargoylesoftware.htmlunit" level="error"/>
   
    
-  
-
-  <logger name="org.hibernate" level="warn"/>
   <logger name="org.quartz" level="warn"/>
   <logger name="atomikos" level="error"/>
   <logger name="com.atomikos" level="error"/>
-  <logger name="org.hibernate" level="error"/>
+  <logger name="org.hibernate" level="warn"/>
   
-  
+  <logger name="org.ehcache" level="warn"/>
   
   <logger name="org.eclipse" level="info"/>
-  <logger name="org.openid4java" level="warn"/>
-
+  
   <logger name="org.springframework" level="warn"/>
   <logger name="org.springframework.web" level="warn"/>
   <logger name="org.springframework.oxm.jaxb" level="error"/>
@@ -36,9 +30,6 @@
   <logger name="org.springframework.security" level="warn"/>
   
   <logger name="org.atmosphere" level="error" />
-  
-  
-
 
   <logger name="com.hack23.cia" level="info"/>
 

@@ -27,21 +27,6 @@
 		</user-data-constraint>
 	</security-constraint>
 
-	<!--
-	 <security-constraint>
-	    <display-name>SecureChannelConstraint</display-name>
-	    <web-resource-collection>
-	        <web-resource-name>All traffic</web-resource-name>
-	        <description/>
-	        <url-pattern>/*</url-pattern>
-	    </web-resource-collection>
-	    <user-data-constraint>
-	        <description>Require encrypted traffic</description>
-	        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-	    </user-data-constraint>
-	</security-constraint>
-	-->
-
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
@@ -154,111 +139,6 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-
-
-	<filter>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<filter-class>com.hack23.cia.web.impl.ui.application.web.filter.CustomSimpleCachingHeadersPageCachingFilter
-		</filter-class>
-		<async-supported>true</async-supported>
-		<init-param>
-			<param-name>cacheName</param-name>
-			<param-value>SimplePageCachingFilter</param-value>
-		</init-param>
-	</filter>
-	 
-	<filter-mapping>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/dchart/*</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/gantt/*</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/deferredjs/*</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/*cache.js</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/*cache.js.gz</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/*cache.woff</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/*cache.eot</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/*cache.svg</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/*.css</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/dcharts/*</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>	
-	<filter-mapping>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>VAADIN/addons/*</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>VAADIN/themes/*</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>	
-	<filter-mapping>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>VAADIN/*.js</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-
 	<filter>
         <filter-name>hibernateFilter</filter-name>
         <filter-class>
@@ -287,6 +167,5 @@
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
-
 
 </web-app>
