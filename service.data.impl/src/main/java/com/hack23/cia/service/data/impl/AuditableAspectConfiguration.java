@@ -35,11 +35,8 @@ import org.javers.repository.sql.JaversSqlRepository;
 import org.javers.repository.sql.SqlRepositoryBuilder;
 import org.javers.spring.auditable.AuthorProvider;
 import org.javers.spring.auditable.CommitPropertiesProvider;
-import org.javers.spring.auditable.SpringSecurityAuthorProvider;
 import org.javers.spring.auditable.aspect.JaversAuditableAspect;
 import org.javers.spring.jpa.TransactionalJaversBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -56,9 +53,6 @@ import com.hack23.cia.model.internal.application.user.impl.UserAccount;
  */
 @Configuration
 public class AuditableAspectConfiguration {
-
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(AuditableAspectConfiguration.class);
 
 	/** The entity manager. */
 	@PersistenceContext
@@ -108,39 +102,28 @@ public class AuditableAspectConfiguration {
 	 */
 	@Bean
 	public AuthorProvider authorProvider() {
-		return new SpringSecurityAuthorProvider() {
-
-			@Override
-			public String provide() {
-				String provide = getUserIdFromSecurityContext();
-				LOGGER.info(provide);
-				return provide;
+		return () -> {
+			String result=null;
+			
+			final SecurityContext context = SecurityContextHolder.getContext();
+			if (context != null) {
+				final Authentication authentication = context.getAuthentication();
+				if (authentication != null) {
+					final Object principal = authentication.getPrincipal();
+			
+					if (principal instanceof UserAccount) {
+						final UserAccount userAccount = (UserAccount) principal;
+						result = userAccount.getUserId();
+					} else {
+						result = authentication.getName();
+					}
+				}
 			}			
+			return result;
 		};
 	}
 	
-	public static String getUserIdFromSecurityContext() {
-
-		String result=null;
-
-		final SecurityContext context = SecurityContextHolder.getContext();
-		if (context != null) {
-			final Authentication authentication = context.getAuthentication();
-			if (authentication != null) {
-				final Object principal = authentication.getPrincipal();
-
-				if (principal instanceof UserAccount) {
-					final UserAccount userAccount = (UserAccount) principal;
-					result = userAccount.getUserId();
-				} else {
-					result = authentication.getName();
-				}
-			}
-		}
-
-		return result;
-	}
-
+	
 	/**
 	 * Commit properties provider.
 	 *
