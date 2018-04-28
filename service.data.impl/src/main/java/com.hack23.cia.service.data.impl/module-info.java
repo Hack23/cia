@@ -14,6 +14,8 @@ module com.hack23.cia.service.data.impl {
 	requires java.persistence;
 	requires org.hibernate.orm.core;
 
+	requires spring.security.core;
+	
 	requires hibernate.search.orm;
 	requires hibernate.search.engine;
 

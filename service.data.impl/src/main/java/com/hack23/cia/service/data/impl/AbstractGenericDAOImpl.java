@@ -107,7 +107,7 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 	}
 
 	@Override
-	//@JaversAuditable
+	@JaversAuditable
 	public final void delete(final T entity) {
 		getEntityManager().remove(entity);
 
@@ -342,13 +342,13 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 	}
 
 	@Override
-	//@JaversAuditable
+	@JaversAuditable
 	public final T merge(final T entity) {
 		return getEntityManager().merge(entity);
 	}
 
 	@Override
-	//@JaversAuditable
+	@JaversAuditable
 	public final void persist(final List<T> list) {
 		for (final T t : list) {
 			getEntityManager().persist(t);
@@ -356,7 +356,7 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 	}
 
 	@Override
-	//@JaversAuditable
+	@JaversAuditable
 	public final void persist(final T entity) {
 		getEntityManager().persist(entity);
 	}
