@@ -129,7 +129,7 @@
 				<prop key="hibernate.cache.default_cache_concurrency_strategy">READ_WRITE</prop>
 				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.JCacheRegionFactory</prop>				
 				<prop key="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</prop>				
-				<prop key="hibernate.javax.cache.uri">https://raw.githubusercontent.com/Hack23/cia/master/service.data.impl/src/main/resources/ehcache.xml</prop>				
+				<prop key="hibernate.javax.cache.uri">url:https://raw.githubusercontent.com/Hack23/cia/master/service.data.impl/src/main/resources/ehcache.xml</prop>				
 				
 				<prop key="hibernate.search.default.indexBase">${database.search.index.location}</prop>				
 				<!-- Elasticsearch integration
