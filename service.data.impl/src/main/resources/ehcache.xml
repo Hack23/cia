@@ -3,11 +3,11 @@
     xmlns='http://www.ehcache.org/v3'
     xmlns:jsr107='http://www.ehcache.org/v3/jsr107'
     xsi:schemaLocation="
-        http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.1.xsd
-        http://www.ehcache.org/v3/jsr107 http://www.ehcache.org/schema/ehcache-107-ext-3.1.xsd">
+        http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.5.xsd
+        http://www.ehcache.org/v3/jsr107 http://www.ehcache.org/schema/ehcache-107-ext-3.5.xsd">
 
  <service>
-   <jsr107:defaults enable-management="true" enable-statistics="true"/>
+   <jsr107:defaults enable-management="true" enable-statistics="true" default-template="defaultCacheTemplate"/>
  </service>
 
  <cache-template name="defaultCacheTemplate">
@@ -18,10 +18,23 @@
       <heap unit="entries">100000</heap> 
     </resources>
  </cache-template>
+ 
+ <cache alias="org.hibernate.cache.spi.QueryResultsRegion">
+     <expiry>
+         <tti unit="seconds">300</tti>
+     </expiry>
+    <heap>1024</heap>
+ </cache>
+
+ <cache alias="org.hibernate.cache.spi.TimestampsRegion">
+   <expiry>
+   	<none />
+  </expiry>
+  <heap>4096</heap>
+ </cache>
 
  <cache alias="org.hibernate.cache.internal.StandardQueryCache" uses-template="defaultCacheTemplate"/>
  <cache alias="org.hibernate.cache.spi.UpdateTimestampsCache" uses-template="defaultCacheTemplate"/>
- <cache alias="org.hibernate.cache.spi.TimestampsRegion" uses-template="defaultCacheTemplate"/>
 
  <cache alias="com.hack23.cia.model.internal.application.view.impl.TargetProfileContent" uses-template="defaultCacheTemplate"/>
  <cache alias="com.hack23.cia.model.internal.application.view.impl.QualityAssuranceContent" uses-template="defaultCacheTemplate"/>
@@ -150,6 +163,5 @@
  <cache alias="SimpleCachingHeadersPageCachingFilter" uses-template="defaultCacheTemplate"/>
  <cache alias="AggregatedCountryData" uses-template="defaultCacheTemplate"/>
  <cache alias="AggregatedBugData" uses-template="defaultCacheTemplate"/>
-
 
 </config>
