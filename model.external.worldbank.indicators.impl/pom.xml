@@ -145,15 +145,15 @@
         </dependencies>
         <configuration>
           <hibernatetool destdir="target/classes">
-            <jpaconfiguration persistenceunit="com.hack23.cia.${project.artifactId}" propertyfile="src/main/resources/schema-mysql.properties" />
-            <hbm2ddl export="false" outputfilename="schema-mysql.sql" />
-            <hbm2doc destdir="target/site/hbm2doc" />
-            <property key="dot.executable" value="${graphviz.dot.executable}" />
-            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect" />
+            <jpaconfiguration persistenceunit="com.hack23.cia.${project.artifactId}" propertyfile="src/main/resources/schema-mysql.properties"></jpaconfiguration>
+            <hbm2ddl export="false" outputfilename="schema-mysql.sql"></hbm2ddl>
+            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
+            <property key="dot.executable" value="${graphviz.dot.executable}"></property>
+            <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"></property>
           </hibernatetool>
         </configuration>
       </plugin>
     </plugins>
   </build>
-  <reporting />
+  <reporting></reporting>
 </project>
