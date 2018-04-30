@@ -15,13 +15,13 @@
      <none/>
     </expiry>
       <resources>
-      <heap unit="entries">100000</heap> 
+      <heap unit="entries">10000000</heap> 
     </resources>
  </cache-template>
  
  <cache alias="org.hibernate.cache.spi.QueryResultsRegion">
      <expiry>
-         <tti unit="seconds">300</tti>
+         <tti unit="seconds">1200</tti>
      </expiry>
     <heap>1024</heap>
  </cache>
