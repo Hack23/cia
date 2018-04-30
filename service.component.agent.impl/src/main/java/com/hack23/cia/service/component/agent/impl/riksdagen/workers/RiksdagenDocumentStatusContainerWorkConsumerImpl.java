@@ -29,6 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.service.component.agent.impl.common.jms.AbstractMessageListener;
 import com.hack23.cia.service.component.agent.impl.riksdagen.workers.data.RiksdagenUpdateService;
 import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
@@ -38,7 +39,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
  */
 @Service("riksdagenDocumentStatusContainerWorkConsumerImpl")
 @Transactional
-final class RiksdagenDocumentStatusContainerWorkConsumerImpl implements
+final class RiksdagenDocumentStatusContainerWorkConsumerImpl extends AbstractMessageListener implements
 MessageListener {
 
 	/** The Constant LOGGER. */
@@ -64,10 +65,13 @@ MessageListener {
 	@Override
 	public void onMessage(final Message message) {
 		try {
+			configureAuthentication();
 			updateService.updateDocumentData(riksdagenApi
 					.getDocumentStatus((String) ((ObjectMessage) message).getObject()));
 		} catch (final DataFailureException | JMSException e) {
 			LOGGER.warn("Error loading riksdagen documentstatus:" , e);
+		}  finally {
+			clearAuthentication();			
 		}
 	}
 }

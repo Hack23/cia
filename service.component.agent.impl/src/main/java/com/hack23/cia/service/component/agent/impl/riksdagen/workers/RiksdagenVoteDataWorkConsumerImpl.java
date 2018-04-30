@@ -29,6 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.service.component.agent.impl.common.jms.AbstractMessageListener;
 import com.hack23.cia.service.component.agent.impl.riksdagen.workers.data.RiksdagenUpdateService;
 import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi;
@@ -38,7 +39,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi;
  */
 @Service("riksdagenVoteDataWorkConsumerImpl")
 @Transactional
-final class RiksdagenVoteDataWorkConsumerImpl implements MessageListener {
+final class RiksdagenVoteDataWorkConsumerImpl extends AbstractMessageListener implements MessageListener {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenVoteDataWorkConsumerImpl.class);
@@ -75,9 +76,12 @@ final class RiksdagenVoteDataWorkConsumerImpl implements MessageListener {
 	 */
 	private void updateBallot(final String ballotId) {
 		try {
+			configureAuthentication();
 			updateService.updateVoteDataData(riksdagenApi.getBallot(ballotId));
 		} catch (final DataFailureException e) {
 			LOGGER.warn("Eror loading riksdagen voteData:" + ballotId + " errorMessage:", e);
+		} finally {
+			clearAuthentication();			
 		}
 	}
 }

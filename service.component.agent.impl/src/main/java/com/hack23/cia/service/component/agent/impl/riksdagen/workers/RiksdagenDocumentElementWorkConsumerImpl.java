@@ -30,6 +30,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
+import com.hack23.cia.service.component.agent.impl.common.jms.AbstractMessageListener;
 import com.hack23.cia.service.component.agent.impl.riksdagen.workers.data.RiksdagenUpdateService;
 
 /**
@@ -37,7 +38,7 @@ import com.hack23.cia.service.component.agent.impl.riksdagen.workers.data.Riksda
  */
 @Service("riksdagenDocumentElementWorkConsumerImpl")
 @Transactional
-final class RiksdagenDocumentElementWorkConsumerImpl implements
+final class RiksdagenDocumentElementWorkConsumerImpl extends AbstractMessageListener implements
 MessageListener {
 
 	/** The Constant LOGGER. */
@@ -58,9 +59,12 @@ MessageListener {
 	@Override
 	public void onMessage(final Message message) {
 		try {
+			configureAuthentication();
 			updateService.updateDocumentElement((DocumentElement) ((ObjectMessage) message).getObject());
 		} catch (final JMSException e) {
 			LOGGER.warn("Error loading riksdagen document" , e);
+		} finally {
+			clearAuthentication();			
 		}
 	}
 }

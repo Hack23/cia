@@ -30,6 +30,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
+import com.hack23.cia.service.component.agent.impl.common.jms.AbstractMessageListener;
 import com.hack23.cia.service.component.agent.impl.worldbank.workers.data.WorldbankUpdateService;
 
 /**
@@ -37,7 +38,7 @@ import com.hack23.cia.service.component.agent.impl.worldbank.workers.data.Worldb
  */
 @Service("worldbankCountryElementWorkConsumerImpl")
 @Transactional
-final class WorldbankCountryElementWorkConsumerImpl implements
+final class WorldbankCountryElementWorkConsumerImpl extends AbstractMessageListener implements
 MessageListener {
 
 	/** The Constant LOGGER. */
@@ -58,9 +59,12 @@ MessageListener {
 	@Override
 	public void onMessage(final Message message) {
 		try {
+			configureAuthentication();
 			updateService.updateCountryElement((CountryElement)((ObjectMessage) message).getObject());
 		} catch (final JMSException e) {
 			LOGGER.warn("Error loading worldbank country:" , e);
+		} finally {
+			clearAuthentication();			
 		}
 	}
 }

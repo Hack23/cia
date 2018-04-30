@@ -29,6 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.service.component.agent.impl.common.jms.AbstractMessageListener;
 import com.hack23.cia.service.component.agent.impl.riksdagen.workers.data.RiksdagenUpdateService;
 import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenCommitteeProposalApi;
@@ -38,7 +39,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenCommitteeProposalA
  */
 @Service("riksdagenCommitteeProposalComponentDataWorkConsumerImpl")
 @Transactional
-final class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl implements MessageListener {
+final class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl extends AbstractMessageListener implements MessageListener {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
@@ -65,11 +66,14 @@ final class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl implements M
 	@Override
 	public void onMessage(final Message message) {
 		try {
+			configureAuthentication();
 			updateService.updateCommitteeProposalComponentData(riksdagenApi
 					.getCommitteeProposal((String) ((ObjectMessage) message)
 							.getObject()));
 		} catch (final DataFailureException | JMSException e) {
 			LOGGER.warn("Error loading CommitteeProposalComponentData" , e);
+		} finally {
+			clearAuthentication();			
 		}
 	}
 }

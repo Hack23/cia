@@ -32,13 +32,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
+import com.hack23.cia.service.component.agent.impl.common.jms.AbstractMessageListener;
 import com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.WorldBankDataSourcesWorkGenerator;
 
 /**
  * The Class WorldBankApiAgentWorkConsumerImpl.
  */
 @Service("WorldBankApiAgentWorkConsumer")
-final class WorldBankApiAgentWorkConsumerImpl implements MessageListener {
+final class WorldBankApiAgentWorkConsumerImpl extends AbstractMessageListener implements MessageListener {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(WorldBankApiAgentWorkConsumerImpl.class);
@@ -59,9 +60,10 @@ final class WorldBankApiAgentWorkConsumerImpl implements MessageListener {
 
 	@Override
 	public void onMessage(final Message message) {
-		final ObjectMessage msg = (ObjectMessage) message;
 
 		try {
+			configureAuthentication();
+			final ObjectMessage msg = (ObjectMessage) message;
 			LOGGER.info("Consumed message:{}", msg.getObject());
 			final WorldBankDataSources dataSource = (WorldBankDataSources) msg.getObject();
 
@@ -77,6 +79,8 @@ final class WorldBankApiAgentWorkConsumerImpl implements MessageListener {
 
 		} catch (final JMSException exception) {
 			LOGGER.warn("jms", exception);
+		} finally {
+			clearAuthentication();			
 		}
 	}
 

@@ -32,6 +32,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
+import com.hack23.cia.service.component.agent.impl.common.jms.AbstractMessageListener;
 import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
 import com.hack23.cia.service.external.common.api.ProcessDataStrategy;
 import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
@@ -42,7 +43,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
  */
 @Service("riksdagenLoadDocumentWorkConsumerImpl")
 @Transactional
-final class RiksdagenLoadDocumentWorkConsumerImpl implements
+final class RiksdagenLoadDocumentWorkConsumerImpl extends AbstractMessageListener implements
 MessageListener {
 
 	/** The Constant LOGGER. */
@@ -74,12 +75,14 @@ MessageListener {
 	@Override
 	public void onMessage(final Message message) {
 		try {
+			configureAuthentication();
 			final LoadDocumentWork work = (LoadDocumentWork) ((ObjectMessage) message).getObject();
-
 			riksdagenApi.processDocumentList(work.getFromDate(),work.getToDate(),new DocumentElementWorkProducer());
 
 		} catch (final DataFailureException | JMSException e) {
 			LOGGER.warn("Error loading riksdagen document" , e);
+		} finally {
+			clearAuthentication();			
 		}
 	}
 

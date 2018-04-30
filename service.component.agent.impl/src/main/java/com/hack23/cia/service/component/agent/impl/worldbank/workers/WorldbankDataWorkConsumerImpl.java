@@ -31,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.service.component.agent.impl.common.jms.AbstractMessageListener;
 import com.hack23.cia.service.component.agent.impl.worldbank.workers.data.WorldbankUpdateService;
 import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankDataApi;
@@ -40,7 +41,7 @@ import com.hack23.cia.service.external.worldbank.api.WorldBankDataApi;
  */
 @Service("worldbankDataWorkConsumerImpl")
 @Transactional
-final class WorldbankDataWorkConsumerImpl implements
+final class WorldbankDataWorkConsumerImpl extends AbstractMessageListener implements
 MessageListener {
 
 	/** The Constant LOGGER. */
@@ -65,10 +66,13 @@ MessageListener {
 	@Override
 	public void onMessage(final Message message) {
 		try {
+			configureAuthentication();
 			final List<String> countryIndicator= (List<String>) ((ObjectMessage) message).getObject();
 			updateService.updateData(worldbankDataApi.getData(countryIndicator.get(0), countryIndicator.get(1)));
 		} catch (final DataFailureException | JMSException e) {
 			LOGGER.warn("Error loading worldbank data:" , e);
+		} finally {
+			clearAuthentication();			
 		}
 	}
 }

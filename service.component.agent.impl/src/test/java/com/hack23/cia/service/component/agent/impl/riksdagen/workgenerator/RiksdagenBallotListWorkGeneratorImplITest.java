@@ -18,7 +18,6 @@
 */
 package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator;
 
-import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;

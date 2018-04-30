@@ -32,13 +32,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
+import com.hack23.cia.service.component.agent.impl.common.jms.AbstractMessageListener;
 import com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.RiksdagenDataSourcesWorkGenerator;
 
 /**
  * The Class RiksdagenApiAgentWorkConsumerImpl.
  */
 @Service("RiksdagenApiAgentWorkConsumer")
-final class RiksdagenApiAgentWorkConsumerImpl implements MessageListener {
+final class RiksdagenApiAgentWorkConsumerImpl extends AbstractMessageListener implements MessageListener {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenApiAgentWorkConsumerImpl.class);
@@ -55,9 +56,9 @@ final class RiksdagenApiAgentWorkConsumerImpl implements MessageListener {
 
 	@Override
 	public void onMessage(final Message message) {
-		final ObjectMessage msg = (ObjectMessage) message;
-
 		try {
+			configureAuthentication();
+			final ObjectMessage msg = (ObjectMessage) message;
 			LOGGER.info("Consumed message:{}", msg.getObject());
 			final RiksdagenDataSources dataSource = (RiksdagenDataSources) msg.getObject();
 
@@ -73,6 +74,8 @@ final class RiksdagenApiAgentWorkConsumerImpl implements MessageListener {
 
 		} catch (final JMSException exception) {
 			LOGGER.warn("jms", exception);
+		} finally {
+			clearAuthentication();			
 		}
 	}
 

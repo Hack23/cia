@@ -29,6 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement;
+import com.hack23.cia.service.component.agent.impl.common.jms.AbstractMessageListener;
 import com.hack23.cia.service.component.agent.impl.riksdagen.workers.data.RiksdagenUpdateService;
 import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
@@ -37,7 +38,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
  * The Class RiksdagenPersonElementWorkConsumerImpl.
  */
 @Service("riksdagenPersonElementWorkConsumerImpl")
-final class RiksdagenPersonElementWorkConsumerImpl implements MessageListener {
+final class RiksdagenPersonElementWorkConsumerImpl extends AbstractMessageListener implements MessageListener {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory
@@ -61,11 +62,14 @@ final class RiksdagenPersonElementWorkConsumerImpl implements MessageListener {
 	@Override
 	public void onMessage(final Message message) {
 		try {
+			configureAuthentication();
 			updateService.update(riksdagenApi
 					.getPerson(((PersonElement) ((ObjectMessage) message)
 							.getObject()).getId()));
 		} catch (final DataFailureException | JMSException e) {
 			LOGGER.warn("Error loading PersonElement",e);
+		} finally {
+			clearAuthentication();			
 		}
 	}
 }
