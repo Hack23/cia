@@ -185,14 +185,14 @@ $ service postgresql restart
 
 
 ```
-$ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2018.4.3/cia-dist-deb-2018.4.3.deb
+$ wget https://oss.sonatype.org/content/repositories/releases/com/hack23/cia/cia-dist-deb/2018.4.300/cia-dist-deb-2018.4.300.deb
 ```
 
 
 8. Install debian package
 
 ```
-$ sudo dpkg -i cia-dist-deb-2018.4.3.deb
+$ sudo dpkg -i cia-dist-deb-2018.4.300.deb
 ```
 
 
