@@ -17,7 +17,7 @@
 	</bean>
 	
 	<bean id="jCacheManager" class="org.springframework.cache.jcache.JCacheManagerFactoryBean">
-	     <property name="cacheManagerUri"   value="classpath:ehcache.xml" /> 	
+	     <property name="cacheManagerUri"   value="url:https://raw.githubusercontent.com/Hack23/cia/master/service.data.impl/src/main/resources/ehcache.xml" /> 	
 	</bean>
 
 	<bean id="databasePropertyConfigurer"
