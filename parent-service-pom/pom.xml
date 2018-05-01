@@ -36,7 +36,6 @@
     <module>../service.external.esv/poi-all</module>
     <module>../service.external.esv</module>
     <module>../service.data.api</module>
-    <module>../service.data.impl/javers-all</module>
     <module>../service.data.impl</module>
   </modules>
   <scm>

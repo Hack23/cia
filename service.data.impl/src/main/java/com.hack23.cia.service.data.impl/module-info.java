@@ -24,7 +24,12 @@ module com.hack23.cia.service.data.impl {
 	requires org.apache.commons.lang3;
 	requires lucene.core;
 	requires lucene.analyzers.common;
-	requires org.javers.all;
+	requires javers.spring;	
+	requires javers.spring.jpa;	
+	requires javers.persistence.sql;
+	requires javers.core;
+	
+	
 	requires com.google.common;
 
     requires com.hack23.cia.service.data.api;
