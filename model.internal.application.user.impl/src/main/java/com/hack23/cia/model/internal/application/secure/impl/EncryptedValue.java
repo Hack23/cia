@@ -20,6 +20,8 @@ package com.hack23.cia.model.internal.application.secure.impl;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.ColumnTransformer;
@@ -39,6 +41,7 @@ public class EncryptedValue implements ModelObject {
 
 	/** The id. */
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
  
     /** The storage. */

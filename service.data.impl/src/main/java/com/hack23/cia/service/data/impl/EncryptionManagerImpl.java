@@ -29,7 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
  * The Class EncryptionManagerImpl.
  */
 @Service
-@Transactional(timeout=900)
+@Transactional
 final class EncryptionManagerImpl implements EncryptionManager {
 
 	/** The data source. */
