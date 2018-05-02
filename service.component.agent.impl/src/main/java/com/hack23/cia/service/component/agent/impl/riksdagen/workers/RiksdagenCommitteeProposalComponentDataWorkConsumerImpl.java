@@ -45,7 +45,7 @@ final class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl extends Abst
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(RiksdagenCommitteeProposalComponentDataWorkConsumerImpl.class);
 
-	/** The import service. */
+	/** The update service. */
 	@Autowired
 	private RiksdagenUpdateService updateService;
 
@@ -55,8 +55,8 @@ final class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl extends Abst
 
 
 	/**
-	 * Instantiates a new riksdagen committee proposal component data work
-	 * consumer impl.
+	 * Instantiates a new riksdagen committee proposal component data work consumer
+	 * impl.
 	 */
 	public RiksdagenCommitteeProposalComponentDataWorkConsumerImpl() {
 		super();

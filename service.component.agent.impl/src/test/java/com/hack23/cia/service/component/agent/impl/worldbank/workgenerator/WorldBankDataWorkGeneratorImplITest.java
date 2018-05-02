@@ -51,7 +51,9 @@ public class WorldBankDataWorkGeneratorImplITest extends AbstractServiceComponen
 
 	/**
 	 * Generate work orders success test.
+	 *
 	 * @throws JMSException
+	 *             the JMS exception
 	 */
 	@Test
 	public void generateWorkOrdersSuccessTest() throws JMSException {

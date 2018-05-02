@@ -39,11 +39,17 @@ import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
 import com.hack23.cia.testfoundation.AbstractUnitTest;
 
 /**
- * The Class DataAgentApiITest.
+ * The Class DataAgentApiTest.
  */
 public final class DataAgentApiTest extends AbstractUnitTest {
 
 
+	/**
+	 * Import riksdagen data success test.
+	 *
+	 * @throws JMSException
+	 *             the JMS exception
+	 */
 	@Test
 	public void importRiksdagenDataSuccessTest() throws JMSException {
 		final DataAgentApiImpl dataAgentApiImpl = new DataAgentApiImpl();
@@ -65,6 +71,12 @@ public final class DataAgentApiTest extends AbstractUnitTest {
 		assertNotNull(capturedDestinations);
 	}
 
+	/**
+	 * Import worldbank data success test.
+	 *
+	 * @throws JMSException
+	 *             the JMS exception
+	 */
 	@Test
 	public void importWorldbankDataSuccessTest() throws JMSException {
 		final DataAgentApiImpl dataAgentApiImpl = new DataAgentApiImpl();

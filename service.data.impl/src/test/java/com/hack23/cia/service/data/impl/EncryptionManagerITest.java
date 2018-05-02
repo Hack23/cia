@@ -15,27 +15,32 @@
  *
  *	$Id$
  *  $HeadURL$
-*/
-package com.hack23.cia.service.component.agent.impl.worldbank.workgenerator;
+ */
+package com.hack23.cia.service.data.impl;
 
-import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
+import java.util.UUID;
+
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * The Interface WorldBankDataSourcesWorkGenerator.
+ * The Class EncryptionManagerITest.
  */
-public interface WorldBankDataSourcesWorkGenerator {
+public final class EncryptionManagerITest extends AbstractServiceDataFunctionalIntegrationTest {
+
+	/** The encryption manager. */
+	@Autowired
+	private EncryptionManager encryptionManager;
 
 	/**
-	 * Matches.
+	 * Refresh views test.
 	 *
-	 * @param datasource
-	 *            the datasource
-	 * @return true, if successful
+	 * @throws Exception
+	 *             the exception
 	 */
-	boolean matches(WorldBankDataSources datasource);
+	@Test
+	public void setEncryptionKeyTest() {
+		encryptionManager.setEncryptionKey(UUID.randomUUID().toString());
+	}
 
-	/**
-	 * Generate work orders.
-	 */
-	void generateWorkOrders();
 }

@@ -45,7 +45,7 @@ MessageListener {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(RiksdagenDocumentElementWorkConsumerImpl.class);
 
-	/** The import service. */
+	/** The update service. */
 	@Autowired
 	private RiksdagenUpdateService updateService;
 

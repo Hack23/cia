@@ -69,10 +69,10 @@ public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractF
 	public static final String EXPECT_SUCCESS = "Expect success";
 
 	/** The Constant PRINCIPAL. */
-	private static final String PRINCIPAL = "principal";
+	private static final String PRINCIPAL = "AbstractServiceFunctionalIntegrationTest";
 
 	/** The Constant KEY. */
-	private static final String KEY = "key";
+	private static final String KEY = "FunctionalIntegrationTest";
 
 	/** The Constant ROLE_ANONYMOUS. */
 	private static final String ROLE_ANONYMOUS = "ROLE_ANONYMOUS";

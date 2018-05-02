@@ -51,7 +51,9 @@ public class RiksdagenDocumentListWorkGeneratorImplITest extends AbstractService
 
 	/**
 	 * Generate work orders success test.
+	 *
 	 * @throws JMSException
+	 *             the JMS exception
 	 */
 	@Test
 	public void generateWorkOrdersSuccessTest() throws JMSException {

@@ -85,6 +85,7 @@
 		<class>com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId</class>
 
 		<class>com.hack23.cia.model.internal.application.user.impl.UserAccount</class>
+		<class>com.hack23.cia.model.internal.application.secure.impl.EncryptedValue</class>
 
 		<class>com.hack23.cia.model.internal.application.view.impl.DataSourceContent</class>
 		<class>com.hack23.cia.model.internal.application.view.impl.OperationalInformationContent</class>

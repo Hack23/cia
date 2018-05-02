@@ -31,6 +31,7 @@ import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
 import com.hack23.cia.service.api.action.admin.RefreshDataViewsResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
+import com.hack23.cia.service.data.api.UserDAO;
 import com.hack23.cia.service.data.api.ViewDataManager;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
@@ -47,6 +48,10 @@ public final class RefreshDataViewsService extends
 	/** The View data manager. */
 	@Autowired
 	private ViewDataManager viewDataManager;
+
+	/** The user dao. */
+	@Autowired
+	private UserDAO userDAO;
 
 	/**
 	 * Instantiates a new refresh data views service.

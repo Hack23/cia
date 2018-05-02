@@ -46,7 +46,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.jta.JtaTransactionManager;
 
 import com.google.common.collect.ImmutableMap;
-import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 
 /**
  * The Class AuditableAspectConfiguration.
@@ -109,14 +108,7 @@ public class AuditableAspectConfiguration {
 			if (context != null) {
 				final Authentication authentication = context.getAuthentication();
 				if (authentication != null) {
-					final Object principal = authentication.getPrincipal();
-			
-					if (principal instanceof UserAccount) {
-						final UserAccount userAccount = (UserAccount) principal;
-						result = userAccount.getUserId();
-					} else {
-						result = authentication.getName();
-					}
+					return authentication.getPrincipal().toString();			
 				}
 			}			
 			return result;

@@ -75,7 +75,7 @@ public final class BootstrapDefaultConfig {
 	 */
 	private static void configureAuthentication(final String role) {
 		final Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(role);
-		final Authentication authentication = new UsernamePasswordAuthenticationToken("user", role, authorities);
+		final Authentication authentication = new UsernamePasswordAuthenticationToken("service.impl.BootstrapDefaultConfig", "n/a", authorities);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 	}
 

@@ -48,6 +48,7 @@ public class RiksdagenLoadDocumentWorkConsumerImplITest extends AbstractServiceC
 	@Qualifier("riksdagenLoadDocumentWorkConsumerImpl")
 	private MessageListener messsageListener;
 
+	/** The Constant RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT. */
 	private static final String RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT = "yyyy-MM-dd";
 
 

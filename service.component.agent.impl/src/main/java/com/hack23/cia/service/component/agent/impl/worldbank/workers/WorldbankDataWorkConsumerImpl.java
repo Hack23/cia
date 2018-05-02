@@ -52,6 +52,7 @@ MessageListener {
 	@Autowired
 	private WorldbankUpdateService updateService;
 
+	/** The worldbank data api. */
 	@Autowired
 	private WorldBankDataApi worldbankDataApi;
 

@@ -158,7 +158,7 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 			}
 
 			SecurityContextHolder.getContext().setAuthentication(
-					new UsernamePasswordAuthenticationToken(userAccount, userAccount.getUserpassword(), authorities));
+					new UsernamePasswordAuthenticationToken(userAccount.getUserId(), "n/a", authorities));
 
 			eventRequest.setUserId(userAccount.getUserId());
 			response = new RegisterUserResponse(ServiceResult.SUCCESS);

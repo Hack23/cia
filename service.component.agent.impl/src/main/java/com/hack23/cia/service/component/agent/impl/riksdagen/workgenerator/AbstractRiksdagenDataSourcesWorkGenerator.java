@@ -36,6 +36,7 @@ public abstract class AbstractRiksdagenDataSourcesWorkGenerator implements Riksd
 	/** The datasource. */
 	private final RiksdagenDataSources datasource;
 
+	/** The jms sender. */
 	@Autowired
 	private JmsSender jmsSender;
 
@@ -56,9 +57,9 @@ public abstract class AbstractRiksdagenDataSourcesWorkGenerator implements Riksd
 	}
 
 	/**
-	 * Gets the jms template.
+	 * Gets the jms sender.
 	 *
-	 * @return the jms template
+	 * @return the jms sender
 	 */
 	public final JmsSender getJmsSender() {
 		return jmsSender;

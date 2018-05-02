@@ -36,16 +36,34 @@ public class WorldbankUpdateServiceITest extends AbstractServiceComponentAgentFu
 	@Autowired
 	private WorldbankUpdateService worldbankUpdateService;
 
+	/**
+	 * Update indicator element null test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public void updateIndicatorElementNullTest() throws Exception {
 		worldbankUpdateService.updateIndicatorElement(null);
 	}
 
+	/**
+	 * Update country element null test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public void updateCountryElementNullTest() throws Exception {
 		worldbankUpdateService.updateCountryElement(null);
 	}
 
+	/**
+	 * Update data null or empty test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
 	@Test
 	public void updateDataNullOrEmptyTest() throws Exception {
 		worldbankUpdateService.updateData(null);

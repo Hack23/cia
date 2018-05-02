@@ -40,8 +40,8 @@ import com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest;
 public abstract class AbstractServiceComponentAgentFunctionalIntegrationTest extends AbstractFunctionalIntegrationTest {
 
 	/**
-	 * Instantiates a new abstract service component agent functional
-	 * integration test.
+	 * Instantiates a new abstract service component agent functional integration
+	 * test.
 	 */
 	public AbstractServiceComponentAgentFunctionalIntegrationTest() {
 		super();

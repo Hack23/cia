@@ -51,7 +51,9 @@ public class RiksdagenPersonsWorkGeneratorImplITest extends AbstractServiceCompo
 
 	/**
 	 * Generate work orders success test.
+	 *
 	 * @throws JMSException
+	 *             the JMS exception
 	 */
 	@Test
 	public void generateWorkOrdersSuccessTest() throws JMSException {

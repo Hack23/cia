@@ -60,7 +60,7 @@ MessageListener {
 	@Autowired
 	private RiksdagenDocumentApi riksdagenApi;
 
-	/** The jms template. */
+	/** The jms sender. */
 	@Autowired
 	private JmsSender jmsSender;
 

@@ -44,7 +44,7 @@ final class RiksdagenPersonElementWorkConsumerImpl extends AbstractMessageListen
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(RiksdagenPersonElementWorkConsumerImpl.class);
 
-	/** The import service. */
+	/** The update service. */
 	@Autowired
 	private RiksdagenUpdateService updateService;
 

@@ -109,7 +109,7 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 			eventRequest.setUserId(userExist.getUserId());
 
 			SecurityContextHolder.getContext().setAuthentication(
-					new UsernamePasswordAuthenticationToken(userExist, userExist.getUserpassword(), authorities));
+					new UsernamePasswordAuthenticationToken(userExist.getUserId(), "n/a", authorities));
 
 			userExist.setNumberOfVisits(userExist.getNumberOfVisits() + 1);
 			userDAO.persist(userExist);

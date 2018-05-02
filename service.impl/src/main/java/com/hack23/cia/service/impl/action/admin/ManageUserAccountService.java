@@ -119,7 +119,7 @@ public final class ManageUserAccountService
 
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
 
-		if (userAccount != null) {
+		if (getUserAccountFromSecurityContext() != null) {
 
 			eventRequest.setUserId(userAccount.getUserId());
 		}

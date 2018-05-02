@@ -87,10 +87,8 @@ final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesW
 	 *            the current saved
 	 * @param indicator
 	 *            the indicator
-	 * @param country
-	 *            the country
-	 * @throws JMSException
-	 *             the exception
+	 * @param countryIso2Code
+	 *            the country iso 2 code
 	 */
 	private void sendCountryIndicatorWorkOrder(final Map<String, String> currentSaved, final IndicatorElement indicator,
 			final String countryIso2Code) {

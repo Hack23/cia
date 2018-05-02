@@ -56,9 +56,6 @@ final class WorldBankIndicatorWorkGeneratorImpl extends AbstractWorldBankDataSou
 
 	/**
 	 * Instantiates a new world bank indicator work generator impl.
-	 *
-	 * @param datasource
-	 *            the datasource
 	 */
 	public WorldBankIndicatorWorkGeneratorImpl() {
 		super(WorldBankDataSources.INDICATORS);

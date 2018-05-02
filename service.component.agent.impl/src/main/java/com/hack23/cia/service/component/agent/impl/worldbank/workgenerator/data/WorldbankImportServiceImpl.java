@@ -41,15 +41,15 @@ import com.hack23.cia.service.data.api.IndicatorElementDAO;
 @Transactional(propagation = Propagation.MANDATORY)
 final class WorldbankImportServiceImpl implements WorldbankImportService {
 
-	/** The country element dao. */
+	/** The country element DAO. */
 	@Autowired
 	private CountryElementDAO countryElementDAO;
 
-	/** The data dao. */
+	/** The data DAO. */
 	@Autowired
 	private DataDAO dataDAO;
 
-	/** The indicator element dao. */
+	/** The indicator element DAO. */
 	@Autowired
 	private IndicatorElementDAO indicatorElementDAO;
 

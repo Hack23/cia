@@ -43,10 +43,10 @@ import com.hack23.cia.service.api.action.application.DestroyApplicationSessionRe
 public final class HttpSessionDestroyedEventListener implements ApplicationListener<HttpSessionDestroyedEvent> {
 
 	/** The Constant PRINCIPAL. */
-	private static final String PRINCIPAL = "principal";
+	private static final String PRINCIPAL = "AnonymousUser";
 
 	/** The Constant KEY. */
-	private static final String KEY = "key";
+	private static final String KEY = "HttpSessionDestroyedEventListener";
 
 	/** The Constant ROLE_ANONYMOUS. */
 	private static final String ROLE_ANONYMOUS = "ROLE_ANONYMOUS";

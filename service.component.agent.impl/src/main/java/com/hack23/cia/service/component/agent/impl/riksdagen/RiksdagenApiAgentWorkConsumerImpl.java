@@ -44,10 +44,14 @@ final class RiksdagenApiAgentWorkConsumerImpl extends AbstractMessageListener im
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenApiAgentWorkConsumerImpl.class);
 
+	/** The beans of type. */
 	private final Map<String, RiksdagenDataSourcesWorkGenerator> beansOfType;
 
 	/**
 	 * Instantiates a new riksdagen api agent work consumer impl.
+	 *
+	 * @param context
+	 *            the context
 	 */
 	public RiksdagenApiAgentWorkConsumerImpl(final ApplicationContext context) {
 		super();

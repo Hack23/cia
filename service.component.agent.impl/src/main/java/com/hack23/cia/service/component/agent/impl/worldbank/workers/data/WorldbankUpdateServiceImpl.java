@@ -39,20 +39,20 @@ import com.hack23.cia.service.data.api.IndicatorElementDAO;
 @Transactional(propagation = Propagation.MANDATORY)
 final class WorldbankUpdateServiceImpl implements WorldbankUpdateService {
 
-	/** The country element dao. */
+	/** The country element DAO. */
 	@Autowired
 	private CountryElementDAO countryElementDAO;
 
-	/** The data dao. */
+	/** The data DAO. */
 	@Autowired
 	private DataDAO dataDAO;
 
-	/** The indicator element dao. */
+	/** The indicator element DAO. */
 	@Autowired
 	private IndicatorElementDAO indicatorElementDAO;
 
 	/**
-	 * Instantiates a new worldbank import service impl.
+	 * Instantiates a new worldbank update service impl.
 	 */
 	public WorldbankUpdateServiceImpl() {
 		super();

@@ -44,7 +44,7 @@ final class RiksdagenVoteDataWorkConsumerImpl extends AbstractMessageListener im
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenVoteDataWorkConsumerImpl.class);
 
-	/** The import service. */
+	/** The update service. */
 	@Autowired
 	private RiksdagenUpdateService updateService;
 

@@ -58,7 +58,9 @@ public final class DataAgentApiITest extends AbstractServiceComponentAgentFuncti
 
 	/**
 	 * Import riksdagen data success test.
+	 *
 	 * @throws JMSException
+	 *             the JMS exception
 	 */
 	@Test
 	public void importRiksdagenDataSuccessTest() throws JMSException {
@@ -82,6 +84,12 @@ public final class DataAgentApiITest extends AbstractServiceComponentAgentFuncti
 		//waitUntilQueueIsEmpty("riksdagen");
 	}
 
+	/**
+	 * Import worldbank data success test.
+	 *
+	 * @throws JMSException
+	 *             the JMS exception
+	 */
 	@Test
 	public void importWorldbankDataSuccessTest() throws JMSException {
 		final JmsSender jmsSenderMock = mock(JmsSender.class);
@@ -104,6 +112,12 @@ public final class DataAgentApiITest extends AbstractServiceComponentAgentFuncti
 		//waitUntilQueueIsEmpty("worldbank");
 	}
 
+	/**
+	 * Wait until queue is empty.
+	 *
+	 * @param queue
+	 *            the queue
+	 */
 	private void waitUntilQueueIsEmpty(final String queue) {
 		try {
 			while (!isAllCompleted(brokerQuery.getQueues(), queue)) {
@@ -119,6 +133,15 @@ public final class DataAgentApiITest extends AbstractServiceComponentAgentFuncti
 		}
 	}
 
+	/**
+	 * Checks if is all completed.
+	 *
+	 * @param queues
+	 *            the queues
+	 * @param queue2
+	 *            the queue 2
+	 * @return true, if is all completed
+	 */
 	private boolean isAllCompleted(final Collection<QueueViewMBean> queues, final String queue2) {
 		boolean allCompleted = true;
 		for (final QueueViewMBean queue : queues) {

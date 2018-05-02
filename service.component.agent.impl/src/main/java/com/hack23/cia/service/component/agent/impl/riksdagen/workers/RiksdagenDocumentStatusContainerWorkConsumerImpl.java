@@ -46,7 +46,7 @@ MessageListener {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(RiksdagenDocumentStatusContainerWorkConsumerImpl.class);
 
-	/** The import service. */
+	/** The update service. */
 	@Autowired
 	private RiksdagenUpdateService updateService;
 
@@ -55,8 +55,7 @@ MessageListener {
 	private RiksdagenDocumentApi riksdagenApi;
 
 	/**
-	 * Instantiates a new riksdagen document status container work consumer
-	 * impl.
+	 * Instantiates a new riksdagen document status container work consumer impl.
 	 */
 	public RiksdagenDocumentStatusContainerWorkConsumerImpl() {
 		super();

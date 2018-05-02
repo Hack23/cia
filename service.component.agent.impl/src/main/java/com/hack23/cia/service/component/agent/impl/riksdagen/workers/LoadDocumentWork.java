@@ -48,10 +48,20 @@ public final class LoadDocumentWork implements Serializable {
 		this.toDate = toDate;
 	}
 
+	/**
+	 * Gets the from date.
+	 *
+	 * @return the from date
+	 */
 	public String getFromDate() {
 		return fromDate;
 	}
 
+	/**
+	 * Gets the to date.
+	 *
+	 * @return the to date
+	 */
 	public String getToDate() {
 		return toDate;
 	}

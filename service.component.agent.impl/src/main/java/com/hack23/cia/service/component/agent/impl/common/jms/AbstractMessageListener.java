@@ -26,6 +26,16 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+/**
+ * The listener interface for receiving abstractMessage events. The class that
+ * is interested in processing a abstractMessage event implements this
+ * interface, and the object created with that class is registered with a
+ * component using the component's <code>addAbstractMessageListener<code>
+ * method. When the abstractMessage event occurs, that object's appropriate
+ * method is invoked.
+ *
+ * @see AbstractMessageEvent
+ */
 public abstract class AbstractMessageListener {
 
 	/**
@@ -37,9 +47,6 @@ public abstract class AbstractMessageListener {
 
 	/**
 	 * Configure authentication.
-	 *
-	 * @param role
-	 *            the role
 	 */
 	protected static void configureAuthentication() {
 		final Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_ADMIN");

@@ -40,7 +40,7 @@ import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
 @Transactional(propagation=Propagation.REQUIRED)
 final class DataAgentApiImpl implements DataAgentApi {
 
-	/** The jms template. */
+	/** The jms sender. */
 	@Autowired
 	private JmsSender jmsSender;
 
@@ -71,8 +71,6 @@ final class DataAgentApiImpl implements DataAgentApi {
 	 *
 	 * @param workOrder
 	 *            the work order
-	 * @throws JMSException
-	 *             the JMS exception
 	 */
 	private void sendMessage(final DataAgentWorkOrder workOrder) {
 

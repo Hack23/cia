@@ -29,6 +29,7 @@ import com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.data.
  */
 public abstract class AbstractWorldBankDataSourcesWorkGenerator implements WorldBankDataSourcesWorkGenerator {
 
+	/** The jms sender. */
 	@Autowired
 	private JmsSender jmsSender;
 

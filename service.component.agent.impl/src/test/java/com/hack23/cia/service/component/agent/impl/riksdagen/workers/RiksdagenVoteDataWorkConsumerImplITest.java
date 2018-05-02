@@ -44,7 +44,7 @@ public class RiksdagenVoteDataWorkConsumerImplITest extends AbstractServiceCompo
 	private MessageListener messsageListener;
 
 	/**
-	 * On message success test.
+	 * On message duplicate success test.
 	 *
 	 * @throws JMSException
 	 *             the JMS exception
@@ -60,6 +60,12 @@ public class RiksdagenVoteDataWorkConsumerImplITest extends AbstractServiceCompo
 		verify(message, atLeastOnce()).getObject();
 	}
 
+	/**
+	 * On message no ballot exist for id failure test.
+	 *
+	 * @throws JMSException
+	 *             the JMS exception
+	 */
 	@Test
 	public void onMessageNoBallotExistForIdFailureTest() throws JMSException {
 		final ObjectMessage message = mock(ObjectMessage.class);

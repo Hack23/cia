@@ -18,6 +18,15 @@
       <heap unit="entries">10000000</heap> 
     </resources>
  </cache-template>
+
+ <cache-template name="shortLivedDefaultCacheTemplate">
+     <expiry>
+         <tti unit="seconds">1</tti>
+     </expiry>
+     <resources>
+      <heap unit="entries">1</heap> 
+    </resources>
+ </cache-template> 
  
  <cache alias="org.hibernate.cache.spi.QueryResultsRegion">
      <expiry>
@@ -43,6 +52,9 @@
  <cache alias="com.hack23.cia.model.internal.application.view.impl.DataSourceContent" uses-template="defaultCacheTemplate"/>
  <cache alias="com.hack23.cia.model.internal.application.view.impl.ApplicationView" uses-template="defaultCacheTemplate"/>
  <cache alias="com.hack23.cia.model.internal.application.user.impl.UserAccount" uses-template="defaultCacheTemplate"/>
+
+ <cache alias="com.hack23.cia.model.internal.application.secure.impl.EncryptedValue" uses-template="shortLivedDefaultCacheTemplate"/> 
+ 
  <cache alias="com.hack23.cia.model.internal.application.system.impl.Portal" uses-template="defaultCacheTemplate"/>
  <cache alias="com.hack23.cia.model.internal.application.system.impl.LanguageData" uses-template="defaultCacheTemplate"/>
  <cache alias="com.hack23.cia.model.internal.application.system.impl.LanguageContentData" uses-template="defaultCacheTemplate"/>

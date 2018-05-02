@@ -53,27 +53,27 @@ import com.hack23.cia.service.data.api.VoteDataDAO;
 @Transactional(propagation = Propagation.MANDATORY)
 final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 
-	/** The committee proposal component data dao. */
+	/** The committee proposal component data DAO. */
 	@Autowired
 	private CommitteeProposalComponentDataDAO committeeProposalComponentDataDAO;
 
-	/** The document content data dao. */
+	/** The document content data DAO. */
 	@Autowired
 	private DocumentContentDataDAO documentContentDataDAO;
 
-	/** The document element dao. */
+	/** The document element DAO. */
 	@Autowired
 	private DocumentElementDAO documentElementDAO;
 
-	/** The document status container dao. */
+	/** The document status container DAO. */
 	@Autowired
 	private DocumentStatusContainerDAO documentStatusContainerDAO;
 
-	/** The person data dao. */
+	/** The person data DAO. */
 	@Autowired
 	private PersonDataDAO personDataDAO;
 
-	/** The vote data dao. */
+	/** The vote data DAO. */
 	@Autowired
 	private VoteDataDAO voteDataDAO;
 

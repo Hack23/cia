@@ -31,7 +31,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
 @Transactional
 public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFunctionalIntegrationTest {
 
-	/** The riksdagen import service. */
+	/** The riksdagen update service. */
 	@Autowired
 	private RiksdagenUpdateService riksdagenUpdateService;
 

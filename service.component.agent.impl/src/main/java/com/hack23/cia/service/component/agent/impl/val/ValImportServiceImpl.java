@@ -43,7 +43,7 @@ final class ValImportServiceImpl implements ValImportService {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(ValImportServiceImpl.class);
 
-	/** The sweden political party dao. */
+	/** The sweden political party DAO. */
 	@Autowired
 	private SwedenPoliticalPartyDAO swedenPoliticalPartyDAO;
 

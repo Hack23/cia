@@ -1,6 +1,6 @@
 /*
  * Copyright 2010 James Pether Sörling
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,26 +16,19 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.component.agent.impl.worldbank.workgenerator;
-
-import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
+package com.hack23.cia.service.data.impl;
 
 /**
- * The Interface WorldBankDataSourcesWorkGenerator.
+ * The Interface EncryptionManager.
  */
-public interface WorldBankDataSourcesWorkGenerator {
+public interface EncryptionManager {
 
 	/**
-	 * Matches.
+	 * Sets the encryption key.
 	 *
-	 * @param datasource
-	 *            the datasource
-	 * @return true, if successful
+	 * @param key
+	 *            the new encryption key
 	 */
-	boolean matches(WorldBankDataSources datasource);
+	void setEncryptionKey(String key);
 
-	/**
-	 * Generate work orders.
-	 */
-	void generateWorkOrders();
 }

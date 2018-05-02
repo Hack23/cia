@@ -31,11 +31,13 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
+import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
 import com.hack23.cia.service.api.action.common.AbstractResponse;
 import com.hack23.cia.service.api.action.common.ServiceRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse;
+import com.hack23.cia.service.data.api.UserDAO;
 
 /**
  * The Class AbstractBusinessServiceImpl.
@@ -47,6 +49,10 @@ import com.hack23.cia.service.api.action.common.ServiceResponse;
  */
 public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V extends ServiceResponse>
 		implements BusinessService<T, V> {
+
+	/** The user dao. */
+	@Autowired
+	private UserDAO userDAO;
 
 
 	/** The create application event service. */
@@ -92,11 +98,7 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 		if (context != null) {
 			final Authentication authentication = context.getAuthentication();
 			if (authentication != null) {
-				final Object principal = authentication.getPrincipal();
-
-				if (principal instanceof UserAccount) {
-					return (UserAccount) principal;
-				}
+				return userDAO.findFirstByProperty(UserAccount_.userId, authentication.getPrincipal().toString());
 			}
 		}
 

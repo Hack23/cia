@@ -35,7 +35,7 @@ import com.hack23.cia.service.component.agent.impl.riksdagen.workers.LoadDocumen
 @Service("RiksdagenDocumentListWorkGeneratorImpl")
 final class RiksdagenDocumentListWorkGeneratorImpl extends AbstractRiksdagenDataSourcesWorkGenerator {
 
-	/** The document element workdestination. */
+	/** The load document workdestination. */
 	@Autowired
 	@Qualifier("com.hack23.cia.service.component.agent.impl.riksdagen.workers.LoadDocumentWork")
 	private Destination loadDocumentWorkdestination;
