@@ -152,7 +152,7 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 			driver = new FirefoxDriver(capabilities);
 			driver.manage().window().maximize();
 		} else if ("chrome".equals(browser)) {
-			ChromeOptions chromeOptions = new ChromeOptions();
+			final ChromeOptions chromeOptions = new ChromeOptions();
 		    chromeOptions.addArguments("--allow-insecure-localhost","--start-maximized");		
 			driver = new ChromeDriver(chromeOptions);
 		} else if ("htmlunit-firefox".equals(browser)) {

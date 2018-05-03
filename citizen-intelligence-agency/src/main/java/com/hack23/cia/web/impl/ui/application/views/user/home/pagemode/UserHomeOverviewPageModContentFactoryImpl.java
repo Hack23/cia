@@ -29,6 +29,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
+import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.application.LogoutRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
@@ -108,13 +109,13 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 		final DataContainer<UserAccount, Long> dataContainer = getApplicationManager().getDataContainer(UserAccount.class);
 
 
-			final Long userIdFromSecurityContext = UserContextUtil.getUserInternalIdFromSecurityContext();
+			final String userIdFromSecurityContext = UserContextUtil.getUserIdFromSecurityContext();
 
 			if (userIdFromSecurityContext == null) {
 				UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
 			} else {
 
-				final UserAccount userAccount = dataContainer.load(userIdFromSecurityContext);
+				final UserAccount userAccount = dataContainer.getAllBy(UserAccount_.userId, userIdFromSecurityContext).stream().findFirst().get();
 
 
 				getFormFactory().addFormPanelTextFields(panelContent, userAccount, UserAccount.class,

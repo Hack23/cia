@@ -92,7 +92,7 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 				selectedYear = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));
 			} 
 
-			ComboBox<String> comboBox = new ComboBox<>("Select year", Collections.unmodifiableList(Arrays.asList("2017/18","2016/17","2015/16","2014/15","2013/14","2012/13","2011/12","2010/11")));
+			final ComboBox<String> comboBox = new ComboBox<>("Select year", Collections.unmodifiableList(Arrays.asList("2017/18","2016/17","2015/16","2014/15","2013/14","2012/13","2011/12","2010/11")));
 			panelContent.addComponent(comboBox);
 			panelContent.setExpandRatio(comboBox, ContentRatio.SMALL2);
 			comboBox.setSelectedItem(selectedYear);
@@ -104,7 +104,7 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 
 			final Map<String, List<ViewRiksdagenCommittee>> committeeMap = dataContainer.getAll().stream().collect(Collectors.groupingBy(c -> c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));			
 		
-			SankeyChart chart = decisionFlowChartManager.createCommitteeDecisionFlow(viewRiksdagenCommittee, committeeMap,comboBox.getSelectedItem().orElse(selectedYear));
+			final SankeyChart chart = decisionFlowChartManager.createCommitteeDecisionFlow(viewRiksdagenCommittee, committeeMap,comboBox.getSelectedItem().orElse(selectedYear));
 			panelContent.addComponent(chart);		
 			panelContent.setExpandRatio(chart, ContentRatio.LARGE);
 		}

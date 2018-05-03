@@ -189,7 +189,7 @@ public final class GridFactoryImpl implements GridFactory {
 		if (collectionPropertyConverter != null) {
 			for (final ListPropertyConverter converter : collectionPropertyConverter) {
 				grid.removeColumn(converter.getColumn());
-				Column column = grid.addColumn(converter);
+				final Column column = grid.addColumn(converter);
 				column.setCaption(WordUtils.capitalize(converter.getColumn()));
 				column.setId(converter.getColumn());
 			}

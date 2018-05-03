@@ -89,7 +89,7 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 
 		final Map<String, List<ViewRiksdagenCommittee>> committeeMap = allCommittess.stream().collect(Collectors.groupingBy(c -> c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));
 		
-		ComboBox<String> comboBox = new ComboBox<>("Select year", Collections.unmodifiableList(Arrays.asList("2017/18","2016/17","2015/16","2014/15","2013/14","2012/13","2011/12","2010/11")));
+		final ComboBox<String> comboBox = new ComboBox<>("Select year", Collections.unmodifiableList(Arrays.asList("2017/18","2016/17","2015/16","2014/15","2013/14","2012/13","2011/12","2010/11")));
 		panelContent.addComponent(comboBox);
 		panelContent.setExpandRatio(comboBox, ContentRatio.SMALL);
 		comboBox.setSelectedItem(selectedYear);
@@ -99,7 +99,7 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 			}
 		});
 		
-		SankeyChart chart = decisionFlowChartManager.createAllDecisionFlow(committeeMap,comboBox.getSelectedItem().orElse(selectedYear));
+		final SankeyChart chart = decisionFlowChartManager.createAllDecisionFlow(committeeMap,comboBox.getSelectedItem().orElse(selectedYear));
 		panelContent.addComponent(chart);
 		panelContent.setExpandRatio(chart, ContentRatio.LARGE);
 		

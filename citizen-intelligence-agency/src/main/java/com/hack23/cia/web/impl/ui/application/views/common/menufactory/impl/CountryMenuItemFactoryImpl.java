@@ -143,7 +143,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 					.collect(Collectors.toList());
 
 			for (final ViewWorldbankIndicatorDataCountrySummary indciatorSummary : sortedEntries) {
-				MenuItem addItem = sourceItems.addItem(indciatorSummary.getIndicatorName(),
+				final MenuItem addItem = sourceItems.addItem(indciatorSummary.getIndicatorName(),
 						new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.INDICATORS,
 								indciatorSummary.getEmbeddedId().getIndicatorId()));
 				addItem.setStyleName("RestrictedHeader");

@@ -90,7 +90,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 
 		LabelFactory.createHeader2Label(panelContent, SECURITY_SETTINGS);
 
-		final Long userIdFromSecurityContext = UserContextUtil.getUserInternalIdFromSecurityContext();
+		final String userIdFromSecurityContext = UserContextUtil.getUserIdFromSecurityContext();
 
 		if (userIdFromSecurityContext == null) {
 			UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);

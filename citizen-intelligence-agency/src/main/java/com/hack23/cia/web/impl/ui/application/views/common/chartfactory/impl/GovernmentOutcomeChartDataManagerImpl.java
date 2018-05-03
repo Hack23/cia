@@ -53,8 +53,8 @@ public final class GovernmentOutcomeChartDataManagerImpl extends AbstractChartDa
 	}
 
 	@Override
-	public void createGovernmentOutcomeChart(AbstractOrderedLayout content) {
-		Map<String, List<GovernmentOperationPeriodOutcome>> map = esvApi.getReport();
+	public void createGovernmentOutcomeChart(final AbstractOrderedLayout content) {
+		final Map<String, List<GovernmentOperationPeriodOutcome>> map = esvApi.getReport();
 		final DataSeries dataSeries = new DataSeries();
 		final Series series = new Series();
 
@@ -68,12 +68,12 @@ public final class GovernmentOutcomeChartDataManagerImpl extends AbstractChartDa
 
 	}
 
-	private void createPeriodData(Map<String, List<GovernmentOperationPeriodOutcome>> map, final GovernmentOperationPeriodOutcome.Variables variables,final DataSeries dataSeries,
+	private void createPeriodData(final Map<String, List<GovernmentOperationPeriodOutcome>> map, final GovernmentOperationPeriodOutcome.Variables variables,final DataSeries dataSeries,
 			final Series series) {
 		series.addSeries(new XYseries().setLabel(variables.toString()));
 		dataSeries.newSeries();
 		
-		List<GovernmentOperationPeriodOutcome> list = map.get(variables.toString());		
+		final List<GovernmentOperationPeriodOutcome> list = map.get(variables.toString());		
 		Collections.sort(list);
 		for (final GovernmentOperationPeriodOutcome entry : list) {
 

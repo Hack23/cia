@@ -78,12 +78,12 @@ public final class GovernmentBodyIncomePageModContentFactoryImpl extends Abstrac
 
 		final String pageId = getPageId(parameters);
 
-		Map<String, List<GovernmentBodyAnnualSummary>> map = esvApi.getData().get(2018).stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getOrgNumber));
+		final Map<String, List<GovernmentBodyAnnualSummary>> map = esvApi.getData().get(2018).stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getOrgNumber));
 		
-		List<GovernmentBodyAnnualSummary> list = map.get(pageId);
+		final List<GovernmentBodyAnnualSummary> list = map.get(pageId);
 		
 		if (list != null && !list.isEmpty()) {
-			GovernmentBodyAnnualSummary governmentBodyAnnualSummary = list.iterator().next();
+			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = list.iterator().next();
 			
 			getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId);
 

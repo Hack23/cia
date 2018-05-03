@@ -25,7 +25,6 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
@@ -165,7 +164,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 
 	@Override
 	public Link createUserHomeViewPageLink() {
-		final Link pageLink = new Link("User account:" + UserContextUtil.getUserNameFromSecurityContext(), new ExternalResource(PAGE_PREFIX
+		final Link pageLink = new Link("User account:", new ExternalResource(PAGE_PREFIX
 				+ UserViews.USERHOME_VIEW_NAME));
 			pageLink.setId(ViewAction.VISIT_USER_HOME_VIEW.name());
 			pageLink.setIcon(VaadinIcons.USER);

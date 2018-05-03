@@ -29,7 +29,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.vaadin.server.Page;
 
 /**
@@ -45,82 +44,23 @@ public final class UserContextUtil {
 	}
 
 	/**
-	 * Gets the user name from security context.
-	 *
-	 * @return the user name from security context
-	 */
-	public static String getUserNameFromSecurityContext() {
-
-		String result=null;
-
-		final SecurityContext context = SecurityContextHolder.getContext();
-		if (context != null) {
-			final Authentication authentication = context.getAuthentication();
-			if (authentication != null) {
-				final Object principal = authentication.getPrincipal();
-
-				if (principal instanceof UserAccount) {
-					final UserAccount userAccount = (UserAccount) principal;
-					result = userAccount.getUsername();
-				}
-			}
-		}
-
-		return result;
-	}
-
-
-	/**
 	 * Gets the user id from security context.
 	 *
 	 * @return the user id from security context
 	 */
 	public static String getUserIdFromSecurityContext() {
 
-		String result=null;
+		final String result=null;
 
 		final SecurityContext context = SecurityContextHolder.getContext();
 		if (context != null) {
 			final Authentication authentication = context.getAuthentication();
 			if (authentication != null) {
-				final Object principal = authentication.getPrincipal();
-
-				if (principal instanceof UserAccount) {
-					final UserAccount userAccount = (UserAccount) principal;
-					result = userAccount.getUserId();
-				}
+				return authentication.getPrincipal().toString();
 			}
 		}
-
 		return result;
 	}
-
-
-	/**
-	 * Gets the user internal id from security context.
-	 *
-	 * @return the user internal id from security context
-	 */
-	public static Long getUserInternalIdFromSecurityContext() {
-
-		Long result=null;
-
-		final SecurityContext context = SecurityContextHolder.getContext();
-		if (context != null) {
-			final Authentication authentication = context.getAuthentication();
-			if (authentication != null) {
-				final Object principal = authentication.getPrincipal();
-
-				if (principal instanceof UserAccount) {
-					final UserAccount userAccount = (UserAccount) principal;
-					result = userAccount.getHjid();
-				}
-			}
-		}
-
-		return result;
-	}
-
 
 	/**
 	 * Gets the request url.
@@ -147,9 +87,7 @@ public final class UserContextUtil {
 	 * @return true, if successful
 	 */
 	public static boolean allowRoleInSecurityContext(final String role) {
-
 		boolean result = false;
-
 		final SecurityContext context = SecurityContextHolder.getContext();
 		if (context != null && context.getAuthentication() != null) {
 			final Collection<? extends GrantedAuthority> authorities = context.getAuthentication().getAuthorities();

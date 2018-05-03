@@ -151,7 +151,7 @@ public final class ListPropertyConverter implements Converter<String, List<?>>,V
 	}
 
 	@Override
-	public String apply(Object source) {
+	public String apply(final Object source) {
 		List<?> list;
 		try {
 			list = (List<?>) PROPERTY_UTILS_BEAN.getProperty(source, column);

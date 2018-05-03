@@ -26,6 +26,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEv
 import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
+import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
@@ -90,7 +91,7 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl extends Ab
 
 		LabelFactory.createHeader2Label(panelContent, USER_EVENTS);
 
-		final Long userIdFromSecurityContext = UserContextUtil.getUserInternalIdFromSecurityContext();
+		final String userIdFromSecurityContext = UserContextUtil.getUserIdFromSecurityContext();
 
 		if (userIdFromSecurityContext == null) {
 			UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
@@ -98,7 +99,7 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl extends Ab
 
 			final DataContainer<UserAccount, Long> dataContainer = getApplicationManager().getDataContainer(UserAccount.class);
 
-			final UserAccount userAccount = dataContainer.load(userIdFromSecurityContext);
+			final UserAccount userAccount = dataContainer.getAllBy(UserAccount_.userId, userIdFromSecurityContext).stream().findFirst().get();
 
 			final DataContainer<ApplicationActionEvent, Long> eventDataContainer = getApplicationManager().getDataContainer(ApplicationActionEvent.class);
 			
