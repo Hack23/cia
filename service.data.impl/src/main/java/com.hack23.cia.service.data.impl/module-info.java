@@ -16,8 +16,8 @@ module com.hack23.cia.service.data.impl {
 
 	requires spring.security.core;
 	
-	requires hibernate.search.orm;
-	requires hibernate.search.engine;
+	requires org.hibernate.search.orm;
+	requires org.hibernate.search.engine;
 
 	requires liquibase.core;
 	requires commons.lang;
