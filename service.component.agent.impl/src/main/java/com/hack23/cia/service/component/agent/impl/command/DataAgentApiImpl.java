@@ -19,7 +19,6 @@
 package com.hack23.cia.service.component.agent.impl.command;
 
 import javax.jms.Destination;
-import javax.jms.JMSException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

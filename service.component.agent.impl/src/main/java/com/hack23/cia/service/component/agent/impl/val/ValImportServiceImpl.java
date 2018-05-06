@@ -18,11 +18,17 @@
  */
 package com.hack23.cia.service.component.agent.impl.val;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,8 +70,12 @@ final class ValImportServiceImpl implements ValImportService {
 	public void loadPoliticalParties() {
 		if (swedenPoliticalPartyDAO.getSize() ==0) {
 			try {
+				final Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_ADMIN");
+				final Authentication authentication = new UsernamePasswordAuthenticationToken("system.agent", "n/a", authorities);
+				SecurityContextHolder.getContext().setAuthentication(authentication);
 				List<SwedenPoliticalParty> swedenPoliticalParties = valApi.getSwedenPoliticalParties();
-				swedenPoliticalPartyDAO.persist(swedenPoliticalParties);
+				swedenPoliticalPartyDAO.persist(swedenPoliticalParties);				
+				SecurityContextHolder.getContext().setAuthentication(null);				
 				LOGGER.info("Sweden political persisted to database:{}",swedenPoliticalParties.size());
 			} catch (final ValApiException e) {
 				LOGGER.warn("Problem loading Sweden political parties",e);

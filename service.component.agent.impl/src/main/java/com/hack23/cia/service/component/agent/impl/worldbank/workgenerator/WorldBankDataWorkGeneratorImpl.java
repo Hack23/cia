@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.jms.Destination;
-import javax.jms.JMSException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
