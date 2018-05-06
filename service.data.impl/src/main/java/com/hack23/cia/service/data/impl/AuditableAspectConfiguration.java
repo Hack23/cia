@@ -110,6 +110,8 @@ public class AuditableAspectConfiguration {
 				if (authentication != null) {
 					return authentication.getPrincipal().toString();			
 				}
+			} else {
+				result="system";
 			}			
 			return result;
 		};

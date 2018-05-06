@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.impl.email;
 
+import java.util.Collection;
 import java.util.Properties;
 
 import javax.annotation.PostConstruct;
@@ -29,6 +30,11 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration;
@@ -147,6 +153,9 @@ public final class EmailServiceImpl implements EmailService {
 	 */
 	@PostConstruct
 	public void initSettings() {
+		final Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_ADMIN");
+		final Authentication authentication = new UsernamePasswordAuthenticationToken("system.init", "n/a", authorities);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
 		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SEND_EMAILS, SEND_EMAIL, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SEND_EMAIL, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SEND_EMAIL, "false"));
 		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_FROM_EMAIL, FROM_EMAIL, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SEND_EMAIL, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_FROM_EMAIL, "admin@hack23.com"));
 		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_HOST, SMTP_HOST, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_HOST, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_HOST, "localhost"));
@@ -155,7 +164,7 @@ public final class EmailServiceImpl implements EmailService {
 		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_SECRET, SMTP_SECRET, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_SECRET, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_SECRET, "password"));
 		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_AUTH, SMTP_AUTH, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_AUTH, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_AUTH, "true"));
 		LOGGER.info(EMAIL_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(EMAIL_CONFIGURATION_SMTP_STARTTLS_ENABLE, SMTP_STARTTLS_ENABLE, ConfigurationGroup.EXTERNAL_SERVICES, EmailServiceImpl.class.getSimpleName(), SMTP_STARTTLS_ENABLE, RESPONSIBLE_FOR_SENDING_EMAIL, APPLICATION_EMAIL_SMTP_STARTTLS_ENABLE, "true"));
-
+		SecurityContextHolder.getContext().setAuthentication(null);
 	}
 
 
