@@ -19,6 +19,7 @@
 package com.hack23.cia.service.impl.action.application.access;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -31,6 +32,11 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -146,9 +152,13 @@ public final class LoginBlockedAccessImpl implements LoginBlockedAccess {
 	 */
 	@PostConstruct
 	public void initSettings() {
+		final Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_ADMIN");
+		final Authentication authentication = new UsernamePasswordAuthenticationToken("system.init", "n/a", authorities);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
 		LOGGER.info(LOGIN_BLOCK_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_USER, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_USER, DEFAULT_MAX_LOGIN_ATTEMPTS));
 		LOGGER.info(LOGIN_BLOCK_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_SESSION, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_SESSION,DEFAULT_MAX_LOGIN_ATTEMPTS));
 		LOGGER.info(LOGIN_BLOCK_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_IP, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_IP, DEFAULT_MAX_LOGIN_ATTEMPTS));
+		SecurityContextHolder.getContext().setAuthentication(null);
 	}
 
 
