@@ -3,7 +3,7 @@
 
 	<groupId>org.apache.poi</groupId>
 	<artifactId>poi-all</artifactId>
-	<version>2018.5.9-SNAPSHOT</version>
+	<version>3.17</version>
 	<packaging>jar</packaging>
 	<name>poi-all</name>
 
