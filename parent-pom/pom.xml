@@ -101,8 +101,8 @@
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <!-- <cia.project.versions.spring>5.0.6.RELEASE/5.0.5.BUILD-SNAPSHOT</cia.project.versions.spring> -->
     <cia.project.versions.spring>5.0.6.RELEASE</cia.project.versions.spring>
-    <!-- <cia.project.versions.spring.security>5.0.4.RELEASE/5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring.security> -->
-    <cia.project.versions.spring.security>5.0.4.RELEASE</cia.project.versions.spring.security>
+    <!-- <cia.project.versions.spring.security>5.0.5.RELEASE/5.0.0.BUILD-SNAPSHOT</cia.project.versions.spring.security> -->
+    <cia.project.versions.spring.security>5.0.5.RELEASE</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.1</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.22.0-GA</cia.project.versions.javassist>
     <cia.project.versions.asm>6.1.1</cia.project.versions.asm>
