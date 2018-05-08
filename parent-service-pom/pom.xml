@@ -33,7 +33,7 @@
     <module>../service.external.worldbank</module>
     <module>../service.external.riksdagen</module>
     <module>../service.external.val</module>
-    <module>../service.external.esv/poi-all</module>
+    <!-- <module>../service.external.esv/poi-all</module>-->
     <module>../service.external.esv</module>
     <module>../service.data.api</module>
     <module>../service.data.impl</module>
@@ -206,10 +206,10 @@
     </dependencies>
   </dependencyManagement>
   <build>
-    <extensions />
+    <extensions></extensions>
     <pluginManagement>
-      <plugins />
+      <plugins></plugins>
     </pluginManagement>
-    <plugins />
+    <plugins></plugins>
   </build>
 </project>
