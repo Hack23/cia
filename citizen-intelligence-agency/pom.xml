@@ -301,7 +301,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-logs</artifactId>
-      <version>1.11.324</version>
+      <version>1.11.325</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -333,7 +333,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-ec2</artifactId>
-      <version>1.11.324</version>
+      <version>1.11.325</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -430,7 +430,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>3.11.0</version>
+      <version>3.12.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -554,7 +554,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-remote-driver</artifactId>
-      <version>3.11.0</version>
+      <version>3.12.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -639,7 +639,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-support</artifactId>
-      <version>3.11.0</version>
+      <version>3.12.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
