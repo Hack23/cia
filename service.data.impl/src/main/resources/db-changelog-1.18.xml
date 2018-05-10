@@ -24,5 +24,16 @@
 		 <dropColumn columnName="GOOGLE_AUTH_KEY" tableName="user_account"/>
 		 <dropColumn columnName="GOOGLE_AUTH_VERIFICATION_CODE" tableName="user_account"/>		  
 	</changeSet>
+	
+
+	<changeSet author="gdpr-classification-update-account" id="1414872417007-304" failOnError="true">
+		 <sql> COMMENT ON COLUMN public.encrypted_value.storage IS 'DATA.Confidential GDPR.Personal_Sensitive' </sql>
+		 <sql> COMMENT ON COLUMN public.encrypted_value.vault_name IS 'DATA.Sensitive GDPR.na' </sql>
+		 <sql> COMMENT ON COLUMN public.encrypted_value.user_id IS 'DATA.Sensitive GDPR.Personal_Identifier' </sql>
+		 <sql> COMMENT ON COLUMN public.encrypted_value.id IS 'DATA.Confidential GDPR.Personal_Sensitive' </sql>
+		 		 
+		 <sql> COMMENT ON COLUMN public.user_account.user_lock_status IS 'DATA.Sensitive GDPR.Personal_Sensitive' </sql>
+		 <sql> COMMENT ON COLUMN public.user_account.user_email_status IS 'DATA.Sensitive GDPR.Personal_Sensitive' </sql>
+	</changeSet>
 
 </databaseChangeLog>
