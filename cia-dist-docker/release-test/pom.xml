@@ -58,7 +58,7 @@
                 </ports>
                 <wait>
                   <log>completed</log>
-                  <time>25000</time>
+                  <time>60000</time>
                 </wait>
                 <log>
                   <enabled>true</enabled>
