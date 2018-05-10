@@ -1,4 +1,4 @@
-FROM ubuntu:17.04@sha256:5d41c289942008211c2964bca72800f5c9d5ea5aa4057528da617fb36463d4ab
+FROM ubuntu:17.04@sha256:213e05583a7cb8756a3f998e6dd65204ddb6b4c128e2175dcdf174cdf1877459
 
 ADD userdata.sh /root/userdata.sh
 RUN chmod a+x /root/userdata.sh
