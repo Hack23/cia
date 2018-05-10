@@ -4,7 +4,7 @@
   <parent>
     <artifactId>parent-web-pom</artifactId>
     <groupId>com.hack23.cia</groupId>
-    <version>2017.5.18-SNAPSHOT</version>
+    <version>2018.5.9-SNAPSHOT</version>
     <relativePath>../parent-web-pom/pom.xml</relativePath>
   </parent>
   <artifactId>cia-dist-docker</artifactId>
@@ -36,11 +36,62 @@
         <plugin>
           <groupId>io.fabric8</groupId>
           <artifactId>docker-maven-plugin</artifactId>
-          <version>0.20.1</version>
+          <version>0.25.2</version>
         </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>filter-resources</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.basedir}/target/dockerfile</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/src/main/docker</directory>
+                  <filtering>false</filtering>
+                  <excludes>
+                    <exclude>Dockerfile</exclude>
+                  </excludes>
+                </resource>
+                <resource>
+                  <directory>${project.basedir}/src/main/docker/</directory>
+                  <filtering>true</filtering>
+                  <includes>
+                    <include>Dockerfile</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <copyPom>false</copyPom>
+              <outputDirectory>${project.basedir}/target/dockerfile/dependencies</outputDirectory>
+              <excludeTypes>pom</excludeTypes>
+              <prependGroupId>false</prependGroupId>
+              <excludeTransitive>true</excludeTransitive>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>io.fabric8</groupId>
         <artifactId>docker-maven-plugin</artifactId>
@@ -52,16 +103,11 @@
               <alias>application</alias>
               <build>
                 <dockerFile>Dockerfile</dockerFile>
-              </build>
-            </image>
-            <image>
-              <name>hack23com/database:${project.version}</name>
-              <alias>database</alias>
-              <build>
-                <from>postgres:9.6.2</from>
+                <dockerFileDir>${project.basedir}/target/dockerfile</dockerFileDir>
               </build>
             </image>
           </images>
+          <verbose>true</verbose>
         </configuration>
       </plugin>
       <plugin>
@@ -88,4 +134,32 @@
       </plugin>
     </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>push-docker</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>io.fabric8</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>docker:push</id>
+                <phase>install</phase>
+                <goals>
+                  <goal>push</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

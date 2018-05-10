@@ -1,7 +1,7 @@
-FROM ubuntu:17.04@sha256:213e05583a7cb8756a3f998e6dd65204ddb6b4c128e2175dcdf174cdf1877459
+FROM ubuntu:18.04
 
 ADD userdata.sh /root/userdata.sh
+ADD dependencies/cia-dist-deb-${project.version}.deb /root/cia-dist-deb.deb
 RUN chmod a+x /root/userdata.sh
 RUN /root/userdata.sh
-ENTRYPOINT echo "completed"
-CMD ["tail", "-f", "/dev/null"]
+ENTRYPOINT service cia restart && echo "completed" && tail -f /dev/null

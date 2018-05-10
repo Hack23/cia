@@ -4,7 +4,7 @@
   <parent>
     <artifactId>parent-web-pom</artifactId>
     <groupId>com.hack23.cia</groupId>
-    <version>2017.5.18-SNAPSHOT</version>
+    <version>2018.5.9-SNAPSHOT</version>
     <relativePath>../../parent-web-pom/pom.xml</relativePath>
   </parent>
   <artifactId>cia-dist-docker-release-test</artifactId>
@@ -22,7 +22,7 @@
         <plugin>
           <groupId>io.fabric8</groupId>
           <artifactId>docker-maven-plugin</artifactId>
-          <version>0.20.1</version>
+          <version>0.25.2</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -54,42 +54,17 @@
               <run>
                 <net>bridge</net>
                 <ports>
-                  <port>5323:2323</port>
+                  <port>8443:8443</port>
                 </ports>
-                <links>
-                  <link>database:database</link>
-                </links>
                 <wait>
                   <log>completed</log>
                   <time>25000</time>
                 </wait>
-                <dependsOn>
-                  <container>database</container>
-                </dependsOn>
                 <log>
                   <enabled>true</enabled>
                   <color>green</color>
                 </log>
                 <hostname>cia</hostname>
-              </run>
-            </image>
-            <image>
-              <name>hack23com/database:${project.version}</name>
-              <alias>database</alias>
-              <run>
-              	<net>bridge</net>
-                <ports>
-                  <port>55432:5432</port>
-                </ports>
-                <wait>
-                  <log>database system is ready to accept connections</log>
-                  <time>15000</time>
-                </wait>
-                <log>
-                  <enabled>true</enabled>
-                  <color>blue</color>
-                </log>
-                <hostname>postgres</hostname>
               </run>
             </image>
           </images>
