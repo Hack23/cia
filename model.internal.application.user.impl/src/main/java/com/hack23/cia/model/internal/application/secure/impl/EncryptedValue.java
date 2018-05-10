@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.model.internal.application.secure.impl;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,6 +26,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.ColumnTransformer;
+import org.javers.core.metamodel.annotation.DiffIgnore;
 
 import com.hack23.cia.model.common.api.ModelObject;
 
@@ -34,9 +36,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Entity(name = "EncryptedValue")
 public class EncryptedValue implements ModelObject {
  
-    /**
-	 * 
-	 */
+    /** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The id. */
@@ -44,6 +44,16 @@ public class EncryptedValue implements ModelObject {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
  
+    /** The user id. */
+    @Basic
+    @Column(name = "USER_ID", length = 255)
+    private String userId;
+
+    /** The vault name. */
+    @Basic
+    @Column(name = "VAULT_NAME", length = 255)
+    private String vaultName;
+    
     /** The storage. */
     @ColumnTransformer(
         read =  "pgp_sym_decrypt(" +
@@ -56,6 +66,7 @@ public class EncryptedValue implements ModelObject {
                 ") "
     )
     @Column(columnDefinition = "bytea")
+    @DiffIgnore
     private String storage;
     
 	/**
@@ -94,5 +105,44 @@ public class EncryptedValue implements ModelObject {
 	 */
 	public void setStorage(String storage) {
 		this.storage = storage;
+	}
+
+	/**
+	 * Gets the user id.
+	 *
+	 * @return the user id
+	 */
+	public String getUserId() {
+		return userId;
+	}
+
+	/**
+	 * Sets the user id.
+	 *
+	 * @param userId
+	 *            the new user id
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	/**
+	 * Gets the vault name.
+	 *
+	 * @return the vault name
+	 */
+	public String getVaultName() {
+		return vaultName;
+	}
+
+	/**
+	 * Sets the vault name.
+	 *
+	 * @param vaultName
+	 *            the new vault name
+	 */
+	public void setVaultName(String vaultName) {
+		this.vaultName = vaultName;
 	}    
+	
 }

@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.data.impl;
+package com.hack23.cia.service.data.api;
 
 /**
  * The Interface EncryptionManager.

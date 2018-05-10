@@ -31,6 +31,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import com.hack23.cia.model.internal.application.secure.impl.EncryptedValue;
 import com.hack23.cia.service.data.api.EncryptedValueDAO;
+import com.hack23.cia.service.data.api.EncryptionManager;
 
 /**
  * The Class EncryptionManagerITest.

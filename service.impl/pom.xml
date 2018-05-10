@@ -49,6 +49,11 @@
       <version>2.4.0.Final-redhat-1</version>
     </dependency>
     <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcpkix-jdk15on</artifactId>
+      <version>1.59</version>
+    </dependency>
+    <dependency>
       <groupId>org.kie</groupId>
       <artifactId>kie-spring</artifactId>
       <version>7.7.0.Final</version>

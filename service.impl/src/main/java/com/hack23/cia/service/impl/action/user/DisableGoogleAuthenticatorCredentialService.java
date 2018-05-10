@@ -22,10 +22,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.model.internal.application.secure.impl.EncryptedValue;
+import com.hack23.cia.model.internal.application.secure.impl.EncryptedValue_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
@@ -33,7 +37,7 @@ import com.hack23.cia.service.api.action.application.CreateApplicationEventReque
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.api.action.user.DisableGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.service.api.action.user.DisableGoogleAuthenticatorCredentialResponse;
-import com.hack23.cia.service.data.api.UserDAO;
+import com.hack23.cia.service.data.api.EncryptedValueDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
 
@@ -50,9 +54,12 @@ public final class DisableGoogleAuthenticatorCredentialService extends
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(DisableGoogleAuthenticatorCredentialService.class);
 
-	/** The user dao. */
+	/** The encrypted value DAO. */
 	@Autowired
-	private UserDAO userDAO;
+	private EncryptedValueDAO encryptedValueDAO;
+
+	/** The password encoder. */
+	private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	/**
 	 * Instantiates a new disable google authenticator credential service.
@@ -76,19 +83,21 @@ public final class DisableGoogleAuthenticatorCredentialService extends
 
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
 
-		final DisableGoogleAuthenticatorCredentialResponse response = new DisableGoogleAuthenticatorCredentialResponse(
+		DisableGoogleAuthenticatorCredentialResponse response = new DisableGoogleAuthenticatorCredentialResponse(
 				ServiceResult.SUCCESS);
 		if (userAccount != null) {
 
 			eventRequest.setUserId(userAccount.getUserId());
 
-			final UserAccount updateUserAccount = userDAO.load(userAccount.getHjid());
-
-			updateUserAccount.setGoogleAuthKey(null);
-			updateUserAccount.setGoogleAuthVerificationCode(null);
-			updateUserAccount.setGoogleAuthScratchCodes(null);
-			userDAO.merge(updateUserAccount);
-
+			if (passwordEncoder.matches(
+					userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword(), userAccount.getUserpassword())) {
+				EncryptedValue encryptedValue = encryptedValueDAO.findFirstByProperty(EncryptedValue_.userId, userAccount.getUserId());
+				encryptedValueDAO.delete(encryptedValue);				
+			} else {
+				response = new DisableGoogleAuthenticatorCredentialResponse(
+						ServiceResult.FAILURE);
+			}
+			
 		}
 
 		eventRequest.setApplicationMessage(response.getResult().toString());

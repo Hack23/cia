@@ -55,6 +55,15 @@ Project Documentation
  * Jar Usage Validation {{{http://hack23.github.io/cia/tattleTaleReport/index.html}Tattletale report}}.
 
 
+Running docker image
+  
+ Docker repository : https://hub.docker.com/r/hack23/cia/ 
+
+ 1. docker run hack23/cia:2018.5.8 -h cia
+
+ 2. Access server at https://localhost:8443/cia/ , register new user to get admin access
+
+
 Installing Debian/Ubuntu package
 
  Currently only build a debian package, works with debian and ubuntu 14.04,16.04,16.10

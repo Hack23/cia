@@ -83,7 +83,7 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 
 	/** The password encoder. */
 	private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
+	
 	/** The password validator. */
 	private final PasswordValidator passwordValidator = new PasswordValidator(new LengthRule(8, 64),
 			new CharacterRule(EnglishCharacterData.UpperCase, 1), new CharacterRule(EnglishCharacterData.LowerCase, 1),
@@ -142,7 +142,7 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 			userAccount.setUserLockStatus(UserLockStatus.UNLOCKED);
 			userAccount.setCreatedDate(new Date());
 			userDAO.persist(userAccount);
-
+			
 			if ("true".equals(registeredUsersGetAdminConfig.getPropertyValue())) {
 				userAccount.setUserRole(UserRole.ADMIN);
 			} else {

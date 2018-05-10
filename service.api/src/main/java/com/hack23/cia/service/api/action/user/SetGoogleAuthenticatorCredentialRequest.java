@@ -19,6 +19,7 @@
 package com.hack23.cia.service.api.action.user;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.hack23.cia.service.api.action.common.AbstractRequest;
 
@@ -33,6 +34,11 @@ public final class SetGoogleAuthenticatorCredentialRequest extends AbstractReque
 	/** The session id. */
 	@NotNull
 	private String sessionId;
+
+	/** The userpassword. */
+	@NotNull
+	@Size(min = 4, max = 64)
+	private String userpassword;
 
 	/**
 	 * Instantiates a new sets the google authenticator credential request.
@@ -60,4 +66,24 @@ public final class SetGoogleAuthenticatorCredentialRequest extends AbstractReque
 		this.sessionId = sessionId;
 	}
 
+	/**
+	 * Gets the userpassword.
+	 *
+	 * @return the userpassword
+	 */
+	public String getUserpassword() {
+		return userpassword;
+	}
+
+	/**
+	 * Sets the userpassword.
+	 *
+	 * @param userpassword
+	 *            the new userpassword
+	 */
+	public void setUserpassword(String userpassword) {
+		this.userpassword = userpassword;
+	}
+
+	
 }

@@ -31,8 +31,8 @@ module com.hack23.cia.service.impl {
 	requires java.mail;
 	requires org.kie.api;
 	requires org.drools.core;
-	
-	
+	requires bcpkix.jdk15on;
+	requires bcprov.jdk15on;
 
 	requires com.hack23.cia.service.api;
 

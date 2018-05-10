@@ -99,6 +99,7 @@ public final class SetGoogleAuthenticatorCredentialServiceITest extends Abstract
 
 		final SetGoogleAuthenticatorCredentialRequest setGoogleAuthenticatorCredentialRequest = new SetGoogleAuthenticatorCredentialRequest();
 		setGoogleAuthenticatorCredentialRequest.setSessionId(serviceRequest.getSessionId());
+		setGoogleAuthenticatorCredentialRequest.setUserpassword("Userpassword1!");
 
 		final ServiceResponse setGoogleAuthenticatorCredentialResponse = applicationManager.service(setGoogleAuthenticatorCredentialRequest);
 

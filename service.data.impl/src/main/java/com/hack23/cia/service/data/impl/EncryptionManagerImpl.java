@@ -25,6 +25,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.service.data.api.EncryptionManager;
+
 /**
  * The Class EncryptionManagerImpl.
  */

@@ -100,6 +100,7 @@ public final class DisableGoogleAuthenticatorCredentialServiceITest extends Abst
 
 		final SetGoogleAuthenticatorCredentialRequest setGoogleAuthenticatorCredentialRequest = new SetGoogleAuthenticatorCredentialRequest();
 		setGoogleAuthenticatorCredentialRequest.setSessionId(serviceRequest.getSessionId());
+		setGoogleAuthenticatorCredentialRequest.setUserpassword("Userpassword1!");
 
 		final ServiceResponse setGoogleAuthenticatorCredentialResponse = applicationManager.service(setGoogleAuthenticatorCredentialRequest);
 
@@ -109,6 +110,7 @@ public final class DisableGoogleAuthenticatorCredentialServiceITest extends Abst
 		{
 			final DisableGoogleAuthenticatorCredentialRequest disableGoogleAuthenticatorCredentialRequest = new DisableGoogleAuthenticatorCredentialRequest();
 			disableGoogleAuthenticatorCredentialRequest.setSessionId(serviceRequest.getSessionId());
+			disableGoogleAuthenticatorCredentialRequest.setUserpassword("Userpassword1!");
 
 			final ServiceResponse disableGoogleAuthenticatorCredentialResponse = applicationManager.service(disableGoogleAuthenticatorCredentialRequest);
 
