@@ -111,6 +111,13 @@ Israel
 [https://oknesset.org/](https://oknesset.org/)
 
 
+# Running docker image
+  
+ Docker repository : https://hub.docker.com/r/hack23/cia/ 
+
+1. docker run hack23/cia:2018.5.8 -h cia
+
+2. Access server at https://localhost:8443/cia/ , register new user to get admin access
 
 # Installing Debian/Ubuntu package
 
