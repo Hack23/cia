@@ -24,13 +24,13 @@ dpkg-reconfigure --frontend=noninteractive locales
 apt-get -y install postgresql-10 postgresql-10-pgaudit postgresql-contrib
 service postgresql stop
 
-echo "host all all ::1/128 md5" >> /etc/postgresql/10/main/pg_hba.conf
+echo "host all all 0.0.0.0/0 md5" >> /etc/postgresql/10/main/pg_hba.conf
 
 openssl rand -base64 48 > passphrase.txt
 openssl genrsa -des3 -passout file:passphrase.txt -out server.pass.key 2048
 openssl rsa -passin file:passphrase.txt -in server.pass.key -out server.key
 rm server.pass.key
-openssl req -new -key server.key -out server.csr -subj "/C=UK/ST=Postgresqll/L=Docker/O=Hack23/OU=demo/CN=localhost"
+openssl req -new -key server.key -out server.csr -subj "/C=UK/ST=Postgresqll/L=Docker/O=Hack23/OU=demo/CN=cia"
 openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
 rm passphrase.txt
 rm server.csr
@@ -41,26 +41,26 @@ rm server.key
 chmod 700 /var/lib/postgresql/10/main/server.*
 chown postgres:postgres /var/lib/postgresql/10/main/server.*
 
-# /etc/postgresql/10/main/postgresql.conf
-## ssl_cert_file = '/etc/ssl/certs/ssl-cert-snakeoil.pem'
-## ssl_key_file = '/etc/ssl/private/ssl-cert-snakeoil.key'
-# max_prepared_transactions = 100 
+echo "ssl_cert_file = '/var/lib/postgresql/10/main/server.crt'" >> /etc/postgresql/10/main/postgresql.conf
+echo "ssl_key_file = '/var/lib/postgresql/10/main/server.key'" >> /etc/postgresql/10/main/postgresql.conf
+echo "max_prepared_transactions = 100" >> /etc/postgresql/10/main/postgresql.conf 
 
-### shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto' 
-### pgaudit.log = ddl 
-### pg_stat_statements.track = all 
-### pg_stat_statements.max = 10000
+echo "shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'" >> /etc/postgresql/10/main/postgresql.conf 
+echo "pgaudit.log = ddl" >> /etc/postgresql/10/main/postgresql.conf 
+echo "pg_stat_statements.track = all" >> /etc/postgresql/10/main/postgresql.conf 
+echo "pg_stat_statements.max = 10000" >> /etc/postgresql/10/main/postgresql.conf
+echo "listen_addresses = '*'" >> /etc/postgresql/10/main/postgresql.conf
 
-service postgresql stop
+service postgresql start
 
-su - postgres -c "psql -c 'CREATE USER eris WITH password 'discord';'"
+su - postgres -c "psql -c 'CREATE USER eris WITH password '\''discord'\'';'"
 su - postgres -c "psql -c 'CREATE DATABASE cia_dev;'"
 su - postgres -c "psql -c 'GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;'"
 
 #
 # INSTALL ORACLE JDK
 #
-apt-get -y install software-properties-common ca-certificates-java
+apt-get -y install software-properties-common openjdk-8-jdk-headless ca-certificates-java
 add-apt-repository ppa:linuxuprising/java
 apt-get update
 echo oracle-java10-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
@@ -71,9 +71,10 @@ mkdir /opt/cia/.postgresql
 cp server.crt /opt/cia/.postgresql/root.crt
 chmod 700 /opt/cia/.postgresql/root.crt
 chown -R cia:cia /opt/cia/.postgresql/root.crt
-rm servert.crt
+rm server.crt
 
-apt-get -y autoremove
+echo "database.hostname=cia" >> /opt/cia/webapps/cia/WEB-INF/database.properties
+
 apt-get -y autoclean
 rm /root/cia-dist-deb.deb
 
