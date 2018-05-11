@@ -21,8 +21,6 @@ package com.hack23.cia.model.internal.application.secure.impl;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.ColumnTransformer;
@@ -35,45 +33,27 @@ import com.hack23.cia.model.common.api.ModelObject;
  */
 @Entity(name = "EncryptedValue")
 public class EncryptedValue implements ModelObject {
- 
-    /** The Constant serialVersionUID. */
+
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The id. */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
- 
-    /** The user id. */
-    @Basic
-    @Column(name = "USER_ID", length = 255)
-    private String userId;
+	private Long id;
 
-    /** The vault name. */
-    @Basic
-    @Column(name = "VAULT_NAME", length = 255)
-    private String vaultName;
-    
-    /** The storage. */
-    @ColumnTransformer(
-        read =  "pgp_sym_decrypt(" +
-                "    storage, " +
-                "    current_setting('cia.encrypt.key')" +
-                ")",
-        write = "pgp_sym_encrypt( " +
-                "    ?, " +
-                "    current_setting('cia.encrypt.key')" +
-                ") "
-    )
-    @Column(columnDefinition = "bytea")
-    @DiffIgnore
-    private String storage;
-    
+	/** The user id. */
+	private String userId;
+
+	/** The vault name. */
+	private String vaultName;
+
+	private String storage;
+
 	/**
 	 * Gets the id.
 	 *
 	 * @return the id
 	 */
+	@Id
 	public Long getId() {
 		return id;
 	}
@@ -93,6 +73,11 @@ public class EncryptedValue implements ModelObject {
 	 *
 	 * @return the storage
 	 */
+	/** The storage. */
+	@ColumnTransformer(read = "pgp_sym_decrypt(" + "    storage, " + "    current_setting('cia.encrypt.key')"
+			+ ")", write = "pgp_sym_encrypt( " + "    ?, " + "    current_setting('cia.encrypt.key')" + ") ")
+	@Column(columnDefinition = "bytea")
+	@DiffIgnore
 	public String getStorage() {
 		return storage;
 	}
@@ -112,6 +97,8 @@ public class EncryptedValue implements ModelObject {
 	 *
 	 * @return the user id
 	 */
+	@Basic
+	@Column(name = "USER_ID", length = 255)
 	public String getUserId() {
 		return userId;
 	}
@@ -131,6 +118,8 @@ public class EncryptedValue implements ModelObject {
 	 *
 	 * @return the vault name
 	 */
+	@Basic
+	@Column(name = "VAULT_NAME", length = 255)
 	public String getVaultName() {
 		return vaultName;
 	}
@@ -143,6 +132,6 @@ public class EncryptedValue implements ModelObject {
 	 */
 	public void setVaultName(String vaultName) {
 		this.vaultName = vaultName;
-	}    
-	
+	}
+
 }

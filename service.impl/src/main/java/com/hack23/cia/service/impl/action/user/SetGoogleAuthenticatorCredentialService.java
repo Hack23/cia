@@ -113,6 +113,7 @@ public final class SetGoogleAuthenticatorCredentialService extends
 				encryptionManager.setEncryptionKey(Hex.toHexString(digestSHA3.digest((userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword()).getBytes(StandardCharsets.UTF_8))));						
 
 				EncryptedValue encryptedValue = new EncryptedValue();
+				encryptedValue.setId(userAccount.getHjid());
 				encryptedValue.setUserId(userAccount.getUserId());
 				encryptedValue.setVaultName(GoogleAuthenticatorKey.class.getSimpleName());
 				encryptedValue.setStorage(gKey.getKey());
