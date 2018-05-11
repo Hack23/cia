@@ -913,9 +913,11 @@ public final class UserPageVisit extends Assert {
 	 * @throws Exception
 	 *             the exception
 	 */
-	public void enableGoogleAuthenticator() throws Exception {
+	public void enableGoogleAuthenticator(final String password) throws Exception {
+		
+		setFieldValue("Enable Google Authenticator.userpassword",password);
 
-		final WebElement enableGoogleAuthButton = findButton("Enable Google Authenticator");
+		final WebElement enableGoogleAuthButton = driver.findElement(By.id("Enable Google Authenticator"));		
 		assertNotNull("Expect to find a Enable Google Authenticator Button",enableGoogleAuthButton);
 
 		performClickAction(enableGoogleAuthButton);
@@ -923,9 +925,10 @@ public final class UserPageVisit extends Assert {
 		closeModal();
 	}
 
-	public void disableGoogleAuthenticator() throws Exception {
-
-		final WebElement enableGoogleAuthButton = findButton("Disable Google Authenticator");
+	public void disableGoogleAuthenticator(final String password) throws Exception {
+		setFieldValue("Disable Google Authenticator.userpassword",password);
+		
+		final WebElement enableGoogleAuthButton = driver.findElement(By.id("Disable Google Authenticator"));
 		assertNotNull("Expect to find a Enable Google Authenticator Button",enableGoogleAuthButton);
 
 		performClickAction(enableGoogleAuthButton);

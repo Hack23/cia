@@ -1008,7 +1008,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userLoginPageVisit.performClickAction(securitySettingMenuItem);
 
 
-		userLoginPageVisit.enableGoogleAuthenticator();
+		userLoginPageVisit.enableGoogleAuthenticator(password);
 
 		userLoginPageVisit.logoutUser();
 
@@ -1053,7 +1053,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		assertNotNull(securitySettingMenuItem);
 		userLoginPageVisit.performClickAction(securitySettingMenuItem);
 
-		userLoginPageVisit.disableGoogleAuthenticator();
+		userLoginPageVisit.disableGoogleAuthenticator(password);
 
 		userLoginPageVisit.logoutUser();
 
