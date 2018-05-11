@@ -59,9 +59,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, "hjid");
 
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion","userId","userpassword", "address","googleAuthKey",
-				    "googleAuthVerificationCode",
-				    "googleAuthScratchCodes" };
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion","userId","userpassword", "address" };
 
 	private static final String[] COLUMN_ORDER = new String[] { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "userId", "username",
 			"userType", "userRole", "userpassword", "email", "country", "numberOfVisits" };
