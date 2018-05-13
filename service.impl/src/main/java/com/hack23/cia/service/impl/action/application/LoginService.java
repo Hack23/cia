@@ -112,9 +112,9 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 		String authKey=null;
 		
 		if (userExist != null) {		
-			SHA3.DigestSHA3 digestSHA3 = new SHA3.Digest512();
+			final SHA3.DigestSHA3 digestSHA3 = new SHA3.Digest512();
 			encryptionManager.setEncryptionKey(Hex.toHexString(digestSHA3.digest((userExist.getUserId() + ".uuid" + serviceRequest.getUserpassword()).getBytes(StandardCharsets.UTF_8))));						
-			EncryptedValue encryptedValue = encryptedValueDAO.findFirstByProperty(EncryptedValue_.userId, userExist.getUserId());
+			final EncryptedValue encryptedValue = encryptedValueDAO.findFirstByProperty(EncryptedValue_.userId, userExist.getUserId());
 			encryptionManager.setEncryptionKey(null);
 			if (encryptedValue != null) {
 				authKey = encryptedValue.getStorage();

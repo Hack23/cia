@@ -74,7 +74,7 @@ public final class ManageUserAccountService
 		userCommandMap.put(ManageUserAccountRequest.AccountOperation.DELETE, new UserCommand() {
 
 			@Override
-			public ManageUserAccountResponse execute(UserAccount account) {
+			public ManageUserAccountResponse execute(final UserAccount account) {
 				removeDataManager.removeUserAccountApplicationHistory(account.getUserId());
 				userDAO.delete(account);
 				return new ManageUserAccountResponse(ServiceResult.SUCCESS);
@@ -83,7 +83,7 @@ public final class ManageUserAccountService
 		userCommandMap.put(ManageUserAccountRequest.AccountOperation.UNLOCK, new UserCommand() {
 
 			@Override
-			public ManageUserAccountResponse execute(UserAccount account) {
+			public ManageUserAccountResponse execute(final UserAccount account) {
 				account.setUserLockStatus(UserLockStatus.UNLOCKED);
 				userDAO.persist(account);
 				return new ManageUserAccountResponse(ServiceResult.SUCCESS);
@@ -92,7 +92,7 @@ public final class ManageUserAccountService
 		userCommandMap.put(ManageUserAccountRequest.AccountOperation.LOCK, new UserCommand() {
 
 			@Override
-			public ManageUserAccountResponse execute(UserAccount account) {
+			public ManageUserAccountResponse execute(final UserAccount account) {
 				account.setUserLockStatus(UserLockStatus.LOCKED);
 				userDAO.persist(account);
 				return new ManageUserAccountResponse(ServiceResult.SUCCESS);

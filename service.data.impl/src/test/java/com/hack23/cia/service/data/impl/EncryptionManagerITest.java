@@ -59,23 +59,23 @@ public class EncryptionManagerITest extends AbstractServiceDataFunctionalIntegra
 	 */
 	@Test
 	public void setEncryptionKeyTest() {
-		String encryptionKey = UUID.randomUUID().toString();
+		final String encryptionKey = UUID.randomUUID().toString();
 		encryptionManager.setEncryptionKey(encryptionKey);
 		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		SqlRowSet srs = jdbcTemplate.queryForRowSet("select current_setting from current_setting('cia.encrypt.key')");
+		final SqlRowSet srs = jdbcTemplate.queryForRowSet("select current_setting from current_setting('cia.encrypt.key')");
 		srs.next();		
 		assertEquals(encryptionKey, srs.getString("current_setting"));
 	}
 
 	@Test
 	public void EncryptionValueSuccessTest() {
-		String encryptionKey = UUID.randomUUID().toString();
+		final String encryptionKey = UUID.randomUUID().toString();
 		encryptionManager.setEncryptionKey(encryptionKey);
-		EncryptedValue entity = new EncryptedValue();
+		final EncryptedValue entity = new EncryptedValue();
 		entity.setStorage("somesecret");
 		encryptedValueDAO.persist(entity);
 		
-		EncryptedValue load = encryptedValueDAO.load(entity.getId());
+		final EncryptedValue load = encryptedValueDAO.load(entity.getId());
 		assertEquals(entity.getStorage(), load.getStorage());
 	}
 
@@ -83,16 +83,16 @@ public class EncryptionManagerITest extends AbstractServiceDataFunctionalIntegra
 	@Test
 	@Ignore
 	public void setEncryptionKeyFailureTest() throws InterruptedException {
-		String encryptionKey = UUID.randomUUID().toString();
+		final String encryptionKey = UUID.randomUUID().toString();
 		encryptionManager.setEncryptionKey("");
 		
-		EncryptedValue entity = new EncryptedValue();
+		final EncryptedValue entity = new EncryptedValue();
 		entity.setStorage("somesecret");
 		encryptedValueDAO.persist(entity);
 						
 		encryptionManager.setEncryptionKey("wrong "+ encryptionKey);
 		
-		EncryptedValue load = encryptedValueDAO.load(entity.getId());
+		final EncryptedValue load = encryptedValueDAO.load(entity.getId());
 		assertNotEquals(entity.getStorage(), load.getStorage());
 	}
 

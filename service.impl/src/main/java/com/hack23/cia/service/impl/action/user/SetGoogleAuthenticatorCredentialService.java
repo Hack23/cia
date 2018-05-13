@@ -109,10 +109,10 @@ public final class SetGoogleAuthenticatorCredentialService extends
 
 			if (passwordEncoder.matches(
 					userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword(), userAccount.getUserpassword())) {
-				SHA3.DigestSHA3 digestSHA3 = new SHA3.Digest512();
+				final SHA3.DigestSHA3 digestSHA3 = new SHA3.Digest512();
 				encryptionManager.setEncryptionKey(Hex.toHexString(digestSHA3.digest((userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword()).getBytes(StandardCharsets.UTF_8))));						
 
-				EncryptedValue encryptedValue = new EncryptedValue();
+				final EncryptedValue encryptedValue = new EncryptedValue();
 				encryptedValue.setId(userAccount.getHjid());
 				encryptedValue.setUserId(userAccount.getUserId());
 				encryptedValue.setVaultName(GoogleAuthenticatorKey.class.getSimpleName());

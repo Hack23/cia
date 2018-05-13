@@ -50,7 +50,7 @@ public final class DocumentStatusContainerDAOITest extends AbstractServiceDataFu
 	 */
 	@Test
 	public void getAvaibleCommitteeProposalTest() {
-		List<String> idList = documentStatusContainerDAO.getAvaibleCommitteeProposal();
+		final List<String> idList = documentStatusContainerDAO.getAvaibleCommitteeProposal();
 		assertNotNull(idList);
 		assertFalse(idList.isEmpty());
 	}
@@ -63,7 +63,7 @@ public final class DocumentStatusContainerDAOITest extends AbstractServiceDataFu
 	 */
 	@Test
 	public void getIdListTest() {
-		List<String> idList = documentStatusContainerDAO.getIdList();
+		final List<String> idList = documentStatusContainerDAO.getIdList();
 		assertNotNull(idList);
 		assertFalse(idList.isEmpty());
 	}

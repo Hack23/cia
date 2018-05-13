@@ -52,7 +52,7 @@ public class AuditableAspectConfigurationITest extends AbstractServiceDataFuncti
 	@Test
 	public void auditTest() throws Exception {
 		final ApplicationSession applicationSession = createApplicationSession();				
-		ApplicationSession applicationSessionClone = SerializationUtils.clone(applicationSession);
+		final ApplicationSession applicationSessionClone = SerializationUtils.clone(applicationSession);
 		assertFalse(applicationSession == applicationSessionClone);
 		applicationSessionClone.setIpInformation("Changed" + UUID.randomUUID().toString());		
 		applicationSessionDAO.merge(applicationSessionClone);

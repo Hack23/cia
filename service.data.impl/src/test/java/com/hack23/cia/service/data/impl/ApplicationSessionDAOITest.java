@@ -65,7 +65,7 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 	public void persistTest() throws Exception {
 		final ApplicationSession applicationSession = createApplicationSession();
 		
-		ApplicationSession loaddedApplicationSession = applicationSessionDAO.load(applicationSession.getHjid());
+		final ApplicationSession loaddedApplicationSession = applicationSessionDAO.load(applicationSession.getHjid());
 		assertNotNull(loaddedApplicationSession);
 		assertEquals(applicationSession,loaddedApplicationSession);
 	}
@@ -84,7 +84,7 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 		mergedApplicationSession.setOperatingSystem("Merged");		
 		applicationSessionDAO.merge(mergedApplicationSession);
 		
-		ApplicationSession loaddedApplicationSession = applicationSessionDAO.load(applicationSession.getHjid());
+		final ApplicationSession loaddedApplicationSession = applicationSessionDAO.load(applicationSession.getHjid());
 		assertNotNull(loaddedApplicationSession);
 		assertEquals(applicationSession,loaddedApplicationSession);
 	}
@@ -153,7 +153,7 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 	public void findListByPropertyInListTest() throws Exception {
 		final ApplicationSession applicationSession = createApplicationSession();
 		
-		List<ApplicationSession> list = applicationSessionDAO.findListByPropertyInList(ApplicationSession_.sessionId,
+		final List<ApplicationSession> list = applicationSessionDAO.findListByPropertyInList(ApplicationSession_.sessionId,
 				new Object[] {applicationSession.getSessionId()});
 		assertNotNull(list);
 		assertEquals(applicationSession,list.iterator().next());

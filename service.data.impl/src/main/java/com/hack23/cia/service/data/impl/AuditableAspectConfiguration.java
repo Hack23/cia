@@ -68,12 +68,12 @@ public class AuditableAspectConfiguration {
 	 */
 	@Bean
 	public Javers getJavers() {
-		JaversSqlRepository sqlRepository = SqlRepositoryBuilder.sqlRepository()
+		final JaversSqlRepository sqlRepository = SqlRepositoryBuilder.sqlRepository()
 				.withConnectionProvider(new ConnectionProvider() {
 
 					@Override
 					public Connection getConnection() throws SQLException {
-						SessionImpl session = (SessionImpl) entityManager.unwrap(Session.class);
+						final SessionImpl session = (SessionImpl) entityManager.unwrap(Session.class);
 
 						return session.connection();
 					}

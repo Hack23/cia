@@ -74,7 +74,7 @@ public final class DocumentElementDAOITest extends AbstractServiceDataFunctional
 	 */
 	@Test
 	public void getAvaibleDocumentContentTest() {
-		List<String> avaibleDocumentContent = documentElementDAO.getAvaibleDocumentContent();
+		final List<String> avaibleDocumentContent = documentElementDAO.getAvaibleDocumentContent();
 		assertNotNull(avaibleDocumentContent);
 		assertFalse(avaibleDocumentContent.isEmpty());
 	}
@@ -86,7 +86,7 @@ public final class DocumentElementDAOITest extends AbstractServiceDataFunctional
 	 */
 	@Test
 	public void getAvaibleDocumentStatusTest() {
-		List<String> avaibleDocumentStatus = documentElementDAO.getAvaibleDocumentStatus();
+		final List<String> avaibleDocumentStatus = documentElementDAO.getAvaibleDocumentStatus();
 		assertNotNull(avaibleDocumentStatus);
 		assertFalse(avaibleDocumentStatus.isEmpty());
 	}
@@ -98,7 +98,7 @@ public final class DocumentElementDAOITest extends AbstractServiceDataFunctional
 	 */
 	@Test
 	public void getIdListTest() {
-		List<String> idList = documentElementDAO.getIdList();
+		final List<String> idList = documentElementDAO.getIdList();
 		assertNotNull(idList);
 		assertFalse(idList.isEmpty());
 	}

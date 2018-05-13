@@ -43,7 +43,7 @@ public final class DataDAOITest extends AbstractServiceDataFunctionalIntegration
 	 */
 	@Test
 	public void getIdListTest() throws Exception {
-		List<String> idList = dataDAO.getIdList();
+		final List<String> idList = dataDAO.getIdList();
 		assertNotNull(idList);
 		assertFalse(idList.isEmpty());
 	}

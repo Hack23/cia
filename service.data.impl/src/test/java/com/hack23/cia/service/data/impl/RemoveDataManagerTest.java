@@ -62,7 +62,7 @@ public final class RemoveDataManagerTest extends AbstractUnitTest {
 		Mockito.when(dataSource.getConnection()).thenReturn(connection);
 		Mockito.when(connection.createStatement()).thenReturn(statement);		
 		new RemoveDataManagerImpl(dataSource).removePersonData();
-		ArgumentCaptor<String> argCaptor = ArgumentCaptor.forClass(String.class);
+		final ArgumentCaptor<String> argCaptor = ArgumentCaptor.forClass(String.class);
 		Mockito.verify(statement,Mockito.times(5)).execute(argCaptor.capture());
 		
 	}
@@ -76,7 +76,7 @@ public final class RemoveDataManagerTest extends AbstractUnitTest {
 		Mockito.when(dataSource.getConnection()).thenReturn(connection);
 		Mockito.when(connection.createStatement()).thenReturn(statement);
 		new RemoveDataManagerImpl(dataSource).removeCommitteeProposals();
-		ArgumentCaptor<String> argCaptor = ArgumentCaptor.forClass(String.class);
+		final ArgumentCaptor<String> argCaptor = ArgumentCaptor.forClass(String.class);
 		Mockito.verify(statement,Mockito.times(6)).execute(argCaptor.capture());
 	}
 
@@ -89,7 +89,7 @@ public final class RemoveDataManagerTest extends AbstractUnitTest {
 		Mockito.when(dataSource.getConnection()).thenReturn(connection);
 		Mockito.when(connection.createStatement()).thenReturn(statement);
 		new RemoveDataManagerImpl(dataSource).removeDocumentStatus();
-		ArgumentCaptor<String> argCaptor = ArgumentCaptor.forClass(String.class);
+		final ArgumentCaptor<String> argCaptor = ArgumentCaptor.forClass(String.class);
 		Mockito.verify(statement,Mockito.times(15)).execute(argCaptor.capture());
 	}
 
@@ -102,7 +102,7 @@ public final class RemoveDataManagerTest extends AbstractUnitTest {
 		Mockito.when(dataSource.getConnection()).thenReturn(connection);
 		Mockito.when(connection.createStatement()).thenReturn(statement);
 		new RemoveDataManagerImpl(dataSource).removeDocuments();
-		ArgumentCaptor<String> argCaptor = ArgumentCaptor.forClass(String.class);
+		final ArgumentCaptor<String> argCaptor = ArgumentCaptor.forClass(String.class);
 		Mockito.verify(statement,Mockito.times(2)).execute(argCaptor.capture());
 	}
 
@@ -115,7 +115,7 @@ public final class RemoveDataManagerTest extends AbstractUnitTest {
 		Mockito.when(dataSource.getConnection()).thenReturn(connection);
 		Mockito.when(connection.createStatement()).thenReturn(statement);
 		new RemoveDataManagerImpl(dataSource).removeApplicationHistory();
-		ArgumentCaptor<String> argCaptor = ArgumentCaptor.forClass(String.class);
+		final ArgumentCaptor<String> argCaptor = ArgumentCaptor.forClass(String.class);
 		Mockito.verify(statement,Mockito.times(2)).execute(argCaptor.capture());
 	}
 
@@ -129,7 +129,7 @@ public final class RemoveDataManagerTest extends AbstractUnitTest {
 	@Ignore
 	public void removeUserAccountApplicationHistoryTest() throws SQLException {
 		Mockito.when(dataSource.getConnection()).thenReturn(connection);
-		ArgumentCaptor<String> sqlCaptor = ArgumentCaptor.forClass(String.class);
+		final ArgumentCaptor<String> sqlCaptor = ArgumentCaptor.forClass(String.class);
 		Mockito.when(connection.prepareStatement(sqlCaptor.capture())).thenReturn(preparedStatement);		
 		new RemoveDataManagerImpl(dataSource).removeUserAccountApplicationHistory("userid");
 		//Mockito.verify(preparedStatement,Mockito.times(2)).execute(argCaptor.capture());

@@ -91,7 +91,7 @@ public final class DisableGoogleAuthenticatorCredentialService extends
 
 			if (passwordEncoder.matches(
 					userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword(), userAccount.getUserpassword())) {
-				EncryptedValue encryptedValue = encryptedValueDAO.findFirstByProperty(EncryptedValue_.userId, userAccount.getUserId());
+				final EncryptedValue encryptedValue = encryptedValueDAO.findFirstByProperty(EncryptedValue_.userId, userAccount.getUserId());
 				encryptedValueDAO.delete(encryptedValue);				
 			} else {
 				response = new DisableGoogleAuthenticatorCredentialResponse(

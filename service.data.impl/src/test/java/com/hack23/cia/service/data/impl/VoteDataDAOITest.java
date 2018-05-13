@@ -54,7 +54,7 @@ public final class VoteDataDAOITest extends AbstractServiceDataFunctionalIntegra
 	 */
 	@Test
 	public void getBallotIdListTest() {
-		List<VoteDataEmbeddedId> ballotIdList = voteDataDAO.getBallotIdList();
+		final List<VoteDataEmbeddedId> ballotIdList = voteDataDAO.getBallotIdList();
 		assertNotNull(ballotIdList);
 		assertFalse(ballotIdList.isEmpty());
 	}
@@ -66,7 +66,7 @@ public final class VoteDataDAOITest extends AbstractServiceDataFunctionalIntegra
 	 */
 	@Test
 	public void getIdListTest() {
-		List<VoteDataEmbeddedId> ballotIdList = voteDataDAO.getIdList();
+		final List<VoteDataEmbeddedId> ballotIdList = voteDataDAO.getIdList();
 		assertNotNull(ballotIdList);
 		assertFalse(ballotIdList.isEmpty());
 	}
