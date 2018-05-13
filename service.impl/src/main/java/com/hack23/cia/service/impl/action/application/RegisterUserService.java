@@ -58,7 +58,6 @@ import com.hack23.cia.service.api.action.application.RegisterUserRequest;
 import com.hack23.cia.service.api.action.application.RegisterUserResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ApplicationConfigurationService;
-import com.hack23.cia.service.data.api.UserDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
 
@@ -76,10 +75,6 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 	/** The application configuration service. */
 	@Autowired
 	private ApplicationConfigurationService applicationConfigurationService;
-
-	/** The user dao. */
-	@Autowired
-	private UserDAO userDAO;
 
 	/** The password encoder. */
 	private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -115,9 +110,9 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 						"Register User Service", "Responsible for create of useraccounts", "registered.users.get.admin",
 						"true");
 
-		final UserAccount userNameExist = userDAO.findFirstByProperty(UserAccount_.username,
+		final UserAccount userNameExist = getUserDAO().findFirstByProperty(UserAccount_.username,
 				serviceRequest.getUsername());
-		final UserAccount userEmailExist = userDAO.findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
+		final UserAccount userEmailExist = getUserDAO().findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
 
 		final RuleResult passwordRuleResults = passwordValidator
 				.validate(new PasswordData(serviceRequest.getUserpassword()));
@@ -141,7 +136,7 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 			userAccount.setUserEmailStatus(UserEmailStatus.UNKNOWN);
 			userAccount.setUserLockStatus(UserLockStatus.UNLOCKED);
 			userAccount.setCreatedDate(new Date());
-			userDAO.persist(userAccount);
+			getUserDAO().persist(userAccount);
 			
 			if ("true".equals(registeredUsersGetAdminConfig.getPropertyValue())) {
 				userAccount.setUserRole(UserRole.ADMIN);

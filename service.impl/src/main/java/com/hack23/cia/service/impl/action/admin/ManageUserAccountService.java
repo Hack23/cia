@@ -42,7 +42,6 @@ import com.hack23.cia.service.api.action.admin.ManageUserAccountResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.RemoveDataManager;
-import com.hack23.cia.service.data.api.UserDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
 
@@ -54,10 +53,6 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 public final class ManageUserAccountService
 		extends AbstractBusinessServiceImpl<ManageUserAccountRequest, ManageUserAccountResponse>
 		implements BusinessService<ManageUserAccountRequest, ManageUserAccountResponse> {
-
-	/** The user dao. */
-	@Autowired
-	private UserDAO userDAO;
 
 	/** The remove data manager. */
 	@Autowired
@@ -76,7 +71,7 @@ public final class ManageUserAccountService
 			@Override
 			public ManageUserAccountResponse execute(final UserAccount account) {
 				removeDataManager.removeUserAccountApplicationHistory(account.getUserId());
-				userDAO.delete(account);
+				getUserDAO().delete(account);
 				return new ManageUserAccountResponse(ServiceResult.SUCCESS);
 			}});
 
@@ -85,7 +80,7 @@ public final class ManageUserAccountService
 			@Override
 			public ManageUserAccountResponse execute(final UserAccount account) {
 				account.setUserLockStatus(UserLockStatus.UNLOCKED);
-				userDAO.persist(account);
+				getUserDAO().persist(account);
 				return new ManageUserAccountResponse(ServiceResult.SUCCESS);
 			}});
 
@@ -94,7 +89,7 @@ public final class ManageUserAccountService
 			@Override
 			public ManageUserAccountResponse execute(final UserAccount account) {
 				account.setUserLockStatus(UserLockStatus.LOCKED);
-				userDAO.persist(account);
+				getUserDAO().persist(account);
 				return new ManageUserAccountResponse(ServiceResult.SUCCESS);
 			}});
 
@@ -158,7 +153,7 @@ public final class ManageUserAccountService
 		eventRequest.setElementId(serviceRequest.getUserAcountId());
 		eventRequest.setApplicationMessage(serviceRequest.getAccountOperation().toString());
 
-		final UserAccount accountToModify = userDAO.findFirstByProperty(UserAccount_.userId,
+		final UserAccount accountToModify = getUserDAO().findFirstByProperty(UserAccount_.userId,
 				serviceRequest.getUserAcountId());
 
 		final UserCommand userCommand = userCommandMap.get(serviceRequest.getAccountOperation());			

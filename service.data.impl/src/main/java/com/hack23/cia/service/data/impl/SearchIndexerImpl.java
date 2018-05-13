@@ -55,7 +55,7 @@ final class SearchIndexerImpl implements SearchIndexer {
 	 *
 	 * @return the full text entity manager
 	 */
-	private FullTextEntityManager getFullTextEntityManager() {
+	private synchronized FullTextEntityManager getFullTextEntityManager() {
 	        if (fullTextEntityManager == null) {
 	        	fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
 	        }

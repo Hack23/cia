@@ -174,7 +174,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 		final List<GovernmentBodyAnnualOutcomeSummary> list = new ArrayList<>();
 		
 		for (final CSVRecord csvRecord : records) {
-			final GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get(MYNDIGHET), csvRecord.get(ORGANISATIONSNUMMER), Integer.valueOf(csvRecord.get(ÅR)));
+			final GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get(MYNDIGHET), csvRecord.get(ORGANISATIONSNUMMER), Integer.parseInt(csvRecord.get(ÅR)));
 			
 			for (final String field : specificFields) {				
 				governmentBodyAnnualOutcomeSummary.addDescriptionField(field,csvRecord.get(field));

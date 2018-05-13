@@ -52,7 +52,6 @@ import com.hack23.cia.service.api.action.application.LoginResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.EncryptedValueDAO;
 import com.hack23.cia.service.data.api.EncryptionManager;
-import com.hack23.cia.service.data.api.UserDAO;
 import com.hack23.cia.service.impl.action.application.access.LoginBlockedAccess;
 import com.hack23.cia.service.impl.action.application.access.LoginBlockedAccess.LoginBlockResult;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
@@ -69,10 +68,6 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginService.class);
-
-	/** The user dao. */
-	@Autowired
-	private UserDAO userDAO;
 
 	@Autowired
 	private LoginBlockedAccess loginBlockedAccess;
@@ -105,7 +100,7 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 		
 		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 		
-		final UserAccount userExist = userDAO.findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
+		final UserAccount userExist = getUserDAO().findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
 
 		final LoginBlockResult loginBlockResult = loginBlockedAccess.isBlocked(serviceRequest.getSessionId(), serviceRequest.getEmail());
 
@@ -139,7 +134,7 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 					new UsernamePasswordAuthenticationToken(userExist.getUserId(), "n/a", authorities));
 
 			userExist.setNumberOfVisits(userExist.getNumberOfVisits() + 1);
-			userDAO.persist(userExist);
+			getUserDAO().persist(userExist);
 			response = new LoginResponse(ServiceResult.SUCCESS);
 
 		} else {

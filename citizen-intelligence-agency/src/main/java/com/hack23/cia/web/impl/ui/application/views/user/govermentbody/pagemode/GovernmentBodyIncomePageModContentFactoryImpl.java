@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -83,15 +84,15 @@ public final class GovernmentBodyIncomePageModContentFactoryImpl extends Abstrac
 		final List<GovernmentBodyAnnualSummary> list = map.get(pageId);
 		
 		if (list != null && !list.isEmpty()) {
-			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = list.iterator().next();
+			final Optional<GovernmentBodyAnnualSummary> governmentBodyAnnualSummary = list.stream().findFirst();
 			
-			getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId);
-
-			LabelFactory.createHeader2Label(panelContent,GOVERNMENT_BODIES);
-
-			governmentBodyChartDataManager.createGovernmentBodyIncomeSummaryChart(panelContent, governmentBodyAnnualSummary.getName());
-
-			panel.setCaption(NAME + "::" + GOVERNMENT_BODY + governmentBodyAnnualSummary.getName());
+			if (governmentBodyAnnualSummary.isPresent()) {			
+				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId);
+				LabelFactory.createHeader2Label(panelContent,GOVERNMENT_BODIES);
+				governmentBodyChartDataManager.createGovernmentBodyIncomeSummaryChart(panelContent, governmentBodyAnnualSummary.get().getName());
+				panel.setCaption(NAME + "::" + GOVERNMENT_BODY + governmentBodyAnnualSummary.get().getName());
+			}
+			
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 					parameters, pageId);
 

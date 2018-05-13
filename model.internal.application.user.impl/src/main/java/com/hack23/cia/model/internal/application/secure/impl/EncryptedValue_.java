@@ -1,5 +1,5 @@
 /*
- * Copyright 2010 James Pether Sörling
+ * Copyright 2014 James Pether Sörling
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,16 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(EncryptedValue.class)
 public class EncryptedValue_ {
 	  
+	/** The id. */
+	public static volatile SingularAttribute<EncryptedValue, Long> id;
+	
+	/** The storage. */
+	public static volatile SingularAttribute<EncryptedValue, String> storage;
+	
   	/** The user id. */
   	public static volatile SingularAttribute<EncryptedValue, String> userId;
 	  
   	/** The vault name. */
   	public static volatile SingularAttribute<EncryptedValue, String> vaultName;
+  	
 }

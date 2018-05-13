@@ -178,4 +178,14 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 		return response;
 	}
 
+	/**
+	 * Gets the user dao.
+	 *
+	 * @return the user dao
+	 */
+	protected final UserDAO getUserDAO() {
+		return userDAO;
+	}
+
+	
 }
