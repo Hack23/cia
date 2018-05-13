@@ -18,6 +18,7 @@
  */
 package com.hack23.cia.service.data.impl;
 
+import java.util.Date;
 import java.util.UUID;
 
 import javax.sql.DataSource;
@@ -72,6 +73,7 @@ public class EncryptionManagerITest extends AbstractServiceDataFunctionalIntegra
 		final String encryptionKey = UUID.randomUUID().toString();
 		encryptionManager.setEncryptionKey(encryptionKey);
 		final EncryptedValue entity = new EncryptedValue();
+		entity.setId(new Date().getTime());
 		entity.setStorage("somesecret");
 		encryptedValueDAO.persist(entity);
 		
@@ -87,6 +89,7 @@ public class EncryptionManagerITest extends AbstractServiceDataFunctionalIntegra
 		encryptionManager.setEncryptionKey("");
 		
 		final EncryptedValue entity = new EncryptedValue();
+		entity.setId(new Date().getTime());
 		entity.setStorage("somesecret");
 		encryptedValueDAO.persist(entity);
 						
