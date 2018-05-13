@@ -1,5 +1,5 @@
 /*
- * Copyright 2010 James Pether Sörling
+ * Copyright 2014 James Pether Sörling
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,7 +46,15 @@ public class EncryptedValue implements ModelObject {
 	/** The vault name. */
 	private String vaultName;
 
+	/** The storage. */
 	private String storage;
+
+	/**
+	 * Instantiates a new encrypted value.
+	 */
+	public EncryptedValue() {
+		super();
+	}
 
 	/**
 	 * Gets the id.
@@ -98,7 +106,7 @@ public class EncryptedValue implements ModelObject {
 	 * @return the user id
 	 */
 	@Basic
-	@Column(name = "USER_ID", length = 255)
+	@Column(name = "USER_ID")
 	public String getUserId() {
 		return userId;
 	}
@@ -119,7 +127,7 @@ public class EncryptedValue implements ModelObject {
 	 * @return the vault name
 	 */
 	@Basic
-	@Column(name = "VAULT_NAME", length = 255)
+	@Column(name = "VAULT_NAME")
 	public String getVaultName() {
 		return vaultName;
 	}

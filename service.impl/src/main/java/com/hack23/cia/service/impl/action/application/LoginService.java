@@ -129,7 +129,7 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 
 			if (UserRole.ADMIN == userExist.getUserRole()) {
 				authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-			} else if (UserRole.USER == userExist.getUserRole()) {
+			} else {
 				authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 			}
 

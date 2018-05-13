@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.home.pagemode;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -42,18 +44,22 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class UserHomeApplicationEventsPageModContentFactoryImpl.
  */
 @Component
-public final class UserHomeApplicationEventsPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
+public final class UserHomeApplicationEventsPageModContentFactoryImpl
+		extends AbstractUserHomePageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid");
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid");
 
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid","userId","sessionId", "modelObjectId","modelObjectVersion" };
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "userId", "sessionId", "modelObjectId",
+			"modelObjectVersion" };
 
-	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate", "eventGroup", "applicationOperation","actionName","page","pageMode","elementId", "applicationMessage","errorMessage", "modelObjectVersion" };
+	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate", "eventGroup",
+			"applicationOperation", "actionName", "page", "pageMode", "elementId", "applicationMessage", "errorMessage",
+			"modelObjectVersion" };
 
 	private static final String APPLICATION_ACTION_EVENT = "ApplicationActionEvent";
 
@@ -68,8 +74,7 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl extends Ab
 	private UserHomeMenuItemFactory userHomeMenuItemFactory;
 
 	/**
-	 * Instantiates a new user home security settings page mod content factory
-	 * impl.
+	 * Instantiates a new user home security settings page mod content factory impl.
 	 */
 	public UserHomeApplicationEventsPageModContentFactoryImpl() {
 		super();
@@ -97,18 +102,19 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl extends Ab
 			UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
 		} else {
 
-			final DataContainer<UserAccount, Long> dataContainer = getApplicationManager().getDataContainer(UserAccount.class);
+			final DataContainer<UserAccount, Long> dataContainer = getApplicationManager()
+					.getDataContainer(UserAccount.class);
+			final Optional<UserAccount> userAccount = dataContainer
+					.getAllBy(UserAccount_.userId, userIdFromSecurityContext).stream().findFirst();
+			final DataContainer<ApplicationActionEvent, Long> eventDataContainer = getApplicationManager()
+					.getDataContainer(ApplicationActionEvent.class);
 
-			final UserAccount userAccount = dataContainer.getAllBy(UserAccount_.userId, userIdFromSecurityContext).stream().findFirst().get();
-
-			final DataContainer<ApplicationActionEvent, Long> eventDataContainer = getApplicationManager().getDataContainer(ApplicationActionEvent.class);
-			
-
-			getGridFactory().createBasicBeanItemGrid(panelContent, ApplicationActionEvent.class, eventDataContainer.findOrderedListByProperty(ApplicationActionEvent_.userId,userAccount.getUserId(),ApplicationActionEvent_.createdDate),
-					APPLICATION_ACTION_EVENT,
-					COLUMN_ORDER, HIDE_COLUMNS,
-					LISTENER, null, null);
-
+			if (userAccount.isPresent()) {
+				getGridFactory().createBasicBeanItemGrid(panelContent, ApplicationActionEvent.class,
+						eventDataContainer.findOrderedListByProperty(ApplicationActionEvent_.userId,
+								userAccount.get().getUserId(), ApplicationActionEvent_.createdDate),
+						APPLICATION_ACTION_EVENT, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
+			}
 		}
 
 		panel.setCaption(NAME + "::" + USERHOME + USER_EVENTS);

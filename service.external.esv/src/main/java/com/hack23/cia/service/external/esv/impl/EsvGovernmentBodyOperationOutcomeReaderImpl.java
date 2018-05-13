@@ -24,6 +24,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -88,26 +89,6 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	/** The Constant UTFALL_JANUARI. */
 	private static final String UTFALL_JANUARI = "Utfall januari";
 
-	/** The Constant INCOME_FIELDS. */
-	protected static final String[] INCOME_FIELDS = new String[] { "Inkomsttyp", "Inkomsttypsnamn", "Inkomsthuvudgrupp",
-			"Inkomsthuvudgruppsnamn", "Inkomsttitelgrupp", "Inkomsttitelgruppsnamn", "Inkomsttitel",
-			"Inkomsttitelsnamn", "Inkomstundertitel", "Inkomstundertitelsnamn", MYNDIGHET, ORGANISATIONSNUMMER,
-			ÅR, UTFALL_JANUARI, UTFALL_FEBRUARI, UTFALL_MARS, UTFALL_APRIL, UTFALL_MAJ, UTFALL_JUNI,
-			UTFALL_JULI, UTFALL_AUGUSTI, UTFALL_SEPTEMBER, UTFALL_OKTOBER, UTFALL_NOVEMBER, UTFALL_DECEMBER,
-			"Inkomsttyp utfallsår", "Inkomsttypsnamn utfallsår", "Inkomsthuvudgrupp utfallsår",
-			"Inkomsthuvudgruppsnamn utfallsår", "Inkomsttitelgrupp utfallsår", "Inkomsttitelgruppsnamn utfallsår",
-			"Inkomsttitel utfallsår", "Inkomsttitelsnamn utfallsår", "Inkomstundertitel utfallsår",
-			"Inkomstundertitelsnamn utfallsår" };
-	
-	/** The Constant OUTGOING_FIELDS. */
-	protected static final String[] OUTGOING_FIELDS = new String[] { "Utgiftsområde", "Utgiftsområdesnamn", "Anslag",
-			"Anslagsnamn", "Anslagspost", "Anslagspostsnamn", "Anslagsdelpost", "Anslagsdelpostsnamn", MYNDIGHET,
-			ORGANISATIONSNUMMER, ÅR, UTFALL_JANUARI, UTFALL_FEBRUARI, UTFALL_MARS, UTFALL_APRIL,
-			UTFALL_MAJ, UTFALL_JUNI, UTFALL_JULI, UTFALL_AUGUSTI, UTFALL_SEPTEMBER, UTFALL_OKTOBER,
-			UTFALL_NOVEMBER, UTFALL_DECEMBER, "Utgiftsområde utfallsår", "Utgiftsområdesnamn utfallsår",
-			"Anslag utfallsår", "Anslagsnamn utfallsår", "Anslagspost utfallsår", "Anslagspostsnamn utfallsår",
-			"Anslagsdelpost utfallsår", "Anslagsdelpostsnamn utfallsår" };
-
 	/** The Constant SPECIFIC_OUTGOING_FIELDS. */
 	private static final String[] SPECIFIC_OUTGOING_FIELDS = new String[] { "Inkomsttyp", "Inkomsttypsnamn", "Inkomsthuvudgrupp", "Inkomsthuvudgruppsnamn", "Inkomsttitelgrupp", "Inkomsttitelgruppsnamn", "Inkomsttitel", "Inkomsttitelsnamn", "Inkomstundertitel", "Inkomstundertitelsnamn"};
 
@@ -132,7 +113,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 				"https://www.esv.se/psidata/manadsutfall/GetFile/?documentType=Inkomst&fileType=Zip&fileName=M%C3%A5nadsutfall%20inkomster%20januari%202006%20-%20mars%202018,%20definitivt.zip&year=2018&month=3&status=Definitiv")
 				.execute().returnContent().asStream(),SPECIFIC_OUTGOING_FIELDS);
 		}
-		return incomeCsvValues;
+		return Collections.unmodifiableList(incomeCsvValues);
 	}
 	
 	@Override
@@ -142,7 +123,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 				"https://www.esv.se/psidata/manadsutfall/GetFile/?documentType=Utgift&fileType=Zip&fileName=M%C3%A5nadsutfall%20utgifter%20januari%202006%20-%20mars%202018,%20definitivt.zip&year=2018&month=3&status=Definitiv")
 				.execute().returnContent().asStream(),SPECIFIC_INCOMING_FIELDS);
 		}
-		return outGoingCsvValues;
+		return Collections.unmodifiableList(outGoingCsvValues);
 	}
 
 	/**

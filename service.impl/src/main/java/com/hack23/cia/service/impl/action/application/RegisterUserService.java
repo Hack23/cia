@@ -153,7 +153,7 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 
 			if (UserRole.ADMIN == userAccount.getUserRole()) {
 				authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-			} else if (UserRole.USER == userAccount.getUserRole()) {
+			} else {
 				authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 			}
 

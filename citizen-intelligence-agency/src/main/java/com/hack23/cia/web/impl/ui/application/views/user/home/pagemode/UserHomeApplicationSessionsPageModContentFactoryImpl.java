@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.home.pagemode;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -43,20 +45,24 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class UserHomeApplicationSessionsPageModContentFactoryImpl.
  */
 @Component
-public final class UserHomeApplicationSessionsPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
+public final class UserHomeApplicationSessionsPageModContentFactoryImpl
+		extends AbstractUserHomePageModContentFactoryImpl {
 
-	private static final ListPropertyConverter[] COLLECTION_PROPERTY_CONVERTERS = new ListPropertyConverter[] { new ListPropertyConverter("page", "events", "actionName")};
+	private static final ListPropertyConverter[] COLLECTION_PROPERTY_CONVERTERS = new ListPropertyConverter[] {
+			new ListPropertyConverter("page", "events", "actionName") };
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid");
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid");
 
-	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion", "sessionId", "sessionType", "userId", "locale"};
+	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "modelObjectId", "modelObjectVersion",
+			"sessionId", "sessionType", "userId", "locale" };
 
-	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate","operatingSystem", "ipInformation", "events", "userAgentInformation"};
+	private static final String[] COLUMN_ORDER = new String[] { "hjid", "createdDate", "operatingSystem",
+			"ipInformation", "events", "userAgentInformation" };
 
 	private static final String APPLICATION_SESSION = "ApplicationSession";
 
@@ -71,8 +77,7 @@ public final class UserHomeApplicationSessionsPageModContentFactoryImpl extends 
 	private UserHomeMenuItemFactory userHomeMenuItemFactory;
 
 	/**
-	 * Instantiates a new user home security settings page mod content factory
-	 * impl.
+	 * Instantiates a new user home security settings page mod content factory impl.
 	 */
 	public UserHomeApplicationSessionsPageModContentFactoryImpl() {
 		super();
@@ -99,17 +104,21 @@ public final class UserHomeApplicationSessionsPageModContentFactoryImpl extends 
 		if (userIdFromSecurityContext == null) {
 			UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
 		} else {
+			final DataContainer<UserAccount, Long> dataContainer = getApplicationManager()
+					.getDataContainer(UserAccount.class);
+			final Optional<UserAccount> userAccount = dataContainer
+					.getAllBy(UserAccount_.userId, userIdFromSecurityContext).stream().findFirst();
 
-			final DataContainer<UserAccount, Long> dataContainer = getApplicationManager().getDataContainer(UserAccount.class);
+			if (userAccount.isPresent()) {
+				final DataContainer<ApplicationSession, Long> sessionDataContainer = getApplicationManager()
+						.getDataContainer(ApplicationSession.class);
 
-			final UserAccount userAccount = dataContainer.getAllBy(UserAccount_.userId, userIdFromSecurityContext).stream().findFirst().get();
-
-			final DataContainer<ApplicationSession, Long> sessionDataContainer = getApplicationManager().getDataContainer(ApplicationSession.class);
-
-			getGridFactory().createBasicBeanItemGrid(panelContent, ApplicationSession.class, sessionDataContainer.findOrderedListByProperty(ApplicationSession_.userId,userAccount.getUserId(),ApplicationSession_.createdDate),
-					APPLICATION_SESSION,
-					COLUMN_ORDER, HIDE_COLUMNS,
-					LISTENER, null, COLLECTION_PROPERTY_CONVERTERS);
+				getGridFactory().createBasicBeanItemGrid(panelContent, ApplicationSession.class,
+						sessionDataContainer.findOrderedListByProperty(ApplicationSession_.userId,
+								userAccount.get().getUserId(), ApplicationSession_.createdDate),
+						APPLICATION_SESSION, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null,
+						COLLECTION_PROPERTY_CONVERTERS);
+			}
 		}
 
 		panel.setCaption(NAME + "::" + USERHOME + USER_VISITS);

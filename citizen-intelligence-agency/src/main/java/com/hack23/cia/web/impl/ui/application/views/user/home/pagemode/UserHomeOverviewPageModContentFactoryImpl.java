@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.user.home.pagemode;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,14 +49,14 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class UserHomeOverviewPageModContentFactoryImpl.
  */
 @Component
 public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
 
-	private static final List<String> AS_LIST = Arrays.asList("username","createdDate","email","country","userType","userRole","userEmailStatus", "numberOfVisits");
+	private static final List<String> AS_LIST = Arrays.asList("username", "createdDate", "email", "country", "userType",
+			"userRole", "userEmailStatus", "numberOfVisits");
 
 	/** The Constant LOGOUT. */
 	private static final String LOGOUT = "Logout";
@@ -84,20 +85,18 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 				|| parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
-	@Secured({"ROLE_USER", "ROLE_ADMIN" })
+	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
 
-
 		userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent,OVERVIEW);
+		LabelFactory.createHeader2Label(panelContent, OVERVIEW);
 
-
-		final Button logoutButton = new Button(LOGOUT,VaadinIcons.SIGN_OUT);
+		final Button logoutButton = new Button(LOGOUT, VaadinIcons.SIGN_OUT);
 
 		final LogoutRequest logoutRequest = new LogoutRequest();
 		logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
@@ -105,21 +104,19 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 		panelContent.addComponent(logoutButton);
 
+		final DataContainer<UserAccount, Long> dataContainer = getApplicationManager()
+				.getDataContainer(UserAccount.class);
 
-		final DataContainer<UserAccount, Long> dataContainer = getApplicationManager().getDataContainer(UserAccount.class);
+		final String userIdFromSecurityContext = UserContextUtil.getUserIdFromSecurityContext();
 
+		if (userIdFromSecurityContext == null) {
+			UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
+		} else {
+			final Optional<UserAccount> userAccount = dataContainer
+					.getAllBy(UserAccount_.userId, userIdFromSecurityContext).stream().findFirst();
 
-			final String userIdFromSecurityContext = UserContextUtil.getUserIdFromSecurityContext();
-
-			if (userIdFromSecurityContext == null) {
-				UI.getCurrent().getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
-			} else {
-
-				final UserAccount userAccount = dataContainer.getAllBy(UserAccount_.userId, userIdFromSecurityContext).stream().findFirst().get();
-
-
-				getFormFactory().addFormPanelTextFields(panelContent, userAccount, UserAccount.class,
-						AS_LIST);
+			if (userAccount.isPresent()) {
+				getFormFactory().addFormPanelTextFields(panelContent, userAccount.get(), UserAccount.class, AS_LIST);
 
 				panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);
 
@@ -131,11 +128,12 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 				userHomeMenuItemFactory.createOverviewPage(overviewLayout);
 			}
+		}
 
-			panel.setCaption(NAME + "::" + USERHOME);
+		panel.setCaption(NAME + "::" + USERHOME);
 
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,
-					parameters, pageId);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 
 		return panelContent;
 

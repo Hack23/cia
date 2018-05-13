@@ -70,7 +70,7 @@ MessageListener {
 		} catch (final DataFailureException | JMSException e) {
 			LOGGER.warn("Error loading riksdagen documentstatus:" , e);
 		}  finally {
-			clearAuthentication();			
+			clearAuthentication();
 		}
 	}
 }
