@@ -48,7 +48,7 @@ final class EncryptionManagerImpl implements EncryptionManager {
 	@Override
 	public void setEncryptionKey(final String key) {
 		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		jdbcTemplate.queryForList("select set_config('cia.encrypt.key',?, false)",new Object[] { key });
+		jdbcTemplate.execute("select set_config('cia.encrypt.key', '" + key + "', false)");
 	}
 
 }
