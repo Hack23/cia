@@ -921,8 +921,6 @@ public final class UserPageVisit extends Assert {
 		assertNotNull("Expect to find a Enable Google Authenticator Button",enableGoogleAuthButton);
 
 		performClickAction(enableGoogleAuthButton);
-
-		closeModal();
 	}
 
 	public void disableGoogleAuthenticator(final String password) throws Exception {

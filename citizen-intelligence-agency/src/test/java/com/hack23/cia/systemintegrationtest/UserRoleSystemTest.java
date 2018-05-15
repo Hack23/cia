@@ -1010,10 +1010,63 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userLoginPageVisit.enableGoogleAuthenticator(password);
 
+		userLoginPageVisit.closeModal();
+		
 		userLoginPageVisit.logoutUser();
 
 	}
 
+	
+	@Test
+	public void siteLoginUserEnableGoogleAuthenticatorFailureTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
+
+		final String username = UUID.randomUUID().toString();
+		final String password = generatePassword();
+
+		userPageVisit.registerNewUser(username, password);
+
+		userPageVisit.logoutUser();
+
+		driver.quit();
+
+		final WebDriver loginDriver = getWebDriver();
+
+		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
+
+		userLoginPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
+
+		userLoginPageVisit.loginUser(username + "@test.com", password);
+
+
+		final WebElement userAccountMenuItem = userLoginPageVisit.getMenuItem("Useraccount");
+		assertNotNull(userAccountMenuItem);
+		userLoginPageVisit.performClickAction(userAccountMenuItem);
+
+		Thread.sleep(1000);
+
+
+		final WebElement securitySettingMenuItem = userLoginPageVisit.getMenuItem("Security settings");
+		assertNotNull(securitySettingMenuItem);
+		userLoginPageVisit.performClickAction(securitySettingMenuItem);
+
+
+		userLoginPageVisit.enableGoogleAuthenticator("wrong" + password);
+
+		userLoginPageVisit.checkNotificationMessage("Problem enable google authenticatorError message");
+		
+		userLoginPageVisit.logoutUser();
+
+	}
+
+	
 	@Test
 	public void siteLoginUserDisableGoogleAuthenticatorTest() throws Exception {
 		final WebDriver driver = getWebDriver();
@@ -1054,6 +1107,53 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userLoginPageVisit.performClickAction(securitySettingMenuItem);
 
 		userLoginPageVisit.disableGoogleAuthenticator(password);
+
+		userLoginPageVisit.logoutUser();
+
+	}
+
+	@Test
+	public void siteLoginUserDisableGoogleAuthenticatorFailureTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
+
+		final String username = UUID.randomUUID().toString();
+		final String password = generatePassword();
+
+		userPageVisit.registerNewUser(username, password);
+
+		userPageVisit.logoutUser();
+
+		driver.quit();
+
+		final WebDriver loginDriver = getWebDriver();
+
+		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
+
+		userLoginPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
+
+		userLoginPageVisit.loginUser(username + "@test.com", password);
+
+
+		final WebElement userAccountMenuItem = userLoginPageVisit.getMenuItem("Useraccount");
+		assertNotNull(userAccountMenuItem);
+		userLoginPageVisit.performClickAction(userAccountMenuItem);
+
+		Thread.sleep(1000);
+
+		final WebElement securitySettingMenuItem = userLoginPageVisit.getMenuItem("Security settings");
+		assertNotNull(securitySettingMenuItem);
+		userLoginPageVisit.performClickAction(securitySettingMenuItem);
+
+		userLoginPageVisit.disableGoogleAuthenticator("wrong" + password);
+
+		userLoginPageVisit.checkNotificationMessage("Problem disable google authenticatorError message");
 
 		userLoginPageVisit.logoutUser();
 
