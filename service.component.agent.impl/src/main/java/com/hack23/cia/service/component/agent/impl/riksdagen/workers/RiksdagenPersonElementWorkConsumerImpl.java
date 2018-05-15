@@ -45,18 +45,25 @@ final class RiksdagenPersonElementWorkConsumerImpl extends AbstractMessageListen
 			.getLogger(RiksdagenPersonElementWorkConsumerImpl.class);
 
 	/** The update service. */
-	@Autowired
-	private RiksdagenUpdateService updateService;
+	private final RiksdagenUpdateService updateService;
 
 	/** The riksdagen api. */
-	@Autowired
-	private RiksdagenPersonApi riksdagenApi;
+	private final RiksdagenPersonApi riksdagenApi;
 
 	/**
 	 * Instantiates a new riksdagen person element work consumer impl.
+	 *
+	 * @param updateService
+	 *            the update service
+	 * @param riksdagenApi
+	 *            the riksdagen api
 	 */
-	public RiksdagenPersonElementWorkConsumerImpl() {
+	@Autowired
+	public RiksdagenPersonElementWorkConsumerImpl(final RiksdagenUpdateService updateService,
+			final RiksdagenPersonApi riksdagenApi) {
 		super();
+		this.updateService = updateService;
+		this.riksdagenApi = riksdagenApi;
 	}
 
 	@Override

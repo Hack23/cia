@@ -73,7 +73,7 @@ final class ValImportServiceImpl implements ValImportService {
 				final Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_ADMIN");
 				final Authentication authentication = new UsernamePasswordAuthenticationToken("system.agent", "n/a", authorities);
 				SecurityContextHolder.getContext().setAuthentication(authentication);
-				List<SwedenPoliticalParty> swedenPoliticalParties = valApi.getSwedenPoliticalParties();
+				final List<SwedenPoliticalParty> swedenPoliticalParties = valApi.getSwedenPoliticalParties();
 				swedenPoliticalPartyDAO.persist(swedenPoliticalParties);				
 				SecurityContextHolder.getContext().setAuthentication(null);				
 				LOGGER.info("Sweden political persisted to database:{}",swedenPoliticalParties.size());

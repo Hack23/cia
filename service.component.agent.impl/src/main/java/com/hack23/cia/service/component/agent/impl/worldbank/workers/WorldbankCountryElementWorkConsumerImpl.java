@@ -46,14 +46,18 @@ MessageListener {
 			.getLogger(WorldbankCountryElementWorkConsumerImpl.class);
 
 	/** The update service. */
-	@Autowired
-	private WorldbankUpdateService updateService;
+	private final WorldbankUpdateService updateService;
 
 	/**
 	 * Instantiates a new worldbank country element work consumer impl.
+	 *
+	 * @param updateService
+	 *            the update service
 	 */
-	public WorldbankCountryElementWorkConsumerImpl() {
+	@Autowired
+	public WorldbankCountryElementWorkConsumerImpl(final WorldbankUpdateService updateService) {
 		super();
+		this.updateService = updateService;
 	}
 
 	@Override

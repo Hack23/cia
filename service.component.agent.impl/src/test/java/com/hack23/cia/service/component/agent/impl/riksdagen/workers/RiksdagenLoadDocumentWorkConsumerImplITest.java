@@ -61,13 +61,13 @@ public class RiksdagenLoadDocumentWorkConsumerImplITest extends AbstractServiceC
 	@Test
 	@Transactional
 	public void onMessageSuccessTest() throws JMSException {
-		SimpleDateFormat dateFormat = new SimpleDateFormat(RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT);
+		final SimpleDateFormat dateFormat = new SimpleDateFormat(RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT);
 
-		String nowDateAsString = dateFormat.format(new Date());
+		final String nowDateAsString = dateFormat.format(new Date());
 
-		Calendar cal = Calendar.getInstance();
+		final Calendar cal = Calendar.getInstance();
 	    cal.add(Calendar.DATE, -1);
-	    String weekBeforeCurrentDateAsString = dateFormat.format(cal.getTime());
+	    final String weekBeforeCurrentDateAsString = dateFormat.format(cal.getTime());
 
 		final ObjectMessage message = mock(ObjectMessage.class);
 

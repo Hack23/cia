@@ -49,20 +49,25 @@ MessageListener {
 			.getLogger(WorldbankDataWorkConsumerImpl.class);
 
 	/** The update service. */
-	@Autowired
-	private WorldbankUpdateService updateService;
+	private final WorldbankUpdateService updateService;
 
 	/** The worldbank data api. */
-	@Autowired
-	private WorldBankDataApi worldbankDataApi;
+	private final WorldBankDataApi worldbankDataApi;
 
 	/**
 	 * Instantiates a new worldbank data work consumer impl.
+	 *
+	 * @param updateService
+	 *            the update service
+	 * @param worldbankDataApi
+	 *            the worldbank data api
 	 */
-	public WorldbankDataWorkConsumerImpl() {
+	@Autowired
+	public WorldbankDataWorkConsumerImpl(final WorldbankUpdateService updateService, final WorldBankDataApi worldbankDataApi) {
 		super();
+		this.updateService = updateService;
+		this.worldbankDataApi = worldbankDataApi;
 	}
-
 
 	@Override
 	public void onMessage(final Message message) {

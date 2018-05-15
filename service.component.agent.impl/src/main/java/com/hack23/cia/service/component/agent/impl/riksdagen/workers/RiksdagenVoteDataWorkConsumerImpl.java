@@ -45,18 +45,24 @@ final class RiksdagenVoteDataWorkConsumerImpl extends AbstractMessageListener im
 	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenVoteDataWorkConsumerImpl.class);
 
 	/** The update service. */
-	@Autowired
-	private RiksdagenUpdateService updateService;
+	private final RiksdagenUpdateService updateService;
 
 	/** The riksdagen api. */
-	@Autowired
-	private RiksdagenBallotApi riksdagenApi;
+	private final RiksdagenBallotApi riksdagenApi;
 
 	/**
 	 * Instantiates a new riksdagen vote data work consumer impl.
+	 *
+	 * @param updateService
+	 *            the update service
+	 * @param riksdagenApi
+	 *            the riksdagen api
 	 */
-	public RiksdagenVoteDataWorkConsumerImpl() {
+	@Autowired
+	public RiksdagenVoteDataWorkConsumerImpl(final RiksdagenUpdateService updateService, final RiksdagenBallotApi riksdagenApi) {
 		super();
+		this.updateService = updateService;
+		this.riksdagenApi = riksdagenApi;
 	}
 
 	@Override

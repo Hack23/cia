@@ -46,15 +46,20 @@ MessageListener {
 			.getLogger(WorldbankIndicatorElementWorkConsumerImpl.class);
 
 	/** The update service. */
-	@Autowired
-	private WorldbankUpdateService updateService;
+	private final WorldbankUpdateService updateService;
 
 	/**
 	 * Instantiates a new worldbank indicator element work consumer impl.
+	 *
+	 * @param updateService
+	 *            the update service
 	 */
-	public WorldbankIndicatorElementWorkConsumerImpl() {
+	@Autowired
+	public WorldbankIndicatorElementWorkConsumerImpl(final WorldbankUpdateService updateService) {
 		super();
+		this.updateService = updateService;
 	}
+
 
 	@Override
 	public void onMessage(final Message message) {

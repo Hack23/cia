@@ -46,21 +46,29 @@ final class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl extends Abst
 			.getLogger(RiksdagenCommitteeProposalComponentDataWorkConsumerImpl.class);
 
 	/** The update service. */
-	@Autowired
-	private RiksdagenUpdateService updateService;
+	private final RiksdagenUpdateService updateService;
 
 	/** The riksdagen api. */
-	@Autowired
-	private RiksdagenCommitteeProposalApi riksdagenApi;
+	private final RiksdagenCommitteeProposalApi riksdagenApi;
 
 
 	/**
 	 * Instantiates a new riksdagen committee proposal component data work consumer
 	 * impl.
+	 *
+	 * @param updateService
+	 *            the update service
+	 * @param riksdagenApi
+	 *            the riksdagen api
 	 */
-	public RiksdagenCommitteeProposalComponentDataWorkConsumerImpl() {
+	@Autowired
+	public RiksdagenCommitteeProposalComponentDataWorkConsumerImpl(final RiksdagenUpdateService updateService,
+			final RiksdagenCommitteeProposalApi riksdagenApi) {
 		super();
+		this.updateService = updateService;
+		this.riksdagenApi = riksdagenApi;
 	}
+
 
 
 	@Override

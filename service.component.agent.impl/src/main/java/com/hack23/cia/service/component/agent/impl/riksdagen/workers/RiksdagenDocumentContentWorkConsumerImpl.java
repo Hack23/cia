@@ -47,19 +47,26 @@ MessageListener {
 			.getLogger(RiksdagenDocumentContentWorkConsumerImpl.class);
 
 	/** The update service. */
-	@Autowired
-	private RiksdagenUpdateService updateService;
+	private final RiksdagenUpdateService updateService;
 
-	/** The riksdagen api. */
-	@Autowired
-	private RiksdagenDocumentApi riksdagenApi;
+	private final RiksdagenDocumentApi riksdagenApi;
 
-
+	
+	
 	/**
 	 * Instantiates a new riksdagen document content work consumer impl.
+	 *
+	 * @param updateService
+	 *            the update service
+	 * @param riksdagenApi
+	 *            the riksdagen api
 	 */
-	public RiksdagenDocumentContentWorkConsumerImpl() {
+	@Autowired
+	public RiksdagenDocumentContentWorkConsumerImpl(final RiksdagenUpdateService updateService,
+			final RiksdagenDocumentApi riksdagenApi) {
 		super();
+		this.updateService = updateService;
+		this.riksdagenApi = riksdagenApi;
 	}
 
 

@@ -46,14 +46,18 @@ MessageListener {
 			.getLogger(RiksdagenDocumentElementWorkConsumerImpl.class);
 
 	/** The update service. */
-	@Autowired
-	private RiksdagenUpdateService updateService;
+	private final RiksdagenUpdateService updateService;
 
 	/**
 	 * Instantiates a new riksdagen document element work consumer impl.
+	 *
+	 * @param updateService
+	 *            the update service
 	 */
-	public RiksdagenDocumentElementWorkConsumerImpl() {
+	@Autowired
+	public RiksdagenDocumentElementWorkConsumerImpl(final RiksdagenUpdateService updateService) {
 		super();
+		this.updateService = updateService;
 	}
 
 	@Override

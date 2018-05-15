@@ -206,34 +206,34 @@ final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 					HTTP_VOTERING_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL,null,null))
 					.getValue();
 
-			final List<VoteDataDto> voteDataList = ballotContainer.getBallotDocumentData().getVoteDataList();
-
-			final Date ballotDate=tryToFindValidVoteDate(ballotContainer, voteDataList);
-
 			final List<VoteData> result = new ArrayList<>();
-			for (final VoteDataDto voteDataDto: voteDataList) {
-				final VoteData voteData= new VoteData().withEmbeddedId(new VoteDataEmbeddedId().withBallotId(voteDataDto.getBallotId()).withIntressentId(voteDataDto.getIntressentId()).withIssue(voteDataDto.getIssue()).withConcern(voteDataDto.getConcern()));
-
-				voteData.setBankNumber(voteDataDto.getBankNumber());
-				voteData.setLabel(voteDataDto.getLabel());
-				voteData.setLastName(voteDataDto.getLastName());
-				voteData.setBornYear(voteDataDto.getBornYear());
-				voteData.setFirstName(voteDataDto.getFirstName());
-				voteData.setPlace(voteDataDto.getPlace());
-				voteData.setGender(voteDataDto.getGender());
-				voteData.setFullName(voteDataDto.getFullName());
-				voteData.setParty(voteDataDto.getParty().toUpperCase(Locale.ENGLISH));
-				voteData.setRm(voteDataDto.getRm());
-				voteData.setVote(voteDataDto.getVote());
-				voteData.setBallotType(voteDataDto.getBallotType());
-				voteData.setElectoralRegionNumber(voteDataDto.getElectoralRegionNumber());
-				voteData.setElectoralRegion(voteDataDto.getElectoralRegion());
-
-				voteData.setVoteDate(ballotDate);
-
-				result.add(voteData);
+			if (ballotContainer != null && ballotContainer.getBallotDocumentData() != null) {
+				
+				final List<VoteDataDto> voteDataList = ballotContainer.getBallotDocumentData().getVoteDataList();				
+				final Date ballotDate=tryToFindValidVoteDate(ballotContainer, voteDataList);
+				
+				for (final VoteDataDto voteDataDto: voteDataList) {
+					final VoteData voteData= new VoteData().withEmbeddedId(new VoteDataEmbeddedId().withBallotId(voteDataDto.getBallotId()).withIntressentId(voteDataDto.getIntressentId()).withIssue(voteDataDto.getIssue()).withConcern(voteDataDto.getConcern()));
+					
+					voteData.setBankNumber(voteDataDto.getBankNumber());
+					voteData.setLabel(voteDataDto.getLabel());
+					voteData.setLastName(voteDataDto.getLastName());
+					voteData.setBornYear(voteDataDto.getBornYear());
+					voteData.setFirstName(voteDataDto.getFirstName());
+					voteData.setPlace(voteDataDto.getPlace());
+					voteData.setGender(voteDataDto.getGender());
+					voteData.setFullName(voteDataDto.getFullName());
+					voteData.setParty(voteDataDto.getParty().toUpperCase(Locale.ENGLISH));
+					voteData.setRm(voteDataDto.getRm());
+					voteData.setVote(voteDataDto.getVote());
+					voteData.setBallotType(voteDataDto.getBallotType());
+					voteData.setElectoralRegionNumber(voteDataDto.getElectoralRegionNumber());
+					voteData.setElectoralRegion(voteDataDto.getElectoralRegion());				
+					voteData.setVoteDate(ballotDate);
+					
+					result.add(voteData);
+				}				
 			}
-
 
 			return result;
 
