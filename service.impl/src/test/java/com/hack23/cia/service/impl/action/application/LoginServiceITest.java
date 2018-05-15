@@ -21,10 +21,7 @@ package com.hack23.cia.service.impl.action.application;
 import java.util.List;
 import java.util.UUID;
 
-import org.databene.contiperf.PerfTest;
-import org.databene.contiperf.Required;
-import org.databene.contiperf.junit.ContiPerfRule;
-import org.junit.Rule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -38,17 +35,15 @@ import com.hack23.cia.service.api.action.application.LoginRequest;
 import com.hack23.cia.service.api.action.application.LoginResponse;
 import com.hack23.cia.service.api.action.application.RegisterUserRequest;
 import com.hack23.cia.service.api.action.application.RegisterUserResponse;
+import com.hack23.cia.service.api.action.common.ServiceResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
+import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 
 /**
  * The Class LoginServiceITest.
  */
 public final class LoginServiceITest extends AbstractServiceFunctionalIntegrationTest {
-
-	/** The i. */
-	@Rule
-	public ContiPerfRule i = new ContiPerfRule();
 
 	/** The application manager. */
 	@Autowired
@@ -61,8 +56,6 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 	 *             the exception
 	 */
 	@Test
-	@PerfTest(threads = 2, duration = 4000, warmUp = 1500)
-	@Required(max = 2500, average = 2000, percentile95 = 2200, throughput = 1)
 	public void serviceLoginRequestSuccessTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
 
@@ -96,6 +89,94 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, loginResponse.getResult());
 	}
 
+	@Test
+	@Ignore
+	public void serviceLoginRequestFailureMfaMissingTest() throws Exception {
+		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
+
+
+		final RegisterUserRequest serviceRequest = new RegisterUserRequest();
+		serviceRequest.setCountry("Sweden");
+		serviceRequest.setUsername(UUID.randomUUID().toString());
+		serviceRequest.setEmail(serviceRequest.getUsername() + "@email.com");
+		serviceRequest.setUserpassword("Userpassword1!");
+		serviceRequest.setUserType(UserType.PRIVATE);
+		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
+
+		final RegisterUserResponse response = (RegisterUserResponse) applicationManager.service(serviceRequest);
+		assertNotNull("Expect a result", response);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, response.getResult());
+
+		final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
+		final List<UserAccount> allBy = dataContainer.getAllBy(UserAccount_.username, serviceRequest.getUsername());
+		assertEquals(1, allBy.size());
+
+
+		final SetGoogleAuthenticatorCredentialRequest setGoogleAuthenticatorCredentialRequest = new SetGoogleAuthenticatorCredentialRequest();
+		setGoogleAuthenticatorCredentialRequest.setSessionId(serviceRequest.getSessionId());
+		setGoogleAuthenticatorCredentialRequest.setUserpassword("Userpassword1!");
+
+		final ServiceResponse setGoogleAuthenticatorCredentialResponse = applicationManager.service(setGoogleAuthenticatorCredentialRequest);
+
+		assertNotNull(EXPECT_A_RESULT, setGoogleAuthenticatorCredentialResponse);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, setGoogleAuthenticatorCredentialResponse.getResult());		
+
+		final LoginRequest loginRequest = new LoginRequest();
+		loginRequest.setEmail(serviceRequest.getEmail());
+		loginRequest.setSessionId(serviceRequest.getSessionId());
+		loginRequest.setUserpassword(serviceRequest.getUserpassword());
+
+		final LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
+
+		assertNotNull("Expect a result", loginResponse);
+		assertEquals(ServiceResult.FAILURE, loginResponse.getResult());
+		assertEquals(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString(), loginResponse.getErrorMessage());
+	}
+
+	@Test
+	@Ignore
+	public void serviceLoginRequestMfaSuccessTest() throws Exception {
+		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
+
+
+		final RegisterUserRequest serviceRequest = new RegisterUserRequest();
+		serviceRequest.setCountry("Sweden");
+		serviceRequest.setUsername(UUID.randomUUID().toString());
+		serviceRequest.setEmail(serviceRequest.getUsername() + "@email.com");
+		serviceRequest.setUserpassword("Userpassword1!");
+		serviceRequest.setUserType(UserType.PRIVATE);
+		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
+
+		final RegisterUserResponse response = (RegisterUserResponse) applicationManager.service(serviceRequest);
+		assertNotNull("Expect a result", response);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, response.getResult());
+
+		final DataContainer<UserAccount, Long> dataContainer = applicationManager.getDataContainer(UserAccount.class);
+		final List<UserAccount> allBy = dataContainer.getAllBy(UserAccount_.username, serviceRequest.getUsername());
+		assertEquals(1, allBy.size());
+
+
+		final SetGoogleAuthenticatorCredentialRequest setGoogleAuthenticatorCredentialRequest = new SetGoogleAuthenticatorCredentialRequest();
+		setGoogleAuthenticatorCredentialRequest.setSessionId(serviceRequest.getSessionId());
+		setGoogleAuthenticatorCredentialRequest.setUserpassword("Userpassword1!");
+
+		final ServiceResponse setGoogleAuthenticatorCredentialResponse = applicationManager.service(setGoogleAuthenticatorCredentialRequest);
+
+		assertNotNull(EXPECT_A_RESULT, setGoogleAuthenticatorCredentialResponse);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, setGoogleAuthenticatorCredentialResponse.getResult());		
+
+		final LoginRequest loginRequest = new LoginRequest();
+		loginRequest.setEmail(serviceRequest.getEmail());
+		loginRequest.setSessionId(serviceRequest.getSessionId());
+		loginRequest.setUserpassword(serviceRequest.getUserpassword());
+
+		final LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
+
+		assertNotNull("Expect a result", loginResponse);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, loginResponse.getResult());
+	}
+
+	
 	/**
 	 * Service login request user password do not match failure test.
 	 *
