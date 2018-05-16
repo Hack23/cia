@@ -16,19 +16,31 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.service.data.api;
+package com.hack23.cia.service.impl.action.application.encryption;
+
+import java.io.Serializable;
+
+import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 
 /**
- * The Interface EncryptionManager.
+ * The Interface VaultManager.
  */
-public interface EncryptionManager {
+public interface VaultManager extends Serializable {
 
 	/**
-	 * Sets the encryption key.
+	 * Gets the encrypted value.
 	 *
-	 * @param key
-	 *            the new encryption key
+	 * @param password
+	 *            the password
+	 * @param userExist
+	 *            the user exist
+	 * @return the encrypted value
 	 */
-	void setEncryptionKey(String key);
+	String getEncryptedValue(String password, UserAccount userExist);
+
+	String encryptValue(String password, String userId, String value);
+
+	String decryptValue(String password, String userId, String value);
+
 
 }

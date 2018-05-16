@@ -23,7 +23,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.ColumnTransformer;
 import org.javers.core.metamodel.annotation.DiffIgnore;
 
 import com.hack23.cia.model.common.api.ModelObject;
@@ -82,8 +81,6 @@ public class EncryptedValue implements ModelObject {
 	 * @return the storage
 	 */
 	/** The storage. */
-	@ColumnTransformer(read = "pgp_sym_decrypt(" + "    storage, " + "    current_setting('cia.encrypt.key')"
-			+ ")", write = "pgp_sym_encrypt( " + "    ?, " + "    current_setting('cia.encrypt.key')" + ") ")
 	@Column(columnDefinition = "bytea")
 	@DiffIgnore
 	public String getStorage() {

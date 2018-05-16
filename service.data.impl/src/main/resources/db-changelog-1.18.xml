@@ -36,4 +36,12 @@
 		 <sql> COMMENT ON COLUMN public.user_account.user_email_status IS 'DATA.Sensitive GDPR.Personal_Sensitive' </sql>
 	</changeSet>
 
+
+	<changeSet author="encryptedValueTableChangeStorageType" id="1414872417007-305" failOnError="true">
+		<modifyDataType
+            columnName="storage"
+            newDataType="VARCHAR(4096)"
+            tableName="encrypted_value"/>            
+    </changeSet>
+
 </databaseChangeLog>

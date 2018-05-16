@@ -18,10 +18,6 @@
 */
 package com.hack23.cia.service.impl.action.user;
 
-import java.nio.charset.StandardCharsets;
-
-import org.bouncycastle.jcajce.provider.digest.SHA3;
-import org.bouncycastle.util.encoders.Hex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +38,7 @@ import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRe
 import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialResponse;
 import com.hack23.cia.service.data.api.AgencyDAO;
 import com.hack23.cia.service.data.api.EncryptedValueDAO;
-import com.hack23.cia.service.data.api.EncryptionManager;
+import com.hack23.cia.service.impl.action.application.encryption.VaultManager;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
 import com.warrenstrange.googleauth.GoogleAuthenticator;
@@ -65,13 +61,12 @@ public final class SetGoogleAuthenticatorCredentialService extends
 	@Autowired
 	private AgencyDAO agencyDAO;
 	
-	/** The encryption manager. */
-	@Autowired
-	private EncryptionManager encryptionManager;
-
 	/** The encrypted value DAO. */
 	@Autowired
 	private EncryptedValueDAO encryptedValueDAO;
+	
+	@Autowired
+	private VaultManager vaultManager;
 
 	/** The password encoder. */
 	private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -109,16 +104,13 @@ public final class SetGoogleAuthenticatorCredentialService extends
 
 			if (passwordEncoder.matches(
 					userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword(), userAccount.getUserpassword())) {
-				final SHA3.DigestSHA3 digestSHA3 = new SHA3.Digest512();
-				encryptionManager.setEncryptionKey(Hex.toHexString(digestSHA3.digest((userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword()).getBytes(StandardCharsets.UTF_8))));						
 
 				final EncryptedValue encryptedValue = new EncryptedValue();
 				encryptedValue.setId(userAccount.getHjid());
 				encryptedValue.setUserId(userAccount.getUserId());
 				encryptedValue.setVaultName(GoogleAuthenticatorKey.class.getSimpleName());
-				encryptedValue.setStorage(gKey.getKey());
+				encryptedValue.setStorage(vaultManager.encryptValue(serviceRequest.getUserpassword(), userAccount.getUserId(), gKey.getKey()));
 				encryptedValueDAO.persist(encryptedValue);			
-				encryptionManager.setEncryptionKey(null);
 
 				final String otpAuthTotpURL = GoogleAuthenticatorQRGenerator.getOtpAuthTotpURL(agencyDAO.getAll().get(0).getAgencyName(), userAccount.getEmail(), gKey);
 

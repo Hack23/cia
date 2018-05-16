@@ -21,7 +21,6 @@ package com.hack23.cia.service.impl.action.application;
 import java.util.List;
 import java.util.UUID;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -39,6 +38,8 @@ import com.hack23.cia.service.api.action.common.ServiceResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
+import com.hack23.cia.service.impl.action.application.encryption.VaultManager;
+import com.warrenstrange.googleauth.GoogleAuthenticator;
 
 /**
  * The Class LoginServiceITest.
@@ -49,6 +50,9 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 	@Autowired
 	private ApplicationManager applicationManager;
 
+	@Autowired
+	private VaultManager vaultManager;
+	
 	/**
 	 * Service login request success test.
 	 *
@@ -90,7 +94,6 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 	}
 
 	@Test
-	@Ignore
 	public void serviceLoginRequestFailureMfaMissingTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
 
@@ -134,10 +137,8 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 	}
 
 	@Test
-	@Ignore
 	public void serviceLoginRequestMfaSuccessTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
-
 
 		final RegisterUserRequest serviceRequest = new RegisterUserRequest();
 		serviceRequest.setCountry("Sweden");
@@ -155,7 +156,6 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 		final List<UserAccount> allBy = dataContainer.getAllBy(UserAccount_.username, serviceRequest.getUsername());
 		assertEquals(1, allBy.size());
 
-
 		final SetGoogleAuthenticatorCredentialRequest setGoogleAuthenticatorCredentialRequest = new SetGoogleAuthenticatorCredentialRequest();
 		setGoogleAuthenticatorCredentialRequest.setSessionId(serviceRequest.getSessionId());
 		setGoogleAuthenticatorCredentialRequest.setUserpassword("Userpassword1!");
@@ -165,11 +165,14 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 		assertNotNull(EXPECT_A_RESULT, setGoogleAuthenticatorCredentialResponse);
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, setGoogleAuthenticatorCredentialResponse.getResult());		
 
+		final GoogleAuthenticator gAuth = new GoogleAuthenticator();
+				
 		final LoginRequest loginRequest = new LoginRequest();
 		loginRequest.setEmail(serviceRequest.getEmail());
 		loginRequest.setSessionId(serviceRequest.getSessionId());
 		loginRequest.setUserpassword(serviceRequest.getUserpassword());
-
+		loginRequest.setOtpCode(""+ gAuth.getTotpPassword(vaultManager.getEncryptedValue(serviceRequest.getUserpassword(), allBy.get(0))));
+		
 		final LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
 
 		assertNotNull("Expect a result", loginResponse);

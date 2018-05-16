@@ -18,13 +18,10 @@
 */
 package com.hack23.cia.service.impl.action.application;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import org.apache.commons.lang3.StringUtils;
-import org.bouncycastle.jcajce.provider.digest.SHA3;
-import org.bouncycastle.util.encoders.Hex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +35,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hack23.cia.model.internal.application.secure.impl.EncryptedValue;
-import com.hack23.cia.model.internal.application.secure.impl.EncryptedValue_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
@@ -50,10 +45,9 @@ import com.hack23.cia.service.api.action.application.CreateApplicationEventReque
 import com.hack23.cia.service.api.action.application.LoginRequest;
 import com.hack23.cia.service.api.action.application.LoginResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
-import com.hack23.cia.service.data.api.EncryptedValueDAO;
-import com.hack23.cia.service.data.api.EncryptionManager;
 import com.hack23.cia.service.impl.action.application.access.LoginBlockedAccess;
 import com.hack23.cia.service.impl.action.application.access.LoginBlockedAccess.LoginBlockResult;
+import com.hack23.cia.service.impl.action.application.encryption.VaultManager;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 import com.hack23.cia.service.impl.action.common.BusinessService;
 import com.warrenstrange.googleauth.GoogleAuthenticator;
@@ -72,17 +66,12 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 	@Autowired
 	private LoginBlockedAccess loginBlockedAccess;
 
-	/** The encryption manager. */
-	@Autowired
-	private EncryptionManager encryptionManager;
-
-	/** The encrypted value DAO. */
-	@Autowired
-	private EncryptedValueDAO encryptedValueDAO;
-
 	/** The password encoder. */
 	private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+	@Autowired
+	private VaultManager vaultManager;
+	
 	/**
 	 * Instantiates a new login service.
 	 */
@@ -104,39 +93,36 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 
 		final LoginBlockResult loginBlockResult = loginBlockedAccess.isBlocked(serviceRequest.getSessionId(), serviceRequest.getEmail());
 
-		String authKey=null;
-		
-		if (userExist != null) {		
-			final SHA3.DigestSHA3 digestSHA3 = new SHA3.Digest512();
-			encryptionManager.setEncryptionKey(Hex.toHexString(digestSHA3.digest((userExist.getUserId() + ".uuid" + serviceRequest.getUserpassword()).getBytes(StandardCharsets.UTF_8))));						
-			final EncryptedValue encryptedValue = encryptedValueDAO.findFirstByProperty(EncryptedValue_.userId, userExist.getUserId());
-			encryptionManager.setEncryptionKey(null);
-			if (encryptedValue != null) {
-				authKey = encryptedValue.getStorage();
-			}
-		}
 		
 		LoginResponse response;
-		if (!loginBlockResult.isBlocked() && userExist != null && userExist.getUserLockStatus() == UserLockStatus.UNLOCKED && verifyOtp(serviceRequest, authKey) && passwordEncoder.matches(
+		if (!loginBlockResult.isBlocked() && userExist != null && userExist.getUserLockStatus() == UserLockStatus.UNLOCKED && passwordEncoder.matches(
 				userExist.getUserId() + ".uuid" + serviceRequest.getUserpassword(), userExist.getUserpassword())) {
 
-			final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+			String authKey= vaultManager.getEncryptedValue(serviceRequest.getUserpassword(), userExist);
+			
+			if (verifyOtp(serviceRequest, authKey)) {
+				final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
-			if (UserRole.ADMIN == userExist.getUserRole()) {
-				authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+				if (UserRole.ADMIN == userExist.getUserRole()) {
+					authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+				} else {
+					authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+				}
+
+				eventRequest.setUserId(userExist.getUserId());
+
+				SecurityContextHolder.getContext().setAuthentication(
+						new UsernamePasswordAuthenticationToken(userExist.getUserId(), "n/a", authorities));
+
+				userExist.setNumberOfVisits(userExist.getNumberOfVisits() + 1);
+				getUserDAO().persist(userExist);
+				response = new LoginResponse(ServiceResult.SUCCESS);	
 			} else {
-				authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+				response = new LoginResponse(ServiceResult.FAILURE);
+				response.setErrorMessage(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString());
+				eventRequest.setErrorMessage(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString());
 			}
-
-			eventRequest.setUserId(userExist.getUserId());
-
-			SecurityContextHolder.getContext().setAuthentication(
-					new UsernamePasswordAuthenticationToken(userExist.getUserId(), "n/a", authorities));
-
-			userExist.setNumberOfVisits(userExist.getNumberOfVisits() + 1);
-			getUserDAO().persist(userExist);
-			response = new LoginResponse(ServiceResult.SUCCESS);
-
+			
 		} else {
 			response = new LoginResponse(ServiceResult.FAILURE);
 			response.setErrorMessage(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString());
@@ -153,6 +139,7 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 
 		return response;
 	}
+
 
 	private static boolean verifyOtp(final LoginRequest serviceRequest, final String authKey) {
 		boolean authorizedOtp = true;
