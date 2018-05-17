@@ -30,6 +30,7 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPerso
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentType;
 import com.hack23.cia.service.external.common.api.ProcessDataStrategy;
+import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
 
 /**
@@ -60,6 +61,18 @@ AbstractRiksdagenFunctionalIntegrationTest {
 	}
 
 	/**
+	 * Gets the document content failure test.
+	 *
+	 * @return the document content failure test
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected =  DataFailureException.class)
+	public void getDocumentContentFailureTest() throws Exception {
+		new RiksdagenDocumentApiImpl(createMockXmlAgentThrowsException()).getDocumentContent("GX11916");
+	}
+
+	/**
 	 * Gets the document list by changed since.
 	 *
 	 * @return the document list by changed since
@@ -72,6 +85,19 @@ AbstractRiksdagenFunctionalIntegrationTest {
 				"2010-06-01","2010-09-01", 10);
 		assertNotNull(dokumentList);
 		assertTrue(dokumentList.size() >= 1);
+	}
+
+	/**
+	 * Gets the document list by changed since failure.
+	 *
+	 * @return the document list by changed since failure
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected =  DataFailureException.class)
+	public void getDocumentListByChangedSinceFailure() throws Exception {
+		new RiksdagenDocumentApiImpl(createMockXmlAgentThrowsException()).getDocumentList(
+				"2010-06-01","2010-09-01", 10);
 	}
 
 
@@ -92,6 +118,19 @@ AbstractRiksdagenFunctionalIntegrationTest {
 	}
 
 	/**
+	 * Gets the document list by type failure.
+	 *
+	 * @return the document list by type failure
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected =  DataFailureException.class)
+	public void getDocumentListByTypeFailure() throws Exception {
+		new RiksdagenDocumentApiImpl(createMockXmlAgentThrowsException()).getDocumentList(
+				DocumentType.BET, 10);
+	}
+
+	/**
 	 * Gets the document list by year test.
 	 *
 	 * @return the document list by year test
@@ -104,6 +143,19 @@ AbstractRiksdagenFunctionalIntegrationTest {
 				10);
 		assertNotNull(dokumentList);
 		assertTrue(dokumentList.size() >= 100);
+	}
+
+	
+	/**
+	 * Gets the document list by year failure test.
+	 *
+	 * @return the document list by year failure test
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected =  DataFailureException.class)
+	public void getDocumentListByYearFailureTest() throws Exception {
+		new RiksdagenDocumentApiImpl(createMockXmlAgentThrowsException()).getDocumentList(2010,10);
 	}
 
 	/**
@@ -154,6 +206,18 @@ AbstractRiksdagenFunctionalIntegrationTest {
 
 	}
 
+	/**
+	 * Gets the document status failure test.
+	 *
+	 * @return the document status failure test
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected =  DataFailureException.class)
+	public void getDocumentStatusFailureTest() throws Exception {
+		new RiksdagenDocumentApiImpl(createMockXmlAgentThrowsException()).getDocumentStatus("GU01JuU11");
+	}
+
 
 	/**
 	 * Process document list by changed since.
@@ -175,6 +239,27 @@ AbstractRiksdagenFunctionalIntegrationTest {
 		riksdagenApi.processDocumentList("2010-06-01","2010-09-01", strategy);
 		assertNotNull(dokumentList);
 		assertTrue(dokumentList.size() >= 1 && dokumentList.size() != 10000);
+	}
+
+	
+	/**
+	 * Process document list by changed since failure.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected =  DataFailureException.class)
+	public void processDocumentListByChangedSinceFailure() throws Exception {
+		final List<DocumentElement> dokumentList = new ArrayList<>();
+
+		final ProcessDataStrategy<DocumentElement> strategy = new ProcessDataStrategy<DocumentElement>() {
+			@Override
+			public void process(final DocumentElement t) {
+				dokumentList.add(t);
+			}
+		};
+
+		new RiksdagenDocumentApiImpl(createMockXmlAgentThrowsException()).processDocumentList("2010-06-01","2010-09-01", strategy);
 	}
 
 }

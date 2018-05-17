@@ -40,14 +40,11 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
 @Component
 final class RiksdagenPersonApiImpl implements RiksdagenPersonApi {
 
-	/**
-	 * The Constant HTTP_PERSON_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL.
-	 */
+	/** The Constant HTTP_PERSON_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL. */
 	private static final String HTTP_PERSON_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL = "http://person.riksdagen.external.model.cia.hack23.com/impl";
 
 	/**
-	 * The Constant
-	 * HTTP_PERSONLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL.
+	 * The Constant HTTP_PERSONLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL.
 	 */
 	private static final String HTTP_PERSONLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL = "http://personlista.riksdagen.external.model.cia.hack23.com/impl";
 
@@ -80,16 +77,23 @@ final class RiksdagenPersonApiImpl implements RiksdagenPersonApi {
 	private Unmarshaller personUnmarshaller;
 
 	/** The xml agent. */
-	@Autowired
-	private XmlAgent xmlAgent;
+	private final XmlAgent xmlAgent;
 
 	/**
 	 * Instantiates a new riksdagen person api impl.
+	 *
+	 * @param xmlAgent
+	 *            the xml agent
 	 */
-	public RiksdagenPersonApiImpl() {
+	@Autowired
+	public RiksdagenPersonApiImpl(final XmlAgent xmlAgent) {
 		super();
+		this.xmlAgent = xmlAgent;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi#getPerson(java.lang.String)
+	 */
 	@Override
 	public PersonData getPerson(final String id) throws DataFailureException {
 		try {
@@ -103,6 +107,9 @@ final class RiksdagenPersonApiImpl implements RiksdagenPersonApi {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi#getPersonList()
+	 */
 	@Override
 	public PersonContainerElement getPersonList() throws DataFailureException {
 		try {

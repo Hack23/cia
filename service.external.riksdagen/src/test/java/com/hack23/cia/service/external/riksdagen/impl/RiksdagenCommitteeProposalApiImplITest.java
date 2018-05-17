@@ -22,6 +22,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
+import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenCommitteeProposalApi;
 
 /**
@@ -47,6 +48,18 @@ AbstractRiksdagenFunctionalIntegrationTest {
 		final CommitteeProposalComponentData proposal = riksdagenApi
 				.getCommitteeProposal("GX01FiU35");
 		assertNotNull(proposal);
+	}
+
+	/**
+	 * Gets the committee proposal failure test.
+	 *
+	 * @return the committee proposal failure test
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected =  DataFailureException.class)
+	public void getCommitteeProposalFailureTest() throws Exception {
+		new RiksdagenCommitteeProposalApiImpl(createMockXmlAgentThrowsException()).getCommitteeProposal("GX01FiU35");
 	}
 
 }

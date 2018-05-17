@@ -18,10 +18,17 @@
 */
 package com.hack23.cia.service.external.riksdagen.impl;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.isNull;
+import static org.mockito.Mockito.mock;
+
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.hack23.cia.service.external.common.api.XmlAgent;
+import com.hack23.cia.service.external.common.api.XmlAgentException;
 import com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest;
 
 /**
@@ -40,4 +47,19 @@ public abstract class AbstractRiksdagenFunctionalIntegrationTest extends Abstrac
 		super();
 	}
 
+	/**
+	 * Creates the mock xml agent throws exception.
+	 *
+	 * @return the xml agent
+	 * @throws XmlAgentException
+	 *             the xml agent exception
+	 */
+	protected final XmlAgent createMockXmlAgentThrowsException() throws XmlAgentException {
+		final XmlAgent xmlAgent = mock(XmlAgent.class);
+		Mockito.when(xmlAgent.unmarshallXml(isNull(),any(String.class),any(String.class),isNull(),isNull())).thenThrow(new XmlAgentException(new RuntimeException()));
+		Mockito.when(xmlAgent.retriveContent(any(String.class))).thenThrow(new XmlAgentException(new RuntimeException()));
+		return xmlAgent;
+	}
+
+	
 }

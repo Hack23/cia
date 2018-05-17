@@ -43,8 +43,8 @@ public class DocumentTypeNamesTest extends Assert {
 	 */
 	@Test
 	public void checkNoEmptyValuesTest() {
-		DocumentTypeNames[] values = DocumentTypeNames.values();
-		for (DocumentTypeNames documentTypeNames : values) {
+		final DocumentTypeNames[] values = DocumentTypeNames.values();
+		for (final DocumentTypeNames documentTypeNames : values) {
 			assertFalse(StringUtils.isEmpty(documentTypeNames.getShortCode()));
 			assertFalse(StringUtils.isEmpty(documentTypeNames.getDescription()));
 		}

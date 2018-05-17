@@ -62,14 +62,11 @@ final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 	/** The Constant CONTAINS_ONE. */
 	private static final int CONTAINS_ONE = 1;
 
-	/**
-	 * The Constant HTTP_VOTERING_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL.
-	 */
+	/** The Constant HTTP_VOTERING_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL. */
 	private static final String HTTP_VOTERING_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL = "http://votering.riksdagen.external.model.cia.hack23.com/impl";
 
 	/**
-	 * The Constant
-	 * HTTP_VOTERINGLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL.
+	 * The Constant HTTP_VOTERINGLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL.
 	 */
 	private static final String HTTP_VOTERINGLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL = "http://voteringlista.riksdagen.external.model.cia.hack23.com/impl";
 
@@ -102,15 +99,19 @@ final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 	private Unmarshaller riksdagenBallotMarshaller;
 
 	/** The xml agent. */
-	@Autowired
-	private XmlAgent xmlAgent;
+	private final XmlAgent xmlAgent;
 
 
 	/**
 	 * Instantiates a new riksdagen ballot api impl.
+	 *
+	 * @param xmlAgent
+	 *            the xml agent
 	 */
-	public RiksdagenBallotApiImpl() {
+	@Autowired
+	public RiksdagenBallotApiImpl(final XmlAgent xmlAgent) {
 		super();
+		this.xmlAgent = xmlAgent;
 	}
 
 
@@ -195,6 +196,9 @@ final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi#getBallot(java.lang.String)
+	 */
 	@Override
 	public List<VoteData> getBallot(final String id) throws DataFailureException {
 		final String url = BALLOT.replace(ID_KEY, id);
@@ -246,6 +250,9 @@ final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi#getBallotList()
+	 */
 	@Override
 	public List<BallotDocumentElement> getBallotList() throws DataFailureException {
 

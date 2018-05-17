@@ -76,8 +76,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	private static final String ERROR_PROCESSING_DOCUMENT = "Error processing document :{}";
 
 	/**
-	 * The Constant
-	 * HTTP_DOKUMENTLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL.
+	 * The Constant HTTP_DOKUMENTLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL.
 	 */
 	private static final String HTTP_DOKUMENTLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL = "http://dokumentlista.riksdagen.external.model.cia.hack23.com/impl";
 
@@ -118,14 +117,11 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	private static final String PROBLEM_GETTING_DOCUMENT_LIST_FOR_DOCUMENT_TYPE_S_MAX_NUMBER_PAGES_S_FROM_DATA_RIKSDAGEN_SE = "Problem getting document list for documentType:{} , maxNumberPages: {} from data.riksdagen.se";
 
 	/**
-	 * The Constant
-	 * PROBLEM_GETTING_DOCUMENT_LIST_FOR_YEAR_S_FROM_DATA_RIKSDAGEN_SE.
+	 * The Constant PROBLEM_GETTING_DOCUMENT_LIST_FOR_YEAR_S_FROM_DATA_RIKSDAGEN_SE.
 	 */
 	private static final String PROBLEM_GETTING_DOCUMENT_LIST_FOR_YEAR_S_FROM_DATA_RIKSDAGEN_SE = "Problem getting document list for year: {} from data.riksdagen.se";
 
-	/**
-	 * The Constant PROBLEM_GETTING_DOCUMENT_STATUS_ID_S_FROM_DATA_RIKSDAGEN_SE.
-	 */
+	/** The Constant PROBLEM_GETTING_DOCUMENT_STATUS_ID_S_FROM_DATA_RIKSDAGEN_SE. */
 	private static final String PROBLEM_GETTING_DOCUMENT_STATUS_ID_S_FROM_DATA_RIKSDAGEN_SE = "Problem getting document status id:{}  from data.riksdagen.se";
 
 	/**
@@ -151,14 +147,18 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	private Unmarshaller riksdagenDocumentStatusMarshaller;
 
 	/** The xml agent. */
-	@Autowired
-	private XmlAgent xmlAgent;
+	private final XmlAgent xmlAgent;
 
 	/**
 	 * Instantiates a new riksdagen document api impl.
+	 *
+	 * @param xmlAgent
+	 *            the xml agent
 	 */
-	public RiksdagenDocumentApiImpl() {
+	@Autowired
+	public RiksdagenDocumentApiImpl(final XmlAgent xmlAgent) {
 		super();
+		this.xmlAgent = xmlAgent;
 	}
 
 	/**
@@ -196,6 +196,9 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi#getDocumentContent(java.lang.String)
+	 */
 	@Override
 	public DocumentContentData getDocumentContent(final String id) throws DataFailureException {
 		try {
@@ -207,6 +210,9 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi#getDocumentList(com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentType, int)
+	 */
 	@Override
 	public List<DocumentElement> getDocumentList(final DocumentType documentType, final int maxNumberPages)
 			throws DataFailureException {
@@ -219,6 +225,9 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi#getDocumentList(java.lang.Integer, int)
+	 */
 	@Override
 	public List<DocumentElement> getDocumentList(final Integer year, final int maxNumberPages)
 			throws DataFailureException {
@@ -230,6 +239,9 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi#getDocumentList(java.lang.String, java.lang.String, int)
+	 */
 	@Override
 	public List<DocumentElement> getDocumentList(final String changedSinceDate, final String changedToDate,
 			final int maxNumberPages) throws DataFailureException {
@@ -243,6 +255,9 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi#getDocumentStatus(java.lang.String)
+	 */
 	@Override
 	public DocumentStatusContainer getDocumentStatus(final String id) throws DataFailureException {
 		try {
@@ -262,8 +277,8 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	 *            the url
 	 * @param processStrategy
 	 *            the process strategy
-	 * @throws Exception
-	 *             the exception
+	 * @throws XmlAgentException
+	 *             the xml agent exception
 	 */
 	private void loadAndProcessDocumentList(final String url,
 			final ProcessDataStrategy<DocumentElement> processStrategy) throws XmlAgentException {
@@ -292,8 +307,8 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	 * @param maxNumberPages
 	 *            the max number pages
 	 * @return the list
-	 * @throws Exception
-	 *             the exception
+	 * @throws XmlAgentException
+	 *             the xml agent exception
 	 */
 	private List<DocumentElement> loadDocumentList(final String url, final int maxNumberPages) throws XmlAgentException {
 		final List<DocumentElement> result = new ArrayList<>();
@@ -314,6 +329,9 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi#processDocumentList(java.lang.String, java.lang.String, com.hack23.cia.service.external.common.api.ProcessDataStrategy)
+	 */
 	@Override
 	public void processDocumentList(final String changedSinceDate, final String changedToDate,
 			final ProcessDataStrategy<DocumentElement> processStrategy) throws DataFailureException {

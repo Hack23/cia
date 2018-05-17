@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.model.external.riksdagen.votering.impl.VoteData;
 import com.hack23.cia.model.external.riksdagen.voteringlista.impl.BallotDocumentElement;
+import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi;
 
 /**
@@ -57,6 +58,19 @@ AbstractRiksdagenFunctionalIntegrationTest {
 	}
 
 	/**
+	 * Gets the ballot failure test.
+	 *
+	 * @return the ballot failure test
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected =  DataFailureException.class)
+	public void getBallotFailureTest() throws Exception {		
+		new RiksdagenBallotApiImpl(createMockXmlAgentThrowsException()).getBallot("E0B34EE1-3FD3-474A-81D7-781B04BB241E");
+	}
+
+	
+	/**
 	 * Gets the ballot list test.
 	 *
 	 * @return the ballot list test
@@ -68,8 +82,19 @@ AbstractRiksdagenFunctionalIntegrationTest {
 		final List<BallotDocumentElement> ballotList = riksdagenApi
 				.getBallotList();
 		assertNotNull(ballotList);
-
 		assertTrue(ballotList.size() >= 7888);
-
 	}
+	
+	/**
+	 * Gets the ballot list failure test.
+	 *
+	 * @return the ballot list failure test
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected =  DataFailureException.class)
+	public void getBallotListFailureTest() throws Exception {		
+		new RiksdagenBallotApiImpl(createMockXmlAgentThrowsException()).getBallotList();
+	}
+
 }

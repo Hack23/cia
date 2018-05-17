@@ -66,16 +66,23 @@ final class RiksdagenCommitteeProposalApiImpl implements RiksdagenCommitteePropo
 	private Unmarshaller riksdagenCommitteeProposalMarshaller;
 
 	/** The xml agent. */
-	@Autowired
-	private XmlAgent xmlAgent;
+	private final XmlAgent xmlAgent;
 
 	/**
 	 * Instantiates a new riksdagen committee proposal api impl.
+	 *
+	 * @param xmlAgent
+	 *            the xml agent
 	 */
-	public RiksdagenCommitteeProposalApiImpl() {
+	@Autowired
+	public RiksdagenCommitteeProposalApiImpl(final XmlAgent xmlAgent) {
 		super();
+		this.xmlAgent = xmlAgent;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenCommitteeProposalApi#getCommitteeProposal(java.lang.String)
+	 */
 	@Override
 	public CommitteeProposalComponentData getCommitteeProposal(final String id) throws DataFailureException {
 		try {

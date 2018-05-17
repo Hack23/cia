@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.external.riksdagen.personlista.impl.PersonContainerElement;
 import com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement;
+import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
 import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
 
 /**
@@ -75,6 +76,19 @@ public final class RiksdagenPersonApiImplITest extends AbstractRiksdagenFunction
 		assertTrue(personList.getPerson().size() >= 1291);
 	}
 
+	
+	/**
+	 * Gets the person list failure test.
+	 *
+	 * @return the person list failure test
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected =  DataFailureException.class)
+	public void getPersonListFailureTest() throws Exception {
+		new RiksdagenPersonApiImpl(createMockXmlAgentThrowsException()).getPersonList();
+	}
+
 	/**
 	 * Gets the person test.
 	 *
@@ -87,6 +101,18 @@ public final class RiksdagenPersonApiImplITest extends AbstractRiksdagenFunction
 		final PersonData personElement = riksdagenApi.getPerson("0389619060499");
 		assertNotNull(personElement);
 		assertEquals("Bohman", personElement.getLastName());
+	}
+
+	/**
+	 * Gets the person failure test.
+	 *
+	 * @return the person failure test
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected =  DataFailureException.class)
+	public void getPersonFailureTest() throws Exception {
+		new RiksdagenPersonApiImpl(createMockXmlAgentThrowsException()).getPerson("0389619060499");
 	}
 
 
