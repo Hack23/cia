@@ -1074,7 +1074,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		failedLoginWrongMfaVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 
-		failedLoginWrongMfaVisit.loginUserCheckView(username + "@test.com", password,"123456,"main/" + ApplicationPageMode.LOGIN);
+		failedLoginWrongMfaVisit.loginUserCheckView(username + "@test.com", password,"123456","main/" + ApplicationPageMode.LOGIN);
 
 		failedLoginWrongMfaVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);
 	}
