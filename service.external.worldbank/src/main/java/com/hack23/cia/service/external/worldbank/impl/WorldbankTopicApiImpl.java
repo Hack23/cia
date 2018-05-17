@@ -29,6 +29,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.worldbank.topic.impl.TopicElement;
 import com.hack23.cia.model.external.worldbank.topic.impl.TopicsElement;
+import com.hack23.cia.service.external.common.api.XmlAgent;
 import com.hack23.cia.service.external.common.api.XmlAgentException;
 import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankTopicApi;
@@ -62,8 +63,9 @@ final class WorldbankTopicApiImpl extends BaseWorldBankApiImpl implements WorldB
 	/**
 	 * Instantiates a new worldbank topic api impl.
 	 */
-	public WorldbankTopicApiImpl() {
-		super();
+	@Autowired
+	public WorldbankTopicApiImpl(final XmlAgent xmlAgent) {
+		super(xmlAgent);
 	}
 
 	@Override

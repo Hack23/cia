@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.service.external.worldbank.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.hack23.cia.service.external.common.api.XmlAgent;
 
 /**
@@ -30,16 +28,15 @@ class BaseWorldBankApiImpl {
 	/** The Constant XMLNS_WB_HTTP_WWW_WORLDBANK_ORG. */
 	protected static final String XMLNS_WB_HTTP_WWW_WORLDBANK_ORG = "xmlns:wb=\"http://www.worldbank.org\"";
 
-
 	/** The xml agent. */
-	@Autowired
-	private XmlAgent xmlAgent;
+	private final XmlAgent xmlAgent;
 
 	/**
 	 * Instantiates a new base world bank api impl.
 	 */
-	BaseWorldBankApiImpl() {
+	BaseWorldBankApiImpl(final XmlAgent xmlAgent) {
 		super();
+		this.xmlAgent = xmlAgent;
 	}
 
 	/**

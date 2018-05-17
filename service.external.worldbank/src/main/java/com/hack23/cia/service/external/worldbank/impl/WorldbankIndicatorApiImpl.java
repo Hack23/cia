@@ -30,6 +30,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
 import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorsElement;
+import com.hack23.cia.service.external.common.api.XmlAgent;
 import com.hack23.cia.service.external.common.api.XmlAgentException;
 import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankIndicatorApi;
@@ -68,8 +69,9 @@ final class WorldbankIndicatorApiImpl extends BaseWorldBankApiImpl implements Wo
 	/**
 	 * Instantiates a new worldbank indicator api impl.
 	 */
-	public WorldbankIndicatorApiImpl() {
-		super();
+	@Autowired
+	public WorldbankIndicatorApiImpl(final XmlAgent xmlAgent) {
+		super(xmlAgent);
 	}
 
 	/* (non-Javadoc)

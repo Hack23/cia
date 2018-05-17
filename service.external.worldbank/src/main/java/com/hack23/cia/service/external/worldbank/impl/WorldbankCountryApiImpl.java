@@ -29,6 +29,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.worldbank.countries.impl.CountriesElement;
 import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
+import com.hack23.cia.service.external.common.api.XmlAgent;
 import com.hack23.cia.service.external.common.api.XmlAgentException;
 import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankCountryApi;
@@ -62,8 +63,9 @@ final class WorldbankCountryApiImpl extends BaseWorldBankApiImpl implements Worl
 	/**
 	 * Instantiates a new worldbank country api impl.
 	 */
-	public WorldbankCountryApiImpl() {
-		super();
+	@Autowired
+	public WorldbankCountryApiImpl(final XmlAgent xmlAgent) {
+		super(xmlAgent);
 	}
 
 	@Override

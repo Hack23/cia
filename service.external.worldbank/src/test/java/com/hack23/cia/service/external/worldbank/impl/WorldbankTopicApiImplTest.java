@@ -24,6 +24,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.model.external.worldbank.topic.impl.TopicElement;
+import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankTopicApi;
 
 /**
@@ -47,6 +48,18 @@ public final class WorldbankTopicApiImplTest extends AbstractWorldbankFunctional
 		final List<TopicElement> topics = worlbankApi.getTopics();
 		assertNotNull("Expect topics", topics);
 		assertTrue("Expect above 10 topics", topics.size() > 10);
+	}
+
+	/**
+	 * Gets the topics failure test.
+	 *
+	 * @return the topics failure test
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected = DataFailureException.class)
+	public void getTopicsFailureTest() throws Exception {		
+		new WorldbankTopicApiImpl(createMockXmlAgentThrowsException()).getTopics();
 	}
 
 }

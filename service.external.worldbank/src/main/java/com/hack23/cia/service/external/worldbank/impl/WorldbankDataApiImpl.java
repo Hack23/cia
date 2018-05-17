@@ -29,6 +29,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.worldbank.data.impl.DataElement;
 import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
+import com.hack23.cia.service.external.common.api.XmlAgent;
 import com.hack23.cia.service.external.common.api.XmlAgentException;
 import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankDataApi;
@@ -71,8 +72,9 @@ final class WorldbankDataApiImpl extends BaseWorldBankApiImpl implements WorldBa
 	/**
 	 * Instantiates a new worldbank data api impl.
 	 */
-	public WorldbankDataApiImpl() {
-		super();
+	@Autowired
+	public WorldbankDataApiImpl(final XmlAgent xmlAgent) {
+		super(xmlAgent);
 	}
 
 	@Override

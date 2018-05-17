@@ -24,6 +24,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
+import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankCountryApi;
 
 /**
@@ -47,6 +48,18 @@ public final class WorldbankCountryApiImplTest extends AbstractWorldbankFunction
 		final List<CountryElement> countries = worlbankApi.getCountries();
 		assertNotNull("Expect countries", countries);
 		assertTrue("Approx > 230 countries", countries.size() > 230);
+	}
+
+	/**
+	 * Gets the countries failure test.
+	 *
+	 * @return the countries failure test
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected = DataFailureException.class)
+	public void getCountriesFailureTest() throws Exception {		
+		new WorldbankCountryApiImpl(createMockXmlAgentThrowsException()).getCountries();
 	}
 
 }

@@ -24,6 +24,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
+import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankIndicatorApi;
 
 /**
@@ -47,6 +48,19 @@ public final class WorldbankIndicatorApiImplTest extends AbstractWorldbankFuncti
 		final List<IndicatorElement> indicators = worlbankApi.getIndicators();
 		assertNotNull("Expect indicators", indicators);
 		assertTrue("Expect above 1200 indicators", indicators.size() > 1200);
+	}
+
+	
+	/**
+	 * Gets the indicators failure test.
+	 *
+	 * @return the indicators failure test
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected = DataFailureException.class)
+	public void getIndicatorsFailureTest() throws Exception {		
+		new WorldbankIndicatorApiImpl(createMockXmlAgentThrowsException()).getIndicators();
 	}
 
 }

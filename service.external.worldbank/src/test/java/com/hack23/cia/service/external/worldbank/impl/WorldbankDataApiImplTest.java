@@ -24,6 +24,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
+import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankDataApi;
 
 /**
@@ -46,6 +47,18 @@ public final class WorldbankDataApiImplTest extends AbstractWorldbankFunctionalI
 	public void getDataTest() throws Exception {
 		final List<WorldBankData> data = worlbankApi.getData("br", "SP.POP.TOTL");
 		assertNotNull("Expect this data to exist", data);
+	}
+
+	/**
+	 * Gets the date failure test.
+	 *
+	 * @return the date failure test
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected = DataFailureException.class)
+	public void getDateFailureTest() throws Exception {		
+		new WorldbankDataApiImpl(createMockXmlAgentThrowsException()).getData("br", "SP.POP.TOTL");
 	}
 
 }
