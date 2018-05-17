@@ -56,7 +56,7 @@ final class ValApiImpl implements ValApi {
 
 	/** The xml agent. */
 	@Autowired
-	private XmlAgent xmlAgent;
+	private final XmlAgent xmlAgent;
 
 	/** The val partier marshaller. */
 	@Autowired
@@ -80,16 +80,21 @@ final class ValApiImpl implements ValApi {
 
 	/**
 	 * Instantiates a new val api impl.
+	 *
+	 * @param xmlAgent
+	 *            the xml agent
 	 */
-	public ValApiImpl() {
+	@Autowired
+	public ValApiImpl(final XmlAgent xmlAgent) {
 		super();
+		this.xmlAgent = xmlAgent;
 	}
 
 	@Override
 	public List<SwedenElectionType> getElectionTypes() throws ValApiException {
-		final URL resource = ValApiImpl.class.getResource("/partier20151217.xml");
 
 		try {
+			final URL resource = ValApiImpl.class.getResource("/partier20151217.xml");
 			return ((JAXBElement<SwedenElectionTypeContainerElement>) xmlAgent.unmarshallXml(valPartierMarshaller,
 					resource.toString(), "http://partier.val.external.model.cia.hack23.com/impl", null, null))
 							.getValue().getElectionTypes();

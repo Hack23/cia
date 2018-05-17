@@ -18,9 +18,14 @@
 */
 package com.hack23.cia.service.external.val.impl;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.isNull;
+import static org.mockito.Mockito.mock;
+
 import java.util.List;
 
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.model.external.val.kommunvalkrets.impl.SwedenCountyData;
@@ -29,7 +34,10 @@ import com.hack23.cia.model.external.val.partier.impl.SwedenElectionRegion;
 import com.hack23.cia.model.external.val.partier.impl.SwedenElectionType;
 import com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty;
 import com.hack23.cia.model.external.val.riksdagsvalkrets.impl.SwedenParliamentElectoralRegion;
+import com.hack23.cia.service.external.common.api.XmlAgent;
+import com.hack23.cia.service.external.common.api.XmlAgentException;
 import com.hack23.cia.service.external.val.api.ValApi;
+import com.hack23.cia.service.external.val.api.ValApiException;
 
 /**
  * The Class ValApiTest.
@@ -61,6 +69,17 @@ public final class ValApiTest extends AbstractValFunctionalIntegrationTest {
 	}
 
 	/**
+	 * Test get election types failure.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected = ValApiException.class)
+	public void testGetElectionTypesFailure() throws Exception {
+		createMockThrowsXmlAgentException().getElectionTypes();
+	}
+
+	/**
 	 * Test get sweden political parties.
 	 *
 	 * @throws Exception
@@ -75,6 +94,17 @@ public final class ValApiTest extends AbstractValFunctionalIntegrationTest {
 	}
 
 	/**
+	 * Test get sweden political parties failure.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected = ValApiException.class)
+	public void testGetSwedenPoliticalPartiesFailure() throws Exception {
+		createMockThrowsXmlAgentException().getSwedenPoliticalParties();
+	}
+
+	/**
 	 * Test sweden election region.
 	 *
 	 * @throws Exception
@@ -84,6 +114,31 @@ public final class ValApiTest extends AbstractValFunctionalIntegrationTest {
 	public void testSwedenElectionRegion() throws Exception {
 		final SwedenElectionRegion swedenElectionRegion = valApi.getSwedenElectionRegion();
 		assertNotNull(EXPECT_A_RESULT,swedenElectionRegion);
+	}
+
+	/**
+	 * Test sweden election region failure.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected = ValApiException.class)
+	public void testSwedenElectionRegionFailure() throws Exception {
+		createMockThrowsXmlAgentException().getSwedenElectionRegion();
+	}
+
+	/**
+	 * Creates the mock throws xml agent exception.
+	 *
+	 * @return the val api
+	 * @throws XmlAgentException
+	 *             the xml agent exception
+	 */
+	private ValApi createMockThrowsXmlAgentException() throws XmlAgentException {
+		final XmlAgent xmlAgent = mock(XmlAgent.class);
+		final ValApi valApiMockedXmlAgent = new ValApiImpl(xmlAgent);		
+		Mockito.when(xmlAgent.unmarshallXml(isNull(),any(String.class),any(String.class),isNull(),isNull())).thenThrow(new XmlAgentException(new RuntimeException()));
+		return valApiMockedXmlAgent;
 	}
 
 
@@ -101,6 +156,17 @@ public final class ValApiTest extends AbstractValFunctionalIntegrationTest {
 	}
 
 	/**
+	 * Test get county electoral regions failure.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected = ValApiException.class)
+	public void testGetCountyElectoralRegionsFailure() throws Exception {
+		createMockThrowsXmlAgentException().getCountyElectoralRegions();
+	}
+
+	/**
 	 * Test get parliament electoral regions.
 	 *
 	 * @throws Exception
@@ -111,6 +177,18 @@ public final class ValApiTest extends AbstractValFunctionalIntegrationTest {
 		final List<SwedenParliamentElectoralRegion> list = valApi.getParliamentElectoralRegions();
 		assertNotNull(EXPECT_A_RESULT,list);
 		assertEquals(EXPECTED_TO_MATCH_NUMBER_OF_IMPORT_ENTRIES_IN_DATA_FILE,29, list.size());
+	}
+
+	
+	/**
+	 * Test get parliament electoral regions failure.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected = ValApiException.class)
+	public void testGetParliamentElectoralRegionsFailure() throws Exception {
+		createMockThrowsXmlAgentException().getParliamentElectoralRegions();
 	}
 
 	/**
@@ -124,6 +202,17 @@ public final class ValApiTest extends AbstractValFunctionalIntegrationTest {
 		final List<SwedenCountyData> list = valApi.getCountyRegions();
 		assertNotNull(EXPECT_A_RESULT,list);
 		assertEquals(EXPECTED_TO_MATCH_NUMBER_OF_IMPORT_ENTRIES_IN_DATA_FILE,21, list.size());
+	}
+
+	/**
+	 * Test get county regions failure.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test(expected = ValApiException.class)
+	public void testGetCountyRegionsFailure() throws Exception {
+		createMockThrowsXmlAgentException().getCountyRegions();
 	}
 
 

@@ -33,7 +33,7 @@ public class ValApiException extends Exception {
 	 * @param e
 	 *            the e
 	 */
-	public ValApiException(Exception e) {
+	public ValApiException(final Exception e) {
 		super(e);
 	}
 
