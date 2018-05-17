@@ -137,7 +137,7 @@
     <dependency>
       <groupId>org.javers</groupId>
       <artifactId>javers-spring-jpa</artifactId>
-      <version>3.9.6</version>
+      <version>3.9.7</version>
       <exclusions>
         <exclusion>
           <artifactId>slf4j-api</artifactId>

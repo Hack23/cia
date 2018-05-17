@@ -18,11 +18,13 @@
 */
 package com.hack23.cia.service.impl.action.application.encryption;
 
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
+import java.security.SecureRandom;
 import java.security.Security;
 import java.util.Arrays;
 
@@ -30,6 +32,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.bouncycastle.jcajce.provider.digest.SHA3;
@@ -57,11 +60,12 @@ public class VaultManagerImpl implements VaultManager {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private static String ALGORITHM = "DESede";
+	/** The Constant AES_GCM_NO_PADDING. */
+	private static final String AES_GCM_NO_PADDING = "AES/GCM/NoPadding";
 
-	private static String TRIPLE_DES_TRANSFORMATION = "DESede/ECB/PKCS7Padding";
+	/** The algorithm. */
+	private static String ALGORITHM = "AES";
 
-	private static String BOUNCY_CASTLE_PROVIDER = "BC";
 
 	/** The encrypted value DAO. */
 	@Autowired
@@ -94,34 +98,60 @@ public class VaultManagerImpl implements VaultManager {
 
 	@Override
 	public String encryptValue(final String password, final String userId, final String value) {
-		try {
-			final Key buildKey = buildKey(userId, password);
-			final Cipher encrypter = Cipher.getInstance(TRIPLE_DES_TRANSFORMATION, BOUNCY_CASTLE_PROVIDER);
-			encrypter.init(Cipher.ENCRYPT_MODE, buildKey);
-			return Hex.toHexString(encrypter.doFinal(value.getBytes(StandardCharsets.UTF_8)));
-		} catch (NoSuchAlgorithmException | IllegalBlockSizeException | BadPaddingException | NoSuchProviderException
-				| NoSuchPaddingException | InvalidKeyException e) {
+		if (password != null && userId != null && value!=null) {
+		
+			try {
+				final Key buildKey = buildKey(userId, password);			
+				final SecureRandom secureRandom = new SecureRandom();
+				final byte[] iv = new byte[12]; 
+				secureRandom.nextBytes(iv);			
+				final Cipher cipher = Cipher.getInstance(AES_GCM_NO_PADDING);
+				final GCMParameterSpec parameterSpec = new GCMParameterSpec(128, iv); 
+				cipher.init(Cipher.ENCRYPT_MODE, buildKey, parameterSpec);
+	
+				final byte[] cipherText = cipher.doFinal(value.getBytes(StandardCharsets.UTF_8));
+				final ByteBuffer byteBuffer = ByteBuffer.allocate(4 + iv.length + cipherText.length);
+				byteBuffer.putInt(iv.length);
+				byteBuffer.put(iv);
+				byteBuffer.put(cipherText);
+				return Hex.toHexString(byteBuffer.array());
+			} catch (NoSuchAlgorithmException | IllegalBlockSizeException | BadPaddingException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException e) {
+				return null;
+			}
+		} else {
 			return null;
 		}
+			
 	}
 
 	@Override
 	public String decryptValue(final String password, final String userId, final String value) {
-		final Key buildKey = buildKey(userId, password);
-		Cipher decrypter;
-		try {
-			decrypter = Cipher.getInstance(TRIPLE_DES_TRANSFORMATION, BOUNCY_CASTLE_PROVIDER);
-			decrypter.init(Cipher.DECRYPT_MODE, buildKey);
-			return new String((decrypter.doFinal(Hex.decode(value.getBytes(StandardCharsets.UTF_8)))),StandardCharsets.UTF_8);
-		} catch (NoSuchAlgorithmException | NoSuchProviderException | NoSuchPaddingException | InvalidKeyException
-				| IllegalBlockSizeException | BadPaddingException e) {
+		if (password != null && userId != null && value!=null) {
+			try {			
+				final Key buildKey = buildKey(userId, password);
+				final ByteBuffer byteBuffer = ByteBuffer.wrap(Hex.decode(value.getBytes(StandardCharsets.UTF_8)));
+				final int ivLength = byteBuffer.getInt();
+				final byte[] iv = new byte[ivLength];
+				byteBuffer.get(iv);
+				final byte[] cipherText = new byte[byteBuffer.remaining()];
+				byteBuffer.get(cipherText);
+				
+				final Cipher cipher = Cipher.getInstance(AES_GCM_NO_PADDING);
+				cipher.init(Cipher.DECRYPT_MODE, buildKey, new GCMParameterSpec(128, iv));
+				return new String(cipher.doFinal(cipherText),StandardCharsets.UTF_8);
+			} catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException
+					| IllegalBlockSizeException | BadPaddingException | InvalidAlgorithmParameterException e) {
+				return null;
+			}		
+		} else {
 			return null;
 		}
+
 	}
 
-	private static Key buildKey(String userid, String password) {
+	private static Key buildKey(final String userid, final String password) {
 		return new SecretKeySpec(Arrays.copyOf(
-				new SHA3.Digest512().digest((userid + ".uuid" + password).getBytes(StandardCharsets.UTF_8)), 24),
+				new SHA3.Digest512().digest((userid + ".uuid" + password).getBytes(StandardCharsets.UTF_8)), 32),
 				ALGORITHM);
 	}
 }

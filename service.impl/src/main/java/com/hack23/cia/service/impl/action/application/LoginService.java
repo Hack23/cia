@@ -98,7 +98,7 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 		if (!loginBlockResult.isBlocked() && userExist != null && userExist.getUserLockStatus() == UserLockStatus.UNLOCKED && passwordEncoder.matches(
 				userExist.getUserId() + ".uuid" + serviceRequest.getUserpassword(), userExist.getUserpassword())) {
 
-			String authKey= vaultManager.getEncryptedValue(serviceRequest.getUserpassword(), userExist);
+			final String authKey= vaultManager.getEncryptedValue(serviceRequest.getUserpassword(), userExist);
 			
 			if (verifyOtp(serviceRequest, authKey)) {
 				final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
