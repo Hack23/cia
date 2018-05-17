@@ -800,10 +800,14 @@ public final class UserPageVisit extends Assert {
 	 * @throws Exception
 	 *             the exception
 	 */
-	public void loginUserCheckView(final String username,final String password,final String view) throws Exception {
+	public void loginUserCheckView(final String username,final String password,final String otpCode, final String view) throws Exception {
 
 		setFieldValue("Login.email",username);
 		setFieldValue("Login.userpassword",password);
+		
+		if (otpCode != null) {
+			setFieldValue("Login.otpCode",otpCode);
+		}
 
 		final WebElement loginButton =findButton("Login");
 		assertNotNull("Expect to find a Login Button",loginButton);
@@ -814,6 +818,10 @@ public final class UserPageVisit extends Assert {
 
 		assertEquals(browser, url,
 				driver.getCurrentUrl());
+	}
+
+	public void loginUserCheckView(final String username,final String password,final String view) throws Exception {
+		loginUserCheckView(username, password, null, view);
 	}
 
 	/**

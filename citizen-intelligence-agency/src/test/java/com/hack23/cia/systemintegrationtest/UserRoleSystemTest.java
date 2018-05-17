@@ -1014,6 +1014,69 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		
 		userLoginPageVisit.logoutUser();
 
+		driver.quit();
+
+	}
+
+	
+	@Test
+	public void siteLoginUserEnableGoogleAuthenticatorFailedLoginNoOtpTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
+
+		final String username = UUID.randomUUID().toString();
+		final String password = generatePassword();
+
+		userPageVisit.registerNewUser(username, password);
+
+		userPageVisit.logoutUser();
+
+		driver.quit();
+
+		final WebDriver loginDriver = getWebDriver();
+
+		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
+
+		userLoginPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
+
+		userLoginPageVisit.loginUser(username + "@test.com", password);
+
+
+		final WebElement userAccountMenuItem = userLoginPageVisit.getMenuItem("Useraccount");
+		assertNotNull(userAccountMenuItem);
+		userLoginPageVisit.performClickAction(userAccountMenuItem);
+
+		Thread.sleep(1000);
+
+		final WebElement securitySettingMenuItem = userLoginPageVisit.getMenuItem("Security settings");
+		assertNotNull(securitySettingMenuItem);
+		userLoginPageVisit.performClickAction(securitySettingMenuItem);
+
+
+		userLoginPageVisit.enableGoogleAuthenticator(password);
+
+		userLoginPageVisit.closeModal();
+		
+		userLoginPageVisit.logoutUser();
+
+		driver.quit();
+
+		final WebDriver failedLoginWrongMfaDriver = getWebDriver();
+
+		final UserPageVisit failedLoginWrongMfaVisit = new UserPageVisit(failedLoginWrongMfaDriver, browser);
+
+		failedLoginWrongMfaVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
+
+		failedLoginWrongMfaVisit.loginUserCheckView(username + "@test.com", password,"123456,"main/" + ApplicationPageMode.LOGIN);
+
+		failedLoginWrongMfaVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);
 	}
 
 	
