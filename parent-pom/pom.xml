@@ -137,11 +137,12 @@
     <cia.project.versions.hyperjaxb3>0.6.2</cia.project.versions.hyperjaxb3>
     <cia.project.versions.hyperjaxb3.plugin>0.6.1</cia.project.versions.hyperjaxb3.plugin>
     <cia.project.versions.jaxb.build>2.2.11</cia.project.versions.jaxb.build>
-    <cia.project.versions.jaxb.runtime>2.3.0</cia.project.versions.jaxb.runtime>
+    <cia.project.versions.jaxb.api.runtime>2.3.0</cia.project.versions.jaxb.api.runtime>
+    <cia.project.versions.jaxb.runtime>2.3.0.1</cia.project.versions.jaxb.runtime>
     <cia.project.versions.jaxb.impl.build>2.2.11</cia.project.versions.jaxb.impl.build>
-    <cia.project.versions.jaxb.impl.runtime>2.3.0</cia.project.versions.jaxb.impl.runtime>
+    <cia.project.versions.jaxb.impl.runtime>2.3.0.1</cia.project.versions.jaxb.impl.runtime>
     <cia.project.versions.jaxb.xjc.build>2.2.11</cia.project.versions.jaxb.xjc.build>
-    <cia.project.versions.jaxb.xjc.runtime>2.3.0</cia.project.versions.jaxb.xjc.runtime>
+    <cia.project.versions.jaxb.xjc.runtime>2.3.0.1</cia.project.versions.jaxb.xjc.runtime>
     <cia.project.versions.jaxb2.plugin>0.13.3</cia.project.versions.jaxb2.plugin>
     <cia.project.versions.jaxb2.fluent.api>3.0</cia.project.versions.jaxb2.fluent.api>
     <cia.project.versions.maven>3.3.9</cia.project.versions.maven>
@@ -298,7 +299,7 @@
       <dependency>
         <groupId>javax.xml.bind</groupId>
         <artifactId>jaxb-api</artifactId>
-        <version>${cia.project.versions.jaxb.runtime}</version>
+        <version>${cia.project.versions.jaxb.api.runtime}</version>
       </dependency>
       <dependency>
         <groupId>com.sun.xml.bind</groupId>
