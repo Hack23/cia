@@ -29,7 +29,7 @@
 	</bean>
 
 	<bean id="liquibase"
-		class="com.hack23.cia.service.data.impl.liquidbase.SpringLiquidBaseFailSafe">
+		class="liquibase.integration.spring.SpringLiquibase">
 		<property name="dataSource" ref="dataSource" />
 		<property name="changeLog" value="classpath:db-changelog.xml" />
 		<!-- contexts specifies the runtime contexts to use. <property name="contexts"
