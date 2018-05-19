@@ -19,10 +19,16 @@
 package com.hack23.cia.service.data.impl;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.apache.commons.lang3.SerializationUtils;
+import org.javers.core.Changes;
 import org.javers.core.Javers;
+import org.javers.core.metamodel.object.CdoSnapshot;
+import org.javers.repository.jql.JqlQuery;
+import org.javers.repository.jql.QueryBuilder;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,8 +62,35 @@ public class AuditableAspectConfigurationITest extends AbstractServiceDataFuncti
 		assertFalse(applicationSession == applicationSessionClone);
 		applicationSessionClone.setIpInformation("Changed" + UUID.randomUUID().toString());		
 		applicationSessionDAO.merge(applicationSessionClone);
+		
+	}
+	
+	/**
+	 * Audit find changes test.
+	 */
+	@Test
+	public void AuditFindChangesTest() {
+		Optional<ApplicationSession> findFirst = applicationSessionDAO.getAll().stream().findFirst();
+		assertTrue(findFirst.isPresent());
+		Changes changes = javers.findChanges(QueryBuilder.byInstanceId(findFirst.get().getHjid(), ApplicationSession.class).build());
+		
+		assertEquals(1, changes.groupByCommit().size());
+		assertEquals("anonymousUser",changes.groupByCommit().get(0).getCommit().getAuthor());
 	}
 
+	/**
+	 * Audit find snapshots test.
+	 */
+	@Test
+	public void AuditFindSnapshotsTest() {
+		Optional<ApplicationSession> findFirst = applicationSessionDAO.getAll().stream().findFirst();
+		assertTrue(findFirst.isPresent());
+		List<CdoSnapshot> snapshots = javers.findSnapshots(QueryBuilder.byInstanceId(findFirst.get().getHjid(), ApplicationSession.class).build());
+		
+		assertTrue(snapshots.size()> 0);
+	}
+
+	
 	private ApplicationSession createApplicationSession() {
 		final ApplicationSession applicationSession = new ApplicationSession();
 		applicationSession.withCreatedDate(new Date()).withIpInformation(UUID.randomUUID().toString()).withLocale("Locale").withSessionId(UUID.randomUUID().toString());
