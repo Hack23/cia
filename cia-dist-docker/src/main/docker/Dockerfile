@@ -1,4 +1,4 @@
-FROM ubuntu:18.04@sha256:90f24abe180424046a5d53f6fc6f9fdb8f79b835cb2fd7d1a782e4c30dfb5dcc
+FROM ubuntu:18.04
 
 ADD userdata.sh /root/userdata.sh
 ADD dependencies/cia-dist-deb-${project.version}.deb /root/cia-dist-deb.deb
