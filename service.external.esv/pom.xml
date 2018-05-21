@@ -4,7 +4,7 @@
   <parent>
     <artifactId>parent-service-pom</artifactId>
     <groupId>com.hack23.cia</groupId>
-    <version>2018.5.9-SNAPSHOT</version>
+    <version>2018.5.21</version>
     <relativePath>../parent-service-pom/pom.xml</relativePath>
   </parent>
   <artifactId>service.external.esv</artifactId>
@@ -16,7 +16,7 @@
   <scm>
     <connection>scm:git:https://github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:https://github.com/Hack23/cia.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>cia-all-2018.5.21</tag>
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
   <distributionManagement>
@@ -49,7 +49,7 @@
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi-all</artifactId>
-      <version>3.17</version>
+      <version>2018.5.21</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
