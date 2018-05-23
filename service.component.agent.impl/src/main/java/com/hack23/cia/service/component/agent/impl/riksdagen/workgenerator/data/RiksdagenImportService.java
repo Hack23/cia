@@ -69,13 +69,6 @@ public interface RiksdagenImportService {
 	/**
 	 * Gets the document element map.
 	 *
-	 * @return the document element map
-	 */
-	Map<String, String> getDocumentElementMap();
-
-	/**
-	 * Gets the document element map.
-	 *
 	 * @param after
 	 *            the after
 	 * @param downloadType

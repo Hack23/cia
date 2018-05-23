@@ -27,7 +27,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
 import com.hack23.cia.service.component.agent.impl.common.jms.AbstractMessageListener;
@@ -37,7 +36,6 @@ import com.hack23.cia.service.component.agent.impl.worldbank.workers.data.Worldb
  * The Class WorldbankCountryElementWorkConsumerImpl.
  */
 @Service("worldbankCountryElementWorkConsumerImpl")
-@Transactional
 final class WorldbankCountryElementWorkConsumerImpl extends AbstractMessageListener implements
 MessageListener {
 

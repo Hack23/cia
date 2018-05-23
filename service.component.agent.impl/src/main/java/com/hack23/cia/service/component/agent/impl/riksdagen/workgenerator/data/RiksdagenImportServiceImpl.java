@@ -151,12 +151,6 @@ final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 	}
 
 	@Override
-	public Map<String, String> getDocumentElementMap() {
-		final List<String> all = documentElementDAO.getIdList();
-		return createMapFromList(all);
-	}
-
-	@Override
 	public Map<String, String> getDocumentElementMap(final Date after, final List<DocumentType> downloadType,
 			final boolean onlyWithDocStatus) {
 		final List<DocumentElement> all = documentElementDAO.getAll();

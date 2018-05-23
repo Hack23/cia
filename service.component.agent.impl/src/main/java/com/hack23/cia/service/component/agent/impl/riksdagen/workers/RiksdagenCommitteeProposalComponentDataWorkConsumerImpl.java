@@ -27,7 +27,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.service.component.agent.impl.common.jms.AbstractMessageListener;
 import com.hack23.cia.service.component.agent.impl.riksdagen.workers.data.RiksdagenUpdateService;
@@ -38,7 +37,6 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenCommitteeProposalA
  * The Class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl.
  */
 @Service("riksdagenCommitteeProposalComponentDataWorkConsumerImpl")
-@Transactional
 final class RiksdagenCommitteeProposalComponentDataWorkConsumerImpl extends AbstractMessageListener implements MessageListener {
 
 	/** The Constant LOGGER. */

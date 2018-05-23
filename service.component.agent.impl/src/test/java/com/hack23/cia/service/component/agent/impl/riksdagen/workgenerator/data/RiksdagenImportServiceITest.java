@@ -52,7 +52,7 @@ public class RiksdagenImportServiceITest extends AbstractServiceComponentAgentFu
 	 *             the exception
 	 */
 	@Test
-	public void getDocumentElementMapTest() throws Exception {
+	public void getDocumentElementMapAfterDateForTypesTest() throws Exception {
 		final List<DocumentType> selectedDocumentTypes = new ArrayList<>();
 		selectedDocumentTypes.add(DocumentType.BET);
 		selectedDocumentTypes.add(DocumentType.PROP);
@@ -64,7 +64,7 @@ public class RiksdagenImportServiceITest extends AbstractServiceComponentAgentFu
 
 		assertNotNull("Expect a result",documentElementMap);
 	}
-
+	
 	/**
 	 * Gets the start year for document element test.
 	 *

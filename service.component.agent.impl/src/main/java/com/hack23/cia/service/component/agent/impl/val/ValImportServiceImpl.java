@@ -50,19 +50,22 @@ final class ValImportServiceImpl implements ValImportService {
 			.getLogger(ValImportServiceImpl.class);
 
 	/** The sweden political party DAO. */
-	@Autowired
-	private SwedenPoliticalPartyDAO swedenPoliticalPartyDAO;
+	private final SwedenPoliticalPartyDAO swedenPoliticalPartyDAO;
 
 	/** The val api. */
-	@Autowired
-	private ValApi valApi;
-
+	private final ValApi valApi;
 
 	/**
 	 * Instantiates a new val import service impl.
+	 *
+	 * @param valApi
+	 *            the val api
 	 */
-	public ValImportServiceImpl() {
+	@Autowired
+	public ValImportServiceImpl(final ValApi valApi,final SwedenPoliticalPartyDAO swedenPoliticalPartyDAO) {
 		super();
+		this.valApi = valApi;
+		this.swedenPoliticalPartyDAO = swedenPoliticalPartyDAO;
 	}
 
 

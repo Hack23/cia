@@ -29,7 +29,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.service.component.agent.impl.common.jms.AbstractMessageListener;
@@ -42,7 +41,6 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
  * The Class RiksdagenLoadDocumentWorkConsumerImpl.
  */
 @Service("riksdagenLoadDocumentWorkConsumerImpl")
-@Transactional
 final class RiksdagenLoadDocumentWorkConsumerImpl extends AbstractMessageListener implements
 MessageListener {
 
