@@ -21,9 +21,12 @@ package com.hack23.cia.service.component.agent.impl.worldbank.workgenerator;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.jms.Destination;
 import javax.jms.JMSException;
@@ -37,6 +40,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
 import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
+import com.hack23.cia.service.external.worldbank.api.DataFailureException;
+import com.hack23.cia.service.external.worldbank.api.WorldBankIndicatorApi;
 
 /**
  * The Class WorldBankDataWorkGeneratorImplITest.
@@ -54,12 +59,20 @@ public class WorldBankDataWorkGeneratorImplITest extends AbstractServiceComponen
 	 *
 	 * @throws JMSException
 	 *             the JMS exception
+	 * @throws DataFailureException 
 	 */
 	@Test
-	public void generateWorkOrdersSuccessTest() throws JMSException {
+	public void generateWorkOrdersSuccessTest() throws JMSException, DataFailureException {
 		final JmsSender jmsSenderMock = mock(JmsSender.class);
+		final WorldBankIndicatorApi worldbankIndicatorApi = mock(WorldBankIndicatorApi.class);
         ReflectionTestUtils.setField(worldBankDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
-
+		ReflectionTestUtils.setField(worldBankDataSourcesWorkGenerator, "worldbankIndicatorApi", worldbankIndicatorApi);
+		
+		final ArrayList<String> indicators = new ArrayList<>();
+		indicators.add(UUID.randomUUID().toString());
+		
+		when(worldbankIndicatorApi.getIndicatorsWithSwedishData()).thenReturn(indicators);
+        
 		worldBankDataSourcesWorkGenerator.generateWorkOrders();
 
 		final ArgumentCaptor<Destination> destCaptor = ArgumentCaptor.forClass(Destination.class);
@@ -73,6 +86,36 @@ public class WorldBankDataWorkGeneratorImplITest extends AbstractServiceComponen
 
 		assertNotNull(capturedStrings);
 		assertNotNull(capturedDestinations);
+	}
+
+	@Test
+	public void generateWorkOrdersIndicatorsSuccessTest() throws JMSException, DataFailureException {
+		final JmsSender jmsSenderMock = mock(JmsSender.class);
+		final WorldBankIndicatorApi worldbankIndicatorApi = mock(WorldBankIndicatorApi.class);
+        ReflectionTestUtils.setField(worldBankDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
+		ReflectionTestUtils.setField(worldBankDataSourcesWorkGenerator, "worldbankIndicatorApi", worldbankIndicatorApi);
+		
+		final ArrayList<String> indicators = new ArrayList<>();
+		
+		when(worldbankIndicatorApi.getIndicatorsWithSwedishData()).thenReturn(indicators);
+        
+		worldBankDataSourcesWorkGenerator.generateWorkOrders();
+	}
+
+	
+	@Test
+	public void generateWorkOrdersFailureTest() throws JMSException, DataFailureException {
+		final JmsSender jmsSenderMock = mock(JmsSender.class);
+		final WorldBankIndicatorApi worldbankIndicatorApi = mock(WorldBankIndicatorApi.class);
+        ReflectionTestUtils.setField(worldBankDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
+		ReflectionTestUtils.setField(worldBankDataSourcesWorkGenerator, "worldbankIndicatorApi", worldbankIndicatorApi);
+		
+		final ArrayList<String> indicators = new ArrayList<>();
+		indicators.add(UUID.randomUUID().toString());
+		
+		when(worldbankIndicatorApi.getIndicatorsWithSwedishData()).thenThrow(new DataFailureException(new RuntimeException()));
+        
+		worldBankDataSourcesWorkGenerator.generateWorkOrders();
 	}
 
 }

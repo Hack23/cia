@@ -26,15 +26,18 @@ import java.util.Map;
 import javax.jms.Destination;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
 import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration;
 import com.hack23.cia.model.internal.application.system.impl.ConfigurationGroup;
 import com.hack23.cia.service.data.api.ApplicationConfigurationService;
+import com.hack23.cia.service.external.worldbank.api.DataFailureException;
+import com.hack23.cia.service.external.worldbank.api.WorldBankIndicatorApi;
 
 /**
  * The Class WorldBankDataWorkGeneratorImpl.
@@ -42,6 +45,10 @@ import com.hack23.cia.service.data.api.ApplicationConfigurationService;
 @Service("WorldBankDataWorkGeneratorImpl")
 final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesWorkGenerator {
 
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(WorldBankDataWorkGeneratorImpl.class);
+
+	
 	/** The data workdestination. */
 	@Autowired
 	@Qualifier("com.hack23.cia.model.external.worldbank.data.impl.Data")
@@ -50,6 +57,9 @@ final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesW
 	/** The application configuration service. */
 	@Autowired
 	private ApplicationConfigurationService applicationConfigurationService;
+	
+	@Autowired
+	private WorldBankIndicatorApi worldbankIndicatorApi;
 
 	/**
 	 * Instantiates a new world bank data work generator impl.
@@ -67,15 +77,19 @@ final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesW
 				"Responsible import worldlbank country data", "agent.worldbank.country.data.loadCountries",
 				"SE,NO,DK,FI,GB,US");
 
-		final List<IndicatorElement> indicatorlist = getImportService().getAllIndicators();
-		final Map<String, String> currentSaved = getImportService().getWorldBankDataMap();
-
-		for (final String country : getImportService().getWorldBankCountryMap().keySet()) {
-			if (StringUtils.containsIgnoreCase(importDataForCountries.getPropertyValue(), country)) {
-				for (final IndicatorElement indicator : indicatorlist) {
-					sendCountryIndicatorWorkOrder(currentSaved, indicator, country);
+		try {
+			final List<String> indicatorlist = worldbankIndicatorApi.getIndicatorsWithSwedishData();
+			final Map<String, String> currentSaved = getImportService().getWorldBankDataMap();
+			
+			for (final String country : getImportService().getWorldBankCountryMap().keySet()) {
+				if (StringUtils.containsIgnoreCase(importDataForCountries.getPropertyValue(), country)) {
+					for (final String indicator : indicatorlist) {
+						sendCountryIndicatorWorkOrder(currentSaved, indicator, country);
+					}
 				}
 			}
+		} catch (final DataFailureException e) {
+			LOGGER.error("Problem generate data workorders", e);
 		}
 	}
 
@@ -89,13 +103,13 @@ final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesW
 	 * @param countryIso2Code
 	 *            the country iso 2 code
 	 */
-	private void sendCountryIndicatorWorkOrder(final Map<String, String> currentSaved, final IndicatorElement indicator,
+	private void sendCountryIndicatorWorkOrder(final Map<String, String> currentSaved, final String indicator,
 			final String countryIso2Code) {
 		if (countryIso2Code != null && countryIso2Code.length() > 0
-				&& !currentSaved.containsKey(countryIso2Code + '.' + indicator.getId())) {
+				&& !currentSaved.containsKey(countryIso2Code + '.' + indicator)) {
 			final List<String> load = new ArrayList<>();
 			load.add(countryIso2Code);
-			load.add(indicator.getId());
+			load.add(indicator);
 			getJmsSender().send(dataWorkdestination, (Serializable) load);
 		}
 	}

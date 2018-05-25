@@ -18,14 +18,12 @@
 */
 package com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.data;
 
-import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
 
 /**
@@ -37,20 +35,6 @@ public class WorldbankImportServiceITest extends AbstractServiceComponentAgentFu
 	/** The worldbank import service. */
 	@Autowired
 	private WorldbankImportService worldbankImportService;
-
-	/**
-	 * Gets the all indicators test.
-	 *
-	 * @return the all indicators test
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test
-	public void getAllIndicatorsTest() throws Exception {
-		final List<IndicatorElement> allIndicators = worldbankImportService.getAllIndicators();
-		assertNotNull(allIndicators);
-		assertFalse(allIndicators.isEmpty());
-	}
 
 	/**
 	 * Gets the world bank country map test.

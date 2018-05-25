@@ -18,10 +18,7 @@
 */
 package com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.data;
 
-import java.util.List;
 import java.util.Map;
-
-import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
 
 /**
  * The Interface WorldbankImportService.
@@ -48,15 +45,5 @@ public interface WorldbankImportService {
 	 * @return the world bank indicator element map
 	 */
 	Map<String, String> getWorldBankIndicatorElementMap();
-
-
-	/**
-	 * Gets the all indicators.
-	 *
-	 * @return the all indicators
-	 */
-	List<IndicatorElement> getAllIndicators();
-
-
 
 }

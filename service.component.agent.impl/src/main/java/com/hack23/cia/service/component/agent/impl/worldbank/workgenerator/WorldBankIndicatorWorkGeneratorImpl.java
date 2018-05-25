@@ -76,7 +76,7 @@ final class WorldBankIndicatorWorkGeneratorImpl extends AbstractWorldBankDataSou
 				}
 			}
 		} catch (final DataFailureException exception) {
-			LOGGER.warn("jms", exception);
+			LOGGER.warn("Problem generating indicator work orders", exception);
 		}
 	}
 

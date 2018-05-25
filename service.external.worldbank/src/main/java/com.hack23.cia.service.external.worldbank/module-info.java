@@ -5,6 +5,9 @@ module com.hack23.cia.service.external.worldbank {
 	requires java.xml.bind;
 	requires spring.beans;
 	requires org.slf4j;
+	requires org.apache.commons.codec;
+	requires commons.csv;
+
 
 	requires com.hack23.cia.service.external.common;
 

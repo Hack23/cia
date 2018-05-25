@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.service.external.worldbank.api;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
@@ -25,7 +26,6 @@ import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
 /**
  * The Interface WorldBankIndicatorApi.
  */
-@FunctionalInterface
 public interface WorldBankIndicatorApi {
 
 	/**
@@ -36,5 +36,14 @@ public interface WorldBankIndicatorApi {
 	 *             the data failure exception
 	 */
 	List<IndicatorElement> getIndicators() throws DataFailureException;
+
+	/**
+	 * Gets the indicators with swedish data.
+	 *
+	 * @return the indicators with swedish data
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	List<String> getIndicatorsWithSwedishData() throws DataFailureException;
 
 }

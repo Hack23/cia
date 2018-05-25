@@ -18,9 +18,22 @@
 */
 package com.hack23.cia.service.external.worldbank.impl;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
+import org.apache.commons.codec.Charsets;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+import org.apache.http.client.fluent.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,5 +114,80 @@ final class WorldbankIndicatorApiImpl extends BaseWorldBankApiImpl implements Wo
 
 		return result;
 	}
+
+	@Override
+	public List<String> getIndicatorsWithSwedishData() throws DataFailureException {		
+		try {
+			return Collections.unmodifiableList(readUsingZipInputStream(Request.Get("http://api.worldbank.org/v2/en/country/SWE?downloadformat=csv").execute().returnContent().asStream()));
+		} catch (final IOException e) {
+			throw new DataFailureException(e);
+		}
+	}
+
+	/**
+	 * Read using zip input stream.
+	 *
+	 * @param inputStream
+	 *            the input stream
+	 * @param specificFields
+	 *            the specific fields
+	 * @return the list
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	private static List<String> readUsingZipInputStream(final InputStream inputStream) throws IOException {		
+		final BufferedInputStream bis = new BufferedInputStream(inputStream);
+		final ZipInputStream is = new ZipInputStream(bis);
+
+		final List<String> list = new ArrayList<>();
+		try {
+			ZipEntry entry;
+			
+			while ((entry = is.getNextEntry()) != null) {
+				if (entry.getName().startsWith("API_SWE_")) {
+					
+					list.addAll(readCsvContent(entry, is));
+					
+				}
+						
+			}
+		} finally {
+			is.close();
+		}
+		return list;
+	}
+	
+	/**
+	 * Read csv content.
+	 *
+	 * @param entry
+	 *            the entry
+	 * @param is
+	 *            the is
+	 * @return the list
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	private static List<String> readCsvContent(final ZipEntry entry, final InputStream is) throws IOException {		
+		final BufferedReader reader = new BufferedReader(new InputStreamReader(is,Charsets.UTF_8));		
+		reader.readLine();
+		reader.readLine();
+		reader.readLine();
+		reader.readLine();		
+		
+		final CSVParser parser = CSVParser.parse(reader, CSVFormat.EXCEL.withHeader().withDelimiter(','));
+		final List<CSVRecord> records = parser.getRecords();
+		records.remove(0);
+		
+		final List<String> list = new ArrayList<>();
+		
+		for (final CSVRecord csvRecord : records) {			
+			list.add(csvRecord.get("Indicator Code"));
+		}
+		
+		return list;
+	}
+
+	
 
 }

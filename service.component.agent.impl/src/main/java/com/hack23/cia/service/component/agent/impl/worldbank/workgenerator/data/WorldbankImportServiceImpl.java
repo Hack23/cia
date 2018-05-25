@@ -79,11 +79,6 @@ final class WorldbankImportServiceImpl implements WorldbankImportService {
 	}
 
 	@Override
-	public List<IndicatorElement> getAllIndicators() {
-		return indicatorElementDAO.getAll();
-	}
-
-	@Override
 	public Map<String, String> getWorldBankCountryMap() {
 		final List<String> list = new ArrayList<>();
 		for (final CountryElement countryElement : countryElementDAO.getAll()) {

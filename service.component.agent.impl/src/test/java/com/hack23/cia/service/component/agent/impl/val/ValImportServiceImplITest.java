@@ -58,7 +58,7 @@ public class ValImportServiceImplITest extends AbstractServiceComponentAgentFunc
 	@Test
 	@Transactional
 	public void loadPoliticalPartiesSuccessTest() throws JMSException {		
-		for (SwedenPoliticalParty swedenPoliticalParty : swedenPoliticalPartyDAO.getAll()) {			
+		for (final SwedenPoliticalParty swedenPoliticalParty : swedenPoliticalPartyDAO.getAll()) {			
 			swedenPoliticalPartyDAO.delete(swedenPoliticalParty);
 		}		
 		
@@ -86,12 +86,12 @@ public class ValImportServiceImplITest extends AbstractServiceComponentAgentFunc
 	@Test
 	@Transactional
 	public void loadPoliticalPartiesFailureTest() throws ValApiException {
-		for (SwedenPoliticalParty swedenPoliticalParty : swedenPoliticalPartyDAO.getAll()) {			
+		for (final SwedenPoliticalParty swedenPoliticalParty : swedenPoliticalPartyDAO.getAll()) {			
 			swedenPoliticalPartyDAO.delete(swedenPoliticalParty);
 		}		
 
 		final ValApi valApi = mock(ValApi.class);
-		ValImportServiceImpl valImportService = new ValImportServiceImpl(valApi,swedenPoliticalPartyDAO);
+		final ValImportServiceImpl valImportService = new ValImportServiceImpl(valApi,swedenPoliticalPartyDAO);
 
 		when(valApi.getSwedenPoliticalParties()).thenThrow(new ValApiException(new RuntimeException()));		
 		valImportService.loadPoliticalParties();
