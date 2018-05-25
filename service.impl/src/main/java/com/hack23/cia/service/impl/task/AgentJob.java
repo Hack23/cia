@@ -36,6 +36,7 @@ public final class AgentJob extends AbstractJob {
 	@Override
 	protected void executeInternal(final JobExecutionContext jobContext) throws JobExecutionException {
 		  getJobContextHolder(jobContext).getDataAgentApi().execute(new DataAgentWorkOrder().withOperation(DataAgentOperation.IMPORT).withTarget(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN));
+		  getJobContextHolder(jobContext).getDataAgentApi().execute(new DataAgentWorkOrder().withOperation(DataAgentOperation.IMPORT).withTarget(DataAgentTarget.MODEL_EXTERNAL_WORLDBANK));
 	}
 
 }
