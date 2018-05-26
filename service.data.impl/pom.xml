@@ -80,6 +80,33 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>org.wildfly.transaction</groupId>
+      <artifactId>wildfly-transaction-client</artifactId>
+      <version>1.1.2.Final</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+          <groupId>org.jboss.spec.javax.transaction</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jboss-remoting</artifactId>
+          <groupId>org.jboss.remoting</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>xnio-api</artifactId>
+          <groupId>org.jboss.xnio</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>wildfly-naming-client</artifactId>
+          <groupId>org.wildfly</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jboss-connector-api_1.7_spec</artifactId>
+          <groupId>org.jboss.spec.javax.resource</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-search-elasticsearch</artifactId>
       <version>5.10.0.Final</version>
@@ -600,6 +627,10 @@
           <artifactId>jboss-transaction-spi</artifactId>
           <groupId>org.jboss</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>jboss-connector-api_1.7_spec</artifactId>
+          <groupId>org.jboss.spec.javax.resource</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -610,6 +641,10 @@
         <exclusion>
           <artifactId>jboss-transaction-api_1.2_spec</artifactId>
           <groupId>org.jboss.spec.javax.transaction</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jboss-connector-api_1.7_spec</artifactId>
+          <groupId>org.jboss.spec.javax.resource</groupId>
         </exclusion>
       </exclusions>
     </dependency>
