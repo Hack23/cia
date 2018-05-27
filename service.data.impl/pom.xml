@@ -35,7 +35,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-search-orm</artifactId>
-      <version>5.10.0.Final</version>
+      <version>5.10.1.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-entitymanager</artifactId>
@@ -111,7 +111,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-search-elasticsearch</artifactId>
-      <version>5.10.0.Final</version>
+      <version>5.10.1.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-entitymanager</artifactId>
@@ -511,7 +511,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jcache</artifactId>
-      <version>5.3.0.Final</version>
+      <version>5.3.2-SNAPSHOT</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-core</artifactId>
