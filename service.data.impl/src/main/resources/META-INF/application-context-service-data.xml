@@ -113,7 +113,7 @@
 
 				<prop key="hibernate.transaction.manager_lookup_class">com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple
 				</prop>
-				<prop key="hibernate.transaction.jta.platform">com.hack23.cia.service.data.impl.NarayanaJtaPlatform</prop>
+				<prop key="hibernate.transaction.jta.platform">org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform</prop>
 
 				<prop key="hibernate.physical_naming_strategy">com.hack23.cia.service.data.impl.LegacyNamingStrategy
 				</prop>
