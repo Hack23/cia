@@ -13,6 +13,7 @@ module com.hack23.cia.service.data.impl {
 	requires spring.tx;
 	requires java.persistence;
 	requires org.hibernate.orm.core;
+	requires java.transaction;
 
 	requires spring.security.core;
 	
