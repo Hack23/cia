@@ -82,7 +82,7 @@ public final class CreateApplicationEventService
 			applicationActionEvent.setActionName(serviceRequest.getActionName());
 
 			applicationActionEvent.setUserId(serviceRequest.getUserId());
-			if (serviceRequest.getUserId() != null
+			if (serviceRequest.getUserId() != null && !"anonymousUser".equalsIgnoreCase(serviceRequest.getUserId())
 					&& ApplicationSessionType.ANONYMOUS == applicationSession.getSessionType()) {
 				applicationSession.setSessionType(ApplicationSessionType.REGISTERED_USER);
 				applicationSession.setUserId(serviceRequest.getUserId());
