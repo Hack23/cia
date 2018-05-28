@@ -76,7 +76,7 @@ MessageListener {
 			updateService.updateDocumentData(riksdagenApi
 					.getDocumentStatus((String) ((ObjectMessage) message).getObject()));
 		} catch (final DataFailureException | JMSException e) {
-			LOGGER.warn("Error loading riksdagen documentstatus:" , e);
+			LOGGER.warn("Error loading riksdagen documentstatus:", e);
 		}  finally {
 			clearAuthentication();
 		}

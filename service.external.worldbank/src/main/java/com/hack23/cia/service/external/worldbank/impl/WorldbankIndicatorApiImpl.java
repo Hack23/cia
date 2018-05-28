@@ -170,10 +170,9 @@ final class WorldbankIndicatorApiImpl extends BaseWorldBankApiImpl implements Wo
 	 */
 	private static List<String> readCsvContent(final ZipEntry entry, final InputStream is) throws IOException {		
 		final BufferedReader reader = new BufferedReader(new InputStreamReader(is,Charsets.UTF_8));		
-		reader.readLine();
-		reader.readLine();
-		reader.readLine();
-		reader.readLine();		
+		for (int i = 0; i < 4; i++) {
+			String ignoreFirstLinesWithHeaders = reader.readLine();			
+		}
 		
 		final CSVParser parser = CSVParser.parse(reader, CSVFormat.EXCEL.withHeader().withDelimiter(','));
 		final List<CSVRecord> records = parser.getRecords();

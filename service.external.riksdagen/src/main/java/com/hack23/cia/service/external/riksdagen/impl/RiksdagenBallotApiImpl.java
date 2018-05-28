@@ -19,13 +19,10 @@
 package com.hack23.cia.service.external.riksdagen.impl;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 import javax.xml.bind.JAXBElement;
 
@@ -59,9 +56,6 @@ final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 	/** The Constant BALLOT_LIST. */
 	private static final String BALLOT_LIST="https://data.riksdagen.se/voteringlista/?rm=&bet=&punkt=&iid=&parti=&valkrets=&rost=&sz=10000&utformat=xml&gruppering=votering_id";
 
-	/** The Constant CONTAINS_ONE. */
-	private static final int CONTAINS_ONE = 1;
-
 	/** The Constant HTTP_VOTERING_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL. */
 	private static final String HTTP_VOTERING_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL = "http://votering.riksdagen.external.model.cia.hack23.com/impl";
 
@@ -84,14 +78,13 @@ final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 	/** The Constant PROBLEM_GETTING_BALLOT_LIST_FROM_DATA_RIKSDAGEN_SE. */
 	private static final String PROBLEM_GETTING_BALLOT_LIST_FROM_DATA_RIKSDAGEN_SE = "Problem getting ballot list from data.riksdagen.se";
 
-	/** The Constant YYYY_MM_DD. */
-	private static final String YYYY_MM_DD = "yyyy-MM-dd";
-
+	/** The riksdagen date util. */
+	private final RiksdagenDateUtil riksdagenDateUtil = new RiksdagenDateUtil();
+	
 	/** The riksdagen ballot list marshaller. */
 	@Autowired
 	@Qualifier("riksdagenBallotListMarshaller")
 	private Unmarshaller riksdagenBallotListMarshaller;
-
 
 	/** The riksdagen ballot marshaller. */
 	@Autowired
@@ -115,85 +108,6 @@ final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 	}
 
 
-	/**
-	 * Best guess vote date.
-	 *
-	 * @param ballotContainer
-	 *            the ballot container
-	 * @return the date
-	 * @throws ParseException
-	 *             the parse exception
-	 */
-	private static Date bestGuessVoteDate(final BallotContainer ballotContainer) throws ParseException {
-		final com.hack23.cia.model.external.riksdagen.votering.impl.BallotDocumentElement ballotDocumentElement = ballotContainer.getBallotDocumentElement();
-		Date result;
-
-		final String createdDate=ballotContainer.getBallotDocumentElement().getCreatedDate();
-
-		if(createdDate!= null && createdDate.length()>= YYYY_MM_DD.length()) {
-			result=new SimpleDateFormat(YYYY_MM_DD,Locale.ENGLISH).parse(createdDate);
-		} else {
-			final String systemDate = ballotDocumentElement.getSystemDate();
-
-			if(systemDate!= null && systemDate.length()>= YYYY_MM_DD.length()) {
-				result=new SimpleDateFormat(YYYY_MM_DD,Locale.ENGLISH).parse(systemDate);
-			} else {
-				result=new SimpleDateFormat(YYYY_MM_DD,Locale.ENGLISH).parse(ballotDocumentElement.getMadePublicDate());
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * Check same date.
-	 *
-	 * @param voteList
-	 *            the vote list
-	 * @return the date
-	 * @throws ParseException
-	 *             the parse exception
-	 */
-	private static Date checkSameDate(final List<VoteDataDto> voteList) throws ParseException {
-		final Set<String> set = new HashSet<>();
-		Date result=null;
-
-		for (final VoteDataDto voteData : voteList) {
-			final String voteDate = voteData.getVoteDate();
-			if (voteDate !=null && voteDate.length() >= YYYY_MM_DD.length()) {
-				set.add(voteData.getVoteDate());
-			}
-		}
-
-		if (set.size() ==CONTAINS_ONE) {
-			final String dateString = set.iterator().next();
-			result=new SimpleDateFormat(YYYY_MM_DD,Locale.ENGLISH).parse(dateString);
-		}
-		return result;
-	}
-
-	/**
-	 * Try to find valid vote date.
-	 *
-	 * @param ballotContainer
-	 *            the ballot container
-	 * @param voteDataList
-	 *            the vote data list
-	 * @return the date
-	 * @throws ParseException
-	 *             the parse exception
-	 */
-	private static Date tryToFindValidVoteDate(final BallotContainer ballotContainer, final List<VoteDataDto> voteDataList)
-					throws ParseException {
-		Date ballotDate;
-		final Date sameDate = checkSameDate(voteDataList);
-
-		if (sameDate != null) {
-			ballotDate = sameDate;
-		} else {
-			ballotDate = bestGuessVoteDate(ballotContainer);
-		}
-		return ballotDate;
-	}
 
 
 	/* (non-Javadoc)
@@ -214,7 +128,7 @@ final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 			if (ballotContainer != null && ballotContainer.getBallotDocumentData() != null) {
 				
 				final List<VoteDataDto> voteDataList = ballotContainer.getBallotDocumentData().getVoteDataList();				
-				final Date ballotDate=tryToFindValidVoteDate(ballotContainer, voteDataList);
+				final Date ballotDate=riksdagenDateUtil.tryToFindValidVoteDate(ballotContainer, voteDataList);
 				
 				for (final VoteDataDto voteDataDto: voteDataList) {
 					final VoteData voteData= new VoteData().withEmbeddedId(new VoteDataEmbeddedId().withBallotId(voteDataDto.getBallotId()).withIntressentId(voteDataDto.getIntressentId()).withIssue(voteDataDto.getIssue()).withConcern(voteDataDto.getConcern()));
