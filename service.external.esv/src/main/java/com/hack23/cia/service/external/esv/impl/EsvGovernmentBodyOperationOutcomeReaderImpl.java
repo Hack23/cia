@@ -145,7 +145,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 		try {
 			ZipEntry entry;
 			while ((entry = is.getNextEntry()) != null) {
-				list.addAll(readCsvContent(entry, is,specificFields));
+				list.addAll(readCsvContent(is,specificFields));
 			}
 		} finally {
 			is.close();
@@ -156,8 +156,6 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	/**
 	 * Read csv content.
 	 *
-	 * @param entry
-	 *            the entry
 	 * @param is
 	 *            the is
 	 * @param specificFields
@@ -166,7 +164,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	private static List<GovernmentBodyAnnualOutcomeSummary> readCsvContent(final ZipEntry entry, final InputStream is,final String[] specificFields) throws IOException {
+	private static List<GovernmentBodyAnnualOutcomeSummary> readCsvContent(final InputStream is,final String[] specificFields) throws IOException {
 		final CSVParser parser = CSVParser.parse(new InputStreamReader(is,Charsets.UTF_8), CSVFormat.EXCEL.withHeader().withDelimiter(';'));
 		final List<CSVRecord> records = parser.getRecords();
 		records.remove(0);

@@ -229,19 +229,20 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 	}
 
 	@Override
-	public void createGovernmentBodyExpenditureSummaryChart(final VerticalLayout content) {
-		addAnnualSummary(esvApi.getGovernmentBodyReportByField(EXPENDITURE_GROUP_NAME), content, ANNUAL_EXPENDITURE);
-	}
-
-	@Override
 	public void createGovernmentBodyIncomeSummaryChart(final VerticalLayout content, final String name) {
 		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> collect = esvApi.getGovernmentBodyReport().get(name)
 				.stream().filter(p -> p.getDescriptionFields().get(INKOMSTTITELSNAMN) != null)
 				.collect(Collectors.groupingBy(t -> t.getDescriptionFields().get(INKOMSTTITELSNAMN)));
-
+		
 		addAnnualData(content, name, ANNUAL_INCOME, collect);
-
+		
 	}
+	
+	@Override
+	public void createGovernmentBodyExpenditureSummaryChart(final VerticalLayout content) {
+		addAnnualSummary(esvApi.getGovernmentBodyReportByField(EXPENDITURE_GROUP_NAME), content, ANNUAL_EXPENDITURE);
+	}
+
 
 	@Override
 	public void createGovernmentBodyExpenditureSummaryChart(final VerticalLayout content, final String name) {

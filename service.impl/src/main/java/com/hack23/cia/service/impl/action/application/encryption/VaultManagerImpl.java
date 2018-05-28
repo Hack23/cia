@@ -53,7 +53,7 @@ import com.hack23.cia.service.data.api.EncryptedValueDAO;
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public class VaultManagerImpl implements VaultManager {
+public final class VaultManagerImpl implements VaultManager {
 
 	/**
 	 * 
@@ -64,7 +64,7 @@ public class VaultManagerImpl implements VaultManager {
 	private static final String AES_GCM_NO_PADDING = "AES/GCM/NoPadding";
 
 	/** The algorithm. */
-	private static String ALGORITHM = "AES";
+	private static final String ALGORITHM = "AES";
 
 
 	/** The encrypted value DAO. */

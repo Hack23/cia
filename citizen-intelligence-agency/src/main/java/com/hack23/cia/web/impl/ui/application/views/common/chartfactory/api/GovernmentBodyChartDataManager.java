@@ -71,14 +71,6 @@ public interface GovernmentBodyChartDataManager {
 	void createGovernmentBodyIncomeSummaryChart(VerticalLayout panelContent);
 
 	/**
-	 * Creates the government body expenditure summary chart.
-	 *
-	 * @param panelContent
-	 *            the panel content
-	 */
-	void createGovernmentBodyExpenditureSummaryChart(VerticalLayout panelContent);
-
-	/**
 	 * Creates the government body income summary chart.
 	 *
 	 * @param panelContent
@@ -87,6 +79,15 @@ public interface GovernmentBodyChartDataManager {
 	 *            the name
 	 */
 	void createGovernmentBodyIncomeSummaryChart(VerticalLayout panelContent, String name);
+	
+	/**
+	 * Creates the government body expenditure summary chart.
+	 *
+	 * @param panelContent
+	 *            the panel content
+	 */
+	void createGovernmentBodyExpenditureSummaryChart(VerticalLayout panelContent);
+
 
 	/**
 	 * Creates the government body expenditure summary chart.

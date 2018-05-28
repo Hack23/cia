@@ -72,7 +72,7 @@ public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartMan
 
 			@Override
 			public Date getToDate(final AssignmentData t) {
-				return  Optional.ofNullable(t.getToDate()).orElseGet(Date::new);
+				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);
 			}
 
 			@Override

@@ -46,7 +46,7 @@ public final class GovernmentOperationPeriodOutcome implements Comparable<Govern
 	private double percentageChangeFromPreviousToLatest;
 	
 	/** The Percentage change from same period last year to latest. */
-	private double PercentageChangeFromSamePeriodLastYearToLatest;
+	private double percentageChangeFromSamePeriodLastYearToLatest;
 	
 	/** The observation status. */
 	private String observationStatus;
@@ -140,7 +140,7 @@ public final class GovernmentOperationPeriodOutcome implements Comparable<Govern
 	 * @return the percentage change from same period last year to latest
 	 */
 	public double getPercentageChangeFromSamePeriodLastYearToLatest() {
-		return PercentageChangeFromSamePeriodLastYearToLatest;
+		return percentageChangeFromSamePeriodLastYearToLatest;
 	}
 
 	/**
@@ -150,7 +150,7 @@ public final class GovernmentOperationPeriodOutcome implements Comparable<Govern
 	 *            the new percentage change from same period last year to latest
 	 */
 	public void setPercentageChangeFromSamePeriodLastYearToLatest(final double percentageChangeFromSamePeriodLastYearToLatest) {
-		PercentageChangeFromSamePeriodLastYearToLatest = percentageChangeFromSamePeriodLastYearToLatest;
+		this.percentageChangeFromSamePeriodLastYearToLatest = percentageChangeFromSamePeriodLastYearToLatest;
 	}
 
 	/**
@@ -227,7 +227,7 @@ public final class GovernmentOperationPeriodOutcome implements Comparable<Govern
 		 * @param s
 		 *            the s
 		 */
-    	private Variables(final String s) {
+    	Variables(final String s) {
 	        name = s;
 	    }
 
