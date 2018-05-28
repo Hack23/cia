@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.drools.core.common.DefaultFactHandle;
@@ -37,7 +38,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.google.common.collect.Iterables;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly;
@@ -121,15 +121,21 @@ public final class RulesEngineImpl implements RulesEngine {
 						&& annualList != null) {
 					Collections.sort(dailyList,
 							(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
+					final Optional<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dailyListFirst = dailyList.stream().findFirst();
+					
 					Collections.sort(monthlyList,
 							(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
+					final Optional<ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly> monthlyListFirst = monthlyList.stream().findFirst();
 					Collections.sort(annualList,
 							(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
+					final Optional<ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual> annualListFirst = annualList.stream().findFirst();
 
-					final PoliticianComplianceCheckImpl politicianComplianceCheckImpl = new PoliticianComplianceCheckImpl(
-							politicianData, Iterables.getFirst(dailyList, null), Iterables.getFirst(monthlyList, null),
-							Iterables.getFirst(annualList, null));
-					ksession.insert(politicianComplianceCheckImpl);
+					if (annualListFirst.isPresent() && monthlyListFirst.isPresent() && dailyListFirst.isPresent()) {
+						final PoliticianComplianceCheckImpl politicianComplianceCheckImpl = new PoliticianComplianceCheckImpl(
+								politicianData, dailyListFirst.get(), monthlyListFirst.get(),
+								annualListFirst.get());
+						ksession.insert(politicianComplianceCheckImpl);
+					}
 				} else {
 					final PoliticianComplianceCheckImpl politicianComplianceCheckImpl = new PoliticianComplianceCheckImpl(
 							politicianData, null, null, null);
@@ -171,15 +177,20 @@ public final class RulesEngineImpl implements RulesEngine {
 						&& annualList != null) {
 					Collections.sort(dailyList,
 							(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
+					final Optional<ViewRiksdagenVoteDataBallotPartySummaryAnnual> dailyListFirst = dailyList.stream().findFirst();
 					Collections.sort(monthlyList,
 							(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
+					final Optional<ViewRiksdagenVoteDataBallotPartySummaryMonthly> monthlyListFirst = monthlyList.stream().findFirst();
 					Collections.sort(annualList,
 							(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
+					final Optional<ViewRiksdagenVoteDataBallotPartySummaryDaily> annualListFirst = annualList.stream().findFirst();
 
-					final PartyComplianceCheckImpl politicianComplianceCheckImpl = new PartyComplianceCheckImpl(
-							partyData, Iterables.getFirst(dailyList, null), Iterables.getFirst(monthlyList, null),
-							Iterables.getFirst(annualList, null));
-					ksession.insert(politicianComplianceCheckImpl);
+					if (annualListFirst.isPresent() && monthlyListFirst.isPresent() && dailyListFirst.isPresent()) {					
+						final PartyComplianceCheckImpl politicianComplianceCheckImpl = new PartyComplianceCheckImpl(
+								partyData, dailyListFirst.get(), monthlyListFirst.get(),
+								annualListFirst.get());
+						ksession.insert(politicianComplianceCheckImpl);
+					}
 				} else {
 					final PartyComplianceCheckImpl politicianComplianceCheckImpl = new PartyComplianceCheckImpl(
 							partyData, null, null, null);
