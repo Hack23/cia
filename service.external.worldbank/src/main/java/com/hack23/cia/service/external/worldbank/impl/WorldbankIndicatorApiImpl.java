@@ -144,12 +144,9 @@ final class WorldbankIndicatorApiImpl extends BaseWorldBankApiImpl implements Wo
 			ZipEntry entry;
 			
 			while ((entry = is.getNextEntry()) != null) {
-				if (entry.getName().startsWith("API_SWE_")) {
-					
-					list.addAll(readCsvContent(entry, is));
-					
-				}
-						
+				if (entry.getName().startsWith("API_SWE_")) {					
+					list.addAll(readCsvContent(is));					
+				}						
 			}
 		} finally {
 			is.close();
@@ -160,15 +157,13 @@ final class WorldbankIndicatorApiImpl extends BaseWorldBankApiImpl implements Wo
 	/**
 	 * Read csv content.
 	 *
-	 * @param entry
-	 *            the entry
 	 * @param is
 	 *            the is
 	 * @return the list
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	private static List<String> readCsvContent(final ZipEntry entry, final InputStream is) throws IOException {		
+	private static List<String> readCsvContent(final InputStream is) throws IOException {		
 		final BufferedReader reader = new BufferedReader(new InputStreamReader(is,Charsets.UTF_8));		
 		for (int i = 0; i < 4; i++) {
 			String ignoreFirstLinesWithHeaders = reader.readLine();			
