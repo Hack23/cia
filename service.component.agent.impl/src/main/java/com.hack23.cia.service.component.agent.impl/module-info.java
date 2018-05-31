@@ -17,7 +17,7 @@ module com.hack23.cia.service.component.agent.impl {
 
 	requires spring.security.core;
 
-	requires joda.time;
+	requires org.joda.time;
 
 	requires jms;
 

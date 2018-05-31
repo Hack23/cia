@@ -25,7 +25,7 @@ module com.hack23.cia.service.impl {
 	requires weka.dev;
 	requires passay;
 
-	requires joda.time;
+	requires org.joda.time;
 
 	requires jms;
 	requires java.mail;
