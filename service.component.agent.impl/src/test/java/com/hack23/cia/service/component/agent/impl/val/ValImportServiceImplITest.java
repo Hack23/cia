@@ -61,7 +61,7 @@ public class ValImportServiceImplITest extends AbstractServiceComponentAgentFunc
 		for (final SwedenPoliticalParty swedenPoliticalParty : swedenPoliticalPartyDAO.getAll()) {			
 			swedenPoliticalPartyDAO.delete(swedenPoliticalParty);
 		}		
-		
+		assertTrue(0 == swedenPoliticalPartyDAO.getSize());
 		valImportService.loadPoliticalParties();
 	}
 
@@ -75,6 +75,7 @@ public class ValImportServiceImplITest extends AbstractServiceComponentAgentFunc
 	@Transactional
 	public void loadPoliticalPartiesFinalSuccessTest() throws JMSException {				
 		valImportService.loadPoliticalParties();
+		assertTrue(swedenPoliticalPartyDAO.getSize() > 0);
 	}
 	
 	/**

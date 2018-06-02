@@ -25,7 +25,6 @@ import java.sql.Statement;
 
 import javax.sql.DataSource;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -126,13 +125,12 @@ public final class RemoveDataManagerTest extends AbstractUnitTest {
 	 *             the SQL exception
 	 */
 	@Test
-	@Ignore
 	public void removeUserAccountApplicationHistoryTest() throws SQLException {
 		Mockito.when(dataSource.getConnection()).thenReturn(connection);
 		final ArgumentCaptor<String> sqlCaptor = ArgumentCaptor.forClass(String.class);
 		Mockito.when(connection.prepareStatement(sqlCaptor.capture())).thenReturn(preparedStatement);		
 		new RemoveDataManagerImpl(dataSource).removeUserAccountApplicationHistory("userid");
-		//Mockito.verify(preparedStatement,Mockito.times(2)).execute(argCaptor.capture());
+		Mockito.verify(preparedStatement,Mockito.never()).execute(ArgumentCaptor.forClass(String.class).capture());
 	}
 
 }
