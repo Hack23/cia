@@ -75,7 +75,7 @@ public class AuditableAspectConfigurationITest extends AbstractServiceDataFuncti
 		Changes changes = javers.findChanges(QueryBuilder.byInstanceId(findFirst.get().getHjid(), ApplicationSession.class).build());
 		
 		assertEquals(1, changes.groupByCommit().size());
-		assertEquals("anonymousUser",changes.groupByCommit().get(0).getCommit().getAuthor());
+		assertEquals("AnonymousUser",changes.groupByCommit().get(0).getCommit().getAuthor());
 	}
 
 	/**

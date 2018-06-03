@@ -62,7 +62,12 @@
  <cache alias="com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration" uses-template="defaultCacheTemplate"/>
  <cache alias="com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent" uses-template="defaultCacheTemplate"/>
  <cache alias="com.hack23.cia.model.internal.application.system.impl.Agency" uses-template="defaultCacheTemplate"/>
+ 
+ <cache alias="com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditDataSummary" uses-template="defaultCacheTemplate"/>
+ <cache alias="com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditAuthorSummary" uses-template="defaultCacheTemplate"/>
+ 
  <cache alias="com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician" uses-template="defaultCacheTemplate"/>
+ 
  <cache alias="com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary" uses-template="defaultCacheTemplate"/>
  <cache alias="com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember" uses-template="defaultCacheTemplate"/>
  <cache alias="com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMember" uses-template="defaultCacheTemplate"/>

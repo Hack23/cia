@@ -168,6 +168,10 @@
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementDailySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementWeeklySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementAnnualSummary</class>
+		
+		<class>com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditDataSummary</class>
+		<class>com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditAuthorSummary</class>
+		
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 

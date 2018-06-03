@@ -51,6 +51,11 @@
 		node="/xsd:schema">
 	</jaxb:bindings>
 
+	<jaxb:bindings schemaLocation="../xsd/data-audit.xsd"
+		node="/xsd:schema">
+	</jaxb:bindings>
+	
+
 	<jaxb:bindings schemaLocation="../../../target/dependency/countries.xsd"
 		node="/xsd:schema">
 		<jaxb:schemaBindings map="true">
