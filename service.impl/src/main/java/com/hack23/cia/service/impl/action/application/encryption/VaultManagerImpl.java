@@ -38,6 +38,8 @@ import javax.crypto.spec.SecretKeySpec;
 import org.bouncycastle.jcajce.provider.digest.SHA3;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.util.encoders.Hex;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -59,6 +61,17 @@ public final class VaultManagerImpl implements VaultManager {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	/** The Constant ENCRYPT_VALUE. */
+	private static final String ENCRYPT_VALUE = "encryptValue";
+
+	/** The Constant DECRYPT_VALUE. */
+	private static final String DECRYPT_VALUE = "decryptValue";
+
+
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(VaultManagerImpl.class);
 
 	/** The Constant AES_GCM_NO_PADDING. */
 	private static final String AES_GCM_NO_PADDING = "AES/GCM/NoPadding";
@@ -116,6 +129,7 @@ public final class VaultManagerImpl implements VaultManager {
 				byteBuffer.put(cipherText);
 				return Hex.toHexString(byteBuffer.array());
 			} catch (NoSuchAlgorithmException | IllegalBlockSizeException | BadPaddingException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException e) {
+				LOGGER.error(ENCRYPT_VALUE,e);
 				return null;
 			}
 		} else {
@@ -141,6 +155,7 @@ public final class VaultManagerImpl implements VaultManager {
 				return new String(cipher.doFinal(cipherText),StandardCharsets.UTF_8);
 			} catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException
 					| IllegalBlockSizeException | BadPaddingException | InvalidAlgorithmParameterException e) {
+				LOGGER.error(DECRYPT_VALUE,e);
 				return null;
 			}		
 		} else {

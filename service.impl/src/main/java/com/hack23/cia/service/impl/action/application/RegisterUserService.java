@@ -104,12 +104,6 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 
 		RegisterUserResponse response;
 
-		final ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService
-				.checkValueOrLoadDefault("Registered User All get Role Admin", "Registered User All get Role Admin",
-						ConfigurationGroup.AUTHORIZATION, RegisterUserService.class.getSimpleName(),
-						"Register User Service", "Responsible for create of useraccounts", "registered.users.get.admin",
-						"true");
-
 		final UserAccount userNameExist = getUserDAO().findFirstByProperty(UserAccount_.username,
 				serviceRequest.getUsername());
 		final UserAccount userEmailExist = getUserDAO().findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
@@ -118,43 +112,7 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 				.validate(new PasswordData(serviceRequest.getUserpassword()));
 
 		if (userEmailExist == null && userNameExist == null && passwordRuleResults.isValid()) {
-			final UserAccount userAccount = new UserAccount();
-			userAccount.setCountry(serviceRequest.getCountry());
-			userAccount.setEmail(serviceRequest.getEmail());
-			userAccount.setUsername(serviceRequest.getUsername());
-			userAccount.setUserId(UUID.randomUUID().toString());
-			userAccount.setUserpassword(
-					passwordEncoder.encode(userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword()));
-			userAccount.setNumberOfVisits(1);
-			
-			if ( serviceRequest.getUserType() == null) {
-				userAccount.setUserType(UserType.PRIVATE);
-			} else {
-				userAccount.setUserType(serviceRequest.getUserType());
-			}
-				
-			userAccount.setUserEmailStatus(UserEmailStatus.UNKNOWN);
-			userAccount.setUserLockStatus(UserLockStatus.UNLOCKED);
-			userAccount.setCreatedDate(new Date());
-			getUserDAO().persist(userAccount);
-			
-			if ("true".equals(registeredUsersGetAdminConfig.getPropertyValue())) {
-				userAccount.setUserRole(UserRole.ADMIN);
-			} else {
-				userAccount.setUserRole(UserRole.USER);
-			}
-
-			final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-
-			if (UserRole.ADMIN == userAccount.getUserRole()) {
-				authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-			} else {
-				authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-			}
-
-			SecurityContextHolder.getContext().setAuthentication(
-					new UsernamePasswordAuthenticationToken(userAccount.getUserId(), "n/a", authorities));
-
+			final UserAccount userAccount = createUserAccount(serviceRequest);
 			eventRequest.setUserId(userAccount.getUserId());
 			response = new RegisterUserResponse(ServiceResult.SUCCESS);
 		} else {
@@ -173,6 +131,62 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 		createApplicationEventService.processService(eventRequest);
 		LOGGER.info("Event: {}", eventRequest);
 		return response;
+	}
+
+	/**
+	 * Creates the user account.
+	 *
+	 * @param serviceRequest
+	 *            the service request
+	 * @param registeredUsersGetAdminConfig
+	 *            the registered users get admin config
+	 * @return the user account
+	 */
+	private UserAccount createUserAccount(final RegisterUserRequest serviceRequest) {
+		
+		final ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService
+				.checkValueOrLoadDefault("Registered User All get Role Admin", "Registered User All get Role Admin",
+						ConfigurationGroup.AUTHORIZATION, RegisterUserService.class.getSimpleName(),
+						"Register User Service", "Responsible for create of useraccounts", "registered.users.get.admin",
+						"true");
+
+		final UserAccount userAccount = new UserAccount();
+		userAccount.setCountry(serviceRequest.getCountry());
+		userAccount.setEmail(serviceRequest.getEmail());
+		userAccount.setUsername(serviceRequest.getUsername());
+		userAccount.setUserId(UUID.randomUUID().toString());
+		userAccount.setUserpassword(
+				passwordEncoder.encode(userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword()));
+		userAccount.setNumberOfVisits(1);
+		
+		if ( serviceRequest.getUserType() == null) {
+			userAccount.setUserType(UserType.PRIVATE);
+		} else {
+			userAccount.setUserType(serviceRequest.getUserType());
+		}
+			
+		userAccount.setUserEmailStatus(UserEmailStatus.UNKNOWN);
+		userAccount.setUserLockStatus(UserLockStatus.UNLOCKED);
+		userAccount.setCreatedDate(new Date());
+		getUserDAO().persist(userAccount);
+		
+		if ("true".equals(registeredUsersGetAdminConfig.getPropertyValue())) {
+			userAccount.setUserRole(UserRole.ADMIN);
+		} else {
+			userAccount.setUserRole(UserRole.USER);
+		}
+
+		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+		if (UserRole.ADMIN == userAccount.getUserRole()) {
+			authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		} else {
+			authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+		}
+
+		SecurityContextHolder.getContext().setAuthentication(
+				new UsernamePasswordAuthenticationToken(userAccount.getUserId(), "n/a", authorities));
+		return userAccount;
 	}
 
 	@Override

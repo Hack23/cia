@@ -27,6 +27,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -40,6 +42,16 @@ import com.hack23.cia.service.external.esv.api.GovernmentOperationPeriodOutcome;
  */
 @Component
 final class EsvApiImpl implements EsvApi {
+
+	/** The Constant GET_GOVERNMENT_BODY_REPORT. */
+	private static final String GET_GOVERNMENT_BODY_REPORT = "getGovernmentBodyReport";
+
+	/** The Constant GET_REPORT. */
+	private static final String GET_REPORT = "getReport";
+
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(EsvApiImpl.class);
 
 	/** The Constant NO_MINISTRY. */
 	private static final String NO_MINISTRY = "Inget departement";
@@ -153,6 +165,7 @@ final class EsvApiImpl implements EsvApi {
 		try {
 			return esvGovernmentOperationsExcelReader.getReport().stream().collect(Collectors.groupingBy(GovernmentOperationPeriodOutcome::getVariableName));
 		} catch (final IOException e) {
+			LOGGER.error(GET_REPORT,e);
 			return new HashMap<>();
 		}		
 	}
@@ -169,6 +182,7 @@ final class EsvApiImpl implements EsvApi {
 			result.addAll(esvGovernmentBodyOperationOutcomeReader.readIncomeCsv());
 			result.addAll(esvGovernmentBodyOperationOutcomeReader.readOutgoingCsv());
 		} catch (final IOException e) {
+			LOGGER.error(GET_GOVERNMENT_BODY_REPORT,e);
 			return result;
 		}
 		return result;
