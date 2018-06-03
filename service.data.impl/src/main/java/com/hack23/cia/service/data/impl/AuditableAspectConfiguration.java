@@ -21,11 +21,8 @@ package com.hack23.cia.service.data.impl;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.sql.DataSource;
 
-import org.hibernate.Session;
-import org.hibernate.internal.SessionImpl;
 import org.javers.core.Javers;
 import org.javers.core.MappingStyle;
 import org.javers.hibernate.integration.HibernateUnproxyObjectAccessHook;
@@ -53,29 +50,26 @@ import com.google.common.collect.ImmutableMap;
 @Configuration
 public class AuditableAspectConfiguration {
 
-	/** The entity manager. */
-	@PersistenceContext
-	private EntityManager entityManager;
-
 	/** The tx manager. */
 	@Autowired
 	private JtaTransactionManager txManager;
 
+	@Autowired
+	private DataSource dataSource;
+	
 	/**
 	 * Gets the javers.
 	 *
 	 * @return the javers
 	 */
-	@Bean
+	@Bean(name="javers")
 	public Javers getJavers() {
 		final JaversSqlRepository sqlRepository = SqlRepositoryBuilder.sqlRepository()
 				.withConnectionProvider(new ConnectionProvider() {
 
 					@Override
 					public Connection getConnection() throws SQLException {
-						final SessionImpl session = (SessionImpl) entityManager.unwrap(Session.class);
-
-						return session.connection();
+						return dataSource.getConnection();
 					}
 				}).withDialect(DialectName.POSTGRES).build();
 

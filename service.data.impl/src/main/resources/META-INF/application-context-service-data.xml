@@ -29,7 +29,7 @@
 	</bean>
 
 	<bean id="liquibase"
-		class="liquibase.integration.spring.SpringLiquibase">
+		class="liquibase.integration.spring.SpringLiquibase" depends-on="javers">
 		<property name="dataSource" ref="dataSource" />
 		<property name="changeLog" value="classpath:db-changelog.xml" />
 		<!-- contexts specifies the runtime contexts to use. <property name="contexts"
