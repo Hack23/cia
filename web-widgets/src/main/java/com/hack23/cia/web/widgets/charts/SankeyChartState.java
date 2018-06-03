@@ -47,6 +47,13 @@ public final class SankeyChartState extends JavaScriptComponentState {
 		super();
 	}
 
+	/**
+	 * Adds the data row.
+	 *
+	 * @param from the from
+	 * @param to the to
+	 * @param weight the weight
+	 */
 	public void addDataRow(final String from, final String to, int weight) {
 		final ArrayList<Object> valueData = new ArrayList<>();
 		valueData.add(from);

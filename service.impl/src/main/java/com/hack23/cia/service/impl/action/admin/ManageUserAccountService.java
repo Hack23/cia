@@ -60,7 +60,14 @@ public final class ManageUserAccountService
 	
 	/** The user command map. */
 	private final Map<ManageUserAccountRequest.AccountOperation,UserCommand> userCommandMap = new EnumMap<>(ManageUserAccountRequest.AccountOperation.class);
-		
+
+	/**
+	 * Instantiates a new update application configuration service.
+	 */
+	public ManageUserAccountService() {
+		super(ManageUserAccountRequest.class);
+	}
+
 	/**
 	 * Inits the user command map.
 	 */
@@ -93,13 +100,6 @@ public final class ManageUserAccountService
 				return new ManageUserAccountResponse(ServiceResult.SUCCESS);
 			}});
 
-	}
-
-	/**
-	 * Instantiates a new update application configuration service.
-	 */
-	public ManageUserAccountService() {
-		super(ManageUserAccountRequest.class);
 	}
 
 	@Override
@@ -186,6 +186,14 @@ public final class ManageUserAccountService
 	 * The Interface UserCommand.
 	 */
 	interface UserCommand {
+		
+		/**
+		 * Execute.
+		 *
+		 * @param account
+		 *            the account
+		 * @return the manage user account response
+		 */
 		ManageUserAccountResponse execute(UserAccount account);		
 	}	
 

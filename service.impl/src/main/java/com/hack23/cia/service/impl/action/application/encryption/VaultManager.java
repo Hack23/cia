@@ -38,8 +38,30 @@ public interface VaultManager extends Serializable {
 	 */
 	String getEncryptedValue(String password, UserAccount userExist);
 
+	/**
+	 * Encrypt value.
+	 *
+	 * @param password
+	 *            the password
+	 * @param userId
+	 *            the user id
+	 * @param value
+	 *            the value
+	 * @return the string
+	 */
 	String encryptValue(String password, String userId, String value);
 
+	/**
+	 * Decrypt value.
+	 *
+	 * @param password
+	 *            the password
+	 * @param userId
+	 *            the user id
+	 * @param value
+	 *            the value
+	 * @return the string
+	 */
 	String decryptValue(String password, String userId, String value);
 
 

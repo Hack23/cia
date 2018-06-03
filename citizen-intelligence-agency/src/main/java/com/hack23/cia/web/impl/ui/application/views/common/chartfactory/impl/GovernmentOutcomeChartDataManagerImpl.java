@@ -68,7 +68,7 @@ public final class GovernmentOutcomeChartDataManagerImpl extends AbstractChartDa
 
 	}
 
-	private void createPeriodData(final Map<String, List<GovernmentOperationPeriodOutcome>> map, final GovernmentOperationPeriodOutcome.Variables variables,final DataSeries dataSeries,
+	private static void createPeriodData(final Map<String, List<GovernmentOperationPeriodOutcome>> map, final GovernmentOperationPeriodOutcome.Variables variables,final DataSeries dataSeries,
 			final Series series) {
 		series.addSeries(new XYseries().setLabel(variables.toString()));
 		dataSeries.newSeries();

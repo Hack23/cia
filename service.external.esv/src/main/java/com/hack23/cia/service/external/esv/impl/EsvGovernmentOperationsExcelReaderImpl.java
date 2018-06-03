@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -62,21 +62,21 @@ final class EsvGovernmentOperationsExcelReaderImpl implements EsvGovernmentOpera
 		while (rows.hasNext()) {
 			row = (XSSFRow) rows.next();
 
-			if (row.getLastCellNum() == 6 && row.getCell(2).getCellType() == Cell.CELL_TYPE_NUMERIC) {
-				final GovernmentOperationPeriodOutcome GovernmentOperationPeriodOutcome = new GovernmentOperationPeriodOutcome();
+			if (row.getLastCellNum() == 6 && row.getCell(2).getCellTypeEnum() == CellType.NUMERIC) {
+				final GovernmentOperationPeriodOutcome governmentOperationPeriodOutcome = new GovernmentOperationPeriodOutcome();
 
-				GovernmentOperationPeriodOutcome.setVariableName(row.getCell(0).getStringCellValue());
-				GovernmentOperationPeriodOutcome.setPeriod(row.getCell(1).getStringCellValue());
+				governmentOperationPeriodOutcome.setVariableName(row.getCell(0).getStringCellValue());
+				governmentOperationPeriodOutcome.setPeriod(row.getCell(1).getStringCellValue());
 
-				GovernmentOperationPeriodOutcome.setValue(row.getCell(2).getNumericCellValue());
-				GovernmentOperationPeriodOutcome
+				governmentOperationPeriodOutcome.setValue(row.getCell(2).getNumericCellValue());
+				governmentOperationPeriodOutcome
 						.setPercentageChangeFromPreviousToLatest(row.getCell(3).getNumericCellValue());
-				GovernmentOperationPeriodOutcome
+				governmentOperationPeriodOutcome
 						.setPercentageChangeFromSamePeriodLastYearToLatest(row.getCell(4).getNumericCellValue());
 
-				GovernmentOperationPeriodOutcome.setObservationStatus(row.getCell(5).getStringCellValue());
+				governmentOperationPeriodOutcome.setObservationStatus(row.getCell(5).getStringCellValue());
 
-				result.add(GovernmentOperationPeriodOutcome);
+				result.add(governmentOperationPeriodOutcome);
 			}
 		}
 		return result;

@@ -146,7 +146,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 */
 	protected final String getPageId(final String parameters) {
 		if (parameters != null) {
-			String cleanedString = parameters;;
+			String cleanedString = parameters;
 			if (parameters.contains("[")) {
 				cleanedString = parameters.replace(parameters.substring(parameters.indexOf('[') , parameters.lastIndexOf(']')+1), "");
 			} 

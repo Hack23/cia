@@ -49,9 +49,6 @@ public final class UserContextUtil {
 	 * @return the user id from security context
 	 */
 	public static String getUserIdFromSecurityContext() {
-
-		final String result=null;
-
 		final SecurityContext context = SecurityContextHolder.getContext();
 		if (context != null) {
 			final Authentication authentication = context.getAuthentication();
@@ -59,7 +56,7 @@ public final class UserContextUtil {
 				return authentication.getPrincipal().toString();
 			}
 		}
-		return result;
+		return null;
 	}
 
 	/**

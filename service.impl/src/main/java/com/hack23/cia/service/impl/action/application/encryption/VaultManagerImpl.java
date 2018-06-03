@@ -61,6 +61,15 @@ public final class VaultManagerImpl implements VaultManager {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	/** The Constant IV_BYTE_SIZE. */
+	private static final int IV_BYTE_SIZE = 12;
+
+	/** The Constant TAG_BIT_LENGTH. */
+	private static final int TAG_BIT_LENGTH = 128;
+
+	/** The Constant KEY_SIZE_IN_BYTES. */
+	private static final int KEY_SIZE_IN_BYTES = 32;
 	
 	/** The Constant ENCRYPT_VALUE. */
 	private static final String ENCRYPT_VALUE = "encryptValue";
@@ -116,10 +125,10 @@ public final class VaultManagerImpl implements VaultManager {
 			try {
 				final Key buildKey = buildKey(userId, password);			
 				final SecureRandom secureRandom = new SecureRandom();
-				final byte[] iv = new byte[12]; 
+				final byte[] iv = new byte[IV_BYTE_SIZE]; 
 				secureRandom.nextBytes(iv);			
 				final Cipher cipher = Cipher.getInstance(AES_GCM_NO_PADDING);
-				final GCMParameterSpec parameterSpec = new GCMParameterSpec(128, iv); 
+				final GCMParameterSpec parameterSpec = new GCMParameterSpec(TAG_BIT_LENGTH, iv); 
 				cipher.init(Cipher.ENCRYPT_MODE, buildKey, parameterSpec);
 	
 				final byte[] cipherText = cipher.doFinal(value.getBytes(StandardCharsets.UTF_8));
@@ -151,7 +160,7 @@ public final class VaultManagerImpl implements VaultManager {
 				byteBuffer.get(cipherText);
 				
 				final Cipher cipher = Cipher.getInstance(AES_GCM_NO_PADDING);
-				cipher.init(Cipher.DECRYPT_MODE, buildKey, new GCMParameterSpec(128, iv));
+				cipher.init(Cipher.DECRYPT_MODE, buildKey, new GCMParameterSpec(TAG_BIT_LENGTH, iv));
 				return new String(cipher.doFinal(cipherText),StandardCharsets.UTF_8);
 			} catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException
 					| IllegalBlockSizeException | BadPaddingException | InvalidAlgorithmParameterException e) {
@@ -166,7 +175,7 @@ public final class VaultManagerImpl implements VaultManager {
 
 	private static Key buildKey(final String userid, final String password) {
 		return new SecretKeySpec(Arrays.copyOf(
-				new SHA3.Digest512().digest((userid + ".uuid" + password).getBytes(StandardCharsets.UTF_8)), 32),
+				new SHA3.Digest512().digest((userid + ".uuid" + password).getBytes(StandardCharsets.UTF_8)), KEY_SIZE_IN_BYTES),
 				ALGORITHM);
 	}
 }
