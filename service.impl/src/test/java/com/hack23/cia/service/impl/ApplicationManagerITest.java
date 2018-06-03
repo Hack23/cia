@@ -31,7 +31,6 @@ import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.service.api.DataSummary;
 
 /**
  * The Class ApplicationManagerITest.
@@ -62,10 +61,6 @@ public final class ApplicationManagerITest extends AbstractServiceFunctionalInte
 		final DataContainer<ViewRiksdagenCommittee, Serializable> committeeDataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenCommittee.class);
 		assertNotNull(EXPECT_A_RESULT, committeeDataContainer);
-
-		final DataContainer<DataSummary, Serializable> dataSummarydataContainer = applicationManager
-				.getDataContainer(DataSummary.class);
-		assertNotNull(EXPECT_A_RESULT, dataSummarydataContainer);
 
 		final DataContainer<PersonData, Serializable> personDataContainer = applicationManager
 				.getDataContainer(PersonData.class);

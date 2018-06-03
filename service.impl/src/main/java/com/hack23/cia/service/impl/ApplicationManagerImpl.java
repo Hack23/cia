@@ -40,7 +40,6 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.service.api.AgentContainer;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.service.api.DataSummary;
 import com.hack23.cia.service.api.action.common.ServiceRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse;
 import com.hack23.cia.service.impl.action.common.BusinessService;
@@ -60,11 +59,6 @@ final class ApplicationManagerImpl implements ApplicationManager, ApplicationCon
 	@Autowired
 	@Qualifier("DataAgentContainer")
 	private AgentContainer dataAgentContainer;
-
-	/** The data summary data container. */
-	@Autowired
-	@Qualifier("DataSummaryDataContainer")
-	private DataContainer<DataSummary, String> dataSummaryDataContainer;
 
 	/** The view riksdagen committee data container. */
 	@Autowired
@@ -100,9 +94,7 @@ final class ApplicationManagerImpl implements ApplicationManager, ApplicationCon
 
 		DataContainer<T, V> result;
 
-		if (dataObject.equals(DataSummary.class)) {
-			result= (DataContainer<T, V>) dataSummaryDataContainer;
-		} else if (dataObject.equals(ViewRiksdagenCommittee.class)) {
+		if (dataObject.equals(ViewRiksdagenCommittee.class)) {
 			result= (DataContainer<T, V>) viewRiksdagenCommitteeDataContainer;
 		} else {
 			result= viewDataDataContainerFactory.createDataContainer(dataObject);

@@ -20,7 +20,7 @@
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="dataType" type="xsd:string" />
-			<xsd:element name="size" type="xsd:long" />
+			<xsd:element name="dataSize" type="xsd:long" />
 		</xsd:sequence>
 	</xsd:complexType>
 

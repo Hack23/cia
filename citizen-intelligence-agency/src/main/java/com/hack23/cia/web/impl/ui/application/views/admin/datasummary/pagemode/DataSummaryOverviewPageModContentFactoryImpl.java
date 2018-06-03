@@ -18,14 +18,11 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
+import com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditDataSummary;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.service.api.DataSummary;
 import com.hack23.cia.service.api.action.admin.RemoveDataRequest;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -48,8 +45,9 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DataSummaryOverviewPageModContentFactoryImpl extends AbstractDataSummaryPageModContentFactoryImpl {
 
-	private static final List<String> DATASUMMARY_FORM_FIELDS = Arrays.asList( "personSize", "totalBallotVotes", "committeeProposalSize", "voteSize",
-			"documentStatusSize", "documentElementSize", "documentContentSize" );
+	private static final String[] HIDE_COLUMNS = new String[] { "id" };
+
+	private static final String[] COLUMN_ORDER = new String[] { "dataType", "dataSize" };
 
 	/** The Constant REMOVE_DOCUMENTS. */
 	private static final String REMOVE_DOCUMENTS = "Remove Documents";
@@ -105,17 +103,15 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 		content.addComponent(horizontalLayout);
 		content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
 
-		final DataContainer<DataSummary, String> dataContainer = getApplicationManager()
-				.getDataContainer(DataSummary.class);
-
-		final List<DataSummary> all = dataContainer.getAll();
-		if (!all.isEmpty()) {
-			final DataSummary dataSummary = all.get(0);
-
-			getFormFactory().addFormPanelTextFields(horizontalLayout, dataSummary, DataSummary.class,
-					DATASUMMARY_FORM_FIELDS);
-		}
-
+		final DataContainer<ViewAuditDataSummary, Long> dataContainer = getApplicationManager()
+				.getDataContainer(ViewAuditDataSummary.class);
+		
+		getGridFactory()
+		.createBasicBeanItemNestedPropertiesGrid(horizontalLayout, ViewAuditDataSummary.class, dataContainer.getAll(),
+				ADMIN_DATA_SUMMARY,null,
+				COLUMN_ORDER, HIDE_COLUMNS,
+				null, null, null);
+		
 		final VerticalLayout overviewLayout = new VerticalLayout();
 		overviewLayout.setSizeFull();
 		content.addComponent(overviewLayout);
