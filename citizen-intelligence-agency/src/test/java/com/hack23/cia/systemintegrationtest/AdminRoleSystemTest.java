@@ -29,6 +29,7 @@ import org.openqa.selenium.WebElement;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DataSummaryPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 
 /**
@@ -435,6 +436,24 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, ""));
 
+	}
+
+	/**
+	 * Visit admin author summary view test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void visitAdminAuthorSummaryViewTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, DataSummaryPageMode.AUTHORS.toString()));
 	}
 
 	/**

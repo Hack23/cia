@@ -24,6 +24,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DataSummaryPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveLayout;
@@ -44,6 +45,9 @@ import com.vaadin.ui.VerticalLayout;
  * The Class AbstractMenuItemFactoryImpl.
  */
 public abstract class AbstractMenuItemFactoryImpl {
+
+	/** The Constant DATA_AUTHOR_SUMMARY. */
+	private static final String DATA_AUTHOR_SUMMARY = "Data author summary";
 
 	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
 	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
@@ -87,7 +91,11 @@ public abstract class AbstractMenuItemFactoryImpl {
 	/** The Constant COMMAND_DATASUMMARY. */
 	private static final PageModeMenuCommand COMMAND_DATASUMMARY = new PageModeMenuCommand(
 			AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, "");
+	
+	private static final PageModeMenuCommand COMMAND_AUTHOR_DATASUMMARY = new PageModeMenuCommand(
+			AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, DataSummaryPageMode.AUTHORS.toString());
 
+	
 	/** The Constant COMMAND_AGENT_OPERATION. */
 	private static final PageModeMenuCommand COMMAND_AGENT_OPERATION = new PageModeMenuCommand(
 			AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, "");
@@ -289,6 +297,8 @@ public abstract class AbstractMenuItemFactoryImpl {
 			managementMenuItem.addItem(AGENT_OPERATIONS_TEXT,VaadinIcons.BRIEFCASE, COMMAND_AGENT_OPERATION);
 
 			managementMenuItem.addItem(DATA_SUMMARY_TEXT,VaadinIcons.DATABASE, COMMAND_DATASUMMARY);
+			managementMenuItem.addItem(DATA_AUTHOR_SUMMARY,VaadinIcons.DATABASE, COMMAND_AUTHOR_DATASUMMARY);
+			
 
 			managementMenuItem.addItem(EMAIL,VaadinIcons.MAILBOX, COMMAND_EMAIL);
 

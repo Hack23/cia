@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +28,7 @@ import com.hack23.cia.service.api.action.admin.RemoveDataRequest;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RefreshDataViewsClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RemoveDataClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.UpdateSearchIndexClickListener;
@@ -85,7 +87,9 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page);
+		final String pageId = getPageId(parameters);
+		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
+				|| parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 	@Secured({ "ROLE_ADMIN" })
