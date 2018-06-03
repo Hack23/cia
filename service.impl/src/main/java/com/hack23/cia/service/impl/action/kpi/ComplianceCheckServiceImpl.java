@@ -92,8 +92,8 @@ public final class ComplianceCheckServiceImpl
 		final Set<ConstraintViolation<ComplianceCheckRequest>> requestConstraintViolations = validateRequest(
 				serviceRequest);
 		if (!requestConstraintViolations.isEmpty()) {
-			response = handleInputViolations(eventRequest, requestConstraintViolations,
-					new ComplianceCheckResponse(ServiceResult.FAILURE));
+			response = new ComplianceCheckResponse(ServiceResult.FAILURE);
+			handleInputViolations(eventRequest, requestConstraintViolations,response);
 		} else {
 
 			final List<ComplianceCheck> complianceList = rulesEngine.checkRulesCompliance();
