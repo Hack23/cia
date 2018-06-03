@@ -109,7 +109,8 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 		final Set<ConstraintViolation<T>> validateRequest = validateRequest(serviceRequest);
 		if (!validateRequest.isEmpty()) {
 			final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
-			final V response = handleInputViolations(eventRequest, validateRequest, createErrorResponse());
+			V response = createErrorResponse();
+			handleInputViolations(eventRequest, validateRequest, response);
 			createApplicationEventService.processService(eventRequest);
 			return response;
 		} else {
@@ -153,10 +154,9 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 	 * @return the human message
 	 */
 	protected final String getHumanMessage(final Set<ConstraintViolation<T>> requestConstraintViolations) {
-		final String errorMessage = requestConstraintViolations.stream()
+		return requestConstraintViolations.stream()
 				.sorted((p1, p2) -> p1.getPropertyPath().toString().compareTo(p2.getPropertyPath().toString()))
 				.map(p -> p.getPropertyPath().toString() + " " + p.getMessage()).collect(Collectors.joining(", "));
-		return errorMessage;
 	}
 
 	/**
@@ -170,12 +170,11 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 	 *            the response
 	 * @return the v
 	 */
-	protected final V handleInputViolations(final CreateApplicationEventRequest eventRequest,
+	protected final void handleInputViolations(final CreateApplicationEventRequest eventRequest,
 			final Set<ConstraintViolation<T>> requestConstraintViolations,final V response) {
 		final String errorMessage = getHumanMessage(requestConstraintViolations);
 		((AbstractResponse) response).setErrorMessage(errorMessage);
 		eventRequest.setErrorMessage(errorMessage);
-		return response;
 	}
 
 	/**
