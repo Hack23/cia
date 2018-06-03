@@ -27,7 +27,6 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.javers.core.Changes;
 import org.javers.core.Javers;
 import org.javers.core.metamodel.object.CdoSnapshot;
-import org.javers.repository.jql.JqlQuery;
 import org.javers.repository.jql.QueryBuilder;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -19,7 +19,6 @@
 package com.hack23.cia.service.data.impl.util;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.UndeclaredThrowableException;
 import java.util.Collections;
 import java.util.IdentityHashMap;
 import java.util.Set;
@@ -39,25 +38,6 @@ public final class LoadHelper {
 	}
 
 	/**
-	 * Handle reflection exception.
-	 *
-	 * @param ex
-	 *            the ex
-	 */
-	private static void handleReflectionException(final Exception ex) {
-		if (ex instanceof NoSuchMethodException) {
-			throw new IllegalStateException("Method not found: " + ex.getMessage());
-		}
-		if (ex instanceof IllegalAccessException) {
-			throw new IllegalStateException("Could not access method: " + ex.getMessage());
-		}
-		if (ex instanceof RuntimeException) {
-			throw (RuntimeException) ex;
-		}
-		throw new UndeclaredThrowableException(ex);
-	}
-
-	/**
 	 * Recursive initliaze.
 	 *
 	 * @param obj
@@ -71,13 +51,9 @@ public final class LoadHelper {
 	 * @throws NoSuchMethodException
 	 *             the no such method exception
 	 */
-	private static void recursiveInitialize(final Object obj, final Set<Object> dejaVu)
-			throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-		if (dejaVu.contains(obj)) {
-			return;
-		} else {
+	private static void recursiveInitialize(final Object obj, final Set<Object> dejaVu) {
+		if (!dejaVu.contains(obj)) {
 			dejaVu.add(obj);
-
 			if (!Hibernate.isInitialized(obj)) {
 				Hibernate.initialize(obj);
 			}
@@ -95,13 +71,8 @@ public final class LoadHelper {
 	 */
 	public static <T> T recursiveInitialize(final T obj) {
 		if (obj != null) {
-
 			final Set<Object> dejaVu = Collections.newSetFromMap(new IdentityHashMap<Object, Boolean>());
-			try {
-				recursiveInitialize(obj, dejaVu);
-			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-				handleReflectionException(e);
-			}
+			recursiveInitialize(obj, dejaVu);
 		}
 		return obj;
 	}
