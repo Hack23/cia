@@ -108,7 +108,7 @@
     <cia.project.versions.asm>6.2</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.6</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2.redhat-2</cia.project.versions.commons.collections>
-    <cia.project.versions.commons.lang>2.6.0.redhat-6</cia.project.versions.commons.lang>
+    <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
     <cia.project.versions.slf4j>1.8.0-beta2</cia.project.versions.slf4j>
     <cia.project.versions.logback>1.3.0-alpha4</cia.project.versions.logback>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
