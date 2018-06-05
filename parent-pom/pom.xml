@@ -555,20 +555,10 @@
         <enabled>true</enabled>
       </releases>
       <snapshots>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
       </snapshots>
       <id>hack23.public</id>
       <url>https://www.hack23.com/nexus/repository/maven-public/</url>
-    </repository>
-    <repository>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <id>hack23.snapshots</id>
-      <url>https://www.hack23.com/nexus/repository/maven-snapshots/</url>
     </repository>
   </repositories>
   <pluginRepositories>
@@ -577,21 +567,11 @@
         <enabled>true</enabled>
       </releases>
       <snapshots>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
       </snapshots>
       <id>hack23.public</id>
       <url>https://www.hack23.com/nexus/repository/maven-public/</url>
     </pluginRepository>
-    <pluginRepository>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <id>hack23.snapshots</id>
-      <url>https://www.hack23.com/nexus/repository/maven-snapshots/</url>
-    </pluginRepository>    
   </pluginRepositories>
   <build>
     <extensions>
