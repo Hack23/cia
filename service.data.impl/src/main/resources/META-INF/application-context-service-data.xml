@@ -29,7 +29,7 @@
 	</bean>
 
 	<bean id="liquibase"
-		class="liquibase.integration.spring.SpringLiquibase" depends-on="javers">
+		class="liquibase.integration.spring.SpringLiquibase">
 		<property name="dataSource" ref="dataSource" />
 		<property name="changeLog" value="classpath:db-changelog.xml" />
 		<!-- contexts specifies the runtime contexts to use. <property name="contexts"
@@ -53,7 +53,7 @@
 				class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple" />
 		</property>
 		<property name="validationQuery" value="select 1" />
-		<property name="maxTotal" value="80" />
+		<property name="maxTotal" value="200" />
 	</bean>
 
 	<bean id="entityManagerFactory"
