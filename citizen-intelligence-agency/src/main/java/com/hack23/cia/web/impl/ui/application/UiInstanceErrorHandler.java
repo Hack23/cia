@@ -62,14 +62,12 @@ public final class UiInstanceErrorHandler implements ErrorHandler {
 			final AccessDeniedException accessDeniedException = (AccessDeniedException) event.getThrowable();
 			Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);
 			ui.getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
-			return;
 		} else if (event.getThrowable().getCause() != null && event.getThrowable().getCause().getCause() != null
 				&& event.getThrowable().getCause().getCause().getCause() instanceof AccessDeniedException) {
 			final AccessDeniedException accessDeniedException = (AccessDeniedException) event.getThrowable().getCause()
 					.getCause().getCause();
 			Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);
 			ui.getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
-			return;
 		} else {
 			LOGGER.warn(LOG_WARN_VAADIN_ERROR, event.getThrowable());
 		}

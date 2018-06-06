@@ -37,6 +37,27 @@ import com.hack23.cia.service.external.esv.api.GovernmentOperationPeriodOutcome;
 @Component
 final class EsvGovernmentOperationsExcelReaderImpl implements EsvGovernmentOperationsExcelReader {
 
+	/** The Constant STATUS_CELL. */
+	private static final int STATUS_CELL = 5;
+	
+	/** The Constant PERCENTAGE_CHANGE_PREVIOUS_CELL. */
+	private static final int PERCENTAGE_CHANGE_PREVIOUS_CELL = 3;
+	
+	/** The Constant PERCENTAGE_CHANGE_SAME_CELL. */
+	private static final int PERCENTAGE_CHANGE_SAME_CELL = 4;
+	
+	/** The Constant PERIOD_CELL. */
+	private static final int PERIOD_CELL = 1;
+	
+	/** The Constant VARIABLE_CELL. */
+	private static final int VARIABLE_CELL = 0;
+	
+	/** The Constant VALUE_CELL. */
+	private static final int VALUE_CELL = 2;
+	
+	/** The Constant ROW_LENGTH. */
+	private static final int ROW_LENGTH = 6;
+
 	/**
 	 * Instantiates a new esv government operations excel reader impl.
 	 */
@@ -62,19 +83,19 @@ final class EsvGovernmentOperationsExcelReaderImpl implements EsvGovernmentOpera
 		while (rows.hasNext()) {
 			row = (XSSFRow) rows.next();
 
-			if (row.getLastCellNum() == 6 && row.getCell(2).getCellTypeEnum() == CellType.NUMERIC) {
+			if (row.getLastCellNum() == ROW_LENGTH && row.getCell(VALUE_CELL).getCellTypeEnum() == CellType.NUMERIC) {
 				final GovernmentOperationPeriodOutcome governmentOperationPeriodOutcome = new GovernmentOperationPeriodOutcome();
 
-				governmentOperationPeriodOutcome.setVariableName(row.getCell(0).getStringCellValue());
-				governmentOperationPeriodOutcome.setPeriod(row.getCell(1).getStringCellValue());
+				governmentOperationPeriodOutcome.setVariableName(row.getCell(VARIABLE_CELL).getStringCellValue());
+				governmentOperationPeriodOutcome.setPeriod(row.getCell(PERIOD_CELL).getStringCellValue());
 
-				governmentOperationPeriodOutcome.setValue(row.getCell(2).getNumericCellValue());
+				governmentOperationPeriodOutcome.setValue(row.getCell(VALUE_CELL).getNumericCellValue());
 				governmentOperationPeriodOutcome
-						.setPercentageChangeFromPreviousToLatest(row.getCell(3).getNumericCellValue());
+						.setPercentageChangeFromPreviousToLatest(row.getCell(PERCENTAGE_CHANGE_PREVIOUS_CELL).getNumericCellValue());
 				governmentOperationPeriodOutcome
-						.setPercentageChangeFromSamePeriodLastYearToLatest(row.getCell(4).getNumericCellValue());
+						.setPercentageChangeFromSamePeriodLastYearToLatest(row.getCell(PERCENTAGE_CHANGE_SAME_CELL).getNumericCellValue());
 
-				governmentOperationPeriodOutcome.setObservationStatus(row.getCell(5).getStringCellValue());
+				governmentOperationPeriodOutcome.setObservationStatus(row.getCell(STATUS_CELL).getStringCellValue());
 
 				result.add(governmentOperationPeriodOutcome);
 			}

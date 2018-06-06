@@ -51,7 +51,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	private static final String MYNDIGHET = "Myndighet";
 
 	/** The Constant ÅR. */
-	private static final String ÅR = "År";
+	private static final String YEAR = "År";
 
 	/** The Constant UTFALL_DECEMBER. */
 	private static final String UTFALL_DECEMBER = "Utfall december";
@@ -172,7 +172,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 		final List<GovernmentBodyAnnualOutcomeSummary> list = new ArrayList<>();
 		
 		for (final CSVRecord csvRecord : records) {
-			final GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get(MYNDIGHET), csvRecord.get(ORGANISATIONSNUMMER), Integer.parseInt(csvRecord.get(ÅR)));
+			final GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get(MYNDIGHET), csvRecord.get(ORGANISATIONSNUMMER), Integer.parseInt(csvRecord.get(YEAR)));
 			
 			for (final String field : specificFields) {				
 				governmentBodyAnnualOutcomeSummary.addDescriptionField(field,csvRecord.get(field));

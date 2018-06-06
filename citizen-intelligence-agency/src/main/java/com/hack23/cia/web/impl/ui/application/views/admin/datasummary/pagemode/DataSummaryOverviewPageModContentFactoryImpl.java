@@ -87,7 +87,6 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
 		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 

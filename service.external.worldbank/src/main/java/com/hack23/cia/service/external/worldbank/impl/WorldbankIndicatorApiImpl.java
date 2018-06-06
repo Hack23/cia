@@ -54,6 +54,8 @@ import com.hack23.cia.service.external.worldbank.api.WorldBankIndicatorApi;
 @Component
 final class WorldbankIndicatorApiImpl extends BaseWorldBankApiImpl implements WorldBankIndicatorApi {
 
+	private static final int IGNORE_TOP_HEADERS_LINE = 4;
+
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(WorldbankIndicatorApiImpl.class);
 
@@ -87,9 +89,6 @@ final class WorldbankIndicatorApiImpl extends BaseWorldBankApiImpl implements Wo
 		super(xmlAgent);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hack23.cia.service.external.worldbank.api.WorldBankIndicatorApi#getIndicators()
-	 */
 	@Override
 	public List<IndicatorElement> getIndicators() throws DataFailureException {
 		final List<IndicatorElement> result = new ArrayList<>();
@@ -165,7 +164,7 @@ final class WorldbankIndicatorApiImpl extends BaseWorldBankApiImpl implements Wo
 	 */
 	private static List<String> readCsvContent(final InputStream is) throws IOException {		
 		final BufferedReader reader = new BufferedReader(new InputStreamReader(is,Charsets.UTF_8));		
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < IGNORE_TOP_HEADERS_LINE; i++) {
 			String ignoreFirstLinesWithHeaders = reader.readLine();			
 		}
 		
