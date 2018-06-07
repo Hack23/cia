@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+	<changeSet author="documentSummaryViews" id="1414872417007-315" failOnError="true">
+		
+	<createView replaceIfExists="true"
+			viewName="view_riksdagen_person_signed_document_summary">select person_reference_id as person_id,reference_name as person_name,max(party_short_code) as party,count(*) as total from document_person_reference_da_0 group by person_reference_id,reference_name order by total</createView>
+
+	<createView replaceIfExists="true"
+			viewName="view_riksdagen_party_signatures_document_summary">select upper(party_short_code) as party,count(*) as total from document_person_reference_da_0 where not party_short_code='' group by upper(party_short_code) order by total</createView>
+	</changeSet>
+	
+</databaseChangeLog>
