@@ -43,6 +43,7 @@ public final class RuleViolationPageItemRendererClickListener implements PageIte
 	 * Instantiates a new rule violation page item renderer click listener.
 	 */
 	public RuleViolationPageItemRendererClickListener() {
+		super();
 	}
 
 	@Override

@@ -136,7 +136,7 @@ public final class ManageUserAccountServiceITest extends AbstractServiceFunction
 		final List<UserAccount> allByAfterDelete = userContainer.getAllBy(UserAccount_.username,
 				createAccountRequest.getUsername());
 		assertEquals(1, allByAfterDelete.size());
-		assertEquals(allByAfterDelete.get(0).getUserLockStatus(),UserLockStatus.LOCKED);
+		assertEquals(UserLockStatus.LOCKED,allByAfterDelete.get(0).getUserLockStatus());
 		
 	}
 
@@ -175,7 +175,7 @@ public final class ManageUserAccountServiceITest extends AbstractServiceFunction
 		final List<UserAccount> allByAfterDelete = userContainer.getAllBy(UserAccount_.username,
 				createAccountRequest.getUsername());
 		assertEquals(1, allByAfterDelete.size());
-		assertEquals(allByAfterDelete.get(0).getUserLockStatus(),UserLockStatus.UNLOCKED);
+		assertEquals(UserLockStatus.UNLOCKED,allByAfterDelete.get(0).getUserLockStatus());
 		
 	}
 

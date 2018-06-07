@@ -39,10 +39,12 @@ public final class ComplianceCheckPageItemRendererClickListener implements PageI
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+
 	/**
-	 * Instantiates a new rule violation page item renderer click listener.
+	 * Instantiates a new compliance check page item renderer click listener.
 	 */
 	public ComplianceCheckPageItemRendererClickListener() {
+		super();
 	}
 
 	@Override

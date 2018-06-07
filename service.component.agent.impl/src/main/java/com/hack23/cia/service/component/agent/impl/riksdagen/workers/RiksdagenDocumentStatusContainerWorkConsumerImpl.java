@@ -77,7 +77,7 @@ MessageListener {
 					.getDocumentStatus((String) ((ObjectMessage) message).getObject()));
 		} catch (final DataFailureException | JMSException e) {
 			LOGGER.warn("Error loading riksdagen documentstatus:", e);
-		}  finally {
+		} finally {
 			clearAuthentication();
 		}
 	}

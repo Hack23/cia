@@ -43,7 +43,7 @@ public final class SankeyChart extends AbstractJavaScriptComponent {
 	 * Instantiates a new sankey chart.
 	 */
 	public SankeyChart() {
-		myId = "gBarChartComponent" + (++elementId);
+		myId = "gBarChartComponent" + (++SankeyChart.elementId);
 		callFunction("setId", myId);
 		setSizeFull();
 		setHeight("100%");
