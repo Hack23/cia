@@ -21,10 +21,10 @@
 
  <cache-template name="shortLivedDefaultCacheTemplate">
      <expiry>
-         <tti unit="seconds">1</tti>
+         <tti unit="seconds">15</tti>
      </expiry>
      <resources>
-      <heap unit="entries">1</heap> 
+      <heap unit="entries">10000</heap> 
     </resources>
  </cache-template> 
  
