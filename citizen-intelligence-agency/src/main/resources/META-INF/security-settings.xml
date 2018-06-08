@@ -5,6 +5,9 @@
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security.xsd">
 
+
+	<http pattern="/healthcheck/*" security="none"/>
+
 	<http use-expressions="false">
 
 		<intercept-url pattern="/monitoring" access="ROLE_ADMIN" />
