@@ -26,7 +26,7 @@ import com.vaadin.spring.server.SpringVaadinServlet;
 /**
  * The Class CitizenIntelligenceAgencySpringVaadinServlet.
  */
-@WebServlet(value = "/*", loadOnStartup=1, asyncSupported = true)
+@WebServlet(value = "/*", loadOnStartup=2, asyncSupported = true)
 @VaadinServletConfiguration(productionMode = true, ui = CitizenIntelligenceAgencyUI.class, widgetset = "com.hack23.cia.web.widgets.WebWidgetSet")
 public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVaadinServlet {
 

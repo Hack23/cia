@@ -151,19 +151,6 @@
 		<url-pattern>/</url-pattern>
 	</filter-mapping>
 
-	<servlet>
-		<servlet-name>cia-webservices</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet
-		</servlet-class>
-		<load-on-startup>1</load-on-startup>
-		<async-supported>true</async-supported>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>cia-webservices</servlet-name>
-		<url-pattern>/services/*</url-pattern>
-	</servlet-mapping>
-
-
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
