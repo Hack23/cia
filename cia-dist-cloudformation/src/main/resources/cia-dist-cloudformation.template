@@ -1824,7 +1824,7 @@
 				"HealthCheckProtocol": "HTTPS",
 				"HealthCheckPath" : "/healthcheck/",
 				"HealthCheckTimeoutSeconds": 4,
-				"HealthyThresholdCount": 1,
+				"HealthyThresholdCount": 2,
 				"UnhealthyThresholdCount" : 6,
 				"Matcher": {
 					"HttpCode": "200"
