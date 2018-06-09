@@ -1719,6 +1719,10 @@
 					{
 						"Key": "access_logs.s3.prefix",
 						"Value": "Logs"
+					},
+					{
+						"Key": "idle_timeout.timeout_seconds",
+						"Value": "60"
 					}
 				]
 			},
