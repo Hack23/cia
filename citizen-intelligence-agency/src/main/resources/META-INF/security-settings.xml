@@ -6,7 +6,7 @@
            http://www.springframework.org/schema/security/spring-security.xsd">
 
 
-	<http pattern="/healthcheck/*" security="none"/>
+	<http pattern="/healthcheck/*" security="none" create-session="stateless"/>
 
 	<http use-expressions="false">
 
