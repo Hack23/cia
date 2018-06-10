@@ -2311,7 +2311,6 @@
 								"echo 'net.ipv4.udp_wmem_min = 16384' >> /etc/sysctl.conf \n",
 								"# Increase the tcp-time-wait buckets pool size to prevent simple DOS attacks\n",
 								"echo 'net.ipv4.tcp_max_tw_buckets = 1440000' >> /etc/sysctl.conf \n",
-								"echo 'net.ipv4.tcp_tw_recycle = 1' >> /etc/sysctl.conf \n",
 								"echo 'net.ipv4.tcp_tw_reuse = 1' >> /etc/sysctl.conf \n",
 								"sysctl -p\n",								
 								"apt-get update\n",
