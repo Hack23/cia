@@ -2072,6 +2072,21 @@
 								],								
 								"language-pack-en": [
 
+								],								
+								"apt-listchanges": [
+
+								],
+								"debian-goodies": [
+
+								],
+								"debsecan": [
+
+								],
+								"debsums": [
+
+								],
+								"fail2ban": [
+
 								]
 							}
 						},
@@ -2238,7 +2253,38 @@
 								"dpkg-reconfigure -f noninteractive tzdata \n",
 								"echo 'LANG=\"en_US.UTF-8\"'> /etc/default/locale\n",
 								"locale-gen en_US.UTF-8 en_GB.UTF-8 sv_SE.UTF-8 \n",
-								"dpkg-reconfigure --frontend=noninteractive locales \n",
+								"dpkg-reconfigure --frontend=noninteractive locales \n",								
+								"#Ignore ICMP broadcast requests\n",
+								"echo 'net.ipv4.icmp_echo_ignore_broadcasts = 1' > /etc/sysctl.conf \n",	
+								"# Disable source packet routing\n",
+								"echo 'net.ipv4.conf.all.accept_source_route = 0' > /etc/sysctl.conf \n",
+								"echo 'net.ipv6.conf.all.accept_source_route = 0' > /etc/sysctl.conf \n",
+								"echo 'net.ipv4.conf.default.accept_source_route = 0' > /etc/sysctl.conf \n",
+								"echo 'net.ipv6.conf.default.accept_source_route = 0' > /etc/sysctl.conf \n",
+								"# Ignore send redirects\n",
+								"echo 'net.ipv4.conf.all.send_redirects = 0' > /etc/sysctl.conf \n",
+								"echo 'net.ipv4.conf.default.send_redirects = 0' > /etc/sysctl.conf \n",
+								"# Block SYN attacks\n",
+								"echo 'net.ipv4.tcp_max_syn_backlog = 2048' > /etc/sysctl.conf \n",
+								"echo 'net.ipv4.tcp_synack_retries = 2' > /etc/sysctl.conf \n",
+								"echo 'net.ipv4.tcp_syn_retries = 5' > /etc/sysctl.conf \n",
+								"# Log Martians\n",
+								"echo 'net.ipv4.conf.all.log_martians = 1' > /etc/sysctl.conf \n",
+								"echo 'net.ipv4.icmp_ignore_bogus_error_responses = 1' > /etc/sysctl.conf \n",
+								"# Ignore ICMP redirects\n",
+								"echo 'net.ipv4.conf.all.accept_redirects = 0' > /etc/sysctl.conf \n",
+								"echo 'net.ipv6.conf.all.accept_redirects = 0' > /etc/sysctl.conf \n",
+								"echo 'net.ipv4.conf.default.accept_redirects = 0' > /etc/sysctl.conf \n", 
+								"echo 'net.ipv6.conf.default.accept_redirects = 0' > /etc/sysctl.conf \n",					
+								"# Ignore Directed pings\n",
+								"echo 'net.ipv4.icmp_echo_ignore_all = 1' > /etc/sysctl.conf \n",																
+								"echo 'vm.swappiness = 0' > /etc/sysctl.conf \n",								
+								"echo 'kernel.core_uses_pid = 1' > /etc/sysctl.conf \n",
+								"echo 'kernel.ctrl-alt-del = 0' > /etc/sysctl.conf \n",
+								"echo 'kernel.kptr_restrict = 2' > /etc/sysctl.conf \n",
+								"echo 'kernel.randomize_va_space = 2' > /etc/sysctl.conf \n",
+								"echo 'kernel.sysrq = 0' > /etc/sysctl.conf \n",
+								"sysctl -p\n",								
 								"apt-get update\n",
 								"apt-get -y upgrade\n",								
 								"apt-get -y install python-pip unattended-upgrades\n",
