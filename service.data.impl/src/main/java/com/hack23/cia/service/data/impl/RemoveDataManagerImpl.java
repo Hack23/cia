@@ -107,8 +107,8 @@ final class RemoveDataManagerImpl implements RemoveDataManager {
 	@Override
 	public void removeUserAccountApplicationHistory(final String userId) {
 		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);		
-		jdbcTemplate.update("delete from application_action_event WHERE EVENTS_APPLICATION_SESSION_H_0 IN (SELECT hjid FROM application_session WHERE user_id = ?)", new Object[] {userId });
-		jdbcTemplate.update("delete from application_session WHERE user_id = ?", new Object[] {userId });
+		jdbcTemplate.update("delete from application_action_event WHERE EVENTS_APPLICATION_SESSION_H_0 IN (SELECT hjid FROM application_session WHERE user_id = ?)", userId);
+		jdbcTemplate.update("delete from application_session WHERE user_id = ?", userId);
 	}	
 		
 }

@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.widgets.charts;
 
+import java.util.UUID;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -33,9 +35,6 @@ public final class SankeyChart extends AbstractJavaScriptComponent {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The element id. */
-	private static int elementId;
-
 	/** The my id. */
 	private String myId;
 
@@ -43,7 +42,7 @@ public final class SankeyChart extends AbstractJavaScriptComponent {
 	 * Instantiates a new sankey chart.
 	 */
 	public SankeyChart() {
-		myId = "gBarChartComponent" + (++SankeyChart.elementId);
+		myId = "gBarChartComponent" + UUID.randomUUID().toString();
 		callFunction("setId", myId);
 		setSizeFull();
 		setHeight("100%");

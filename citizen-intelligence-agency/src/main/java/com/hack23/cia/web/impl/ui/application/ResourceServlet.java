@@ -26,12 +26,12 @@ import javax.servlet.annotation.WebInitParam;
  * The Class ResourceServlet.
  */
 @WebServlet(urlPatterns = { "/favicon.ico", "/robots.txt", "/sitemap.xml", "*.cache.js",
-		"*.woff" }, loadOnStartup = 1, asyncSupported = true, initParams = {
+		"*.woff" }, loadOnStartup = 1, initParams = {
                 @WebInitParam(name = "gzip", value = "true"),
                 @WebInitParam(name = "etags", value = "true"),
                 @WebInitParam(name = "cacheControl", value = "max-age=86400, public"),
                 @WebInitParam(name = "precompressed", value = "true")
-        })
+        }, asyncSupported = true)
 public class ResourceServlet extends DefaultServlet {
 
 	/**
