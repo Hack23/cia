@@ -11,11 +11,11 @@
  </service>
 
  <cache-template name="defaultCacheTemplate">
-    <expiry>
-     <none/>
-    </expiry>
-      <resources>
-      <heap unit="entries">10000000</heap> 
+ 	<expiry>
+      <ttl>1800</ttl>
+    </expiry>      
+    <resources>
+      <heap unit="entries">100000</heap> 
     </resources>
  </cache-template>
 
