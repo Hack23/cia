@@ -2079,6 +2079,15 @@
 								"debian-goodies": [
 
 								],
+								"needrestart": [
+
+								],
+								"apt-show-versions": [
+
+								],
+								"sysstat": [
+
+								],
 								"debsecan": [
 
 								],
@@ -2283,7 +2292,10 @@
 								"echo 'kernel.ctrl-alt-del = 0' >> /etc/sysctl.conf \n",
 								"echo 'kernel.kptr_restrict = 2' >> /etc/sysctl.conf \n",
 								"echo 'kernel.randomize_va_space = 2' >> /etc/sysctl.conf \n",
-								"echo 'kernel.sysrq = 0' >> /etc/sysctl.conf \n",																
+								"echo 'kernel.sysrq = 0' >> /etc/sysctl.conf \n",
+								"echo 'fs.suid_dumpable = 0' >> /etc/sysctl.conf \n",
+								"echo 'kernel.dmesg_restrict = 1' >> /etc/sysctl.conf \n",
+								"echo 'net.ipv4.conf.default.log_martians = 1' >> /etc/sysctl.conf \n",
 								"### TUNING NETWORK PERFORMANCE ###\n",
 								"# Default Socket Receive Buffer\n",
 								"echo 'net.core.rmem_default = 31457280' >> /etc/sysctl.conf \n",
@@ -2339,9 +2351,10 @@
 								"sudo apt-get -y purge openssh-server\n",
 								"ufw allow 8443/tcp\n",
 								"ufw allow 53\n",
-								"ufw allow ntp\n",
+								"ufw allow 123/udp\n",
 								"ufw enable\n",
-								"ufw status verbose\n",
+								"ufw status verbose\n",								
+								"cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local\n"								
 								"wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install\n",
 								"sudo bash install\n",
 								"sudo snap install amazon-ssm-agent --classic\n",
