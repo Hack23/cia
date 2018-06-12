@@ -35,6 +35,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -71,6 +72,8 @@ public final class UserPageVisit extends Assert {
 
 	/** The Constant systemTestTargetUrl. */
 	private static final String systemTestTargetUrl;
+
+	private String value;
 
 	static {
 		 final String systemTestTargetUrlProperty = System.getProperty("system.test.target.url");
@@ -356,7 +359,7 @@ public final class UserPageVisit extends Assert {
 		final List<WebElement> nativeButtons = driver.findElements(By.className("v-nativebutton"));
 		final List<WebElement> buttons = driver.findElements(By.className("v-button"));
 		final List<WebElement> buttonsCaption = driver.findElements(By.className("v-button-caption"));
-
+		
 		result.addAll(nativeButtons);
 		result.addAll(buttons);
 		result.addAll(buttonsCaption);
@@ -364,6 +367,29 @@ public final class UserPageVisit extends Assert {
 		return result;
 	}
 
+	
+	public ExpectedCondition<Boolean> containsButton(final String value) {
+		return new ExpectedCondition<Boolean>() {
+
+			@Override
+			public Boolean apply(WebDriver driver) {
+				
+				for (final WebElement webElement : getButtons()) {
+					if (!ExpectedConditions.stalenessOf(webElement).apply(driver) && value.equalsIgnoreCase(webElement.getText().trim())) {
+						return true;
+					}
+				}
+				
+				return false;
+			}
+
+			@Override
+			public String toString() {
+				return String.format("Button \"%s\". ", value);
+			}
+		};
+	}
+	
 	/**
 	 * Gets the grid rows.
 	 *
@@ -876,7 +902,10 @@ public final class UserPageVisit extends Assert {
 	 *            the button label
 	 * @return the web element
 	 */
-	public final WebElement findButton(final String buttonLabel) {
+	public final WebElement findButton(final String buttonLabel) {		
+		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+		wait.until(containsButton(buttonLabel));
+		
 		final List<WebElement> buttons = getButtons();
 		for (final WebElement webElement : buttons) {
 			if (buttonLabel.equalsIgnoreCase(webElement.getText().trim())) {
