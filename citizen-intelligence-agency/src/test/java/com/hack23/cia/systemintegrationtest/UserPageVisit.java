@@ -191,8 +191,10 @@ public final class UserPageVisit extends Assert {
 		assertFalse("Page contains exception, url:" + url ,text.contains("Exception"));
 		assertFalse("Page contains widget exception, url:" + url,text.contains("Widget"));
 
-		assertEquals(browser, url,
-				driver.getCurrentUrl());
+		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+		wait.until(ExpectedConditions.urlToBe(url));
+
+		assertEquals(browser, url, driver.getCurrentUrl());
 		assertNotNull(browser, driver.getWindowHandle());
 
 	}
@@ -816,8 +818,10 @@ public final class UserPageVisit extends Assert {
 
 		final String url = systemTestTargetUrl  +"#!" + view;
 
-		assertEquals(browser, url,
-				driver.getCurrentUrl());
+		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+		wait.until(ExpectedConditions.urlToBe(url));
+		
+		assertEquals(browser, url,driver.getCurrentUrl());
 	}
 
 	public void loginUserCheckView(final String username,final String password,final String view) throws Exception {
