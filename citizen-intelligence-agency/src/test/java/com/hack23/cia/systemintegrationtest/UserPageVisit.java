@@ -50,10 +50,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 public final class UserPageVisit extends Assert {
 
 	/** The Constant WAIT_FOR_PAGE_DELAY. */
-	private static final int WAIT_FOR_PAGE_DELAY = 3500;
+	private static final int WAIT_FOR_PAGE_DELAY = 1500;
 
 	/** The Constant WAIT_FOR_TEXT. */
-	private static final int WAIT_FOR_TEXT = 9500;
+	private static final int WAIT_FOR_TEXT = 10000;
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
 	private static final int WAIT_FOR_PAGE_ELEMENT = 45000;
@@ -290,7 +290,7 @@ public final class UserPageVisit extends Assert {
 	 * @return the menu item
 	 */
 
-	public WebElement getMenuItem(final String... caption) {
+	public WebElement getMenuItem(final String... caption) {		
 		return getMenuItem(getMenuBar(), 1,caption);
 	}
 
@@ -304,8 +304,22 @@ public final class UserPageVisit extends Assert {
 	 * @return the menu item
 	 */
 	public WebElement getMenuItem(final WebElement element,final String... caption) {
+		
+		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+		wait.until(containsMenuItem(element,caption));
+		
 		return getMenuItem(element, 1,caption);
 	}
+	
+	public ExpectedCondition<Boolean> containsMenuItem(final WebElement element,final String... caption) {
+		return new ExpectedCondition<Boolean>() {
+			@Override
+			public Boolean apply(WebDriver driver) {				
+				return getMenuItem(element, 1,caption) != null;
+			}
+		};
+	}
+
 
 	/**
 	 * Gets the menu item.

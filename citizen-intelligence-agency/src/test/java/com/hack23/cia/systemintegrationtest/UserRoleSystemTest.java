@@ -753,8 +753,6 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		assertNotNull(applicationMenuItem);
 		userPageVisit.performClickAction(applicationMenuItem);
 
-		Thread.sleep(1000);
-
 		final WebElement overviewMenuItem = userPageVisit.getMenuItem("Start");
 		assertNotNull(overviewMenuItem);
 		userPageVisit.performClickAction(overviewMenuItem);
@@ -1000,9 +998,6 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		assertNotNull(userAccountMenuItem);
 		userLoginPageVisit.performClickAction(userAccountMenuItem);
 
-		Thread.sleep(1000);
-
-
 		final WebElement securitySettingMenuItem = userLoginPageVisit.getMenuItem("Security settings");
 		assertNotNull(securitySettingMenuItem);
 		userLoginPageVisit.performClickAction(securitySettingMenuItem);
@@ -1051,8 +1046,6 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		final WebElement userAccountMenuItem = userLoginPageVisit.getMenuItem("Useraccount");
 		assertNotNull(userAccountMenuItem);
 		userLoginPageVisit.performClickAction(userAccountMenuItem);
-
-		Thread.sleep(1000);
 
 		final WebElement securitySettingMenuItem = userLoginPageVisit.getMenuItem("Security settings");
 		assertNotNull(securitySettingMenuItem);
@@ -1113,8 +1106,6 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		assertNotNull(userAccountMenuItem);
 		userLoginPageVisit.performClickAction(userAccountMenuItem);
 
-		Thread.sleep(1000);
-
 
 		final WebElement securitySettingMenuItem = userLoginPageVisit.getMenuItem("Security settings");
 		assertNotNull(securitySettingMenuItem);
@@ -1163,8 +1154,6 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		assertNotNull(userAccountMenuItem);
 		userLoginPageVisit.performClickAction(userAccountMenuItem);
 
-		Thread.sleep(1000);
-
 		final WebElement securitySettingMenuItem = userLoginPageVisit.getMenuItem("Security settings");
 		assertNotNull(securitySettingMenuItem);
 		userLoginPageVisit.performClickAction(securitySettingMenuItem);
@@ -1207,8 +1196,6 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		final WebElement userAccountMenuItem = userLoginPageVisit.getMenuItem("Useraccount");
 		assertNotNull(userAccountMenuItem);
 		userLoginPageVisit.performClickAction(userAccountMenuItem);
-
-		Thread.sleep(1000);
 
 		final WebElement securitySettingMenuItem = userLoginPageVisit.getMenuItem("Security settings");
 		assertNotNull(securitySettingMenuItem);
@@ -1262,9 +1249,6 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		assertNotNull(useraccountMenuItem);
 		userLoginPageVisit.performClickAction(useraccountMenuItem);
 
-		Thread.sleep(1000);
-
-
 		final WebElement userVisitsMenuItem = userLoginPageVisit.getMenuItem("User Visits");
 		assertNotNull(userVisitsMenuItem);
 		userLoginPageVisit.performClickAction(userVisitsMenuItem);
@@ -1311,9 +1295,6 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		final WebElement useraccountMenuItem = userLoginPageVisit.getMenuItem("Useraccount");
 		assertNotNull(useraccountMenuItem);
 		userLoginPageVisit.performClickAction(useraccountMenuItem);
-
-		Thread.sleep(1000);
-
 
 		final WebElement userEventsMenuItem = userLoginPageVisit.getMenuItem("User Events");
 		assertNotNull(userEventsMenuItem);
