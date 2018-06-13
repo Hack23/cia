@@ -18,12 +18,16 @@
 */
 package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.jms.Destination;
 import javax.jms.JMSException;
@@ -35,8 +39,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import com.hack23.cia.model.external.riksdagen.voteringlista.impl.BallotDocumentElement;
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
 import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
+import com.hack23.cia.service.data.api.VoteDataDAO;
+import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
+import com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi;
 
 /**
  * The Class RiksdagenBallotListWorkGeneratorImplITest.
@@ -48,32 +56,90 @@ public class RiksdagenBallotListWorkGeneratorImplITest extends AbstractServiceCo
 	@Autowired
 	@Qualifier("RiksdagenBallotListWorkGeneratorImpl")
 	private RiksdagenDataSourcesWorkGenerator riksdagenDataSourcesWorkGenerator;
-
+	
+	@Autowired
+	private VoteDataDAO voteDataDAO;
+	
 	/**
-	 * Generate work orders when already exist success test.
+	 * Generate work orders when ballot not exist success test.
 	 *
 	 * @throws JMSException
 	 *             the JMS exception
+	 * @throws DataFailureException
+	 *             the data failure exception
 	 */
 	@Test
-	public void generateWorkOrdersWhenAlreadyExistSuccessTest() throws JMSException {
-		riksdagenDataSourcesWorkGenerator.generateWorkOrders();
-		final JmsSender jmsSenderMock = mock(JmsSender.class);
-        ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
+	public void generateWorkOrdersWhenBallotNotExistSuccessTest() throws JMSException, DataFailureException {
+		final JmsSender jmsSenderMock = mock(JmsSender.class);		
+		final RiksdagenBallotApi riksdagenApi = mock(RiksdagenBallotApi.class);		
+		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
+		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "riksdagenApi", riksdagenApi);
 
+		ArrayList<BallotDocumentElement> value = new ArrayList<BallotDocumentElement>();
+		String ballotId = UUID.randomUUID().toString();
+		value.add(new BallotDocumentElement().withBallotId(ballotId));
+		when(riksdagenApi.getBallotList()).thenReturn(value);
+						
+		final ArgumentCaptor<Destination> destCaptor = ArgumentCaptor.forClass(Destination.class);		
+		jmsSenderMock.send(destCaptor.capture(),eq(ballotId));
+		
         riksdagenDataSourcesWorkGenerator.generateWorkOrders();
 
-		final ArgumentCaptor<Destination> destCaptor = ArgumentCaptor.forClass(Destination.class);
-
-		final ArgumentCaptor<Serializable> stringCaptor = ArgumentCaptor.forClass(Serializable.class);
-
-		verify(jmsSenderMock, never()).send(destCaptor.capture(),stringCaptor.capture());
-
-		final List<Serializable> capturedStrings = stringCaptor.getAllValues();
 		final List<Destination> capturedDestinations = destCaptor.getAllValues();
 
-		assertNotNull(capturedStrings);
 		assertNotNull(capturedDestinations);
+		assertTrue(capturedDestinations.isEmpty());
 
 	}
+	
+	/**
+	 * Generate work orders when ballot already exist success test.
+	 *
+	 * @throws JMSException
+	 *             the JMS exception
+	 * @throws DataFailureException
+	 *             the data failure exception
+	 */
+	@Test
+	public void generateWorkOrdersWhenBallotAlreadyExistSuccessTest() throws JMSException, DataFailureException {
+		final JmsSender jmsSenderMock = mock(JmsSender.class);		
+		final RiksdagenBallotApi riksdagenApi = mock(RiksdagenBallotApi.class);		
+		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
+		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "riksdagenApi", riksdagenApi);
+
+		ArrayList<BallotDocumentElement> value = new ArrayList<BallotDocumentElement>();
+		String ballotId = voteDataDAO.getBallotIdList().iterator().next().getBallotId();
+		value.add(new BallotDocumentElement().withBallotId(ballotId));
+		when(riksdagenApi.getBallotList()).thenReturn(value);
+								
+		verify(jmsSenderMock, never()).send(any(Destination.class),eq(ballotId));
+
+        riksdagenDataSourcesWorkGenerator.generateWorkOrders();
+	}
+
+	/**
+	 * Generate work orders data failure exception test.
+	 *
+	 * @throws JMSException
+	 *             the JMS exception
+	 * @throws DataFailureException
+	 *             the data failure exception
+	 */
+	@Test
+	public void generateWorkOrdersDataFailureExceptionTest() throws JMSException, DataFailureException {
+		final JmsSender jmsSenderMock = mock(JmsSender.class);		
+		final RiksdagenBallotApi riksdagenApi = mock(RiksdagenBallotApi.class);		
+		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
+		ReflectionTestUtils.setField(riksdagenDataSourcesWorkGenerator, "riksdagenApi", riksdagenApi);
+
+		ArrayList<BallotDocumentElement> value = new ArrayList<BallotDocumentElement>();
+		String ballotId = voteDataDAO.getBallotIdList().iterator().next().getBallotId();
+		value.add(new BallotDocumentElement().withBallotId(ballotId));
+		when(riksdagenApi.getBallotList()).thenThrow(new DataFailureException(new RuntimeException()));
+								
+		verify(jmsSenderMock, never()).send(any(Destination.class),eq(ballotId));
+
+        riksdagenDataSourcesWorkGenerator.generateWorkOrders();
+	}
+
 }

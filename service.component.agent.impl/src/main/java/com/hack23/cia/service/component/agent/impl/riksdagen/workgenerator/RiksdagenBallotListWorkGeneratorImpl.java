@@ -40,6 +40,10 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi;
 @Service("RiksdagenBallotListWorkGeneratorImpl")
 final class RiksdagenBallotListWorkGeneratorImpl extends AbstractRiksdagenDataSourcesWorkGenerator {
 
+	/** The Constant LOADING_BALLOTS. */
+	private static final String LOADING_BALLOTS = "Loading ballots";
+
+
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenBallotListWorkGeneratorImpl.class);
 
@@ -75,7 +79,7 @@ final class RiksdagenBallotListWorkGeneratorImpl extends AbstractRiksdagenDataSo
 				}
 			}
 		} catch (final DataFailureException e) {
-			LOGGER.warn("Loadin ballots", e);
+			LOGGER.warn(LOADING_BALLOTS, e);
 		}
 	}
 
