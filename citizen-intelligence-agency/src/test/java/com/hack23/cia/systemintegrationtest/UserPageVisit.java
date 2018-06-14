@@ -315,7 +315,7 @@ public final class UserPageVisit extends Assert {
 		return new ExpectedCondition<Boolean>() {
 			@Override
 			public Boolean apply(WebDriver driver) {				
-				return getMenuItem(element, 1,caption) != null;
+				return !ExpectedConditions.stalenessOf(element).apply(driver) && getMenuItem(element, 1,caption) != null;
 			}
 		};
 	}
