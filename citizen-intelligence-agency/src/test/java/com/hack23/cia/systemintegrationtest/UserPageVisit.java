@@ -49,16 +49,16 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
  */
 public final class UserPageVisit extends Assert {
 
-	private static final int INTERVAL_CHECK_MS = 1;
+	private static final int INTERVAL_CHECK_MS = 10;
 
 	/** The Constant WAIT_FOR_PAGE_DELAY. */
 	private static final int WAIT_FOR_PAGE_DELAY = 2000;
 
 	/** The Constant WAIT_FOR_TEXT. */
-	private static final int WAIT_FOR_TEXT = 15000;
+	private static final int WAIT_FOR_TEXT = 8000;
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
-	private static final int WAIT_FOR_PAGE_ELEMENT = 45000;
+	private static final int WAIT_FOR_PAGE_ELEMENT = 30000;
 
 	/** The screen shot number. */
 	private static int screenShotNumber;
@@ -889,9 +889,9 @@ public final class UserPageVisit extends Assert {
 		body.sendKeys(Keys.ESCAPE);
 
 
-		waitForBrowser(WAIT_FOR_PAGE_DELAY);
+		waitForBrowser(1000);
 		driver.navigate().refresh();
-		waitForBrowser(WAIT_FOR_PAGE_DELAY);
+		waitForBrowser(2000);
 
 		final Cookie newCookie= driver.manage().getCookieNamed("JSESSIONID");
 
