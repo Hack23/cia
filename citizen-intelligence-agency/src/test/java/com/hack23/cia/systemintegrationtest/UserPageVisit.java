@@ -49,8 +49,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
  */
 public final class UserPageVisit extends Assert {
 
+	private static final int INTERVAL_CHECK_MS = 1;
+
 	/** The Constant WAIT_FOR_PAGE_DELAY. */
-	private static final int WAIT_FOR_PAGE_DELAY = 1000;
+	private static final int WAIT_FOR_PAGE_DELAY = 2000;
 
 	/** The Constant WAIT_FOR_TEXT. */
 	private static final int WAIT_FOR_TEXT = 15000;
@@ -173,8 +175,8 @@ public final class UserPageVisit extends Assert {
 
 		int waitTimeForPageLoad=0;
 		while (!getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW)) {
-			waitForBrowser(10);
-			waitTimeForPageLoad=waitTimeForPageLoad + 10;
+			waitForBrowser(INTERVAL_CHECK_MS);
+			waitTimeForPageLoad=waitTimeForPageLoad + INTERVAL_CHECK_MS;
 			if (waitTimeForPageLoad > WAIT_FOR_PAGE_ELEMENT) {
 				fail("Exceeded timeout for pageload:" + WAIT_FOR_PAGE_ELEMENT);
 			}
@@ -230,8 +232,8 @@ public final class UserPageVisit extends Assert {
 
 		int waitTimeForPageLoad=0;
 	    while(!url.equals(driver.getCurrentUrl()) && !driver.getCurrentUrl().contains(url)) {
-			waitForBrowser(10);
-			waitTimeForPageLoad=waitTimeForPageLoad + 10;
+			waitForBrowser(INTERVAL_CHECK_MS);
+			waitTimeForPageLoad=waitTimeForPageLoad + INTERVAL_CHECK_MS;
 			if (waitTimeForPageLoad > WAIT_FOR_PAGE_ELEMENT) {
 				assertEquals("Exceeded timeout:" + WAIT_FOR_PAGE_ELEMENT +" to match or contains url:" + url + " browser:" +browser, url,
 						driver.getCurrentUrl());
@@ -264,7 +266,7 @@ public final class UserPageVisit extends Assert {
 	public boolean checkHtmlBodyContainsText(final String text) throws Exception {
 		int waitTimeForPageLoad=0;
 		while (!getHtmlBodyAsText().contains(text)) {
-			waitForBrowser(10);
+			waitForBrowser(INTERVAL_CHECK_MS);
 			waitTimeForPageLoad=waitTimeForPageLoad + 10;
 			if (waitTimeForPageLoad > WAIT_FOR_TEXT) {
 				return false;
@@ -887,9 +889,9 @@ public final class UserPageVisit extends Assert {
 		body.sendKeys(Keys.ESCAPE);
 
 
-		waitForBrowser(1000);
+		waitForBrowser(WAIT_FOR_PAGE_DELAY);
 		driver.navigate().refresh();
-		waitForBrowser(2000);
+		waitForBrowser(WAIT_FOR_PAGE_DELAY);
 
 		final Cookie newCookie= driver.manage().getCookieNamed("JSESSIONID");
 
