@@ -33,7 +33,7 @@
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-core</artifactId>
-      <version>1.0.0-RC5</version>
+      <version>1.0.0-RC6</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -65,7 +65,7 @@
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-plantuml</artifactId>
-      <version>1.0.0-RC5</version>
+      <version>1.0.0-RC6</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -97,7 +97,7 @@
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-client</artifactId>
-      <version>1.0.0-RC5</version>
+      <version>1.0.0-RC6</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -164,19 +164,19 @@
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-annotations</artifactId>
-      <version>1.0.0-RC5</version>
+      <version>1.0.0-RC6</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-dot</artifactId>
-      <version>1.0.0-RC5</version>
+      <version>1.0.0-RC6</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-spring</artifactId>
-      <version>1.0.0-RC5</version>
+      <version>1.0.0-RC6</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -190,6 +190,22 @@
         <exclusion>
           <artifactId>reflections</artifactId>
           <groupId>org.reflections</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-webmvc</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-core</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-aop</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>commons-logging</artifactId>
+          <groupId>commons-logging</groupId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -306,7 +322,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-logs</artifactId>
-      <version>1.11.347</version>
+      <version>1.11.348</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -338,7 +354,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-ec2</artifactId>
-      <version>1.11.347</version>
+      <version>1.11.348</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>

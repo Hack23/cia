@@ -54,6 +54,10 @@
           <artifactId>antlr</artifactId>
           <groupId>antlr</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>hibernate-commons-annotations</artifactId>
+          <groupId>org.hibernate.common</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
