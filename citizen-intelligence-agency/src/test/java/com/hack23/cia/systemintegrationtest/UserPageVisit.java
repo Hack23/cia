@@ -50,10 +50,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 public final class UserPageVisit extends Assert {
 
 	/** The Constant WAIT_FOR_PAGE_DELAY. */
-	private static final int WAIT_FOR_PAGE_DELAY = 1500;
+	private static final int WAIT_FOR_PAGE_DELAY = 1000;
 
 	/** The Constant WAIT_FOR_TEXT. */
-	private static final int WAIT_FOR_TEXT = 10000;
+	private static final int WAIT_FOR_TEXT = 15000;
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
 	private static final int WAIT_FOR_PAGE_ELEMENT = 45000;
@@ -336,15 +336,13 @@ public final class UserPageVisit extends Assert {
 		final List<WebElement> findElements = element.findElements(By.className("v-menubar-menuitem-caption"));
 		if (caption.length == level) {
 			for (final WebElement webElement : findElements) {
-				if (webElement.getText().contains(caption[level -1])) {
+				if (!ExpectedConditions.stalenessOf(element).apply(driver) && webElement.getText().contains(caption[level -1])) {
 					return webElement;
 				}
 			}
 		} else {
 			for (final WebElement webElement : findElements) {
-				if (caption[level -1].equals(webElement.getText())) {
-
-
+				if (!ExpectedConditions.stalenessOf(element).apply(driver) && caption[level -1].equals(webElement.getText())) {
 					return getMenuItem(webElement, level +1 ,caption);
 				}
 			}
@@ -353,7 +351,7 @@ public final class UserPageVisit extends Assert {
 			final List<WebElement> findElements2 = driver.findElements(By.className("v-menubar-menuitem"));
 			if (caption.length == level) {
 				for (final WebElement webElement : findElements2) {
-						if (webElement.getText().contains(caption[level -1])) {
+						if (!ExpectedConditions.stalenessOf(element).apply(driver) && webElement.getText().contains(caption[level -1])) {
 						return webElement;
 					}
 				}
@@ -903,9 +901,6 @@ public final class UserPageVisit extends Assert {
 
 		assertEquals(browser, url,
 				driver.getCurrentUrl());
-
-
-
 	}
 
 
