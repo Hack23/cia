@@ -18,6 +18,16 @@ Tracking politicians like bugs. Citizen Intelligence Agency is independent and n
 [![codebeat badge](https://codebeat.co/badges/5a7cf18f-68cb-4535-b197-8b541bf9bb7c)](https://codebeat.co/projects/github-com-hack23-cia-master)
 [![Black Duck Security Risk](https://copilot.blackducksoftware.com/github/repos/Hack23/cia/branches/master/badge-risk.svg)](https://copilot.blackducksoftware.com/github/repos/Hack23/cia/branches/master)
 
+# Runtime
+
+
+[badge-jdk-8]: https://img.shields.io/badge/jdk-8-lightgray.svg "JDK-8"
+[badge-jdk-9]: https://img.shields.io/badge/jdk-9-yellow.svg "JDK-9"
+[badge-jdk-10]: https://img.shields.io/badge/jdk-10-orange.svg "JDK-10"
+[badge-jdk-11]: https://img.shields.io/badge/jdk-11-red.svg "JDK-11 or higher"
+
+
+
 # Goal
 
 Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level.
