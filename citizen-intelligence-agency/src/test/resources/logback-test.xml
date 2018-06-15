@@ -9,7 +9,12 @@
 	    </encoder>
 	</appender>
 
-  <logger name="net.sf.ehcache" level="error"/>
+
+
+  <logger name="com.structurizr" level="error"/>
+  
+  <logger name="net.sf.ehcache" level="error"/>  
+  
   <logger name="com.mchange" level="error"/>
   <logger name="org.hsqldb" level="error"/>
 

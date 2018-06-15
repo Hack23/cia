@@ -23,19 +23,17 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
 import java.nio.file.Paths;
-import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 
 import com.structurizr.Workspace;
-import com.structurizr.analysis.AbstractSpringComponentFinderStrategy;
 import com.structurizr.analysis.ComponentFinder;
-import com.structurizr.analysis.SpringComponentComponentFinderStrategy;
-import com.structurizr.analysis.SpringServiceComponentFinderStrategy;
-import com.structurizr.analysis.SupportingTypesStrategy;
+import com.structurizr.analysis.FirstImplementationOfInterfaceSupportingTypesStrategy;
+import com.structurizr.analysis.ReferencedTypesInSamePackageSupportingTypesStrategy;
+import com.structurizr.analysis.ReferencedTypesSupportingTypesStrategy;
+import com.structurizr.analysis.SpringComponentFinderStrategy;
 import com.structurizr.io.WorkspaceWriterException;
 import com.structurizr.io.plantuml.PlantUMLWriter;
-import com.structurizr.model.Component;
 import com.structurizr.model.Container;
 import com.structurizr.model.DeploymentNode;
 import com.structurizr.model.Enterprise;
@@ -64,29 +62,6 @@ public class AppPublicSystemDocumentation {
 	private static final long WORKSPACE_ID = 37264;
 	private static final String API_KEY = "";
 	private static final String API_SECRET = "";
-
-	/**
-	 * The Class SpringRepositoryComponentFinderStrategy.
-	 */
-	public static final class SpringRepositoryComponentFinderStrategy extends AbstractSpringComponentFinderStrategy {
-		private static final String SPRING_REPOSITORY = "Spring Repository";
-
-		/**
-		 * Instantiates a new spring repository component finder strategy.
-		 *
-		 * @param strategies
-		 *            the strategies
-		 */
-		public SpringRepositoryComponentFinderStrategy(final SupportingTypesStrategy... strategies) {
-			super(strategies);
-		}
-
-		@Override
-		protected Set<Component> doFindComponents() {
-			return findInterfacesForImplementationClassesWithAnnotation(org.springframework.stereotype.Repository.class,
-					SPRING_REPOSITORY);
-		}
-	}
 
 	/**
 	 * The main method.
@@ -120,15 +95,24 @@ public class AppPublicSystemDocumentation {
 				"ALB/ELB/Apache/Nginx/HaProxy");
 
 		final Container ciaWebContainer = ciaSystem.addContainer("Web Application", "Web Application", "Jetty/Java");
+		SpringComponentFinderStrategy springComponentFinderStrategy = new SpringComponentFinderStrategy(new FirstImplementationOfInterfaceSupportingTypesStrategy()
+				,new ReferencedTypesSupportingTypesStrategy(),new ReferencedTypesInSamePackageSupportingTypesStrategy());
+		springComponentFinderStrategy.setIncludePublicTypesOnly(false);
 		final ComponentFinder componentFinderWeb = new ComponentFinder(ciaWebContainer, "com.hack23.cia",
-				new SpringServiceComponentFinderStrategy(), new SpringComponentComponentFinderStrategy(),
-				new SpringRepositoryComponentFinderStrategy());
-		componentFinderWeb.exclude(".*ui.*");
+				springComponentFinderStrategy);
+		componentFinderWeb.exclude(".*ui.application.web.*");
+		componentFinderWeb.exclude(".*ui.application.views.common.pagelinks.*");
+		componentFinderWeb.exclude(".*ui.application.views.admin.*");
+		componentFinderWeb.exclude(".*ui.application.views.user.*");
+				
 		componentFinderWeb.exclude(".*service.external.*");
 		componentFinderWeb.exclude(".*service.component.*");
 		componentFinderWeb.exclude(".*package.*");
-		componentFinderWeb.exclude(".*service.impl.*");
-		
+		componentFinderWeb.exclude(".*service.impl.action.*");
+		componentFinderWeb.exclude(".*service.impl.email.*");
+		componentFinderWeb.exclude(".*service.impl.rules.*");
+		componentFinderWeb.exclude(".*service.impl.task.*");		
+		componentFinderWeb.exclude(".*service.data.impl.*");
 
 		componentFinderWeb.findComponents();
 
@@ -166,33 +150,38 @@ public class AppPublicSystemDocumentation {
 
 		final DeploymentNode awsAuditAccountNode = model.addDeploymentNode("Audit Account", "AWS", "Aws Account");
 
-		
 		final DeploymentNode awsConfigNode = awsAuditAccountNode.addDeploymentNode("Config", "AWS", "Config");
 		final Container awsConfigContainer = ciaSystem.addContainer("Rules", "AWS", "Config Rules");
 		awsConfigNode.add(awsConfigContainer);
 
-		final DeploymentNode awsInspectorNode = awsAccountNode.addDeploymentNode("System Compliance checks", "AWS", "Inspector");
+		final DeploymentNode awsInspectorNode = awsAccountNode.addDeploymentNode("System Compliance checks", "AWS",
+				"Inspector");
 		final Container awsInspectorContainer = ciaSystem.addContainer("ScanningRules", "AWS", "Scanning Rules");
 		awsInspectorNode.add(awsInspectorContainer);
 		awsInspectorContainer.uses(ciaWebContainer, "Inspects");
-		
-		
-		final DeploymentNode awsSSMNode = awsAccountNode.addDeploymentNode("Patch Compliance", "AWS", "System Mananger");
+
+		final DeploymentNode awsSSMNode = awsAccountNode.addDeploymentNode("Patch Compliance", "AWS",
+				"System Mananger");
 		final Container awsSSMContainer = ciaSystem.addContainer("InventoryList", "AWS", "InventoryList");
-		awsSSMNode.add(awsSSMContainer);						
-		awsSSMContainer.uses(ciaWebContainer, "Run Commands");	
-		
-		final DeploymentNode awsQuickSightNode = awsAccountNode.addDeploymentNode("Business analytics", "AWS", "QuickSight");
+		awsSSMNode.add(awsSSMContainer);
+		awsSSMContainer.uses(ciaWebContainer, "Run Commands");
+
+		final DeploymentNode awsQuickSightNode = awsAccountNode.addDeploymentNode("Business analytics", "AWS",
+				"QuickSight");
 		final Container awsQuickSightContainer = ciaSystem.addContainer("Dashboards", "AWS", "Dashboards");
-		awsQuickSightNode.add(awsQuickSightContainer);						
-		awsQuickSightContainer.uses(relationalDatabase, "Loads Data");			
-		
+		awsQuickSightNode.add(awsQuickSightContainer);
+		awsQuickSightContainer.uses(relationalDatabase, "Loads Data");
+
 		final DeploymentNode awsGuardDutyNode = awsAuditAccountNode.addDeploymentNode("Guard Duty", "AWS", "GuardDuty");
-		final Container awsGuardDutyContainer = ciaSystem.addContainer("Intelligent threat detection and continuous monitoring", "AWS", "Intelligent threat detection and continuous monitoring");
+		final Container awsGuardDutyContainer = ciaSystem.addContainer(
+				"Intelligent threat detection and continuous monitoring", "AWS",
+				"Intelligent threat detection and continuous monitoring");
 		awsGuardDutyNode.add(awsGuardDutyContainer);
 
-		final DeploymentNode awsMacieNode = awsAuditAccountNode.addDeploymentNode("A machine learning-powered security", "AWS", "macie");
-		final Container awsMacieContainer = ciaSystem.addContainer("discover, classify, and protect sensitive data", "AWS", "discover, classify, and protect sensitive data");
+		final DeploymentNode awsMacieNode = awsAuditAccountNode.addDeploymentNode("A machine learning-powered security",
+				"AWS", "macie");
+		final Container awsMacieContainer = ciaSystem.addContainer("discover, classify, and protect sensitive data",
+				"AWS", "discover, classify, and protect sensitive data");
 		awsMacieNode.add(awsMacieContainer);
 
 		final DeploymentNode awsLogGroupNode = awsAuditAccountNode.addDeploymentNode("LogGroup", "AWS", "Cloudwatch");
@@ -210,11 +199,10 @@ public class AppPublicSystemDocumentation {
 		final Container awsAccessLogBucketContainer = ciaSystem.addContainer("AccessLogBucket", "AWS", "S3");
 		awsAcessLogsNode.add(awsAccessLogBucketContainer);
 
-		
 		loadBalancerContainer.uses(awsAccessLogBucketContainer, "Write logs");
-		
-		final DeploymentNode applicationLoadbalancerNode = awsAccountNode.addDeploymentNode("Application Loadbalancer", "AWS",
-				"ALB");
+
+		final DeploymentNode applicationLoadbalancerNode = awsAccountNode.addDeploymentNode("Application Loadbalancer",
+				"AWS", "ALB");
 		applicationLoadbalancerNode.add(loadBalancerContainer);
 		wafNode.uses(applicationLoadbalancerNode, "Protects", "filter rules");
 
@@ -225,13 +213,13 @@ public class AppPublicSystemDocumentation {
 		final DeploymentNode databaseNode = awsVpcNode.addDeploymentNode("Database", "AWS", "RDS", 2);
 		databaseNode.add(relationalDatabase);
 		webNode.uses(databaseNode, "Uses", "jdbc");
-	
+
 		final DeploymentNode githubAccountNode = model.addDeploymentNode("Github Org", "Github", "Github Org");
 		final Container sourceCodeContainer = ciaSystem.addContainer("SCM", "Github", "Scm");
 		githubAccountNode.add(sourceCodeContainer);
 		final Container documentationContainer = ciaSystem.addContainer("Documentation", "Github", "Documentation");
 		githubAccountNode.add(documentationContainer);
-		
+
 		final DeploymentNode devNetworkNode = model.addDeploymentNode("Dev Network", "AWS", "Dev Network");
 
 		final Container nexusContainer = ciaSystem.addContainer("Nexus", "Dev", "Nexus");
@@ -241,51 +229,61 @@ public class AppPublicSystemDocumentation {
 		devNetworkNode.add(sonarContainer);
 
 		final Container jenkinsContainer = ciaSystem.addContainer("Jenkins", "Dev", "Jenkins");
-		jenkinsContainer.uses(sourceCodeContainer,"builds");
-		jenkinsContainer.uses(sonarContainer, "Publish QA metrics","https");
-		jenkinsContainer.uses(nexusContainer, "publish artifacts","https");
-		jenkinsContainer.uses(documentationContainer, "publish Documentation","https");
+		jenkinsContainer.uses(sourceCodeContainer, "builds");
+		jenkinsContainer.uses(sonarContainer, "Publish QA metrics", "https");
+		jenkinsContainer.uses(nexusContainer, "publish artifacts", "https");
+		jenkinsContainer.uses(documentationContainer, "publish Documentation", "https");
 		devNetworkNode.add(jenkinsContainer);
-				
 
-		final DeploymentNode sumologicSecurityAccountNode = model.addDeploymentNode("Security Account", "Sumologic", "Sumologic Account");
+		final DeploymentNode sumologicSecurityAccountNode = model.addDeploymentNode("Security Account", "Sumologic",
+				"Sumologic Account");
 
-		final DeploymentNode sumologicNetworkSecurityDashboardNode = sumologicSecurityAccountNode.addDeploymentNode("Nework Security Dashboard", "AWS", "Nework Security Dashboard");
-		
-		final DeploymentNode sumologicServerSecurityDashboardNode = sumologicSecurityAccountNode.addDeploymentNode("Server Security Dashboard", "AWS", "Server Security Dashboard");
+		final DeploymentNode sumologicNetworkSecurityDashboardNode = sumologicSecurityAccountNode
+				.addDeploymentNode("Nework Security Dashboard", "AWS", "Nework Security Dashboard");
 
-		final DeploymentNode sumologicAwsAccountSecurityDashboardNode = sumologicSecurityAccountNode.addDeploymentNode("AWS Account Security Dashboard", "AWS", "AWS Account Security Dashboard");
+		final DeploymentNode sumologicServerSecurityDashboardNode = sumologicSecurityAccountNode
+				.addDeploymentNode("Server Security Dashboard", "AWS", "Server Security Dashboard");
 
-		final DeploymentNode sumologicApplicationSecurityDashboardNode = sumologicSecurityAccountNode.addDeploymentNode("Application Security Dashboard", "AWS", "Application Security Dashboard");
-		
-		final Container sumologicVpcFlowLogsContainer = ciaSystem.addContainer("VpcFlowLogs", "Sumologic", "VpcFlowLogs");
+		final DeploymentNode sumologicAwsAccountSecurityDashboardNode = sumologicSecurityAccountNode
+				.addDeploymentNode("AWS Account Security Dashboard", "AWS", "AWS Account Security Dashboard");
+
+		final DeploymentNode sumologicApplicationSecurityDashboardNode = sumologicSecurityAccountNode
+				.addDeploymentNode("Application Security Dashboard", "AWS", "Application Security Dashboard");
+
+		final Container sumologicVpcFlowLogsContainer = ciaSystem.addContainer("VpcFlowLogs", "Sumologic",
+				"VpcFlowLogs");
 		sumologicVpcFlowLogsContainer.uses(awsLogstreamContainer, "Recieve logs");
 		sumologicNetworkSecurityDashboardNode.add(sumologicVpcFlowLogsContainer);
 
-		final Container sumologicCloudtrailConfigContainer = ciaSystem.addContainer("CloudTrailLogs", "Sumologic", "CloudTrailLogs");
+		final Container sumologicCloudtrailConfigContainer = ciaSystem.addContainer("CloudTrailLogs", "Sumologic",
+				"CloudTrailLogs");
 		sumologicCloudtrailConfigContainer.uses(awsAuditLogBucketContainer, "Recieve logs");
 		sumologicAwsAccountSecurityDashboardNode.add(sumologicCloudtrailConfigContainer);
 
-		final Container sumologicAwsConfigContainer = ciaSystem.addContainer("AwsConfigLogs", "Sumologic", "AwsConfigLogs");
+		final Container sumologicAwsConfigContainer = ciaSystem.addContainer("AwsConfigLogs", "Sumologic",
+				"AwsConfigLogs");
 		sumologicAwsConfigContainer.uses(awsConfigContainer, "Recieve logs");
 		sumologicAwsAccountSecurityDashboardNode.add(sumologicAwsConfigContainer);
-		
-		final Container sumologicEc2SystemLogsContainer = ciaSystem.addContainer("Ec2SystemLogs", "Sumologic", "Ec2SystemLogs");
+
+		final Container sumologicEc2SystemLogsContainer = ciaSystem.addContainer("Ec2SystemLogs", "Sumologic",
+				"Ec2SystemLogs");
 		sumologicEc2SystemLogsContainer.uses(awsLogstreamContainer, "Recieve logs");
 		sumologicServerSecurityDashboardNode.add(sumologicEc2SystemLogsContainer);
-		
-		final Container sumologicEc2ApplicationLogsContainer = ciaSystem.addContainer("Ec2ApplicationLogs", "Sumologic", "Ec2ApplicationLogs");
+
+		final Container sumologicEc2ApplicationLogsContainer = ciaSystem.addContainer("Ec2ApplicationLogs", "Sumologic",
+				"Ec2ApplicationLogs");
 		sumologicEc2ApplicationLogsContainer.uses(awsLogstreamContainer, "Recieve logs");
 		sumologicApplicationSecurityDashboardNode.add(sumologicEc2ApplicationLogsContainer);
-		
-		final Container sumologicAwsInspectorResultsContainer = ciaSystem.addContainer("AwsInspectorResults", "Sumologic", "AwsInspectorResults");
+
+		final Container sumologicAwsInspectorResultsContainer = ciaSystem.addContainer("AwsInspectorResults",
+				"Sumologic", "AwsInspectorResults");
 		sumologicAwsInspectorResultsContainer.uses(awsInspectorContainer, "Recieve reports");
 		sumologicServerSecurityDashboardNode.add(sumologicAwsInspectorResultsContainer);
-		
-		final Container sumologicAwsAlbLogsContainer = ciaSystem.addContainer("AwsLoadbalancerAccessLogs", "Sumologic", "AwsLoadbalancerAccessLogs");
+
+		final Container sumologicAwsAlbLogsContainer = ciaSystem.addContainer("AwsLoadbalancerAccessLogs", "Sumologic",
+				"AwsLoadbalancerAccessLogs");
 		sumologicAwsAlbLogsContainer.uses(awsAccessLogBucketContainer, "Recieve logs");
 		sumologicNetworkSecurityDashboardNode.add(sumologicAwsAlbLogsContainer);
-		
 
 		final DeploymentView developmentDeploymentView = viewSet.createDeploymentView(ciaSystem, "\"Deployment\"",
 				"\"Deployment Aws.\"");
@@ -297,7 +295,7 @@ public class AppPublicSystemDocumentation {
 		developmentDeploymentView.add(awsSSMNode);
 		developmentDeploymentView.add(sumologicSecurityAccountNode);
 		developmentDeploymentView.add(githubAccountNode);
-		developmentDeploymentView.add(devNetworkNode);		
+		developmentDeploymentView.add(devNetworkNode);
 
 		developmentDeploymentView.add(applicationLoadbalancerNode);
 		developmentDeploymentView.add(webNode);
@@ -315,7 +313,7 @@ public class AppPublicSystemDocumentation {
 		// structurizrClient.putWorkspace(WORKSPACE_ID, workspace);
 
 		printPlantUml(workspace);
-		System.setProperty("PLANTUML_LIMIT_SIZE", "8192");
+		System.setProperty("PLANTUML_LIMIT_SIZE", "16384");
 		Run.main(new String[] { Paths.get(".").toAbsolutePath().normalize().toString() + File.separator + "target"
 				+ File.separator + "site" + File.separator + "architecture" + File.separator });
 	}
@@ -336,6 +334,7 @@ public class AppPublicSystemDocumentation {
 			throws WorkspaceWriterException, IOException, InterruptedException {
 		final StringWriter stringWriter = new StringWriter();
 		final PlantUMLWriter plantUMLWriter = new PlantUMLWriter();
+		plantUMLWriter.setSizeLimit(16384);
 		plantUMLWriter.write(workspace, stringWriter);
 		String allPlantUmlsString = stringWriter.toString();
 
@@ -377,7 +376,8 @@ public class AppPublicSystemDocumentation {
 	 * @throws InterruptedException
 	 *             the interrupted exception
 	 */
-	private static void writePlantUml(final String filename, final String content) throws IOException, InterruptedException {
+	private static void writePlantUml(final String filename, final String content)
+			throws IOException, InterruptedException {
 		final String fullFilePathPlantUmlFile = Paths.get(".").toAbsolutePath().normalize().toString() + File.separator
 				+ "target" + File.separator + "site" + File.separator + "architecture" + File.separator + filename
 				+ ".pu";
