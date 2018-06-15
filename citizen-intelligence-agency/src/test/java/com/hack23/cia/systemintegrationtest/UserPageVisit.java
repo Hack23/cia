@@ -919,7 +919,7 @@ public final class UserPageVisit extends Assert {
 		
 		final List<WebElement> buttons = getButtons();
 		for (final WebElement webElement : buttons) {
-			if (buttonLabel.equalsIgnoreCase(webElement.getText().trim())) {
+			if (!ExpectedConditions.stalenessOf(webElement).apply(driver) && buttonLabel.equalsIgnoreCase(webElement.getText().trim())) {
 				return webElement;
 			}
 		}
