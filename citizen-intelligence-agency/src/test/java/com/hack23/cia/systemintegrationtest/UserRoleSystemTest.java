@@ -84,7 +84,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteeRankingViewOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -102,7 +102,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteeRankingViewPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -120,7 +120,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteeRankingViewDataGridTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -140,7 +140,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteeRankingViewAllCommitteesChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -157,7 +157,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteeRankingViewCommitteeByPartyChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -174,7 +174,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteeRankingViewCurrentCommitteePartiesChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -191,7 +191,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteeRankingViewCurrentCommitteesChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -209,7 +209,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteeRankingViewGridNavigationTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -232,7 +232,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyRankingViewOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -248,7 +248,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyRankingViewPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -265,7 +265,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyRankingViewDataGridTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -282,7 +282,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyRankingViewAllPartiesChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -299,7 +299,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyRankingViewCurrentCommitteeChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -316,7 +316,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyRankingViewCurrentGovernmentChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -333,7 +333,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyRankingViewCurrentPartiesChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -350,7 +350,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePoliticianRankingViewOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -367,7 +367,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePoliticianRankingViewPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -384,7 +384,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePoliticianRankingViewDataGridTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -402,7 +402,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePoliticianRankingViewDataGridNavigationTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -423,7 +423,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePoliticianRankingViewChartsAllPartiesTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -440,7 +440,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePoliticianRankingViewChartsCurrentPartiesTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -458,7 +458,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -475,7 +475,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteGovernmentBodyOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -492,7 +492,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteGovernmentBodyHeadcountTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -509,7 +509,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteGovernmentBodyIncomeTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -526,7 +526,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteGovernmentBodyExpenditureTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -543,7 +543,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryGovernmentBodyTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -561,7 +561,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -578,7 +578,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryDocumentHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -596,7 +596,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryDocumentActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -614,7 +614,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryRoleGhantTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -632,7 +632,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryCurrentMembersTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -650,7 +650,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryMemberHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -667,7 +667,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteeOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -684,7 +684,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteePageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -702,7 +702,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteRoleGhantTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -720,7 +720,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteDecisionFlowTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -740,7 +740,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMainViewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -766,7 +766,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMainViewPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -784,7 +784,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteRegisterUserTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -808,7 +808,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteRegisterUserAlreadyExistTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -843,7 +843,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteRegisterUserPasswordWeakTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -868,7 +868,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteLoginUserTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -890,7 +890,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userLoginPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 
-		userLoginPageVisit.loginUser(username + "@test.com", password);
+		userLoginPageVisit.loginUser(username + "@Test(timeout = 45000).com", password);
 	}
 
 	private String generatePassword() {
@@ -915,7 +915,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteLoginUserWrongPasswordTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -937,7 +937,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userLoginPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 
-		userLoginPageVisit.loginUserCheckView(username + "@test.com", "wrongpassword","main/" + ApplicationPageMode.LOGIN);
+		userLoginPageVisit.loginUserCheckView(username + "@Test(timeout = 45000).com", "wrongpassword","main/" + ApplicationPageMode.LOGIN);
 
 		userLoginPageVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);
 
@@ -950,7 +950,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteLoginUserEnableGoogleAuthenticatorTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -981,7 +981,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	}
 
 	
-	@Test
+	@Test(timeout = 45000)
 	public void siteLoginUserEnableGoogleAuthenticatorFailedLoginNoOtpTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1016,13 +1016,13 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		failedLoginWrongMfaVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 
-		failedLoginWrongMfaVisit.loginUserCheckView(username + "@test.com", password,"123456","main/" + ApplicationPageMode.LOGIN);
+		failedLoginWrongMfaVisit.loginUserCheckView(username + "@Test(timeout = 45000).com", password,"123456","main/" + ApplicationPageMode.LOGIN);
 
 		failedLoginWrongMfaVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);		
 	}
 
 	
-	@Test
+	@Test(timeout = 45000)
 	public void siteLoginUserEnableGoogleAuthenticatorFailureTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1053,7 +1053,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	}
 
 	
-	@Test
+	@Test(timeout = 45000)
 	public void siteLoginUserDisableGoogleAuthenticatorTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1081,7 +1081,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 	}
 
-	@Test
+	@Test(timeout = 45000)
 	public void siteLoginUserDisableGoogleAuthenticatorFailureTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1116,7 +1116,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteLoginUserCheckUserVisitsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1138,7 +1138,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userLoginPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 
-		userLoginPageVisit.loginUser(username + "@test.com", password);
+		userLoginPageVisit.loginUser(username + "@Test(timeout = 45000).com", password);
 
 
 		final WebElement useraccountMenuItem = userLoginPageVisit.getMenuItem("Useraccount");
@@ -1156,7 +1156,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteLoginUserCheckUserEventsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1178,7 +1178,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userLoginPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 
-		userLoginPageVisit.loginUser(username + "@test.com", password);
+		userLoginPageVisit.loginUser(username + "@Test(timeout = 45000).com", password);
 
 
 		final WebElement useraccountMenuItem = userLoginPageVisit.getMenuItem("Useraccount");
@@ -1197,7 +1197,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteeDocumentHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1215,7 +1215,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteeCurrentMembersTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1233,7 +1233,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteeMemberHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1251,7 +1251,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteeDocumentActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1269,7 +1269,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteeDecisionSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1287,7 +1287,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteeBallotDecisionSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1305,7 +1305,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCommitteeDecisionTypeDailySummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1323,7 +1323,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteTestParliamentOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1339,7 +1339,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteTestCountryRankingOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1357,7 +1357,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteCountryRankingViewIndicatorsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1375,7 +1375,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteParliamentChartViewPartyWinnerTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1393,7 +1393,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteParliamentRulesRiskSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1412,7 +1412,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteParliamentRuleViolationsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1431,7 +1431,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteParliamentChartDecisionFlowTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1450,7 +1450,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteParliamentChartViewPartyGenderTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1468,7 +1468,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteParliamentChartViewPartyAgeTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1487,7 +1487,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteParliamentChartViewDecsionActivityByTypeTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1505,7 +1505,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteParliamentChartViewDocumentActivityByTypeTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1523,7 +1523,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryRankingOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1540,7 +1540,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteGovernmentBodyRankingOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1557,7 +1557,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteGovernmentBodyRankingHeadCountTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1573,7 +1573,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteGovernmentBodyRankingIncomeTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1589,7 +1589,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteGovernmentBodyRankingExpenditureTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1605,7 +1605,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteGovernmentBodyRankingDatagridTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1623,7 +1623,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryRankingGovernmentBodyTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1640,7 +1640,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryRankingGovernmentOutcomeTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1658,7 +1658,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryRankingPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1676,7 +1676,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryRankingDataGridTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1693,7 +1693,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryRankingAllMinistriesChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1710,7 +1710,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryRankingAllMinistriesByPartyChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1728,7 +1728,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryRankingAllRolesChartsChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1747,7 +1747,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryRankingCurrentPartiesChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1764,7 +1764,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryRankingCurrentMinistriesChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1782,7 +1782,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteMinistryRankingNavigationTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1805,7 +1805,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteBallotOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1824,7 +1824,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteBallotOverviewWithDecisionSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1843,7 +1843,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteBallotChartTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1863,7 +1863,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteBallotOverviewMultipleVotesTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1882,7 +1882,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteBallotChartMultipleVotesTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1901,7 +1901,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteDocumentsOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1918,7 +1918,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteDocumentDetailsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1935,7 +1935,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteDocumentOverViewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1952,7 +1952,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteDocumentPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1969,7 +1969,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteDocumentPersonRefTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1987,7 +1987,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteSearchDocumentTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2006,7 +2006,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteDocumentDocActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2024,7 +2024,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteDocumentDocDataTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2041,7 +2041,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteDocumentDocRefbEmptyTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2059,7 +2059,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteDocumentDocRefbTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2077,7 +2077,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteDocumentDocDecisionTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2095,7 +2095,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void siteDocumentDocAttachmentTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2113,7 +2113,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyOverviewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2129,7 +2129,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2146,7 +2146,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyDocumentHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2164,7 +2164,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyCurrentMembersTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2182,7 +2182,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyMemberHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2200,7 +2200,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyCurrentLeadersTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2218,7 +2218,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyLeaderHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2236,7 +2236,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyCommitteeRolesTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2254,7 +2254,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyGovernmentRolesTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2272,7 +2272,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyPartyWonDailySummaryChartTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2290,7 +2290,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyDocumentActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2308,7 +2308,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyRoleGhantTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2326,7 +2326,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyCommitteeBallotDecisionSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2344,7 +2344,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePartyVoteHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2362,7 +2362,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePoliticanOverViewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2379,7 +2379,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePoliticanPageVisitHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2396,7 +2396,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePoliticanRoleSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2413,7 +2413,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePoliticanRoleListTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2431,7 +2431,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePoliticanRoleGhantTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2449,7 +2449,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePoliticanDocumentHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2467,7 +2467,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePoliticanVoteHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2485,7 +2485,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePoliticanBallotDecisionSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2503,7 +2503,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePoliticanDocumentActivityTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -2521,7 +2521,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 45000)
 	public void sitePoliticanIndicatorTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);

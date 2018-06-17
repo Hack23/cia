@@ -69,7 +69,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void siteAdminAgencyTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -93,7 +93,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test(timeout = 30000)
+	@Test(timeout = 25000)
 	public void siteAdminPortalTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -116,7 +116,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void siteAdminApplicationConfigurationTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -145,7 +145,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void siteAdminCountryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -168,7 +168,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void siteAdminEmailTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -190,7 +190,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void siteAdminEmailFailedNoValidEmailTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -214,7 +214,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void siteAdminUseraccountTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -237,7 +237,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void siteAdminUseraccountDeleteTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -265,7 +265,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void siteAdminLanguageTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -288,7 +288,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void siteAdminLanguageContentTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -312,7 +312,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void siteAdminApplicationSessionTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -335,7 +335,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void siteAdminApplicationEventTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -359,7 +359,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void siteAdminApplicationEventChartsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -381,7 +381,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test(timeout = 20000)
+	@Test(timeout = 25000)(timeout = 20000)
 	public void siteAdminMonitoringFailedAccessTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -402,7 +402,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void siteAdminMonitoringSuccessTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -425,7 +425,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void visitAdminDataSummaryViewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -444,7 +444,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void visitAdminAuthorSummaryViewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -462,7 +462,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void visitAdminDataSummaryViewRefreshViewsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -486,7 +486,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void visitAdminDataSummaryViewRemovePoliticianTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -509,7 +509,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void visitAdminDataSummaryViewRemoveDocumentsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -533,7 +533,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void visitAdminDataSummaryViewRemoveApplicationHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -561,7 +561,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void visitAdminDataSummaryViewUpdateSearchIndexTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -585,7 +585,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 25000)
 	public void siteAdminAgentOperationTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
