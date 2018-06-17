@@ -825,11 +825,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.logoutUser();
 
-		driver.quit();
-
-		final WebDriver loginDriver = getWebDriver();
-
-		final UserPageVisit userRegisterAgainPageVisit = new UserPageVisit(loginDriver, browser);
+		final UserPageVisit userRegisterAgainPageVisit = new UserPageVisit(driver, browser);
 
 		userRegisterAgainPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
@@ -889,19 +885,12 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.logoutUser();
 
-		driver.quit();
-
-		final WebDriver loginDriver = getWebDriver();
-
-		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
+		final UserPageVisit userLoginPageVisit = new UserPageVisit(driver, browser);
 
 		userLoginPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 
 		userLoginPageVisit.loginUser(username + "@test.com", password);
-
-		userLoginPageVisit.logoutUser();
-
 	}
 
 	private String generatePassword() {
@@ -943,11 +932,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.logoutUser();
 
-		driver.quit();
-
-		final WebDriver loginDriver = getWebDriver();
-
-		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
+		final UserPageVisit userLoginPageVisit = new UserPageVisit(driver, browser);
 
 		userLoginPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
@@ -980,37 +965,19 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.registerNewUser(username, password);
 
-		userPageVisit.logoutUser();
 
-		driver.quit();
-
-		final WebDriver loginDriver = getWebDriver();
-
-		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
-
-		userLoginPageVisit.visitDirectPage(
-				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
-
-		userLoginPageVisit.loginUser(username + "@test.com", password);
-
-
-		final WebElement userAccountMenuItem = userLoginPageVisit.getMenuItem("Useraccount");
+		final WebElement userAccountMenuItem = userPageVisit.getMenuItem("Useraccount");
 		assertNotNull(userAccountMenuItem);
-		userLoginPageVisit.performClickAction(userAccountMenuItem);
+		userPageVisit.performClickAction(userAccountMenuItem);
 
-		final WebElement securitySettingMenuItem = userLoginPageVisit.getMenuItem("Security settings");
+		final WebElement securitySettingMenuItem = userPageVisit.getMenuItem("Security settings");
 		assertNotNull(securitySettingMenuItem);
-		userLoginPageVisit.performClickAction(securitySettingMenuItem);
+		userPageVisit.performClickAction(securitySettingMenuItem);
 
 
-		userLoginPageVisit.enableGoogleAuthenticator(password);
+		userPageVisit.enableGoogleAuthenticator(password);
 
-		userLoginPageVisit.closeModal();
-		
-		userLoginPageVisit.logoutUser();
-
-		driver.quit();
-
+		userPageVisit.closeModal();		
 	}
 
 	
@@ -1029,47 +996,29 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.registerNewUser(username, password);
 
+		final WebElement userAccountMenuItem = userPageVisit.getMenuItem("Useraccount");
+		assertNotNull(userAccountMenuItem);
+		userPageVisit.performClickAction(userAccountMenuItem);
+
+		final WebElement securitySettingMenuItem = userPageVisit.getMenuItem("Security settings");
+		assertNotNull(securitySettingMenuItem);
+		userPageVisit.performClickAction(securitySettingMenuItem);
+
+
+		userPageVisit.enableGoogleAuthenticator(password);
+
+		userPageVisit.closeModal();
+		
 		userPageVisit.logoutUser();
 
-		driver.quit();
-
-		final WebDriver loginDriver = getWebDriver();
-
-		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
-
-		userLoginPageVisit.visitDirectPage(
-				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
-
-		userLoginPageVisit.loginUser(username + "@test.com", password);
-
-
-		final WebElement userAccountMenuItem = userLoginPageVisit.getMenuItem("Useraccount");
-		assertNotNull(userAccountMenuItem);
-		userLoginPageVisit.performClickAction(userAccountMenuItem);
-
-		final WebElement securitySettingMenuItem = userLoginPageVisit.getMenuItem("Security settings");
-		assertNotNull(securitySettingMenuItem);
-		userLoginPageVisit.performClickAction(securitySettingMenuItem);
-
-
-		userLoginPageVisit.enableGoogleAuthenticator(password);
-
-		userLoginPageVisit.closeModal();
-		
-		userLoginPageVisit.logoutUser();
-
-		driver.quit();
-
-		final WebDriver failedLoginWrongMfaDriver = getWebDriver();
-
-		final UserPageVisit failedLoginWrongMfaVisit = new UserPageVisit(failedLoginWrongMfaDriver, browser);
+		final UserPageVisit failedLoginWrongMfaVisit = new UserPageVisit(driver, browser);
 
 		failedLoginWrongMfaVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 
 		failedLoginWrongMfaVisit.loginUserCheckView(username + "@test.com", password,"123456","main/" + ApplicationPageMode.LOGIN);
 
-		failedLoginWrongMfaVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);
+		failedLoginWrongMfaVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);		
 	}
 
 	
@@ -1088,36 +1037,19 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.registerNewUser(username, password);
 
-		userPageVisit.logoutUser();
-
-		driver.quit();
-
-		final WebDriver loginDriver = getWebDriver();
-
-		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
-
-		userLoginPageVisit.visitDirectPage(
-				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
-
-		userLoginPageVisit.loginUser(username + "@test.com", password);
-
-
-		final WebElement userAccountMenuItem = userLoginPageVisit.getMenuItem("Useraccount");
+		final WebElement userAccountMenuItem = userPageVisit.getMenuItem("Useraccount");
 		assertNotNull(userAccountMenuItem);
-		userLoginPageVisit.performClickAction(userAccountMenuItem);
+		userPageVisit.performClickAction(userAccountMenuItem);
 
 
-		final WebElement securitySettingMenuItem = userLoginPageVisit.getMenuItem("Security settings");
+		final WebElement securitySettingMenuItem = userPageVisit.getMenuItem("Security settings");
 		assertNotNull(securitySettingMenuItem);
-		userLoginPageVisit.performClickAction(securitySettingMenuItem);
+		userPageVisit.performClickAction(securitySettingMenuItem);
 
 
-		userLoginPageVisit.enableGoogleAuthenticator("wrong" + password);
+		userPageVisit.enableGoogleAuthenticator("wrong" + password);
 
-		userLoginPageVisit.checkNotificationMessage("Problem enable google authenticatorError message");
-		
-		userLoginPageVisit.logoutUser();
-
+		userPageVisit.checkNotificationMessage("Problem enable google authenticatorError message");
 	}
 
 	
@@ -1136,31 +1068,16 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.registerNewUser(username, password);
 
-		userPageVisit.logoutUser();
 
-		driver.quit();
-
-		final WebDriver loginDriver = getWebDriver();
-
-		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
-
-		userLoginPageVisit.visitDirectPage(
-				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
-
-		userLoginPageVisit.loginUser(username + "@test.com", password);
-
-
-		final WebElement userAccountMenuItem = userLoginPageVisit.getMenuItem("Useraccount");
+		final WebElement userAccountMenuItem = userPageVisit.getMenuItem("Useraccount");
 		assertNotNull(userAccountMenuItem);
-		userLoginPageVisit.performClickAction(userAccountMenuItem);
+		userPageVisit.performClickAction(userAccountMenuItem);
 
-		final WebElement securitySettingMenuItem = userLoginPageVisit.getMenuItem("Security settings");
+		final WebElement securitySettingMenuItem = userPageVisit.getMenuItem("Security settings");
 		assertNotNull(securitySettingMenuItem);
-		userLoginPageVisit.performClickAction(securitySettingMenuItem);
+		userPageVisit.performClickAction(securitySettingMenuItem);
 
-		userLoginPageVisit.disableGoogleAuthenticator(password);
-
-		userLoginPageVisit.logoutUser();
+		userPageVisit.disableGoogleAuthenticator(password);
 
 	}
 
@@ -1178,35 +1095,18 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		final String password = generatePassword();
 
 		userPageVisit.registerNewUser(username, password);
-
-		userPageVisit.logoutUser();
-
-		driver.quit();
-
-		final WebDriver loginDriver = getWebDriver();
-
-		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
-
-		userLoginPageVisit.visitDirectPage(
-				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
-
-		userLoginPageVisit.loginUser(username + "@test.com", password);
-
-
-		final WebElement userAccountMenuItem = userLoginPageVisit.getMenuItem("Useraccount");
+		
+		final WebElement userAccountMenuItem = userPageVisit.getMenuItem("Useraccount");
 		assertNotNull(userAccountMenuItem);
-		userLoginPageVisit.performClickAction(userAccountMenuItem);
+		userPageVisit.performClickAction(userAccountMenuItem);
 
-		final WebElement securitySettingMenuItem = userLoginPageVisit.getMenuItem("Security settings");
+		final WebElement securitySettingMenuItem = userPageVisit.getMenuItem("Security settings");
 		assertNotNull(securitySettingMenuItem);
-		userLoginPageVisit.performClickAction(securitySettingMenuItem);
+		userPageVisit.performClickAction(securitySettingMenuItem);
 
-		userLoginPageVisit.disableGoogleAuthenticator("wrong" + password);
+		userPageVisit.disableGoogleAuthenticator("wrong" + password);
 
-		userLoginPageVisit.checkNotificationMessage("Problem disable google authenticatorError message");
-
-		userLoginPageVisit.logoutUser();
-
+		userPageVisit.checkNotificationMessage("Problem disable google authenticatorError message");
 	}
 
 
@@ -1233,11 +1133,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.logoutUser();
 
-		driver.quit();
-
-		final WebDriver loginDriver = getWebDriver();
-
-		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
+		final UserPageVisit userLoginPageVisit = new UserPageVisit(driver, browser);
 
 		userLoginPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
@@ -1252,9 +1148,6 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		final WebElement userVisitsMenuItem = userLoginPageVisit.getMenuItem("User Visits");
 		assertNotNull(userVisitsMenuItem);
 		userLoginPageVisit.performClickAction(userVisitsMenuItem);
-
-		userLoginPageVisit.logoutUser();
-
 	}
 
 	/**
@@ -1280,11 +1173,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 
 		userPageVisit.logoutUser();
 
-		driver.quit();
-
-		final WebDriver loginDriver = getWebDriver();
-
-		final UserPageVisit userLoginPageVisit = new UserPageVisit(loginDriver, browser);
+		final UserPageVisit userLoginPageVisit = new UserPageVisit(driver, browser);
 
 		userLoginPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
@@ -1299,9 +1188,6 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		final WebElement userEventsMenuItem = userLoginPageVisit.getMenuItem("User Events");
 		assertNotNull(userEventsMenuItem);
 		userLoginPageVisit.performClickAction(userEventsMenuItem);
-
-		userLoginPageVisit.logoutUser();
-
 	}
 
 

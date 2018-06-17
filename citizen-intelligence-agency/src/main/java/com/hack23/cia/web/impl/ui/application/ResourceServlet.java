@@ -18,10 +18,10 @@
 */
 package com.hack23.cia.web.impl.ui.application;
 
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 
 import org.eclipse.jetty.servlet.DefaultServlet;
-import javax.servlet.annotation.WebInitParam;
 /**
  * The Class ResourceServlet.
  */

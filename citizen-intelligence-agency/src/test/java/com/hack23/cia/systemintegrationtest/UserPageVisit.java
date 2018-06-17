@@ -901,8 +901,7 @@ public final class UserPageVisit extends Assert {
 
 		final String url = systemTestTargetUrl  +"#!" + CommonsViews.MAIN_VIEW_NAME;
 
-		assertEquals(browser, url,
-				driver.getCurrentUrl());
+		assertEquals(browser, url,driver.getCurrentUrl());
 	}
 
 
