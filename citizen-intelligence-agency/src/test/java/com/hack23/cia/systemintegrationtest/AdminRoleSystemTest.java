@@ -93,7 +93,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	@Test(timeout = 30000)
 	public void siteAdminPortalTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
