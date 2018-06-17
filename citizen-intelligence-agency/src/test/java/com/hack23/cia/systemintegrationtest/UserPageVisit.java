@@ -49,10 +49,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
  */
 public final class UserPageVisit extends Assert {
 
-	private static final int INTERVAL_CHECK_MS = 1;
+	private static final int INTERVAL_CHECK_MS = 10;
 
 	/** The Constant WAIT_FOR_PAGE_DELAY. */
-	private static final int WAIT_FOR_PAGE_DELAY = 2000;
+	private static final int WAIT_FOR_PAGE_DELAY = 2500;
 
 	/** The Constant WAIT_FOR_TEXT. */
 	private static final int WAIT_FOR_TEXT = 12500;

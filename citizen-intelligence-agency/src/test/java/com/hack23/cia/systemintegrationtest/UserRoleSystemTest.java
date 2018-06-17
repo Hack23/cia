@@ -1393,7 +1393,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test(timeout = 45000)
+	@Test(timeout = 65000)
 	public void siteParliamentRulesRiskSummaryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -1412,7 +1412,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test(timeout = 45000)
+	@Test(timeout = 65000)
 	public void siteParliamentRuleViolationsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
