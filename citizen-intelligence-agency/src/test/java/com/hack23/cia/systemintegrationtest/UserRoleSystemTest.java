@@ -890,7 +890,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userLoginPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 
-		userLoginPageVisit.loginUser(username + "@Test(timeout = 45000).com", password);
+		userLoginPageVisit.loginUser(username + "@test.com", password);
 	}
 
 	private String generatePassword() {
@@ -937,7 +937,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userLoginPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 
-		userLoginPageVisit.loginUserCheckView(username + "@Test(timeout = 45000).com", "wrongpassword","main/" + ApplicationPageMode.LOGIN);
+		userLoginPageVisit.loginUserCheckView(username + "@test.com", "wrongpassword","main/" + ApplicationPageMode.LOGIN);
 
 		userLoginPageVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);
 
@@ -1016,7 +1016,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		failedLoginWrongMfaVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 
-		failedLoginWrongMfaVisit.loginUserCheckView(username + "@Test(timeout = 45000).com", password,"123456","main/" + ApplicationPageMode.LOGIN);
+		failedLoginWrongMfaVisit.loginUserCheckView(username + "@test.com", password,"123456","main/" + ApplicationPageMode.LOGIN);
 
 		failedLoginWrongMfaVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);		
 	}
@@ -1138,7 +1138,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userLoginPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 
-		userLoginPageVisit.loginUser(username + "@Test(timeout = 45000).com", password);
+		userLoginPageVisit.loginUser(username + "@test.com", password);
 
 
 		final WebElement useraccountMenuItem = userLoginPageVisit.getMenuItem("Useraccount");
@@ -1178,7 +1178,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 		userLoginPageVisit.visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 
-		userLoginPageVisit.loginUser(username + "@Test(timeout = 45000).com", password);
+		userLoginPageVisit.loginUser(username + "@test.com", password);
 
 
 		final WebElement useraccountMenuItem = userLoginPageVisit.getMenuItem("Useraccount");
