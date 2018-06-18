@@ -237,7 +237,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test(timeout = 25000)
+	@Test(timeout = 45000)
 	public void siteAdminUseraccountDeleteTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
