@@ -55,7 +55,7 @@ public final class UserPageVisit extends Assert {
 	private static final int WAIT_FOR_PAGE_DELAY = 3000;
 
 	/** The Constant WAIT_FOR_TEXT. */
-	private static final int WAIT_FOR_TEXT = 12000;
+	private static final int WAIT_FOR_TEXT = 15000;
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
 	private static final int WAIT_FOR_PAGE_ELEMENT = 45000;
@@ -74,8 +74,6 @@ public final class UserPageVisit extends Assert {
 
 	/** The Constant systemTestTargetUrl. */
 	private static final String systemTestTargetUrl;
-
-	private String value;
 
 	static {
 		 final String systemTestTargetUrlProperty = System.getProperty("system.test.target.url");
