@@ -35,7 +35,7 @@ import com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataDto;
 final class RiksdagenDateUtil {
 
 	/** The Constant YYYY_MM_DD. */
-	private static final String YYYY_MM_DD = "yyyy-MM-dd";
+	public static final String YYYY_MM_DD = "yyyy-MM-dd";
 
 	/** The Constant CONTAINS_ONE. */
 	private static final int CONTAINS_ONE = 1;
