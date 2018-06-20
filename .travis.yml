@@ -54,8 +54,9 @@ before_script:
   - cp server.crt ~/.postgresql/root.crt
   - chmod 700 ~/.postgresql/root.crt
   - rm server.crt
-  - sudo chmod 700 /var/lib/postgresql/10/main/server.*
-  - sudo chown postgres:postgres /var/lib/postgresql/10/main/server.*
+  - sudo chmod 700 /var/lib/postgresql/10/main/server.key
+  - sudo chmod 700 /var/lib/postgresql/10/main/server.crt  
+  - sudo chown -R postgres:postgres /var/lib/postgresql/10/main/
   - echo "ssl_cert_file = '/var/lib/postgresql/10/main/server.crt'" | sudo tee --append /etc/postgresql/10/main/postgresql.conf
   - echo "ssl_key_file = '/var/lib/postgresql/10/main/server.key'" | sudo tee --append /etc/postgresql/10/main/postgresql.conf
   - echo "max_prepared_transactions = 100" | sudo tee --append /etc/postgresql/10/main/postgresql.conf 
