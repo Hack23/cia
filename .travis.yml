@@ -43,7 +43,7 @@ before_script:
   - sudo rm /etc/localtime
   - sudo ln -s /usr/share/zoneinfo/Europe/Stockholm /etc/localtime 
   - sudo dpkg-reconfigure -f noninteractive tzdata 
-  - sudo echo 'LANG=\"en_US.UTF-8\"'> /etc/default/locale
+  - sudo echo 'LANG=\"en_US.UTF-8\"' | sudo tee --append /etc/default/locale
   - sudo locale-gen en_US.UTF-8 en_GB.UTF-8 sv_SE.UTF-8 
   - sudo dpkg-reconfigure --frontend=noninteractive locales
   - sudo service postgresql stop 10
