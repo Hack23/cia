@@ -23,6 +23,8 @@ addons:
       - postgresql-contrib
       - postgresql-10-pgaudit
       - openssl
+      - locales
+      - tzdata
 
 jdk:
   - oraclejdk8
@@ -37,6 +39,13 @@ cache:
   - $HOME/.m2
 
 before_script:
+  - export DEBIAN_FRONTEND=noninteractive
+  - sudo rm /etc/localtime
+  - sudo ln -s /usr/share/zoneinfo/Europe/Stockholm /etc/localtime 
+  - sudo dpkg-reconfigure -f noninteractive tzdata 
+  - sudo echo 'LANG=\"en_US.UTF-8\"'> /etc/default/locale
+  - sudo locale-gen en_US.UTF-8 en_GB.UTF-8 sv_SE.UTF-8 
+  - sudo dpkg-reconfigure --frontend=noninteractive locales
   - sudo service postgresql stop 10
   - sudo sh -c "echo 'host all all 0.0.0.0/0 md5' | sudo tee --append /etc/postgresql/10/main/pg_hba.conf"
   - openssl rand -base64 48 > passphrase.txt
