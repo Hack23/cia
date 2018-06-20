@@ -18,19 +18,31 @@
 */
 package com.hack23.cia.service.impl;
 
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.util.ReflectionTestUtils;
+
+import com.hack23.cia.model.internal.application.system.impl.Agency;
+import com.hack23.cia.model.internal.application.system.impl.LanguageData;
 import com.hack23.cia.service.api.ConfigurationManager;
 import com.hack23.cia.service.api.UserConfiguration;
+import com.hack23.cia.service.data.api.AgencyDAO;
+import com.hack23.cia.service.data.api.LanguageDataDAO;
 
 /**
  * The Class ConfigurationManagerITest.
  */
 public final class ConfigurationManagerITest extends AbstractServiceFunctionalIntegrationTest {
-
-	/** The Constant WWW_HACK23_COM. */
-	private static final String WWW_HACK23_COM = "www.hack23.com";
 
 	/** The configuration manager. */
 	@Autowired
@@ -47,14 +59,79 @@ public final class ConfigurationManagerITest extends AbstractServiceFunctionalIn
 	public void getUserConfigurationSuccessTest() throws Exception {
 		setAuthenticatedAnonymousUser();
 
-		final UserConfiguration userConfiguration = configurationManager.getUserConfiguration(WWW_HACK23_COM,"en");
+		final UserConfiguration userConfiguration = configurationManager.getUserConfiguration("www.hack23.com", "en");
 		assertNotNull(EXPECT_A_RESULT, userConfiguration);
 		assertNotNull(EXPECT_A_RESULT, userConfiguration.getAgency());
 		assertNotNull(EXPECT_A_RESULT, userConfiguration.getPortal());
 		assertNotNull(EXPECT_A_RESULT, userConfiguration.getLanguage());
+	}
 
+	/**
+	 * Creates the default config if empty ignore when exist test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void createDefaultConfigIfEmptyIgnoreWhenExistTest() throws Exception {
+		AgencyDAO agencyDAO = mock(AgencyDAO.class);
+		ReflectionTestUtils.setField(configurationManager, "agencyDAO", agencyDAO);
+		ArrayList<Agency> list = new ArrayList<>();
+		list.add(new Agency());
+		when(agencyDAO.getAll()).thenReturn(list);
+		setAuthenticatedAdminuser();
+		configurationManager.createDefaultConfigIfEmpty();
+		verify(agencyDAO, never()).persist(Mockito.any(Agency.class));
+	}
 
+	/**
+	 * Creates the default config if empty ignore when empty test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void createDefaultConfigIfEmptyIgnoreWhenEmptyTest() throws Exception {
+		AgencyDAO agencyDAO = mock(AgencyDAO.class);
+		ReflectionTestUtils.setField(configurationManager, "agencyDAO", agencyDAO);
+		when(agencyDAO.getAll()).thenReturn(new ArrayList<>());
+		setAuthenticatedAdminuser();
+		configurationManager.createDefaultConfigIfEmpty();
+		verify(agencyDAO, times(1)).persist(Mockito.any(Agency.class));
+	}
 
+	/**
+	 * Creates the default languages if empty ignore when exist test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void createDefaultLanguagesIfEmptyIgnoreWhenExistTest() throws Exception {
+		LanguageDataDAO languageDataDAO = mock(LanguageDataDAO.class);
+		ReflectionTestUtils.setField(configurationManager, "languageDataDAO", languageDataDAO);
+		ArrayList<LanguageData> list = new ArrayList<>();
+		list.add(new LanguageData());
+		when(languageDataDAO.getAll()).thenReturn(list);
+		setAuthenticatedAdminuser();
+		configurationManager.createDefaultLanguagesIfEmpty();
+		verify(languageDataDAO, never()).persist(Mockito.any(List.class));
+	}
+
+	/**
+	 * Creates the default languages if empty ignore when empty test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void createDefaultLanguagesIfEmptyIgnoreWhenEmptyTest() throws Exception {
+		LanguageDataDAO languageDataDAO = mock(LanguageDataDAO.class);
+		ReflectionTestUtils.setField(configurationManager, "languageDataDAO", languageDataDAO);
+		when(languageDataDAO.getAll()).thenReturn(new ArrayList<>());
+		setAuthenticatedAdminuser();
+		configurationManager.createDefaultLanguagesIfEmpty();
+		verify(languageDataDAO, times(1)).persist(Mockito.any(List.class));
 	}
 
 }
