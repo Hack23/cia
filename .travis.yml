@@ -5,6 +5,8 @@ addons:
   sonarcloud:
     organization: "hack23"
     github_token: "$GITHUB_TOKEN"
+  chrome: stable
+  postgresql: "10"
   apt:
     packages:
       - oracle-java8-installer
@@ -16,22 +18,33 @@ addons:
       - debhelper
       - dh-make
       - bzr-builddeb
-        
+      - postgresql-10
+      - postgresql-client-10
+
 jdk:
   - oraclejdk8
 
 env:
   global:
     - JAVA_HOME=/usr/lib/jvm/java-8-oracle
+    - PGPORT=5433
     
 cache:
   directories:
   - $HOME/.m2
 
+before_script:
+  - psql -c "CREATE USER eris WITH password 'discord';" -U postgres
+  - psql -c "create database cia_dev" -U postgres
+  - psql -c "GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;" -U postgres
+  - psql -U postgres -c "create extension pgcrypto" cia_dev
+  - psql -U postgres -c "create extension pgaudit" cia_dev
+  - psql -U postgres -c "create extension pg_stat_statements" cia_dev  
+
 script:
   - cp parent-pom/toolchain/toolchains.xml $HOME/.m2/toolchains.xml
   - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - xvfb-run --server-args="-screen 0 1024x768x24" mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
   - mvn sonar:sonar
  
 after_success:
