@@ -75,7 +75,7 @@ before_script:
 script:
   - cp parent-pom/toolchain/toolchains.xml $HOME/.m2/toolchains.xml
   - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-  - xvfb-run --server-args="-screen 0 1280x800x24" mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - xvfb-run --server-args="-screen 0 1280x800x24" mvn install -Prelease-site -Dmaven.test.failure.ignore=true -Dmaven.javadoc.skip=true -B -V -Ddatabase.port=5433
   - mvn sonar:sonar
  
 after_success:

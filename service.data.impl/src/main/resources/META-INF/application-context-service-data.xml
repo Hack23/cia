@@ -40,7 +40,7 @@
 		<property name="user" value="${database.username}" />
 		<property name="password" value="${database.password}" />
 		<property name="serverName" value="${database.hostname}" />
-		<property name="portNumber" value="5432" />
+		<property name="portNumber" value="${database.port}" />
 		<property name="databaseName" value="${database.name}" />
 		<property name="ssl" value="true" />
 		<property name="sslMode" value="verify-full" />
