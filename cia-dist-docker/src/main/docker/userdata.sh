@@ -38,8 +38,9 @@ rm server.csr
 cp server.crt /var/lib/postgresql/10/main/server.crt
 cp server.key /var/lib/postgresql/10/main/server.key
 rm server.key
-chmod 700 /var/lib/postgresql/10/main/server.*
-chown postgres:postgres /var/lib/postgresql/10/main/server.*
+chmod 700 /var/lib/postgresql/10/main/server.key
+chmod 700 /var/lib/postgresql/10/main/server.crt
+chown -R postgres:postgres /var/lib/postgresql/10/main/
 
 echo "ssl_cert_file = '/var/lib/postgresql/10/main/server.crt'" >> /etc/postgresql/10/main/postgresql.conf
 echo "ssl_key_file = '/var/lib/postgresql/10/main/server.key'" >> /etc/postgresql/10/main/postgresql.conf
