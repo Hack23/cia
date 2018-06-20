@@ -20,6 +20,8 @@ addons:
       - bzr-builddeb
       - postgresql-10
       - postgresql-client-10
+      - postgresql-contrib
+      - postgresql-10-pgaudit
 
 jdk:
   - oraclejdk8
