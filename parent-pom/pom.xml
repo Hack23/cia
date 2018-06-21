@@ -104,7 +104,7 @@
     <!-- <cia.project.versions.spring.security>5.0.5.RELEASE/5.1.0.M1</cia.project.versions.spring.security> -->
     <cia.project.versions.spring.security>5.1.0.M1</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.1</cia.project.versions.aspectj>
-    <cia.project.versions.javassist>3.22.0-GA</cia.project.versions.javassist>
+    <cia.project.versions.javassist>3.23.0-GA</cia.project.versions.javassist>
     <cia.project.versions.asm>6.2</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.6</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2.redhat-2</cia.project.versions.commons.collections>
@@ -171,7 +171,7 @@
       <dependency>
         <groupId>com.ibm.icu</groupId>
         <artifactId>icu4j</artifactId>
-        <version>61.1</version>
+        <version>62.1</version>
       </dependency>
       <dependency>
         <groupId>org.apache.ant</groupId>
@@ -643,7 +643,7 @@
             <dependency>
               <groupId>org.javassist</groupId>
               <artifactId>javassist</artifactId>
-              <version>3.22.0-GA</version>
+              <version>3.23.0-GA</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -1786,7 +1786,7 @@
               <dependency>
                 <groupId>org.javassist</groupId>
                 <artifactId>javassist</artifactId>
-                <version>3.22.0-GA</version>
+                <version>3.23.0-GA</version>
               </dependency>
             </dependencies>
             <inherited>true</inherited>
