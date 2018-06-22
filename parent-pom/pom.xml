@@ -125,7 +125,7 @@
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
     <cia.project.versions.poi>3.17</cia.project.versions.poi>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
-    <cia.project.versions.ant>1.10.3</cia.project.versions.ant>
+    <cia.project.versions.ant>1.10.4</cia.project.versions.ant>
     <cia.project.versions.junit>4.12</cia.project.versions.junit>
     <cia.project.versions.easymock>3.6</cia.project.versions.easymock>
     <cia.project.versions.dbunit>2.5.4</cia.project.versions.dbunit>
@@ -176,7 +176,7 @@
       <dependency>
         <groupId>org.apache.ant</groupId>
         <artifactId>ant</artifactId>
-        <version>1.10.3</version>
+        <version>1.10.4</version>
       </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>
