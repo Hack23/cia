@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
+import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.api.action.user.DocumentWordCountRequest;
 import com.hack23.cia.service.api.action.user.DocumentWordCountResponse;
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
@@ -56,9 +57,28 @@ public final class DocumentWordCountServiceITest extends AbstractServiceFunction
 
 		final DocumentWordCountResponse  response = (DocumentWordCountResponse) applicationManager.service(serviceRequest);
 		assertNotNull("Expect a result",response);
-		System.out.println(response.getWordCountMap());
 		assertTrue("Expect a result",response.getWordCountMap().size() > 0);
 
+	}
+
+	/**
+	 * Service request validation failure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void serviceRequestValidationFailureTest() throws Exception {
+		setAuthenticatedAnonymousUser();
+
+		final DocumentWordCountRequest serviceRequest = new DocumentWordCountRequest();
+		serviceRequest.setMaxResults(100);
+		serviceRequest.setDocumentId("GNB47");
+
+		final DocumentWordCountResponse  response = (DocumentWordCountResponse) applicationManager.service(serviceRequest);
+		assertNotNull("Expect a result",response);
+		assertEquals(ServiceResult.FAILURE, response.getResult());
+		assertEquals("sessionId must not be null", response.getErrorMessage());
 	}
 
 

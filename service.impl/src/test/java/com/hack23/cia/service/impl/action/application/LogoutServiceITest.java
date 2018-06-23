@@ -105,5 +105,22 @@ public final class LogoutServiceITest extends AbstractServiceFunctionalIntegrati
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, logoutResponse.getResult());
 
 	}
+	
+	/**
+	 * Service request validation failure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void serviceRequestValidationFailureTest() throws Exception {
+		setAuthenticatedAdminuser();
+		final LogoutRequest logoutRequest = new LogoutRequest();
+
+		final ServiceResponse logoutResponse = applicationManager.service(logoutRequest);
+		assertNotNull(EXPECT_A_RESULT, logoutResponse);
+		assertEquals(ServiceResult.FAILURE, logoutResponse.getResult());
+		assertEquals("sessionId must not be null", logoutResponse.getErrorMessage());
+	}
 
 }

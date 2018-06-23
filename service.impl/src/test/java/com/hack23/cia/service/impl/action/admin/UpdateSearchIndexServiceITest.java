@@ -23,6 +23,7 @@ import org.junit.Test;
 import com.hack23.cia.service.api.action.admin.UpdateSearchIndexRequest;
 import com.hack23.cia.service.api.action.admin.UpdateSearchIndexResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
+import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 
 /**
@@ -47,6 +48,24 @@ public final class UpdateSearchIndexServiceITest extends AbstractServiceFunction
 		final UpdateSearchIndexResponse response = (UpdateSearchIndexResponse) applicationManager
 				.service(serviceRequest);
 		assertNotNull(EXPECT_A_RESULT, response);
+	}
+
+	/**
+	 * Service request validation failure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void serviceRequestValidationFailureTest() throws Exception {
+		setAuthenticatedAdminuser();
+		final UpdateSearchIndexRequest serviceRequest = new UpdateSearchIndexRequest();
+
+		final UpdateSearchIndexResponse response = (UpdateSearchIndexResponse) applicationManager
+				.service(serviceRequest);
+		assertNotNull(EXPECT_A_RESULT, response);
+		assertEquals(EXPECT_SUCCESS, ServiceResult.FAILURE,response.getResult());
+		assertEquals("sessionId must not be null", response.getErrorMessage());
 	}
 
 }

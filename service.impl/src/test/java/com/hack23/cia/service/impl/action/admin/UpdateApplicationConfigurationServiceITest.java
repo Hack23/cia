@@ -96,4 +96,27 @@ public final class UpdateApplicationConfigurationServiceITest extends AbstractSe
 
 	}
 
+	/**
+	 * Service request validation failure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void serviceRequestValidationFailureTest() throws Exception {
+		setAuthenticatedAdminuser();
+		final UpdateApplicationConfigurationRequest serviceRequest = new UpdateApplicationConfigurationRequest();
+		serviceRequest.setComponentDescription("componentDescription");
+		serviceRequest.setConfigDescription("configDescription");
+		serviceRequest.setConfigTitle("configTitle");
+		serviceRequest.setComponentTitle("componentTitle");
+		serviceRequest.setPropertyValue("false");
+
+		final UpdateApplicationConfigurationResponse  response = (UpdateApplicationConfigurationResponse) applicationManager.service(serviceRequest);
+
+		assertNotNull(EXPECT_A_RESULT,response);
+		assertEquals(EXPECT_SUCCESS, ServiceResult.FAILURE,response.getResult());
+		assertEquals("sessionId must not be null", response.getErrorMessage());
+	}
+
 }

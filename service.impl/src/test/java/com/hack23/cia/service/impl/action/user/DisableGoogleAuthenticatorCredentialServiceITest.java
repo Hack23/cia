@@ -130,4 +130,24 @@ public final class DisableGoogleAuthenticatorCredentialServiceITest extends Abst
 
 	}
 
+	/**
+	 * Service request validation failure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void serviceRequestValidationFailureTest() throws Exception {
+		setAuthenticatedAdminuser();
+
+		final DisableGoogleAuthenticatorCredentialRequest disableGoogleAuthenticatorCredentialRequest = new DisableGoogleAuthenticatorCredentialRequest();
+		disableGoogleAuthenticatorCredentialRequest.setUserpassword("Userpassword1!");
+
+		final ServiceResponse disableGoogleAuthenticatorCredentialResponse = applicationManager.service(disableGoogleAuthenticatorCredentialRequest);
+
+		assertNotNull(EXPECT_A_RESULT, disableGoogleAuthenticatorCredentialResponse);
+		assertEquals(ServiceResult.FAILURE, disableGoogleAuthenticatorCredentialResponse.getResult());
+		assertEquals("sessionId must not be null", disableGoogleAuthenticatorCredentialResponse.getErrorMessage());
+	}
+
 }

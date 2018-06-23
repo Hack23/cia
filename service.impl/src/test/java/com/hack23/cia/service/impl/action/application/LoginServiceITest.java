@@ -334,5 +334,25 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 		assertEquals(LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH.toString(), loginResponse.getErrorMessage());
 	}
 
+	/**
+	 * Service request validation failure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void serviceRequestValidationFailureTest() throws Exception {
+		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
+		final LoginRequest loginRequest = new LoginRequest();
+		loginRequest.setEmail("some@email.com");
+		loginRequest.setUserpassword("someValidPassword123!");
+
+		final LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
+
+		assertNotNull("Expect a result", loginResponse);
+		assertEquals(ServiceResult.FAILURE, loginResponse.getResult());
+		assertEquals("sessionId must not be null", loginResponse.getErrorMessage());
+	}
+
 
 }

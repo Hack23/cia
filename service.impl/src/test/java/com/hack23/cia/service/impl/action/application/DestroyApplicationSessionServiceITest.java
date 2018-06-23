@@ -79,4 +79,19 @@ public final class DestroyApplicationSessionServiceITest extends AbstractService
 		assertNotNull(EXPECT_A_RESULT,applicationSession.getDestroyedDate());
 	}
 
+	/**
+	 * Service request validation failure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void serviceRequestValidationFailureTest() throws Exception {
+		setAuthenticatedAnonymousUser();
+		final DestroyApplicationSessionRequest destroyApplicationSessionRequest = new DestroyApplicationSessionRequest();
+		final ServiceResponse response = applicationManager.service(destroyApplicationSessionRequest);
+		assertNotNull(EXPECT_A_RESULT,response);
+		assertEquals("sessionId must not be null", response.getErrorMessage());
+	}
+
 }

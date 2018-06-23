@@ -58,5 +58,25 @@ public final class SearchDocumentServiceITest extends AbstractServiceFunctionalI
 		assertNotNull(EXPECT_A_RESULT,response);
 		assertTrue(EXPECT_A_RESULT,response.getResultElement().size() > 0);
 	}
+	
+	/**
+	 * Service request validation failure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void serviceRequestValidationFailureTest() throws Exception {
+		setAuthenticatedAnonymousUser();
+
+		final SearchDocumentRequest serviceRequest = new SearchDocumentRequest();
+		serviceRequest.setMaxResults(10);
+		serviceRequest.setSearchExpression("kan");
+
+		final SearchDocumentResponse  response = (SearchDocumentResponse) applicationManager.service(serviceRequest);
+		assertNotNull(EXPECT_A_RESULT,response);
+		assertEquals("sessionId must not be null", response.getErrorMessage());
+	}
+
 
 }

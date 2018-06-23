@@ -39,13 +39,13 @@ public final class RefreshDataViewsServiceITest extends AbstractServiceFunctiona
 
 
 	/**
-	 * Test.
+	 * Service sucess test.
 	 *
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void Test() throws Exception {
+	public void serviceSucessTest() throws Exception {
 
 		setAuthenticatedAdminuser();
 
@@ -57,6 +57,26 @@ public final class RefreshDataViewsServiceITest extends AbstractServiceFunctiona
 		final RefreshDataViewsResponse  response = (RefreshDataViewsResponse) applicationManager.service(serviceRequest);
 		assertNotNull(EXPECT_A_RESULT,response);
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, response.getResult());
+
+	}
+
+	/**
+	 * Service request validation failure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void serviceRequestValidationFailureTest() throws Exception {
+
+		setAuthenticatedAdminuser();
+
+		final RefreshDataViewsRequest serviceRequest = new RefreshDataViewsRequest();
+
+		final RefreshDataViewsResponse  response = (RefreshDataViewsResponse) applicationManager.service(serviceRequest);
+		assertNotNull(EXPECT_A_RESULT,response);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.FAILURE, response.getResult());
+		assertEquals("sessionId must not be null", response.getErrorMessage());
 
 	}
 

@@ -115,5 +115,26 @@ public final class SetGoogleAuthenticatorCredentialServiceITest extends Abstract
 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, logoutResponse.getResult());
 
 	}
+	
+	/**
+	 * Service request validation failure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void serviceRequestValidationFailureTest() throws Exception {
+		setAuthenticatedAdminuser();
+
+		final SetGoogleAuthenticatorCredentialRequest setGoogleAuthenticatorCredentialRequest = new SetGoogleAuthenticatorCredentialRequest();
+		setGoogleAuthenticatorCredentialRequest.setUserpassword("Userpassword1!");
+
+		final ServiceResponse setGoogleAuthenticatorCredentialResponse = applicationManager.service(setGoogleAuthenticatorCredentialRequest);
+
+		assertNotNull(EXPECT_A_RESULT, setGoogleAuthenticatorCredentialResponse);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.FAILURE, setGoogleAuthenticatorCredentialResponse.getResult());
+		assertEquals("sessionId must not be null", setGoogleAuthenticatorCredentialResponse.getErrorMessage());
+	}
+
 
 }

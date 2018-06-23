@@ -60,11 +60,6 @@ public final class CreateApplicationEventService
 
 	@Override
 	public CreateApplicationEventResponse processService(final CreateApplicationEventRequest serviceRequest) {
-		final CreateApplicationEventResponse inputValidation = inputValidation(serviceRequest);
-		if (inputValidation != null) {
-			return inputValidation;
-		}
-		
 		final ApplicationSession applicationSession = applicationSessionDAO
 				.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());
 

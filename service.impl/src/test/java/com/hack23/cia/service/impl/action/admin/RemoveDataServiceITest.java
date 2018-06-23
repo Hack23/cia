@@ -47,7 +47,7 @@ public final class RemoveDataServiceITest extends AbstractServiceFunctionalInteg
 
 	@Autowired
 	@Qualifier("RemoveDataService")
-	private BusinessService<? extends ServiceRequest,? extends ServiceResponse> removeDataService;
+	private BusinessService<? extends ServiceRequest, ? extends ServiceResponse> removeDataService;
 
 	/**
 	 * Test.
@@ -59,26 +59,45 @@ public final class RemoveDataServiceITest extends AbstractServiceFunctionalInteg
 	public void Test() throws Exception {
 		final RemoveDataManager removeDataManager = Mockito.mock(RemoveDataManager.class);
 		ReflectionTestUtils.setField(removeDataService, "removeDataManager", removeDataManager);
-		
+
 		setAuthenticatedAdminuser();
-		
+
 		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
-		
+
 		for (final DataType dataType : RemoveDataRequest.DataType.values()) {
 			final RemoveDataRequest serviceRequest = new RemoveDataRequest();
 			serviceRequest.setSessionId(createSessionRequest.getSessionId());
 			serviceRequest.setDataType(dataType);
-			final RemoveDataResponse  response = (RemoveDataResponse) applicationManager.service(serviceRequest);
-			assertNotNull(EXPECT_A_RESULT,response);
-			assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, response.getResult());			
+			final RemoveDataResponse response = (RemoveDataResponse) applicationManager.service(serviceRequest);
+			assertNotNull(EXPECT_A_RESULT, response);
+			assertEquals(EXPECT_SUCCESS, ServiceResult.SUCCESS, response.getResult());
 		}
-		
+
 		Mockito.verify(removeDataManager).removeApplicationHistory();
 		Mockito.verify(removeDataManager).removeCommitteeProposals();
 		Mockito.verify(removeDataManager).removeDocuments();
 		Mockito.verify(removeDataManager).removeDocumentStatus();
-		Mockito.verify(removeDataManager).removePersonData();		
+		Mockito.verify(removeDataManager).removePersonData();
 	}
 
+	/**
+	 * Service request validation failure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void serviceRequestValidationFailureTest() throws Exception {
+
+		setAuthenticatedAdminuser();
+		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
+
+		final RemoveDataRequest serviceRequest = new RemoveDataRequest();
+		serviceRequest.setSessionId(createSessionRequest.getSessionId());
+		final RemoveDataResponse response = (RemoveDataResponse) applicationManager.service(serviceRequest);
+		assertNotNull(EXPECT_A_RESULT, response);
+		assertEquals(EXPECT_SUCCESS, ServiceResult.FAILURE, response.getResult());
+		assertEquals("dataType must not be null", response.getErrorMessage());
+	}
 
 }

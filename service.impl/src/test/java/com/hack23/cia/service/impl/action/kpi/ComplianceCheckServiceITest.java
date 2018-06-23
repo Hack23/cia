@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
+import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheckRequest;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheckResponse;
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
@@ -62,8 +63,25 @@ public final class ComplianceCheckServiceITest extends AbstractServiceFunctional
 
 		assertNotNull(EXPECT_A_RESULT,response.getResourceTypeMap());
 		assertFalse(response.getResourceTypeMap().isEmpty());
+	}
 
-		
+	
+	/**
+	 * Service request validation failure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void serviceRequestValidationFailureTest() throws Exception {
+		setAuthenticatedAnonymousUser();
+
+		final ComplianceCheckRequest serviceRequest = new ComplianceCheckRequest();
+
+		final ComplianceCheckResponse  response = (ComplianceCheckResponse) applicationManager.service(serviceRequest);
+		assertNotNull(EXPECT_A_RESULT, response);
+		assertEquals(ServiceResult.FAILURE, response.getResult());
+		assertEquals("sessionId must not be null", response.getErrorMessage());
 	}
 
 }

@@ -167,4 +167,30 @@ public final class RegisterUserServiceITest extends AbstractServiceFunctionalInt
 		assertEquals(EXPECT_SUCCESS,ServiceResult.FAILURE, errorResponse.getResult());
 		assertEquals("email must be a well-formed email address, userpassword must not be null", errorResponse.getErrorMessage());
 	}
+	
+	
+	/**
+	 * Service request validation failure test.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void serviceRequestValidationFailureTest() throws Exception {
+		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
+
+		final RegisterUserRequest serviceRequest = new RegisterUserRequest();
+		serviceRequest.setCountry("Sweden");
+		serviceRequest.setUsername(UUID.randomUUID().toString());
+		serviceRequest.setEmail(serviceRequest.getUsername()+"@hack23.com");
+		serviceRequest.setUserType(UserType.PRIVATE);
+		serviceRequest.setUserpassword("Userpassword1!");
+		
+		final RegisterUserResponse errorResponse = (RegisterUserResponse) applicationManager.service(serviceRequest);
+		assertNotNull(EXPECT_A_RESULT, errorResponse);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.FAILURE, errorResponse.getResult());
+		assertEquals(ServiceResult.FAILURE, errorResponse.getResult());
+		assertEquals("sessionId must not be null", errorResponse.getErrorMessage());
+	}
+
 }
