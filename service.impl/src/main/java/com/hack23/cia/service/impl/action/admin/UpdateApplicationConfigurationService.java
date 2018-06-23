@@ -103,7 +103,7 @@ public final class UpdateApplicationConfigurationService extends
 	@Override
 	protected CreateApplicationEventRequest createApplicationEventForService(
 			final UpdateApplicationConfigurationRequest serviceRequest) {
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
 		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
 		eventRequest.setActionName(UpdateApplicationConfigurationRequest.class.getSimpleName());

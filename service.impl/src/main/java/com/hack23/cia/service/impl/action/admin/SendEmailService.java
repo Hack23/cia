@@ -118,7 +118,7 @@ public final class SendEmailService extends AbstractBusinessServiceImpl<SendEmai
 
 	@Override
 	protected CreateApplicationEventRequest createApplicationEventForService(final SendEmailRequest serviceRequest) {
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
 		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);
 		eventRequest.setActionName(SendEmailRequest.class.getSimpleName());

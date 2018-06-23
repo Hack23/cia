@@ -97,11 +97,11 @@ public final class UpdateSearchIndexService extends
 
 	@Override
 	protected CreateApplicationEventRequest createApplicationEventForService(final UpdateSearchIndexRequest serviceRequest) {
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
 		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
 		eventRequest.setActionName(UpdateSearchIndexRequest.class.getSimpleName());
-		eventRequest.setSessionId(serviceRequest.getSessionId());
+		eventRequest.setSessionId(serviceRequest.getSessionId());		
 		return eventRequest;
 	}
 

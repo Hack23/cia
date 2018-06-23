@@ -138,6 +138,13 @@ public final class SetGoogleAuthenticatorCredentialService extends
 		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);
 		eventRequest.setActionName(SetGoogleAuthenticatorCredentialRequest.class.getSimpleName());
 		eventRequest.setSessionId(serviceRequest.getSessionId());
+		final UserAccount userAccount = getUserAccountFromSecurityContext();
+
+		if (getUserAccountFromSecurityContext() != null) {
+
+			eventRequest.setUserId(userAccount.getUserId());
+		}
+
 		return eventRequest;
 	}
 

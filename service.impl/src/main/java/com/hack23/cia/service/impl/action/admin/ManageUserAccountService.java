@@ -20,11 +20,8 @@ package com.hack23.cia.service.impl.action.admin;
 
 import java.util.EnumMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
-import javax.validation.ConstraintViolation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -111,27 +108,8 @@ public final class ManageUserAccountService
 		}
 
 		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
-
-		final UserAccount userAccount = getUserAccountFromSecurityContext();
-
-		if (getUserAccountFromSecurityContext() != null) {
-
-			eventRequest.setUserId(userAccount.getUserId());
-		}
-
-		ManageUserAccountResponse response;
-		final Set<ConstraintViolation<ManageUserAccountRequest>> requestConstraintViolations = validateRequest(
-				serviceRequest);
-		if (!requestConstraintViolations.isEmpty()) {
-			response = new ManageUserAccountResponse(ServiceResult.FAILURE);
-			final String errorMessage = requestConstraintViolations.stream()
-					.sorted((p1, p2) -> p1.getPropertyPath().toString().compareTo(p2.getPropertyPath().toString()))
-					.map(p -> p.getPropertyPath().toString() + " " + p.getMessage()).collect(Collectors.joining(", "));
-			response.setErrorMessage(errorMessage);
-			eventRequest.setErrorMessage(errorMessage);
-		} else {
-			response = performOperation(serviceRequest, eventRequest);
-		}
+		
+		final ManageUserAccountResponse response = performOperation(serviceRequest, eventRequest);
 		createApplicationEventService.processService(eventRequest);
 
 		return response;
@@ -169,11 +147,11 @@ public final class ManageUserAccountService
 
 	@Override
 	protected CreateApplicationEventRequest createApplicationEventForService(final ManageUserAccountRequest serviceRequest) {
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
 		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
 		eventRequest.setActionName(ManageUserAccountRequest.class.getSimpleName());
-		eventRequest.setSessionId(serviceRequest.getSessionId());
+		eventRequest.setSessionId(serviceRequest.getSessionId());		
 		return eventRequest;
 	}
 

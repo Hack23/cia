@@ -192,7 +192,7 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 	@Override
 	protected CreateApplicationEventRequest createApplicationEventForService(
 			final RegisterUserRequest serviceRequest) {
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.USER);
 		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);
 		eventRequest.setActionName(RegisterUserRequest.class.getSimpleName());

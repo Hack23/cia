@@ -109,7 +109,7 @@ public final class DisableGoogleAuthenticatorCredentialService extends
 	@Override
 	protected CreateApplicationEventRequest createApplicationEventForService(
 			final DisableGoogleAuthenticatorCredentialRequest serviceRequest) {
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.USER);
 		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);
 		eventRequest.setActionName(DisableGoogleAuthenticatorCredentialRequest.class.getSimpleName());

@@ -125,6 +125,13 @@ public final class SearchDocumentService extends
 		eventRequest.setApplicationOperation(ApplicationOperationType.READ);
 		eventRequest.setActionName(SearchDocumentRequest.class.getSimpleName());
 		eventRequest.setSessionId(serviceRequest.getSessionId());
+		final UserAccount userAccount = getUserAccountFromSecurityContext();
+
+		if (getUserAccountFromSecurityContext() != null) {
+
+			eventRequest.setUserId(userAccount.getUserId());
+		}
+
 		return eventRequest;
 	}
 

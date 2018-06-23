@@ -85,7 +85,7 @@ public final class RefreshDataViewsService extends
 
 	@Override
 	protected CreateApplicationEventRequest createApplicationEventForService(final RefreshDataViewsRequest serviceRequest) {
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
 		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);
 		eventRequest.setActionName(RefreshDataViewsRequest.class.getSimpleName());

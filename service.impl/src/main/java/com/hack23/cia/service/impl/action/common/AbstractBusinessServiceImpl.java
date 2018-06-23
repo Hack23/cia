@@ -105,6 +105,13 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 		return null;
 	}
 		
+	/**
+	 * Input validation.
+	 *
+	 * @param serviceRequest
+	 *            the service request
+	 * @return the v
+	 */
 	protected final V inputValidation(final T serviceRequest) {
 		final Set<ConstraintViolation<T>> validateRequest = validateRequest(serviceRequest);
 		if (!validateRequest.isEmpty()) {
@@ -117,6 +124,23 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 			return null;
 		}
 	}
+	
+	/**
+	 * Creates the base application event request.
+	 *
+	 * @return the creates the application event request
+	 */
+	protected final CreateApplicationEventRequest createBaseApplicationEventRequest() {
+		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		final UserAccount userAccount = getUserAccountFromSecurityContext();
+		
+		if (getUserAccountFromSecurityContext() != null) {
+			
+			eventRequest.setUserId(userAccount.getUserId());
+		}
+		return eventRequest;
+	}
+
 	
 	/**
 	 * Creates the application event for service.
@@ -141,7 +165,7 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 	 *            the request
 	 * @return the sets the
 	 */
-	protected final Set<ConstraintViolation<T>> validateRequest(final T request) {
+	private Set<ConstraintViolation<T>> validateRequest(final T request) {
         final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         return factory.getValidator().validate( request );
 	}
@@ -153,7 +177,7 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 	 *            the request constraint violations
 	 * @return the human message
 	 */
-	protected final String getHumanMessage(final Set<ConstraintViolation<T>> requestConstraintViolations) {
+	private String getHumanMessage(final Set<ConstraintViolation<T>> requestConstraintViolations) {
 		return requestConstraintViolations.stream()
 				.sorted((p1, p2) -> p1.getPropertyPath().toString().compareTo(p2.getPropertyPath().toString()))
 				.map(p -> p.getPropertyPath().toString() + " " + p.getMessage()).collect(Collectors.joining(", "));
@@ -170,7 +194,7 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 	 *            the response
 	 * @return the v
 	 */
-	protected final void handleInputViolations(final CreateApplicationEventRequest eventRequest,
+	private void handleInputViolations(final CreateApplicationEventRequest eventRequest,
 			final Set<ConstraintViolation<T>> requestConstraintViolations,final V response) {
 		final String errorMessage = getHumanMessage(requestConstraintViolations);
 		((AbstractResponse) response).setErrorMessage(errorMessage);

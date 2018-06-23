@@ -33,14 +33,18 @@ import com.hack23.cia.service.component.agent.api.DataAgentApi;
 final class DataAgentContainerImpl implements AgentContainer {
 
 	/** The data agent api. */
-	@Autowired
-	private DataAgentApi dataAgentApi;
+	private final DataAgentApi dataAgentApi;
 
 	/**
 	 * Instantiates a new data agent container impl.
+	 *
+	 * @param dataAgentApi
+	 *            the data agent api
 	 */
-	public DataAgentContainerImpl() {
+	@Autowired
+	public DataAgentContainerImpl(final DataAgentApi dataAgentApi) {
 		super();
+		this.dataAgentApi = dataAgentApi;
 	}
 
 	@Secured({"ROLE_ADMIN" })

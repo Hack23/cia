@@ -98,7 +98,7 @@ public final class LogoutService extends AbstractBusinessServiceImpl<LogoutReque
 
 	@Override
 	protected CreateApplicationEventRequest createApplicationEventForService(final LogoutRequest serviceRequest) {
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.USER);
 		eventRequest.setApplicationOperation(ApplicationOperationType.AUTHENTICATION);
 		eventRequest.setActionName(LogoutRequest.class.getSimpleName());

@@ -160,12 +160,12 @@ public final class LoginService extends AbstractBusinessServiceImpl<LoginRequest
 
 	@Override
 	protected CreateApplicationEventRequest createApplicationEventForService(final LoginRequest serviceRequest) {
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.USER);
 		eventRequest.setApplicationOperation(ApplicationOperationType.AUTHENTICATION);
 		eventRequest.setActionName(LoginRequest.class.getSimpleName());
 		eventRequest.setSessionId(serviceRequest.getSessionId());
-		eventRequest.setElementId(serviceRequest.getEmail());
+		eventRequest.setElementId(serviceRequest.getEmail());		
 		return eventRequest;
 	}
 

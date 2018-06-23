@@ -22,10 +22,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
-
-import javax.validation.ConstraintViolation;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +34,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
-import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
@@ -73,61 +69,45 @@ public final class ComplianceCheckServiceImpl
 	@Override
 	@Secured({ "ROLE_USER", "ROLE_ADMIN", "ROLE_ANONYMOUS" })
 	public ComplianceCheckResponse processService(final ComplianceCheckRequest serviceRequest) {
+		LOGGER.info("{}", serviceRequest.getClass().getSimpleName());
 		final ComplianceCheckResponse inputValidation = inputValidation(serviceRequest);
 		if (inputValidation != null) {
 			return inputValidation;
 		}
-		
-		LOGGER.info("{}", serviceRequest.getClass().getSimpleName());
+
 		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 
-		final UserAccount userAccount = getUserAccountFromSecurityContext();
+		final List<ComplianceCheck> complianceList = rulesEngine.checkRulesCompliance();
 
-		if (userAccount != null) {
-			eventRequest.setUserId(userAccount.getUserId());
+		final List<RuleViolation> ruleViolations = new ArrayList<>();
+
+		for (final ComplianceCheck check : complianceList) {
+			ruleViolations.addAll(check.getRuleViolations());
 		}
 
-		final ComplianceCheckResponse response;
-
-		final Set<ConstraintViolation<ComplianceCheckRequest>> requestConstraintViolations = validateRequest(
-				serviceRequest);
-		if (!requestConstraintViolations.isEmpty()) {
-			response = new ComplianceCheckResponse(ServiceResult.FAILURE);
-			handleInputViolations(eventRequest, requestConstraintViolations,response);
-		} else {
-
-			final List<ComplianceCheck> complianceList = rulesEngine.checkRulesCompliance();
-
-			final List<RuleViolation> ruleViolations = new ArrayList<>();
-
-			for (final ComplianceCheck check : complianceList) {
-				ruleViolations.addAll(check.getRuleViolations());
+		Collections.sort(complianceList, new Comparator<ComplianceCheck>() {
+			@Override
+			public int compare(final ComplianceCheck o1, final ComplianceCheck o2) {
+				return Integer.compare(o2.getRuleViolations().size(), o1.getRuleViolations().size());
 			}
+		});
 
-			Collections.sort(complianceList, new Comparator<ComplianceCheck>() {
-				@Override
-				public int compare(final ComplianceCheck o1, final ComplianceCheck o2) {
-					return Integer.compare(o2.getRuleViolations().size(), o1.getRuleViolations().size());
-				}
-			});
+		final ComplianceCheckResponse response = new ComplianceCheckResponse(ServiceResult.SUCCESS);
+		response.setList(complianceList);
+		response.setStatusMap(ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getStatus)));
+		response.setResourceTypeMap(
+				ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getResourceType)));
 
-			response = new ComplianceCheckResponse(ServiceResult.SUCCESS);
-			response.setList(complianceList);
-			response.setStatusMap(ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getStatus)));
-			response.setResourceTypeMap(
-					ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getResourceType)));
-
-			eventRequest.setApplicationMessage(response.getResult().toString());
-
-		}
+		eventRequest.setApplicationMessage(response.getResult().toString());
 
 		getCreateApplicationEventService().processService(eventRequest);
 		return response;
 	}
 
 	@Override
-	protected CreateApplicationEventRequest createApplicationEventForService(final ComplianceCheckRequest serviceRequest) {
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+	protected CreateApplicationEventRequest createApplicationEventForService(
+			final ComplianceCheckRequest serviceRequest) {
+		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.USER);
 		eventRequest.setApplicationOperation(ApplicationOperationType.READ);
 		eventRequest.setActionName(ComplianceCheckRequest.class.getSimpleName());

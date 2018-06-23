@@ -99,7 +99,7 @@ public final class RemoveDataService extends
 
 	@Override
 	protected CreateApplicationEventRequest createApplicationEventForService(final RemoveDataRequest serviceRequest) {
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);
 		eventRequest.setApplicationOperation(ApplicationOperationType.DELETE);
 		eventRequest.setActionName(RemoveDataRequest.class.getSimpleName() + ":" + serviceRequest.getDataType());

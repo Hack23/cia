@@ -67,4 +67,20 @@ public final class ApplicationManagerITest extends AbstractServiceFunctionalInte
 		assertNotNull(EXPECT_A_RESULT, personDataContainer);
 	}
 
+	/**
+	 * Gets the agent container success test.
+	 *
+	 * @return the agent container success test
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void getAgentContainerSuccessTest() throws Exception {
+		setAuthenticatedAdminuser();
+		
+		assertNotNull(applicationManager.getAgentContainer());
+		
+	}
+
+	
 }
