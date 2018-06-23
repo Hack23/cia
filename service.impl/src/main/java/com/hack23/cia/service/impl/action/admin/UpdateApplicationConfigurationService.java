@@ -27,7 +27,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
-import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationRequest;
 import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
@@ -59,26 +58,18 @@ public final class UpdateApplicationConfigurationService extends
 	@Override
 	@Secured({ "ROLE_ADMIN" })
 	public UpdateApplicationConfigurationResponse processService(final UpdateApplicationConfigurationRequest serviceRequest) {
-		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 
 		final UpdateApplicationConfigurationResponse inputValidation = inputValidation(serviceRequest);
 		if (inputValidation != null) {
 			return inputValidation;
 		}
 
-		final UserAccount userAccount = getUserAccountFromSecurityContext();
-
-		if (userAccount != null) {
-			eventRequest.setUserId(userAccount.getUserId());
-		}
-
-		UpdateApplicationConfigurationResponse response;
-
 		final ApplicationConfiguration applicationConfiguration = applicationConfigurationDAO
 				.load(serviceRequest.getApplicationConfigurationId());
 
+		UpdateApplicationConfigurationResponse response;
+		
 		if (applicationConfiguration != null) {
-			eventRequest.setElementId(serviceRequest.getApplicationConfigurationId().toString());
 
 			applicationConfiguration.setConfigTitle(serviceRequest.getConfigTitle());
 			applicationConfiguration.setConfigDescription(serviceRequest.getConfigDescription());
@@ -93,6 +84,8 @@ public final class UpdateApplicationConfigurationService extends
 			response = new UpdateApplicationConfigurationResponse(ServiceResult.FAILURE);
 		}
 
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
+		eventRequest.setElementId(serviceRequest.getApplicationConfigurationId().toString());
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);
 

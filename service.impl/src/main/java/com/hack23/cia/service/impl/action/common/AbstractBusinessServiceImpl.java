@@ -134,8 +134,7 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
 		
-		if (getUserAccountFromSecurityContext() != null) {
-			
+		if (userAccount != null) {			
 			eventRequest.setUserId(userAccount.getUserId());
 		}
 		return eventRequest;

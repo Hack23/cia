@@ -75,7 +75,6 @@ public final class ComplianceCheckServiceImpl
 			return inputValidation;
 		}
 
-		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 
 		final List<ComplianceCheck> complianceList = rulesEngine.checkRulesCompliance();
 
@@ -98,8 +97,8 @@ public final class ComplianceCheckServiceImpl
 		response.setResourceTypeMap(
 				ruleViolations.stream().collect(Collectors.groupingBy(RuleViolation::getResourceType)));
 
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 		eventRequest.setApplicationMessage(response.getResult().toString());
-
 		getCreateApplicationEventService().processService(eventRequest);
 		return response;
 	}

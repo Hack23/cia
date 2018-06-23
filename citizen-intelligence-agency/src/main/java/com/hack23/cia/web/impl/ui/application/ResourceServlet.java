@@ -34,9 +34,8 @@ import org.eclipse.jetty.servlet.DefaultServlet;
         }, asyncSupported = true)
 public class ResourceServlet extends DefaultServlet {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+
 
 }

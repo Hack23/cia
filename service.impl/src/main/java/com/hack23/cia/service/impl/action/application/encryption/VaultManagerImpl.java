@@ -173,6 +173,15 @@ public final class VaultManagerImpl implements VaultManager {
 
 	}
 
+	/**
+	 * Builds the key.
+	 *
+	 * @param userid
+	 *            the userid
+	 * @param password
+	 *            the password
+	 * @return the key
+	 */
 	private static Key buildKey(final String userid, final String password) {
 		return new SecretKeySpec(Arrays.copyOf(
 				new SHA3.Digest512().digest((userid + ".uuid" + password).getBytes(StandardCharsets.UTF_8)), KEY_SIZE_IN_BYTES),
