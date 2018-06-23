@@ -48,11 +48,11 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsView
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 
 /**
- * The Class UserRoleSystemTest.
+ * The Class AbstractRoleSystemITest.
  */
 @RunWith(Parallelized.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTest {
+public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationTest {
 
 	/** The browser. */
 	protected final String browser;
@@ -94,7 +94,7 @@ public abstract class AbstractRoleSystemTest extends AbstractSystemIntegrationTe
 	 * @param browser
 	 *            the browser
 	 */
-	public AbstractRoleSystemTest(final String browser) {
+	public AbstractRoleSystemITest(final String browser) {
 		super();
 		this.browser = browser;
 

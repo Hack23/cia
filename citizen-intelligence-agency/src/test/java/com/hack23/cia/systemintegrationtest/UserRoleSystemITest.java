@@ -48,9 +48,9 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.RiskIndicat
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 /**
- * The Class UserRoleSystemTest.
+ * The Class UserRoleSystemITest.
  */
-public final class UserRoleSystemTest extends AbstractRoleSystemTest {
+public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 	/** The Constant NO_WEBDRIVER_EXIST_FOR_BROWSER. */
 	private static final String NO_WEBDRIVER_EXIST_FOR_BROWSER = "No webdriver exist for browser:";
@@ -61,7 +61,7 @@ public final class UserRoleSystemTest extends AbstractRoleSystemTest {
 	 * @param browser
 	 *            the browser
 	 */
-	public UserRoleSystemTest(final String browser) {
+	public UserRoleSystemITest(final String browser) {
 		super(browser);
 	}
 

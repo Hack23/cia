@@ -33,9 +33,9 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DataSummary
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 
 /**
- * The Class AdminRoleSystemTest.
+ * The Class AdminRoleSystemITest.
  */
-public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
+public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 	/** The Constant NO_WEBDRIVER_EXIST_FOR_BROWSER. */
 	private static final String NO_WEBDRIVER_EXIST_FOR_BROWSER = "No webdriver exist for browser:";
@@ -46,7 +46,7 @@ public final class AdminRoleSystemTest extends AbstractRoleSystemTest {
 	 * @param browser
 	 *            the browser
 	 */
-	public AdminRoleSystemTest(final String browser) {
+	public AdminRoleSystemITest(final String browser) {
 		super(browser);
 	}
 
