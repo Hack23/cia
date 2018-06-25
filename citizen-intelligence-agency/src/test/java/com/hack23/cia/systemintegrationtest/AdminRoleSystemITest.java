@@ -425,7 +425,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test(timeout = 45000)
+	@Test(timeout = 65000)
 	public void visitAdminDataSummaryViewTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
