@@ -251,14 +251,14 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		clickFirstRowInGrid(userPageVisit);
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
-		
+
 		final WebElement deleteButton =userPageVisit.findButton("Perform DELETE");
 		assertNotNull("Expect to find a Delete Button",deleteButton);
 
 		userPageVisit.performClickAction(deleteButton);
 		userPageVisit.checkNotificationMessage("Operation completed");
 	}
-	
+
 	/**
 	 * Site admin language test.
 	 *
@@ -478,8 +478,8 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.performClickAction(refreshViewsButton);
 	}
-	
-	
+
+
 	/**
 	 * Visit admin data summary view remove politician test.
 	 *
@@ -502,7 +502,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		// userPageVisit.performClickAction(removePoliticiansButton);
 	}
-	
+
 	/**
 	 * Visit admin data summary view remove documents test.
 	 *
@@ -526,7 +526,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		// userPageVisit.performClickAction(removeDocumentsButton);
 	}
 
-	
+
 	/**
 	 * Visit admin data summary view remove application history test.
 	 *
@@ -551,8 +551,8 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 	}
 
-	
-	
+
+
 
 
 	/**
@@ -602,7 +602,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		final WebElement importRiksdagenDataButton =userPageVisit.findButton("Start IMPORT MODEL_EXTERNAL_RIKSDAGEN");
 		assertNotNull("Start IMPORT MODEL_EXTERNAL_RIKSDAGEN Button",importRiksdagenDataButton);
-		
+
 		userPageVisit.performClickAction(importRiksdagenDataButton);
 	}
 

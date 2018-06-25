@@ -49,13 +49,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
  */
 public final class UserPageVisit extends Assert {
 
-	private static final int INTERVAL_CHECK_MS = 10;
-
 	/** The Constant WAIT_FOR_PAGE_DELAY. */
 	private static final int WAIT_FOR_PAGE_DELAY = 3500;
-
-	/** The Constant WAIT_FOR_TEXT. */
-	private static final int WAIT_FOR_TEXT = 15000;
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
 	private static final int WAIT_FOR_PAGE_ELEMENT = 45000;
@@ -126,7 +121,8 @@ public final class UserPageVisit extends Assert {
 	public void visitStartPage() throws Exception {
 		driver.get(systemTestTargetUrl);
 
-		waitForBrowser(WAIT_FOR_PAGE_DELAY);
+		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
 		assertEquals(browser, systemTestTargetUrl,
 				driver.getCurrentUrl());
@@ -144,18 +140,6 @@ public final class UserPageVisit extends Assert {
 				ViewAction.VISIT_COUNTRY_VIEW });
 	}
 
-	/**
-	 * Wait for browser.
-	 *
-	 * @param delay
-	 *            the delay
-	 * @throws InterruptedException
-	 *             the interrupted exception
-	 */
-	private static void waitForBrowser(final int delay) throws InterruptedException {
-		Thread.sleep(delay);
-	}
-
 
 	/**
 	 * Visit direct page.
@@ -169,38 +153,37 @@ public final class UserPageVisit extends Assert {
 		final String url = systemTestTargetUrl  +"#!" + page.getPagePath();
 		driver.get(url);
 
-		waitForBrowser(WAIT_FOR_PAGE_DELAY);
-
-		int waitTimeForPageLoad=0;
-		while (!getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW)) {
-			waitForBrowser(INTERVAL_CHECK_MS);
-			waitTimeForPageLoad=waitTimeForPageLoad + INTERVAL_CHECK_MS;
-			if (waitTimeForPageLoad > WAIT_FOR_PAGE_ELEMENT) {
-				fail("Exceeded timeout for pageload:" + WAIT_FOR_PAGE_ELEMENT);
-			}
-		}
-
-		final long end = System.currentTimeMillis() + WAIT_FOR_PAGE_ELEMENT;
-		while (System.currentTimeMillis() < end && !getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW)) {
-			;
-		}
+		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
 		grabScreenshot(driver);
-		assertTrue("Each page should contain a MainMenu link",getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW));
-
 
 		final String text = getHtmlBodyAsText();
 		assertNotNull(text);
 		assertFalse("Page contains exception, url:" + url ,text.contains("Exception"));
 		assertFalse("Page contains widget exception, url:" + url,text.contains("Widget"));
 
-		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
-		wait.until(ExpectedConditions.urlToBe(url));
-
+		wait.until(ExpectedConditions.urlContains(url));
 		assertEquals(browser, url, driver.getCurrentUrl());
 		assertNotNull(browser, driver.getWindowHandle());
 
 	}
+
+	public ExpectedCondition<Boolean> containsViewAction(final ViewAction value) {
+		return new ExpectedCondition<Boolean>() {
+
+			@Override
+			public Boolean apply(WebDriver driver) {
+				return getActionsAvailable().contains(value);
+			}
+
+			@Override
+			public String toString() {
+				return String.format("ViewAction \"%s\". ", value);
+			}
+		};
+	}
+
 
 	/**
 	 * Validate page.
@@ -213,31 +196,15 @@ public final class UserPageVisit extends Assert {
 	public void validatePage(final PageModeMenuCommand page) throws Exception {
 		final String url = systemTestTargetUrl  +"#!" + page.getPagePath();
 
-
-		final long end = System.currentTimeMillis() + WAIT_FOR_PAGE_ELEMENT;
-		while (System.currentTimeMillis() < end && !getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW)) {
-			;
-		}
-
-		assertTrue("Each page should contain a MainMenu link",getActionsAvailable().contains(ViewAction.VISIT_MAIN_VIEW));
-
+		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
 		final String text = getHtmlBodyAsText();
 		assertNotNull(text);
 		assertFalse("Page contains exception, url:" + url ,text.contains("Exception"));
 		assertFalse("Page contains widget exception, url:" + url,text.contains("Widget"));
 
-
-		int waitTimeForPageLoad=0;
-	    while(!url.equals(driver.getCurrentUrl()) && !driver.getCurrentUrl().contains(url)) {
-			waitForBrowser(INTERVAL_CHECK_MS);
-			waitTimeForPageLoad=waitTimeForPageLoad + INTERVAL_CHECK_MS;
-			if (waitTimeForPageLoad > WAIT_FOR_PAGE_ELEMENT) {
-				assertEquals("Exceeded timeout:" + WAIT_FOR_PAGE_ELEMENT +" to match or contains url:" + url + " browser:" +browser, url,
-						driver.getCurrentUrl());
-			}
-	    }
-
+		wait.until(ExpectedConditions.urlContains(url));
 		assertNotNull(browser, driver.getWindowHandle());
 
 	}
@@ -262,16 +229,31 @@ public final class UserPageVisit extends Assert {
 	 *             the exception
 	 */
 	public boolean checkHtmlBodyContainsText(final String text) throws Exception {
-		int waitTimeForPageLoad=0;
-		while (!getHtmlBodyAsText().contains(text)) {
-			waitForBrowser(INTERVAL_CHECK_MS);
-			waitTimeForPageLoad=waitTimeForPageLoad + 10;
-			if (waitTimeForPageLoad > WAIT_FOR_TEXT) {
-				return false;
-			}
-		}
+
+		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
+
+		wait.until(containsText(text));
+
 		return true;
 	}
+
+
+	public ExpectedCondition<Boolean> containsText(final String value) {
+		return new ExpectedCondition<Boolean>() {
+
+			@Override
+			public Boolean apply(WebDriver driver) {
+				return getHtmlBodyAsText().contains(value);
+			}
+
+			@Override
+			public String toString() {
+				return String.format("containsText \"%s\". ", value);
+			}
+		};
+	}
+
 
 	/**
 	 * Gets the menu bar.
@@ -290,7 +272,7 @@ public final class UserPageVisit extends Assert {
 	 * @return the menu item
 	 */
 
-	public WebElement getMenuItem(final String... caption) {		
+	public WebElement getMenuItem(final String... caption) {
 		return getMenuItem(getMenuBar(), 1,caption);
 	}
 
@@ -304,17 +286,17 @@ public final class UserPageVisit extends Assert {
 	 * @return the menu item
 	 */
 	public WebElement getMenuItem(final WebElement element,final String... caption) {
-		
+
 		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
 		wait.until(containsMenuItem(element,caption));
-		
+
 		return getMenuItem(element, 1,caption);
 	}
-	
+
 	public ExpectedCondition<Boolean> containsMenuItem(final WebElement element,final String... caption) {
 		return new ExpectedCondition<Boolean>() {
 			@Override
-			public Boolean apply(WebDriver driver) {				
+			public Boolean apply(WebDriver driver) {
 				return !ExpectedConditions.stalenessOf(element).apply(driver) && getMenuItem(element, 1,caption) != null;
 			}
 		};
@@ -371,7 +353,7 @@ public final class UserPageVisit extends Assert {
 		final List<WebElement> nativeButtons = driver.findElements(By.className("v-nativebutton"));
 		final List<WebElement> buttons = driver.findElements(By.className("v-button"));
 		final List<WebElement> buttonsCaption = driver.findElements(By.className("v-button-caption"));
-		
+
 		result.addAll(nativeButtons);
 		result.addAll(buttons);
 		result.addAll(buttonsCaption);
@@ -379,19 +361,20 @@ public final class UserPageVisit extends Assert {
 		return result;
 	}
 
-	
+
 	public ExpectedCondition<Boolean> containsButton(final String value) {
 		return new ExpectedCondition<Boolean>() {
 
 			@Override
 			public Boolean apply(WebDriver driver) {
-				
+
 				for (final WebElement webElement : getButtons()) {
-					if (!ExpectedConditions.stalenessOf(webElement).apply(driver) && value.equalsIgnoreCase(webElement.getText().trim())) {
+
+					if (!ExpectedConditions.stalenessOf(webElement).apply(driver) && ExpectedConditions.elementToBeClickable(webElement).apply(driver) != null && value.equalsIgnoreCase(webElement.getText().trim())) {
 						return true;
 					}
 				}
-				
+
 				return false;
 			}
 
@@ -401,7 +384,7 @@ public final class UserPageVisit extends Assert {
 			}
 		};
 	}
-	
+
 	/**
 	 * Gets the grid rows.
 	 *
@@ -570,6 +553,8 @@ public final class UserPageVisit extends Assert {
 	 *            the expected value
 	 */
 	public void checkNotificationMessage(final String expectedValue) {
+		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("v-Notification")));
 		final WebElement notification = driver.findElement(By.className("v-Notification"));
 		assertNotNull(notification);
 		assertEquals(expectedValue, notification.getText());
@@ -634,23 +619,6 @@ public final class UserPageVisit extends Assert {
 
 
 
-	/**
-	 * Wait until displayed.
-	 *
-	 * @param element
-	 *            the element
-	 */
-	private void waitUntilDisplayed(final WebElement element) {
-		// Sleep until the div we want is visible or 5 seconds is over
-		final long end = System.currentTimeMillis() + WAIT_FOR_PAGE_ELEMENT;
-		while (System.currentTimeMillis() < end) {
-			// If results have been returned, the results are displayed in a
-			// drop
-			if (element.isDisplayed() && element.isEnabled()) {
-				break;
-			}
-		}
-	}
 
 	/**
 	 * Visit party view.
@@ -686,19 +654,17 @@ public final class UserPageVisit extends Assert {
 	private void performClickAction(final WebElement clickElement, final int waitDelay)
 			throws InterruptedException {
 		assertNotNull(clickElement);
-		waitUntilDisplayed(clickElement);
+		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+		wait.until(ExpectedConditions.elementToBeClickable(clickElement));
 
 		if (browser.contains("htmlunit")) {
 			clickElement.click();
 		} else {
-
-			final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
-			wait.until(ExpectedConditions.visibilityOf(clickElement));
-
 			action.clickAndHold(clickElement).release().perform();
-
 		}
-		waitForBrowser(waitDelay);
+
+		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
+
 		grabScreenshot(driver);
 
 	}
@@ -844,7 +810,7 @@ public final class UserPageVisit extends Assert {
 
 		setFieldValue("Login.email",username);
 		setFieldValue("Login.userpassword",password);
-		
+
 		if (otpCode != null) {
 			setFieldValue("Login.otpCode",otpCode);
 		}
@@ -857,8 +823,8 @@ public final class UserPageVisit extends Assert {
 		final String url = systemTestTargetUrl  +"#!" + view;
 
 		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
-		wait.until(ExpectedConditions.urlToBe(url));
-		
+		wait.until(ExpectedConditions.urlContains(url));
+
 		assertEquals(browser, url,driver.getCurrentUrl());
 	}
 
@@ -886,10 +852,12 @@ public final class UserPageVisit extends Assert {
 		final WebElement body = driver.findElement(By.tagName("body"));
 		body.sendKeys(Keys.ESCAPE);
 
+		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
-		waitForBrowser(1000);
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.tagName("body")));
 		driver.navigate().refresh();
-		waitForBrowser(2000);
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.tagName("body")));
 
 		final Cookie newCookie= driver.manage().getCookieNamed("JSESSIONID");
 
@@ -910,13 +878,13 @@ public final class UserPageVisit extends Assert {
 	 *            the button label
 	 * @return the web element
 	 */
-	public final WebElement findButton(final String buttonLabel) {		
+	public final WebElement findButton(final String buttonLabel) {
 		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
 		wait.until(containsButton(buttonLabel));
-		
+
 		final List<WebElement> buttons = getButtons();
 		for (final WebElement webElement : buttons) {
-			if (!ExpectedConditions.stalenessOf(webElement).apply(driver) && buttonLabel.equalsIgnoreCase(webElement.getText().trim())) {
+			if (!ExpectedConditions.stalenessOf(webElement).apply(driver) && ExpectedConditions.elementToBeClickable(webElement).apply(driver) != null && buttonLabel.equalsIgnoreCase(webElement.getText().trim())) {
 				return webElement;
 			}
 		}
@@ -963,10 +931,10 @@ public final class UserPageVisit extends Assert {
 	 *             the exception
 	 */
 	public void enableGoogleAuthenticator(final String password) throws Exception {
-		
+
 		setFieldValue("Enable Google Authenticator.userpassword",password);
 
-		final WebElement enableGoogleAuthButton = driver.findElement(By.id("Enable Google Authenticator"));		
+		final WebElement enableGoogleAuthButton = driver.findElement(By.id("Enable Google Authenticator"));
 		assertNotNull("Expect to find a Enable Google Authenticator Button",enableGoogleAuthButton);
 
 		performClickAction(enableGoogleAuthButton);
@@ -974,7 +942,7 @@ public final class UserPageVisit extends Assert {
 
 	public void disableGoogleAuthenticator(final String password) throws Exception {
 		setFieldValue("Disable Google Authenticator.userpassword",password);
-		
+
 		final WebElement enableGoogleAuthButton = driver.findElement(By.id("Disable Google Authenticator"));
 		assertNotNull("Expect to find a Enable Google Authenticator Button",enableGoogleAuthButton);
 
