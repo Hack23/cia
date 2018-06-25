@@ -52,7 +52,7 @@ public final class UserPageVisit extends Assert {
 	private static final int INTERVAL_CHECK_MS = 10;
 
 	/** The Constant WAIT_FOR_PAGE_DELAY. */
-	private static final int WAIT_FOR_PAGE_DELAY = 3000;
+	private static final int WAIT_FOR_PAGE_DELAY = 3500;
 
 	/** The Constant WAIT_FOR_TEXT. */
 	private static final int WAIT_FOR_TEXT = 15000;
