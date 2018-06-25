@@ -499,7 +499,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>3.12.0</version>
+      <version>3.13.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -618,12 +618,22 @@
           <artifactId>jna</artifactId>
           <groupId>net.java.dev.jna</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>okio</artifactId>
+          <groupId>com.squareup.okio</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.okio</groupId>
+      <artifactId>okio</artifactId>
+      <version>1.14.1</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-remote-driver</artifactId>
-      <version>3.12.0</version>
+      <version>3.13.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -708,7 +718,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-support</artifactId>
-      <version>3.12.0</version>
+      <version>3.13.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
