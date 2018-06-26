@@ -354,9 +354,13 @@ public final class UserPageVisit extends Assert {
 		final List<WebElement> buttons = driver.findElements(By.className("v-button"));
 		final List<WebElement> buttonsCaption = driver.findElements(By.className("v-button-caption"));
 
+
 		result.addAll(nativeButtons);
 		result.addAll(buttons);
 		result.addAll(buttonsCaption);
+
+		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+		wait.until(ExpectedConditions.visibilityOfAllElements(result));
 
 		return result;
 	}
