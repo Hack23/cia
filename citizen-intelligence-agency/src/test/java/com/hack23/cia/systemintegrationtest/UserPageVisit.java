@@ -50,10 +50,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 public final class UserPageVisit extends Assert {
 
 	/** The Constant WAIT_FOR_PAGE_DELAY. */
-	private static final int WAIT_FOR_PAGE_DELAY = 5000;
+	private static final int WAIT_FOR_PAGE_DELAY = 15000;
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
-	private static final int WAIT_FOR_PAGE_ELEMENT = 55000;
+	private static final int WAIT_FOR_PAGE_ELEMENT = 60000;
 
 	/** The screen shot number. */
 	private static int screenShotNumber;
@@ -349,13 +349,18 @@ public final class UserPageVisit extends Assert {
 	 * @return the buttons
 	 */
 	public List<WebElement> getButtons() {
+		List<WebElement> result = getButtonElements();
+		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfAllElements(result)));
+
+		return getButtonElements();
+	}
+
+	private List<WebElement> getButtonElements() {
 		List<WebElement> result = new ArrayList<>();
 		result.addAll(driver.findElements(By.className("v-nativebutton")));
 		result.addAll(driver.findElements(By.className("v-button")));
 		result.addAll(driver.findElements(By.className("v-button-caption")));
-		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
-		wait.until(ExpectedConditions.visibilityOfAllElements(result));
-
 		return result;
 	}
 
@@ -365,10 +370,9 @@ public final class UserPageVisit extends Assert {
 
 			@Override
 			public Boolean apply(WebDriver driver) {
-
 				for (final WebElement webElement : getButtons()) {
 
-					if (!ExpectedConditions.stalenessOf(webElement).apply(driver) && ExpectedConditions.elementToBeClickable(webElement).apply(driver) != null && value.equalsIgnoreCase(webElement.getText().trim())) {
+					if (ExpectedConditions.elementToBeClickable(webElement).apply(driver) != null && value.equalsIgnoreCase(webElement.getText().trim())) {
 						return true;
 					}
 				}
@@ -880,9 +884,8 @@ public final class UserPageVisit extends Assert {
 		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
 		wait.until(containsButton(buttonLabel));
 
-		final List<WebElement> buttons = getButtons();
-		for (final WebElement webElement : buttons) {
-			if (!ExpectedConditions.stalenessOf(webElement).apply(driver) && ExpectedConditions.elementToBeClickable(webElement).apply(driver) != null && buttonLabel.equalsIgnoreCase(webElement.getText().trim())) {
+		for (final WebElement webElement : getButtons()) {
+			if (ExpectedConditions.elementToBeClickable(webElement).apply(driver) != null && buttonLabel.equalsIgnoreCase(webElement.getText().trim())) {
 				return webElement;
 			}
 		}

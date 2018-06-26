@@ -154,7 +154,7 @@
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>9.4.11.v20180605</cia.project.versions.jetty>
     <cia.project.versions.servlet.api>3.1.0</cia.project.versions.servlet.api>
-    <!-- <cia.project.versions.jetty>10.0.0-SNAPSHOT</cia.project.versions.jetty> 
+    <!-- <cia.project.versions.jetty>10.0.0-SNAPSHOT</cia.project.versions.jetty>
 	<cia.project.versions.servlet.api>4.0.0</cia.project.versions.servlet.api> -->
     <cia.project.versions.javamelody>1.73.0</cia.project.versions.javamelody>
     <cia.project.versions.vaadin>8.4.4</cia.project.versions.vaadin>
@@ -1159,18 +1159,18 @@
                     <exclude>org.apache.geronimo.specs:geronimo-jms_1.1_spec</exclude>
                   </excludes>
                 </bannedDependencies>
-                <!-- do not support jdk9, issue <banDuplicateClasses> <findAllDuplicates>true</findAllDuplicates> 
-									<ignoreClasses> <ignoreClass>module-info.*</ignoreClass> <ignoreClass>*.module-info.*</ignoreClass> 
-									<ignoreClass>org.xmlpull.v1.*</ignoreClass> <ignoreClass>org.w3c.dom.ElementTraversal</ignoreClass> 
-									<ignoreClass>org.apache.xmlbeans.xml.stream.*</ignoreClass> <ignoreClass>org.apache.commons.io.*</ignoreClass> 
-									<ignoreClass>org.apache.commons.lang3.*</ignoreClass> <ignoreClass>org.apache.commons.codec.*</ignoreClass> 
-									<ignoreClass>org.apache.commons.collections.*</ignoreClass> <ignoreClass>org.apache.commons.logging.*</ignoreClass> 
-									<ignoreClass>javax.servlet.*</ignoreClass> <ignoreClass>org.w3c.css.sac.*</ignoreClass> 
-									<ignoreClass>elemental.*</ignoreClass> <ignoreClass>org.w3c.flute.*</ignoreClass> 
-									<ignoreClass>javax.transaction.*</ignoreClass> <ignoreClass>org.w3._2001.xmlschema.*</ignoreClass> 
-									<ignoreClass>org.terracotta.*</ignoreClass> <ignoreClass>javax.el.*</ignoreClass> 
-									<ignoreClass>javax.xml.namespace.QName</ignoreClass> <ignoreClass>org.apache.regexp.*</ignoreClass> 
-									<ignoreClass>javax.annotation.*</ignoreClass> <ignoreClass>org.mozilla.classfile.*</ignoreClass> 
+                <!-- do not support jdk9, issue <banDuplicateClasses> <findAllDuplicates>true</findAllDuplicates>
+									<ignoreClasses> <ignoreClass>module-info.*</ignoreClass> <ignoreClass>*.module-info.*</ignoreClass>
+									<ignoreClass>org.xmlpull.v1.*</ignoreClass> <ignoreClass>org.w3c.dom.ElementTraversal</ignoreClass>
+									<ignoreClass>org.apache.xmlbeans.xml.stream.*</ignoreClass> <ignoreClass>org.apache.commons.io.*</ignoreClass>
+									<ignoreClass>org.apache.commons.lang3.*</ignoreClass> <ignoreClass>org.apache.commons.codec.*</ignoreClass>
+									<ignoreClass>org.apache.commons.collections.*</ignoreClass> <ignoreClass>org.apache.commons.logging.*</ignoreClass>
+									<ignoreClass>javax.servlet.*</ignoreClass> <ignoreClass>org.w3c.css.sac.*</ignoreClass>
+									<ignoreClass>elemental.*</ignoreClass> <ignoreClass>org.w3c.flute.*</ignoreClass>
+									<ignoreClass>javax.transaction.*</ignoreClass> <ignoreClass>org.w3._2001.xmlschema.*</ignoreClass>
+									<ignoreClass>org.terracotta.*</ignoreClass> <ignoreClass>javax.el.*</ignoreClass>
+									<ignoreClass>javax.xml.namespace.QName</ignoreClass> <ignoreClass>org.apache.regexp.*</ignoreClass>
+									<ignoreClass>javax.annotation.*</ignoreClass> <ignoreClass>org.mozilla.classfile.*</ignoreClass>
 									</ignoreClasses> </banDuplicateClasses> -->
               </rules>
             </configuration>
@@ -1219,9 +1219,9 @@
               </rules>
             </configuration>
           </execution>
-          <!-- <execution> <id>enforce-xsd-wsdl-encoding</id> <goals> <goal>enforce</goal> 
-						</goals> <configuration> <rules> <requireEncoding> <encoding>UTF-8</encoding> 
-						<includes>**/*.xsd,**/*.xjb,**/*.wsdl</includes> </requireEncoding> </rules> 
+	          <!-- <execution> <id>enforce-xsd-wsdl-encoding</id> <goals> <goal>enforce</goal>
+						</goals> <configuration> <rules> <requireEncoding> <encoding>UTF-8</encoding>
+						<includes>**/*.xsd,**/*.xjb,**/*.wsdl</includes> </requireEncoding> </rules>
 						</configuration> </execution> -->
         </executions>
       </plugin>
@@ -1802,19 +1802,19 @@
               </profiles>
             </configuration>
           </plugin>
-          <!-- <plugin> <groupId>ch.elca.el4j.maven.plugins</groupId> <artifactId>maven-depgraph-plugin</artifactId> 
-						<executions> <execution> <phase>site</phase> <goals> <goal>depgraph</goal> 
-						</goals> </execution> </executions> <inherited>true</inherited> <configuration> 
-						<outDir>${project.build.directory}/site/images</outDir> <dotFile>Project-Dependencies.dot</dotFile> 
-						<outFile>Project-Dependencies.png</outFile> <filterEmptyArtifacts>false</filterEmptyArtifacts> 
+          <!-- <plugin> <groupId>ch.elca.el4j.maven.plugins</groupId> <artifactId>maven-depgraph-plugin</artifactId>
+						<executions> <execution> <phase>site</phase> <goals> <goal>depgraph</goal>
+						</goals> </execution> </executions> <inherited>true</inherited> <configuration>
+						<outDir>${project.build.directory}/site/images</outDir> <dotFile>Project-Dependencies.dot</dotFile>
+						<outFile>Project-Dependencies.png</outFile> <filterEmptyArtifacts>false</filterEmptyArtifacts>
 						</configuration> </plugin> -->
         </plugins>
       </build>
       <reporting>
         <plugins>
-          <!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>clirr-maven-plugin</artifactId> 
+          <!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>clirr-maven-plugin</artifactId>
 						<version>2.6.1</version> <inherited>true</inherited> </plugin> -->
-          <!-- <plugin> <groupId>org.apache.rat</groupId> <artifactId>apache-rat-plugin</artifactId> 
+          <!-- <plugin> <groupId>org.apache.rat</groupId> <artifactId>apache-rat-plugin</artifactId>
 						<version>0.7-SNAPSHOT</version> <inherited>true</inherited> </plugin> -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -1830,11 +1830,11 @@
               <dependencySourceExcludes>
                 <dependencySourceExclude>com.hack23.cia:testfoundation</dependencySourceExclude>
               </dependencySourceExcludes>
-              <!-- <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet> <docletArtifact> 
-								<groupId>org.umlgraph</groupId> <artifactId>umlgraph</artifactId> <version>5.6</version> 
-								</docletArtifact> <tagletArtifact> <groupId>org.umlgraph</groupId> <artifactId>umlgraph</artifactId> 
-								<version>5.6</version> </tagletArtifact> <additionalparam>-inferrel -inferdep 
-								-quiet -hide java.* -collpackages java.util.* -qualify -postfixpackage -nodefontsize 
+              <!-- <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet> <docletArtifact>
+								<groupId>org.umlgraph</groupId> <artifactId>umlgraph</artifactId> <version>5.6</version>
+								</docletArtifact> <tagletArtifact> <groupId>org.umlgraph</groupId> <artifactId>umlgraph</artifactId>
+								<version>5.6</version> </tagletArtifact> <additionalparam>-inferrel -inferdep
+								-quiet -hide java.* -collpackages java.util.* -qualify -postfixpackage -nodefontsize
 								9 -nodefontpackagesize 7</additionalparam> -->
               <doclet>org.jboss.apiviz.APIviz</doclet>
               <docletArtifact>
