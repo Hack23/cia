@@ -50,10 +50,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 public final class UserPageVisit extends Assert {
 
 	/** The Constant WAIT_FOR_PAGE_DELAY. */
-	private static final int WAIT_FOR_PAGE_DELAY = 3500;
+	private static final int WAIT_FOR_PAGE_DELAY = 5000;
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
-	private static final int WAIT_FOR_PAGE_ELEMENT = 45000;
+	private static final int WAIT_FOR_PAGE_ELEMENT = 55000;
 
 	/** The screen shot number. */
 	private static int screenShotNumber;
@@ -349,16 +349,10 @@ public final class UserPageVisit extends Assert {
 	 * @return the buttons
 	 */
 	public List<WebElement> getButtons() {
-		final List<WebElement> result = new ArrayList<>();
-		final List<WebElement> nativeButtons = driver.findElements(By.className("v-nativebutton"));
-		final List<WebElement> buttons = driver.findElements(By.className("v-button"));
-		final List<WebElement> buttonsCaption = driver.findElements(By.className("v-button-caption"));
-
-
-		result.addAll(nativeButtons);
-		result.addAll(buttons);
-		result.addAll(buttonsCaption);
-
+		List<WebElement> result = new ArrayList<>();
+		result.addAll(driver.findElements(By.className("v-nativebutton")));
+		result.addAll(driver.findElements(By.className("v-button")));
+		result.addAll(driver.findElements(By.className("v-button-caption")));
 		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
 		wait.until(ExpectedConditions.visibilityOfAllElements(result));
 
@@ -658,7 +652,7 @@ public final class UserPageVisit extends Assert {
 	private void performClickAction(final WebElement clickElement, final int waitDelay)
 			throws InterruptedException {
 		assertNotNull(clickElement);
-		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+		final WebDriverWait wait = new WebDriverWait(driver, waitDelay);
 		wait.until(ExpectedConditions.elementToBeClickable(clickElement));
 
 		if (browser.contains("htmlunit")) {
