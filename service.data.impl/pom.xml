@@ -79,7 +79,7 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <!-- 
+    <!--
     <dependency>
       <groupId>org.wildfly.transaction</groupId>
       <artifactId>wildfly-transaction-client</artifactId>
@@ -209,7 +209,7 @@
     <dependency>
       <groupId>io.github.lukehutch</groupId>
       <artifactId>fast-classpath-scanner</artifactId>
-      <version>3.1.1</version>
+      <version>3.1.4</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
@@ -361,7 +361,7 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <!-- 
+    <!--
     <dependency>
       <groupId>org.hibernate.javax.persistence</groupId>
       <artifactId>hibernate-jpa-2.1-api</artifactId>
