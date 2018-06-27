@@ -35,6 +35,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.internal.WebElementToJsonConverter;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -318,14 +319,14 @@ public final class UserPageVisit extends Assert {
 		final List<WebElement> findElements = element.findElements(By.className("v-menubar-menuitem-caption"));
 		if (caption.length == level) {
 			for (final WebElement webElement : findElements) {
-				if (!ExpectedConditions.stalenessOf(element).apply(driver) && webElement.getText().contains(caption[level -1])) {
-					return webElement;
+				if (!ExpectedConditions.stalenessOf(element).apply(driver) && StaleElementUtils.refreshElement(webElement, driver).getText().contains(caption[level -1])) {
+					return StaleElementUtils.refreshElement(webElement, driver);
 				}
 			}
 		} else {
 			for (final WebElement webElement : findElements) {
-				if (!ExpectedConditions.stalenessOf(element).apply(driver) && caption[level -1].equals(webElement.getText())) {
-					return getMenuItem(webElement, level +1 ,caption);
+				if (!ExpectedConditions.stalenessOf(element).apply(driver) && caption[level -1].equals(StaleElementUtils.refreshElement(webElement, driver).getText())) {
+					return getMenuItem(StaleElementUtils.refreshElement(webElement, driver), level +1 ,caption);
 				}
 			}
 		}
@@ -333,8 +334,8 @@ public final class UserPageVisit extends Assert {
 			final List<WebElement> findElements2 = driver.findElements(By.className("v-menubar-menuitem"));
 			if (caption.length == level) {
 				for (final WebElement webElement : findElements2) {
-						if (!ExpectedConditions.stalenessOf(element).apply(driver) && webElement.getText().contains(caption[level -1])) {
-						return webElement;
+						if (!ExpectedConditions.stalenessOf(element).apply(driver) && StaleElementUtils.refreshElement(webElement, driver).getText().contains(caption[level -1])) {
+						return StaleElementUtils.refreshElement(webElement, driver);
 					}
 				}
 			}
@@ -372,7 +373,7 @@ public final class UserPageVisit extends Assert {
 			public Boolean apply(WebDriver driver) {
 				for (final WebElement webElement : getButtons()) {
 
-					if (ExpectedConditions.elementToBeClickable(webElement).apply(driver) != null && value.equalsIgnoreCase(webElement.getText().trim())) {
+					if (ExpectedConditions.not(ExpectedConditions.stalenessOf(StaleElementUtils.refreshElement(webElement, driver))).apply(driver) && value.equalsIgnoreCase(StaleElementUtils.refreshElement(webElement, driver).getText().trim())) {
 						return true;
 					}
 				}
@@ -660,9 +661,9 @@ public final class UserPageVisit extends Assert {
 		wait.until(ExpectedConditions.elementToBeClickable(clickElement));
 
 		if (browser.contains("htmlunit")) {
-			clickElement.click();
+			StaleElementUtils.refreshElement(clickElement,driver).click();
 		} else {
-			action.clickAndHold(clickElement).release().perform();
+			action.clickAndHold(StaleElementUtils.refreshElement(clickElement,driver)).release().perform();
 		}
 
 		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
@@ -885,8 +886,8 @@ public final class UserPageVisit extends Assert {
 		wait.until(containsButton(buttonLabel));
 
 		for (final WebElement webElement : getButtons()) {
-			if (ExpectedConditions.elementToBeClickable(webElement).apply(driver) != null && buttonLabel.equalsIgnoreCase(webElement.getText().trim())) {
-				return webElement;
+			if (ExpectedConditions.not(ExpectedConditions.stalenessOf(StaleElementUtils.refreshElement(webElement, driver))).apply(driver) && buttonLabel.equalsIgnoreCase(StaleElementUtils.refreshElement(webElement, driver).getText().trim())) {
+				return StaleElementUtils.refreshElement(webElement, driver);
 			}
 		}
 		return null;
