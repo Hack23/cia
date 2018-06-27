@@ -1219,7 +1219,7 @@
               </rules>
             </configuration>
           </execution>
-	          <!-- <execution> <id>enforce-xsd-wsdl-encoding</id> <goals> <goal>enforce</goal>
+          <!-- <execution> <id>enforce-xsd-wsdl-encoding</id> <goals> <goal>enforce</goal>
 						</goals> <configuration> <rules> <requireEncoding> <encoding>UTF-8</encoding>
 						<includes>**/*.xsd,**/*.xjb,**/*.wsdl</includes> </requireEncoding> </rules>
 						</configuration> </execution> -->
