@@ -486,7 +486,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test(timeout = 45000)
+	@Test(timeout = 65000)
 	public void visitAdminDataSummaryViewRemovePoliticianTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -509,7 +509,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test(timeout = 45000)
+	@Test(timeout = 65000)
 	public void visitAdminDataSummaryViewRemoveDocumentsTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
@@ -533,7 +533,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test(timeout = 45000)
+	@Test(timeout = 65000)
 	public void visitAdminDataSummaryViewRemoveApplicationHistoryTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
