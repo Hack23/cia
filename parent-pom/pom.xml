@@ -130,7 +130,7 @@
     <cia.project.versions.easymock>3.6</cia.project.versions.easymock>
     <cia.project.versions.dbunit>2.5.4</cia.project.versions.dbunit>
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
-    <cia.project.versions.xmlbeans>2.6.0</cia.project.versions.xmlbeans>
+    <cia.project.versions.xmlbeans>3.0.0</cia.project.versions.xmlbeans>
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
     <cia.project.versions.plexus.utils>3.1.0</cia.project.versions.plexus.utils>
     <cia.project.versions.jaxb2.commons>0.12.0</cia.project.versions.jaxb2.commons>
@@ -157,7 +157,7 @@
     <!-- <cia.project.versions.jetty>10.0.0-SNAPSHOT</cia.project.versions.jetty>
 	<cia.project.versions.servlet.api>4.0.0</cia.project.versions.servlet.api> -->
     <cia.project.versions.javamelody>1.73.1</cia.project.versions.javamelody>
-    <cia.project.versions.vaadin>8.4.4</cia.project.versions.vaadin>
+    <cia.project.versions.vaadin>8.5.0.alpha2</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>HEAD-SNAPSHOT</cia.project.versions.vaadin.gwt.user>
     <cia.project.versions.vaadin.cssparser>0.9.25</cia.project.versions.vaadin.cssparser>
     <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
@@ -990,7 +990,7 @@
             <dependency>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>extra-enforcer-rules</artifactId>
-              <version>1.0-beta-7</version>
+              <version>1.0-beta-9</version>
             </dependency>
           </dependencies>
         </plugin>
