@@ -373,7 +373,8 @@ public final class UserPageVisit extends Assert {
 			public Boolean apply(WebDriver driver) {
 				for (final WebElement webElement : getButtons()) {
 
-					if (ExpectedConditions.not(ExpectedConditions.stalenessOf(StaleElementUtils.refreshElement(webElement, driver))).apply(driver) && value.equalsIgnoreCase(StaleElementUtils.refreshElement(webElement, driver).getText().trim())) {
+					WebElement refreshElement = StaleElementUtils.refreshElement(webElement, driver);
+					if (ExpectedConditions.not(ExpectedConditions.stalenessOf(refreshElement)).apply(driver) && value.equalsIgnoreCase(refreshElement.getText().trim())) {
 						return true;
 					}
 				}
@@ -658,7 +659,7 @@ public final class UserPageVisit extends Assert {
 			throws InterruptedException {
 		assertNotNull(clickElement);
 		final WebDriverWait wait = new WebDriverWait(driver, waitDelay);
-		wait.until(ExpectedConditions.elementToBeClickable(clickElement));
+		wait.until(ExpectedConditions.elementToBeClickable(StaleElementUtils.refreshElement(clickElement,driver)));
 
 		if (browser.contains("htmlunit")) {
 			StaleElementUtils.refreshElement(clickElement,driver).click();
@@ -886,8 +887,9 @@ public final class UserPageVisit extends Assert {
 		wait.until(containsButton(buttonLabel));
 
 		for (final WebElement webElement : getButtons()) {
-			if (ExpectedConditions.not(ExpectedConditions.stalenessOf(StaleElementUtils.refreshElement(webElement, driver))).apply(driver) && buttonLabel.equalsIgnoreCase(StaleElementUtils.refreshElement(webElement, driver).getText().trim())) {
-				return StaleElementUtils.refreshElement(webElement, driver);
+			WebElement refreshElement = StaleElementUtils.refreshElement(webElement, driver);
+			if (ExpectedConditions.not(ExpectedConditions.stalenessOf(refreshElement)).apply(driver) && buttonLabel.equalsIgnoreCase(refreshElement.getText().trim())) {
+				return refreshElement;
 			}
 		}
 		return null;

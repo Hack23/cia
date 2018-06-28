@@ -62,11 +62,11 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 
 	/** The Constant usingExternalServer. */
 	private static final boolean usingExternalServer;
-	
+
 	private static String systemTestTargetAdminEmail;
 
 	private static String systemTestTargetAdminPassword;
-	
+
 	static {
 		 final String systemTestTargetUrlProperty = System.getProperty("system.test.target.url");
 		 if (systemTestTargetUrlProperty != null && systemTestTargetUrlProperty.trim().length() > 0) {
@@ -74,17 +74,17 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 		 } else {
 			 usingExternalServer=false;
 		 }
-		 
+
 		 systemTestTargetAdminEmail = System.getProperty("system.test.target.admin.email");
 		 if (systemTestTargetAdminEmail == null) {
 			 systemTestTargetAdminEmail = "admin@hack23.com";
 		 }
-		 
+
 		 systemTestTargetAdminPassword = System.getProperty("system.test.target.admin.password");
 		 if (systemTestTargetAdminPassword == null) {
 			 systemTestTargetAdminPassword = "Admin4hack23!";
 		 }
-		 
+
 		CitizenIntelligenceAgencyServer.setEnv("CIA_APP_ENCRYPTION_PASSWORD", "allhaildiscordia");
 	}
 
@@ -153,7 +153,7 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 			driver.manage().window().maximize();
 		} else if ("chrome".equals(browser)) {
 			final ChromeOptions chromeOptions = new ChromeOptions();
-		    chromeOptions.addArguments("--allow-insecure-localhost","--start-maximized");		
+		    chromeOptions.addArguments("--allow-insecure-localhost","--start-maximized");
 			driver = new ChromeDriver(chromeOptions);
 		} else if ("htmlunit-firefox".equals(browser)) {
 			final HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.FIREFOX_52);
@@ -175,8 +175,8 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 			fail("No valid browser parameter:" + browser);
 		}
 
-		driver.manage().timeouts().pageLoadTimeout(45, TimeUnit.SECONDS);
-	    driver.manage().timeouts().setScriptTimeout(45, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+	    driver.manage().timeouts().setScriptTimeout(60, TimeUnit.SECONDS);
 
 
 	    webDriverMap.put(browser, driver);
