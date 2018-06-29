@@ -370,7 +370,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-logs</artifactId>
-      <version>1.11.356</version>
+      <version>1.11.357</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -402,7 +402,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-ec2</artifactId>
-      <version>1.11.356</version>
+      <version>1.11.357</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
