@@ -47,7 +47,7 @@
       </roles>
     </contributor>
   </contributors>
-  <mailingLists></mailingLists>
+  <mailingLists/>
   <prerequisites>
     <maven>3.3.9</maven>
   </prerequisites>
@@ -120,7 +120,7 @@
     <cia.project.versions.hibernate.validator>6.0.10.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>6.0.10.Final</cia.project.versions.hibernate.build.validator>
     <cia.project.versions.bytebuddy>1.8.12</cia.project.versions.bytebuddy>
-    <cia.project.versions.h2>1.4.196</cia.project.versions.h2>
+    <cia.project.versions.h2>1.4.197</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.2.2</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
     <cia.project.versions.poi>3.17</cia.project.versions.poi>
@@ -1148,7 +1148,7 @@
             </goals>
             <configuration>
               <rules>
-                <DependencyConvergence></DependencyConvergence>
+                <DependencyConvergence/>
                 <bannedDependencies>
                   <excludes>
                     <exclude>commons-logging:commons-logging</exclude>
@@ -1453,7 +1453,7 @@
         <jdk>1.8</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine></testAdditionalRuntimeArgLine>
+        <testAdditionalRuntimeArgLine/>
         <test.jvm.path>/usr/lib/jvm/java-8-oracle/bin/java</test.jvm.path>
         <jdk.src.version>1.8</jdk.src.version>
         <jdk.target.version>1.8</jdk.target.version>
@@ -1620,7 +1620,7 @@
                 </goals>
                 <configuration>
                   <target>
-                    <mkdir dir="${project.build.directory}/dependency"></mkdir>
+                    <mkdir dir="${project.build.directory}/dependency"/>
                   </target>
                 </configuration>
               </execution>
