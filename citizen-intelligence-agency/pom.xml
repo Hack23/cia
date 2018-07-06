@@ -983,12 +983,12 @@
     <dependency>
       <groupId>org.bouncycastle</groupId>
       <artifactId>bcpkix-jdk15on</artifactId>
-      <version>1.59</version>
+      <version>1.60</version>
     </dependency>
     <dependency>
       <groupId>org.bouncycastle</groupId>
       <artifactId>bcprov-jdk15on</artifactId>
-      <version>1.59</version>
+      <version>1.60</version>
     </dependency>
     <dependency>
       <groupId>com.thoughtworks.xstream</groupId>
@@ -1446,7 +1446,7 @@
               <alias>jetty</alias>
               <dname>cn=127.0.0.1, ou=None, L=None, ST=None, o=None, c=SE</dname>
               <sigalg>SHA256withRSA</sigalg>
-              <ext></ext>
+              <ext/>
               <validity>365</validity>
               <keyalg>RSA</keyalg>
               <keysize>4096</keysize>
