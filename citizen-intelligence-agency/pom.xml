@@ -370,7 +370,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-logs</artifactId>
-      <version>1.11.357</version>
+      <version>1.11.362</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -402,7 +402,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-ec2</artifactId>
-      <version>1.11.357</version>
+      <version>1.11.362</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -810,7 +810,7 @@
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
-      <version>2.2.3</version>
+      <version>2.2.4</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -968,7 +968,7 @@
     <dependency>
       <groupId>com.github.librepdf</groupId>
       <artifactId>openpdf</artifactId>
-      <version>1.0.5</version>
+      <version>1.1.0</version>
       <exclusions>
         <exclusion>
           <artifactId>bcpkix-jdk15on</artifactId>
@@ -1446,7 +1446,7 @@
               <alias>jetty</alias>
               <dname>cn=127.0.0.1, ou=None, L=None, ST=None, o=None, c=SE</dname>
               <sigalg>SHA256withRSA</sigalg>
-              <ext/>
+              <ext></ext>
               <validity>365</validity>
               <keyalg>RSA</keyalg>
               <keysize>4096</keysize>

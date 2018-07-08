@@ -9,7 +9,7 @@ module com.hack23.cia.service.api {
 
 	requires java.validation;
 	requires org.apache.commons.lang3;
-	requires commons.collections4;
+	requires org.apache.commons.collections4;
 
 	requires com.hack23.cia.service.data.api;
 
