@@ -164,13 +164,13 @@
 				"db.m4.2xlarge",
 				"db.m4.4xlarge",
 				"db.m4.10xlarge",
-				"db.m4.16xlarge",				
+				"db.m4.16xlarge",
 				"db.r4.large",
 				"db.r4.xlarge",
 				"db.r4.2xlarge",
 				"db.r4.4xlarge",
 				"db.r4.8xlarge",
-				"db.r4.16xlarge"			
+				"db.r4.16xlarge"
 			],
 			"ConstraintDescription": "must select a valid database instance type."
 		},
@@ -501,7 +501,7 @@
 		"PublicNetworkTarget": {
 			"Type": "AWS::Inspector::AssessmentTarget",
 			"Properties": {
-				"AssessmentTargetName": {					
+				"AssessmentTargetName": {
 					"Fn::Join": [
 						"-", [{
 								"Ref": "AWS::StackId"
@@ -509,7 +509,7 @@
 							"MyAssessmentTarget"
 						]
 					]
-				
+
 				},
 				"ResourceGroupArn": {
 					"Ref": "PublicNetworkResourceGroup"
@@ -1535,7 +1535,7 @@
 					"rds.force_ssl": "1",
 					"rds.force_admin_logging_level": "notice",
 					"rds.force_autovacuum_logging_level" : "notice",
-					"rds.log_retention_period": "2400",					
+					"rds.log_retention_period": "2400",
 					"shared_preload_libraries": "pg_stat_statements, pgaudit",
 					"pgaudit.log" : "ddl",
 					"pg_stat_statements.track" : "all",
@@ -1841,7 +1841,7 @@
 						"Key": "stickiness.lb_cookie.duration_seconds",
 						"Value": "180"
 					}
-				]				
+				]
 			},
 			"DependsOn": [
 				"PublicElasticLoadBalancerV2"
@@ -2020,7 +2020,7 @@
 				"ComparisonOperator": "LessThanThreshold"
 			}
 		},
-		
+
 		"InstanceProfile" : {
 		  "Type": "AWS::IAM::InstanceProfile",
 		  "Properties": {
@@ -2028,7 +2028,7 @@
 		     "InstanceProfileName": "EC2SSMInstanceProfile"
 		  }
 		},
-		
+
 		"EC2SSMRole" :{
 		   "Type": "AWS::IAM::Role",
 		   "Properties": {
@@ -2046,8 +2046,8 @@
 		     "RoleName": "EC2SSMRole"
 		   }
 		 },
-		
-		
+
+
 		"WebServerLaunchConfig": {
 			"Type": "AWS::AutoScaling::LaunchConfiguration",
 			"Metadata": {
@@ -2069,10 +2069,10 @@
 								],
 								"unzip": [
 
-								],								
+								],
 								"language-pack-en": [
 
-								],								
+								],
 								"apt-listchanges": [
 
 								],
@@ -2205,8 +2205,8 @@
 											"buffer_duration = 5000","\n",
 											"log_stream_name = {instance_id}-{hostname}-{ip_address}-lynis.log","\n",
 											"initial_position = start_of_file","\n",
-											"log_group_name = ec2awslogs","\n",											
-											"[ciaapp.log]","\n",											
+											"log_group_name = ec2awslogs","\n",
+											"[ciaapp.log]","\n",
 											"datetime_format = %Y-%m-%d %H:%M:%S","\n",
 											"file = /opt/cia/logs/*.log","\n",
 											"buffer_duration = 5000","\n",
@@ -2233,7 +2233,7 @@
 				},
 				"IamInstanceProfile" : {
 					"Ref": "InstanceProfile"
-				},				
+				},
 				"EbsOptimized": "false",
 				"SecurityGroups": [{
 					"Ref": "WebServerSecurityGroup"
@@ -2262,9 +2262,9 @@
 								"dpkg-reconfigure -f noninteractive tzdata \n",
 								"echo 'LANG=\"en_US.UTF-8\"'> /etc/default/locale\n",
 								"locale-gen en_US.UTF-8 en_GB.UTF-8 sv_SE.UTF-8 \n",
-								"dpkg-reconfigure --frontend=noninteractive locales \n",								
+								"dpkg-reconfigure --frontend=noninteractive locales \n",
 								"#Ignore ICMP broadcast requests\n",
-								"echo 'net.ipv4.icmp_echo_ignore_broadcasts = 1' >> /etc/sysctl.conf \n",	
+								"echo 'net.ipv4.icmp_echo_ignore_broadcasts = 1' >> /etc/sysctl.conf \n",
 								"# Disable source packet routing\n",
 								"echo 'net.ipv4.conf.all.accept_source_route = 0' >> /etc/sysctl.conf \n",
 								"echo 'net.ipv6.conf.all.accept_source_route = 0' >> /etc/sysctl.conf \n",
@@ -2283,11 +2283,11 @@
 								"# Ignore ICMP redirects\n",
 								"echo 'net.ipv4.conf.all.accept_redirects = 0' >> /etc/sysctl.conf \n",
 								"echo 'net.ipv6.conf.all.accept_redirects = 0' >> /etc/sysctl.conf \n",
-								"echo 'net.ipv4.conf.default.accept_redirects = 0' >> /etc/sysctl.conf \n", 
-								"echo 'net.ipv6.conf.default.accept_redirects = 0' >> /etc/sysctl.conf \n",					
+								"echo 'net.ipv4.conf.default.accept_redirects = 0' >> /etc/sysctl.conf \n",
+								"echo 'net.ipv6.conf.default.accept_redirects = 0' >> /etc/sysctl.conf \n",
 								"# Ignore Directed pings\n",
-								"echo 'net.ipv4.icmp_echo_ignore_all = 1' >> /etc/sysctl.conf \n",																
-								"echo 'vm.swappiness = 0' >> /etc/sysctl.conf \n",								
+								"echo 'net.ipv4.icmp_echo_ignore_all = 1' >> /etc/sysctl.conf \n",
+								"echo 'vm.swappiness = 0' >> /etc/sysctl.conf \n",
 								"echo 'kernel.core_uses_pid = 1' >> /etc/sysctl.conf \n",
 								"echo 'kernel.ctrl-alt-del = 0' >> /etc/sysctl.conf \n",
 								"echo 'kernel.kptr_restrict = 2' >> /etc/sysctl.conf \n",
@@ -2324,9 +2324,9 @@
 								"# Increase the tcp-time-wait buckets pool size to prevent simple DOS attacks\n",
 								"echo 'net.ipv4.tcp_max_tw_buckets = 1440000' >> /etc/sysctl.conf \n",
 								"echo 'net.ipv4.tcp_tw_reuse = 1' >> /etc/sysctl.conf \n",
-								"sysctl -p\n",								
+								"sysctl -p\n",
 								"apt-get update\n",
-								"apt-get -y upgrade\n",								
+								"apt-get -y upgrade\n",
 								"apt-get -y install python-pip unattended-upgrades\n",
 								"pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz\n",
 								"cp /usr/local/init/ubuntu/cfn-hup /etc/init.d/cfn-hup \n",
@@ -2353,17 +2353,17 @@
 								"ufw allow 53\n",
 								"ufw allow 123/udp\n",
 								"ufw enable\n",
-								"ufw status verbose\n",								
-								"cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local\n",								
+								"ufw status verbose\n",
+								"cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local\n",
 								"wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install\n",
 								"sudo bash install\n",
 								"sudo snap install amazon-ssm-agent --classic\n",
-								"sudo systemctl start snap.amazon-ssm-agent.amazon-ssm-agent.service\n",								
+								"sudo systemctl start snap.amazon-ssm-agent.amazon-ssm-agent.service\n",
 								"sudo apt-get -y install curl python software-properties-common xz-utils bzip2 gnupg wget graphviz\n",
 								"sudo wget -O /tmp/awslogs-agent-setup.py https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py\n",
 								"sudo chmod 775 /tmp/awslogs-agent-setup.py\n",
 								"sudo mkdir -p /var/awslogs/etc/\n",
-								"sudo /tmp/awslogs-agent-setup.py -n -r eu-west-1 -c /etc/awslogs.conf\n",								
+								"sudo /tmp/awslogs-agent-setup.py -n -r eu-west-1 -c /etc/awslogs.conf\n",
 								"sudo apt-get -y install libwww-perl libdatetime-perl\n",
 								"wget https://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip\n",
 								"unzip CloudWatchMonitoringScripts-1.2.1.zip\n",
@@ -2373,15 +2373,15 @@
 								"sudo chmod +x /etc/cron.d/cloudwatch-monitor*\n",
 								"sudo /etc/init.d/cron restart\n",
 								"# INSTALL OPEN JDK\n",
-								"wget https://download.java.net/java/GA/jdk10/10.0.1/fb4372174a714e6b8c52526dc134031e/10/openjdk-10.0.1_linux-x64_bin.tar.gz\n",
-								"tar xvfz openjdk-10.0.1_linux-x64_bin.tar.gz\n",
-								"sudo mv jdk-10.0.1 /usr/lib/jvm/java-10-openjdk-amd64\n",
-								"sudo ln -s /usr/lib/jvm/java-10-openjdk-amd64 /usr/lib/jvm/java-10-oracle\n",
-								"wget https://download.java.net/java/early_access/jdk11/19/GPL/openjdk-11-ea+19_linux-x64_bin.tar.gz\n",
-								"tar xvfz openjdk-11-ea+19_linux-x64_bin.tar.gz\n",
+								"#wget https://download.java.net/java/GA/jdk10/10.0.1/fb4372174a714e6b8c52526dc134031e/10/openjdk-10.0.1_linux-x64_bin.tar.gz\n",
+								"#tar xvfz openjdk-10.0.1_linux-x64_bin.tar.gz\n",
+								"#sudo mv jdk-10.0.1 /usr/lib/jvm/java-10-openjdk-amd64\n",
+								"#sudo ln -s /usr/lib/jvm/java-10-openjdk-amd64 /usr/lib/jvm/java-10-oracle\n",
+								"wget https://download.java.net/java/early_access/jdk11/21/GPL/openjdk-11-ea+21_linux-x64_bin.tar.gz\n",
+								"tar xvfz openjdk-11-ea+21_linux-x64_bin.tar.gz\n",
 								"sudo mv jdk-11 /usr/lib/jvm/java-11-openjdk-amd64\n",
-								"sudo ln -s /usr/lib/jvm/java-11-openjdk-amd64 /usr/lib/jvm/java-11-oracle\n",																
-								"rm openjdk-11-ea+19_linux-x64_bin.tar.gz\n",								
+								"sudo ln -s /usr/lib/jvm/java-11-openjdk-amd64 /usr/lib/jvm/java-11-oracle\n",
+								"rm openjdk-11-ea+19_linux-x64_bin.tar.gz\n",
 								"wget ",
 								{
 									"Ref": "DebPackageUrl"
@@ -2415,7 +2415,7 @@
 								"TOTAL_MEM_KB=$(awk '/MemTotal:/ { print $2 }' /proc/meminfo)\n",
 								"let JAVAMEMSIZE=$TOTAL_MEM_KB-1280*1024\n",
 								"sed -i -e 's_4096m_'$JAVAMEMSIZE'k_' /opt/cia/start.ini\n",
-								"# sed -i -e 's/# -DUSE_LOG_APPENDER=", { "Ref" : "WebServerAppLogAppender" },"/ -DUSE_LOG_APPENDER=", { "Ref" : "WebServerAppLogAppender" },"/' /opt/cia/start.ini\n",								
+								"# sed -i -e 's/# -DUSE_LOG_APPENDER=", { "Ref" : "WebServerAppLogAppender" },"/ -DUSE_LOG_APPENDER=", { "Ref" : "WebServerAppLogAppender" },"/' /opt/cia/start.ini\n",
 								"wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem\n",
 								"mkdir /opt/cia/.postgresql\n",
 								"cp rds-combined-ca-bundle.pem /opt/cia/.postgresql/root.crt\n",
@@ -2427,14 +2427,14 @@
 								"sudo apt-get -y install lsb-invalid-mta\n",
 								"sudo apt-get -y install acct auditd audispd-plugins\n",
 								"sudo apt-get -y install rkhunter chkrootkit lynis\n",
-								"sudo chkrootkit\n",							
+								"sudo chkrootkit\n",
 								"#sudo rkhunter --update --cronjob\n",
 								"#sudo rkhunter --propupd --cronjob\n",
 								"#sudo rkhunter --cronjob --check --quiet\n",
 								"sudo lynis -c --cronjob\n",
 								"# Baseline processes open sockets #\n",
 								"sudo apt-get -y install procinfo\n",
-								"sudo socklist\n",								
+								"sudo socklist\n",
 								"# Signal completion\n",
 								"cfn-signal -e $? ",
 								"    --stack ",
