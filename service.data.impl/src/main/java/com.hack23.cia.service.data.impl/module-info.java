@@ -14,9 +14,11 @@ module com.hack23.cia.service.data.impl {
 	requires java.persistence;
 	requires org.hibernate.orm.core;
 	requires java.transaction;
+	requires ehcache;
+	requires cache.api;
 
 	requires spring.security.core;
-	
+
 	requires org.hibernate.search.orm;
 	requires org.hibernate.search.engine;
 
@@ -25,12 +27,12 @@ module com.hack23.cia.service.data.impl {
 	requires org.apache.commons.lang3;
 	requires lucene.core;
 	requires lucene.analyzers.common;
-	requires javers.spring;	
-	requires javers.spring.jpa;	
+	requires javers.spring;
+	requires javers.spring.jpa;
 	requires javers.persistence.sql;
 	requires javers.core;
-	
-	
+
+
 	requires com.google.common;
 
     requires com.hack23.cia.service.data.api;
