@@ -121,7 +121,7 @@
     <cia.project.versions.hibernate.build.validator>6.0.10.Final</cia.project.versions.hibernate.build.validator>
     <cia.project.versions.bytebuddy>1.8.13</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.196</cia.project.versions.h2>
-    <cia.project.versions.postgresql>42.2.3</cia.project.versions.postgresql>
+    <cia.project.versions.postgresql>42.2.4</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
     <cia.project.versions.poi>3.17</cia.project.versions.poi>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
