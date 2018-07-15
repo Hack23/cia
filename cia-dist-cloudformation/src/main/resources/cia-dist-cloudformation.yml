@@ -1663,11 +1663,11 @@ Resources:
             - "tar xvfz openjdk-10.0.1_linux-x64_bin.tar.gz\n"
             - "sudo mv jdk-10.0.1 /usr/lib/jvm/java-10-openjdk-amd64\n"
             - "sudo ln -s /usr/lib/jvm/java-10-openjdk-amd64 /usr/lib/jvm/java-10-oracle\n"
-            - "wget https://download.java.net/java/early_access/jdk11/21/GPL/openjdk-11-ea+21_linux-x64_bin.tar.gz\n"
-            - "tar xvfz openjdk-11-ea+21_linux-x64_bin.tar.gz\n"
+            - "wget https://download.java.net/java/early_access/jdk11/22/GPL/openjdk-11-ea+22_linux-x64_bin.tar.gz\n"
+            - "tar xvfz openjdk-11-ea+22_linux-x64_bin.tar.gz\n"
             - "sudo mv jdk-11 /usr/lib/jvm/java-11-openjdk-amd64\n"
             - "sudo ln -s /usr/lib/jvm/java-11-openjdk-amd64 /usr/lib/jvm/java-11-oracle\n"
-            - "rm openjdk-11-ea+21_linux-x64_bin.tar.gz\n"
+            - "rm openjdk-11-ea+22_linux-x64_bin.tar.gz\n"
             - 'wget '
             - !Ref 'DebPackageUrl'
             - " -O cia-dist-deb.deb \n"
