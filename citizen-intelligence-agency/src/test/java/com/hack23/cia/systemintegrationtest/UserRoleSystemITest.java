@@ -468,7 +468,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW, "N%C3%A4ringsdepartementet"));
 	}
-	
+
 	/**
 	 * Site government body overview test.
 	 *
@@ -732,8 +732,8 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 						ChartIndicators.DECISION_FLOW_CHART.toString(), "UU"));
 
 	}
-	
-	
+
+
 	/**
 	 * Site main view test.
 	 *
@@ -977,10 +977,10 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.enableGoogleAuthenticator(password);
 
-		userPageVisit.closeModal();		
+		userPageVisit.closeModal();
 	}
 
-	
+
 	@Test(timeout = 60000)
 	public void siteLoginUserEnableGoogleAuthenticatorFailedLoginNoOtpTest() throws Exception {
 		final WebDriver driver = getWebDriver();
@@ -1008,7 +1008,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.enableGoogleAuthenticator(password);
 
 		userPageVisit.closeModal();
-		
+
 		userPageVisit.logoutUser();
 
 		final UserPageVisit failedLoginWrongMfaVisit = new UserPageVisit(driver, browser);
@@ -1018,10 +1018,10 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 		failedLoginWrongMfaVisit.loginUserCheckView(username + "@test.com", password,"123456","main/" + ApplicationPageMode.LOGIN);
 
-		failedLoginWrongMfaVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);		
+		failedLoginWrongMfaVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);
 	}
 
-	
+
 	@Test(timeout = 60000)
 	public void siteLoginUserEnableGoogleAuthenticatorFailureTest() throws Exception {
 		final WebDriver driver = getWebDriver();
@@ -1052,7 +1052,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.checkNotificationMessage("Problem enable google authenticatorError message");
 	}
 
-	
+
 	@Test(timeout = 60000)
 	public void siteLoginUserDisableGoogleAuthenticatorTest() throws Exception {
 		final WebDriver driver = getWebDriver();
@@ -1095,7 +1095,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		final String password = generatePassword();
 
 		userPageVisit.registerNewUser(username, password);
-		
+
 		final WebElement userAccountMenuItem = userPageVisit.getMenuItem("Useraccount");
 		assertNotNull(userAccountMenuItem);
 		userPageVisit.performClickAction(userAccountMenuItem);
@@ -1402,7 +1402,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.RULES,
 				RiskIndicators.RISK_SUMMARY.toString()));
-		
+
 		clickFirstRowInGrid(userPageVisit);
 	}
 
@@ -1424,7 +1424,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		clickFirstRowInGrid(userPageVisit);
 	}
 
-	
+
 	/**
 	 * Site parliament chart decision flow test.
 	 *
@@ -1443,7 +1443,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 	}
 
-	
+
 	/**
 	 * Site parliament chart view party gender test.
 	 *
@@ -1616,7 +1616,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 	}
 
-	
+
 	/**
 	 * Site ministry ranking government body test.
 	 *

@@ -658,6 +658,7 @@ public final class UserPageVisit extends Assert {
 			throws InterruptedException {
 		assertNotNull(clickElement);
 		final WebDriverWait wait = new WebDriverWait(driver, waitDelay);
+		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 		wait.until(ExpectedConditions.elementToBeClickable(StaleElementUtils.refreshElement(clickElement,driver)));
 
 		if (browser.contains("htmlunit")) {
@@ -682,7 +683,7 @@ public final class UserPageVisit extends Assert {
 	 */
 	public void performClickAction(final WebElement clickElement)
 			throws InterruptedException {
-		performClickAction(clickElement, WAIT_FOR_PAGE_DELAY);
+		performClickAction(clickElement, WAIT_FOR_PAGE_DELAY*4);
 	}
 
 
