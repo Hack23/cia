@@ -35,6 +35,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
 import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
 
@@ -59,6 +60,11 @@ public class WorldBankCountryWorkGeneratorImplITest extends AbstractServiceCompo
 	public void generateWorkOrdersAllDataIsAlreadyImportedSuccessTest() throws JMSException {
 		final JmsSender jmsSenderMock = mock(JmsSender.class);
         ReflectionTestUtils.setField(worldBankDataSourcesWorkGenerator, "jmsSender", jmsSenderMock);
+
+        assertTrue(worldBankDataSourcesWorkGenerator.matches(WorldBankDataSources.COUNTRIES));
+        assertFalse(worldBankDataSourcesWorkGenerator.matches(WorldBankDataSources.DATA));
+        assertFalse(worldBankDataSourcesWorkGenerator.matches(WorldBankDataSources.INDICATORS));
+        assertFalse(worldBankDataSourcesWorkGenerator.matches(WorldBankDataSources.TOPIC));
 
 		worldBankDataSourcesWorkGenerator.generateWorkOrders();
 

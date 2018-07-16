@@ -60,27 +60,22 @@ final class WorldBankApiAgentWorkConsumerImpl extends AbstractMessageListener im
 
 	@Override
 	public void onMessage(final Message message) {
-
 		try {
 			configureAuthentication();
 			final ObjectMessage msg = (ObjectMessage) message;
 			LOGGER.info("Consumed message:{}", msg.getObject());
 			final WorldBankDataSources dataSource = (WorldBankDataSources) msg.getObject();
-
 			final Collection<WorldBankDataSourcesWorkGenerator> values = beansOfType.values();
 
 			for (final WorldBankDataSourcesWorkGenerator worldBankDataSourcesWorkGenerator : values) {
 				if (worldBankDataSourcesWorkGenerator.matches(dataSource)) {
 					worldBankDataSourcesWorkGenerator.generateWorkOrders();
-					return;
 				}
 			}
-			LOGGER.warn("Missing import for :{}", dataSource);
-
 		} catch (final JMSException exception) {
 			LOGGER.warn("jms", exception);
 		} finally {
-			clearAuthentication();			
+			clearAuthentication();
 		}
 	}
 
