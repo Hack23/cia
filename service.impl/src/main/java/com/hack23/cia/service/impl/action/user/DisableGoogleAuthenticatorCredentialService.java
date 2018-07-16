@@ -92,12 +92,12 @@ public final class DisableGoogleAuthenticatorCredentialService extends
 			if (passwordEncoder.matches(
 					userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword(), userAccount.getUserpassword())) {
 				final EncryptedValue encryptedValue = encryptedValueDAO.findFirstByProperty(EncryptedValue_.userId, userAccount.getUserId());
-				encryptedValueDAO.delete(encryptedValue);				
+				encryptedValueDAO.delete(encryptedValue);
 			} else {
 				response = new DisableGoogleAuthenticatorCredentialResponse(
 						ServiceResult.FAILURE);
 			}
-			
+
 		}
 
 		eventRequest.setApplicationMessage(response.getResult().toString());

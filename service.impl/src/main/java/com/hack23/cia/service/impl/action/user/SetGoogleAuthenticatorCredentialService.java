@@ -60,11 +60,11 @@ public final class SetGoogleAuthenticatorCredentialService extends
 
 	@Autowired
 	private AgencyDAO agencyDAO;
-	
+
 	/** The encrypted value DAO. */
 	@Autowired
 	private EncryptedValueDAO encryptedValueDAO;
-	
+
 	@Autowired
 	private VaultManager vaultManager;
 
@@ -97,8 +97,6 @@ public final class SetGoogleAuthenticatorCredentialService extends
 		SetGoogleAuthenticatorCredentialResponse response = new SetGoogleAuthenticatorCredentialResponse(ServiceResult.SUCCESS);
 		if (userAccount != null) {
 
-			eventRequest.setUserId(userAccount.getUserId());
-
 			final GoogleAuthenticator gAuth = new GoogleAuthenticator();
 			final GoogleAuthenticatorKey gKey = gAuth.createCredentials();
 
@@ -110,17 +108,17 @@ public final class SetGoogleAuthenticatorCredentialService extends
 				encryptedValue.setUserId(userAccount.getUserId());
 				encryptedValue.setVaultName(GoogleAuthenticatorKey.class.getSimpleName());
 				encryptedValue.setStorage(vaultManager.encryptValue(serviceRequest.getUserpassword(), userAccount.getUserId(), gKey.getKey()));
-				encryptedValueDAO.persist(encryptedValue);			
+				encryptedValueDAO.persist(encryptedValue);
 
 				final String otpAuthTotpURL = GoogleAuthenticatorQRGenerator.getOtpAuthTotpURL(agencyDAO.getAll().get(0).getAgencyName(), userAccount.getEmail(), gKey);
 
 				response.setOtpAuthTotpURL(otpAuthTotpURL);
 				response.setGoogleAuthKey(gKey.getKey());
 				response.setGoogleAuthVerificationCode(gKey.getVerificationCode());
-				response.setGoogleAuthScratchCodes(gKey.getScratchCodes());			
+				response.setGoogleAuthScratchCodes(gKey.getScratchCodes());
 			} else {
 				response = new SetGoogleAuthenticatorCredentialResponse(ServiceResult.FAILURE);
-			}			
+			}
 		}
 
 		eventRequest.setApplicationMessage(response.getResult().toString());
@@ -140,7 +138,7 @@ public final class SetGoogleAuthenticatorCredentialService extends
 		eventRequest.setSessionId(serviceRequest.getSessionId());
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
 
-		if (getUserAccountFromSecurityContext() != null) {
+		if (userAccount != null) {
 
 			eventRequest.setUserId(userAccount.getUserId());
 		}

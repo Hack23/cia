@@ -76,20 +76,11 @@ public final class DocumentWordCountService
 		}
 
 		LOGGER.info("{}:{}", serviceRequest.getClass().getSimpleName(), serviceRequest.getDocumentId());
-		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
-
-		final UserAccount userAccount = getUserAccountFromSecurityContext();
-
-		if (userAccount != null) {
-
-			eventRequest.setUserId(userAccount.getUserId());
-		}
-
-		final DocumentWordCountResponse response = new DocumentWordCountResponse(ServiceResult.SUCCESS);
 
 		final DocumentContentData documentContentData = documentContentDataDAO
 				.findFirstByProperty(DocumentContentData_.id, serviceRequest.getDocumentId());
 
+		final DocumentWordCountResponse response = new DocumentWordCountResponse(ServiceResult.SUCCESS);
 		if (documentContentData == null) {
 			response.setWordCountMap(new HashMap<>());
 		} else {
@@ -97,6 +88,7 @@ public final class DocumentWordCountService
 					wordCounter.calculateWordCount(documentContentData, serviceRequest.getMaxResults()));
 		}
 
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);
 
@@ -112,7 +104,7 @@ public final class DocumentWordCountService
 		eventRequest.setSessionId(serviceRequest.getSessionId());
 		final UserAccount userAccount = getUserAccountFromSecurityContext();
 
-		if (getUserAccountFromSecurityContext() != null) {
+		if (userAccount != null) {
 
 			eventRequest.setUserId(userAccount.getUserId());
 		}

@@ -81,16 +81,6 @@ public final class SearchDocumentService extends
 		}
 
 		LOGGER.info("{}:{}",serviceRequest.getClass().getSimpleName(),serviceRequest.getSearchExpression());
-		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
-
-		final UserAccount userAccount = getUserAccountFromSecurityContext();
-
-
-		if (userAccount != null) {
-
-			eventRequest.setUserId(userAccount.getUserId());
-		}
-
 		final SearchDocumentResponse response = new SearchDocumentResponse(ServiceResult.SUCCESS);
 
 		final List<DocumentElement> searchResultTitles = documentElementDAO.search(serviceRequest.getSearchExpression(), serviceRequest.getMaxResults(),"id", "title","subTitle");
@@ -111,6 +101,7 @@ public final class SearchDocumentService extends
 			}
 		}
 
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);
 
