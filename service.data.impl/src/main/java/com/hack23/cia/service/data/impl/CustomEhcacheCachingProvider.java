@@ -21,19 +21,24 @@ package com.hack23.cia.service.data.impl;
 import java.net.URI;
 
 import javax.cache.CacheManager;
-import javax.cache.Caching;
-import javax.cache.spi.CachingProvider;
 
 import org.ehcache.jsr107.EhcacheCachingProvider;
+import org.springframework.cache.jcache.JCacheCacheManager;
 
 /**
  * The Class CustomEhcacheCachingProvider.
  */
 public class CustomEhcacheCachingProvider extends EhcacheCachingProvider {
 
+	private static JCacheCacheManager cacheManager;
+	
   	@Override
-	  public CacheManager getCacheManager(final URI uri, final ClassLoader classLoader) {
-	    CachingProvider cachingProvider = Caching.getCachingProviders().iterator().next();
-	    return cachingProvider.getCacheManager();
+	  public CacheManager getCacheManager(final URI uri, final ClassLoader classLoader) {  		
+	    return cacheManager.getCacheManager();
 	  }
+
+	public void setCacheManager(JCacheCacheManager cacheManager) {
+		CustomEhcacheCachingProvider.cacheManager = cacheManager;
+	} 	
+  	
 }

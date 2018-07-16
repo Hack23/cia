@@ -14,8 +14,13 @@
 
 	<bean id="cacheManager" class="org.springframework.cache.jcache.JCacheCacheManager">
 	      <property name="cacheManager" ref="jCacheManager" />
+	      <property name="transactionAware" value="true" />
 	</bean>
-
+	
+	<bean id="customEhcacheCachingProvider" class="com.hack23.cia.service.data.impl.CustomEhcacheCachingProvider">
+	      <property name="cacheManager" ref="cacheManager" />
+	</bean>
+	
 	<bean id="jCacheManager" class="org.springframework.cache.jcache.JCacheManagerFactoryBean">
 	     <property name="cacheManagerUri"   value="classpath:ehcache.xml" />
 	</bean>
@@ -58,7 +63,7 @@
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-		depends-on="cacheManager,liquibase,transactionManager">
+		depends-on="cacheManager,liquibase,transactionManager,customEhcacheCachingProvider">
 		<property name="dataSource" ref="dataSource" />
 		<property name="persistenceUnitName" value="ciaPersistenceUnit" />
 		<property name="jpaVendorAdapter">
@@ -127,9 +132,13 @@
 
 				<prop key="hibernate.cache.default_cache_concurrency_strategy">READ_WRITE</prop>
 				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.JCacheRegionFactory</prop>
-				<prop key="hibernate.javax.cache.provider">com.hack23.cia.service.data.impl.CustomEhcacheCachingProvider</prop>
+ 				<prop key="hibernate.javax.cache.provider">com.hack23.cia.service.data.impl.CustomEhcacheCachingProvider</prop>
 				<prop key="hibernate.javax.cache.uri">classpath:ehcache.xml</prop>
 
+<!--
+				<prop key="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</prop>				
+				<prop key="hibernate.javax.cache.uri">url:https://raw.githubusercontent.com/Hack23/cia/master/service.data.impl/src/main/resources/ehcache.xml</prop>				
+ -->
 				<prop key="hibernate.search.default.indexBase">${database.search.index.location}</prop>
 				<!-- Elasticsearch integration
 				<prop key="hibernate.search.default.indexmanager">elasticsearch</prop>

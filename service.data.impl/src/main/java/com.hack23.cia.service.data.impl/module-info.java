@@ -8,9 +8,12 @@ module com.hack23.cia.service.data.impl {
 	requires commons.beanutils;
 	requires org.slf4j;
 	requires spring.context;
+	requires spring.context.support;
+	
 	requires spring.beans;
 	requires spring.jdbc;
 	requires spring.tx;
+	
 	requires java.persistence;
 	requires org.hibernate.orm.core;
 	requires java.transaction;

@@ -12,10 +12,10 @@
 
  <cache-template name="defaultCacheTemplate">
  	<expiry>
-      <ttl>1800</ttl>
+      <tti unit="seconds">1800</tti>
     </expiry>      
     <resources>
-      <heap unit="entries">100000</heap> 
+      <heap unit="entries">10000000</heap> 
     </resources>
  </cache-template>
 
@@ -42,8 +42,14 @@
   <heap>4096</heap>
  </cache>
 
+ <cache alias="org.hibernate.cache.spi.UpdateTimestampsCache">
+   <expiry>
+   	<none />
+  </expiry>
+  <heap>4096</heap>
+ </cache>
+
  <cache alias="org.hibernate.cache.internal.StandardQueryCache" uses-template="defaultCacheTemplate"/>
- <cache alias="org.hibernate.cache.spi.UpdateTimestampsCache" uses-template="defaultCacheTemplate"/>
 
  <cache alias="com.hack23.cia.model.internal.application.view.impl.TargetProfileContent" uses-template="defaultCacheTemplate"/>
  <cache alias="com.hack23.cia.model.internal.application.view.impl.QualityAssuranceContent" uses-template="defaultCacheTemplate"/>
