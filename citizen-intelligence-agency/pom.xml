@@ -837,7 +837,17 @@
           <artifactId>phantomjsdriver</artifactId>
           <groupId>com.codeborne</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>commons-compress</artifactId>
+          <groupId>org.apache.commons</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-compress</artifactId>
+      <version>1.17</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.webbitserver</groupId>
