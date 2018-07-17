@@ -21,7 +21,6 @@ package com.hack23.cia.service.data.impl;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.Search;
 import org.springframework.stereotype.Repository;
 
@@ -40,9 +39,6 @@ final class SearchIndexerImpl implements SearchIndexer {
 	@PersistenceContext(name = "ciaPersistenceUnit")
 	private EntityManager entityManager;
 
-	/** The full text entity manager. */
-	private FullTextEntityManager fullTextEntityManager;
-
 	/**
 	 * Instantiates a new search indexer impl.
 	 */
@@ -50,20 +46,8 @@ final class SearchIndexerImpl implements SearchIndexer {
 		super();
 	}
 
-	/**
-	 * Gets the full text entity manager.
-	 *
-	 * @return the full text entity manager
-	 */
-	private synchronized FullTextEntityManager getFullTextEntityManager() {
-	        if (fullTextEntityManager == null) {
-	        	fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
-	        }
-	        return fullTextEntityManager;
-	}
-
 	@Override
 	public void updateSearchIndex() throws InterruptedException {
-		getFullTextEntityManager().createIndexer().transactionTimeout(TIMEOUT_IN_SECONDS).startAndWait();
+		Search.getFullTextEntityManager(entityManager).createIndexer().transactionTimeout(TIMEOUT_IN_SECONDS).startAndWait();
 	}
 }

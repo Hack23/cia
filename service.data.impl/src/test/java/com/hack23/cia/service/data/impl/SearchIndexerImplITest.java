@@ -49,23 +49,8 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 	@PersistenceContext(name = "ciaPersistenceUnit")
 	private EntityManager entityManager;
 
-	/** The full text entity manager. */
-	private FullTextEntityManager fullTextEntityManager;
-
 	@Value("${database.search.index.location}")
 	private String databaseSearchIndexLocation;
-
-	/**
-	 * Gets the full text entity manager.
-	 *
-	 * @return the full text entity manager
-	 */
-	private FullTextEntityManager getFullTextEntityManager() {
-		if (fullTextEntityManager == null) {
-			fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
-		}
-		return fullTextEntityManager;
-	}
 
 	/**
 	 * Test update search index.
@@ -85,13 +70,14 @@ public class SearchIndexerImplITest extends AbstractServiceDataFunctionalIntegra
 	@Transactional(timeout=900)
 	public void testSearchIndex() throws Exception {
 
-		final QueryBuilder qb = getFullTextEntityManager().getSearchFactory().buildQueryBuilder()
+		final FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
+		final QueryBuilder qb = fullTextEntityManager.getSearchFactory().buildQueryBuilder()
 				.forEntity(DocumentContentData.class).get();
 		final org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields("content").matching("programmering")
 				.createQuery();
 
 		// wrap Lucene query in a javax.persistence.Query
-		final javax.persistence.Query jpaQuery = getFullTextEntityManager().createFullTextQuery(luceneQuery,
+		final javax.persistence.Query jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery,
 				DocumentContentData.class);
 
 		// execute search
