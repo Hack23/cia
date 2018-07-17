@@ -1373,7 +1373,7 @@
     </plugins>
   </build>
   <profiles>
-      <profile>
+    <profile>
       <id>java12</id>
       <activation>
         <jdk>12</jdk>
