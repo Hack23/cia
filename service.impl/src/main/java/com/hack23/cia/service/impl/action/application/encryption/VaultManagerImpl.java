@@ -90,14 +90,15 @@ public final class VaultManagerImpl implements VaultManager {
 
 
 	/** The encrypted value DAO. */
-	@Autowired
-	private EncryptedValueDAO encryptedValueDAO;
+	private final EncryptedValueDAO encryptedValueDAO;
 
 	/**
 	 * Instantiates a new vault manager impl.
 	 */
-	public VaultManagerImpl() {
+	@Autowired
+	public VaultManagerImpl(final EncryptedValueDAO encryptedValueDAO) {
 		super();
+		this.encryptedValueDAO = encryptedValueDAO;
 	}
 
 	static {
