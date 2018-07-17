@@ -38,13 +38,12 @@ public final class SearchDocumentServiceITest extends AbstractServiceFunctionalI
 
 
 	/**
-	 * Test.
+	 * Search success find in title.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	@Test
-	public void Test() throws Exception {
+	public void searchSuccessFindInTitle() throws Exception {
 		setAuthenticatedAnonymousUser();
 
 		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
@@ -52,11 +51,53 @@ public final class SearchDocumentServiceITest extends AbstractServiceFunctionalI
 		final SearchDocumentRequest serviceRequest = new SearchDocumentRequest();
 		serviceRequest.setSessionId(createSessionRequest.getSessionId());
 		serviceRequest.setMaxResults(10);
-		serviceRequest.setSearchExpression("kan");
+		serviceRequest.setSearchExpression("programmering");
 
 		final SearchDocumentResponse  response = (SearchDocumentResponse) applicationManager.service(serviceRequest);
 		assertNotNull(EXPECT_A_RESULT,response);
 		assertTrue(EXPECT_A_RESULT,response.getResultElement().size() > 0);
+	}
+
+	/**
+	 * Search success find in content.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void searchSuccessFindInContent() throws Exception {
+		setAuthenticatedAnonymousUser();
+
+		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
+
+		final SearchDocumentRequest serviceRequest = new SearchDocumentRequest();
+		serviceRequest.setSessionId(createSessionRequest.getSessionId());
+		serviceRequest.setMaxResults(10);
+		serviceRequest.setSearchExpression("cannabis");
+
+		final SearchDocumentResponse  response = (SearchDocumentResponse) applicationManager.service(serviceRequest);
+		assertNotNull(EXPECT_A_RESULT,response);
+		assertTrue(EXPECT_A_RESULT,response.getResultElement().size() > 0);
+	}
+
+	/**
+	 * Search success no results.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void searchSuccessNoResults() throws Exception {
+		setAuthenticatedAnonymousUser();
+
+		final CreateApplicationSessionRequest createSessionRequest = createTestApplicationSession();
+
+		final SearchDocumentRequest serviceRequest = new SearchDocumentRequest();
+		serviceRequest.setSessionId(createSessionRequest.getSessionId());
+		serviceRequest.setMaxResults(10);
+		serviceRequest.setSearchExpression("somethingthatdonotexist");
+
+		final SearchDocumentResponse  response = (SearchDocumentResponse) applicationManager.service(serviceRequest);
+		assertNotNull(EXPECT_A_RESULT,response);
+		assertTrue(EXPECT_A_RESULT,response.getResultElement().isEmpty());
 	}
 	
 	/**

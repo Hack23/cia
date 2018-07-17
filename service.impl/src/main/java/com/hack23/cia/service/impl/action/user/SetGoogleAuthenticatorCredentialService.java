@@ -131,18 +131,11 @@ public final class SetGoogleAuthenticatorCredentialService extends
 	@Override
 	protected CreateApplicationEventRequest createApplicationEventForService(
 			final SetGoogleAuthenticatorCredentialRequest serviceRequest) {
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.USER);
 		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);
 		eventRequest.setActionName(SetGoogleAuthenticatorCredentialRequest.class.getSimpleName());
 		eventRequest.setSessionId(serviceRequest.getSessionId());
-		final UserAccount userAccount = getUserAccountFromSecurityContext();
-
-		if (userAccount != null) {
-
-			eventRequest.setUserId(userAccount.getUserId());
-		}
-
 		return eventRequest;
 	}
 

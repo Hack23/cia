@@ -32,7 +32,6 @@ import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentCont
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
-import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.api.action.user.DocumentWordCountRequest;
@@ -97,18 +96,11 @@ public final class DocumentWordCountService
 
 	@Override
 	protected CreateApplicationEventRequest createApplicationEventForService(final DocumentWordCountRequest serviceRequest) {
-		final CreateApplicationEventRequest eventRequest = new CreateApplicationEventRequest();
+		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();
 		eventRequest.setEventGroup(ApplicationEventGroup.USER);
 		eventRequest.setApplicationOperation(ApplicationOperationType.READ);
 		eventRequest.setActionName(DocumentWordCountRequest.class.getSimpleName());
 		eventRequest.setSessionId(serviceRequest.getSessionId());
-		final UserAccount userAccount = getUserAccountFromSecurityContext();
-
-		if (userAccount != null) {
-
-			eventRequest.setUserId(userAccount.getUserId());
-		}
-
 		return eventRequest;
 	}
 
