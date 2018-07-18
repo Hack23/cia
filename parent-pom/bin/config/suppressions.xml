@@ -3,6 +3,7 @@
     <suppress>
         <notes><![CDATA[This suppresses any jar.]]></notes>
         <filePath regex="true">.*\b\.jar.*</filePath>
+        <cve>CVE-2018-1115</cve>
 		<cve>CVE-2008-0732</cve>
 		<cve>CVE-2011-0509</cve>
 		<cve>CVE-2013-2566</cve>
@@ -37,9 +38,18 @@
 		<cve>CVE-2015-5184</cve>
 		<cve>CVE-2012-0881</cve>
 		<cve>CVE-2017-9735</cve>
-		<cve>CVE-2017-9735</cve>
-		<cve>CVE-2015-5182</cve>
 		<cve>CVE-2017-5929</cve>
+		<cve>CVE-2015-5182</cve>
 		<cve>CVE-2017-8806</cve>
+		<cve>CVE-2017-17485</cve>
+		<cve>CVE-2014-5509</cve>
+		<cve>CVE-2018-5968</cve>
+		<cve>CVE-2017-7525</cve>
+		<cve>CVE-2015-5224</cve>
+		<cve>CVE-2016-5011</cve>
+		<cve>CVE-2017-15095</cve>
+		<cve>CVE-2018-7489</cve>
+		<cve>CVE-2017-14798</cve>
+		<cve>CVE-2018-8088</cve>
     </suppress>
 </suppressions>
