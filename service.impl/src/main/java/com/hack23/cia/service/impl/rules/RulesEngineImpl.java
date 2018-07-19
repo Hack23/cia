@@ -110,38 +110,50 @@ public final class RulesEngineImpl implements RulesEngine {
 		for (final ViewRiksdagenPolitician politicianData : list) {
 			if (politicianData != null) {
 
-				final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dailyList = politicanBallotSummaryDailyMap
-						.get(politicianData.getPersonId());
-				final List<ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly> monthlyList = politicanBallotSummaryMontlyMap
-						.get(politicianData.getPersonId());
-				final List<ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual> annualList = politicanBallotSummaryAnnualMap
-						.get(politicianData.getPersonId());
-
-				if (politicianData.isActiveParliament() && dailyList != null && monthlyList != null
-						&& annualList != null) {
-					Collections.sort(dailyList,
-							(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
-					final Optional<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dailyListFirst = dailyList.stream().findFirst();
-					
-					Collections.sort(monthlyList,
-							(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
-					final Optional<ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly> monthlyListFirst = monthlyList.stream().findFirst();
-					Collections.sort(annualList,
-							(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
-					final Optional<ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual> annualListFirst = annualList.stream().findFirst();
-
-					if (annualListFirst.isPresent() && monthlyListFirst.isPresent() && dailyListFirst.isPresent()) {
-						final PoliticianComplianceCheckImpl politicianComplianceCheckImpl = new PoliticianComplianceCheckImpl(
-								politicianData, dailyListFirst.get(), monthlyListFirst.get(),
-								annualListFirst.get());
-						ksession.insert(politicianComplianceCheckImpl);
-					}
-				} else {
-					final PoliticianComplianceCheckImpl politicianComplianceCheckImpl = new PoliticianComplianceCheckImpl(
-							politicianData, null, null, null);
-					ksession.insert(politicianComplianceCheckImpl);
-				}
+				insertPoliticians(ksession, politicianData, politicanBallotSummaryDailyMap
+						.get(politicianData.getPersonId()), politicanBallotSummaryMontlyMap
+								.get(politicianData.getPersonId()), politicanBallotSummaryAnnualMap
+										.get(politicianData.getPersonId()));
 			}
+		}
+	}
+
+	/**
+	 * Insert politicians.
+	 *
+	 * @param ksession       the ksession
+	 * @param politicianData the politician data
+	 * @param dailyList      the daily list
+	 * @param monthlyList    the monthly list
+	 * @param annualList     the annual list
+	 */
+	private static void insertPoliticians(final KieSession ksession, final ViewRiksdagenPolitician politicianData,
+			final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dailyList,
+			final List<ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly> monthlyList,
+			final List<ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual> annualList) {
+		if (politicianData.isActiveParliament() && dailyList != null && monthlyList != null
+				&& annualList != null) {
+			Collections.sort(dailyList,
+					(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
+			final Optional<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dailyListFirst = dailyList.stream().findFirst();
+			
+			Collections.sort(monthlyList,
+					(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
+			final Optional<ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly> monthlyListFirst = monthlyList.stream().findFirst();
+			Collections.sort(annualList,
+					(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
+			final Optional<ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual> annualListFirst = annualList.stream().findFirst();
+
+			if (annualListFirst.isPresent() && monthlyListFirst.isPresent() && dailyListFirst.isPresent()) {
+				final PoliticianComplianceCheckImpl politicianComplianceCheckImpl = new PoliticianComplianceCheckImpl(
+						politicianData, dailyListFirst.get(), monthlyListFirst.get(),
+						annualListFirst.get());
+				ksession.insert(politicianComplianceCheckImpl);
+			}
+		} else {
+			final PoliticianComplianceCheckImpl politicianComplianceCheckImpl = new PoliticianComplianceCheckImpl(
+					politicianData, null, null, null);
+			ksession.insert(politicianComplianceCheckImpl);
 		}
 	}
 
@@ -166,37 +178,49 @@ public final class RulesEngineImpl implements RulesEngine {
 
 		for (final ViewRiksdagenPartySummary partyData : list) {
 			if (partyData != null) {				
-				final List<ViewRiksdagenVoteDataBallotPartySummaryAnnual> dailyList = politicanBallotSummaryDailyMap
-						.get(partyData.getParty());
-				final List<ViewRiksdagenVoteDataBallotPartySummaryMonthly> monthlyList = politicanBallotSummaryMontlyMap
-						.get(partyData.getParty());
-				final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> annualList = politicanBallotSummaryAnnualMap
-						.get(partyData.getParty());
-
-				if (partyData.isActiveParliament() && dailyList != null && monthlyList != null
-						&& annualList != null) {
-					Collections.sort(dailyList,
-							(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
-					final Optional<ViewRiksdagenVoteDataBallotPartySummaryAnnual> dailyListFirst = dailyList.stream().findFirst();
-					Collections.sort(monthlyList,
-							(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
-					final Optional<ViewRiksdagenVoteDataBallotPartySummaryMonthly> monthlyListFirst = monthlyList.stream().findFirst();
-					Collections.sort(annualList,
-							(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
-					final Optional<ViewRiksdagenVoteDataBallotPartySummaryDaily> annualListFirst = annualList.stream().findFirst();
-
-					if (annualListFirst.isPresent() && monthlyListFirst.isPresent() && dailyListFirst.isPresent()) {					
-						final PartyComplianceCheckImpl politicianComplianceCheckImpl = new PartyComplianceCheckImpl(
-								partyData, dailyListFirst.get(), monthlyListFirst.get(),
-								annualListFirst.get());
-						ksession.insert(politicianComplianceCheckImpl);
-					}
-				} else {
-					final PartyComplianceCheckImpl politicianComplianceCheckImpl = new PartyComplianceCheckImpl(
-							partyData, null, null, null);
-					ksession.insert(politicianComplianceCheckImpl);
-				}
+				insertParty(ksession, partyData, politicanBallotSummaryDailyMap
+						.get(partyData.getParty()), politicanBallotSummaryMontlyMap
+								.get(partyData.getParty()), politicanBallotSummaryAnnualMap
+										.get(partyData.getParty()));
 			}
+		}
+	}
+
+	/**
+	 * Insert party.
+	 *
+	 * @param ksession    the ksession
+	 * @param partyData   the party data
+	 * @param dailyList   the daily list
+	 * @param monthlyList the monthly list
+	 * @param annualList  the annual list
+	 */
+	private static void insertParty(final KieSession ksession, final ViewRiksdagenPartySummary partyData,
+			final List<ViewRiksdagenVoteDataBallotPartySummaryAnnual> dailyList,
+			final List<ViewRiksdagenVoteDataBallotPartySummaryMonthly> monthlyList,
+			final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> annualList) {
+		if (partyData.isActiveParliament() && dailyList != null && monthlyList != null
+				&& annualList != null) {
+			Collections.sort(dailyList,
+					(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
+			final Optional<ViewRiksdagenVoteDataBallotPartySummaryAnnual> dailyListFirst = dailyList.stream().findFirst();
+			Collections.sort(monthlyList,
+					(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
+			final Optional<ViewRiksdagenVoteDataBallotPartySummaryMonthly> monthlyListFirst = monthlyList.stream().findFirst();
+			Collections.sort(annualList,
+					(e1, e2) -> e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));
+			final Optional<ViewRiksdagenVoteDataBallotPartySummaryDaily> annualListFirst = annualList.stream().findFirst();
+
+			if (annualListFirst.isPresent() && monthlyListFirst.isPresent() && dailyListFirst.isPresent()) {					
+				final PartyComplianceCheckImpl politicianComplianceCheckImpl = new PartyComplianceCheckImpl(
+						partyData, dailyListFirst.get(), monthlyListFirst.get(),
+						annualListFirst.get());
+				ksession.insert(politicianComplianceCheckImpl);
+			}
+		} else {
+			final PartyComplianceCheckImpl politicianComplianceCheckImpl = new PartyComplianceCheckImpl(
+					partyData, null, null, null);
+			ksession.insert(politicianComplianceCheckImpl);
 		}
 	}
 
