@@ -52,9 +52,7 @@ final class ViewRiksdagenCommitteeDAOImpl
 				.createQuery(RiksdagenCommitteeEmbeddedId.class);
 		final Root<ViewRiksdagenCommittee> root = criteria
 				.from(ViewRiksdagenCommittee.class);
-		criteria.select(getCriteriaBuilder().construct(
-				RiksdagenCommitteeEmbeddedId.class,
-				root.get(ViewRiksdagenCommittee_.embeddedId)));
+		criteria.select(root.get(ViewRiksdagenCommittee_.embeddedId));
 		return getEntityManager().createQuery(criteria).getResultList();
 	}
 
