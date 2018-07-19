@@ -18,9 +18,6 @@
 */
 package com.hack23.cia.service.impl.action.application.access;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +31,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -152,8 +148,7 @@ public final class LoginBlockedAccessImpl implements LoginBlockedAccess {
 	 */
 	@PostConstruct
 	public void initSettings() {
-		final Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_ADMIN");
-		final Authentication authentication = new UsernamePasswordAuthenticationToken("system.init", "n/a", authorities);
+		final Authentication authentication = new UsernamePasswordAuthenticationToken("system.init", "n/a", AuthorityUtils.createAuthorityList("ROLE_ADMIN"));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		LOGGER.info(LOGIN_BLOCK_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_USER, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_USER, DEFAULT_MAX_LOGIN_ATTEMPTS));
 		LOGGER.info(LOGIN_BLOCK_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_SESSION, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_SESSION,DEFAULT_MAX_LOGIN_ATTEMPTS));
@@ -254,56 +249,6 @@ public final class LoginBlockedAccessImpl implements LoginBlockedAccess {
 				}
 			}
 		}
-	}
-
-	/**
-	 * The Class LoginBlockResultImpl.
-	 */
-	static final class LoginBlockResultImpl implements LoginBlockResult {
-
-		/** The is blocked. */
-		private boolean isBlocked;
-
-		/** The messages. */
-		private final List<String> messages = new ArrayList<>();
-
-		/**
-		 * Instantiates a new login block result impl.
-		 */
-		public LoginBlockResultImpl() {
-			super();
-		}
-		
-		@Override
-		public boolean isBlocked() {
-			return isBlocked;
-		}
-
-		/**
-		 * Adds the messages.
-		 *
-		 * @param msg
-		 *            the msg
-		 */
-		public void addMessages(final String msg) {
-			this.messages.add(msg);
-		}
-
-		/**
-		 * Sets the blocked.
-		 *
-		 * @param isBlocked
-		 *            the new blocked
-		 */
-		public void setBlocked(final boolean isBlocked) {
-			this.isBlocked = isBlocked;
-		}
-
-		@Override
-		public List<String> getMessages() {
-			return Collections.unmodifiableList(messages);
-		}
-
 	}
 
 }
