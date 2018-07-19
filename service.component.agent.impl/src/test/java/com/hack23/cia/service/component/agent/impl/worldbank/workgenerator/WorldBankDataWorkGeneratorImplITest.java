@@ -20,8 +20,10 @@ package com.hack23.cia.service.component.agent.impl.worldbank.workgenerator;
 
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.any;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -82,7 +84,6 @@ public class WorldBankDataWorkGeneratorImplITest extends AbstractServiceComponen
 		worldBankDataSourcesWorkGenerator.generateWorkOrders();
 
 		final ArgumentCaptor<Destination> destCaptor = ArgumentCaptor.forClass(Destination.class);
-
 		final ArgumentCaptor<Serializable> stringCaptor = ArgumentCaptor.forClass(Serializable.class);
 
 		verify(jmsSenderMock, atLeastOnce()).send(destCaptor.capture(),stringCaptor.capture());
@@ -106,6 +107,7 @@ public class WorldBankDataWorkGeneratorImplITest extends AbstractServiceComponen
 		when(worldbankIndicatorApi.getIndicatorsWithSwedishData()).thenReturn(indicators);
 
 		worldBankDataSourcesWorkGenerator.generateWorkOrders();
+		verify(jmsSenderMock, never()).send(any(Destination.class),any(Serializable.class));
 	}
 
 
@@ -122,6 +124,7 @@ public class WorldBankDataWorkGeneratorImplITest extends AbstractServiceComponen
 		when(worldbankIndicatorApi.getIndicatorsWithSwedishData()).thenThrow(new DataFailureException(new RuntimeException()));
 
 		worldBankDataSourcesWorkGenerator.generateWorkOrders();
+		verify(jmsSenderMock, never()).send(any(Destination.class),any(Serializable.class));
 	}
 
 }

@@ -18,8 +18,10 @@
 */
 package com.hack23.cia.service.component.agent.impl.worldbank.workgenerator;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -118,6 +120,7 @@ public class WorldBankIndicatorWorkGeneratorImplITest extends AbstractServiceCom
 		when(worldbankIndicatorApi.getIndicators()).thenReturn(indicators);
 
 		worldBankDataSourcesWorkGenerator.generateWorkOrders();
+		verify(jmsSenderMock, never()).send(any(Destination.class),any(Serializable.class));
 	}
 
 	/**
@@ -140,6 +143,7 @@ public class WorldBankIndicatorWorkGeneratorImplITest extends AbstractServiceCom
 		when(worldbankIndicatorApi.getIndicators()).thenThrow(new DataFailureException(new RuntimeException()));
 
 		worldBankDataSourcesWorkGenerator.generateWorkOrders();
+		verify(jmsSenderMock, never()).send(any(Destination.class),any(Serializable.class));
 	}
 
 }
