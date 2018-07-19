@@ -55,8 +55,6 @@ import com.hack23.cia.service.data.api.DocumentElementDAO;
 import com.hack23.cia.service.data.api.DocumentStatusContainerDAO;
 import com.hack23.cia.service.data.api.PersonDataDAO;
 import com.hack23.cia.service.data.api.VoteDataDAO;
-import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
-import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
 
 /**
  * The Class RiksdagenUpdateServiceITest.
@@ -68,35 +66,35 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	@Autowired
 	private RiksdagenUpdateService riksdagenUpdateService;
 
-	/** The riksdagen api. */
-	@Autowired
-	private RiksdagenPersonApi riksdagenPersonApi;
-
-	@Autowired
-	private RiksdagenDocumentApi riksdagenDocumentApi;
-	
 	/**
 	 * Update person data ignored already exist success test.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	@Test
 	public void updatePersonDataIgnoredAlreadyExistSuccessTest() throws Exception {
-		riksdagenUpdateService.update(riksdagenPersonApi.getPerson("0542160909628"));
+		final PersonDataDAO personDataDAOMock = mock(PersonDataDAO.class);
+		ReflectionTestUtils.setField(riksdagenUpdateService, "personDataDAO", personDataDAOMock);
+
+		PersonData personData = new PersonData();
+		String personId = "0542160909628";
+		personData.setId(personId);
+		when(personDataDAOMock.load(personId)).thenReturn(personData);
+
+		riksdagenUpdateService.update(personData);
+		verify(personDataDAOMock, never()).persist(personData);
 	}
 
 	/**
 	 * Update person data success test.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	@Test
 	public void updatePersonDataSuccessTest() throws Exception {
 		final PersonDataDAO personDataDAOMock = mock(PersonDataDAO.class);
-        ReflectionTestUtils.setField(riksdagenUpdateService, "personDataDAO", personDataDAOMock);
-        String personId = "notExist";
+		ReflectionTestUtils.setField(riksdagenUpdateService, "personDataDAO", personDataDAOMock);
+		String personId = "notExist";
 		when(personDataDAOMock.load(personId)).thenReturn(null);
 		PersonData personData = new PersonData();
 		riksdagenUpdateService.update(personData);
@@ -106,44 +104,54 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	/**
 	 * Update document content data ignored already success test.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	@Test
 	public void updateDocumentContentDataIgnoredAlreadySuccessTest() throws Exception {
-		riksdagenUpdateService.updateDocumentContentData(riksdagenDocumentApi.getDocumentContent("GZ10190"));
+		final DocumentContentDataDAO documentContentDataDAO = mock(DocumentContentDataDAO.class);
+		ReflectionTestUtils.setField(riksdagenUpdateService, "documentContentDataDAO", documentContentDataDAO);
+
+		final String docId = "GZ10190";
+		DocumentContentData documentContent = new DocumentContentData().withId(docId);
+		when(documentContentDataDAO.findFirstByProperty(DocumentContentData_.id, docId)).thenReturn(documentContent);
+
+		riksdagenUpdateService.updateDocumentContentData(documentContent);
+
+		verify(documentContentDataDAO, never()).persist(documentContent);
+
 	}
 
 	/**
 	 * Update document content data success test.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	@Test
 	public void updateDocumentContentDataSuccessTest() throws Exception {
 		final DocumentContentDataDAO documentContentDataDAO = mock(DocumentContentDataDAO.class);
-        ReflectionTestUtils.setField(riksdagenUpdateService, "documentContentDataDAO", documentContentDataDAO);
-        String docId = "notExist";		
-        when(documentContentDataDAO.findFirstByProperty(DocumentContentData_.id, docId)).thenReturn(null);		
+		ReflectionTestUtils.setField(riksdagenUpdateService, "documentContentDataDAO", documentContentDataDAO);
+		String docId = "notExist";
+		when(documentContentDataDAO.findFirstByProperty(DocumentContentData_.id, docId)).thenReturn(null);
 		DocumentContentData documentContent = new DocumentContentData().withId(docId);
 		riksdagenUpdateService.updateDocumentContentData(documentContent);
 		verify(documentContentDataDAO, times(1)).persist(documentContent);
 	}
 
-
 	/**
 	 * Update committee proposal component data success test.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	@Test
 	public void updateCommitteeProposalComponentDataSuccessTest() throws Exception {
-		final CommitteeProposalComponentDataDAO committeeProposalComponentDataDAO = mock(CommitteeProposalComponentDataDAO.class);
-        ReflectionTestUtils.setField(riksdagenUpdateService, "committeeProposalComponentDataDAO", committeeProposalComponentDataDAO);
-        CommitteeProposalComponentData documentProposal = new CommitteeProposalComponentData().withDocument(new CommitteeDocumentData());
-        when(committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,documentProposal.getDocument())).thenReturn(null);		
+		final CommitteeProposalComponentDataDAO committeeProposalComponentDataDAO = mock(
+				CommitteeProposalComponentDataDAO.class);
+		ReflectionTestUtils.setField(riksdagenUpdateService, "committeeProposalComponentDataDAO",
+				committeeProposalComponentDataDAO);
+		CommitteeProposalComponentData documentProposal = new CommitteeProposalComponentData()
+				.withDocument(new CommitteeDocumentData());
+		when(committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
+				documentProposal.getDocument())).thenReturn(null);
 		riksdagenUpdateService.updateCommitteeProposalComponentData(documentProposal);
 		verify(committeeProposalComponentDataDAO, times(1)).persist(documentProposal);
 	}
@@ -151,33 +159,33 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	/**
 	 * Update committee proposal component data already exist ignore success test.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	@Test
 	public void updateCommitteeProposalComponentDataAlreadyExistIgnoreSuccessTest() throws Exception {
-		final CommitteeProposalComponentDataDAO committeeProposalComponentDataDAO = mock(CommitteeProposalComponentDataDAO.class);
-        ReflectionTestUtils.setField(riksdagenUpdateService, "committeeProposalComponentDataDAO", committeeProposalComponentDataDAO);
-        CommitteeProposalComponentData documentProposal = new CommitteeProposalComponentData().withDocument(new CommitteeDocumentData());
-        when(committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,documentProposal.getDocument())).thenReturn(documentProposal);		
+		final CommitteeProposalComponentDataDAO committeeProposalComponentDataDAO = mock(
+				CommitteeProposalComponentDataDAO.class);
+		ReflectionTestUtils.setField(riksdagenUpdateService, "committeeProposalComponentDataDAO",
+				committeeProposalComponentDataDAO);
+		CommitteeProposalComponentData documentProposal = new CommitteeProposalComponentData()
+				.withDocument(new CommitteeDocumentData());
+		when(committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
+				documentProposal.getDocument())).thenReturn(documentProposal);
 		riksdagenUpdateService.updateCommitteeProposalComponentData(documentProposal);
 		verify(committeeProposalComponentDataDAO, never()).persist(documentProposal);
 	}
-	
-	
 
 	/**
 	 * Update document element success test.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	@Test
 	public void updateDocumentElementSuccessTest() throws Exception {
 		final DocumentElementDAO documentElementDAO = mock(DocumentElementDAO.class);
-        ReflectionTestUtils.setField(riksdagenUpdateService, "documentElementDAO", documentElementDAO);
-        String docId = "notExist";		
-        when(documentElementDAO.checkDocumentElement(docId)).thenReturn(false);		
+		ReflectionTestUtils.setField(riksdagenUpdateService, "documentElementDAO", documentElementDAO);
+		String docId = "notExist";
+		when(documentElementDAO.checkDocumentElement(docId)).thenReturn(false);
 		DocumentElement documentElement = new DocumentElement().withId(docId);
 		riksdagenUpdateService.updateDocumentElement(documentElement);
 		verify(documentElementDAO, times(1)).persist(documentElement);
@@ -186,34 +194,33 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	/**
 	 * Update document element already exist success test.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	@Test
 	public void updateDocumentElementAlreadyExistSuccessTest() throws Exception {
 		final DocumentElementDAO documentElementDAO = mock(DocumentElementDAO.class);
-        ReflectionTestUtils.setField(riksdagenUpdateService, "documentElementDAO", documentElementDAO);
-        String docId = "notExist";		
-        when(documentElementDAO.checkDocumentElement(docId)).thenReturn(true);		
+		ReflectionTestUtils.setField(riksdagenUpdateService, "documentElementDAO", documentElementDAO);
+		String docId = "notExist";
+		when(documentElementDAO.checkDocumentElement(docId)).thenReturn(true);
 		DocumentElement documentElement = new DocumentElement().withId(docId);
 		riksdagenUpdateService.updateDocumentElement(documentElement);
 		verify(documentElementDAO, never()).persist(documentElement);
 	}
 
-	
 	/**
 	 * Update document data success test.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	@Test
 	public void updateDocumentDataSuccessTest() throws Exception {
 		final DocumentStatusContainerDAO documentStatusContainerDAO = mock(DocumentStatusContainerDAO.class);
-        ReflectionTestUtils.setField(riksdagenUpdateService, "documentStatusContainerDAO", documentStatusContainerDAO);
-        String docId = "notExist";		
-        when(documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document,DocumentData.class,DocumentData_.id,docId)).thenReturn(new ArrayList<>());		
-        DocumentStatusContainer documentStatusContainer = new DocumentStatusContainer().withDocument(new DocumentData().withId(docId));
+		ReflectionTestUtils.setField(riksdagenUpdateService, "documentStatusContainerDAO", documentStatusContainerDAO);
+		String docId = "notExist";
+		when(documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document,
+				DocumentData.class, DocumentData_.id, docId)).thenReturn(new ArrayList<>());
+		DocumentStatusContainer documentStatusContainer = new DocumentStatusContainer()
+				.withDocument(new DocumentData().withId(docId));
 		riksdagenUpdateService.updateDocumentData(documentStatusContainer);
 		verify(documentStatusContainerDAO, times(1)).persist(documentStatusContainer);
 	}
@@ -221,33 +228,32 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	/**
 	 * Update document data already exist ignore success test.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	@Test
 	public void updateDocumentDataAlreadyExistIgnoreSuccessTest() throws Exception {
 		final DocumentStatusContainerDAO documentStatusContainerDAO = mock(DocumentStatusContainerDAO.class);
-        ReflectionTestUtils.setField(riksdagenUpdateService, "documentStatusContainerDAO", documentStatusContainerDAO);
-        String docId = "notExist";		
-        ArrayList<DocumentStatusContainer> list = new ArrayList<>();
-        list.add(new DocumentStatusContainer());
-		when(documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document,DocumentData.class,DocumentData_.id,docId)).thenReturn(list);		
-        DocumentStatusContainer documentStatusContainer = new DocumentStatusContainer().withDocument(new DocumentData().withId(docId));
+		ReflectionTestUtils.setField(riksdagenUpdateService, "documentStatusContainerDAO", documentStatusContainerDAO);
+		String docId = "notExist";
+		ArrayList<DocumentStatusContainer> list = new ArrayList<>();
+		list.add(new DocumentStatusContainer());
+		when(documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document,
+				DocumentData.class, DocumentData_.id, docId)).thenReturn(list);
+		DocumentStatusContainer documentStatusContainer = new DocumentStatusContainer()
+				.withDocument(new DocumentData().withId(docId));
 		riksdagenUpdateService.updateDocumentData(documentStatusContainer);
 		verify(documentStatusContainerDAO, never()).persist(documentStatusContainer);
 	}
 
-	
 	/**
 	 * Update vote data data ignore empty success test.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	@Test
 	public void updateVoteDataDataIgnoreEmptySuccessTest() throws Exception {
 		final VoteDataDAO voteDataDAO = mock(VoteDataDAO.class);
-        ReflectionTestUtils.setField(riksdagenUpdateService, "voteDataDAO", voteDataDAO);
+		ReflectionTestUtils.setField(riksdagenUpdateService, "voteDataDAO", voteDataDAO);
 		riksdagenUpdateService.updateVoteDataData(new ArrayList<VoteData>());
 		verify(voteDataDAO, never()).persist(any(List.class));
 	}
@@ -255,17 +261,17 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	/**
 	 * Update vote data data success test.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	@Test
 	public void updateVoteDataDataSuccessTest() throws Exception {
 		final VoteDataDAO voteDataDAO = mock(VoteDataDAO.class);
-        ReflectionTestUtils.setField(riksdagenUpdateService, "voteDataDAO", voteDataDAO);
-        String ballotId = "notExist";		
-        List<VoteData> ballotList = new ArrayList<>();
-        ballotList.add(new VoteData().withEmbeddedId(new VoteDataEmbeddedId().withBallotId(ballotId)));
-		when(voteDataDAO.findListByEmbeddedProperty(VoteData_.embeddedId,VoteDataEmbeddedId.class,VoteDataEmbeddedId_.ballotId,ballotId)).thenReturn(new ArrayList<>());		
+		ReflectionTestUtils.setField(riksdagenUpdateService, "voteDataDAO", voteDataDAO);
+		String ballotId = "notExist";
+		List<VoteData> ballotList = new ArrayList<>();
+		ballotList.add(new VoteData().withEmbeddedId(new VoteDataEmbeddedId().withBallotId(ballotId)));
+		when(voteDataDAO.findListByEmbeddedProperty(VoteData_.embeddedId, VoteDataEmbeddedId.class,
+				VoteDataEmbeddedId_.ballotId, ballotId)).thenReturn(new ArrayList<>());
 		riksdagenUpdateService.updateVoteDataData(ballotList);
 		verify(voteDataDAO, times(1)).persist(ballotList);
 	}
@@ -273,17 +279,17 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	/**
 	 * Update vote data data already exist success test.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	@Test
 	public void updateVoteDataDataAlreadyExistSuccessTest() throws Exception {
 		final VoteDataDAO voteDataDAO = mock(VoteDataDAO.class);
-        ReflectionTestUtils.setField(riksdagenUpdateService, "voteDataDAO", voteDataDAO);
-        String ballotId = "exist";		
-        List<VoteData> ballotList = new ArrayList<>();
-        ballotList.add(new VoteData().withEmbeddedId(new VoteDataEmbeddedId().withBallotId(ballotId)));
-		when(voteDataDAO.findListByEmbeddedProperty(VoteData_.embeddedId,VoteDataEmbeddedId.class,VoteDataEmbeddedId_.ballotId,ballotId)).thenReturn(ballotList);		
+		ReflectionTestUtils.setField(riksdagenUpdateService, "voteDataDAO", voteDataDAO);
+		String ballotId = "exist";
+		List<VoteData> ballotList = new ArrayList<>();
+		ballotList.add(new VoteData().withEmbeddedId(new VoteDataEmbeddedId().withBallotId(ballotId)));
+		when(voteDataDAO.findListByEmbeddedProperty(VoteData_.embeddedId, VoteDataEmbeddedId.class,
+				VoteDataEmbeddedId_.ballotId, ballotId)).thenReturn(ballotList);
 		riksdagenUpdateService.updateVoteDataData(ballotList);
 		verify(voteDataDAO, never()).persist(any(List.class));
 	}

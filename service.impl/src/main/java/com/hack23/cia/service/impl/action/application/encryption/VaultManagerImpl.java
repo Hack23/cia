@@ -94,6 +94,8 @@ public final class VaultManagerImpl implements VaultManager {
 
 	/**
 	 * Instantiates a new vault manager impl.
+	 *
+	 * @param encryptedValueDAO the encrypted value DAO
 	 */
 	@Autowired
 	public VaultManagerImpl(final EncryptedValueDAO encryptedValueDAO) {

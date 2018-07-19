@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.architecture;
 
+import static org.junit.Assert.assertFalse;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
@@ -41,5 +43,6 @@ public class AwsPublicSystemDocumentationTest {
 	public void generateArchitectureDiagramsTest() throws Exception {
         exit.expectSystemExit();
 		AwsPublicSystemDocumentation.main(new String[0]);
+		assertFalse("expect System.exit",true);
 	}
 }

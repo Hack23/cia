@@ -28,17 +28,23 @@ import org.springframework.cache.jcache.JCacheCacheManager;
 /**
  * The Class CustomEhcacheCachingProvider.
  */
-public class CustomEhcacheCachingProvider extends EhcacheCachingProvider {
+public final class CustomEhcacheCachingProvider extends EhcacheCachingProvider {
 
+	/** The cache manager. */
 	private static JCacheCacheManager cacheManager;
-	
-  	@Override
-	  public CacheManager getCacheManager(final URI uri, final ClassLoader classLoader) {  		
-	    return cacheManager.getCacheManager();
-	  }
 
+	@Override
+	public CacheManager getCacheManager(final URI uri, final ClassLoader classLoader) {
+		return cacheManager.getCacheManager();
+	}
+
+	/**
+	 * Sets the cache manager.
+	 *
+	 * @param cacheManager the new cache manager
+	 */
 	public void setCacheManager(JCacheCacheManager cacheManager) {
 		CustomEhcacheCachingProvider.cacheManager = cacheManager;
-	} 	
-  	
+	}
+
 }
