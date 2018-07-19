@@ -40,7 +40,6 @@ import org.javers.spring.jpa.TransactionalJaversBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.jta.JtaTransactionManager;
@@ -102,18 +101,12 @@ public class AuditableAspectConfiguration {
 	@Bean
 	public AuthorProvider authorProvider() {
 		return () -> {
-			String result=null;
-			
 			final SecurityContext context = SecurityContextHolder.getContext();
-			if (context != null) {
-				final Authentication authentication = context.getAuthentication();
-				if (authentication != null) {
-					return authentication.getPrincipal().toString();			
-				}
+			if (context != null && context.getAuthentication() != null) {
+				return context.getAuthentication().getPrincipal().toString();			
 			} else {
-				result="system";
+				return "system";
 			}			
-			return result;
 		};
 	}
 	

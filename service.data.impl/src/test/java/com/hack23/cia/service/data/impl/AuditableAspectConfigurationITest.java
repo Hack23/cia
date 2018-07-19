@@ -87,7 +87,14 @@ public class AuditableAspectConfigurationITest extends AbstractServiceDataFuncti
 		List<CdoSnapshot> snapshots = javers.findSnapshots(QueryBuilder.byInstanceId(findFirst.get().getHjid(), ApplicationSession.class).build());		
 		assertTrue(snapshots.size()> 0);
 	}
-
+	
+	/**
+	 * Author provider system test.
+	 */
+	@Test
+	public void authorProviderSystemTest() {
+		assertEquals("system",new AuditableAspectConfiguration().authorProvider().provide());
+	}
 	
 	private ApplicationSession createApplicationSession() {
 		final ApplicationSession applicationSession = new ApplicationSession();
