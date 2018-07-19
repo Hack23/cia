@@ -666,7 +666,7 @@ public final class UserPageVisit extends Assert {
 		} else {
 			action.pause(100L).perform();
 			action.clickAndHold(StaleElementUtils.refreshElement(clickElement,driver)).release().perform();
-			action.pause(400L).perform();
+			action.pause(100L).perform();
 		}
 
 		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
