@@ -637,6 +637,10 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
+          <artifactId>okio</artifactId>
+          <groupId>com.squareup.okio</groupId>
+        </exclusion>
+        <exclusion>
           <artifactId>byte-buddy</artifactId>
           <groupId>net.bytebuddy</groupId>
         </exclusion>
@@ -721,6 +725,10 @@
       <version>3.13.0</version>
       <scope>test</scope>
       <exclusions>
+        <exclusion>
+          <artifactId>okio</artifactId>
+          <groupId>com.squareup.okio</groupId>
+        </exclusion>
         <exclusion>
           <artifactId>byte-buddy</artifactId>
           <groupId>net.bytebuddy</groupId>
