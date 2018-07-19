@@ -41,21 +41,29 @@ final class WorldbankUpdateServiceImpl implements WorldbankUpdateService {
 
 	/** The country element DAO. */
 	@Autowired
-	private CountryElementDAO countryElementDAO;
+	private final CountryElementDAO countryElementDAO;
 
 	/** The data DAO. */
 	@Autowired
-	private DataDAO dataDAO;
+	private final DataDAO dataDAO;
 
 	/** The indicator element DAO. */
 	@Autowired
-	private IndicatorElementDAO indicatorElementDAO;
+	private final IndicatorElementDAO indicatorElementDAO;
 
 	/**
 	 * Instantiates a new worldbank update service impl.
+	 *
+	 * @param countryElementDAO   the country element DAO
+	 * @param dataDAO             the data DAO
+	 * @param indicatorElementDAO the indicator element DAO
 	 */
-	public WorldbankUpdateServiceImpl() {
+	@Autowired
+	public WorldbankUpdateServiceImpl(final CountryElementDAO countryElementDAO, final DataDAO dataDAO, final IndicatorElementDAO indicatorElementDAO) {
 		super();
+		this.countryElementDAO = countryElementDAO;
+		this.dataDAO = dataDAO;
+		this.indicatorElementDAO = indicatorElementDAO;
 	}
 
 	@Override
