@@ -50,10 +50,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 public final class UserPageVisit extends Assert {
 
 	/** The Constant WAIT_FOR_PAGE_DELAY. */
-	private static final int WAIT_FOR_PAGE_DELAY = 15000;
+	private static final int WAIT_FOR_PAGE_DELAY = 25000;
 
 	/** The Constant WAIT_FOR_PAGE_ELEMENT. */
-	private static final int WAIT_FOR_PAGE_ELEMENT = 60000;
+	private static final int WAIT_FOR_PAGE_ELEMENT = 90000;
 
 	/** The screen shot number. */
 	private static int screenShotNumber;
@@ -442,7 +442,7 @@ public final class UserPageVisit extends Assert {
 	 */
 	public void VisitPoliticianView(final String id) throws Exception {
 		final WebElement politicianViewLink = driver.findElement(By.id(id));
-		performClickAction(politicianViewLink, WAIT_FOR_PAGE_DELAY*4);
+		performClickAction(politicianViewLink, WAIT_FOR_PAGE_DELAY);
 
 		//		assertEquals(
 		//				"https://localhost:28443/#!politicia/"
@@ -664,6 +664,7 @@ public final class UserPageVisit extends Assert {
 		if (browser.contains("htmlunit")) {
 			StaleElementUtils.refreshElement(clickElement,driver).click();
 		} else {
+			action.pause(100L).perform();
 			action.clickAndHold(StaleElementUtils.refreshElement(clickElement,driver)).release().perform();
 		}
 
