@@ -170,17 +170,12 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 		userAccount.setCreatedDate(new Date());
 		getUserDAO().persist(userAccount);
 		
+		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		if ("true".equals(registeredUsersGetAdminConfig.getPropertyValue())) {
 			userAccount.setUserRole(UserRole.ADMIN);
-		} else {
-			userAccount.setUserRole(UserRole.USER);
-		}
-
-		final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-
-		if (UserRole.ADMIN == userAccount.getUserRole()) {
 			authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		} else {
+			userAccount.setUserRole(UserRole.USER);
 			authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 		}
 
