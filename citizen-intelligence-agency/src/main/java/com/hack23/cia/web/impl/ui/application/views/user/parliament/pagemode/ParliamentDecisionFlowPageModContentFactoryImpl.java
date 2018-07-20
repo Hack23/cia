@@ -43,6 +43,7 @@ import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.TextArea;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
@@ -102,7 +103,12 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
 		final SankeyChart chart = decisionFlowChartManager.createAllDecisionFlow(committeeMap,comboBox.getSelectedItem().orElse(selectedYear));
 		panelContent.addComponent(chart);
 		panelContent.setExpandRatio(chart, ContentRatio.LARGE);
-		
+
+		final TextArea textarea = decisionFlowChartManager.createCommitteeeDecisionSummary(committeeMap,comboBox.getSelectedItem().orElse(selectedYear));
+		textarea.setSizeFull();
+		panelContent.addComponent(textarea);
+		panelContent.setExpandRatio(textarea, ContentRatio.SMALL_GRID);
+
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, selectedYear);

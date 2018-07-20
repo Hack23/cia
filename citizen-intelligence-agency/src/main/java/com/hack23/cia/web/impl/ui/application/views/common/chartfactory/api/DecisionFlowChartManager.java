@@ -23,6 +23,7 @@ import java.util.Map;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.web.widgets.charts.SankeyChart;
+import com.vaadin.ui.TextArea;
 
 /**
  * The Interface DecisionFlowChartManager.
@@ -53,5 +54,14 @@ public interface DecisionFlowChartManager {
 	 * @return the sankey chart
 	 */
 	SankeyChart createAllDecisionFlow(Map<String, List<ViewRiksdagenCommittee>> committeeMap, String rm);
+
+	/**
+	 * Creates the committeee decision summary.
+	 *
+	 * @param committeeMap the committee map
+	 * @param rm           the rm
+	 * @return the text area
+	 */
+	TextArea createCommitteeeDecisionSummary(Map<String, List<ViewRiksdagenCommittee>> committeeMap, String rm);
 
 }
