@@ -159,6 +159,15 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 		return Collections.unmodifiableList(ballotDecisions);
 	}
 
+	public boolean supports(final String committeeReport,final String rm) {
+		for (ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {
+			if (summary.getRm().equalsIgnoreCase(rm) && summary.getCommitteeReport().equalsIgnoreCase(committeeReport)) {
+				return summary.getVote().equalsIgnoreCase("JA");
+			}			
+		}
+		return false;
+	}
+	
 	/**
 	 * Sets the ballot decisions.
 	 *
