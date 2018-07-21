@@ -1,0 +1,29 @@
+package com.hack23.cia.service.impl.rules
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual
+import com.hack23.cia.service.api.action.kpi.Status
+import com.hack23.cia.service.impl.rules.PartyComplianceCheckImpl
+import com.hack23.cia.service.api.action.kpi.ComplianceCheck
+
+rule "We have a party supporting FRA committee_report=FöU15 and rm=2007/08"
+	dialect "java"
+	salience 10
+    when
+        $p : PartyComplianceCheckImpl( supports("FöU15","2007/08") )
+    then
+    	$p.addViolation( Status.MINOR, "PartySupports","Behavior", kcontext.getRule().getName(),"n/a");
+end
+
+rule "We have a party against FRA committee_report=FöU15 and rm=2007/08"
+	dialect "java"
+	salience 10
+    when
+        $p : PartyComplianceCheckImpl( against("FöU15","2007/08") )
+    then
+    	$p.addViolation( Status.MINOR, "PartyAgainst","Behavior", kcontext.getRule().getName(),"n/a");
+end

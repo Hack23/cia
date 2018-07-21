@@ -11,5 +11,14 @@ rule "We have an politician supporting FRA committee_report=FöU15 and rm=2007/0
     when
         $p : PoliticianComplianceCheckImpl( supports("FöU15","2007/08" ) )
     then
-        $p.addViolation( Status.MINOR, "PoliticianSupports","Behavior", kcontext.getRule().getName(),"Authoritarian");
+        $p.addViolation( Status.MINOR, "PoliticianSupports","Behavior", kcontext.getRule().getName(),"n/a");
+end
+
+rule "We have an politician against FRA committee_report=FöU15 and rm=2007/08"
+    dialect "java"
+    salience 50
+    when
+        $p : PoliticianComplianceCheckImpl( against("FöU15","2007/08" ) )
+    then
+        $p.addViolation( Status.MINOR, "PoliticianAgainst","Behavior", kcontext.getRule().getName(),"n/a");
 end
