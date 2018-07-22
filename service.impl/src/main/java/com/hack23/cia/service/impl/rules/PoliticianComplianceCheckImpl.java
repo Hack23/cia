@@ -34,6 +34,12 @@ import com.hack23.cia.service.api.action.kpi.ResourceType;
  */
 public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheckImpl {
 
+	/** The Constant NO. */
+	private static final String NO = "NEJ";
+
+	/** The Constant YES. */
+	private static final String YES = "JA";
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -103,7 +109,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	public boolean supports(final String committeeReport,final String rm) {
 		for (ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {
 			if (summary.getRm().equalsIgnoreCase(rm) && summary.getCommitteeReport().equalsIgnoreCase(committeeReport)) {
-				return summary.getVote().equalsIgnoreCase("JA");
+				return YES.equalsIgnoreCase(summary.getVote());
 			}			
 		}
 		return false;
@@ -119,7 +125,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 	public boolean against(final String committeeReport,final String rm) {
 		for (ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {
 			if (summary.getRm().equalsIgnoreCase(rm) && summary.getCommitteeReport().equalsIgnoreCase(committeeReport)) {
-				return summary.getVote().equalsIgnoreCase("NEJ");
+				return NO.equalsIgnoreCase(summary.getVote());
 			}			
 		}
 		return false;
