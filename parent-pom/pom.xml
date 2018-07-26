@@ -100,7 +100,7 @@
     <sonar.jacoco.reportPath>${project.basedir}/../parent-pom/target/jacoco-ut.exec</sonar.jacoco.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     <!-- <cia.project.versions.spring>5.0.7.RELEASE/5.1.0.BUILD-SNAPSHOT</cia.project.versions.spring> -->
-    <cia.project.versions.spring>5.1.0.BUILD-SNAPSHOT</cia.project.versions.spring>
+    <cia.project.versions.spring>5.1.0.RC1</cia.project.versions.spring>
     <!-- <cia.project.versions.spring.security>5.0.6.RELEASE/5.1.0.M1</cia.project.versions.spring.security> -->
     <cia.project.versions.spring.security>5.1.0.BUILD-SNAPSHOT</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.1</cia.project.versions.aspectj>
@@ -115,11 +115,11 @@
     <cia.project.versions.hibernate>5.3.3.Final</cia.project.versions.hibernate>
     <cia.project.versions.hibernate.jpamodelgen>5.3.3.Final</cia.project.versions.hibernate.jpamodelgen>
     <cia.project.versions.hibernate.build>5.3.3.Final</cia.project.versions.hibernate.build>
-    <cia.project.versions.hibernate.tools>5.3.2.Final</cia.project.versions.hibernate.tools>
+    <cia.project.versions.hibernate.tools>5.3.3.Final</cia.project.versions.hibernate.tools>
     <cia.project.versions.hibernate.jpa2>1.0.2</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.0.11.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>6.0.11.Final</cia.project.versions.hibernate.build.validator>
-    <cia.project.versions.bytebuddy>1.8.13</cia.project.versions.bytebuddy>
+    <cia.project.versions.bytebuddy>1.8.14</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.196</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.2.4</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
@@ -157,7 +157,7 @@
     <!-- <cia.project.versions.jetty>10.0.0-SNAPSHOT</cia.project.versions.jetty>
 	<cia.project.versions.servlet.api>4.0.0</cia.project.versions.servlet.api> -->
     <cia.project.versions.javamelody>1.73.1</cia.project.versions.javamelody>
-    <cia.project.versions.vaadin>8.5.0.rc1</cia.project.versions.vaadin>
+    <cia.project.versions.vaadin>8.5.0</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.8.2</cia.project.versions.vaadin.gwt.user>
     <cia.project.versions.vaadin.cssparser>0.9.26</cia.project.versions.vaadin.cssparser>
     <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
