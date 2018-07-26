@@ -943,7 +943,7 @@
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-java</artifactId>
-              <version>0.9.8</version>
+              <version>0.9.10</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -1393,7 +1393,7 @@
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.1</jacoco.version>
-        <compiler.plugin.version>3.7.0-jboss-1</compiler.plugin.version>
+        <compiler.plugin.version>3.8.0</compiler.plugin.version>
         <surefire.version>2.22.0</surefire.version>
       </properties>
     </profile>
@@ -1417,7 +1417,7 @@
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.1</jacoco.version>
-        <compiler.plugin.version>3.7.0-jboss-1</compiler.plugin.version>
+        <compiler.plugin.version>3.8.0</compiler.plugin.version>
         <surefire.version>2.22.0</surefire.version>
       </properties>
     </profile>
@@ -1442,7 +1442,7 @@
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.1</jacoco.version>
-        <compiler.plugin.version>3.7.0-jboss-1</compiler.plugin.version>
+        <compiler.plugin.version>3.8.0</compiler.plugin.version>
         <surefire.version>2.22.0</surefire.version>
       </properties>
     </profile>
@@ -1467,7 +1467,7 @@
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.1</jacoco.version>
-        <compiler.plugin.version>3.7.0-jboss-1</compiler.plugin.version>
+        <compiler.plugin.version>3.8.0</compiler.plugin.version>
         <surefire.version>2.22.0</surefire.version>
       </properties>
     </profile>
@@ -1483,7 +1483,7 @@
         <jdk.target.version>1.8</jdk.target.version>
         <jdk.src.exclude>**/module-info.java</jdk.src.exclude>
         <jacoco.version>0.8.1</jacoco.version>
-        <compiler.plugin.version>3.7.0-jboss-1</compiler.plugin.version>
+        <compiler.plugin.version>3.8.0</compiler.plugin.version>
         <surefire.version>2.20.1</surefire.version>
       </properties>
     </profile>
