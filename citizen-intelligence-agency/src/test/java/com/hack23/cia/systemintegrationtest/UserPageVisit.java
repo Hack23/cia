@@ -669,9 +669,9 @@ public final class UserPageVisit extends Assert {
 		if (browser.contains("htmlunit")) {
 			StaleElementUtils.refreshElement(clickElement,driver).click();
 		} else {
-			action.pause(100L).perform();
+			action.pause(250L).perform();
 			action.clickAndHold(StaleElementUtils.refreshElement(clickElement,driver)).release().perform();
-			action.pause(100L).perform();
+			action.pause(250L).perform();
 		}
 
 		wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
