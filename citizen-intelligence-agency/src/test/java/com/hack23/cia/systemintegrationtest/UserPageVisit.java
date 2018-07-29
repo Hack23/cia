@@ -873,6 +873,10 @@ public final class UserPageVisit extends Assert {
 
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.tagName("body")));
 		driver.navigate().refresh();
+		action.pause(500L).perform();
+		
+		wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+		
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.tagName("body")));
 
 		final Cookie newCookie= driver.manage().getCookieNamed("JSESSIONID");
