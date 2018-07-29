@@ -154,6 +154,7 @@ public final class UserPageVisit extends Assert {
 		final String url = systemTestTargetUrl  +"#!" + page.getPagePath();
 		driver.get(url);
 		
+		action.pause(500L).perform();
 		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
 		
 		wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
@@ -747,14 +748,20 @@ public final class UserPageVisit extends Assert {
 		setFieldValue("Register.country","Sweden");
 		setFieldValue("Register.userpassword",password);
 
-		final WebElement registerButton = driver.findElement(By.id("Register"));
-		performClickAction(registerButton);
+		performClickAction(findClickable("Register"));
 
 		if (userView != null) {
 			final String url = systemTestTargetUrl  +"#!" + userView;
 			assertEquals(browser, url,driver.getCurrentUrl());
 		}
+	}
 
+	private WebElement findClickable(String id) {
+		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+		wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));		
+
+		final WebElement registerButton = driver.findElement(By.id(id));
+		return registerButton;
 	}
 
 	public void sendEmailOnEmailPage(final String email,final String subject,final String content) throws Exception {
@@ -763,8 +770,7 @@ public final class UserPageVisit extends Assert {
 		setFieldValue("Email.subject",subject);
 		setFieldValue("Email.content",content);
 
-		final WebElement emailButton = driver.findElement(By.id("Email"));
-		performClickAction(emailButton);
+		performClickAction(findClickable("Email"));
 	}
 
 
@@ -780,8 +786,7 @@ public final class UserPageVisit extends Assert {
 
 		setFieldValue("Search.searchExpression",search);
 
-		final WebElement searchButton = driver.findElement(By.id("Search"));
-		performClickAction(searchButton);
+		performClickAction(findClickable("Search"));
 
 		final String url = systemTestTargetUrl  +"#!" + UserViews.SEARCH_DOCUMENT_VIEW_NAME;
 
