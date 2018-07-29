@@ -152,7 +152,6 @@ public final class UserPageVisit extends Assert {
 	public void visitDirectPage(final PageModeMenuCommand page) throws Exception {
 		final String url = systemTestTargetUrl  +"#!" + page.getPagePath();
 		driver.get(url);
-		action.pause(1000L).perform();
 		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
 		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
@@ -906,6 +905,9 @@ public final class UserPageVisit extends Assert {
 	 *            the value
 	 */
 	private void setFieldValue(final String id,final String value) {
+		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+		wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));		
+		
 		final WebElement findElement = driver.findElement(By.id(id));
 		findElement.clear();
 		findElement.sendKeys(value);
