@@ -29,6 +29,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -152,8 +153,11 @@ public final class UserPageVisit extends Assert {
 	public void visitDirectPage(final PageModeMenuCommand page) throws Exception {
 		final String url = systemTestTargetUrl  +"#!" + page.getPagePath();
 		driver.get(url);
-		action.pause(1000L).perform();
+		
 		final WebDriverWait wait = new WebDriverWait(driver, WAIT_FOR_PAGE_ELEMENT);
+		
+		wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+		
 		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
 		grabScreenshot(driver);
@@ -669,6 +673,7 @@ public final class UserPageVisit extends Assert {
 			action.pause(100L).perform();
 		}
 
+		wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
 		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
 		grabScreenshot(driver);
