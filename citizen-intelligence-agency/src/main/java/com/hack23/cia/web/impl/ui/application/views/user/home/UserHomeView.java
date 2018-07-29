@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.home;
 
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -32,7 +33,7 @@ import com.vaadin.spring.annotation.SpringView;
  * The Class PartyView.
  */
 @Service
-@Scope(value = "prototype", proxyMode = ScopedProxyMode.INTERFACES)
+@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @SpringView(name = UserHomeView.NAME)
 public final class UserHomeView extends AbstractUserView {
 
