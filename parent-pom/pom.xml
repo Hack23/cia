@@ -146,18 +146,18 @@
     <cia.project.versions.jaxb2.plugin>0.13.3</cia.project.versions.jaxb2.plugin>
     <cia.project.versions.jaxb2.fluent.api>3.0</cia.project.versions.jaxb2.fluent.api>
     <cia.project.versions.maven>3.3.9</cia.project.versions.maven>
-    <cia.project.versions.activemq>5.15.4</cia.project.versions.activemq>
+    <cia.project.versions.activemq>5.15.5</cia.project.versions.activemq>
     <cia.project.versions.httpclient>4.5.5</cia.project.versions.httpclient>
     <cia.project.versions.guava>25.1-jre</cia.project.versions.guava>
     <cia.project.versions.jackson>2.9.6</cia.project.versions.jackson>
     <cia.project.versions.xerces>2.12.0</cia.project.versions.xerces>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
-    <cia.project.versions.jetty>9.4.12.RC0</cia.project.versions.jetty>
+    <cia.project.versions.jetty>9.4.12.RC1</cia.project.versions.jetty>
     <cia.project.versions.servlet.api>3.1.0</cia.project.versions.servlet.api>
     <!-- <cia.project.versions.jetty>10.0.0-SNAPSHOT</cia.project.versions.jetty>
 	<cia.project.versions.servlet.api>4.0.0</cia.project.versions.servlet.api> -->
     <cia.project.versions.javamelody>1.73.1</cia.project.versions.javamelody>
-    <cia.project.versions.vaadin>8.5.0</cia.project.versions.vaadin>
+    <cia.project.versions.vaadin>8.6.0.alpha1</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.8.2</cia.project.versions.vaadin.gwt.user>
     <cia.project.versions.vaadin.cssparser>0.9.26</cia.project.versions.vaadin.cssparser>
     <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
