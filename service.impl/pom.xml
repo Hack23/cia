@@ -100,7 +100,7 @@
     <dependency>
       <groupId>com.google.protobuf</groupId>
       <artifactId>protobuf-java</artifactId>
-      <version>3.6.0</version>
+      <version>3.6.1</version>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jdt</groupId>
@@ -402,7 +402,7 @@
     </dependency>
   </dependencies>
   <build>
-    <extensions />
-    <plugins />
+    <extensions></extensions>
+    <plugins></plugins>
   </build>
 </project>
