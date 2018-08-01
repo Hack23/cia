@@ -19,6 +19,7 @@
 package com.hack23.cia.service.impl.rules;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary;
@@ -70,7 +71,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 		this.monthlySummary = monthlySummary;
 		this.dailySummary = dailySummary;
 		this.name = party.getParty();
-		this.ballotDecisions = ballotDecisions;
+		this.ballotDecisions = Collections.unmodifiableList(ballotDecisions);
 	}
 
 	/**

@@ -20,6 +20,7 @@ package com.hack23.cia.service.impl.rules;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Collections;
 import java.util.List;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary;
@@ -76,7 +77,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 		this.dailySummary = dailySummary;
 		this.monthlySummary = monthlySummary;
 		this.annualSummary = annualSummary;
-		this.ballotDecisions = decisionList;
+		this.ballotDecisions = Collections.unmodifiableList(decisionList);
 		this.name = politician.getFirstName() + " " + politician.getLastName() + " (" +politician.getParty() +")";
 	}
 
