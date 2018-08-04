@@ -166,7 +166,7 @@
     <dependency>
       <groupId>org.javers</groupId>
       <artifactId>javers-spring-jpa</artifactId>
-      <version>3.10.2</version>
+      <version>3.11.0</version>
       <exclusions>
         <exclusion>
           <artifactId>slf4j-api</artifactId>
