@@ -32,7 +32,7 @@ public interface EsvGovernmentOperationsExcelReader {
 	 * Gets the report.
 	 *
 	 * @return the report
-	 * @throws IOException 
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	List<GovernmentOperationPeriodOutcome> getReport() throws IOException;
 	
