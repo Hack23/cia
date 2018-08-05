@@ -19,7 +19,13 @@
 
 package com.hack23.cia.model.common.impl;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import com.hack23.cia.model.common.api.ModelObject;
+
 
 /**
  * The Class AbstractModelObjectImpl.
@@ -27,5 +33,20 @@ import com.hack23.cia.model.common.api.ModelObject;
 public abstract class AbstractModelObjectImpl implements ModelObject {
 
 	private static final long serialVersionUID = 1L;
+
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
+
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
+
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
 }

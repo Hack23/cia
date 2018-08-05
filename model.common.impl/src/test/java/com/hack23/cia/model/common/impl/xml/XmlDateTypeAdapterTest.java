@@ -54,7 +54,11 @@ public final class XmlDateTypeAdapterTest extends AbstractTest {
 
 		assertNull("Expect null",xmlDateTypeAdapter.marshal(null));
 		assertNull("Expect null",xmlDateTypeAdapter.unmarshal(null));
+		
+		assertNull("Expect null",xmlDateTypeAdapter.unmarshal("wron-gd-at"));		
 
+		assertNull("Expect null",xmlDateTypeAdapter.unmarshal("wron-gd-at+e1:00"));
+		
 	}
 
 

@@ -25,13 +25,13 @@ import javax.persistence.Id;
 
 import org.javers.core.metamodel.annotation.DiffIgnore;
 
-import com.hack23.cia.model.common.api.ModelObject;
+import com.hack23.cia.model.common.impl.AbstractModelObjectImpl;
 
 /**
  * The Class EncryptedValue.
  */
 @Entity(name = "EncryptedValue")
-public class EncryptedValue implements ModelObject {
+public class EncryptedValue extends AbstractModelObjectImpl {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;

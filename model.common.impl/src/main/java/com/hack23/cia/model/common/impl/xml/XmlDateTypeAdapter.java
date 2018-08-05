@@ -64,9 +64,17 @@ public final class XmlDateTypeAdapter extends XmlAdapter<String,Date> {
 						YYYY_MM_DD,Locale.ENGLISH).parse(dateStr.substring(0,YYYY_MM_DD.length()));
 			} catch (final ParseException e) {
 				LOGGER.warn("Problem parsing date from str:{}",s,e);
+				return null;
+			}
+		} else {
+			try {
+				return DatatypeConverter.parseDate(s).getTime();	
+			} catch (final Exception e) {
+				LOGGER.warn("Problem parsing date from str:{}",s,e);
+				return null;
 			}
 		}
-		return DatatypeConverter.parseDate(s).getTime();
+		
 	}
 
 	public String marshal(final Date dt) {

@@ -20,6 +20,7 @@ package com.hack23.cia.model.common.impl.xml;
 
 import java.util.Calendar;
 import java.util.Date;
+
 import javax.xml.bind.DatatypeConverter;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
