@@ -18,17 +18,13 @@
 */
 package com.hack23.cia.web.impl.ui.application;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.DefaultUIProvider;
@@ -71,16 +67,8 @@ public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVa
             @Override
             public void sessionInit(SessionInitEvent sessionInitEvent)
                     throws ServiceException {
-                WebApplicationContext webApplicationContext = WebApplicationContextUtils
-                        .getWebApplicationContext(getServletContext());
-
-                // remove DefaultUIProvider instances to avoid mapping
-                // extraneous UIs if e.g. a servlet is declared as a nested
-                // class in a UI class
-                VaadinSession session = sessionInitEvent.getSession();
-                List<UIProvider> uiProviders = new ArrayList<UIProvider>(
-                        session.getUIProviders());
-                for (UIProvider provider : uiProviders) {
+                final VaadinSession session = sessionInitEvent.getSession();
+                for (UIProvider provider : session.getUIProviders()) {
                     // use canonical names as these may have been loaded with
                     // different classloaders
                     if (DefaultUIProvider.class.getCanonicalName().equals(
@@ -89,9 +77,7 @@ public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVa
                     }
                 }
 
-                // add Spring UI provider
-                SpringUIProvider uiProvider = new CustomSpringUIProvider(session);
-                session.addUIProvider(uiProvider);
+                session.addUIProvider(new CustomSpringUIProvider(session));
             }
         });
         service.addSessionDestroyListener(new SessionDestroyListener() {
@@ -105,10 +91,22 @@ public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVa
         });
     }
     
-    public class CustomSpringUIProvider extends SpringUIProvider {
+    /**
+	 * The Class CustomSpringUIProvider.
+	 */
+    private static class CustomSpringUIProvider extends SpringUIProvider {
     	
-    	private final SpringViewDisplayRegistrationBean springViewDisplayRegistrationBean = new SpringViewDisplayRegistrationBean();
+    	/** The Constant serialVersionUID. */
+		private static final long serialVersionUID = 1L;
+		
+		/** The spring view display registration bean. */
+		private final SpringViewDisplayRegistrationBean springViewDisplayRegistrationBean = new SpringViewDisplayRegistrationBean();
     	
+        /**
+		 * Instantiates a new custom spring UI provider.
+		 *
+		 * @param vaadinSession the vaadin session
+		 */
         public CustomSpringUIProvider(VaadinSession vaadinSession) {
             super(vaadinSession);
         }
@@ -133,6 +131,7 @@ public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVa
             }
         }
         
+        @Override
         protected Object findSpringViewDisplay(UI ui) {
             try {
                 return getSpringViewDisplayRegistrationBean()
@@ -147,13 +146,12 @@ public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVa
                         .getBeanNamesForAnnotation(SpringViewDisplay.class);
                 if (springViewDisplayBeanNames.length == 0) {
                     logger.debug(
-                            "No view display defined for the UI " + ui.getId());
+                            "No view display defined for the UI {}", ui.getId());
                     return null;
                 }
                 if (springViewDisplayBeanNames.length > 1) {
-                    logger.error("Multiple view displays defined for the UI "
-                            + ui.getId() + ": "
-                            + Arrays.toString(springViewDisplayBeanNames));
+                    logger.error("Multiple view displays defined for the UI {}:{}",
+                            ui.getId(),Arrays.toString(springViewDisplayBeanNames));
                     throw new NoUniqueBeanDefinitionException(Object.class,
                             Arrays.asList(springViewDisplayBeanNames));
                 }
@@ -163,6 +161,11 @@ public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVa
         }
 
 
+        /**
+		 * Gets the spring view display registration bean.
+		 *
+		 * @return the spring view display registration bean
+		 */
         private SpringViewDisplayRegistrationBean getSpringViewDisplayRegistrationBean() {
             return springViewDisplayRegistrationBean;
 
