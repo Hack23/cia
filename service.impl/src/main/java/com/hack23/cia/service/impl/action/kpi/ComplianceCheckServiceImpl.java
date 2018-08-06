@@ -20,7 +20,6 @@ package com.hack23.cia.service.impl.action.kpi;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -84,12 +83,7 @@ public final class ComplianceCheckServiceImpl
 			ruleViolations.addAll(check.getRuleViolations());
 		}
 
-		Collections.sort(complianceList, new Comparator<ComplianceCheck>() {
-			@Override
-			public int compare(final ComplianceCheck o1, final ComplianceCheck o2) {
-				return Integer.compare(o2.getRuleViolations().size(), o1.getRuleViolations().size());
-			}
-		});
+		Collections.sort(complianceList, (o1, o2) -> Integer.compare(o2.getRuleViolations().size(), o1.getRuleViolations().size()));
 
 		final ComplianceCheckResponse response = new ComplianceCheckResponse(ServiceResult.SUCCESS);
 		response.setList(complianceList);

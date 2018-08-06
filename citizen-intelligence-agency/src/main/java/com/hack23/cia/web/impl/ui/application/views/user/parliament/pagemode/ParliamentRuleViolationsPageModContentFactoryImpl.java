@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -105,12 +104,7 @@ public final class ParliamentRuleViolationsPageModContentFactoryImpl extends Abs
 		panelContent.addComponent(horizontalLayout);		
 		
 		
-		Collections.sort(ruleViolations, new Comparator<RuleViolation>() {
-            @Override
-            public int compare(final RuleViolation o1, final RuleViolation o2) {
-            	return o2.getStatus().compareTo(o1.getStatus());                
-            }
-        });
+		Collections.sort(ruleViolations, (o1, o2) -> o2.getStatus().compareTo(o1.getStatus()));
 		
 		getGridFactory().createBasicBeanItemGrid(panelContent, RuleViolation.class, ruleViolations, "Risk",
 				new String[] { "name", "status", "resourceType", "ruleName", "ruleGroup", "ruleDescription", "positive" }, new String[] { "id" }, CLICK_LISTENER, null, null);

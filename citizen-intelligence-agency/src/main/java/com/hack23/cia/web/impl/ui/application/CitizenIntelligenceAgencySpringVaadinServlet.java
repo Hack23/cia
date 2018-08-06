@@ -29,8 +29,6 @@ import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.DefaultUIProvider;
 import com.vaadin.server.ServiceException;
-import com.vaadin.server.SessionDestroyEvent;
-import com.vaadin.server.SessionDestroyListener;
 import com.vaadin.server.SessionInitEvent;
 import com.vaadin.server.SessionInitListener;
 import com.vaadin.server.UICreateEvent;
@@ -80,15 +78,11 @@ public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVa
                 session.addUIProvider(new CustomSpringUIProvider(session));
             }
         });
-        service.addSessionDestroyListener(new SessionDestroyListener() {
-            @Override
-            public void sessionDestroy(SessionDestroyEvent event) {
-                VaadinSession session = event.getSession();
-
-                UIScopeImpl.cleanupSession(session);
-                VaadinSessionScope.cleanupSession(session);
-            }
-        });
+        service.addSessionDestroyListener(event -> {
+		    VaadinSession session = event.getSession();
+		    UIScopeImpl.cleanupSession(session);
+		    VaadinSessionScope.cleanupSession(session);
+		});
     }
     
     /**

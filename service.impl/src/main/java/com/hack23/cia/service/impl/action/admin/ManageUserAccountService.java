@@ -70,32 +70,23 @@ public final class ManageUserAccountService
 	 */
 	@PostConstruct
 	public void initUserCommandMap() {
-		userCommandMap.put(ManageUserAccountRequest.AccountOperation.DELETE, new UserCommand() {
+		userCommandMap.put(ManageUserAccountRequest.AccountOperation.DELETE, account -> {
+			removeDataManager.removeUserAccountApplicationHistory(account.getUserId());
+			getUserDAO().delete(account);
+			return new ManageUserAccountResponse(ServiceResult.SUCCESS);
+		});
 
-			@Override
-			public ManageUserAccountResponse execute(final UserAccount account) {
-				removeDataManager.removeUserAccountApplicationHistory(account.getUserId());
-				getUserDAO().delete(account);
-				return new ManageUserAccountResponse(ServiceResult.SUCCESS);
-			}});
+		userCommandMap.put(ManageUserAccountRequest.AccountOperation.UNLOCK, account -> {
+			account.setUserLockStatus(UserLockStatus.UNLOCKED);
+			getUserDAO().persist(account);
+			return new ManageUserAccountResponse(ServiceResult.SUCCESS);
+		});
 
-		userCommandMap.put(ManageUserAccountRequest.AccountOperation.UNLOCK, new UserCommand() {
-
-			@Override
-			public ManageUserAccountResponse execute(final UserAccount account) {
-				account.setUserLockStatus(UserLockStatus.UNLOCKED);
-				getUserDAO().persist(account);
-				return new ManageUserAccountResponse(ServiceResult.SUCCESS);
-			}});
-
-		userCommandMap.put(ManageUserAccountRequest.AccountOperation.LOCK, new UserCommand() {
-
-			@Override
-			public ManageUserAccountResponse execute(final UserAccount account) {
-				account.setUserLockStatus(UserLockStatus.LOCKED);
-				getUserDAO().persist(account);
-				return new ManageUserAccountResponse(ServiceResult.SUCCESS);
-			}});
+		userCommandMap.put(ManageUserAccountRequest.AccountOperation.LOCK, account -> {
+			account.setUserLockStatus(UserLockStatus.LOCKED);
+			getUserDAO().persist(account);
+			return new ManageUserAccountResponse(ServiceResult.SUCCESS);
+		});
 
 	}
 

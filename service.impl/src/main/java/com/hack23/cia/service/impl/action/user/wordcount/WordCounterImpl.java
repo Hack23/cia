@@ -77,14 +77,7 @@ final class WordCounterImpl implements WordCounter {
 		htmlInst.instance(0).setValue(0, html);
 
 
-		final StopwordsHandler stopwordsHandler = new StopwordsHandler() {
-
-			@Override
-			public boolean isStopword(final String word) {
-
-				return word.length() <5;
-			}
-		};
+		final StopwordsHandler stopwordsHandler = word -> word.length() <5;
 
 		final NGramTokenizer tokenizer = new NGramTokenizer();
 		tokenizer.setNGramMinSize(1);
