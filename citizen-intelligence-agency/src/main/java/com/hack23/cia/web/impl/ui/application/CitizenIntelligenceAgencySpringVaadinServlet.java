@@ -48,122 +48,113 @@ import com.vaadin.util.CurrentInstance;
 /**
  * The Class CitizenIntelligenceAgencySpringVaadinServlet.
  */
-@WebServlet(value = "/*", loadOnStartup=2, asyncSupported = true)
+@WebServlet(value = "/*", loadOnStartup = 2, asyncSupported = true)
 @VaadinServletConfiguration(productionMode = true, ui = CitizenIntelligenceAgencyUI.class, widgetset = "com.hack23.cia.web.widgets.WebWidgetSet")
 public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVaadinServlet {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	
-    @Override
-    protected void servletInitialized() throws ServletException {
-        VaadinServletService service = getService();
-        service.addSessionInitListener(new SessionInitListener() {
 
-            private static final long serialVersionUID = -6307820453486668084L;
+	@Override
+	protected void servletInitialized() throws ServletException {
+		VaadinServletService service = getService();
+		service.addSessionInitListener(new SessionInitListener() {
 
-            @Override
-            public void sessionInit(SessionInitEvent sessionInitEvent)
-                    throws ServiceException {
-                final VaadinSession session = sessionInitEvent.getSession();
-                for (UIProvider provider : session.getUIProviders()) {
-                    // use canonical names as these may have been loaded with
-                    // different classloaders
-                    if (DefaultUIProvider.class.getCanonicalName().equals(
-                            provider.getClass().getCanonicalName())) {
-                        session.removeUIProvider(provider);
-                    }
-                }
+			private static final long serialVersionUID = -6307820453486668084L;
 
-                session.addUIProvider(new CustomSpringUIProvider(session));
-            }
-        });
-        service.addSessionDestroyListener(event -> {
-		    VaadinSession session = event.getSession();
-		    UIScopeImpl.cleanupSession(session);
-		    VaadinSessionScope.cleanupSession(session);
+			@Override
+			public void sessionInit(SessionInitEvent sessionInitEvent) throws ServiceException {
+				final VaadinSession session = sessionInitEvent.getSession();
+				for (UIProvider provider : session.getUIProviders()) {
+					// use canonical names as these may have been loaded with
+					// different classloaders
+					if (DefaultUIProvider.class.getCanonicalName().equals(provider.getClass().getCanonicalName())) {
+						session.removeUIProvider(provider);
+					}
+				}
+
+				session.addUIProvider(new CustomSpringUIProvider(session));
+			}
 		});
-    }
-    
-    /**
+		service.addSessionDestroyListener(event -> {
+			VaadinSession session = event.getSession();
+			UIScopeImpl.cleanupSession(session);
+			VaadinSessionScope.cleanupSession(session);
+		});
+	}
+
+	/**
 	 * The Class CustomSpringUIProvider.
 	 */
-    private static class CustomSpringUIProvider extends SpringUIProvider {
-    	
-    	/** The Constant serialVersionUID. */
+	private static class CustomSpringUIProvider extends SpringUIProvider {
+
+		/** The Constant serialVersionUID. */
 		private static final long serialVersionUID = 1L;
-		
+
 		/** The spring view display registration bean. */
 		private final SpringViewDisplayRegistrationBean springViewDisplayRegistrationBean = new SpringViewDisplayRegistrationBean();
-    	
-        /**
+
+		/**
 		 * Instantiates a new custom spring UI provider.
 		 *
 		 * @param vaadinSession the vaadin session
 		 */
-        public CustomSpringUIProvider(VaadinSession vaadinSession) {
-            super(vaadinSession);
-        }
+		public CustomSpringUIProvider(VaadinSession vaadinSession) {
+			super(vaadinSession);
+		}
 
-        @Override
-        public UI createInstance(UICreateEvent event) {
-            final Class<UIID> key = UIID.class;
-            final UIID identifier = new UIID(event);
-            CurrentInstance.set(key, identifier);
-            try {
-                logger.debug(
-                        "Creating a new UI bean of class [{}] with identifier [{}]",
-                        event.getUIClass().getCanonicalName(), identifier);
-                UI ui = getWebApplicationContext().getBean(event.getUIClass());
+		@Override
+		public UI createInstance(UICreateEvent event) {
+			final Class<UIID> key = UIID.class;
+			final UIID identifier = new UIID(event);
+			CurrentInstance.set(key, identifier);
+			try {
+				logger.debug("Creating a new UI bean of class [{}] with identifier [{}]",
+						event.getUIClass().getCanonicalName(), identifier);
+				UI ui = getWebApplicationContext().getBean(event.getUIClass());
 
-                getSpringViewDisplayRegistrationBean().setBeanClass(event.getUIClass());
+				getSpringViewDisplayRegistrationBean().setBeanClass(event.getUIClass());
 
-                configureNavigator(ui);
-                return ui;
-            } finally {
-                CurrentInstance.set(key, null);
-            }
-        }
-        
-        @Override
-        protected Object findSpringViewDisplay(UI ui) {
-            try {
-                return getSpringViewDisplayRegistrationBean()
-                        .getSpringViewDisplay(getWebApplicationContext());
-            } catch (NoUniqueBeanDefinitionException e) {
-                throw e;
-            } catch (NoSuchBeanDefinitionException e) {
-                // fallback with getBeanNamesForAnnotation()
-                logger.debug(
-                        "Looking for a SpringViewDisplay bean based on bean level annotations");
-                final String[] springViewDisplayBeanNames = getWebApplicationContext()
-                        .getBeanNamesForAnnotation(SpringViewDisplay.class);
-                if (springViewDisplayBeanNames.length == 0) {
-                    logger.debug(
-                            "No view display defined for the UI {}", ui.getId());
-                    return null;
-                }
-                if (springViewDisplayBeanNames.length > 1) {
-                    logger.error("Multiple view displays defined for the UI {}:{}",
-                            ui.getId(),Arrays.toString(springViewDisplayBeanNames));
-                    throw new NoUniqueBeanDefinitionException(Object.class,
-                            Arrays.asList(springViewDisplayBeanNames));
-                }
-                return getWebApplicationContext()
-                        .getBean(springViewDisplayBeanNames[0]);
-            }
-        }
+				configureNavigator(ui);
+				return ui;
+			} finally {
+				CurrentInstance.set(key, null);
+			}
+		}
 
+		@Override
+		protected Object findSpringViewDisplay(UI ui) {
+			try {
+				return getSpringViewDisplayRegistrationBean().getSpringViewDisplay(getWebApplicationContext());
+			} catch (NoUniqueBeanDefinitionException e) {
+				throw e;
+			} catch (NoSuchBeanDefinitionException e) {
+				// fallback with getBeanNamesForAnnotation()
+				logger.debug("Looking for a SpringViewDisplay bean based on bean level annotations");
+				final String[] springViewDisplayBeanNames = getWebApplicationContext()
+						.getBeanNamesForAnnotation(SpringViewDisplay.class);
+				if (springViewDisplayBeanNames.length == 0) {
+					logger.debug("No view display defined for the UI {}", ui.getId());
+					return null;
+				}
+				if (springViewDisplayBeanNames.length > 1) {
+					logger.error("Multiple view displays defined for the UI {}:{}", ui.getId(),
+							Arrays.toString(springViewDisplayBeanNames));
+					throw new NoUniqueBeanDefinitionException(Object.class, Arrays.asList(springViewDisplayBeanNames));
+				}
+				return getWebApplicationContext().getBean(springViewDisplayBeanNames[0]);
+			}
+		}
 
-        /**
+		/**
 		 * Gets the spring view display registration bean.
 		 *
 		 * @return the spring view display registration bean
 		 */
-        private SpringViewDisplayRegistrationBean getSpringViewDisplayRegistrationBean() {
-            return springViewDisplayRegistrationBean;
+		private SpringViewDisplayRegistrationBean getSpringViewDisplayRegistrationBean() {
+			return springViewDisplayRegistrationBean;
 
-        }
-    }
-    
+		}
+	}
+
 }

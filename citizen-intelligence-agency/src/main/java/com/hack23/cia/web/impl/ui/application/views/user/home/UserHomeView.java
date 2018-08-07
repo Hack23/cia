@@ -21,7 +21,6 @@ package com.hack23.cia.web.impl.ui.application.views.user.home;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
