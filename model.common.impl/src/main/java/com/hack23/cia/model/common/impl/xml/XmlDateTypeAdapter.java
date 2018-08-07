@@ -66,13 +66,15 @@ public final class XmlDateTypeAdapter extends XmlAdapter<String,Date> {
 				LOGGER.warn("Problem parsing date from str:{}",s,e);
 				return null;
 			}
-		} else {
+		} else if (dateStr.length() > YYYY_MM_DD.length()) {
 			try {
 				return DatatypeConverter.parseDate(s).getTime();	
 			} catch (final Exception e) {
 				LOGGER.warn("Problem parsing date from str:{}",s,e);
 				return null;
 			}
+		} else {
+			return null;
 		}
 		
 	}
