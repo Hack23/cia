@@ -1365,7 +1365,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.INDICATORS, "UIS.TEP.5.A"));
+				new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.INDICATORS, "IT.NET.SECR.P6"));
 
 	}
 
