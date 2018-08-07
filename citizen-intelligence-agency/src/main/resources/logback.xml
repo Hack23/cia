@@ -80,11 +80,7 @@
     </logger>
 
 
-
-
   <logger name="org.ehcache" level="error"/>
-  <logger name="com.mchange" level="error"/>
-  <logger name="org.hsqldb" level="error"/>
 
   <logger name="org.hibernate" level="error"/>
   <logger name="org.quartz" level="error"/>
