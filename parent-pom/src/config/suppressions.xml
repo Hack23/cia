@@ -50,6 +50,8 @@
 		<cve>CVE-2017-15095</cve>
 		<cve>CVE-2018-7489</cve>
 		<cve>CVE-2017-14798</cve>
-		<cve>CVE-2018-8088</cve>
+		<cve>CVE-2018-8088</cve>		
+		<cve>CVE-2008-7220</cve>
+		<cve>CVE-2015-9251</cve>
     </suppress>
 </suppressions>
