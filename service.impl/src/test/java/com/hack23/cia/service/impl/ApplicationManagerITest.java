@@ -20,10 +20,6 @@ package com.hack23.cia.service.impl;
 
 import java.io.Serializable;
 
-import org.databene.contiperf.PerfTest;
-import org.databene.contiperf.Required;
-import org.databene.contiperf.junit.ContiPerfRule;
-import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -35,13 +31,7 @@ import com.hack23.cia.service.api.DataContainer;
 /**
  * The Class ApplicationManagerITest.
  */
-@PerfTest(threads = 10, duration = 3000, warmUp = 1500)
-@Required(max = 800, average = 25, percentile95 = 30, throughput = 2000)
 public final class ApplicationManagerITest extends AbstractServiceFunctionalIntegrationTest {
-
-	/** The i. */
-	@Rule
-	public ContiPerfRule i = new ContiPerfRule();
 
 	/** The application manager. */
 	@Autowired

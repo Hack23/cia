@@ -21,10 +21,6 @@ package com.hack23.cia.service.impl.action.application;
 import java.util.List;
 import java.util.UUID;
 
-import org.databene.contiperf.PerfTest;
-import org.databene.contiperf.Required;
-import org.databene.contiperf.junit.ContiPerfRule;
-import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -48,9 +44,6 @@ import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
  */
 public final class LogoutServiceITest extends AbstractServiceFunctionalIntegrationTest {
 
-	/** The i. */
-	@Rule
-	public ContiPerfRule i = new ContiPerfRule();
 
 	/** The application manager. */
 	@Autowired
@@ -63,8 +56,6 @@ public final class LogoutServiceITest extends AbstractServiceFunctionalIntegrati
 	 *             the exception
 	 */
 	@Test
-	@PerfTest(threads = 4, duration = 5000, warmUp = 1500)
-	@Required(max = 2500, average = 1700, percentile95 = 2400, throughput = 2)
 	public void serviceLogoutRequestSuccessTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
 

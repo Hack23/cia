@@ -18,10 +18,6 @@
 */
 package com.hack23.cia.service.impl.action.application;
 
-import org.databene.contiperf.PerfTest;
-import org.databene.contiperf.Required;
-import org.databene.contiperf.junit.ContiPerfRule;
-import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -41,10 +37,6 @@ import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 public final class DestroyApplicationSessionServiceITest extends AbstractServiceFunctionalIntegrationTest {
 
 
-	/** The i. */
-	@Rule
-	public ContiPerfRule i = new ContiPerfRule();
-
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
@@ -60,10 +52,7 @@ public final class DestroyApplicationSessionServiceITest extends AbstractService
 	 *             the exception
 	 */
 	@Test
-	@PerfTest(threads = 4, duration = 3000, warmUp = 1500)
-	@Required(max = 1000, average = 600, percentile95 = 850, throughput = 10)
 	public void serviceDestroyApplicationSessionRequestSuccessTest() throws Exception {
-
 		setAuthenticatedAnonymousUser();
 		final CreateApplicationSessionRequest createTestApplicationSession = createTestApplicationSession();
 

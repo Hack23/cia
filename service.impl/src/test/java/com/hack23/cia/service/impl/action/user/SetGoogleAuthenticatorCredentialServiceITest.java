@@ -21,10 +21,6 @@ package com.hack23.cia.service.impl.action.user;
 import java.util.List;
 import java.util.UUID;
 
-import org.databene.contiperf.PerfTest;
-import org.databene.contiperf.Required;
-import org.databene.contiperf.junit.ContiPerfRule;
-import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -49,10 +45,6 @@ import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
  */
 public final class SetGoogleAuthenticatorCredentialServiceITest extends AbstractServiceFunctionalIntegrationTest {
 
-	/** The i. */
-	@Rule
-	public ContiPerfRule i = new ContiPerfRule();
-
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
@@ -64,8 +56,6 @@ public final class SetGoogleAuthenticatorCredentialServiceITest extends Abstract
 	 *             the exception
 	 */
 	@Test
-	@PerfTest(threads = 2, duration = 4000, warmUp = 1500)
-	@Required(max = 3000, average = 2500, percentile95 = 2700, throughput = 1)
 	public void servicesetGoogleAuthenticatorCredentialRequestSuccessTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
 
