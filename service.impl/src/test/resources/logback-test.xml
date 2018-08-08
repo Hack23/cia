@@ -9,7 +9,7 @@
     </encoder>
   </appender>
 
-  <logger name="com.hack23.cia" level="info"/>
+  <logger name="com.hack23.cia" level="error"/>
 
   <root level="error">
     <appender-ref ref="console" />
