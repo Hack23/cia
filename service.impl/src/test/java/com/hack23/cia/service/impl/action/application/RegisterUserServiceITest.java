@@ -21,10 +21,6 @@ package com.hack23.cia.service.impl.action.application;
 import java.util.List;
 import java.util.UUID;
 
-import org.databene.contiperf.PerfTest;
-import org.databene.contiperf.Required;
-import org.databene.contiperf.junit.ContiPerfRule;
-import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -44,10 +40,6 @@ import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
  */
 public final class RegisterUserServiceITest extends AbstractServiceFunctionalIntegrationTest {
 
-	/** The i. */
-	@Rule
-	public ContiPerfRule i = new ContiPerfRule();
-
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
@@ -59,8 +51,6 @@ public final class RegisterUserServiceITest extends AbstractServiceFunctionalInt
 	 *             the exception
 	 */
 	@Test
-	@PerfTest(threads = 4, duration = 7500, warmUp = 2500)
-	@Required(max = 2000, average = 1200, percentile95 = 1500, throughput = 2)
 	public void serviceRegisterUserRequestSuccessTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
 
@@ -178,7 +168,7 @@ public final class RegisterUserServiceITest extends AbstractServiceFunctionalInt
 	@Test
 	public void serviceRequestValidationFailureTest() throws Exception {
 		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
-
+		assertNotNull(createApplicationSesstion);
 		final RegisterUserRequest serviceRequest = new RegisterUserRequest();
 		serviceRequest.setCountry("Sweden");
 		serviceRequest.setUsername(UUID.randomUUID().toString());
