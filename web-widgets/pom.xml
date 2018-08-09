@@ -29,6 +29,17 @@
   </properties>
   <dependencies>
     <dependency>
+      <groupId>com.hack23.cia</groupId>
+      <artifactId>testfoundation</artifactId>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>spring-jcl</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-spring</artifactId>
       <version>3.1.0</version>
