@@ -33,7 +33,7 @@
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-core</artifactId>
-      <version>1.0.0-RC6</version>
+      <version>1.0.0-RC7</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -65,7 +65,7 @@
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-plantuml</artifactId>
-      <version>1.0.0-RC6</version>
+      <version>1.0.0-RC7</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -97,7 +97,7 @@
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-client</artifactId>
-      <version>1.0.0-RC6</version>
+      <version>1.0.0-RC7</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -164,19 +164,19 @@
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-annotations</artifactId>
-      <version>1.0.0-RC6</version>
+      <version>1.0.0-RC7</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-dot</artifactId>
-      <version>1.0.0-RC6</version>
+      <version>1.0.0-RC7</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.structurizr</groupId>
       <artifactId>structurizr-spring</artifactId>
-      <version>1.0.0-RC6</version>
+      <version>1.0.0-RC7</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
