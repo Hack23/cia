@@ -71,7 +71,7 @@ public final class CommitteeRankingCommitteeByPartyChartsPageModContentFactoryIm
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(PageMode.CHARTS.toString())
-				&& parameters.contains(ChartIndicators.COMMITTEESBYPARTY.toString());
+				&& parameters.contains(ChartIndicators.COMMITTEESBYPARTY.toString()) && !parameters.contains(ChartIndicators.CURRENTCOMMITTEESBYPARTYDAYSSERVED.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
