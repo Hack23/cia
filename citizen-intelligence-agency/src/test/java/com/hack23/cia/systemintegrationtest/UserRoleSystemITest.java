@@ -2316,6 +2316,23 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 	}
 
 	/**
+	 * Site document doc attachment pdf test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteDocumentDocAttachmentPdfTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
+				DocumentPageMode.DOCUMENTATTACHMENTS.toString(), "H5024180"));
+
+	}
+
+	/**
 	 * Site party overview test.
 	 *
 	 * @throws Exception
