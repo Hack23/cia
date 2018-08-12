@@ -82,10 +82,7 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 
 		final String pageId = getPageId(parameters);
 
-		final DataContainer<ViewRiksdagenMinistry, String> dataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenMinistry.class);
-
-		final ViewRiksdagenMinistry viewRiksdagenMinistry = dataContainer.load(pageId);
+		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
 
 		if (viewRiksdagenMinistry != null) {
 

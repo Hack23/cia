@@ -23,9 +23,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
-import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
@@ -59,13 +57,7 @@ public final class DocumentPageVisitHistoryPageModContentFactoryImpl extends Abs
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
-
-		final DataContainer<DocumentElement, String> documentElementDataContainer = getApplicationManager()
-				.getDataContainer(DocumentElement.class);
-
-		getApplicationManager().getDataContainer(CommitteeProposalComponentData.class);
-
-		final DocumentElement documentElement = documentElementDataContainer.load(pageId);
+		final DocumentElement documentElement = getItem(parameters);
 
 		if (documentElement != null) {
 

@@ -78,11 +78,8 @@ public final class CommitteeCurrentMembersHistoryPageModContentFactoryImpl
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
-
-		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenCommittee.class);
-
-		final ViewRiksdagenCommittee viewRiksdagenCommittee = dataContainer.load(pageId);
+		
+		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 
 		if (viewRiksdagenCommittee != null) {
 

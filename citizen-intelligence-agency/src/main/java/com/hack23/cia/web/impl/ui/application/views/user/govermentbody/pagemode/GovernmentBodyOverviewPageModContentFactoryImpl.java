@@ -18,11 +18,14 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -46,7 +49,8 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 	private static final String GOVERNMENT_BODY = "GovernmentBody:";
 
 	/**
-	 * Instantiates a new government body overview page mod content factory impl.
+	 * Instantiates a new government body overview page mod content factory
+	 * impl.
 	 */
 	public GovernmentBodyOverviewPageModContentFactoryImpl() {
 		super();
@@ -66,21 +70,25 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId);
+		final List<GovernmentBodyAnnualSummary> item = getItem(parameters);
+		
+		if (item != null && !item.isEmpty()) {
+			getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId);
 
-		LabelFactory.createHeader2Label(panelContent, OVERVIEW);
+			LabelFactory.createHeader2Label(panelContent, OVERVIEW);
 
-		panel.setCaption(NAME + "::" + GOVERNMENT_BODY + pageId);
+			panel.setCaption(NAME + "::" + GOVERNMENT_BODY + pageId);
 
-		final VerticalLayout overviewLayout = new VerticalLayout();
-		overviewLayout.setSizeFull();
+			final VerticalLayout overviewLayout = new VerticalLayout();
+			overviewLayout.setSizeFull();
 
-		panelContent.addComponent(overviewLayout);
-		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
-		getGovernmentBodyMenuItemFactory().createOverviewPage(overviewLayout, pageId);
+			panelContent.addComponent(overviewLayout);
+			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
+			getGovernmentBodyMenuItemFactory().createOverviewPage(overviewLayout, pageId);
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_VIEW, ApplicationEventGroup.USER,
-				NAME, parameters, pageId);
+			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_VIEW,
+					ApplicationEventGroup.USER, NAME, parameters, pageId);
+		}
 
 		return panelContent;
 

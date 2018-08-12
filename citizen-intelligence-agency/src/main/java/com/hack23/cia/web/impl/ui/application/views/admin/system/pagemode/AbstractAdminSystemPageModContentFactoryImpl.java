@@ -18,12 +18,12 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
 
 /**
  * The Class AbstractAdminSystemPageModContentFactoryImpl.
  */
-public abstract class AbstractAdminSystemPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+public abstract class AbstractAdminSystemPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
 	/**
 	 * Instantiates a new abstract admin system page mod content factory impl.

@@ -20,14 +20,15 @@ package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.DocumentMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 /**
  * The Class AbstractDocumentPageModContentFactoryImpl.
  */
-abstract class AbstractDocumentPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractDocumentPageModContentFactoryImpl extends AbstractItemPageModContentFactoryImpl<DocumentElement> {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.DOCUMENT_VIEW_NAME;
@@ -44,6 +45,11 @@ abstract class AbstractDocumentPageModContentFactoryImpl extends AbstractPageMod
 
 	protected final DocumentMenuItemFactory getDocumentMenuItemFactory() {
 		return documentMenuItemFactory;
+	}
+
+	@Override
+	protected DocumentElement getItem(String parameters) {
+		return getApplicationManager().getDataContainer(DocumentElement.class).load(getPageId(parameters));
 	}
 
 }

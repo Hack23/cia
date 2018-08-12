@@ -23,7 +23,6 @@ import java.util.List;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId_;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary;
@@ -84,16 +83,9 @@ public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl exte
 
 		final String pageId = getPageId(parameters);
 
-		final DataContainer<PersonData, String> dataContainer = getApplicationManager()
-				.getDataContainer(PersonData.class);
-
-		final PersonData personData = dataContainer.load(pageId);
-		if (personData != null) {
-
-			final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenPolitician.class);
-
-			final ViewRiksdagenPolitician viewRiksdagenPolitician = politicianDataContainer.load(personData.getId());
+		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
+		
+		if (viewRiksdagenPolitician != null) {
 
 			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 

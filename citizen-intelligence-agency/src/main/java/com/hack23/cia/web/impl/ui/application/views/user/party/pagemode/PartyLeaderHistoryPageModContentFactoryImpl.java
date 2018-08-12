@@ -67,13 +67,7 @@ public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractP
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
-
-
-		final DataContainer<ViewRiksdagenParty, String> dataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenParty.class);
-
-		final ViewRiksdagenParty viewRiksdagenParty = dataContainer
-				.load(pageId);
+		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 
 		if (viewRiksdagenParty != null) {
 

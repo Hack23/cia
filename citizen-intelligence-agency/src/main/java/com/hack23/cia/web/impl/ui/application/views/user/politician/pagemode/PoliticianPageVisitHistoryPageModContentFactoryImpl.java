@@ -21,9 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
-import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -56,21 +54,12 @@ public final class PoliticianPageVisitHistoryPageModContentFactoryImpl extends A
 
 		final String pageId = getPageId(parameters);
 
-		final DataContainer<PersonData, String> dataContainer = getApplicationManager()
-				.getDataContainer(PersonData.class);
-
-		final PersonData personData = dataContainer.load(pageId);
-		if (personData != null) {
-
-			final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenPolitician.class);
-
-			final ViewRiksdagenPolitician viewRiksdagenPolitician = politicianDataContainer.load(personData.getId());
+		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
+		if (viewRiksdagenPolitician != null) {
 
 			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 			createPageVisitHistory(NAME,pageId,panelContent);
-
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 

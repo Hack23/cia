@@ -28,7 +28,6 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData_
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer_;
-import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
@@ -72,20 +71,15 @@ public final class DocumentDetailsPageModContentFactoryImpl extends AbstractDocu
 
 		final String pageId = getPageId(parameters);
 
-		final DataContainer<DocumentElement, String> documentElementDataContainer = getApplicationManager()
-				.getDataContainer(DocumentElement.class);
-
-		final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
-				.getDataContainer(DocumentStatusContainer.class);
-
-		getApplicationManager().getDataContainer(CommitteeProposalComponentData.class);
-
-		final DocumentElement documentElement = documentElementDataContainer.load(pageId);
+		final DocumentElement documentElement = getItem(parameters);
 
 		if (documentElement != null) {
 
 			getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
+			final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
+					.getDataContainer(DocumentStatusContainer.class);
+			
 			final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
 					.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 							DocumentData.class, DocumentData_.id, pageId);

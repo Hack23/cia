@@ -22,7 +22,6 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
-import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -55,10 +54,7 @@ public final class PartyPageVisitHistoryPageModContentFactoryImpl extends Abstra
 
 		final String pageId = getPageId(parameters);
 
-		final DataContainer<ViewRiksdagenParty, String> dataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenParty.class);
-
-		final ViewRiksdagenParty viewRiksdagenParty = dataContainer.load(pageId);
+		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 
 		if (viewRiksdagenParty != null) {
 

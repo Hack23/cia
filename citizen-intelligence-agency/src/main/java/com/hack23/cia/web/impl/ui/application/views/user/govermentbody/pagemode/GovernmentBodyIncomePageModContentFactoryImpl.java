@@ -19,9 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +27,6 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
@@ -56,10 +53,6 @@ public final class GovernmentBodyIncomePageModContentFactoryImpl extends Abstrac
 	@Autowired
 	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
 
-	/** The esv api. */
-	@Autowired
-	private EsvApi esvApi;
-	
 	/**
 	 * Instantiates a new government body income page mod content factory impl.
 	 */
@@ -78,10 +71,8 @@ public final class GovernmentBodyIncomePageModContentFactoryImpl extends Abstrac
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
-
-		final Map<String, List<GovernmentBodyAnnualSummary>> map = esvApi.getData().get(2018).stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getOrgNumber));
 		
-		final List<GovernmentBodyAnnualSummary> list = map.get(pageId);
+		final List<GovernmentBodyAnnualSummary> list = getItem(parameters);
 		
 		if (list != null && !list.isEmpty()) {
 			final Optional<GovernmentBodyAnnualSummary> governmentBodyAnnualSummary = list.stream().findFirst();

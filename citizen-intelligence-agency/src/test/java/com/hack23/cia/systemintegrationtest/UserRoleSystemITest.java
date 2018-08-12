@@ -470,6 +470,23 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 	}
 
 	/**
+	 * Site ministry overview invalid ref test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteMinistryOverviewInvalidRefTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW, "InvalidReference"));
+		userPageVisit.checkHtmlBodyContainsText("Invalid reference, content not found");
+	}
+
+	/**
 	 * Site government body overview test.
 	 *
 	 * @throws Exception
@@ -486,6 +503,23 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.OVERVIEW, "202100-5026"));
 	}
 
+	/**
+	 * Site government body overview invalid reference test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteGovernmentBodyOverviewInvalidReferenceTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.OVERVIEW, "InvalidReference"));
+		userPageVisit.checkHtmlBodyContainsText("Invalid reference, content not found");
+	}
+	
 	/**
 	 * Site government body headcount test.
 	 *
@@ -504,6 +538,24 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 	}
 
 	/**
+	 * Site government body headcount invalid reference test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteGovernmentBodyHeadcountInvalidReferenceTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.HEADCOUNT.toString(), "InvalidReference"));
+		userPageVisit.checkHtmlBodyContainsText("Invalid reference, content not found");
+	}
+
+	
+	/**
 	 * Site government body income test.
 	 *
 	 * @throws Exception
@@ -521,6 +573,23 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 	}
 
 	/**
+	 * Site government body income invalid reference test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteGovernmentBodyIncomeInvalidReferenceTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString(), "InvalidReference"));
+		userPageVisit.checkHtmlBodyContainsText("Invalid reference, content not found");
+	}
+ 
+	/**
 	 * Site government body expenditure test.
 	 *
 	 * @throws Exception
@@ -535,6 +604,23 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), "202100-5026"));
+	}
+
+	/**
+	 * Site government body expenditure invalid reference test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteGovernmentBodyExpenditureInvalidReferenceTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), "InvalidReference"));
+		userPageVisit.checkHtmlBodyContainsText("Invalid reference, content not found");
 	}
 
 	/**
@@ -554,7 +640,24 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES.toString(), "N%C3%A4ringsdepartementet"));
 	}
 
+	/**
+	 * Site ministry government body invalid reference test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteMinistryGovernmentBodyInvalidReferenceTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES.toString(), "InvalidReference"));
+		userPageVisit.checkHtmlBodyContainsText("Invalid reference, content not found");
+	}
+
+	
 	/**
 	 * Site ministry page visit history test.
 	 *
@@ -570,6 +673,23 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY,
 				"N%C3%A4ringsdepartementet"));
+	}
+
+	/**
+	 * Site ministry page visit history invalid reference test.
+	 *
+	 * @throws Exception the exception
+	 */
+	public void siteMinistryPageVisitHistoryInvalidReferenceTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY,
+				"InvalidReference"));
+		userPageVisit.checkHtmlBodyContainsText("Invalid reference, content not found");
+
 	}
 
 	/**
@@ -590,6 +710,24 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 	}
 
+	
+	/**
+	 * Site ministry document history invalid reference test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteMinistryDocumentHistoryInvalidReferenceTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+				MinistryPageMode.DOCUMENTHISTORY.toString(), "InvalidReference"));
+		userPageVisit.checkHtmlBodyContainsText("Invalid reference, content not found");
+	}
+
 	/**
 	 * Site ministry document activity test.
 	 *
@@ -608,6 +746,24 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 	}
 
+	
+	/**
+	 * Site ministry document activity invalid reference test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteMinistryDocumentActivityInvalidReferenceTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+				MinistryPageMode.DOCUMENTACTIVITY.toString(), "InvalidReference"));
+		userPageVisit.checkHtmlBodyContainsText("Invalid reference, content not found");
+	}
+
 	/**
 	 * Site ministry role ghant test.
 	 *
@@ -623,7 +779,23 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
 				MinistryPageMode.ROLEGHANT.toString(), "N%C3%A4ringsdepartementet"));
+	}
+	
+	/**
+	 * Site ministry role ghant invalid reference test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteMinistryRoleGhantInvalidReferenceTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+				MinistryPageMode.ROLEGHANT.toString(), "InvalidReference"));
+		userPageVisit.checkHtmlBodyContainsText("Invalid reference, content not found");
 	}
 
 	/**
@@ -645,6 +817,23 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 	}
 
 	/**
+	 * Site ministry current members invalid reference test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteMinistryCurrentMembersInvalidReferenceTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+				MinistryPageMode.CURRENTMEMBERS.toString(), "InvalidReference"));
+		userPageVisit.checkHtmlBodyContainsText("Invalid reference, content not found");
+	}
+
+	/**
 	 * Site ministry member history test.
 	 *
 	 * @throws Exception
@@ -661,6 +850,25 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 				MinistryPageMode.MEMBERHISTORY.toString(), "N%C3%A4ringsdepartementet"));
 	}
 
+	
+	/**
+	 * Site ministry member history invalid reference test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteMinistryMemberHistoryInvalidReferenceTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+				MinistryPageMode.MEMBERHISTORY.toString(), "InvalidReference"));
+		userPageVisit.checkHtmlBodyContainsText("Invalid reference, content not found");
+	}
+
+	
 	/**
 	 * Site committee overview test.
 	 *

@@ -27,7 +27,6 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -75,10 +74,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 
 		final String pageId = getPageId(parameters);
 
-		final DataContainer<ViewRiksdagenMinistry, String> dataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenMinistry.class);
-
-		final ViewRiksdagenMinistry viewRiksdagenMinistry = dataContainer.load(pageId);
+		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
 
 		if (viewRiksdagenMinistry != null) {
 

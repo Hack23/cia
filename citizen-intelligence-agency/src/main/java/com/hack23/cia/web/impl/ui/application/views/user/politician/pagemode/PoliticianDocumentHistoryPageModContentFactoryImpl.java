@@ -21,7 +21,6 @@ package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument_;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
@@ -69,17 +68,9 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl extends Ab
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
-
-		final DataContainer<PersonData, String> dataContainer = getApplicationManager()
-				.getDataContainer(PersonData.class);
-
-		final PersonData personData = dataContainer.load(pageId);
-		if (personData != null) {
-
-			final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenPolitician.class);
-
-			final ViewRiksdagenPolitician viewRiksdagenPolitician = politicianDataContainer.load(personData.getId());
+		
+		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
+		if (viewRiksdagenPolitician != null) {
 
 			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
@@ -91,7 +82,7 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl extends Ab
 
 			getGridFactory().createBasicBeanItemGrid(
 					panelContent, ViewRiksdagenPoliticianDocument.class, politicianDocumentDataContainer.findOrderedListByProperty(
-							ViewRiksdagenPoliticianDocument_.personReferenceId, personData.getId(),
+							ViewRiksdagenPoliticianDocument_.personReferenceId, viewRiksdagenPolitician.getPersonId(),
 							ViewRiksdagenPoliticianDocument_.madePublicDate),
 					DOCUMENTS,
 					COLUMN_ORDER,

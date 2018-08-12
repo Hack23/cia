@@ -18,16 +18,23 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.ballot.pagemode;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotEmbeddedId;
+import com.hack23.cia.model.internal.application.data.committee.impl.RiksdagenVoteDataBallotEmbeddedId_;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary_;
+import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.BallotMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 /**
  * The Class AbstractBallotPageModContentFactoryImpl.
  */
-abstract class AbstractBallotPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractBallotPageModContentFactoryImpl extends AbstractItemPageModContentFactoryImpl<List<ViewRiksdagenVoteDataBallotSummary>> {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.BALLOT_VIEW_NAME;
@@ -44,6 +51,16 @@ abstract class AbstractBallotPageModContentFactoryImpl extends AbstractPageModCo
 
 	protected final BallotMenuItemFactory getBallotMenuItemFactory() {
 		return ballotMenuItemFactory;
+	}
+
+	@Override
+	protected List<ViewRiksdagenVoteDataBallotSummary> getItem(String parameters) {
+		final String pageId = getPageId(parameters);
+
+		final DataContainer<ViewRiksdagenVoteDataBallotSummary, RiksdagenVoteDataBallotEmbeddedId> dataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenVoteDataBallotSummary.class);
+
+		return dataContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotSummary.class, ViewRiksdagenVoteDataBallotSummary_.embeddedId, RiksdagenVoteDataBallotEmbeddedId.class, RiksdagenVoteDataBallotEmbeddedId_.ballotId, pageId);
 	}
 
 }

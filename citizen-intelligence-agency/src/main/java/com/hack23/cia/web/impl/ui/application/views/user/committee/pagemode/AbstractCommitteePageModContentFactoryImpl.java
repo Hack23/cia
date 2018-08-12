@@ -20,14 +20,15 @@ package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 /**
  * The Class AbstractCommitteePageModContentFactoryImpl.
  */
-abstract class AbstractCommitteePageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractCommitteePageModContentFactoryImpl extends AbstractItemPageModContentFactoryImpl<ViewRiksdagenCommittee> {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_VIEW_NAME;
@@ -51,6 +52,12 @@ abstract class AbstractCommitteePageModContentFactoryImpl extends AbstractPageMo
 	 */
 	protected final CommitteeMenuItemFactory getCommitteeMenuItemFactory() {
 		return committeeMenuItemFactory;
+	}
+
+
+	@Override
+	protected ViewRiksdagenCommittee getItem(String parameters) {
+		return getApplicationManager().getDataContainer(ViewRiksdagenCommittee.class).load(getPageId(parameters));
 	}
 
 }

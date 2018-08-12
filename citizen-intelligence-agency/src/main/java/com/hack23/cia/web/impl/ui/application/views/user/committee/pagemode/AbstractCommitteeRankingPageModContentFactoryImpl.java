@@ -21,12 +21,12 @@ package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
 
 /**
  * The Class AbstractRankingPageModContentFactoryImpl.
  */
-abstract class AbstractCommitteeRankingPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractCommitteeRankingPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
 	/** The committee ranking menu item factory. */
 	@Autowired

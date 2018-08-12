@@ -32,7 +32,6 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionFlowChartManager;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -77,15 +76,12 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		final String pageId = getPageId(parameters);
-		
-		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
-		
-		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenCommittee.class);
-
-		final ViewRiksdagenCommittee viewRiksdagenCommittee = dataContainer.load(pageId);
+			
+		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 
 		if (viewRiksdagenCommittee != null) {	
+			
+			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 			
 			String selectedYear = "2017/18";
 			if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
@@ -102,7 +98,7 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 			    }
 			});
 
-			final Map<String, List<ViewRiksdagenCommittee>> committeeMap = dataContainer.getAll().stream().collect(Collectors.groupingBy(c -> c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));			
+			final Map<String, List<ViewRiksdagenCommittee>> committeeMap = getApplicationManager().getDataContainer(ViewRiksdagenCommittee.class).getAll().stream().collect(Collectors.groupingBy(c -> c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));			
 		
 			final SankeyChart chart = decisionFlowChartManager.createCommitteeDecisionFlow(viewRiksdagenCommittee, committeeMap,comboBox.getSelectedItem().orElse(selectedYear));
 			panelContent.addComponent(chart);		

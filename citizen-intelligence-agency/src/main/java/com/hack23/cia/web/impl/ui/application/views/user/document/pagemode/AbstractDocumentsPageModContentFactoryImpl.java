@@ -21,13 +21,13 @@ package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.DocumentMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 /**
  * The Class AbstractDocumentsPageModContentFactoryImpl.
  */
-abstract class AbstractDocumentsPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractDocumentsPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.DOCUMENTS_VIEW_NAME;

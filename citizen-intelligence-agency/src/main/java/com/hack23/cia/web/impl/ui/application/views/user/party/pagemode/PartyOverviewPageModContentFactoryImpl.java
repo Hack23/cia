@@ -76,13 +76,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 		final String pageId = getPageId(parameters);
 
-		final DataContainer<ViewRiksdagenParty, String> dataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenParty.class);
-
-		final DataContainer<ViewRiksdagenPartySummary, String> partySummarydataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPartySummary.class);
-
-		final ViewRiksdagenParty viewRiksdagenParty = dataContainer.load(pageId);
+		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 
 		if (viewRiksdagenParty != null) {
 
@@ -97,6 +91,9 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 			getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenParty, ViewRiksdagenParty.class,
 					AS_LIST);
+			
+			final DataContainer<ViewRiksdagenPartySummary, String> partySummarydataContainer = getApplicationManager()
+					.getDataContainer(ViewRiksdagenPartySummary.class);
 
 			final ViewRiksdagenPartySummary viewRiksdagenPartySummary = partySummarydataContainer.load(pageId);
 

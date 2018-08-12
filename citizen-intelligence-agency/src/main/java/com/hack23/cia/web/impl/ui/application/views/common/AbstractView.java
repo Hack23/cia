@@ -22,6 +22,8 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,13 +118,20 @@ public abstract class AbstractView extends Panel implements View {
 	public final void enter(final ViewChangeEvent event) {
 		try {
 
-			final String parameters = event.getParameters();
+			String parameters = Jsoup.clean(event.getParameters(), Whitelist.basic());
+			
 			for (final PageModeContentFactory pageModeContentFactory : pageModeContentFactoryMap.values()) {
-				if (pageModeContentFactory.matches(pageName, parameters)) {
+				if (pageModeContentFactory.matches(pageName, parameters) && pageModeContentFactory.validReference(parameters)) {					
 					getPanel().setContent(pageModeContentFactory.createContent(parameters, getBarmenu(), getPanel()));
 					return;
-				}
+				} 
 			}
+
+			LOGGER.warn("Invalid reference, content not found:{}/{}",pageName, parameters);
+			final VerticalLayout panelContent = createFullSizeVerticalLayout();
+			LabelFactory.createHeader2Label(panelContent,"Invalid reference, content not found:" +pageName+ "/"+ parameters);
+			getPanel().setContent(panelContent);
+			getPanel().setCaption("Invalid Reference");
 		} catch (final AccessDeniedException e ) {
 			LOGGER.warn("Access denided:" +pageName,e);
 			final VerticalLayout panelContent = createFullSizeVerticalLayout();

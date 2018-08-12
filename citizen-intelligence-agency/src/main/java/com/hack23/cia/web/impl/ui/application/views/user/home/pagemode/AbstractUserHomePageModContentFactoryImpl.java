@@ -18,13 +18,13 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.home.pagemode;
 
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 /**
  * The Class AbstractPoliticianPageModContentFactoryImpl.
  */
-abstract class AbstractUserHomePageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractUserHomePageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.USERHOME_VIEW_NAME;

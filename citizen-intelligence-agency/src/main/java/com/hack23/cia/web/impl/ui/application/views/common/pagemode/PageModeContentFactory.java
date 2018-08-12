@@ -37,7 +37,15 @@ public interface PageModeContentFactory {
 	 * @return true, if successful
 	 */
 	boolean matches(String page, String parameters);
-
+	
+	/**
+	 * Valid reference.
+	 *
+	 * @param parameters the parameters
+	 * @return true, if successful
+	 */
+	boolean validReference(String parameters);
+	
 	/**
 	 * Creates a new PageModeContent object.
 	 *

@@ -24,14 +24,14 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Component;
 
 /**
  * The Class AbstractPoliticianPageModContentFactoryImpl.
  */
-abstract class AbstractPartyPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractPartyPageModContentFactoryImpl extends AbstractItemPageModContentFactoryImpl<ViewRiksdagenParty> {
 
 	/** The Constant CAPTION_SEPARATOR. */
 	private static final String CAPTION_SEPARATOR = "::";
@@ -80,6 +80,11 @@ abstract class AbstractPartyPageModContentFactoryImpl extends AbstractPageModCon
 	 */
 	protected final PartyMenuItemFactory getPartyMenuItemFactory() {
 		return partyMenuItemFactory;
+	}
+
+	@Override
+	protected ViewRiksdagenParty getItem(String parameters) {
+		return getApplicationManager().getDataContainer(ViewRiksdagenParty.class).load(getPageId(parameters));
 	}
 
 }

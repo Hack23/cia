@@ -21,13 +21,13 @@ package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 /**
  * The Class AbstractMinistryRankingPageModContentFactoryImpl.
  */
-abstract class AbstractMinistryRankingPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractMinistryRankingPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.MINISTRY_RANKING_VIEW_NAME;

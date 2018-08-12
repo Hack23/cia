@@ -16,20 +16,31 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode;
-
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
+package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
 
 /**
- * The Class AbstractPoliticianPageModContentFactoryImpl.
+ * The Class AbstractItemPageModContentFactoryImpl.
  */
-abstract class AbstractDataSummaryPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
+public abstract class AbstractItemPageModContentFactoryImpl<T> extends AbstractPageModContentFactoryImpl {
 
 	/**
-	 * Instantiates a new abstract data summary page mod content factory impl.
+	 * Instantiates a new abstract item page mod content factory impl.
 	 */
-	AbstractDataSummaryPageModContentFactoryImpl() {
+	protected AbstractItemPageModContentFactoryImpl() {
 		super();
 	}
 
+	@Override
+	public final boolean validReference(String parameters) {
+		return getItem(parameters) != null;
+	}
+
+	/**
+	 * Gets the item.
+	 *
+	 * @param parameters the parameters
+	 * @return the item
+	 */
+	protected abstract T getItem(String parameters); 
+	
 }

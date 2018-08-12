@@ -33,7 +33,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData_;
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
-import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.user.DocumentWordCountRequest;
@@ -97,16 +96,7 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 
 		final String pageId = getPageId(parameters);
 
-		final DataContainer<DocumentElement, String> documentElementDataContainer = getApplicationManager()
-				.getDataContainer(DocumentElement.class);
-
-		final DataContainer<DocumentContentData, String> documentContentDataDataContainer = getApplicationManager()
-				.getDataContainer(DocumentContentData.class);
-
-		getApplicationManager()
-				.getDataContainer(CommitteeProposalComponentData.class);
-
-		final DocumentElement documentElement = documentElementDataContainer.load(pageId);
+		final DocumentElement documentElement = getItem(parameters);
 
 		if (documentElement != null) {
 
@@ -114,6 +104,8 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 
 			LabelFactory.createHeader2Label(panelContent,DOCUMENT_DATA);
 
+			final DataContainer<DocumentContentData, String> documentContentDataDataContainer = getApplicationManager()
+					.getDataContainer(DocumentContentData.class);
 
 			final List<DocumentContentData> documentContentlist = documentContentDataDataContainer
 					.getAllBy(DocumentContentData_.id, pageId);

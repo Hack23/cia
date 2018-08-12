@@ -21,12 +21,12 @@ package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianRankingMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
 
 /**
  * The Class AbstractPoliticianRankingPageModContentFactoryImpl.
  */
-abstract class AbstractPoliticianRankingPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractPoliticianRankingPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
 	/** The politician ranking menu item factory. */
 	@Autowired

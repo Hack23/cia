@@ -21,13 +21,13 @@ package com.hack23.cia.web.impl.ui.application.views.user.country.pagemode;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CountryMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 /**
  * The Class AbstractPoliticianPageModContentFactoryImpl.
  */
-abstract class AbstractCountryPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractCountryPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COUNTRY_RANKING_VIEW_NAME;

@@ -21,12 +21,12 @@ package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyRankingMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
 
 /**
  * The Class AbstractRankingPageModContentFactoryImpl.
  */
-abstract class AbstractPartyRankingPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractPartyRankingPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
 
 	/** The party menu item factory. */

@@ -20,18 +20,19 @@ package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Component;
 
 /**
  * The Class AbstractPoliticianPageModContentFactoryImpl.
  */
-abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractItemPageModContentFactoryImpl<ViewRiksdagenPolitician> {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_VIEW_NAME;
@@ -96,6 +97,17 @@ abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractPageM
 	 */
 	protected final PoliticianMenuItemFactory getPoliticianMenuItemFactory() {
 		return politicianMenuItemFactory;
+	}
+
+	@Override
+	protected ViewRiksdagenPolitician getItem(String parameters) {
+		final String pageId = getPageId(parameters);
+		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class).load(pageId);
+		if (personData != null) {
+			return getApplicationManager().getDataContainer(ViewRiksdagenPolitician.class).load(personData.getId());
+		} else {
+			return null;
+		}
 	}
 
 }

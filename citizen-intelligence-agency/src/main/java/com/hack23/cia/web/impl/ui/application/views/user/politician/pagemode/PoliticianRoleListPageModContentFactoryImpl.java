@@ -28,7 +28,6 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
-import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
 import com.vaadin.ui.Layout;
@@ -65,24 +64,14 @@ public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractP
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
-
-		final DataContainer<PersonData, String> dataContainer = getApplicationManager()
-				.getDataContainer(PersonData.class);
-
-		final PersonData personData = dataContainer.load(pageId);
-		if (personData != null) {
-
-			final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenPolitician.class);
-
-			final ViewRiksdagenPolitician viewRiksdagenPolitician = politicianDataContainer.load(personData.getId());
+		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
+		if (viewRiksdagenPolitician != null) {
 
 			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
-
 			LabelFactory.createHeader2Label(panelContent,PoliticianPageMode.ROLELIST.toString());
 
-
-
+			final PersonData personData = getApplicationManager().getDataContainer(PersonData.class).load(viewRiksdagenPolitician.getPersonId());
+			
 			final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()
 					.getAssignmentList();
 

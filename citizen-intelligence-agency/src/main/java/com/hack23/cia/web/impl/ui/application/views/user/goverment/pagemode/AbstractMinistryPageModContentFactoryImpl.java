@@ -20,14 +20,15 @@ package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 /**
  * The Class AbstractMinistryPageModContentFactoryImpl.
  */
-abstract class AbstractMinistryPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractMinistryPageModContentFactoryImpl extends AbstractItemPageModContentFactoryImpl<ViewRiksdagenMinistry> {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.MINISTRY_VIEW_NAME;
@@ -44,6 +45,11 @@ abstract class AbstractMinistryPageModContentFactoryImpl extends AbstractPageMod
 
 	protected final MinistryMenuItemFactory getMinistryMenuItemFactory() {
 		return ministryMenuItemFactory;
+	}
+
+	@Override
+	protected ViewRiksdagenMinistry getItem(String parameters) {
+		return getApplicationManager().getDataContainer(ViewRiksdagenMinistry.class).load(getPageId(parameters));
 	}
 
 }

@@ -22,9 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
-import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PoliticianChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -64,23 +62,14 @@ public final class PoliticianIndicatorsPageModContentFactoryImpl extends Abstrac
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
-
-		final DataContainer<PersonData, String> dataContainer = getApplicationManager()
-				.getDataContainer(PersonData.class);
-
-		final PersonData personData = dataContainer.load(pageId);
-		if (personData != null) {
-
-			final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenPolitician.class);
-
-			final ViewRiksdagenPolitician viewRiksdagenPolitician = politicianDataContainer.load(personData.getId());
+		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
+		if (viewRiksdagenPolitician != null) {
 
 			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 			LabelFactory.createHeader2Label(panelContent,INDICATORS);
 
-			politicianChartDataManager.createPersonLineChart(panelContent,personData.getId());
+			politicianChartDataManager.createPersonLineChart(panelContent,viewRiksdagenPolitician.getPersonId());
 
 			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 

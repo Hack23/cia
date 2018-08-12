@@ -67,10 +67,7 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 
 		final String pageId = getPageId(parameters);
 
-		final DataContainer<ViewRiksdagenParty, String> dataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenParty.class);
-
-		final ViewRiksdagenParty viewRiksdagenParty = dataContainer.load(pageId);
+		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 
 		if (viewRiksdagenParty != null) {
 

@@ -18,22 +18,32 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode;
 
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.hack23.cia.service.external.esv.api.EsvApi;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.GovernmentBodyMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 /**
  * The Class AbstractGovernmentBodyPageModContentFactoryImpl.
  */
-abstract class AbstractGovernmentBodyPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+abstract class AbstractGovernmentBodyPageModContentFactoryImpl extends AbstractItemPageModContentFactoryImpl<List<GovernmentBodyAnnualSummary>> {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.GOVERNMENT_BODY_VIEW_NAME;
 
 	@Autowired
 	private GovernmentBodyMenuItemFactory governmentBodyMenuItemFactory;
+
+	/** The esv api. */
+	@Autowired
+	private EsvApi esvApi;
 
 	/**
 	 * Instantiates a new abstract government body page mod content factory impl.
@@ -49,6 +59,12 @@ abstract class AbstractGovernmentBodyPageModContentFactoryImpl extends AbstractP
 	 */
 	protected final GovernmentBodyMenuItemFactory getGovernmentBodyMenuItemFactory() {
 		return governmentBodyMenuItemFactory;
+	}
+
+	@Override
+	protected List<GovernmentBodyAnnualSummary> getItem(String parameters) {
+		final Map<String, List<GovernmentBodyAnnualSummary>> map = esvApi.getData().get(2018).stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getOrgNumber));		
+		return map.get(getPageId(parameters));
 	}
 
 }

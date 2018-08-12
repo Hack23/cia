@@ -23,7 +23,6 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
-import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyDocumentChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
@@ -64,10 +63,7 @@ public final class PartyDocumentActivityPageModContentFactoryImpl extends Abstra
 
 		final String pageId = getPageId(parameters);
 
-		final DataContainer<ViewRiksdagenParty, String> dataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenParty.class);
-
-		final ViewRiksdagenParty viewRiksdagenParty = dataContainer.load(pageId);
+		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 
 		if (viewRiksdagenParty != null) {
 

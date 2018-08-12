@@ -47,7 +47,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class MainViewLoginPageModContentFactoryImpl.
  */
 @Component
-public final class MainViewLoginPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
 	private static final String LOGIN = "Login";
 

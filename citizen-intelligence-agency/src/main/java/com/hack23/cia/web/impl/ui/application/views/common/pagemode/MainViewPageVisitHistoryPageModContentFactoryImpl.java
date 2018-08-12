@@ -35,7 +35,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class MainViewPageVisitHistoryPageModContentFactoryImpl.
  */
 @Component
-public final class MainViewPageVisitHistoryPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+public final class MainViewPageVisitHistoryPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
 	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_MAIN. */
 	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = "Citizen Intelligence Agency::Main";

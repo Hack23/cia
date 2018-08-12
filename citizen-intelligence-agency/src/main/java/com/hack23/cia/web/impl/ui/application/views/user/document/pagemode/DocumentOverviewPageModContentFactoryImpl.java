@@ -79,18 +79,15 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 
 		final String pageId = getPageId(parameters);
 
-		final DataContainer<DocumentElement, String> documentElementDataContainer = getApplicationManager()
-				.getDataContainer(DocumentElement.class);
-
-		final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
-				.getDataContainer(DocumentStatusContainer.class);
-
-		final DocumentElement documentElement = documentElementDataContainer.load(pageId);
+		final DocumentElement documentElement = getItem(parameters);
 
 		if (documentElement != null) {
 
 			getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
+			final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
+					.getDataContainer(DocumentStatusContainer.class);
+			
 			final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
 					.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 							DocumentData.class, DocumentData_.id, pageId);

@@ -27,7 +27,6 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -76,11 +75,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 
 		final String pageId = getPageId(parameters);
 
-
-		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenCommittee.class);
-
-		final ViewRiksdagenCommittee viewRiksdagenCommittee = dataContainer.load(pageId);
+		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 
 		if (viewRiksdagenCommittee != null) {
 

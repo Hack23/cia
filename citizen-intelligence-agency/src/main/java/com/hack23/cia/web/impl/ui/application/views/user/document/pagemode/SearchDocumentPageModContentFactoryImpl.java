@@ -30,7 +30,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.action.user.SearchDocumentRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.DocumentMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocumentClickListener;
@@ -46,7 +46,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class SearchDocumentPageModContentFactoryImpl.
  */
 @Component
-public final class SearchDocumentPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+public final class SearchDocumentPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
 	private static final String SEARCH = "Search";
 

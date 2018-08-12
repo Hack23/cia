@@ -46,7 +46,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class MainViewRegisterPageModContentFactoryImpl.
  */
 @Component
-public final class MainViewRegisterPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+public final class MainViewRegisterPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
 	private static final String REGISTER = "Register";
 

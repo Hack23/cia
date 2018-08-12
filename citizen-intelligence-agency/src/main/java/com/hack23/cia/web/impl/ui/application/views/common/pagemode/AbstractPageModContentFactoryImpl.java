@@ -148,7 +148,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 		if (parameters != null) {
 			String cleanedString = parameters;
 			if (parameters.contains("[")) {
-				cleanedString = parameters.replace(parameters.substring(parameters.indexOf('[') , parameters.lastIndexOf(']')+1), "");
+				cleanedString = cleanedString.replace(cleanedString.substring(cleanedString.indexOf('[') , cleanedString.lastIndexOf(']')+1), "");
 			} 
 			
 			return cleanedString.substring(cleanedString.lastIndexOf('/') + "/".length(), cleanedString.length());
@@ -160,14 +160,15 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	/**
 	 * Gets the page nr.
 	 *
-	 * @param parameters
+	 * @param cleanedString
 	 *            the parameters
 	 * @return the page nr
 	 */
 	protected final int getPageNr(final String parameters) {
+		String cleanedString = parameters;
 		String pageNrValue;
-		if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
-			pageNrValue = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));
+		if (cleanedString != null && cleanedString.contains("[") && cleanedString.contains("]")) {
+			pageNrValue = cleanedString.substring(cleanedString.indexOf('[') + 1, cleanedString.lastIndexOf(']'));
 		} else {
 			pageNrValue = "";
 		}
