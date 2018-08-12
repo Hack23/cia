@@ -33,7 +33,7 @@ import org.jdom2.transform.JDOMSource;
 /**
  * The Class NameSpaceUtil.
  */
-final class NameSpaceUtil  {
+final class NameSpaceUtil {
 
 	/**
 	 * Instantiates a new name space util.
