@@ -69,6 +69,25 @@ public final class DestroyApplicationSessionServiceITest extends AbstractService
 	}
 
 	/**
+	 * Service destroy application session request no session id exist failure test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void serviceDestroyApplicationSessionRequestNoSessionIdExistFailureTest() throws Exception {
+		setAuthenticatedAnonymousUser();
+		final CreateApplicationSessionRequest createTestApplicationSession = createTestApplicationSession();
+
+		final DestroyApplicationSessionRequest destroyApplicationSessionRequest = new DestroyApplicationSessionRequest();
+
+		destroyApplicationSessionRequest.setSessionId(createTestApplicationSession.getSessionId() + "not-valid");
+		final ServiceResponse response = applicationManager.service(destroyApplicationSessionRequest);
+		assertNotNull(EXPECT_A_RESULT,response);
+		assertEquals(EXPECT_SUCCESS,ServiceResult.FAILURE,response.getResult());
+
+	}
+
+	/**
 	 * Service request validation failure test.
 	 *
 	 * @throws Exception
