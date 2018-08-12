@@ -34,7 +34,6 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class VoteHistoryPageModContentFactoryImpl.
  */
@@ -43,24 +42,24 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 
 	private static final String EMBEDDED_ID_BALLOT_ID = "embeddedId.ballotId";
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, EMBEDDED_ID_BALLOT_ID);
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.BALLOT_VIEW_NAME, EMBEDDED_ID_BALLOT_ID);
 
-	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes", "partyPercentageNo",
-			"partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
-			"percentageAbsent", "percentageAbstain", "ballotType", "embeddedId.party",
-			EMBEDDED_ID_BALLOT_ID, "partyAvgBornYear", "avgBornYear", "partyPercentageMale",
-			"percentageMale", "noWinner" };
+	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "partyNoWinner", "partyPercentageYes",
+			"partyPercentageNo", "partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
+			"percentageAbsent", "percentageAbstain", "ballotType", "embeddedId.party", EMBEDDED_ID_BALLOT_ID,
+			"partyAvgBornYear", "avgBornYear", "partyPercentageMale", "percentageMale", "noWinner" };
 
-	private static final String[] COLUMN_ORDER = new String[] { "embeddedId.party", "voteDate", "rm", "label", "embeddedId.concern",
-			"embeddedId.issue", "approved", "partyApproved", "totalVotes", "partyTotalVotes",
+	private static final String[] COLUMN_ORDER = new String[] { "embeddedId.party", "voteDate", "rm", "label",
+			"embeddedId.concern", "embeddedId.issue", "approved", "partyApproved", "totalVotes", "partyTotalVotes",
 			"yesVotes", "partyYesVotes", "noVotes", "partyNoVotes", "partyAbstainVotes", "abstainVotes",
 			"partyAbsentVotes", "absentVotes", "partyAvgBornYear", "avgBornYear", "partyPercentageMale",
 			"percentageMale", "ballotType", EMBEDDED_ID_BALLOT_ID };
 
 	private static final String BALLOTS = "Ballots";
 
-	private static final String[] NESTED_PROPERTIES = new String[] { EMBEDDED_ID_BALLOT_ID, "embeddedId.concern", "embeddedId.issue",
-			"embeddedId.party" };
+	private static final String[] NESTED_PROPERTIES = new String[] { EMBEDDED_ID_BALLOT_ID, "embeddedId.concern",
+			"embeddedId.issue", "embeddedId.party" };
 
 	/** The Constant VOTE_HISTORY. */
 	private static final String VOTE_HISTORY = "VoteHistory";
@@ -89,22 +88,16 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 		final String pageId = getPageId(parameters);
 
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
+		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		if (viewRiksdagenParty != null) {
+		LabelFactory.createHeader2Label(panelContent, VOTE_HISTORY);
 
-			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
+				ViewRiksdagenVoteDataBallotPartySummary.class,
+				viewRiksdagenVoteDataBallotPartySummaryChartDataManager.findByValue(pageId), BALLOTS, NESTED_PROPERTIES,
+				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, EMBEDDED_ID_BALLOT_ID, null);
 
-			LabelFactory.createHeader2Label(panelContent, VOTE_HISTORY);
-
-			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenVoteDataBallotPartySummary.class, viewRiksdagenVoteDataBallotPartySummaryChartDataManager.findByValue(pageId), BALLOTS,
-					NESTED_PROPERTIES,
-					COLUMN_ORDER,
-					HIDE_COLUMNS,
-					LISTENER,
-					EMBEDDED_ID_BALLOT_ID, null);
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
-		}
+		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		return panelContent;
 
 	}

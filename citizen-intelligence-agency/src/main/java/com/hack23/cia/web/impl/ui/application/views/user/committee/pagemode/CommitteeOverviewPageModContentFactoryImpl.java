@@ -37,16 +37,14 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class CommitteeOverviewPageModContentFactoryImpl.
  */
 @Component
 public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
 
-	private static final List<String> AS_LIST = Arrays.asList( "embeddedId.detail", "active", "firstAssignmentDate",
-			"lastAssignmentDate", "totalAssignments", "totalDaysServed",
-			"currentMemberSize" );
+	private static final List<String> AS_LIST = Arrays.asList("embeddedId.detail", "active", "firstAssignmentDate",
+			"lastAssignmentDate", "totalAssignments", "totalDaysServed", "currentMemberSize");
 
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = "Committee:";
@@ -77,36 +75,31 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 
-		if (viewRiksdagenCommittee != null) {
+		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
+		LabelFactory.createHeader2Label(panelContent, OVERVIEW);
 
-				LabelFactory.createHeader2Label(panelContent,OVERVIEW);
+		final Link addCommitteePageLink = getPageLinkFactory().addCommitteePageLink(viewRiksdagenCommittee);
+		panelContent.addComponent(addCommitteePageLink);
 
-				final Link addCommitteePageLink = getPageLinkFactory().addCommitteePageLink(viewRiksdagenCommittee);
-				panelContent.addComponent(addCommitteePageLink);
+		getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenCommittee, ViewRiksdagenCommittee.class,
+				AS_LIST);
 
-				getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenCommittee,
-						ViewRiksdagenCommittee.class,
-						AS_LIST);
+		final VerticalLayout overviewLayout = new VerticalLayout();
+		overviewLayout.setSizeFull();
 
+		panelContent.addComponent(overviewLayout);
+		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
 
-				final VerticalLayout overviewLayout = new VerticalLayout();
-				overviewLayout.setSizeFull();
+		getCommitteeMenuItemFactory().createOverviewPage(overviewLayout, pageId);
 
-				panelContent.addComponent(overviewLayout);
-				panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
+		panelContent.setExpandRatio(addCommitteePageLink, ContentRatio.SMALL);
 
-				getCommitteeMenuItemFactory().createOverviewPage(overviewLayout, pageId);
-
-				panelContent.setExpandRatio(addCommitteePageLink,ContentRatio.SMALL);
-
-				panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
-				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
-		}
+		panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 		return panelContent;
 
 	}
-
 
 }

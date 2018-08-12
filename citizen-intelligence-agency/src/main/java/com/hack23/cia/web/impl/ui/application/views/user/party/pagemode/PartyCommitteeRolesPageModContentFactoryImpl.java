@@ -34,17 +34,17 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class CommitteeRolesPageModContentFactoryImpl.
  */
 @Component
 public final class PartyCommitteeRolesPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId");
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.POLITICIAN_VIEW_NAME, "personId");
 	private static final String[] HIDE_COLUMNS = new String[] { "roleId", "personId", "party" };
-	private static final String[] COLUMN_ORDER = new String[] { "roleId", "personId", "firstName", "lastName", "detail", "active",
-			"roleCode", "fromDate", "toDate", "totalDaysServed" };
+	private static final String[] COLUMN_ORDER = new String[] { "roleId", "personId", "firstName", "lastName", "detail",
+			"active", "roleCode", "fromDate", "toDate", "totalDaysServed" };
 	/** The Constant COMMITTEE_ROLES. */
 	private static final String COMMITTEE_ROLES = "CommitteeRoles";
 
@@ -68,27 +68,20 @@ public final class PartyCommitteeRolesPageModContentFactoryImpl extends Abstract
 		final String pageId = getPageId(parameters);
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 
-		if (viewRiksdagenParty != null) {
+		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+		LabelFactory.createHeader2Label(panelContent, COMMITTEE_ROLES);
 
-			LabelFactory.createHeader2Label(panelContent,COMMITTEE_ROLES);
+		final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
 
+		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenCommitteeRoleMember.class,
+				committeeRoleMemberDataContainer.findListByProperty(
+						new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },
+						ViewRiksdagenCommitteeRoleMember_.party, ViewRiksdagenCommitteeRoleMember_.active),
+				COMMITTEE_ROLES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-			final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
-
-			getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenCommitteeRoleMember.class,
-					committeeRoleMemberDataContainer.findListByProperty(
-							new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },
-							ViewRiksdagenCommitteeRoleMember_.party, ViewRiksdagenCommitteeRoleMember_.active),
-					COMMITTEE_ROLES,
-					COLUMN_ORDER, HIDE_COLUMNS,
-					LISTENER, null, null);
-
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
-		}
+		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		return panelContent;
 
 	}

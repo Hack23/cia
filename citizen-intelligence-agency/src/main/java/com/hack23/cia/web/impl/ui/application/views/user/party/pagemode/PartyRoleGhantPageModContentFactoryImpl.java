@@ -68,23 +68,19 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 		final String pageId = getPageId(parameters);
 
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
+		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		if (viewRiksdagenParty != null) {
+		LabelFactory.createHeader2Label(panelContent, ROLE_GHANT);
 
-			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
 
-			LabelFactory.createHeader2Label(panelContent, ROLE_GHANT);
+		final List<ViewRiksdagenPartyRoleMember> allMembers = partyRoleMemberDataContainer
+				.getAllBy(ViewRiksdagenPartyRoleMember_.party, viewRiksdagenParty.getPartyId());
 
-			final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenPartyRoleMember.class);
+		partyGhantChartManager.createRoleGhant(panelContent, allMembers);
 
-			final List<ViewRiksdagenPartyRoleMember> allMembers = partyRoleMemberDataContainer
-					.getAllBy(ViewRiksdagenPartyRoleMember_.party, viewRiksdagenParty.getPartyId());
-
-			partyGhantChartManager.createRoleGhant(panelContent, allMembers);
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
-		}
+		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		return panelContent;
 
 	}

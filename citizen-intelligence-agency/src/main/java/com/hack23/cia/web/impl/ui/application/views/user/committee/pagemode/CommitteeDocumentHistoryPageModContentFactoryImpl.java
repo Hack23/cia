@@ -37,7 +37,6 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class CommitteeDocumentHistoryPageModContentFactoryImpl.
  */
@@ -45,13 +44,15 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 		extends AbstractCommitteePageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId");
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.DOCUMENT_VIEW_NAME, "docId");
 
-	private static final String[] HIDE_COLUMNS = new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId", "org", "docId", "label","roleDescription" };
+	private static final String[] HIDE_COLUMNS = new String[] { "id", "numberValue", "orderNumber", "tempLabel",
+			"personReferenceId", "org", "docId", "label", "roleDescription" };
 
-	private static final String[] COLUMN_ORDER = new String[] { "rm", "madePublicDate","id", "docId", "personReferenceId",
-			"roleDescription", "title", "subTitle", "documentType", "subType", "org", "label",
-			"numberValue", "status", "tempLabel", "orderNumber","referenceName", "partyShortCode" };
+	private static final String[] COLUMN_ORDER = new String[] { "rm", "madePublicDate", "id", "docId",
+			"personReferenceId", "roleDescription", "title", "subTitle", "documentType", "subType", "org", "label",
+			"numberValue", "status", "tempLabel", "orderNumber", "referenceName", "partyShortCode" };
 
 	private static final String DOCUMENTS = "Documents";
 
@@ -84,30 +85,24 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 
-		if (viewRiksdagenCommittee != null) {
+		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
+		LabelFactory.createHeader2Label(panelContent, DOCUMENT_HISTORY);
 
-			LabelFactory.createHeader2Label(panelContent,DOCUMENT_HISTORY);
+		final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPoliticianDocument.class);
 
+		getGridFactory()
+				.createBasicBeanItemGrid(panelContent, ViewRiksdagenPoliticianDocument.class,
+						politicianDocumentDataContainer.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.org,
+								viewRiksdagenCommittee.getEmbeddedId().getOrgCode().replace(" ", "").replace("_", "")
+										.trim(),
+								ViewRiksdagenPoliticianDocument_.madePublicDate),
+						DOCUMENTS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-			final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenPoliticianDocument.class);
-
-			getGridFactory().createBasicBeanItemGrid(
-					panelContent, ViewRiksdagenPoliticianDocument.class, politicianDocumentDataContainer.findOrderedListByProperty(
-							ViewRiksdagenPoliticianDocument_.org, viewRiksdagenCommittee.getEmbeddedId().getOrgCode()
-							.replace(" ", "").replace("_", "").trim(),
-					ViewRiksdagenPoliticianDocument_.madePublicDate),
-					DOCUMENTS,
-					COLUMN_ORDER,
-					HIDE_COLUMNS, LISTENER, null, null);
-
-
-			panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER,
-					NAME, parameters, pageId);
-		}
+		panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 		return panelContent;
 
 	}

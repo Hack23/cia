@@ -32,7 +32,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData_;
-import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.user.DocumentWordCountRequest;
@@ -76,7 +75,6 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 	/** The Constant DOCUMENT_DATA. */
 	private static final String DOCUMENT_DATA = "Document Data";
 
-
 	/**
 	 * Instantiates a new document data page mod content factory impl.
 	 */
@@ -86,7 +84,8 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(DocumentPageMode.DOCUMENTDATA.toString());
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters)
+				&& parameters.contains(DocumentPageMode.DOCUMENTDATA.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -96,56 +95,52 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 
 		final String pageId = getPageId(parameters);
 
-		final DocumentElement documentElement = getItem(parameters);
+		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
-		if (documentElement != null) {
+		LabelFactory.createHeader2Label(panelContent, DOCUMENT_DATA);
 
-			getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
+		final DataContainer<DocumentContentData, String> documentContentDataDataContainer = getApplicationManager()
+				.getDataContainer(DocumentContentData.class);
 
-			LabelFactory.createHeader2Label(panelContent,DOCUMENT_DATA);
+		final List<DocumentContentData> documentContentlist = documentContentDataDataContainer
+				.getAllBy(DocumentContentData_.id, pageId);
 
-			final DataContainer<DocumentContentData, String> documentContentDataDataContainer = getApplicationManager()
-					.getDataContainer(DocumentContentData.class);
+		if (!documentContentlist.isEmpty()) {
 
-			final List<DocumentContentData> documentContentlist = documentContentDataDataContainer
-					.getAllBy(DocumentContentData_.id, pageId);
+			final Panel formPanel = new Panel();
+			formPanel.setSizeFull();
 
-			if (!documentContentlist.isEmpty()) {
+			panelContent.addComponent(formPanel);
 
-				final Panel formPanel = new Panel();
-				formPanel.setSizeFull();
+			final FormLayout formContent = new FormLayout();
+			formPanel.setContent(formContent);
 
-				panelContent.addComponent(formPanel);
+			final String cleanContent = Jsoup.clean(documentContentlist.get(0).getContent(), "", Whitelist.simpleText(),
+					new OutputSettings().indentAmount(4));
 
-				final FormLayout formContent = new FormLayout();
-				formPanel.setContent(formContent);
+			final Label htmlContent = new Label(cleanContent, ContentMode.HTML);
 
-				final String cleanContent = Jsoup.clean(documentContentlist.get(0).getContent(),"", Whitelist.simpleText(), new OutputSettings().indentAmount(4));
+			formContent.addComponent(htmlContent);
 
-				final Label htmlContent = new Label(cleanContent, ContentMode.HTML);
+			final DocumentWordCountRequest documentWordCountRequest = new DocumentWordCountRequest();
+			documentWordCountRequest.setDocumentId(pageId);
+			documentWordCountRequest.setMaxResults(MAX_RESULTS);
+			documentWordCountRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+			final DocumentWordCountResponse resp = (DocumentWordCountResponse) getApplicationManager()
+					.service(documentWordCountRequest);
 
-				formContent.addComponent(htmlContent);
-
-				final DocumentWordCountRequest documentWordCountRequest = new DocumentWordCountRequest();
-				documentWordCountRequest.setDocumentId(pageId);
-				documentWordCountRequest.setMaxResults(MAX_RESULTS);
-				documentWordCountRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-				final DocumentWordCountResponse resp = (DocumentWordCountResponse) getApplicationManager().service(documentWordCountRequest);
-
-				if (resp.getWordCountMap() != null) {
-					final Label wordCloud = new Label(createWordCloud(resp.getWordCountMap()), ContentMode.HTML);
-					formContent.addComponent(wordCloud);
-				}
-
-				panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
-
+			if (resp.getWordCountMap() != null) {
+				final Label wordCloud = new Label(createWordCloud(resp.getWordCountMap()), ContentMode.HTML);
+				formContent.addComponent(wordCloud);
 			}
 
+			panelContent.setExpandRatio(formPanel, ContentRatio.GRID);
 
-
-			panel.setContent(panelContent);
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
 		}
+
+		panel.setContent(panelContent);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 
 		return panelContent;
 
@@ -155,11 +150,11 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 		final StringBuilder builder = new StringBuilder();
 		builder.append(START_PARAGRAPH);
 		for (final Entry<String, Integer> entry : wordMap.entrySet()) {
-			builder.append(START_FONT_SIZE).append(entry.getValue()).append(END_FONT_SIZE).append(entry.getKey()).append(END_FONT);
+			builder.append(START_FONT_SIZE).append(entry.getValue()).append(END_FONT_SIZE).append(entry.getKey())
+					.append(END_FONT);
 		}
 		builder.append(END_PARAGRAPH);
 		return builder.toString();
 	}
-
 
 }

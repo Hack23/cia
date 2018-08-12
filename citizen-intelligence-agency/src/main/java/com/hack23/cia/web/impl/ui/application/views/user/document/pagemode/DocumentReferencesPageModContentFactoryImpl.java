@@ -22,7 +22,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData_;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentReferenceData;
@@ -38,7 +37,6 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class DocumentReferencesPageModContentFactoryImpl.
  */
@@ -51,8 +49,6 @@ public final class DocumentReferencesPageModContentFactoryImpl extends AbstractD
 	/** The Constant DOCUMENT_REFERENCES. */
 	private static final String DOCUMENT_REFERENCES = "Document References";
 
-
-
 	/**
 	 * Instantiates a new document references page mod content factory impl.
 	 */
@@ -62,7 +58,8 @@ public final class DocumentReferencesPageModContentFactoryImpl extends AbstractD
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(DocumentPageMode.DOCUMENTREFERENCES.toString());
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters)
+				&& parameters.contains(DocumentPageMode.DOCUMENTREFERENCES.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -72,44 +69,31 @@ public final class DocumentReferencesPageModContentFactoryImpl extends AbstractD
 
 		final String pageId = getPageId(parameters);
 
-		final DocumentElement documentElement = getItem(parameters);
+		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
-		if (documentElement != null) {
+		final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
+				.getDataContainer(DocumentStatusContainer.class);
 
-			getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
+		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
+				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
+						DocumentData.class, DocumentData_.id, pageId);
 
-			final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
-					.getDataContainer(DocumentStatusContainer.class);
+		LabelFactory.createHeader2Label(panelContent, DOCUMENT_REFERENCES);
 
-			final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
-					.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
-							DocumentData.class, DocumentData_.id, pageId);
+		if (documentStatusContainer != null && documentStatusContainer.getDocumentReferenceContainer() != null
+				&& documentStatusContainer.getDocumentReferenceContainer().getDocumentReferenceList() != null) {
 
-
-
-
-			LabelFactory.createHeader2Label(panelContent,DOCUMENT_REFERENCES);
-
-
-			if (documentStatusContainer != null
-					&& documentStatusContainer.getDocumentReferenceContainer() != null
-					&& documentStatusContainer.getDocumentReferenceContainer()
-							.getDocumentReferenceList() != null) {
-
-				getGridFactory().createBasicBeanItemGrid(
-						panelContent, DocumentReferenceData.class, documentStatusContainer.getDocumentReferenceContainer().getDocumentReferenceList(),
-						DOCUMENT_REFERENCES2,
-						COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
-			}
-
-
-			panel.setContent(panelContent);
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
+			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentReferenceData.class,
+					documentStatusContainer.getDocumentReferenceContainer().getDocumentReferenceList(),
+					DOCUMENT_REFERENCES2, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
 		}
+
+		panel.setContent(panelContent);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 
 		return panelContent;
 
 	}
-
 
 }

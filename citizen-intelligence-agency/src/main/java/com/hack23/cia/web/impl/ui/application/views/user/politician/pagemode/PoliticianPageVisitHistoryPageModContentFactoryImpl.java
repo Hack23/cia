@@ -32,7 +32,8 @@ import com.vaadin.ui.VerticalLayout;
  * The Class OverviewPageModContentFactoryImpl.
  */
 @Component
-public final class PoliticianPageVisitHistoryPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
+public final class PoliticianPageVisitHistoryPageModContentFactoryImpl
+		extends AbstractPoliticianPageModContentFactoryImpl {
 
 	/**
 	 * Instantiates a new politician page visit history page mod content factory
@@ -55,15 +56,11 @@ public final class PoliticianPageVisitHistoryPageModContentFactoryImpl extends A
 		final String pageId = getPageId(parameters);
 
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
-		if (viewRiksdagenPolitician != null) {
+		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
+		createPageVisitHistory(NAME, pageId, panelContent);
 
-			createPageVisitHistory(NAME,pageId,panelContent);
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
-
-		}
+		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 		return panelContent;
 
 	}

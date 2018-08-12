@@ -39,24 +39,22 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class OverviewPageModContentFactoryImpl.
  */
 @Component
 public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
-	private static final List<String> AS_LIST = Arrays.asList( "firstName", "lastName", "gender", "bornYear", "party", "active",
-			"firstAssignmentDate", "lastAssignmentDate", "currentAssignments", "currentMinistryAssignments",
+	private static final List<String> AS_LIST = Arrays.asList("firstName", "lastName", "gender", "bornYear", "party",
+			"active", "firstAssignmentDate", "lastAssignmentDate", "currentAssignments", "currentMinistryAssignments",
 			"currentSpeakerAssignments", "currentCommitteeAssignments", "currentPartyAssignments",
-			"totalMinistryAssignments", "totalCommitteeAssignments", "totalSpeakerAssignments",
-			"totalPartyAssignments", "totalAssignments", "totalDaysServed", "activeEu", "totalDaysServedEu",
-			"activeGovernment", "totalDaysServedGovernment", "activeSpeaker", "totalDaysServedSpeaker",
-			"activeCommittee", "totalDaysServedCommittee", "activeParliament", "totalDaysServedParliament",
-			"activeParty", "totalDaysServedParty" );
+			"totalMinistryAssignments", "totalCommitteeAssignments", "totalSpeakerAssignments", "totalPartyAssignments",
+			"totalAssignments", "totalDaysServed", "activeEu", "totalDaysServedEu", "activeGovernment",
+			"totalDaysServedGovernment", "activeSpeaker", "totalDaysServedSpeaker", "activeCommittee",
+			"totalDaysServedCommittee", "activeParliament", "totalDaysServedParliament", "activeParty",
+			"totalDaysServedParty");
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
-
 
 	/**
 	 * Instantiates a new politician overview page mod content factory impl.
@@ -80,17 +78,14 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		final String pageId = getPageId(parameters);
 
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
-		if (viewRiksdagenPolitician != null) {
+		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
+		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)
+				.load(viewRiksdagenPolitician.getPersonId());
 
-			final PersonData personData = getApplicationManager().getDataContainer(PersonData.class).load(viewRiksdagenPolitician.getPersonId());
-			
-			createOverviewContent(panelContent, personData, viewRiksdagenPolitician,pageId);
+		createOverviewContent(panelContent, personData, viewRiksdagenPolitician, pageId);
 
-			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
-
-		}
+		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 		return panelContent;
 
 	}
@@ -98,18 +93,14 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	/**
 	 * Creates the overview content.
 	 *
-	 * @param panelContent
-	 *            the panel content
-	 * @param personData
-	 *            the person data
-	 * @param viewRiksdagenPolitician
-	 *            the view riksdagen politician
-	 * @param pageId
-	 *            the page id
+	 * @param panelContent the panel content
+	 * @param personData the person data
+	 * @param viewRiksdagenPolitician the view riksdagen politician
+	 * @param pageId the page id
 	 */
 	private void createOverviewContent(final VerticalLayout panelContent, final PersonData personData,
 			final ViewRiksdagenPolitician viewRiksdagenPolitician, final String pageId) {
-		LabelFactory.createHeader2Label(panelContent,OVERVIEW);
+		LabelFactory.createHeader2Label(panelContent, OVERVIEW);
 
 		final Link createPoliticianPageLink = getPageLinkFactory().createPoliticianPageLink(personData);
 		panelContent.addComponent(createPoliticianPageLink);
@@ -122,13 +113,10 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 
 		panelContent.addComponent(horizontalLayout);
 
-
-
 		horizontalLayout.addComponent(image);
 
 		getFormFactory().addFormPanelTextFields(horizontalLayout, viewRiksdagenPolitician,
-				ViewRiksdagenPolitician.class,
-				AS_LIST);
+				ViewRiksdagenPolitician.class, AS_LIST);
 
 		final VerticalLayout overviewLayout = new VerticalLayout();
 		overviewLayout.setSizeFull();

@@ -22,7 +22,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData_;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData;
@@ -37,7 +36,6 @@ import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-
 
 /**
  * The Class DocumentDetailsPageModContentFactoryImpl.
@@ -71,35 +69,28 @@ public final class DocumentDetailsPageModContentFactoryImpl extends AbstractDocu
 
 		final String pageId = getPageId(parameters);
 
-		final DocumentElement documentElement = getItem(parameters);
+		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
-		if (documentElement != null) {
+		final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
+				.getDataContainer(DocumentStatusContainer.class);
 
-			getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
+		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
+				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
+						DocumentData.class, DocumentData_.id, pageId);
 
-			final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
-					.getDataContainer(DocumentStatusContainer.class);
-			
-			final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
-					.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
-							DocumentData.class, DocumentData_.id, pageId);
+		LabelFactory.createHeader2Label(panelContent, DOCUMENT_DETAILS);
 
-			LabelFactory.createHeader2Label(panelContent,DOCUMENT_DETAILS);
+		if (documentStatusContainer != null && documentStatusContainer.getDocumentDetailContainer() != null
+				&& documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList() != null) {
 
-
-			if (documentStatusContainer != null && documentStatusContainer.getDocumentDetailContainer() != null
-					&& documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList() != null) {
-
-				getGridFactory().createBasicBeanItemGrid(
-						panelContent, DocumentDetailData.class, documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList(),
-						DOCUMENT_DETAILS2, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
-			}
-
-			panel.setContent(panelContent);
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
-					parameters, pageId);
+			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentDetailData.class,
+					documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList(), DOCUMENT_DETAILS2,
+					COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
 		}
 
+		panel.setContent(panelContent);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 		return panelContent;
 
 	}

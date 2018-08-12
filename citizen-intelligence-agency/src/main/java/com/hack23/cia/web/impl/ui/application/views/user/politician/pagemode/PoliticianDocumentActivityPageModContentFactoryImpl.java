@@ -35,7 +35,8 @@ import com.vaadin.ui.VerticalLayout;
  * The Class DocumentActivityPageModContentFactoryImpl.
  */
 @Component
-public final class PoliticianDocumentActivityPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
+public final class PoliticianDocumentActivityPageModContentFactoryImpl
+		extends AbstractPoliticianPageModContentFactoryImpl {
 
 	/** The document chart data manager. */
 	@Autowired
@@ -60,22 +61,14 @@ public final class PoliticianDocumentActivityPageModContentFactoryImpl extends A
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
-
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
-		
-		if (viewRiksdagenPolitician != null) {
+		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
+		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.DOCUMENTACTIVITY.toString());
 
-			LabelFactory.createHeader2Label(panelContent,PoliticianPageMode.DOCUMENTACTIVITY.toString());
+		documentChartDataManager.createPersonDocumentHistoryChart(panelContent, viewRiksdagenPolitician.getPersonId());
 
-
-			documentChartDataManager
-					.createPersonDocumentHistoryChart(panelContent,viewRiksdagenPolitician.getPersonId());
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
-
-		}
+		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 		return panelContent;
 
 	}

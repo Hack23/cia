@@ -34,7 +34,6 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class GovernmentRolesPageModContentFactoryImpl.
  */
@@ -43,8 +42,8 @@ public final class PartyGovernmentRolesPageModContentFactoryImpl extends Abstrac
 
 	private static final String PERSON_ID = "personId";
 	private static final String[] HIDE_COLUMNS = new String[] { "roleId", PERSON_ID, "party" };
-	private static final String[] COLUMN_ORDER = new String[] { "roleId", PERSON_ID, "firstName", "lastName", "active", "detail",
-			"roleCode", "fromDate", "toDate", "totalDaysServed" };
+	private static final String[] COLUMN_ORDER = new String[] { "roleId", PERSON_ID, "firstName", "lastName", "active",
+			"detail", "roleCode", "fromDate", "toDate", "totalDaysServed" };
 	/** The Constant GOVERNMENT_ROLES. */
 	private static final String GOVERNMENT_ROLES = "Government Roles";
 
@@ -66,30 +65,23 @@ public final class PartyGovernmentRolesPageModContentFactoryImpl extends Abstrac
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
-		
+
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
+		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		if (viewRiksdagenParty != null) {
+		LabelFactory.createHeader2Label(panelContent, GOVERNMENT_ROLES);
 
-			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+		final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
 
-			LabelFactory.createHeader2Label(panelContent,GOVERNMENT_ROLES);
+		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenGovermentRoleMember.class,
+				govermentRoleMemberDataContainer.findListByProperty(
+						new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },
+						ViewRiksdagenGovermentRoleMember_.party, ViewRiksdagenGovermentRoleMember_.active),
+				GOVERNMENT_ROLES, COLUMN_ORDER, HIDE_COLUMNS,
+				new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, PERSON_ID), null, null);
 
-
-			final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
-
-			getGridFactory().createBasicBeanItemGrid(
-					panelContent, ViewRiksdagenGovermentRoleMember.class, govermentRoleMemberDataContainer.findListByProperty(
-							new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },
-							ViewRiksdagenGovermentRoleMember_.party, ViewRiksdagenGovermentRoleMember_.active),
-					GOVERNMENT_ROLES,
-					COLUMN_ORDER, HIDE_COLUMNS,
-					new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, PERSON_ID), null, null);
-
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
-		}
+		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		return panelContent;
 
 	}

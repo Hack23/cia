@@ -41,20 +41,18 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class DocumentOverviewPageModContentFactoryImpl.
  */
 @Component
 public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-	private static final List<String> AS_LIST3 = Arrays.asList( "documentCategory" );
-	private static final List<String> AS_LIST2 = Arrays.asList( "id", "org", "documentType", "subType", "rm", "status",
-			"title", "subTitle", "madePublicDate", "label", "tempLabel", "numberValue",
-			"hangarId");
-	private static final List<String> AS_LIST = Arrays.asList( "id", "org", "documentType", "subType", "rm", "status", "title",
-			"subTitle", "madePublicDate", "createdDate", "systemDate", "relatedId", "label",
-			"tempLabel", "numberValue", "kallId", "documentFormat" );
+	private static final List<String> AS_LIST3 = Arrays.asList("documentCategory");
+	private static final List<String> AS_LIST2 = Arrays.asList("id", "org", "documentType", "subType", "rm", "status",
+			"title", "subTitle", "madePublicDate", "label", "tempLabel", "numberValue", "hangarId");
+	private static final List<String> AS_LIST = Arrays.asList("id", "org", "documentType", "subType", "rm", "status",
+			"title", "subTitle", "madePublicDate", "createdDate", "systemDate", "relatedId", "label", "tempLabel",
+			"numberValue", "kallId", "documentFormat");
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
 
@@ -80,46 +78,38 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 		final String pageId = getPageId(parameters);
 
 		final DocumentElement documentElement = getItem(parameters);
+		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
-		if (documentElement != null) {
+		final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
+				.getDataContainer(DocumentStatusContainer.class);
 
-			getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
+		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
+				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
+						DocumentData.class, DocumentData_.id, pageId);
 
-			final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
-					.getDataContainer(DocumentStatusContainer.class);
-			
-			final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
-					.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
-							DocumentData.class, DocumentData_.id, pageId);
+		LabelFactory.createHeader2Label(panelContent, OVERVIEW);
 
-			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
+		getFormFactory().addFormPanelTextFields(panelContent, documentElement, DocumentElement.class, AS_LIST);
 
-			getFormFactory().addFormPanelTextFields(panelContent, documentElement, DocumentElement.class,
-					AS_LIST);
+		if (documentStatusContainer != null) {
+			getFormFactory().addFormPanelTextFields(panelContent, documentStatusContainer,
+					DocumentStatusContainer.class, AS_LIST3);
 
-
-			if (documentStatusContainer != null) {
-				getFormFactory().addFormPanelTextFields(panelContent, documentStatusContainer,
-						DocumentStatusContainer.class, AS_LIST3);
-
-				getFormFactory()
-						.addFormPanelTextFields(panelContent, documentStatusContainer.getDocument(),
-								DocumentData.class,
-								AS_LIST2);
-			}
-
-			final VerticalLayout overviewLayout = new VerticalLayout();
-			overviewLayout.setSizeFull();
-
-			panelContent.addComponent(overviewLayout);
-			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
-
-			getDocumentMenuItemFactory().createOverviewPage(overviewLayout, pageId);
-
-			panel.setContent(panelContent);
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
-					parameters, pageId);
+			getFormFactory().addFormPanelTextFields(panelContent, documentStatusContainer.getDocument(),
+					DocumentData.class, AS_LIST2);
 		}
+
+		final VerticalLayout overviewLayout = new VerticalLayout();
+		overviewLayout.setSizeFull();
+
+		panelContent.addComponent(overviewLayout);
+		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
+
+		getDocumentMenuItemFactory().createOverviewPage(overviewLayout, pageId);
+
+		panel.setContent(panelContent);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 
 		return panelContent;
 

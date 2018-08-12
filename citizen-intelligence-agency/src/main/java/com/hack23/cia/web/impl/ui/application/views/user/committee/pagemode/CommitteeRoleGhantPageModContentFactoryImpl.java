@@ -63,8 +63,8 @@ public final class CommitteeRoleGhantPageModContentFactoryImpl extends AbstractC
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page)
-				&& !StringUtils.isEmpty(parameters) && parameters.contains(CommitteePageMode.ROLEGHANT.toString());
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters)
+				&& parameters.contains(CommitteePageMode.ROLEGHANT.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -74,26 +74,21 @@ public final class CommitteeRoleGhantPageModContentFactoryImpl extends AbstractC
 
 		final String pageId = getPageId(parameters);
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
+		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		if (viewRiksdagenCommittee != null) {
+		LabelFactory.createHeader2Label(panelContent, ROLE_GHANT);
 
-			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
+		final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
 
-			LabelFactory.createHeader2Label(panelContent,ROLE_GHANT);
+		final List<ViewRiksdagenCommitteeRoleMember> allMembers = committeeRoleMemberDataContainer
+				.getAllBy(ViewRiksdagenCommitteeRoleMember_.detail, viewRiksdagenCommittee.getEmbeddedId().getDetail());
 
+		committeeGhantChartManager.createRoleGhant(panelContent, allMembers);
 
-			final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
-
-			final List<ViewRiksdagenCommitteeRoleMember> allMembers = committeeRoleMemberDataContainer.getAllBy(ViewRiksdagenCommitteeRoleMember_.detail,
-							viewRiksdagenCommittee.getEmbeddedId().getDetail());
-
-			committeeGhantChartManager.createRoleGhant(panelContent, allMembers);
-
-			panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER,
-					NAME, parameters, pageId);
-		}
+		panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 		return panelContent;
 
 	}

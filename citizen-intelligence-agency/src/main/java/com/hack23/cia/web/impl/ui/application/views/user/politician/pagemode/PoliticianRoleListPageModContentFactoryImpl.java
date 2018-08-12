@@ -42,8 +42,8 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
 	private static final String[] HIDE_COLUMNS = new String[] { "hjid", "intressentId", "orderNumber", "orgCode" };
-	private static final String[] COLUMN_ORDER = new String[] { "roleCode", "assignmentType", "status", "detail", "orgCode", "fromDate",
-			"toDate" };
+	private static final String[] COLUMN_ORDER = new String[] { "roleCode", "assignmentType", "status", "detail",
+			"orgCode", "fromDate", "toDate" };
 	private static final String ASSIGNMENTS = "Assignments";
 
 	/**
@@ -65,21 +65,17 @@ public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractP
 
 		final String pageId = getPageId(parameters);
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
-		if (viewRiksdagenPolitician != null) {
+		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
+		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.ROLELIST.toString());
 
-			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
-			LabelFactory.createHeader2Label(panelContent,PoliticianPageMode.ROLELIST.toString());
+		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)
+				.load(viewRiksdagenPolitician.getPersonId());
 
-			final PersonData personData = getApplicationManager().getDataContainer(PersonData.class).load(viewRiksdagenPolitician.getPersonId());
-			
-			final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()
-					.getAssignmentList();
+		final List<AssignmentData> assignmentList = personData.getPersonAssignmentData().getAssignmentList();
 
-			createRoleList(panelContent, assignmentList);
+		createRoleList(panelContent, assignmentList);
 
-			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
-
-		}
+		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 		return panelContent;
 
 	}
@@ -87,23 +83,19 @@ public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractP
 	/**
 	 * Creates the role list.
 	 *
-	 * @param roleSummaryLayoutTabsheet
-	 *            the role summary layout tabsheet
-	 * @param assignmentList
-	 *            the assignment list
+	 * @param roleSummaryLayoutTabsheet the role summary layout tabsheet
+	 * @param assignmentList the assignment list
 	 */
-	private void createRoleList(final VerticalLayout roleSummaryLayoutTabsheet, final List<AssignmentData> assignmentList) {
+	private void createRoleList(final VerticalLayout roleSummaryLayoutTabsheet,
+			final List<AssignmentData> assignmentList) {
 
 		final Comparator<AssignmentData> compare = (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
 
 		Collections.sort(assignmentList, compare);
 
-		getGridFactory()
-				.createBasicBeanItemGrid(roleSummaryLayoutTabsheet, AssignmentData.class, assignmentList,
-						ASSIGNMENTS,
-						COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
+		getGridFactory().createBasicBeanItemGrid(roleSummaryLayoutTabsheet, AssignmentData.class, assignmentList,
+				ASSIGNMENTS, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
 
 	}
-
 
 }

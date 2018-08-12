@@ -57,7 +57,8 @@ public final class MinistryGovernmentBodiesModContentFactoryImpl extends Abstrac
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(MinistryPageMode.GOVERNMENT_BODIES.toString());
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters)
+				&& parameters.contains(MinistryPageMode.GOVERNMENT_BODIES.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -68,20 +69,16 @@ public final class MinistryGovernmentBodiesModContentFactoryImpl extends Abstrac
 		final String pageId = getPageId(parameters);
 
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
+		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		if (viewRiksdagenMinistry != null) {
+		LabelFactory.createHeader2Label(panelContent, GOVERNMENT_BODIES);
 
-			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
+		governmentBodyChartDataManager.createMinistryGovernmentBodyHeadcountSummaryChart(panelContent,
+				viewRiksdagenMinistry.getNameId());
 
-			LabelFactory.createHeader2Label(panelContent,GOVERNMENT_BODIES);
-
-			governmentBodyChartDataManager.createMinistryGovernmentBodyHeadcountSummaryChart(panelContent, viewRiksdagenMinistry.getNameId());
-
-			panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
-					parameters, pageId);
-
-		}
+		panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 
 		return panelContent;
 

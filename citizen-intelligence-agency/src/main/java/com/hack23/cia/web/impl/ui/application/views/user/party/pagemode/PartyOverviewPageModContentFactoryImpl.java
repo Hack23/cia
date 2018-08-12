@@ -43,15 +43,15 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	private static final List<String> AS_LIST2 = Arrays.asList("active", "firstAssignmentDate", "lastAssignmentDate", "currentAssignments",
-			"totalAssignments", "totalDaysServed", "activeEu", "totalActiveEu", "totalDaysServedEu",
-			"activeGovernment", "totalActiveGovernment", "totalDaysServedGovernment",
-			"activeCommittee", "totalActiveCommittee", "totalDaysServedCommittee",
-			"activeParliament", "totalActiveParliament", "totalDaysServedParliament");
+	private static final List<String> AS_LIST2 = Arrays.asList("active", "firstAssignmentDate", "lastAssignmentDate",
+			"currentAssignments", "totalAssignments", "totalDaysServed", "activeEu", "totalActiveEu",
+			"totalDaysServedEu", "activeGovernment", "totalActiveGovernment", "totalDaysServedGovernment",
+			"activeCommittee", "totalActiveCommittee", "totalDaysServedCommittee", "activeParliament",
+			"totalActiveParliament", "totalDaysServedParliament");
 
 	private static final List<String> AS_LIST = Arrays.asList("partyName", "partyId", "headCount", "partyNumber",
 			"registeredDate", "website");
-	
+
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
 
@@ -78,43 +78,38 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 
-		if (viewRiksdagenParty != null) {
+		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+		LabelFactory.createHeader2Label(panelContent, OVERVIEW);
 
-			LabelFactory.createHeader2Label(panelContent, OVERVIEW);
+		final Link addPartyPageLink = getPageLinkFactory().addPartyPageLink(viewRiksdagenParty);
+		panelContent.addComponent(addPartyPageLink);
 
-			final Link addPartyPageLink = getPageLinkFactory().addPartyPageLink(viewRiksdagenParty);
-			panelContent.addComponent(addPartyPageLink);
+		panelContent.setExpandRatio(addPartyPageLink, ContentRatio.SMALL);
 
-			panelContent.setExpandRatio(addPartyPageLink, ContentRatio.SMALL);
+		getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenParty, ViewRiksdagenParty.class, AS_LIST);
 
-			getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenParty, ViewRiksdagenParty.class,
-					AS_LIST);
-			
-			final DataContainer<ViewRiksdagenPartySummary, String> partySummarydataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenPartySummary.class);
+		final DataContainer<ViewRiksdagenPartySummary, String> partySummarydataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPartySummary.class);
 
-			final ViewRiksdagenPartySummary viewRiksdagenPartySummary = partySummarydataContainer.load(pageId);
+		final ViewRiksdagenPartySummary viewRiksdagenPartySummary = partySummarydataContainer.load(pageId);
 
-			if (viewRiksdagenPartySummary != null) {
+		if (viewRiksdagenPartySummary != null) {
 
-				getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenPartySummary,
-						ViewRiksdagenPartySummary.class,
-						AS_LIST2);
+			getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenPartySummary,
+					ViewRiksdagenPartySummary.class, AS_LIST2);
 
-			}
-
-			final VerticalLayout overviewLayout = new VerticalLayout();
-			overviewLayout.setSizeFull();
-
-			panelContent.addComponent(overviewLayout);
-			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
-
-			getPartyMenuItemFactory().createOverviewPage(overviewLayout, pageId);
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		}
+
+		final VerticalLayout overviewLayout = new VerticalLayout();
+		overviewLayout.setSizeFull();
+
+		panelContent.addComponent(overviewLayout);
+		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
+
+		getPartyMenuItemFactory().createOverviewPage(overviewLayout, pageId);
+
+		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		return panelContent;
 
 	}

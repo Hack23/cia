@@ -63,7 +63,8 @@ public final class MinistryRoleGhantPageModContentFactoryImpl extends AbstractMi
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(MinistryPageMode.ROLEGHANT.toString());
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters)
+				&& parameters.contains(MinistryPageMode.ROLEGHANT.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -74,27 +75,21 @@ public final class MinistryRoleGhantPageModContentFactoryImpl extends AbstractMi
 		final String pageId = getPageId(parameters);
 
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
+		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		if (viewRiksdagenMinistry != null) {
+		LabelFactory.createHeader2Label(panelContent, ROLE_GHANT);
 
-			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
+		final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
 
-			LabelFactory.createHeader2Label(panelContent,ROLE_GHANT);
+		final List<ViewRiksdagenGovermentRoleMember> allMembers = govermentRoleMemberDataContainer
+				.getAllBy(ViewRiksdagenGovermentRoleMember_.detail, viewRiksdagenMinistry.getNameId());
 
+		ministryGhantChartManager.createRoleGhant(panelContent, allMembers);
 
-			final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
-
-			final List<ViewRiksdagenGovermentRoleMember> allMembers = govermentRoleMemberDataContainer.getAllBy(ViewRiksdagenGovermentRoleMember_.detail, viewRiksdagenMinistry.getNameId());
-
-			ministryGhantChartManager.createRoleGhant(panelContent, allMembers);
-
-			panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
-					parameters, pageId);
-
-		}
-
+		panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 		return panelContent;
 
 	}

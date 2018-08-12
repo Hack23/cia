@@ -38,7 +38,6 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class DocumentActivityPageModContentFactoryImpl.
  */
@@ -46,8 +45,8 @@ import com.vaadin.ui.VerticalLayout;
 public final class DocumentActivityPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
 	private static final String[] HIDE_COLUMNS = new String[] { "hjid" };
-	private static final String[] COLUMN_ORDER = new String[] { "createdDate", "code", "activityName",
-			"orderNumber", "process", "status" };
+	private static final String[] COLUMN_ORDER = new String[] { "createdDate", "code", "activityName", "orderNumber",
+			"process", "status" };
 	private static final String DOCUMENT_ACTIVITIES = "Document activities";
 	/** The Constant DOCUMENT_ACTIVITY. */
 	private static final String DOCUMENT_ACTIVITY = "Document Activity";
@@ -73,36 +72,29 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractDoc
 		final String pageId = getPageId(parameters);
 
 		final DocumentElement documentElement = getItem(parameters);
+		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
-		if (documentElement != null) {
+		final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
+				.getDataContainer(DocumentStatusContainer.class);
 
-			getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
+		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
+				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
+						DocumentData.class, DocumentData_.id, pageId);
 
-			final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
-					.getDataContainer(DocumentStatusContainer.class);
+		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ACTIVITY);
 
-			final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
-					.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
-							DocumentData.class, DocumentData_.id, pageId);
+		if (documentStatusContainer != null && documentStatusContainer.getDocumentActivityContainer() != null
+				&& documentStatusContainer.getDocumentActivityContainer().getDocumentActivities() != null) {
 
-			LabelFactory.createHeader2Label(panelContent,DOCUMENT_ACTIVITY);
+			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentActivityData.class,
+					documentStatusContainer.getDocumentActivityContainer().getDocumentActivities(), DOCUMENT_ACTIVITIES,
+					COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
 
-
-			if (documentStatusContainer != null && documentStatusContainer.getDocumentActivityContainer() != null
-					&& documentStatusContainer.getDocumentActivityContainer().getDocumentActivities() != null) {
-
-				getGridFactory()
-						.createBasicBeanItemGrid(panelContent, DocumentActivityData.class,
-								documentStatusContainer.getDocumentActivityContainer().getDocumentActivities(), DOCUMENT_ACTIVITIES,
-								COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
-
-			}
-
-			panel.setContent(panelContent);
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
-					parameters, pageId);
 		}
 
+		panel.setContent(panelContent);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 		return panelContent;
 
 	}

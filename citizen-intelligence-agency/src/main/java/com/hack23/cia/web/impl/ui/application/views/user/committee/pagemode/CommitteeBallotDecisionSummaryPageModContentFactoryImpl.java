@@ -41,7 +41,6 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class CommitteeBallotDecisionSummaryPageModContentFactoryImpl.
  */
@@ -51,21 +50,23 @@ public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl
 
 	private static final String BALLOT_ID = "ballotId";
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
 
-	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "embeddedId.id", "endNumber", "org", "createdDate", "publicDate",
-			BALLOT_ID, "decisionType", "label", "againstProposalNumber", "avgBornYear",
-			"percentageMale", "approved", "noWinner", "ballotType", "percentageYes", "percentageNo",
-			"percentageAbsent", "percentageAbstain" };
+	private static final String[] HIDE_COLUMNS = new String[] { "embeddedId", "embeddedId.id", "endNumber", "org",
+			"createdDate", "publicDate", BALLOT_ID, "decisionType", "label", "againstProposalNumber", "avgBornYear",
+			"percentageMale", "approved", "noWinner", "ballotType", "percentageYes", "percentageNo", "percentageAbsent",
+			"percentageAbstain" };
 
-	private static final String[] COLUMN_ORDER = new String[] { "voteDate", "embeddedId.concern", "embeddedId.id", "committeeReport",
-			"embeddedId.issue", "rm", "title", "subTitle", "endNumber", "org", "createdDate",
-			"publicDate", BALLOT_ID, "decisionType", "againstProposalParties", "againstProposalNumber",
-			"winner", "ballotType", "label", "avgBornYear", "totalVotes", "yesVotes", "noVotes",
-			"abstainVotes", "absentVotes", "approved", "noWinner", "percentageYes", "percentageNo",
-			"percentageAbsent", "percentageAbstain", "percentageMale" };
+	private static final String[] COLUMN_ORDER = new String[] { "voteDate", "embeddedId.concern", "embeddedId.id",
+			"committeeReport", "embeddedId.issue", "rm", "title", "subTitle", "endNumber", "org", "createdDate",
+			"publicDate", BALLOT_ID, "decisionType", "againstProposalParties", "againstProposalNumber", "winner",
+			"ballotType", "label", "avgBornYear", "totalVotes", "yesVotes", "noVotes", "abstainVotes", "absentVotes",
+			"approved", "noWinner", "percentageYes", "percentageNo", "percentageAbsent", "percentageAbstain",
+			"percentageMale" };
 
-	private static final String[] NESTED_PROPERTIES = new String[] { "embeddedId.concern", "embeddedId.issue", "embeddedId.id" };
+	private static final String[] NESTED_PROPERTIES = new String[] { "embeddedId.concern", "embeddedId.issue",
+			"embeddedId.id" };
 
 	private static final String COMMITTEE_BALLOT_DECISION_SUMMARY = "Committee Ballot Decision Summary";
 
@@ -97,32 +98,25 @@ public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl
 		final String pageId = getPageId(parameters);
 
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
+		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		if (viewRiksdagenCommittee != null) {
+		LabelFactory.createHeader2Label(panelContent, BALLOT_DECISION_SUMMARY);
 
-			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
+		final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
 
-			LabelFactory.createHeader2Label(panelContent, BALLOT_DECISION_SUMMARY);
+		final List<ViewRiksdagenCommitteeBallotDecisionSummary> decisionPartySummaryList = committeeBallotDecisionPartyDataContainer
+				.findOrderedListByProperty(ViewRiksdagenCommitteeBallotDecisionSummary_.org,
+						pageId.toUpperCase(Locale.ENGLISH), ViewRiksdagenCommitteeBallotDecisionSummary_.createdDate);
 
-			final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);
+		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
+				ViewRiksdagenCommitteeBallotDecisionSummary.class, decisionPartySummaryList,
+				COMMITTEE_BALLOT_DECISION_SUMMARY, NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, BALLOT_ID,
+				null);
 
-			final List<ViewRiksdagenCommitteeBallotDecisionSummary> decisionPartySummaryList = committeeBallotDecisionPartyDataContainer
-					.findOrderedListByProperty(ViewRiksdagenCommitteeBallotDecisionSummary_.org,
-							pageId.toUpperCase(Locale.ENGLISH),
-							ViewRiksdagenCommitteeBallotDecisionSummary_.createdDate);
-
-			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenCommitteeBallotDecisionSummary.class,
-					decisionPartySummaryList, COMMITTEE_BALLOT_DECISION_SUMMARY,
-					NESTED_PROPERTIES,
-					COLUMN_ORDER,
-					HIDE_COLUMNS,
-					LISTENER, BALLOT_ID, null);
-
-			panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER,
-					NAME, parameters, pageId);
-		}
+		panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 		return panelContent;
 
 	}

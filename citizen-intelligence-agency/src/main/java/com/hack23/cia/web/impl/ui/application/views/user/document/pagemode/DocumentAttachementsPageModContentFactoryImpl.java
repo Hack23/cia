@@ -50,7 +50,6 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 import com.whitestein.vaadin.widgets.wtpdfviewer.WTPdfViewer;
 
-
 /**
  * The Class DocumentAttachementsPageModContentFactoryImpl.
  */
@@ -59,13 +58,13 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 
 	/** The Constant PDF. */
 	private static final String PDF = "pdf";
-	
+
 	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = new String[] { "hjid" };
-	
+
 	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = new String[] { "fileName", "fileSize", "fileType", "fileUrl" };
-	
+
 	/** The Constant DOCUMENT_ATTACHMENTS. */
 	private static final String DOCUMENT_ATTACHMENTS = "Document Attachments";
 
@@ -89,39 +88,32 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 
 		final String pageId = getPageId(parameters);
 
-
 		final DocumentElement documentElement = getItem(parameters);
+		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
-		if (documentElement != null) {
+		final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
+				.getDataContainer(DocumentStatusContainer.class);
 
-			getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
+		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
+				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
+						DocumentData.class, DocumentData_.id, pageId);
 
-			final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
-					.getDataContainer(DocumentStatusContainer.class);
-			
-			final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
-					.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
-							DocumentData.class, DocumentData_.id, pageId);
+		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ATTACHMENTS);
 
-			LabelFactory.createHeader2Label(panelContent,DOCUMENT_ATTACHMENTS);
+		if (documentStatusContainer != null && documentStatusContainer.getDocumentAttachmentContainer() != null
+				&& documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList() != null) {
 
+			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentAttachment.class,
+					documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList(),
+					DOCUMENT_ATTACHMENTS, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
 
-			if (documentStatusContainer != null && documentStatusContainer.getDocumentAttachmentContainer() != null
-					&& documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList() != null) {
-
-				getGridFactory().createBasicBeanItemGrid(
-						panelContent, DocumentAttachment.class, documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList(),
-						DOCUMENT_ATTACHMENTS, COLUMN_ORDER, HIDE_COLUMNS,
-						null, null, null);
-
-				displayDocumentAttachements(panelContent, documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList());
-			}
-
-			panel.setContent(panelContent);
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
-					parameters, pageId);
+			displayDocumentAttachements(panelContent,
+					documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList());
 		}
 
+		panel.setContent(panelContent);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 		return panelContent;
 
 	}
@@ -129,31 +121,30 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 	/**
 	 * Display document attachements.
 	 *
-	 * @param panelContent
-	 *            the panel content
-	 * @param documentAttachmentList
-	 *            the document attachment list
+	 * @param panelContent the panel content
+	 * @param documentAttachmentList the document attachment list
 	 */
 	private static void displayDocumentAttachements(final VerticalLayout panelContent,
 			final List<DocumentAttachment> documentAttachmentList) {
 		for (final DocumentAttachment documentAttachment : documentAttachmentList) {
-			
+
 			if (PDF.equalsIgnoreCase(documentAttachment.getFileType())) {
 				final WTPdfViewer wtPdfViewer = new WTPdfViewer();
 				wtPdfViewer.setSizeFull();
 
 				final StreamResource.StreamSource source = new StreamSourceImplementation(documentAttachment);
 
-				
 				wtPdfViewer.setResource(new StreamResource(source, documentAttachment.getFileName()));
-				
-				panelContent.addComponent(wtPdfViewer);						
-				panelContent.setExpandRatio(wtPdfViewer,ContentRatio.LARGE);
+
+				panelContent.addComponent(wtPdfViewer);
+				panelContent.setExpandRatio(wtPdfViewer, ContentRatio.LARGE);
 			} else {
 				final VerticalLayout verticalLayout = new VerticalLayout();
 				panelContent.addComponent(verticalLayout);
-				panelContent.setExpandRatio(verticalLayout,ContentRatio.SMALL);
-				final ExternalAttachmentDownloadLink link = new ExternalAttachmentDownloadLink(documentAttachment.getFileName(), documentAttachment.getFileType(), documentAttachment.getFileUrl());
+				panelContent.setExpandRatio(verticalLayout, ContentRatio.SMALL);
+				final ExternalAttachmentDownloadLink link = new ExternalAttachmentDownloadLink(
+						documentAttachment.getFileName(), documentAttachment.getFileType(),
+						documentAttachment.getFileUrl());
 				verticalLayout.addComponent(link);
 			}
 		}
@@ -165,7 +156,7 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 	private static final class StreamSourceImplementation implements StreamResource.StreamSource {
 
 		/** The Constant LOGGER. */
-		private static final Logger LOGGER = LoggerFactory.getLogger(StreamSourceImplementation.class);		
+		private static final Logger LOGGER = LoggerFactory.getLogger(StreamSourceImplementation.class);
 
 		/** The document attachment. */
 		private final DocumentAttachment documentAttachment;
@@ -175,8 +166,7 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 		/**
 		 * Instantiates a new stream source implementation.
 		 *
-		 * @param documentAttachment
-		 *            the document attachment
+		 * @param documentAttachment the document attachment
 		 */
 		private StreamSourceImplementation(final DocumentAttachment documentAttachment) {
 			this.documentAttachment = documentAttachment;
@@ -187,7 +177,7 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 			try {
 				return new URL(documentAttachment.getFileUrl()).openStream();
 			} catch (final IOException e) {
-				LOGGER.warn(documentAttachment.getFileUrl(),e);
+				LOGGER.warn(documentAttachment.getFileUrl(), e);
 				return new ByteArrayInputStream(new byte[0]);
 			}
 		}

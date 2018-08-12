@@ -62,7 +62,6 @@ public final class PoliticianRoleSummaryPageModContentFactoryImpl extends Abstra
 	/** The Constant PARLIAMENT_EXPERIENCE. */
 	private static final String PARLIAMENT_EXPERIENCE = "Parliament experience:";
 
-
 	/**
 	 * Instantiates a new politician role summary page mod content factory impl.
 	 */
@@ -82,23 +81,18 @@ public final class PoliticianRoleSummaryPageModContentFactoryImpl extends Abstra
 
 		final String pageId = getPageId(parameters);
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
-		
-		if (viewRiksdagenPolitician != null) {
+		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
+		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.ROLESUMMARY.toString());
 
-			LabelFactory.createHeader2Label(panelContent,PoliticianPageMode.ROLESUMMARY.toString());
+		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)
+				.load(viewRiksdagenPolitician.getPersonId());
 
-			final PersonData personData = getApplicationManager().getDataContainer(PersonData.class).load(viewRiksdagenPolitician.getPersonId());
+		final List<AssignmentData> assignmentList = personData.getPersonAssignmentData().getAssignmentList();
 
-			final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()
-					.getAssignmentList();
+		createRoleSummary(panelContent, assignmentList, viewRiksdagenPolitician);
 
-			createRoleSummary(panelContent, assignmentList, viewRiksdagenPolitician);
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
-
-		}
+		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 		return panelContent;
 
 	}
@@ -106,15 +100,12 @@ public final class PoliticianRoleSummaryPageModContentFactoryImpl extends Abstra
 	/**
 	 * Creates the role summary.
 	 *
-	 * @param roleSummaryLayoutTabsheet
-	 *            the role summary layout tabsheet
-	 * @param assignmentList
-	 *            the assignment list
-	 * @param viewRiksdagenPolitician
-	 *            the view riksdagen politician
+	 * @param roleSummaryLayoutTabsheet the role summary layout tabsheet
+	 * @param assignmentList the assignment list
+	 * @param viewRiksdagenPolitician the view riksdagen politician
 	 */
-	private void createRoleSummary(final VerticalLayout roleSummaryLayoutTabsheet, final List<AssignmentData> assignmentList,
-			final ViewRiksdagenPolitician viewRiksdagenPolitician) {
+	private void createRoleSummary(final VerticalLayout roleSummaryLayoutTabsheet,
+			final List<AssignmentData> assignmentList, final ViewRiksdagenPolitician viewRiksdagenPolitician) {
 
 		final VerticalLayout layout = new VerticalLayout();
 		layout.setSizeFull();
@@ -141,6 +132,5 @@ public final class PoliticianRoleSummaryPageModContentFactoryImpl extends Abstra
 		roleSummaryLayoutTabsheet.setExpandRatio(layout, ContentRatio.GRID);
 
 	}
-
 
 }

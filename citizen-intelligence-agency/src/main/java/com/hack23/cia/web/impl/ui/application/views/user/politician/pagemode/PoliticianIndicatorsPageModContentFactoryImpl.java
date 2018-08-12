@@ -63,17 +63,13 @@ public final class PoliticianIndicatorsPageModContentFactoryImpl extends Abstrac
 
 		final String pageId = getPageId(parameters);
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
-		if (viewRiksdagenPolitician != null) {
+		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
+		LabelFactory.createHeader2Label(panelContent, INDICATORS);
 
-			LabelFactory.createHeader2Label(panelContent,INDICATORS);
+		politicianChartDataManager.createPersonLineChart(panelContent, viewRiksdagenPolitician.getPersonId());
 
-			politicianChartDataManager.createPersonLineChart(panelContent,viewRiksdagenPolitician.getPersonId());
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
-
-		}
+		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 		return panelContent;
 
 	}

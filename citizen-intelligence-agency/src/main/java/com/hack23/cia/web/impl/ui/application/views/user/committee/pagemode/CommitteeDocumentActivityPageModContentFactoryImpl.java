@@ -38,7 +38,8 @@ import com.vaadin.ui.VerticalLayout;
  * The Class CommitteeDocumentActivityPageModContentFactoryImpl.
  */
 @Component
-public final class CommitteeDocumentActivityPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
+public final class CommitteeDocumentActivityPageModContentFactoryImpl
+		extends AbstractCommitteePageModContentFactoryImpl {
 
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = "Committee:";
@@ -50,7 +51,6 @@ public final class CommitteeDocumentActivityPageModContentFactoryImpl extends Ab
 	@Autowired
 	private OrgDocumentChartDataManager chartDataManager;
 
-
 	/**
 	 * Instantiates a new committee document activity page mod content factory
 	 * impl.
@@ -61,7 +61,8 @@ public final class CommitteeDocumentActivityPageModContentFactoryImpl extends Ab
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(CommitteePageMode.DOCUMENTACTIVITY.toString());
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters)
+				&& parameters.contains(CommitteePageMode.DOCUMENTACTIVITY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -72,22 +73,18 @@ public final class CommitteeDocumentActivityPageModContentFactoryImpl extends Ab
 		final String pageId = getPageId(parameters);
 
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
+		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		if (viewRiksdagenCommittee != null) {
+		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ACTIVITY);
 
-			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
+		chartDataManager.createDocumentHistoryChartByOrg(panelContent,
+				viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
 
-				LabelFactory.createHeader2Label(panelContent,DOCUMENT_ACTIVITY);
-
-				chartDataManager
-						.createDocumentHistoryChartByOrg(panelContent,viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
-
-				panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
-				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
-		}
+		panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 		return panelContent;
 
 	}
-
 
 }

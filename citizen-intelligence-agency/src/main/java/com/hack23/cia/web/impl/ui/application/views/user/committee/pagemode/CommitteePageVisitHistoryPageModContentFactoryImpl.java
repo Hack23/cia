@@ -35,7 +35,8 @@ import com.vaadin.ui.VerticalLayout;
  * The Class CommitteePageVisitHistoryPageModContentFactoryImpl.
  */
 @Component
-public final class CommitteePageVisitHistoryPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
+public final class CommitteePageVisitHistoryPageModContentFactoryImpl
+		extends AbstractCommitteePageModContentFactoryImpl {
 
 	/** The Constant COMMITTEE. */
 	private static final String COMMITTEE = "Committee:";
@@ -50,7 +51,8 @@ public final class CommitteePageVisitHistoryPageModContentFactoryImpl extends Ab
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(PageMode.PAGEVISITHISTORY.toString());
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters)
+				&& parameters.contains(PageMode.PAGEVISITHISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -61,16 +63,13 @@ public final class CommitteePageVisitHistoryPageModContentFactoryImpl extends Ab
 		final String pageId = getPageId(parameters);
 
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
+		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		if (viewRiksdagenCommittee != null) {
+		createPageVisitHistory(NAME, pageId, panelContent);
 
-			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
-
-				createPageVisitHistory(NAME,pageId,panelContent);
-
-				panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
-				getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
-		}
+		panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 		return panelContent;
 
 	}

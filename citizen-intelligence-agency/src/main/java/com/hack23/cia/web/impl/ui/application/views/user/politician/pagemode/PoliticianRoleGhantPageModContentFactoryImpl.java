@@ -64,21 +64,18 @@ public final class PoliticianRoleGhantPageModContentFactoryImpl extends Abstract
 		final String pageId = getPageId(parameters);
 
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
-		if (viewRiksdagenPolitician != null) {
-			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
+		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			LabelFactory.createHeader2Label(panelContent,PoliticianPageMode.ROLEGHANT.toString());
+		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.ROLEGHANT.toString());
 
-			final PersonData personData = getApplicationManager().getDataContainer(PersonData.class).load(viewRiksdagenPolitician.getPersonId());
-			
-			final List<AssignmentData> assignmentList = personData.getPersonAssignmentData()
-					.getAssignmentList();
+		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)
+				.load(viewRiksdagenPolitician.getPersonId());
 
-			politicianGhantChartManager.createRoleGhant(panelContent, assignmentList);
+		final List<AssignmentData> assignmentList = personData.getPersonAssignmentData().getAssignmentList();
 
-			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
+		politicianGhantChartManager.createRoleGhant(panelContent, assignmentList);
 
-		}
+		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 		return panelContent;
 
 	}

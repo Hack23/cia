@@ -64,17 +64,13 @@ public final class PartyDocumentActivityPageModContentFactoryImpl extends Abstra
 		final String pageId = getPageId(parameters);
 
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
+		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		if (viewRiksdagenParty != null) {
+		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ACTIVITY);
 
-			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+		documentChartDataManager.createDocumentHistoryPartyChart(panelContent, pageId);
 
-			LabelFactory.createHeader2Label(panelContent,DOCUMENT_ACTIVITY);
-
-			documentChartDataManager.createDocumentHistoryPartyChart(panelContent,pageId);
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
-		}
+		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		return panelContent;
 
 	}

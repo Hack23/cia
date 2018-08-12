@@ -51,15 +51,15 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class CommitteeDecisionFlowPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
 
-
 	/** The Constant PARLIAMENT_DECISION_FLOW. */
 	private static final String COMMITTEE_DECISION_FLOW = "Committee decision flow";
 
 	@Autowired
 	private DecisionFlowChartManager decisionFlowChartManager;
-	
+
 	/**
-	 * Instantiates a new parliament decision flow page mod content factory impl.
+	 * Instantiates a new parliament decision flow page mod content factory
+	 * impl.
 	 */
 	public CommitteeDecisionFlowPageModContentFactoryImpl() {
 		super();
@@ -76,35 +76,36 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		final String pageId = getPageId(parameters);
-			
+
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
+		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		if (viewRiksdagenCommittee != null) {	
-			
-			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
-			
-			String selectedYear = "2017/18";
-			if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
-				selectedYear = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));
-			} 
-
-			final ComboBox<String> comboBox = new ComboBox<>("Select year", Collections.unmodifiableList(Arrays.asList("2017/18","2016/17","2015/16","2014/15","2013/14","2012/13","2011/12","2010/11")));
-			panelContent.addComponent(comboBox);
-			panelContent.setExpandRatio(comboBox, ContentRatio.SMALL2);
-			comboBox.setSelectedItem(selectedYear);
-			comboBox.addValueChangeListener(event -> {
-			    if (!event.getSource().isEmpty()) {
-			    	UI.getCurrent().getNavigator().navigateTo(NAME + "/" + PageMode.CHARTS + "/" + ChartIndicators.DECISION_FLOW_CHART +"/" +pageId +"[" + event.getValue() +"]");
-			    }
-			});
-
-			final Map<String, List<ViewRiksdagenCommittee>> committeeMap = getApplicationManager().getDataContainer(ViewRiksdagenCommittee.class).getAll().stream().collect(Collectors.groupingBy(c -> c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));			
-		
-			final SankeyChart chart = decisionFlowChartManager.createCommitteeDecisionFlow(viewRiksdagenCommittee, committeeMap,comboBox.getSelectedItem().orElse(selectedYear));
-			panelContent.addComponent(chart);		
-			panelContent.setExpandRatio(chart, ContentRatio.LARGE);
+		String selectedYear = "2017/18";
+		if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
+			selectedYear = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));
 		}
-        
+
+		final ComboBox<String> comboBox = new ComboBox<>("Select year", Collections.unmodifiableList(
+				Arrays.asList("2017/18", "2016/17", "2015/16", "2014/15", "2013/14", "2012/13", "2011/12", "2010/11")));
+		panelContent.addComponent(comboBox);
+		panelContent.setExpandRatio(comboBox, ContentRatio.SMALL2);
+		comboBox.setSelectedItem(selectedYear);
+		comboBox.addValueChangeListener(event -> {
+			if (!event.getSource().isEmpty()) {
+				UI.getCurrent().getNavigator().navigateTo(NAME + "/" + PageMode.CHARTS + "/"
+						+ ChartIndicators.DECISION_FLOW_CHART + "/" + pageId + "[" + event.getValue() + "]");
+			}
+		});
+
+		final Map<String, List<ViewRiksdagenCommittee>> committeeMap = getApplicationManager()
+				.getDataContainer(ViewRiksdagenCommittee.class).getAll().stream()
+				.collect(Collectors.groupingBy(c -> c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));
+
+		final SankeyChart chart = decisionFlowChartManager.createCommitteeDecisionFlow(viewRiksdagenCommittee,
+				committeeMap, comboBox.getSelectedItem().orElse(selectedYear));
+		panelContent.addComponent(chart);
+		panelContent.setExpandRatio(chart, ContentRatio.LARGE);
+
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 		panel.setCaption(new StringBuilder().append(NAME).append("::").append(COMMITTEE_DECISION_FLOW).toString());

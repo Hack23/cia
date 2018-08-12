@@ -37,19 +37,19 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class MinistryMemberHistoryPageModContentFactoryImpl.
  */
 @Component
 public final class MinistryMemberHistoryPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId");
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.POLITICIAN_VIEW_NAME, "personId");
 
 	private static final String[] HIDE_COLUMNS = new String[] { "roleId", "personId", "detail" };
 
-	private static final String[] COLUMN_ORDER = new String[] { "roleCode", "roleId", "personId", "firstName", "lastName", "party", "active","totalDaysServed", "detail",
-			"fromDate", "toDate" };
+	private static final String[] COLUMN_ORDER = new String[] { "roleCode", "roleId", "personId", "firstName",
+			"lastName", "party", "active", "totalDaysServed", "detail", "fromDate", "toDate" };
 
 	/** The Constant MEMBER_HISTORY. */
 	private static final String MEMBER_HISTORY = "Member History";
@@ -66,7 +66,8 @@ public final class MinistryMemberHistoryPageModContentFactoryImpl extends Abstra
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(MinistryPageMode.MEMBERHISTORY.toString());
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters)
+				&& parameters.contains(MinistryPageMode.MEMBERHISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -78,28 +79,21 @@ public final class MinistryMemberHistoryPageModContentFactoryImpl extends Abstra
 
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
 
-		if (viewRiksdagenMinistry != null) {
+		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
+		LabelFactory.createHeader2Label(panelContent, MEMBER_HISTORY);
 
-			LabelFactory.createHeader2Label(panelContent,MEMBER_HISTORY);
+		final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
 
+		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenGovermentRoleMember.class,
+				govermentRoleMemberDataContainer.getAllBy(ViewRiksdagenGovermentRoleMember_.detail,
+						viewRiksdagenMinistry.getNameId()),
+				MEMBER_HISTORY, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-			final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
-
-			getGridFactory().createBasicBeanItemGrid(
-					panelContent, ViewRiksdagenGovermentRoleMember.class, govermentRoleMemberDataContainer.getAllBy(
-							ViewRiksdagenGovermentRoleMember_.detail, viewRiksdagenMinistry.getNameId()),
-					MEMBER_HISTORY,
-					COLUMN_ORDER, HIDE_COLUMNS,
-					LISTENER, null, null);
-
-			panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
-					parameters, pageId);
-
-		}
+		panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 
 		return panelContent;
 

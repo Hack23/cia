@@ -73,20 +73,15 @@ public final class CommitteeDecisionTypeDailySummaryPageModContentFactoryImpl2
 		final String pageId = getPageId(parameters);
 
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
+		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		if (viewRiksdagenCommittee != null) {
+		LabelFactory.createHeader2Label(panelContent, DECISION_TYPE_DAILY_SUMMARY);
 
-			getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
+		chartDataManager.createDecisionTypeChart(panelContent, viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
 
-			LabelFactory.createHeader2Label(panelContent,DECISION_TYPE_DAILY_SUMMARY);
-
-			chartDataManager
-					.createDecisionTypeChart(panelContent,viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
-
-			panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER,
-					NAME, parameters, pageId);
-		}
+		panel.setCaption(NAME + "::" + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 		return panelContent;
 
 	}

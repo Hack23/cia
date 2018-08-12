@@ -50,7 +50,8 @@ public final class MinistryPageVisitHistoryPageModContentFactoryImpl extends Abs
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(PageMode.PAGEVISITHISTORY.toString());
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters)
+				&& parameters.contains(PageMode.PAGEVISITHISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -61,18 +62,13 @@ public final class MinistryPageVisitHistoryPageModContentFactoryImpl extends Abs
 		final String pageId = getPageId(parameters);
 
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
+		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		if (viewRiksdagenMinistry != null) {
+		createPageVisitHistory(NAME, pageId, panelContent);
 
-			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
-
-			createPageVisitHistory(NAME,pageId,panelContent);
-
-			panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
-					parameters, pageId);
-
-		}
+		panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 
 		return panelContent;
 

@@ -34,18 +34,19 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class OverviewPageModContentFactoryImpl.
  */
 @Component
-public final class PoliticianDocumentHistoryPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
+public final class PoliticianDocumentHistoryPageModContentFactoryImpl
+		extends AbstractPoliticianPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId");
-	private static final String[] HIDE_COLUMNS = new String[] { "id", "partyShortCode", "personReferenceId", "numberValue", "orderNumber",
-			"tempLabel", "referenceName" , "docId", "label","roleDescription"};
-	private static final String[] COLUMN_ORDER = new String[] { "rm", "madePublicDate","documentType", "subType", "title", "subTitle", "referenceName", "partyShortCode", "personReferenceId", "roleDescription",
-			"org", "id",
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.DOCUMENT_VIEW_NAME, "docId");
+	private static final String[] HIDE_COLUMNS = new String[] { "id", "partyShortCode", "personReferenceId",
+			"numberValue", "orderNumber", "tempLabel", "referenceName", "docId", "label", "roleDescription" };
+	private static final String[] COLUMN_ORDER = new String[] { "rm", "madePublicDate", "documentType", "subType",
+			"title", "subTitle", "referenceName", "partyShortCode", "personReferenceId", "roleDescription", "org", "id",
 			"docId", "tempLabel", "label", "numberValue", "orderNumber", "status" };
 	private static final String DOCUMENTS = "Documents";
 
@@ -68,29 +69,23 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl extends Ab
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
-		
+
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
-		if (viewRiksdagenPolitician != null) {
 
-			getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
+		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-			LabelFactory.createHeader2Label(panelContent,PoliticianPageMode.DOCUMENTHISTORY.toString());
+		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.DOCUMENTHISTORY.toString());
 
+		final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPoliticianDocument.class);
 
-			final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenPoliticianDocument.class);
+		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPoliticianDocument.class,
+				politicianDocumentDataContainer.findOrderedListByProperty(
+						ViewRiksdagenPoliticianDocument_.personReferenceId, viewRiksdagenPolitician.getPersonId(),
+						ViewRiksdagenPoliticianDocument_.madePublicDate),
+				DOCUMENTS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-			getGridFactory().createBasicBeanItemGrid(
-					panelContent, ViewRiksdagenPoliticianDocument.class, politicianDocumentDataContainer.findOrderedListByProperty(
-							ViewRiksdagenPoliticianDocument_.personReferenceId, viewRiksdagenPolitician.getPersonId(),
-							ViewRiksdagenPoliticianDocument_.madePublicDate),
-					DOCUMENTS,
-					COLUMN_ORDER,
-					HIDE_COLUMNS, LISTENER, null, null);
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
-
-		}
+		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);
 		return panelContent;
 
 	}

@@ -65,21 +65,15 @@ public final class PartyWonDailySummaryChartPageModContentFactoryImpl extends Ab
 		final String pageId = getPageId(parameters);
 
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
+		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		if (viewRiksdagenParty != null) {
+		LabelFactory.createHeader2Label(panelContent, PARTY_WON_DAILY_SUMMARY_CHART);
 
-			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+		chartDataManager.createPartyLineChart(panelContent, pageId);
 
-
-			LabelFactory.createHeader2Label(panelContent,PARTY_WON_DAILY_SUMMARY_CHART);
-
-			chartDataManager.createPartyLineChart(panelContent,pageId);
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
-		}
+		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		return panelContent;
 
 	}
-
 
 }

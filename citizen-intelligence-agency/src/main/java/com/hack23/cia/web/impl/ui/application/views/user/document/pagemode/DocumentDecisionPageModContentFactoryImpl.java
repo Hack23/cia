@@ -41,16 +41,14 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class DocumentDecisionPageModContentFactoryImpl.
  */
 @Component
 public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-	private static final List<String> AS_LIST = Arrays.asList( "committee", "chamber", "processedIn", "decisionType",
-			"proposalNumber", "designation", "wording", "wording2", "wording3",
-			"wording4" );
+	private static final List<String> AS_LIST = Arrays.asList("committee", "chamber", "processedIn", "decisionType",
+			"proposalNumber", "designation", "wording", "wording2", "wording3", "wording4");
 	/** The Constant DOCUMENT_DECISION. */
 	private static final String DOCUMENT_DECISION = "Document Decision";
 
@@ -63,7 +61,8 @@ public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDoc
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(DocumentPageMode.DOCUMENTDECISION.toString());
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters)
+				&& parameters.contains(DocumentPageMode.DOCUMENTDECISION.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -74,37 +73,31 @@ public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDoc
 		final String pageId = getPageId(parameters);
 
 		final DocumentElement documentElement = getItem(parameters);
+		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
-		if (documentElement != null) {
+		final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
+				.getDataContainer(DocumentStatusContainer.class);
 
-			getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
+		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
+				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
+						DocumentData.class, DocumentData_.id, pageId);
 
-			final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
-					.getDataContainer(DocumentStatusContainer.class);
+		LabelFactory.createHeader2Label(panelContent, DOCUMENT_DECISION);
 
-			final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
-					.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
-							DocumentData.class, DocumentData_.id, pageId);
+		if (documentStatusContainer != null && documentStatusContainer.getDocumentProposal() != null
+				&& documentStatusContainer.getDocumentProposal().getProposal() != null) {
 
-			LabelFactory.createHeader2Label(panelContent,DOCUMENT_DECISION);
+			getFormFactory().addFormPanelTextFields(panelContent,
+					documentStatusContainer.getDocumentProposal().getProposal(), DocumentProposalData.class, AS_LIST);
 
-			if (documentStatusContainer != null && documentStatusContainer.getDocumentProposal() != null
-					&& documentStatusContainer.getDocumentProposal().getProposal() != null) {
-
-				getFormFactory().addFormPanelTextFields(panelContent,
-						documentStatusContainer.getDocumentProposal().getProposal(),
-						DocumentProposalData.class,
-						AS_LIST);
-
-			}
-
-			panel.setContent(panelContent);
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
 		}
+
+		panel.setContent(panelContent);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 
 		return panelContent;
 
 	}
-
 
 }

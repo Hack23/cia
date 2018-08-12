@@ -22,7 +22,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData_;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData;
@@ -40,17 +39,17 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class DocumentPersonReferencesPageModContentFactoryImpl.
  */
 @Component
 public final class DocumentPersonReferencesPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personReferenceId");
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.POLITICIAN_VIEW_NAME, "personReferenceId");
 	private static final String[] HIDE_COLUMNS = new String[] { "personReferenceId", "hjid" };
-	private static final String[] COLUMN_ORDER = new String[] { "personReferenceId", "referenceName", "partyShortCode", "orderNumber",
-			"roleDescription" };
+	private static final String[] COLUMN_ORDER = new String[] { "personReferenceId", "referenceName", "partyShortCode",
+			"orderNumber", "roleDescription" };
 	private static final String DOCUMENT_PERSON_REFERENCES = "Document person references";
 	/** The Constant PERSON_REFERENCES. */
 	private static final String PERSON_REFERENCES = "Person References";
@@ -65,7 +64,8 @@ public final class DocumentPersonReferencesPageModContentFactoryImpl extends Abs
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(DocumentPageMode.PERSONREFERENCES.toString());
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters)
+				&& parameters.contains(DocumentPageMode.PERSONREFERENCES.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -74,44 +74,33 @@ public final class DocumentPersonReferencesPageModContentFactoryImpl extends Abs
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
-		final DocumentElement documentElement = getItem(parameters);
+		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
-		if (documentElement != null) {
+		final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
+				.getDataContainer(DocumentStatusContainer.class);
 
-			getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
-			
-			final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
-					.getDataContainer(DocumentStatusContainer.class);
-			
-			final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
-					.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
-							DocumentData.class, DocumentData_.id, pageId);
+		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
+				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
+						DocumentData.class, DocumentData_.id, pageId);
 
-			LabelFactory.createHeader2Label(panelContent,PERSON_REFERENCES);
+		LabelFactory.createHeader2Label(panelContent, PERSON_REFERENCES);
 
+		if (documentStatusContainer != null && documentStatusContainer.getDocumentPersonReferenceContainer() != null
+				&& documentStatusContainer.getDocumentPersonReferenceContainer()
+						.getDocumentPersonReferenceList() != null) {
 
-			if (documentStatusContainer != null
-					&& documentStatusContainer.getDocumentPersonReferenceContainer() != null
-					&& documentStatusContainer.getDocumentPersonReferenceContainer()
-							.getDocumentPersonReferenceList() != null) {
+			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentPersonReferenceData.class,
+					documentStatusContainer.getDocumentPersonReferenceContainer().getDocumentPersonReferenceList(),
+					DOCUMENT_PERSON_REFERENCES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-				getGridFactory().createBasicBeanItemGrid(
-						panelContent, DocumentPersonReferenceData.class, documentStatusContainer
-						.getDocumentPersonReferenceContainer().getDocumentPersonReferenceList(),
-						DOCUMENT_PERSON_REFERENCES,
-						COLUMN_ORDER, HIDE_COLUMNS,
-						LISTENER, null, null);
-
-			}
-
-
-			panel.setContent(panelContent);
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
 		}
+
+		panel.setContent(panelContent);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 
 		return panelContent;
 
 	}
-
 
 }

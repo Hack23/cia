@@ -37,15 +37,14 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class MinistryOverviewPageModContentFactoryImpl.
  */
 @Component
 public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	private static final List<String> AS_LIST = Arrays.asList( "nameId", "active", "firstAssignmentDate",
-			"lastAssignmentDate", "totalAssignments", "totalDaysServed", "currentMemberSize" );
+	private static final List<String> AS_LIST = Arrays.asList("nameId", "active", "firstAssignmentDate",
+			"lastAssignmentDate", "totalAssignments", "totalDaysServed", "currentMemberSize");
 
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = "overview";
@@ -75,34 +74,29 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 		final String pageId = getPageId(parameters);
 
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
+		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		if (viewRiksdagenMinistry != null) {
+		LabelFactory.createHeader2Label(panelContent, OVERVIEW);
 
-			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
+		final Link addMinistryPageLink = getPageLinkFactory().addMinistryPageLink(viewRiksdagenMinistry);
+		panelContent.addComponent(addMinistryPageLink);
 
-			LabelFactory.createHeader2Label(panelContent,OVERVIEW);
+		getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenMinistry, ViewRiksdagenMinistry.class,
+				AS_LIST);
 
-			final Link addMinistryPageLink = getPageLinkFactory().addMinistryPageLink(viewRiksdagenMinistry);
-			panelContent.addComponent(addMinistryPageLink);
+		panelContent.setExpandRatio(addMinistryPageLink, ContentRatio.SMALL);
 
-			getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenMinistry,
-					ViewRiksdagenMinistry.class, AS_LIST);
+		panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
 
-			panelContent.setExpandRatio(addMinistryPageLink, ContentRatio.SMALL);
+		final VerticalLayout overviewLayout = new VerticalLayout();
+		overviewLayout.setSizeFull();
 
-			panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
+		panelContent.addComponent(overviewLayout);
+		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
+		getMinistryMenuItemFactory().createOverviewPage(overviewLayout, pageId);
 
-			final VerticalLayout overviewLayout = new VerticalLayout();
-			overviewLayout.setSizeFull();
-
-			panelContent.addComponent(overviewLayout);
-			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
-			getMinistryMenuItemFactory().createOverviewPage(overviewLayout, pageId);
-
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
-					parameters, pageId);
-
-		}
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 
 		return panelContent;
 

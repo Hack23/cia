@@ -37,22 +37,21 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class MinistryDocumentHistoryPageModContentFactoryImpl.
  */
 @Component
 public final class MinistryDocumentHistoryPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME,"docId");
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.DOCUMENT_VIEW_NAME, "docId");
 
-	private static final String[] HIDE_COLUMNS = new String[] { "id", "numberValue", "orderNumber", "tempLabel", "personReferenceId",
-			"org","roleDescription", "label","subTitle","docId" };
+	private static final String[] HIDE_COLUMNS = new String[] { "id", "numberValue", "orderNumber", "tempLabel",
+			"personReferenceId", "org", "roleDescription", "label", "subTitle", "docId" };
 
-	private static final String[] COLUMN_ORDER = new String[] { "id", "docId", "personReferenceId",
-			"roleDescription", "org", "label", "rm",
-			"madePublicDate", "numberValue", "title", "subTitle", "tempLabel",
-			"orderNumber" , "documentType", "subType","status", "partyShortCode", "referenceName"};
+	private static final String[] COLUMN_ORDER = new String[] { "id", "docId", "personReferenceId", "roleDescription",
+			"org", "label", "rm", "madePublicDate", "numberValue", "title", "subTitle", "tempLabel", "orderNumber",
+			"documentType", "subType", "status", "partyShortCode", "referenceName" };
 
 	private static final String DOCUMENTS = "Documents";
 
@@ -72,7 +71,8 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(MinistryPageMode.DOCUMENTHISTORY.toString());
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters)
+				&& parameters.contains(MinistryPageMode.DOCUMENTHISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -84,28 +84,21 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
 
-		if (viewRiksdagenMinistry != null) {
+		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
+		LabelFactory.createHeader2Label(panelContent, DOCUMENT_HISTORY);
 
-			LabelFactory.createHeader2Label(panelContent,DOCUMENT_HISTORY);
+		final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPoliticianDocument.class);
 
+		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPoliticianDocument.class,
+				politicianDocumentDataContainer.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.org,
+						viewRiksdagenMinistry.getNameId(), ViewRiksdagenPoliticianDocument_.madePublicDate),
+				DOCUMENTS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-			final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenPoliticianDocument.class);
-
-			getGridFactory().createBasicBeanItemGrid(
-					panelContent, ViewRiksdagenPoliticianDocument.class, politicianDocumentDataContainer
-					.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.org, viewRiksdagenMinistry.getNameId(),ViewRiksdagenPoliticianDocument_.madePublicDate),
-					DOCUMENTS,
-					COLUMN_ORDER,
-					HIDE_COLUMNS, LISTENER, null, null);
-
-			panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
-					parameters, pageId);
-
-		}
+		panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 
 		return panelContent;
 

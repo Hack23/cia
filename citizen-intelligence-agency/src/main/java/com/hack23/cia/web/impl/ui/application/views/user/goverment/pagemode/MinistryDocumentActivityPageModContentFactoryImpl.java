@@ -70,24 +70,17 @@ public final class MinistryDocumentActivityPageModContentFactoryImpl extends Abs
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
-		
+
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
+		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		if (viewRiksdagenMinistry != null) {
+		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ACTIVITY);
 
-			getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
+		chartDataManager.createDocumentHistoryChartByOrg(panelContent, viewRiksdagenMinistry.getNameId());
 
-			LabelFactory.createHeader2Label(panelContent,DOCUMENT_ACTIVITY);
-
-
-			chartDataManager
-					.createDocumentHistoryChartByOrg(panelContent,viewRiksdagenMinistry.getNameId());
-
-			panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
-			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
-					parameters, pageId);
-
-		}
+		panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
+				parameters, pageId);
 
 		return panelContent;
 

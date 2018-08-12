@@ -34,27 +34,27 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class CurrentMembersPageModContentFactoryImpl.
  */
 @Component
 public final class PartyCurrentMembersPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId");
-	
-	private static final String[] HIDE_COLUMNS = new String[] { "personId", "active", "activeEu", "party", "activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker","bornYear" };
-	private static final String[] COLUMN_ORDER = new String[] { "personId", "firstName", "lastName", "party", "bornYear", "totalDaysServed",
-			"currentAssignments", "totalAssignments", "firstAssignmentDate", "lastAssignmentDate",
-			"totalDaysServedParliament", "totalDaysServedCommittee", "totalDaysServedGovernment",
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.POLITICIAN_VIEW_NAME, "personId");
+
+	private static final String[] HIDE_COLUMNS = new String[] { "personId", "active", "activeEu", "party",
+			"activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker", "bornYear" };
+	private static final String[] COLUMN_ORDER = new String[] { "personId", "firstName", "lastName", "party",
+			"bornYear", "totalDaysServed", "currentAssignments", "totalAssignments", "firstAssignmentDate",
+			"lastAssignmentDate", "totalDaysServedParliament", "totalDaysServedCommittee", "totalDaysServedGovernment",
 			"totalDaysServedEu",
 
 			"active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament",
 
 			"activeParty", "activeSpeaker", "totalDaysServedSpeaker", "totalDaysServedParty",
 
-			"totalPartyAssignments", "totalMinistryAssignments", "totalCommitteeAssignments",
-			"totalSpeakerAssignments",
+			"totalPartyAssignments", "totalMinistryAssignments", "totalCommitteeAssignments", "totalSpeakerAssignments",
 
 			"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
 			"currentSpeakerAssignments", "gender" };
@@ -81,27 +81,20 @@ public final class PartyCurrentMembersPageModContentFactoryImpl extends Abstract
 
 		final String pageId = getPageId(parameters);
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
+		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		if (viewRiksdagenParty != null) {
+		LabelFactory.createHeader2Label(panelContent, CURRENT_MEMBERS);
 
-			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPolitician.class);
 
-			LabelFactory.createHeader2Label(panelContent,CURRENT_MEMBERS);
+		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPolitician.class,
+				politicianDataContainer.findListByProperty(
+						new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE }, ViewRiksdagenPolitician_.party,
+						ViewRiksdagenPolitician_.active),
+				POLITICIANS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-
-			final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenPolitician.class);
-
-			getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPolitician.class,
-					politicianDataContainer.findListByProperty(
-							new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },
-							ViewRiksdagenPolitician_.party, ViewRiksdagenPolitician_.active),
-					POLITICIANS,
-					COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
-
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
-		}
+		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		return panelContent;
 
 	}

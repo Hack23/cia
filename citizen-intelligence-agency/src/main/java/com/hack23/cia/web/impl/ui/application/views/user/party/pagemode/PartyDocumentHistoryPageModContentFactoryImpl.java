@@ -34,19 +34,19 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
 /**
  * The Class DocumentHistoryPageModContentFactoryImpl.
  */
 @Component
 public final class PartyDocumentHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "docId");
-	private static final String[] HIDE_COLUMNS = new String[] { "id", "partyShortCode", "personReferenceId", "numberValue", "orderNumber",
-			"tempLabel", "label", "docId" ,"roleDescription"};
-	private static final String[] COLUMN_ORDER = new String[] { "rm", "madePublicDate", "title", "subTitle","id", "docId", "referenceName", "partyShortCode", "personReferenceId",
-			"roleDescription", "documentType", "subType", "org", "label",
-			"numberValue", "status", "tempLabel", "orderNumber" };
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.DOCUMENT_VIEW_NAME, "docId");
+	private static final String[] HIDE_COLUMNS = new String[] { "id", "partyShortCode", "personReferenceId",
+			"numberValue", "orderNumber", "tempLabel", "label", "docId", "roleDescription" };
+	private static final String[] COLUMN_ORDER = new String[] { "rm", "madePublicDate", "title", "subTitle", "id",
+			"docId", "referenceName", "partyShortCode", "personReferenceId", "roleDescription", "documentType",
+			"subType", "org", "label", "numberValue", "status", "tempLabel", "orderNumber" };
 	private static final String MEMBER_DOCUMENT_HISTORY = "Member Document history";
 	/** The Constant DOCUMENT_HISTORY. */
 	private static final String DOCUMENT_HISTORY = "Document History";
@@ -70,28 +70,20 @@ public final class PartyDocumentHistoryPageModContentFactoryImpl extends Abstrac
 
 		final String pageId = getPageId(parameters);
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
+		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		if (viewRiksdagenParty != null) {
+		LabelFactory.createHeader2Label(panelContent, DOCUMENT_HISTORY);
 
-			getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+		final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPoliticianDocument.class);
 
-			LabelFactory.createHeader2Label(panelContent,DOCUMENT_HISTORY);
+		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPoliticianDocument.class,
+				politicianDocumentDataContainer.findOrderedListByProperty(
+						ViewRiksdagenPoliticianDocument_.partyShortCode, pageId,
+						ViewRiksdagenPoliticianDocument_.madePublicDate),
+				MEMBER_DOCUMENT_HISTORY, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-
-			final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
-					.getDataContainer(ViewRiksdagenPoliticianDocument.class);
-
-			getGridFactory().createBasicBeanItemGrid(
-					panelContent, ViewRiksdagenPoliticianDocument.class, politicianDocumentDataContainer.findOrderedListByProperty(
-							ViewRiksdagenPoliticianDocument_.partyShortCode, pageId,
-							ViewRiksdagenPoliticianDocument_.madePublicDate),
-					MEMBER_DOCUMENT_HISTORY,
-					COLUMN_ORDER,
-					HIDE_COLUMNS, LISTENER, null, null);
-
-
-			pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
-		}
+		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);
 		return panelContent;
 
 	}
