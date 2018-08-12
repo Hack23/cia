@@ -22,7 +22,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData_;
@@ -71,7 +70,6 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractDoc
 
 		final String pageId = getPageId(parameters);
 
-		final DocumentElement documentElement = getItem(parameters);
 		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
 		final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
