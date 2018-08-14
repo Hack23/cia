@@ -17,6 +17,8 @@ Tracking politicians like bugs. Citizen Intelligence Agency is independent and n
 [![BCH compliance](https://bettercodehub.com/edge/badge/Hack23/cia?branch=master)](https://bettercodehub.com/results/Hack23/cia)
 [![codebeat badge](https://codebeat.co/badges/5a7cf18f-68cb-4535-b197-8b541bf9bb7c)](https://codebeat.co/projects/github-com-hack23-cia-master)
 [![Black Duck Security Risk](https://copilot.blackducksoftware.com/github/repos/Hack23/cia/branches/master/badge-risk.svg)](https://copilot.blackducksoftware.com/github/repos/Hack23/cia/branches/master)
+[![DepShield Badge](https://depshield.sonatype.org/badges/Hack23/cia/depshield.svg)](https://depshield.github.io)
+	
 
 
 # Runtime
