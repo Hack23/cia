@@ -59,9 +59,9 @@ Running docker image
   
  Docker repository : https://hub.docker.com/r/hack23/cia/ 
 
- 1. docker run hack23/cia:2018.8.17 -h cia
+ 1. docker run hack23/cia:2018.8.17 -p 28443:8443
 
- 2. Access server at https://localhost:8443/cia/ , register new user to get admin access
+ 2. Access server at https://localhost:28443/cia/ , register new user to get admin access
 
 
 Installing Debian/Ubuntu package

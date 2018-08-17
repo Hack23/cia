@@ -4,7 +4,7 @@
   <parent>
     <artifactId>parent-web-pom</artifactId>
     <groupId>com.hack23.cia</groupId>
-    <version>2018.7.31</version>
+    <version>2018.8.1-SNAPSHOT</version>
     <relativePath>../parent-web-pom/pom.xml</relativePath>
   </parent>
   <artifactId>cia-dist-docker</artifactId>
@@ -106,6 +106,11 @@
                 <dockerFile>Dockerfile</dockerFile>
                 <dockerFileDir>${project.basedir}/target/dockerfile</dockerFileDir>
               </build>
+              <run>
+				<ports>
+				  <port>38443:8443</port>
+				</ports>
+              </run>
             </image>
           </images>
           <verbose>true</verbose>

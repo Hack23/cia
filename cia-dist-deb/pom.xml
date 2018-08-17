@@ -113,11 +113,8 @@
           <contactEmail>cia@hack23.com</contactEmail>
           <deb>
             <section>devel</section>
-            <!-- <depends>zip</depends> -->
-            <preDepends>openjdk-8-jdk, ca-certificates-java</preDepends>
-            <suggests>postgresql</suggests>
-            <!-- <priority></priority> <provides></provides> <recommends></recommends>
-							<replaces></replaces> <suggests></suggests> -->
+            <preDepends>ca-certificates-java</preDepends>
+            <suggests>postgresql, openjdk-11-jdk-headless, oracle-java11-installer</suggests>
           </deb>
           <packages>
             <package>

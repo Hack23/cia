@@ -30,7 +30,7 @@ openssl rand -base64 48 > passphrase.txt
 openssl genrsa -des3 -passout file:passphrase.txt -out server.pass.key 2048
 openssl rsa -passin file:passphrase.txt -in server.pass.key -out server.key
 rm server.pass.key
-openssl req -new -key server.key -out server.csr -subj "/C=UK/ST=Postgresqll/L=Docker/O=Hack23/OU=demo/CN=cia"
+openssl req -new -key server.key -out server.csr -subj "/C=UK/ST=Postgresqll/L=Docker/O=Hack23/OU=demo/CN=127.0.0.1"
 openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
 rm passphrase.txt
 rm server.csr
@@ -51,6 +51,7 @@ echo "pgaudit.log = ddl" >> /etc/postgresql/10/main/postgresql.conf
 echo "pg_stat_statements.track = all" >> /etc/postgresql/10/main/postgresql.conf 
 echo "pg_stat_statements.max = 10000" >> /etc/postgresql/10/main/postgresql.conf
 echo "listen_addresses = '*'" >> /etc/postgresql/10/main/postgresql.conf
+echo "port = 6432" >> /etc/postgresql/10/main/postgresql.conf
 
 service postgresql start
 
@@ -61,11 +62,13 @@ su - postgres -c "psql -c 'GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;'"
 #
 # INSTALL ORACLE JDK
 #
-apt-get -y install software-properties-common openjdk-8-jdk-headless ca-certificates-java
-add-apt-repository ppa:linuxuprising/java
-apt-get update
-echo oracle-java10-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
-apt-get -y install oracle-java10-installer
+apt-get -y install software-properties-common openjdk-11-jdk-headless ca-certificates-java wget
+wget https://download.java.net/java/early_access/jdk11/26/GPL/openjdk-11-ea+26_linux-x64_bin.tar.gz
+tar xvfz openjdk-11-ea+26_linux-x64_bin.tar.gz
+mv jdk-11 /usr/lib/jvm/java-11-openjdk-amd64
+ln -s /usr/lib/jvm/java-11-openjdk-amd64 /usr/lib/jvm/java-11-oracle
+rm openjdk-11-ea+26_linux-x64_bin.tar.gz
+
 dpkg -i /root/cia-dist-deb.deb
 
 mkdir /opt/cia/.postgresql
@@ -74,9 +77,11 @@ chmod 700 /opt/cia/.postgresql/root.crt
 chown -R cia:cia /opt/cia/.postgresql/root.crt
 rm server.crt
 
-echo "database.hostname=cia" >> /opt/cia/webapps/cia/WEB-INF/database.properties
+echo "database.hostname=127.0.0.1" >> /opt/cia/webapps/cia/WEB-INF/database.properties
+echo "database.port=6432" >> /opt/cia/webapps/cia/WEB-INF/database.properties
 
 apt-get -y autoclean
+apt-get -y autoremove
 rm /root/cia-dist-deb.deb
 
 echo completed

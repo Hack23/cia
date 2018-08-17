@@ -1659,15 +1659,11 @@ Resources:
             - "sudo chmod +x /etc/cron.d/cloudwatch-monitor*\n"
             - "sudo /etc/init.d/cron restart\n"
             - "# INSTALL OPEN JDK\n"
-            - "wget https://download.java.net/java/GA/jdk10/10.0.1/fb4372174a714e6b8c52526dc134031e/10/openjdk-10.0.1_linux-x64_bin.tar.gz\n"
-            - "tar xvfz openjdk-10.0.1_linux-x64_bin.tar.gz\n"
-            - "sudo mv jdk-10.0.1 /usr/lib/jvm/java-10-openjdk-amd64\n"
-            - "sudo ln -s /usr/lib/jvm/java-10-openjdk-amd64 /usr/lib/jvm/java-10-oracle\n"
-            - "wget https://download.java.net/java/early_access/jdk11/25/GPL/openjdk-11-ea+25_linux-x64_bin.tar.gz\n"
-            - "tar xvfz openjdk-11-ea+25_linux-x64_bin.tar.gz\n"
+            - "wget https://download.java.net/java/early_access/jdk11/26/GPL/openjdk-11-ea+26_linux-x64_bin.tar.gz\n"
+            - "tar xvfz openjdk-11-ea+26_linux-x64_bin.tar.gz\n"
             - "sudo mv jdk-11 /usr/lib/jvm/java-11-openjdk-amd64\n"
             - "sudo ln -s /usr/lib/jvm/java-11-openjdk-amd64 /usr/lib/jvm/java-11-oracle\n"
-            - "rm openjdk-11-ea+25_linux-x64_bin.tar.gz\n"
+            - "rm openjdk-11-ea+26_linux-x64_bin.tar.gz\n"
             - 'wget '
             - !Ref 'DebPackageUrl'
             - " -O cia-dist-deb.deb \n"
