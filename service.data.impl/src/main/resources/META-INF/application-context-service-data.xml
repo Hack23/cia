@@ -51,13 +51,18 @@
 		<property name="sslMode" value="verify-full" />
 	</bean>
 
-	<bean id="dataSource" class="org.apache.commons.dbcp2.managed.BasicManagedDataSource">
+	<bean id="dataSource" class="org.apache.commons.dbcp2.managed.BasicManagedDataSource" destroy-method="close">
 		<property name="XaDataSourceInstance" ref="xADataSource" />
 		<property name="transactionManager">
 			<bean
 				class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple" />
 		</property>
 		<property name="validationQuery" value="select 1" />
+		<property name="testOnBorrow" value="true"/>
+		<property name="testOnReturn" value="true"/>
+		<property name="testOnCreate" value="true"/>		
+		<property name="poolingStatements" value="true" />
+		<property name="initialSize" value="20" />		
 		<property name="maxTotal" value="200" />
 	</bean>
 
