@@ -61,7 +61,6 @@
 		<property name="testOnBorrow" value="true"/>
 		<property name="testOnReturn" value="true"/>
 		<property name="testOnCreate" value="true"/>		
-		<property name="poolingStatements" value="true" />
 		<property name="initialSize" value="20" />		
 		<property name="maxTotal" value="200" />
 	</bean>
