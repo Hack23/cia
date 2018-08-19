@@ -366,6 +366,8 @@ public final class UserPageVisit extends Assert {
 		result.addAll(driver.findElements(By.className("v-nativebutton")));
 		result.addAll(driver.findElements(By.className("v-button")));
 		result.addAll(driver.findElements(By.className("v-button-caption")));
+		result.addAll(driver.findElements(By.tagName("a")));
+		
 		return result;
 	}
 
@@ -378,7 +380,7 @@ public final class UserPageVisit extends Assert {
 				for (final WebElement webElement : getButtons()) {
 
 					WebElement refreshElement = StaleElementUtils.refreshElement(webElement, driver);
-					if (ExpectedConditions.not(ExpectedConditions.stalenessOf(refreshElement)).apply(driver) && value.equalsIgnoreCase(refreshElement.getText().trim())) {
+					if (ExpectedConditions.not(ExpectedConditions.stalenessOf(refreshElement)).apply(driver) && (value.equalsIgnoreCase(refreshElement.getText().trim()) || refreshElement.getText().trim().endsWith(value))) {
 						return true;
 					}
 				}
@@ -904,7 +906,7 @@ public final class UserPageVisit extends Assert {
 
 		for (final WebElement webElement : getButtons()) {
 			WebElement refreshElement = StaleElementUtils.refreshElement(webElement, driver);
-			if (ExpectedConditions.not(ExpectedConditions.stalenessOf(refreshElement)).apply(driver) && buttonLabel.equalsIgnoreCase(refreshElement.getText().trim())) {
+			if (ExpectedConditions.not(ExpectedConditions.stalenessOf(refreshElement)).apply(driver) && (buttonLabel.equalsIgnoreCase(refreshElement.getText().trim()) || refreshElement.getText().trim().endsWith(buttonLabel))) {
 				return refreshElement;
 			}
 		}

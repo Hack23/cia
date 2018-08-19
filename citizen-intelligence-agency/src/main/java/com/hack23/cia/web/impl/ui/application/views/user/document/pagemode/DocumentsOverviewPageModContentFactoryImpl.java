@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
