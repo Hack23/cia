@@ -34,6 +34,7 @@ import com.hack23.cia.service.api.action.application.LogoutRequest;
 import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
 import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -94,6 +95,11 @@ public abstract class AbstractView extends Panel implements View {
 	/** The page action event helper. */
 	@Autowired
 	protected transient PageActionEventHelper pageActionEventHelper;
+	
+	/** The menu item factory. */
+	@Autowired
+	private ApplicationMenuItemFactory menuItemFactory;
+
 
 	/**
 	 * Instantiates a new abstract view.
@@ -129,7 +135,11 @@ public abstract class AbstractView extends Panel implements View {
 
 			LOGGER.warn("Invalid reference, content not found:{}/{}",pageName, parameters);
 			final VerticalLayout panelContent = createFullSizeVerticalLayout();
+			
+			menuItemFactory.createMainPageMenuBar(getBarmenu());
+
 			LabelFactory.createHeader2Label(panelContent,"Invalid reference, content not found:" +pageName+ "/"+ parameters);
+			
 			getPanel().setContent(panelContent);
 			getPanel().setCaption("Invalid Reference");
 		} catch (final AccessDeniedException e ) {
