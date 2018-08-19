@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
@@ -64,7 +65,7 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) || parameters.contains(PageMode.OVERVIEW.toString());
+		return NAME.equals(page) && (parameters.contains(PageMode.OVERVIEW.toString()) || (StringUtils.isEmpty(parameters)));
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
