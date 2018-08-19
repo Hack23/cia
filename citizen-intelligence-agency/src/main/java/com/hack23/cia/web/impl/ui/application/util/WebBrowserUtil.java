@@ -25,38 +25,21 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.vaadin.server.WebBrowser;
 
+import nl.basjes.parse.useragent.UserAgent;
+import nl.basjes.parse.useragent.UserAgentAnalyzer;
+
 /**
  * The Class WebBrowserUtil.
  */
 public final class WebBrowserUtil {
 
-	/** The Constant UNKNOWN. */
-	private static final String UNKNOWN = "unknown";
-
-	/** The Constant I_PHONE. */
-	private static final String I_PHONE = "IPhone";
-
-	/** The Constant IPAD. */
-	private static final String IPAD = "IPad";
-
-	/** The Constant IOS. */
-	private static final String IOS = "IOS";
-
-	/** The Constant ANDROID. */
-	private static final String ANDROID = "Android";
-
-	/** The Constant MAC_OSX. */
-	private static final String MAC_OSX = "MacOSX";
-
-	/** The Constant WINDOWS_PHONE. */
-	private static final String WINDOWS_PHONE = "WindowsPhone";
-
-	/** The Constant WINDOWS2. */
-	private static final String WINDOWS2 = "Windows";
-
-	/** The Constant LINUX. */
-	private static final String LINUX = "Linux";
-
+	/** The Constant USER_AGENT_ANALYZER. */
+	private static final UserAgentAnalyzer USER_AGENT_ANALYZER = UserAgentAnalyzer
+            .newBuilder()
+            .hideMatcherLoadStats()
+            .withCache(10000)
+            .build();
+	
 	/** The Constant X_FORWARDED_FOR. */
 	private static final String X_FORWARDED_FOR = "X-Forwarded-For";
 
@@ -98,25 +81,10 @@ public final class WebBrowserUtil {
 	 * @return the operating system
 	 */
 	public static String getOperatingSystem(final WebBrowser webBrowser) {
-		String osName = UNKNOWN;
-	       if (webBrowser.isLinux()) {
-			osName = LINUX;
-		} else if (webBrowser.isWindows()) {
-			osName = WINDOWS2;
-		} else if (webBrowser.isWindowsPhone()) {
-			osName = WINDOWS_PHONE;
-		} else if (webBrowser.isMacOSX()) {
-			osName = MAC_OSX;
-		} else if (webBrowser.isAndroid()) {
-			osName = ANDROID;
-		} else if (webBrowser.isIOS()) {
-			osName = IOS;
-		} else if (webBrowser.isIPad()) {
-			osName = IPAD;
-		} else if (webBrowser.isIPhone()) {
-			osName = I_PHONE;
+		synchronized (USER_AGENT_ANALYZER) {
+			final UserAgent userAgent = USER_AGENT_ANALYZER.parse(webBrowser.getBrowserApplication());
+			return userAgent.getValue(UserAgent.DEVICE_CLASS) + "." +userAgent.getValue(UserAgent.OPERATING_SYSTEM_NAME) +"." + userAgent.getValue(UserAgent.OPERATING_SYSTEM_VERSION);			
 		}
-		return osName;
 	}
 
 
