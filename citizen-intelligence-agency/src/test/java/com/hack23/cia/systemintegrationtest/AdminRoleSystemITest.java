@@ -329,6 +329,49 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 	}
 
+	
+	/**
+	 * Site admin application session next page test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteAdminApplicationSessionNextPageTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Session"));
+
+		WebElement nextPageButton = userPageVisit.findButton("next page");
+		userPageVisit.performClickAction(nextPageButton);
+
+	}
+
+
+	/**
+	 * Site admin application session last page test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteAdminApplicationSessionLastPageTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+		loginAsAdmin(userPageVisit);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("Application Session"));
+
+		WebElement nextPageButton = userPageVisit.findButton("last page");
+		userPageVisit.performClickAction(nextPageButton);
+	}
+
 	/**
 	 * Site admin application event test.
 	 *
