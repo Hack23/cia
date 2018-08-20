@@ -38,7 +38,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Deci
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.DecisionFlowValueChangeListener;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.DecisionFlowValueChangeListener;
 import com.hack23.cia.web.widgets.charts.SankeyChart;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Layout;

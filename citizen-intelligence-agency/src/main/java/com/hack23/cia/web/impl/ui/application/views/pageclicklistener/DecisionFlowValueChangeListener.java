@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.pageclicklisteners;
+package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -27,7 +27,7 @@ import com.vaadin.ui.UI;
 /**
  * The Class DecisionFlowValueChangeListener.
  */
-public class DecisionFlowValueChangeListener implements ValueChangeListener<String> {
+public final class DecisionFlowValueChangeListener implements ValueChangeListener<String> {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -45,7 +45,7 @@ public class DecisionFlowValueChangeListener implements ValueChangeListener<Stri
 	 * @param pageName the page name
 	 * @param pageId   the page id
 	 */
-	public DecisionFlowValueChangeListener(String pageName, String pageId) {
+	public DecisionFlowValueChangeListener(final String pageName, final String pageId) {
 		super();
 		this.pageName = pageName;
 		this.pageId = pageId;
@@ -53,7 +53,7 @@ public class DecisionFlowValueChangeListener implements ValueChangeListener<Stri
 
 
 	@Override
-	public void valueChange(ValueChangeEvent<String> event) {
+	public void valueChange(final ValueChangeEvent<String> event) {
 		if (!event.getSource().isEmpty()) {
 			UI.getCurrent().getNavigator().navigateTo(pageName + "/" + PageMode.CHARTS + "/"
 					+ ChartIndicators.DECISION_FLOW_CHART + "/" + pageId + "[" + event.getValue() + "]");
