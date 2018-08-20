@@ -941,6 +941,24 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 	}
 
+	/**
+	 * Site committe decision flow select year test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteCommitteDecisionFlowSelectYearTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS +"/"+
+						ChartIndicators.DECISION_FLOW_CHART.toString(), "UU[2016/17]"));
+
+	}
+
 
 	/**
 	 * Site main view test.
@@ -1648,6 +1666,23 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS,
 				ChartIndicators.DECISION_FLOW_CHART.toString()));
+
+	}
+
+	/**
+	 * Site parliament chart decision flow select year test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteParliamentChartDecisionFlowSelectYearTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS,
+				ChartIndicators.DECISION_FLOW_CHART.toString()+ "[2016/17]"));
 
 	}
 
