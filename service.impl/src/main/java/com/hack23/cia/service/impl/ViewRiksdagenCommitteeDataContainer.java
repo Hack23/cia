@@ -43,6 +43,8 @@ public final class ViewRiksdagenCommitteeDataContainer extends GenericDataContai
 
 	/**
 	 * Instantiates a new view riksdagen committee data container.
+	 *
+	 * @param dataViewer the data viewer
 	 */
 	@Autowired
 	public ViewRiksdagenCommitteeDataContainer(@Qualifier("DataViewer") DataViewer dataViewer) {
