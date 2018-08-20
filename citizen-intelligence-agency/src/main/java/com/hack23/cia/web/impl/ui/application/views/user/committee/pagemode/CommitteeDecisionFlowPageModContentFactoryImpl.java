@@ -37,12 +37,12 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Deci
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.DecisionFlowValueChangeListener;
 import com.hack23.cia.web.widgets.charts.SankeyChart;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -90,12 +90,8 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
 		panelContent.addComponent(comboBox);
 		panelContent.setExpandRatio(comboBox, ContentRatio.SMALL2);
 		comboBox.setSelectedItem(selectedYear);
-		comboBox.addValueChangeListener(event -> {
-			if (!event.getSource().isEmpty()) {
-				UI.getCurrent().getNavigator().navigateTo(NAME + "/" + PageMode.CHARTS + "/"
-						+ ChartIndicators.DECISION_FLOW_CHART + "/" + pageId + "[" + event.getValue() + "]");
-			}
-		});
+		
+		comboBox.addValueChangeListener(new DecisionFlowValueChangeListener(NAME,pageId));
 
 		final Map<String, List<ViewRiksdagenCommittee>> committeeMap = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommittee.class).getAll().stream()
