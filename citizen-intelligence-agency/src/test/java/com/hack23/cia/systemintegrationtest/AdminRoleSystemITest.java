@@ -327,6 +327,8 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
 
+		assertTrue("Expect content",userPageVisit.checkHtmlBodyContainsText("ApplicationActionEvent"));
+
 	}
 
 	
