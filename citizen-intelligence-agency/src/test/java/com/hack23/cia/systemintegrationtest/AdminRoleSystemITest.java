@@ -181,7 +181,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 
 		userPageVisit.sendEmailOnEmailPage("james@hack23.com", "siteAdminEmailTest", "siteAdminEmailTest content");
 
-		userPageVisit.checkNotificationMessage("Email Sent");
+		userPageVisit.checkNotificationMessage("Email Sentdesc");
 	}
 
 	/**
@@ -256,7 +256,7 @@ public final class AdminRoleSystemITest extends AbstractRoleSystemITest {
 		assertNotNull("Expect to find a Delete Button",deleteButton);
 
 		userPageVisit.performClickAction(deleteButton);
-		userPageVisit.checkNotificationMessage("Operation completed");
+		userPageVisit.checkNotificationMessage("Operation completeddesc");
 	}
 
 	/**
