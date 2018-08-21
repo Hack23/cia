@@ -18,26 +18,44 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
+import static org.mockito.Mockito.times;
+
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.testfoundation.AbstractUnitTest;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.navigator.Navigator;
+import com.vaadin.ui.Grid;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
 
 public final class PageItemPropertyClickListenerTest extends AbstractUnitTest {
 
 
 	/**
-	 * Check correct page id success test.
+	 * Check correct page id click success test.
 	 */
 	@Test
-	public void checkCorrectPageIdSuccessTest() {
+	public void checkCorrectPageIdClickSuccessTest() {
+		final PageItemPropertyClickListener pageItemPropertyClickListener = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId");
 
-		final PageItemPropertyClickListener pageItemPropertyClickListener = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"wrongProperty");
+		final String personIdValue = "personId";
+		ViewRiksdagenPolitician riksdagenPolitician = new ViewRiksdagenPolitician().withPersonId(personIdValue);
+		final String pageId = pageItemPropertyClickListener.getPageId(riksdagenPolitician);
 
-		final String pageId = pageItemPropertyClickListener.getPageId(new ViewRiksdagenPolitician());
-
-		assertEquals("ErrorGettingPageId", pageId);
+		assertEquals(personIdValue, pageId);
+		
+		UI uiMock = Mockito.mock(UI.class);
+		UI.setCurrent(uiMock);
+		
+		Navigator navigatorMock = Mockito.mock(Navigator.class);
+		Mockito.when(uiMock.getNavigator()).thenReturn(navigatorMock);		
+				
+		pageItemPropertyClickListener.click(new RendererClickEvent(new Grid(), riksdagenPolitician, null, null) {});
+		
+		Mockito.verify(navigatorMock, times(1)).navigateTo(UserViews.POLITICIAN_VIEW_NAME + "/personId");
 	}
 
 	/**
@@ -45,13 +63,11 @@ public final class PageItemPropertyClickListenerTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void checkCorrectPageIdFailureTest() {
+		final PageItemPropertyClickListener pageItemPropertyClickListener = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"wrongProperty");
 
-		final PageItemPropertyClickListener pageItemPropertyClickListener = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId");
+		final String pageId = pageItemPropertyClickListener.getPageId(new ViewRiksdagenPolitician());
 
-		final String personIdValue = "personId";
-		final String pageId = pageItemPropertyClickListener.getPageId(new ViewRiksdagenPolitician().withPersonId(personIdValue));
-
-		assertEquals(personIdValue, pageId);
+		assertEquals("ErrorGettingPageId", pageId);
 	}
 
 }
