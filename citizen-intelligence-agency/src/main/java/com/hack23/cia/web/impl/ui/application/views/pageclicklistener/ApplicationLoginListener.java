@@ -33,7 +33,7 @@ import com.vaadin.ui.UI;
 /**
  * The Class ApplicationLoginListener.
  */
-public final class ApplicationLoginListener implements ClickListener {
+public final class ApplicationLoginListener extends AbstractClickListener implements ClickListener {
 
 	/** The Constant LOG_MSG_LOGIN_REQUEST_FAILURE. */
 	private static final String LOG_MSG_LOGIN_REQUEST_FAILURE = "LoginRequest {} failure";
@@ -67,13 +67,13 @@ public final class ApplicationLoginListener implements ClickListener {
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-		final LoginResponse response = (LoginResponse) ApplicationMangerAccess.getApplicationManager().service(loginRequest);
+		final LoginResponse response = (LoginResponse) getApplicationManager().service(loginRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_MSG_LOGIN_REQUEST,loginRequest.getEmail());
 
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);
 		} else {
-			Notification.show(LOGIN_FAILED,
+			showNotification(LOGIN_FAILED,
 					response.getErrorMessage(),
 	                  Notification.Type.WARNING_MESSAGE);
 			LOGGER.info(LOG_MSG_LOGIN_REQUEST_FAILURE,loginRequest.getEmail());

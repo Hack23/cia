@@ -32,7 +32,7 @@ import com.vaadin.ui.Notification;
 /**
  * The Class SearchDocumentClickListener.
  */
-public final class SearchDocumentClickListener implements ClickListener {
+public final class SearchDocumentClickListener extends AbstractClickListener implements ClickListener {
 
 	/** The Constant ERROR_MESSAGE. */
 	private static final String ERROR_MESSAGE = "Error message";
@@ -76,16 +76,16 @@ public final class SearchDocumentClickListener implements ClickListener {
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-		final SearchDocumentResponse response = (SearchDocumentResponse) ApplicationMangerAccess.getApplicationManager().service(reqisterRequest);
+		final SearchDocumentResponse response = (SearchDocumentResponse) getApplicationManager().service(reqisterRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_MSG_SEARCH_DOCUMENT,reqisterRequest.getSearchExpression());
-			Notification.show(SEARCH_SUCCESS,
+			showNotification(SEARCH_SUCCESS,
 	                  "Found :" + response.getResultElement().size(),
 	                  Notification.Type.HUMANIZED_MESSAGE);
 			responseHandler.handle(response);
 
 		} else {
-			Notification.show(SEARCH_FAILED,
+			showNotification(SEARCH_FAILED,
 	                  ERROR_MESSAGE,
 	                  Notification.Type.WARNING_MESSAGE);
 			LOGGER.info(LOG_MSG_SEARCH_DOCUMENT_FAILURE,reqisterRequest.getSearchExpression());

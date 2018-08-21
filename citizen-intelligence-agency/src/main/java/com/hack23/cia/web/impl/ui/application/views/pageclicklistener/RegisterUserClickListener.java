@@ -33,7 +33,7 @@ import com.vaadin.ui.UI;
 /**
  * The Class RegisterUserClickListener.
  */
-public final class RegisterUserClickListener implements ClickListener {
+public final class RegisterUserClickListener extends AbstractClickListener implements ClickListener {
 
 	/** The Constant REGISTER_USER_FAILURE. */
 	private static final String REGISTER_USER_FAILURE = "RegisterUser {} failure";
@@ -65,12 +65,12 @@ public final class RegisterUserClickListener implements ClickListener {
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-		final ServiceResponse response = ApplicationMangerAccess.getApplicationManager().service(reqisterRequest);
+		final ServiceResponse response = getApplicationManager().service(reqisterRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_MSG_REGISTER_USER,reqisterRequest.getUsername());
 			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);
 		} else {
-			Notification.show(REGISTER_FAILED,
+			showNotification(REGISTER_FAILED,
 					response.getErrorMessage(),
 	                  Notification.Type.WARNING_MESSAGE);
 			LOGGER.info(REGISTER_USER_FAILURE,reqisterRequest.getUsername());

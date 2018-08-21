@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
-import org.springframework.web.context.request.RequestContextHolder;
-
 import com.hack23.cia.service.api.action.admin.UpdateSearchIndexRequest;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -28,7 +26,7 @@ import com.vaadin.ui.Notification;
 /**
  * The Class UpdateSearchIndexClickListener.
  */
-public final class UpdateSearchIndexClickListener implements ClickListener {
+public final class UpdateSearchIndexClickListener extends AbstractClickListener implements ClickListener {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -36,21 +34,22 @@ public final class UpdateSearchIndexClickListener implements ClickListener {
 	/** The Constant UPDATE_SEARCH_INDEX_STARTED. */
 	private static final String UPDATE_SEARCH_INDEX_STARTED = "Update Search Index Started";
 
+	/** The service request. */
+	private UpdateSearchIndexRequest serviceRequest;
+
 	/**
 	 * Instantiates a new update search index click listener.
 	 *
+	 * @param serviceRequest the service request
 	 */
-	public UpdateSearchIndexClickListener() {
+	public UpdateSearchIndexClickListener(final UpdateSearchIndexRequest serviceRequest) {
 		super();
+		this.serviceRequest = serviceRequest;
 	}
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-
-		final UpdateSearchIndexRequest serviceRequest = new UpdateSearchIndexRequest();
-		serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-
-		ApplicationMangerAccess.getApplicationManager().asyncService(serviceRequest);
-		Notification.show(UPDATE_SEARCH_INDEX_STARTED);
+		getApplicationManager().asyncService(serviceRequest);
+		showNotification(UPDATE_SEARCH_INDEX_STARTED, "desc", Notification.Type.HUMANIZED_MESSAGE);
 	}
 }

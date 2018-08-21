@@ -31,7 +31,7 @@ import com.vaadin.ui.Notification;
 /**
  * The Class SendEmailClickListener.
  */
-public final class SendEmailClickListener implements ClickListener {
+public final class SendEmailClickListener extends AbstractClickListener implements ClickListener {
 
 	/** The Constant EMAIL_SENT. */
 	private static final String EMAIL_SENT = "Email Sent";
@@ -66,12 +66,12 @@ public final class SendEmailClickListener implements ClickListener {
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-		final ServiceResponse response = ApplicationMangerAccess.getApplicationManager().service(sendEmailRequest);
+		final ServiceResponse response = getApplicationManager().service(sendEmailRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_MSG_SEND_EMAIL,sendEmailRequest.getEmail());
-			Notification.show(EMAIL_SENT);
+			showNotification(EMAIL_SENT, "desc", Notification.Type.HUMANIZED_MESSAGE);
 		} else {
-			Notification.show(SEND_EMAIL_FAILEDFAILED,
+			showNotification(SEND_EMAIL_FAILEDFAILED,
 	                  response.getErrorMessage(),
 	                  Notification.Type.WARNING_MESSAGE);
 			LOGGER.info(SEND_EMAIL_FAILURE,sendEmailRequest.getEmail());

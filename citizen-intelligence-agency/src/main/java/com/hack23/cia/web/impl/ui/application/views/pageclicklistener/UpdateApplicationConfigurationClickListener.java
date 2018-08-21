@@ -33,7 +33,7 @@ import com.vaadin.ui.UI;
 /**
  * The Class UpdateApplicationConfigurationClickListener.
  */
-public final class UpdateApplicationConfigurationClickListener implements ClickListener {
+public final class UpdateApplicationConfigurationClickListener extends AbstractClickListener implements ClickListener {
 
 	/** The Constant LOG_MSG_UPDATE_APPLICATION_CONFIGURATION_FAILURE. */
 	private static final String LOG_MSG_UPDATE_APPLICATION_CONFIGURATION_FAILURE = "UpdateApplicationConfiguration {} failure";
@@ -69,14 +69,14 @@ public final class UpdateApplicationConfigurationClickListener implements ClickL
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-		final ServiceResponse response = ApplicationMangerAccess.getApplicationManager().service(request);
+		final ServiceResponse response = getApplicationManager().service(request);
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_UPDATE_APPLICATION_CONFIGURATION,request.getApplicationConfigurationId());
 
 			UI.getCurrent().getNavigator().navigateTo(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME + "/" + request.getApplicationConfigurationId());
 
 		} else {
-			Notification.show(UPDATE_APPLICATION_CONFIGURATION_FAILED,
+			showNotification(UPDATE_APPLICATION_CONFIGURATION_FAILED,
 	                  ERROR_MESSAGE,
 	                  Notification.Type.WARNING_MESSAGE);
 			LOGGER.info(LOG_MSG_UPDATE_APPLICATION_CONFIGURATION_FAILURE,request.getApplicationConfigurationId());

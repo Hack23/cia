@@ -34,7 +34,7 @@ import com.vaadin.ui.UI;
 /**
  * The Class LogoutClickListener.
  */
-public final class LogoutClickListener implements ClickListener {
+public final class LogoutClickListener extends AbstractClickListener implements ClickListener {
 
 	/** The Constant LOG_MSG_LOGOUT_FAILURE. */
 	private static final String LOG_MSG_LOGOUT_FAILURE = "Logout {} failure";
@@ -66,7 +66,7 @@ public final class LogoutClickListener implements ClickListener {
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-		final ServiceResponse response = ApplicationMangerAccess.getApplicationManager().service(logoutRequest);
+		final ServiceResponse response = getApplicationManager().service(logoutRequest);
 
 
 		if (ServiceResult.SUCCESS == response.getResult()) {
@@ -74,7 +74,7 @@ public final class LogoutClickListener implements ClickListener {
 			UI.getCurrent().getSession().close();
 			VaadinService.getCurrentRequest().getWrappedSession().invalidate();
 		} else {
-			Notification.show(LOGOUT_FAILED,
+			showNotification(LOGOUT_FAILED,
 	                  ERROR_MESSAGE,
 	                  Notification.Type.WARNING_MESSAGE);
 			LOGGER.info(LOG_MSG_LOGOUT_FAILURE,logoutRequest.getSessionId());

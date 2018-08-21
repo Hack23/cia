@@ -29,7 +29,7 @@ import com.vaadin.ui.Notification;
 /**
  * The Class RemoveDataClickListener.
  */
-public final class RemoveDataClickListener implements ClickListener {
+public final class RemoveDataClickListener extends AbstractClickListener implements ClickListener {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -58,7 +58,7 @@ public final class RemoveDataClickListener implements ClickListener {
 		serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 		serviceRequest.setDataType(dataType);
 
-		ApplicationMangerAccess.getApplicationManager().asyncService(serviceRequest);
-		Notification.show(DATA_REMOVED);
+		getApplicationManager().asyncService(serviceRequest);
+		showNotification(DATA_REMOVED, "desc", Notification.Type.HUMANIZED_MESSAGE);
 	}
 }

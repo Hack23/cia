@@ -21,10 +21,13 @@ package com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditDataSummary;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
 import com.hack23.cia.service.api.action.admin.RemoveDataRequest;
+import com.hack23.cia.service.api.action.admin.UpdateSearchIndexRequest;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
@@ -121,12 +124,19 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 		final ResponsiveRow grid = createGridLayout(overviewLayout);
 
+		final RefreshDataViewsRequest refreshRequest = new RefreshDataViewsRequest();
+		refreshRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+
 		final Button refreshViewsButton = new Button(REFRESH_VIEWS, VaadinIcons.REFRESH);
-		refreshViewsButton.addClickListener(new RefreshDataViewsClickListener());
+		refreshViewsButton.addClickListener(new RefreshDataViewsClickListener(refreshRequest));
 		createRowItem(grid, refreshViewsButton, REFRESH_ALL_VIEWS);
 
 		final Button updateSearchIndexButton = new Button(UPDATE_SEARCH_INDEX, VaadinIcons.REFRESH);
-		updateSearchIndexButton.addClickListener(new UpdateSearchIndexClickListener());
+		
+		final UpdateSearchIndexRequest updateIndexRequest = new UpdateSearchIndexRequest();
+		updateIndexRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+
+		updateSearchIndexButton.addClickListener(new UpdateSearchIndexClickListener(updateIndexRequest));
 		createRowItem(grid, updateSearchIndexButton, UPDATE_DOCUMENT_SEARCH_INDEX);
 
 		final Button removeDataButton = new Button(REMOVE_POLITICIANS, VaadinIcons.DEL);

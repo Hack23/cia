@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
-import org.springframework.web.context.request.RequestContextHolder;
-
 import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -28,7 +26,7 @@ import com.vaadin.ui.Notification;
 /**
  * The Class RefreshDataViewsClickListener.
  */
-public final class RefreshDataViewsClickListener implements ClickListener {
+public final class RefreshDataViewsClickListener extends AbstractClickListener implements ClickListener {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -36,21 +34,22 @@ public final class RefreshDataViewsClickListener implements ClickListener {
 	/** The Constant REFRESH_VIEWS_STARTED. */
 	private static final String REFRESH_VIEWS_STARTED = "Refresh Views Started";
 
+	/** The service request. */
+	private RefreshDataViewsRequest serviceRequest;
+
 	/**
 	 * Instantiates a new refresh data views click listener.
 	 *
+	 * @param serviceRequest the service request
 	 */
-	public RefreshDataViewsClickListener() {
+	public RefreshDataViewsClickListener(final RefreshDataViewsRequest serviceRequest) {
 		super();
+		this.serviceRequest = serviceRequest;
 	}
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-
-		final RefreshDataViewsRequest serviceRequest = new RefreshDataViewsRequest();
-		serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-
-		ApplicationMangerAccess.getApplicationManager().asyncService(serviceRequest);
-		Notification.show(REFRESH_VIEWS_STARTED);
+		getApplicationManager().asyncService(serviceRequest);
+		showNotification(REFRESH_VIEWS_STARTED, "desc", Notification.Type.HUMANIZED_MESSAGE);
 	}
 }

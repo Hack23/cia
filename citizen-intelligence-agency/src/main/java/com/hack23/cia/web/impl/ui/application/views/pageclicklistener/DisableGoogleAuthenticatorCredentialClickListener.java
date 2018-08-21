@@ -31,7 +31,7 @@ import com.vaadin.ui.Notification;
 /**
  * The Class DisableGoogleAuthenticatorCredentialClickListener.
  */
-public final class DisableGoogleAuthenticatorCredentialClickListener implements ClickListener {
+public final class DisableGoogleAuthenticatorCredentialClickListener extends AbstractClickListener implements ClickListener {
 
 	/** The Constant PROBLEM_ENABLE_GOOGLE_AUTHENTICATOR_SESSIONID. */
 	private static final String PROBLEM_DISABLE_GOOGLE_AUTHENTICATOR_SESSIONID = "Problem disable google authenticator, sessionid{}";
@@ -65,11 +65,10 @@ public final class DisableGoogleAuthenticatorCredentialClickListener implements 
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-		final DisableGoogleAuthenticatorCredentialResponse response = (DisableGoogleAuthenticatorCredentialResponse) ApplicationMangerAccess
-				.getApplicationManager().service(googleAuthRequest);
+		final DisableGoogleAuthenticatorCredentialResponse response = (DisableGoogleAuthenticatorCredentialResponse) getApplicationManager().service(googleAuthRequest);
 
 		if (ServiceResult.FAILURE == response.getResult()) {
-			Notification.show(PROBLEM_DISABLE_GOOGLE_AUTHENTICATOR, ERROR_MESSAGE, Notification.Type.WARNING_MESSAGE);
+			showNotification(PROBLEM_DISABLE_GOOGLE_AUTHENTICATOR, ERROR_MESSAGE, Notification.Type.WARNING_MESSAGE);
 			LOGGER.info(PROBLEM_DISABLE_GOOGLE_AUTHENTICATOR_SESSIONID, googleAuthRequest.getSessionId());
 		}
 	}

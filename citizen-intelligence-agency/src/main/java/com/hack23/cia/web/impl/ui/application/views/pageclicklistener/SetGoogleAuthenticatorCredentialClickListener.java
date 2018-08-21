@@ -39,7 +39,7 @@ import fi.jasoft.qrcode.QRCode;
 /**
  * The Class SetGoogleAuthenticatorCredentialClickListener.
  */
-public final class SetGoogleAuthenticatorCredentialClickListener implements ClickListener {
+public final class SetGoogleAuthenticatorCredentialClickListener extends AbstractClickListener implements ClickListener {
 
 
 	/** The Constant PROBLEM_DISPLAYING_QR_CODE. */
@@ -91,7 +91,7 @@ public final class SetGoogleAuthenticatorCredentialClickListener implements Clic
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-		final SetGoogleAuthenticatorCredentialResponse response = (SetGoogleAuthenticatorCredentialResponse) ApplicationMangerAccess.getApplicationManager().service(googleAuthRequest);
+		final SetGoogleAuthenticatorCredentialResponse response = (SetGoogleAuthenticatorCredentialResponse) getApplicationManager().service(googleAuthRequest);
 
 		if (ServiceResult.SUCCESS == response.getResult()) {
 
@@ -118,13 +118,13 @@ public final class SetGoogleAuthenticatorCredentialClickListener implements Clic
 
 			} catch (final URISyntaxException e) {
 				LOGGER.warn(PROBLEM_DISPLAYING_QR_CODE,e);
-				Notification.show(PROBLEM_DISPLAYING_QR_CODE,
+				showNotification(PROBLEM_DISPLAYING_QR_CODE,
 		                  ERROR_MESSAGE,
 		                  Notification.Type.WARNING_MESSAGE);
 			}
 
 		} else {
-			Notification.show(PROBLEM_ENABLE_GOOGLE_AUTHENTICATOR,
+			showNotification(PROBLEM_ENABLE_GOOGLE_AUTHENTICATOR,
 	                  ERROR_MESSAGE,
 	                  Notification.Type.WARNING_MESSAGE);
 			LOGGER.info(PROBLEM_ENABLE_GOOGLE_AUTHENTICATOR_SESSIONID,googleAuthRequest.getSessionId());
