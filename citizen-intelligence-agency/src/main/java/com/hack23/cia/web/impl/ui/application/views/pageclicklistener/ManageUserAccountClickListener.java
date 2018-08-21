@@ -31,7 +31,7 @@ import com.vaadin.ui.Notification;
 /**
  * The Class ManageUserAccountClickListener.
  */
-public final class ManageUserAccountClickListener extends AbstractClickListener implements ClickListener {
+public class ManageUserAccountClickListener extends AbstractClickListener implements ClickListener {
 
 	/** The Constant EMAIL_SENT. */
 	private static final String OPERATION_COMPLETED = "Operation completed";
@@ -65,7 +65,7 @@ public final class ManageUserAccountClickListener extends AbstractClickListener 
 	}
 
 	@Override
-	public void buttonClick(final ClickEvent event) {
+	public final void buttonClick(final ClickEvent event) {
 		final ServiceResponse response = getApplicationManager().service(manageUserAccountRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_MSG,manageUserAccountRequest.getUserAcountId());

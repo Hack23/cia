@@ -33,7 +33,7 @@ import com.vaadin.ui.UI;
 /**
  * The Class UpdateApplicationConfigurationClickListener.
  */
-public final class UpdateApplicationConfigurationClickListener extends AbstractClickListener implements ClickListener {
+public class UpdateApplicationConfigurationClickListener extends AbstractClickListener implements ClickListener {
 
 	/** The Constant LOG_MSG_UPDATE_APPLICATION_CONFIGURATION_FAILURE. */
 	private static final String LOG_MSG_UPDATE_APPLICATION_CONFIGURATION_FAILURE = "UpdateApplicationConfiguration {} failure";
@@ -68,7 +68,7 @@ public final class UpdateApplicationConfigurationClickListener extends AbstractC
 	}
 
 	@Override
-	public void buttonClick(final ClickEvent event) {
+	public final void buttonClick(final ClickEvent event) {
 		final ServiceResponse response = getApplicationManager().service(request);
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_UPDATE_APPLICATION_CONFIGURATION,request.getApplicationConfigurationId());

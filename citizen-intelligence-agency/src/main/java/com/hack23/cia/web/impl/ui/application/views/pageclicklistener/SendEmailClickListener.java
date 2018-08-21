@@ -31,7 +31,7 @@ import com.vaadin.ui.Notification;
 /**
  * The Class SendEmailClickListener.
  */
-public final class SendEmailClickListener extends AbstractClickListener implements ClickListener {
+public class SendEmailClickListener extends AbstractClickListener implements ClickListener {
 
 	/** The Constant EMAIL_SENT. */
 	private static final String EMAIL_SENT = "Email Sent";
@@ -65,7 +65,7 @@ public final class SendEmailClickListener extends AbstractClickListener implemen
 	}
 
 	@Override
-	public void buttonClick(final ClickEvent event) {
+	public final void buttonClick(final ClickEvent event) {
 		final ServiceResponse response = getApplicationManager().service(sendEmailRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_MSG_SEND_EMAIL,sendEmailRequest.getEmail());
