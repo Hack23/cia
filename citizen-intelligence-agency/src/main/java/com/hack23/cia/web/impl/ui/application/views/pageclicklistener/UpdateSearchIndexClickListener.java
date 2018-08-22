@@ -26,7 +26,7 @@ import com.vaadin.ui.Notification;
 /**
  * The Class UpdateSearchIndexClickListener.
  */
-public final class UpdateSearchIndexClickListener extends AbstractClickListener implements ClickListener {
+public class UpdateSearchIndexClickListener extends AbstractClickListener implements ClickListener {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -48,7 +48,7 @@ public final class UpdateSearchIndexClickListener extends AbstractClickListener 
 	}
 
 	@Override
-	public void buttonClick(final ClickEvent event) {
+	public final void buttonClick(final ClickEvent event) {
 		getApplicationManager().asyncService(serviceRequest);
 		showNotification(UPDATE_SEARCH_INDEX_STARTED, "desc", Notification.Type.HUMANIZED_MESSAGE);
 	}
