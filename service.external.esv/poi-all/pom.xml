@@ -26,6 +26,8 @@
 									<include>org.apache.poi:poi</include>
 									<include>org.apache.poi:poi-scratchpad</include>
 									<include>org.apache.poi:poi-ooxml</include>
+									<include>org.apache.poi:poi-ooxml-schemas</include>
+									
 								</includes>
 								<excludes>
 									<exclude>org.apache.httpcomponents:*</exclude>
