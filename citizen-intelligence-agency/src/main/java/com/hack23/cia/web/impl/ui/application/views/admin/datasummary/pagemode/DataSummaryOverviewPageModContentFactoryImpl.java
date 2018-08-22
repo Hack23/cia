@@ -90,7 +90,8 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
+		return NAME.equals(page)
+				&& (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 	@Secured({ "ROLE_ADMIN" })
@@ -110,13 +111,10 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 		final DataContainer<ViewAuditDataSummary, Long> dataContainer = getApplicationManager()
 				.getDataContainer(ViewAuditDataSummary.class);
-		
-		getGridFactory()
-		.createBasicBeanItemNestedPropertiesGrid(horizontalLayout, ViewAuditDataSummary.class, dataContainer.getAll(),
-				ADMIN_DATA_SUMMARY,null,
-				COLUMN_ORDER, HIDE_COLUMNS,
-				null, null, null);
-		
+
+		getGridFactory().createBasicBeanItemNestedPropertiesGrid(horizontalLayout, ViewAuditDataSummary.class,
+				dataContainer.getAll(), ADMIN_DATA_SUMMARY, null, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
+
 		final VerticalLayout overviewLayout = new VerticalLayout();
 		overviewLayout.setSizeFull();
 		content.addComponent(overviewLayout);
@@ -132,7 +130,7 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 		createRowItem(grid, refreshViewsButton, REFRESH_ALL_VIEWS);
 
 		final Button updateSearchIndexButton = new Button(UPDATE_SEARCH_INDEX, VaadinIcons.REFRESH);
-		
+
 		final UpdateSearchIndexRequest updateIndexRequest = new UpdateSearchIndexRequest();
 		updateIndexRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 
@@ -140,16 +138,28 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 		createRowItem(grid, updateSearchIndexButton, UPDATE_DOCUMENT_SEARCH_INDEX);
 
 		final Button removeDataButton = new Button(REMOVE_POLITICIANS, VaadinIcons.DEL);
-		removeDataButton.addClickListener(new RemoveDataClickListener(RemoveDataRequest.DataType.POLITICIAN));
+
+		final RemoveDataRequest removePoliticianRequest = new RemoveDataRequest();
+		removePoliticianRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+		removePoliticianRequest.setDataType(RemoveDataRequest.DataType.POLITICIAN);
+
+		removeDataButton.addClickListener(new RemoveDataClickListener(removePoliticianRequest));
 		createRowItem(grid, removeDataButton, REMOVE_POLITICIANS);
 
+		final RemoveDataRequest removeDocumentsRequest = new RemoveDataRequest();
+		removeDocumentsRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+		removeDocumentsRequest.setDataType(RemoveDataRequest.DataType.DOCUMENTS);
+
 		final Button removeDocumentsButton = new Button(REMOVE_DOCUMENTS, VaadinIcons.DEL);
-		removeDocumentsButton.addClickListener(new RemoveDataClickListener(RemoveDataRequest.DataType.DOCUMENTS));
+		removeDocumentsButton.addClickListener(new RemoveDataClickListener(removeDocumentsRequest));
 		createRowItem(grid, removeDocumentsButton, REMOVE_DOCUMENTS);
 
+		final RemoveDataRequest removeApplicationHistoryRequest = new RemoveDataRequest();
+		removeApplicationHistoryRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+		removeApplicationHistoryRequest.setDataType(RemoveDataRequest.DataType.APPLICATION_HISTORY);
+
 		final Button removeApplicationHistoryButton = new Button(REMOVE_APPLICATION_HISTORY, VaadinIcons.DEL);
-		removeApplicationHistoryButton
-				.addClickListener(new RemoveDataClickListener(RemoveDataRequest.DataType.APPLICATION_HISTORY));
+		removeApplicationHistoryButton.addClickListener(new RemoveDataClickListener(removeApplicationHistoryRequest));
 		createRowItem(grid, removeApplicationHistoryButton, REMOVE_APPLICATION_HISTORY);
 
 		return content;

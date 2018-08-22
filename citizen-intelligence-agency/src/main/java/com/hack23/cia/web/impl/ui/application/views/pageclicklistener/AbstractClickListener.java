@@ -26,6 +26,9 @@ import com.hack23.cia.service.api.ApplicationManager;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 
+/**
+ * The Class AbstractClickListener.
+ */
 abstract class AbstractClickListener {
 
 	/**
@@ -47,7 +50,7 @@ abstract class AbstractClickListener {
 	 * @param description the description
 	 * @param type        the type
 	 */
-	protected void showNotification(String caption, String description, Type type) {
+	protected void showNotification(final String caption, final String description, final Type type) {
 		Notification.show(caption, description, type);		
 	}
 

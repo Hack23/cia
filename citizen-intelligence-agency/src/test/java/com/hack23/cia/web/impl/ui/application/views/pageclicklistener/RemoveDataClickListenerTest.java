@@ -18,33 +18,34 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
+import java.util.concurrent.Future;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.hack23.cia.service.api.ApplicationManager;
-import com.hack23.cia.service.api.action.application.LogoutRequest;
-import com.hack23.cia.service.api.action.application.LogoutResponse;
+import com.hack23.cia.service.api.action.admin.RemoveDataRequest;
+import com.hack23.cia.service.api.action.admin.RemoveDataResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.testfoundation.AbstractUnitTest;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.Panel;
 
-public class LogoutClickListenerTest extends AbstractUnitTest {
+public class RemoveDataClickListenerTest extends AbstractUnitTest {
 
 	/**
-	 * Show notification failure test.
+	 * Show notification success test.
 	 */
 	@Test
-	public void showNotificationFailureTest() {
-		LogoutRequest request = new LogoutRequest();		
-		LogoutClickListener listener = Mockito.spy(new LogoutClickListener(request));
+	public void showNotificationSuccessTest() {
+		RemoveDataRequest request = new RemoveDataRequest();		
+		RemoveDataClickListener listener = Mockito.spy(new RemoveDataClickListener(request));
 		ApplicationManager applicationManager = Mockito.mock(ApplicationManager.class);
 		Mockito.doReturn(applicationManager).when(listener).getApplicationManager();
 		
-		LogoutResponse response = new LogoutResponse(ServiceResult.FAILURE);
-		response.setErrorMessage("errorMessage");
-		Mockito.when(applicationManager.service(request)).thenReturn(response);
+		RemoveDataResponse response = new RemoveDataResponse(ServiceResult.SUCCESS);
+		Mockito.when(applicationManager.asyncService(request)).thenReturn(Mockito.mock(Future.class));
 		
 		Mockito.doNothing().when(listener).showNotification(Mockito.anyString(), Mockito.anyString(), Mockito.any(Type.class));
 		listener.buttonClick(new ClickEvent(new Panel()));

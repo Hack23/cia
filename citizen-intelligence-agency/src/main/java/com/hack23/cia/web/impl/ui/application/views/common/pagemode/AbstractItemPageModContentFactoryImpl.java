@@ -20,6 +20,8 @@ package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
 
 /**
  * The Class AbstractItemPageModContentFactoryImpl.
+ *
+ * @param <T> the generic type
  */
 public abstract class AbstractItemPageModContentFactoryImpl<T> extends AbstractPageModContentFactoryImpl {
 

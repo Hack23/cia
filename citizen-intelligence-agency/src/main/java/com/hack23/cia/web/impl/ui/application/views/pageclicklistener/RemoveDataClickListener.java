@@ -18,10 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
-import org.springframework.web.context.request.RequestContextHolder;
-
 import com.hack23.cia.service.api.action.admin.RemoveDataRequest;
-import com.hack23.cia.service.api.action.admin.RemoveDataRequest.DataType;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
@@ -29,7 +26,7 @@ import com.vaadin.ui.Notification;
 /**
  * The Class RemoveDataClickListener.
  */
-public final class RemoveDataClickListener extends AbstractClickListener implements ClickListener {
+public class RemoveDataClickListener extends AbstractClickListener implements ClickListener {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -37,8 +34,8 @@ public final class RemoveDataClickListener extends AbstractClickListener impleme
 	/** The Constant DATA_REMOVED. */
 	private static final String DATA_REMOVED = "Data removed";
 	
-	/** The data type. */
-	private final DataType dataType;
+	/** The service request. */
+	private RemoveDataRequest serviceRequest;
 	
 	/**
 	 * Instantiates a new removes the data click listener.
@@ -46,18 +43,13 @@ public final class RemoveDataClickListener extends AbstractClickListener impleme
 	 * @param dataType
 	 *            the data type
 	 */
-	public RemoveDataClickListener(final RemoveDataRequest.DataType dataType) {
+	public RemoveDataClickListener(final RemoveDataRequest serviceRequest) {
 		super();
-		this.dataType = dataType;
+		this.serviceRequest = serviceRequest;
 	}
 
 	@Override
-	public void buttonClick(final ClickEvent event) {
-
-		final RemoveDataRequest serviceRequest = new RemoveDataRequest();
-		serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-		serviceRequest.setDataType(dataType);
-
+	public final void buttonClick(final ClickEvent event) {
 		getApplicationManager().asyncService(serviceRequest);
 		showNotification(DATA_REMOVED, "desc", Notification.Type.HUMANIZED_MESSAGE);
 	}

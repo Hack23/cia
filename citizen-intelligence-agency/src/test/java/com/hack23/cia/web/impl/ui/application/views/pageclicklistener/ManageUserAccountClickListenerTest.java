@@ -48,6 +48,7 @@ public class ManageUserAccountClickListenerTest extends AbstractUnitTest {
 		
 		Mockito.doNothing().when(listener).showNotification(Mockito.anyString(), Mockito.anyString(), Mockito.any(Type.class));
 		listener.buttonClick(new ClickEvent(new Panel()));
+		Mockito.verify(listener).showNotification(Mockito.anyString(), Mockito.anyString(), Mockito.any(Type.class));
 	}
 
 }
