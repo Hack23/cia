@@ -2379,11 +2379,11 @@
 								"sudo chmod +x /etc/cron.d/cloudwatch-monitor*\n",
 								"sudo /etc/init.d/cron restart\n",
 								"# INSTALL OPEN JDK\n",
-								"wget https://download.java.net/java/early_access/jdk11/26/GPL/openjdk-11-ea+26_linux-x64_bin.tar.gz\n",
-								"tar xvfz openjdk-11-ea+26_linux-x64_bin.tar.gz\n",
+								"wget https://download.java.net/java/early_access/jdk11/27/GPL/openjdk-11-ea+27_linux-x64_bin.tar.gz\n",
+								"tar xvfz openjdk-11-ea+27_linux-x64_bin.tar.gz\n",
 								"sudo mv jdk-11 /usr/lib/jvm/java-11-openjdk-amd64\n",
 								"sudo ln -s /usr/lib/jvm/java-11-openjdk-amd64 /usr/lib/jvm/java-11-oracle\n",
-								"rm openjdk-11-ea+26_linux-x64_bin.tar.gz\n",
+								"rm openjdk-11-ea+27_linux-x64_bin.tar.gz\n",
 								"wget ",
 								{
 									"Ref": "DebPackageUrl"
