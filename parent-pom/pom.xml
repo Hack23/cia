@@ -130,7 +130,7 @@
     <cia.project.versions.easymock>3.6</cia.project.versions.easymock>
     <cia.project.versions.dbunit>2.5.4</cia.project.versions.dbunit>
     <cia.project.versions.trove>3.0.3</cia.project.versions.trove>
-    <cia.project.versions.xmlbeans>3.0.0</cia.project.versions.xmlbeans>
+    <cia.project.versions.xmlbeans>3.0.1</cia.project.versions.xmlbeans>
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
     <cia.project.versions.plexus.utils>3.1.0</cia.project.versions.plexus.utils>
     <cia.project.versions.jaxb2.commons>0.12.0</cia.project.versions.jaxb2.commons>

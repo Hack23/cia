@@ -227,7 +227,16 @@
           <artifactId>commons-collections4</artifactId>
           <groupId>org.apache.commons</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>xmlbeans</artifactId>
+          <groupId>org.apache.xmlbeans</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.xmlbeans</groupId>
+      <artifactId>xmlbeans</artifactId>
+      <version>3.0.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
@@ -269,6 +278,10 @@
         <exclusion>
           <artifactId>stax-api</artifactId>
           <groupId>stax</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>xmlbeans</artifactId>
+          <groupId>org.apache.xmlbeans</groupId>
         </exclusion>
       </exclusions>
     </dependency>
