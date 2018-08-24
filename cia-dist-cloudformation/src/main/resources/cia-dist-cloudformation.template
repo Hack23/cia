@@ -1605,7 +1605,7 @@
 					"Ref": "DBClass"
 				},
 				"Engine": "postgres",
-				"EngineVersion": "10.3",
+				"EngineVersion": "10.4",
 				"MultiAZ": "false",
 				"PubliclyAccessible": "true",
 				"BackupRetentionPeriod": "7",
