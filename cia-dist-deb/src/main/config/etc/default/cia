@@ -19,4 +19,4 @@ JETTY_LOGS=/opt/cia/logs/
 JETTY_ARGS="-Djetty.http.port=2323 -Djetty.http.host=0.0.0.0 -Djavamelody.system-actions-enabled=true -Djava.awt.headless=true -Djavamelody.storage-directory=/opt/cia/javamelody/ -Dorg.apache.activemq.SERIALIZABLE_PACKAGES=com.hack23.cia,java.util,java.lang,java.math,org.apache "
 #JETTY_ARGS="$JETTY_ARGS -Djava.security.manager -Djava.security.policy=/opt/cia/etc/jetty-cia.policy -Dkie.security.policy=/opt/cia/etc/jetty-cia-kie-engine.policy -Dnetworkaddress.cache.ttl=30 -Djava.security.debug=access,failure"
 #JETTY_ARGS="$JETTY_ARGS -Djavamelody.cloudwatch-namespace=hack23/ciaAppDomain -Daws.region=eu-west-1"
-JAVA_OPTIONS="-server -Xmx512m -Xms512m -XX:+UseG1GC -XX:MaxGCPauseMillis=200"
+JAVA_OPTIONS="-server -Xmx512m -Xms512m -XX:+UseG1GC -XX:MaxGCPauseMillis=500"
