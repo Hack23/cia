@@ -45,7 +45,8 @@ import com.vaadin.ui.AbstractOrderedLayout;
  * The Class PartyDocumentChartDataManagerImpl.
  */
 @Service
-public final class PartyDocumentChartDataManagerImpl extends AbstractChartDataManagerImpl implements PartyDocumentChartDataManager {
+public final class PartyDocumentChartDataManagerImpl extends AbstractChartDataManagerImpl
+		implements PartyDocumentChartDataManager {
 
 	private static final String DOCUMENT_HISTORY_PARTY = "Document history party";
 
@@ -74,7 +75,6 @@ public final class PartyDocumentChartDataManagerImpl extends AbstractChartDataMa
 		super();
 	}
 
-
 	/**
 	 * Gets the view riksdagen party document daily summary map.
 	 *
@@ -85,12 +85,12 @@ public final class PartyDocumentChartDataManagerImpl extends AbstractChartDataMa
 				.getDataContainer(ViewRiksdagenPartyDocumentDailySummary.class);
 
 		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
-				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPartyShortCode().toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).trim()));
+				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPartyShortCode().toUpperCase(Locale.ENGLISH)
+						.replace(UNDER_SCORE, EMPTY_STRING).trim()));
 	}
 
-
 	@Override
-	public void createDocumentHistoryPartyChart(final AbstractOrderedLayout content,final String org) {
+	public void createDocumentHistoryPartyChart(final AbstractOrderedLayout content, final String org) {
 		final DataSeries dataSeries = new DataSeries();
 		final Series series = new Series();
 
@@ -102,25 +102,24 @@ public final class PartyDocumentChartDataManagerImpl extends AbstractChartDataMa
 		if (itemList != null) {
 
 			final Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> map = itemList.parallelStream()
-					.filter(Objects::nonNull).collect(Collectors.groupingBy(
-							t -> StringUtils.defaultIfBlank(t.getEmbeddedId().getDocumentType(), NO_INFO)));
+					.filter(Objects::nonNull).collect(Collectors
+							.groupingBy(t -> StringUtils.defaultIfBlank(t.getEmbeddedId().getDocumentType(), NO_INFO)));
 
 			addDocumentHistoryByPartyData(dataSeries, series, map);
 		}
 
-		addChart(content, DOCUMENT_HISTORY_PARTY,new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+		addChart(content, DOCUMENT_HISTORY_PARTY,
+				new DCharts().setDataSeries(dataSeries)
+						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),
+				true);
 	}
-
 
 	/**
 	 * Adds the document history by party data.
 	 *
-	 * @param dataSeries
-	 *            the data series
-	 * @param series
-	 *            the series
-	 * @param map
-	 *            the map
+	 * @param dataSeries the data series
+	 * @param series the series
+	 * @param map the map
 	 */
 	private static void addDocumentHistoryByPartyData(final DataSeries dataSeries, final Series series,
 			final Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> map) {
@@ -133,9 +132,7 @@ public final class PartyDocumentChartDataManagerImpl extends AbstractChartDataMa
 			dataSeries.newSeries();
 			if (entry.getValue() != null) {
 				for (final ViewRiksdagenPartyDocumentDailySummary item : entry.getValue()) {
-					if (item != null) {
-						dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getPublicDate()), item.getTotal());
-					}
+					dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getPublicDate()), item.getTotal());
 				}
 			} else {
 				LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);

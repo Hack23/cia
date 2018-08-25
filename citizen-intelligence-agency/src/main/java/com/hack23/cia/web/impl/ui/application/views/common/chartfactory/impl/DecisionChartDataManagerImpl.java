@@ -47,7 +47,8 @@ import com.vaadin.ui.AbstractOrderedLayout;
  * The Class DecisionChartDataManagerImpl.
  */
 @Service
-public final class DecisionChartDataManagerImpl extends AbstractChartDataManagerImpl implements DecisionChartDataManager {
+public final class DecisionChartDataManagerImpl extends AbstractChartDataManagerImpl
+		implements DecisionChartDataManager {
 
 	/** The Constant EMPTY_STRING. */
 	private static final String EMPTY_STRING = "";
@@ -64,7 +65,6 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 	public DecisionChartDataManagerImpl() {
 		super();
 	}
-
 
 	/**
 	 * Gets the committee decision type map.
@@ -83,7 +83,6 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDecisionType()));
 	}
 
-
 	/**
 	 * Gets the committee decision type org map.
 	 *
@@ -93,10 +92,9 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 		final DataContainer<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary, RiksdagenCommitteeDecisionTypeOrgSummaryEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeDecisionTypeOrgDailySummary.class);
 
-		return committeeBallotDecisionPartyDataContainer.getAll().parallelStream()
-				.filter(Objects::nonNull).collect(Collectors.groupingBy(t -> t.getEmbeddedId().getOrg()));
+		return committeeBallotDecisionPartyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
+				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getOrg()));
 	}
-
 
 	@Override
 	public void createDecisionTypeChart(final AbstractOrderedLayout content) {
@@ -117,21 +115,20 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 				dataSeries.newSeries();
 				final List<ViewRiksdagenCommitteeDecisionTypeDailySummary> list = entry.getValue();
 				for (final ViewRiksdagenCommitteeDecisionTypeDailySummary item : list) {
-					if (item != null) {
-						dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getDecisionDate()),
-								item.getTotal());
-					}
+					dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getDecisionDate()), item.getTotal());
 				}
 			}
 
 		}
 
-		addChart(content,"Decision type daily summary", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+		addChart(content, "Decision type daily summary",
+				new DCharts().setDataSeries(dataSeries)
+						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),
+				true);
 	}
 
-
 	@Override
-	public void createDecisionTypeChart(final AbstractOrderedLayout content,final String org) {
+	public void createDecisionTypeChart(final AbstractOrderedLayout content, final String org) {
 
 		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 
@@ -152,21 +149,19 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 			addDecisionTypeByOrgData(simpleDateFormat, dataSeries, series, map);
 		}
 
-		addChart(content,"Org Decision type daily summary", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+		addChart(content, "Org Decision type daily summary",
+				new DCharts().setDataSeries(dataSeries)
+						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),
+				true);
 	}
-
 
 	/**
 	 * Adds the decision type by org data.
 	 *
-	 * @param simpleDateFormat
-	 *            the simple date format
-	 * @param dataSeries
-	 *            the data series
-	 * @param series
-	 *            the series
-	 * @param map
-	 *            the map
+	 * @param simpleDateFormat the simple date format
+	 * @param dataSeries the data series
+	 * @param series the series
+	 * @param map the map
 	 */
 	private static void addDecisionTypeByOrgData(final SimpleDateFormat simpleDateFormat, final DataSeries dataSeries,
 			final Series series, final Map<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> map) {
@@ -180,10 +175,8 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 
 				dataSeries.newSeries();
 				for (final ViewRiksdagenCommitteeDecisionTypeOrgDailySummary item : entry.getValue()) {
-					if (item != null) {
 						dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getDecisionDate()),
 								item.getTotal());
-					}
 				}
 			}
 		}
