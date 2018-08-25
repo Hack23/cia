@@ -63,11 +63,11 @@ su - postgres -c "psql -c 'GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;'"
 # INSTALL ORACLE JDK
 #
 apt-get -y install software-properties-common openjdk-11-jdk-headless ca-certificates-java wget
-wget https://download.java.net/java/early_access/jdk11/26/GPL/openjdk-11-ea+26_linux-x64_bin.tar.gz
-tar xvfz openjdk-11-ea+26_linux-x64_bin.tar.gz
+wget https://download.java.net/java/early_access/jdk11/28/GPL/openjdk-11+28_linux-x64_bin.tar.gz
+tar xvfz openjdk-11+28_linux-x64_bin.tar.gz
 mv jdk-11 /usr/lib/jvm/java-11-openjdk-amd64
 ln -s /usr/lib/jvm/java-11-openjdk-amd64 /usr/lib/jvm/java-11-oracle
-rm openjdk-11-ea+26_linux-x64_bin.tar.gz
+rm openjdk-11+28_linux-x64_bin.tar.gz
 
 dpkg -i /root/cia-dist-deb.deb
 
