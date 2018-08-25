@@ -18,13 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application;
 
-import java.util.Arrays;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-
-import org.springframework.beans.factory.NoSuchBeanDefinitionException;
-import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
 
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.DefaultUIProvider;
@@ -35,7 +30,6 @@ import com.vaadin.server.UICreateEvent;
 import com.vaadin.server.UIProvider;
 import com.vaadin.server.VaadinServletService;
 import com.vaadin.server.VaadinSession;
-import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.spring.internal.SpringViewDisplayRegistrationBean;
 import com.vaadin.spring.internal.UIID;
 import com.vaadin.spring.internal.UIScopeImpl;
@@ -124,26 +118,7 @@ public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVa
 
 		@Override
 		protected Object findSpringViewDisplay(UI ui) {
-			try {
-				return getSpringViewDisplayRegistrationBean().getSpringViewDisplay(getWebApplicationContext());
-			} catch (NoUniqueBeanDefinitionException e) {
-				throw e;
-			} catch (NoSuchBeanDefinitionException e) {
-				// fallback with getBeanNamesForAnnotation()
-				logger.debug("Looking for a SpringViewDisplay bean based on bean level annotations");
-				final String[] springViewDisplayBeanNames = getWebApplicationContext()
-						.getBeanNamesForAnnotation(SpringViewDisplay.class);
-				if (springViewDisplayBeanNames.length == 0) {
-					logger.debug("No view display defined for the UI {}", ui.getId());
-					return null;
-				}
-				if (springViewDisplayBeanNames.length > 1) {
-					logger.error("Multiple view displays defined for the UI {}:{}", ui.getId(),
-							Arrays.toString(springViewDisplayBeanNames));
-					throw new NoUniqueBeanDefinitionException(Object.class, Arrays.asList(springViewDisplayBeanNames));
-				}
-				return getWebApplicationContext().getBean(springViewDisplayBeanNames[0]);
-			}
+			return getSpringViewDisplayRegistrationBean().getSpringViewDisplay(getWebApplicationContext());
 		}
 
 		/**
