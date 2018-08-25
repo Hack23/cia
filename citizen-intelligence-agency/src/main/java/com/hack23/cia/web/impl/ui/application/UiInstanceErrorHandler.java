@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException;
@@ -58,14 +59,8 @@ public final class UiInstanceErrorHandler implements ErrorHandler {
 
 	@Override
 	public void error(final ErrorEvent event) {
-		if (event.getThrowable() instanceof AccessDeniedException) {
-			final AccessDeniedException accessDeniedException = (AccessDeniedException) event.getThrowable();
-			Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);
-			ui.getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
-		} else if (event.getThrowable().getCause() != null && event.getThrowable().getCause().getCause() != null
-				&& event.getThrowable().getCause().getCause().getCause() instanceof AccessDeniedException) {
-			final AccessDeniedException accessDeniedException = (AccessDeniedException) event.getThrowable().getCause()
-					.getCause().getCause();
+		if (ExceptionUtils.getRootCause(event.getThrowable()) instanceof AccessDeniedException) {
+			final AccessDeniedException accessDeniedException = (AccessDeniedException) ExceptionUtils.getRootCause(event.getThrowable());
 			Notification.show(accessDeniedException.getMessage(), Notification.Type.ERROR_MESSAGE);
 			ui.getNavigator().navigateTo(CommonsViews.MAIN_VIEW_NAME);
 		} else {
