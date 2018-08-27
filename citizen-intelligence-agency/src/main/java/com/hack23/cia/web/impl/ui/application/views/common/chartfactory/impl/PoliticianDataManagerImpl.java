@@ -103,10 +103,10 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 	 */
 	private static void addPoliticianIndicatorData(final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> list,
 			final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat) {
-		addPoliticanData(list, dataSeries, simpleDateFormat, t -> t.getWonPercentage());
-		addPoliticanData(list, dataSeries, simpleDateFormat, t -> t.getRebelPercentage());
-		addPoliticanData(list, dataSeries, simpleDateFormat, t -> t.getPoliticianPercentageAbsent());
-		addPoliticanData(list, dataSeries, simpleDateFormat, t -> t.getNumberBallots());
+		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getWonPercentage);
+		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getRebelPercentage);
+		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getPoliticianPercentageAbsent);
+		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getNumberBallots);
 	}
 
 

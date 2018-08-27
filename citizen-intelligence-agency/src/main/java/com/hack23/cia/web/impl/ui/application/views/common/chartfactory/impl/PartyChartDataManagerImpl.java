@@ -194,8 +194,8 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 
 		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 
-		addPartyData(dataSeries, simpleDateFormat, list, t -> t.getPartyWonPercentage());
-		addPartyData(dataSeries, simpleDateFormat, list, t -> t.getPartyPercentageAbsent());
+		addPartyData(dataSeries, simpleDateFormat, list, ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);
+		addPartyData(dataSeries, simpleDateFormat, list, ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyPercentageAbsent);
 
 		addChart(content,"Party result by", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), true);
 	}

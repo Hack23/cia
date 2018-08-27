@@ -205,9 +205,9 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 		final DataSeries dataSeries = new DataSeries();
 
 		addViewApplicationActionEventPageElementDailySummaryValues(PAGE_HITS, series, list, dataSeries,
-				simpleDateFormat, t -> t.getHits());
+				simpleDateFormat, ViewApplicationActionEventPageElementDailySummary::getHits);
 		addViewApplicationActionEventPageElementDailySummaryValues(PAGE_RANK, series, list, dataSeries,
-				simpleDateFormat, t -> t.getRank());
+				simpleDateFormat, ViewApplicationActionEventPageElementDailySummary::getRank);
 
 		addChart(content, "Page element Action Events daily Summary",
 				new DCharts().setDataSeries(dataSeries)
