@@ -63,7 +63,7 @@
     <dependency>
       <groupId>org.javers</groupId>
       <artifactId>javers-core</artifactId>
-      <version>3.11.3</version>
+      <version>3.11.4</version>
       <exclusions>
         <exclusion>
           <artifactId>slf4j-api</artifactId>
@@ -74,8 +74,8 @@
           <groupId>com.google.code.gson</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>fast-classpath-scanner</artifactId>
-          <groupId>io.github.lukehutch</groupId>
+          <artifactId>classgraph</artifactId>
+          <groupId>io.github.classgraph</groupId>
         </exclusion>
         <exclusion>
           <artifactId>guava</artifactId>
