@@ -128,7 +128,7 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 				dataSeries.add(
 						simpleDateFormat.format(
 								viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),
-						viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getWonPercentage());
+						t.apply(viewRiksdagenVoteDataBallotPoliticianSummaryDaily));
 			}
 		}
 	}

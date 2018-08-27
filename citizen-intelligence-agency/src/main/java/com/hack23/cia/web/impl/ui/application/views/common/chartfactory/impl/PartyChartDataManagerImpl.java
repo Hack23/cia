@@ -161,7 +161,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 				dataSeries.add(
 						simpleDateFormat
 								.format(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()),
-						viewRiksdagenVoteDataBallotPartySummaryDaily.getNumberBallots());
+						t.apply(viewRiksdagenVoteDataBallotPartySummaryDaily));
 			}
 		}
 	}
