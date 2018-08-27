@@ -135,11 +135,11 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 
 		for (final Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> entry : map.entrySet()) {
 			series.addSeries(new XYseries().setLabel(getPartyName(entry.getKey())));
-			addPartyData(dataSeries, simpleDateFormat, entry.getValue(), t -> t.getPartyWonPercentage());			
+			addPartyData(dataSeries, simpleDateFormat, entry.getValue(), ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);			
 		}
 
 		series.addSeries(new XYseries().setLabel(NUMBER_BALLOTS));
-		addPartyData(dataSeries, simpleDateFormat, getMaxSizeViewRiksdagenVoteDataBallotPartySummaryDaily(), t -> t.getNumberBallots());
+		addPartyData(dataSeries, simpleDateFormat, getMaxSizeViewRiksdagenVoteDataBallotPartySummaryDaily(), ViewRiksdagenVoteDataBallotPartySummaryDaily::getNumberBallots);
 
 		addChart(content,"Party winner by daily ballot average", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
 	}
