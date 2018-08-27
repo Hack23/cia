@@ -40,8 +40,7 @@ public class RemoveDataClickListener extends AbstractClickListener implements Cl
 	/**
 	 * Instantiates a new removes the data click listener.
 	 *
-	 * @param dataType
-	 *            the data type
+	 * @param serviceRequest the service request
 	 */
 	public RemoveDataClickListener(final RemoveDataRequest serviceRequest) {
 		super();
