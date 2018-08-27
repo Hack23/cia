@@ -87,39 +87,52 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 		final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap = createCommitteeSummary.stream()
 				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
 
-		for (final Entry<String, List<ProposalCommitteeeSummary>> entry : orgProposalMap.entrySet()) {
+		for (final Entry<String, List<ProposalCommitteeeSummary>> entry : orgProposalMap.entrySet()) {			
 			if (committeeMap.containsKey(entry.getKey())) {
 
 				final Optional<ViewRiksdagenCommittee> vewRiksdagenCommittee = committeeMap.get(entry.getKey()).stream()
 						.findFirst();
 				if (vewRiksdagenCommittee.isPresent()) {
 					
-					final Map<String, List<ProposalCommitteeeSummary>> docTypeMap = entry.getValue().stream()
-							.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
-
-					stringBuilder.append('\n').append(vewRiksdagenCommittee.get().getEmbeddedId().getDetail());
-					for (final Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
-						if (docEntry.getKey().length() > 0 && entry.getKey().length() > 0) {
-							
-							stringBuilder.append("( ").append(docEntry.getValue().size()).append(' ').append(docEntry.getKey()).append(" -> "); 
-							
-							final Map<String, List<ProposalCommitteeeSummary>> decisionMap = docEntry.getValue().stream()
-									.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
-
-							for (final Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
-								if (decisionEntry.getKey().length() > 0 && entry.getKey().length() > 0) {									
-									stringBuilder.append(decisionEntry.getValue().size()).append(' ').append(decisionEntry.getKey()).append(' ');
-									
-								}
-							}
-							stringBuilder.append(')');
-						}
-					}
+					addCommiteeSummary(stringBuilder, entry, vewRiksdagenCommittee);
 				}
 			}
 		}
 		area.setValue(stringBuilder.toString());
 		return area;
+	}
+
+	/**
+	 * Adds the commitee summary.
+	 *
+	 * @param stringBuilder         the string builder
+	 * @param entry                 the entry
+	 * @param vewRiksdagenCommittee the vew riksdagen committee
+	 */
+	private static void addCommiteeSummary(final StringBuilder stringBuilder,
+			final Entry<String, List<ProposalCommitteeeSummary>> entry,
+			final Optional<ViewRiksdagenCommittee> vewRiksdagenCommittee) {
+		final Map<String, List<ProposalCommitteeeSummary>> docTypeMap = entry.getValue().stream()
+				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
+
+		stringBuilder.append('\n').append(vewRiksdagenCommittee.get().getEmbeddedId().getDetail());
+		for (final Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
+			if (docEntry.getKey().length() > 0 && entry.getKey().length() > 0) {
+				
+				stringBuilder.append("( ").append(docEntry.getValue().size()).append(' ').append(docEntry.getKey()).append(" -> "); 
+				
+				final Map<String, List<ProposalCommitteeeSummary>> decisionMap = docEntry.getValue().stream()
+						.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
+
+				for (final Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
+					if (decisionEntry.getKey().length() > 0 && entry.getKey().length() > 0) {									
+						stringBuilder.append(decisionEntry.getValue().size()).append(' ').append(decisionEntry.getKey()).append(' ');
+						
+					}
+				}
+				stringBuilder.append(')');
+			}
+		}
 	}
 
 	/**

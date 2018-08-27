@@ -21,6 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.Function;
 
 import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
@@ -77,14 +78,12 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 				.addSeries(new XYseries().setLabel(PARTY_REBEL)).addSeries(new XYseries().setLabel(ABSENT))
 				.addSeries(new XYseries().setLabel(NUMBER_BALLOTS));
 
-		final DataSeries dataSeries = new DataSeries().newSeries();
+		final DataSeries dataSeries = new DataSeries();
 
 		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 
 		if (list != null) {
-
 			addPoliticianIndicatorData(list, dataSeries, simpleDateFormat);
-
 		}
 
 		addChart(content,"Ballot indicators", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPersonLineChart(series)).show(), true);
@@ -104,44 +103,32 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 	 */
 	private static void addPoliticianIndicatorData(final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> list,
 			final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat) {
+		addPoliticanData(list, dataSeries, simpleDateFormat, t -> t.getWonPercentage());
+		addPoliticanData(list, dataSeries, simpleDateFormat, t -> t.getRebelPercentage());
+		addPoliticanData(list, dataSeries, simpleDateFormat, t -> t.getPoliticianPercentageAbsent());
+		addPoliticanData(list, dataSeries, simpleDateFormat, t -> t.getNumberBallots());
+	}
 
+
+
+	
+	/**
+	 * Adds the politican data.
+	 *
+	 * @param list             the list
+	 * @param dataSeries       the data series
+	 * @param simpleDateFormat the simple date format
+	 * @param t                the t
+	 */
+	private static void addPoliticanData(final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> list,
+			final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat, final Function<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily, Object> t) {
+		dataSeries.newSeries();
 		for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {
 			if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {
 				dataSeries.add(
 						simpleDateFormat.format(
 								viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),
 						viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getWonPercentage());
-			}
-		}
-
-		dataSeries.newSeries();
-
-		for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {
-			if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {
-				dataSeries.add(
-						simpleDateFormat.format(
-								viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),
-						viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getRebelPercentage());
-			}
-		}
-
-		dataSeries.newSeries();
-		for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {
-			if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {
-				dataSeries.add(
-						simpleDateFormat.format(
-								viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),
-						viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getPoliticianPercentageAbsent());
-			}
-		}
-
-		dataSeries.newSeries();
-		for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {
-			if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {
-				dataSeries.add(
-						simpleDateFormat.format(
-								viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),
-						viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getNumberBallots());
 			}
 		}
 	}

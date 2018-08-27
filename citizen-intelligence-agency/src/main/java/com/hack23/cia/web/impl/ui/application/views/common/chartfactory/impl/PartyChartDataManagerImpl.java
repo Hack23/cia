@@ -27,6 +27,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.time.DateUtils;
@@ -133,26 +134,28 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 		final Series series = new Series();
 
 		for (final Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> entry : map.entrySet()) {
-
 			series.addSeries(new XYseries().setLabel(getPartyName(entry.getKey())));
-
-			dataSeries.newSeries();
-			final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> list = entry.getValue();
-			for (final ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily : list) {
-				if (viewRiksdagenVoteDataBallotPartySummaryDaily != null) {
-					dataSeries.add(
-							simpleDateFormat
-									.format(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()),
-							viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyWonPercentage());
-				}
-			}
-
+			addPartyData(dataSeries, simpleDateFormat, entry.getValue(), t -> t.getPartyWonPercentage());			
 		}
 
 		series.addSeries(new XYseries().setLabel(NUMBER_BALLOTS));
+		addPartyData(dataSeries, simpleDateFormat, getMaxSizeViewRiksdagenVoteDataBallotPartySummaryDaily(), t -> t.getNumberBallots());
 
+		addChart(content,"Party winner by daily ballot average", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+	}
+
+
+	/**
+	 * Adds the party data.
+	 *
+	 * @param dataSeries       the data series
+	 * @param simpleDateFormat the simple date format
+	 * @param list             the list
+	 * @param t                the t
+	 */
+	private static void addPartyData(final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat,
+			final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> list, final Function<ViewRiksdagenVoteDataBallotPartySummaryDaily, Object> t) {
 		dataSeries.newSeries();
-		final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> list = getMaxSizeViewRiksdagenVoteDataBallotPartySummaryDaily();
 		for (final ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily : list) {
 			if (viewRiksdagenVoteDataBallotPartySummaryDaily != null) {
 				dataSeries.add(
@@ -161,8 +164,6 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 						viewRiksdagenVoteDataBallotPartySummaryDaily.getNumberBallots());
 			}
 		}
-
-		addChart(content,"Party winner by daily ballot average", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
 	}
 
 	/**
@@ -189,32 +190,12 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 		final Series series = new Series().addSeries(new XYseries().setLabel(PARTY_WON))
 				.addSeries(new XYseries().setLabel(PARTY_ABSENT));
 
-		final DataSeries dataSeries = new DataSeries().newSeries();
+		final DataSeries dataSeries = new DataSeries();
 
 		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 
-		if (list != null) {
-
-			for (final ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily : list) {
-				if (viewRiksdagenVoteDataBallotPartySummaryDaily != null) {
-					dataSeries.add(
-							simpleDateFormat
-									.format(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()),
-							viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyWonPercentage());
-				}
-			}
-
-			dataSeries.newSeries();
-
-			for (final ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily : list) {
-				if (viewRiksdagenVoteDataBallotPartySummaryDaily != null) {
-					dataSeries.add(
-							simpleDateFormat
-									.format(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()),
-							viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyPercentageAbsent());
-				}
-			}
-		}
+		addPartyData(dataSeries, simpleDateFormat, list, t -> t.getPartyWonPercentage());
+		addPartyData(dataSeries, simpleDateFormat, list, t -> t.getPartyPercentageAbsent());
 
 		addChart(content,"Party result by", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), true);
 	}
