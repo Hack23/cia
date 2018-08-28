@@ -506,12 +506,12 @@
     <dependency>
       <groupId>org.ehcache</groupId>
       <artifactId>ehcache</artifactId>
-      <version>3.5.2</version>
+      <version>3.6.0</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jcache</artifactId>
-      <version>5.3.5.Final</version>
+      <version>5.3.6.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>hibernate-core</artifactId>
