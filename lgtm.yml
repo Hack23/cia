@@ -1,6 +1,7 @@
 extraction:
   java:
+    prepare:
+      packages:
+        - graphviz
     index:
-      build_command: mvn install -Prelease-site -Dmaven.test.failure.ignore=true -DfailIfNoTests=false -Dmaven.javadoc.skip=true -B -V -q -Dtest=no
-      maven: 
-        version: 3.5.2
+      build_command: mvn clean package -f "pom.xml" -B -e -Dfindbugs.skip -Dcheckstyle.skip -Dpmd.skip=true -Denforcer.skip -Dmaven.javadoc.skip -DskipTests -Dmaven.test.skip.exec -t /opt/work/.m2/toolchains.xml -pl '!cia-dist-deb,!cia-dist-cloudformation'
