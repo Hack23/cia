@@ -115,7 +115,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 			for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
 
 				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
-				final Integer totalHeadcount = item.stream()
+				final int totalHeadcount = item.stream()
 						.filter((final GovernmentBodyAnnualSummary p) -> p.getName().equalsIgnoreCase(govBodyName))
 						.mapToInt(GovernmentBodyAnnualSummary::getHeadCount).sum();
 
@@ -150,7 +150,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 			for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
 
 				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
-				final Integer totalHeadcount = item.stream()
+				final int totalHeadcount = item.stream()
 						.filter((final GovernmentBodyAnnualSummary p) -> p.getMinistry().equalsIgnoreCase(ministryName))
 						.mapToInt(GovernmentBodyAnnualSummary::getHeadCount).sum();
 
@@ -182,7 +182,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 		for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
 
 			final List<GovernmentBodyAnnualSummary> item = entry.getValue();
-			final Integer totalHeadcount = item.stream().mapToInt(GovernmentBodyAnnualSummary::getHeadCount).sum();
+			final int totalHeadcount = item.stream().mapToInt(GovernmentBodyAnnualSummary::getHeadCount).sum();
 
 			if (entry.getKey() != null && totalHeadcount > 0) {
 				dataSeries.add(FIRST_OF_JAN + entry.getKey(), totalHeadcount);
@@ -210,7 +210,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 		for (final Entry<Integer, GovernmentBodyAnnualSummary> entry : map.entrySet()) {
 
 			final GovernmentBodyAnnualSummary item = entry.getValue();
-			final Integer totalHeadcount = item.getHeadCount();
+			final int totalHeadcount = item.getHeadCount();
 
 			if (entry.getKey() != null && totalHeadcount > 0) {
 				dataSeries.add(FIRST_OF_JAN + entry.getKey(), totalHeadcount);

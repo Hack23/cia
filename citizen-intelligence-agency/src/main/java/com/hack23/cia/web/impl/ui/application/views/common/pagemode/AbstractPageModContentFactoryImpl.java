@@ -160,8 +160,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	/**
 	 * Gets the page nr.
 	 *
-	 * @param cleanedString
-	 *            the parameters
+	 * @param parameters the parameters
 	 * @return the page nr
 	 */
 	protected final int getPageNr(final String parameters) {

@@ -136,10 +136,7 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 	/**
 	 * Creates the user account.
 	 *
-	 * @param serviceRequest
-	 *            the service request
-	 * @param registeredUsersGetAdminConfig
-	 *            the registered users get admin config
+	 * @param serviceRequest the service request
 	 * @return the user account
 	 */
 	private UserAccount createUserAccount(final RegisterUserRequest serviceRequest) {
