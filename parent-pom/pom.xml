@@ -754,7 +754,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>versions-maven-plugin</artifactId>
-          <version>2.5</version>
+          <version>2.6</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1928,7 +1928,7 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>versions-maven-plugin</artifactId>
-            <version>2.5</version>
+            <version>2.6</version>
             <reportSets>
               <reportSet>
                 <reports>
@@ -1968,7 +1968,7 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>versions-maven-plugin</artifactId>
-            <version>2.5</version>
+            <version>2.6</version>
             <executions>
               <execution>
                 <id>use-latest-versions</id>
@@ -2078,7 +2078,7 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>versions-maven-plugin</artifactId>
-            <version>2.5</version>
+            <version>2.6</version>
             <executions>
               <execution>
                 <id>use-latest-snapshots</id>
