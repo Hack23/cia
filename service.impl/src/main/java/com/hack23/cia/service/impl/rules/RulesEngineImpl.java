@@ -121,7 +121,7 @@ public final class RulesEngineImpl implements RulesEngine {
 					ballots = new ArrayList<>();
 				}
 
-				insertPoliticians(ksession, politicianData,
+				insertPolitician(ksession, politicianData,
 						politicanBallotSummaryDailyMap.get(politicianData.getPersonId()),
 						politicanBallotSummaryMontlyMap.get(politicianData.getPersonId()),
 						politicanBallotSummaryAnnualMap.get(politicianData.getPersonId()), ballots);
@@ -130,7 +130,7 @@ public final class RulesEngineImpl implements RulesEngine {
 	}
 
 	/**
-	 * Insert politicians.
+	 * Insert politician.
 	 *
 	 * @param ksession       the ksession
 	 * @param politicianData the politician data
@@ -139,7 +139,7 @@ public final class RulesEngineImpl implements RulesEngine {
 	 * @param annualList     the annual list
 	 * @param decisionList   the decision list
 	 */
-	private static void insertPoliticians(final KieSession ksession, final ViewRiksdagenPolitician politicianData,
+	private static void insertPolitician(final KieSession ksession, final ViewRiksdagenPolitician politicianData,
 			final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> dailyList,
 			final List<ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly> monthlyList,
 			final List<ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual> annualList,
