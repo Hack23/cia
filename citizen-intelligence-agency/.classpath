@@ -825,7 +825,7 @@
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/com/github/librepdf/openpdf/1.2.2/openpdf-1.2.2.jar" sourcepath="M2_REPO/com/github/librepdf/openpdf/1.2.2/openpdf-1.2.2-sources.jar">
     <attributes>
-      <attribute value="jar:file:/home/pether/.m2/repository/com/github/librepdf/openpdf/1.1.0/openpdf-1.1.0-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/home/pether/.m2/repository/com/github/librepdf/openpdf/1.2.0/openpdf-1.2.0-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/bouncycastle/bcpkix-jdk15on/1.60/bcpkix-jdk15on-1.60.jar" sourcepath="M2_REPO/org/bouncycastle/bcpkix-jdk15on/1.60/bcpkix-jdk15on-1.60-sources.jar">
