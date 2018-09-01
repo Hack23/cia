@@ -152,11 +152,6 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-text</artifactId>
-      <version>1.4</version>
-    </dependency>
-    <dependency>
       <groupId>org.reflections</groupId>
       <artifactId>reflections</artifactId>
       <version>0.9.11</version>
@@ -389,7 +384,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-logs</artifactId>
-      <version>1.11.400</version>
+      <version>1.11.401</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -421,7 +416,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-ec2</artifactId>
-      <version>1.11.400</version>
+      <version>1.11.401</version>
       <exclusions>
         <exclusion>
           <artifactId>jackson-databind</artifactId>
@@ -1015,7 +1010,16 @@
           <artifactId>bcprov-jdk15on</artifactId>
           <groupId>org.bouncycastle</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>commons-text</artifactId>
+          <groupId>org.apache.commons</groupId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-text</artifactId>
+      <version>1.4</version>
     </dependency>
     <dependency>
       <groupId>org.bouncycastle</groupId>
