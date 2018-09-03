@@ -2293,7 +2293,7 @@
 								"echo 'net.ipv6.conf.default.accept_redirects = 0' >> /etc/sysctl.conf \n",
 								"# Ignore Directed pings\n",
 								"echo 'net.ipv4.icmp_echo_ignore_all = 1' >> /etc/sysctl.conf \n",
-								"echo 'vm.swappiness = 0' >> /etc/sysctl.conf \n",
+								"echo 'vm.swappiness = 40' >> /etc/sysctl.conf \n",
 								"echo 'kernel.core_uses_pid = 1' >> /etc/sysctl.conf \n",
 								"echo 'kernel.ctrl-alt-del = 0' >> /etc/sysctl.conf \n",
 								"echo 'kernel.kptr_restrict = 2' >> /etc/sysctl.conf \n",
