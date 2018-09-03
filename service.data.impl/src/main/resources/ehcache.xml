@@ -15,7 +15,7 @@
       <tti unit="seconds">1800</tti>
     </expiry>      
     <resources>
-      <heap unit="entries">10000000</heap> 
+      <heap unit="entries">100000</heap> 
     </resources>
  </cache-template>
 
