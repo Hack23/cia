@@ -987,6 +987,11 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>net.bull.javamelody</groupId>
+      <artifactId>javamelody-dark-theme</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
       <groupId>org.jrobin</groupId>
       <artifactId>jrobin</artifactId>
       <version>1.6.0</version>
