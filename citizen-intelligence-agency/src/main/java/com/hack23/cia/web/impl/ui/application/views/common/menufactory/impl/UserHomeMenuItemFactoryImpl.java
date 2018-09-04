@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -88,7 +89,7 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 	@Override
 	public void createOverviewPage(final VerticalLayout overviewLayout) {
-		final ResponsiveRow grid = createGridLayout(overviewLayout);
+		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
 
 		createButtonLink(grid,SECURITY_SETTING_TEXT, VaadinIcons.USER,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString(),""),"Security settings, enable MFA");

@@ -34,6 +34,7 @@ import com.hack23.cia.service.api.action.admin.ManageUserAccountRequest;
 import com.hack23.cia.service.api.action.admin.ManageUserAccountRequest.AccountOperation;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ManageUserAccountClickListener;
@@ -131,7 +132,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 				content.addComponent(overviewLayout);
 				content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
-				final ResponsiveRow grid = createGridLayout(overviewLayout);
+				final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
 			
 				for (final AccountOperation accountOperation : ManageUserAccountRequest.AccountOperation.values()) {
 					final ManageUserAccountRequest request = new ManageUserAccountRequest();
@@ -141,7 +142,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 					final Button accountOperationButton = new Button(MessageFormat.format(BUTTON_PATTERN, accountOperation) , VaadinIcons.BULLSEYE);
 					accountOperationButton.addClickListener(new ManageUserAccountClickListener(request));
 					accountOperationButton.setId(MessageFormat.format(BUTTON_ID_PATTERN, ViewAction.START_AGENT_BUTTON, accountOperation));
-					createRowItem(grid, accountOperationButton, "Will perform useraccount action");
+					RowUtil.createRowItem(grid, accountOperationButton, "Will perform useraccount action");
 				}
 
 				

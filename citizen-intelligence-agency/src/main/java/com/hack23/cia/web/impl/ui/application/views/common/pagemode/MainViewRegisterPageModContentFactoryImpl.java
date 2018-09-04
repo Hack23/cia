@@ -29,6 +29,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.action.application.RegisterUserRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
@@ -108,8 +109,8 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractBas
 		content.addComponent(overviewLayout);
 		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
-		final ResponsiveRow grid = createGridLayout(overviewLayout);		
-		createRowComponent(grid,registerLayout,"Register a new user");
+		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);		
+		RowUtil.createRowComponent(grid,registerLayout,"Register a new user");
 
 		panel.setCaption(NAME + "::" + CITIZEN_INTELLIGENCE_AGENCY_MAIN);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,

@@ -33,6 +33,7 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
@@ -107,10 +108,10 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 			panelContent.addComponent(overviewLayout);
 			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 			
-			final ResponsiveRow grid = createGridLayout(overviewLayout);
+			final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
 			
-			createRowComponent(grid,createEnableGoogleAuthButton(),"Enable MFA using google authenticator");
-			createRowComponent(grid,createDisableGoogleAuthButton(),"Disable MFA using google authenticator");			
+			RowUtil.createRowComponent(grid,createEnableGoogleAuthButton(),"Enable MFA using google authenticator");
+			RowUtil.createRowComponent(grid,createDisableGoogleAuthButton(),"Disable MFA using google authenticator");			
 		}
 
 		panel.setCaption(NAME + "::" + USERHOME + SECURITY_SETTINGS);

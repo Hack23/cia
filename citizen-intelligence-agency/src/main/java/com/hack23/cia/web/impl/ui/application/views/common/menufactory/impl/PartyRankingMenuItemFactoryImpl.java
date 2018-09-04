@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -153,7 +154,7 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent) {
-		final ResponsiveRow grid = createGridLayout(panelContent);
+		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
 		createButtonLink(grid,TOTAL_MEMBERS,VaadinIcons.GROUP,
 				COMMAND_DATAGRID, "Scoreboard all parties current assignments and roles in eu,government,committes and parliament");

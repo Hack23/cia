@@ -20,14 +20,12 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 
 import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DataSummaryPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.jarektoro.responsivelayout.ResponsiveLayout;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Resource;
@@ -39,7 +37,6 @@ import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class AbstractMenuItemFactoryImpl.
@@ -354,24 +351,6 @@ public abstract class AbstractMenuItemFactoryImpl {
 		layout.addComponent(descriptionLabel);
 
 		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE,DISPLAYS_SIZE_XM_DEVICE,DISPLAY_SIZE_MD_DEVICE,DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
-	}
-
-	/**
-	 * Creates the grid layout.
-	 *
-	 * @param panelContent
-	 *            the panel content
-	 * @return the grid layout
-	 */
-	protected final ResponsiveRow createGridLayout(final VerticalLayout panelContent) {
-		final ResponsiveLayout layout = new ResponsiveLayout();
-		Responsive.makeResponsive(layout);
-		layout.addStyleName("v-layout-content-overview-panel-level1");
-		layout.setWidth(100, Unit.PERCENTAGE);
-		layout.setHeight(100, Unit.PERCENTAGE);
-		panelContent.addComponent(layout);
-		panelContent.setExpandRatio(layout, ContentRatio.LARGE);
-		return layout.addRow();
 	}
 
 }

@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.DocumentMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -142,7 +143,7 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
-		final ResponsiveRow grid = createGridLayout(panelContent);
+		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
 		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
 				DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId), DOCUMENT_ACTIVITIES);

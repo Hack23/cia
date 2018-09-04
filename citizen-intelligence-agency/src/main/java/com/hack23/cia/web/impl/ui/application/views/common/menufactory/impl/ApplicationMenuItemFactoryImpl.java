@@ -30,6 +30,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Parli
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
@@ -242,7 +243,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent) {
-		final ResponsiveRow grid = createGridLayout(panelContent);
+		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
 		createButtonLink(grid,COUNTRY_RANKING_LINK_TEXT,VaadinIcons.FLAG, COMMAND_COUNTRY_RANKING_OVERVIEW,"Indicators for Sweden overview, find data by topic or source.");
 

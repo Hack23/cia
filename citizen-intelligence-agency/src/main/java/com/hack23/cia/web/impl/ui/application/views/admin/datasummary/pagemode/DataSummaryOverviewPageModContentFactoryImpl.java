@@ -29,6 +29,7 @@ import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
 import com.hack23.cia.service.api.action.admin.RemoveDataRequest;
 import com.hack23.cia.service.api.action.admin.UpdateSearchIndexRequest;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -120,14 +121,14 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 		content.addComponent(overviewLayout);
 		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
-		final ResponsiveRow grid = createGridLayout(overviewLayout);
+		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
 
 		final RefreshDataViewsRequest refreshRequest = new RefreshDataViewsRequest();
 		refreshRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 
 		final Button refreshViewsButton = new Button(REFRESH_VIEWS, VaadinIcons.REFRESH);
 		refreshViewsButton.addClickListener(new RefreshDataViewsClickListener(refreshRequest));
-		createRowItem(grid, refreshViewsButton, REFRESH_ALL_VIEWS);
+		RowUtil.createRowItem(grid, refreshViewsButton, REFRESH_ALL_VIEWS);
 
 		final Button updateSearchIndexButton = new Button(UPDATE_SEARCH_INDEX, VaadinIcons.REFRESH);
 
@@ -135,7 +136,7 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 		updateIndexRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 
 		updateSearchIndexButton.addClickListener(new UpdateSearchIndexClickListener(updateIndexRequest));
-		createRowItem(grid, updateSearchIndexButton, UPDATE_DOCUMENT_SEARCH_INDEX);
+		RowUtil.createRowItem(grid, updateSearchIndexButton, UPDATE_DOCUMENT_SEARCH_INDEX);
 
 		final Button removeDataButton = new Button(REMOVE_POLITICIANS, VaadinIcons.DEL);
 
@@ -144,7 +145,7 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 		removePoliticianRequest.setDataType(RemoveDataRequest.DataType.POLITICIAN);
 
 		removeDataButton.addClickListener(new RemoveDataClickListener(removePoliticianRequest));
-		createRowItem(grid, removeDataButton, REMOVE_POLITICIANS);
+		RowUtil.createRowItem(grid, removeDataButton, REMOVE_POLITICIANS);
 
 		final RemoveDataRequest removeDocumentsRequest = new RemoveDataRequest();
 		removeDocumentsRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
@@ -152,7 +153,7 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 		final Button removeDocumentsButton = new Button(REMOVE_DOCUMENTS, VaadinIcons.DEL);
 		removeDocumentsButton.addClickListener(new RemoveDataClickListener(removeDocumentsRequest));
-		createRowItem(grid, removeDocumentsButton, REMOVE_DOCUMENTS);
+		RowUtil.createRowItem(grid, removeDocumentsButton, REMOVE_DOCUMENTS);
 
 		final RemoveDataRequest removeApplicationHistoryRequest = new RemoveDataRequest();
 		removeApplicationHistoryRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
@@ -160,7 +161,7 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 		final Button removeApplicationHistoryButton = new Button(REMOVE_APPLICATION_HISTORY, VaadinIcons.DEL);
 		removeApplicationHistoryButton.addClickListener(new RemoveDataClickListener(removeApplicationHistoryRequest));
-		createRowItem(grid, removeApplicationHistoryButton, REMOVE_APPLICATION_HISTORY);
+		RowUtil.createRowItem(grid, removeApplicationHistoryButton, REMOVE_APPLICATION_HISTORY);
 
 		return content;
 

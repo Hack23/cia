@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ParliamentMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.RiskIndicators;
@@ -212,7 +213,7 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent) {
-		final ResponsiveRow grid = createGridLayout(panelContent);
+		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
 		createButtonLink(grid,PARTY_WINNER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER, CHART_DAILY_BALLOT_SUMMARY_PERCENTAGE_BALLOTS_THAT_DAY_THE_VOTED_IN_WINNING_SIDE);
 
