@@ -41,7 +41,7 @@ public final class WebBrowserUtil {
             .build();
 	
 	/** The Constant X_FORWARDED_FOR. */
-	private static final String X_FORWARDED_FOR = "X-Forwarded-For";
+	public static final String X_FORWARDED_FOR = "X-Forwarded-For";
 
 	/**
 	 * Instantiates a new web browser util.
