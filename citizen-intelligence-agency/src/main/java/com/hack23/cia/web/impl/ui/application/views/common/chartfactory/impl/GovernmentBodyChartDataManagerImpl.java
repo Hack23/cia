@@ -282,9 +282,9 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 
 				for (final Entry<Integer, List<GovernmentBodyAnnualOutcomeSummary>> data : map.entrySet()) {
 					final List<GovernmentBodyAnnualOutcomeSummary> values = data.getValue();
-					final Double sum = values.stream().mapToDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal).sum();
-					if (sum.intValue() > 0) {
-						dataSeries.add(data.getKey() + FIRST_JAN_DATA_SUFFIX, sum.intValue());
+					final double sum = values.stream().mapToDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal).sum();
+					if (sum > 0) {
+						dataSeries.add(data.getKey() + FIRST_JAN_DATA_SUFFIX, (int) sum);
 					}
 				}
 			}
