@@ -400,6 +400,15 @@
 				]
 			}]
 		},
+		"useWebACL": {
+			"Fn::Not": [{
+				"Fn::Equals": [{
+						"Ref": "WAFWebACL"
+					},
+					""
+				]
+			}]
+		},		
 		"useElasticSearch": {
 			"Fn::Not": [{
 				"Fn::Equals": [{
@@ -1738,6 +1747,15 @@
 				]
 			},
 			"DependsOn": "LogsBucketPolicy"
+		},				
+		"WebACLAssociation": {
+		  "Type": "AWS::WAFRegional::WebACLAssociation",
+		  "Condition": "useWebACL",
+		  "DependsOn": "PublicElasticLoadBalancerV2",
+		  "Properties": {
+		    "ResourceArn": { "Ref": "PublicElasticLoadBalancerV2" },
+		    "WebACLId": { "Ref": "WAFWebACL" }
+		  }
 		},
 		"DNSRecordCNAME2PublicElasticLoadBalancerV2": {
 			"Type": "AWS::Route53::RecordSet",

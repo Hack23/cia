@@ -91,6 +91,10 @@ Parameters:
     Description: App log output appender console/elasticsearch/cloudwatch/awslogs/kinesis
     Type: String
     Default: cloudwatch
+  WAFWebACL:
+    Description: WAFWebACL AWS WAF WebACL ID
+    Type: String
+    Default: ''
   DomainNamePrefix:
     Description: Domain name prefix (optional), used to setup route53 dns
     Type: String
@@ -318,6 +322,10 @@ Conditions:
   useDomainName: !Not
     - !Equals
       - !Ref 'DomainName'
+      - ''
+  useWebACL: !Not
+    - !Equals
+      - !Ref 'WAFWebACL'
       - ''
   useElasticSearch: !Not
     - !Equals
@@ -1161,6 +1169,13 @@ Resources:
         - Key: idle_timeout.timeout_seconds
           Value: '60'
     DependsOn: LogsBucketPolicy
+  WebACLAssociation:
+    Type: AWS::WAFRegional::WebACLAssociation
+    Condition: useWebACL
+    DependsOn: PublicElasticLoadBalancerV2
+    Properties:
+      ResourceArn: !Ref 'PublicElasticLoadBalancerV2'
+      WebACLId: !Ref 'WAFWebACL'
   DNSRecordCNAME2PublicElasticLoadBalancerV2:
     Type: AWS::Route53::RecordSet
     Condition: useDomainName
