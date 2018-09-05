@@ -91,6 +91,11 @@
 			"Description": "App log output appender console/elasticsearch/cloudwatch/awslogs/kinesis",
 			"Type": "String",
 			"Default": "cloudwatch"
+		},		
+		"WAFWebACL": {
+			"Description": "WAFWebACL AWS WAF WebACL ID",
+			"Type": "String",
+			"Default": ""
 		},
 		"DomainNamePrefix": {
 			"Description": "Domain name prefix (optional), used to setup route53 dns",
