@@ -41,7 +41,7 @@ public interface UserContextUtil {
 	 *
 	 * @return the user id from security context
 	 */
-	public static String getUserIdFromSecurityContext() {
+	static String getUserIdFromSecurityContext() {
 		final SecurityContext context = SecurityContextHolder.getContext();
 		if (context != null) {
 			final Authentication authentication = context.getAuthentication();
@@ -59,7 +59,7 @@ public interface UserContextUtil {
 	 *            the current
 	 * @return the request url
 	 */
-	public static String getRequestUrl(final Page current) {
+	static String getRequestUrl(final Page current) {
 		if (current != null) {
 			return current.getLocation().toString();
 
@@ -76,7 +76,7 @@ public interface UserContextUtil {
 	 *            the role
 	 * @return true, if successful
 	 */
-	public static boolean allowRoleInSecurityContext(final String role) {
+	static boolean allowRoleInSecurityContext(final String role) {
 		boolean result = false;
 		final SecurityContext context = SecurityContextHolder.getContext();
 		if (context != null && context.getAuthentication() != null) {

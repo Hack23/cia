@@ -23,56 +23,56 @@ package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
  */
 public interface UserViews {
 
-	/** The Constant BALLOT_VIEW_NAME. */
-	public static final String BALLOT_VIEW_NAME = "ballot";
+	/** The ballot view name. */
+	String BALLOT_VIEW_NAME = "ballot";
 
-	/** The Constant COMMITTEE_RANKING_VIEW_NAME. */
-	public static final String COMMITTEE_RANKING_VIEW_NAME = "committeeranking";
+	/** The committee ranking view name. */
+	String COMMITTEE_RANKING_VIEW_NAME = "committeeranking";
 
-	/** The Constant COMMITTEE_VIEW_NAME. */
-	public static final String COMMITTEE_VIEW_NAME = "committee";
+	/** The committee view name. */
+	String COMMITTEE_VIEW_NAME = "committee";
 
-	/** The Constant DOCUMENT_VIEW_NAME. */
-	public static final String DOCUMENT_VIEW_NAME = "document";
+	/** The document view name. */
+	String DOCUMENT_VIEW_NAME = "document";
 
-	/** The Constant DOCUMENTS_VIEW_NAME. */
-	public static final String DOCUMENTS_VIEW_NAME = "documents";
+	/** The documents view name. */
+	String DOCUMENTS_VIEW_NAME = "documents";
 
-	/** The Constant MINISTRY_RANKING_VIEW_NAME. */
-	public static final String MINISTRY_RANKING_VIEW_NAME = "ministryranking";
+	/** The ministry ranking view name. */
+	String MINISTRY_RANKING_VIEW_NAME = "ministryranking";
 
-	/** The Constant MINISTRY_VIEW_NAME. */
-	public static final String MINISTRY_VIEW_NAME = "ministry";
+	/** The ministry view name. */
+	String MINISTRY_VIEW_NAME = "ministry";
 
-	/** The Constant GOVERNMENT_BODY_VIEW_NAME. */
-	public static final String GOVERNMENT_BODY_VIEW_NAME = "governmentbody";
+	/** The government body view name. */
+	String GOVERNMENT_BODY_VIEW_NAME = "governmentbody";
 
-	/** The Constant GOVERNMENT_BODY_RANKING_VIEW_NAME. */
-	public static final String GOVERNMENT_BODY_RANKING_VIEW_NAME = "governmentbodyranking";
+	/** The government body ranking view name. */
+	String GOVERNMENT_BODY_RANKING_VIEW_NAME = "governmentbodyranking";
 	
-	/** The Constant PARTY_RANKING_VIEW_NAME. */
-	public static final String PARTY_RANKING_VIEW_NAME = "partyranking";
+	/** The party ranking view name. */
+	String PARTY_RANKING_VIEW_NAME = "partyranking";
 
-	/** The Constant PARTY_VIEW_NAME. */
-	public static final String PARTY_VIEW_NAME = "party";
+	/** The party view name. */
+	String PARTY_VIEW_NAME = "party";
 
-	/** The Constant POLITICIAN_RANKING_VIEW_NAME. */
-	public static final String POLITICIAN_RANKING_VIEW_NAME = "politicianranking";
+	/** The politician ranking view name. */
+	String POLITICIAN_RANKING_VIEW_NAME = "politicianranking";
 
-	/** The Constant POLITICIAN_VIEW_NAME. */
-	public static final String POLITICIAN_VIEW_NAME = "politician";
+	/** The politician view name. */
+	String POLITICIAN_VIEW_NAME = "politician";
 
 
-	/** The Constant SEARCH_DOCUMENT_VIEW_NAME. */
-	public static final String SEARCH_DOCUMENT_VIEW_NAME = "search";
+	/** The search document view name. */
+	String SEARCH_DOCUMENT_VIEW_NAME = "search";
 
-	/** The Constant USERHOME_VIEW_NAME. */
-	public static final String USERHOME_VIEW_NAME = "userhome";
+	/** The userhome view name. */
+	String USERHOME_VIEW_NAME = "userhome";
 
-	/** The Constant COUNTRY_RANKING_VIEW_NAME. */
-	public static final String COUNTRY_RANKING_VIEW_NAME = "countryranking";
+	/** The country ranking view name. */
+	String COUNTRY_RANKING_VIEW_NAME = "countryranking";
 
-	/** The Constant PARLIAMENT_RANKING_VIEW_NAME. */
-	public static final String PARLIAMENT_RANKING_VIEW_NAME = "parliamentranking";
+	/** The parliament ranking view name. */
+	String PARLIAMENT_RANKING_VIEW_NAME = "parliamentranking";
 
 }

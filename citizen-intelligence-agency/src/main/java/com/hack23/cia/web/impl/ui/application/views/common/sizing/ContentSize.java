@@ -24,10 +24,10 @@ package com.hack23.cia.web.impl.ui.application.views.common.sizing;
 public interface ContentSize {
 
 
-	/** The Constant FULL_SIZE. */
-	public static final String FULL_SIZE = "100%";
+	/** The full size. */
+	String FULL_SIZE = "100%";
 
-	/** The Constant HALF_SIZE. */
-	public static final String HALF_SIZE = "50%";
+	/** The half size. */
+	String HALF_SIZE = "50%";
 
 }

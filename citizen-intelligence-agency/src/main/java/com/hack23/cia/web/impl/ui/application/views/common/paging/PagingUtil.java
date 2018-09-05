@@ -31,60 +31,53 @@ import com.vaadin.ui.Link;
  */
 public interface PagingUtil {
 
-	/** The Constant LIMIT_FOR_DISPLAYING_START_END_LINKS. */
-	public static final int LIMIT_FOR_DISPLAYING_START_END_LINKS = 5;
+	/** The limit for displaying start end links. */
+	int LIMIT_FOR_DISPLAYING_START_END_LINKS = 5;
 
-	/** The Constant PAGE_ONE. */
-	public static final int PAGE_ONE = 1;
+	/** The page one. */
+	int PAGE_ONE = 1;
 
-	/** The Constant PAGE_SEPARATOR. */
-	public static final char PAGE_SEPARATOR = '/';
+	/** The page separator. */
+	char PAGE_SEPARATOR = '/';
 
-	/** The Constant SHOW. */
-	public static final String SHOW = " :: Show ";
+	/** The show. */
+	String SHOW = " :: Show ";
 
-	/** The Constant RESULTS_PER_PAGE. */
-	public static final String RESULTS_PER_PAGE = " results per page:";
+	/** The results per page. */
+	String RESULTS_PER_PAGE = " results per page:";
 
-	/** The Constant PAGES_TOTAL_RESULTS. */
-	public static final String PAGES_TOTAL_RESULTS = " pages. Total results:";
+	/** The pages total results. */
+	String PAGES_TOTAL_RESULTS = " pages. Total results:";
 
-	/** The Constant PAGE_HEADER. */
-	public static final String PAGE_HEADER = "Page: ";
+	/** The page header. */
+	String PAGE_HEADER = "Page: ";
 
-	/** The Constant NEXT_PAGE. */
-	public static final String NEXT_PAGE = "next page";
+	/** The next page. */
+	String NEXT_PAGE = "next page";
 
-	/** The Constant FIRST_PAGE. */
-	public static final String FIRST_PAGE = "first page";
+	/** The first page. */
+	String FIRST_PAGE = "first page";
 
-	/** The Constant LAST_PAGE. */
-	public static final String LAST_PAGE = "last page";
+	/** The last page. */
+	String LAST_PAGE = "last page";
 
-	/** The Constant PREVIOUS_PAGE. */
-	public static final String PREVIOUS_PAGE = "previous page";
+	/** The previous page. */
+	String PREVIOUS_PAGE = "previous page";
 
-
-	/** The Constant pageLinkFactory. */
-	public static final PageLinkFactory pageLinkFactory = new PageLinkFactoryImpl();
+	/** The page link factory. */
+	PageLinkFactory pageLinkFactory = new PageLinkFactoryImpl();
 	
 	/**
 	 * Creates the paging controls.
 	 *
-	 * @param content
-	 *            the content
-	 * @param name
-	 *            the name
-	 * @param pageId
-	 *            the page id
-	 * @param size
-	 *            the size
-	 * @param pageNr
-	 *            the page nr
-	 * @param resultPerPage
-	 *            the result per page
+	 * @param content       the content
+	 * @param name          the name
+	 * @param pageId        the page id
+	 * @param size          the size
+	 * @param pageNr        the page nr
+	 * @param resultPerPage the result per page
 	 */
-	public static void createPagingControls(final AbstractOrderedLayout content, final String name, final String pageId, final Long size, final int pageNr,
+	static void createPagingControls(final AbstractOrderedLayout content, final String name, final String pageId, final Long size, final int pageNr,
 			final int resultPerPage) {
 				final HorizontalLayout pagingControls = new HorizontalLayout();
 				pagingControls.setSpacing(true);
@@ -131,18 +124,13 @@ public interface PagingUtil {
 	/**
 	 * Adds the paging link.
 	 *
-	 * @param label
-	 *            the label
-	 * @param name
-	 *            the name
-	 * @param pageId
-	 *            the page id
-	 * @param maxPages
-	 *            the page nr
-	 * @param pagingControls
-	 *            the paging controls
+	 * @param label          the label
+	 * @param name           the name
+	 * @param pageId         the page id
+	 * @param maxPages       the max pages
+	 * @param pagingControls the paging controls
 	 */
-	public static void addPagingLink(final String label, final String name, final String pageId, final long maxPages, final HorizontalLayout pagingControls) {
+	static void addPagingLink(final String label, final String name, final String pageId, final long maxPages, final HorizontalLayout pagingControls) {
 		final Link previousPageLink = pageLinkFactory.createAdminPagingLink(label,name, pageId, String.valueOf(maxPages));
 		pagingControls.addComponent(previousPageLink);
 		pagingControls.setExpandRatio(previousPageLink, ContentRatio.SMALL);
