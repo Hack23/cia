@@ -23,11 +23,11 @@ import com.jarektoro.responsivelayout.ResponsiveLayout;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.server.Responsive;
 import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class RowUtil.
@@ -51,6 +51,13 @@ public final class RowUtil {
 
 	/** The Constant DISPLAY_SIZE_XS_DEVICE. */
 	private static final int DISPLAY_SIZE_XS_DEVICE = 12;
+
+	
+	/**
+	 * Instantiates a new row util.
+	 */
+	private RowUtil() {
+	}
 
 	/**
 	 * Creates the row item.
@@ -117,7 +124,7 @@ public final class RowUtil {
 	 * @param panelContent the panel content
 	 * @return the responsive row
 	 */
-	public static final ResponsiveRow createGridLayout(final VerticalLayout panelContent) {
+	public static ResponsiveRow createGridLayout(final AbstractOrderedLayout panelContent) {
 		final ResponsiveLayout layout = new ResponsiveLayout();
 		Responsive.makeResponsive(layout);
 		layout.addStyleName("v-layout-content-overview-panel-level1");

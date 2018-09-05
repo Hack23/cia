@@ -83,7 +83,7 @@ final class EsvGovernmentOperationsExcelReaderImpl implements EsvGovernmentOpera
 		while (rows.hasNext()) {
 			row = (XSSFRow) rows.next();
 
-			if (row.getLastCellNum() == ROW_LENGTH && row.getCell(VALUE_CELL).getCellTypeEnum() == CellType.NUMERIC) {
+			if (row.getLastCellNum() == ROW_LENGTH && row.getCell(VALUE_CELL).getCellType() == CellType.NUMERIC) {
 				final GovernmentOperationPeriodOutcome governmentOperationPeriodOutcome = new GovernmentOperationPeriodOutcome();
 
 				governmentOperationPeriodOutcome.setVariableName(row.getCell(VARIABLE_CELL).getStringCellValue());
