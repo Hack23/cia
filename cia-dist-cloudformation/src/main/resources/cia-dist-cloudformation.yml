@@ -26,7 +26,7 @@ Parameters:
       - t3.medium
       - t3.large
       - t3.xlarge
-      - t3.2xlarge      
+      - t3.2xlarge
       - m4.large
       - m4.xlarge
       - m4.2xlarge
@@ -1579,7 +1579,7 @@ Resources:
               \ \n"
             - "# Ignore Directed pings\n"
             - "echo 'net.ipv4.icmp_echo_ignore_all = 1' >> /etc/sysctl.conf \n"
-            - "echo 'vm.swappiness = 0' >> /etc/sysctl.conf \n"
+            - "echo 'vm.swappiness = 40' >> /etc/sysctl.conf \n"
             - "echo 'kernel.core_uses_pid = 1' >> /etc/sysctl.conf \n"
             - "echo 'kernel.ctrl-alt-del = 0' >> /etc/sysctl.conf \n"
             - "echo 'kernel.kptr_restrict = 2' >> /etc/sysctl.conf \n"
@@ -1668,8 +1668,16 @@ Resources:
             - "wget https://download.java.net/java/early_access/jdk11/28/GPL/openjdk-11+28_linux-x64_bin.tar.gz\n"
             - "tar xvfz openjdk-11+28_linux-x64_bin.tar.gz\n"
             - "sudo mv jdk-11 /usr/lib/jvm/java-11-openjdk-amd64\n"
-            - "sudo ln -s /usr/lib/jvm/java-11-openjdk-amd64 /usr/lib/jvm/java-11-oracle\n"
             - "rm openjdk-11+28_linux-x64_bin.tar.gz\n"
+            - "sudo ln -s /usr/lib/jvm/java-11-openjdk-amd64 /usr/lib/jvm/java-11-oracle\n"
+            - "# INSTALL ORACLE JDK\n"
+            - "#sudo add-apt-repository ppa:webupd8team/java \n"
+            - "#sudo apt-get update\n"
+            - "#echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select\
+              \ true | sudo /usr/bin/debconf-set-selections\n"
+            - "#sudo apt-get -y install oracle-java8-installer oracle-java8-unlimited-jce-policy\
+              \ oracle-java8-set-default\n"
+            - "#sudo ln -s /usr/lib/jvm/java-8-oracle /usr/lib/jvm/java-11-oracle\n"
             - 'wget '
             - !Ref 'DebPackageUrl'
             - " -O cia-dist-deb.deb \n"
