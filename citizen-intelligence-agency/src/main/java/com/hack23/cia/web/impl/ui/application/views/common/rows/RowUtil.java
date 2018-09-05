@@ -32,32 +32,25 @@ import com.vaadin.ui.Label;
 /**
  * The Class RowUtil.
  */
-public final class RowUtil {
+public interface RowUtil {
 
 	/** The Constant TITLE. */
-	private static final String TITLE = "title";
+	public static final String TITLE = "title";
 
 	/** The Constant ITEMBOX. */
-	private static final String ITEMBOX = "itembox";
+	public static final String ITEMBOX = "itembox";
 
 	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
-	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
+	public static final int DISPLAY_SIZE_LG_DEVICE = 4;
 
 	/** The Constant DISPLAY_SIZE_MD_DEVICE. */
-	private static final int DISPLAY_SIZE_MD_DEVICE = 4;
+	public static final int DISPLAY_SIZE_MD_DEVICE = 4;
 
 	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
-	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
+	public static final int DISPLAYS_SIZE_XM_DEVICE = 6;
 
 	/** The Constant DISPLAY_SIZE_XS_DEVICE. */
-	private static final int DISPLAY_SIZE_XS_DEVICE = 12;
-
-	
-	/**
-	 * Instantiates a new row util.
-	 */
-	private RowUtil() {
-	}
+	public static final int DISPLAY_SIZE_XS_DEVICE = 12;
 
 	/**
 	 * Creates the row item.

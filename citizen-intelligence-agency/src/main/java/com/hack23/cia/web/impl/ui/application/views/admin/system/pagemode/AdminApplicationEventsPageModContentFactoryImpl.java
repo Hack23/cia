@@ -30,6 +30,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -67,7 +68,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 	 * impl.
 	 */
 	public AdminApplicationEventsPageModContentFactoryImpl() {
-		super();
+		super(NAME);
 	}
 
 	@Override
@@ -93,7 +94,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 
 		final List<ApplicationActionEvent> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationActionEvent_.createdDate);
 
-		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		PagingUtil.createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(content, ApplicationActionEvent.class, pageOrderBy,
 				APPLICATION_ACTION_EVENT,

@@ -62,12 +62,7 @@ public final class EmailPageModContentFactoryImpl extends AbstractAdminSystemPag
 	 * Instantiates a new email page mod content factory impl.
 	 */
 	public EmailPageModContentFactoryImpl() {
-		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page);
+		super(NAME);
 	}
 
 	@Secured({ "ROLE_ADMIN" })

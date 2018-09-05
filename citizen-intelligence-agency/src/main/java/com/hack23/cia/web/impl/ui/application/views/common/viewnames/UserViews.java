@@ -19,9 +19,9 @@
 package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
 
 /**
- * The Class UserViews.
+ * The Interface UserViews.
  */
-public final class UserViews {
+public interface UserViews {
 
 	/** The Constant BALLOT_VIEW_NAME. */
 	public static final String BALLOT_VIEW_NAME = "ballot";
@@ -74,13 +74,5 @@ public final class UserViews {
 
 	/** The Constant PARLIAMENT_RANKING_VIEW_NAME. */
 	public static final String PARLIAMENT_RANKING_VIEW_NAME = "parliamentranking";
-
-	/**
-	 * Instantiates a new user views.
-	 */
-	private UserViews() {
-		super();
-	}
-
 
 }

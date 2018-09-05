@@ -32,6 +32,7 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -80,12 +81,7 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 	 * factory impl.
 	 */
 	public AdminApplicationConfigurationPageModContentFactoryImpl() {
-		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page);
+		super(NAME);
 	}
 
 	@Secured({ "ROLE_ADMIN" })
@@ -106,7 +102,7 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 
 		final List<ApplicationConfiguration> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationConfiguration_.configurationGroup);
 
-		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		PagingUtil.createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(content,ApplicationConfiguration.class,
 				pageOrderBy,

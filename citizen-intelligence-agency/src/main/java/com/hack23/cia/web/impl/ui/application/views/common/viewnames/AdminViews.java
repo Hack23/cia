@@ -19,9 +19,9 @@
 package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
 
 /**
- * The Class AdminViews.
+ * The Interface AdminViews.
  */
-public final class AdminViews {
+public interface AdminViews {
 
 	/** The Constant ADMIN_AGENCY_VIEW_NAME. */
 	public static final String ADMIN_AGENCY_VIEW_NAME = "adminagency";
@@ -62,12 +62,5 @@ public final class AdminViews {
 
 	/** The Constant ADMIN_EMAIL_VIEW_NAME. */
 	public static final String ADMIN_EMAIL_VIEW_NAME = "adminemail";
-
-	/**
-	 * Instantiates a new admin views.
-	 */
-	private AdminViews() {
-		super();
-	}
 
 }

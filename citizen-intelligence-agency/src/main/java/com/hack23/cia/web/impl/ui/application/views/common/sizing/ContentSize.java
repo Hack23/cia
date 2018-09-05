@@ -19,9 +19,9 @@
 package com.hack23.cia.web.impl.ui.application.views.common.sizing;
 
 /**
- * The Class ContentSize.
+ * The Interface ContentSize.
  */
-public final class ContentSize {
+public interface ContentSize {
 
 
 	/** The Constant FULL_SIZE. */
@@ -29,12 +29,5 @@ public final class ContentSize {
 
 	/** The Constant HALF_SIZE. */
 	public static final String HALF_SIZE = "50%";
-
-	/**
-	 * Instantiates a new content size.
-	 */
-	private ContentSize() {
-		super();
-	}
 
 }

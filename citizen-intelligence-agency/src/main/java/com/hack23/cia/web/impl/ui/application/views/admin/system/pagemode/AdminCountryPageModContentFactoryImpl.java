@@ -30,6 +30,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.ui.Layout;
@@ -67,12 +68,7 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 	 * Instantiates a new admin country page mod content factory impl.
 	 */
 	public AdminCountryPageModContentFactoryImpl() {
-		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page);
+		super(NAME);
 	}
 
 	@Secured({ "ROLE_ADMIN" })
@@ -92,7 +88,7 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 
 		final List<CountryElement> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,CountryElement_.countryName);
 
-		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		PagingUtil.createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory()
 				.createBasicBeanItemNestedPropertiesGrid(content, CountryElement.class, pageOrderBy,

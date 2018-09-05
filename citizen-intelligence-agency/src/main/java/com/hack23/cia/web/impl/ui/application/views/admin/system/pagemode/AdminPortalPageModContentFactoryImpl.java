@@ -30,6 +30,7 @@ import com.hack23.cia.model.internal.application.system.impl.Portal_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.ui.Layout;
@@ -65,13 +66,9 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 	 * Instantiates a new admin agency page mod content factory impl.
 	 */
 	public AdminPortalPageModContentFactoryImpl() {
-		super();
+		super(NAME);
 	}
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page);
-	}
 
 	@Secured({ "ROLE_ADMIN" })
 	@Override
@@ -89,7 +86,7 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 
 		final List<Portal> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,Portal_.portalName);
 
-		createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		PagingUtil.createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
 
 
 		getGridFactory().createBasicBeanItemGrid(content, Portal.class,

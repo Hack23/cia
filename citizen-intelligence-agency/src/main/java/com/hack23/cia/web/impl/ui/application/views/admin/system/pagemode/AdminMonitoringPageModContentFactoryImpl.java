@@ -51,12 +51,7 @@ public final class AdminMonitoringPageModContentFactoryImpl extends AbstractAdmi
 	 * Instantiates a new admin agency page mod content factory impl.
 	 */
 	public AdminMonitoringPageModContentFactoryImpl() {
-		super();
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page);
+		super(NAME);
 	}
 
 	@Secured({ "ROLE_ADMIN" })

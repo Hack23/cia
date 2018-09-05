@@ -29,12 +29,12 @@ import nl.basjes.parse.useragent.UserAgent;
 import nl.basjes.parse.useragent.UserAgentAnalyzer;
 
 /**
- * The Class WebBrowserUtil.
+ * The Interface WebBrowserUtil.
  */
-public final class WebBrowserUtil {
+public interface WebBrowserUtil {
 
 	/** The Constant USER_AGENT_ANALYZER. */
-	private static final UserAgentAnalyzer USER_AGENT_ANALYZER = UserAgentAnalyzer
+	public static final UserAgentAnalyzer USER_AGENT_ANALYZER = UserAgentAnalyzer
             .newBuilder()
             .hideMatcherLoadStats()
             .withCache(10000)
@@ -42,14 +42,6 @@ public final class WebBrowserUtil {
 	
 	/** The Constant X_FORWARDED_FOR. */
 	public static final String X_FORWARDED_FOR = "X-Forwarded-For";
-
-	/**
-	 * Instantiates a new web browser util.
-	 */
-	private WebBrowserUtil() {
-		super();
-	}
-
 
 	/**
 	 * Gets the ip information.

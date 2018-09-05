@@ -25,11 +25,21 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasi
  */
 public abstract class AbstractAdminSystemPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
+	private final String viewName;
+
 	/**
 	 * Instantiates a new abstract admin system page mod content factory impl.
+	 *
+	 * @param viewName the view name
 	 */
-	AbstractAdminSystemPageModContentFactoryImpl() {
+	AbstractAdminSystemPageModContentFactoryImpl(final String viewName) {
 		super();
+		this.viewName = viewName;
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return viewName.equals(page);
 	}
 
 }

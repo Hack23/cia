@@ -49,7 +49,7 @@ public final class AdminApplicationEventsChartsPageModContentFactoryImpl
 	 * factory impl.
 	 */
 	public AdminApplicationEventsChartsPageModContentFactoryImpl() {
-		super();
+		super(NAME);
 	}
 
 	@Override

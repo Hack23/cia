@@ -32,16 +32,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.vaadin.server.Page;
 
 /**
- * The Class UserContextUtil.
+ * The Interface UserContextUtil.
  */
-public final class UserContextUtil {
-
-	/**
-	 * Instantiates a new user context util.
-	 */
-	private UserContextUtil() {
-		super();
-	}
+public interface UserContextUtil {
 
 	/**
 	 * Gets the user id from security context.
