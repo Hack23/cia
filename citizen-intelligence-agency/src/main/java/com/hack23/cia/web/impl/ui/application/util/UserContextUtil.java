@@ -32,16 +32,16 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.vaadin.server.Page;
 
 /**
- * The Interface UserContextUtil.
+ * The Class UserContextUtil.
  */
-public interface UserContextUtil {
+public final class UserContextUtil {
 
 	/**
 	 * Gets the user id from security context.
 	 *
 	 * @return the user id from security context
 	 */
-	static String getUserIdFromSecurityContext() {
+	public static String getUserIdFromSecurityContext() {
 		final SecurityContext context = SecurityContextHolder.getContext();
 		if (context != null) {
 			final Authentication authentication = context.getAuthentication();
@@ -59,7 +59,7 @@ public interface UserContextUtil {
 	 *            the current
 	 * @return the request url
 	 */
-	static String getRequestUrl(final Page current) {
+	public static String getRequestUrl(final Page current) {
 		if (current != null) {
 			return current.getLocation().toString();
 
@@ -76,7 +76,7 @@ public interface UserContextUtil {
 	 *            the role
 	 * @return true, if successful
 	 */
-	static boolean allowRoleInSecurityContext(final String role) {
+	public static boolean allowRoleInSecurityContext(final String role) {
 		boolean result = false;
 		final SecurityContext context = SecurityContextHolder.getContext();
 		if (context != null && context.getAuthentication() != null) {
@@ -90,6 +90,5 @@ public interface UserContextUtil {
 		}
 		return result;
 	}
-
 
 }

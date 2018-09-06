@@ -30,27 +30,27 @@ import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Label;
 
 /**
- * The Interface RowUtil.
+ * The Class RowUtil.
  */
-public interface RowUtil {
+public final class RowUtil {
 
-	/** The title. */
-	String TITLE = "title";
+	/** The Constant TITLE. */
+	private static final String TITLE = "title";
 
-	/** The itembox. */
-	String ITEMBOX = "itembox";
+	/** The Constant ITEMBOX. */
+	private static final String ITEMBOX = "itembox";
 
-	/** The display size lg device. */
-	int DISPLAY_SIZE_LG_DEVICE = 4;
+	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
+	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
 
-	/** The display size md device. */
-	int DISPLAY_SIZE_MD_DEVICE = 4;
+	/** The Constant DISPLAY_SIZE_MD_DEVICE. */
+	private static final int DISPLAY_SIZE_MD_DEVICE = 4;
 
-	/** The displays size xm device. */
-	int DISPLAYS_SIZE_XM_DEVICE = 6;
+	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
+	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
 
-	/** The display size xs device. */
-	int DISPLAY_SIZE_XS_DEVICE = 12;
+	/** The Constant DISPLAY_SIZE_XS_DEVICE. */
+	private static final int DISPLAY_SIZE_XS_DEVICE = 12;
 
 	/**
 	 * Creates the row item.
@@ -59,7 +59,7 @@ public interface RowUtil {
 	 * @param button      the button
 	 * @param description the description
 	 */
-	static void createRowItem(final ResponsiveRow row, final Button button, final String description) {
+	public static void createRowItem(final ResponsiveRow row, final Button button, final String description) {
 		final CssLayout layout = new CssLayout();
 		layout.addStyleName("v-layout-content-overview-panel-level2");
 		Responsive.makeResponsive(layout);
@@ -88,7 +88,7 @@ public interface RowUtil {
 	 * @param component   the component
 	 * @param description the description
 	 */
-	static void createRowComponent(final ResponsiveRow row, final Component component,
+	public static void createRowComponent(final ResponsiveRow row, final Component component,
 			final String description) {
 		final CssLayout layout = new CssLayout();
 		layout.addStyleName(".v-layout-content-pagemode-panel-level2");
@@ -117,7 +117,7 @@ public interface RowUtil {
 	 * @param panelContent the panel content
 	 * @return the responsive row
 	 */
-	static ResponsiveRow createGridLayout(final AbstractOrderedLayout panelContent) {
+	public static ResponsiveRow createGridLayout(final AbstractOrderedLayout panelContent) {
 		final ResponsiveLayout layout = new ResponsiveLayout();
 		Responsive.makeResponsive(layout);
 		layout.addStyleName("v-layout-content-overview-panel-level1");

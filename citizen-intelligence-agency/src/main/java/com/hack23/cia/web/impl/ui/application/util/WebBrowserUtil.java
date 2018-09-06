@@ -29,27 +29,28 @@ import nl.basjes.parse.useragent.UserAgent;
 import nl.basjes.parse.useragent.UserAgentAnalyzer;
 
 /**
- * The Interface WebBrowserUtil.
+ * The Class WebBrowserUtil.
  */
-public interface WebBrowserUtil {
+public final class WebBrowserUtil {
 
-	/** The user agent analyzer. */
-	UserAgentAnalyzer USER_AGENT_ANALYZER = UserAgentAnalyzer
+	/** The Constant USER_AGENT_ANALYZER. */
+	private static final UserAgentAnalyzer USER_AGENT_ANALYZER = UserAgentAnalyzer
             .newBuilder()
             .hideMatcherLoadStats()
             .withCache(10000)
             .build();
 	
-	/** The x forwarded for. */
-	String X_FORWARDED_FOR = "X-Forwarded-For";
+	/** The Constant X_FORWARDED_FOR. */
+	public static final String X_FORWARDED_FOR = "X-Forwarded-For";
 
 	/**
 	 * Gets the ip information.
 	 *
-	 * @param webBrowser the web browser
+	 * @param webBrowser
+	 *            the web browser
 	 * @return the ip information
 	 */
-	static String getIpInformation(final WebBrowser webBrowser) {
+	public static String getIpInformation(final WebBrowser webBrowser) {
 		String ipInformation=webBrowser.getAddress();
 
 		final HttpServletRequest httpRequest=((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
@@ -67,15 +68,15 @@ public interface WebBrowserUtil {
 	/**
 	 * Gets the operating system.
 	 *
-	 * @param webBrowser the web browser
+	 * @param webBrowser
+	 *            the web browser
 	 * @return the operating system
 	 */
-	static String getOperatingSystem(final WebBrowser webBrowser) {
+	public static String getOperatingSystem(final WebBrowser webBrowser) {
 		synchronized (USER_AGENT_ANALYZER) {
 			final UserAgent userAgent = USER_AGENT_ANALYZER.parse(webBrowser.getBrowserApplication());
 			return userAgent.getValue(UserAgent.DEVICE_CLASS) + "." +userAgent.getValue(UserAgent.OPERATING_SYSTEM_NAME) +"." + userAgent.getValue(UserAgent.OPERATING_SYSTEM_VERSION);			
 		}
 	}
-
 
 }
