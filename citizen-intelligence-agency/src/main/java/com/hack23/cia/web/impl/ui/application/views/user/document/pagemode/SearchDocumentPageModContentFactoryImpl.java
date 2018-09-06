@@ -18,7 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +50,7 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractBasic
 
 	private static final String SEARCH = "Search";
 
-	private static final List<String> AS_LIST = Arrays.asList( "searchExpression" );
+	private static final List<String> AS_LIST = Collections.singletonList( "searchExpression" );
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.SEARCH_DOCUMENT_VIEW_NAME;

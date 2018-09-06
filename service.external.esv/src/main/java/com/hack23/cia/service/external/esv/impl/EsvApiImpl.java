@@ -92,8 +92,9 @@ final class EsvApiImpl implements EsvApi {
 	public List<GovernmentBodyAnnualSummary> getDataPerMinistryAndYear(final String name, final int year) {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = getDataPerMinistry(name);
 
-		if (map.containsKey(year)) {
-			return map.get(year);
+		final List<GovernmentBodyAnnualSummary> list = map.get(year);
+		if (list != null) {
+			return list;
 		} else {
 			return new ArrayList<>();
 		}

@@ -52,11 +52,9 @@ public final class LoadHelper {
 	 *             the no such method exception
 	 */
 	private static void recursiveInitialize(final Object obj, final Set<Object> dejaVu) {
-		if (!dejaVu.contains(obj)) {
-			dejaVu.add(obj);
-			if (!Hibernate.isInitialized(obj)) {
-				Hibernate.initialize(obj);
-			}
+		dejaVu.add(obj);
+		if (!Hibernate.isInitialized(obj)) {
+			Hibernate.initialize(obj);
 		}
 	}
 

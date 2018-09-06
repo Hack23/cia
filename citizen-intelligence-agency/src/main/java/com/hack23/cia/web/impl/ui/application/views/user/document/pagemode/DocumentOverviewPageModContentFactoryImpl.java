@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -47,7 +48,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-	private static final List<String> AS_LIST3 = Arrays.asList("documentCategory");
+	private static final List<String> AS_LIST3 = Collections.singletonList("documentCategory");
 	private static final List<String> AS_LIST2 = Arrays.asList("id", "org", "documentType", "subType", "rm", "status",
 			"title", "subTitle", "madePublicDate", "label", "tempLabel", "numberValue", "hangarId");
 	private static final List<String> AS_LIST = Arrays.asList("id", "org", "documentType", "subType", "rm", "status",

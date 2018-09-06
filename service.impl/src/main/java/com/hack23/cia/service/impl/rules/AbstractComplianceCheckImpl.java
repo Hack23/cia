@@ -87,7 +87,7 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	 */
 	@Override
 	public int getNumberRuleViolations() {
-		return ruleViolationMap.values().size();
+		return ruleViolationMap.size();
 	}
 	
 	/**

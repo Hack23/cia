@@ -59,7 +59,7 @@ final class RiksdagenCommitteeProposalWorkGeneratorImpl extends AbstractRiksdage
 				.getCommitteeProposalComponentDataMap();
 
 		LOGGER.info("getAvaibleCommitteeProposal()={}", avaibleCommitteeProposal.size());
-		LOGGER.info("getCommitteeProposalComponentDataMap()={}", committeeProposalComponentDataMap.keySet().size());
+		LOGGER.info("getCommitteeProposalComponentDataMap()={}", committeeProposalComponentDataMap.size());
 
 		for (final String id : avaibleCommitteeProposal) {
 			if (!committeeProposalComponentDataMap.containsKey(id)) {

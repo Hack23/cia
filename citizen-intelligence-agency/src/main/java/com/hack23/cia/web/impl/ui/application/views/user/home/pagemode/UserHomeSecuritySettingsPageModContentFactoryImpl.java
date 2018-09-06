@@ -18,7 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.home.pagemode;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +60,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 	/** The Constant DISABLE_GOOGLE_AUTHENTICATOR. */
 	private static final String DISABLE_GOOGLE_AUTHENTICATOR = "Disable Google Authenticator";
 	
-	private static final List<String> AS_LIST = Arrays.asList( "userpassword" );
+	private static final List<String> AS_LIST = Collections.singletonList( "userpassword" );
 
 	
 	/** The Constant USERHOME. */
