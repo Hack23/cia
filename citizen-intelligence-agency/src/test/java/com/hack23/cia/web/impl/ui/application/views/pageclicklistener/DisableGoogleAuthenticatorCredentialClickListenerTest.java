@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
+import static org.mockito.Mockito.times;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -49,6 +51,22 @@ public class DisableGoogleAuthenticatorCredentialClickListenerTest extends Abstr
 		Mockito.doNothing().when(listener).showNotification(Mockito.anyString(), Mockito.anyString(), Mockito.any(Type.class));
 		listener.buttonClick(new ClickEvent(new Panel()));
 		Mockito.verify(listener).showNotification(Mockito.anyString(), Mockito.anyString(), Mockito.any(Type.class));
+	}
+
+	/**
+	 * Show notification success test.
+	 */
+	@Test
+	public void showNotificationSuccessTest() {
+		DisableGoogleAuthenticatorCredentialRequest request = new DisableGoogleAuthenticatorCredentialRequest();		
+		DisableGoogleAuthenticatorCredentialClickListener listener = Mockito.spy(new DisableGoogleAuthenticatorCredentialClickListener(request));
+		ApplicationManager applicationManager = Mockito.mock(ApplicationManager.class);
+		Mockito.doReturn(applicationManager).when(listener).getApplicationManager();
+		
+		DisableGoogleAuthenticatorCredentialResponse response = new DisableGoogleAuthenticatorCredentialResponse(ServiceResult.SUCCESS);
+		Mockito.when(applicationManager.service(request)).thenReturn(response);
+		listener.buttonClick(new ClickEvent(new Panel()));
+		Mockito.verify(applicationManager,times(1)).service(request);
 	}
 
 }

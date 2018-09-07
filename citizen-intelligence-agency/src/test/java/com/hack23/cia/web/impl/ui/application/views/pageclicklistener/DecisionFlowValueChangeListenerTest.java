@@ -47,13 +47,40 @@ public class DecisionFlowValueChangeListenerTest extends AbstractUnitTest {
 				
 		ValueChangeEvent event = Mockito.mock(ValueChangeEvent.class);
 		
-		Mockito.when(event.getSource()).thenReturn(Mockito.mock(HasValue.class));
+		HasValue hasValue = Mockito.mock(HasValue.class);
+		Mockito.when(hasValue.isEmpty()).thenReturn(false);
+		
+		Mockito.when(event.getSource()).thenReturn(hasValue);
+		
 		String value = "value";
 		Mockito.when(event.getValue()).thenReturn("value");
-		
+			
 		listener.valueChange(event);
 		
 		Mockito.verify(navigatorMock, times(1)).navigateTo(pageName + "/CHARTS/DECISION_FLOW_CHART/" + pageId + "[" +value + "]");
+	}
+
+	
+	/**
+	 * Selection value change event source empty test.
+	 */
+	@Test
+	public void selectionValueChangeEventSourceEmptyTest() {
+		String pageName = "pageName";
+		String pageId = "pageId";
+		DecisionFlowValueChangeListener listener = new DecisionFlowValueChangeListener(pageName, pageId);
+		
+		ValueChangeEvent event = Mockito.mock(ValueChangeEvent.class);
+		
+		HasValue hasValue = Mockito.mock(HasValue.class);
+		Mockito.when(hasValue.isEmpty()).thenReturn(true);
+		
+		Mockito.when(event.getSource()).thenReturn(hasValue);
+		
+		listener.valueChange(event);
+		
+		Mockito.verify(event,times(1)).getSource();
+
 	}
 
 }
