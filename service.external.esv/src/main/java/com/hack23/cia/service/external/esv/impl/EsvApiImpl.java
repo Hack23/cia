@@ -56,23 +56,33 @@ final class EsvApiImpl implements EsvApi {
 	/** The Constant NO_MINISTRY. */
 	private static final String NO_MINISTRY = "Inget departement";
 
-	@Autowired
-	private EsvExcelReader esvExcelReader;
+	/** The esv excel reader. */
+	private final EsvExcelReader esvExcelReader;
 	
-	@Autowired
-	private EsvGovernmentOperationsExcelReader esvGovernmentOperationsExcelReader;
+	/** The esv government operations excel reader. */
+	private final EsvGovernmentOperationsExcelReader esvGovernmentOperationsExcelReader;
 	
-	@Autowired
-	private EsvGovernmentBodyOperationOutcomeReader esvGovernmentBodyOperationOutcomeReader;
+	/** The esv government body operation outcome reader. */
+	private final EsvGovernmentBodyOperationOutcomeReader esvGovernmentBodyOperationOutcomeReader;
 
-
+	/** The all data. */
 	private Map<Integer, List<GovernmentBodyAnnualSummary>> allData;
 
 	/**
 	 * Instantiates a new esv api impl.
+	 *
+	 * @param esvExcelReader                          the esv excel reader
+	 * @param esvGovernmentOperationsExcelReader      the esv government operations
+	 *                                                excel reader
+	 * @param esvGovernmentBodyOperationOutcomeReader the esv government body
+	 *                                                operation outcome reader
 	 */
-	public EsvApiImpl() {
+	@Autowired
+	public EsvApiImpl(final EsvExcelReader esvExcelReader,final EsvGovernmentOperationsExcelReader esvGovernmentOperationsExcelReader,final EsvGovernmentBodyOperationOutcomeReader esvGovernmentBodyOperationOutcomeReader) {
 		super();
+		this.esvExcelReader = esvExcelReader;
+		this.esvGovernmentOperationsExcelReader = esvGovernmentOperationsExcelReader;
+		this.esvGovernmentBodyOperationOutcomeReader = esvGovernmentBodyOperationOutcomeReader;
 	}
 
 	@Override
@@ -177,6 +187,11 @@ final class EsvApiImpl implements EsvApi {
 		return result.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getGovermentBody));
 	}
 
+	/**
+	 * Gets the government body list.
+	 *
+	 * @return the government body list
+	 */
 	private List<GovernmentBodyAnnualOutcomeSummary> getGovernmentBodyList() {
 		final List<GovernmentBodyAnnualOutcomeSummary> result = new ArrayList<>();
 		try {

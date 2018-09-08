@@ -32,9 +32,9 @@ import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.service.external.esv.api.GovernmentOperationPeriodOutcome;
 
 /**
- * The Class EsvApiTest.
+ * The Class EsvApiITest.
  */
-public final class EsvApiTest extends AbstractEsvFunctionalIntegrationTest {
+public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 
 	/** The esv api. */
 	@Autowired
