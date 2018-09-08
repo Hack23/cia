@@ -229,4 +229,6 @@ $ sudo dpkg -i cia-dist-deb-2018.9.8.deb
 
 # Cloudformation template diagram
 
+[![Cloudformation](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-dist-cloudformation/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cia-dist-cloudformationv2.png)](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-dist-cloudformation/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cia-dist-cloudformationv2.png)
+
 [![Cloudformation](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-dist-cloudformation/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cia-dist-cloudformation.svg)](https://www.hack23.com/jenkins/job/Citizen-Intelligence-Agency-dist-cloudformation/lastSuccessfulBuild/artifact/cia-dist-cloudformation/target/cia-dist-cloudformation.svg)
