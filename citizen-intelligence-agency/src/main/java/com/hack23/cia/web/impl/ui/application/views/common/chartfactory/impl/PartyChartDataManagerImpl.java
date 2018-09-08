@@ -235,22 +235,38 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 		for (final Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> entry : map.entrySet()) {
 
 			if (!"-".equals(entry.getKey())) {
-				series.addSeries(new XYseries().setLabel(getPartyName(entry.getKey())));
-
-				dataSeries.newSeries();
-				final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> list = entry.getValue();
-				for (final ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily : list) {
-					if (viewRiksdagenVoteDataBallotPartySummaryDaily != null) {
-						dataSeries.add(
-								simpleDateFormat
-										.format(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()),
-										dataValueCalculator.getDataValue(viewRiksdagenVoteDataBallotPartySummaryDaily));
-					}
-				}
+				addBallotData(dataValueCalculator, dataSeries, simpleDateFormat, series, entry);
 			}
 		}
 
 		addChart(content,"Party ballot chart", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+	}
+
+
+	/**
+	 * Adds the ballot data.
+	 *
+	 * @param dataValueCalculator the data value calculator
+	 * @param dataSeries          the data series
+	 * @param simpleDateFormat    the simple date format
+	 * @param series              the series
+	 * @param entry               the entry
+	 */
+	private void addBallotData(final DataValueCalculator dataValueCalculator, final DataSeries dataSeries,
+			final SimpleDateFormat simpleDateFormat, final Series series,
+			final Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> entry) {
+		series.addSeries(new XYseries().setLabel(getPartyName(entry.getKey())));
+
+		dataSeries.newSeries();
+		final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> list = entry.getValue();
+		for (final ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily : list) {
+			if (viewRiksdagenVoteDataBallotPartySummaryDaily != null) {
+				dataSeries.add(
+						simpleDateFormat
+								.format(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()),
+								dataValueCalculator.getDataValue(viewRiksdagenVoteDataBallotPartySummaryDaily));
+			}
+		}
 	}
 
 	/**

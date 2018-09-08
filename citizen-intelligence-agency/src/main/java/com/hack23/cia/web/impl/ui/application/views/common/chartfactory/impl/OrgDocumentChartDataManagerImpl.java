@@ -111,7 +111,6 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 		final List<ViewRiksdagenOrgDocumentDailySummary> itemList = allMap.get(searchOrg);
 
 		if (itemList != null) {
-
 			addDocumentHistoryByOrgData(dataSeries, series, itemList);
 		}
 
@@ -144,6 +143,15 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 		}
 	}
 
+	/**
+	 * Adds the new data serie.
+	 *
+	 * @param dataSeries              the data series
+	 * @param series                  the series
+	 * @param simpleDateFormat        the simple date format
+	 * @param parseIncomingDateFormat the parse incoming date format
+	 * @param entry                   the entry
+	 */
 	private static void addNewDataSerie(final DataSeries dataSeries, final Series series,
 			final SimpleDateFormat simpleDateFormat, final SimpleDateFormat parseIncomingDateFormat,
 			final Entry<String, List<ViewRiksdagenOrgDocumentDailySummary>> entry) {
@@ -153,20 +161,33 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 
 		if (entry.getValue() != null) {
 			for (final ViewRiksdagenOrgDocumentDailySummary item : entry.getValue()) {
-				if (item != null && item.getEmbeddedId().getPublicDate().length() > 0) {
-
-					try {
-						dataSeries.add(
-								simpleDateFormat
-										.format(parseIncomingDateFormat.parse(item.getEmbeddedId().getPublicDate())),
-								item.getTotal());
-					} catch (final ParseException e) {
-						LOGGER.warn("Problem parsing date:{}", item.getEmbeddedId().getPublicDate());
-					}
-				}
+				addDataItem(dataSeries, simpleDateFormat, parseIncomingDateFormat, item);
 			}
 		} else {
 			LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
+		}
+	}
+
+	/**
+	 * Adds the data item.
+	 *
+	 * @param dataSeries              the data series
+	 * @param simpleDateFormat        the simple date format
+	 * @param parseIncomingDateFormat the parse incoming date format
+	 * @param item                    the item
+	 */
+	private static void addDataItem(final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat,
+			final SimpleDateFormat parseIncomingDateFormat, final ViewRiksdagenOrgDocumentDailySummary item) {
+		if (item != null && item.getEmbeddedId().getPublicDate().length() > 0) {
+
+			try {
+				dataSeries.add(
+						simpleDateFormat
+								.format(parseIncomingDateFormat.parse(item.getEmbeddedId().getPublicDate())),
+						item.getTotal());
+			} catch (final ParseException e) {
+				LOGGER.warn("Problem parsing date:{}", item.getEmbeddedId().getPublicDate());
+			}
 		}
 	}
 

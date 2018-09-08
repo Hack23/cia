@@ -83,9 +83,7 @@ final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesW
 			
 			for (final String country : getImportService().getWorldBankCountryMap().keySet()) {
 				if (StringUtils.containsIgnoreCase(importDataForCountries.getPropertyValue(), country)) {
-					for (final String indicator : indicatorlist) {
-						sendCountryIndicatorWorkOrder(currentSaved, indicator, country);
-					}
+					sendCountryIndicatorWorkOrder(currentSaved, indicatorlist, country);
 				}
 			}
 		} catch (final DataFailureException e) {
@@ -96,22 +94,22 @@ final class WorldBankDataWorkGeneratorImpl extends AbstractWorldBankDataSourcesW
 	/**
 	 * Send country indicator work order.
 	 *
-	 * @param currentSaved
-	 *            the current saved
-	 * @param indicator
-	 *            the indicator
-	 * @param countryIso2Code
-	 *            the country iso 2 code
+	 * @param currentSaved    the current saved
+	 * @param indicators      the indicators
+	 * @param countryIso2Code the country iso 2 code
 	 */
-	private void sendCountryIndicatorWorkOrder(final Map<String, String> currentSaved, final String indicator,
+	private void sendCountryIndicatorWorkOrder(final Map<String, String> currentSaved, final List<String> indicators,
 			final String countryIso2Code) {
-		if (countryIso2Code != null && countryIso2Code.length() > 0
-				&& !currentSaved.containsKey(countryIso2Code + '.' + indicator)) {
-			final List<String> load = new ArrayList<>();
-			load.add(countryIso2Code);
-			load.add(indicator);
-			getJmsSender().send(dataWorkdestination, (Serializable) load);
+		for (final String indicator : indicators) {
+			if (countryIso2Code != null && countryIso2Code.length() > 0
+					&& !currentSaved.containsKey(countryIso2Code + '.' + indicator)) {
+				final List<String> load = new ArrayList<>();
+				load.add(countryIso2Code);
+				load.add(indicator);
+				getJmsSender().send(dataWorkdestination, (Serializable) load);
+			}
 		}
+
 	}
 
 }
