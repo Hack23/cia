@@ -655,22 +655,22 @@
             <dependency>
               <groupId>org.apache.maven.scm</groupId>
               <artifactId>maven-scm-api</artifactId>
-              <version>1.10.0</version>
+              <version>1.11.0</version>
             </dependency>
             <dependency>
               <groupId>org.apache.maven.scm</groupId>
               <artifactId>maven-scm-provider-gitexe</artifactId>
-              <version>1.10.0</version>
+              <version>1.11.0</version>
             </dependency>
             <dependency>
               <groupId>org.apache.maven.scm</groupId>
               <artifactId>maven-scm-provider-svn-commons</artifactId>
-              <version>1.10.0</version>
+              <version>1.11.0</version>
             </dependency>
             <dependency>
               <groupId>org.apache.maven.scm</groupId>
               <artifactId>maven-scm-provider-svnexe</artifactId>
-              <version>1.10.0</version>
+              <version>1.11.0</version>
             </dependency>
             <dependency>
               <groupId>commons-io</groupId>
