@@ -134,20 +134,32 @@ public final class ListPropertyConverter implements Converter<String, List<?>>,V
 			if (beanProperty != null) {
 				stringBuilder.append(beanProperty);
 			} else {
-				if (fallbackColumn != null) {
-					final String beanPropertyFallBack = BeanUtils.getProperty(object, fallbackColumn);
-					if (beanPropertyFallBack != null) {
-						stringBuilder.append(beanPropertyFallBack);
-					}
-				}
-
-
+				addFallbackValue(stringBuilder, object);
 			}
 
 		} catch (final IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
 			LOGGER.warn("Problem getting property {}, object {} , exception {}", property, object, e);
 		}
 		stringBuilder.append(CONTENT_SEPARATOR);
+	}
+
+	/**
+	 * Adds the fallback value.
+	 *
+	 * @param stringBuilder the string builder
+	 * @param object        the object
+	 * @throws IllegalAccessException    the illegal access exception
+	 * @throws InvocationTargetException the invocation target exception
+	 * @throws NoSuchMethodException     the no such method exception
+	 */
+	private void addFallbackValue(final StringBuilder stringBuilder, final Object object)
+			throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+		if (fallbackColumn != null) {
+			final String beanPropertyFallBack = BeanUtils.getProperty(object, fallbackColumn);
+			if (beanPropertyFallBack != null) {
+				stringBuilder.append(beanPropertyFallBack);
+			}
+		}
 	}
 
 	@Override

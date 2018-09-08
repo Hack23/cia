@@ -274,19 +274,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 			final List<GovernmentBodyAnnualOutcomeSummary> allValues = entry.getValue();
 
 			if (!allValues.isEmpty()) {
-				series.addSeries(new XYseries().setLabel(entry.getKey()).setShowLabel(true));
-				dataSeries.newSeries();
-
-				final Map<Integer, List<GovernmentBodyAnnualOutcomeSummary>> map = allValues.stream()
-						.collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear));
-
-				for (final Entry<Integer, List<GovernmentBodyAnnualOutcomeSummary>> data : map.entrySet()) {
-					final List<GovernmentBodyAnnualOutcomeSummary> values = data.getValue();
-					final double sum = values.stream().mapToDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal).sum();
-					if (sum > 0) {
-						dataSeries.add(data.getKey() + FIRST_JAN_DATA_SUFFIX, (int) sum);
-					}
-				}
+				addAnnualSummaryData(dataSeries, series, entry, allValues);
 			}
 		}
 
@@ -294,6 +282,32 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 				true);
+	}
+
+	/**
+	 * Adds the annual summary data.
+	 *
+	 * @param dataSeries the data series
+	 * @param series     the series
+	 * @param entry      the entry
+	 * @param allValues  the all values
+	 */
+	private static void addAnnualSummaryData(final DataSeries dataSeries, final Series series,
+			final Entry<String, List<GovernmentBodyAnnualOutcomeSummary>> entry,
+			final List<GovernmentBodyAnnualOutcomeSummary> allValues) {
+		series.addSeries(new XYseries().setLabel(entry.getKey()).setShowLabel(true));
+		dataSeries.newSeries();
+
+		final Map<Integer, List<GovernmentBodyAnnualOutcomeSummary>> map = allValues.stream()
+				.collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear));
+
+		for (final Entry<Integer, List<GovernmentBodyAnnualOutcomeSummary>> data : map.entrySet()) {
+			final List<GovernmentBodyAnnualOutcomeSummary> values = data.getValue();
+			final double sum = values.stream().mapToDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal).sum();
+			if (sum > 0) {
+				dataSeries.add(data.getKey() + FIRST_JAN_DATA_SUFFIX, (int) sum);
+			}
+		}
 	}
 
 	/**
