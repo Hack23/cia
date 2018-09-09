@@ -18,14 +18,12 @@
 */
 package com.hack23.cia.service.impl.action.application.encryption;
 
-import java.io.Serializable;
-
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 
 /**
  * The Interface VaultManager.
  */
-public interface VaultManager extends Serializable {
+public interface VaultManager {
 
 	/**
 	 * Gets the encrypted value.

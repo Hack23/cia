@@ -57,9 +57,6 @@ import com.hack23.cia.service.data.api.EncryptedValueDAO;
 @Transactional(propagation = Propagation.REQUIRED)
 public final class VaultManagerImpl implements VaultManager {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-
 	/** The Constant IV_BYTE_SIZE. */
 	private static final int IV_BYTE_SIZE = 12;
 
