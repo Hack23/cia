@@ -113,23 +113,35 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 	
 			stringBuilder.append('\n').append(vewRiksdagenCommittee.get().getEmbeddedId().getDetail());
 			for (final Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
-				if (docEntry.getKey().length() > 0 && entry.getKey().length() > 0) {
-					
-					stringBuilder.append("( ").append(docEntry.getValue().size()).append(' ').append(docEntry.getKey()).append(" -> "); 
-					
-					final Map<String, List<ProposalCommitteeeSummary>> decisionMap = docEntry.getValue().stream()
-							.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
-	
-					for (final Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
-						if (decisionEntry.getKey().length() > 0 && entry.getKey().length() > 0) {									
-							stringBuilder.append(decisionEntry.getValue().size()).append(' ').append(decisionEntry.getKey()).append(' ');
-							
-						}
-					}
-					stringBuilder.append(')');
+				if (docEntry.getKey().length() > 0 && entry.getKey().length() > 0) {					
+					addEntry(stringBuilder, entry, docEntry);
 				}
 			}
 		}
+	}
+
+	/**
+	 * Adds the entry.
+	 *
+	 * @param stringBuilder the string builder
+	 * @param entry         the entry
+	 * @param docEntry      the doc entry
+	 */
+	private static void addEntry(final StringBuilder stringBuilder,
+			final Entry<String, List<ProposalCommitteeeSummary>> entry,
+			final Entry<String, List<ProposalCommitteeeSummary>> docEntry) {
+		stringBuilder.append("( ").append(docEntry.getValue().size()).append(' ').append(docEntry.getKey()).append(" -> "); 
+		
+		final Map<String, List<ProposalCommitteeeSummary>> decisionMap = docEntry.getValue().stream()
+				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
+
+		for (final Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
+			if (decisionEntry.getKey().length() > 0 && entry.getKey().length() > 0) {									
+				stringBuilder.append(decisionEntry.getValue().size()).append(' ').append(decisionEntry.getKey()).append(' ');
+				
+			}
+		}
+		stringBuilder.append(')');
 	}
 
 	/**

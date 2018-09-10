@@ -200,7 +200,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 	 * @param entry      the entry
 	 * @param value      the value
 	 */
-	private void addDataSerieValue(final DataSeries dataSeries, final Entry entry,
+	private static void addDataSerieValue(final DataSeries dataSeries, final Entry entry,
 			final int value) {
 		if (entry.getKey() != null && value > 0) {
 			dataSeries.add(FIRST_OF_JAN + entry.getKey(), value);

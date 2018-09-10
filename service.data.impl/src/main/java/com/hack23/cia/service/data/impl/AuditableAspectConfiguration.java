@@ -19,7 +19,6 @@
 package com.hack23.cia.service.data.impl;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
