@@ -23,9 +23,6 @@
       <url>github:http://hack23.github.io/cia/cia-dist-deb</url>
     </site>
   </distributionManagement>
-  <properties>
-    <sonar.dependencyCheck.reportPath>${project.basedir}/../parent-pom/src/config/dependency-check-report.xml</sonar.dependencyCheck.reportPath>
-  </properties>
   <dependencies>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>

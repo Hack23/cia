@@ -22,5 +22,6 @@
   </scm>
   <properties>
     <sonar.dependencyCheck.reportPath>${project.basedir}/dependency-check-report.xml</sonar.dependencyCheck.reportPath>
+    <sonar.dependencyCheck.htmlReportPath>${project.basedir}/dependency-check-report.html</sonar.dependencyCheck.htmlReportPath>    
   </properties>
 </project>
