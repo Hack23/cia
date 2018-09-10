@@ -37,7 +37,6 @@ import org.javers.spring.auditable.AuthorProvider;
 import org.javers.spring.auditable.CommitPropertiesProvider;
 import org.javers.spring.auditable.aspect.JaversAuditableAspect;
 import org.javers.spring.jpa.TransactionalJaversBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.context.SecurityContext;
@@ -55,23 +54,27 @@ public class AuditableAspectConfiguration {
 	/** The entity manager. */
 	@PersistenceContext
 	private EntityManager entityManager;
-
-	/** The tx manager. */
-	@Autowired
-	private JtaTransactionManager txManager;
+	
+	/**
+	 * Instantiates a new auditable aspect configuration.
+	 */
+	public AuditableAspectConfiguration() {
+		super();
+	}
 
 	/**
 	 * Gets the javers.
 	 *
+	 * @param txManager the tx manager
 	 * @return the javers
 	 */
 	@Bean
-	public Javers getJavers() {
+	public Javers getJavers(final JtaTransactionManager txManager) {
 		final JaversSqlRepository sqlRepository = SqlRepositoryBuilder.sqlRepository()
 				.withConnectionProvider(new ConnectionProvider() {
 
 					@Override
-					public Connection getConnection() throws SQLException {
+					public Connection getConnection() {
 						final SessionImpl session = (SessionImpl) entityManager.unwrap(Session.class);
 
 						return session.connection();
@@ -86,11 +89,14 @@ public class AuditableAspectConfiguration {
 	/**
 	 * Javers auditable aspect.
 	 *
+	 * @param javers                   the javers
+	 * @param authorProvider           the author provider
+	 * @param commitPropertiesProvider the commit properties provider
 	 * @return the javers auditable aspect
 	 */
 	@Bean
-	public JaversAuditableAspect javersAuditableAspect() {
-		return new JaversAuditableAspect(getJavers(), authorProvider(), commitPropertiesProvider());
+	public JaversAuditableAspect javersAuditableAspect(final Javers javers, final AuthorProvider authorProvider, final CommitPropertiesProvider commitPropertiesProvider) {
+		return new JaversAuditableAspect(javers, authorProvider, commitPropertiesProvider);
 	}
 
 	/**
