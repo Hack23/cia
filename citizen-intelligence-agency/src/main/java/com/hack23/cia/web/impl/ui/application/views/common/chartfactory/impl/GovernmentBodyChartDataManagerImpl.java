@@ -109,19 +109,12 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 		for (final String govBodyName : governmentBodyNames) {
 
 			series.addSeries(new XYseries().setLabel(govBodyName));
-
 			dataSeries.newSeries();
 
 			for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
-
-				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
-				final int totalHeadcount = item.stream()
+				addDataSerieValue(dataSeries, entry, entry.getValue().stream()
 						.filter((final GovernmentBodyAnnualSummary p) -> p.getName().equalsIgnoreCase(govBodyName))
-						.mapToInt(GovernmentBodyAnnualSummary::getHeadCount).sum();
-
-				if (entry.getKey() != null && totalHeadcount > 0) {
-					dataSeries.add(FIRST_OF_JAN + entry.getKey(), totalHeadcount);
-				}
+						.mapToInt(GovernmentBodyAnnualSummary::getHeadCount).sum());
 			}
 		}
 
@@ -138,25 +131,17 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 		final List<String> ministryNames = esvApi.getMinistryNames();
 
 		final DataSeries dataSeries = new DataSeries();
-
 		final Series series = new Series();
 
 		for (final String ministryName : ministryNames) {
 
 			series.addSeries(new XYseries().setLabel(ministryName));
-
 			dataSeries.newSeries();
 
 			for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
-
-				final List<GovernmentBodyAnnualSummary> item = entry.getValue();
-				final int totalHeadcount = item.stream()
+				addDataSerieValue(dataSeries, entry, entry.getValue().stream()
 						.filter((final GovernmentBodyAnnualSummary p) -> p.getMinistry().equalsIgnoreCase(ministryName))
-						.mapToInt(GovernmentBodyAnnualSummary::getHeadCount).sum();
-
-				if (entry.getKey() != null && totalHeadcount > 0) {
-					dataSeries.add(FIRST_OF_JAN + entry.getKey(), totalHeadcount);
-				}
+						.mapToInt(GovernmentBodyAnnualSummary::getHeadCount).sum());
 			}
 		}
 
@@ -172,21 +157,13 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getData();
 
 		final DataSeries dataSeries = new DataSeries();
-
 		final Series series = new Series();
 
 		series.addSeries(new XYseries().setLabel(ALL_GOVERNMENT_BODIES));
-
 		dataSeries.newSeries();
 
 		for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : map.entrySet()) {
-
-			final List<GovernmentBodyAnnualSummary> item = entry.getValue();
-			final int totalHeadcount = item.stream().mapToInt(GovernmentBodyAnnualSummary::getHeadCount).sum();
-
-			if (entry.getKey() != null && totalHeadcount > 0) {
-				dataSeries.add(FIRST_OF_JAN + entry.getKey(), totalHeadcount);
-			}
+			addDataSerieValue(dataSeries, entry, entry.getValue().stream().mapToInt(GovernmentBodyAnnualSummary::getHeadCount).sum());
 		}
 
 		addChart(content, ANNUAL_HEADCOUNT_TOTAL_ALL_GOVERNMENT_BODIES,
@@ -204,23 +181,30 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 		final Series series = new Series();
 
 		series.addSeries(new XYseries().setLabel(name));
-
 		dataSeries.newSeries();
 
 		for (final Entry<Integer, GovernmentBodyAnnualSummary> entry : map.entrySet()) {
-
-			final GovernmentBodyAnnualSummary item = entry.getValue();
-			final int totalHeadcount = item.getHeadCount();
-
-			if (entry.getKey() != null && totalHeadcount > 0) {
-				dataSeries.add(FIRST_OF_JAN + entry.getKey(), totalHeadcount);
-			}
+			addDataSerieValue(dataSeries, entry, entry.getValue().getHeadCount());
 		}
 
 		addChart(content, name + ANNUAL_HEADCOUNT,
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 				true);
+	}
+
+	/**
+	 * Adds the data serie value.
+	 *
+	 * @param dataSeries the data series
+	 * @param entry      the entry
+	 * @param value      the value
+	 */
+	private void addDataSerieValue(final DataSeries dataSeries, final Entry entry,
+			final int value) {
+		if (entry.getKey() != null && value > 0) {
+			dataSeries.add(FIRST_OF_JAN + entry.getKey(), value);
+		}
 	}
 
 	@Override
@@ -341,6 +325,13 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 				true);
 	}
 
+	/**
+	 * Adds the entry data.
+	 *
+	 * @param dataSeries       the data series
+	 * @param simpleDateFormat the simple date format
+	 * @param entry            the entry
+	 */
 	private static void addEntryData(final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat,
 			final Entry<String, List<GovernmentBodyAnnualOutcomeSummary>> entry) {
 		for (final GovernmentBodyAnnualOutcomeSummary data : entry.getValue()) {
