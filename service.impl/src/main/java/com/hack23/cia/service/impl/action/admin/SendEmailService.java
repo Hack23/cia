@@ -18,9 +18,6 @@
 */
 package com.hack23.cia.service.impl.action.admin;
 
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +44,6 @@ import com.hack23.cia.service.impl.email.EmailService;
 @Transactional(propagation = Propagation.REQUIRED, timeout = 600)
 public final class SendEmailService extends AbstractBusinessServiceImpl<SendEmailRequest, SendEmailResponse>
 		implements BusinessService<SendEmailRequest, SendEmailResponse> {
-
-	/** The Constant EMAIL_IS_NOT_A_VALID_EMAIL_ADDRESS. */
-	private static final String EMAIL_IS_NOT_A_VALID_EMAIL_ADDRESS = "Email is not a valid email address";
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(SendEmailService.class);
@@ -82,38 +76,13 @@ public final class SendEmailService extends AbstractBusinessServiceImpl<SendEmai
 			eventRequest.setUserId(userAccount.getUserId());
 		}
 
-		SendEmailResponse response;
-		if (isValidEmailAddress(serviceRequest.getEmail())) {
-			emailService.sendEmail(serviceRequest.getEmail(), serviceRequest.getSubject(), serviceRequest.getContent());
-			response = new SendEmailResponse(ServiceResult.SUCCESS);
-		} else {
-			response = new SendEmailResponse(ServiceResult.FAILURE);
-			response.setErrorMessage(EMAIL_IS_NOT_A_VALID_EMAIL_ADDRESS);
-		}
+		emailService.sendEmail(serviceRequest.getEmail(), serviceRequest.getSubject(), serviceRequest.getContent());
+		final SendEmailResponse response = new SendEmailResponse(ServiceResult.SUCCESS);
 
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);
 
 		return response;
-	}
-
-	/**
-	 * Checks if is valid email address.
-	 *
-	 * @param email
-	 *            the email
-	 * @return true, if is valid email address
-	 */
-	public static boolean isValidEmailAddress(final String email) {
-		boolean result = true;
-		try {
-			final InternetAddress emailAddr = new InternetAddress(email);
-			emailAddr.validate();
-		} catch (final AddressException ex) {
-			LOGGER.info("Invalid email:{} , exception:{}", email, ex);
-			result = false;
-		}
-		return result;
 	}
 
 	@Override
