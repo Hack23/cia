@@ -99,13 +99,6 @@ public interface PageLinkFactory {
 	 *
 	 * @return the link
 	 */
-	Link createSearchDocumentViewPageLink();
-
-	/**
-	 * Creates a new PageLink object.
-	 *
-	 * @return the link
-	 */
 	Link createRegisterPageLink();
 
 	/**

@@ -42,9 +42,6 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	/** The Constant PAGE_SEPARATOR. */
 	private static final Character PAGE_SEPARATOR = '/';
 
-	/** The Constant SEARCH. */
-	private static final String SEARCH = "Search";
-
 	/** The Constant POLITICIAN. */
 	private static final String POLITICIAN = "Politician ";
 
@@ -140,15 +137,6 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		return pageLink;
 	}
 
-	@Override
-	public Link createSearchDocumentViewPageLink() {
-		final Link pageLink = new Link(SEARCH, new ExternalResource(PAGE_PREFIX
-						+ UserViews.SEARCH_DOCUMENT_VIEW_NAME));
-		pageLink.setId(ViewAction.VISIT_DOCUMENT_VIEW.name());
-		pageLink.setIcon(VaadinIcons.SEARCH);
-
-		return pageLink;
-	}
 
 	@Override
 	public Link createAdminPagingLink(final String label,final String page, final String pageId, final String pageNr) {
