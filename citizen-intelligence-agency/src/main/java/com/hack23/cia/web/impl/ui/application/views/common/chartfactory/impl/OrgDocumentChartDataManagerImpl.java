@@ -55,9 +55,6 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 	/** The Constant NO_INFO. */
 	private static final String NO_INFO = "NoInfo";
 
-	/** The Constant LOG_MSG_MISSING_DATA_FOR_KEY. */
-	private static final String LOG_MSG_MISSING_DATA_FOR_KEY = "missing data for key:{}";
-
 	/** The Constant YEAR_PREFIX. */
 	private static final String YEAR_PREFIX = "19";
 
@@ -163,8 +160,6 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 			for (final ViewRiksdagenOrgDocumentDailySummary item : entry.getValue()) {
 				addDataItem(dataSeries, simpleDateFormat, parseIncomingDateFormat, item);
 			}
-		} else {
-			LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
 		}
 	}
 
