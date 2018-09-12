@@ -29,8 +29,6 @@ import java.util.List;
 import javax.jms.Destination;
 import javax.jms.JMSException;
 
-import org.apache.activemq.broker.jmx.QueueViewMBean;
-import org.apache.activemq.web.BrokerFacadeSupport;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,10 +49,6 @@ public final class DataAgentApiITest extends AbstractServiceComponentAgentFuncti
 	/** The data agent api. */
 	@Autowired
 	private DataAgentApi dataAgentApi;
-
-	/** The broker query. */
-	@Autowired
-	private BrokerFacadeSupport brokerQuery;
 
 	/**
 	 * Import riksdagen data success test.
@@ -81,7 +75,6 @@ public final class DataAgentApiITest extends AbstractServiceComponentAgentFuncti
 		assertNotNull(capturedStrings);
 		assertNotNull(capturedDestinations);
 
-		//waitUntilQueueIsEmpty("riksdagen");
 	}
 
 	/**
@@ -109,47 +102,7 @@ public final class DataAgentApiITest extends AbstractServiceComponentAgentFuncti
 		assertNotNull(capturedStrings);
 		assertNotNull(capturedDestinations);
 
-		//waitUntilQueueIsEmpty("worldbank");
 	}
 
-	/**
-	 * Wait until queue is empty.
-	 *
-	 * @param queue
-	 *            the queue
-	 */
-	private void waitUntilQueueIsEmpty(final String queue) {
-		try {
-			while (!isAllCompleted(brokerQuery.getQueues(), queue)) {
-				;
-			}
-			while (brokerQuery.getBrokerAdmin().getTotalDequeueCount() != brokerQuery.getBrokerAdmin()
-					.getTotalEnqueueCount()) {
-				;
-			}
-
-		} catch (final Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Checks if is all completed.
-	 *
-	 * @param queues
-	 *            the queues
-	 * @param queue2
-	 *            the queue 2
-	 * @return true, if is all completed
-	 */
-	private boolean isAllCompleted(final Collection<QueueViewMBean> queues, final String queue2) {
-		boolean allCompleted = true;
-		for (final QueueViewMBean queue : queues) {
-			if (queue.getName().toLowerCase().contains("riksdagen")) {
-				allCompleted = allCompleted && queue.getEnqueueCount() == queue.getDequeueCount();
-			}
-		}
-		return allCompleted;
-	}
 
 }
