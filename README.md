@@ -19,6 +19,8 @@ Tracking politicians like bugs. Citizen Intelligence Agency is independent and n
 [![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/Hack23/cia.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Hack23/cia/context:java)
 [![Black Duck Security Risk](https://copilot.blackducksoftware.com/github/repos/Hack23/cia/branches/master/badge-risk.svg)](https://copilot.blackducksoftware.com/github/repos/Hack23/cia/branches/master)
 [![DepShield Badge](https://depshield.sonatype.org/badges/Hack23/cia/depshield.svg)](https://depshield.github.io)
+[![Quality Gate](https://www.hack23.com/sonar/api/project_badges/measure?project=com.hack23.cia%3Acia-all&metric=alert_status)](https://www.hack23.com/sonar/dashboard?id=com.hack23.cia%3Acia-all)
+
 	
 
 
