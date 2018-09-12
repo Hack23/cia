@@ -44,8 +44,6 @@ import com.vaadin.data.converter.StringToBigDecimalConverter;
 import com.vaadin.data.converter.StringToBigIntegerConverter;
 import com.vaadin.data.converter.StringToBooleanConverter;
 import com.vaadin.data.converter.StringToDateConverter;
-import com.vaadin.data.converter.StringToDoubleConverter;
-import com.vaadin.data.converter.StringToFloatConverter;
 import com.vaadin.data.converter.StringToIntegerConverter;
 import com.vaadin.data.converter.StringToLongConverter;
 import com.vaadin.icons.VaadinIcons;
@@ -187,11 +185,9 @@ public final class FormFactoryImpl implements FormFactory {
 
 				if (converter != null) {
 					binder.forField(field).withConverter(converter).bind(property);
-				} else if (String.class.equals(typeOfProperty)) {
-					binder.forField(field).bind(property);
 				} else {
-					LOGGER.warn("No fieldtype for property: {}, type: {}", property,typeOfProperty);
-				}
+					binder.forField(field).bind(property);
+				} 
 			}
 		}
 	}
@@ -210,10 +206,6 @@ public final class FormFactoryImpl implements FormFactory {
 			converter = new StringToDateConverter();
 		} else if (Integer.class.equals(typeOfProperty) || "int".equalsIgnoreCase(typeOfProperty.getName())) {
 			converter = new StringToIntegerConverter("Input value should be an integer");
-		} else if (Float.class.equals(typeOfProperty)) {
-			converter = new StringToFloatConverter("Input value should be an float");
-		} else if (Double.class.equals(typeOfProperty)) {
-			converter = new StringToDoubleConverter("Input value should be an double");
 		} else if (Long.class.equals(typeOfProperty) || "long".equalsIgnoreCase(typeOfProperty.getName())) {
 			converter = new StringToLongConverter("Input value should be an long");
 		} else if (BigInteger.class.equals(typeOfProperty)) {
@@ -225,6 +217,7 @@ public final class FormFactoryImpl implements FormFactory {
 		} else if (typeOfProperty.isEnum()) {
 			converter = new StringToEnumConverter();
 		}
+		
 		return converter;
 	}
 
