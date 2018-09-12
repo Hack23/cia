@@ -64,6 +64,8 @@ Project Architecture [http://hack23.github.io/cia/architecture.html](http://hack
 
 Project Architecture(old) [https://structurizr.com/share/37264#Enterprise](https://structurizr.com/share/37264#Enterprise)
 
+3D project view [https://www.hack23.com/sonar/project/extension/softvis3d/overview_page?id=com.hack23.cia:cia-all&qualifier=TRK&metricFootprint=complexity&metricHeight=ncloc&metricColor=coverage&layout=district&scale=logarithmic&cameraX=0&cameraY=1551&cameraZ=1570&colorTheme=default](https://www.hack23.com/sonar/project/extension/softvis3d/overview_page?id=com.hack23.cia:cia-all&qualifier=TRK&metricFootprint=complexity&metricHeight=ncloc&metricColor=coverage&layout=district&scale=logarithmic&cameraX=0&cameraY=1551&cameraZ=1570&colorTheme=default)
+
 Github source code location [https://github.com/Hack23/cia](https://github.com/Hack23/cia)
 
 Build server, jenkins [https://www.hack23.com/jenkins/](https://www.hack23.com/jenkins/)
