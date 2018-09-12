@@ -75,8 +75,6 @@ public final class LogoutService extends AbstractBusinessServiceImpl<LogoutReque
 		LogoutResponse response;
 		if (userAccount != null) {
 			eventRequest.setElementId(userAccount.getEmail());
-			eventRequest.setUserId(userAccount.getUserId());
-
 
 			final Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 			authorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));

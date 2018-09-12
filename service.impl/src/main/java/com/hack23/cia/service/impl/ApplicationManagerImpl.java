@@ -25,7 +25,6 @@ import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Future;
 
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -121,21 +120,12 @@ final class ApplicationManagerImpl implements ApplicationManager, ApplicationCon
     @Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
     @Override
 	public Future<ServiceResponse> asyncService(final ServiceRequest serviceRequest) {
-		final BusinessService businessService= serviceRequestBusinessServiceMap.get(serviceRequest.getClass());
-
-		ServiceResponse serviceResponse = null;
-
-		if (businessService != null) {
-			serviceResponse = businessService.processService(serviceRequest);
-		}
-
-		return new AsyncResult<>(serviceResponse);
+		return new AsyncResult<>(service(serviceRequest));
 	}
 
 
 	@Override
-	public void setApplicationContext(final ApplicationContext applicationContext)
-			throws BeansException {
+	public void setApplicationContext(final ApplicationContext applicationContext) {
 		final Map<String, BusinessService> beansOfType = applicationContext.getBeansOfType(BusinessService.class);
 
 		for (final Entry<String, BusinessService> entry : beansOfType.entrySet()) {

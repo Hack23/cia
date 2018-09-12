@@ -67,18 +67,10 @@ public final class SendEmailService extends AbstractBusinessServiceImpl<SendEmai
 			return inputValidation;
 		}
 
-		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
-
-		final UserAccount userAccount = getUserAccountFromSecurityContext();
-
-		if (userAccount != null) {
-			LOGGER.info("{} started:{}", serviceRequest.getClass().getSimpleName(), userAccount.getEmail());
-			eventRequest.setUserId(userAccount.getUserId());
-		}
-
 		emailService.sendEmail(serviceRequest.getEmail(), serviceRequest.getSubject(), serviceRequest.getContent());
 		final SendEmailResponse response = new SendEmailResponse(ServiceResult.SUCCESS);
 
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);
 

@@ -66,14 +66,6 @@ public final class RemoveDataService extends
 			return inputValidation;
 		}
 
-		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
-		final UserAccount userAccount = getUserAccountFromSecurityContext();
-
-		if (userAccount != null) {
-
-			eventRequest.setUserId(userAccount.getUserId());
-		}
-
 		final RemoveDataResponse response = new RemoveDataResponse(ServiceResult.SUCCESS);
 		
 		switch (serviceRequest.getDataType()) {
@@ -90,6 +82,7 @@ public final class RemoveDataService extends
 				break;
 		}
 		
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);
 

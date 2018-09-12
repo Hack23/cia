@@ -87,8 +87,6 @@ public final class DisableGoogleAuthenticatorCredentialService extends
 				ServiceResult.SUCCESS);
 		if (userAccount != null) {
 
-			eventRequest.setUserId(userAccount.getUserId());
-
 			if (passwordEncoder.matches(
 					userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword(), userAccount.getUserpassword())) {
 				final EncryptedValue encryptedValue = encryptedValueDAO.findFirstByProperty(EncryptedValue_.userId, userAccount.getUserId());

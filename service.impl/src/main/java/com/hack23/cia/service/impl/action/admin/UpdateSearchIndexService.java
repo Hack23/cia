@@ -71,13 +71,6 @@ public final class UpdateSearchIndexService extends
 		}
 
 		
-		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
-		final UserAccount userAccount = getUserAccountFromSecurityContext();
-
-		if (userAccount != null) {
-			LOGGER.info("{} started:{}", serviceRequest.getClass().getSimpleName(),userAccount.getEmail());
-			eventRequest.setUserId(userAccount.getUserId());
-		}
 
 		UpdateSearchIndexResponse response;
 		try {
@@ -89,6 +82,7 @@ public final class UpdateSearchIndexService extends
 		    response = new UpdateSearchIndexResponse(ServiceResult.FAILURE);
 		}
 
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);
 

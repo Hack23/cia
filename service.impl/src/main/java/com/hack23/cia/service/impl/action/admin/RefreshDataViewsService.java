@@ -65,17 +65,10 @@ public final class RefreshDataViewsService extends
 			return inputValidation;
 		}
 		
-		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
-
-		final UserAccount userAccount = getUserAccountFromSecurityContext();
-
-		if (userAccount != null) {
-			eventRequest.setUserId(userAccount.getUserId());
-		}
-
 		final RefreshDataViewsResponse response = new RefreshDataViewsResponse(ServiceResult.SUCCESS);
 		viewDataManager.refreshViews();
 
+		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);
 
