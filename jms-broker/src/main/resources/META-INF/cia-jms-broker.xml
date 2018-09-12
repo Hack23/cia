@@ -1,61 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:amq="http://activemq.apache.org/schema/core" xmlns:jms="http://www.springframework.org/schema/jms"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
-		http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.12.0.xsd
-		http://www.springframework.org/schema/jms  http://www.springframework.org/schema/jms/spring-jms.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<!-- lets create an embedded ActiveMQ Broker -->
-	<amq:broker id="broker" useJmx="true" persistent="false" useShutdownHook="false" >
-		<amq:destinationPolicy>
-			<amq:policyMap>
-				<amq:policyEntries>
-					<amq:policyEntry queue=">" optimizedDispatch="true"
-						lazyDispatch="false" producerFlowControl="false" memoryLimit="2048mb"
-						strictOrderDispatch="true">
-						<amq:dispatchPolicy>
-							<amq:strictOrderDispatchPolicy />
-						</amq:dispatchPolicy>
-						<amq:messageGroupMapFactory>
-							<amq:simpleMessageGroupMapFactory />
-						</amq:messageGroupMapFactory>
-						<amq:subscriptionRecoveryPolicy>
-							<amq:timedSubscriptionRecoveryPolicy
-								recoverDuration="360000" />
-						</amq:subscriptionRecoveryPolicy>
-					</amq:policyEntry>
-				</amq:policyEntries>
-			</amq:policyMap>
-		</amq:destinationPolicy>
+   <bean id="securityManager" class="org.apache.activemq.artemis.spi.core.security.ActiveMQJAASSecurityManager">
+      <constructor-arg value="org.apache.activemq.artemis.spi.core.security.jaas.InVMLoginModule"/>
+      <constructor-arg>
+         <bean class="org.apache.activemq.artemis.core.config.impl.SecurityConfiguration">
+            <constructor-arg name="users">
+               <map>
+                  <entry key="guest" value="guest"/>
+               </map>
+            </constructor-arg>
+            <constructor-arg name="roles">
+               <map>
+                  <entry key="guest">
+                     <list>
+                        <value>guest</value>
+                     </list>
+                  </entry>
+               </map>
+            </constructor-arg>
+            <property name="DefaultUser" value="guest"/>
+         </bean>
+      </constructor-arg>
+   </bean>
 
-		<amq:transportConnectors >
-			<amq:transportConnector  uri="vm://localhost:0" />
-		</amq:transportConnectors>
- 	</amq:broker>
+   <bean id="EmbeddedActiveMQ" class="org.apache.activemq.artemis.core.server.embedded.EmbeddedActiveMQ" init-method="start" destroy-method="stop">
+       <property name="SecurityManager" ref="securityManager"/>
+   </bean>
 
-	<amq:xaConnectionFactory  id="jmsFactory" brokerURL="vm://localhost"  checkForDuplicates="false" >
-		<amq:redeliveryPolicy>
-    		<amq:redeliveryPolicy maximumRedeliveries="1" initialRedeliveryDelay="30000" />
-  		</amq:redeliveryPolicy>
-  	 <property name="trustedPackages">
-        <list>
-            <value>com.hack23.cia</value>
-            <value>java.util</value>
-            <value>java.lang</value>
-            <value>java.math</value>
-            <value>org.apache</value>
-            <value>org.apache</value>
-            <value>com.fasterxml</value>
-            <value>org.joda</value>
-        </list>
-    </property>
-  	</amq:xaConnectionFactory>
+   <bean id="jmsFactory" class="org.apache.activemq.artemis.jms.client.ActiveMQXAConnectionFactory">
+      <constructor-arg value="vm://0"/>
+   </bean>
 
 	<bean name="connectionFactory" class="org.jboss.narayana.jta.jms.ConnectionFactoryProxy">
 		<constructor-arg ref="jmsFactory" />
@@ -72,7 +50,5 @@
 			<bean class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple" />
 		</constructor-arg>		
 	</bean> 	
-
-	<bean id="brokerQuery" class="org.apache.activemq.web.SingletonBrokerFacade" autowire="constructor" scope="prototype"/>
-
+   
 </beans>
