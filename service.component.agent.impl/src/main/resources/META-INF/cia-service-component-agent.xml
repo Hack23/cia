@@ -163,11 +163,6 @@
 	</jms:listener-container>
 	
 	
-		<bean id="exampleQueue" class="org.apache.activemq.artemis.jms.client.ActiveMQQueue">
-      <constructor-arg index="0" value="exampleQueue"/>
-   </bean>
-	
-
  	<bean
 		id="com.hack23.cia.model.external.worldbank.countries.impl.CountryElement"
 		class="org.apache.activemq.artemis.jms.client.ActiveMQQueue" autowire="constructor">

@@ -1,24 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<configuration xmlns="urn:activemq" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:activemq /schema/artemis-configuration.xsd">
-   <core xmlns="urn:activemq:core">
+<configuration xmlns="urn:activemq"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:activemq /schema/artemis-configuration.xsd">
+	<core xmlns="urn:activemq:core">
 
-      <persistence-enabled>false</persistence-enabled>
+		<persistence-enabled>false</persistence-enabled>
 
-      <acceptors>
-         <acceptor name="in-vm">vm://0</acceptor>
-      </acceptors>
 
-      <security-settings>
-         <security-setting match="#">
-            <permission roles="guest" type="createAddress"/>
-            <permission roles="guest" type="deleteAddress"/>
-            <permission roles="guest" type="createDurableQueue"/>
-            <permission roles="guest" type="deleteDurableQueue"/>
-            <permission roles="guest" type="createNonDurableQueue"/>
-            <permission roles="guest" type="deleteNonDurableQueue"/>
-            <permission roles="guest" type="consume"/>
-            <permission roles="guest" type="send"/>
-         </security-setting>
-      </security-settings>
-   </core>
+		<acceptors>
+			<acceptor name="in-vm">vm://0</acceptor>
+		</acceptors>
+
+		<security-settings>
+			<security-setting match="#">
+				<permission roles="guest" type="createAddress" />
+				<permission roles="guest" type="deleteAddress" />
+				<permission roles="guest" type="createDurableQueue" />
+				<permission roles="guest" type="deleteDurableQueue" />
+				<permission roles="guest" type="createNonDurableQueue" />
+				<permission roles="guest" type="deleteNonDurableQueue" />
+				<permission roles="guest" type="consume" />
+				<permission roles="guest" type="send" />
+			</security-setting>
+		</security-settings>
+
+		<address-settings>
+			<address-setting match="#">
+				<dead-letter-address>DLQ</dead-letter-address>
+				<max-delivery-attempts>3</max-delivery-attempts>
+				<expiry-address>ExpiryQueue</expiry-address>
+				<redelivery-delay>0</redelivery-delay>
+				<max-size-bytes>-1</max-size-bytes>
+				<message-counter-history-day-limit>10
+				</message-counter-history-day-limit>
+				<address-full-policy>PAGE</address-full-policy>
+				<auto-create-queues>true</auto-create-queues>
+				<auto-create-addresses>true</auto-create-addresses>
+				<auto-create-jms-queues>true</auto-create-jms-queues>
+				<auto-create-jms-topics>true</auto-create-jms-topics>
+			</address-setting>
+		</address-settings>
+
+		<addresses>
+			<address name="DLQ">
+				<anycast>
+					<queue name="DLQ" />
+				</anycast>
+			</address>
+			<address name="ExpiryQueue">
+				<anycast>
+					<queue name="ExpiryQueue" />
+				</anycast>
+			</address>
+		</addresses>
+
+	</core>
+
 </configuration>
