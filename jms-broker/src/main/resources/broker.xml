@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration xmlns="urn:activemq" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:activemq /schema/artemis-configuration.xsd">
+   <core xmlns="urn:activemq:core">
+
+      <persistence-enabled>false</persistence-enabled>
+
+      <acceptors>
+         <acceptor name="in-vm">vm://0</acceptor>
+      </acceptors>
+
+      <security-settings>
+         <security-setting match="#">
+            <permission roles="guest" type="createAddress"/>
+            <permission roles="guest" type="deleteAddress"/>
+            <permission roles="guest" type="createDurableQueue"/>
+            <permission roles="guest" type="deleteDurableQueue"/>
+            <permission roles="guest" type="createNonDurableQueue"/>
+            <permission roles="guest" type="deleteNonDurableQueue"/>
+            <permission roles="guest" type="consume"/>
+            <permission roles="guest" type="send"/>
+         </security-setting>
+      </security-settings>
+   </core>
+</configuration>
