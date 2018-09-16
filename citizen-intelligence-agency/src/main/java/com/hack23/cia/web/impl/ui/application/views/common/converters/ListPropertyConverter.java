@@ -44,7 +44,7 @@ public final class ListPropertyConverter implements Converter<String, List<?>>,V
 	
 	private static final char CONTENT_SEPARATOR = ' ';
 
-	private static final String START_TAG = "[ ";
+	private static final String START_TAG = "[";
 
 	private static final char END_TAG = ']';
 
@@ -106,15 +106,16 @@ public final class ListPropertyConverter implements Converter<String, List<?>>,V
 
 	@Override
 	public String convertToPresentation(final List value, final ValueContext context) {
-		final StringBuilder stringBuilder = new StringBuilder().append(START_TAG);
+		final StringBuilder stringBuilder = new StringBuilder();
 
 		if (value != null) {
+			stringBuilder.append(START_TAG);
 			for (final Object object : value) {
 				appendObjectPresentation(stringBuilder, object);
 			}
+			stringBuilder.append(END_TAG);
 		}
 
-		stringBuilder.append(END_TAG);
 
 		return stringBuilder.toString();
 	}
