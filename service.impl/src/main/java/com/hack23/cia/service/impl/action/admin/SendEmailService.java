@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.service.impl.action.admin;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
@@ -28,7 +26,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
-import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.action.admin.SendEmailRequest;
 import com.hack23.cia.service.api.action.admin.SendEmailResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
@@ -44,9 +41,6 @@ import com.hack23.cia.service.impl.email.EmailService;
 @Transactional(propagation = Propagation.REQUIRED, timeout = 600)
 public final class SendEmailService extends AbstractBusinessServiceImpl<SendEmailRequest, SendEmailResponse>
 		implements BusinessService<SendEmailRequest, SendEmailResponse> {
-
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(SendEmailService.class);
 
 	/** The email service. */
 	@Autowired
