@@ -469,6 +469,7 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW, "N%C3%A4ringsdepartementet"));
 	}
 
+
 	/**
 	 * Site ministry overview invalid ref test.
 	 *
@@ -503,6 +504,24 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.OVERVIEW, "202100-5026"));
 	}
 
+	
+	/**
+	 * Site government body page visit history test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteGovernmentBodyPageVisitHistoryTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY, "202100-5026"));
+	}
+
+	
 	/**
 	 * Site government body overview invalid reference test.
 	 *
@@ -1560,6 +1579,22 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 	}
 
 	/**
+	 * Site test parliament page visit history test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteTestParliamentPageVisitHistoryTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
+	}
+
+	
+	/**
 	 * Site test country ranking overview test.
 	 *
 	 * @throws Exception
@@ -1791,6 +1826,22 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME, PageMode.OVERVIEW));
+
+	}
+
+	/**
+	 * Site government body ranking page visit history test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteGovernmentBodyRankingPageVisitHistoryTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY));
 
 	}
 

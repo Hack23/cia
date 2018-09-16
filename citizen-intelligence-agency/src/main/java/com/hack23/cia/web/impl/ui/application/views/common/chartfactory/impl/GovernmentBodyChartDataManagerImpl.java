@@ -202,7 +202,9 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 	 */
 	private static void addDataSerieValue(final DataSeries dataSeries, final Entry entry,
 			final int value) {
+		if (entry.getKey() != null && value > 0) {
 			dataSeries.add(FIRST_OF_JAN + entry.getKey(), value);
+		}
 	}
 
 	@Override
@@ -286,7 +288,9 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 		for (final Entry<Integer, List<GovernmentBodyAnnualOutcomeSummary>> data : map.entrySet()) {
 			final List<GovernmentBodyAnnualOutcomeSummary> values = data.getValue();
 			final double sum = values.stream().mapToDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal).sum();
-			dataSeries.add(data.getKey() + FIRST_JAN_DATA_SUFFIX, (int) sum);
+			if (sum > 0) {
+				dataSeries.add(data.getKey() + FIRST_JAN_DATA_SUFFIX, (int) sum);
+			}
 		}
 	}
 
@@ -334,7 +338,9 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 			final Map<Date, Double> valueMap = data.getValueMap();
 
 			for (final Entry<Date, Double> entryData : valueMap.entrySet()) {
-				dataSeries.add(simpleDateFormat.format(entryData.getKey()) , entryData.getValue().intValue());
+				if (entryData.getValue() != null && entryData.getValue().intValue() > 0) {
+					dataSeries.add(simpleDateFormat.format(entryData.getKey()) , entryData.getValue().intValue());
+				}
 			}
 		}
 	}

@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
@@ -25,48 +25,53 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.vaadin.ui.Label;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class ParliamentOverviewPageModContentFactoryImpl.
+ * The Class GovernmentBodyRankingPageVisitHistoryPageModContentFactoryImpl.
  */
 @Component
-public final class ParliamentOverviewPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
+public final class GovernmentBodyRankingPageVisitHistoryPageModContentFactoryImpl
+		extends AbstractGovernmentBodyRankingPageModContentFactoryImpl {
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "overview";
+	/** The Constant NAME. */
+	public static final String NAME = UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME;
+
+	/** The Constant PAGE_VISIT_HISTORY. */
+	private static final String PAGE_VISIT_HISTORY = "Page Visit History";
 
 	/**
-	 * Instantiates a new parliament overview page mod content factory impl.
+	 * Instantiates a new government body ranking page visit history page mod
+	 * content factory impl.
 	 */
-	public ParliamentOverviewPageModContentFactoryImpl() {
+	public GovernmentBodyRankingPageVisitHistoryPageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
+		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(PageMode.PAGEVISITHISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
-		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
+
+		getGovernmentBodyRankingMenuItemFactory().createGovernmentBodyRankingMenuBar(menuBar);
 
 		final String pageId = getPageId(parameters);
 
-		panelContent.addComponent(new Label(OVERVIEW));
+		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
 
-		getParliamentMenuItemFactory().createOverviewPage(panelContent);
+		panel.setCaption(NAME + "::" + PAGE_VISIT_HISTORY);
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
-		panel.setCaption(NAME + "::" + OVERVIEW);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_RANKING_VIEW, ApplicationEventGroup.USER,
+				NAME, parameters, pageId);
 
 		return panelContent;
 
