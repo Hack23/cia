@@ -44,7 +44,7 @@ public final class ListPropertyConverter implements Converter<String, List<?>>,V
 	
 	private static final char CONTENT_SEPARATOR = ' ';
 
-	private static final String START_TAG = "[";
+	private static final char START_TAG = '[';
 
 	private static final char END_TAG = ']';
 

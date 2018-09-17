@@ -25,6 +25,7 @@ import java.util.Locale;
 import org.junit.Test;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.testfoundation.AbstractUnitTest;
 import com.vaadin.data.Result;
 import com.vaadin.data.ValueContext;
@@ -62,6 +63,47 @@ public class ListPropertyConverterTest extends AbstractUnitTest {
 	public void convertToPresentationWrongPathMethodValueFailureTest() {
 		ValueContext context = new ValueContext(Locale.ENGLISH);
 		String emptyString = new ListPropertyConverter("party", "party").convertToPresentation(Arrays.asList(new ViewRiksdagenCommittee()), context);
+		assertEquals("[ ]",emptyString);
+	}
+
+	/**
+	 * Convert to presentation test.
+	 */
+	@Test
+	public void convertToPresentationTest() {
+		ValueContext context = new ValueContext(Locale.ENGLISH);
+		String emptyString = new ListPropertyConverter("partyId", "partyId").convertToPresentation(Arrays.asList(new ViewRiksdagenParty().withPartyId("partyId")), context);
+		assertEquals("[partyId ]",emptyString);
+	}
+
+	/**
+	 * Convert to presentation no value test.
+	 */
+	@Test
+	public void convertToPresentationNoValueTest() {
+		ValueContext context = new ValueContext(Locale.ENGLISH);
+		String emptyString = new ListPropertyConverter("partyId", "partyId").convertToPresentation(Arrays.asList(new ViewRiksdagenParty()), context);
+		assertEquals("[ ]",emptyString);
+	}
+
+	
+	/**
+	 * Convert to presentation fallback test.
+	 */
+	@Test
+	public void convertToPresentationFallbackTest() {
+		ValueContext context = new ValueContext(Locale.ENGLISH);
+		String emptyString = new ListPropertyConverter("partyId", "partyId","partyName").convertToPresentation(Arrays.asList(new ViewRiksdagenParty().withPartyName("PartyName")), context);
+		assertEquals("[PartyName ]",emptyString);
+	}
+
+	/**
+	 * Convert to presentation fallback no value test.
+	 */
+	@Test
+	public void convertToPresentationFallbackNoValueTest() {
+		ValueContext context = new ValueContext(Locale.ENGLISH);
+		String emptyString = new ListPropertyConverter("partyId", "partyId","partyName").convertToPresentation(Arrays.asList(new ViewRiksdagenParty()), context);
 		assertEquals("[ ]",emptyString);
 	}
 
