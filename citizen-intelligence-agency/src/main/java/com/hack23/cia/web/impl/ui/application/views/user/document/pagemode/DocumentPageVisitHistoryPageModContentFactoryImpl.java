@@ -46,8 +46,7 @@ public final class DocumentPageVisitHistoryPageModContentFactoryImpl extends Abs
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && !StringUtils.isEmpty(parameters)
-				&& parameters.contains(PageMode.PAGEVISITHISTORY.toString());
+		return NAME.equals(page) && StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })

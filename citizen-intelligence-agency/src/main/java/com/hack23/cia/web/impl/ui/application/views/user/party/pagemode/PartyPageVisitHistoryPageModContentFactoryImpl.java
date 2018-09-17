@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
@@ -44,7 +45,7 @@ public final class PartyPageVisitHistoryPageModContentFactoryImpl extends Abstra
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PageMode.PAGEVISITHISTORY.toString());
+		return NAME.equals(page) && StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
