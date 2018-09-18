@@ -62,7 +62,7 @@ public final class GovernmentBodyHeadcountPageModContentFactoryImpl extends Abst
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(GovernmentBodyPageMode.HEADCOUNT.toString());
+		return NAME.equals(page) && StringUtils.contains(parameters, GovernmentBodyPageMode.HEADCOUNT.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })

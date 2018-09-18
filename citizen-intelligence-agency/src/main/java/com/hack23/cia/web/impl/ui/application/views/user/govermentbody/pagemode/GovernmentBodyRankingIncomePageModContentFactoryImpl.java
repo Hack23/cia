@@ -55,7 +55,7 @@ public final class GovernmentBodyRankingIncomePageModContentFactoryImpl extends 
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(GovernmentBodyPageMode.INCOME.toString());
+		return NAME.equals(page) && StringUtils.contains(parameters, GovernmentBodyPageMode.INCOME.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })

@@ -66,7 +66,7 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(PageMode.RULES.toString())
+		return NAME.equals(page) && StringUtils.contains(parameters, PageMode.RULES.toString())
 				&& parameters.contains(RiskIndicators.RISK_SUMMARY.toString());
 	}
 

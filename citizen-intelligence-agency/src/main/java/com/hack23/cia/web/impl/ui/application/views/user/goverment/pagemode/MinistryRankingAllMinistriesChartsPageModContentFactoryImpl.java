@@ -63,7 +63,7 @@ public final class MinistryRankingAllMinistriesChartsPageModContentFactoryImpl
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && !StringUtils.isEmpty(parameters) && parameters.contains(PageMode.CHARTS.toString())
+		return NAME.equals(page) && StringUtils.contains(parameters, PageMode.CHARTS.toString())
 				&& parameters.contains(ChartIndicators.ALLMINISTRIESBYHEADCOUNT.toString());
 	}
 

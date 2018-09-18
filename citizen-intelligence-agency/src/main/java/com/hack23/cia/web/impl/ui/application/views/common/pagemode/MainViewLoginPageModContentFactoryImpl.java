@@ -72,7 +72,7 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicP
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page)
-				&& !StringUtils.isEmpty(parameters) && parameters.contains(ApplicationPageMode.LOGIN.toString());
+				&& StringUtils.contains(parameters, ApplicationPageMode.LOGIN.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS" })

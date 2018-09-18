@@ -41,8 +41,14 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements MinistryMenuItemFactory {
 
+	/** The Constant GOVERNMENT_BODIES_INCOME. */
+	private static final String GOVERNMENT_BODIES_INCOME = "Government bodies income";
+
+	/** The Constant GOVERNMENT_BODIES_EXPENDITURE. */
+	private static final String GOVERNMENT_BODIES_EXPENDITURE = "Government bodies expenditure";
+
 	/** The Constant GOVERNMENT_BODIES. */
-	private static final String GOVERNMENT_BODIES = "Government bodies";
+	private static final String GOVERNMENT_BODIES_HEADCOUNT = "Government bodies headcount";
 
 	/** The Constant MINISTRY_RANKING. */
 	private static final String MINISTRY_RANKING = "Ministry Ranking";
@@ -113,10 +119,14 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		rolesItem.addItem(ROLE_GHANT_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString(), pageId));
 
-		rolesItem.addItem(GOVERNMENT_BODIES, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES.toString(), pageId));
+		rolesItem.addItem(GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString(), pageId));
 
+		rolesItem.addItem(GOVERNMENT_BODIES_INCOME, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString(), pageId));
 
+		rolesItem.addItem(GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString(), pageId));
 
 		final MenuItem documentItem = ministryItem.addItem(DOCUMENTS_TEXT, VaadinIcons.GROUP, null);
 
@@ -144,9 +154,14 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		createButtonLink(grid,ROLE_GHANT_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString(), pageId), "Gantt chart for all the roles");
 
-		createButtonLink(grid,GOVERNMENT_BODIES, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES.toString(), pageId), "All government bodies that are governed by ministry");
+		createButtonLink(grid,GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString(), pageId), "All government bodies that are governed by ministry");
 
+		createButtonLink(grid,GOVERNMENT_BODIES_INCOME, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString(), pageId), "All government bodies income");
+
+		createButtonLink(grid,GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString(), pageId), "All government bodies expenditure");		
 
 		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
 				MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId), "Chart over document activity");

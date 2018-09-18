@@ -39,7 +39,13 @@ public enum MinistryPageMode {
 	ROLEGHANT,
 	
 	/** The government bodies. */
-	GOVERNMENT_BODIES,
+	GOVERNMENT_BODIES_HEADCOUNT,
+
+	/** The government bodies income. */
+	GOVERNMENT_BODIES_INCOME,
+
+	/** The government bodies expenditure. */
+	GOVERNMENT_BODIES_EXPENDITURE,
 	
 	/** The government outcome. */
 	GOVERNMENT_OUTCOME;
