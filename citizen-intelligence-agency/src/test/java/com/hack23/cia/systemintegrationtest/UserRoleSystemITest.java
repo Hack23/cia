@@ -643,13 +643,12 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 	}
 
 	/**
-	 * Site ministry government body test.
+	 * Site ministry government body headcount test.
 	 *
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	@Test(timeout = 60000)
-	public void siteMinistryGovernmentBodyTest() throws Exception {
+	public void siteMinistryGovernmentBodyHeadcountTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
@@ -658,6 +657,39 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 		userPageVisit.visitDirectPage(
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString(), "N%C3%A4ringsdepartementet"));
 	}
+
+	/**
+	 * Site ministry government body income test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteMinistryGovernmentBodyIncomeTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString(), "N%C3%A4ringsdepartementet"));
+	}
+
+	/**
+	 * Site ministry government body expenditure test.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = 60000)
+	public void siteMinistryGovernmentBodyExpenditureTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString(), "N%C3%A4ringsdepartementet"));
+	}
+
 
 	/**
 	 * Site ministry government body invalid reference test.
@@ -1918,15 +1950,35 @@ public final class UserRoleSystemITest extends AbstractRoleSystemITest {
 	 *             the exception
 	 */
 	@Test(timeout = 60000)
-	public void siteMinistryRankingGovernmentBodyTest() throws Exception {
+	public void siteMinistryRankingGovernmentBodyHeadcountTest() throws Exception {
 		final WebDriver driver = getWebDriver();
 		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
 
 		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
 
 		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString()));
-
 	}
+
+	@Test(timeout = 60000)
+	public void siteMinistryRankingGovernmentBodyIncomeTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString()));
+	}
+
+	@Test(timeout = 60000)
+	public void siteMinistryRankingGovernmentBodyExpenditureTest() throws Exception {
+		final WebDriver driver = getWebDriver();
+		assertNotNull(NO_WEBDRIVER_EXIST_FOR_BROWSER + browser, driver);
+
+		final UserPageVisit userPageVisit = new UserPageVisit(driver, browser);
+
+		userPageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString()));
+	}
+
 
 	/**
 	 * Site ministry ranking government outcome test.
