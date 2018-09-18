@@ -345,4 +345,16 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 		}
 	}
 
+	@Override
+	public void createMinistryGovernmentBodyIncomeSummaryChart(AbstractOrderedLayout content) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void createMinistryGovernmentBodyExpenditureSummaryChart(AbstractOrderedLayout content) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -45,6 +45,21 @@ public interface GovernmentBodyChartDataManager {
 	void createMinistryGovernmentBodyHeadcountSummaryChart(AbstractOrderedLayout content);
 
 	/**
+	 * Creates the ministry government body income summary chart.
+	 *
+	 * @param content the content
+	 */
+	void createMinistryGovernmentBodyIncomeSummaryChart(AbstractOrderedLayout content);
+
+	/**
+	 * Creates the ministry government body expenditure summary chart.
+	 *
+	 * @param content the content
+	 */
+	void createMinistryGovernmentBodyExpenditureSummaryChart(AbstractOrderedLayout content);
+
+	
+	/**
 	 * Creates the government body headcount summary chart.
 	 *
 	 * @param panelContent
