@@ -866,7 +866,6 @@
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-compress</artifactId>
       <version>1.18</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.webbitserver</groupId>
