@@ -67,8 +67,7 @@ public final class CommitteeMemberHistoryPageModContentFactoryImpl extends Abstr
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && !StringUtils.isEmpty(parameters)
-				&& parameters.contains(CommitteePageMode.MEMBERHISTORY.toString());
+		return NAME.equals(page) && StringUtils.contains(parameters, CommitteePageMode.MEMBERHISTORY.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })

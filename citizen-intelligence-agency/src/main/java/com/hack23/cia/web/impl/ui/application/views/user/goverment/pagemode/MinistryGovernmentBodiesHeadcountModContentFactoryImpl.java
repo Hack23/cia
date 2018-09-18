@@ -35,12 +35,12 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class MinistryGovernmentBodiesModContentFactoryImpl.
+ * The Class MinistryGovernmentBodiesHeadcountModContentFactoryImpl.
  */
 @Component
-public final class MinistryGovernmentBodiesModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
+public final class MinistryGovernmentBodiesHeadcountModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	private static final String GOVERNMENT_BODIES = "Government bodies";
+	private static final String GOVERNMENT_BODIES = "Government bodies headcount";
 
 	/** The Constant MINISTRY. */
 	private static final String MINISTRY = "Ministry:";
@@ -49,16 +49,16 @@ public final class MinistryGovernmentBodiesModContentFactoryImpl extends Abstrac
 	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
 
 	/**
-	 * Instantiates a new ministry government bodies mod content factory impl.
+	 * Instantiates a new ministry government bodies headcount mod content factory
+	 * impl.
 	 */
-	public MinistryGovernmentBodiesModContentFactoryImpl() {
+	public MinistryGovernmentBodiesHeadcountModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && !StringUtils.isEmpty(parameters)
-				&& parameters.contains(MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString());
+		return NAME.equals(page) && StringUtils.contains(parameters, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })

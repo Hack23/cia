@@ -23,11 +23,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.OrgDocumentChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -35,32 +33,29 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class MinistryDocumentActivityPageModContentFactoryImpl.
+ * The Class GovernmentBodyRankingIncomePageModContentFactoryImpl.
  */
 @Component
-public final class MinistryDocumentActivityPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
+public final class MinistryRankingGovernmentBodyIncomePageModContentFactoryImpl extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The Constant MINISTRY. */
-	private static final String MINISTRY = "Ministry:";
+	/** The Constant GOVERNMENT_BODIES. */
+	private static final String GOVERNMENT_BODIES = "Government body income";
 
-	/** The Constant DOCUMENT_ACTIVITY. */
-	private static final String DOCUMENT_ACTIVITY = "Document Activity";
-
-	/** The chart data manager. */
+	/** The government body chart data manager. */
 	@Autowired
-	private OrgDocumentChartDataManager chartDataManager;
+	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
 
 	/**
-	 * Instantiates a new ministry document activity page mod content factory
+	 * Instantiates a new government body ranking income page mod content factory
 	 * impl.
 	 */
-	public MinistryDocumentActivityPageModContentFactoryImpl() {
+	public MinistryRankingGovernmentBodyIncomePageModContentFactoryImpl() {
 		super();
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, MinistryPageMode.DOCUMENTACTIVITY.toString());
+		return NAME.equals(page) && StringUtils.contains(parameters, MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
@@ -68,17 +63,15 @@ public final class MinistryDocumentActivityPageModContentFactoryImpl extends Abs
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 
+		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
+
 		final String pageId = getPageId(parameters);
 
-		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
-		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
+		panel.setCaption(NAME + "::" + GOVERNMENT_BODIES + parameters);
 
-		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ACTIVITY);
+		governmentBodyChartDataManager.createMinistryGovernmentBodyIncomeSummaryChart(panelContent);
 
-		chartDataManager.createDocumentHistoryChartByOrg(panelContent, viewRiksdagenMinistry.getNameId());
-
-		panel.setCaption(NAME + "::" + MINISTRY + viewRiksdagenMinistry.getNameId());
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
 
 		return panelContent;

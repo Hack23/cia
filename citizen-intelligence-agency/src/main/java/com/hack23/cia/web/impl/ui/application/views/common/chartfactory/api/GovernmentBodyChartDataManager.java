@@ -114,4 +114,20 @@ public interface GovernmentBodyChartDataManager {
 	 */
 	void createGovernmentBodyExpenditureSummaryChart(VerticalLayout panelContent, String name);
 
+	/**
+	 * Creates the ministry government body income summary chart.
+	 *
+	 * @param panelContent the panel content
+	 * @param name         the name
+	 */
+	void createMinistryGovernmentBodyIncomeSummaryChart(VerticalLayout panelContent, String name);
+
+	/**
+	 * Creates the ministry government body expenditure summary chart.
+	 *
+	 * @param panelContent the panel content
+	 * @param name         the name
+	 */
+	void createMinistryGovernmentBodyExpenditureSummaryChart(VerticalLayout panelContent, String name);
+
 }
