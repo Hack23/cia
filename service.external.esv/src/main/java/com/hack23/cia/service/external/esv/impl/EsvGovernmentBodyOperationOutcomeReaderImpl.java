@@ -25,7 +25,12 @@ import java.io.InputStreamReader;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -34,9 +39,11 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.http.client.fluent.Request;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 
 /**
  * The Class EsvGovernmentBodyOperationOutcomeReaderImpl.
@@ -95,6 +102,10 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	/** The Constant SPECIFIC_INCOMING_FIELDS. */
 	private static final String[] SPECIFIC_INCOMING_FIELDS = new String[] { "Utgiftsområde", "Utgiftsområdesnamn", "Anslag", "Anslagsnamn", "Anslagspost", "Anslagspostsnamn", "Anslagsdelpost", "Anslagsdelpostsnamn"};
 
+	/** The esv excel reader. */
+	@Autowired
+	private EsvExcelReader esvExcelReader;
+	
 	private List<GovernmentBodyAnnualOutcomeSummary> incomeCsvValues;
 
 	private List<GovernmentBodyAnnualOutcomeSummary> outGoingCsvValues;
@@ -137,7 +148,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	private static List<GovernmentBodyAnnualOutcomeSummary> readUsingZipInputStream(final InputStream inputStream,final String[] specificFields) throws IOException {		
+	private List<GovernmentBodyAnnualOutcomeSummary> readUsingZipInputStream(final InputStream inputStream,final String[] specificFields) throws IOException {		
 		final BufferedInputStream bis = new BufferedInputStream(inputStream);
 		final ZipInputStream is = new ZipInputStream(bis);
 
@@ -164,15 +175,17 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	private static List<GovernmentBodyAnnualOutcomeSummary> readCsvContent(final InputStream is,final String[] specificFields) throws IOException {
+	private List<GovernmentBodyAnnualOutcomeSummary> readCsvContent(final InputStream is,final String[] specificFields) throws IOException {
 		final CSVParser parser = CSVParser.parse(new InputStreamReader(is,Charsets.UTF_8), CSVFormat.EXCEL.withHeader().withDelimiter(';'));
 		final List<CSVRecord> records = parser.getRecords();
 		records.remove(0);
 		
+		Map<Integer, Map<String,String>> orgMinistryMap = createOrgMinistryMap(esvExcelReader.getDataPerMinistry(null));
+		
 		final List<GovernmentBodyAnnualOutcomeSummary> list = new ArrayList<>();
 		
 		for (final CSVRecord csvRecord : records) {
-			final GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get(MYNDIGHET), csvRecord.get(ORGANISATIONSNUMMER), Integer.parseInt(csvRecord.get(YEAR)));
+			final GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get(MYNDIGHET), csvRecord.get(ORGANISATIONSNUMMER), orgMinistryMap.get(Integer.parseInt(csvRecord.get(YEAR))).get(csvRecord.get(ORGANISATIONSNUMMER).replaceAll("-", "")), Integer.parseInt(csvRecord.get(YEAR)));
 			
 			for (final String field : specificFields) {				
 				governmentBodyAnnualOutcomeSummary.addDescriptionField(field,csvRecord.get(field));
@@ -198,6 +211,27 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 		}
 		
 		return list;
+	}
+
+	/**
+	 * Creates the org ministry map.
+	 *
+	 * @param data the data
+	 * @return the map
+	 */
+	private Map<Integer, Map<String, String>> createOrgMinistryMap(
+			Map<Integer, List<GovernmentBodyAnnualSummary>> data) {
+		Map<Integer, Map<String,String>> orgMinistryMap = new HashMap<>();
+		
+		Set<Entry<Integer, List<GovernmentBodyAnnualSummary>>> entrySet = data.entrySet();
+		
+		for (Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : entrySet) {		
+			orgMinistryMap.put(entry.getKey(), entry.getValue().stream().collect(Collectors.groupingBy(t -> t.getOrgNumber().replaceAll("-","") ,Collectors.collectingAndThen(
+                    Collectors.toList(), 
+                    values -> values.get(0).getMinistry()))));
+		}
+		
+		return orgMinistryMap;
 	}
 
 	/**

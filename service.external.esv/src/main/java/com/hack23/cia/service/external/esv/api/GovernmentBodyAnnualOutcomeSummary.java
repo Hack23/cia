@@ -42,6 +42,9 @@ public final class GovernmentBodyAnnualOutcomeSummary implements Serializable {
 
 	/** The org number. */
 	private final String orgNumber;
+	
+	/** The ministry. */
+	private final String ministry;
 
 	/** The year. */
 	private final int year;
@@ -58,17 +61,16 @@ public final class GovernmentBodyAnnualOutcomeSummary implements Serializable {
 	/**
 	 * Instantiates a new government body annual outcome summary.
 	 *
-	 * @param govermentBody
-	 *            the goverment body
-	 * @param orgNumber
-	 *            the org number
-	 * @param year
-	 *            the year
+	 * @param govermentBody the goverment body
+	 * @param orgNumber     the org number
+	 * @param ministry      the ministry
+	 * @param year          the year
 	 */
-	public GovernmentBodyAnnualOutcomeSummary(final String govermentBody, final String orgNumber, final int year) {
+	public GovernmentBodyAnnualOutcomeSummary(final String govermentBody, final String orgNumber, final String ministry, final int year) {
 		super();
 		this.govermentBody = govermentBody;
 		this.orgNumber = orgNumber;
+		this.ministry = ministry;
 		this.year = year;
 	}
 
@@ -97,6 +99,15 @@ public final class GovernmentBodyAnnualOutcomeSummary implements Serializable {
 	 */
 	public int getYear() {
 		return year;
+	}
+
+	/**
+	 * Gets the ministry.
+	 *
+	 * @return the ministry
+	 */
+	public String getMinistry() {
+		return ministry;
 	}
 
 	/**

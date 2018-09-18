@@ -38,7 +38,8 @@ public final class EsvGovernmentBodyOperationOutcomeReaderTest extends AbstractE
 	public void readIncomeCsvTest() throws IOException {
 		final List<GovernmentBodyAnnualOutcomeSummary> list = esvGovernmentBodyOperationOutcomeReader.readIncomeCsv();
 		assertNotNull(list);
-		assertFalse(list.isEmpty());		
+		assertFalse(list.isEmpty());
+		assertNotNull(list.get(0).getMinistry());		
 	}
 
 	@Test
