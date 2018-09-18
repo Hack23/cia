@@ -58,7 +58,7 @@ public final class MinistryGovernmentBodiesExpenditureModContentFactoryImpl exte
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString());
+		return NAME.equals(page) && StringUtils.contains(parameters, MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString());
 	}
 
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
