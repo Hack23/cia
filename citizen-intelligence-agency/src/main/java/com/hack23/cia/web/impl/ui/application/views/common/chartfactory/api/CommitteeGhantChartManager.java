@@ -18,10 +18,10 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
 
-import java.util.List;
+import java.util.Collection;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeRoleMember;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
  * The Interface CommitteeGhantChartManager.
@@ -32,12 +32,10 @@ public interface CommitteeGhantChartManager {
 	/**
 	 * Creates the role ghant.
 	 *
-	 * @param roleSummaryLayoutTabsheet
-	 *            the role summary layout tabsheet
-	 * @param assignmentList
-	 *            the assignment list
+	 * @param roleSummaryLayoutTabsheet the role summary layout tabsheet
+	 * @param assignmentList            the assignment list
 	 */
-	void createRoleGhant(VerticalLayout roleSummaryLayoutTabsheet,
-			List<ViewRiksdagenCommitteeRoleMember> assignmentList);
+	void createRoleGhant(AbstractOrderedLayout roleSummaryLayoutTabsheet,
+			Collection<ViewRiksdagenCommitteeRoleMember> assignmentList);
 
 }
