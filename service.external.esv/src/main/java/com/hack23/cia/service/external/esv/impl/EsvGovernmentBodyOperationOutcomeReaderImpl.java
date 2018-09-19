@@ -219,7 +219,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 	 * @param data the data
 	 * @return the map
 	 */
-	private Map<Integer, Map<String, String>> createOrgMinistryMap(
+	private static Map<Integer, Map<String, String>> createOrgMinistryMap(
 			Map<Integer, List<GovernmentBodyAnnualSummary>> data) {
 		Map<Integer, Map<String,String>> orgMinistryMap = new HashMap<>();
 		

@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -39,7 +40,7 @@ import org.tltv.gantt.client.shared.SubStep;
 
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.server.Sizeable.Unit;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.AbstractOrderedLayout;
 
 /**
  * The Class AbstractGhantChartManagerImpl.
@@ -71,12 +72,10 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 	/**
 	 * Creates the role ghant.
 	 *
-	 * @param roleSummaryLayoutTabsheet
-	 *            the role summary layout tabsheet
-	 * @param assignmentList
-	 *            the assignment list
+	 * @param roleSummaryLayoutTabsheet the role summary layout tabsheet
+	 * @param assignmentList            the assignment list
 	 */
-	public final void createRoleGhant(final VerticalLayout roleSummaryLayoutTabsheet, final List<T> assignmentList) {
+	public final void createRoleGhant(final AbstractOrderedLayout roleSummaryLayoutTabsheet, final Collection<T> assignmentList) {
 
 		final Comparator<T> compare = getComparator();
 

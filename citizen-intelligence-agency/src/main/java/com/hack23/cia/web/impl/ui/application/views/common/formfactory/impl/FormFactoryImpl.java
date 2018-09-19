@@ -52,6 +52,7 @@ import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.PasswordField;
@@ -107,9 +108,7 @@ public final class FormFactoryImpl implements FormFactory {
 		button.setWidth("25%");
 		button.setIcon(VaadinIcons.BULLSEYE);
 		button.setEnabled(false);
-		binder.addStatusChangeListener( event -> {
-	            button.setEnabled(event.getBinder().isValid());
-	    } );
+		binder.addStatusChangeListener(event -> button.setEnabled(event.getBinder().isValid()));
 		
 		
 		verticalLayout.addComponent(button);
@@ -152,26 +151,20 @@ public final class FormFactoryImpl implements FormFactory {
 			LOGGER.error("No able to getfieldtypes for type:+ item.getClass()", exception);
 		}
 
-
 		createDisplayPropertyConverters(displayProperties, formContent, binder, propertyDescriptors);
 	}
 
 	/**
 	 * Creates the display property converters.
 	 *
-	 * @param <T>
-	 *            the generic type
-	 * @param displayProperties
-	 *            the display properties
-	 * @param formContent
-	 *            the form content
-	 * @param binder
-	 *            the binder
-	 * @param propertyDescriptors
-	 *            the property descriptors
+	 * @param                     <T> the generic type
+	 * @param displayProperties   the display properties
+	 * @param formContent         the form content
+	 * @param binder              the binder
+	 * @param propertyDescriptors the property descriptors
 	 */
 	private static <T extends Serializable> void createDisplayPropertyConverters(final List<String> displayProperties,
-			final FormLayout formContent, final Binder<T> binder, final PropertyDescriptor[] propertyDescriptors) {
+			final ComponentContainer formContent, final Binder<T> binder, final PropertyDescriptor[] propertyDescriptors) {
 		for (final String property : displayProperties) {
 			final Class<?> typeOfProperty = getTypeOfProperty(propertyDescriptors, property);
 

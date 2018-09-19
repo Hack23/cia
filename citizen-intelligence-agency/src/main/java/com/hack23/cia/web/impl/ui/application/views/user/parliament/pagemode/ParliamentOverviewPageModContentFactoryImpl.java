@@ -49,7 +49,6 @@ public final class ParliamentOverviewPageModContentFactoryImpl extends AbstractP
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
 		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
@@ -59,13 +58,11 @@ public final class ParliamentOverviewPageModContentFactoryImpl extends AbstractP
 		final VerticalLayout panelContent = createPanelContent();
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 
-		final String pageId = getPageId(parameters);
-
 		panelContent.addComponent(new Label(OVERVIEW));
 
 		getParliamentMenuItemFactory().createOverviewPage(panelContent);
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME, parameters, getPageId(parameters));
 		panel.setCaption(NAME + "::" + OVERVIEW);
 
 		return panelContent;
