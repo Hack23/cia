@@ -46,9 +46,7 @@
 	</bean>
 	
 	<bean name="transactionHelper" class="org.jboss.narayana.jta.jms.TransactionHelperImpl">
-		<constructor-arg>
-			<bean class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple" />
-		</constructor-arg>		
+		<constructor-arg ref="transactionManagerImpl"/>
 	</bean> 	
    
 </beans>
