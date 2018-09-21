@@ -2539,6 +2539,14 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #ccc;
 }
 
+.cia .gantt .col.now, .cia .gantt .col.even.now {
+	background-color: #ff8080;
+}
+
+.cia .gantt .col.weekend.now {
+	background-color: #d86b6b;
+}
+
 .cia .gantt .row {
 	width: 100%;
 	float: left;
@@ -2683,6 +2691,18 @@ div.v-layout.v-horizontal.v-widget {
 	background: transparent;
 	border-left: 1px dashed #ddd;
 	border-right: 1px dashed #ddd;
+}
+
+.cia .gantt .now-el {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	width: 1px;
+	background-color: #ca0000;
+	z-index: 2;
 }
 
 .cia .gantt .arrow .start-p, .cia .gantt .arrow .end-p {

@@ -1635,7 +1635,7 @@
                 <artifactItem>
                   <groupId>org.tltv.gantt</groupId>
                   <artifactId>gantt-addon</artifactId>
-                  <version>1.0.3</version>
+                  <version>1.0.4</version>
                   <type>jar</type>
                   <overWrite>false</overWrite>
                   <outputDirectory>${basedir}/src/main/webapp/</outputDirectory>

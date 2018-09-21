@@ -56,7 +56,13 @@
 		.col.weekend {
 			background-color: #ccc;
 		}
-		
+		.col.now,
+		.col.even.now {
+			background-color: #ff8080;
+		}
+		.col.weekend.now { 
+			background-color: #d86b6b;
+		}
 		.col.measure {
 		    // Change min-width to adjust grid's cell width with day and hour-resolution.
 			//min-width: 40px;
@@ -201,6 +207,18 @@
 			background: transparent;
 			border-left: 1px dashed #ddd;
 			border-right: 1px dashed #ddd;
+		}
+		
+		.now-el {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			width: 1px;
+			background-color: #ca0000;
+			z-index: 2;
 		}
 		
 		.arrow {
