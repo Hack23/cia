@@ -1002,7 +1002,7 @@
             "Parameters":{
                "Operation":[
                   "Scan"
-               ],
+               ]},
                "ScheduleExpression":"rate(30 minutes)",
                "Targets":[
                   {
@@ -1023,7 +1023,7 @@
             "Parameters":{
                "Operation":[
                   "Install"
-               ],
+               ]},
                "ScheduleExpression":"rate(30 minutes)",
                "Targets":[
                   {
@@ -1044,7 +1044,7 @@
             "Parameters":{
                "allowDowngrade":[
                   "false"
-               ],
+               ]},
                "ScheduleExpression":"rate(30 minutes)",
                "Targets":[
                   {
@@ -1062,7 +1062,7 @@
          "Properties":{
             "AssociationName":"SetupInventory",
             "Name":"AWS-SetupInventory",
-            "Parameters":{
+            "Parameters":{},           
                "ScheduleExpression":"rate(30 minutes)",
                "Targets":[
                   {
@@ -1080,7 +1080,7 @@
          "Properties":{
             "AssociationName":"GatherSoftwareInventory",
             "Name":"AWS-GatherSoftwareInventory",
-            "Parameters":{
+            "Parameters":{},
                "ScheduleExpression":"rate(30 minutes)",
                "Targets":[
                   {
