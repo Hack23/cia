@@ -1054,40 +1054,6 @@
              ]
          }
       },
-      "SetupInventoryAgent":{
-         "Type":"AWS::SSM::Association",
-         "Properties":{
-            "AssociationName":"SetupInventory",
-            "Name":"AWS-SetupInventory",
-            "Parameters":{},           
-               "ScheduleExpression":"rate(30 minutes)",
-               "Targets":[
-                  {
-                     "Key":"tag:SetupInventory",
-                     "Values":[
-                        "true"
-                     ]
-                  }
-               ]
-         }
-      },
-      "GatherSoftwareInventoryAgent":{
-         "Type":"AWS::SSM::Association",
-         "Properties":{
-            "AssociationName":"GatherSoftwareInventory",
-            "Name":"AWS-GatherSoftwareInventory",
-            "Parameters":{},
-            "ScheduleExpression":"rate(30 minutes)",
-            "Targets":[
-                {
-                   "Key":"tag:SoftwareInventory",
-                   "Values":[
-                      "true"
-                   ]
-                }
-            ]
-         }
-      },
       "PublicSubnet":{
          "Type":"AWS::EC2::Subnet",
          "Properties":{

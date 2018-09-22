@@ -99,3 +99,38 @@ https://www.versent.com.au/insights/patch-your-s-it-with-amazon-systems-manager
 	  
 }
 
+
+      "SetupInventoryAgent":{
+         "Type":"AWS::SSM::Association",
+         "Properties":{
+            "AssociationName":"SetupInventory",
+            "Name":"AWS-SetupInventory",
+            "Parameters":{},           
+               "ScheduleExpression":"rate(30 minutes)",
+               "Targets":[
+                  {
+                     "Key":"tag:SetupInventory",
+                     "Values":[
+                        "true"
+                     ]
+                  }
+               ]
+         }
+      },
+      "GatherSoftwareInventoryAgent":{
+         "Type":"AWS::SSM::Association",
+         "Properties":{
+            "AssociationName":"GatherSoftwareInventory",
+            "Name":"AWS-GatherSoftwareInventory",
+            "Parameters":{},
+            "ScheduleExpression":"rate(30 minutes)",
+            "Targets":[
+                {
+                   "Key":"tag:SoftwareInventory",
+                   "Values":[
+                      "true"
+                   ]
+                }
+            ]
+         }
+      },
