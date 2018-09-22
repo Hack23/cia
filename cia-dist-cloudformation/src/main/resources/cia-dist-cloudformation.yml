@@ -691,34 +691,46 @@ Resources:
     Properties: {}
   InspectorResultActionTopic:
     Type: AWS::SNS::Topic
-    Properties: {}    
+    Properties: {}
   PatchBaselineScan:
-      Type: 'AWS::SSM::Association'
-      Properties:
-          AssociationName: PatchBaselineScan
-          Name: AWS-RunPatchBaseline
-          Parameters:
-              Operation: [Scan]
-              ScheduleExpression: 'rate(30 minutes)'
-              Targets: [{Key: 'tag:PatchBaseline', Values: [scan]}]
+    Type: AWS::SSM::Association
+    Properties:
+      AssociationName: PatchBaselineScan
+      Name: AWS-RunPatchBaseline
+      Parameters:
+        Operation:
+          - Scan
+      ScheduleExpression: rate(30 minutes)
+      Targets:
+        - Key: tag:PatchBaseline
+          Values:
+            - scan
   PatchBaselineInstall:
-      Type: 'AWS::SSM::Association'
-      Properties:
-          AssociationName: PatchBaselineInstall
-          Name: AWS-RunPatchBaseline
-          Parameters:
-              Operation: [Install]
-              ScheduleExpression: 'rate(30 minutes)'
-              Targets: [{Key: 'tag:PatchBaseline', Values: [install]}]
+    Type: AWS::SSM::Association
+    Properties:
+      AssociationName: PatchBaselineInstall
+      Name: AWS-RunPatchBaseline
+      Parameters:
+        Operation:
+          - Install
+      ScheduleExpression: rate(30 minutes)
+      Targets:
+        - Key: tag:PatchBaseline
+          Values:
+            - install
   UpdateSSMAgent:
-      Type: 'AWS::SSM::Association'
-      Properties:
-          AssociationName: UpdateSSMAgent
-          Name: AWS-UpdateSSMAgent
-          Parameters:
-              allowDowngrade: ['false']
-              ScheduleExpression: 'rate(30 minutes)'
-              Targets: [{Key: 'tag:UpdateSSMAgent', Values: ['true']}]
+    Type: AWS::SSM::Association
+    Properties:
+      AssociationName: UpdateSSMAgent
+      Name: AWS-UpdateSSMAgent
+      Parameters:
+        allowDowngrade:
+          - 'false'
+      ScheduleExpression: rate(30 minutes)
+      Targets:
+        - Key: tag:UpdateSSMAgent
+          Values:
+            - 'true'
   PublicSubnet:
     Type: AWS::EC2::Subnet
     Properties:
@@ -735,7 +747,7 @@ Resources:
         - Key: Application
           Value: !Ref 'AWS::StackId'
         - Key: Network
-          Value: Public          
+          Value: Public
   PublicSubnet2:
     Type: AWS::EC2::Subnet
     Properties:
@@ -1302,7 +1314,7 @@ Resources:
         - !Ref 'PublicSubnet3'
       LaunchConfigurationName: !Ref 'WebServerLaunchConfig'
       MinSize: '1'
-      MaxSize: '1'
+      MaxSize: '10'
       DesiredCapacity: !Ref 'WebServerCount'
       TargetGroupARNs:
         - !Ref 'TargetGroupHttps'
@@ -1310,11 +1322,14 @@ Resources:
         - Key: Network
           Value: Public
           PropagateAtLaunch: 'true'
+        - Key: Network
+          Value: Public
+          PropagateAtLaunch: 'true'
         - Key: UpdateSSMAgent
-          Value: true
+          Value: 'true'
           PropagateAtLaunch: 'true'
         - Key: PatchBaseline
-          Value: install
+          Value: scan
           PropagateAtLaunch: 'true'
       NotificationConfiguration:
         TopicARN: !Ref 'NotificationTopic'
