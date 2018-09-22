@@ -692,33 +692,33 @@ Resources:
   InspectorResultActionTopic:
     Type: AWS::SNS::Topic
     Properties: {}    
-    PatchBaselineScan:
-        Type: 'AWS::SSM::Association'
-        Properties:
-            AssociationName: PatchBaselineScan
-            Name: AWS-RunPatchBaseline
-            Parameters:
-                Operation: [Scan]
-                ScheduleExpression: 'rate(30 minutes)'
-                Targets: [{Key: 'tag:PatchBaseline', Values: [scan]}]
-    PatchBaselineInstall:
-        Type: 'AWS::SSM::Association'
-        Properties:
-            AssociationName: PatchBaselineInstall
-            Name: AWS-RunPatchBaseline
-            Parameters:
-                Operation: [Install]
-                ScheduleExpression: 'rate(30 minutes)'
-                Targets: [{Key: 'tag:PatchBaseline', Values: [install]}]
-    UpdateSSMAgent:
-        Type: 'AWS::SSM::Association'
-        Properties:
-            AssociationName: UpdateSSMAgent
-            Name: AWS-UpdateSSMAgent
-            Parameters:
-                allowDowngrade: ['false']
-                ScheduleExpression: 'rate(30 minutes)'
-                Targets: [{Key: 'tag:UpdateSSMAgent', Values: ['true']}]
+  PatchBaselineScan:
+      Type: 'AWS::SSM::Association'
+      Properties:
+          AssociationName: PatchBaselineScan
+          Name: AWS-RunPatchBaseline
+          Parameters:
+              Operation: [Scan]
+              ScheduleExpression: 'rate(30 minutes)'
+              Targets: [{Key: 'tag:PatchBaseline', Values: [scan]}]
+  PatchBaselineInstall:
+      Type: 'AWS::SSM::Association'
+      Properties:
+          AssociationName: PatchBaselineInstall
+          Name: AWS-RunPatchBaseline
+          Parameters:
+              Operation: [Install]
+              ScheduleExpression: 'rate(30 minutes)'
+              Targets: [{Key: 'tag:PatchBaseline', Values: [install]}]
+  UpdateSSMAgent:
+      Type: 'AWS::SSM::Association'
+      Properties:
+          AssociationName: UpdateSSMAgent
+          Name: AWS-UpdateSSMAgent
+          Parameters:
+              allowDowngrade: ['false']
+              ScheduleExpression: 'rate(30 minutes)'
+              Targets: [{Key: 'tag:UpdateSSMAgent', Values: ['true']}]
   PublicSubnet:
     Type: AWS::EC2::Subnet
     Properties:
