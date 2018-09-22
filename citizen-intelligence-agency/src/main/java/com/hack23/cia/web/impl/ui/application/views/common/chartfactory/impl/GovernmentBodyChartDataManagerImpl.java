@@ -356,13 +356,13 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 	}
 
 	@Override
-	public void createMinistryGovernmentBodyIncomeSummaryChart(final VerticalLayout panelContent, final String name) {
-		// TODO Auto-generated method stub		
+	public void createMinistryGovernmentBodyIncomeSummaryChart(final VerticalLayout content, final String name) {
+		addAnnualSummary(esvApi.getGovernmentBodyReportByFieldAndMinistry(INKOMSTTITELGRUPPSNAMN,name), content, ANNUAL_INCOME);		
 	}
 
 	@Override
-	public void createMinistryGovernmentBodyExpenditureSummaryChart(final VerticalLayout panelContent, final String name) {
-		// TODO Auto-generated method stub		
+	public void createMinistryGovernmentBodyExpenditureSummaryChart(final VerticalLayout content, final String name) {
+		addAnnualSummary(esvApi.getGovernmentBodyReportByFieldAndMinistry(EXPENDITURE_GROUP_NAME, name), content, ANNUAL_EXPENDITURE);		
 	}
 
 }
