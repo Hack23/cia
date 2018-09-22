@@ -1002,17 +1002,16 @@
             "Parameters":{
                "Operation":[
                   "Scan"
-               ]},
-               "ScheduleExpression":"rate(30 minutes)",
-               "Targets":[
-                  {
-                     "Key":"tag:PatchBaseline",
-                     "Values":[
-                        "scan"
-                     ]
-                  }
-               ]
-            }
+             ]},
+            "ScheduleExpression":"rate(30 minutes)",
+            "Targets":[
+                {
+                   "Key":"tag:PatchBaseline",
+                   "Values":[
+                      "scan"
+                   ]
+                }
+            ]
          }
       },
       "PatchBaselineInstall":{
@@ -1024,16 +1023,15 @@
                "Operation":[
                   "Install"
                ]},
-               "ScheduleExpression":"rate(30 minutes)",
-               "Targets":[
+            "ScheduleExpression":"rate(30 minutes)",
+            "Targets":[
                   {
-                     "Key":"tag:PatchBaseline",
-                     "Values":[
-                        "install"
-                     ]
-                  }
-               ]
-            }
+                   "Key":"tag:PatchBaseline",
+                   "Values":[
+                      "install"
+                   ]
+                }
+             ]
          }
       },
       "UpdateSSMAgent":{
@@ -1045,16 +1043,15 @@
                "allowDowngrade":[
                   "false"
                ]},
-               "ScheduleExpression":"rate(30 minutes)",
-               "Targets":[
-                  {
-                     "Key":"tag:UpdateSSMAgent",
-                     "Values":[
-                        "true"
-                     ]
-                  }
-               ]
-            }
+            "ScheduleExpression":"rate(30 minutes)",
+            "Targets":[
+                {
+                   "Key":"tag:UpdateSSMAgent",
+                   "Values":[
+                      "true"
+                   ]
+                }
+             ]
          }
       },
       "SetupInventoryAgent":{
@@ -1072,7 +1069,6 @@
                      ]
                   }
                ]
-            }
          }
       },
       "GatherSoftwareInventoryAgent":{
@@ -1081,16 +1077,15 @@
             "AssociationName":"GatherSoftwareInventory",
             "Name":"AWS-GatherSoftwareInventory",
             "Parameters":{},
-               "ScheduleExpression":"rate(30 minutes)",
-               "Targets":[
-                  {
-                     "Key":"tag:SoftwareInventory",
-                     "Values":[
-                        "true"
-                     ]
-                  }
-               ]
-            }
+            "ScheduleExpression":"rate(30 minutes)",
+            "Targets":[
+                {
+                   "Key":"tag:SoftwareInventory",
+                   "Values":[
+                      "true"
+                   ]
+                }
+            ]
          }
       },
       "PublicSubnet":{
