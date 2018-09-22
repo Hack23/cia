@@ -187,6 +187,13 @@ final class EsvApiImpl implements EsvApi {
 		return result.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getGovermentBody));
 	}
 
+	
+	@Override
+	public Map<String, List<GovernmentBodyAnnualOutcomeSummary>> getGovernmentBodyReportByMinistry() {
+		final List<GovernmentBodyAnnualOutcomeSummary> result = getGovernmentBodyList();		
+		return result.stream().filter(p -> p.getMinistry() != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getMinistry));
+	}
+
 	/**
 	 * Gets the government body list.
 	 *
@@ -208,6 +215,12 @@ final class EsvApiImpl implements EsvApi {
 	public Map<String, List<GovernmentBodyAnnualOutcomeSummary>> getGovernmentBodyReportByField(final String string) {
 		final List<GovernmentBodyAnnualOutcomeSummary> result = getGovernmentBodyList();		
 		return result.stream().filter(p -> p.getDescriptionFields().get(string) != null) .collect(Collectors.groupingBy(t -> t.getDescriptionFields().get(string)));
+	}
+
+	@Override
+	public Map<String, List<GovernmentBodyAnnualOutcomeSummary>> getGovernmentBodyReportByFieldAndMinistry(final String string,final String ministry) {
+		final List<GovernmentBodyAnnualOutcomeSummary> result = getGovernmentBodyList();		
+		return result.stream().filter(p -> p.getDescriptionFields().get(string) != null && ministry.equalsIgnoreCase(p.getMinistry())) .collect(Collectors.groupingBy(t -> t.getDescriptionFields().get(string)));
 	}
 
 }

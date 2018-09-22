@@ -109,4 +109,20 @@ public interface EsvApi {
 	 */
 	Map<String, List<GovernmentBodyAnnualOutcomeSummary>> getGovernmentBodyReportByField(String string);
 
+	/**
+	 * Gets the government body report by field and ministry.
+	 *
+	 * @param string   the string
+	 * @param ministry the ministry
+	 * @return the government body report by field and ministry
+	 */
+	Map<String, List<GovernmentBodyAnnualOutcomeSummary>> getGovernmentBodyReportByFieldAndMinistry(String string, String ministry);
+
+	/**
+	 * Gets the government body report by ministry.
+	 *
+	 * @return the government body report by ministry
+	 */
+	Map<String, List<GovernmentBodyAnnualOutcomeSummary>> getGovernmentBodyReportByMinistry();
+
 }

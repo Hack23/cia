@@ -107,6 +107,11 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		}
 	}
 
+	/**
+	 * Gets the data finance ministry 2017 success test.
+	 *
+	 * @return the data finance ministry 2017 success test
+	 */
 	@Test
 	public void getDataFinanceMinistry2017SuccessTest() {
 		final List<GovernmentBodyAnnualSummary> list = esvApi.getDataPerMinistryAndYear("Finansdepartementet", 2017);
@@ -224,6 +229,9 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		assertEquals(14, list.size());
 	}
 
+	/**
+	 * Verify ministry annual summary test.
+	 */
 	@Test
 	public void verifyMinistryAnnualSummaryTest() {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi
@@ -289,6 +297,11 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		}
 	}
 	
+	/**
+	 * Gets the report test.
+	 *
+	 * @return the report test
+	 */
 	@Test
 	public void getReportTest() {
 		final Map<String, List<GovernmentOperationPeriodOutcome>> report = esvApi.getReport();
@@ -303,6 +316,11 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 	}
 	
 
+	/**
+	 * Gets the government body report test.
+	 *
+	 * @return the government body report test
+	 */
 	@Test
 	public void getGovernmentBodyReportTest() {
 		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi.getGovernmentBodyReport();
@@ -314,7 +332,29 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		assertNotNull(summary.getValueMap());		
 		assertTrue(summary.getYear() > 0);
 	}
-	
+
+	/**
+	 * Gets the government body report by ministry test.
+	 *
+	 * @return the government body report by ministry test
+	 */
+	@Test
+	public void getGovernmentBodyReportByMinistryTest() {
+		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi.getGovernmentBodyReportByMinistry();
+		assertNotNull(report);
+		assertFalse(report.isEmpty());
+		GovernmentBodyAnnualOutcomeSummary summary = report.values().iterator().next().get(0);
+		assertNotNull(summary.getOrgNumber());
+		assertNotNull(summary.getYearTotal());
+		assertNotNull(summary.getValueMap());		
+		assertTrue(summary.getYear() > 0);
+	}
+
+	/**
+	 * Gets the government body report map by field income group test.
+	 *
+	 * @return the government body report map by field income group test
+	 */
 	@Test
 	public void getGovernmentBodyReportMapByFieldIncomeGroupTest() {
 		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi.getGovernmentBodyReportByField("Inkomsttitelgruppsnamn");
@@ -322,11 +362,30 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 		assertFalse(report.isEmpty());
 	}
 
+	/**
+	 * Gets the government body report map by field outcome group test.
+	 *
+	 * @return the government body report map by field outcome group test
+	 */
 	@Test
 	public void getGovernmentBodyReportMapByFieldOutcomeGroupTest() {
 		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi.getGovernmentBodyReportByField("Utgiftsområdesnamn");
 		assertNotNull(report);
 		assertFalse(report.isEmpty());
 	}
+
+	/**
+	 * Gets the government body report map by field and ministry outcome group test.
+	 *
+	 * @return the government body report map by field and ministry outcome group
+	 *         test
+	 */
+	@Test
+	public void getGovernmentBodyReportMapByFieldAndMinistryOutcomeGroupTest() {
+		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi.getGovernmentBodyReportByFieldAndMinistry("Utgiftsområdesnamn","Finansdepartementet");
+		assertNotNull(report);
+		assertFalse(report.isEmpty());
+	}
+
 	
 }
