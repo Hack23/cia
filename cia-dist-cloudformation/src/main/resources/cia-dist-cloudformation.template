@@ -2214,11 +2214,6 @@
                   "PropagateAtLaunch":"true"
                },
                {
-                  "Key":"Network",
-                  "Value":"Public",
-                  "PropagateAtLaunch":"true"
-               },
-               {
                   "Key":"UpdateSSMAgent",
                   "Value":"true",
                   "PropagateAtLaunch":"true"
