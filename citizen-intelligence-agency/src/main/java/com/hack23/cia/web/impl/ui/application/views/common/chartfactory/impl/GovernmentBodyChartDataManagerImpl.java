@@ -347,14 +347,49 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 
 	@Override
 	public void createMinistryGovernmentBodyIncomeSummaryChart(final AbstractOrderedLayout content) {
-		// TODO Auto-generated method stub		
+		createMinistrySummary(content,INKOMSTTITELGRUPPSNAMN,"MinistryGovernmentBodyIncomeSummaryChart");		
+		
 	}
+
 
 	@Override
 	public void createMinistryGovernmentBodyExpenditureSummaryChart(final AbstractOrderedLayout content) {
-		// TODO Auto-generated method stub		
+		createMinistrySummary(content,EXPENDITURE_GROUP_NAME,"MinistryGovernmentBodySpendingSummaryChart");		
 	}
 
+	/**
+	 * Creates the ministry summary.
+	 *
+	 * @param content the content
+	 * @param field   the field
+	 * @param label   the label
+	 */
+	private void createMinistrySummary(final AbstractOrderedLayout content, final String field, final String label) {
+		final DataSeries dataSeries = new DataSeries();
+		final Series series = new Series();
+		
+		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry = esvApi.getGovernmentBodyReportByMinistry();
+		
+		for (Entry<String, List<GovernmentBodyAnnualOutcomeSummary>> entry : reportByMinistry.entrySet()) {
+			series.addSeries(new XYseries().setLabel(entry.getKey()));
+			dataSeries.newSeries();			
+			Map<Integer, Double> annualSummaryMap = entry.getValue().stream().filter(t -> t.getDescriptionFields().get(field) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));			
+
+			for (final Entry<Integer, Double> entryData : annualSummaryMap.entrySet()) {
+				if (entryData.getValue() != null && entryData.getValue().intValue() > 0) {
+					dataSeries.add(entryData.getKey() +1  +"-01-01" , entryData.getValue());
+				}
+			}			
+		}
+		
+		addChart(content, label,
+				new DCharts().setDataSeries(dataSeries)
+						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
+				true);
+	}
+
+	
+	
 	@Override
 	public void createMinistryGovernmentBodyIncomeSummaryChart(final VerticalLayout content, final String name) {
 		addAnnualSummary(esvApi.getGovernmentBodyReportByFieldAndMinistry(INKOMSTTITELGRUPPSNAMN,name), content, ANNUAL_INCOME);		
