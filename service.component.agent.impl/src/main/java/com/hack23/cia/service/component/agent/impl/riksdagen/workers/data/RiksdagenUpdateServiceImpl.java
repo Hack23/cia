@@ -90,7 +90,7 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 		if (existData == null) {
 			personDataDAO.persist(personData);
 		} else {
-			personDataDAO.merge(personData);;
+			//TODO
 		}
 	}
 
@@ -99,6 +99,8 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 		if (committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
 				committeeProposal.getDocument()) == null) {
 			committeeProposalComponentDataDAO.persist(committeeProposal);
+		} else {
+			//TODO
 		}
 	}
 
@@ -113,6 +115,8 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 	public void updateDocumentData(final DocumentStatusContainer documentData) {
 		if(documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document,DocumentData.class,DocumentData_.id,documentData.getDocument().getId()).isEmpty()) {
 			documentStatusContainerDAO.persist(documentData);
+		} else {
+			//TODO
 		}
 	}
 
@@ -120,8 +124,9 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 	public void updateDocumentElement(final DocumentElement documentData) {
 		if (!documentElementDAO.checkDocumentElement(documentData.getId())) {
 			documentElementDAO.persist(documentData);
+		} else {
+			//TODO
 		}
-
 	}
 
 	@Override
