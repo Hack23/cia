@@ -86,8 +86,11 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 
 	@Override
 	public void update(final PersonData personData) {
-		if (personDataDAO.load(personData.getId()) == null) {
+		final PersonData existData = personDataDAO.load(personData.getId());
+		if (existData == null) {
 			personDataDAO.persist(personData);
+		} else {
+			personDataDAO.merge(personData);;
 		}
 	}
 

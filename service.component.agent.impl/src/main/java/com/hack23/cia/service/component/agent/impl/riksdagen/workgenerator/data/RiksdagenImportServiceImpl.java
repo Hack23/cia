@@ -44,7 +44,6 @@ import com.hack23.cia.service.data.api.CommitteeProposalComponentDataDAO;
 import com.hack23.cia.service.data.api.DocumentContentDataDAO;
 import com.hack23.cia.service.data.api.DocumentElementDAO;
 import com.hack23.cia.service.data.api.DocumentStatusContainerDAO;
-import com.hack23.cia.service.data.api.PersonDataDAO;
 import com.hack23.cia.service.data.api.VoteDataDAO;
 
 /**
@@ -82,10 +81,6 @@ final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 	/** The document status container DAO. */
 	@Autowired
 	private DocumentStatusContainerDAO documentStatusContainerDAO;
-
-	/** The person data DAO. */
-	@Autowired
-	private PersonDataDAO personDataDAO;
 
 	/** The vote data DAO. */
 	@Autowired
@@ -236,11 +231,6 @@ final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 	@Override
 	public Map<String, String> getLoadedBallotIdMap() {
 		return createMapFromListVote(voteDataDAO.getBallotIdList());
-	}
-
-	@Override
-	public Map<String, String> getPersonMap() {
-		return createMapFromList(personDataDAO.getIdList());
 	}
 
 	@Override

@@ -21,7 +21,6 @@ package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 import javax.jms.Destination;
@@ -66,20 +65,14 @@ final class RiksdagenPersonsWorkGeneratorImpl extends AbstractRiksdagenDataSourc
 	public void generateWorkOrders() {
 		try {
 			final List<PersonElement> personList = riksdagenApi.getPersonList().getPerson();
-			final Map<String, String> currentSaved = getImportService().getPersonMap();
 
 			for (final PersonElement personElement : personList) {
-				if (!currentSaved.containsKey(personElement.getId())) {
-					LOGGER.info("Send Load Order:{}", personElement.getPersonUrlXml());
-					getJmsSender().send(personElementWorkdestination, personElement);
-					currentSaved.put(personElement.getId(), personElement.getId());
-				}
+				LOGGER.info("Send Load Order:{}", personElement.getPersonUrlXml());
+				getJmsSender().send(personElementWorkdestination, personElement);
 			}
 			for (final String personId : readMissingPersonList()) {
-				if (!currentSaved.containsKey(personId)) {
-					LOGGER.info("Send Load Order:{}{}", "https://data.riksdagen.se/person/", personId);
-					getJmsSender().send(personElementWorkdestination, new PersonElement().withId(personId));
-				}
+				LOGGER.info("Send Load Order:{}{}", "https://data.riksdagen.se/person/", personId);
+				getJmsSender().send(personElementWorkdestination, new PersonElement().withId(personId));
 			}
 		} catch (final DataFailureException exception) {
 			LOGGER.warn("Problem during generate work orders", exception);

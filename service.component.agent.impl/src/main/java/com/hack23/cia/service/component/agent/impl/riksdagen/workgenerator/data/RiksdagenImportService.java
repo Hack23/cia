@@ -95,11 +95,4 @@ public interface RiksdagenImportService {
 	 */
 	Map<String, String> getLoadedBallotIdMap();
 
-	/**
-	 * Gets the person map.
-	 *
-	 * @return the person map
-	 */
-	Map<String, String> getPersonMap();
-
 }
