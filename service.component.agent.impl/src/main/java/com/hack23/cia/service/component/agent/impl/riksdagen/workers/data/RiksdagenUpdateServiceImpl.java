@@ -32,6 +32,8 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData_;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer_;
+import com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData;
+import com.hack23.cia.model.external.riksdagen.person.impl.PersonAssignmentData;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData_;
@@ -90,8 +92,50 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 		if (existData == null) {
 			personDataDAO.persist(personData);
 		} else {
-			//TODO
+			existData.setElectionRegion(personData.getElectionRegion());
+			existData.setParty(personData.getParty());
+			existData.setStatus(personData.getStatus());
+			existData.setLastName(personData.getLastName());
+			existData.setPlace(personData.getPlace());
+
+			updatePersonAssignmentData(existData.getPersonAssignmentData(), personData.getPersonAssignmentData());
+
+			personDataDAO.persist(existData);
 		}
+	}
+
+	/**
+	 * Update person assignment data.
+	 *
+	 * @param exist  the exist
+	 * @param update the update
+	 */
+	private void updatePersonAssignmentData(final PersonAssignmentData exist, final PersonAssignmentData update) {
+
+		List<AssignmentData> assignmentList = update.getAssignmentList();
+
+		for (AssignmentData assignmentData : assignmentList) {
+			updateAssignmentData(exist.getAssignmentList(), assignmentData);
+		}
+	}
+
+	/**
+	 * Update assignment data.
+	 *
+	 * @param assignmentList the assignment list
+	 * @param assignmentData the assignment data
+	 */
+	private void updateAssignmentData(final List<AssignmentData> assignmentList, final AssignmentData assignmentData) {
+		for (AssignmentData matchAssignmentData : assignmentList) {
+			if (matchAssignmentData.getFromDate().equals(assignmentData.getFromDate())
+					&& matchAssignmentData.getOrgCode().equals(assignmentData.getOrgCode()) && matchAssignmentData.getRoleCode().equals(assignmentData.getRoleCode())) {
+
+				matchAssignmentData.setStatus(assignmentData.getStatus());
+				matchAssignmentData.setToDate(assignmentData.getToDate());
+				return;
+			}
+		}
+		assignmentList.add(assignmentData);
 	}
 
 	@Override
@@ -100,7 +144,7 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 				committeeProposal.getDocument()) == null) {
 			committeeProposalComponentDataDAO.persist(committeeProposal);
 		} else {
-			//TODO
+			// TODO
 		}
 	}
 
@@ -113,10 +157,11 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 
 	@Override
 	public void updateDocumentData(final DocumentStatusContainer documentData) {
-		if(documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document,DocumentData.class,DocumentData_.id,documentData.getDocument().getId()).isEmpty()) {
+		if (documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document, DocumentData.class,
+				DocumentData_.id, documentData.getDocument().getId()).isEmpty()) {
 			documentStatusContainerDAO.persist(documentData);
 		} else {
-			//TODO
+			// TODO
 		}
 	}
 
@@ -125,14 +170,16 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 		if (!documentElementDAO.checkDocumentElement(documentData.getId())) {
 			documentElementDAO.persist(documentData);
 		} else {
-			//TODO
+			// TODO
 		}
 	}
 
 	@Override
 	public void updateVoteDataData(final List<VoteData> list) {
-		if (list != null && !list.isEmpty() && voteDataDAO.findListByEmbeddedProperty(VoteData_.embeddedId,VoteDataEmbeddedId.class,VoteDataEmbeddedId_.ballotId,list.get(0).getEmbeddedId().getBallotId()).isEmpty()) {
-				voteDataDAO.persist(list);
+		if (list != null && !list.isEmpty()
+				&& voteDataDAO.findListByEmbeddedProperty(VoteData_.embeddedId, VoteDataEmbeddedId.class,
+						VoteDataEmbeddedId_.ballotId, list.get(0).getEmbeddedId().getBallotId()).isEmpty()) {
+			voteDataDAO.persist(list);
 		}
 	}
 
