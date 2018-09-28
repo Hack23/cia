@@ -40,6 +40,7 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData_;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer_;
+import com.hack23.cia.model.external.riksdagen.person.impl.PersonAssignmentData;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeDocumentData;
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
@@ -67,22 +68,23 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	private RiksdagenUpdateService riksdagenUpdateService;
 
 	/**
-	 * Update person data ignored already exist success test.
+	 * Update person data already exist success test.
 	 *
 	 * @throws Exception the exception
 	 */
 	@Test
-	public void updatePersonDataIgnoredAlreadyExistSuccessTest() throws Exception {
+	public void updatePersonDataAlreadyExistSuccessTest() throws Exception {
 		final PersonDataDAO personDataDAOMock = mock(PersonDataDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "personDataDAO", personDataDAOMock);
 
 		PersonData personData = new PersonData();
+		personData.withPersonAssignmentData(new PersonAssignmentData().withAssignmentList(new ArrayList<>()));
 		String personId = "0542160909628";
 		personData.setId(personId);
 		when(personDataDAOMock.load(personId)).thenReturn(personData);
 
 		riksdagenUpdateService.update(personData);
-		verify(personDataDAOMock, never()).persist(personData);
+		verify(personDataDAOMock, times(1)).persist(personData);
 	}
 
 	/**
