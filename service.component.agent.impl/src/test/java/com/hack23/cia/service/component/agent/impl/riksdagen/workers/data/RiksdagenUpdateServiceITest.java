@@ -26,6 +26,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -40,6 +41,7 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData_;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer_;
+import com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonAssignmentData;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeDocumentData;
@@ -77,14 +79,30 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 		final PersonDataDAO personDataDAOMock = mock(PersonDataDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "personDataDAO", personDataDAOMock);
 
-		PersonData personData = new PersonData();
-		personData.withPersonAssignmentData(new PersonAssignmentData().withAssignmentList(new ArrayList<>()));
 		String personId = "0542160909628";
+		
+		PersonData existPersonData = new PersonData();
+		List<AssignmentData> assignmentList = new ArrayList<>();
+		assignmentList.add(new AssignmentData().withOrgCode("OrgCode").withRoleCode("RoleCode").withFromDate(new Date())
+				.withToDate(new Date()).withIntressentId(personId));
+		existPersonData.withPersonAssignmentData(new PersonAssignmentData().withAssignmentList(assignmentList));
+		existPersonData.setId(personId);
+		
+
+		PersonData personData = new PersonData();
+		List<AssignmentData> assignmentListNew = new ArrayList<>();
+		assignmentListNew.add(new AssignmentData().withOrgCode("OrgCode").withRoleCode("RoleCode").withFromDate(new Date())
+				.withToDate(new Date()).withIntressentId(personId));
+		assignmentListNew.add(new AssignmentData().withOrgCode("OrgCodeNew").withRoleCode("RoleCodeNew").withFromDate(new Date())
+				.withToDate(new Date()).withIntressentId(personId));
+		
+		personData.withPersonAssignmentData(new PersonAssignmentData().withAssignmentList(assignmentListNew));
 		personData.setId(personId);
-		when(personDataDAOMock.load(personId)).thenReturn(personData);
+
+		when(personDataDAOMock.load(personId)).thenReturn(existPersonData);
 
 		riksdagenUpdateService.update(personData);
-		verify(personDataDAOMock, times(1)).persist(personData);
+		verify(personDataDAOMock, times(1)).persist(existPersonData);
 	}
 
 	/**
