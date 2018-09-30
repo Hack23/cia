@@ -104,7 +104,7 @@
     <cia.project.versions.spring.security>5.1.0.RELEASE</cia.project.versions.spring.security>
     <cia.project.versions.aspectj>1.9.1</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.23.1-GA</cia.project.versions.javassist>
-    <cia.project.versions.asm>6.2.1</cia.project.versions.asm>
+    <cia.project.versions.asm>7.0-beta</cia.project.versions.asm>
     <cia.project.versions.cglib>3.2.8</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2.redhat-2</cia.project.versions.commons.collections>
     <cia.project.versions.commons.lang>2.6.0.redhat-7</cia.project.versions.commons.lang>
@@ -118,7 +118,7 @@
     <cia.project.versions.hibernate.jpa2>1.0.2</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.0.13.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.build.validator>6.0.13.Final</cia.project.versions.hibernate.build.validator>
-    <cia.project.versions.bytebuddy>1.8.22</cia.project.versions.bytebuddy>
+    <cia.project.versions.bytebuddy>1.9.0</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>1.4.196</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.2.5</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
@@ -625,17 +625,17 @@
             <dependency>
               <groupId>org.ow2.asm</groupId>
               <artifactId>asm</artifactId>
-              <version>${cia.project.versions.asm}</version>
+              <version>6.2.1</version>
             </dependency>
             <dependency>
               <groupId>org.ow2.asm</groupId>
               <artifactId>asm-tree</artifactId>
-              <version>${cia.project.versions.asm}</version>
+              <version>6.2.1</version>
             </dependency>
             <dependency>
               <groupId>org.ow2.asm</groupId>
               <artifactId>asm-commons</artifactId>
-              <version>${cia.project.versions.asm}</version>
+              <version>6.2.1</version>
             </dependency>
           </dependencies>
         </plugin>
