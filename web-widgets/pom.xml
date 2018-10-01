@@ -105,7 +105,7 @@
     <dependency>
       <groupId>com.github.markash</groupId>
       <artifactId>statistics-card</artifactId>
-      <version>0.3.0</version>
+      <version>0.3.1</version>
       <exclusions>
         <exclusion>
           <artifactId>vaadin-server</artifactId>
