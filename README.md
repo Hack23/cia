@@ -76,6 +76,11 @@ QA report, sonarqube [https://www.hack23.com/sonar/](https://www.hack23.com/sona
 
 Repository manager, nexus [https://www.hack23.com/nexus/](https://www.hack23.com/nexus/)
 
+
+# Reporting Security Issues
+
+[Follow instructions](https://github.com/Hack23/cia/blob/master/SECURITY.md)
+
 # Parlimentary informatics
 
 [https://en.wikipedia.org/wiki/Parliamentary_informatics](https://en.wikipedia.org/wiki/Parliamentary_informatics) list many good examples of other projects in the domain around the world.
