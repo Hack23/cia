@@ -18,15 +18,10 @@
 */
 package com.hack23.cia.service.api.action.common;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
 /**
  * The Class AbstractResponse.
  */
-public abstract class AbstractResponse implements ServiceResponse {
+public abstract class AbstractResponse extends AbstractMessage implements ServiceResponse {
 
 	/** The result. */
 	private final ServiceResult result;
@@ -67,20 +62,4 @@ public abstract class AbstractResponse implements ServiceResponse {
 	public final String getErrorMessage() {
 		return errorMessage;
 	}
-
-	@Override
-	public final boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj);
-	}
-
-	@Override
-	public final String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-	}
-
-	@Override
-	public final int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
-	}
-
 }

@@ -84,10 +84,8 @@ public final class ApiActionSanityTest extends AbstractUnitTest {
 	/**
 	 * Check all classes in package.
 	 *
-	 * @param testSuiteProvider
-	 *            the test suite provider
-	 * @param string
-	 *            the string
+	 * @param testSuiteProvider the test suite provider
+	 * @param string            the string
 	 */
 	private static boolean checkAllClassesInPackage(final JUnitTestSuiteProvider testSuiteProvider,
 			final String string) {
@@ -101,11 +99,10 @@ public final class ApiActionSanityTest extends AbstractUnitTest {
 	/**
 	 * Gets the all classes.
 	 *
-	 * @param pckgname
-	 *            the pckgname
+	 * @param pckgname the pckgname
 	 * @return the all classes
 	 */
-	private static List<Class<?>> getAllClasses(final String pckgname) {
+	public static List<Class<?>> getAllClasses(final String pckgname) {
 		final List<Class<?>> classes = new ArrayList<>();
 		final File directory = new File(Thread.currentThread().getContextClassLoader()
 				.getResource(pckgname.replace(PACKAGE_SEPARATOR, CLASS_FILE_DIRECTORY_SEPARATOR)).getFile());

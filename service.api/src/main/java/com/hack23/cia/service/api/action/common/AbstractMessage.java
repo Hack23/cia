@@ -18,18 +18,39 @@
 */
 package com.hack23.cia.service.api.action.common;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 /**
- * The Class AbstractRequest.
+ * The Class AbstractMessage.
  */
-public abstract class AbstractRequest extends AbstractMessage implements ServiceRequest {
+public abstract class AbstractMessage implements ServiceMessage {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Instantiates a new abstract request.
+	 * Instantiates a new abstract message.
 	 */
-	public AbstractRequest() {
+	public AbstractMessage() {
 		super();
 	}
+
+	@Override
+	public final boolean equals(final Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
+	}
+
+	@Override
+	public final String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
+
+	@Override
+	public final int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
+
 }
