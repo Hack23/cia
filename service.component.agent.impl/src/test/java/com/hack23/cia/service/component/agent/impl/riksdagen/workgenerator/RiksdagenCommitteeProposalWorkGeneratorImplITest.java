@@ -18,8 +18,8 @@
 */
 package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator;
 
-import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 import java.io.Serializable;
@@ -68,7 +68,7 @@ public class RiksdagenCommitteeProposalWorkGeneratorImplITest
 
 		final ArgumentCaptor<Serializable> stringCaptor = ArgumentCaptor.forClass(Serializable.class);
 
-		verify(jmsSenderMock, atLeastOnce()).send(destCaptor.capture(), stringCaptor.capture());
+		verify(jmsSenderMock, never()).send(destCaptor.capture(), stringCaptor.capture());
 
 		final List<Serializable> capturedStrings = stringCaptor.getAllValues();
 		final List<Destination> capturedDestinations = destCaptor.getAllValues();
