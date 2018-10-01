@@ -163,8 +163,22 @@ final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
 
 	@Override
 	public void updateDocumentElement(final DocumentElement documentData) {
-		if (!documentElementDAO.checkDocumentElement(documentData.getId())) {
+		DocumentElement existDocumentElement = documentElementDAO.load(documentData.getId());
+		if (existDocumentElement == null) {
 			documentElementDAO.persist(documentData);
+		} else {			
+			existDocumentElement.setCommitteeReportUrlXml(documentData.getCommitteeReportUrlXml());
+			existDocumentElement.setStatus(documentData.getStatus());
+			existDocumentElement.setDebateName(documentData.getDebateName());
+			existDocumentElement.setRelatedId(documentData.getRelatedId());
+			existDocumentElement.setSystemDate(documentData.getSystemDate());
+			existDocumentElement.setMadePublicDate(documentData.getMadePublicDate());			
+			existDocumentElement.setLabel(documentData.getLabel());
+			existDocumentElement.setNote(documentData.getNote());
+			existDocumentElement.setNoteTitle(documentData.getNoteTitle());
+			existDocumentElement.setTempLabel(documentData.getTempLabel());
+			existDocumentElement.setTitle(documentData.getTitle());
+			documentElementDAO.persist(existDocumentElement);
 		}
 	}
 

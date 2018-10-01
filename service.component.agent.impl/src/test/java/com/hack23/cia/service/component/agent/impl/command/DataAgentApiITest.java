@@ -23,7 +23,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 
 import javax.jms.Destination;

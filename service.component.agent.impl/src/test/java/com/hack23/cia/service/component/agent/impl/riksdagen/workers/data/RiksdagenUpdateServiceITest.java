@@ -205,7 +205,7 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 		final DocumentElementDAO documentElementDAO = mock(DocumentElementDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "documentElementDAO", documentElementDAO);
 		String docId = "notExist";
-		when(documentElementDAO.checkDocumentElement(docId)).thenReturn(false);
+		when(documentElementDAO.load(docId)).thenReturn(null);
 		DocumentElement documentElement = new DocumentElement().withId(docId);
 		riksdagenUpdateService.updateDocumentElement(documentElement);
 		verify(documentElementDAO, times(1)).persist(documentElement);
@@ -221,10 +221,10 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 		final DocumentElementDAO documentElementDAO = mock(DocumentElementDAO.class);
 		ReflectionTestUtils.setField(riksdagenUpdateService, "documentElementDAO", documentElementDAO);
 		String docId = "notExist";
-		when(documentElementDAO.checkDocumentElement(docId)).thenReturn(true);
 		DocumentElement documentElement = new DocumentElement().withId(docId);
+		when(documentElementDAO.load(docId)).thenReturn(documentElement);
 		riksdagenUpdateService.updateDocumentElement(documentElement);
-		verify(documentElementDAO, never()).persist(documentElement);
+		verify(documentElementDAO, times(1)).persist(documentElement);
 	}
 
 	/**

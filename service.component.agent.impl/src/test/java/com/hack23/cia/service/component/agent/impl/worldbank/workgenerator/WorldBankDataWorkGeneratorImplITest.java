@@ -18,12 +18,12 @@
 */
 package com.hack23.cia.service.component.agent.impl.worldbank.workgenerator;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.any;
 
 import java.io.Serializable;
 import java.util.ArrayList;
