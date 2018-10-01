@@ -29,15 +29,6 @@ import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElemen
 public interface DocumentElementDAO extends AbstractGenericDAO<DocumentElement, String>{
 
 	/**
-	 * Check document element.
-	 *
-	 * @param documentId
-	 *            the document id
-	 * @return true, if successful
-	 */
-	boolean checkDocumentElement(String documentId);
-
-	/**
 	 * Gets the avaible document content.
 	 *
 	 * @return the avaible document content

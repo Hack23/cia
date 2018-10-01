@@ -20,10 +20,8 @@ package com.hack23.cia.service.data.impl;
 
 import java.util.List;
 
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.slf4j.Logger;
@@ -52,25 +50,6 @@ DocumentElementDAO {
 	 */
 	public DocumentElementDAOImpl() {
 		super(DocumentElement.class);
-	}
-
-	@Override
-	public boolean checkDocumentElement(final String documentId) {
-		final CriteriaQuery<DocumentElement> criteriaQuery = getCriteriaBuilder()
-				.createQuery(DocumentElement.class);
-		final Root<DocumentElement> root = criteriaQuery
-				.from(DocumentElement.class);
-		criteriaQuery.select(root);
-		final Predicate condition = getCriteriaBuilder().equal(
-				root.get(DocumentElement_.id), documentId);
-		criteriaQuery.where(condition);
-		final TypedQuery<DocumentElement> typedQuery = getEntityManager()
-				.createQuery(criteriaQuery);
-		addCacheHints(typedQuery, "checkDocumentElement");
-
-		final List<DocumentElement> resultList = typedQuery.getResultList();
-
-		return !resultList.isEmpty();
 	}
 
 	@Override

@@ -58,16 +58,6 @@ public final class DocumentElementDAOITest extends AbstractServiceDataFunctional
 
 
 	/**
-	 * Check document element test.
-	 */
-	@Test
-	public void checkDocumentElementTest() {
-		assertFalse(documentElementDAO.checkDocumentElement("InvalidId"));
-		assertTrue(documentElementDAO.checkDocumentElement("H501UbU4"));
-
-	}
-
-	/**
 	 * Gets the avaible document content test.
 	 *
 	 * @return the avaible document content test
