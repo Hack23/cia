@@ -1,0 +1,110 @@
+digraph EntityGraph {
+  compound=true;
+    bgcolor="white"; 
+    fontcolor="black"; fontname="Helvetica"; fontsize="10.0"; 
+    ranksep="equally"; 
+    label="Entity Graph"; 
+    URL="http://tools.hibernate.org";
+  edge [
+        color="lightgrey", 
+        fontcolor="black", 
+        fontname="Helvetica", 
+        fontsize="8.0",         
+        labelangle=-25.0, 
+        labeldistance=1.5
+        ];
+  node [
+       fontcolor="black",
+       fontname="Helvetica", 
+       fontsize="10.0", 
+       shape=record, 
+       fillcolor="#D4E5FE", 
+       style="solid,filled"];
+
+  /* Node com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalData */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_CommitteeProposalData [ label = "{ com\.hack23\.cia\.model\.external\.riksdagen\.utskottsforslag\.impl\.CommitteeProposalData| againstProposalNumber\l againstProposalParties\l ballotId\l ballotSummaryItem\l ballotUrlXml\l committeeReport\l decisionType\l header\l issueNumber\l proposal\l rm\l winner\l }", URL="com/hack23/cia/model/external/riksdagen/utskottsforslag/impl/CommitteeProposalData.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalData */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_CommitteeProposalData */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.AgainstProposalData */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_AgainstProposalData [ label = "{ com\.hack23\.cia\.model\.external\.riksdagen\.utskottsforslag\.impl\.AgainstProposalData| header\l numberValue\l parties\l proposalIssueNumber\l proposalType\l }", URL="com/hack23/cia/model/external/riksdagen/utskottsforslag/impl/AgainstProposalData.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.AgainstProposalData */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_AgainstProposalData */
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalContainer */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_CommitteeProposalContainer [ label = "{ com\.hack23\.cia\.model\.external\.riksdagen\.utskottsforslag\.impl\.CommitteeProposalContainer| }", URL="com/hack23/cia/model/external/riksdagen/utskottsforslag/impl/CommitteeProposalContainer.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalContainer */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_CommitteeProposalContainer */
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_CommitteeProposalContainer -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_CommitteeProposalData [ 
+        label="committeeProposalList" 
+        ]
+     
+  /* Node com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeDocumentData */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_CommitteeDocumentData [ label = "{ com\.hack23\.cia\.model\.external\.riksdagen\.utskottsforslag\.impl\.CommitteeDocumentData| committeeProposalUrlXml\l createdDate\l documentStatusUrlWww\l documentStatusUrlXml\l documentUrlHtml\l documentUrlText\l endNumber\l hangarId\l label\l org\l publicDate\l rm\l status\l subTitle\l subType\l tempLabel\l title\l }", URL="com/hack23/cia/model/external/riksdagen/utskottsforslag/impl/CommitteeDocumentData.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeDocumentData */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_CommitteeDocumentData */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.AgainstProposalContainer */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_AgainstProposalContainer [ label = "{ com\.hack23\.cia\.model\.external\.riksdagen\.utskottsforslag\.impl\.AgainstProposalContainer| }", URL="com/hack23/cia/model/external/riksdagen/utskottsforslag/impl/AgainstProposalContainer.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.AgainstProposalContainer */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_AgainstProposalContainer */
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_AgainstProposalContainer -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_AgainstProposalData [ 
+        label="againstProposalList" 
+        ]
+     
+  /* Node com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_CommitteeProposalComponentData [ label = "{ com\.hack23\.cia\.model\.external\.riksdagen\.utskottsforslag\.impl\.CommitteeProposalComponentData| againstProposalContainer\l committeeProposalContainer\l document\l }", URL="com/hack23/cia/model/external/riksdagen/utskottsforslag/impl/CommitteeProposalComponentData.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_CommitteeProposalComponentData */
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_CommitteeProposalComponentData -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_AgainstProposalContainer [ 
+        label="againstProposalContainer" 
+        ]
+     
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_CommitteeProposalComponentData -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_CommitteeProposalContainer [ 
+        label="committeeProposalContainer" 
+        ]
+     
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_CommitteeProposalComponentData -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_CommitteeDocumentData [ 
+        label="document" 
+        ]
+     
+
+}
+
