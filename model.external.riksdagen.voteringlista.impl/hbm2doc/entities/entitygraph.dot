@@ -1,0 +1,48 @@
+digraph EntityGraph {
+  compound=true;
+    bgcolor="white"; 
+    fontcolor="black"; fontname="Helvetica"; fontsize="10.0"; 
+    ranksep="equally"; 
+    label="Entity Graph"; 
+    URL="http://tools.hibernate.org";
+  edge [
+        color="lightgrey", 
+        fontcolor="black", 
+        fontname="Helvetica", 
+        fontsize="8.0",         
+        labelangle=-25.0, 
+        labeldistance=1.5
+        ];
+  node [
+       fontcolor="black",
+       fontname="Helvetica", 
+       fontsize="10.0", 
+       shape=record, 
+       fillcolor="#D4E5FE", 
+       style="solid,filled"];
+
+  /* Node com.hack23.cia.model.external.riksdagen.voteringlista.impl.BallotDocumentElement */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_voteringlista_dot_impl_dot_BallotDocumentElement [ label = "{ com\.hack23\.cia\.model\.external\.riksdagen\.voteringlista\.impl\.BallotDocumentElement| absentVotes\l abstainedVotes\l ballotId\l noVotes\l yesVotes\l }", URL="com/hack23/cia/model/external/riksdagen/voteringlista/impl/BallotDocumentElement.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.riksdagen.voteringlista.impl.BallotDocumentElement */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_voteringlista_dot_impl_dot_BallotDocumentElement */
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.external.riksdagen.voteringlista.impl.VoteListContainerElement */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_voteringlista_dot_impl_dot_VoteListContainerElement [ label = "{ com\.hack23\.cia\.model\.external\.riksdagen\.voteringlista\.impl\.VoteListContainerElement| condition\l grouping\l numberValue\l }", URL="com/hack23/cia/model/external/riksdagen/voteringlista/impl/VoteListContainerElement.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.riksdagen.voteringlista.impl.VoteListContainerElement */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_voteringlista_dot_impl_dot_VoteListContainerElement */
+     
+     
+     
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_voteringlista_dot_impl_dot_VoteListContainerElement -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_voteringlista_dot_impl_dot_BallotDocumentElement [ 
+        label="votering" 
+        ]
+     
+
+}
+

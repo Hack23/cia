@@ -1,0 +1,3 @@
+<area shape="rect" id="node1" href="com/hack23/cia/model/external/riksdagen/voteringlista/impl/BallotDocumentElement.html" title="{ com\.hack23\.cia\.model\.external\.riksdagen\.voteringlista\.impl\.BallotDocumentElement| absentVotes\l abstainedVotes\l ballotId\l noVotes\l yesVotes\l }" alt="" coords="11,161,521,272">
+<area shape="rect" id="node2" href="com/hack23/cia/model/external/riksdagen/voteringlista/impl/VoteListContainerElement.html" title="{ com\.hack23\.cia\.model\.external\.riksdagen\.voteringlista\.impl\.VoteListContainerElement| condition\l grouping\l numberValue\l }" alt="" coords="5,5,527,87">
+<area shape="rect" id="graph0" href="http://tools.hibernate.org" title="Entity Graph" alt="" coords="0,0,532,303">
