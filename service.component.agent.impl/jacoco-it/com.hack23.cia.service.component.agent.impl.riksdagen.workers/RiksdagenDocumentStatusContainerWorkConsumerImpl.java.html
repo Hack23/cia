@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RiksdagenDocumentStatusContainerWorkConsumerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.component.agent.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.component.agent.impl.riksdagen.workers</a> &gt; <span class="el_source">RiksdagenDocumentStatusContainerWorkConsumerImpl.java</span></div><h1>RiksdagenDocumentStatusContainerWorkConsumerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.component.agent.impl.riksdagen.workers;
+
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.MessageListener;
+import javax.jms.ObjectMessage;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.hack23.cia.service.component.agent.impl.common.jms.AbstractMessageListener;
+import com.hack23.cia.service.component.agent.impl.riksdagen.workers.data.RiksdagenUpdateService;
+import com.hack23.cia.service.external.riksdagen.api.DataFailureException;
+import com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi;
+
+/**
+ * The Class RiksdagenDocumentStatusContainerWorkConsumerImpl.
+ */
+@Service(&quot;riksdagenDocumentStatusContainerWorkConsumerImpl&quot;)
+final class RiksdagenDocumentStatusContainerWorkConsumerImpl extends AbstractMessageListener implements
+MessageListener {
+
+	/** The Constant LOGGER. */
+<span class="fc" id="L44">	private static final Logger LOGGER = LoggerFactory</span>
+<span class="fc" id="L45">			.getLogger(RiksdagenDocumentStatusContainerWorkConsumerImpl.class);</span>
+
+	/** The update service. */
+	private final RiksdagenUpdateService updateService;
+
+	/** The riksdagen api. */
+	private final RiksdagenDocumentApi riksdagenApi;
+
+
+	/**
+	 * Instantiates a new riksdagen document status container work consumer impl.
+	 *
+	 * @param updateService
+	 *            the update service
+	 * @param riksdagenApi
+	 *            the riksdagen api
+	 */
+	@Autowired
+	public RiksdagenDocumentStatusContainerWorkConsumerImpl(final RiksdagenUpdateService updateService,
+			final RiksdagenDocumentApi riksdagenApi) {
+<span class="fc" id="L65">		super();</span>
+<span class="fc" id="L66">		this.updateService = updateService;</span>
+<span class="fc" id="L67">		this.riksdagenApi = riksdagenApi;</span>
+<span class="fc" id="L68">	}</span>
+
+
+
+	@Override
+	public void onMessage(final Message message) {
+		try {
+<span class="fc" id="L75">			configureAuthentication();</span>
+<span class="fc" id="L76">			updateService.updateDocumentData(riksdagenApi</span>
+<span class="fc" id="L77">					.getDocumentStatus((String) ((ObjectMessage) message).getObject()));</span>
+<span class="fc" id="L78">		} catch (final DataFailureException | JMSException e) {</span>
+<span class="fc" id="L79">			LOGGER.warn(&quot;Error loading riksdagen documentstatus:&quot;, e);</span>
+		} finally {
+<span class="fc" id="L81">			clearAuthentication();</span>
+		}
+<span class="fc" id="L83">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>EsvExcelReaderImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.component.agent.impl</a> &gt; <a href="../index.html" class="el_bundle">service.external.esv</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.esv.impl</a> &gt; <span class="el_source">EsvExcelReaderImpl.java</span></div><h1>EsvExcelReaderImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.external.esv.impl;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
+
+/**
+ * The Class EsvExcelReaderImpl.
+ */
+@Component
+final class EsvExcelReaderImpl implements EsvExcelReader {
+
+	/** The Constant COMMENT_CELL. */
+	private static final int COMMENT_CELL = 9;
+
+	/** The Constant VAT_CELL. */
+	private static final int VAT_CELL = 8;
+
+	/** The Constant ANNUAL_HEADCOUNT_CELL. */
+	private static final int ANNUAL_HEADCOUNT_CELL = 7;
+
+	/** The Constant HEADCOUNT_CELL. */
+	private static final int HEADCOUNT_CELL = 6;
+
+	/** The Constant ORG_NUMBER_CELL. */
+	private static final int ORG_NUMBER_CELL = 5;
+
+	/** The Constant MINISTRY_CELL. */
+	private static final int MINISTRY_CELL = 4;
+
+	/** The Constant MCODE_CELL. */
+	private static final int MCODE_CELL = 3;
+
+	/** The Constant GOVERNMENT_BODY_ID_CELL. */
+	private static final int GOVERNMENT_BODY_ID_CELL = 2;
+
+	/** The Constant CONSECUTIVE_NUMBER_CELL. */
+	private static final int CONSECUTIVE_NUMBER_CELL = 1;
+
+	/** The Constant NAME_CELL. */
+	private static final int NAME_CELL = 0;
+
+	/** The Constant EXPECTED_COLUMN_LENGTH. */
+	private static final int EXPECTED_COLUMN_LENGTH = 10;
+
+	/** The Constant LOGGER. */
+<span class="nc" id="L78">	private static final Logger LOGGER = LoggerFactory.getLogger(EsvExcelReaderImpl.class);</span>
+
+	/**
+	 * Instantiates a new esv excel reader impl.
+	 */
+	public EsvExcelReaderImpl() {
+<span class="nc" id="L84">		super();</span>
+<span class="nc" id="L85">	}</span>
+
+	@Override
+	public Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; getDataPerMinistry(final String name) {
+<span class="nc" id="L89">		final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; map = new TreeMap&lt;&gt;();</span>
+		try {
+<span class="nc" id="L91">			final HSSFWorkbook myWorkBook = createGovermentBodyWorkBook();</span>
+
+<span class="nc bnc" id="L93" title="All 2 branches missed.">			for (int sheetNr = 0; sheetNr &lt; myWorkBook.getNumberOfSheets(); sheetNr++) {</span>
+<span class="nc" id="L94">				addMinistryPerYearToMap(name, map, myWorkBook.getSheetAt(sheetNr));</span>
+			}
+
+<span class="nc" id="L97">			myWorkBook.close();</span>
+<span class="nc" id="L98">		} catch (final IOException e) {</span>
+<span class="nc" id="L99">			LOGGER.warn(&quot;Problem loading&quot;, e);</span>
+<span class="nc" id="L100">		}</span>
+
+<span class="nc" id="L102">		return map;</span>
+	}
+
+	private static HSSFWorkbook createGovermentBodyWorkBook() throws IOException {
+<span class="nc" id="L106">		return new HSSFWorkbook(EsvExcelReaderImpl.class.getResourceAsStream(&quot;/Myndighetsinformation.xls&quot;));</span>
+	}
+
+	/**
+	 * Adds the ministry per year to map.
+	 *
+	 * @param name
+	 *            the name
+	 * @param map
+	 *            the map
+	 * @param mySheet
+	 *            the my sheet
+	 */
+	private static void addMinistryPerYearToMap(final String name,
+			final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; map, final HSSFSheet mySheet) {
+<span class="nc bnc" id="L121" title="All 2 branches missed.">		if (mySheet.getSheetName().chars().allMatch(Character::isDigit)) {</span>
+
+<span class="nc" id="L123">			final int year = Integer.parseInt(mySheet.getSheetName());</span>
+
+<span class="nc" id="L125">			final List&lt;GovernmentBodyAnnualSummary&gt; yearList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L126">			final Iterator&lt;Row&gt; rowIterator = mySheet.iterator();</span>
+
+			// Skip header row, ignore first
+<span class="nc" id="L129">			rowIterator.next();</span>
+
+<span class="nc bnc" id="L131" title="All 2 branches missed.">			while (rowIterator.hasNext()) {</span>
+<span class="nc" id="L132">				addGovernmentBodyAnnualSummaryToList(name, year, yearList, rowIterator.next());</span>
+			}
+<span class="nc" id="L134">			map.put(year, yearList);</span>
+		}
+<span class="nc" id="L136">	}</span>
+
+	/**
+	 * Adds the government body annual summary to list.
+	 *
+	 * @param name
+	 *            the name
+	 * @param year
+	 *            the year
+	 * @param yearList
+	 *            the year list
+	 * @param row
+	 *            the row
+	 */
+	private static void addGovernmentBodyAnnualSummaryToList(final String name, final int year,
+			final List&lt;GovernmentBodyAnnualSummary&gt; yearList, final Row row) {
+<span class="nc bnc" id="L152" title="All 2 branches missed.">		if (row.getLastCellNum() &gt;= EXPECTED_COLUMN_LENGTH) {</span>
+
+<span class="nc" id="L154">			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = createGovernmentBodyAnnualSummaryFromRow(</span>
+					year, row);
+
+<span class="nc bnc" id="L157" title="All 4 branches missed.">			if (name == null || name.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())) {</span>
+<span class="nc" id="L158">				yearList.add(governmentBodyAnnualSummary);</span>
+			}
+		}
+<span class="nc" id="L161">	}</span>
+
+	/**
+	 * Gets the integer.
+	 *
+	 * @param str
+	 *            the str
+	 * @return the integer
+	 */
+	private static int getInteger(final String str) {
+<span class="nc bnc" id="L171" title="All 4 branches missed.">		if (str == null || str.trim().length() == 0) {</span>
+<span class="nc" id="L172">			return 0;</span>
+		} else {
+<span class="nc" id="L174">			return Integer.parseInt(str);</span>
+		}
+	}
+
+	@Override
+	public Map&lt;Integer, GovernmentBodyAnnualSummary&gt; getDataPerGovernmentBody(final String name) {
+<span class="nc" id="L180">		final Map&lt;Integer, GovernmentBodyAnnualSummary&gt; map = new TreeMap&lt;&gt;();</span>
+		try {
+<span class="nc" id="L182">			final HSSFWorkbook myWorkBook = createGovermentBodyWorkBook();</span>
+
+<span class="nc bnc" id="L184" title="All 2 branches missed.">			for (int sheetNr = 0; sheetNr &lt; myWorkBook.getNumberOfSheets(); sheetNr++) {</span>
+<span class="nc" id="L185">				final HSSFSheet mySheet = myWorkBook.getSheetAt(sheetNr);</span>
+
+<span class="nc" id="L187">				addDataForYearToMap(name, map, mySheet);</span>
+			}
+<span class="nc" id="L189">			myWorkBook.close();</span>
+<span class="nc" id="L190">		} catch (</span>
+
+		final IOException e) {
+<span class="nc" id="L193">			LOGGER.warn(&quot;Problem loading&quot;, e);</span>
+<span class="nc" id="L194">		}</span>
+
+<span class="nc" id="L196">		return map;</span>
+	}
+
+	/**
+	 * Adds the data for year to map.
+	 *
+	 * @param name
+	 *            the name
+	 * @param map
+	 *            the map
+	 * @param mySheet
+	 *            the my sheet
+	 */
+	private static void addDataForYearToMap(final String name, final Map&lt;Integer, GovernmentBodyAnnualSummary&gt; map,
+			final HSSFSheet mySheet) {
+<span class="nc bnc" id="L211" title="All 2 branches missed.">		if (mySheet.getSheetName().chars().allMatch(Character::isDigit)) {</span>
+<span class="nc" id="L212">			final int year = Integer.parseInt(mySheet.getSheetName());</span>
+<span class="nc" id="L213">			final Iterator&lt;Row&gt; rowIterator = mySheet.iterator();</span>
+
+<span class="nc" id="L215">			rowIterator.next();</span>
+
+<span class="nc bnc" id="L217" title="All 2 branches missed.">			while (rowIterator.hasNext()) {</span>
+<span class="nc" id="L218">				addGovernmentBodyAnnualSummaryToMap(name, map, year, rowIterator.next());</span>
+			}
+		}
+<span class="nc" id="L221">	}</span>
+
+	/**
+	 * Adds the government body annual summary to map.
+	 *
+	 * @param name
+	 *            the name
+	 * @param map
+	 *            the map
+	 * @param year
+	 *            the year
+	 * @param row
+	 *            the row
+	 */
+	private static void addGovernmentBodyAnnualSummaryToMap(final String name, final Map&lt;Integer, GovernmentBodyAnnualSummary&gt; map,
+			final int year, final Row row) {
+<span class="nc bnc" id="L237" title="All 2 branches missed.">		if (row.getLastCellNum() &gt;= EXPECTED_COLUMN_LENGTH) {</span>
+
+<span class="nc" id="L239">			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = createGovernmentBodyAnnualSummaryFromRow(</span>
+					year, row);
+<span class="nc bnc" id="L241" title="All 4 branches missed.">			if (name == null || name.equalsIgnoreCase(governmentBodyAnnualSummary.getName())) {</span>
+<span class="nc" id="L242">				map.put(year, governmentBodyAnnualSummary);</span>
+			}
+		}
+<span class="nc" id="L245">	}</span>
+
+	/**
+	 * Creates the government body annual summary from row.
+	 *
+	 * @param year
+	 *            the year
+	 * @param row
+	 *            the row
+	 * @return the government body annual summary
+	 */
+	private static GovernmentBodyAnnualSummary createGovernmentBodyAnnualSummaryFromRow(final int year, final Row row) {
+<span class="nc" id="L257">		return new GovernmentBodyAnnualSummary(year, defaultValueIfNull(row.getCell(NAME_CELL)), getInteger(defaultValueIfNull(row.getCell(CONSECUTIVE_NUMBER_CELL))),</span>
+<span class="nc" id="L258">				defaultValueIfNull(row.getCell(GOVERNMENT_BODY_ID_CELL)), defaultValueIfNull(row.getCell(MCODE_CELL)), defaultValueIfNull(row.getCell(MINISTRY_CELL)),</span>
+<span class="nc" id="L259">				defaultValueIfNull(row.getCell(ORG_NUMBER_CELL)), getInteger(defaultValueIfNull(row.getCell(HEADCOUNT_CELL))), getInteger(defaultValueIfNull(row.getCell(ANNUAL_HEADCOUNT_CELL))),</span>
+<span class="nc" id="L260">				defaultValueIfNull(row.getCell(VAT_CELL)), defaultValueIfNull(row.getCell(COMMENT_CELL)));</span>
+	}
+
+	/**
+	 * Default value if null.
+	 *
+	 * @param cell
+	 *            the cell
+	 * @return the string
+	 */
+	private static String defaultValueIfNull(final Cell cell) {
+<span class="nc bnc" id="L271" title="All 2 branches missed.">		if (cell != null) {</span>
+<span class="nc" id="L272">			return cell.toString();</span>
+		} else {
+<span class="nc" id="L274">			return &quot;&quot;;</span>
+		}
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>WorldbankIndicatorApiImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.component.agent.impl</a> &gt; <a href="../index.html" class="el_bundle">service.external.worldbank</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.worldbank.impl</a> &gt; <span class="el_source">WorldbankIndicatorApiImpl.java</span></div><h1>WorldbankIndicatorApiImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.external.worldbank.impl;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+
+import org.apache.commons.codec.Charsets;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+import org.apache.http.client.fluent.Request;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.oxm.Unmarshaller;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
+import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorsElement;
+import com.hack23.cia.service.external.common.api.XmlAgent;
+import com.hack23.cia.service.external.common.api.XmlAgentException;
+import com.hack23.cia.service.external.worldbank.api.DataFailureException;
+import com.hack23.cia.service.external.worldbank.api.WorldBankIndicatorApi;
+
+/**
+ * The Class WorldbankIndicatorApiImpl.
+ */
+@Component
+final class WorldbankIndicatorApiImpl extends BaseWorldBankApiImpl implements WorldBankIndicatorApi {
+
+	private static final int IGNORE_TOP_HEADERS_LINE = 4;
+
+	/** The Constant LOGGER. */
+<span class="nc" id="L60">	private static final Logger LOGGER = LoggerFactory.getLogger(WorldbankIndicatorApiImpl.class);</span>
+
+	/** The Constant INDICATORS. */
+	private static final String INDICATORS = &quot;https://api.worldbank.org/indicators?per_page=5000&quot;;
+
+	private static final String PAGE_NUMBER = &quot;&amp;page=&quot;;
+
+	/** The Constant PROBLEM_GETTING_WORLDBANK_INDICATOR_LIST. */
+	private static final String PROBLEM_GETTING_WORLDBANK_INDICATOR_LIST = &quot;Problem getting worldbank indicator list&quot;;
+
+	private static final int SECOND_PAGE = 2;
+
+	/**
+	 * The Constant
+	 * XMLNS_WB_HTTP_INDICATORS_WORLDBANK_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL.
+	 */
+	private static final String XMLNS_WB_HTTP_INDICATORS_WORLDBANK_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL = &quot;xmlns:wb=\&quot;http://indicators.worldbank.external.model.cia.hack23.com/impl\&quot;&quot;;
+
+
+	/** The indicators unmarshaller. */
+	@Autowired
+	@Qualifier(&quot;worldbankOrgIndicatorsMarshaller&quot;)
+	private Unmarshaller indicatorsUnmarshaller;
+
+	/**
+	 * Instantiates a new worldbank indicator api impl.
+	 */
+	@Autowired
+	public WorldbankIndicatorApiImpl(final XmlAgent xmlAgent) {
+<span class="nc" id="L89">		super(xmlAgent);</span>
+<span class="nc" id="L90">	}</span>
+
+	@Override
+	public List&lt;IndicatorElement&gt; getIndicators() throws DataFailureException {
+<span class="nc" id="L94">		final List&lt;IndicatorElement&gt; result = new ArrayList&lt;&gt;();</span>
+
+		try {
+<span class="nc" id="L97">			final IndicatorsElement firstPage = (IndicatorsElement) getXmlAgent().unmarshallXml(indicatorsUnmarshaller,</span>
+					INDICATORS, null, XMLNS_WB_HTTP_WWW_WORLDBANK_ORG,
+					XMLNS_WB_HTTP_INDICATORS_WORLDBANK_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL);
+<span class="nc" id="L100">			result.addAll(firstPage.getIndicator());</span>
+
+<span class="nc bnc" id="L102" title="All 2 branches missed.">			for (int pageNumber = SECOND_PAGE; pageNumber &lt; firstPage.getPages().intValue(); pageNumber++) {</span>
+<span class="nc" id="L103">				final IndicatorsElement otherPageResult = (IndicatorsElement) getXmlAgent().unmarshallXml(indicatorsUnmarshaller,</span>
+						INDICATORS + PAGE_NUMBER + pageNumber, null, XMLNS_WB_HTTP_WWW_WORLDBANK_ORG,
+						XMLNS_WB_HTTP_INDICATORS_WORLDBANK_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL);
+<span class="nc" id="L106">				result.addAll(otherPageResult.getIndicator());</span>
+			}
+
+<span class="nc" id="L109">		} catch (final XmlAgentException e) {</span>
+<span class="nc" id="L110">			LOGGER.warn(PROBLEM_GETTING_WORLDBANK_INDICATOR_LIST);</span>
+<span class="nc" id="L111">			throw new DataFailureException(e);</span>
+<span class="nc" id="L112">		}</span>
+
+<span class="nc" id="L114">		return result;</span>
+	}
+
+	@Override
+	public List&lt;String&gt; getIndicatorsWithSwedishData() throws DataFailureException {		
+		try {
+<span class="nc" id="L120">			return Collections.unmodifiableList(readUsingZipInputStream(Request.Get(&quot;http://api.worldbank.org/v2/en/country/SWE?downloadformat=csv&quot;).execute().returnContent().asStream()));</span>
+<span class="nc" id="L121">		} catch (final IOException e) {</span>
+<span class="nc" id="L122">			throw new DataFailureException(e);</span>
+		}
+	}
+
+	/**
+	 * Read using zip input stream.
+	 *
+	 * @param inputStream
+	 *            the input stream
+	 * @param specificFields
+	 *            the specific fields
+	 * @return the list
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	private static List&lt;String&gt; readUsingZipInputStream(final InputStream inputStream) throws IOException {		
+<span class="nc" id="L138">		final BufferedInputStream bis = new BufferedInputStream(inputStream);</span>
+<span class="nc" id="L139">		final ZipInputStream is = new ZipInputStream(bis);</span>
+
+<span class="nc" id="L141">		final List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+		try {
+			ZipEntry entry;
+			
+<span class="nc bnc" id="L145" title="All 2 branches missed.">			while ((entry = is.getNextEntry()) != null) {</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">				if (entry.getName().startsWith(&quot;API_SWE_&quot;)) {					</span>
+<span class="nc" id="L147">					list.addAll(readCsvContent(is));					</span>
+				}						
+			}
+		} finally {
+<span class="nc" id="L151">			is.close();</span>
+		}
+<span class="nc" id="L153">		return list;</span>
+	}
+	
+	/**
+	 * Read csv content.
+	 *
+	 * @param is
+	 *            the is
+	 * @return the list
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	private static List&lt;String&gt; readCsvContent(final InputStream is) throws IOException {		
+<span class="nc" id="L166">		final BufferedReader reader = new BufferedReader(new InputStreamReader(is,Charsets.UTF_8));		</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">		for (int i = 0; i &lt; IGNORE_TOP_HEADERS_LINE; i++) {</span>
+<span class="nc" id="L168">			String ignoreFirstLinesWithHeaders = reader.readLine();			</span>
+		}
+		
+<span class="nc" id="L171">		final CSVParser parser = CSVParser.parse(reader, CSVFormat.EXCEL.withHeader().withDelimiter(','));</span>
+<span class="nc" id="L172">		final List&lt;CSVRecord&gt; records = parser.getRecords();</span>
+<span class="nc" id="L173">		records.remove(0);</span>
+		
+<span class="nc" id="L175">		final List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+		
+<span class="nc bnc" id="L177" title="All 2 branches missed.">		for (final CSVRecord csvRecord : records) {			</span>
+<span class="nc" id="L178">			list.add(csvRecord.get(&quot;Indicator Code&quot;));</span>
+<span class="nc" id="L179">		}</span>
+		
+<span class="nc" id="L181">		return list;</span>
+	}
+
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

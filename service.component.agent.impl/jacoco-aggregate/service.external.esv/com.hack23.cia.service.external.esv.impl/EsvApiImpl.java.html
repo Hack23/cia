@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>EsvApiImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.component.agent.impl</a> &gt; <a href="../index.html" class="el_bundle">service.external.esv</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.esv.impl</a> &gt; <span class="el_source">EsvApiImpl.java</span></div><h1>EsvApiImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.external.esv.impl;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.service.external.esv.api.EsvApi;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
+import com.hack23.cia.service.external.esv.api.GovernmentOperationPeriodOutcome;
+
+/**
+ * The Class EsvApiImpl.
+ */
+@Component
+final class EsvApiImpl implements EsvApi {
+
+	/** The Constant GET_GOVERNMENT_BODY_REPORT. */
+	private static final String GET_GOVERNMENT_BODY_REPORT = &quot;getGovernmentBodyReport&quot;;
+
+	/** The Constant GET_REPORT. */
+	private static final String GET_REPORT = &quot;getReport&quot;;
+
+	/** The Constant LOGGER. */
+<span class="nc" id="L53">	private static final Logger LOGGER = LoggerFactory</span>
+<span class="nc" id="L54">			.getLogger(EsvApiImpl.class);</span>
+
+	/** The Constant NO_MINISTRY. */
+	private static final String NO_MINISTRY = &quot;Inget departement&quot;;
+
+	/** The esv excel reader. */
+	private final EsvExcelReader esvExcelReader;
+	
+	/** The esv government operations excel reader. */
+	private final EsvGovernmentOperationsExcelReader esvGovernmentOperationsExcelReader;
+	
+	/** The esv government body operation outcome reader. */
+	private final EsvGovernmentBodyOperationOutcomeReader esvGovernmentBodyOperationOutcomeReader;
+
+	/** The all data. */
+	private Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; allData;
+
+	/**
+	 * Instantiates a new esv api impl.
+	 *
+	 * @param esvExcelReader                          the esv excel reader
+	 * @param esvGovernmentOperationsExcelReader      the esv government operations
+	 *                                                excel reader
+	 * @param esvGovernmentBodyOperationOutcomeReader the esv government body
+	 *                                                operation outcome reader
+	 */
+	@Autowired
+	public EsvApiImpl(final EsvExcelReader esvExcelReader,final EsvGovernmentOperationsExcelReader esvGovernmentOperationsExcelReader,final EsvGovernmentBodyOperationOutcomeReader esvGovernmentBodyOperationOutcomeReader) {
+<span class="nc" id="L82">		super();</span>
+<span class="nc" id="L83">		this.esvExcelReader = esvExcelReader;</span>
+<span class="nc" id="L84">		this.esvGovernmentOperationsExcelReader = esvGovernmentOperationsExcelReader;</span>
+<span class="nc" id="L85">		this.esvGovernmentBodyOperationOutcomeReader = esvGovernmentBodyOperationOutcomeReader;</span>
+<span class="nc" id="L86">	}</span>
+
+	@Override
+	public synchronized Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; getData() {
+<span class="nc bnc" id="L90" title="All 2 branches missed.">	  if (allData == null) {</span>
+<span class="nc" id="L91">		allData = esvExcelReader.getDataPerMinistry(null);</span>
+	  }		
+<span class="nc" id="L93">	  return allData;</span>
+	}
+
+	@Override
+	public Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; getDataPerMinistry(final String name) {
+<span class="nc" id="L98">		return esvExcelReader.getDataPerMinistry(name);</span>
+	}
+
+	@Override
+	public List&lt;GovernmentBodyAnnualSummary&gt; getDataPerMinistryAndYear(final String name, final int year) {
+<span class="nc" id="L103">		final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; map = getDataPerMinistry(name);</span>
+
+<span class="nc" id="L105">		final List&lt;GovernmentBodyAnnualSummary&gt; list = map.get(year);</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">		if (list != null) {</span>
+<span class="nc" id="L107">			return list;</span>
+		} else {
+<span class="nc" id="L109">			return new ArrayList&lt;&gt;();</span>
+		}
+	}
+
+	@Override
+	public List&lt;String&gt; getGovernmentBodyNames() {
+<span class="nc" id="L115">		final Set&lt;String&gt; governmentBodyNameSet = new HashSet&lt;&gt;();</span>
+
+<span class="nc" id="L117">		final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; data = getData();</span>
+
+<span class="nc bnc" id="L119" title="All 2 branches missed.">		for (final List&lt;GovernmentBodyAnnualSummary&gt; list : data.values()) {</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">			for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">				if (!governmentBodyNameSet.contains(governmentBodyAnnualSummary.getName())</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">						&amp;&amp; governmentBodyAnnualSummary.getHeadCount() &gt; 0) {</span>
+<span class="nc" id="L123">					governmentBodyNameSet.add(governmentBodyAnnualSummary.getName());</span>
+				}
+<span class="nc" id="L125">			}</span>
+<span class="nc" id="L126">		}</span>
+<span class="nc" id="L127">		return new ArrayList&lt;&gt;(governmentBodyNameSet);</span>
+	}
+
+	@Override
+	public List&lt;String&gt; getGovernmentBodyNames(final String ministry) {
+<span class="nc" id="L132">		final Map&lt;String, Set&lt;String&gt;&gt; governmentBodyNameSetMinistryMap = new HashMap&lt;&gt;();</span>
+
+<span class="nc" id="L134">		final Set&lt;String&gt; governmentBodyNameSetMapEntry = new HashSet&lt;&gt;();</span>
+<span class="nc" id="L135">		governmentBodyNameSetMinistryMap.put(ministry, governmentBodyNameSetMapEntry);</span>
+
+<span class="nc" id="L137">		final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; data = getData();</span>
+
+<span class="nc bnc" id="L139" title="All 2 branches missed.">		for (final List&lt;GovernmentBodyAnnualSummary&gt; list : data.values()) {</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">			for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">				if (ministry.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">						&amp;&amp; !governmentBodyNameSetMapEntry.contains(governmentBodyAnnualSummary.getName())</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">						&amp;&amp; governmentBodyAnnualSummary.getHeadCount() &gt; 0) {</span>
+<span class="nc" id="L144">					governmentBodyNameSetMapEntry.add(governmentBodyAnnualSummary.getName());</span>
+				}
+<span class="nc" id="L146">			}</span>
+<span class="nc" id="L147">		}</span>
+<span class="nc" id="L148">		return new ArrayList&lt;&gt;(governmentBodyNameSetMinistryMap.get(ministry));</span>
+	}
+
+	@Override
+	public List&lt;String&gt; getMinistryNames() {
+<span class="nc" id="L153">		final Set&lt;String&gt; ministryNameSet = new HashSet&lt;&gt;();</span>
+
+<span class="nc" id="L155">		final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; data = getData();</span>
+
+<span class="nc bnc" id="L157" title="All 2 branches missed.">		for (final List&lt;GovernmentBodyAnnualSummary&gt; list : data.values()) {</span>
+<span class="nc bnc" id="L158" title="All 2 branches missed.">			for (final GovernmentBodyAnnualSummary governmentBodyAnnualSummary : list) {</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">				if (!ministryNameSet.contains(governmentBodyAnnualSummary.getMinistry())</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">						&amp;&amp; governmentBodyAnnualSummary.getHeadCount() &gt; 0</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">						&amp;&amp; !NO_MINISTRY.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())) {</span>
+<span class="nc" id="L162">					ministryNameSet.add(governmentBodyAnnualSummary.getMinistry());</span>
+				}
+<span class="nc" id="L164">			}</span>
+<span class="nc" id="L165">		}</span>
+<span class="nc" id="L166">		return new ArrayList&lt;&gt;(ministryNameSet);</span>
+	}
+
+	@Override
+	public Map&lt;Integer, GovernmentBodyAnnualSummary&gt; getDataPerGovernmentBody(final String name) {
+<span class="nc" id="L171">		return esvExcelReader.getDataPerGovernmentBody(name);</span>
+	}
+
+	@Override
+	public Map&lt;String,List&lt;GovernmentOperationPeriodOutcome&gt;&gt; getReport() {
+		try {
+<span class="nc" id="L177">			return esvGovernmentOperationsExcelReader.getReport().stream().collect(Collectors.groupingBy(GovernmentOperationPeriodOutcome::getVariableName));</span>
+<span class="nc" id="L178">		} catch (final IOException e) {</span>
+<span class="nc" id="L179">			LOGGER.error(GET_REPORT,e);</span>
+<span class="nc" id="L180">			return new HashMap&lt;&gt;();</span>
+		}		
+	}
+
+	@Override
+	public Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; getGovernmentBodyReport() {
+<span class="nc" id="L186">		final List&lt;GovernmentBodyAnnualOutcomeSummary&gt; result = getGovernmentBodyList();		</span>
+<span class="nc" id="L187">		return result.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getGovermentBody));</span>
+	}
+
+	
+	@Override
+	public Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; getGovernmentBodyReportByMinistry() {
+<span class="nc" id="L193">		final List&lt;GovernmentBodyAnnualOutcomeSummary&gt; result = getGovernmentBodyList();		</span>
+<span class="nc bnc" id="L194" title="All 2 branches missed.">		return result.stream().filter(p -&gt; p.getMinistry() != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getMinistry));</span>
+	}
+
+	/**
+	 * Gets the government body list.
+	 *
+	 * @return the government body list
+	 */
+	private List&lt;GovernmentBodyAnnualOutcomeSummary&gt; getGovernmentBodyList() {
+<span class="nc" id="L203">		final List&lt;GovernmentBodyAnnualOutcomeSummary&gt; result = new ArrayList&lt;&gt;();</span>
+		try {
+<span class="nc" id="L205">			result.addAll(esvGovernmentBodyOperationOutcomeReader.readIncomeCsv());</span>
+<span class="nc" id="L206">			result.addAll(esvGovernmentBodyOperationOutcomeReader.readOutgoingCsv());</span>
+<span class="nc" id="L207">		} catch (final IOException e) {</span>
+<span class="nc" id="L208">			LOGGER.error(GET_GOVERNMENT_BODY_REPORT,e);</span>
+<span class="nc" id="L209">			return result;</span>
+<span class="nc" id="L210">		}</span>
+<span class="nc" id="L211">		return result;</span>
+	}
+
+	@Override
+	public Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; getGovernmentBodyReportByField(final String string) {
+<span class="nc" id="L216">		final List&lt;GovernmentBodyAnnualOutcomeSummary&gt; result = getGovernmentBodyList();		</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">		return result.stream().filter(p -&gt; p.getDescriptionFields().get(string) != null) .collect(Collectors.groupingBy(t -&gt; t.getDescriptionFields().get(string)));</span>
+	}
+
+	@Override
+	public Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; getGovernmentBodyReportByFieldAndMinistry(final String string,final String ministry) {
+<span class="nc" id="L222">		final List&lt;GovernmentBodyAnnualOutcomeSummary&gt; result = getGovernmentBodyList();		</span>
+<span class="nc bnc" id="L223" title="All 4 branches missed.">		return result.stream().filter(p -&gt; p.getDescriptionFields().get(string) != null &amp;&amp; ministry.equalsIgnoreCase(p.getMinistry())) .collect(Collectors.groupingBy(t -&gt; t.getDescriptionFields().get(string)));</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

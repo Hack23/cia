@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataAgentApiImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.component.agent.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.component.agent.impl.command</a> &gt; <span class="el_source">DataAgentApiImpl.java</span></div><h1>DataAgentApiImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.component.agent.impl.command;
+
+import javax.jms.Destination;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder;
+import com.hack23.cia.model.internal.application.data.impl.RiksdagenDataSources;
+import com.hack23.cia.model.internal.application.data.impl.WorldBankDataSources;
+import com.hack23.cia.service.component.agent.api.DataAgentApi;
+import com.hack23.cia.service.component.agent.impl.common.jms.JmsSender;
+
+/**
+ * The Class DataAgentApiImpl.
+ */
+@Service(&quot;DataAgentApi&quot;)
+@Transactional(propagation=Propagation.REQUIRED)
+final class DataAgentApiImpl implements DataAgentApi {
+
+	/** The jms sender. */
+	@Autowired
+	private JmsSender jmsSender;
+
+	/** The riksdagen api destination. */
+	@Autowired
+	@Qualifier(&quot;riksdagenApiAgentWorkQueue&quot;)
+	private Destination riksdagenApiDestination;
+
+	/** The world bank api destination. */
+	@Autowired
+	@Qualifier(&quot;worldbankApiAgentWorkQueue&quot;)
+	private Destination worldBankApiDestination;
+
+	/**
+	 * Instantiates a new data agent api impl.
+	 */
+	public DataAgentApiImpl() {
+<span class="fc" id="L60">		super();</span>
+<span class="fc" id="L61">	}</span>
+
+	@Override
+	public void execute(final DataAgentWorkOrder workOrder) {
+<span class="fc" id="L65">		sendMessage(workOrder);</span>
+<span class="fc" id="L66">	}</span>
+
+	/**
+	 * Send message.
+	 *
+	 * @param workOrder
+	 *            the work order
+	 */
+	private void sendMessage(final DataAgentWorkOrder workOrder) {
+
+<span class="pc bpc" id="L76" title="1 of 3 branches missed.">		switch (workOrder.getTarget()) {</span>
+		case MODEL_EXTERNAL_RIKSDAGEN:
+<span class="fc bfc" id="L78" title="All 2 branches covered.">			for (final RiksdagenDataSources datasource :RiksdagenDataSources.values()) {</span>
+<span class="fc" id="L79">				jmsSender.send(riksdagenApiDestination, datasource);</span>
+			}
+<span class="fc" id="L81">			break;</span>
+		case MODEL_EXTERNAL_WORLDBANK:
+<span class="fc bfc" id="L83" title="All 2 branches covered.">			for (final WorldBankDataSources datasource :WorldBankDataSources.values()) {</span>
+<span class="fc" id="L84">				jmsSender.send(worldBankApiDestination, datasource);</span>
+			}
+<span class="fc" id="L86">			break;</span>
+		default:
+			break;
+		}
+<span class="fc" id="L90">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

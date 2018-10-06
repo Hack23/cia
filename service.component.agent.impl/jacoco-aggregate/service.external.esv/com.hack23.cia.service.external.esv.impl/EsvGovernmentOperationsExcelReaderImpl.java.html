@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>EsvGovernmentOperationsExcelReaderImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.component.agent.impl</a> &gt; <a href="../index.html" class="el_bundle">service.external.esv</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.esv.impl</a> &gt; <span class="el_source">EsvGovernmentOperationsExcelReaderImpl.java</span></div><h1>EsvGovernmentOperationsExcelReaderImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.external.esv.impl;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.service.external.esv.api.GovernmentOperationPeriodOutcome;
+
+/**
+ * The Class EsvGovernmentOperationsExcelReaderImpl.
+ */
+@Component
+final class EsvGovernmentOperationsExcelReaderImpl implements EsvGovernmentOperationsExcelReader {
+
+	/** The Constant STATUS_CELL. */
+	private static final int STATUS_CELL = 5;
+	
+	/** The Constant PERCENTAGE_CHANGE_PREVIOUS_CELL. */
+	private static final int PERCENTAGE_CHANGE_PREVIOUS_CELL = 3;
+	
+	/** The Constant PERCENTAGE_CHANGE_SAME_CELL. */
+	private static final int PERCENTAGE_CHANGE_SAME_CELL = 4;
+	
+	/** The Constant PERIOD_CELL. */
+	private static final int PERIOD_CELL = 1;
+	
+	/** The Constant VARIABLE_CELL. */
+	private static final int VARIABLE_CELL = 0;
+	
+	/** The Constant VALUE_CELL. */
+	private static final int VALUE_CELL = 2;
+	
+	/** The Constant ROW_LENGTH. */
+	private static final int ROW_LENGTH = 6;
+
+	/**
+	 * Instantiates a new esv government operations excel reader impl.
+	 */
+	public EsvGovernmentOperationsExcelReaderImpl() {
+<span class="nc" id="L65">		super();</span>
+<span class="nc" id="L66">	}</span>
+
+	private static XSSFWorkbook createGovermentOperationsWorkBook() throws IOException {
+<span class="nc" id="L69">		return new XSSFWorkbook(EsvGovernmentOperationsExcelReaderImpl.class</span>
+<span class="nc" id="L70">				.getResourceAsStream(&quot;/central-government-operations-sddsplus-february-2018.xlsx&quot;));</span>
+	}
+
+	@Override
+	public List&lt;GovernmentOperationPeriodOutcome&gt; getReport() throws IOException {
+<span class="nc" id="L75">		final List&lt;GovernmentOperationPeriodOutcome&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L76">		final XSSFWorkbook wb = createGovermentOperationsWorkBook();</span>
+
+<span class="nc" id="L78">		final XSSFSheet sheet = wb.getSheetAt(0);</span>
+		XSSFRow row;
+
+<span class="nc" id="L81">		final Iterator rows = sheet.rowIterator();</span>
+
+<span class="nc bnc" id="L83" title="All 2 branches missed.">		while (rows.hasNext()) {</span>
+<span class="nc" id="L84">			row = (XSSFRow) rows.next();</span>
+
+<span class="nc bnc" id="L86" title="All 4 branches missed.">			if (row.getLastCellNum() == ROW_LENGTH &amp;&amp; row.getCell(VALUE_CELL).getCellType() == CellType.NUMERIC) {</span>
+<span class="nc" id="L87">				final GovernmentOperationPeriodOutcome governmentOperationPeriodOutcome = new GovernmentOperationPeriodOutcome();</span>
+
+<span class="nc" id="L89">				governmentOperationPeriodOutcome.setVariableName(row.getCell(VARIABLE_CELL).getStringCellValue());</span>
+<span class="nc" id="L90">				governmentOperationPeriodOutcome.setPeriod(row.getCell(PERIOD_CELL).getStringCellValue());</span>
+
+<span class="nc" id="L92">				governmentOperationPeriodOutcome.setValue(row.getCell(VALUE_CELL).getNumericCellValue());</span>
+<span class="nc" id="L93">				governmentOperationPeriodOutcome</span>
+<span class="nc" id="L94">						.setPercentageChangeFromPreviousToLatest(row.getCell(PERCENTAGE_CHANGE_PREVIOUS_CELL).getNumericCellValue());</span>
+<span class="nc" id="L95">				governmentOperationPeriodOutcome</span>
+<span class="nc" id="L96">						.setPercentageChangeFromSamePeriodLastYearToLatest(row.getCell(PERCENTAGE_CHANGE_SAME_CELL).getNumericCellValue());</span>
+
+<span class="nc" id="L98">				governmentOperationPeriodOutcome.setObservationStatus(row.getCell(STATUS_CELL).getStringCellValue());</span>
+
+<span class="nc" id="L100">				result.add(governmentOperationPeriodOutcome);</span>
+<span class="nc" id="L101">			}</span>
+		}
+<span class="nc" id="L103">		return result;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

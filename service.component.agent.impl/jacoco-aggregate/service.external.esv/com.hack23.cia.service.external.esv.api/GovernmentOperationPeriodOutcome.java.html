@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>GovernmentOperationPeriodOutcome.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.component.agent.impl</a> &gt; <a href="../index.html" class="el_bundle">service.external.esv</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.esv.api</a> &gt; <span class="el_source">GovernmentOperationPeriodOutcome.java</span></div><h1>GovernmentOperationPeriodOutcome.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ * 
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.external.esv.api;
+
+import java.io.Serializable;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * The Class GovernmentOperationPeriodOutcome.
+ */
+public final class GovernmentOperationPeriodOutcome implements Comparable&lt;GovernmentOperationPeriodOutcome&gt;, Serializable {
+	
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The variable name. */
+	private String variableName;
+	
+	/** The period. */
+	private String period;
+	
+	/** The value. */
+	private double value;
+	
+	/** The percentage change from previous to latest. */
+	private double percentageChangeFromPreviousToLatest;
+	
+	/** The Percentage change from same period last year to latest. */
+	private double percentageChangeFromSamePeriodLastYearToLatest;
+	
+	/** The observation status. */
+	private String observationStatus;
+	
+	/**
+	 * Instantiates a new government operation period outcome.
+	 */
+	public GovernmentOperationPeriodOutcome() {
+<span class="nc" id="L58">		super();</span>
+<span class="nc" id="L59">	}</span>
+
+	/**
+	 * Gets the variable name.
+	 *
+	 * @return the variable name
+	 */
+	public String getVariableName() {
+<span class="nc" id="L67">		return variableName;</span>
+	}
+
+	/**
+	 * Sets the variable name.
+	 *
+	 * @param variableName
+	 *            the new variable name
+	 */
+	public void setVariableName(final String variableName) {
+<span class="nc" id="L77">		this.variableName = variableName;</span>
+<span class="nc" id="L78">	}</span>
+
+	/**
+	 * Gets the period.
+	 *
+	 * @return the period
+	 */
+	public String getPeriod() {
+<span class="nc" id="L86">		return period;</span>
+	}
+
+	/**
+	 * Sets the period.
+	 *
+	 * @param period
+	 *            the new period
+	 */
+	public void setPeriod(final String period) {
+<span class="nc" id="L96">		this.period = period;</span>
+<span class="nc" id="L97">	}</span>
+
+	/**
+	 * Gets the value.
+	 *
+	 * @return the value
+	 */
+	public double getValue() {
+<span class="nc" id="L105">		return value;</span>
+	}
+
+	/**
+	 * Sets the value.
+	 *
+	 * @param d
+	 *            the new value
+	 */
+	public void setValue(final double d) {
+<span class="nc" id="L115">		this.value = d;</span>
+<span class="nc" id="L116">	}</span>
+
+	/**
+	 * Gets the percentage change from previous to latest.
+	 *
+	 * @return the percentage change from previous to latest
+	 */
+	public double getPercentageChangeFromPreviousToLatest() {
+<span class="nc" id="L124">		return percentageChangeFromPreviousToLatest;</span>
+	}
+
+	/**
+	 * Sets the percentage change from previous to latest.
+	 *
+	 * @param percentageChangeFromPreviousToLatest
+	 *            the new percentage change from previous to latest
+	 */
+	public void setPercentageChangeFromPreviousToLatest(final double percentageChangeFromPreviousToLatest) {
+<span class="nc" id="L134">		this.percentageChangeFromPreviousToLatest = percentageChangeFromPreviousToLatest;</span>
+<span class="nc" id="L135">	}</span>
+
+	/**
+	 * Gets the percentage change from same period last year to latest.
+	 *
+	 * @return the percentage change from same period last year to latest
+	 */
+	public double getPercentageChangeFromSamePeriodLastYearToLatest() {
+<span class="nc" id="L143">		return percentageChangeFromSamePeriodLastYearToLatest;</span>
+	}
+
+	/**
+	 * Sets the percentage change from same period last year to latest.
+	 *
+	 * @param percentageChangeFromSamePeriodLastYearToLatest
+	 *            the new percentage change from same period last year to latest
+	 */
+	public void setPercentageChangeFromSamePeriodLastYearToLatest(final double percentageChangeFromSamePeriodLastYearToLatest) {
+<span class="nc" id="L153">		this.percentageChangeFromSamePeriodLastYearToLatest = percentageChangeFromSamePeriodLastYearToLatest;</span>
+<span class="nc" id="L154">	}</span>
+
+	/**
+	 * Gets the observation status.
+	 *
+	 * @return the observation status
+	 */
+	public String getObservationStatus() {
+<span class="nc" id="L162">		return observationStatus;</span>
+	}
+
+	/**
+	 * Sets the observation status.
+	 *
+	 * @param observationStatus
+	 *            the new observation status
+	 */
+	public void setObservationStatus(final String observationStatus) {
+<span class="nc" id="L172">		this.observationStatus = observationStatus;</span>
+<span class="nc" id="L173">	}</span>
+
+	@Override
+	public int hashCode() {
+<span class="nc" id="L177">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="nc" id="L182">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+
+	@Override
+	public boolean equals(final Object o) {
+<span class="nc" id="L187">		return EqualsBuilder.reflectionEquals(this, o, false);</span>
+	}
+	
+	@Override
+	public int compareTo(final GovernmentOperationPeriodOutcome o) {
+<span class="nc" id="L192">		return period.compareTo(o.getPeriod());</span>
+	}
+	
+	/**
+	 * The Enum Variables.
+	 */
+<span class="nc" id="L198">	public enum Variables {</span>
+	    
+    	/** The total expenditures. */
+<span class="nc" id="L201">    	TOTAL_EXPENDITURES (&quot;Total expenditures&quot;),</span>
+	    
+    	/** The expenditure excl interest gov debt. */
+<span class="nc" id="L204">    	EXPENDITURE_EXCL_INTEREST_GOV_DEBT (&quot;Expenditure, excl. interest on central government debt, etc.&quot;),</span>
+	    
+    	/** The interest on gov debt. */
+<span class="nc" id="L207">    	INTEREST_ON_GOV_DEBT (&quot;Interest on central government debt, etc.&quot;),</span>
+	    
+    	/** The net lending borrowing. */
+<span class="nc" id="L210">    	NET_LENDING_BORROWING (&quot;Net lending/borrowing by the National Debt Office&quot;),</span>
+	    
+    	/** The adjustment to cash basis. */
+<span class="nc" id="L213">    	ADJUSTMENT_TO_CASH_BASIS (&quot;Adjustment to cash basis&quot;),</span>
+	    
+    	/** The total revenue. */
+<span class="nc" id="L216">    	TOTAL_REVENUE (&quot;Total revenue&quot;),</span>
+	    
+    	/** The budget balance. */
+<span class="nc" id="L219">    	BUDGET_BALANCE (&quot;Budget balance&quot;);</span>
+
+	    /** The name. */
+    	private final String name;       
+
+	    /**
+		 * Instantiates a new variables.
+		 *
+		 * @param s
+		 *            the s
+		 */
+<span class="nc" id="L230">    	Variables(final String s) {</span>
+<span class="nc" id="L231">	        name = s;</span>
+<span class="nc" id="L232">	    }</span>
+
+    	@Override
+	    public String toString() {
+<span class="nc" id="L236">	       return this.name;</span>
+	    }
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

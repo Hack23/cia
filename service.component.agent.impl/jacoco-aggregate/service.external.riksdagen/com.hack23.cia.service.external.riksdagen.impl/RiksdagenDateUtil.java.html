@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>RiksdagenDateUtil.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.component.agent.impl</a> &gt; <a href="../index.html" class="el_bundle">service.external.riksdagen</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.riksdagen.impl</a> &gt; <span class="el_source">RiksdagenDateUtil.java</span></div><h1>RiksdagenDateUtil.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ * 
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.external.riksdagen.impl;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
+
+import com.hack23.cia.model.external.riksdagen.votering.impl.BallotContainer;
+import com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataDto;
+
+/**
+ * The Class RiksdagenDateUtil.
+ */
+final class RiksdagenDateUtil {
+
+	/** The Constant YYYY_MM_DD. */
+	public static final String YYYY_MM_DD = &quot;yyyy-MM-dd&quot;;
+
+	/** The Constant CONTAINS_ONE. */
+	private static final int CONTAINS_ONE = 1;
+
+	
+	/**
+	 * Instantiates a new riksdagen date util.
+	 */
+	public RiksdagenDateUtil() {
+<span class="nc" id="L48">		super();</span>
+<span class="nc" id="L49">	}</span>
+
+	/**
+	 * Best guess vote date.
+	 *
+	 * @param ballotContainer
+	 *            the ballot container
+	 * @return the date
+	 * @throws ParseException
+	 *             the parse exception
+	 */
+	private static Date bestGuessVoteDate(final BallotContainer ballotContainer) throws ParseException {
+<span class="nc" id="L61">		final com.hack23.cia.model.external.riksdagen.votering.impl.BallotDocumentElement ballotDocumentElement = ballotContainer.getBallotDocumentElement();</span>
+		Date result;
+
+<span class="nc" id="L64">		final String createdDate=ballotContainer.getBallotDocumentElement().getCreatedDate();</span>
+
+<span class="nc bnc" id="L66" title="All 4 branches missed.">		if(createdDate!= null &amp;&amp; createdDate.length()&gt;= YYYY_MM_DD.length()) {</span>
+<span class="nc" id="L67">			result=new SimpleDateFormat(YYYY_MM_DD,Locale.ENGLISH).parse(createdDate);</span>
+		} else {
+<span class="nc" id="L69">			final String systemDate = ballotDocumentElement.getSystemDate();</span>
+
+<span class="nc bnc" id="L71" title="All 4 branches missed.">			if(systemDate!= null &amp;&amp; systemDate.length()&gt;= YYYY_MM_DD.length()) {</span>
+<span class="nc" id="L72">				result=new SimpleDateFormat(YYYY_MM_DD,Locale.ENGLISH).parse(systemDate);</span>
+			} else {
+<span class="nc" id="L74">				result=new SimpleDateFormat(YYYY_MM_DD,Locale.ENGLISH).parse(ballotDocumentElement.getMadePublicDate());</span>
+			}
+		}
+<span class="nc" id="L77">		return result;</span>
+	}
+
+	/**
+	 * Check same date.
+	 *
+	 * @param voteList
+	 *            the vote list
+	 * @return the date
+	 * @throws ParseException
+	 *             the parse exception
+	 */
+	private static Date checkSameDate(final List&lt;VoteDataDto&gt; voteList) throws ParseException {
+<span class="nc" id="L90">		final Set&lt;String&gt; set = new HashSet&lt;&gt;();</span>
+<span class="nc" id="L91">		Date result=null;</span>
+
+<span class="nc bnc" id="L93" title="All 2 branches missed.">		for (final VoteDataDto voteData : voteList) {</span>
+<span class="nc" id="L94">			final String voteDate = voteData.getVoteDate();</span>
+<span class="nc bnc" id="L95" title="All 4 branches missed.">			if (voteDate !=null &amp;&amp; voteDate.length() &gt;= YYYY_MM_DD.length()) {</span>
+<span class="nc" id="L96">				set.add(voteData.getVoteDate());</span>
+			}
+<span class="nc" id="L98">		}</span>
+
+<span class="nc bnc" id="L100" title="All 2 branches missed.">		if (set.size() ==CONTAINS_ONE) {</span>
+<span class="nc" id="L101">			final String dateString = set.iterator().next();</span>
+<span class="nc" id="L102">			result=new SimpleDateFormat(YYYY_MM_DD,Locale.ENGLISH).parse(dateString);</span>
+		}
+<span class="nc" id="L104">		return result;</span>
+	}
+
+	/**
+	 * Try to find valid vote date.
+	 *
+	 * @param ballotContainer
+	 *            the ballot container
+	 * @param voteDataList
+	 *            the vote data list
+	 * @return the date
+	 * @throws ParseException
+	 *             the parse exception
+	 */
+	public Date tryToFindValidVoteDate(final BallotContainer ballotContainer, final List&lt;VoteDataDto&gt; voteDataList)
+					throws ParseException {
+		Date ballotDate;
+<span class="nc" id="L121">		final Date sameDate = checkSameDate(voteDataList);</span>
+
+<span class="nc bnc" id="L123" title="All 2 branches missed.">		if (sameDate != null) {</span>
+<span class="nc" id="L124">			ballotDate = sameDate;</span>
+		} else {
+<span class="nc" id="L126">			ballotDate = bestGuessVoteDate(ballotContainer);</span>
+		}
+<span class="nc" id="L128">		return ballotDate;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RiksdagenImportServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.component.agent.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data</a> &gt; <span class="el_source">RiksdagenImportServiceImpl.java</span></div><h1>RiksdagenImportServiceImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
+import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentType;
+import com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration;
+import com.hack23.cia.model.internal.application.system.impl.ConfigurationGroup;
+import com.hack23.cia.service.data.api.ApplicationConfigurationService;
+import com.hack23.cia.service.data.api.CommitteeProposalComponentDataDAO;
+import com.hack23.cia.service.data.api.DocumentContentDataDAO;
+import com.hack23.cia.service.data.api.DocumentElementDAO;
+import com.hack23.cia.service.data.api.DocumentStatusContainerDAO;
+import com.hack23.cia.service.data.api.VoteDataDAO;
+
+/**
+ * The Class RiksdagenImportServiceImpl.
+ */
+@Component(&quot;RiksdagenImportService&quot;)
+@Transactional(propagation = Propagation.MANDATORY)
+final class RiksdagenImportServiceImpl implements RiksdagenImportService {
+
+	/** The Constant LOGGER. */
+<span class="fc" id="L57">	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenImportServiceImpl.class);</span>
+
+	/** The Constant RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT. */
+	private static final String RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT = &quot;yyyy-MM-dd&quot;;
+
+	/** The Constant RIKSDAGEN_JAVA_SIMPLE_DATE_TIME_FORMAT. */
+	private static final String RIKSDAGEN_JAVA_SIMPLE_DATE_TIME_FORMAT = &quot;yyyy-MM-dd HH:mm:ss&quot;;
+
+	/** The application configuration service. */
+	@Autowired
+	private ApplicationConfigurationService applicationConfigurationService;
+
+	/** The committee proposal component data DAO. */
+	@Autowired
+	private CommitteeProposalComponentDataDAO committeeProposalComponentDataDAO;
+
+	/** The document content data DAO. */
+	@Autowired
+	private DocumentContentDataDAO documentContentDataDAO;
+
+	/** The document element DAO. */
+	@Autowired
+	private DocumentElementDAO documentElementDAO;
+
+	/** The document status container DAO. */
+	@Autowired
+	private DocumentStatusContainerDAO documentStatusContainerDAO;
+
+	/** The vote data DAO. */
+	@Autowired
+	private VoteDataDAO voteDataDAO;
+
+	/**
+	 * Instantiates a new riksdagen import service impl.
+	 */
+	public RiksdagenImportServiceImpl() {
+<span class="fc" id="L93">		super();</span>
+<span class="fc" id="L94">	}</span>
+
+	/**
+	 * Creates the map from list.
+	 *
+	 * @param all
+	 *            the all
+	 * @return the map
+	 */
+	private static Map&lt;String, String&gt; createMapFromList(final List&lt;String&gt; all) {
+<span class="fc" id="L104">		final Map&lt;String, String&gt; map = new ConcurrentHashMap&lt;&gt;();</span>
+
+<span class="fc bfc" id="L106" title="All 2 branches covered.">		for (final String documentElement : all) {</span>
+<span class="fc" id="L107">			map.put(documentElement, documentElement);</span>
+<span class="fc" id="L108">		}</span>
+<span class="fc" id="L109">		return map;</span>
+	}
+
+	/**
+	 * Creates the map from list vote.
+	 *
+	 * @param list
+	 *            the list
+	 * @return the map
+	 */
+	private static Map&lt;String, String&gt; createMapFromListVote(final List&lt;VoteDataEmbeddedId&gt; list) {
+<span class="fc" id="L120">		final Map&lt;String, String&gt; map = new ConcurrentHashMap&lt;&gt;();</span>
+
+<span class="fc bfc" id="L122" title="All 2 branches covered.">		for (final VoteDataEmbeddedId documentElement : list) {</span>
+<span class="fc" id="L123">			map.put(documentElement.getBallotId(), documentElement.getBallotId());</span>
+<span class="fc" id="L124">		}</span>
+<span class="fc" id="L125">		return map;</span>
+	}
+
+	@Override
+	public List&lt;String&gt; getAvaibleCommitteeProposal() {
+<span class="fc" id="L130">		return documentStatusContainerDAO.getAvaibleCommitteeProposal();</span>
+	}
+
+	@Override
+	public List&lt;String&gt; getAvaibleDocumentContent() {
+<span class="fc" id="L135">		return documentElementDAO.getAvaibleDocumentContent();</span>
+	}
+
+	@Override
+	public Map&lt;String, String&gt; getCommitteeProposalComponentDataMap() {
+<span class="fc" id="L140">		return createMapFromList(committeeProposalComponentDataDAO.getIdList());</span>
+	}
+
+	@Override
+	public Map&lt;String, String&gt; getDocumentContentMap() {
+<span class="fc" id="L145">		return createMapFromList(documentContentDataDAO.getIdList());</span>
+	}
+
+	@Override
+	public Map&lt;String, String&gt; getDocumentElementMap(final Date after, final List&lt;DocumentType&gt; downloadType,
+			final boolean onlyWithDocStatus) {
+<span class="fc" id="L151">		final List&lt;DocumentElement&gt; all = documentElementDAO.getAll();</span>
+
+<span class="fc" id="L153">		final List&lt;String&gt; documentTypeValues = new ArrayList&lt;&gt;();</span>
+
+<span class="fc bfc" id="L155" title="All 2 branches covered.">		for (final DocumentType docType : downloadType) {</span>
+<span class="fc" id="L156">			documentTypeValues.add(docType.value());</span>
+<span class="fc" id="L157">		}</span>
+
+<span class="fc" id="L159">		final Map&lt;String, String&gt; map = new ConcurrentHashMap&lt;&gt;();</span>
+
+<span class="fc bfc" id="L161" title="All 2 branches covered.">		for (final DocumentElement documentElement : all) {</span>
+<span class="pc bpc" id="L162" title="1 of 4 branches missed.">			if (checkIncludeDate(after, documentTypeValues, documentElement) &amp;&amp; checkIncludeStatus(onlyWithDocStatus, documentElement)) {</span>
+<span class="fc" id="L163">				map.put(documentElement.getId(), documentElement.getDocumentType());</span>
+			}
+<span class="fc" id="L165">		}</span>
+<span class="fc" id="L166">		return map;</span>
+	}
+
+	/**
+	 * Check include status.
+	 *
+	 * @param onlyWithDocStatus
+	 *            the only with doc status
+	 * @param documentElement
+	 *            the document element
+	 * @return true, if successful
+	 */
+	private static boolean checkIncludeStatus(final boolean onlyWithDocStatus, final DocumentElement documentElement) {
+<span class="pc bpc" id="L179" title="3 of 4 branches missed.">		return !onlyWithDocStatus || documentElement.getDocumentStatusUrlXml() != null;</span>
+	}
+
+	/**
+	 * Check include date.
+	 *
+	 * @param after
+	 *            the after
+	 * @param documentTypeValues
+	 *            the document type values
+	 * @param documentElement
+	 *            the document element
+	 * @return true, if successful
+	 */
+	private static boolean checkIncludeDate(final Date after, final List&lt;String&gt; documentTypeValues,
+			final DocumentElement documentElement) {
+		try {
+<span class="pc bpc" id="L196" title="1 of 4 branches missed.">			if (documentElement.getMadePublicDate() != null &amp;&amp; documentElement.getMadePublicDate().length() &gt; 0) {</span>
+<span class="fc bfc" id="L197" title="All 2 branches covered.">				return getDate(documentElement.getMadePublicDate()).after(after)</span>
+<span class="fc bfc" id="L198" title="All 2 branches covered.">						&amp;&amp; documentTypeValues.contains(documentElement.getDocumentType());</span>
+			} else {
+<span class="fc bfc" id="L200" title="All 2 branches covered.">				return getDate(documentElement.getCreatedDate()).after(after)</span>
+<span class="fc bfc" id="L201" title="All 2 branches covered.">						&amp;&amp; documentTypeValues.contains(documentElement.getDocumentType());				</span>
+			}			
+<span class="nc" id="L203">		} catch (final ParseException e) {</span>
+<span class="nc" id="L204">			LOGGER.warn(&quot;Problem getting date from{} : exception:{}&quot;, documentElement, e);</span>
+<span class="nc" id="L205">			return false;</span>
+		}
+	}
+
+	/**
+	 * Gets the date.
+	 *
+	 * @param date
+	 *            the date
+	 * @return the date
+	 * @throws ParseException
+	 *             the parse exception
+	 */
+	private static Date getDate(final String date) throws ParseException {
+<span class="pc bpc" id="L219" title="1 of 2 branches missed.">		if (RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT.length() &gt; date.length()) {</span>
+<span class="nc" id="L220">			return new SimpleDateFormat(RIKSDAGEN_JAVA_SIMPLE_DATE_TIME_FORMAT, Locale.ENGLISH).parse(date);</span>
+		} else {
+<span class="fc" id="L222">			return new SimpleDateFormat(RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT, Locale.ENGLISH).parse(date);</span>
+		}
+	}
+
+	@Override
+	public Map&lt;String, String&gt; getDocumentStatusContainerMap() {
+<span class="fc" id="L228">		return createMapFromList(documentStatusContainerDAO.getIdList());</span>
+	}
+
+	@Override
+	public Map&lt;String, String&gt; getLoadedBallotIdMap() {
+<span class="fc" id="L233">		return createMapFromListVote(voteDataDAO.getBallotIdList());</span>
+	}
+
+	@Override
+	public int getStartYearForDocumentElement() {
+<span class="fc" id="L238">		final ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService</span>
+<span class="fc" id="L239">				.checkValueOrLoadDefault(&quot;Load Riksdagen documents from year&quot;, &quot;Load Riksdagen documents from year&quot;,</span>
+<span class="fc" id="L240">						ConfigurationGroup.AGENT, RiksdagenImportService.class.getSimpleName(),</span>
+						&quot;Riksdagen Import Service&quot;, &quot;Responsible import Riksdagen data&quot;,
+						&quot;agent.riksdagen.documents.loadfromyear&quot;, &quot;2000&quot;);
+
+<span class="fc" id="L244">		return documentElementDAO</span>
+<span class="fc" id="L245">				.getMissingDocumentStartFromYear(Integer.parseInt(registeredUsersGetAdminConfig.getPropertyValue()));</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

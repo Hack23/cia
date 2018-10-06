@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>GovernmentBodyAnnualOutcomeSummary.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.component.agent.impl</a> &gt; <a href="../index.html" class="el_bundle">service.external.esv</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.esv.api</a> &gt; <span class="el_source">GovernmentBodyAnnualOutcomeSummary.java</span></div><h1>GovernmentBodyAnnualOutcomeSummary.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.external.esv.api;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * The Class GovernmentBodyAnnualOutcomeSummary.
+ */
+public final class GovernmentBodyAnnualOutcomeSummary implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The goverment body. */
+	private final String govermentBody;
+
+	/** The org number. */
+	private final String orgNumber;
+	
+	/** The ministry. */
+	private final String ministry;
+
+	/** The year. */
+	private final int year;
+	
+	/** The year total. */
+	private double yearTotal;
+
+	/** The value map. */
+<span class="nc" id="L56">	private final Map&lt;Date, Double&gt; valueMap = new HashMap&lt;&gt;();</span>
+
+	/** The description fields. */
+<span class="nc" id="L59">	private final Map&lt;String, String&gt; descriptionFields = new HashMap&lt;&gt;();</span>
+
+	/**
+	 * Instantiates a new government body annual outcome summary.
+	 *
+	 * @param govermentBody the goverment body
+	 * @param orgNumber     the org number
+	 * @param ministry      the ministry
+	 * @param year          the year
+	 */
+	public GovernmentBodyAnnualOutcomeSummary(final String govermentBody, final String orgNumber, final String ministry, final int year) {
+<span class="nc" id="L70">		super();</span>
+<span class="nc" id="L71">		this.govermentBody = govermentBody;</span>
+<span class="nc" id="L72">		this.orgNumber = orgNumber;</span>
+<span class="nc" id="L73">		this.ministry = ministry;</span>
+<span class="nc" id="L74">		this.year = year;</span>
+<span class="nc" id="L75">	}</span>
+
+	/**
+	 * Gets the goverment body id.
+	 *
+	 * @return the goverment body id
+	 */
+	public String getGovermentBody() {
+<span class="nc" id="L83">		return govermentBody;</span>
+	}
+
+	/**
+	 * Gets the org number.
+	 *
+	 * @return the org number
+	 */
+	public String getOrgNumber() {
+<span class="nc" id="L92">		return orgNumber;</span>
+	}
+
+	/**
+	 * Gets the year.
+	 *
+	 * @return the year
+	 */
+	public int getYear() {
+<span class="nc" id="L101">		return year;</span>
+	}
+
+	/**
+	 * Gets the ministry.
+	 *
+	 * @return the ministry
+	 */
+	public String getMinistry() {
+<span class="nc" id="L110">		return ministry;</span>
+	}
+
+	/**
+	 * Adds the data.
+	 *
+	 * @param month
+	 *            the month
+	 * @param value
+	 *            the value
+	 */
+	public void addData(final int month, final Double value) {
+<span class="nc" id="L122">		yearTotal = yearTotal + value;</span>
+<span class="nc" id="L123">		final Date date = new GregorianCalendar(year, month, 1).getTime();</span>
+<span class="nc" id="L124">		valueMap.put(date, value);</span>
+<span class="nc" id="L125">	}</span>
+
+	/**
+	 * Gets the year total.
+	 *
+	 * @return the year total
+	 */
+	public Double getYearTotal() {
+<span class="nc" id="L133">		return yearTotal;</span>
+	}
+
+	/**
+	 * Adds the description field.
+	 *
+	 * @param field
+	 *            the field
+	 * @param value
+	 *            the value
+	 */
+	public void addDescriptionField(final String field, final String value) {
+<span class="nc" id="L145">		descriptionFields.put(field, value);</span>
+<span class="nc" id="L146">	}</span>
+
+	
+	/**
+	 * Gets the value map.
+	 *
+	 * @return the value map
+	 */
+	public Map&lt;Date, Double&gt; getValueMap() {
+<span class="nc" id="L155">		return valueMap;</span>
+	}
+
+	/**
+	 * Gets the description fields.
+	 *
+	 * @return the description fields
+	 */
+	public Map&lt;String, String&gt; getDescriptionFields() {
+<span class="nc" id="L164">		return descriptionFields;</span>
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(final Object obj) {
+<span class="nc" id="L172">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="nc" id="L177">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="nc" id="L182">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
