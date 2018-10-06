@@ -1,0 +1,40 @@
+digraph TableGraph {
+  compound=true;
+    bgcolor="white"; 
+    fontcolor="black"; fontname="Helvetica"; fontsize="10.0"; 
+    ranksep="equally"; 
+    label="Table Graph"; 
+    URL="http://tools.hibernate.org";
+  edge [
+        color="lightgrey", 
+        fontcolor="black", 
+        fontname="Helvetica", 
+        fontsize="8.0",         
+        labelangle=-25.0, 
+        labeldistance=1.5
+        headport=nw,
+        tailport=se
+        ];
+  node [
+       fontcolor="black",
+       fontname="Helvetica", 
+       fontsize="10.0", 
+       shape=record, 
+       fillcolor="yellow", 
+       style="solid,filled"];
+
+/* TODO: multi schema tables */
+  /* Node TOPIC_ELEMENT */
+  TOPIC_ELEMENT [ label = "{ TOPIC_ELEMENT| <HJID>HJID\l | <ID>ID\l | <SOURCE_NOTE>SOURCE_NOTE\l | <TOPIC_VALUE>TOPIC_VALUE\l | <TOPIC_TOPICS_ELEMENT_HJID>TOPIC_TOPICS_ELEMENT_HJID\l }" ]  
+  
+  /* edges/nodes for TOPIC_ELEMENT */
+     TOPIC_ELEMENT -> TOPICS_ELEMENT [ 
+        label="FKjuh8kkjbn5gwoag249hkpw0ax" 
+        ]
+  /* Node TOPICS_ELEMENT */
+  TOPICS_ELEMENT [ label = "{ TOPICS_ELEMENT| <HJID>HJID\l | <PAGE>PAGE\l | <PAGES>PAGES\l | <PER_PAGE>PER_PAGE\l | <TOTAL>TOTAL\l }" ]  
+  
+  /* edges/nodes for TOPICS_ELEMENT */
+
+}
+
