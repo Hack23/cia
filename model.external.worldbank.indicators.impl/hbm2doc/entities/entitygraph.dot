@@ -1,0 +1,80 @@
+digraph EntityGraph {
+  compound=true;
+    bgcolor="white"; 
+    fontcolor="black"; fontname="Helvetica"; fontsize="10.0"; 
+    ranksep="equally"; 
+    label="Entity Graph"; 
+    URL="http://tools.hibernate.org";
+  edge [
+        color="lightgrey", 
+        fontcolor="black", 
+        fontname="Helvetica", 
+        fontsize="8.0",         
+        labelangle=-25.0, 
+        labeldistance=1.5
+        ];
+  node [
+       fontcolor="black",
+       fontname="Helvetica", 
+       fontsize="10.0", 
+       shape=record, 
+       fillcolor="#D4E5FE", 
+       style="solid,filled"];
+
+  /* Node com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorsElement */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_IndicatorsElement [ label = "{ com\.hack23\.cia\.model\.external\.worldbank\.indicators\.impl\.IndicatorsElement| page\l pages\l perPage\l total\l }", URL="com/hack23/cia/model/external/worldbank/indicators/impl/IndicatorsElement.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorsElement */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_IndicatorsElement */
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_IndicatorsElement -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_IndicatorElement [ 
+        label="indicator" 
+        ]
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_IndicatorElement [ label = "{ com\.hack23\.cia\.model\.external\.worldbank\.indicators\.impl\.IndicatorElement| id\l indicatorName\l source\l sourceNote\l sourceOrganization\l topics\l }", URL="com/hack23/cia/model/external/worldbank/indicators/impl/IndicatorElement.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_IndicatorElement */
+     
+     
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_IndicatorElement -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_Source [ 
+        label="source" 
+        arrowtail="diamond"
+        ]
+      /* Node component org.hibernate.mapping.Component([org.hibernate.mapping.Property(id), org.hibernate.mapping.Property(value)]) */
+      com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_Source [ 
+        label = "{ com\.hack23\.cia\.model\.external\.worldbank\.indicators\.impl\.Source| id\l value\l }"
+           ]
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_Source */
+     
+     
+     
+     
+     
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_IndicatorElement -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_Topics [ 
+        label="topics" 
+        ]
+     
+  /* Node com.hack23.cia.model.external.worldbank.indicators.impl.Topics */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_Topics [ label = "{ com\.hack23\.cia\.model\.external\.worldbank\.indicators\.impl\.Topics| }", URL="com/hack23/cia/model/external/worldbank/indicators/impl/Topics.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.worldbank.indicators.impl.Topics */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_Topics */
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_Topics -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_Topic [ 
+        label="topic" 
+        ]
+     
+  /* Node com.hack23.cia.model.external.worldbank.indicators.impl.Topic */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_Topic [ label = "{ com\.hack23\.cia\.model\.external\.worldbank\.indicators\.impl\.Topic| id\l value\l }", URL="com/hack23/cia/model/external/worldbank/indicators/impl/Topic.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.worldbank.indicators.impl.Topic */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_indicators_dot_impl_dot_Topic */
+     
+     
+
+}
+

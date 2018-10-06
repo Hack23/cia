@@ -1,0 +1,54 @@
+digraph TableGraph {
+  compound=true;
+    bgcolor="white"; 
+    fontcolor="black"; fontname="Helvetica"; fontsize="10.0"; 
+    ranksep="equally"; 
+    label="Table Graph"; 
+    URL="http://tools.hibernate.org";
+  edge [
+        color="lightgrey", 
+        fontcolor="black", 
+        fontname="Helvetica", 
+        fontsize="8.0",         
+        labelangle=-25.0, 
+        labeldistance=1.5
+        headport=nw,
+        tailport=se
+        ];
+  node [
+       fontcolor="black",
+       fontname="Helvetica", 
+       fontsize="10.0", 
+       shape=record, 
+       fillcolor="yellow", 
+       style="solid,filled"];
+
+/* TODO: multi schema tables */
+  /* Node INDICATOR_ELEMENT */
+  INDICATOR_ELEMENT [ label = "{ INDICATOR_ELEMENT| <HJID>HJID\l | <ID>ID\l | <INDICATOR_NAME>INDICATOR_NAME\l | <SOURCE_ID>SOURCE_ID\l | <SOURCE_VALUE>SOURCE_VALUE\l | <SOURCE_NOTE>SOURCE_NOTE\l | <SOURCE_ORGANIZATION>SOURCE_ORGANIZATION\l | <TOPICS_INDICATOR_ELEMENT_HJID>TOPICS_INDICATOR_ELEMENT_HJID\l | <INDICATOR__INDICATORS_ELEMEN_0>INDICATOR__INDICATORS_ELEMEN_0\l }" ]  
+  
+  /* edges/nodes for INDICATOR_ELEMENT */
+     INDICATOR_ELEMENT -> TOPICS [ 
+        label="FKqo83tlolpfpvu6ggml3648437" 
+        ]
+     INDICATOR_ELEMENT -> INDICATORS_ELEMENT [ 
+        label="FKjajuw0y63aarlsdcb8gn9medq" 
+        ]
+  /* Node INDICATORS_ELEMENT */
+  INDICATORS_ELEMENT [ label = "{ INDICATORS_ELEMENT| <HJID>HJID\l | <PAGE>PAGE\l | <PAGES>PAGES\l | <PER_PAGE>PER_PAGE\l | <TOTAL>TOTAL\l }" ]  
+  
+  /* edges/nodes for INDICATORS_ELEMENT */
+  /* Node TOPIC */
+  TOPIC [ label = "{ TOPIC| <HJID>HJID\l | <ID>ID\l | <VALUE_>VALUE_\l | <TOPIC_TOPICS_HJID>TOPIC_TOPICS_HJID\l }" ]  
+  
+  /* edges/nodes for TOPIC */
+     TOPIC -> TOPICS [ 
+        label="FK1smjtptx0bfyq3m2w8hv28669" 
+        ]
+  /* Node TOPICS */
+  TOPICS [ label = "{ TOPICS| <HJID>HJID\l }" ]  
+  
+  /* edges/nodes for TOPICS */
+
+}
+

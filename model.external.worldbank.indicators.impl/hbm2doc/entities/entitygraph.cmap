@@ -1,0 +1,5 @@
+<area shape="rect" id="node1" href="com/hack23/cia/model/external/worldbank/indicators/impl/IndicatorsElement.html" title="{ com\.hack23\.cia\.model\.external\.worldbank\.indicators\.impl\.IndicatorsElement| page\l pages\l perPage\l total\l }" alt="" coords="5,5,468,101">
+<area shape="rect" id="node2" href="com/hack23/cia/model/external/worldbank/indicators/impl/IndicatorElement.html" title="{ com\.hack23\.cia\.model\.external\.worldbank\.indicators\.impl\.IndicatorElement| id\l indicatorName\l source\l sourceNote\l sourceOrganization\l topics\l }" alt="" coords="9,176,465,301">
+<area shape="rect" id="node4" href="com/hack23/cia/model/external/worldbank/indicators/impl/Topics.html" title="{ com\.hack23\.cia\.model\.external\.worldbank\.indicators\.impl\.Topics| }" alt="" coords="429,398,826,450">
+<area shape="rect" id="node5" href="com/hack23/cia/model/external/worldbank/indicators/impl/Topic.html" title="{ com\.hack23\.cia\.model\.external\.worldbank\.indicators\.impl\.Topic| id\l value\l }" alt="" coords="432,576,823,643">
+<area shape="rect" id="graph0" href="http://tools.hibernate.org" title="Entity Graph" alt="" coords="0,0,831,673">
