@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreateApplicationEventService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.action.application</a> &gt; <span class="el_source">CreateApplicationEventService.java</span></div><h1>CreateApplicationEventService.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.impl.action.application;
+
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_;
+import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
+import com.hack23.cia.service.api.action.application.CreateApplicationEventResponse;
+import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
+import com.hack23.cia.service.data.api.ApplicationSessionDAO;
+import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
+import com.hack23.cia.service.impl.action.common.BusinessService;
+
+/**
+ * The Class CreateApplicationEventService.
+ */
+@Service
+@Transactional(propagation = Propagation.REQUIRED)
+@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+public final class CreateApplicationEventService
+		extends AbstractBusinessServiceImpl&lt;CreateApplicationEventRequest, CreateApplicationEventResponse&gt;
+		implements BusinessService&lt;CreateApplicationEventRequest, CreateApplicationEventResponse&gt; {
+
+	/** The application session dao. */
+	@Autowired
+	private ApplicationSessionDAO applicationSessionDAO;
+
+	/**
+	 * Instantiates a new creates the application event service.
+	 */
+	public CreateApplicationEventService() {
+<span class="fc" id="L58">		super(CreateApplicationEventRequest.class);</span>
+<span class="fc" id="L59">	}</span>
+
+	@Override
+	public CreateApplicationEventResponse processService(final CreateApplicationEventRequest serviceRequest) {
+<span class="fc" id="L63">		final ApplicationSession applicationSession = applicationSessionDAO</span>
+<span class="fc" id="L64">				.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());</span>
+
+<span class="fc bfc" id="L66" title="All 2 branches covered.">		if (applicationSession != null) {</span>
+<span class="fc" id="L67">			final ApplicationActionEvent applicationActionEvent = new ApplicationActionEvent();</span>
+
+<span class="fc" id="L69">			applicationActionEvent.setEventGroup(serviceRequest.getEventGroup());</span>
+<span class="fc" id="L70">			applicationActionEvent.setCreatedDate(new Date());</span>
+<span class="fc" id="L71">			applicationActionEvent.setSessionId(serviceRequest.getSessionId());</span>
+
+<span class="fc" id="L73">			applicationActionEvent.setPage(serviceRequest.getPage());</span>
+<span class="fc" id="L74">			applicationActionEvent.setPageMode(serviceRequest.getPageMode());</span>
+<span class="fc" id="L75">			applicationActionEvent.setElementId(serviceRequest.getElementId());</span>
+<span class="fc" id="L76">			applicationActionEvent.setApplicationOperation(serviceRequest.getApplicationOperation());</span>
+<span class="fc" id="L77">			applicationActionEvent.setActionName(serviceRequest.getActionName());</span>
+
+<span class="fc" id="L79">			applicationActionEvent.setUserId(serviceRequest.getUserId());</span>
+<span class="pc bpc" id="L80" title="1 of 4 branches missed.">			if (serviceRequest.getUserId() != null &amp;&amp; !&quot;anonymousUser&quot;.equalsIgnoreCase(serviceRequest.getUserId())</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">					&amp;&amp; ApplicationSessionType.ANONYMOUS == applicationSession.getSessionType()) {</span>
+<span class="fc" id="L82">				applicationSession.setSessionType(ApplicationSessionType.REGISTERED_USER);</span>
+<span class="fc" id="L83">				applicationSession.setUserId(serviceRequest.getUserId());</span>
+			}
+
+
+<span class="fc" id="L87">			applicationActionEvent.setApplicationMessage(serviceRequest.getApplicationMessage());</span>
+<span class="fc" id="L88">			applicationActionEvent.setErrorMessage(serviceRequest.getErrorMessage());</span>
+
+<span class="fc" id="L90">			applicationSession.getEvents().add(applicationActionEvent);</span>
+
+<span class="fc" id="L92">			applicationSessionDAO.persist(applicationSession);</span>
+<span class="fc" id="L93">			return new CreateApplicationEventResponse(ServiceResult.SUCCESS);</span>
+		} else {
+<span class="fc" id="L95">			return new CreateApplicationEventResponse(ServiceResult.FAILURE);</span>
+		}
+	}
+
+	@Override
+	protected CreateApplicationEventRequest createApplicationEventForService(
+			final CreateApplicationEventRequest serviceRequest) {
+<span class="nc" id="L102">		return new CreateApplicationEventRequest();</span>
+	}
+
+	@Override
+	protected CreateApplicationEventResponse createErrorResponse() {
+<span class="nc" id="L107">		return new CreateApplicationEventResponse(ServiceResult.FAILURE);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

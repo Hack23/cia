@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>WorldbankUpdateServiceImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.component.agent.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.component.agent.impl.worldbank.workers.data</a> &gt; <span class="el_source">WorldbankUpdateServiceImpl.java</span></div><h1>WorldbankUpdateServiceImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.component.agent.impl.worldbank.workers.data;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
+import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
+import com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement;
+import com.hack23.cia.service.data.api.CountryElementDAO;
+import com.hack23.cia.service.data.api.DataDAO;
+import com.hack23.cia.service.data.api.IndicatorElementDAO;
+
+/**
+ * The Class WorldbankUpdateServiceImpl.
+ */
+@Component(&quot;WorldbankUpdateService&quot;)
+@Transactional(propagation = Propagation.MANDATORY)
+final class WorldbankUpdateServiceImpl implements WorldbankUpdateService {
+
+	/** The country element DAO. */
+	@Autowired
+	private final CountryElementDAO countryElementDAO;
+
+	/** The data DAO. */
+	@Autowired
+	private final DataDAO dataDAO;
+
+	/** The indicator element DAO. */
+	@Autowired
+	private final IndicatorElementDAO indicatorElementDAO;
+
+	/**
+	 * Instantiates a new worldbank update service impl.
+	 *
+	 * @param countryElementDAO   the country element DAO
+	 * @param dataDAO             the data DAO
+	 * @param indicatorElementDAO the indicator element DAO
+	 */
+	@Autowired
+	public WorldbankUpdateServiceImpl(final CountryElementDAO countryElementDAO, final DataDAO dataDAO, final IndicatorElementDAO indicatorElementDAO) {
+<span class="nc" id="L63">		super();</span>
+<span class="nc" id="L64">		this.countryElementDAO = countryElementDAO;</span>
+<span class="nc" id="L65">		this.dataDAO = dataDAO;</span>
+<span class="nc" id="L66">		this.indicatorElementDAO = indicatorElementDAO;</span>
+<span class="nc" id="L67">	}</span>
+
+	@Override
+	public void updateCountryElement(final CountryElement country) {
+<span class="nc bnc" id="L71" title="All 2 branches missed.">		if (country != null) {</span>
+<span class="nc" id="L72">			countryElementDAO.persist(country);</span>
+		}
+<span class="nc" id="L74">	}</span>
+
+	@Override
+	public void updateData(final List&lt;WorldBankData&gt; data) {
+<span class="nc bnc" id="L78" title="All 4 branches missed.">		if (data != null &amp;&amp; !data.isEmpty()) {</span>
+<span class="nc" id="L79">			dataDAO.persist(data);</span>
+		}
+<span class="nc" id="L81">	}</span>
+
+	@Override
+	public void updateIndicatorElement(final IndicatorElement object) {
+<span class="nc bnc" id="L85" title="All 2 branches missed.">		if (object != null) {</span>
+<span class="nc" id="L86">			indicatorElementDAO.persist(object);</span>
+		}
+<span class="nc" id="L88">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

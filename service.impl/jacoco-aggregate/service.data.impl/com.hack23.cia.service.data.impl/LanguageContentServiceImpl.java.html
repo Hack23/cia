@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>LanguageContentServiceImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.data.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.data.impl</a> &gt; <span class="el_source">LanguageContentServiceImpl.java</span></div><h1>LanguageContentServiceImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.data.impl;
+
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.hack23.cia.model.internal.application.system.impl.LanguageContentData;
+import com.hack23.cia.model.internal.application.system.impl.LanguageContentType;
+import com.hack23.cia.service.data.api.LanguageContentDataDAO;
+import com.hack23.cia.service.data.api.LanguageContentService;
+
+/**
+ * The Class LanguageContentServiceImpl.
+ */
+@Service
+@Transactional(propagation=Propagation.REQUIRES_NEW)
+final class LanguageContentServiceImpl implements LanguageContentService {
+
+
+	/** The language content data dao. */
+	@Autowired
+	private LanguageContentDataDAO languageContentDataDAO;
+
+	/**
+	 * Instantiates a new language content service impl.
+	 */
+	public LanguageContentServiceImpl() {
+<span class="nc" id="L49">		super();</span>
+<span class="nc" id="L50">	}</span>
+
+	@Override
+	public String getLanguageResource(final String key, final String keyGroup,final String language, final String defaultEnglishValue) {
+<span class="nc" id="L54">		final LanguageContentData findTranslation = languageContentDataDAO.findTranslation(key, language, language);</span>
+
+<span class="nc bnc" id="L56" title="All 2 branches missed.">		if (findTranslation != null) {</span>
+<span class="nc" id="L57">			return findTranslation.getLanguageValue();</span>
+		} else {
+<span class="nc" id="L59">			final LanguageContentData newDefaultValue = new LanguageContentData().withCreatedDate(new Date()).withFromLanguage(&quot;en&quot;).withToLanguage(&quot;en&quot;).withLanguageContentType(LanguageContentType.HUMAN_TRANSLATION).withLanguageValue(defaultEnglishValue).withRefKey(key);</span>
+<span class="nc" id="L60">			languageContentDataDAO.persist(newDefaultValue);</span>
+<span class="nc" id="L61">			return newDefaultValue.getLanguageValue();</span>
+		}
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

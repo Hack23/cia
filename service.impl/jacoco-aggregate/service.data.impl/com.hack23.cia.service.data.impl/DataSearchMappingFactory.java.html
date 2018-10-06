@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>DataSearchMappingFactory.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.data.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.data.impl</a> &gt; <span class="el_source">DataSearchMappingFactory.java</span></div><h1>DataSearchMappingFactory.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.data.impl;
+
+import java.lang.annotation.ElementType;
+
+import org.apache.lucene.analysis.core.LowerCaseFilterFactory;
+import org.apache.lucene.analysis.en.PorterStemFilterFactory;
+import org.apache.lucene.analysis.ngram.NGramFilterFactory;
+import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
+import org.apache.lucene.analysis.sv.SwedishLightStemFilterFactory;
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Factory;
+import org.hibernate.search.annotations.Store;
+import org.hibernate.search.cfg.SearchMapping;
+
+import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
+import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
+
+/**
+ * A factory for creating DataSearchMapping objects.
+ */
+<span class="nc" id="L40">public final class DataSearchMappingFactory {</span>
+
+	/**
+	 * Gets the search mapping.
+	 *
+	 * @return the search mapping
+	 */
+	@Factory
+	public SearchMapping getSearchMapping() {
+<span class="nc" id="L49">		final SearchMapping mapping = new SearchMapping();</span>
+<span class="nc" id="L50">		mapping.analyzerDef(&quot;ngram&quot;, StandardTokenizerFactory.class).filter(LowerCaseFilterFactory.class)</span>
+<span class="nc" id="L51">				.filter(NGramFilterFactory.class).param(&quot;minGramSize&quot;, &quot;3&quot;).param(&quot;maxGramSize&quot;, &quot;3&quot;)</span>
+<span class="nc" id="L52">				.analyzerDef(&quot;se&quot;, StandardTokenizerFactory.class).filter(LowerCaseFilterFactory.class)</span>
+<span class="nc" id="L53">				.filter(SwedishLightStemFilterFactory.class).analyzerDef(&quot;en&quot;, StandardTokenizerFactory.class)</span>
+<span class="nc" id="L54">				.filter(LowerCaseFilterFactory.class).filter(PorterStemFilterFactory.class)</span>
+<span class="nc" id="L55">				.entity(DocumentContentData.class).indexed().property(&quot;hjid&quot;, ElementType.FIELD).documentId().property(&quot;content&quot;, ElementType.METHOD).field().analyzer(&quot;se&quot;).store(Store.NO).analyze(Analyze.YES).property(&quot;id&quot;, ElementType.METHOD).field()</span>
+<span class="nc" id="L56">				.entity(DocumentElement.class).indexed().property(&quot;id&quot;, ElementType.FIELD).documentId().property(&quot;title&quot;, ElementType.METHOD).field().analyzer(&quot;se&quot;).store(Store.NO).analyze(Analyze.YES).property(&quot;subTitle&quot;, ElementType.METHOD).field().analyzer(&quot;se&quot;).store(Store.NO).analyze(Analyze.YES)</span>
+<span class="nc" id="L57">				.entity(DocumentStatusContainer.class).indexed().property(&quot;hjid&quot;, ElementType.FIELD).documentId().property(&quot;documentCategory&quot;, ElementType.METHOD).field().analyzer(&quot;se&quot;).store(Store.NO).analyze(Analyze.YES);</span>
+
+<span class="nc" id="L59">		return mapping;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

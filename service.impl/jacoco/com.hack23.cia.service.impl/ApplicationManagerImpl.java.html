@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ApplicationManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl</a> &gt; <span class="el_source">ApplicationManagerImpl.java</span></div><h1>ApplicationManagerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+
+package com.hack23.cia.service.impl;
+
+import java.io.Serializable;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Future;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.stereotype.Service;
+
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
+import com.hack23.cia.service.api.AgentContainer;
+import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.service.api.action.common.ServiceRequest;
+import com.hack23.cia.service.api.action.common.ServiceResponse;
+import com.hack23.cia.service.impl.action.common.BusinessService;
+
+/**
+ * The Class ApplicationManagerImpl.
+ */
+@Service(&quot;ApplicationManager&quot;)
+final class ApplicationManagerImpl implements ApplicationManager, ApplicationContextAware{
+
+	/** The authentication manager. */
+	@Autowired
+	@Qualifier(&quot;org.springframework.security.authenticationManager&quot;)
+	private AuthenticationManager authenticationManager;
+
+	/** The data agent container. */
+	@Autowired
+	@Qualifier(&quot;DataAgentContainer&quot;)
+	private AgentContainer dataAgentContainer;
+
+	/** The view riksdagen committee data container. */
+	@Autowired
+	@Qualifier(&quot;ViewRiksdagenCommitteeDataContainer&quot;)
+	private DataContainer&lt;ViewRiksdagenCommittee,String&gt; viewRiksdagenCommitteeDataContainer;
+
+	/** The view data data container factory. */
+	@Autowired
+	private ViewDataDataContainerFactory viewDataDataContainerFactory;
+
+	/** The service request business service map. */
+<span class="fc" id="L72">	private final Map&lt;Class&lt;? extends ServiceRequest&gt;, BusinessService&lt;? extends ServiceRequest,? extends ServiceResponse&gt;&gt; serviceRequestBusinessServiceMap = new ConcurrentHashMap&lt;&gt;();</span>
+
+
+	/**
+	 * Instantiates a new application manager impl.
+	 */
+	public ApplicationManagerImpl() {
+<span class="fc" id="L79">		super();</span>
+<span class="fc" id="L80">	}</span>
+
+
+	@Secured({&quot;ROLE_ADMIN&quot;})
+	@Override
+	public AgentContainer getAgentContainer() {
+<span class="fc" id="L86">		return dataAgentContainer;</span>
+	}
+
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;,&quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public &lt;T extends Serializable, V extends Serializable&gt; DataContainer&lt;T, V&gt; getDataContainer(
+			final Class&lt;T&gt; dataObject) {
+
+		DataContainer&lt;T, V&gt; result;
+
+<span class="fc bfc" id="L96" title="All 2 branches covered.">		if (dataObject.equals(ViewRiksdagenCommittee.class)) {</span>
+<span class="fc" id="L97">			result= (DataContainer&lt;T, V&gt;) viewRiksdagenCommitteeDataContainer;</span>
+		} else {
+<span class="fc" id="L99">			result= viewDataDataContainerFactory.createDataContainer(dataObject);</span>
+		}
+
+<span class="fc" id="L102">		return result;</span>
+	}
+
+	@Secured({&quot;ROLE_ANONYMOUS&quot;,&quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public ServiceResponse service(final ServiceRequest serviceRequest) {
+<span class="fc" id="L108">		final BusinessService businessService= serviceRequestBusinessServiceMap.get(serviceRequest.getClass());</span>
+
+<span class="fc" id="L110">		ServiceResponse serviceResponse = null;</span>
+
+<span class="pc bpc" id="L112" title="1 of 2 branches missed.">		if (businessService != null) {</span>
+<span class="fc" id="L113">			serviceResponse = businessService.processService(serviceRequest);</span>
+		}
+
+<span class="fc" id="L116">		return serviceResponse;</span>
+	}
+
+    @Async(&quot;SecureTaskExecutor&quot;)
+    @Secured({&quot;ROLE_ANONYMOUS&quot;,&quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+    @Override
+	public Future&lt;ServiceResponse&gt; asyncService(final ServiceRequest serviceRequest) {
+<span class="nc" id="L123">		return new AsyncResult&lt;&gt;(service(serviceRequest));</span>
+	}
+
+
+	@Override
+	public void setApplicationContext(final ApplicationContext applicationContext) {
+<span class="fc" id="L129">		final Map&lt;String, BusinessService&gt; beansOfType = applicationContext.getBeansOfType(BusinessService.class);</span>
+
+<span class="fc bfc" id="L131" title="All 2 branches covered.">		for (final Entry&lt;String, BusinessService&gt; entry : beansOfType.entrySet()) {</span>
+<span class="fc" id="L132">			serviceRequestBusinessServiceMap.put(entry.getValue().getSupportedService(), entry.getValue());</span>
+<span class="fc" id="L133">		}</span>
+<span class="fc" id="L134">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>RiksdagenUpdateServiceImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.component.agent.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.component.agent.impl.riksdagen.workers.data</a> &gt; <span class="el_source">RiksdagenUpdateServiceImpl.java</span></div><h1>RiksdagenUpdateServiceImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.component.agent.impl.riksdagen.workers.data;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
+import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData_;
+import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData_;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
+import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer_;
+import com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData;
+import com.hack23.cia.model.external.riksdagen.person.impl.PersonAssignmentData;
+import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
+import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData;
+import com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData_;
+import com.hack23.cia.model.external.riksdagen.votering.impl.VoteData;
+import com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId;
+import com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId_;
+import com.hack23.cia.model.external.riksdagen.votering.impl.VoteData_;
+import com.hack23.cia.service.data.api.CommitteeProposalComponentDataDAO;
+import com.hack23.cia.service.data.api.DocumentContentDataDAO;
+import com.hack23.cia.service.data.api.DocumentElementDAO;
+import com.hack23.cia.service.data.api.DocumentStatusContainerDAO;
+import com.hack23.cia.service.data.api.PersonDataDAO;
+import com.hack23.cia.service.data.api.VoteDataDAO;
+
+/**
+ * The Class RiksdagenUpdateServiceImpl.
+ */
+@Component(&quot;RiksdagenUpdateService&quot;)
+@Transactional(propagation = Propagation.MANDATORY)
+final class RiksdagenUpdateServiceImpl implements RiksdagenUpdateService {
+
+	/** The committee proposal component data DAO. */
+	@Autowired
+	private CommitteeProposalComponentDataDAO committeeProposalComponentDataDAO;
+
+	/** The document content data DAO. */
+	@Autowired
+	private DocumentContentDataDAO documentContentDataDAO;
+
+	/** The document element DAO. */
+	@Autowired
+	private DocumentElementDAO documentElementDAO;
+
+	/** The document status container DAO. */
+	@Autowired
+	private DocumentStatusContainerDAO documentStatusContainerDAO;
+
+	/** The person data DAO. */
+	@Autowired
+	private PersonDataDAO personDataDAO;
+
+	/** The vote data DAO. */
+	@Autowired
+	private VoteDataDAO voteDataDAO;
+
+	/**
+	 * Instantiates a new riksdagen update service impl.
+	 */
+	public RiksdagenUpdateServiceImpl() {
+<span class="nc" id="L86">		super();</span>
+<span class="nc" id="L87">	}</span>
+
+	@Override
+	public void update(final PersonData personData) {
+<span class="nc" id="L91">		final PersonData existData = personDataDAO.load(personData.getId());</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">		if (existData == null) {</span>
+<span class="nc" id="L93">			personDataDAO.persist(personData);</span>
+		} else {
+<span class="nc" id="L95">			existData.setElectionRegion(personData.getElectionRegion());</span>
+<span class="nc" id="L96">			existData.setParty(personData.getParty());</span>
+<span class="nc" id="L97">			existData.setStatus(personData.getStatus());</span>
+<span class="nc" id="L98">			existData.setLastName(personData.getLastName());</span>
+<span class="nc" id="L99">			existData.setPlace(personData.getPlace());</span>
+
+<span class="nc" id="L101">			updatePersonAssignmentData(existData.getPersonAssignmentData(), personData.getPersonAssignmentData());</span>
+
+<span class="nc" id="L103">			personDataDAO.persist(existData);</span>
+		}
+<span class="nc" id="L105">	}</span>
+
+	/**
+	 * Update person assignment data.
+	 *
+	 * @param exist  the exist
+	 * @param update the update
+	 */
+	private void updatePersonAssignmentData(final PersonAssignmentData exist, final PersonAssignmentData update) {
+
+<span class="nc" id="L115">		List&lt;AssignmentData&gt; assignmentList = update.getAssignmentList();</span>
+
+<span class="nc bnc" id="L117" title="All 2 branches missed.">		for (AssignmentData assignmentData : assignmentList) {</span>
+<span class="nc" id="L118">			updateAssignmentData(exist.getAssignmentList(), assignmentData);</span>
+<span class="nc" id="L119">		}</span>
+<span class="nc" id="L120">	}</span>
+
+	/**
+	 * Update assignment data.
+	 *
+	 * @param assignmentList the assignment list
+	 * @param assignmentData the assignment data
+	 */
+	private void updateAssignmentData(final List&lt;AssignmentData&gt; assignmentList, final AssignmentData assignmentData) {
+<span class="nc bnc" id="L129" title="All 2 branches missed.">		for (AssignmentData matchAssignmentData : assignmentList) {</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">			if (matchAssignmentData.getFromDate().equals(assignmentData.getFromDate())</span>
+<span class="nc bnc" id="L131" title="All 4 branches missed.">					&amp;&amp; matchAssignmentData.getOrgCode().equals(assignmentData.getOrgCode()) &amp;&amp; matchAssignmentData.getRoleCode().equals(assignmentData.getRoleCode())) {</span>
+
+<span class="nc" id="L133">				matchAssignmentData.setStatus(assignmentData.getStatus());</span>
+<span class="nc" id="L134">				matchAssignmentData.setToDate(assignmentData.getToDate());</span>
+<span class="nc" id="L135">				return;</span>
+			}
+<span class="nc" id="L137">		}</span>
+<span class="nc" id="L138">		assignmentList.add(assignmentData);</span>
+<span class="nc" id="L139">	}</span>
+
+	@Override
+	public void updateCommitteeProposalComponentData(final CommitteeProposalComponentData committeeProposal) {
+<span class="nc bnc" id="L143" title="All 2 branches missed.">		if (committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,</span>
+<span class="nc" id="L144">				committeeProposal.getDocument()) == null) {</span>
+<span class="nc" id="L145">			committeeProposalComponentDataDAO.persist(committeeProposal);</span>
+		}
+<span class="nc" id="L147">	}</span>
+
+	@Override
+	public void updateDocumentContentData(final DocumentContentData documentData) {
+<span class="nc bnc" id="L151" title="All 2 branches missed.">		if (documentContentDataDAO.findFirstByProperty(DocumentContentData_.id, documentData.getId()) == null) {</span>
+<span class="nc" id="L152">			documentContentDataDAO.persist(documentData);</span>
+		}
+<span class="nc" id="L154">	}</span>
+
+	@Override
+	public void updateDocumentData(final DocumentStatusContainer documentData) {
+<span class="nc" id="L158">		if (documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document, DocumentData.class,</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">				DocumentData_.id, documentData.getDocument().getId()).isEmpty()) {</span>
+<span class="nc" id="L160">			documentStatusContainerDAO.persist(documentData);</span>
+		}
+<span class="nc" id="L162">	}</span>
+
+	@Override
+	public void updateDocumentElement(final DocumentElement documentData) {
+<span class="nc" id="L166">		DocumentElement existDocumentElement = documentElementDAO.load(documentData.getId());</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">		if (existDocumentElement == null) {</span>
+<span class="nc" id="L168">			documentElementDAO.persist(documentData);</span>
+		} else {			
+<span class="nc" id="L170">			existDocumentElement.setCommitteeReportUrlXml(documentData.getCommitteeReportUrlXml());</span>
+<span class="nc" id="L171">			existDocumentElement.setStatus(documentData.getStatus());</span>
+<span class="nc" id="L172">			existDocumentElement.setDebateName(documentData.getDebateName());</span>
+<span class="nc" id="L173">			existDocumentElement.setRelatedId(documentData.getRelatedId());</span>
+<span class="nc" id="L174">			existDocumentElement.setSystemDate(documentData.getSystemDate());</span>
+<span class="nc" id="L175">			existDocumentElement.setMadePublicDate(documentData.getMadePublicDate());			</span>
+<span class="nc" id="L176">			existDocumentElement.setLabel(documentData.getLabel());</span>
+<span class="nc" id="L177">			existDocumentElement.setNote(documentData.getNote());</span>
+<span class="nc" id="L178">			existDocumentElement.setNoteTitle(documentData.getNoteTitle());</span>
+<span class="nc" id="L179">			existDocumentElement.setTempLabel(documentData.getTempLabel());</span>
+<span class="nc" id="L180">			existDocumentElement.setTitle(documentData.getTitle());</span>
+<span class="nc" id="L181">			documentElementDAO.persist(existDocumentElement);</span>
+		}
+<span class="nc" id="L183">	}</span>
+
+	@Override
+	public void updateVoteDataData(final List&lt;VoteData&gt; list) {
+<span class="nc bnc" id="L187" title="All 4 branches missed.">		if (list != null &amp;&amp; !list.isEmpty()</span>
+<span class="nc" id="L188">				&amp;&amp; voteDataDAO.findListByEmbeddedProperty(VoteData_.embeddedId, VoteDataEmbeddedId.class,</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">						VoteDataEmbeddedId_.ballotId, list.get(0).getEmbeddedId().getBallotId()).isEmpty()) {</span>
+<span class="nc" id="L190">			voteDataDAO.persist(list);</span>
+		}
+<span class="nc" id="L192">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

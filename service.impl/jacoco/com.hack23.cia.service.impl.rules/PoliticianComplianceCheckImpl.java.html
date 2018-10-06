@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PoliticianComplianceCheckImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.rules</a> &gt; <span class="el_source">PoliticianComplianceCheckImpl.java</span></div><h1>PoliticianComplianceCheckImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ * 
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.impl.rules;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Collections;
+import java.util.List;
+
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.service.api.action.kpi.ResourceType;
+
+/**
+ * The Class PoliticianComplianceCheckImpl.
+ */
+public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheckImpl {
+
+	/** The Constant NO. */
+	private static final String NO = &quot;NEJ&quot;;
+
+	/** The Constant YES. */
+	private static final String YES = &quot;JA&quot;;
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The politician. */
+	private final ViewRiksdagenPolitician politician;
+	
+	/** The ballot decisions. */
+	private final List&lt;ViewRiksdagenCommitteeBallotDecisionPoliticianSummary&gt; ballotDecisions;
+	
+	/** The daily summary. */
+	private final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily dailySummary;
+	
+	/** The monthly summary. */
+	private final ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly monthlySummary;
+	
+	/** The annual summary. */
+	private final ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual annualSummary;
+	
+	/** The name. */
+	private final String name;
+	
+	/**
+	 * Instantiates a new politician compliance check impl.
+	 *
+	 * @param politician     the politician
+	 * @param dailySummary   the daily summary
+	 * @param monthlySummary the monthly summary
+	 * @param annualSummary  the annual summary
+	 * @param decisionList   the decision list
+	 */
+	public PoliticianComplianceCheckImpl(final ViewRiksdagenPolitician politician,final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily dailySummary, final ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly monthlySummary,final ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual annualSummary, List&lt;ViewRiksdagenCommitteeBallotDecisionPoliticianSummary&gt; decisionList) {
+<span class="fc" id="L75">		super(ResourceType.POLITICIAN);</span>
+<span class="fc" id="L76">		this.politician = politician;</span>
+<span class="fc" id="L77">		this.dailySummary = dailySummary;</span>
+<span class="fc" id="L78">		this.monthlySummary = monthlySummary;</span>
+<span class="fc" id="L79">		this.annualSummary = annualSummary;</span>
+<span class="fc" id="L80">		this.ballotDecisions = Collections.unmodifiableList(decisionList);</span>
+<span class="fc" id="L81">		this.name = politician.getFirstName() + &quot; &quot; + politician.getLastName() + &quot; (&quot; +politician.getParty() +&quot;)&quot;;</span>
+<span class="fc" id="L82">	}</span>
+
+	/**
+	 * Gets the politician.
+	 *
+	 * @return the politician
+	 */
+	public ViewRiksdagenPolitician getPolitician() {
+<span class="fc" id="L90">		return politician;</span>
+	}
+
+	@Override
+	public String getName() {
+<span class="fc" id="L95">		return name;</span>
+	}
+
+	@Override
+	public String getId() {
+<span class="fc" id="L100">		return politician.getPersonId();</span>
+	}
+
+	/**
+	 * Supports.
+	 *
+	 * @param committeeReport the committee report
+	 * @param rm              the rm
+	 * @return true, if successful
+	 */
+	public boolean supports(final String committeeReport,final String rm) {
+<span class="fc bfc" id="L111" title="All 2 branches covered.">		for (ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {</span>
+<span class="pc bpc" id="L112" title="2 of 4 branches missed.">			if (summary.getRm().equalsIgnoreCase(rm) &amp;&amp; summary.getCommitteeReport().equalsIgnoreCase(committeeReport)) {</span>
+<span class="fc" id="L113">				return YES.equalsIgnoreCase(summary.getVote());</span>
+			}			
+<span class="nc" id="L115">		}</span>
+<span class="fc" id="L116">		return false;</span>
+	}
+
+	/**
+	 * Against.
+	 *
+	 * @param committeeReport the committee report
+	 * @param rm              the rm
+	 * @return true, if successful
+	 */
+	public boolean against(final String committeeReport,final String rm) {
+<span class="fc bfc" id="L127" title="All 2 branches covered.">		for (ViewRiksdagenCommitteeBallotDecisionPoliticianSummary summary : ballotDecisions) {</span>
+<span class="pc bpc" id="L128" title="2 of 4 branches missed.">			if (summary.getRm().equalsIgnoreCase(rm) &amp;&amp; summary.getCommitteeReport().equalsIgnoreCase(committeeReport)) {</span>
+<span class="fc" id="L129">				return NO.equalsIgnoreCase(summary.getVote());</span>
+			}			
+<span class="nc" id="L131">		}</span>
+<span class="fc" id="L132">		return false;</span>
+	}
+	
+
+	/**
+	 * Gets the daily summary.
+	 *
+	 * @return the daily summary
+	 */
+	public ViewRiksdagenVoteDataBallotPoliticianSummaryDaily getDailySummary() {
+<span class="fc" id="L142">		return dailySummary;</span>
+	}
+
+	/**
+	 * Gets the monthly summary.
+	 *
+	 * @return the monthly summary
+	 */
+	public ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly getMonthlySummary() {
+<span class="fc" id="L151">		return monthlySummary;</span>
+	}
+
+
+	/**
+	 * Gets the annual summary.
+	 *
+	 * @return the annual summary
+	 */
+	public ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual getAnnualSummary() {
+<span class="fc" id="L161">		return annualSummary;</span>
+	}
+
+	/**
+	 * Gets the year.
+	 *
+	 * @return the year
+	 */
+	public int getYear() {
+<span class="fc" id="L170">		return LocalDate.now(ZoneId.of(&quot;UTC&quot;)).getYear();</span>
+	}
+	
+	/**
+	 * Gets the age.
+	 *
+	 * @return the age
+	 */
+	public int getAge() {
+<span class="fc" id="L179">		return getYear() - politician.getBornYear();</span>
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
