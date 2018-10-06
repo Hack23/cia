@@ -1,0 +1,68 @@
+digraph TableGraph {
+  compound=true;
+    bgcolor="white"; 
+    fontcolor="black"; fontname="Helvetica"; fontsize="10.0"; 
+    ranksep="equally"; 
+    label="Table Graph"; 
+    URL="http://tools.hibernate.org";
+  edge [
+        color="lightgrey", 
+        fontcolor="black", 
+        fontname="Helvetica", 
+        fontsize="8.0",         
+        labelangle=-25.0, 
+        labeldistance=1.5
+        headport=nw,
+        tailport=se
+        ];
+  node [
+       fontcolor="black",
+       fontname="Helvetica", 
+       fontsize="10.0", 
+       shape=record, 
+       fillcolor="yellow", 
+       style="solid,filled"];
+
+/* TODO: multi schema tables */
+  /* Node ASSIGNMENT_ELEMENT */
+  ASSIGNMENT_ELEMENT [ label = "{ ASSIGNMENT_ELEMENT| <HJID>HJID\l | <ASSIGNMENT_TYPE>ASSIGNMENT_TYPE\l | <DETAIL>DETAIL\l | <FROM_DATE>FROM_DATE\l | <INTRESSENT_ID>INTRESSENT_ID\l | <ORDER_NUMBER>ORDER_NUMBER\l | <ORG_CODE>ORG_CODE\l | <ROLE_CODE>ROLE_CODE\l | <STATUS>STATUS\l | <TO_DATE>TO_DATE\l | <UPPDRAG_PERSON_ASSIGNMENT_EL_0>UPPDRAG_PERSON_ASSIGNMENT_EL_0\l }" ]  
+  
+  /* edges/nodes for ASSIGNMENT_ELEMENT */
+     ASSIGNMENT_ELEMENT -> PERSON_ASSIGNMENT_ELEMENT [ 
+        label="FK8egqg9aadqnijh6hluireipd0" 
+        ]
+  /* Node DETAIL_ELEMENT */
+  DETAIL_ELEMENT [ label = "{ DETAIL_ELEMENT| <HJID>HJID\l | <CODE>CODE\l | <DETAIL>DETAIL\l | <DETAIL_TYPE>DETAIL_TYPE\l | <INTRESSENT_ID>INTRESSENT_ID\l }" ]  
+  
+  /* edges/nodes for DETAIL_ELEMENT */
+  /* Node PERSON_ASSIGNMENT_ELEMENT */
+  PERSON_ASSIGNMENT_ELEMENT [ label = "{ PERSON_ASSIGNMENT_ELEMENT| <HJID>HJID\l }" ]  
+  
+  /* edges/nodes for PERSON_ASSIGNMENT_ELEMENT */
+  /* Node PERSON_CONTAINER_ELEMENT */
+  PERSON_CONTAINER_ELEMENT [ label = "{ PERSON_CONTAINER_ELEMENT| <HJID>HJID\l }" ]  
+  
+  /* edges/nodes for PERSON_CONTAINER_ELEMENT */
+  /* Node PERSON_DETAIL_ELEMENT */
+  PERSON_DETAIL_ELEMENT [ label = "{ PERSON_DETAIL_ELEMENT| <HJID>HJID\l | <DETAIL_LIST_PERSON_DETAIL_EL_0>DETAIL_LIST_PERSON_DETAIL_EL_0\l }" ]  
+  
+  /* edges/nodes for PERSON_DETAIL_ELEMENT */
+     PERSON_DETAIL_ELEMENT -> DETAIL_ELEMENT [ 
+        label="FKjbau0jlkpnfsswgkea8o5u7es" 
+        ]
+  /* Node PERSON_ELEMENT */
+  PERSON_ELEMENT [ label = "{ PERSON_ELEMENT| <ID>ID\l | <BORN_YEAR>BORN_YEAR\l | <ELECTION_REGION>ELECTION_REGION\l | <FIRST_NAME>FIRST_NAME\l | <GENDER>GENDER\l | <HANGAR_GUID>HANGAR_GUID\l | <IMAGE_URL_192>IMAGE_URL_192\l | <IMAGE_URL_80>IMAGE_URL_80\l | <IMAGE_URL_MAX>IMAGE_URL_MAX\l | <LAST_NAME>LAST_NAME\l | <PARTY>PARTY\l | <PERSON_URL_XML>PERSON_URL_XML\l | <PLACE>PLACE\l | <STATUS>STATUS\l | <PERSON_ASSIGNMENT_ELEMENT_PE_0>PERSON_ASSIGNMENT_ELEMENT_PE_0\l | <PERSON_DETAIL_ELEMENT_PERSON_0>PERSON_DETAIL_ELEMENT_PERSON_0\l | <PERSON_PERSON_CONTAINER_ELEM_0>PERSON_PERSON_CONTAINER_ELEM_0\l }" ]  
+  
+  /* edges/nodes for PERSON_ELEMENT */
+     PERSON_ELEMENT -> PERSON_ASSIGNMENT_ELEMENT [ 
+        label="FKbe0p7x6pw31it41l70k0n2yhy" 
+        ]
+     PERSON_ELEMENT -> PERSON_DETAIL_ELEMENT [ 
+        label="FKf9ctg19wht1va2oa88p4ubbgw" 
+        ]
+     PERSON_ELEMENT -> PERSON_CONTAINER_ELEMENT [ 
+        label="FKefu7l0m5t9n1gewodw90kcidu" 
+        ]
+
+}
+
