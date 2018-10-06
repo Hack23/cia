@@ -1,0 +1,9 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+service.external.esv,com.hack23.cia.service.external.esv.impl,EsvGovernmentBodyOperationOutcomeReaderImpl,0,391,1,15,0,54,1,17,0,10
+service.external.esv,com.hack23.cia.service.external.esv.impl,EsvExcelReaderImpl,10,240,2,28,4,55,2,25,0,12
+service.external.esv,com.hack23.cia.service.external.esv.impl,EsvApiImpl,0,359,1,39,0,71,1,39,0,20
+service.external.esv,com.hack23.cia.service.external.esv.impl,EsvGovernmentOperationsExcelReaderImpl,0,87,0,6,0,23,0,6,0,3
+service.external.esv,com.hack23.cia.service.external.esv.api,GovernmentOperationPeriodOutcome,0,65,0,0,0,24,0,17,0,17
+service.external.esv,com.hack23.cia.service.external.esv.api,GovernmentOperationPeriodOutcome.Variables,0,92,0,0,0,12,0,3,0,3
+service.external.esv,com.hack23.cia.service.external.esv.api,GovernmentBodyAnnualOutcomeSummary,0,92,0,0,0,24,0,13,0,13
+service.external.esv,com.hack23.cia.service.external.esv.api,GovernmentBodyAnnualSummary,0,84,0,0,0,27,0,15,0,15

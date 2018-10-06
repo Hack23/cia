@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GovernmentBodyAnnualSummary.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.external.esv</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.esv.api</a> &gt; <span class="el_source">GovernmentBodyAnnualSummary.java</span></div><h1>GovernmentBodyAnnualSummary.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.external.esv.api;
+
+import java.io.Serializable;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * The Class GovernmentBodyAnnualSummary.
+ */
+public final class GovernmentBodyAnnualSummary implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The annual work head count. */
+	private final int annualWorkHeadCount;
+
+	/** The comment. */
+	private final String comment;
+
+	/** The consecutive number. */
+	private final int consecutiveNumber;
+
+	/** The goverment body id. */
+	private final String govermentBodyId;
+
+	/** The head count. */
+	private final int headCount;
+
+	/** The m code. */
+	private final String mCode;
+
+	/** The ministry. */
+	private final String ministry;
+
+	/** The name. */
+	private final String name;
+
+	/** The org number. */
+	private final String orgNumber;
+
+	/** The vat. */
+	private final String vat;
+
+	/** The year. */
+	private final int year;
+
+	/**
+	 * Instantiates a new government body annual summary.
+	 *
+	 * @param year
+	 *            the year
+	 * @param name
+	 *            the name
+	 * @param consecutiveNumber
+	 *            the consecutive number
+	 * @param govermentBodyId
+	 *            the goverment body id
+	 * @param mCode
+	 *            the m code
+	 * @param ministry
+	 *            the ministry
+	 * @param orgNumber
+	 *            the org number
+	 * @param headCount
+	 *            the head count
+	 * @param annualWorkHeadCount
+	 *            the annual work head count
+	 * @param vat
+	 *            the vat
+	 * @param comment
+	 *            the comment
+	 */
+	public GovernmentBodyAnnualSummary(final int year, final String name, final int consecutiveNumber, final String govermentBodyId,
+			final String mCode, final String ministry, final String orgNumber, final int headCount, final int annualWorkHeadCount, final String vat,
+			final String comment) {
+<span class="fc" id="L98">		super();</span>
+<span class="fc" id="L99">		this.year = year;</span>
+<span class="fc" id="L100">		this.name = name;</span>
+<span class="fc" id="L101">		this.consecutiveNumber = consecutiveNumber;</span>
+<span class="fc" id="L102">		this.govermentBodyId = govermentBodyId;</span>
+<span class="fc" id="L103">		this.mCode = mCode;</span>
+<span class="fc" id="L104">		this.ministry = ministry;</span>
+<span class="fc" id="L105">		this.orgNumber = orgNumber;</span>
+<span class="fc" id="L106">		this.headCount = headCount;</span>
+<span class="fc" id="L107">		this.annualWorkHeadCount = annualWorkHeadCount;</span>
+<span class="fc" id="L108">		this.vat = vat;</span>
+<span class="fc" id="L109">		this.comment = comment;</span>
+<span class="fc" id="L110">	}</span>
+
+	/**
+	 * Gets the annual work head count.
+	 *
+	 * @return the annual work head count
+	 */
+	public int getAnnualWorkHeadCount() {
+<span class="fc" id="L118">		return annualWorkHeadCount;</span>
+	}
+
+	/**
+	 * Gets the comment.
+	 *
+	 * @return the comment
+	 */
+	public String getComment() {
+<span class="fc" id="L127">		return comment;</span>
+	}
+
+	/**
+	 * Gets the consecutive number.
+	 *
+	 * @return the consecutive number
+	 */
+	public int getConsecutiveNumber() {
+<span class="fc" id="L136">		return consecutiveNumber;</span>
+	}
+
+	/**
+	 * Gets the goverment body id.
+	 *
+	 * @return the goverment body id
+	 */
+	public String getGovermentBodyId() {
+<span class="fc" id="L145">		return govermentBodyId;</span>
+	}
+
+	/**
+	 * Gets the head count.
+	 *
+	 * @return the head count
+	 */
+	public int getHeadCount() {
+<span class="fc" id="L154">		return headCount;</span>
+	}
+
+	/**
+	 * Gets the m code.
+	 *
+	 * @return the m code
+	 */
+	public String getmCode() {
+<span class="fc" id="L163">		return mCode;</span>
+	}
+
+	/**
+	 * Gets the ministry.
+	 *
+	 * @return the ministry
+	 */
+	public String getMinistry() {
+<span class="fc" id="L172">		return ministry;</span>
+	}
+
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
+	public String getName() {
+<span class="fc" id="L181">		return name;</span>
+	}
+
+	/**
+	 * Gets the org number.
+	 *
+	 * @return the org number
+	 */
+	public String getOrgNumber() {
+<span class="fc" id="L190">		return orgNumber;</span>
+	}
+
+	/**
+	 * Gets the vat.
+	 *
+	 * @return the vat
+	 */
+	public String getVat() {
+<span class="fc" id="L199">		return vat;</span>
+	}
+
+	/**
+	 * Gets the year.
+	 *
+	 * @return the year
+	 */
+	public int getYear() {
+<span class="fc" id="L208">		return year;</span>
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L213">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L218">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L223">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

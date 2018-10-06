@@ -1,0 +1,4 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+service.external.esv/service.external.common,com.hack23.cia.service.external.common.api,XmlAgentException,4,0,0,0,2,0,1,0,1,0
+service.external.esv/service.external.common,com.hack23.cia.service.external.common.impl,XmlAgentImpl,157,0,12,0,32,0,13,0,7,0
+service.external.esv/service.external.common,com.hack23.cia.service.external.common.impl,NameSpaceUtil,23,0,0,0,4,0,1,0,1,0
