@@ -1,0 +1,75 @@
+digraph EntityGraph {
+  compound=true;
+    bgcolor="white"; 
+    fontcolor="black"; fontname="Helvetica"; fontsize="10.0"; 
+    ranksep="equally"; 
+    label="Entity Graph"; 
+    URL="http://tools.hibernate.org";
+  edge [
+        color="lightgrey", 
+        fontcolor="black", 
+        fontname="Helvetica", 
+        fontsize="8.0",         
+        labelangle=-25.0, 
+        labeldistance=1.5
+        ];
+  node [
+       fontcolor="black",
+       fontname="Helvetica", 
+       fontsize="10.0", 
+       shape=record, 
+       fillcolor="#D4E5FE", 
+       style="solid,filled"];
+
+  /* Node com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_val_dot_partier_dot_impl_dot_SwedenPoliticalParty [ label = "{ com\.hack23\.cia\.model\.external\.val\.partier\.impl\.SwedenPoliticalParty| address\l city\l coAddress\l email\l faxNumber\l partyId\l partyName\l phoneNumber\l postCode\l registeredDate\l shortCode\l website\l }", URL="com/hack23/cia/model/external/val/partier/impl/SwedenPoliticalParty.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_val_dot_partier_dot_impl_dot_SwedenPoliticalParty */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.external.val.partier.impl.SwedenElectionRegion */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_val_dot_partier_dot_impl_dot_SwedenElectionRegion [ label = "{ com\.hack23\.cia\.model\.external\.val\.partier\.impl\.SwedenElectionRegion| countyId\l municipalId\l regionName\l }", URL="com/hack23/cia/model/external/val/partier/impl/SwedenElectionRegion.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.val.partier.impl.SwedenElectionRegion */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_val_dot_partier_dot_impl_dot_SwedenElectionRegion */
+     
+     
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_val_dot_partier_dot_impl_dot_SwedenElectionRegion -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_val_dot_partier_dot_impl_dot_SwedenPoliticalParty [ 
+        label="parties" 
+        ]
+     
+     
+  /* Node com.hack23.cia.model.external.val.partier.impl.SwedenElectionType */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_val_dot_partier_dot_impl_dot_SwedenElectionType [ label = "{ com\.hack23\.cia\.model\.external\.val\.partier\.impl\.SwedenElectionType| electionCode\l electionType\l region\l }", URL="com/hack23/cia/model/external/val/partier/impl/SwedenElectionType.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.val.partier.impl.SwedenElectionType */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_val_dot_partier_dot_impl_dot_SwedenElectionType */
+     
+     
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_val_dot_partier_dot_impl_dot_SwedenElectionType -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_val_dot_partier_dot_impl_dot_SwedenElectionRegion [ 
+        label="region" 
+        ]
+     
+  /* Node com.hack23.cia.model.external.val.partier.impl.SwedenElectionTypeContainerElement */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_val_dot_partier_dot_impl_dot_SwedenElectionTypeContainerElement [ label = "{ com\.hack23\.cia\.model\.external\.val\.partier\.impl\.SwedenElectionTypeContainerElement| }", URL="com/hack23/cia/model/external/val/partier/impl/SwedenElectionTypeContainerElement.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.val.partier.impl.SwedenElectionTypeContainerElement */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_val_dot_partier_dot_impl_dot_SwedenElectionTypeContainerElement */
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_val_dot_partier_dot_impl_dot_SwedenElectionTypeContainerElement -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_val_dot_partier_dot_impl_dot_SwedenElectionType [ 
+        label="electionTypes" 
+        ]
+     
+
+}
+

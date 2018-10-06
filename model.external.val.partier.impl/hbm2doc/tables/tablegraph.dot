@@ -1,0 +1,54 @@
+digraph TableGraph {
+  compound=true;
+    bgcolor="white"; 
+    fontcolor="black"; fontname="Helvetica"; fontsize="10.0"; 
+    ranksep="equally"; 
+    label="Table Graph"; 
+    URL="http://tools.hibernate.org";
+  edge [
+        color="lightgrey", 
+        fontcolor="black", 
+        fontname="Helvetica", 
+        fontsize="8.0",         
+        labelangle=-25.0, 
+        labeldistance=1.5
+        headport=nw,
+        tailport=se
+        ];
+  node [
+       fontcolor="black",
+       fontname="Helvetica", 
+       fontsize="10.0", 
+       shape=record, 
+       fillcolor="yellow", 
+       style="solid,filled"];
+
+/* TODO: multi schema tables */
+  /* Node SWEDEN_ELECTION_REGION */
+  SWEDEN_ELECTION_REGION [ label = "{ SWEDEN_ELECTION_REGION| <HJID>HJID\l | <COUNTY_ID>COUNTY_ID\l | <MUNICIPAL_ID>MUNICIPAL_ID\l | <REGION_NAME>REGION_NAME\l }" ]  
+  
+  /* edges/nodes for SWEDEN_ELECTION_REGION */
+  /* Node SWEDEN_ELECTION_TYPE */
+  SWEDEN_ELECTION_TYPE [ label = "{ SWEDEN_ELECTION_TYPE| <HJID>HJID\l | <ELECTION_CODE>ELECTION_CODE\l | <ELECTION_TYPE>ELECTION_TYPE\l | <REGION_SWEDEN_ELECTION_TYPE__0>REGION_SWEDEN_ELECTION_TYPE__0\l | <ELECTION_TYPES_SWEDEN_ELECTI_0>ELECTION_TYPES_SWEDEN_ELECTI_0\l }" ]  
+  
+  /* edges/nodes for SWEDEN_ELECTION_TYPE */
+     SWEDEN_ELECTION_TYPE -> SWEDEN_ELECTION_REGION [ 
+        label="FKbqg4wb3v6d8ld8srqg06xgrag" 
+        ]
+     SWEDEN_ELECTION_TYPE -> SWEDEN_ELECTION_TYPE_CONTAIN_0 [ 
+        label="FK13c9mw6dbs70b30e27gkivo36" 
+        ]
+  /* Node SWEDEN_ELECTION_TYPE_CONTAIN_0 */
+  SWEDEN_ELECTION_TYPE_CONTAIN_0 [ label = "{ SWEDEN_ELECTION_TYPE_CONTAIN_0| <HJID>HJID\l }" ]  
+  
+  /* edges/nodes for SWEDEN_ELECTION_TYPE_CONTAIN_0 */
+  /* Node SWEDEN_POLITICAL_PARTY */
+  SWEDEN_POLITICAL_PARTY [ label = "{ SWEDEN_POLITICAL_PARTY| <HJID>HJID\l | <ADDRESS>ADDRESS\l | <CITY>CITY\l | <CO_ADDRESS>CO_ADDRESS\l | <EMAIL>EMAIL\l | <FAX_NUMBER>FAX_NUMBER\l | <PARTY_ID>PARTY_ID\l | <PARTY_NAME>PARTY_NAME\l | <PHONE_NUMBER>PHONE_NUMBER\l | <POST_CODE>POST_CODE\l | <REGISTERED_DATE>REGISTERED_DATE\l | <SHORT_CODE>SHORT_CODE\l | <WEBSITE>WEBSITE\l | <PARTIES_SWEDEN_ELECTION_REGI_0>PARTIES_SWEDEN_ELECTION_REGI_0\l }" ]  
+  
+  /* edges/nodes for SWEDEN_POLITICAL_PARTY */
+     SWEDEN_POLITICAL_PARTY -> SWEDEN_ELECTION_REGION [ 
+        label="FKjtqe1s3aeycgvuuhicr244u52" 
+        ]
+
+}
+
