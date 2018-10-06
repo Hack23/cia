@@ -1,0 +1,54 @@
+digraph TableGraph {
+  compound=true;
+    bgcolor="white"; 
+    fontcolor="black"; fontname="Helvetica"; fontsize="10.0"; 
+    ranksep="equally"; 
+    label="Table Graph"; 
+    URL="http://tools.hibernate.org";
+  edge [
+        color="lightgrey", 
+        fontcolor="black", 
+        fontname="Helvetica", 
+        fontsize="8.0",         
+        labelangle=-25.0, 
+        labeldistance=1.5
+        headport=nw,
+        tailport=se
+        ];
+  node [
+       fontcolor="black",
+       fontname="Helvetica", 
+       fontsize="10.0", 
+       shape=record, 
+       fillcolor="yellow", 
+       style="solid,filled"];
+
+/* TODO: multi schema tables */
+  /* Node SWEDEN_COUNTY_DATA */
+  SWEDEN_COUNTY_DATA [ label = "{ SWEDEN_COUNTY_DATA| <HJID>HJID\l | <CODE>CODE\l | <COUNTY_NAME>COUNTY_NAME\l | <COUNTY_REGIONS_SWEDEN_COUNTY_0>COUNTY_REGIONS_SWEDEN_COUNTY_0\l }" ]  
+  
+  /* edges/nodes for SWEDEN_COUNTY_DATA */
+     SWEDEN_COUNTY_DATA -> SWEDEN_COUNTY_DATA_CONTAINER [ 
+        label="FKtngf4843n3av2k6wkyn11dqb" 
+        ]
+  /* Node SWEDEN_COUNTY_DATA_CONTAINER */
+  SWEDEN_COUNTY_DATA_CONTAINER [ label = "{ SWEDEN_COUNTY_DATA_CONTAINER| <HJID>HJID\l }" ]  
+  
+  /* edges/nodes for SWEDEN_COUNTY_DATA_CONTAINER */
+  /* Node SWEDEN_MUNICIPALITY_DATA */
+  SWEDEN_MUNICIPALITY_DATA [ label = "{ SWEDEN_MUNICIPALITY_DATA| <HJID>HJID\l | <CODE>CODE\l | <MUNICIPAL_NAME>MUNICIPAL_NAME\l | <KOMMUN_SWEDEN_COUNTY_DATA_HJ_0>KOMMUN_SWEDEN_COUNTY_DATA_HJ_0\l }" ]  
+  
+  /* edges/nodes for SWEDEN_MUNICIPALITY_DATA */
+     SWEDEN_MUNICIPALITY_DATA -> SWEDEN_COUNTY_DATA [ 
+        label="FKpe06dn9owplvps47rtiykytfc" 
+        ]
+  /* Node SWEDEN_MUNICIPALITY_ELECTION_0 */
+  SWEDEN_MUNICIPALITY_ELECTION_0 [ label = "{ SWEDEN_MUNICIPALITY_ELECTION_0| <HJID>HJID\l | <CODE>CODE\l | <ELECTION_REGION_NAME>ELECTION_REGION_NAME\l | <FIRST_ROUND>FIRST_ROUND\l | <NUMBER_OF_SEATS>NUMBER_OF_SEATS\l | <NUMBER_OF_VOTERS>NUMBER_OF_VOTERS\l | <REST>REST\l | <SECOND_ROUND>SECOND_ROUND\l | <KOMMUNVALKRETS_SWEDEN_MUNICI_0>KOMMUNVALKRETS_SWEDEN_MUNICI_0\l }" ]  
+  
+  /* edges/nodes for SWEDEN_MUNICIPALITY_ELECTION_0 */
+     SWEDEN_MUNICIPALITY_ELECTION_0 -> SWEDEN_MUNICIPALITY_DATA [ 
+        label="FKp3ffooav9vicf85fanbbcdvao" 
+        ]
+
+}
+
