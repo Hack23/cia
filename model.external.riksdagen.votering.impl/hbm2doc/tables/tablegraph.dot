@@ -1,0 +1,58 @@
+digraph TableGraph {
+  compound=true;
+    bgcolor="white"; 
+    fontcolor="black"; fontname="Helvetica"; fontsize="10.0"; 
+    ranksep="equally"; 
+    label="Table Graph"; 
+    URL="http://tools.hibernate.org";
+  edge [
+        color="lightgrey", 
+        fontcolor="black", 
+        fontname="Helvetica", 
+        fontsize="8.0",         
+        labelangle=-25.0, 
+        labeldistance=1.5
+        headport=nw,
+        tailport=se
+        ];
+  node [
+       fontcolor="black",
+       fontname="Helvetica", 
+       fontsize="10.0", 
+       shape=record, 
+       fillcolor="yellow", 
+       style="solid,filled"];
+
+/* TODO: multi schema tables */
+  /* Node BALLOT_CONTAINER */
+  BALLOT_CONTAINER [ label = "{ BALLOT_CONTAINER| <HJID>HJID\l | <BALLOT_DOCUMENT_DATA_BALLOT__0>BALLOT_DOCUMENT_DATA_BALLOT__0\l | <BALLOT_DOCUMENT_ELEMENT_BALL_0>BALLOT_DOCUMENT_ELEMENT_BALL_0\l }" ]  
+  
+  /* edges/nodes for BALLOT_CONTAINER */
+     BALLOT_CONTAINER -> BALLOT_DOCUMENT_DATA [ 
+        label="FKihms5cyyptsuxmwa990hxu2q2" 
+        ]
+     BALLOT_CONTAINER -> BALLOT_DOCUMENT_ELEMENT [ 
+        label="FKjlk2cgg94nrv1wx3ijf2jo0lx" 
+        ]
+  /* Node BALLOT_DOCUMENT_DATA */
+  BALLOT_DOCUMENT_DATA [ label = "{ BALLOT_DOCUMENT_DATA| <HJID>HJID\l }" ]  
+  
+  /* edges/nodes for BALLOT_DOCUMENT_DATA */
+  /* Node BALLOT_DOCUMENT_ELEMENT */
+  BALLOT_DOCUMENT_ELEMENT [ label = "{ BALLOT_DOCUMENT_ELEMENT| <SOURCEID>SOURCEID\l | <COMMITTEE_REPORT_URL_XML>COMMITTEE_REPORT_URL_XML\l | <CREATED_DATE>CREATED_DATE\l | <DOC_ID>DOC_ID\l | <DOCUMENT_STATUS_URL_XML>DOCUMENT_STATUS_URL_XML\l | <DOCUMENT_TYPE>DOCUMENT_TYPE\l | <DOCUMENT_URL_HTML>DOCUMENT_URL_HTML\l | <DOCUMENT_URL_TEXT>DOCUMENT_URL_TEXT\l | <ELEMENT_TYPE>ELEMENT_TYPE\l | <END_NUMBER_VALUE>END_NUMBER_VALUE\l | <HANGAR_ID>HANGAR_ID\l | <HTMLFORMAT>HTMLFORMAT\l | <LABEL>LABEL\l | <MADE_PUBLIC_DATE>MADE_PUBLIC_DATE\l | <NUMBER_VALUE>NUMBER_VALUE\l | <ORG>ORG\l | <RELATED_ID>RELATED_ID\l | <RM>RM\l | <SOURCE_>SOURCE_\l | <STATUS>STATUS\l | <SUB_TITLE>SUB_TITLE\l | <SUB_TYPE>SUB_TYPE\l | <SYSTEM_DATE>SYSTEM_DATE\l | <TEMP_LABEL>TEMP_LABEL\l | <TITLE>TITLE\l }" ]  
+  
+  /* edges/nodes for BALLOT_DOCUMENT_ELEMENT */
+  /* Node VOTE_DATA */
+  VOTE_DATA [ label = "{ VOTE_DATA| <EMBEDDED_ID_BALLOT_ID>EMBEDDED_ID_BALLOT_ID\l | <EMBEDDED_ID_CONCERN>EMBEDDED_ID_CONCERN\l | <EMBEDDED_ID_INTRESSENT_ID>EMBEDDED_ID_INTRESSENT_ID\l | <EMBEDDED_ID_ISSUE>EMBEDDED_ID_ISSUE\l | <BALLOT_TYPE>BALLOT_TYPE\l | <BANK_NUMBER>BANK_NUMBER\l | <BORN_YEAR>BORN_YEAR\l | <ELECTORAL_REGION>ELECTORAL_REGION\l | <ELECTORAL_REGION_NUMBER>ELECTORAL_REGION_NUMBER\l | <FIRST_NAME>FIRST_NAME\l | <FULL_NAME>FULL_NAME\l | <GENDER>GENDER\l | <LABEL>LABEL\l | <LAST_NAME>LAST_NAME\l | <PARTY>PARTY\l | <PLACE>PLACE\l | <RM>RM\l | <VOTE>VOTE\l | <VOTE_DATE>VOTE_DATE\l }" ]  
+  
+  /* edges/nodes for VOTE_DATA */
+  /* Node VOTE_DATA_DTO */
+  VOTE_DATA_DTO [ label = "{ VOTE_DATA_DTO| <BALLOT_ID>BALLOT_ID\l | <INTRESSENT_ID>INTRESSENT_ID\l | <ISSUE>ISSUE\l | <BALLOT_TYPE>BALLOT_TYPE\l | <BANK_NUMBER>BANK_NUMBER\l | <BORN_YEAR>BORN_YEAR\l | <CONCERN>CONCERN\l | <ELECTORAL_REGION>ELECTORAL_REGION\l | <ELECTORAL_REGION_NUMBER>ELECTORAL_REGION_NUMBER\l | <FIRST_NAME>FIRST_NAME\l | <FULL_NAME>FULL_NAME\l | <GENDER>GENDER\l | <LABEL>LABEL\l | <LAST_NAME>LAST_NAME\l | <PARTY>PARTY\l | <PLACE>PLACE\l | <RM>RM\l | <VOTE>VOTE\l | <VOTE_DATE>VOTE_DATE\l | <VOTE_DATA_LIST_BALLOT_DOCUME_0>VOTE_DATA_LIST_BALLOT_DOCUME_0\l }" ]  
+  
+  /* edges/nodes for VOTE_DATA_DTO */
+     VOTE_DATA_DTO -> BALLOT_DOCUMENT_DATA [ 
+        label="FKr3lmo0hle2dd7aux3ad67uhwp" 
+        ]
+
+}
+

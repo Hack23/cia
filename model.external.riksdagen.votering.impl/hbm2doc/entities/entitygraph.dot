@@ -1,0 +1,131 @@
+digraph EntityGraph {
+  compound=true;
+    bgcolor="white"; 
+    fontcolor="black"; fontname="Helvetica"; fontsize="10.0"; 
+    ranksep="equally"; 
+    label="Entity Graph"; 
+    URL="http://tools.hibernate.org";
+  edge [
+        color="lightgrey", 
+        fontcolor="black", 
+        fontname="Helvetica", 
+        fontsize="8.0",         
+        labelangle=-25.0, 
+        labeldistance=1.5
+        ];
+  node [
+       fontcolor="black",
+       fontname="Helvetica", 
+       fontsize="10.0", 
+       shape=record, 
+       fillcolor="#D4E5FE", 
+       style="solid,filled"];
+
+  /* Node com.hack23.cia.model.external.riksdagen.votering.impl.BallotContainer */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_BallotContainer [ label = "{ com\.hack23\.cia\.model\.external\.riksdagen\.votering\.impl\.BallotContainer| ballotDocumentData\l ballotDocumentElement\l }", URL="com/hack23/cia/model/external/riksdagen/votering/impl/BallotContainer.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.riksdagen.votering.impl.BallotContainer */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_BallotContainer */
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_BallotContainer -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_BallotDocumentData [ 
+        label="ballotDocumentData" 
+        ]
+     
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_BallotContainer -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_BallotDocumentElement [ 
+        label="ballotDocumentElement" 
+        ]
+     
+  /* Node com.hack23.cia.model.external.riksdagen.votering.impl.BallotDocumentElement */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_BallotDocumentElement [ label = "{ com\.hack23\.cia\.model\.external\.riksdagen\.votering\.impl\.BallotDocumentElement| committeeReportUrlXml\l createdDate\l docId\l documentStatusUrlXml\l documentType\l documentUrlHtml\l documentUrlText\l elementType\l endNumberValue\l hangarId\l htmlformat\l label\l madePublicDate\l numberValue\l org\l relatedId\l rm\l source\l status\l subTitle\l subType\l systemDate\l tempLabel\l title\l }", URL="com/hack23/cia/model/external/riksdagen/votering/impl/BallotDocumentElement.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.riksdagen.votering.impl.BallotDocumentElement */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_BallotDocumentElement */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.external.riksdagen.votering.impl.BallotDocumentData */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_BallotDocumentData [ label = "{ com\.hack23\.cia\.model\.external\.riksdagen\.votering\.impl\.BallotDocumentData| }", URL="com/hack23/cia/model/external/riksdagen/votering/impl/BallotDocumentData.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.riksdagen.votering.impl.BallotDocumentData */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_BallotDocumentData */
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_BallotDocumentData -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_VoteDataDto [ 
+        label="voteDataList" 
+        ]
+     
+  /* Node com.hack23.cia.model.external.riksdagen.votering.impl.VoteData */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_VoteData [ label = "{ com\.hack23\.cia\.model\.external\.riksdagen\.votering\.impl\.VoteData| ballotType\l bankNumber\l bornYear\l electoralRegion\l electoralRegionNumber\l firstName\l fullName\l gender\l label\l lastName\l party\l place\l rm\l vote\l voteDate\l }", URL="com/hack23/cia/model/external/riksdagen/votering/impl/VoteData.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.riksdagen.votering.impl.VoteData */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_VoteData */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataDto */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_VoteDataDto [ label = "{ com\.hack23\.cia\.model\.external\.riksdagen\.votering\.impl\.VoteDataDto| _identifierMapper\l ballotType\l bankNumber\l bornYear\l concern\l electoralRegion\l electoralRegionNumber\l firstName\l fullName\l gender\l label\l lastName\l party\l place\l rm\l vote\l voteDate\l }", URL="com/hack23/cia/model/external/riksdagen/votering/impl/VoteDataDto.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataDto */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_VoteDataDto */
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_VoteDataDto -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_VoteDataDto [ 
+        label="_identifierMapper" 
+        arrowtail="diamond"
+        ]
+      /* Node component org.hibernate.mapping.Component([org.hibernate.mapping.Property(ballotId), org.hibernate.mapping.Property(intressentId), org.hibernate.mapping.Property(issue)]) */
+      com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_VoteDataDto [ 
+        label = "{ com\.hack23\.cia\.model\.external\.riksdagen\.votering\.impl\.VoteDataDto| ballotId\l intressentId\l issue\l }"
+           ]
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_votering_dot_impl_dot_VoteDataDto */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+
+}
+
