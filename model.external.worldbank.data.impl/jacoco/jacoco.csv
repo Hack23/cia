@@ -1,0 +1,11 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+model.external.worldbank.data.impl,com.hack23.cia.model.external.worldbank.data.impl,Country_,3,0,0,0,1,0,1,0,1,0
+model.external.worldbank.data.impl,com.hack23.cia.model.external.worldbank.data.impl,DataElement,444,0,40,0,99,0,47,0,27,0
+model.external.worldbank.data.impl,com.hack23.cia.model.external.worldbank.data.impl,Country,191,0,10,0,48,0,19,0,14,0
+model.external.worldbank.data.impl,com.hack23.cia.model.external.worldbank.data.impl,Indicator_,3,0,0,0,1,0,1,0,1,0
+model.external.worldbank.data.impl,com.hack23.cia.model.external.worldbank.data.impl,WorldBankData,310,0,14,0,77,0,29,0,22,0
+model.external.worldbank.data.impl,com.hack23.cia.model.external.worldbank.data.impl,ObjectFactory,19,0,0,0,6,0,5,0,5,0
+model.external.worldbank.data.impl,com.hack23.cia.model.external.worldbank.data.impl,Indicator,191,0,10,0,48,0,19,0,14,0
+model.external.worldbank.data.impl,com.hack23.cia.model.external.worldbank.data.impl,WorldBankData_,3,0,0,0,1,0,1,0,1,0
+model.external.worldbank.data.impl,com.hack23.cia.model.external.worldbank.data.impl,RoundtripTest,0,7,0,0,0,3,0,3,0,3
+model.external.worldbank.data.impl,com.hack23.cia.model.external.worldbank.data.impl,DataElement_,3,0,0,0,1,0,1,0,1,0
