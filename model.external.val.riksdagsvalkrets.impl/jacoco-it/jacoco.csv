@@ -1,0 +1,7 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+model.external.val.riksdagsvalkrets.impl,com.hack23.cia.model.external.val.riksdagsvalkrets.impl,SwedenParliamentElectoralRegion,289,0,18,0,70,0,28,0,19,0
+model.external.val.riksdagsvalkrets.impl,com.hack23.cia.model.external.val.riksdagsvalkrets.impl,SwedenParliamentElectoralRegion_,3,0,0,0,1,0,1,0,1,0
+model.external.val.riksdagsvalkrets.impl,com.hack23.cia.model.external.val.riksdagsvalkrets.impl,RoundtripTest,0,7,0,0,0,3,0,3,0,3
+model.external.val.riksdagsvalkrets.impl,com.hack23.cia.model.external.val.riksdagsvalkrets.impl,SwedenParliamentElectoralRegionContainer_,3,0,0,0,1,0,1,0,1,0
+model.external.val.riksdagsvalkrets.impl,com.hack23.cia.model.external.val.riksdagsvalkrets.impl,ObjectFactory,26,0,0,0,6,0,5,0,5,0
+model.external.val.riksdagsvalkrets.impl,com.hack23.cia.model.external.val.riksdagsvalkrets.impl,SwedenParliamentElectoralRegionContainer,124,0,22,0,27,0,20,0,9,0
