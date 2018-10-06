@@ -1,0 +1,47 @@
+digraph TableGraph {
+  compound=true;
+    bgcolor="white"; 
+    fontcolor="black"; fontname="Helvetica"; fontsize="10.0"; 
+    ranksep="equally"; 
+    label="Table Graph"; 
+    URL="http://tools.hibernate.org";
+  edge [
+        color="lightgrey", 
+        fontcolor="black", 
+        fontname="Helvetica", 
+        fontsize="8.0",         
+        labelangle=-25.0, 
+        labeldistance=1.5
+        headport=nw,
+        tailport=se
+        ];
+  node [
+       fontcolor="black",
+       fontname="Helvetica", 
+       fontsize="10.0", 
+       shape=record, 
+       fillcolor="yellow", 
+       style="solid,filled"];
+
+/* TODO: multi schema tables */
+  /* Node SWEDEN_COUNTY_ELECTORAL_AREA */
+  SWEDEN_COUNTY_ELECTORAL_AREA [ label = "{ SWEDEN_COUNTY_ELECTORAL_AREA| <HJID>HJID\l | <CODE>CODE\l | <ELECTORAL_AREA_NAME>ELECTORAL_AREA_NAME\l | <FIRST_ROUND>FIRST_ROUND\l | <NUMBER_OF_SEATS>NUMBER_OF_SEATS\l | <NUMBER_OF_VOTERS>NUMBER_OF_VOTERS\l | <REST>REST\l | <SECOND_ROUND>SECOND_ROUND\l | <LANDSTINGSVALKRETS_SWEDEN_CO_0>LANDSTINGSVALKRETS_SWEDEN_CO_0\l }" ]  
+  
+  /* edges/nodes for SWEDEN_COUNTY_ELECTORAL_AREA */
+     SWEDEN_COUNTY_ELECTORAL_AREA -> SWEDEN_COUNTY_ELECTORAL_REGI_1 [ 
+        label="FK9gx4wfdai883m7895v15rsgym" 
+        ]
+  /* Node SWEDEN_COUNTY_ELECTORAL_REGI_0 */
+  SWEDEN_COUNTY_ELECTORAL_REGI_0 [ label = "{ SWEDEN_COUNTY_ELECTORAL_REGI_0| <HJID>HJID\l }" ]  
+  
+  /* edges/nodes for SWEDEN_COUNTY_ELECTORAL_REGI_0 */
+  /* Node SWEDEN_COUNTY_ELECTORAL_REGI_1 */
+  SWEDEN_COUNTY_ELECTORAL_REGI_1 [ label = "{ SWEDEN_COUNTY_ELECTORAL_REGI_1| <HJID>HJID\l | <CODE>CODE\l | <COUNTY_NAME>COUNTY_NAME\l | <SEATS>SEATS\l | <COUNTY_ELECTORAL_REGIONS_SWE_0>COUNTY_ELECTORAL_REGIONS_SWE_0\l }" ]  
+  
+  /* edges/nodes for SWEDEN_COUNTY_ELECTORAL_REGI_1 */
+     SWEDEN_COUNTY_ELECTORAL_REGI_1 -> SWEDEN_COUNTY_ELECTORAL_REGI_0 [ 
+        label="FKij8ln56geh3acjvmcl0mw5502" 
+        ]
+
+}
+
