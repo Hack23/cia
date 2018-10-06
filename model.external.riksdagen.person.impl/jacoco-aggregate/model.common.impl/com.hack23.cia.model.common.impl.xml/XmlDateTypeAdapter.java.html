@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>XmlDateTypeAdapter.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">model.external.riksdagen.person.impl</a> &gt; <a href="../index.html" class="el_bundle">model.common.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.common.impl.xml</a> &gt; <span class="el_source">XmlDateTypeAdapter.java</span></div><h1>XmlDateTypeAdapter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.model.common.impl.xml;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
+import javax.xml.bind.DatatypeConverter;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * The Class XmlDateTypeAdapter.
+ */
+public final class XmlDateTypeAdapter extends XmlAdapter&lt;String,Date&gt; {
+
+	private static final String YYYY_MM_DD_HH_MM_SS = &quot;2001-01-01 00:00:00&quot;;
+
+	/** The Constant YYYY_MM_DD. */
+	private static final String YYYY_MM_DD = &quot;yyyy-MM-dd&quot;;
+
+<span class="nc" id="L43">	private static final Logger LOGGER = LoggerFactory</span>
+<span class="nc" id="L44">			.getLogger(XmlDateTypeAdapter.class);</span>
+
+	/**
+	 * Instantiates a new xml time type adapter.
+	 */
+	public XmlDateTypeAdapter() {
+<span class="nc" id="L50">		super();</span>
+<span class="nc" id="L51">	}</span>
+
+
+	public Date unmarshal(final String s) {
+<span class="nc bnc" id="L55" title="All 2 branches missed.">		if (s == null) {</span>
+<span class="nc" id="L56">			return null;</span>
+		}
+		// hack to supported swedish riksdags xml.
+<span class="nc" id="L59">		final String dateStr = s.trim();</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">		if (YYYY_MM_DD_HH_MM_SS.length() == dateStr.length()</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">				|| YYYY_MM_DD.length() == dateStr.length()) {</span>
+			try {
+<span class="nc" id="L63">				return new SimpleDateFormat(</span>
+<span class="nc" id="L64">						YYYY_MM_DD,Locale.ENGLISH).parse(dateStr.substring(0,YYYY_MM_DD.length()));</span>
+<span class="nc" id="L65">			} catch (final ParseException e) {</span>
+<span class="nc" id="L66">				LOGGER.warn(&quot;Problem parsing date from str:{}&quot;,s,e);</span>
+<span class="nc" id="L67">				return null;</span>
+			}
+<span class="nc bnc" id="L69" title="All 2 branches missed.">		} else if (dateStr.length() &gt; YYYY_MM_DD.length()) {</span>
+			try {
+<span class="nc" id="L71">				return DatatypeConverter.parseDate(s).getTime();	</span>
+<span class="nc" id="L72">			} catch (final Exception e) {</span>
+<span class="nc" id="L73">				LOGGER.warn(&quot;Problem parsing date from str:{}&quot;,s,e);</span>
+<span class="nc" id="L74">				return null;</span>
+			}
+		} else {
+<span class="nc" id="L77">			return null;</span>
+		}
+		
+	}
+
+	public String marshal(final Date dt) {
+<span class="nc bnc" id="L83" title="All 2 branches missed.">		if (dt == null) {</span>
+<span class="nc" id="L84">			return null;</span>
+		}
+<span class="nc" id="L86">		final Calendar c = Calendar.getInstance();</span>
+<span class="nc" id="L87">		c.setTime(dt);</span>
+<span class="nc" id="L88">		return DatatypeConverter.printDate(c);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
