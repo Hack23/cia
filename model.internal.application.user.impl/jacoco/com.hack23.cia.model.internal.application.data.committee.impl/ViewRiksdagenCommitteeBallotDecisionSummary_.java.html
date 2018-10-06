@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenCommitteeBallotDecisionSummary_.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.committee.impl</a> &gt; <span class="el_source">ViewRiksdagenCommitteeBallotDecisionSummary_.java</span></div><h1>ViewRiksdagenCommitteeBallotDecisionSummary_.java</h1><pre class="source lang-java linenums">package com.hack23.cia.model.internal.application.data.committee.impl;
+
+import java.math.BigDecimal;
+import java.util.Date;
+import javax.annotation.Generated;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
+
+@Generated(value = &quot;org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor&quot;)
+@StaticMetamodel(ViewRiksdagenCommitteeBallotDecisionSummary.class)
+<span class="nc" id="L11">public abstract class ViewRiksdagenCommitteeBallotDecisionSummary_ {</span>
+
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, Date&gt; publicDate;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, String&gt; title;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, Long&gt; noVotes;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, Boolean&gt; approved;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, Long&gt; yesVotes;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, String&gt; subTitle;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, BigDecimal&gt; againstProposalNumber;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, Long&gt; totalVotes;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, String&gt; againstProposalParties;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, BigDecimal&gt; percentageNo;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, String&gt; ballotType;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, Long&gt; abstainVotes;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, BigDecimal&gt; percentageMale;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, String&gt; org;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, Boolean&gt; noWinner;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, BigDecimal&gt; percentageAbsent;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, BigDecimal&gt; percentageAbstain;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, BigDecimal&gt; endNumber;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, String&gt; label;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, BigDecimal&gt; percentageYes;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, Date&gt; createdDate;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, String&gt; winner;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, String&gt; committeeReport;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, BigDecimal&gt; avgBornYear;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, Date&gt; voteDate;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, Long&gt; absentVotes;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, String&gt; decisionType;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, String&gt; rm;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, String&gt; ballotId;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId&gt; embeddedId;
+
+	public static final String PUBLIC_DATE = &quot;publicDate&quot;;
+	public static final String TITLE = &quot;title&quot;;
+	public static final String NO_VOTES = &quot;noVotes&quot;;
+	public static final String APPROVED = &quot;approved&quot;;
+	public static final String YES_VOTES = &quot;yesVotes&quot;;
+	public static final String SUB_TITLE = &quot;subTitle&quot;;
+	public static final String AGAINST_PROPOSAL_NUMBER = &quot;againstProposalNumber&quot;;
+	public static final String TOTAL_VOTES = &quot;totalVotes&quot;;
+	public static final String AGAINST_PROPOSAL_PARTIES = &quot;againstProposalParties&quot;;
+	public static final String PERCENTAGE_NO = &quot;percentageNo&quot;;
+	public static final String BALLOT_TYPE = &quot;ballotType&quot;;
+	public static final String ABSTAIN_VOTES = &quot;abstainVotes&quot;;
+	public static final String PERCENTAGE_MALE = &quot;percentageMale&quot;;
+	public static final String ORG = &quot;org&quot;;
+	public static final String NO_WINNER = &quot;noWinner&quot;;
+	public static final String PERCENTAGE_ABSENT = &quot;percentageAbsent&quot;;
+	public static final String PERCENTAGE_ABSTAIN = &quot;percentageAbstain&quot;;
+	public static final String END_NUMBER = &quot;endNumber&quot;;
+	public static final String LABEL = &quot;label&quot;;
+	public static final String PERCENTAGE_YES = &quot;percentageYes&quot;;
+	public static final String CREATED_DATE = &quot;createdDate&quot;;
+	public static final String WINNER = &quot;winner&quot;;
+	public static final String COMMITTEE_REPORT = &quot;committeeReport&quot;;
+	public static final String AVG_BORN_YEAR = &quot;avgBornYear&quot;;
+	public static final String VOTE_DATE = &quot;voteDate&quot;;
+	public static final String ABSENT_VOTES = &quot;absentVotes&quot;;
+	public static final String DECISION_TYPE = &quot;decisionType&quot;;
+	public static final String RM = &quot;rm&quot;;
+	public static final String BALLOT_ID = &quot;ballotId&quot;;
+	public static final String EMBEDDED_ID = &quot;embeddedId&quot;;
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

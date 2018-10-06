@@ -1,0 +1,2978 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+	<head>
+		<title>Hibernate Mappings - Table Info</title>
+		<link rel="stylesheet" type="text/css" href="../../assets/doc-style.css" title="Style"/>
+	</head>
+	<body>
+
+	<div id="header">
+
+		<div id="logo">
+			<a href="http://www.hibernate.org/" target="_blank">
+				<img src="../../assets/hibernate_logo.gif" alt="Hibernate"/>
+			</a>
+		</div>
+
+		<ul><li><a href="../index.html" target="_top">Tables</a></li><li><a href="../../entities/index.html" target="_top">Entities</a></li></ul>
+
+		<hr/>
+
+	</div>
+
+		<h4>Schema default</h4>
+		<h2>Table View_Riksdagen_Committee_Ballot_Decision_Politician_Summary</h2>
+
+
+		<table id="column_summary">
+			<thead>
+				<tr>
+					<th class="MainTableHeading" colspan="7">
+						Column Summary
+					</th>
+				</tr>
+				<tr>
+					<th style="width: 14%">
+						Name
+					</th>
+					<th style="width: 14%">
+						SqlType
+					</th>
+					<th style="width: 14%">
+						Length
+					</th>
+					<th style="width: 14%">
+						Precision
+					</th>
+					<th style="width: 14%">
+						Scale
+					</th>
+					<th style="width: 14%">
+						Nullable
+					</th>
+					<th style="width: 14%">
+						Unique
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+					<tr>
+						<td>
+							<a href="#column_detail_EMBEDDED_ID_CONCERN">
+								EMBEDDED_ID_CONCERN
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							false
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_EMBEDDED_ID_HANGAR_ID">
+								EMBEDDED_ID_HANGAR_ID
+							</a>
+						</td>
+						<td>
+							numeric(20, 10)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							10
+						</td>
+						<td>
+							false
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_EMBEDDED_ID_ID">
+								EMBEDDED_ID_ID
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							false
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_EMBEDDED_ID_INTRESSENT_ID">
+								EMBEDDED_ID_INTRESSENT_ID
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							false
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_EMBEDDED_ID_ISSUE">
+								EMBEDDED_ID_ISSUE
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							false
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_ABSENT_VOTES">
+								ABSENT_VOTES
+							</a>
+						</td>
+						<td>
+							int8
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							0
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_ABSTAIN_VOTES">
+								ABSTAIN_VOTES
+							</a>
+						</td>
+						<td>
+							int8
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							0
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_AGAINST_PROPOSAL_NUMBER">
+								AGAINST_PROPOSAL_NUMBER
+							</a>
+						</td>
+						<td>
+							numeric(20, 10)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							10
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_AGAINST_PROPOSAL_PARTIES">
+								AGAINST_PROPOSAL_PARTIES
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_APPROVED">
+								APPROVED
+							</a>
+						</td>
+						<td>
+							boolean
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_AVG_BORN_YEAR">
+								AVG_BORN_YEAR
+							</a>
+						</td>
+						<td>
+							numeric(20, 10)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							10
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_BALLOT_ID">
+								BALLOT_ID
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_BALLOT_TYPE">
+								BALLOT_TYPE
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_BORN_YEAR">
+								BORN_YEAR
+							</a>
+						</td>
+						<td>
+							int4
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							10
+						</td>
+						<td>
+							0
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_COMMITTEE_REPORT">
+								COMMITTEE_REPORT
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_CREATED_DATE">
+								CREATED_DATE
+							</a>
+						</td>
+						<td>
+							date
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_DECISION_TYPE">
+								DECISION_TYPE
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_END_NUMBER">
+								END_NUMBER
+							</a>
+						</td>
+						<td>
+							numeric(20, 10)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							10
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_FIRST_NAME">
+								FIRST_NAME
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_LABEL">
+								LABEL
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_LAST_NAME">
+								LAST_NAME
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_NO_VOTES">
+								NO_VOTES
+							</a>
+						</td>
+						<td>
+							int8
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							0
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_NO_WINNER">
+								NO_WINNER
+							</a>
+						</td>
+						<td>
+							boolean
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_ORG">
+								ORG
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PARTY">
+								PARTY
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PARTY_ABSENT_VOTES">
+								PARTY_ABSENT_VOTES
+							</a>
+						</td>
+						<td>
+							int8
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							0
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PARTY_ABSTAIN_VOTES">
+								PARTY_ABSTAIN_VOTES
+							</a>
+						</td>
+						<td>
+							int8
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							0
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PARTY_APPROVED">
+								PARTY_APPROVED
+							</a>
+						</td>
+						<td>
+							boolean
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PARTY_AVG_BORN_YEAR">
+								PARTY_AVG_BORN_YEAR
+							</a>
+						</td>
+						<td>
+							numeric(20, 10)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							10
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PARTY_NO_VOTES">
+								PARTY_NO_VOTES
+							</a>
+						</td>
+						<td>
+							int8
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							0
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PARTY_NO_WINNER">
+								PARTY_NO_WINNER
+							</a>
+						</td>
+						<td>
+							boolean
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PARTY_PERCENTAGE_ABSENT">
+								PARTY_PERCENTAGE_ABSENT
+							</a>
+						</td>
+						<td>
+							numeric(20, 10)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							10
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PARTY_PERCENTAGE_ABSTAIN">
+								PARTY_PERCENTAGE_ABSTAIN
+							</a>
+						</td>
+						<td>
+							numeric(20, 10)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							10
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PARTY_PERCENTAGE_MALE">
+								PARTY_PERCENTAGE_MALE
+							</a>
+						</td>
+						<td>
+							numeric(20, 10)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							10
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PARTY_PERCENTAGE_NO">
+								PARTY_PERCENTAGE_NO
+							</a>
+						</td>
+						<td>
+							numeric(20, 10)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							10
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PARTY_PERCENTAGE_YES">
+								PARTY_PERCENTAGE_YES
+							</a>
+						</td>
+						<td>
+							numeric(20, 10)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							10
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PARTY_TOTAL_VOTES">
+								PARTY_TOTAL_VOTES
+							</a>
+						</td>
+						<td>
+							int8
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							0
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PARTY_YES_VOTES">
+								PARTY_YES_VOTES
+							</a>
+						</td>
+						<td>
+							int8
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							0
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PERCENTAGE_ABSENT">
+								PERCENTAGE_ABSENT
+							</a>
+						</td>
+						<td>
+							numeric(20, 10)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							10
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PERCENTAGE_ABSTAIN">
+								PERCENTAGE_ABSTAIN
+							</a>
+						</td>
+						<td>
+							numeric(20, 10)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							10
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PERCENTAGE_MALE">
+								PERCENTAGE_MALE
+							</a>
+						</td>
+						<td>
+							numeric(20, 10)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							10
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PERCENTAGE_NO">
+								PERCENTAGE_NO
+							</a>
+						</td>
+						<td>
+							numeric(20, 10)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							10
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PERCENTAGE_YES">
+								PERCENTAGE_YES
+							</a>
+						</td>
+						<td>
+							numeric(20, 10)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							10
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_PUBLIC_DATE">
+								PUBLIC_DATE
+							</a>
+						</td>
+						<td>
+							date
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_REBEL">
+								REBEL
+							</a>
+						</td>
+						<td>
+							boolean
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_RM">
+								RM
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_SUB_TITLE">
+								SUB_TITLE
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_TITLE">
+								TITLE
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_TOTAL_VOTES">
+								TOTAL_VOTES
+							</a>
+						</td>
+						<td>
+							int8
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							0
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_VOTE">
+								VOTE
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_VOTE_DATE">
+								VOTE_DATE
+							</a>
+						</td>
+						<td>
+							date
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_WINNER">
+								WINNER
+							</a>
+						</td>
+						<td>
+							varchar(255)
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_WON">
+								WON
+							</a>
+						</td>
+						<td>
+							boolean
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							19
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#column_detail_YES_VOTES">
+								YES_VOTES
+							</a>
+						</td>
+						<td>
+							int8
+						</td>
+						<td>
+							255
+						</td>
+						<td>
+							20
+						</td>
+						<td>
+							0
+						</td>
+						<td>
+							true
+						</td>
+						<td>
+							false
+						</td>
+					</tr>
+			</tbody>
+		</table>
+
+		<table id="primary_key">
+			<thead>
+				<tr>
+					<th class="MainTableHeading" colspan="2">
+						Primary Key
+					</th>
+				</tr>
+				<tr>
+					<th style="width: 50%">
+						Name
+					</th>
+					<th style="width: 50%">
+						Columns
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+					<tr>
+						<td>
+								View_RiksdagePK
+						</td>
+						<td>
+								<a href="#column_detail_EMBEDDED_ID_CONCERN">
+									EMBEDDED_ID_CONCERN
+								</a>
+								<a href="#column_detail_EMBEDDED_ID_HANGAR_ID">
+									EMBEDDED_ID_HANGAR_ID
+								</a>
+								<a href="#column_detail_EMBEDDED_ID_ID">
+									EMBEDDED_ID_ID
+								</a>
+								<a href="#column_detail_EMBEDDED_ID_INTRESSENT_ID">
+									EMBEDDED_ID_INTRESSENT_ID
+								</a>
+								<a href="#column_detail_EMBEDDED_ID_ISSUE">
+									EMBEDDED_ID_ISSUE
+								</a>
+						</td>
+					</tr>
+			</tbody>
+		</table>
+
+			
+		
+		
+			<p id="column_detail" class="MainTableHeading">
+				Column Detail
+			</p>
+				
+				<h3 id="column_detail_EMBEDDED_ID_CONCERN">EMBEDDED_ID_CONCERN</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> false
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_EMBEDDED_ID_HANGAR_ID">EMBEDDED_ID_HANGAR_ID</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> numeric(20, 10)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 10
+					</li>
+					<li>
+						<strong>Nullable:</strong> false
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_EMBEDDED_ID_ID">EMBEDDED_ID_ID</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> false
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_EMBEDDED_ID_INTRESSENT_ID">EMBEDDED_ID_INTRESSENT_ID</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> false
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_EMBEDDED_ID_ISSUE">EMBEDDED_ID_ISSUE</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> false
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_ABSENT_VOTES">ABSENT_VOTES</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> int8
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 0
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_ABSTAIN_VOTES">ABSTAIN_VOTES</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> int8
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 0
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_AGAINST_PROPOSAL_NUMBER">AGAINST_PROPOSAL_NUMBER</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> numeric(20, 10)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 10
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_AGAINST_PROPOSAL_PARTIES">AGAINST_PROPOSAL_PARTIES</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_APPROVED">APPROVED</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> boolean
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_AVG_BORN_YEAR">AVG_BORN_YEAR</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> numeric(20, 10)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 10
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_BALLOT_ID">BALLOT_ID</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_BALLOT_TYPE">BALLOT_TYPE</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_BORN_YEAR">BORN_YEAR</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> int4
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 10
+					</li>
+					<li>
+						<strong>Scale:</strong> 0
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_COMMITTEE_REPORT">COMMITTEE_REPORT</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_CREATED_DATE">CREATED_DATE</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> date
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_DECISION_TYPE">DECISION_TYPE</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_END_NUMBER">END_NUMBER</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> numeric(20, 10)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 10
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_FIRST_NAME">FIRST_NAME</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_LABEL">LABEL</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_LAST_NAME">LAST_NAME</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_NO_VOTES">NO_VOTES</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> int8
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 0
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_NO_WINNER">NO_WINNER</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> boolean
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_ORG">ORG</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PARTY">PARTY</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PARTY_ABSENT_VOTES">PARTY_ABSENT_VOTES</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> int8
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 0
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PARTY_ABSTAIN_VOTES">PARTY_ABSTAIN_VOTES</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> int8
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 0
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PARTY_APPROVED">PARTY_APPROVED</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> boolean
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PARTY_AVG_BORN_YEAR">PARTY_AVG_BORN_YEAR</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> numeric(20, 10)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 10
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PARTY_NO_VOTES">PARTY_NO_VOTES</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> int8
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 0
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PARTY_NO_WINNER">PARTY_NO_WINNER</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> boolean
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PARTY_PERCENTAGE_ABSENT">PARTY_PERCENTAGE_ABSENT</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> numeric(20, 10)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 10
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PARTY_PERCENTAGE_ABSTAIN">PARTY_PERCENTAGE_ABSTAIN</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> numeric(20, 10)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 10
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PARTY_PERCENTAGE_MALE">PARTY_PERCENTAGE_MALE</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> numeric(20, 10)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 10
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PARTY_PERCENTAGE_NO">PARTY_PERCENTAGE_NO</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> numeric(20, 10)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 10
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PARTY_PERCENTAGE_YES">PARTY_PERCENTAGE_YES</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> numeric(20, 10)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 10
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PARTY_TOTAL_VOTES">PARTY_TOTAL_VOTES</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> int8
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 0
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PARTY_YES_VOTES">PARTY_YES_VOTES</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> int8
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 0
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PERCENTAGE_ABSENT">PERCENTAGE_ABSENT</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> numeric(20, 10)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 10
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PERCENTAGE_ABSTAIN">PERCENTAGE_ABSTAIN</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> numeric(20, 10)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 10
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PERCENTAGE_MALE">PERCENTAGE_MALE</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> numeric(20, 10)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 10
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PERCENTAGE_NO">PERCENTAGE_NO</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> numeric(20, 10)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 10
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PERCENTAGE_YES">PERCENTAGE_YES</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> numeric(20, 10)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 10
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_PUBLIC_DATE">PUBLIC_DATE</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> date
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_REBEL">REBEL</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> boolean
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_RM">RM</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_SUB_TITLE">SUB_TITLE</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_TITLE">TITLE</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_TOTAL_VOTES">TOTAL_VOTES</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> int8
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 0
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_VOTE">VOTE</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_VOTE_DATE">VOTE_DATE</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> date
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_WINNER">WINNER</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> varchar(255)
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_WON">WON</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> boolean
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 19
+					</li>
+					<li>
+						<strong>Scale:</strong> 2
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				<h3 id="column_detail_YES_VOTES">YES_VOTES</h3>
+				
+				<ul>
+					<li>
+						<strong>Type:</strong> int8
+					</li>
+					<li>
+						<strong>Length:</strong> 255
+					</li>
+					<li>
+						<strong>Precision:</strong> 20
+					</li>
+					<li>
+						<strong>Scale:</strong> 0
+					</li>
+					<li>
+						<strong>Nullable:</strong> true
+					</li>
+					<li>
+						<strong>Unique:</strong> false
+					</li>
+					<li>
+						<strong>Comment:</strong> 
+					</li>
+				</ul>
+
+
+				<hr/>
+				
+
+	</body>
+</html>

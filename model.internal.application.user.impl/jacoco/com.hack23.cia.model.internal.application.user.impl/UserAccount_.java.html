@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserAccount_.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.user.impl</a> &gt; <span class="el_source">UserAccount_.java</span></div><h1>UserAccount_.java</h1><pre class="source lang-java linenums">package com.hack23.cia.model.internal.application.user.impl;
+
+import java.util.Date;
+import javax.annotation.Generated;
+import javax.persistence.metamodel.ListAttribute;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
+
+@Generated(value = &quot;org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor&quot;)
+@StaticMetamodel(UserAccount.class)
+<span class="nc" id="L11">public abstract class UserAccount_ {</span>
+
+	public static volatile SingularAttribute&lt;UserAccount, Integer&gt; numberOfVisits;
+	public static volatile SingularAttribute&lt;UserAccount, String&gt; country;
+	public static volatile ListAttribute&lt;UserAccount, String&gt; address;
+	public static volatile SingularAttribute&lt;UserAccount, UserLockStatus&gt; userLockStatus;
+	public static volatile SingularAttribute&lt;UserAccount, String&gt; userId;
+	public static volatile SingularAttribute&lt;UserAccount, Long&gt; hjid;
+	public static volatile SingularAttribute&lt;UserAccount, String&gt; userpassword;
+	public static volatile SingularAttribute&lt;UserAccount, Date&gt; createdDate;
+	public static volatile SingularAttribute&lt;UserAccount, Integer&gt; modelObjectVersion;
+	public static volatile SingularAttribute&lt;UserAccount, UserType&gt; userType;
+	public static volatile SingularAttribute&lt;UserAccount, UserRole&gt; userRole;
+	public static volatile SingularAttribute&lt;UserAccount, Integer&gt; modelObjectId;
+	public static volatile SingularAttribute&lt;UserAccount, String&gt; email;
+	public static volatile SingularAttribute&lt;UserAccount, String&gt; username;
+	public static volatile SingularAttribute&lt;UserAccount, UserEmailStatus&gt; userEmailStatus;
+
+	public static final String NUMBER_OF_VISITS = &quot;numberOfVisits&quot;;
+	public static final String COUNTRY = &quot;country&quot;;
+	public static final String ADDRESS = &quot;address&quot;;
+	public static final String USER_LOCK_STATUS = &quot;userLockStatus&quot;;
+	public static final String USER_ID = &quot;userId&quot;;
+	public static final String HJID = &quot;hjid&quot;;
+	public static final String USERPASSWORD = &quot;userpassword&quot;;
+	public static final String CREATED_DATE = &quot;createdDate&quot;;
+	public static final String MODEL_OBJECT_VERSION = &quot;modelObjectVersion&quot;;
+	public static final String USER_TYPE = &quot;userType&quot;;
+	public static final String USER_ROLE = &quot;userRole&quot;;
+	public static final String MODEL_OBJECT_ID = &quot;modelObjectId&quot;;
+	public static final String EMAIL = &quot;email&quot;;
+	public static final String USERNAME = &quot;username&quot;;
+	public static final String USER_EMAIL_STATUS = &quot;userEmailStatus&quot;;
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

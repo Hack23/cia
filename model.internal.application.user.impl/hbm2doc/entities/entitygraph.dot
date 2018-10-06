@@ -1,0 +1,1379 @@
+digraph EntityGraph {
+  compound=true;
+    bgcolor="white"; 
+    fontcolor="black"; fontname="Helvetica"; fontsize="10.0"; 
+    ranksep="equally"; 
+    label="Entity Graph"; 
+    URL="http://tools.hibernate.org";
+  edge [
+        color="lightgrey", 
+        fontcolor="black", 
+        fontname="Helvetica", 
+        fontsize="8.0",         
+        labelangle=-25.0, 
+        labeldistance=1.5
+        ];
+  node [
+       fontcolor="black",
+       fontname="Helvetica", 
+       fontsize="10.0", 
+       shape=record, 
+       fillcolor="#D4E5FE", 
+       style="solid,filled"];
+
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPartySummaryMonthly [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenVoteDataBallotPartySummaryMonthly| absentVotes\l abstainVotes\l approvedPercentage\l approvedTotal\l avgBornYear\l avgPercentageAbsent\l avgPercentageAbstain\l avgPercentageMale\l avgPercentageNo\l avgPercentageYes\l noVotes\l numberBallots\l partyAbsentVotes\l partyAbstainVotes\l partyAvgBornYear\l partyAvgPercentageMale\l partyNoVotes\l partyPercentageAbsent\l partyPercentageAbstain\l partyPercentageNo\l partyPercentageYes\l partyTotalVotes\l partyWonPercentage\l partyWonTotal\l partyYesVotes\l percentageAbsent\l percentageAbstain\l percentageNo\l percentageYes\l totalVotes\l yesVotes\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenVoteDataBallotPartySummaryMonthly.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPartySummaryMonthly */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenCommitteeBallotDecisionPartySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenCommitteeBallotDecisionPartySummary| absentVotes\l abstainVotes\l againstProposalNumber\l againstProposalParties\l approved\l avgBornYear\l ballotId\l ballotType\l committeeReport\l createdDate\l decisionType\l endNumber\l label\l noVotes\l noWinner\l org\l partyAbsentVotes\l partyAbstainVotes\l partyApproved\l partyAvgBornYear\l partyNoVotes\l partyNoWinner\l partyPercentageAbsent\l partyPercentageAbstain\l partyPercentageMale\l partyPercentageNo\l partyPercentageYes\l partyTotalVotes\l partyYesVotes\l percentageAbsent\l percentageAbstain\l percentageMale\l percentageNo\l percentageYes\l publicDate\l rm\l subTitle\l title\l totalVotes\l voteDate\l winner\l yesVotes\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenCommitteeBallotDecisionPartySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenCommitteeBallotDecisionPartySummary */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenDocumentTypeDailySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_document_dot_impl_dot_ViewRiksdagenDocumentTypeDailySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.document\.impl\.ViewRiksdagenDocumentTypeDailySummary| total\l }", URL="com/hack23/cia/model/internal/application/data/document/impl/ViewRiksdagenDocumentTypeDailySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenDocumentTypeDailySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_document_dot_impl_dot_ViewRiksdagenDocumentTypeDailySummary */
+     
+  /* Node com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_document_dot_impl_dot_ViewRiksdagenPoliticianDocument [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.document\.impl\.ViewRiksdagenPoliticianDocument| docId\l documentType\l label\l madePublicDate\l numberValue\l orderNumber\l org\l partyShortCode\l personReferenceId\l referenceName\l rm\l roleDescription\l status\l subTitle\l subType\l tempLabel\l title\l }", URL="com/hack23/cia/model/internal/application/data/document/impl/ViewRiksdagenPoliticianDocument.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_document_dot_impl_dot_ViewRiksdagenPoliticianDocument */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementDailySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageElementDailySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.impl\.ViewApplicationActionEventPageElementDailySummary| hits\l rank\l rankPercentage\l }", URL="com/hack23/cia/model/internal/application/data/impl/ViewApplicationActionEventPageElementDailySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementDailySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageElementDailySummary */
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryAnnual */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotSummaryAnnual [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenVoteDataBallotSummaryAnnual| absentVotes\l abstainVotes\l approvedBallots\l avgBornYear\l avgPercentageAbsent\l avgPercentageAbstain\l avgPercentageMale\l avgPercentageNo\l avgPercentageYes\l noVotes\l numberBallots\l percentageAbsent\l percentageAbstain\l percentageApproved\l percentageNo\l percentageYes\l totalVotes\l yesVotes\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenVoteDataBallotSummaryAnnual.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryAnnual */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotSummaryAnnual */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotSummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenVoteDataBallotSummary| absentVotes\l abstainVotes\l approved\l avgBornYear\l ballotType\l label\l noVotes\l noWinner\l percentageAbsent\l percentageAbstain\l percentageMale\l percentageNo\l percentageYes\l rm\l totalVotes\l voteDate\l yesVotes\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenVoteDataBallotSummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotSummary */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_politician_dot_impl_dot_ViewRiksdagenPolitician [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.politician\.impl\.ViewRiksdagenPolitician| active\l activeCommittee\l activeEu\l activeGovernment\l activeParliament\l activeParty\l activeSpeaker\l bornYear\l currentAssignments\l currentCommitteeAssignments\l currentMinistryAssignments\l currentPartyAssignments\l currentSpeakerAssignments\l firstAssignmentDate\l firstName\l gender\l lastAssignmentDate\l lastName\l party\l totalAssignments\l totalCommitteeAssignments\l totalDaysServed\l totalDaysServedCommittee\l totalDaysServedEu\l totalDaysServedGovernment\l totalDaysServedParliament\l totalDaysServedParty\l totalDaysServedSpeaker\l totalMinistryAssignments\l totalPartyAssignments\l totalSpeakerAssignments\l }", URL="com/hack23/cia/model/internal/application/data/politician/impl/ViewRiksdagenPolitician.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_politician_dot_impl_dot_ViewRiksdagenPolitician */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly| absentVotes\l abstainVotes\l approvedPercentage\l approvedTotal\l avgBornYear\l bornYear\l firstName\l gender\l lastName\l noVotes\l numberBallots\l party\l partyAbsentVotes\l partyAbstainVotes\l partyAvgBornYear\l partyAvgPercentageMale\l partyNoVotes\l partyPercentageAbsent\l partyPercentageAbstain\l partyPercentageNo\l partyPercentageYes\l partyTotalVotes\l partyWonPercentage\l partyWonTotal\l partyYesVotes\l percentageAbsent\l percentageAbstain\l percentageNo\l percentageYes\l politicianAbsentVotes\l politicianAbstainVotes\l politicianNoVotes\l politicianPercentageAbsent\l politicianPercentageAbstain\l politicianPercentageNo\l politicianPercentageYes\l politicianYesVotes\l rebelPercentage\l rebelTotal\l totalVotes\l wonPercentage\l wonTotal\l yesVotes\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeDailySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenCommitteeDecisionTypeDailySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenCommitteeDecisionTypeDailySummary| total\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenCommitteeDecisionTypeDailySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeDailySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenCommitteeDecisionTypeDailySummary */
+     
+  /* Node com.hack23.cia.model.internal.application.view.impl.QualityAssuranceContent */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_QualityAssuranceContent [ label = "{ com\.hack23\.cia\.model\.internal\.application\.view\.impl\.QualityAssuranceContent| modelObjectId\l modelObjectVersion\l }", URL="com/hack23/cia/model/internal/application/view/impl/QualityAssuranceContent.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.view.impl.QualityAssuranceContent */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_QualityAssuranceContent */
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageAnnualSummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageAnnualSummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.impl\.ViewApplicationActionEventPageAnnualSummary| hits\l rank\l rankPercentage\l }", URL="com/hack23/cia/model/internal/application/data/impl/ViewApplicationActionEventPageAnnualSummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageAnnualSummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageAnnualSummary */
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementWeeklySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageElementWeeklySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.impl\.ViewApplicationActionEventPageElementWeeklySummary| hits\l rank\l rankPercentage\l }", URL="com/hack23/cia/model/internal/application/data/impl/ViewApplicationActionEventPageElementWeeklySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementWeeklySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageElementWeeklySummary */
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.user.impl.UserAccount */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_user_dot_impl_dot_UserAccount [ label = "{ com\.hack23\.cia\.model\.internal\.application\.user\.impl\.UserAccount| country\l createdDate\l email\l modelObjectId\l modelObjectVersion\l numberOfVisits\l userEmailStatus\l userId\l userLockStatus\l userRole\l userType\l username\l userpassword\l }", URL="com/hack23/cia/model/internal/application/user/impl/UserAccount.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.user.impl.UserAccount */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_user_dot_impl_dot_UserAccount */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryWeekly */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotSummaryWeekly [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenVoteDataBallotSummaryWeekly| absentVotes\l abstainVotes\l approvedBallots\l avgBornYear\l avgPercentageAbsent\l avgPercentageAbstain\l avgPercentageMale\l avgPercentageNo\l avgPercentageYes\l noVotes\l numberBallots\l percentageAbsent\l percentageAbstain\l percentageApproved\l percentageNo\l percentageYes\l totalVotes\l yesVotes\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenVoteDataBallotSummaryWeekly.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryWeekly */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotSummaryWeekly */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryWeekly */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPoliticianSummaryWeekly [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenVoteDataBallotPoliticianSummaryWeekly| absentVotes\l abstainVotes\l approvedPercentage\l approvedTotal\l avgBornYear\l bornYear\l firstName\l gender\l lastName\l noVotes\l numberBallots\l party\l partyAbsentVotes\l partyAbstainVotes\l partyAvgBornYear\l partyAvgPercentageMale\l partyNoVotes\l partyPercentageAbsent\l partyPercentageAbstain\l partyPercentageNo\l partyPercentageYes\l partyTotalVotes\l partyWonPercentage\l partyWonTotal\l partyYesVotes\l percentageAbsent\l percentageAbstain\l percentageNo\l percentageYes\l politicianAbsentVotes\l politicianAbstainVotes\l politicianNoVotes\l politicianPercentageAbsent\l politicianPercentageAbstain\l politicianPercentageNo\l politicianPercentageYes\l politicianYesVotes\l rebelPercentage\l rebelTotal\l totalVotes\l wonPercentage\l wonTotal\l yesVotes\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenVoteDataBallotPoliticianSummaryWeekly.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryWeekly */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPoliticianSummaryWeekly */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenCommittee [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenCommittee| active\l currentMemberSize\l firstAssignmentDate\l lastAssignmentDate\l totalAssignments\l totalDaysServed\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenCommittee.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenCommittee */
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.system.impl.DomainPortal */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_DomainPortal [ label = "{ com\.hack23\.cia\.model\.internal\.application\.system\.impl\.DomainPortal| domainName\l }", URL="com/hack23/cia/model/internal/application/system/impl/DomainPortal.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.system.impl.DomainPortal */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_DomainPortal */
+     
+  /* Node com.hack23.cia.model.internal.application.system.impl.LanguageData */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_LanguageData [ label = "{ com\.hack23\.cia\.model\.internal\.application\.system\.impl\.LanguageData| autoTranslationEnabled\l createdDate\l languageCode\l languageEnabled\l languageName\l lastModifiedDate\l modelObjectId\l modelObjectVersion\l translationStatus\l }", URL="com/hack23/cia/model/internal/application/system/impl/LanguageData.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.system.impl.LanguageData */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_LanguageData */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.view.impl.PerformanceIndicatorContent */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_PerformanceIndicatorContent [ label = "{ com\.hack23\.cia\.model\.internal\.application\.view\.impl\.PerformanceIndicatorContent| modelObjectId\l modelObjectVersion\l }", URL="com/hack23/cia/model/internal/application/view/impl/PerformanceIndicatorContent.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.view.impl.PerformanceIndicatorContent */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_PerformanceIndicatorContent */
+     
+     
+  /* Node com.hack23.cia.model.external.worldbank.countries.impl.CountriesElement */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountriesElement [ label = "{ com\.hack23\.cia\.model\.external\.worldbank\.countries\.impl\.CountriesElement| page\l pages\l perPage\l total\l }", URL="com/hack23/cia/model/external/worldbank/countries/impl/CountriesElement.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.worldbank.countries.impl.CountriesElement */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountriesElement */
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountriesElement -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountryElement [ 
+        label="country" 
+        ]
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_DataAgentWorkOrder [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.impl\.DataAgentWorkOrder| operation\l target\l }", URL="com/hack23/cia/model/internal/application/data/impl/DataAgentWorkOrder.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.impl.DataAgentWorkOrder */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_DataAgentWorkOrder */
+     
+     
+  /* Node com.hack23.cia.model.internal.application.system.impl.LanguageContentData */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_LanguageContentData [ label = "{ com\.hack23\.cia\.model\.internal\.application\.system\.impl\.LanguageContentData| createdDate\l fromLanguage\l keyGroup\l languageContentType\l languageValue\l lastModifiedDate\l locationContext\l modelObjectId\l modelObjectVersion\l refKey\l toLanguage\l }", URL="com/hack23/cia/model/internal/application/system/impl/LanguageContentData.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.system.impl.LanguageContentData */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_LanguageContentData */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_ApplicationActionEvent [ label = "{ com\.hack23\.cia\.model\.internal\.application\.system\.impl\.ApplicationActionEvent| actionName\l applicationMessage\l applicationOperation\l createdDate\l elementId\l errorMessage\l eventGroup\l modelObjectId\l modelObjectVersion\l page\l pageMode\l sessionId\l userId\l }", URL="com/hack23/cia/model/internal/application/system/impl/ApplicationActionEvent.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_ApplicationActionEvent */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual| absentVotes\l abstainVotes\l approvedPercentage\l approvedTotal\l avgBornYear\l bornYear\l firstName\l gender\l lastName\l noVotes\l numberBallots\l party\l partyAbsentVotes\l partyAbstainVotes\l partyAvgBornYear\l partyAvgPercentageMale\l partyNoVotes\l partyPercentageAbsent\l partyPercentageAbstain\l partyPercentageNo\l partyPercentageYes\l partyTotalVotes\l partyWonPercentage\l partyWonTotal\l partyYesVotes\l percentageAbsent\l percentageAbstain\l percentageNo\l percentageYes\l politicianAbsentVotes\l politicianAbstainVotes\l politicianNoVotes\l politicianPercentageAbsent\l politicianPercentageAbstain\l politicianPercentageNo\l politicianPercentageYes\l politicianYesVotes\l rebelPercentage\l rebelTotal\l totalVotes\l wonPercentage\l wonTotal\l yesVotes\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryDaily */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotSummaryDaily [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenVoteDataBallotSummaryDaily| absentVotes\l abstainVotes\l approvedBallots\l avgAbsentVotes\l avgAbstainVotes\l avgBornYear\l avgNoVotes\l avgPercentageAbsent\l avgPercentageAbstain\l avgPercentageMale\l avgPercentageNo\l avgPercentageYes\l avgTotalVotes\l avgYesVotes\l noVotes\l numberBallots\l percentageAbsent\l percentageAbstain\l percentageApproved\l percentageNo\l percentageYes\l totalVotes\l yesVotes\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenVoteDataBallotSummaryDaily.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryDaily */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotSummaryDaily */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMember */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_party_dot_impl_dot_ViewRiksdagenPartyMember [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.party\.impl\.ViewRiksdagenPartyMember| address\l bornYear\l city\l coAddress\l electionRegion\l email\l faxNumber\l firstName\l gender\l hangarGuid\l hjid\l imageUrl192\l imageUrl80\l imageUrlMax\l lastName\l party\l partyId\l partyName\l personUrlXml\l phoneNumber\l place\l postCode\l registeredDate\l shortCode\l status\l website\l }", URL="com/hack23/cia/model/internal/application/data/party/impl/ViewRiksdagenPartyMember.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMember */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_party_dot_impl_dot_ViewRiksdagenPartyMember */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryMonthly */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotSummaryMonthly [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenVoteDataBallotSummaryMonthly| absentVotes\l abstainVotes\l approvedBallots\l avgBornYear\l avgPercentageAbsent\l avgPercentageAbstain\l avgPercentageMale\l avgPercentageNo\l avgPercentageYes\l noVotes\l numberBallots\l percentageAbsent\l percentageAbstain\l percentageApproved\l percentageNo\l percentageYes\l totalVotes\l yesVotes\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenVoteDataBallotSummaryMonthly.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryMonthly */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotSummaryMonthly */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeHourlySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageModeHourlySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.impl\.ViewApplicationActionEventPageModeHourlySummary| hits\l rank\l rankPercentage\l }", URL="com/hack23/cia/model/internal/application/data/impl/ViewApplicationActionEventPageModeHourlySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeHourlySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageModeHourlySummary */
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_ministry_dot_impl_dot_ViewRiksdagenMinistry [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.ministry\.impl\.ViewRiksdagenMinistry| active\l currentMemberSize\l firstAssignmentDate\l lastAssignmentDate\l totalAssignments\l totalDaysServed\l }", URL="com/hack23/cia/model/internal/application/data/ministry/impl/ViewRiksdagenMinistry.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_ministry_dot_impl_dot_ViewRiksdagenMinistry */
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.system.impl.Agency */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_Agency [ label = "{ com\.hack23\.cia\.model\.internal\.application\.system\.impl\.Agency| agencyName\l description\l modelObjectId\l modelObjectVersion\l }", URL="com/hack23/cia/model/internal/application/system/impl/Agency.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.system.impl.Agency */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_Agency */
+     
+     
+     
+     
+     com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_Agency -> com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_Portal [ 
+        label="portals" 
+        ]
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeRoleMember */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenCommitteeRoleMember [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenCommitteeRoleMember| active\l detail\l firstName\l fromDate\l lastName\l party\l personId\l roleCode\l toDate\l totalDaysServed\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenCommitteeRoleMember.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeRoleMember */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenCommitteeRoleMember */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_ministry_dot_impl_dot_ViewRiksdagenGovermentRoleMember [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.ministry\.impl\.ViewRiksdagenGovermentRoleMember| active\l detail\l firstName\l fromDate\l lastName\l party\l personId\l roleCode\l toDate\l totalDaysServed\l }", URL="com/hack23/cia/model/internal/application/data/ministry/impl/ViewRiksdagenGovermentRoleMember.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_ministry_dot_impl_dot_ViewRiksdagenGovermentRoleMember */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementHourlySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageElementHourlySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.impl\.ViewApplicationActionEventPageElementHourlySummary| hits\l rank\l rankPercentage\l }", URL="com/hack23/cia/model/internal/application/data/impl/ViewApplicationActionEventPageElementHourlySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementHourlySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageElementHourlySummary */
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.system.impl.Portal */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_Portal [ label = "{ com\.hack23\.cia\.model\.internal\.application\.system\.impl\.Portal| description\l googleMapApiKey\l modelObjectId\l modelObjectVersion\l portalName\l portalType\l }", URL="com/hack23/cia/model/internal/application/system/impl/Portal.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.system.impl.Portal */
+     com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_DomainPortal -> com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_Portal  [ weight="10", arrowhead="onormal"  ]
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_Portal */
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_party_dot_impl_dot_ViewRiksdagenPartySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.party\.impl\.ViewRiksdagenPartySummary| active\l activeCommittee\l activeEu\l activeGovernment\l activeParliament\l activeParty\l activeSpeaker\l currentAssignments\l currentCommitteeAssignments\l currentMinistryAssignments\l currentPartyAssignments\l currentSpeakerAssignments\l firstAssignmentDate\l lastAssignmentDate\l totalActiveCommittee\l totalActiveEu\l totalActiveGovernment\l totalActiveParliament\l totalAssignments\l totalCommitteeAssignments\l totalDaysServed\l totalDaysServedCommittee\l totalDaysServedEu\l totalDaysServedGovernment\l totalDaysServedParliament\l totalDaysServedParty\l totalDaysServedSpeaker\l totalMinistryAssignments\l totalPartyAssignments\l totalSpeakerAssignments\l }", URL="com/hack23/cia/model/internal/application/data/party/impl/ViewRiksdagenPartySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_party_dot_impl_dot_ViewRiksdagenPartySummary */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_ApplicationConfiguration [ label = "{ com\.hack23\.cia\.model\.internal\.application\.system\.impl\.ApplicationConfiguration| component\l componentDescription\l componentTitle\l configDescription\l configTitle\l configurationGroup\l createdDate\l modelObjectId\l modelObjectVersion\l propertyId\l propertyValue\l updatedDate\l }", URL="com/hack23/cia/model/internal/application/system/impl/ApplicationConfiguration.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_ApplicationConfiguration */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.view.impl.TargetProfileContent */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_TargetProfileContent [ label = "{ com\.hack23\.cia\.model\.internal\.application\.view\.impl\.TargetProfileContent| modelObjectId\l modelObjectVersion\l }", URL="com/hack23/cia/model/internal/application/view/impl/TargetProfileContent.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.view.impl.TargetProfileContent */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_TargetProfileContent */
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPoliticianSummaryDaily [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily| absentVotes\l abstainVotes\l approvedPercentage\l approvedTotal\l avgAbsentVotes\l avgAbstainVotes\l avgBornYear\l avgNoVotes\l avgPercentageAbsent\l avgPercentageAbstain\l avgPercentageMale\l avgPercentageNo\l avgPercentageYes\l avgTotalVotes\l avgYesVotes\l bornYear\l firstName\l gender\l lastName\l noVotes\l numberBallots\l party\l partyAbsentVotes\l partyAbstainVotes\l partyAvgBornYear\l partyAvgPercentageMale\l partyNoVotes\l partyPercentageAbsent\l partyPercentageAbstain\l partyPercentageNo\l partyPercentageYes\l partyTotalVotes\l partyWonPercentage\l partyWonTotal\l partyYesVotes\l percentageAbsent\l percentageAbstain\l percentageApproved\l percentageNo\l percentageYes\l politicianAbsentVotes\l politicianAbstainVotes\l politicianNoVotes\l politicianPercentageAbsent\l politicianPercentageAbstain\l politicianPercentageNo\l politicianPercentageYes\l politicianYesVotes\l rebelPercentage\l rebelTotal\l totalVotes\l wonPercentage\l wonTotal\l yesVotes\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenVoteDataBallotPoliticianSummaryDaily.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPoliticianSummaryDaily */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPartySummaryAnnual [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenVoteDataBallotPartySummaryAnnual| absentVotes\l abstainVotes\l approvedPercentage\l approvedTotal\l avgBornYear\l avgPercentageAbsent\l avgPercentageAbstain\l avgPercentageMale\l avgPercentageNo\l avgPercentageYes\l noVotes\l numberBallots\l partyAbsentVotes\l partyAbstainVotes\l partyAvgBornYear\l partyAvgPercentageMale\l partyNoVotes\l partyPercentageAbsent\l partyPercentageAbstain\l partyPercentageNo\l partyPercentageYes\l partyTotalVotes\l partyWonPercentage\l partyWonTotal\l partyYesVotes\l percentageAbsent\l percentageAbstain\l percentageNo\l percentageYes\l totalVotes\l yesVotes\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenVoteDataBallotPartySummaryAnnual.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPartySummaryAnnual */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenOrgDocumentDailySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_document_dot_impl_dot_ViewRiksdagenOrgDocumentDailySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.document\.impl\.ViewRiksdagenOrgDocumentDailySummary| documentType\l total\l }", URL="com/hack23/cia/model/internal/application/data/document/impl/ViewRiksdagenOrgDocumentDailySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenOrgDocumentDailySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_document_dot_impl_dot_ViewRiksdagenOrgDocumentDailySummary */
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_party_dot_impl_dot_ViewRiksdagenPartyRoleMember [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.party\.impl\.ViewRiksdagenPartyRoleMember| active\l detail\l firstName\l fromDate\l lastName\l party\l personId\l roleCode\l toDate\l totalDaysServed\l }", URL="com/hack23/cia/model/internal/application/data/party/impl/ViewRiksdagenPartyRoleMember.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_party_dot_impl_dot_ViewRiksdagenPartyRoleMember */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_document_dot_impl_dot_ViewRiksdagenPoliticianDocumentDailySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.document\.impl\.ViewRiksdagenPoliticianDocumentDailySummary| total\l }", URL="com/hack23/cia/model/internal/application/data/document/impl/ViewRiksdagenPoliticianDocumentDailySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_document_dot_impl_dot_ViewRiksdagenPoliticianDocumentDailySummary */
+     
+  /* Node com.hack23.cia.model.internal.application.system.impl.ApplicationSession */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_ApplicationSession [ label = "{ com\.hack23\.cia\.model\.internal\.application\.system\.impl\.ApplicationSession| createdDate\l destroyedDate\l ipInformation\l locale\l modelObjectId\l modelObjectVersion\l operatingSystem\l screenSize\l sessionId\l sessionType\l timeZone\l userAgentInformation\l userId\l }", URL="com/hack23/cia/model/internal/application/system/impl/ApplicationSession.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.system.impl.ApplicationSession */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_ApplicationSession */
+     
+     
+     com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_ApplicationSession -> com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_system_dot_impl_dot_ApplicationActionEvent [ 
+        label="events" 
+        ]
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryWeekly */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPartySummaryWeekly [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenVoteDataBallotPartySummaryWeekly| absentVotes\l abstainVotes\l approvedPercentage\l approvedTotal\l avgBornYear\l avgPercentageAbsent\l avgPercentageAbstain\l avgPercentageMale\l avgPercentageNo\l avgPercentageYes\l noVotes\l numberBallots\l partyAbsentVotes\l partyAbstainVotes\l partyAvgBornYear\l partyAvgPercentageMale\l partyNoVotes\l partyPercentageAbsent\l partyPercentageAbstain\l partyPercentageNo\l partyPercentageYes\l partyTotalVotes\l partyWonPercentage\l partyWonTotal\l partyYesVotes\l percentageAbsent\l percentageAbstain\l percentageNo\l percentageYes\l totalVotes\l yesVotes\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenVoteDataBallotPartySummaryWeekly.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryWeekly */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPartySummaryWeekly */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeWeeklySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageModeWeeklySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.impl\.ViewApplicationActionEventPageModeWeeklySummary| hits\l rank\l rankPercentage\l }", URL="com/hack23/cia/model/internal/application/data/impl/ViewApplicationActionEventPageModeWeeklySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeWeeklySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageModeWeeklySummary */
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewWorldbankIndicatorDataCountrySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.impl\.ViewWorldbankIndicatorDataCountrySummary| dataPoint\l endYear\l indicatorName\l sourceNote\l sourceOrganization\l sourceValue\l startYear\l topics\l }", URL="com/hack23/cia/model/internal/application/data/impl/ViewWorldbankIndicatorDataCountrySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewWorldbankIndicatorDataCountrySummary */
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPartyDocumentDailySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_document_dot_impl_dot_ViewRiksdagenPartyDocumentDailySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.document\.impl\.ViewRiksdagenPartyDocumentDailySummary| total\l }", URL="com/hack23/cia/model/internal/application/data/document/impl/ViewRiksdagenPartyDocumentDailySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPartyDocumentDailySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_document_dot_impl_dot_ViewRiksdagenPartyDocumentDailySummary */
+     
+  /* Node com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeDailySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageModeDailySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.impl\.ViewApplicationActionEventPageModeDailySummary| hits\l rank\l rankPercentage\l }", URL="com/hack23/cia/model/internal/application/data/impl/ViewApplicationActionEventPageModeDailySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeDailySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageModeDailySummary */
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageHourlySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageHourlySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.impl\.ViewApplicationActionEventPageHourlySummary| hits\l rank\l rankPercentage\l }", URL="com/hack23/cia/model/internal/application/data/impl/ViewApplicationActionEventPageHourlySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageHourlySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageHourlySummary */
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPartySummaryDaily [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenVoteDataBallotPartySummaryDaily| absentVotes\l abstainVotes\l approvedPercentage\l approvedTotal\l avgAbsentVotes\l avgAbstainVotes\l avgBornYear\l avgNoVotes\l avgPercentageAbsent\l avgPercentageAbstain\l avgPercentageMale\l avgPercentageNo\l avgPercentageYes\l avgTotalVotes\l avgYesVotes\l noVotes\l numberBallots\l partyAbsentVotes\l partyAbstainVotes\l partyAvgBornYear\l partyAvgPercentageMale\l partyNoVotes\l partyPercentageAbsent\l partyPercentageAbstain\l partyPercentageNo\l partyPercentageYes\l partyTotalVotes\l partyWonPercentage\l partyWonTotal\l partyYesVotes\l percentageAbsent\l percentageAbstain\l percentageApproved\l percentageNo\l percentageYes\l totalVotes\l yesVotes\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenVoteDataBallotPartySummaryDaily.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPartySummaryDaily */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionSummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenCommitteeBallotDecisionSummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenCommitteeBallotDecisionSummary| absentVotes\l abstainVotes\l againstProposalNumber\l againstProposalParties\l approved\l avgBornYear\l ballotId\l ballotType\l committeeReport\l createdDate\l decisionType\l endNumber\l label\l noVotes\l noWinner\l org\l percentageAbsent\l percentageAbstain\l percentageMale\l percentageNo\l percentageYes\l publicDate\l rm\l subTitle\l title\l totalVotes\l voteDate\l winner\l yesVotes\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenCommitteeBallotDecisionSummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionSummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenCommitteeBallotDecisionSummary */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPoliticianSummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenVoteDataBallotPoliticianSummary| absentVotes\l abstainVotes\l approved\l avgBornYear\l ballotType\l bornYear\l firstName\l gender\l label\l lastName\l noVotes\l noWinner\l party\l partyAbsentVotes\l partyAbstainVotes\l partyApproved\l partyAvgBornYear\l partyNoVotes\l partyNoWinner\l partyPercentageAbsent\l partyPercentageAbstain\l partyPercentageMale\l partyPercentageNo\l partyPercentageYes\l partyTotalVotes\l partyWon\l partyYesVotes\l percentageAbsent\l percentageAbstain\l percentageMale\l percentageNo\l percentageYes\l rebel\l rm\l totalVotes\l vote\l voteDate\l won\l yesVotes\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenVoteDataBallotPoliticianSummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPoliticianSummary */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageDailySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageDailySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.impl\.ViewApplicationActionEventPageDailySummary| hits\l rank\l rankPercentage\l }", URL="com/hack23/cia/model/internal/application/data/impl/ViewApplicationActionEventPageDailySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageDailySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageDailySummary */
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.view.impl.ApplicationView */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_ApplicationView [ label = "{ com\.hack23\.cia\.model\.internal\.application\.view\.impl\.ApplicationView| dataSourceInformation\l operationalInformation\l performanceIndicators\l perspective\l qualityAssurance\l targetProfile\l }", URL="com/hack23/cia/model/internal/application/view/impl/ApplicationView.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.view.impl.ApplicationView */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_ApplicationView */
+     com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_ApplicationView -> com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_DataSourceContent [ 
+        label="dataSourceInformation" 
+        ]
+     
+     com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_ApplicationView -> com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_OperationalInformationContent [ 
+        label="operationalInformation" 
+        ]
+     
+     com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_ApplicationView -> com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_PerformanceIndicatorContent [ 
+        label="performanceIndicators" 
+        ]
+     
+     
+     com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_ApplicationView -> com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_QualityAssuranceContent [ 
+        label="qualityAssurance" 
+        ]
+     
+     com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_ApplicationView -> com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_TargetProfileContent [ 
+        label="targetProfile" 
+        ]
+     
+  /* Node com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditDataSummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_audit_dot_impl_dot_ViewAuditDataSummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.audit\.impl\.ViewAuditDataSummary| dataSize\l dataType\l }", URL="com/hack23/cia/model/internal/application/data/audit/impl/ViewAuditDataSummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditDataSummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_audit_dot_impl_dot_ViewAuditDataSummary */
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditAuthorSummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_audit_dot_impl_dot_ViewAuditAuthorSummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.audit\.impl\.ViewAuditAuthorSummary| author\l changes\l firstDate\l lastDate\l }", URL="com/hack23/cia/model/internal/application/data/audit/impl/ViewAuditAuthorSummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditAuthorSummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_audit_dot_impl_dot_ViewAuditAuthorSummary */
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.view.impl.DataSourceContent */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_DataSourceContent [ label = "{ com\.hack23\.cia\.model\.internal\.application\.view\.impl\.DataSourceContent| modelObjectId\l modelObjectVersion\l }", URL="com/hack23/cia/model/internal/application/view/impl/DataSourceContent.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.view.impl.DataSourceContent */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_DataSourceContent */
+     
+     
+  /* Node com.hack23.cia.model.external.worldbank.countries.impl.CountryElement */
+  com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountryElement [ label = "{ com\.hack23\.cia\.model\.external\.worldbank\.countries\.impl\.CountryElement| adminregion\l capitalCity\l countryName\l id\l incomeLevel\l iso2Code\l latitude\l lendingType\l longitude\l region\l }", URL="com/hack23/cia/model/external/worldbank/countries/impl/CountryElement.html" ]
+  /* Subclass edges for com.hack23.cia.model.external.worldbank.countries.impl.CountryElement */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountryElement */
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountryElement -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_Adminregion [ 
+        label="adminregion" 
+        arrowtail="diamond"
+        ]
+      /* Node component org.hibernate.mapping.Component([org.hibernate.mapping.Property(id), org.hibernate.mapping.Property(value)]) */
+      com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_Adminregion [ 
+        label = "{ com\.hack23\.cia\.model\.external\.worldbank\.countries\.impl\.Adminregion| id\l value\l }"
+           ]
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_Adminregion */
+     
+     
+     
+     
+     
+     
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountryElement -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_IncomeLevel [ 
+        label="incomeLevel" 
+        arrowtail="diamond"
+        ]
+      /* Node component org.hibernate.mapping.Component([org.hibernate.mapping.Property(id), org.hibernate.mapping.Property(value)]) */
+      com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_IncomeLevel [ 
+        label = "{ com\.hack23\.cia\.model\.external\.worldbank\.countries\.impl\.IncomeLevel| id\l value\l }"
+           ]
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_IncomeLevel */
+     
+     
+     
+     
+     
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountryElement -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_LendingType [ 
+        label="lendingType" 
+        arrowtail="diamond"
+        ]
+      /* Node component org.hibernate.mapping.Component([org.hibernate.mapping.Property(id), org.hibernate.mapping.Property(value)]) */
+      com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_LendingType [ 
+        label = "{ com\.hack23\.cia\.model\.external\.worldbank\.countries\.impl\.LendingType| id\l value\l }"
+           ]
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_LendingType */
+     
+     
+     
+     
+     com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_CountryElement -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_Region [ 
+        label="region" 
+        arrowtail="diamond"
+        ]
+      /* Node component org.hibernate.mapping.Component([org.hibernate.mapping.Property(id), org.hibernate.mapping.Property(value)]) */
+      com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_Region [ 
+        label = "{ com\.hack23\.cia\.model\.external\.worldbank\.countries\.impl\.Region| id\l value\l }"
+           ]
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_external_dot_worldbank_dot_countries_dot_impl_dot_Region */
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeOrgDailySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenCommitteeDecisionTypeOrgDailySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenCommitteeDecisionTypeOrgDailySummary| total\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenCommitteeDecisionTypeOrgDailySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeOrgDailySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenCommitteeDecisionTypeOrgDailySummary */
+     
+  /* Node com.hack23.cia.model.internal.application.secure.impl.EncryptedValue */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_secure_dot_impl_dot_EncryptedValue [ label = "{ com\.hack23\.cia\.model\.internal\.application\.secure\.impl\.EncryptedValue| storage\l userId\l vaultName\l }", URL="com/hack23/cia/model/internal/application/secure/impl/EncryptedValue.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.secure.impl.EncryptedValue */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_secure_dot_impl_dot_EncryptedValue */
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.view.impl.OperationalInformationContent */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_OperationalInformationContent [ label = "{ com\.hack23\.cia\.model\.internal\.application\.view\.impl\.OperationalInformationContent| modelObjectId\l modelObjectVersion\l }", URL="com/hack23/cia/model/internal/application/view/impl/OperationalInformationContent.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.view.impl.OperationalInformationContent */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_view_dot_impl_dot_OperationalInformationContent */
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeAnnualSummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageModeAnnualSummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.impl\.ViewApplicationActionEventPageModeAnnualSummary| hits\l rank\l rankPercentage\l }", URL="com/hack23/cia/model/internal/application/data/impl/ViewApplicationActionEventPageModeAnnualSummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeAnnualSummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageModeAnnualSummary */
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisions */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenCommitteeDecisions [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenCommitteeDecisions| againstProposalNumber\l againstProposalParties\l ballotId\l committeeProposalUrlXml\l committeeReport\l createdDate\l decisionType\l endNumber\l header\l org\l publicDate\l rm\l title\l winner\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenCommitteeDecisions.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisions */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenCommitteeDecisions */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenCommitteeBallotDecisionPoliticianSummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary| absentVotes\l abstainVotes\l againstProposalNumber\l againstProposalParties\l approved\l avgBornYear\l ballotId\l ballotType\l bornYear\l committeeReport\l createdDate\l decisionType\l endNumber\l firstName\l label\l lastName\l noVotes\l noWinner\l org\l party\l partyAbsentVotes\l partyAbstainVotes\l partyApproved\l partyAvgBornYear\l partyNoVotes\l partyNoWinner\l partyPercentageAbsent\l partyPercentageAbstain\l partyPercentageMale\l partyPercentageNo\l partyPercentageYes\l partyTotalVotes\l partyYesVotes\l percentageAbsent\l percentageAbstain\l percentageMale\l percentageNo\l percentageYes\l publicDate\l rebel\l rm\l subTitle\l title\l totalVotes\l vote\l voteDate\l winner\l won\l yesVotes\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenCommitteeBallotDecisionPoliticianSummary */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_party_dot_impl_dot_ViewRiksdagenParty [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.party\.impl\.ViewRiksdagenParty| headCount\l partyName\l partyNumber\l registeredDate\l website\l }", URL="com/hack23/cia/model/internal/application/data/party/impl/ViewRiksdagenParty.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_party_dot_impl_dot_ViewRiksdagenParty */
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPartySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.committee\.impl\.ViewRiksdagenVoteDataBallotPartySummary| absentVotes\l abstainVotes\l approved\l avgBornYear\l ballotType\l label\l noVotes\l noWinner\l partyAbsentVotes\l partyAbstainVotes\l partyApproved\l partyAvgBornYear\l partyNoVotes\l partyNoWinner\l partyPercentageAbsent\l partyPercentageAbstain\l partyPercentageMale\l partyPercentageNo\l partyPercentageYes\l partyTotalVotes\l partyYesVotes\l percentageAbsent\l percentageAbstain\l percentageMale\l percentageNo\l percentageYes\l rm\l totalVotes\l voteDate\l yesVotes\l }", URL="com/hack23/cia/model/internal/application/data/committee/impl/ViewRiksdagenVoteDataBallotPartySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_committee_dot_impl_dot_ViewRiksdagenVoteDataBallotPartySummary */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageWeeklySummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageWeeklySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.impl\.ViewApplicationActionEventPageWeeklySummary| hits\l rank\l rankPercentage\l }", URL="com/hack23/cia/model/internal/application/data/impl/ViewApplicationActionEventPageWeeklySummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageWeeklySummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageWeeklySummary */
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementAnnualSummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageElementAnnualSummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.impl\.ViewApplicationActionEventPageElementAnnualSummary| hits\l rank\l rankPercentage\l }", URL="com/hack23/cia/model/internal/application/data/impl/ViewApplicationActionEventPageElementAnnualSummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementAnnualSummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_impl_dot_ViewApplicationActionEventPageElementAnnualSummary */
+     
+     
+     
+
+}
+
